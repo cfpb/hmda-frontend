@@ -1,0 +1,109 @@
+@font-face {
+  font-family: SourceSansPro;
+  src: url(./fonts/sourcesanspro-regular-webfont.woff);
+}
+@font-face {
+  font-family: SourceSansProBold;
+  src: url(./fonts/sourcesanspro-bold-webfont.woff);
+}
+@font-face {
+  font-family: SourceSansProItalic;
+  src: url(./fonts/sourcesanspro-italic-webfont.woff);
+}
+
+*, *::before, *::after {
+   box-sizing: inherit;
+}
+
+
+html {
+  font-family: SourceSansPro;
+  font-size: 10px;
+  box-sizing: border-box;
+  min-height: 100%;
+  position: relative;
+  overflow-y: scroll;
+}
+body {
+  margin: 0 0 350px;
+  padding: 0;
+  font-family: SourceSansPro;
+  font-size: 1.7rem;
+}
+.skipnav {
+  background: transparent;
+  color: #212121;
+  left: 0;
+  padding: 1rem 1.5rem;
+  position: absolute;
+  top: -4.2rem;
+  transition: all 0.2s ease-in-out;
+  z-index: 100;
+}
+
+a {
+  color: #0071bc;
+  text-decoration: underline;
+}
+a:visited {
+  color: #4c2c92;
+}
+a:hover,
+a:active {
+  color: #205493;
+}
+
+p, li {
+  line-height: 1.5;
+}
+
+li {
+   margin-bottom: 0.5em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: SourceSansProBold;
+  clear: both;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1+ul, h1+ol, h2+ul, h2+ol, h3+ul, h3+ol, h4+ul, h4+ol, h5+ul, h5+ol, h6+ul, h6+ol, p+ul, p+ol {
+   margin-top: 0;
+}
+hr {
+  border-bottom: none;
+  border-top: 1px solid #5b616b;;
+}
+
+.button-link {
+  background: none;
+  font-family: SourceSansPro;
+  border: none;
+  color: #0071bc;
+  text-decoration: underline;
+  font-size: 1.7rem;
+  padding: 0;
+  cursor: pointer;
+}
+
+.button-link:hover {
+  color: #4c2c92;
+}
+
+.Beta {
+  margin: 0 auto -30px auto;
+  max-width: 1040px;
+}
+.BackLink {
+  font-family: SourceSansProBold;
+  font-size: 1.3rem;
+  display: block;
+  margin: 45px 0 -49px 0;
+}

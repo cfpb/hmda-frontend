@@ -1,0 +1,33 @@
+{
+  "name": "hmda-frontend",
+  "version": "0.0.1",
+  "description": "Collection of HMDA frontend apps",
+  "main": "./src/index.js",
+  "engines": {
+    "node": ">=8.x"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test"
+  },
+  "keywords": [
+    "HMDA"
+  ],
+  "author": "Consumer Financial Protection Bureau",
+  "license": "CC0-1.0",
+  "dependencies": {
+    "react": "16.10.1",
+    "react-app-polyfill": "1.0.3",
+    "react-dom": "16.10.1",
+    "react-router-dom": "5.1.2",
+    "react-scripts": "3.1.2"
+  },
+  "browserslist": [
+    "Chrome >= 60",
+    "Safari >= 10.1",
+    "Firefox >= 54",
+    "Edge >= 15",
+    "ie >= 11"
+  ]
+}

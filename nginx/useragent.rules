@@ -1,0 +1,5 @@
+map $http_user_agent $badagent {
+        default        0;
+        ~msnbot        1;
+        ~scrapbot      1;
+}
