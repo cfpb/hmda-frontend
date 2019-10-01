@@ -1,3 +1,4 @@
 # Installation instructions
-
-Detailed instructions on how to install, configure, and get the project running.
+  - Ensure node v10+ and yarn v1.17+ are installed
+  - Clone repo
+  - Run `yarn` from the repo root
