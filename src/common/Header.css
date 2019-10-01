@@ -1,0 +1,167 @@
+.hmda-header nav {
+  margin: 0 -10px 0 0;
+  padding: 0;
+}
+.hmda-header .logo a {
+  color: #1f498f;
+  font-weight: bold;
+}
+.hmda-header .logo a:hover {
+  color: #1f498f;
+}
+.logo-text {
+  font-family: SourceSansProBold;
+  font-size: 2.5rem;
+  font-weight: normal;
+}
+.logo-text a {
+  text-decoration: none;
+}
+
+.logo-text img {
+  margin-right: 0.5em;
+  vertical-align: text-bottom;
+}
+
+.logo-text span {
+  display: inline-block;
+}
+
+.header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #d6d7d9;
+}
+
+.navbar {
+  height: auto;
+}
+
+.nav {
+  padding-top: 0;
+  float: right;
+}
+
+.logo {
+  display: inline-block;
+  font-weight: bold;
+  line-height: 0;
+  width: 491px;
+}
+
+.logo a:hover {
+  color: #0071bc;
+}
+
+.header-basic .logo {
+}
+
+.banner-inner {
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+  max-width: 100%;
+}
+
+.nav-container {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-right: 3rem;
+  padding-left: 3rem;
+  max-width: 100%;
+}
+
+.nav-primary {
+  list-style-type: none;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  padding-left: 0;
+  order: 2;
+}
+
+.nav-primary > li {
+  display: inline-block;
+  font-size: 1.3rem;
+  margin-left: 0;
+}
+
+.nav-primary > li.nav-institutions {
+  margin-left: 3em;
+}
+.nav-primary > li.nav-institutions > a.nav-link {
+  margin-left: 0;
+}
+
+.nav-primary > li > a {
+  color: #212121;
+  font-family: SourceSansProBold;
+  font-size: 1.3rem;
+  margin: 0 1.5rem;
+  padding: 0;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.nav-primary > li > a:hover {
+  color: #0071bc;
+}
+
+.nav-primary > li > a.active {
+  border-bottom: 2px solid;
+  margin-bottom: -2px;
+}
+
+.nav-primary > li > a.button {
+  color: #ffffff;
+  margin: 0;
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+}
+.nav-primary > li > a.button:hover {
+  color: #ffffff;
+  background-color: #205493;
+}
+.nav-primary > li > a.button.button-outline:hover {
+  color: #ffffff;
+}
+
+.nav-primary > li:last-child > a {
+  margin-right: 0;
+}
+
+.nav-primary > li:first-child > a {
+  margin-left: 0;
+}
+
+.nav-primary a {
+  padding: 0;
+  display: inline-block;
+}
+
+
+@media screen and (max-width: 1279px) {
+  .nav-primary > li > a {
+    margin: 0 0.5rem;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .nav-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .hmda-header nav {
+    margin: 0;
+  }
+  .logo {
+    width: 116px;
+  }
+  .logo-text span {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .nav {
+    float: none;
+  }
+}
