@@ -2,7 +2,7 @@ import React from 'react'
 import BannerUSA from './BannerUSA'
 
 import './Header.css'
-import logo from '../images/ffiec-logo.svg'
+import logo from './images/ffiec-logo.svg'
 
 const defaultLinks = [
   { name: 'Home', href: '/' },

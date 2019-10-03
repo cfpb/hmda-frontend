@@ -1,0 +1,47 @@
+.ImageCard {
+  overflow: hidden;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.ImageCard.enabled {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ImageWrapper {
+  border: 2px solid white;
+}
+
+.ImageCard.enabled .ImageWrapper:hover {
+  border-color: #0071bc;
+  cursor: pointer;
+}
+
+.ImageWrapper:hover .imagechild {
+  transform: scale(1.1);
+}
+
+.ImageCard.enabled:hover h4 {
+  color: #0071bc;
+}
+
+.ImageWrapper {
+  overflow:hidden;
+  width: 429px;
+  height:285px;
+}
+
+.imagechild {
+  transition: transform 0.3s;
+  width:429px;
+  height:285px;
+}
+
+.ImageCard > h4 {
+  position: relative;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 1.5;
+  padding-left: 2px;
+}

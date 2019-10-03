@@ -21,7 +21,8 @@
     "react-app-polyfill": "1.0.3",
     "react-dom": "16.10.1",
     "react-router-dom": "5.1.2",
-    "react-scripts": "3.1.2"
+    "react-scripts": "3.1.2",
+    "react-select": "3.0.8"
   },
   "browserslist": [
     "Chrome >= 60",
@@ -29,5 +30,9 @@
     "Firefox >= 54",
     "Edge >= 15",
     "ie >= 11"
-  ]
+  ],
+  "devDependencies": {
+    "eslint-plugin-prettier": "3.1.1",
+    "http-proxy-middleware": "0.19.1"
+  }
 }
