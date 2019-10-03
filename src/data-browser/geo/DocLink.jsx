@@ -1,7 +1,7 @@
 import React from 'react'
 
 function makeUrl({year, definition}) {
-  return `https://ffiec.cfpb.gov/documentation/${year}/data-browser-filters/#${definition}`
+  return `/documentation/${year}/data-browser-filters/#${definition}`
 }
 
 const DocLink = props => {

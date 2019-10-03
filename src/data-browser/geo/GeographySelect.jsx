@@ -17,7 +17,7 @@ const GeographySelect = ({options, geographies, isLargeFile, enabled, downloadCa
   return (
     <div className="SelectWrapper">
           <h3>Dataset by Geography</h3>
-          <p>Filter HMDA data by geography levels: <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/documentation/2018/data-browser-filters/#Nationwide">nationwide, state, & MSA/MD</a></p>
+          <p>Filter HMDA data by geography levels: <a target="_blank" rel="noopener noreferrer" href="/documentation/2018/data-browser-filters/#Nationwide">nationwide, state, & MSA/MD</a></p>
           <Select
             controlShouldRenderValue={false}
             styles={geographyStyleFn}

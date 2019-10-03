@@ -1,0 +1,49 @@
+.Markdown-Wrapper {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+.Markdown-Wrapper h2 {
+  margin-top: 2em;
+}
+
+.Markdown-Wrapper table {
+  border-collapse: collapse;
+}
+
+.Markdown-Wrapper th {
+  background-color: #ddd;
+}
+
+.Markdown-Wrapper td, .Markdown-Wrapper th {
+  border: 1px solid #222;
+  padding: 0.5em;
+}
+
+.Product h4 a {
+  color: #000;
+  text-decoration: none;
+}
+
+.Product h4 a:hover {
+  color: #0071bc;
+  text-decoration: underline;
+}
+
+.Product p {
+  margin: 0 0 0.5em 0;
+}
+
+.Documentation .heading {
+  background-color: #ffffff;
+  border-bottom: 1px solid #d6d7d9;
+}
+
+.BackLink {
+  font-family: SourceSansProBold;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  display: block;
+  margin: 24px 0 -32px;
+}

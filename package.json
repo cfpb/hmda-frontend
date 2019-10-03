@@ -17,6 +17,7 @@
   "author": "Consumer Financial Protection Bureau",
   "license": "CC0-1.0",
   "dependencies": {
+    "markdown-to-jsx": "6.10.3",
     "react": "16.10.1",
     "react-app-polyfill": "1.0.3",
     "react-dom": "16.10.1",

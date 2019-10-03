@@ -227,7 +227,7 @@ class Geography extends Component {
         <div className="intro">
           <Heading type={1} headingText="HMDA Dataset Filtering">
             <p className="lead">
-              Download CSVs of HMDA data. These files contain all <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/documentation/2018/lar-data-fields/">data fields</a> available in the public data record and can be used for advanced analysis.
+              Download CSVs of HMDA data. These files contain all <a target="_blank" rel="noopener noreferrer" href="/documentation/2018/lar-data-fields/">data fields</a> available in the public data record and can be used for advanced analysis.
               For questions/suggestions, contact hmdahelp@cfpb.gov.
             </p>
           </Heading>

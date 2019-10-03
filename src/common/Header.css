@@ -1,3 +1,7 @@
+.hmda-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #d6d7d9;
+}
 .hmda-header nav {
   margin: 0 -10px 0 0;
   padding: 0;
@@ -25,11 +29,6 @@
 
 .logo-text span {
   display: inline-block;
-}
-
-.header {
-  background-color: #ffffff;
-  border-bottom: 1px solid #d6d7d9;
 }
 
 .navbar {
