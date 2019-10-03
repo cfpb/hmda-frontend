@@ -1,0 +1,46 @@
+.LoadingInline.LoadingIconWrapper {
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  margin-left: 5px;
+  margin-top: 0;
+  padding-top: 10px;
+}
+.LoadingInline.LoadingIconWrapper .LoadingIcon {
+  height: 30px;
+  width: 30px;
+}
+
+.status .LoadingInline {
+  height: 18px;
+  width: 18px;
+}
+
+@keyframes loading-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.LoadingIconWrapper {
+  position: relative;
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  margin-top: 2em;
+  margin-left: 48%;
+}
+
+.LoadingIcon {
+  position: absolute;
+  margin: 0 auto;
+  border: 4px solid #f1f1f1;
+  border-left-color: #0071bc;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: loading-spin 1.2s linear infinite;
+}

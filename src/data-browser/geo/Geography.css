@@ -1,0 +1,214 @@
+.Geography {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+svg {
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+.lead .PDFIcon{
+  height: 16px;
+  margin: 0 1px -3px 2px;
+}
+
+.SelectWrapper > h3 {
+  margin: 1.2em 0 0 0;
+}
+
+.SelectWrapper > p {
+  color: #5b616b;
+  font-size: 15px;
+  margin:2px 0 4px 0;
+}
+
+.SelectWrapper {
+  border-bottom: 1px solid #d1d1d1;
+}
+
+.LargeFileWarning, .LargeFileWarning > h4 {
+  display: inline;
+}
+
+.QuerySummary {
+  align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  font-size: 20px;
+}
+
+.QuerySummary > span {
+  display: inline-block;
+  width: 100%;
+  margin: 30px 0;
+}
+
+.QuerySummary b {
+  font-size: 24px;
+}
+
+.CheckboxContainer{
+  width: 33%;
+  padding: 1.5em 0.5em 0.5em 0.5em;
+}
+
+.CheckboxContainer .border {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: 16px;
+}
+
+.CheckboxContainer h3 {
+  margin: 0 0 0.5em 0;
+}
+
+.CheckboxWrapper {
+  width: 100%;
+  padding: 0.25em 0;
+}
+
+.CheckboxWrapper > label {
+  padding-left: 2px;
+}
+
+.CheckboxWrapper > input, .CheckboxWrapper > label {
+  cursor: pointer;
+}
+
+.QueryButton {
+  background-color: #0071bc;
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+  margin: 2em 0.5em 2em 0;
+  padding: 1em;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.QueryButton:hover {
+  background-color: #205493;
+}
+
+.QueryButton:active {
+  background-color: #112e51;
+}
+
+.QueryButton.disabled {
+  background-color: #888;
+  cursor: not-allowed;
+}
+
+.Aggregations h2 {
+  margin: 0.8em 0 1em 0;
+}
+
+.Aggregations table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 0.8em;
+  width: 100%;
+}
+
+.Aggregations thead {
+  font-family: SourceSansProBold;
+}
+
+.Aggregations th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+
+.Aggregations th, .Aggregations td {
+  border: 1px solid #5b616b;
+  padding: 1rem 1.5rem;
+  text-align: center;
+}
+
+.Aggregations th:first-child {
+  text-align: left;
+}
+
+.Aggregations ul {
+  list-style: none;
+}
+
+.Aggregations > ul {
+  list-style: none;
+  text-align: left;
+  width: 100%;
+  font-size: 0.9em;
+  padding: 0;
+}
+
+.Aggregations > ul > li {
+  width: 33%;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 1em;
+}
+
+.sublist {
+  padding-left: 0.5em;
+}
+
+.sublist > li {
+  margin-bottom: 0.1em;
+}
+
+.Aggregations ul h4 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.CSVButtonContainer {
+  margin-top: 1.5em;
+}
+
+.AggregationTotal {
+  font-size: 1.1em;
+}
+
+.CSVButtonContainer h4 {
+  display: inline;
+}
+
+.Pill {
+  color: #222;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 2px;
+}
+
+.PillValue, .PillClose {
+  display: inline-block;
+  background-color: #e6e6e6;
+  border-radius: 2px;
+}
+
+.PillValue {
+  margin: 0.75em 0 0 0;
+  padding: 8px 4px 8px 8px;
+}
+
+.PillClose {
+  padding: 8px 8px 8px 2px;
+  margin: 0.75em 0.75em 0 -2px;
+}
+
+.PillClose svg {
+  display: inline-block;
+  line-height: 1;
+  stroke-width: 0;
+  margin: 0 0 -2px 4px;
+}
+
+.PillClose:hover {
+  background-color: #ffbdad;
+  color: #de350b;
+}

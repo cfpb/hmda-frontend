@@ -1,0 +1,44 @@
+.home {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+.home h1 {
+  font-size: 4rem;
+  margin-top: 1.5em;
+}
+
+.home > h3 {
+  font-size: 2.5rem;
+  font-family: SourceSansPro;
+}
+
+.home .lead {
+  color: #5b616b;
+  font-size: 2rem;
+  line-height: 1.7;
+  max-width: 77rem;
+}
+.home hr {
+  border-color: #aeb0b5;
+  border-top: none;
+  margin: 0 auto 3rem;
+  max-width: 1040px;
+}
+.home .card-container {
+  align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: 1040px;
+}
+.home .card {
+  flex: 1 1 286px;
+  margin: 3rem 40px 3rem 0;
+}
+.home h4 {
+  margin: 0;
+}
+.home p {
+  margin-top: 0;
+}

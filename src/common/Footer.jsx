@@ -1,7 +1,7 @@
 import React from 'react'
 
 import './Footer.css'
-import logo from '../images/ffiec-logo.svg'
+import logo from './images/ffiec-logo.svg'
 
 const Footer = () => {
   return (

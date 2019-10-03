@@ -24,9 +24,9 @@ const Heading = props => {
   let style = { marginBottom: '1em' }
   if (props.type === 1) style = { marginBottom: '2em' }
 
-  let headerClass = 'header'
+  let headingClass = 'heading'
   if (props.disabled) {
-    headerClass = headerClass + ' disabled'
+    headingClass = headingClass + ' disabled'
   }
 
   let heading = props.headingText
@@ -38,7 +38,7 @@ const Heading = props => {
     paragraphText = renderParagraph(props.type, props.paragraphText)
 
   return (
-    <header className={headerClass} style={style}>
+    <header className={headingClass} style={style}>
       {renderHeading(props.type, heading)}
       {paragraphText}
       {props.children}

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import './BannerUSA.css'
-import flag from '../images/favicon-57.png'
+import flag from './images/favicon-57.png'
 
 const BannerUSA = () => {
   return (

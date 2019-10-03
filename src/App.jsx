@@ -6,6 +6,7 @@ import NotFound from './common/NotFound'
 import Footer from './common/Footer'
 import Beta from './common/Beta'
 import Homepage from './homepage'
+import DataBrowser from './data-browser'
 
 import './app.css'
 
@@ -17,6 +18,7 @@ const App = () => {
       {isBeta ? <Beta/> : null}
       <Switch>
         <Route exact path="/" component={Homepage} />
+        <Route path = "/data-browser" component={DataBrowser} />
         <Route component={NotFound} />
       </Switch>
       <Footer />
