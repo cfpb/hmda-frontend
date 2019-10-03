@@ -15,7 +15,6 @@
    box-sizing: inherit;
 }
 
-
 html {
   font-family: SourceSansPro;
   font-size: 10px;
@@ -24,12 +23,14 @@ html {
   position: relative;
   overflow-y: scroll;
 }
+
 body {
   margin: 0 0 350px;
   padding: 0;
   font-family: SourceSansPro;
   font-size: 1.7rem;
 }
+
 .skipnav {
   background: transparent;
   color: #212121;
@@ -41,13 +42,25 @@ body {
   z-index: 100;
 }
 
+.App {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+.App h1 {
+  margin-bottom: 0;
+}
+
 a {
   color: #0071bc;
   text-decoration: underline;
 }
+
 a:visited {
   color: #4c2c92;
 }
+
 a:hover,
 a:active {
   color: #205493;
@@ -77,6 +90,7 @@ h6 {
 h1+ul, h1+ol, h2+ul, h2+ol, h3+ul, h3+ol, h4+ul, h4+ol, h5+ul, h5+ol, h6+ul, h6+ol, p+ul, p+ol {
    margin-top: 0;
 }
+
 hr {
   border-bottom: none;
   border-top: 1px solid #5b616b;;
@@ -100,10 +114,4 @@ hr {
 .Beta {
   margin: 0 auto -30px auto;
   max-width: 1040px;
-}
-.BackLink {
-  font-family: SourceSansProBold;
-  font-size: 1.3rem;
-  display: block;
-  margin: 45px 0 -49px 0;
 }

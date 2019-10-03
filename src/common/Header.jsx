@@ -10,7 +10,7 @@ const defaultLinks = [
   { name: 'Data Browser', href: '/data-browser/' },
   { name: 'Data Publication', href: '/data-publication/' },
   { name: 'Tools', href: '/tools/' },
-  { name: 'Documentation', href: 'https://ffiec.cfpb.gov/documentation/' }
+  { name: 'Documentation', href: '/documentation/' }
 ]
 
 const Header = ({pathname='/', links = defaultLinks}) => {

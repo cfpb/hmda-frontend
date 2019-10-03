@@ -20,7 +20,7 @@ const VariableSelect = ({ options, variables, orderedVariables, loadingDetails, 
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="https://ffiec.cfpb.gov/documentation/2018/data-browser-filters/#action_taken"
+          href="/documentation/2018/data-browser-filters/#action_taken"
         >
           popular variables
         </a>
