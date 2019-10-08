@@ -30,7 +30,7 @@ export default class Upload extends Component {
     )
     if (props.file && 'name' in props.file) {
       let check =
-        props.errors.length === 0 ? 'Checked' : "Sorry, we can't check"
+        props.errors.length === 0 ? 'Checked' : 'Sorry, we can\'t check'
       content = (
         <React.Fragment>
           <p>
@@ -44,7 +44,7 @@ export default class Upload extends Component {
       )
     }
 
-    return content
+    return <div className="dropzone-content">{content}</div>
   }
 
   render() {
@@ -60,17 +60,15 @@ export default class Upload extends Component {
               disablePreview={true}
               onDrop={setFile}
               multiple={false}
-              className={`dropzone ${dropzoneDisabled}`}
             >
-              <button
-                onClick={e => e.preventDefault()}
-                ref={node => {
-                  this.dropzoneContent = node
-                }}
-                className="text-small"
-              >
-                {this.updateDropArea(this.props)}
-              </button>
+              {({getRootProps, getInputProps}) => {
+                return (
+                  <div {...getRootProps({className: `dropzone ${dropzoneDisabled}`})}>
+                  <input {...getInputProps()}/>
+                  {this.updateDropArea(this.props)}
+                </div>
+                )
+              }}
             </Dropzone>
           </div>
         </div>

@@ -54,22 +54,22 @@
   color: #5b616b;
   height: 200px;
   position: relative;
-  text-align: center;
   width: 100%;
 }
+
 .UploadForm .dropzone.dropzone-disabled {
   border-color: #e59393;
   color: #e31c3d;
 }
 
-.UploadForm .dropzone button {
+.UploadForm .dropzone-content {
   width: 100%;
   height: 100%;
   text-align: center;
   margin: 0;
-  padding: 0 4em;
+  padding: 65px 4em 0;
+  font-size: 0.75em;
   background-color: transparent;
   color: #5b616b;
-  font-family: SourceSansPro;
-  font-weight: 400;
+  cursor: pointer;
 }

@@ -50,7 +50,7 @@ const Heading = props => {
 
 Heading.propTypes = {
   type: PropTypes.oneOf([1, 2, 3, 4]),
-  headingText: PropTypes.string,
+  headingText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   paragraphText: PropTypes.string,
   headingLink: PropTypes.string,
   disabled: PropTypes.bool

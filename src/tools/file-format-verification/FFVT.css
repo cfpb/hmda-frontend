@@ -3,17 +3,19 @@
   max-width: 1040px;
 }
 
+.FFVT h1 {
+  line-height: 1.7em;
+}
 
-
-.FFVT .header {
-  border-bottom: none;
+.FFVT .heading .font-lead {
+  margin-top: 0.5em;
 }
 
 .FFVT .grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
   align-items: stretch;
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 66% 33%;
   margin: 0 auto;
 }
 

@@ -32,6 +32,7 @@ class FFVT extends React.Component {
           <div id="main-content" className="grid FFVT">
             <Heading
               type={1}
+              headingText={selector}
               paragraphText="Select a HMDA file from your computer and
                 test whether it meets certain formatting requirements needed
                 to submit HMDA data to the HMDA Platform. There is a unique
@@ -39,7 +40,6 @@ class FFVT extends React.Component {
                 year, so please select the relevant year before uploading a
                 file. The File Format Verification Tool does not test for
                 compliance with edits."
-              selector={selector}
             />
 
             <div className="grid">
