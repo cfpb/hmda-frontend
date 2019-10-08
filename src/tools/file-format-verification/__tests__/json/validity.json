@@ -1,0 +1,14 @@
+{
+  "edits": [
+    {
+      "edit": "V555",
+      "description": "If loan purpose = 1 or 3, then lien status must = 1, 2, or 4.",
+      "rows": [
+        {
+          "row": { "rowId": "4977566612" },
+          "fields": {"Lien Status": 1, "Loan Purpose": 1}
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+.FFVT {
+  margin: 0 auto;
+  max-width: 1040px;
+}
+
+.FFVT h1 {
+  line-height: 1.7em;
+}
+
+.FFVT .heading .font-lead {
+  margin-top: 0.5em;
+}
+
+.FFVT .grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  align-items: stretch;
+  margin: 0 auto;
+}
+
+.FFVT .text-small p:first-child {
+  margin-top: 0;
+}
+
+@media screen and (max-width: 800px) {
+  #main-content.FFVT .grid .item {
+    padding: 0;
+  }
+}

@@ -24,6 +24,8 @@ const Heading = props => {
   let style = { marginBottom: '1em' }
   if (props.type === 1) style = { marginBottom: '2em' }
 
+  if(props.style) style = {...style, ...props.style}
+
   let headingClass = 'heading'
   if (props.disabled) {
     headingClass = headingClass + ' disabled'
@@ -48,7 +50,7 @@ const Heading = props => {
 
 Heading.propTypes = {
   type: PropTypes.oneOf([1, 2, 3, 4]),
-  headingText: PropTypes.string,
+  headingText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   paragraphText: PropTypes.string,
   headingLink: PropTypes.string,
   disabled: PropTypes.bool

@@ -1,0 +1,32 @@
+{
+    "edits": [
+      {
+        "edit": "S020",
+        "description": "Agency code must = 1, 2, 3, 5, 7, 9. The agency that submits the data must be the same as the reported agency code.",
+        "rows": [
+          {
+            "row": { "rowId": "Transmittal Sheet" },
+            "fields": {"Agency Code": 1}
+          },
+          {
+            "row": { "rowId": "8299422144" },
+            "fields": {"Agency Code": 1}
+          },
+          {
+            "row": { "rowId": "2185751599" },
+            "fields": {"Agency Code": 1}
+          }
+        ]
+      },
+      {
+        "edit": "S010",
+        "description": "The first record identifier in the file must = 1 (TS). The second and all subsequent record identifiers must = 2 (LAR).",
+        "rows": [
+          {
+            "row": { "rowId": "2185751599" },
+            "fields": {"Record Identifier": 1}
+          }
+        ]
+      }
+    ]
+}

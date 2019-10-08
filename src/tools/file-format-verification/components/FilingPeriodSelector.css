@@ -1,0 +1,36 @@
+.FilingPeriodSelector {
+  display: inline-block;
+}
+
+.FilingPeriodSelector select {
+  appearance: none;
+  background-image: url(../../images/arrow-both.svg);
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1rem;
+  border: 0.1rem solid #5b616b;
+  border-radius: 0;
+  box-sizing: border-box;
+  font-family: SourceSansProBold;
+  font-size: 4rem;
+  font-weight: bold;
+  height: auto;
+  line-height: 1;
+  margin: 1.5em 0 -2px;
+  padding: 0 2.5rem 0 0.5rem;
+}
+
+.FilingPeriodSelector::after {
+  content: "File Format Verification Tool";
+  font-family: SourceSansProBold;
+  font-size: 4rem;
+  font-weight: 700;
+  margin: 1.5em 0 0 0.5em;
+}
+
+@media screen and (max-width: 720px) {
+  .FilingPeriodSelector::after {
+    content: "File Format Verification";
+    font-size: 3rem;
+  }
+}

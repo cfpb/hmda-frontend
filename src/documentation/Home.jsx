@@ -5,8 +5,6 @@ import YearSelector from '../common/YearSelector.jsx'
 import Publications from './publications'
 import Tools from './tools'
 
-import './Home.css'
-
 const Home = props => {
   const { year, url } = props
   return (

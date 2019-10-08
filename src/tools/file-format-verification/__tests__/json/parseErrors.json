@@ -1,0 +1,20 @@
+{
+  "transmittalSheetErrors": [
+    "Record Identifier is not an Integer",
+    "Agency Code is not an Integer"
+  ],
+  "larErrors": [
+    {
+      "row": 2,
+      "error": "Incorrect number of fields. found: 32, expected: 39"
+    },
+    {
+      "row": 4,
+      "error": "Record Identifier is not an Integer"
+    },
+    {
+      "row": 11,
+      "error": "Loan Type is not an Integer"
+    }
+  ]
+}

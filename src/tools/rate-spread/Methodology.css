@@ -1,0 +1,50 @@
+.methodology p {
+  max-width: 77rem;
+}
+
+.methodology tbody th {
+  font-weight: 700;
+}
+
+.methodology h1 {
+  max-width: 77rem;
+}
+
+.methodology table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 2em 0;
+}
+.methodology table th,
+.methodology table td {
+  border: 1px solid #5b616b;
+  padding: 1rem 1.5rem;
+}
+.methodology table thead th {
+  font-family: SourceSansProBold;
+  text-align: center;
+}
+.methodology table thead th,
+.methodology table thead td {
+  background-color: #f1f1f1;
+}
+.methodology table th {
+  font-family: SourceSansProBold;
+  text-align: left;
+}
+
+.methodology table tfoot th,
+.methodology table tfoot td {
+  border-top: 2px solid;
+}
+
+.methodology table tfoot th {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.methodology .table-large td,
+.methodology .table-large th {
+  padding: 0.5rem 1rem;
+}
+
