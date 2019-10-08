@@ -66,12 +66,13 @@ class Form extends Component {
       inputValue,
       isSubmitted,
       uli,
-      isValidUli
+      isValidUli,
+      fetchError
     } = this.props
 
     let loadingIcon = null
-    if (isSubmitted && (uli === null && isValidUli === null)) {
-      loadingIcon = <div><LoadingIcon /></div>
+    if (isSubmitted && (uli === null && isValidUli === null && fetchError === null)) {
+      loadingIcon = <div><LoadingIcon className="LoadingInline"/></div>
     }
 
     const label = this.label[whichApp]

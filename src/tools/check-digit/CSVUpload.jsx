@@ -127,7 +127,7 @@ class CSVUpload extends PureComponent {
         </div>
         <div ref={this.refScrollTo}>
           {this.state.isFetching ? (
-            <LoadingIcon />
+            <LoadingIcon className="LoadingInline" />
           ) : this.state.error ? (
             <Alert
               type="error"

@@ -7,13 +7,22 @@ import './Answer.css'
 export default class Answer extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return (
+      nextProps.fetchError !== this.props.fetchError ||
       nextProps.uli !== this.props.uli ||
       nextProps.isValidUli !== this.props.isValidUli
     )
   }
 
   render() {
-    const { uli, isValidUli, checkDigit, isSubmitted, errors } = this.props
+    const { uli, isValidUli, checkDigit, isSubmitted, errors, fetchError } = this.props
+    if(fetchError) {
+      return (
+        <Alert type="error" heading="Error running check">
+          <p>{fetchError}</p>
+        </Alert>
+      )
+
+    }
     if (isSubmitted && errors.length === 0) {
       if (uli && checkDigit)
         return (

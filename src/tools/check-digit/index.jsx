@@ -12,6 +12,7 @@ const defaultState = {
   uli: null,
   isValidUli: null,
   errors: [],
+  fetchError: null,
   isSubmitted: false,
   whichApp: 'get'
 }
@@ -73,13 +74,16 @@ export default class App extends Component {
   }
 
   handleSubmit() {
-    /* 
+    /*
     setState callback used
     to make sure isSubmitted is true
     before doing anything else
     */
     this.setState({ isSubmitted: true }, () => {
-      this.validateInput(this.state.inputValue)
+      const errors = this.validateInput(this.state.inputValue)
+      if(!errors.length) {
+        this.getResponse(this.state.inputValue)
+      }
     })
   }
 
@@ -98,6 +102,8 @@ export default class App extends Component {
     const API_URL = '/v2/public/uli/'
 
     if (this.state.isSubmitted) {
+      this.setState({fetchError: null})
+
       fetch(API_URL + endpoint, {
         method: 'POST',
         body: JSON.stringify(body),
@@ -107,14 +113,22 @@ export default class App extends Component {
         }
       })
         .then(response => {
+          if(response.status > 399) return response.text()
           return response.json()
         })
         .then(json => {
-          if (endpoint === 'checkDigit') {
-            this.setState({ uli: json.uli, checkDigit: json.checkDigit })
-          } else {
-            this.setState({ isValidUli: json.isValid })
+          if(typeof json === 'string'){
+            this.setState({fetchError: json})
+          }else{
+            if (endpoint === 'checkDigit') {
+              this.setState({ uli: json.uli, checkDigit: json.checkDigit })
+            } else {
+              this.setState({ isValidUli: json.isValid })
+            }
           }
+        })
+        .catch(err => {
+          this.setState({fetchError: err})
         })
     }
   }
@@ -130,9 +144,8 @@ export default class App extends Component {
 
     if (errors.length > 0) {
       this.setState({ errors: errors })
-    } else {
-      this.getResponse(input)
     }
+    return errors
   }
 
   render() {
@@ -143,6 +156,7 @@ export default class App extends Component {
       isValidUli,
       checkDigit,
       errors,
+      fetchError,
       isSubmitted
     } = this.state
 
@@ -164,11 +178,13 @@ export default class App extends Component {
               isSubmitted={isSubmitted}
               uli={uli}
               isValidUli={isValidUli}
+              fetchError={fetchError}
             />
             <div ref={this.refScrollTo}>
               <Answer
                 uli={uli}
                 isValidUli={isValidUli}
+                fetchError={fetchError}
                 checkDigit={checkDigit}
                 isSubmitted={isSubmitted}
                 errors={errors}
