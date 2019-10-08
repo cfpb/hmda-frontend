@@ -1,0 +1,61 @@
+#parseErrors {
+  margin-bottom: 2em;
+}
+
+#parseErrors .ParseResults {
+  padding: 1em;
+}
+
+#parseErrors table {
+  margin: 0;
+}
+
+#parseErrors caption {
+  font-family: SourceSansProBold;
+  font-size: 1.5rem;
+  margin-bottom: 1.2rem;
+  text-align: left;
+}
+
+#parseErrors caption h3 {
+  font-size: 2rem;
+}
+
+#parseErrors table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-top: 3em;
+  width: 100%;
+}
+#parseErrors table th,
+#parseErrors table td {
+  border: 1px solid #5b616b;
+  padding: 1rem 1.5rem;
+}
+#parseErrors table thead th {
+  font-family: SourceSansProBold;
+  text-align: center;
+}
+#parseErrors table thead th,
+#parseErrors table thead td {
+  background-color: #f1f1f1;
+}
+#parseErrors table th {
+  font-family: SourceSansProBold;
+  text-align: left;
+}
+
+#parseErrors table tfoot th,
+#parseErrors table tfoot td {
+  border-top: 2px solid;
+}
+
+#parseErrors table tfoot th {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+#parseErrors .table-large td,
+#parseErrors .table-large th {
+  padding: 0.5rem 1rem;
+}

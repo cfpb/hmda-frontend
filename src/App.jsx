@@ -8,6 +8,7 @@ import Beta from './common/Beta'
 import Homepage from './homepage'
 import DataBrowser from './data-browser'
 import Documentation from './documentation'
+import Tools from './tools'
 
 import './app.css'
 
@@ -21,6 +22,7 @@ const App = () => {
         <Route exact path="/" component={Homepage} />
         <Route path = "/data-browser" component={DataBrowser} />
         <Route path = "/documentation" component={Documentation} />
+        <Route path = "/tools" component={Tools} />
         <Route component={NotFound} />
       </Switch>
       <Footer />

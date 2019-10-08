@@ -1,9 +1,9 @@
 import React from 'react'
-import './Home.css'
+import Alert from '../common/Alert.jsx'
 
 const Home = ({isBeta}) => {
   return (
-    <main className="home" id="main-content">
+    <main className="App home" id="main-content">
       <div className=" usa-grid-full">
         <header className="usa-width-one-whole">
           <h1>The Home Mortgage Disclosure Act</h1>
@@ -12,16 +12,13 @@ const Home = ({isBeta}) => {
             publicly disclose information about mortgages.
           </p>
         </header>
-        <div className="alert alert-info usa-width-one-whole">
-          <div className="alert-body">
-            <h3 className="alert-heading">Announcement</h3>
-            <p className="alert-text">
-                On September 25th, 2019, the Bureau released the 2020 FIG and the Supplemental Guide for Quarterly Filers.
-            </p>
-          </div>
-        </div>
+        <Alert heading="Announcement">
+          <p>
+            On September 25th, 2019, the Bureau released the 2020 FIG and the Supplemental Guide for Quarterly Filers.
+          </p>
+        </Alert>
       </div>
-      <div className="usa-grid-full">
+      <div style={{marginTop: '3em'}} className="usa-grid-full">
         <div className="card-container">
           <div className="card">
             <header>

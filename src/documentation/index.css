@@ -40,6 +40,10 @@
   border-bottom: 1px solid #d6d7d9;
 }
 
+.App.Documentation li {
+  margin-bottom: 0.5em;
+}
+
 .BackLink {
   font-family: SourceSansProBold;
   font-size: 1.3rem;

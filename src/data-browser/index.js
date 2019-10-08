@@ -7,17 +7,19 @@ import NotFound from '../common/NotFound'
 
 const DataBrowser = () => {
   return (
-    <Switch>
-      <Route exact path="/data-browser" component={Home} />
-      <Route path="/data-browser/data/:year?" component={Geography} />
-    {/*
-      <Route
-        path="/maps-graphs/:year?"
-        component={MapsGraphs}
-      />
-    */}
-      <Route component={NotFound} />
-    </Switch>
+    <div className="DataBrowser App">
+      <Switch>
+        <Route exact path="/data-browser" component={Home} />
+        <Route path="/data-browser/data/:year?" component={Geography} />
+      {/*
+        <Route
+          path="/maps-graphs/:year?"
+          component={MapsGraphs}
+        />
+      */}
+        <Route component={NotFound} />
+      </Switch>
+    </div>
   )
 }
 

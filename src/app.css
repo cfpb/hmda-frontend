@@ -91,6 +91,10 @@ h1+ul, h1+ol, h2+ul, h2+ol, h3+ul, h3+ol, h4+ul, h4+ol, h5+ul, h5+ol, h6+ul, h6+
    margin-top: 0;
 }
 
+ol, ul {
+  padding-left: 1.94em;
+}
+
 hr {
   border-bottom: none;
   border-top: 1px solid #5b616b;;
@@ -114,4 +118,97 @@ hr {
 .Beta {
   margin: 0 auto -30px auto;
   max-width: 1040px;
+}
+
+.home p {
+  color: #5b616b;
+  margin-top: 0;
+}
+
+.home .font-lead {
+  font-size: 1.25em;
+}
+.home h1 {
+  font-family: SourceSansProBold;
+  margin-bottom: 0;
+}
+.home .card-container {
+  align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: 1040px;
+}
+.home .card {
+  flex: 1 1 422px;
+  margin: 0 8em 0 0;
+}
+.home .card > ul {
+  margin-bottom: 4em;
+}
+.home .card:nth-of-type(2){
+  margin-right: 0;
+}
+
+.home header:not(:first-child) {
+  margin-top: 4em;
+}
+
+.home h3,
+.home h4 {
+  margin: 0;
+}
+
+.home ul ul {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.home li {
+  margin-bottom: 0;
+}
+
+.home h1 {
+  font-size: 4rem;
+  margin-top: 1.5em;
+}
+
+.home > h3 {
+  font-size: 2.5rem;
+  font-family: SourceSansPro;
+}
+
+.home hr {
+  border-color: #aeb0b5;
+  border-top: none;
+  margin: 0 auto 3rem;
+  max-width: 1040px;
+}
+
+.home .lead {
+  color: #5b616b;
+  font-size: 2rem;
+  line-height: 1.7;
+  max-width: 77rem;
+}
+
+.home h2 a {
+  color: #000;
+  text-decoration: none;
+}
+
+.home h2 a:hover {
+  color: #0071bc;
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 1054px) {
+  .home .card:nth-of-type(2){
+    margin-top: 2em;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .home .card {
+    margin-right: 0;
+  }
 }

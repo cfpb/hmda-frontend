@@ -8,10 +8,14 @@
   margin-top: 3em;
 }
 
-.heading .font-lead,
-.heading p {
+.heading .font-lead, .heading .lead {
   color: #5b616b;
   margin-top: 0;
+}
+
+.heading p {
+  margin-top: 0;
+  max-width: 77rem;
 }
 
 .heading .text-small {
@@ -21,4 +25,19 @@
 
 .heading.disabled h4 {
   color: #5b616b;
+}
+
+.heading form {
+  display: inline-block;
+  margin-right: 0.5em;
+}
+
+.heading form select {
+  background-position: right 0.5rem center;
+  font-size: 4rem;
+  font-weight: bold;
+  height: auto;
+  line-height: 1;
+  margin: 0 0 -2px;
+  padding: 0 2.5rem 0 0.5rem;
 }

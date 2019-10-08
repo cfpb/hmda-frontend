@@ -1,0 +1,62 @@
+{
+  "filing": {
+    "filingRequired": true,
+    "institutionId": "1",
+    "status": {
+      "code": 3,
+      "message": "completed"
+    },
+    "end": 1487520671000,
+    "start": 1484842271000,
+    "period": "2017"
+  },
+  "submissions": [{
+    "id": {
+      "institutionId": "1",
+      "period": "2017",
+      "sequenceNumber": 4
+    },
+    "status": {
+      "code": 9,
+      "message": "validated"
+    },
+    "start": 1482169555559,
+    "end": 0
+  }, {
+    "id": {
+      "institutionId": "1",
+      "period": "2017",
+      "sequenceNumber": 3
+    },
+    "status": {
+      "code": 8,
+      "message": "validated with errors"
+    },
+    "start": 1481915238305,
+    "end": 0
+  }, {
+    "id": {
+      "institutionId": "1",
+      "period": "2017",
+      "sequenceNumber": 2
+    },
+    "status": {
+      "code": 8,
+      "message": "validated with errors"
+    },
+    "start": 1481907333717,
+    "end": 0
+  }, {
+    "id": {
+      "institutionId": "1",
+      "period": "2017",
+      "sequenceNumber": 1
+    },
+    "status": {
+      "code": 8,
+      "message": "validated with errors"
+    },
+    "start": 1481809863644,
+    "end": 0
+  }]
+}

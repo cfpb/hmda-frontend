@@ -17,13 +17,22 @@
   "author": "Consumer Financial Protection Bureau",
   "license": "CC0-1.0",
   "dependencies": {
+    "file-saver": "2.0.2",
+    "filereader-stream": "2.0.0",
+    "hmda-file-parser": "1.18.0",
     "markdown-to-jsx": "6.10.3",
     "react": "16.10.1",
     "react-app-polyfill": "1.0.3",
     "react-dom": "16.10.1",
+    "react-dropzone": "10.1.10",
+    "react-redux": "7.1.1",
     "react-router-dom": "5.1.2",
     "react-scripts": "3.1.2",
-    "react-select": "3.0.8"
+    "react-select": "3.0.8",
+    "redux": "4.0.4",
+    "redux-logger": "3.0.6",
+    "redux-thunk": "2.3.0",
+    "split2": "3.1.1"
   },
   "browserslist": [
     "Chrome >= 60",

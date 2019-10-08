@@ -1,0 +1,20 @@
+{
+  "institutions": [
+    {
+      "name": "Bank 0",
+      "id": "0"
+    },
+    {
+      "name": "Bank 1",
+      "id": "1"
+    },
+    {
+      "name": "Bank 2",
+      "id": "2"
+    },
+    {
+      "name": "Bank 3",
+      "id": "3"
+    }
+  ]
+}

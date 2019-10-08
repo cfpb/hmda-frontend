@@ -16,7 +16,7 @@ const DynamicRenderer = props => {
     fetch(getMarkdownUrl(year, slug)).then(res => {
       res.text().then(setData)
     })
-  }, [])
+  }, [year, slug, badSlug])
 
   useEffect(function (){
     if(!data || badSlug) return

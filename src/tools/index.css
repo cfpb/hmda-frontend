@@ -1,0 +1,37 @@
+.Tools.App .font-lead {
+  font-size: 2rem;
+  line-height: 1.7;
+  max-width: 77rem;
+}
+
+.Tools .home .card {
+  flex: 1 1 300px;
+  margin: 3rem 60px 3rem 0;
+  max-width: 430px;
+}
+
+.text-small {
+  font-size: 1.3rem;
+}
+
+#main-content .header {
+  border-bottom: none;
+}
+
+#main-content .grid {
+  align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
+#main-content .grid .item {
+  flex: 1 1 450px;
+  margin: 3rem 0;
+  padding-right: 75px;
+}
+
+#main-content h1 {
+  font-size: 4rem;
+  margin-top: 1.5em;
+}

@@ -1,0 +1,28 @@
+.FFVT {
+  margin: 0 auto;
+  max-width: 1040px;
+}
+
+
+
+.FFVT .header {
+  border-bottom: none;
+}
+
+.FFVT .grid {
+  align-items: stretch;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 66% 33%;
+  margin: 0 auto;
+}
+
+.FFVT .text-small p:first-child {
+  margin-top: 0;
+}
+
+@media screen and (max-width: 800px) {
+  #main-content.FFVT .grid .item {
+    padding: 0;
+  }
+}
