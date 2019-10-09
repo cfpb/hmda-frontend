@@ -11,7 +11,9 @@ const slugMap = {
     'public-ts-schema': 'public_ts_schema.md',
     'ts-data-fields': 'ts_data_fields.md',
     'panel-data-fields': 'panel_data_fields.md'
-  }
+  },
+  2019: {},
+  2020: {}
 }
 
 function slugToMarkdown(year, slug) {
