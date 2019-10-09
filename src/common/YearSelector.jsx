@@ -4,13 +4,12 @@ import YEARS from './constants/years'
 
 import './YearSelector.css'
 
-const YearSelector = props => {
-  const { year, url } = props
+const YearSelector = ({year, years=YEARS, url}) => {
 
   return (
     <div className="YearSelector">
       <h4>Select a year</h4>
-      {YEARS.map((y, i) => {
+      {years.map((y, i) => {
         const className = y === year ? 'active' : ''
         const toUrl = url.replace(year, y)
         return (

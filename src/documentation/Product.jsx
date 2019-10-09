@@ -7,7 +7,12 @@ const Product = props => {
   const { heading, lead, list, inList, url, year, collection, slug } = props
   let header
 
-  if(!list.length) return null
+  if(!list || !list.length) return (
+    <li>
+      <h4>{heading}</h4>
+      <ul><li>No documentation for {year}.</li></ul>
+    </li>
+  )
 
   if(inList){
     header = <h4><Link to={`/documentation/${year}/${collection}/${slug}/`}>{heading}</Link></h4>

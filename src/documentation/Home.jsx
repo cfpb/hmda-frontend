@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Header from '../common/Heading.jsx'
 import YearSelector from '../common/YearSelector.jsx'
+import FigLinks from './FigLinks.jsx'
 import Publications from './publications'
 import Tools from './tools'
 
@@ -15,6 +16,10 @@ const Home = props => {
         </Header>
       </div>
       <YearSelector year={year} url={url}/>
+      <div>
+        <h2><Link to={`/documentation/${year}/fig/`}>Filing Instructions Guide (FIG)</Link></h2>
+        <FigLinks year={year}/>
+      </div>
       <div>
         <h2><Link to={`/documentation/${year}/publications/`}>HMDA Publications</Link></h2>
         <Publications year={year}/>
