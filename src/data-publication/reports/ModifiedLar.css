@@ -1,0 +1,36 @@
+.ModifiedLar {
+  margin: 0 auto;
+  max-width: 1040px;
+  padding: 0 3rem;
+}
+
+.ModifiedLar .header {
+  border-bottom: none;
+}
+
+.ModifiedLar h1 {
+  font-size: 4rem;
+  margin-top: 1.5em;
+}
+
+.ModifiedLar .font-lead {
+  font-size: 2rem;
+  max-width: 77rem;
+}
+
+.ModifiedLar label {
+  display: block;
+  margin-top: 3rem;
+  max-width: 46rem;
+}
+
+.ModifiedLar input {
+  border: 0.1rem solid #5b616b;
+  color: #212121;
+  font-family: SourceSansPro;
+  font-size: 1.6rem;
+  margin: 0.2em 0;
+  max-width: 46rem;
+  padding: 1rem 0.7em;
+  width: 100%;
+}

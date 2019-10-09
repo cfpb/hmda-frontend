@@ -1,0 +1,22 @@
+.SearchList .input-error {
+  border-left: 4px solid #cd2026;
+  margin-top: 3rem;
+  padding: 0 0 0 1.5rem;
+  position: relative;
+  right: 1.9rem;
+}
+.SearchList .input-error-message {
+  color: #dc2026;
+  display: block;
+  font-family: SourceSansProBold;
+  font-size: 1.7rem;
+  padding-bottom: 3px;
+  padding-top: 3px;
+}
+.SearchList .alert {
+  max-width: 46rem;
+}
+
+.SearchList input[disabled] {
+  background-color: $color-gray-lightest;
+}

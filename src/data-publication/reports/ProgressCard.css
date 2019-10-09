@@ -1,0 +1,25 @@
+.ProgressCards {
+  align-items: stretch;
+  display: flex;
+  margin: 0;
+  padding: 0 0 0 1em;
+}
+
+.ProgressCards .ProgressCard .header {
+  margin-bottom: 0;
+}
+.ProgressCards .ProgressCard .header h4 {
+  margin-top: 0;
+  text-transform: capitalize;
+}
+
+.ProgressCards li {
+  flex: 1;
+  margin: 0 20px;
+}
+.ProgressCards li:first-child {
+  margin-left: 0;
+}
+.ProgressCards li:last-child {
+  margin-right: 0;
+}

@@ -1,0 +1,81 @@
+.Disclosure {
+  margin: 0 auto;
+  max-width: 1040px;
+  padding: 0 3rem;
+}
+
+.Disclosure .header {
+  border-bottom: none;
+}
+
+.Disclosure h1 {
+  font-size: 4rem;
+  margin-top: 1.5em;
+}
+
+.Disclosure .font-lead {
+  font-size: 2rem;
+  max-width: 77rem;
+}
+
+.Disclosure label {
+  display: block;
+  margin-top: 3rem;
+  max-width: 46rem;
+}
+
+.Disclosure input {
+  border: 0.1rem solid #5b616b;
+  color: #212121;
+  font-family: SourceSansPro;
+  font-size: 1.6rem;
+  margin: 0.2em 0;
+  max-width: 46rem;
+  padding: 1rem 0.7em;
+  width: 100%;
+}
+
+.Disclosure .button,
+.Disclosure .button:visited {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background-color: #0071bc;
+  border: 0;
+  border-radius: 2px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: SourceSansProBold;
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1;
+  margin: 1rem 0 0;
+  padding: 1rem 2rem;
+}
+media screen and (min-width: 481px) {
+  .Disclosure .button,
+  .Disclosure .button:visited {
+    width: auto;
+  }
+}
+.Disclosure .button:hover,
+.Disclosure .button:visited:hover {
+  background-color: #205493;
+}
+.Disclosure .button:active,
+.Disclosure .button:visited:active {
+  background-color: #112e51;
+}
+.Disclosure .button:disabled,
+.Disclosure .button:visited:disabled {
+  background-color: #d6d7d9;
+  pointer-events: none;
+}
+.Disclosure .button:disabled:hover,
+.Disclosure .button:disabled:active,
+.Disclosure .button:disabled:focus,
+.Disclosure .button:visited:disabled:hover,
+.Disclosure .button:visited:disabled:focus,
+.Disclosure .button:visited:disabled:active {
+  background-color: #d6d7d9;
+}

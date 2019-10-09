@@ -1,0 +1,5 @@
+.DataPublication .home .card {
+  flex: 1 1 286px;
+  margin: 3rem 40px 3rem 0;
+  max-width: 286px;
+}

@@ -1,0 +1,117 @@
+.Report {
+  margin-top: 2em;
+  padding: 0 1em;
+  overflow-x: auto;
+}
+.Report .alert {
+  margin: 0 auto;
+  max-width: 1040px;
+  padding: 0 3rem;
+}
+
+.Report .report-date {
+  color: #5b616b;
+  font-size: 1.3rem;
+  text-align: right;
+}
+
+.Report .header {
+  border-bottom: none;
+  margin: 0 auto;
+  max-width: 1040px;
+}
+
+.Report .header h3 {
+  margin-top: 0;
+}
+.Report .header p {
+  margin-bottom: 0;
+}
+
+.Report table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 0.75em;
+  margin-top: 3em;
+  width: 100%;
+}
+.Report table th,
+.Report table td {
+  border: 1px solid #5b616b;
+  padding: 1rem 1.5rem;
+}
+.Report table thead th {
+  font-family: SourceSansProBold;
+  text-align: center;
+}
+.Report table thead th,
+.Report table thead td {
+  background-color: #f1f1f1;
+}
+.Report table th {
+  font-family: SourceSansProBold;
+  text-align: left;
+}
+.Report table td {
+  text-align: right;
+}
+
+.Report table tfoot th,
+.Report table tfoot td {
+  border-top: 2px solid;
+}
+
+.Report table tfoot th {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.Report .table-large td,
+.Report .table-large th {
+  padding: 0.5rem 1rem;
+}
+
+.Report button,
+.Report button:visited {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background-color: #0071bc;
+  border: 0;
+  border-radius: 2px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: SourceSansProBold;
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1;
+  margin: 3rem 0 0;
+  padding: 1rem 2rem;
+}
+@media screen and (min-width: 481px) {
+  .Report button,
+  .Report button:visited {
+    width: auto;
+  }
+}
+.Report button:hover,
+.Report button:visited:hover {
+  background-color: #205493;
+}
+.Report button:active,
+.Report button:visited:active {
+  background-color: #112e51;
+}
+.Report button:disabled,
+.Report button:visited:disabled {
+  background-color: #d6d7d9;
+  pointer-events: none;
+}
+.Report button:disabled:hover,
+.Report button:disabled:active,
+.Report button:disabled:focus,
+.Report button:visited:disabled:hover,
+.Report button:visited:disabled:focus,
+.Report button:visited:disabled:active {
+  background-color: #d6d7d9;
+}

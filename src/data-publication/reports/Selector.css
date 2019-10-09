@@ -1,0 +1,11 @@
+.Select {
+  clear: both;
+}
+
+.Select .Select-control {
+  margin-bottom: 450px;
+}
+
+.Select .alert {
+  color: #212121 !important;
+}

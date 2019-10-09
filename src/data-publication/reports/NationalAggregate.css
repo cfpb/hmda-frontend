@@ -1,0 +1,25 @@
+.NationalAggregate {
+  margin: 0 auto;
+  max-width: 1040px;
+  padding: 0 3rem;
+}
+
+.NationalAggregate .header {
+  border-bottom: none;
+}
+
+.NationalAggregate h1 {
+  font-size: 4rem;
+  margin-top: 1.5em;
+}
+
+.NationalAggregate .font-lead {
+  font-size: 2rem;
+  max-width: 77rem;
+}
+
+.NationalAggregate label {
+  display: block;
+  margin-top: 3rem;
+  max-width: 46rem;
+}

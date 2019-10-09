@@ -1,0 +1,44 @@
+#main-content {
+  margin: 0 auto;
+  max-width: 1040px;
+  padding: 0 3rem;
+}
+
+#main-content .header {
+  border-bottom: none;
+}
+
+#main-content h1 {
+  font-size: 4rem;
+  margin-top: 1.5em;
+}
+
+#main-content .font-lead {
+  font-size: 2rem;
+  max-width: 77rem;
+}
+
+#main-content label {
+  display: block;
+  margin-top: 3rem;
+  max-width: 46rem;
+}
+
+#main-content input {
+  border: 0.1rem solid #5b616b;
+  color: #212121;
+  font-family: SourceSansPro;
+  font-size: 1.6rem;
+  margin: 0.2em 0;
+  max-width: 46rem;
+  padding: 1rem 0.7em;
+  width: 100%;
+}
+
+.DocSection > p {
+  margin-left: 1em;
+}
+
+.DocSection div {
+  margin-left: 1em;
+}

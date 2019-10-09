@@ -1,6 +1,8 @@
 import React from 'react'
 import Alert from '../common/Alert.jsx'
 
+import './Home.css'
+
 const Home = ({isBeta}) => {
   return (
     <main className="App home" id="main-content">
