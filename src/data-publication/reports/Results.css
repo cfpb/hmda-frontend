@@ -1,0 +1,28 @@
+.Results {
+  padding: 0;
+  max-width: 46rem;
+}
+
+.Results li {
+  list-style: none;
+  margin: 0;
+  padding: 1em;
+}
+
+.Results li.error {
+  background-color: #f9dede !important;
+  border-left: 3px solid #e31c3d;
+}
+
+.Results li:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+
+.Results h4 {
+  margin: 0;
+}
+
+.Results p {
+  color: $color-gray;
+  margin: 0;
+}

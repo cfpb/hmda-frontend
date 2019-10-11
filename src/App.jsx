@@ -9,6 +9,7 @@ import Homepage from './homepage'
 import DataBrowser from './data-browser'
 import Documentation from './documentation'
 import Tools from './tools'
+import DataPublication from './data-publication'
 
 import './app.css'
 
@@ -23,6 +24,7 @@ const App = () => {
         <Route path = "/data-browser" component={DataBrowser} />
         <Route path = "/documentation" component={Documentation} />
         <Route path = "/tools" component={Tools} />
+        <Route path = "/data-publication" component={DataPublication} />
         <Route component={NotFound} />
       </Switch>
       <Footer />

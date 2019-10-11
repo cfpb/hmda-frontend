@@ -1,0 +1,46 @@
+.DataPublication .home .card {
+  flex: 1 1 286px;
+  margin: 3rem 40px 3rem 0;
+  max-width: 286px;
+}
+
+.DataPublication.App {
+  max-width: 100%;
+}
+
+.DataPublication.App .Disclosure,
+.DataPublication.App .Aggregate,
+.DataPublication.App .NationalAggregate,
+.DataPublication.App .Snapshot,
+.DataPublication.App .DynamicDataset,
+.DataPublication.App .home,
+.Report .heading {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+.App .Report {
+  max-width: 100%;
+}
+
+.DataPublication label {
+  display: block;
+  margin-top: 3rem;
+  max-width: 46rem;
+}
+
+.DataPublication input {
+  border: 0.1rem solid #5b616b;
+  color: #212121;
+  font-family: SourceSansPro;
+  font-size: 1.6rem;
+  margin: 0.2em 0;
+  max-width: 46rem;
+  padding: 1rem 0.7em;
+  width: 100%;
+}
+
+.DataPublication .heading h4 {
+  margin-top: 1.78em;
+}

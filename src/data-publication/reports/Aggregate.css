@@ -1,0 +1,25 @@
+.Aggregate {
+  margin: 0 auto;
+  max-width: 1040px;
+  padding: 0 3rem;
+}
+
+.Aggregate .header {
+  border-bottom: none;
+}
+
+.Aggregate h1 {
+  font-size: 4rem;
+  margin-top: 1.5em;
+}
+
+.Aggregate .font-lead {
+  font-size: 2rem;
+  max-width: 77rem;
+}
+
+.Aggregate label {
+  display: block;
+  margin-top: 3rem;
+  max-width: 46rem;
+}

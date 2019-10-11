@@ -11,6 +11,7 @@
 .heading .font-lead, .heading .lead {
   color: #5b616b;
   margin-top: 0;
+  font-size: 2rem;
 }
 
 .heading p {

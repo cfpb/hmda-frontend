@@ -1,0 +1,41 @@
+.Snapshot {
+  margin: 0 auto;
+  max-width: 1040px;
+  padding: 0 3rem;
+}
+
+.Snapshot .header {
+  border-bottom: none;
+}
+
+.Snapshot h1 {
+  font-size: 4rem;
+  margin-top: 1.5em;
+}
+
+.Snapshot .font-lead {
+  font-size: 2rem;
+  max-width: 77rem;
+}
+
+.Snapshot .grid {
+  align-items: stretch;
+  display: flex;
+  margin: 0 auto;
+  max-width: 1040px;
+  padding: 3rem 0;
+}
+.Snapshot .item {
+  flex: 1;
+  margin: 0 20px;
+}
+.Snapshot .item:first-child {
+  margin-left: 0;
+}
+.Snapshot .item:last-child {
+  margin-right: 0;
+}
+
+.Snapshot .item li > ul {
+  margin-top: 0.5em;
+}

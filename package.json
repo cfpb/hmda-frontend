@@ -17,6 +17,7 @@
   "author": "Consumer Financial Protection Bureau",
   "license": "CC0-1.0",
   "dependencies": {
+    "csv-parse": "4.6.3",
     "file-saver": "2.0.2",
     "filereader-stream": "2.0.0",
     "hmda-file-parser": "1.18.0",
