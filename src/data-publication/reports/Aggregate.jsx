@@ -9,6 +9,7 @@ import Report from './Report.jsx'
 import STATES from '../constants/states.js'
 import stateToMsas from '../constants/stateToMsas.js'
 import { AGGREGATE_REPORTS } from '../constants/aggregate-reports.js'
+import years from '../constants/years.js'
 
 import './Aggregate.css'
 
@@ -72,7 +73,7 @@ class Aggregate extends React.Component {
   }
 
   render() {
-    const { params } = this.props.match
+    const { params, url } = this.props.match
     const year = params.year
     const details = detailsCache[year]
     const state = year && details.states[params.stateId]
@@ -110,7 +111,7 @@ class Aggregate extends React.Component {
                     : 'Select a year'
                 }
                 id=''
-                link={'/aggregate-reports/'}
+                link={'/data-publication/aggregate-reports/'}
               />
             </li>
             <li>
@@ -123,7 +124,7 @@ class Aggregate extends React.Component {
                   : ''
                 }
                 id={params.stateId ? state.id : ''}
-                link={ params.year ? `/aggregate-reports/${params.year}` : null }
+                link={ params.year ? `/data-publication/aggregate-reports/${params.year}` : null }
               />
             </li>
 
@@ -138,7 +139,7 @@ class Aggregate extends React.Component {
                 id={params.msaMdId ? msaMd.id : ''}
                 link={
                   params.stateId
-                    ? `/aggregate-reports/${params.year}/${state.id}`
+                    ? `/data-publication/aggregate-reports/${params.year}/${state.id}`
                     : null
                 }
               />
@@ -157,7 +158,7 @@ class Aggregate extends React.Component {
                 id={params.reportId && params.year === '2017' ? report.value : ''}
                 link={
                   params.msaMdId
-                    ? `/aggregate-reports/${params.year}/${state.id}/${msaMd.id}`
+                    ? `/data-publication/aggregate-reports/${params.year}/${state.id}/${msaMd.id}`
                     : null
                 }
               />
@@ -189,7 +190,7 @@ class Aggregate extends React.Component {
               </React.Fragment>
               )
             ) : (
-            <YearSelector />
+            <YearSelector year={year} url={url} years={years}/>
           )}
         </div>
 

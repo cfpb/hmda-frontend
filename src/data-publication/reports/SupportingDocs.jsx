@@ -3,7 +3,7 @@ import Heading from '../../common/Heading.jsx'
 
 import './SupportingDocs.css'
 
-const ModifiedLarDocs = props => {
+const ModifiedLarDocs = () => {
   return (
     <div className="SupportingDocs" id="main-content">
       <Heading
@@ -12,7 +12,7 @@ const ModifiedLarDocs = props => {
       ></Heading>
       <div className="DocSection">
         <h2>Modified LAR</h2>
-          <p>
+          <div>
             <h4>File specifications</h4>
             <div>
               Complete documentation for the dataset including field number, data type, valid values, and examples
@@ -27,8 +27,8 @@ const ModifiedLarDocs = props => {
               >2017</a></li>
               </ul>
             </div>
-          </p>
-          <p>
+          </div>
+          <div>
             <h4>Heading for CSV files</h4>
             <div>
               A list of column names for use with the Modified LAR text files
@@ -47,8 +47,8 @@ const ModifiedLarDocs = props => {
                 </li>
               </ul>
             </div>
-          </p>
-          <p>
+          </div>
+          <div>
             <h4>Data Dictionaries</h4>
             <div>
               A simplified version of the file specification intended for easy conversion to SQL statements
@@ -67,8 +67,8 @@ const ModifiedLarDocs = props => {
                 </li>
               </ul>
             </div>
-          </p>
-          <p>
+          </div>
+          <div>
            <h4>Field Information</h4>
             <div>
               A discussion of the data available in the Modified LAR text files. Includes information on additional fields and how the base data was modified to protect the privacy of borrowers
@@ -81,8 +81,8 @@ const ModifiedLarDocs = props => {
                 </li>
               </ul>
             </div>
-          </p>
-          <p>
+          </div>
+          <div>
             <h4>Code Sheet</h4>
             <div>
               A quick reference guide containing the valid codes by field, intended for use during analysis
@@ -95,8 +95,8 @@ const ModifiedLarDocs = props => {
                 </li>
               </ul>
             </div>
-          </p>
-          <p>
+          </div>
+          <div>
             <h4>Opening Text Files With Excel</h4>
             <div>
               Step by step instructions for opening an institution&#39;s Modified LAR file in Excel and adding the column names
@@ -109,19 +109,8 @@ const ModifiedLarDocs = props => {
                 </li>
               </ul>
             </div>
-          </p>
+          </div>
       </div>
-      {/*
-      <div className="DocSection">
-        <h2>Disclosure</h2>
-          <p>
-            Something else
-          </p>
-          <p>
-            Another thing
-          </p>
-      </div>
-      */}
     </div>
   )
 }

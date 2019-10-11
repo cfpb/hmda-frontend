@@ -41,7 +41,7 @@ function renderDatasets(datasets){
 }
 
 const Snapshot = props => {
-  const { params } = props.match
+  const { params, url } = props.match
   const years = SNAPSHOT_DATASET.displayedYears
   const dataForYear = SNAPSHOT_DATASET[params.year]
   const snapshotDate = params.year ? dataForYear.snapshot_date : 'a fixed date per year'
@@ -71,7 +71,7 @@ const Snapshot = props => {
         </p>
       </Heading>
 
-      <YearSelector years={years} />
+      <YearSelector year={params.year} url={url} years={years} />
 
       { params.year ?
         <div className="grid">

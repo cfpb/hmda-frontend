@@ -21,7 +21,7 @@ const DataPublication = () => {
     <div className="App DataPublication">
       <Switch>
         <Route exact path="/data-publication" component={Home} />
-        <Redirect exact from="/data-publication/modified-lar" to="/modified-lar/2018" />
+        <Redirect exact from="/data-publication/modified-lar" to="/data-publication/modified-lar/2018" />
         <Route path="/data-publication/documents" component={SupportingDocs} />
         <Route path="/data-publication/modified-lar/:year" component={ModifiedLar} />
         <Route

@@ -15,16 +15,16 @@
   text-align: right;
 }
 
-.Report .header {
+.Report .heading {
   border-bottom: none;
   margin: 0 auto;
   max-width: 1040px;
 }
 
-.Report .header h3 {
+.Report .heading h3 {
   margin-top: 0;
 }
-.Report .header p {
+.Report .heading p {
   margin-bottom: 0;
 }
 

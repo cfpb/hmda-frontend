@@ -13,7 +13,7 @@
   font-size: 1.3rem;
 }
 
-#main-content .grid .item {
+.Tools #main-content .grid .item {
   flex: 1 1 450px;
   margin: 3rem 0;
   padding-right: 75px;

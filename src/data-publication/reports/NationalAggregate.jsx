@@ -5,6 +5,7 @@ import ProgressCard from './ProgressCard.jsx'
 import Reports from './Reports.jsx'
 import Report from './Report.jsx'
 import { NATIONAL_AGGREGATE_REPORTS } from '../constants/national-aggregate-reports.js'
+import years from '../constants/years.js'
 
 import './NationalAggregate.css'
 
@@ -38,7 +39,7 @@ class NationalAggregate extends React.Component {
   }
 
   render() {
-    const { params } = this.props.match
+    const { params, url } = this.props.match
     const report = detailsCache.reports[params.reportId]
 
     const header = (
@@ -70,7 +71,7 @@ class NationalAggregate extends React.Component {
                     : 'Select a year'
                 }
                 id=''
-                link={'/national-aggregate-reports/'}
+                link={'/data-publication/national-aggregate-reports/'}
               />
             </li>
             <li>
@@ -85,7 +86,7 @@ class NationalAggregate extends React.Component {
                 id={params.reportId ? report.value : ''}
                 link={
                   params.year
-                    ? `/national-aggregate-reports/${params.year}`
+                    ? `/data-publication/national-aggregate-reports/${params.year}`
                     : null
                 }
               />
@@ -98,7 +99,7 @@ class NationalAggregate extends React.Component {
             : params.reportId ? null :
             <Reports {...this.props} />
           )
-          : <YearSelector />
+          : <YearSelector url={url} years={years}/>
           }
         </div>
 

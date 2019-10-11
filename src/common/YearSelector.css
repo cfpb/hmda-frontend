@@ -7,8 +7,13 @@
   font-family: SourceSansProBold;
   margin-right: 1em;
   text-decoration: none;
-  font-size: 2em;
+  font-size: 1.5em;
 }
+
+.App .YearSelector h4 {
+  margin-bottom: 0.33em;
+}
+
 .YearSelector span {
   display: block;
 }

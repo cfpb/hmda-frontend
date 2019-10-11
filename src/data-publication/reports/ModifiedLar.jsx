@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom'
 import Heading from '../../common/Heading.jsx'
 import SearchList from './SearchList.jsx'
 import YearSelector from '../../common/YearSelector.jsx'
+import years from '../constants/years.js'
 
 import './ModifiedLar.css'
 
 const ModifiedLar = props => {
-  const year = props.match.params.year
+  const { url, params: { year } } = props.match
 
   return (
     <React.Fragment>
@@ -23,13 +24,13 @@ const ModifiedLar = props => {
             may not have completed its HMDA data submission."
         >
           <p>
-            <Link to="/documents#modified-lar">
+            <Link to="/data-publication/documents#modified-lar">
               Modified LAR file specifications, schemas, and instructions
             </Link>
           </p>
         </Heading>
-        <YearSelector standalone={true} />
-        <SearchList year={year} />
+        <YearSelector year={year} url={url} years={years}/>
+        <SearchList year={year}/>
       </div>
     </React.Fragment>
   )

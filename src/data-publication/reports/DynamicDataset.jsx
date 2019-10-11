@@ -24,7 +24,7 @@ function linkToDocs(){
 }
 
 const DynamicDataset = props => {
-  const { params } = props.match
+  const { params, url } = props.match
   const years = DYNAMIC_DATASET.displayedYears
   const dataForYear = DYNAMIC_DATASET[params.year]
 
@@ -41,7 +41,7 @@ const DynamicDataset = props => {
           with HMDA submissions received through the previous Sunday night."
       />
 
-      <YearSelector years={years} />
+      <YearSelector year={params.year} url={url} years={years} />
 
       {params.year ?
         <div className="grid">
