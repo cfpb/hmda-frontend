@@ -78,7 +78,7 @@ class Disclosure extends React.Component {
     if (!url.match(/\/$/)) url += '/'
     const normalizedInstitution = this.props.match.params.year === '2017'
         ? {
-            title: 'Respondent ID',
+            title: 'Institution ID',
             id: institution.institutionId
           }
         : { title: 'LEI', id: institution.lei }
