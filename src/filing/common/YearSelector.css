@@ -1,0 +1,40 @@
+.YearSelector {
+  margin:-2em 0 2em 0;
+}
+
+.Institutions .YearSelector {
+  margin-top: 0;
+}
+
+.YearSelector a {
+  color: #212121;
+  font-family: SourceSansProBold;
+  margin-right: 1em;
+  text-decoration: none;
+  font-size: 2em;
+}
+
+.YearSelector > h4 {
+  margin-bottom: 0.5em;
+}
+
+.YearSelector span {
+  display: block;
+}
+
+.YearSelector a:visited {
+  color: #212121;
+}
+
+.YearSelector a:hover {
+  color: #0071bc;
+  border-bottom: 2px solid;
+}
+
+.YearSelector a:last-child {
+  margin-right: 0;
+}
+
+.YearSelector a.active {
+  border-bottom: 2px solid;
+}

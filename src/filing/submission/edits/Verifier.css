@@ -1,0 +1,50 @@
+@keyframes VerifierAlertAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.Verifier .animated-alert {
+  animation: 0.2s ease-out 0s 1 VerifierAlertAnimation;
+}
+
+.Verifier hr {
+  margin-bottom: 2em;
+}
+.Verifier h2 {
+  margin-top: 0;
+}
+
+.Verifier .LoadingIconWrapper {
+  position: absolute;
+  left: 150px;
+}
+.Verifier .LoadingIcon {
+  left: 0;
+  top: 14px;
+}
+
+.Verifier li {
+  margin-top: 1em;
+}
+
+.Verifier input[type='checkbox'] {
+  margin-right: 1em;
+}
+.Verifier .font-lead {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
+.Verifier .alert-text span {
+  text-transform: capitalize;
+}
+
+.Verifier input,
+.Verifier label {
+  cursor: pointer;
+}

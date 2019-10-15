@@ -1,0 +1,30 @@
+.Footer {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+.Footer .footer-primary-section {
+  background: #f1f1f1;
+  padding: 2em 0;
+}
+.Footer .nav-link {
+  color: #1f498f;
+  font-family: SourceSansProBold;
+  font-size: 0.9em;
+  text-decoration: none;
+}
+.Footer img {
+  margin-right: 5px;
+  vertical-align: top;
+}
+
+.Footer h4 {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+.return-to-top {
+  display: inline-block;
+  margin-bottom: 1em;
+}

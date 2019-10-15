@@ -1,0 +1,44 @@
+#main-content.BrowserBlocker {
+  margin: 0;
+}
+.BrowserBlocker {
+  margin: 0;
+  padding: 0;
+}
+
+.BrowserBlocker .usa-alert {
+  background-color: #e31c3d;
+  color: #ffffff;
+  margin-top: 0;
+}
+.BrowserBlocker .usa-alert:before {
+  display: none;
+}
+
+.BrowserBlocker .usa-alert-body {
+  background-color: #e31c3d;
+  display: block;
+  padding: 6em 8em;
+}
+
+.BrowserBlocker .usa-alert-body a {
+  color: #ffffff;
+}
+
+.BrowserBlocker ul {
+  padding-left: 0;
+  margin-top: 0.5em;
+}
+
+.BrowserBlocker li {
+  display: inline;
+  margin: 0 0.5em;
+}
+
+.BrowserBlocker li:first-of-type {
+  margin-left: 0;
+}
+
+.BrowserBlocker .AlertImage {
+  display: none;
+}

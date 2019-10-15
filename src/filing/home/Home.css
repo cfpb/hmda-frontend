@@ -1,0 +1,102 @@
+.Home .hero-no-script {
+  background-color: #f9dede;
+}
+
+.Home .alert {
+  margin-bottom: 2em;
+}
+
+.Home .register-link {
+  margin-left: 0.5em;
+}
+
+.Home .hero {
+  background-color: #f1f1f1;
+  margin-bottom: 2em;
+  padding: 3em 0;
+}
+
+.Home h1 {
+  font-size: 2em;
+  margin-bottom: 0;
+}
+
+.Home h2 {
+  font-size: 1.5em;
+}
+
+.Home h3 {
+  font-size: 1em;
+}
+
+.Home .login-button {
+  float: right;
+}
+
+.Home hr {
+  margin: 2em 0;
+}
+
+.Home .max-width {
+  max-width: 77rem;
+}
+
+.Home button,
+.Home button:visited {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background-color: #0071bc;
+  border: 0;
+  border-radius: 2px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: SourceSansProBold;
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1;
+  margin: 2em 0.5em 0.5em;
+  padding: 1rem 2rem;
+}
+@media screen and (min-width: 481px) {
+  .Home button,
+  .Home button:visited {
+    width: auto;
+  }
+}
+.Home button:hover,
+.Home button:visited:hover {
+  background-color: #205493;
+}
+.Home button:active,
+.Home button:visited:active {
+  background-color: #112e51;
+}
+.Home button:disabled,
+.Home button:visited:disabled {
+  background-color: #d6d7d9;
+  pointer-events: none;
+}
+.Home button:disabled:hover,
+.Home button:disabled:active,
+.Home button:disabled:focus,
+.Home button:visited:disabled:hover,
+.Home button:visited:disabled:focus,
+.Home button:visited:disabled:active {
+  background-color: #d6d7d9;
+}
+
+.Home .video-container {
+  height: 0;
+  padding-bottom: 56.25%;
+  position: relative;
+  width: 100%;
+}
+
+.Home .video-container iframe {
+  left: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}

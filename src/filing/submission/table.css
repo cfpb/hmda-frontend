@@ -1,0 +1,66 @@
+table {
+  border-spacing: 0;
+  font-size: 1.7rem;
+  margin: 2em 0;
+}
+
+table td,
+table th {
+  padding: 0.75rem;
+  border-bottom: none;
+  border-right: none;
+  border-color: #d6d7d9;
+}
+
+table tr td:last-child,
+table tr th:last-child {
+  border-right: 1px solid #d6d7d9;
+}
+
+table tr:last-child td {
+  border-bottom: 1px solid #d6d7d9;
+}
+
+thead th {
+  font-family: SourceSansProBold;
+}
+
+thead th,
+thead td {
+  background-color: #f1f1f1;
+}
+
+th {
+  text-align: left;
+}
+
+th,
+td {
+  background-color: #ffffff;
+  border: 1px solid #5b616b;
+  font-weight: 400;
+  padding: 1rem 1.5rem;
+}
+
+.usa-table-borderless thead th {
+  background-color: transparent;
+  border-top: 0;
+}
+
+.usa-table-borderless th,
+.usa-table-borderless td {
+  border-left: 0;
+  border-right: 0;
+}
+
+.usa-table-borderless th:first-child {
+  padding-left: 0;
+}
+
+caption {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: SourceSansPro;
+  margin-bottom: 1.2rem;
+  text-align: left;
+}

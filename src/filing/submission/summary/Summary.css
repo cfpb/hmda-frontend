@@ -1,0 +1,27 @@
+.Summary {
+  margin-top: 3em;
+}
+
+.Summary header {
+  max-width: 77rem;
+  margin-bottom: 2em;
+}
+.Summary h2 {
+  font-size: 3rem;
+}
+.Summary .font-lead {
+  color: #323a45;
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
+.Summary .info {
+  margin: 2em 0;
+}
+
+.Summary dt {
+  font-family: SourceSansProBold;
+}
+.Summary dd {
+  margin-bottom: 1em;
+  margin-left: 0;
+}

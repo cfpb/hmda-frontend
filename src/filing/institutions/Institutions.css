@@ -1,0 +1,64 @@
+.Institutions {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.Institutions .institution {
+  margin-top: 2em;
+}
+
+.Institutions .institution .current-status {
+  background-color: #f1f1f1;
+  padding: 1em;
+}
+
+.Institutions .institution h3 {
+  margin-top: 0;
+}
+
+.Institutions .institution .previous-submissions h4 {
+  margin-top: 0;
+}
+
+.Institutions .institution .previous-submissions ol {
+  margin-bottom: 0;
+  padding-left: 1.5em;
+}
+
+.Institutions .institution .usa-accordion-button {
+  background-color: #d6d7d9;
+}
+
+.Institutions .institution .status {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.Institutions .institution .statush4 {
+  margin: 0;
+}
+
+.Institutions .institution .statusp {
+  margin: 0;
+}
+
+.Institutions header {
+  margin: 0;
+}
+
+.Institutions header h2 {
+  margin-top: 0;
+  margin-bottom: 0.25em;
+}
+.Institutions header p.usa-font-lead {
+  margin-top: 0;
+  margin-bottom: 0.25em;
+}
+
+.Institutions p.multi-message {
+  margin-top: 2.5em;
+}
+
+.floatingIcon + p.multi-message {
+  margin-top: 7em;
+}

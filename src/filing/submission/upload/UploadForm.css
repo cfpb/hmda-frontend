@@ -1,0 +1,103 @@
+.UploadForm {
+  margin: 2em 0;
+}
+
+.UploadForm .data-warning {
+  background-color: #fff1d2;
+  margin-bottom: 1em;
+  padding: 1em;
+  text-align: center;
+}
+.UploadForm .usa-alert {
+  margin-bottom: 1em;
+  margin-top: 0;
+}
+.UploadForm .usa-alert ul.usa-alert-text {
+  margin-top: 0;
+  padding-left: 1em;
+}
+
+.UploadForm .usa-form {
+  max-width: 100%;
+}
+.UploadForm .usa-button.usa-button-gray {
+  border: 1px solid #5b616b;
+  border-radius: 0.3rem 0 0 0.3rem;
+  margin-right: -1px;
+}
+.UploadForm .usa-button.usa-button-gray.usa-button-disabled {
+  background-color: #d6d7d9;
+  border-color: #d6d7d9;
+  color: #323a45;
+}
+
+.UploadForm input[type='text'] {
+  border-color: #5b616b;
+  max-width: 100%;
+}
+.UploadForm input[type='text']:disabled {
+  border-color: #aeb0b5;
+  color: #5b616b;
+}
+.UploadForm input[type='text'].input-error {
+  border-color: #e31c3d;
+  color: #e31c3d;
+}
+
+.UploadForm [type='submit'] {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  margin-top: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.UploadForm .dropzone {
+  border: 1px dashed #aeb0b5;
+  height: 200px;
+  position: relative;
+  width: 100%;
+}
+.UploadForm .dropzone.dropzone-disabled {
+  border-color: #e59393;
+  color: #e31c3d;
+}
+.UploadForm .dropzone:hover {
+  background-color: #f1f1f1;
+}
+
+.UploadForm .dropzone button {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: normal;
+  margin: 0;
+  margin-right: -50%;
+  padding: 0;
+  font-weight: 400;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url('../../images/upload.png');
+  background-repeat: no-repeat;
+  background-size: 70px;
+  background-position-x: 50%;
+  background-position-y: 20%;
+  color: #212121;
+}
+
+.UploadForm .dropzone button p:first-of-type {
+  margin-top: 6em;
+}
+
+.UploadForm .dropzone button p {
+  margin: 0;
+}
+
+.UploadForm .dropzone button .file-selected {
+  color: #5b616b;
+}
+
+.UploadForm .dropzone-active {
+  background-color: #f1f1f1;
+  border-color: #2e8540;
+}

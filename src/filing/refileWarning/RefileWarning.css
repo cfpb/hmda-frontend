@@ -1,0 +1,43 @@
+@keyframes animateWarningHeader {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.RefileWarning {
+  animation: 0.3s ease-out 0s 1 animateWarningHeader;
+}
+
+.RefileWarning:first-child {
+  margin-bottom: 2em;
+}
+
+.RefileWarning .alert-body {
+  display: block;
+  position: relative;
+}
+
+.RefileWarning .RefileButton {
+  background-color: #e31c3d;
+  color: #ffffff;
+  position: absolute;
+  right: 0;
+  text-decoration: none;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.RefileWarning .RefileButton:hover {
+  background-color: #CD2025;
+  color: #ffffff;
+}
+
+@media (max-width: 800px) {
+  .RefileWarning .RefileButton {
+    position: relative;
+    margin: 2em 0 -2em;
+  }
+}

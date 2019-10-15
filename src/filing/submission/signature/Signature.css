@@ -1,0 +1,40 @@
+.Signature {
+  margin: 3em 0 0;
+}
+
+.Signature header {
+  max-width: 77rem;
+  margin-bottom: 2em;
+}
+.Signature h2 {
+  font-size: 3rem;
+}
+.Signature .font-lead {
+  color: #323a45;
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
+
+.Signature .alert {
+  margin-top: 1em;
+}
+
+.Signature .alert p {
+  margin: 0.25em 0;
+}
+
+.Signature input,
+.Signature label {
+  cursor: pointer;
+}
+
+.Signature input {
+  margin-top: 0.75em;
+  vertical-align: top;
+}
+
+.Signature label {
+  display: inline-block;
+  margin-left: 0.5em;
+  max-width: 77rem;
+}
