@@ -58,6 +58,10 @@
   margin-bottom: 0;
 }
 
+.alert-heading.heading-small {
+  font-size: 1em;
+}
+
 .alert-text {
   font-family: SourceSansPro, 'Helvetica Neue', 'Helvetica', 'Roboto',
     'Arial', sans-serif;

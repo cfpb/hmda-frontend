@@ -10,6 +10,7 @@ import DataBrowser from './data-browser'
 import Documentation from './documentation'
 import Tools from './tools'
 import DataPublication from './data-publication'
+import Filing from './filing'
 
 import './app.css'
 
@@ -25,6 +26,7 @@ const App = () => {
         <Route path = "/documentation" component={Documentation} />
         <Route path = "/tools" component={Tools} />
         <Route path = "/data-publication" component={DataPublication} />
+        <Route path = "/filing" component={Filing} />
         <Route component={NotFound} />
       </Switch>
       <Footer />

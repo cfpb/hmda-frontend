@@ -18,7 +18,7 @@ import IRSReport from './irs/index.jsx'
 import Signature from './signature/container.jsx'
 import Summary from './summary/container.jsx'
 import ParseErrors from './parseErrors/container.jsx'
-import Loading from '../common/Loading.jsx'
+import Loading from '../../common/Loading.jsx'
 import { FAILED, PARSED_WITH_ERRORS, SIGNED } from '../constants/statusCodes.js'
 
 import './container.css'

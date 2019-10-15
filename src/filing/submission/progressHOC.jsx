@@ -5,6 +5,7 @@ import {
 } from '../constants/statusCodes.js'
 
 function mapStateToProps(state) {
+  console.log('routing is gone from progressHOC')
   if (!state || !state.routing || !state.app) return
 
   const pathname = state.routing.locationBeforeTransitions.pathname
