@@ -8,7 +8,7 @@ export class HomeContainer extends Component {
     if (this.props.user === null) return (
       <Home
         pathname={this.props.location.pathname}
-        filingPeriod={this.props.params.filingPeriod}
+        filingPeriod={this.props.match.params.filingPeriod}
       />
     )
     return <InstitutionsContainer />

@@ -4,12 +4,12 @@ import hasHttpError from './hasHttpError.js'
 import getPaginationRequestAction from './getPaginationRequestAction.js'
 import { error } from '../utils/log.js'
 
-import { fetch } from '../api/fetch.js'
+import { fetchData } from '../api/fetch.js'
 
 export default function fetchPage(target, pathname) {
   return dispatch => {
     dispatch(getPaginationRequestAction(target))
-    return fetch({ pathname: pathname })
+    return fetchData({ pathname: pathname })
       .then(json => {
         return hasHttpError(json).then(hasError => {
           if (hasError) {

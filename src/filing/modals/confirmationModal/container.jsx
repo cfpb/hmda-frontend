@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
+import { withRouter } from 'react-router-dom'
 import hideConfirm from '../../actions/hideConfirm.js'
 import fetchNewSubmission from '../../actions/fetchNewSubmission.js'
 import refreshState from '../../actions/refreshState.js'
@@ -26,7 +26,7 @@ export function mapStateToProps(state) {
   }
 }
 
-export function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch, ownProps) {
   const hideConfirmModal = () => {
     dispatch(hideConfirm())
   }
@@ -44,7 +44,7 @@ export function mapDispatchToProps(dispatch) {
       })
     } else {
       return dispatch(fetchNewSubmission(lei, period)).then(() => {
-        browserHistory.replace(`/filing/${period}/${lei}/upload`)
+        ownProps.history.replace(`/filing/${period}/${lei}/upload`)
       })
     }
   }
@@ -55,7 +55,7 @@ export function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(ConfirmationModal)
+)(ConfirmationModal))

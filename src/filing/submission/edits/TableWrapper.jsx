@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Header from './Header.jsx'
-import Loading from '../../common/Loading.jsx'
+import Loading from '../../../common/LoadingIcon.jsx'
 import EditsTable from './TableContainer.jsx'
 import Verifier from './VerifierContainer.jsx'
 import SuppressionAlert from './SuppressionAlert.jsx'
 import RefileWarningComponent from '../../refileWarning/index.jsx'
 import submissionProgressHOC from '../progressHOC.jsx'
-import Alert from '../../common/Alert.jsx'
+import Alert from '../../../common/Alert.jsx'
 
 const RefileWarning = submissionProgressHOC(RefileWarningComponent)
 

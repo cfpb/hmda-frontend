@@ -16,7 +16,6 @@ import { setStore } from './utils/store.js'
 import appReducer from './reducers'
 
 const middleware = [thunkMiddleware]
-
 setKeycloak(Keycloak(process.env.PUBLIC_URL + '/keycloak.json'))
 
 let store
@@ -43,30 +42,38 @@ setStore(store)
 
 const Filing = () => {
   return (
-    <Provider store={store}>
-      <AppContainer>
+    <div className="Filing">
+      <Provider store={store}>
         <Switch>
-          <Redirect from="/filing" to="/filing/2019/"/>
-          <Route
-            path={'/filing/:filingPeriod/'}
-            component={HomeContainer}
-          />
-          <Route
-            path={'/filing/:filingPeriod/institutions'}
-            component={InstitutionContainer}
-          />
-          <Route
-            path={'/filing/:filingPeriod/:lei/'}
-            component={SubmissionRouter}
-          />
-          <Route
-            path={'/filing/:filingPeriod/:lei/*'}
-            component={SubmissionRouter}
-          />
-          <Route path={'/filing/:filingPeriod/*'} component={SubmissionRouter} />
+          <Redirect exact from="/filing" to="/filing/2019/"/>
+          <Route exact path={'/filing/:filingPeriod/'} render={props => {
+            return <AppContainer {...props}>
+              <HomeContainer/>
+            </AppContainer>
+          }}/>
+          <Route path={'/filing/:filingPeriod/institutions'} render={props => {
+            return <AppContainer {...props}>
+              <InstitutionContainer/>
+            </AppContainer>
+          }}/>
+          <Route path={'/filing/:filingPeriod/:lei/'} render={props => {
+            return <AppContainer {...props}>
+              <SubmissionRouter/>
+            </AppContainer>
+          }}/>
+          <Route path={'/filing/:filingPeriod/:lei/*'} render={props => {
+            return <AppContainer {...props}>
+              <SubmissionRouter/>
+            </AppContainer>
+          }}/>
+          <Route path={'/filing/:filingPeriod/*'} render={props => {
+            return <AppContainer {...props}>
+              <SubmissionRouter/>
+            </AppContainer>
+          }}/>
         </Switch>
-      </AppContainer>
-    </Provider>
+      </Provider>
+    </div>
   )
 }
 

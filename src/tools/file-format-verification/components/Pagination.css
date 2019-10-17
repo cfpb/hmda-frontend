@@ -12,51 +12,6 @@
   margin: 1em auto 2em;
 }
 
-.PaginationControls button,
-.PaginationControls button:visited {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  background-color: #0071bc;
-  border: 0;
-  border-radius: 2px;
-  color: #ffffff;
-  cursor: pointer;
-  display: inline-block;
-  font-family: SourceSansProBold;
-  font-size: 1.7rem;
-  font-weight: 700;
-  line-height: 1;
-  margin: 3rem 0 0;
-  padding: 1rem 2rem;
-}
-@media screen and (min-width: 481px) {
-  .PaginationControls button,
-  .PaginationControls button:visited {
-    width: auto;
-  }
-}
-.PaginationControls button:hover,
-.PaginationControls button:visited:hover {
-  background-color: #205493;
-}
-.PaginationControls button:active,
-.PaginationControls button:visited:active {
-  background-color: #112e51;
-}
-.PaginationControls button:disabled,
-.PaginationControls button:visited:disabled {
-  background-color: #d6d7d9;
-  pointer-events: none;
-}
-.PaginationControls button:disabled:hover,
-.PaginationControls button:disabled:active,
-.PaginationControls button:disabled:focus,
-.PaginationControls button:visited:disabled:hover,
-.PaginationControls button:visited:disabled:focus,
-.PaginationControls button:visited:disabled:active {
-  background-color: #d6d7d9;
-}
-
 .PaginationControls h4,
 .PaginationControls button {
   display: inline-block;

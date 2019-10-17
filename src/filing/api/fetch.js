@@ -1,4 +1,3 @@
-import isomorphicFetch from 'isomorphic-fetch'
 import createQueryString from './createQueryString.js'
 import makeUrl from './makeUrl.js'
 import * as AccessToken from './AccessToken.js'
@@ -15,7 +14,7 @@ export function getFilingData() {
   }
 }
 
-export function fetch(options = { method: 'GET' }) {
+export function fetchData(options = { method: 'GET' }) {
   const accessToken = AccessToken.get()
   const pathname = options.pathname
   const filingData = pathname ? {} : getFilingData()
@@ -60,7 +59,7 @@ export function fetch(options = { method: 'GET' }) {
     headers: headers
   }
 
-  return isomorphicFetch(url, fetchOptions)
+  return fetch(url, fetchOptions)
     .then(response => {
       return new Promise(resolve => {
         log('got res', response, response.status)

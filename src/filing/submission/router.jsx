@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
+import { withRouter } from 'react-router-dom'
 import SubmissionContainer from './container.jsx'
-import Loading from '../common/Loading.jsx'
+import Loading from '../../common/LoadingIcon.jsx'
 import fetchSubmission from '../actions/fetchSubmission.js'
 import fetchEdits from '../actions/fetchEdits.js'
 import refreshState from '../actions/refreshState.js'
@@ -24,7 +24,7 @@ const submissionRoutes = ['upload', ...editTypes, 'submission']
 export class SubmissionRouter extends Component {
   componentDidMount() {
     this.renderChildren = false
-    const { submission, params, dispatch } = this.props
+    const { submission, match: {params}, dispatch } = this.props
     const status = submission.status
 
     if (!params.lei) {
@@ -39,9 +39,9 @@ export class SubmissionRouter extends Component {
     dispatch(setLei(params.lei))
 
     if (unmatchedId || !status || status.code === UNINITIALIZED) {
-      return dispatch(fetchSubmission()).then(json => {
+      return dispatch(fetchSubmission()).then(() => {
         if (this.editsNeeded()) {
-          dispatch(fetchEdits()).then(json => {
+          dispatch(fetchEdits()).then(() => {
             this.route()
           })
         } else {
@@ -51,7 +51,7 @@ export class SubmissionRouter extends Component {
     }
 
     if (this.editsNeeded()) {
-      return dispatch(fetchEdits()).then(json => {
+      return dispatch(fetchEdits()).then(() => {
         this.route()
       })
     }
@@ -69,14 +69,14 @@ export class SubmissionRouter extends Component {
   }
 
   replaceHistory(splat) {
-    const { lei, filingPeriod } = this.props.params
-    return browserHistory.replace(
+    const { lei, filingPeriod } = this.props.match.params
+    return this.props.history.replace(
       `/filing/${filingPeriod}/${lei}/${splat}`
     )
   }
 
   goToAppHome() {
-    return browserHistory.replace(`/filing/${this.props.params.filingPeriod}/`)
+    return this.props.history.replace(`/filing/${this.props.match.params.filingPeriod}/`)
   }
 
   getLatestPage() {
@@ -94,7 +94,7 @@ export class SubmissionRouter extends Component {
   route() {
     const status = this.props.submission.status
     const code = status.code
-    const splat = this.props.params.splat
+    const splat = this.props.match.params.splat
     const latest = this.getLatestPage()
 
     this.renderChildren = true
@@ -124,7 +124,7 @@ export class SubmissionRouter extends Component {
   }
 
   render() {
-    const { submission, params } = this.props
+    const { submission, match: {params} } = this.props
 
     if (
       submission.status.code === UNINITIALIZED ||
@@ -141,7 +141,7 @@ export function mapStateToProps(state, ownProps) {
   const { submission } = state.app
   const { types } = state.app.edits
 
-  const { params } = ownProps
+  const { match: {params} } = ownProps
 
   return {
     submission,
@@ -150,4 +150,4 @@ export function mapStateToProps(state, ownProps) {
   }
 }
 
-export default connect(mapStateToProps)(SubmissionRouter)
+export default withRouter(connect(mapStateToProps)(SubmissionRouter))

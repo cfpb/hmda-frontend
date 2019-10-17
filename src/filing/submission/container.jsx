@@ -1,7 +1,7 @@
 /*eslint no-unused-vars: 0*/
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import fetchInstitution from '../actions/fetchInstitution.js'
 import UserHeading from './UserHeading.jsx'
@@ -18,7 +18,7 @@ import IRSReport from './irs/index.jsx'
 import Signature from './signature/container.jsx'
 import Summary from './summary/container.jsx'
 import ParseErrors from './parseErrors/container.jsx'
-import Loading from '../../common/Loading.jsx'
+import Loading from '../../common/LoadingIcon.jsx'
 import { FAILED, PARSED_WITH_ERRORS, SIGNED } from '../constants/statusCodes.js'
 
 import './container.css'
@@ -82,7 +82,7 @@ const renderByCode = (code, page, lei, filingPeriod) => {
 class SubmissionContainer extends Component {
   componentDidMount() {
     // for institution name in header
-    const { lei, filingPeriod } = this.props.params
+    const { lei, filingPeriod } = this.props.match.params
 
     if (!this.props.institutions.institutions[lei]) {
       this.props.dispatch(fetchInstitution( { lei }, filingPeriod, false))
@@ -91,7 +91,7 @@ class SubmissionContainer extends Component {
 
   render() {
     if (!this.props.location) return null
-    const { submission, params, location, institutions, lei } = this.props
+    const { submission, match: {params}, location, institutions, lei } = this.props
     const status = submission.status
     const code = status && status.code
     const page = location.pathname.split('/').slice(-1)[0]
@@ -137,7 +137,7 @@ function mapStateToProps(state) {
 }
 
 SubmissionContainer.propTypes = {
-  params: PropTypes.object,
+  match: PropTypes.object,
   dispatch: PropTypes.func.isRequired
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Alert from '../common/Alert.jsx'
+import Alert from '../../common/Alert.jsx'
 import InstitutionNameAndId from './NameAndId.jsx'
 import InstitutionStatus from './Status.jsx'
 import InstitutionViewButton from './ViewButton.jsx'

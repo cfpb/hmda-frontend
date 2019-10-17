@@ -1,5 +1,5 @@
 import React from 'react'
-import Alert from '../../common/Alert.jsx'
+import Alert from '../../../common/Alert.jsx'
 import CSVDownload from '../../common/CSVContainer.jsx'
 
 export const SuppressionAlert = props => {

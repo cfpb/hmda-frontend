@@ -2,7 +2,7 @@ jest.unmock('./router.jsx')
 jest.mock('./container.jsx')
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router-dom'
 import TestUtils from 'react-dom/test-utils'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'

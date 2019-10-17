@@ -1,5 +1,5 @@
 import React from 'react'
-import Loading from './Loading.jsx'
+import Loading from '../../common/LoadingIcon.jsx'
 
 import './CSVDownload.css'
 

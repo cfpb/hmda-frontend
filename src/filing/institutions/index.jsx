@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Loading from '../common/Loading.jsx'
+import Loading from '../../common/LoadingIcon.jsx'
 import ErrorWarning from '../common/ErrorWarning.jsx'
 import Institution from './Institution.jsx'
 import InstitutionsHeader from './Header.jsx'
 import sortInstitutions from '../utils/sortInstitutions.js'
-import YearSelector from '../common/YearSelector.jsx'
-import Alert from '../common/Alert.jsx'
+import YearSelector from '../../common/YearSelector.jsx'
+import Alert from '../../common/Alert.jsx'
+import { FILING_PERIODS } from '../constants/dates.js'
 
 import './Institutions.css'
 
@@ -89,7 +90,7 @@ export default class Institutions extends Component {
             <InstitutionsHeader filingPeriod={filingPeriod} />
           ) : null}
 
-          <YearSelector filingPeriod={filingPeriod} pathname={location.pathname}/>
+          <YearSelector years={FILING_PERIODS} year={filingPeriod} url={location.pathname}/>
 
           {_whatToRender(this.props)}
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router'
-import Loading from '../common/Loading.jsx'
+import { Link } from 'react-router-dom'
+import Loading from '../../common/LoadingIcon.jsx'
 import {
   VALIDATING,
   SYNTACTICAL_VALIDITY_EDITS,

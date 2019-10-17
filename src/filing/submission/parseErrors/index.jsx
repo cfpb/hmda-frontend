@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Loading from '../../common/Loading.jsx'
+import Loading from '../../../common/LoadingIcon.jsx'
 import PropTypes from 'prop-types'
 import RefileWarningComponent from '../../refileWarning/index.jsx'
 import submissionProgressHOC from '../progressHOC.jsx'

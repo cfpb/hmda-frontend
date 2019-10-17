@@ -1,8 +1,8 @@
 jest.unmock('./container.jsx')
-jest.mock('react-router')
+jest.mock('react-router-dom')
 
 import React from 'react'
-import * as reactRouter from 'react-router'
+import * as reactRouter from 'react-router-dom'
 import TestUtils from 'react-dom/test-utils'
 import Wrapper from '../../../test-resources/Wrapper.js'
 import Connected, { mapStateToProps, mapDispatchToProps } from './container.jsx'

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Alert from '../../common/Alert.jsx'
-import Loading from '../../common/Loading.jsx'
+import Alert from '../../../common/Alert.jsx'
+import Loading from '../../../common/LoadingIcon.jsx'
 import { SIGNED } from '../../constants/statusCodes.js'
 
 import './Verifier.css'

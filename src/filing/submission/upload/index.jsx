@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Alert from '../../common/Alert.jsx'
+import Alert from '../../../common/Alert.jsx'
 import ValidationProgress from './ValidationProgress.jsx'
 import Dropzone from 'react-dropzone'
 import DropzoneContent from './DropzoneContent.jsx'

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import RefileButton from '../refileButton/container.jsx'
-import Alert from '../common/Alert.jsx'
+import Alert from '../../common/Alert.jsx'
 import CSVDownload from '../common/CSVContainer.jsx'
 import {
   FAILED,

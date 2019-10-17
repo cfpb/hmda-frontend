@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Pagination from '../../pagination/container.jsx'
-import Loading from '../../common/Loading.jsx'
+import Loading from '../../../common/LoadingIcon.jsx'
 import EditsTableRow from './TableRow.jsx'
 
 import './Table.css'

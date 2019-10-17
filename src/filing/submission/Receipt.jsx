@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Alert from '../common/Alert.jsx'
+import Alert from '../../common/Alert.jsx'
 import { ordinalHour } from '../utils/date.js'
 import { SIGNED } from '../constants/statusCodes.js'
 
