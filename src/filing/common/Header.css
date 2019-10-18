@@ -160,12 +160,12 @@
   margin-left: 2em;
 }
 
-@media screen and (max-width: 870px) {
-  .nav-container {
+@media screen and (max-width: 1023px) {
+  .Header .nav-container {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  .logo-text span {
+  .Header .logo-text span {
     display: none;
   }
 }

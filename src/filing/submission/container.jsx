@@ -108,7 +108,7 @@ class SubmissionContainer extends Component {
           name={institution && institution.name ? institution.name : ''}
         />
         <EditsNav />
-        <main id="main-content" className="SubmissionContainer usa-grid-full">
+        <main id="main-content" className="SubmissionContainer full-width">
           {this.props.error && code !== FAILED ? (
             <ErrorWarning error={this.props.error} />
           ) : null}

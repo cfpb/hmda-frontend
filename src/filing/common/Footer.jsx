@@ -12,7 +12,7 @@ export const getLink = filingPeriod => {
 const Footer = props => {
   return (
     <footer className="Footer footer footer-slim" role="contentinfo">
-      <div className="usa-grid-full">
+      <div className="full-width">
         <button className="return-to-top button-link" onClick={e => {
           e.preventDefault()
           window.scrollTo(0,0)
@@ -21,8 +21,8 @@ const Footer = props => {
         </button>
       </div>
       <div className="footer-primary-section">
-        <div className="usa-grid-full">
-          <nav className="usa-width-one-half footer-nav">
+        <div className="full-width">
+          <nav className="half-width footer-nav">
             <ul className="unstyled-list">
               <li className="footer-primary-content">
                 <a
@@ -32,12 +32,12 @@ const Footer = props => {
                   aria-label="Home"
                 >
                   <img src={logo} height="21px" alt="FFIEC" />
-                  Home Mortgage Disclosure Act
+                  <span>Home Mortgage Disclosure Act</span>
                 </a>
               </li>
             </ul>
           </nav>
-          <div className="usa-width-one-half">
+          <div className="half-width">
             <a href="mailto:hmdahelp@cfpb.gov">Questions?</a>
           </div>
         </div>

@@ -7,7 +7,7 @@ const Summary = props => {
   if (!props.submission || !props.ts) return null
 
   return (
-    <section className="Summary usa-grid-full" id="summary">
+    <section className="Summary full-width" id="summary">
       <header>
         <h2>HMDA Filing Summary</h2>
         <p className="font-lead">
@@ -15,7 +15,7 @@ const Summary = props => {
           review the respondent and file information below from your HMDA file.
         </p>
       </header>
-      <div className="info usa-grid-full">
+      <div className="info full-width">
         <section className="usa-width-one-half">
           <h3>Respondent Information</h3>
           <dl>

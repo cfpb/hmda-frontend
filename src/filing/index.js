@@ -42,7 +42,7 @@ setStore(store)
 
 const Filing = () => {
   return (
-    <div className="Filing">
+    <div className="App Filing">
       <Provider store={store}>
         <Switch>
           <Redirect exact from="/filing" to="/filing/2019/"/>

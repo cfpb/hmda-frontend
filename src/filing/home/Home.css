@@ -1,54 +1,61 @@
-.Home .hero-no-script {
+.FilingHome .YearSelector {
+  margin: 0;
+}
+.FilingHome .hero-no-script {
   background-color: #f9dede;
 }
 
-.Home .alert {
+.FilingHome .alert {
   margin-bottom: 2em;
 }
 
-.Home .register-link {
+.FilingHome .hero .register-link {
   margin-left: 0.5em;
 }
 
-.Home .hero {
+.FilingHome .hero {
   background-color: #f1f1f1;
   margin-bottom: 2em;
-  padding: 3em 0;
+  padding: 1em 0 3em 0;
 }
 
-.Home h1 {
+.FilingHome h1 {
   font-size: 2em;
-  margin-bottom: 0;
+  margin: 1em 0 0 0;
 }
 
-.Home h2 {
+.FilingHome h2 {
   font-size: 1.5em;
 }
 
-.Home h3 {
+.FilingHome h3 {
   font-size: 1em;
 }
 
-.Home .login-button {
+.FilingHome .hero button {
+  margin: 1.5em 0.5em 0.5em 0;
+}
+
+.FilingHome .login-button {
   float: right;
 }
 
-.Home hr {
+.FilingHome hr {
   margin: 2em 0;
 }
 
-.Home .max-width {
+.FilingHome .max-width {
   max-width: 77rem;
 }
 
-.Home .video-container {
+.FilingHome .video-container {
   height: 0;
   padding-bottom: 56.25%;
   position: relative;
   width: 100%;
 }
 
-.Home .video-container iframe {
+.FilingHome .video-container iframe {
   left: 0;
   height: 100%;
   position: absolute;

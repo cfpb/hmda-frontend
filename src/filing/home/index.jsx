@@ -7,9 +7,9 @@ import './Home.css'
 
 const Home = props => {
   return (
-    <main className="Home" id="main-content">
+    <main className="FilingHome" id="main-content">
       <section className="hero">
-        <div className="usa-grid-full">
+        <div className="full-width">
           <YearSelector url={props.pathname}  year={props.filingPeriod} years={FILING_PERIODS} />
           <h1>Get started filing your {props.filingPeriod} HMDA data</h1>
           <p className="font-lead max-width">
@@ -29,7 +29,7 @@ const Home = props => {
           </button>
           <span className="text-small">or</span>
           <button
-            className="register-link text-small"
+            className="register-link"
             onClick={e => {
               e.preventDefault()
               register()
@@ -43,7 +43,7 @@ const Home = props => {
           </p>
         </div>
       </section>
-      <div className="usa-grid-full">
+      <div className="full-width">
         <section className="video-container">
           <iframe
             src="https://www.youtube.com/embed/C_73Swgyc4g?rel=0"

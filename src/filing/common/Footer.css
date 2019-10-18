@@ -4,16 +4,22 @@
   position: absolute;
   width: 100%;
 }
+
 .Filing .Footer .footer-primary-section {
   background: #f1f1f1;
-  padding: 2em 0;
+  padding: 2.5em 0;
 }
+.Filing .Footer .unstyled-list {
+  margin: 0;
+}
+
 .Filing .Footer .nav-link {
   color: #1f498f;
   font-family: SourceSansProBold;
   font-size: 0.9em;
   text-decoration: none;
 }
+
 .Filing .Footer img {
   margin-right: 5px;
   vertical-align: top;
@@ -27,4 +33,10 @@
 .Filing .return-to-top {
   display: inline-block;
   margin-bottom: 1em;
+}
+
+@media screen and (max-width: 679px) {
+  .Filing .Footer .nav-link > span {
+    display: none;
+  }
 }

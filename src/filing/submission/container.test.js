@@ -144,7 +144,7 @@ describe('SubmissionContainer', () => {
       'Connect(EditsNav)'
     )
     expect(rendered.props.children[2].props.className).toBe(
-      'usa-grid SubmissionContainer'
+      'full-width SubmissionContainer'
     )
     expect(rendered.props.children[2].props.children[0]).toBe(null)
   })
@@ -164,7 +164,7 @@ describe('SubmissionContainer', () => {
       'Connect(EditsNav)'
     )
     expect(rendered.props.children[2].props.className).toBe(
-      'usa-grid SubmissionContainer'
+      'full-width SubmissionContainer'
     )
     expect(rendered.props.children[2].props.children[0]).not.toBe(null)
   })

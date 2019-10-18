@@ -13,6 +13,7 @@ import { FILING_PERIODS } from './constants/dates.js'
 import { detect } from 'detect-browser'
 
 import 'normalize.css'
+import './app.css'
 
 const browser = detect()
 
@@ -33,9 +34,13 @@ export class AppContainer extends Component {
     })
   }
 
-  componentDidUpdate(props) {
+  componentDidUpdate(oldProps) {
     const keycloak = getKeycloak()
-    if (!keycloak.authenticated && !this._isHome(props)) keycloak.login()
+    const period = this.props.match.params.filingPeriod
+    if (!keycloak.authenticated && !this._isHome(this.props)) keycloak.login()
+    if(oldProps.match.params.filingPeriod !== period) {
+      this.props.dispatch(updateFilingPeriod(period))
+    }
   }
 
   _renderAppContents(props) {
@@ -68,8 +73,8 @@ export class AppContainer extends Component {
         {FILING_PERIODS.indexOf(params.filingPeriod) !== -1
           ? this._renderAppContents(this.props)
           : params.filingPeriod === '2017'
-            ? <p className="usa-grid-full">Files are no longer being accepted for the 2017 filing period. For further assistance, please contact <a href="mailto:hmdahelp@cfpb.gov">HMDA Help</a>.</p>
-            : <p className="usa-grid-full">The {params.filingPeriod} filing period does not exist. If this seems wrong please contact <a href="mailto:hmdahelp@cfpb.gov">HMDA Help</a>.</p>
+            ? <p className="full-width">Files are no longer being accepted for the 2017 filing period. For further assistance, please contact <a href="mailto:hmdahelp@cfpb.gov">HMDA Help</a>.</p>
+            : <p className="full-width">The {params.filingPeriod} filing period does not exist. If this seems wrong please contact <a href="mailto:hmdahelp@cfpb.gov">HMDA Help</a>.</p>
         }
         <Footer filingPeriod={params.filingPeriod}/>
       </div>

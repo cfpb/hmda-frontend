@@ -1,4 +1,4 @@
-import { REQUEST_FILING, RECEIVE_FILING } from '../constants'
+import { REQUEST_FILING, RECEIVE_FILING, UPDATE_FILING_PERIOD } from '../constants'
 
 const defaultFilings = {}
 
@@ -27,6 +27,8 @@ export default (state = defaultFilings, action) => {
           filing: action.filing
         }
       }
+    case UPDATE_FILING_PERIOD:
+      return defaultFilings
     default:
       return state
   }

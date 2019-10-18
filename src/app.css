@@ -72,10 +72,16 @@ caption {
   z-index: 100;
 }
 
-.App {
+.App, .full-width {
   max-width: 1040px;
   margin: 0 auto;
   padding: 0 3rem;
+}
+
+.half-width {
+  float: left;
+  display: block;
+  width: 50%;
 }
 
 .App h1 {

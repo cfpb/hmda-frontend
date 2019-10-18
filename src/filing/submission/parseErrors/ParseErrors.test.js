@@ -24,7 +24,7 @@ describe('Parse errors', () => {
 
   it('renders the parser errors', () => {
     expect(parseErrors).not.toBeNull()
-    expect(parseErrors.props.className).toBe('ParseErrors usa-grid-full')
+    expect(parseErrors.props.className).toBe('ParseErrors full-width')
     expect(parseErrors.props.children[1].props.children[0]).not.toBe(null)
     expect(
       parseErrors.props.children[1].props.children[0].props.children.join('')

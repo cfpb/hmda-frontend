@@ -83,7 +83,7 @@ export default class Institutions extends Component {
   render() {
     const { error, filingPeriod, location } = this.props
     return (
-      <main id="main-content" className="Institutions usa-grid-full">
+      <main id="main-content" className="Institutions full-width">
         {error ? <ErrorWarning error={error} /> : null}
         <div className="usa-width-one-whole">
           {filingPeriod ? (

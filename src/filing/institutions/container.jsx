@@ -8,23 +8,33 @@ import { getKeycloak } from '../utils/keycloak.js'
 
 export class InstitutionContainer extends Component {
   componentDidMount() {
+    this.fetchIfNeeded()
+  }
+
+  componentDidUpdate(){
+    this.fetchIfNeeded()
+  }
+
+  fetchIfNeeded() {
     const { dispatch, filingPeriod, institutions } = this.props
-    if (!institutions.fetched && !institutions.isFetching)
+    if (!institutions.fetched && !institutions.isFetching){
       dispatch(requestInstitutions())
-    const leiString = getKeycloak().tokenParsed.lei
-    const leis = leiString ? leiString.split(',') : []
+      const leiString = getKeycloak().tokenParsed.lei
+      const leis = leiString ? leiString.split(',') : []
 
-    // create the expected objects from the array, institutions = [{lei: lei}]
-    let instArr = []
-    leis.forEach(lei => {
-      instArr.push({ lei: lei })
-    })
+      // create the expected objects from the array, institutions = [{lei: lei}]
+      let instArr = []
+      leis.forEach(lei => {
+        instArr.push({ lei: lei })
+      })
 
-    dispatch(fetchEachInstitution(instArr, filingPeriod))
-    dispatch(receiveInstitutions())
+      dispatch(fetchEachInstitution(instArr, filingPeriod))
+      dispatch(receiveInstitutions())
+    }
   }
 
   render() {
+    console.log('institutions container props', this.props)
     return <Institutions {...this.props} />
   }
 }
