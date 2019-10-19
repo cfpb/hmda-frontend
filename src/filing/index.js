@@ -56,17 +56,12 @@ const Filing = () => {
               <InstitutionContainer/>
             </AppContainer>
           }}/>
-          <Route path={'/filing/:filingPeriod/:lei/'} render={props => {
+          <Route exact path={'/filing/:filingPeriod/:lei/'} render={props => {
             return <AppContainer {...props}>
               <SubmissionRouter/>
             </AppContainer>
           }}/>
-          <Route path={'/filing/:filingPeriod/:lei/*'} render={props => {
-            return <AppContainer {...props}>
-              <SubmissionRouter/>
-            </AppContainer>
-          }}/>
-          <Route path={'/filing/:filingPeriod/*'} render={props => {
+          <Route path={'/filing/:filingPeriod/:lei/:splat'} render={props => {
             return <AppContainer {...props}>
               <SubmissionRouter/>
             </AppContainer>

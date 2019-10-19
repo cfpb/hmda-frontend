@@ -27,7 +27,7 @@ const navMap = {
   },
   'quality edits': {
     isErrored: code => code === QUALITY_EDITS,
-    isCompleted: (code, verified) => verified,
+    isCompleted: code => code > QUALITY_EDITS,
     errorText: 'quality edits',
     completedText: 'quality edits verified'
   },

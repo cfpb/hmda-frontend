@@ -6,6 +6,7 @@ import fetchEdits from '../../actions/fetchEdits.js'
 
 export class EditsContainer extends Component {
   componentDidMount() {
+    this.getNeededEdits()
     if (!this.props.editsFetched && !this.props.isFetching)
       this.props.dispatch(fetchEdits())
   }
@@ -34,10 +35,6 @@ export class EditsContainer extends Component {
     ) {
       props.dispatch(fetchEditType('macro'))
     }
-  }
-
-  componentWillMount() {
-    this.getNeededEdits()
   }
 
   componentWillReceiveProps(nextProps) {

@@ -5,19 +5,18 @@ import {
 } from '../constants/statusCodes.js'
 
 function mapStateToProps(state) {
-  console.log('routing is gone from progressHOC')
-  if (!state || !state.routing || !state.app) return
+  if (!state || !state.app) return
 
-  const pathname = state.routing.locationBeforeTransitions.pathname
+  const pathname = window.location.pathname
   const page = pathname.split('/').slice(-1)[0]
   const base = pathname
     .split('/')
     .slice(0, -1)
     .join('/')
-
-  const { code, qualityVerified } = state.app.submission.status
+  const { code } = state.app.submission.status
   const editsFetched = state.app.edits.fetched
   const qualityExists = !!state.app.edits.types.quality.edits.length
+  const qualityVerified = state.app.edits.types.quality.verified
   const validationComplete =
     code === SYNTACTICAL_VALIDITY_EDITS || code >= NO_MACRO_EDITS
 
