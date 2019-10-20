@@ -44,7 +44,7 @@ class Verifier extends Component {
         <p className="font-lead">
           In order to continue you must verify all {props.type} edits.
         </p>
-        {props.isFetching ? <Loading /> : null}
+        {props.isFetching ? <Loading className="LoadingInline"/> : null}
         <ul className="unstyled-list">
           <li>
             <input

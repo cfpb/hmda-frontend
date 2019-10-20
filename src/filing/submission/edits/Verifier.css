@@ -21,12 +21,17 @@
 }
 
 .Verifier .LoadingIconWrapper {
-  position: absolute;
-  left: 150px;
+  display: block;
+  margin: 0 0 -30px -40px;
 }
+
 .Verifier .LoadingIcon {
-  left: 0;
-  top: 14px;
+  top: 15px;
+}
+
+.Verifier ul {
+  list-style-type: none;
+  padding-left: 0;
 }
 
 .Verifier li {

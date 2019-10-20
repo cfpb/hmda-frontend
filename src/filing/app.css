@@ -3,3 +3,6 @@
   padding: 0;
 }
 
+.Filing.App hr {
+  border-top: 1px solid #d6d7d9;
+}

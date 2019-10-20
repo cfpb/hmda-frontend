@@ -44,7 +44,7 @@ const EditsHeaderDescription = ({ type, count, fetched, suppressCount }) => {
       <h2>
         {title}
         {countEl}
-        {!fetched && !suppressCount ? <Loading /> : null}
+        {!fetched && !suppressCount ? <Loading className="LoadingInline"/> : null}
       </h2>
       <p className="font-lead">{desc}</p>
     </header>
