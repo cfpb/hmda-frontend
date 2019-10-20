@@ -9,6 +9,7 @@ import * as AccessToken from './api/AccessToken.js'
 import { getKeycloak, refresh } from './utils/keycloak.js'
 import isRedirecting from './actions/isRedirecting.js'
 import updateFilingPeriod from './actions/updateFilingPeriod.js'
+import updatePathname from './actions/updatePathname.js'
 import { FILING_PERIODS } from './constants/dates.js'
 import { detect } from 'detect-browser'
 
@@ -36,10 +37,16 @@ export class AppContainer extends Component {
 
   componentDidUpdate(oldProps) {
     const keycloak = getKeycloak()
-    const period = this.props.match.params.filingPeriod
     if (!keycloak.authenticated && !this._isHome(this.props)) keycloak.login()
+
+    const period = this.props.match.params.filingPeriod
     if(oldProps.match.params.filingPeriod !== period) {
       this.props.dispatch(updateFilingPeriod(period))
+    }
+
+    const pathname = window.location.pathname
+    if(this.props.pathname !== pathname){
+      this.props.dispatch(updatePathname(pathname))
     }
   }
 
@@ -83,10 +90,11 @@ export class AppContainer extends Component {
 }
 
 export function mapStateToProps(state) {
-  const { redirecting } = state.app
+  const { redirecting, pathname } = state.app
 
   return {
-    redirecting
+    redirecting,
+    pathname
   }
 }
 

@@ -4,6 +4,7 @@ import lei from './lei.js'
 import institutions from './institutions.js'
 import filings from './filings.js'
 import filingPeriod from './filingPeriod.js'
+import pathname from './pathname.js'
 import submission from './submission.js'
 import upload from './upload.js'
 import confirmation from './confirmation.js'
@@ -22,6 +23,7 @@ export default combineReducers({
   institutions,
   filings,
   filingPeriod,
+  pathname,
   submission,
   upload,
   confirmation,

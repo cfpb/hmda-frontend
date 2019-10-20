@@ -7,7 +7,7 @@ import {
 function mapStateToProps(state) {
   if (!state || !state.app) return
 
-  const pathname = window.location.pathname
+  const { pathname } = state.app
   const page = pathname.split('/').slice(-1)[0]
   const base = pathname
     .split('/')
