@@ -4,7 +4,8 @@ import {
   PARSED_WITH_ERRORS,
   PARSED,
   SYNTACTICAL_VALIDITY_EDITS,
-  QUALITY_EDITS,
+  NO_QUALITY_EDITS,
+  NO_MACRO_EDITS,
   MACRO_EDITS,
   VALIDATED,
   SIGNED
@@ -14,43 +15,41 @@ import './Progress.css'
 
 const navMap = {
   upload: {
-    isErrored: code => code === PARSED_WITH_ERRORS,
-    isCompleted: code => code >= PARSED,
+    isErrored: submission => submission.status.code === PARSED_WITH_ERRORS,
+    isCompleted: submission => submission.status.code >= PARSED,
     errorText: 'uploaded with formatting errors',
     completedText: 'uploaded'
   },
   'syntactical & validity edits': {
-    isErrored: code => code === SYNTACTICAL_VALIDITY_EDITS,
-    isCompleted: code => code > SYNTACTICAL_VALIDITY_EDITS,
+    isErrored: submission => submission.status.code === SYNTACTICAL_VALIDITY_EDITS,
+    isCompleted: submission => submission.status.code > SYNTACTICAL_VALIDITY_EDITS,
     errorText: 'syntactical & validity edits',
     completedText: 'no syntactical & validity edits'
   },
   'quality edits': {
-    isErrored: code => code === QUALITY_EDITS,
-    isCompleted: code => code > QUALITY_EDITS,
-    errorText: 'quality edits',
+    isErrored: submission => submission.qualityExists && !submission.qualityVerified,
+    isCompleted: submission => submission.status.code >= NO_QUALITY_EDITS && (!submission.qualityExists || submission.qualityVerified),
+    errorText: 'quality edits'  ,
     completedText: 'quality edits verified'
   },
   'macro quality edits': {
-    isErrored: code => code === MACRO_EDITS,
-    isCompleted: code => code > MACRO_EDITS,
+    isErrored: submission => submission.macroExists && !submission.macroVerified,
+    isCompleted: submission => (submission.status.code > MACRO_EDITS || submission.status.code === NO_MACRO_EDITS) && (!submission.macroExists || submission.macroVerified),
     errorText: 'macro quality edits',
     completedText: 'macro quality edits verified'
   },
   submission: {
-    isReachable: code => code >= VALIDATED,
+    isReachable: submission => submission.status.code >= VALIDATED || submission.status.code === NO_MACRO_EDITS ,
     isErrored: () => false,
-    isCompleted: code => code === SIGNED,
+    isCompleted: submission => submission.status.code === SIGNED,
     completedText: 'submitted'
   }
 }
 
-const renderNavItem = (status, name, i) => {
-  const { code, qualityVerified } = status
+const renderNavItem = (submission, name, i) => {
   const navItem = navMap[name]
-  const completed = navItem.isCompleted(code, qualityVerified)
-  const errored = navItem.isErrored(code)
-
+  const completed = navItem.isCompleted(submission)
+  const errored = navItem.isErrored(submission)
   let renderedName = name
   let navClass = ''
   if (errored) {
@@ -61,7 +60,7 @@ const renderNavItem = (status, name, i) => {
     navClass = 'complete'
   }
 
-  if (name === 'submission' && navItem.isReachable(code) && !completed) {
+  if (name === 'submission' && navItem.isReachable(submission) && !completed) {
     // using error class is misleading but the styling is what we need
     navClass = 'error'
   }
@@ -79,13 +78,13 @@ const renderNavItem = (status, name, i) => {
   )
 }
 
-const Progress = ({ status = { code: 1 } }) => {
+const Progress = ({submission = { status: { code: 1 } }}) => {
   return (
     <section className="Progress">
       <nav className="EditsNav" id="editsNav">
         <ul className="nav-primary">
           {Object.keys(navMap).map((name, i) => {
-            return renderNavItem(status, name, i)
+            return renderNavItem(submission, name, i)
           })}
         </ul>
         <hr className="nav-bg" />

@@ -24,7 +24,7 @@ const Institution = ({ institution, filing, submission, submissions }) => {
           <div className="current-status">
             <InstitutionNameAndId name={institution.name} lei={institution.lei} filingPeriod={filing.period} />
 
-            <SubmissionNav status={status} />
+            <SubmissionNav submission={submission} />
 
             <InstitutionStatus filing={filing} submission={submission} />
 
