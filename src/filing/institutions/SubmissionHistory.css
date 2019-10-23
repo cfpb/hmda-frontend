@@ -1,0 +1,65 @@
+.SubmissionHistory .accordion-bordered {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+  padding-left: 0;
+  color: #212121;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.SubmissionHistory .accordion-bordered > li {
+  background-color: #f1f1f1;
+  font-family: SourceSansPro;
+  list-style: none;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.SubmissionHistory .accordion-button {
+  background-color: #d6d7d9 !important;
+  background-image: url('../images/minus.png');
+  background-image: url('../images/minus.svg');
+  background-position: right 2rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5rem;
+  border-radius: 0;
+  color: #212121;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 0;
+  padding: 1.5rem 5.5rem 1.5rem 2rem;
+  text-align: left;
+  width: 100%;
+}
+
+.SubmissionHistory .accordion-button[aria-expanded='false'] {
+  background-image: url(../images/plus.png);
+  background-image: url(../images/plus.svg);
+}
+
+.SubmissionHistory .accordion-content {
+  background-color: #ffffff;
+  border: 3px solid #f1f1f1;
+  border-top: none;
+  overflow: auto;
+  padding: 1em;
+}
+
+.SubmissionHistory .accordion-content[aria-hidden='true'] {
+  display: none;
+}
+
+.SubmissionHistory .accordion-content > *:first-child {
+  margin-top: 0;
+}
+
+.SubmissionHistory ol {
+  margin-bottom: 0;
+  padding-left: 1.5em;
+}
+
+.SubmissionHistory ol li {
+  margin-bottom: 0.5em;
+}

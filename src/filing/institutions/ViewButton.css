@@ -1,0 +1,15 @@
+.ViewButton {
+  text-decoration: none;
+}
+
+.ViewButton.RefileButton {
+  background-color: #e31c3d;
+  color: #ffffff;
+  margin: 0;
+  text-decoration: none;
+}
+
+.ViewButton.RefileButton:hover {
+  background-color: #CD2025;
+  color: #ffffff;
+}

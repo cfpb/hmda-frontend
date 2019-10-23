@@ -29,56 +29,9 @@
   margin: 0;
   position: relative;
   z-index: 3;
+  display: inline-block;
 }
 
 .CSVUpload .LoadingIconWrapper {
   margin-top: 1em;
-}
-
-.CSVUpload .button,
-.CSVUpload .button:visited {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  background-color: #0071bc;
-  border: 0;
-  border-radius: 2px;
-  color: #ffffff;
-  cursor: pointer;
-  display: inline-block;
-  font-family: SourceSansProBold;
-  font-size: 1.7rem;
-  font-weight: 700;
-  line-height: 1;
-  margin: 0;
-  padding: 1rem 2rem;
-}
-@media screen and (min-width: 481px) {
-  .CSVUpload .button,
-  .CSVUpload .button:visited {
-    width: auto;
-  }
-}
-
-.CSVUpload .button:hover,
-.CSVUpload .button:visited:hover {
-  background-color: #205493;
-}
-.CSVUpload .button:active,
-.CSVUpload .button:visited:active {
-  background-color: #112e51;
-}
-
-.CSVUpload .button:disabled,
-.CSVUpload .button:visited:disabled {
-  background-color: #d6d7d9;
-  pointer-events: none;
-}
-
-.CSVUpload .button:disabled:hover,
-.CSVUpload .button:disabled:active,
-.CSVUpload .button:disabled:focus,
-.CSVUpload .button:visited:disabled:hover,
-.CSVUpload .button:visited:disabled:focus,
-.CSVUpload .button:visited:disabled:active {
-  background-color: #d6d7d9;
 }

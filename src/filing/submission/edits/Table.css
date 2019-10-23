@@ -1,0 +1,66 @@
+.EditsTableWrapper hr {
+  margin: 2em 0;
+}
+
+.EditsTableWrapper-Edit {
+  margin: 2em 0;
+}
+
+.EditsTableWrapper-Edit:last-of-type {
+  margin-top: 4em;
+}
+
+.EditsTableWrapper-Edit:first-of-type {
+  margin-top: 0;
+}
+
+.EditsTableWrapper-Edit hr {
+  margin-top: 2em;
+}
+
+.EditsTable {
+  margin: 3em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.EditsTable caption,
+.EditsTable .caption {
+  font-size: 1.5rem;
+  text-align: left;
+}
+
+.EditsTable caption h3,
+.EditsTable .caption h3 {
+  margin: 0;
+}
+.EditsTable caption p,
+.EditsTable .caption p {
+  color: #323a45;
+  font-weight: normal;
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
+
+.EditsTable:last-of-type {
+  margin-bottom: 2em;
+}
+.EditsTable .caption {
+  padding-bottom: 0;
+}
+.EditsTable table {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+// hightlight Q666 for PII
+#Q666 caption,
+#Q666 .caption {
+  background-color: #fff1d2;
+  padding: 1em;
+}
+
+#Q666 caption p,
+#Q666 .caption p {
+  color: #212121;
+}

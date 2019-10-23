@@ -1,0 +1,105 @@
+.Filing .UploadForm {
+  margin: 2em 0;
+}
+
+.Filing .UploadForm .data-warning {
+  background-color: #fff1d2;
+  margin-bottom: 1em;
+  padding: 1em;
+  text-align: center;
+}
+
+.Filing .UploadForm input[type='text'] {
+  border-color: #5b616b;
+  max-width: 100%;
+}
+.Filing .UploadForm input[type='text']:disabled {
+  border-color: #aeb0b5;
+  color: #5b616b;
+}
+.Filing .UploadForm input[type='text'].input-error {
+  border-color: #e31c3d;
+  color: #e31c3d;
+}
+
+.Filing .UploadForm [type='submit'] {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  margin-top: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.Filing .UploadForm .dropzone {
+  width: 100%;
+}
+
+.Filing .UploadForm .dropzone.dropzone-disabled {
+  border-color: #e59393;
+  color: #e31c3d;
+}
+
+.Filing .UploadForm .dropzone:hover {
+  background-color: #f1f1f1;
+}
+
+.Filing .UploadForm .dropzone {
+  display: block;
+  position: relative;
+  border: 1px dashed #aeb0b5;
+  height: 250px;
+  width: 100%;
+  cursor: pointer;
+  text-align: center;
+  line-height: normal;
+  margin: 0;
+  margin-right: -50%;
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url('../../images/upload.png');
+  background-repeat: no-repeat;
+  background-size: 70px;
+  background-position-x: 50%;
+  background-position-y: 35%;
+  color: #212121;
+}
+
+.Filing .UploadForm .dropzone .file-selected {
+  margin-top: 10em;
+  color: #5b616b;
+}
+
+.Filing .UploadForm .dropzone p {
+  font-family: SourceSansProBold;
+  margin: 0;
+}
+
+.Filing .UploadForm .dropzone-active {
+  background-color: #f1f1f1;
+  border-color: #2e8540;
+}
+
+/*
+.Filing .UploadForm .usa-alert {
+  margin-bottom: 1em;
+  margin-top: 0;
+}
+.Filing .UploadForm .usa-alert ul.usa-alert-text {
+  margin-top: 0;
+  padding-left: 1em;
+}
+
+.Filing .UploadForm .usa-form {
+  max-width: 100%;
+}
+.Filing .UploadForm .usa-button.usa-button-gray {
+  border: 1px solid #5b616b;
+  border-radius: 0.3rem 0 0 0.3rem;
+  margin-right: -1px;
+}
+.Filing .UploadForm .usa-button.usa-button-gray.usa-button-disabled {
+  background-color: #d6d7d9;
+  border-color: #d6d7d9;
+  color: #323a45;
+}
+*/

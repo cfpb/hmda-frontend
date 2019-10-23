@@ -1,0 +1,52 @@
+.IRSReport header {
+  max-width: 77rem;
+}
+.IRSReport h2 {
+  font-size: 3rem;
+  margin-top: 0;
+}
+.IRSReport .font-lead {
+  color: #323a45;
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
+
+.IRSReport .irs-table-wrapper {
+  max-width: 1040px;
+}
+
+@media screen and (max-width: (1040px - 1)) {
+  .IRSReport .irs-table-wrapper {
+    overflow-x: auto;
+  }
+}
+
+.IRSReport thead th,
+.IRSReport tfoot td,
+.IRSReport tbody td {
+  font-size: 0.75em;
+  border-width: 1px;
+}
+.IRSReport .totals td {
+  background-color: #f1f1f1;
+}
+.IRSReport td.center {
+  text-align: center;
+}
+
+.IRSReport button {
+  -moz-osx-font-smoothing: unset;
+  -webkit-font-smoothing: unset;
+  background-color: transparent;
+  color: #0071bc;
+  font-family: SourceSansPro;
+  font-size: 1.6rem;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.IRSReport button:hover {
+  color: #205493;
+}

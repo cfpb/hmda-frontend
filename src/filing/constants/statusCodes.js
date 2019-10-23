@@ -1,0 +1,17 @@
+export const CREATED = 1
+export const UPLOADING = 2
+export const UPLOADED = 3
+export const PARSING = 4
+export const PARSED_WITH_ERRORS = 5
+export const PARSED = 6
+export const VALIDATING = 7
+export const NO_SYNTACTICAL_VALIDITY_EDITS = 8
+export const SYNTACTICAL_VALIDITY_EDITS = 9
+export const NO_QUALITY_EDITS = 10
+export const QUALITY_EDITS = 11
+export const NO_MACRO_EDITS = 12
+export const MACRO_EDITS = 13
+export const VALIDATED = 14
+export const SIGNED = 15
+export const FAILED = -1
+export const UNINITIALIZED = 0 // a UI only status

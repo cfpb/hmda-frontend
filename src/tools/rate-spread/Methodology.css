@@ -1,3 +1,7 @@
+.methodology.grid {
+  display: block;
+}
+
 .methodology p {
   max-width: 77rem;
 }
@@ -11,26 +15,12 @@
 }
 
 .methodology table {
-  border-collapse: collapse;
-  border-spacing: 0;
   margin: 2em 0;
 }
-.methodology table th,
-.methodology table td {
-  border: 1px solid #5b616b;
-  padding: 1rem 1.5rem;
-}
+
 .methodology table thead th {
   font-family: SourceSansProBold;
   text-align: center;
-}
-.methodology table thead th,
-.methodology table thead td {
-  background-color: #f1f1f1;
-}
-.methodology table th {
-  font-family: SourceSansProBold;
-  text-align: left;
 }
 
 .methodology table tfoot th,

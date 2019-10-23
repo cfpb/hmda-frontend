@@ -1,0 +1,13 @@
+.SubmissionContainer header {
+  margin-bottom: 2em;
+  max-width: 77rem;
+}
+
+.SubmissionContainer h2 {
+  font-size: 3rem;
+}
+
+.SubmissionContainer h2 {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}

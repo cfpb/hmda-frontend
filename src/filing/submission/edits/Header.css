@@ -1,0 +1,16 @@
+.EditsHeaderDescription {
+  max-width: 77rem;
+}
+.EditsHeaderDescription h2 {
+  font-size: 3rem;
+  margin-top: 0;
+}
+.EditsHeaderDescription p.font-lead {
+  color: #323a45;
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
+.EditsHeaderDescription .LoadingIcon {
+  left: 5px;
+  top: 5px;
+}

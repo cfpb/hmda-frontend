@@ -6,10 +6,10 @@ import './Home.css'
 const Home = ({isBeta}) => {
   return (
     <main className="App home" id="main-content">
-      <div className=" usa-grid-full">
-        <header className="usa-width-one-whole">
+      <div>
+        <header>
           <h1>The Home Mortgage Disclosure Act</h1>
-          <p className="font-lead">
+          <p className="lead">
             HMDA requires many financial institutions to maintain, report, and
             publicly disclose information about mortgages.
           </p>

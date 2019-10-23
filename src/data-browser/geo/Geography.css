@@ -81,7 +81,6 @@ svg {
   cursor: pointer;
   margin: 2em 0.5em 2em 0;
   padding: 1em;
-  font-size: 16px;
   font-weight: bold;
   border-radius: 3px;
 }
@@ -96,7 +95,6 @@ svg {
 
 .QueryButton.disabled {
   background-color: #888;
-  cursor: not-allowed;
 }
 
 .Aggregations h2 {

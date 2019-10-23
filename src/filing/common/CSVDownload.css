@@ -1,0 +1,16 @@
+button.CSVDownload {
+  -moz-osx-font-smoothing: unset;
+  -webkit-font-smoothing: unset;
+  background-color: transparent;
+  color: #0071bc;
+  font-family: SourceSansPro;
+  font-size: 1.6rem;
+  font-weight: normal;
+  margin: 1.5em 0 0;
+  padding: 0;
+  text-decoration: underline;
+}
+
+button.CSVDownload:hover {
+  color: #205493;
+}

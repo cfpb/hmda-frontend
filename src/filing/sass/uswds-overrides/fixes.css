@@ -1,0 +1,8 @@
+// fix for disabled and checked checkbox
+// https://github.com/18F/web-design-standards/pull/1628
+[type="checkbox"]:checked:disabled + label::before {
+  background-image: url("#{$image-path}/correct8.png");
+  background-image: url("#{$image-path}/correct8.svg");
+  background-position: 50%;
+  background-repeat: no-repeat;
+}

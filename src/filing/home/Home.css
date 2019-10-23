@@ -1,0 +1,64 @@
+.FilingHome .YearSelector {
+  margin: 0;
+}
+.FilingHome .hero-no-script {
+  background-color: #f9dede;
+}
+
+.FilingHome .alert {
+  margin-bottom: 2em;
+}
+
+.FilingHome .hero .register-link {
+  margin-left: 0.5em;
+}
+
+.FilingHome .hero {
+  background-color: #f1f1f1;
+  margin-bottom: 2em;
+  padding: 1em 0 3em 0;
+}
+
+.FilingHome h1 {
+  font-size: 2em;
+  margin: 1em 0 0 0;
+}
+
+.FilingHome h2 {
+  font-size: 1.5em;
+}
+
+.FilingHome h3 {
+  font-size: 1em;
+}
+
+.FilingHome .hero button {
+  margin: 1.5em 0.5em 0.5em 0;
+}
+
+.FilingHome .login-button {
+  float: right;
+}
+
+.FilingHome hr {
+  margin: 2em 0;
+}
+
+.FilingHome .max-width {
+  max-width: 77rem;
+}
+
+.FilingHome .video-container {
+  height: 0;
+  padding-bottom: 56.25%;
+  position: relative;
+  width: 100%;
+}
+
+.FilingHome .video-container iframe {
+  left: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}

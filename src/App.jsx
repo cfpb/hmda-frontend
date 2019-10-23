@@ -10,14 +10,16 @@ import DataBrowser from './data-browser'
 import Documentation from './documentation'
 import Tools from './tools'
 import DataPublication from './data-publication'
+import Filing from './filing'
 
 import './app.css'
 
 const App = () => {
   const isBeta = !!window.location.host.match('beta')
+  const isFiling = !!window.location.pathname.match(/^\/filing/)
   return (
     <>
-      <Header pathname={window.location.pathname}/>
+      {isFiling ? null : <Header pathname={window.location.pathname}/>}
       {isBeta ? <Beta/> : null}
       <Switch>
         <Route exact path="/" component={Homepage} />
@@ -25,9 +27,10 @@ const App = () => {
         <Route path = "/documentation" component={Documentation} />
         <Route path = "/tools" component={Tools} />
         <Route path = "/data-publication" component={DataPublication} />
+        <Route path = "/filing" component={Filing} />
         <Route component={NotFound} />
       </Switch>
-      <Footer />
+    {isFiling ? null : <Footer />}
     </>
   )
 }

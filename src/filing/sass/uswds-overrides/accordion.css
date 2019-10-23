@@ -1,0 +1,9 @@
+.Institutions {
+  .usa-accordion-button {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+  .usa-accordion-bordered .usa-accordion-content {
+    padding: 1em;
+  }
+}

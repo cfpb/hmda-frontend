@@ -1,0 +1,86 @@
+$color-hmda-orange: #dc731c;
+
+#main-content {
+  position: relative;
+  margin-top: 2em;
+  margin-bottom: 2em;
+
+  &.Home {
+    margin-top: 0;
+  }
+}
+
+.floatingIcon.LoadingIconWrapper {
+  position: absolute;
+  left: 50%;
+  margin-top: 2em;
+  margin-left: -1.5em;
+}
+
+a {
+  cursor: pointer;
+}
+
+dt {
+  font-weight: bold;
+}
+dd {
+  margin-bottom: 1em;
+  margin-left: 0;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid $color-gray-lighter;
+  margin: 1em 0;
+  padding: 0;
+}
+
+table td,
+table th {
+  padding: 0.75rem;
+  border-color: $color-gray-lighter;
+}
+
+// text colors
+.text-gray {
+  color: $color-gray;
+}
+.text-gray-light {
+  color: $color-gray-light;
+}
+.text-secondary {
+  color: $color-secondary;
+}
+.text-green {
+  color: $color-green;
+}
+.text-primary {
+  color: $color-primary;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+.text-lowercase {
+  text-transform: lowercase;
+}
+
+// display
+.inline {
+  display: inline;
+}
+
+// max-width reset
+.max-width-100 {
+  max-width: 100%;
+}
+
+noscript > iframe {
+  display: none;
+}

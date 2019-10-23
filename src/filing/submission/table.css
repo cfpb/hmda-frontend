@@ -1,0 +1,21 @@
+.Filing table {
+  font-size: 1.7rem;
+  margin: 2em 0;
+}
+
+.Filing table td,
+.Filing table th {
+  padding: 0.75rem;
+  border-bottom: none;
+  border-right: none;
+  border-color: #d6d7d9;
+}
+
+.Filing table tr td:last-child,
+.Filing table tr th:last-child {
+  border-right: 1px solid #d6d7d9;
+}
+
+.Filing table tr:last-child td {
+  border-bottom: 1px solid #d6d7d9;
+}

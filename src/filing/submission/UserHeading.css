@@ -1,0 +1,10 @@
+.UserHeading {
+  margin: 0 auto;
+  padding: 1em 3rem 0.5em;
+  text-align: center;
+  max-width: 1040px;
+}
+.UserHeading h1 {
+  font-size: 1em;
+  margin: 0;
+}

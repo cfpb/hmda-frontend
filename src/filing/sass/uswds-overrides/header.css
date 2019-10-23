@@ -1,0 +1,107 @@
+.usa-header {
+  background-color: $color-white;
+  border-bottom: 1px solid $color-gray-lighter;
+}
+
+.usa-navbar {
+  height: auto;
+}
+
+.usa-nav {
+  padding-top: 0;
+}
+
+.usa-nav.usa-nav-left {
+  display: inline-block;
+  float: none;
+  padding-left: 3em;
+}
+
+.usa-logo {
+  line-height: 0;
+}
+
+.usa-logo a:hover {
+  color: $color-primary;
+}
+
+.usa-header-basic .usa-logo {
+  bottom: 0;
+  font-weight: bold;
+  margin-top: 3px;
+  position: relative;
+}
+
+.usa-banner-inner {
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+  max-width: 100%;
+}
+
+.usa-nav-container {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  max-width: 100%;
+}
+
+.usa-nav-secondary-links {
+  li {
+    &:not(:last-child)::after {
+      @include media($nav-width) {
+        content: none;
+      }
+    }
+  }
+}
+
+.usa-nav-primary > li {
+  font-size: 1.3rem;
+  margin-left: 0;
+
+  &.nav-institutions {
+    margin-left: 3em;
+    & > a.usa-nav-link {
+      margin-left: 0;
+    }
+  }
+
+  & > a {
+    color: $color-base;
+    font-size: 1.3rem;
+    margin: 1.3rem 1.5rem 1rem;
+    padding: 0;
+    text-transform: uppercase;
+
+    &.active {
+      border-bottom: 2px solid;
+      margin-bottom: -2px;
+    }
+
+    &.usa-button {
+      color: $color-white;
+      margin: 0;
+      padding: 1rem 2rem;
+      text-transform: uppercase;
+      &:hover {
+        color: $color-white;
+        background-color: $color-primary-darker;
+      }
+      &.usa-button-outline:hover {
+        color: $color-white;
+      }
+    }
+  }
+
+  &:last-child > a {
+    margin-right: 0;
+  }
+
+  &:first-child > a {
+    margin-left: 0;
+  }
+}
+
+.usa-nav-primary a {
+  padding: 0;
+  display: inline-block;
+}

@@ -1,0 +1,80 @@
+.PaginationControls {
+  display: table;
+  position: relative;
+  margin: 1em auto 2.5em;
+}
+
+.PaginationControls h4,
+.PaginationControls button {
+  display: inline-block;
+  margin: 0;
+}
+
+.PaginationControls div {
+  display: inline-block;
+  margin: 0 2em;
+}
+
+.PaginationControls form {
+  width: 3em;
+  display: inline-block;
+  margin: 0 0.25em;
+  height: 2em;
+}
+
+.PaginationControls form input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 0.1rem solid #5b616b;
+  border-radius: 0;
+  box-sizing: border-box;
+  color: #212121;
+  display: block;
+  font-size: 1.7rem;
+  height: 4.4rem;
+  line-height: 1.3;
+  margin: 0.2em 0;
+  max-width: 46rem;
+  padding: 1rem 0.7em;
+  width: 100%;
+}
+
+.PaginationControls form label {
+  height: 1px;
+  left: -10000px;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;
+}
+
+.PaginationControls button:last-of-type {
+  margin-right: 2em; /* centering compensatation for narrower width */
+}
+.PaginationControls .LoadingIconWrapper {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -45px;
+  margin-bottom: -35px;
+}
+
+.PaginationTarget {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.PaginationTarget td {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+.PaginationTarget.fadeOut {
+  opacity: 0.5;
+  /*Box shadow prevents thinning of table bottom border on transition*/
+  box-shadow: 0 1px 1px -2px;
+}
+
+.PaginationTarget.fadeOut td {
+  opacity: 0;
+}

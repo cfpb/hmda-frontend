@@ -18,10 +18,13 @@
   "license": "CC0-1.0",
   "dependencies": {
     "csv-parse": "4.6.3",
+    "detect-browser": "4.7.0",
     "file-saver": "2.0.2",
     "filereader-stream": "2.0.0",
     "hmda-file-parser": "1.18.0",
+    "keycloak-js": "4.5.0",
     "markdown-to-jsx": "6.10.3",
+    "normalize.css": "8.0.1",
     "react": "16.10.1",
     "react-app-polyfill": "1.0.3",
     "react-dom": "16.10.1",
@@ -44,6 +47,7 @@
   ],
   "devDependencies": {
     "eslint-plugin-prettier": "3.1.1",
-    "http-proxy-middleware": "0.19.1"
+    "http-proxy-middleware": "0.19.1",
+    "redux-devtools-extension": "2.13.8"
   }
 }

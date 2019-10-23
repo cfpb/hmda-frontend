@@ -130,7 +130,7 @@ class Form extends Component {
             }}
             type="text"
             value={inputValue}
-            onInput={this.handleInputChange}
+            onChange={this.handleInputChange}
           />
         </div>
         <input disabled={buttonDisabled} type="submit" value={buttonText} />

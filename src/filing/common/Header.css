@@ -1,0 +1,171 @@
+.Header nav {
+  margin: 0;
+  padding: 0;
+}
+
+.Header .usa-logo a {
+  color: #1f498f;
+  font-weight: bold;
+}
+.Header .usa-logo a:hover {
+  color: #1f498f;
+}
+.Header .usa-logo .usa-logo-text {
+  font-size: 2.5rem;
+  font-weight: normal;
+}
+
+.Header .usa-logo img .usa-logo-text {
+  margin-right: 0.5em;
+  vertical-align: text-bottom;
+}
+
+.Header nav {
+  margin: 0;
+  padding: 0;
+}
+@media screen and (max-width: 483px) {
+  .Header nav {
+    float: left;
+    margin: 6px 0 0 6px;
+  }
+}
+.Header .logo a {
+  color: #1f498f;
+  font-weight: bold;
+}
+.Header .logo a:hover {
+  color: #1f498f;
+}
+.logo-text {
+  font-family: SourceSansProBold;
+  font-size: 2.5rem;
+  font-weight: normal;
+}
+.logo-text a {
+  text-decoration: none;
+}
+
+.logo-text img {
+  margin-right: 0.5em;
+  vertical-align: text-bottom;
+}
+
+.logo-text span {
+  display: inline-block;
+}
+
+.header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #d6d7d9;
+}
+
+.navbar {
+  height: auto;
+}
+
+.nav {
+  padding-top: 0;
+  float: right;
+}
+
+.logo {
+  display: inline-block;
+  font-weight: bold;
+  line-height: 0;
+}
+
+.logo a:hover {
+  color: #0071bc;
+}
+
+.header-basic .logo {
+}
+
+.banner-inner {
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+  max-width: 100%;
+}
+
+.nav-container {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-right: 3rem;
+  padding-left: 3rem;
+  max-width: 100%;
+}
+
+.nav-primary {
+  list-style-type: none;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  padding-left: 0;
+  order: 2;
+}
+
+.nav-primary > li {
+  display: inline-block;
+  font-size: 1.3rem;
+  margin-left: 0;
+}
+
+.nav-primary > li.nav-institutions {
+  margin-left: 3em;
+}
+.nav-primary > li.nav-institutions > a.nav-link {
+  margin-left: 0;
+}
+
+.nav-primary > li > a,
+.nav-primary > li > button {
+  color: #212121;
+  background: none;
+  font-family: SourceSansProBold;
+  font-size: 1.3rem;
+  margin: 0 1.5rem;
+  padding: 0;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.nav-primary > li > a:hover,
+.nav-primary > li > button:hover {
+  color: #0071bc;
+}
+
+.nav-primary > li > a.active {
+  border-bottom: 2px solid;
+  margin-bottom: -2px;
+}
+
+.nav-primary > li:last-child > a {
+  margin-right: 0;
+}
+
+.nav-primary > li:first-child > a {
+  margin-left: 0;
+}
+
+.nav-primary a {
+  padding: 0;
+  display: inline-block;
+}
+
+.nav-primary > .user > .nav-link {
+  margin-right: 0;
+}
+
+.nav-primary > .user {
+  margin-left: 2em;
+}
+
+@media screen and (max-width: 1023px) {
+  .Header .nav-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .Header .logo-text span {
+    display: none;
+  }
+}
