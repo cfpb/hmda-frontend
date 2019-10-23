@@ -5,7 +5,6 @@ import SubmissionContainer from './container.jsx'
 import Loading from '../../common/LoadingIcon.jsx'
 import fetchSubmission from '../actions/fetchSubmission.js'
 import fetchEdits from '../actions/fetchEdits.js'
-import updatePathname from '../actions/updatePathname.js'
 import refreshState from '../actions/refreshState.js'
 import setLei from '../actions/setLei.js'
 import {
@@ -72,14 +71,12 @@ export class SubmissionRouter extends Component {
   replaceHistory(splat) {
     const { lei, filingPeriod } = this.props.match.params
     const pathname = `/filing/${filingPeriod}/${lei}/${splat}`
-    this.props.dispatch(updatePathname(pathname))
     this.props.history.replace(pathname)
   }
 
   goToAppHome() {
     const pathname = `/filing/${this.props.match.params.filingPeriod}/`
     this.props.history.replace(pathname)
-    this.props.dispatch(updatePathname(pathname))
   }
 
   getLatestPage() {
@@ -101,7 +98,6 @@ export class SubmissionRouter extends Component {
     const latest = this.getLatestPage()
 
     this.renderChildren = true
-    console.log('routing', splat)
 
     if (!splat) {
       return this.replaceHistory(latest)
@@ -129,7 +125,6 @@ export class SubmissionRouter extends Component {
 
   render() {
     const { submission, match: {params} } = this.props
-    console.log('router render', params)
     if (
       submission.status.code === UNINITIALIZED ||
       submission.id.lei !== params.lei ||
@@ -137,7 +132,6 @@ export class SubmissionRouter extends Component {
       !params.splat
     )
       return <Loading className="floatingIcon" />
-        console.log('rendering sub container', params.splat)
     return <SubmissionContainer {...this.props} />
   }
 }

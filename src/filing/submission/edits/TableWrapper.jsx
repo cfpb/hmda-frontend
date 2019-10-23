@@ -27,7 +27,6 @@ export const getTotalTypeCount = (type, edits, pagination) => {
 }
 
 export const makeEntry = (props, type) => {
-  console.log('making entry', props, type)
   let edits
   let fetched
   if (type === 'syntacticalvalidity') {

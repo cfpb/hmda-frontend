@@ -9,7 +9,6 @@ import * as AccessToken from './api/AccessToken.js'
 import { getKeycloak, refresh } from './utils/keycloak.js'
 import isRedirecting from './actions/isRedirecting.js'
 import updateFilingPeriod from './actions/updateFilingPeriod.js'
-import updatePathname from './actions/updatePathname.js'
 import { FILING_PERIODS } from './constants/dates.js'
 import { detect } from 'detect-browser'
 
@@ -35,19 +34,17 @@ export class AppContainer extends Component {
     })
   }
 
-  componentDidUpdate(oldProps) {
+  componentDidUpdate(prevProps) {
     const keycloak = getKeycloak()
     if (!keycloak.authenticated && !this._isHome(this.props)) keycloak.login()
 
     const period = this.props.match.params.filingPeriod
-    if(oldProps.match.params.filingPeriod !== period) {
+    if(prevProps.match.params.filingPeriod !== period) {
       this.props.dispatch(updateFilingPeriod(period))
     }
-    const { pathname } = this.props.location
 
-console.log('app cdu', pathname, this.props.statePathname)
-    if( pathname !== this.props.statePathname){
-      this.props.dispatch(updatePathname(pathname))
+    if (this.props.location.pathname !== prevProps.location.pathname){
+      window.scrollTo(0,0)
     }
   }
 

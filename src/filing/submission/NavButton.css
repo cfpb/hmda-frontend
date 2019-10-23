@@ -20,10 +20,9 @@
 }
 
 .NavButton.hidden {
-  opacity: 0;
-  visibility: hidden;
+  display: none;
 }
 
-.NavSpinner {
-  position: absolute;
+.NavButtonContainer .LoadingInline {
+  margin-left: 15px;
 }

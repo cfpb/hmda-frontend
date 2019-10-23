@@ -1,14 +1,14 @@
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import {
   SYNTACTICAL_VALIDITY_EDITS,
   NO_MACRO_EDITS
 } from '../constants/statusCodes.js'
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   if (!state || !state.app) return
 
-  const { pathname } = state.app
-
+  const { pathname } = ownProps.location
   const page = pathname.split('/').slice(-1)[0]
   const base = pathname
     .split('/')
@@ -33,7 +33,7 @@ function mapStateToProps(state) {
 }
 
 export default component => {
-  return connect(mapStateToProps)(component)
+  return withRouter(connect(mapStateToProps)(component))
 }
 
 export { mapStateToProps }
