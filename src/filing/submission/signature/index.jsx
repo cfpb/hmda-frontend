@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ErrorWarning from '../../common/ErrorWarning.jsx'
-import { VALIDATED, SIGNED } from '../../constants/statusCodes.js'
+import { VALIDATED, NO_MACRO_EDITS, SIGNED } from '../../constants/statusCodes.js'
 
 import './Signature.css'
 
@@ -17,7 +17,7 @@ const showWarning = props => {
 
 const Signature = props => {
   let isButtonDisabled =
-    props.status.code === VALIDATED && props.checked ? false : true
+    (props.status.code === VALIDATED || props.status.code === NO_MACRO_EDITS) && props.checked ? false : true
 
   let isCheckBoxDisabled = props.status.code === SIGNED ? true : false
 

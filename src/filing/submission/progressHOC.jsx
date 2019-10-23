@@ -14,10 +14,9 @@ function mapStateToProps(state, ownProps) {
     .split('/')
     .slice(0, -1)
     .join('/')
-  const { code } = state.app.submission.status
+  const { status, qualityVerified, qualityExists, macroVerified, macroExists } = state.app.submission
+  const { code } = status
   const editsFetched = state.app.edits.fetched
-  const qualityExists = !!state.app.edits.types.quality.edits.length
-  const qualityVerified = state.app.edits.types.quality.verified
   const validationComplete =
     code === SYNTACTICAL_VALIDITY_EDITS || code >= NO_MACRO_EDITS
 
@@ -28,7 +27,9 @@ function mapStateToProps(state, ownProps) {
     editsFetched,
     validationComplete,
     qualityExists,
-    qualityVerified
+    qualityVerified,
+    macroExists,
+    macroVerified
   }
 }
 

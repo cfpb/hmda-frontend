@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import RefileButton from '../refileButton/container.jsx'
 
 import {
@@ -9,6 +9,7 @@ import {
   PARSED_WITH_ERRORS,
   NO_SYNTACTICAL_VALIDITY_EDITS,
   VALIDATING,
+  NO_MACRO_EDITS,
   VALIDATED
 } from '../constants/statusCodes.js'
 
@@ -27,9 +28,9 @@ const InstitutionViewButton = ({ status, institution, filingPeriod }) => {
     text = 'Review formatting errors'
   } else if (code < NO_SYNTACTICAL_VALIDITY_EDITS) {
     text = 'View progress'
-  } else if (code > VALIDATING && code < VALIDATED) {
+  } else if (code > VALIDATING && code < VALIDATED && code !== NO_MACRO_EDITS) {
     text = 'Review edits'
-  } else if (code === VALIDATED) {
+  } else if (code === VALIDATED || code === NO_MACRO_EDITS) {
     text = 'Review summary'
   } else {
     text = 'View completed filing'

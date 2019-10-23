@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import {
   PARSED_WITH_ERRORS,
   VALIDATING,
   NO_SYNTACTICAL_VALIDITY_EDITS,
   SYNTACTICAL_VALIDITY_EDITS,
   NO_QUALITY_EDITS,
+  NO_MACRO_EDITS,
   MACRO_EDITS,
   VALIDATED,
   SIGNED
@@ -51,9 +52,9 @@ export default class EditsNav extends Component {
           this.props.editsFetched && this.navMap['syntactical & validity edits'].isCompleted(),
         isErrored: () => this.props.qualityExists && !this.props.qualityVerified,
         isCompleted: () =>
-          (this.navMap['quality edits'].isReachable() &&
-            this.props.qualityVerified) ||
-          this.props.code === NO_QUALITY_EDITS,
+          this.navMap['quality edits'].isReachable() &&
+          this.props.code >= NO_QUALITY_EDITS &&
+          (this.props.qualityVerified || !this.props.qualityExists),
         errorClass: 'warning-question',
         errorText: 'quality edits found',
         completedText: 'quality edits verified',
@@ -61,17 +62,18 @@ export default class EditsNav extends Component {
       },
       'macro quality edits': {
         isReachable: () => this.props.editsFetched && this.navMap['quality edits'].isCompleted(),
-        isErrored: () => this.props.code === MACRO_EDITS,
+        isErrored: () => this.props.macroExists && !this.props.macroVerified,
         isCompleted: () =>
           this.navMap['macro quality edits'].isReachable() &&
-            this.props.code > MACRO_EDITS,
+          (this.props.code > MACRO_EDITS || this.props.code === NO_MACRO_EDITS) &&
+          (!this.props.macroExists || this.props.macroVerified),
         errorClass: 'warning-question',
         errorText: 'macro quality edits found',
         completedText: 'macro quality edits verified',
         link: 'macro'
       },
       submission: {
-        isReachable: () => this.props.code >= VALIDATED,
+        isReachable: () => this.props.code >= VALIDATED || this.props.code === NO_MACRO_EDITS,
         isErrored: () => false,
         isCompleted: () => this.props.code === SIGNED,
         completedText: 'submitted',
@@ -183,5 +185,7 @@ EditsNav.propTypes = {
   code: PropTypes.number.isRequired,
   editsFetched: PropTypes.bool.isRequired,
   qualityExists: PropTypes.bool.isRequired,
-  qualityVerified: PropTypes.bool.isRequired
+  qualityVerified: PropTypes.bool.isRequired,
+  macroExists: PropTypes.bool.isRequired,
+  macroVerified: PropTypes.bool.isRequired
 }

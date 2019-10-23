@@ -3,6 +3,8 @@ import {
   SELECT_FILE,
   REQUEST_SUBMISSION,
   UPDATE_STATUS,
+  VERIFY_QUALITY,
+  VERIFY_MACRO,
   REFRESH_STATE
 } from '../constants'
 import { UNINITIALIZED } from '../constants/statusCodes.js'
@@ -14,6 +16,10 @@ const defaultSubmission = {
     code: UNINITIALIZED,
     message: ''
   },
+  qualityExists: false,
+  qualityVerified: false,
+  macroExists: false,
+  macroVerified: false,
   isFetching: false
 }
 
@@ -31,7 +37,11 @@ export default (state = defaultSubmission, action) => {
           isFetching: false,
           filename: action.fileName,
           id: action.id,
-          status: action.status
+          status: action.status,
+          qualityExists: action.qualityExists || false,
+          qualityVerified: action.qualityVerified || false,
+          macroExists: action.macroExists || false,
+          macroVerified: action.macroVerified || false
         }
       return state
     case SELECT_FILE:
@@ -50,6 +60,17 @@ export default (state = defaultSubmission, action) => {
         ...state,
         status: action.status
       }
+    case VERIFY_QUALITY:
+      return {
+        ...state,
+        qualityVerified: action.checked
+      }
+    case VERIFY_MACRO:
+      return {
+        ...state,
+        macroVerified: action.checked
+      }
+
     case REFRESH_STATE:
       return defaultSubmission
     default:
