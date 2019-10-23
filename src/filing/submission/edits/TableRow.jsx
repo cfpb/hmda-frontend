@@ -12,7 +12,7 @@ const EditsTableRow = props => {
   cells.push(<EditsTableCell key={++cellCount} cell={props.row.id} />)
 
   props.row.fields.forEach(field => {
-    cells.push(<EditsTableCell key={++cellCount} cell={field.value} />)
+    cells.push(<EditsTableCell key={++cellCount} cell={field.value} cellName={field.name} />)
   })
 
   return <tr>{cells}</tr>
