@@ -72,15 +72,18 @@ export default class Upload extends Component {
           disablePreview={true}
           onDrop={this.onDrop}
           multiple={false}
-          className="dropzone"
-          activeClassName="dropzone-active"
         >
-          <DropzoneContent
-            code={code}
-            errorFile={errorFile}
-            errors={errors}
-            filename={filename}
-          />
+          {({getRootProps, getInputProps}) => {
+            return (
+              <DropzoneContent
+                getRootProps={getRootProps}
+                getInputProps={getInputProps}
+                code={code}
+                errorFile={errorFile}
+                filename={filename}
+              />
+            )
+          }}
         </Dropzone>
         <ValidationProgress
           code={code}

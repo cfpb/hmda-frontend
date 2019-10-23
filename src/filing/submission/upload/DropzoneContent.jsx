@@ -10,7 +10,7 @@ const formatMessage = ({ pre, post }, filename) => {
   )
 }
 
-const DropzoneContent = ({ code, errors, filename, errorFile }) => {
+const DropzoneContent = ({ getRootProps, getInputProps, code, filename, errorFile }) => {
   let message = ''
   let messageObj = {}
 
@@ -83,19 +83,21 @@ const DropzoneContent = ({ code, errors, filename, errorFile }) => {
   }
 
   return (
-    <button onClick={e => e.preventDefault()}>
+    <div {...getRootProps({className: 'dropzone'})}>
+      <input {...getInputProps()}/>
       <p className="file-selected">
         To begin uploading a new file, drag it into this box or click here.
       </p>
       {message}
-    </button>
+    </div>
   )
 }
 
 DropzoneContent.propTypes = {
+  getRootProps: PropTypes.func,
+  getInputProps: PropTypes.func,
   code: PropTypes.number,
   errorFile: PropTypes.string,
-  errors: PropTypes.array,
   filename: PropTypes.string
 }
 

@@ -5,6 +5,7 @@ import fetchNewSubmission from '../../actions/fetchNewSubmission.js'
 import refreshState from '../../actions/refreshState.js'
 import selectFile from '../../actions/selectFile.js'
 import fetchUpload from '../../actions/fetchUpload.js'
+import updatePathname from '../../actions/updatePathname.js'
 import processFileErrors from '../../actions/processFileErrors.js'
 import checkFileErrors from '../../utils/checkFileErrors.js'
 import ConfirmationModal from './index.jsx'
@@ -44,7 +45,9 @@ export function mapDispatchToProps(dispatch, ownProps) {
       })
     } else {
       return dispatch(fetchNewSubmission(lei, period)).then(() => {
-        ownProps.history.replace(`/filing/${period}/${lei}/upload`)
+        const pathname = `/filing/${period}/${lei}/upload`
+        ownProps.history.replace(pathname)
+        dispatch(updatePathname(pathname))
       })
     }
   }

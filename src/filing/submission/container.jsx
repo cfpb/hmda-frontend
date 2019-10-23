@@ -90,7 +90,6 @@ class SubmissionContainer extends Component {
   }
 
   render() {
-    console.log('rendering', this.props)
     if (!this.props.location) return null
     const { submission, match: {params}, location, institutions, lei } = this.props
     const status = submission.status

@@ -43,9 +43,10 @@ export class AppContainer extends Component {
     if(oldProps.match.params.filingPeriod !== period) {
       this.props.dispatch(updateFilingPeriod(period))
     }
+    const { pathname } = this.props.location
 
-    const pathname = window.location.pathname
-    if(this.props.pathname !== pathname){
+console.log('app cdu', pathname, this.props.statePathname)
+    if( pathname !== this.props.statePathname){
       this.props.dispatch(updatePathname(pathname))
     }
   }
@@ -90,11 +91,12 @@ export class AppContainer extends Component {
 }
 
 export function mapStateToProps(state) {
-  const { redirecting, pathname } = state.app
+  const { redirecting } = state.app
+  const { statePathname } = state.app
 
   return {
     redirecting,
-    pathname
+    statePathname
   }
 }
 

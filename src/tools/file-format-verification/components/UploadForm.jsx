@@ -64,9 +64,9 @@ export default class Upload extends Component {
               {({getRootProps, getInputProps}) => {
                 return (
                   <div {...getRootProps({className: `dropzone ${dropzoneDisabled}`})}>
-                  <input {...getInputProps()}/>
-                  {this.updateDropArea(this.props)}
-                </div>
+                    <input {...getInputProps()}/>
+                    {this.updateDropArea(this.props)}
+                  </div>
                 )
               }}
             </Dropzone>
