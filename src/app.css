@@ -157,7 +157,7 @@ hr {
   -webkit-font-smoothing: unset;
 }
 
-.button-link:hover {
+.CSVDownload:hover, .button-link:hover {
   color: #4c2c92;
   background: inherit;
 }
