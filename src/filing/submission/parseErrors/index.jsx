@@ -87,6 +87,7 @@ class ParseErrors extends Component {
     if (!props.fetched) return <Loading />
 
     const errorText = props.pagination.total > 1 ? 'Rows' : 'Row'
+    const { filingPeriod } = props
 
     return (
       <section
@@ -107,11 +108,17 @@ class ParseErrors extends Component {
             <a
               rel="noopener noreferrer"
               target="_blank"
-              href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2018-hmda-fig-2018-hmda-rule.pdf"
+              href={filingPeriod === '2018'
+                ? 'https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2018-hmda-fig-2018-hmda-rule.pdf'
+                : `https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${filingPeriod}-hmda-fig.pdf`
+              }
             >
               Filing Instructions Guide
             </a>{' '}
-            for data collected in 2018 incorporating the 2018 HMDA Rule.
+            for data collected in {filingPeriod}{filingPeriod === '2018'
+              ? ' incorporating the 2018 HMDA Rule.'
+              : '.'
+            }
           </p>
         </header>
         {renderTSErrors(props)}
