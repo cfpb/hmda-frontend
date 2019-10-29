@@ -26,11 +26,12 @@ class Home extends Component {
           >Filter and download HMDA datasets by various filters.
           </ImageCard>
           <ImageCard
-            caption="Maps & Graphs (coming soon)"
+            year="2018"
+            caption="Maps & Graphs"
             path="maps-graphs"
+            enabled
           >
           Visualize HMDA data through charts, graphs, and maps.
-
           </ImageCard>
         </div>
       </div>
