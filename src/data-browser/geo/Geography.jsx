@@ -120,6 +120,8 @@ class Geography extends Component {
   }
 
   onGeographyChange(selectedGeographies) {
+    if(!selectedGeographies) selectedGeographies = []
+
     let states = []
     let msamds = []
     let isNationwide = false
@@ -160,6 +162,8 @@ class Geography extends Component {
   }
 
   onVariableChange(selectedVariables) {
+    if(!selectedVariables) selectedVariables = []
+
     const orderedVariables = selectedVariables.map(v => v.value)
     const selected = {}
     selectedVariables.forEach(variable => {
