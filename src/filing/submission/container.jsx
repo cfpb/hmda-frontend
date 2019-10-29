@@ -38,7 +38,7 @@ const renderByCode = (code, page, lei, filingPeriod) => {
     if (page === 'upload') {
       toRender.push(<UploadForm />)
       if (code === PARSED_WITH_ERRORS) {
-        toRender.push(<ParseErrors />)
+        toRender.push(<ParseErrors filingPeriod={filingPeriod} />)
       }
     } else if (
       ['syntacticalvalidity', 'quality', 'macro'].indexOf(page) !== -1
