@@ -162,6 +162,14 @@ hr {
   background: inherit;
 }
 
+.BackLink {
+  font-family: SourceSansProBold;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  display: block;
+  margin: 24px 0 -32px;
+}
+
 .Beta {
   margin: 0 auto -30px auto;
   max-width: 1040px;
