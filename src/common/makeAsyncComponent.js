@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+import LoadingIcon from './LoadingIcon.jsx'
 
 function makeAsyncComponent(importComponentFn) {
   return function AsyncComponent() {
@@ -10,7 +11,7 @@ function makeAsyncComponent(importComponentFn) {
       })
     }, [])
 
-    return Component
+    return Component ? Component : <LoadingIcon/>
   }
 }
 

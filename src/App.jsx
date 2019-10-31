@@ -21,7 +21,7 @@ const App = () => {
   const isFiling = !!window.location.pathname.match(/^\/filing/)
   return (
     <>
-      {isFiling ? null : <Header pathname={window.location.pathname}/>}
+      {isFiling ? null : <Route path="/"component={Header}/>}
       {isBeta ? <Beta/> : null}
       <Switch>
         <Route exact path="/" component={Homepage} />
