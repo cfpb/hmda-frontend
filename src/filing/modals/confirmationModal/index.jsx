@@ -86,7 +86,7 @@ export default class ModalConfirm extends Component {
             </button>
             <button
               tabIndex={showing ? 0 : -1}
-              className="button-link usa-text-small"
+              className="button-link text-small"
               onClick={e => {
                 e.preventDefault()
                 hideConfirmModal()

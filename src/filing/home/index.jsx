@@ -29,7 +29,7 @@ const Home = props => {
           </button>
           <span className="text-small">or</span>
           <button
-            className="register-link"
+            className="button register-link"
             onClick={e => {
               e.preventDefault()
               register()
