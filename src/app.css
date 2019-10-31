@@ -72,6 +72,11 @@ caption {
   z-index: 100;
 }
 
+.skipnav:focus {
+  top: 0;
+  background: #fff;
+}
+
 .App, .full-width {
   max-width: 1040px;
   margin: 0 auto;
