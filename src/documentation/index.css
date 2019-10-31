@@ -43,11 +43,3 @@
 .App.Documentation li {
   margin-bottom: 0.5em;
 }
-
-.BackLink {
-  font-family: SourceSansProBold;
-  font-size: 1.3rem;
-  text-transform: uppercase;
-  display: block;
-  margin: 24px 0 -32px;
-}

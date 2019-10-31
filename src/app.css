@@ -72,6 +72,11 @@ caption {
   z-index: 100;
 }
 
+.skipnav:focus {
+  top: 0;
+  background: #fff;
+}
+
 .App, .full-width {
   max-width: 1040px;
   margin: 0 auto;
@@ -160,6 +165,14 @@ hr {
 .CSVDownload:hover, .button-link:hover {
   color: #4c2c92;
   background: inherit;
+}
+
+.BackLink {
+  font-family: SourceSansProBold;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  display: block;
+  margin: 24px 0 -32px;
 }
 
 .Beta {

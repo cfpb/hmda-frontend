@@ -5,21 +5,23 @@ import Header from './common/Header'
 import NotFound from './common/NotFound'
 import Footer from './common/Footer'
 import Beta from './common/Beta'
-import Homepage from './homepage'
-import DataBrowser from './data-browser'
-import Documentation from './documentation'
-import Tools from './tools'
-import DataPublication from './data-publication'
-import Filing from './filing'
+import makeAsyncComponent from './common/makeAsyncComponent.js'
 
 import './app.css'
+
+const Homepage = makeAsyncComponent(() => import('./homepage'))
+const DataBrowser = makeAsyncComponent(() => import('./data-browser'))
+const Documentation = makeAsyncComponent(() => import('./documentation'))
+const Tools = makeAsyncComponent(() => import('./tools'))
+const DataPublication = makeAsyncComponent(() => import('./data-publication'))
+const Filing = makeAsyncComponent(() => import('./filing'))
 
 const App = () => {
   const isBeta = !!window.location.host.match('beta')
   const isFiling = !!window.location.pathname.match(/^\/filing/)
   return (
     <>
-      {isFiling ? null : <Header pathname={window.location.pathname}/>}
+      {isFiling ? null : <Route path="/"component={Header}/>}
       {isBeta ? <Beta/> : null}
       <Switch>
         <Route exact path="/" component={Homepage} />
