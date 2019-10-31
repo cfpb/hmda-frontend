@@ -41,6 +41,10 @@
   margin-right: 2em;
 }
 
+.modal .modal-contents button:first-of-type {
+  font-family: SourceSansProBold;
+}
+
 .modal-blurred-blocker {
   background: rgba(0, 0, 0, 0.6);
   opacity: 0;

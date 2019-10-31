@@ -14,10 +14,6 @@
   max-width: 46rem;
 }
 
-.Form input {
-  font-family: SourceSansPro;
-}
-
 .Form input[type='text'] {
   appearance: none;
   border: 0.1rem solid #5b616b;
