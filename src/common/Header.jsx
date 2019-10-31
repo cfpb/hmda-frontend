@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import BannerUSA from './BannerUSA'
 
 import './Header.css'
@@ -13,7 +14,7 @@ const defaultLinks = [
   { name: 'Documentation', href: '/documentation/' }
 ]
 
-const Header = ({pathname='/', links = defaultLinks}) => {
+const Header = ({location: {pathname}, links = defaultLinks}) => {
   return (
     <>
       <a className="skipnav" href="#main-content">
@@ -38,8 +39,8 @@ const Header = ({pathname='/', links = defaultLinks}) => {
 
                 return (
                   <li key={link.name}>
-                    <a
-                      href={link.href}
+                    <Link
+                      to={link.href}
                       className={
                           isActive
                           ? 'nav-link active'
@@ -51,7 +52,7 @@ const Header = ({pathname='/', links = defaultLinks}) => {
                       }
                     >
                       {link.name}
-                    </a>
+                    </Link>
                   </li>
                 )
               })}
