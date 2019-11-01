@@ -1,4 +1,4 @@
-# HMDA Front Projects
+# HMDA Frontend Projects
 
 Collection of frontend code and configuration for the following projects:
  - HMDA Platform UI
