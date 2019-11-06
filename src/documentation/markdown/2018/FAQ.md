@@ -12,5 +12,8 @@ Answer: A comma-separated values (CSV) file derives its name from a file contain
 - **Why has the column order in the CSV file changed?** 
 Answer: The columns of the Static and Dynamic dataset, including data available through the Data Browser, have been reordered to create logical groupings. This reordering was done to facilitate analysis in desktop spreadsheet software for files pulled from the Data Browser.
 
+- **Which dataset is used by the Data Browser?**
+Answer: The Data Browser uses the static dataset. The static data for the 2018 collection were frozen on August 7, 2019.
+
 - **I have a suggestion/improvement, who can I contact?** 
 Answer: For questions/suggestions regarding the HMDA Data Browser, contact hmdahelp@cfpb.gov.
