@@ -18,6 +18,7 @@ const ModifiedLar = props => {
           headingText="Modified Loan/Application Register (LAR)"
           paragraphText="A downloadable modified LAR file is available for every
             financial institution that has completed a HMDA data submission in the selected year.
+            The modified LAR data represents the most current HMDA submission made by an institution.
             Enter a financial institution’s name to download its modified LAR file.
             If you cannot find a particular financial institution using this form, the
             institution may not have been required to report HMDA data or it

@@ -127,7 +127,7 @@ class Disclosure extends React.Component {
         type={1}
         headingText="Disclosure reports"
         paragraphText="These reports summarize lending activity for individual
-              institutions, both nationwide and by MSA/MD."
+              institutions, both nationwide and by MSA/MD. They are based on the most recent data submission made in each filing period."
       >
           <p>To learn about modifications to these reports over the years, visit the{' '}
           <a target="_blank" rel="noopener noreferrer" href="/documentation/2018/ad-changes/">A&D Report Changes</a> page.<br/>
