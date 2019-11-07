@@ -51,6 +51,5 @@ export default {
   WA: 'WASHINGTON',
   WV: 'WEST VIRGINIA',
   WI: 'WISCONSIN',
-  WY: 'WYOMING',
-  NA: 'N/A OR OUTSIDE MSA/MD'
+  WY: 'WYOMING'
 }

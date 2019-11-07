@@ -6,7 +6,8 @@ import LoadingButton from './LoadingButton.jsx'
 import {
   setVariableSelect,
   someChecksExist,
-  removeSelected
+  removeSelected,
+  heightStyleFn
 } from './selectUtils.js'
 
 
@@ -35,6 +36,7 @@ const VariableSelect = ({ options, variables, orderedVariables, loadingDetails, 
         }
         isMulti={true}
         searchable={true}
+        styles={heightStyleFn}
         openOnFocus
         simpleValue
         value={variableValues}

@@ -1,18 +1,17 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Heading from '../../common/Heading.jsx'
-import GeographySelect from './GeographySelect.jsx'
+import ItemSelect from './ItemSelect.jsx'
 import VariableSelect from './VariableSelect.jsx'
 import Aggregations from './Aggregations.jsx'
 import LoadingButton from './LoadingButton.jsx'
 import Error from '../../common/Error.jsx'
-import { getSubsetDetails, getGeographyCSV, getSubsetCSV } from '../api.js'
+import { getSubsetDetails, getItemCSV, getSubsetCSV } from '../api.js'
 import { makeSearchFromState, makeStateFromSearch } from '../query.js'
 import STATE_COUNTS from '../constants/stateCounts.js'
 import MSAMD_COUNTS from '../constants/msamdCounts.js'
 import {
-  createGeographyOptions,
-  separateGeographyOptions,
+  createItemOptions,
   createVariableOptions,
   formatWithCommas
 } from './selectUtils.js'
@@ -23,21 +22,19 @@ import './Geography.css'
 class Geography extends Component {
   constructor(props) {
     super(props)
-    this.onGeographyChange = this.onGeographyChange.bind(this)
+    this.onCategoryChange = this.onCategoryChange.bind(this)
+    this.onItemChange = this.onItemChange.bind(this)
     this.onVariableChange = this.onVariableChange.bind(this)
     this.makeCheckboxChange = this.makeCheckboxChange.bind(this)
     this.requestSubset = this.requestSubset.bind(this)
     this.requestSubsetCSV = this.requestSubsetCSV.bind(this)
-    this.requestGeographyCSV = this.requestGeographyCSV.bind(this)
+    this.requestItemCSV = this.requestItemCSV.bind(this)
     this.showAggregations = this.showAggregations.bind(this)
     this.setStateAndRoute = this.setStateAndRoute.bind(this)
     this.updateSearch = this.updateSearch.bind(this)
     this.scrollToTable = this.scrollToTable.bind(this)
 
-    this.geographyOptions = createGeographyOptions(props)
-    const [stateOptions, msaOptions] = separateGeographyOptions(this.geographyOptions)
-    this.stateOptions = stateOptions
-    this.msaOptions = msaOptions
+    this.itemOptions = createItemOptions(props)
     this.variableOptions = createVariableOptions()
 
     this.tableRef = React.createRef()
@@ -47,9 +44,8 @@ class Geography extends Component {
 
   buildStateFromQuerystring(){
     const defaultState = {
-      states: [],
-      msamds: [],
-      nationwide: false,
+      category: 'states',
+      items: [],
       isLargeFile: false,
       variables: {},
       orderedVariables: [],
@@ -59,7 +55,8 @@ class Geography extends Component {
     }
 
     const newState = makeStateFromSearch(this.props.location.search, defaultState, this.requestSubset, this.updateSearch)
-    newState.isLargeFile = newState.nationwide || this.checkIfLargeFile(newState.states, newState.msamds)
+    newState.isLargeFile = this.checkIfLargeFile(newState.category, newState.items)
+    setTimeout(this.updateSearch, 0)
     return newState
   }
 
@@ -89,8 +86,8 @@ class Geography extends Component {
     aggregations.sort(runSort.bind(null, 0))
   }
 
-  requestGeographyCSV() {
-    getGeographyCSV(this.state)
+  requestItemCSV() {
+    getItemCSV(this.state)
   }
 
   requestSubset() {
@@ -110,54 +107,33 @@ class Geography extends Component {
     getSubsetCSV(this.state)
   }
 
-  checkIfLargeFile(states, msamds) {
-    if(states.length) return this.checkIfLargeCount(states, STATE_COUNTS)
-    return this.checkIfLargeCount(msamds, MSAMD_COUNTS)
+  checkIfLargeFile(category, items) {
+    if(category === 'nationwide') return true
+    if(category === 'states') return this.checkIfLargeCount(items, STATE_COUNTS)
+    if(category === 'msamds') return this.checkIfLargeCount(items, MSAMD_COUNTS)
+    return false
   }
 
   checkIfLargeCount(selected, countMap) {
     return selected.reduce((acc, curr) => acc + countMap[curr], 0) > 1048576
   }
 
-  onGeographyChange(selectedGeographies) {
-    if(!selectedGeographies) selectedGeographies = []
-
-    let states = []
-    let msamds = []
-    let isNationwide = false
-
-    selectedGeographies.forEach(geography => {
-      let { value, label } = geography
-      value = value + ''
-
-      if(!label) return
-
-      if(value === 'nationwide') isNationwide = true
-
-      if(label.match('STATEWIDE'))
-        states.push(value)
-      else {
-        const split = label.split(' - ')
-        msamds.push(split[0])
-      }
+  onCategoryChange(catObj) {
+    this.setStateAndRoute({
+      category: catObj.value,
+      items: [],
+      isLargeFile: false
     })
+  }
 
-    if(isNationwide){
-      return this.setStateAndRoute({
-        nationwide: true,
-        states: [],
-        msamds: [],
-        details: {},
-        isLargeFile: true
-      })
-    }
-
+  onItemChange(selectedItems = []) {
+    const items = selectedItems.map(item => {
+      return item.value + ''
+    })
     return this.setStateAndRoute({
-      states,
-      msamds,
-      nationwide: false,
+      items,
       details: {},
-      isLargeFile: this.checkIfLargeFile(states, msamds)
+      isLargeFile: this.checkIfLargeFile(this.state.category, items)
     })
   }
 
@@ -222,8 +198,8 @@ class Geography extends Component {
   }
 
   render() {
-    const { nationwide, states, msamds, isLargeFile, variables, orderedVariables, details, loadingDetails, error } = this.state
-    const enabled = nationwide || states.length || msamds.length
+    const { category, items, isLargeFile, variables, orderedVariables, details, loadingDetails, error } = this.state
+    const enabled = category === 'nationwide' || items.length
 
     return (
       <div className="Geography">
@@ -236,13 +212,15 @@ class Geography extends Component {
             </p>
           </Heading>
         </div>
-        <GeographySelect
-          options={{ states: this.stateOptions, msamds: this.msaOptions, combined: this.geographyOptions }}
-          geographies={{ states, msamds, nationwide }}
+        <ItemSelect
+          options={this.itemOptions}
+          category={category}
+          onCategoryChange={this.onCategoryChange}
+          items={items}
           isLargeFile={isLargeFile}
           enabled={enabled}
-          downloadCallback={this.requestGeographyCSV}
-          onChange={this.onGeographyChange}
+          downloadCallback={this.requestItemCSV}
+          onChange={this.onItemChange}
         />
         {enabled ?
           <>
