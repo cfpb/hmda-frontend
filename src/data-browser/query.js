@@ -1,9 +1,11 @@
 import MSAS from './constants/msaToName.js'
 import STATES from './constants/stateObj.js'
+import COUNTIES from './constants/counties.js'
 import VARIABLES from './constants/variables.js'
 
 const msaKeys = Object.keys(MSAS)
 const stateKeys = Object.keys(STATES)
+const countyKeys= Object.keys(COUNTIES)
 const varKeys = Object.keys(VARIABLES)
 
 export function makeParam(s, key) {
@@ -48,6 +50,7 @@ export function sanitizeArray(key, val) {
 
   if(key === 'msamds') knownKeys = msaKeys
   else if(key === 'states') knownKeys = stateKeys
+  else if(key === 'counties') knownKeys = countyKeys
   else knownKeys = Object.keys(VARIABLES[key].mapping)
 
   val.forEach(v => {
@@ -72,14 +75,15 @@ export function makeStateFromSearch(search, s, detailsCb, updateSearch){
       return
     }
 
-    if(key === 'nationwide') s[key] = true
-    else if(['states', 'msamds'].indexOf(key) !== -1){
-      const sanitized = sanitizeArray(key, val)
+    if(key === 'category') {
+      s[key] = val[0]
+    } else if(key === 'items' && s.category){
+      const sanitized = sanitizeArray(s.category, val)
       if(sanitized.length !== val.length) regenerateSearch = true
       s[key] = sanitized
-    }
-    else if(key === 'getDetails') setTimeout(detailsCb, 0)
-    else {
+    } else if(key === 'getDetails') {
+      setTimeout(detailsCb, 0)
+    } else {
       const sanitized = sanitizeArray(key, val)
       if(sanitized.length !== val.length) regenerateSearch = true
       if(sanitized.length) s.orderedVariables.push(key)
@@ -99,9 +103,8 @@ export function makeStateFromSearch(search, s, detailsCb, updateSearch){
 
 export function makeSearchFromState(s){
   let params = [
-    makeParam(s, 'states'),
-    makeParam(s, 'msamds'),
-    makeParam(s, 'nationwide'),
+    makeParam(s, 'category'),
+    s.category === 'nationwide' ? null : makeParam(s, 'items'),
     makeParam(s, 'variables'),
     makeParam(s, 'details')
   ]

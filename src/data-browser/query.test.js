@@ -83,8 +83,8 @@ it('sanitizes an array, allowing empty string', () => {
 })
 
 it('makes state from search', () => {
-  const state = makeStateFromSearch('?states=CA', {states: []})
-  expect(state).toEqual({states:['CA']})
+  const state = makeStateFromSearch('?category=states&items=CA', {items: [], category: ''})
+  expect(state).toEqual({category:'states', items:['CA']})
 })
 
 it('regenerates search on invalid key', done => {
@@ -98,9 +98,9 @@ it('regenerates search on invalid key', done => {
 
 it('regenerates search when array gets sanitized', done => {
   const regen = jest.fn()
-  const state = makeStateFromSearch('?states=CA,XZ', {states:[]}, null, regen)
+  const state = makeStateFromSearch('?category=states&items=CA,XZ', {category: '', items:[]}, null, regen)
   setTimeout(() => {
-    expect(state).toEqual({states:['CA']})
+    expect(state).toEqual({category:'states', items:['CA']})
     expect(regen.mock.calls.length).toBe(1)
     done()
   },1)
@@ -108,26 +108,26 @@ it('regenerates search when array gets sanitized', done => {
 
 it('makes search with variables', () => {
   const regen = jest.fn()
-  const state = makeStateFromSearch('?states=CA,XZ&actions_taken=2,3&loan_types=', {states:[], variables:{}, orderedVariables: []}, null, regen)
-  expect(state).toEqual({states:['CA'], orderedVariables: ['actions_taken', 'loan_types'], variables:{'actions_taken': {2: true, 3: true}, 'loan_types': {}}})
+  const state = makeStateFromSearch('?category=states&items=CA,XZ&actions_taken=2,3&loan_types=', {category: '', items:[], variables:{}, orderedVariables: []}, null, regen)
+  expect(state).toEqual({category:'states', items: ['CA'], orderedVariables: ['actions_taken', 'loan_types'], variables:{'actions_taken': {2: true, 3: true}, 'loan_types': {}}})
 })
 
 it('calls detailsCb when getDetails is present', done => {
   const detailsCb = jest.fn()
-  const state = makeStateFromSearch('?states=CA&getDetails=1', {states: []}, detailsCb)
+  const state = makeStateFromSearch('?category=states&items=CA&getDetails=1', {category:'', items: []}, detailsCb)
    setTimeout(() => {
-    expect(state).toEqual({states:['CA']})
+    expect(state).toEqual({category:'states', items:['CA']})
     expect(detailsCb.mock.calls.length).toBe(1)
     done()
   },1)
 })
 
 it('makes search from state', () => {
-  const search = makeSearchFromState({states:['CA'], details:{a:'b'}, variables:{}, orderedVariables: []})
-  expect(search).toBe('?states=CA&getDetails=1')
+  const search = makeSearchFromState({category: 'states', items:['CA'], details:{a:'b'}, variables:{}, orderedVariables: []})
+  expect(search).toBe('?category=states&items=CA&getDetails=1')
 })
 
 it('makes empty search from state', () => {
-  const search = makeSearchFromState({states:[], details:{}, variables:{}, orderedVariables: []})
+  const search = makeSearchFromState({items:[], details:{}, variables:{}, orderedVariables: []})
   expect(search).toBe('')
 })
