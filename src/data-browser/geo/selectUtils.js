@@ -106,9 +106,8 @@ function createCountyOption(id){
 }
 
 function createItemOptions(props) {
-  const subsetYear = props.location.pathname.split('/')[2]
+  const subsetYear = props.location.pathname.split('/')[3]
   const statesWithMsas = stateToMsas[subsetYear]
-
   let itemOptions = {
     nationwide: [{value: 'nationwide', label: 'NATIONWIDE'}],
     states: [],
