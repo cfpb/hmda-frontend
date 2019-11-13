@@ -1,5 +1,6 @@
 import React from 'react'
-import Select from 'react-select'
+import Select, { createFilter } from 'react-select'
+import MenuList from './MenuList.jsx'
 import CategorySelect from './CategorySelect.jsx'
 import Pills from './Pills.jsx'
 import LoadingButton from './LoadingButton.jsx'
@@ -20,6 +21,8 @@ const ItemSelect = ({options, category, onCategoryChange, items, isLargeFile, en
       <p>Filter HMDA data by geography levels: <a target="_blank" rel="noopener noreferrer" href="/documentation/2018/data-browser-filters/#Nationwide">nationwide, state, & MSA/MD</a></p>
       <CategorySelect category={category} onChange={onCategoryChange}/>
       <Select
+        components={{MenuList}}
+        filterOption={createFilter({ignoreAccents: false})}
         controlShouldRenderValue={false}
         styles={itemStyleFn}
         onChange={onChange}
