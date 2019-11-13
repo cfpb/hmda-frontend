@@ -126,6 +126,8 @@ function createItemOptions(props) {
     itemOptions.msamds.push(createMSAOption(msa))
   })
 
+  itemOptions.counties = Object.keys(COUNTIES).map(createCountyOption)
+
   return itemOptions
 }
 
