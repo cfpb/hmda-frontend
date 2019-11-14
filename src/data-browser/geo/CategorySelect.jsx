@@ -8,6 +8,7 @@ const categories = [
   {value: 'counties', label: 'County'},
   {value: 'msamds', label: 'MSA/MD'},
   {value: 'nationwide', label: 'Nationwide'},
+  {value: 'leis', label: 'Instituion by LEI'}
 ]
 
 const CategorySelect = ({ category, onChange }) => {

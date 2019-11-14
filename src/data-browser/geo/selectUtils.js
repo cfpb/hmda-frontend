@@ -3,6 +3,7 @@ import STATEOBJ from '../constants/stateObj.js'
 import MSATOSTATE from '../constants/msaToState.js'
 import VARIABLES from '../constants/variables.js'
 import COUNTIES from '../constants/counties.js'
+import LEIS from '../constants/leis.js'
 import fipsToState from '../constants/fipsToState.js'
 import msaToName from '../constants/msaToName.js'
 
@@ -11,11 +12,16 @@ const itemFnMap = {
   states: createStateOption,
   msamds: createMSAOption,
   counties: createCountyOption,
+  leis: createLEIOption
 }
 
 function makeItemSelectValues(category, items){
   if(category === 'nationwide') return [{value: 'nationwide', label: 'NATIONWIDE'}]
   return items.map(itemFnMap[category])
+}
+
+function createLEIOption(id){
+  return {value: id, label: `${id} - ${LEIS[id]}`}
 }
 
 function pruneItemOptions(category, options, selectedValues){
@@ -112,7 +118,8 @@ function createItemOptions(props) {
     nationwide: [{value: 'nationwide', label: 'NATIONWIDE'}],
     states: [],
     msamds: [],
-    counties: []
+    counties: [],
+    leis: []
   }
 
   const msaSet = new Set()
@@ -127,6 +134,7 @@ function createItemOptions(props) {
   })
 
   itemOptions.counties = Object.keys(COUNTIES).map(createCountyOption)
+  itemOptions.leis = Object.keys(LEIS).map(createLEIOption)
 
   return itemOptions
 }
