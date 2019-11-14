@@ -12,8 +12,13 @@ const slugMap = {
     'ts-data-fields': 'ts_data_fields.md',
     'panel-data-fields': 'panel_data_fields.md'
   },
-  2019: {},
-  2020: {}
+  2019: {
+    'annual-filing-dates': 'annual_filing_dates.md'
+  },
+  2020: {
+    'annual-filing-dates': 'annual_filing_dates.md',
+    'quarterly-filing-dates': 'quarterly_filing_dates.md'
+  }
 }
 
 function slugToMarkdown(year, slug) {
