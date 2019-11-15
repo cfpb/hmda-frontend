@@ -114,15 +114,15 @@ class Geography extends Component {
     return false
   }
 
-  checkIfLargeCount(selected, countMap) {
+  checkIfLargeCount(selected = [], countMap) {
     return selected.reduce((acc, curr) => acc + countMap[curr], 0) > 1048576
   }
 
-  onCategoryChange(catObj) {
+  onCategoryChange({value}) {
     this.setStateAndRoute({
-      category: catObj.value,
+      category: value,
       items: [],
-      isLargeFile: false
+      isLargeFile: this.checkIfLargeFile(value)
     })
   }
 
