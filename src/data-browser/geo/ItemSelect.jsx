@@ -16,13 +16,22 @@ const ItemSelect = ({options, category, onCategoryChange, items, isLargeFile, en
   const selectedValues = makeItemSelectValues(category, items)
 
   return (
-    <div className="SelectWrapper">
-      <h3>Dataset by Item</h3>
-      <p>Filter HMDA data by geography levels: <a target="_blank" rel="noopener noreferrer" href="/documentation/2018/data-browser-filters/#Nationwide">nationwide, state, & MSA/MD</a></p>
-      <CategorySelect category={category} onChange={onCategoryChange}/>
+    <div className='SelectWrapper'>
+      <h3>How would you like to filter HMDA Data?</h3>
+      <p>
+        You can select the type of filter using the dropdown menu below.&nbsp;
+        <a
+          target='_blank'
+          rel='noopener noreferrer'
+          href='https://ffiec.cfpb.gov/documentation/2018/data-browser-filters/#Nationwide'
+        >
+          View more information on the available filters.
+        </a>
+      </p>
+      <CategorySelect category={category} onChange={onCategoryChange} />
       <Select
-        components={{MenuList}}
-        filterOption={createFilter({ignoreAccents: false})}
+        components={{ MenuList }}
+        filterOption={createFilter({ ignoreAccents: false })}
         controlShouldRenderValue={false}
         styles={itemStyleFn}
         onChange={onChange}
@@ -36,9 +45,18 @@ const ItemSelect = ({options, category, onCategoryChange, items, isLargeFile, en
         value={selectedValues}
         options={pruneItemOptions(category, options, selectedValues)}
       />
-      {category === 'nationwide' ? null : <Pills values={selectedValues} onChange={onChange} />}
-      <LoadingButton onClick={downloadCallback} disabled={!enabled}>Download Dataset</LoadingButton>
-      {isLargeFile ? <div className="LargeFileWarning"><h4>Warning:</h4> This dataset may be too large to be opened in standard spreadsheet applications</div>: null}
+      {category === 'nationwide' ? null : (
+        <Pills values={selectedValues} onChange={onChange} />
+      )}
+      <LoadingButton onClick={downloadCallback} disabled={!enabled}>
+        Download Dataset
+      </LoadingButton>
+      {isLargeFile ? (
+        <div className='LargeFileWarning'>
+          <h4>Warning:</h4> This dataset may be too large to be opened in
+          standard spreadsheet applications
+        </div>
+      ) : null}
     </div>
   )
 }
