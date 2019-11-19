@@ -39,6 +39,7 @@ function setVariableSelect(orderedVariables){
 
 function makeItemPlaceholder(category, selectedValues) {
   let type = category === 'msamds' ? 'MSA/MDs' : category
+  if (type === 'leis') type = 'LEIs'
   if(type === 'nationwide') return 'Nationwide selected'
   if(selectedValues.length) return `Select or type additional ${type}`
   return `Select or type the name of one or more ${type}`
