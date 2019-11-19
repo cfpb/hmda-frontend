@@ -4,13 +4,12 @@ import { Link } from 'react-router-dom'
 import Loading from '../../common/LoadingIcon.jsx'
 import {
   VALIDATING,
-  SYNTACTICAL_VALIDITY_EDITS,
-  MACRO_EDITS
+  SYNTACTICAL_VALIDITY_EDITS
 } from '../constants/statusCodes.js'
 
 import './NavButton.css'
 
-const NavButton = ({ page, base, code, editsFetched, validationComplete, qualityExists, qualityVerified }) => {
+const NavButton = ({ page, base, code, editsFetched, validationComplete, qualityExists, qualityVerified, macroExists, macroVerified }) => {
   let className
   let suffix
   let spinOn = false
@@ -33,7 +32,7 @@ const NavButton = ({ page, base, code, editsFetched, validationComplete, quality
       break
     case 'macro':
       suffix = 'submission'
-      if (preError || code === MACRO_EDITS || editFetchInProgress) className = 'hidden'
+      if (preError || (macroExists && !macroVerified) || editFetchInProgress) className = 'hidden'
       break
     default:
       return null

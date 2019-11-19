@@ -40,7 +40,7 @@ export const getText = props => {
     )
   } else if (
     (props.qualityExists && props.page === 'quality') ||
-    (props.code === MACRO_EDITS && props.page === 'macro')
+    (props.macroExists && props.page === 'macro')
   ) {
     text = (
       <div style={{ display: 'inline' }}>
