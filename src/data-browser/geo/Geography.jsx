@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Heading from '../../common/Heading.jsx'
+import InstitutionSelect from './InstitutionSelect'
 import ItemSelect from './ItemSelect.jsx'
 import VariableSelect from './VariableSelect.jsx'
 import Aggregations from './Aggregations.jsx'
-import LoadingButton from './LoadingButton.jsx'
-import Error from '../../common/Error.jsx'
-import { getSubsetDetails, getItemCSV, getSubsetCSV } from '../api.js'
+import { getItemCSV, getSubsetDetails, getSubsetCSV } from '../api.js'
 import { makeSearchFromState, makeStateFromSearch } from '../query.js'
-import STATE_COUNTS from '../constants/stateCounts.js'
+import { ActionsWarningsErrors } from './ActionsWarningsErrors'
+import LEI_COUNTS from '../constants/leiCounts.js'
 import MSAMD_COUNTS from '../constants/msamdCounts.js'
+import STATE_COUNTS from '../constants/stateCounts.js'
 import {
   createItemOptions,
   createVariableOptions,
-  formatWithCommas
+  formatWithCommas,
+  isNationwide,
+  someChecksExist
 } from './selectUtils.js'
 
 import './Geography.css'
@@ -23,6 +26,7 @@ class Geography extends Component {
   constructor(props) {
     super(props)
     this.onCategoryChange = this.onCategoryChange.bind(this)
+    this.onInstitutionChange = this.onInstitutionChange.bind(this)
     this.onItemChange = this.onItemChange.bind(this)
     this.onVariableChange = this.onVariableChange.bind(this)
     this.makeCheckboxChange = this.makeCheckboxChange.bind(this)
@@ -46,6 +50,7 @@ class Geography extends Component {
     const defaultState = {
       category: 'states',
       items: [],
+      leis: [],
       isLargeFile: false,
       variables: {},
       orderedVariables: [],
@@ -55,7 +60,7 @@ class Geography extends Component {
     }
 
     const newState = makeStateFromSearch(this.props.location.search, defaultState, this.requestSubset, this.updateSearch)
-    newState.isLargeFile = this.checkIfLargeFile(newState.category, newState.items)
+    newState.isLargeFile = this.checkIfLargeFile(newState.category, isNationwide(newState.category) ? newState.leis : newState.items)
     setTimeout(this.updateSearch, 0)
     return newState
   }
@@ -96,7 +101,10 @@ class Geography extends Component {
       .then(details => {
         this.sortAggregations(details.aggregations, this.state.orderedVariables)
         setTimeout(this.scrollToTable, 100)
-        return this.setStateAndRoute({details})
+        return this.setStateAndRoute({
+          details,
+          isLargeFile: this.checkIfLargeCount(null, this.makeTotal(details))
+        })
       })
       .catch(error => {
         return this.setStateAndRoute({error})
@@ -108,21 +116,27 @@ class Geography extends Component {
   }
 
   checkIfLargeFile(category, items) {
-    if(category === 'nationwide') return true
+    if(isNationwide(category) && !items.length) return true
+    if(isNationwide(category) || category === 'leis')
+      return this.checkIfLargeCount(items, LEI_COUNTS)
     if(category === 'states') return this.checkIfLargeCount(items, STATE_COUNTS)
     if(category === 'msamds') return this.checkIfLargeCount(items, MSAMD_COUNTS)
     return false
   }
 
   checkIfLargeCount(selected = [], countMap) {
-    return selected.reduce((acc, curr) => acc + countMap[curr], 0) > 1048576
+    const MAX = 1048576
+    if(!selected) return countMap > MAX
+    return selected.reduce((acc, curr) => acc + countMap[curr], 0) > MAX
   }
 
   onCategoryChange({value}) {
     this.setStateAndRoute({
       category: value,
       items: [],
-      isLargeFile: this.checkIfLargeFile(value)
+      leis: [],
+      details: {},
+      isLargeFile: this.checkIfLargeFile(value, [])
     })
   }
 
@@ -134,6 +148,17 @@ class Geography extends Component {
       items,
       details: {},
       isLargeFile: this.checkIfLargeFile(this.state.category, items)
+    })
+  }
+
+  onInstitutionChange(selectedLEIs = []){
+    let leis = selectedLEIs.map(l => l.value)
+    if(leis.includes('all')) leis = []
+
+    return this.setStateAndRoute({
+      leis,
+      details: {},
+      isLargeFile: this.checkIfLargeFile(this.state.category, leis)
     })
   }
 
@@ -151,7 +176,8 @@ class Geography extends Component {
     this.setStateAndRoute({
       variables: selected,
       orderedVariables,
-      details: {}
+      details: {},
+      isLargeFile: !someChecksExist(selected) && this.checkIfLargeFile(this.state.category, this.state.items)
     })
   }
 
@@ -170,7 +196,12 @@ class Geography extends Component {
 
       if(!newState.variables[variable][subvar.id]) delete newState.variables[variable][subvar.id]
 
-      this.setStateAndRoute(newState)
+      const largeFile = this.checkIfLargeFile(this.state.category, this.state.items)
+
+      this.setStateAndRoute({
+        ...newState,
+        isLargeFile: !someChecksExist(newState.variables) && largeFile
+      })
     }
   }
 
@@ -191,24 +222,36 @@ class Geography extends Component {
         <Aggregations ref={this.tableRef} details={details} orderedVariables={orderedVariables} year={this.props.match.params.year}/>
         <div className="CSVButtonContainer">
           {this.renderTotal(total)}
-          <LoadingButton onClick={this.requestSubsetCSV} disabled={!total}>Download Filtered Data</LoadingButton>
         </div>
       </>
     )
   }
 
   render() {
-    const { category, items, isLargeFile, variables, orderedVariables, details, loadingDetails, error } = this.state
+    const { category, items, leis, isLargeFile, variables, orderedVariables, details, loadingDetails, error } = this.state
+    const nationwide = isNationwide(category)
     const enabled = category === 'nationwide' || items.length
+    const checksExist = someChecksExist(variables)
 
     return (
-      <div className="Geography">
-        <Link className="BackLink" to="/data-browser/">{'\u2b05'} DATA BROWSER HOME</Link>
-        <div className="intro">
-          <Heading type={1} headingText="HMDA Dataset Filtering">
-            <p className="lead">
-              Download CSVs of HMDA data. These files contain all <a target="_blank" rel="noopener noreferrer" href="/documentation/2018/lar-data-fields/">data fields</a> available in the public data record and can be used for advanced analysis.
-              For questions/suggestions, contact hmdahelp@cfpb.gov.
+      <div className='Geography'>
+        <Link className='BackLink' to='../../'>
+          {'\u2b05'} DATA BROWSER HOME
+        </Link>
+        <div className='intro'>
+          <Heading type={1} headingText='HMDA Dataset Filtering'>
+            <p className='lead'>
+              You can use the HMDA Data Browser to filter and download CSV files
+              of HMDA data. These files contain all{' '}
+              <a
+                target='_blank'
+                rel='noopener noreferrer'
+                href='https://ffiec.cfpb.gov/documentation/2018/lar-data-fields/'
+              >
+                data fields
+              </a>{' '}
+              available in the public data record and can be used for advanced
+              analysis. For questions/suggestions, contact hmdahelp@cfpb.gov.
             </p>
           </Heading>
         </div>
@@ -222,23 +265,33 @@ class Geography extends Component {
           downloadCallback={this.requestItemCSV}
           onChange={this.onItemChange}
         />
-        {enabled ?
-          <>
-            <VariableSelect
-             options={this.variableOptions}
-              variables={variables}
-              orderedVariables={orderedVariables}
-              loadingDetails={loadingDetails}
-              checkFactory={this.makeCheckboxChange}
-              requestSubset={this.requestSubset}
-              year={this.props.match.params.year}
-              onChange={this.onVariableChange}
-            />
-            {error ? <Error error={error}/> : null}
-            {details.aggregations && !error ? this.showAggregations(details, orderedVariables) : null}
-          </>
-        : null
-      }
+        <InstitutionSelect
+          items={leis}
+          onChange={this.onInstitutionChange}
+          options={this.itemOptions}
+          nationwide={nationwide}
+        />
+        <VariableSelect
+          options={this.variableOptions}
+          variables={variables}
+          orderedVariables={orderedVariables}
+          checkFactory={this.makeCheckboxChange}
+          year={this.props.match.params.year}
+          onChange={this.onVariableChange}
+        />
+        {details.aggregations && !error
+          ? this.showAggregations(details, orderedVariables)
+          : null}
+        <ActionsWarningsErrors
+          downloadEnabled={enabled}
+          downloadCallback={checksExist ? this.requestSubsetCSV : this.requestItemCSV}
+          showSummaryButton={!details.aggregations || !this.makeTotal(details)}
+          summaryEnabled={enabled && checksExist}
+          loadingDetails={loadingDetails}
+          requestSubset={this.requestSubset}
+          isLargeFile={isLargeFile}
+          error={error}
+        />
       </div>
     )
   }

@@ -82,6 +82,12 @@ it('sanitizes an array, allowing empty string', () => {
   expect(sanitizeArray('actions_taken', ['2', '', '44'])).toEqual(['2', ''])
 })
 
+it('sanatizes an array for lei keys', () => {
+  expect(
+    sanitizeArray('leis', ['549300T1F1BRPWSZT586', '549300T1F1BRPWSZT58'])
+  ).toEqual(['549300T1F1BRPWSZT586'])
+})
+
 it('makes state from search', () => {
   const state = makeStateFromSearch('?category=states&items=CA', {items: [], category: ''})
   expect(state).toEqual({category:'states', items:['CA']})

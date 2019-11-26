@@ -2,6 +2,7 @@ import React from 'react'
 import STATEOBJ from '../constants/stateObj.js'
 import MSATONAME from '../constants/msaToName.js'
 import COUNTIES from '../constants/counties.js'
+import LEIS from '../constants/leis.js'
 import VARIABLES from '../constants/variables.js'
 import DocLink from './DocLink.jsx'
 import { formatWithCommas } from './selectUtils.js'
@@ -23,6 +24,7 @@ function makeHeader(params, orderedVariables, year) {
   if(params.state) list.push(<li key="0"><h4>State:</h4><ul className="sublist"><li>{params.state.split(',').map(v => STATEOBJ[v]).join(', ')}</li></ul></li>)
   else if(params.msamd) list.push(<li key="0"><h4>MSA/MD:</h4><ul className="sublist"><li>{params.msamd.split(',').map(v => `${v}\u00A0-\u00A0${MSATONAME[v]}`).join(', ')}</li></ul></li>)
   else if(params.county) list.push(<li key="0"><h4>County:</h4><ul className="sublist"><li>{params.county.split(',').map(v => COUNTIES[v]).join(', ')}</li></ul></li>)
+  else if(params.lei) list.push(<li key="0"><h4>Institutions:</h4><ul className="sublist"><li>{params.lei.split(',').map(v => LEIS[v]).join(', ')}</li></ul></li>)
 
   orderedVariables.forEach((variable) => {
     list.push(

@@ -1,3 +1,5 @@
+import { isNationwide } from './geo/selectUtils'
+
 export function addVariableParams(obj={}) {
   let qs = ''
   const vars = obj.variables
@@ -22,29 +24,37 @@ export function addYears(url='') {
   return '?years=2018'
 }
 
-export function createItemQuerystring(obj={items: []}) {
-  let qs = '?'
-  if(obj.items.length){
-    qs += `${obj.category}=${obj.items.join(',')}`
-  }else {
-    qs = ''
-  }
-  return qs
+export function createItemQuerystring(obj = {}) {
+  const nationwide = isNationwide(obj.category)
+  const category = nationwide ? 'leis' : obj.category
+  const items = nationwide ? obj.leis : obj.items
+
+  if (items && items.length) return `?${category}=${items.join(',')}`
+
+  return ''
 }
 
 export function makeUrl(obj, isCSV, includeVariables=true) {
   if(!obj) return ''
   let url = '/v2/data-browser-api/view'
 
-  if(obj.category === 'nationwide') url += '/nationwide'
+  const nationwide = isNationwide(obj.category)
+  const hasItems = obj.items && obj.items.length
+  const hasLeis = obj.leis && obj.leis.length
+
+  if (nationwide && !hasLeis) url += '/nationwide'
 
   if(isCSV) url += '/csv'
   else url += '/aggregations'
 
-  if(obj.category === 'nationwide'){
-    if(includeVariables) url += '?' + addVariableParams(obj).slice(1)
+  if(nationwide){
+    url += createItemQuerystring(obj)
+    if(includeVariables && obj.variables) {
+      url += hasLeis ? '&' : '?'
+      url += addVariableParams(obj).slice(1)
+    }
   }else {
-    if(!obj.items || !obj.items.length) return ''
+    if(!hasItems) return ''
     url += createItemQuerystring(obj)
     if(includeVariables) url += addVariableParams(obj)
   }
@@ -77,7 +87,11 @@ export function makeCSVName(obj, includeVariables=true) {
   let name = ''
   if(obj.states && obj.states.length) name += obj.states.join(',') + '-'
   if(obj.msamds && obj.msamds.length) name += obj.msamds.join(',') + '-'
-  if(obj.nationwide) name = 'nationwide-'
+
+  if(isNationwide(obj.category)) {
+    if (obj.leis && obj.leis.length) name = 'leis-' + obj.leis.join(',') + '-'
+    else name = 'nationwide-'
+  }
 
   if(obj.variables && includeVariables){
     Object.keys(obj.variables).forEach(key => {

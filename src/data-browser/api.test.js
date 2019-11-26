@@ -42,6 +42,11 @@ it('creates an empty item qs', () => {
   expect(qs).toBe('')
 })
 
+it('creates a qs with LEIs for nationwide', () => {
+  const qs = createItemQuerystring({ leis: ['a', 'b'], category: 'nationwide' })
+  expect(qs).toBe('?leis=a,b')
+})
+
 it('makes a url', () => {
   const url = makeUrl({category:'abc', items: ['1','2','3'], variables: {a:{b:123}}})
   expect(url).toBe('/v2/data-browser-api/view/aggregations?abc=1,2,3&a=b&years=2018')
@@ -60,6 +65,21 @@ it('bails making a url on bad obj', () => {
 it('makes a csv url', () => {
   const url = makeUrl({category:'a', items:['b']}, true)
   expect(url).toBe('/v2/data-browser-api/view/csv?a=b&years=2018')
+})
+
+it('makes a csv url for LEIs when nationwide', () => {
+  const url = makeUrl({category:'nationwide', leis:['b']}, true)
+  expect(url).toBe('/v2/data-browser-api/view/csv?leis=b&years=2018')
+})
+
+it('makes a csv url for LEIs when nationwide with variables', () => {
+  const opts = {
+    category: 'nationwide',
+    leis: ['b'],
+    variables: { a: { b: 123 } }
+  }
+  const url = makeUrl(opts, true)
+  expect(url).toBe('/v2/data-browser-api/view/csv?leis=b&a=b&years=2018')
 })
 
 it('runs the fetch', done => {
@@ -102,6 +122,11 @@ it('makes empty CSV name', () => {
 it('makes nationwide CSV name', () => {
   const csv = makeCSVName({category: 'nationwide', items: []})
   expect(csv).toBe('nationwide.csv')
+})
+
+it('makes LEIs CSV name for nationwide + leis', () => {
+  const csv = makeCSVName({category: 'nationwide', leis: ['a', 'b'], items: []})
+  expect(csv).toBe('leis-a,b.csv')
 })
 
 it('calls runFetch and makeUrl on getSubsetDetails', done => {

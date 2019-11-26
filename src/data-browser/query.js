@@ -84,6 +84,10 @@ export function makeStateFromSearch(search, s, detailsCb, updateSearch){
       const sanitized = sanitizeArray(s.category, val)
       if(sanitized.length !== val.length) regenerateSearch = true
       s[key] = sanitized
+    } else if(key === 'leis') {
+      const sanitized = sanitizeArray(key, val)
+      if(sanitized.length !== val.length) regenerateSearch = true
+      s[key] = sanitized
     } else if(key === 'getDetails') {
       setTimeout(detailsCb, 0)
     } else {
@@ -107,7 +111,8 @@ export function makeStateFromSearch(search, s, detailsCb, updateSearch){
 export function makeSearchFromState(s){
   let params = [
     makeParam(s, 'category'),
-    s.category === 'nationwide' ? null : makeParam(s, 'items'),
+    makeParam(s, 'items'),
+    makeParam(s, 'leis'),
     makeParam(s, 'variables'),
     makeParam(s, 'details')
   ]
