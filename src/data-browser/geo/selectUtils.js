@@ -16,16 +16,16 @@ const itemFnMap = {
 }
 
 function makeItemSelectValues(category, items){
-  if(category === 'nationwide') return [{value: 'nationwide', label: 'NATIONWIDE'}]
+  if(isNationwide(category)) return [{value: 'nationwide', label: 'NATIONWIDE'}]
   return items.map(itemFnMap[category])
 }
 
 function createLEIOption(id){
-  return {value: id, label: `${id} - ${LEIS[id]}`}
+  return {value: id, label: `${LEIS[id]} - ${id}`}
 }
 
 function pruneItemOptions(category, options, selectedValues){
-  if(category === 'nationwide') return []
+  if(isNationwide(category)) return []
   return removeSelected(selectedValues, options[category])
 }
 
@@ -39,22 +39,23 @@ function setVariableSelect(orderedVariables){
 
 function makeItemPlaceholder(category, selectedValues) {
   let type = category === 'msamds' ? 'MSA/MDs' : category
-  if (type === 'leis') type = 'LEIs'
-  if(type === 'nationwide') return 'Nationwide selected'
+  if(type === 'leis') type = 'LEIs'
+  if(isNationwide(type)) return 'Nationwide selected'
   if(selectedValues.length) return `Select or type additional ${type}`
   return `Select or type the name of one or more ${type}`
 }
 
 function someChecksExist(vars){
   const keys = Object.keys(vars)
-  if(!keys[0]) return false
+  if(!keys.length) return false
 
-  const checkVars = vars[keys[0]]
-  const checkKeys = Object.keys(checkVars)
-  for(let j=0; j < checkKeys.length; j++){
-    if(checkVars[checkKeys[j]]) return true
-  }
-  return false
+  return keys.some(key => {
+    const checkKeys = Object.keys(vars[key] || [])
+    for(let j=0; j < checkKeys.length; j++){
+      if(vars[key][checkKeys[j]]) return true
+    }
+    return false
+  })
 }
 
 function removeSelected(selected, options) {
@@ -101,6 +102,8 @@ function createMSAOption(id){
   return {
     value: '' + id,
     label:  `${id} - ${msaToName[id]} - ${stateLabel}`,
+    state: stateLabel,
+    other: msaToName[id]
   }
 }
 
@@ -108,7 +111,9 @@ function createCountyOption(id){
   const stateLabel = fipsToState[id.slice(0, 2)]
   return {
     value: id,
-    label: `${id} - ${COUNTIES[id]} - ${stateLabel}`
+    label: `${id} - ${COUNTIES[id]} - ${stateLabel}`,
+    state: stateLabel,
+    other: COUNTIES[id]
   }
 }
 
@@ -134,16 +139,40 @@ function createItemOptions(props) {
     itemOptions.msamds.push(createMSAOption(msa))
   })
 
-  itemOptions.counties = Object.keys(COUNTIES).map(createCountyOption)
-  itemOptions.leis = Object.keys(LEIS).map(createLEIOption)
+  itemOptions.msamds = itemOptions.msamds.sort(sortByStateThenOther)
+  itemOptions.counties = Object.keys(COUNTIES).map(createCountyOption).sort(sortByStateThenOther)
+  itemOptions.leis = Object.keys(LEIS).map(createLEIOption).sort(sortByLabel)
+  itemOptions.leis.unshift({ value: 'all', label: 'All Financial Institutions'})
 
   return itemOptions
+}
+
+function sortByLabel(a,b){
+  const labels = [a,b].map(i => i.label)
+  return compareStrings(...labels)
+}
+
+function sortByStateThenOther(a,b){
+  const statesDiffer = compareStrings(a.state, b.state)
+  if(statesDiffer) return statesDiffer
+  return compareStrings(a.other, b.other)
+}
+
+function compareStrings(a,b){
+  const [aLower, bLower] = [a,b].map(i => i.toLowerCase())
+  if(!aLower || aLower > bLower) return 1
+  if(aLower === bLower) return 0
+  return -1
 }
 
 function createVariableOptions() {
   return Object.keys(VARIABLES).map(variable => {
     return { value: variable, label: VARIABLES[variable].label }
   })
+}
+
+function isNationwide(category) {
+  return category === 'nationwide'
 }
 
 const heightStyleFn = {
@@ -183,5 +212,6 @@ export {
   makeItemSelectValues,
   pruneItemOptions,
   someChecksExist,
-  setVariableSelect
+  setVariableSelect,
+  isNationwide
 }

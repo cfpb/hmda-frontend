@@ -23,7 +23,7 @@ class Home extends Component {
             caption="HMDA Dataset Filtering"
             path="data"
             enabled
-          >Download entire datasets by state, MSA/MD, or nationwide or filter them by selected variables.
+          >Filter and download HMDA datasets by various filters.
           </ImageCard>
           <ImageCard
             caption="Maps & Graphs (coming soon)"

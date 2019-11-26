@@ -18,11 +18,7 @@ svg {
   margin:2px 0 4px 0;
 }
 
-.SelectWrapper {
-  border-bottom: 1px solid #d1d1d1;
-}
-
-.LargeFileWarning, .LargeFileWarning > h4 {
+.LargeFileWarning > h4 {
   display: inline;
 }
 
@@ -83,6 +79,7 @@ svg {
   padding: 1em;
   font-weight: bold;
   border-radius: 3px;
+  border: 1px solid #0071bc;
 }
 
 .QueryButton:hover {
@@ -95,6 +92,23 @@ svg {
 
 .QueryButton.disabled {
   background-color: #888;
+}
+
+.QueryButton.secondary {
+  color:#254b87;
+  color:#002d72;
+  background:#d6e8fa;
+  border-color:#254b87;
+}
+
+.QueryButton.secondary:hover {
+  background: #afd2f2
+}
+
+.QueryButton.secondary.disabled {
+  color: #000;
+  border-color: #000;
+  background: #e7ddd7
 }
 
 .Aggregations h2 {
