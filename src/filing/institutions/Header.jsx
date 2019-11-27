@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Alert from '../../common/Alert.jsx'
-import { beforeFilingPeriod, afterFilingPeriod, isBeta } from '../utils/date.js'
+import { beforeFilingPeriod, afterFilingPeriod } from '../utils/date.js'
+import { isBeta } from '../../common/Beta.jsx'
 
 const InstitutionsHeader = ({ filingPeriod }) => {
   if (!filingPeriod) return null

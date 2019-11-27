@@ -15,3 +15,7 @@
 .Filing.App #main-content {
   padding-bottom: 150px;
 }
+
+.Filing.App .Beta {
+  margin-bottom: 0;
+}

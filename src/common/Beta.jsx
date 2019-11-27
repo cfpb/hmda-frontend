@@ -1,6 +1,10 @@
 import React from 'react'
 import Alert from './Alert.jsx'
 
+export function isBeta() {
+  return window.location.hostname.match('beta')
+}
+
 const Beta = props => {
   return (
     <div className="Beta">
@@ -14,7 +18,7 @@ const Beta = props => {
           <br />
           Data included is for testing purposes only.
           <br />
-          To view the live version of all HMDA applications, 
+          To view the live version of all HMDA applications,
           {' '}<a href="https://ffiec.cfpb.gov">visit our homepage</a>.
           {' '}For questions/suggestions, contact hmdahelp@cfpb.gov.
         </p>

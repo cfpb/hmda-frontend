@@ -9,8 +9,7 @@ import {
   withinAWeekOfDeadline,
   withinFilingPeriod,
   beforeFilingPeriod,
-  afterFilingPeriod,
-  isBeta
+  afterFilingPeriod
 } from './date.js'
 import * as dates from '../constants/dates.js'
 
@@ -134,12 +133,5 @@ describe('beforeFilingPeriod', () => {
     } catch (e) {
       expect(e).toBeDefined()
     }
-  })
-})
-
-describe('isBeta', () => {
-  it('checks beta status of various filing periods', () => {
-    expect(isBeta()).toBe(0)
-    expect(isBeta()).toBe(0)
   })
 })

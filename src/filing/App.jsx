@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ConfirmationModal from './modals/confirmationModal/container.jsx'
+import Beta, { isBeta } from '../common/Beta'
 import Header from './common/Header.jsx'
 import Footer from './common/Footer.jsx'
 import BrowserBlocker from './common/BrowserBlocker.jsx'
@@ -68,6 +69,7 @@ export class AppContainer extends Component {
 
   render() {
     const { match: { params }, location } = this.props
+
     return (
       <div className="AppContainer">
         <a className="skipnav" href="#main-content">
@@ -75,6 +77,7 @@ export class AppContainer extends Component {
         </a>
         <Header filingPeriod={params.filingPeriod} pathname={location.pathname} />
         <ConfirmationModal />
+        {isBeta() ? <Beta/> : null}
         {FILING_PERIODS.indexOf(params.filingPeriod) !== -1
           ? this._renderAppContents(this.props)
           : params.filingPeriod === '2017'

@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 import Header from './common/Header'
 import NotFound from './common/NotFound'
 import Footer from './common/Footer'
-import Beta from './common/Beta'
+import Beta, { isBeta } from './common/Beta'
 import makeAsyncComponent from './common/makeAsyncComponent.js'
 
 import './app.css'
@@ -17,12 +17,21 @@ const DataPublication = makeAsyncComponent(() => import('./data-publication'))
 const Filing = makeAsyncComponent(() => import('./filing'))
 
 const App = () => {
-  const isBeta = !!window.location.host.match('beta')
   const isFiling = !!window.location.pathname.match(/^\/filing/)
   return (
     <>
-      {isFiling ? null : <Route path="/"component={Header}/>}
-      {isBeta ? <Beta/> : null}
+      {isFiling ? null : <Route path="/" render={props => {
+        return (
+          <Header
+            links={isBeta() ?
+              [{ name: 'Home', href: '/' }, { name: 'Filing', href: '/filing/' }]
+              : undefined
+            }
+            {...props}
+          />
+        )
+      }}/>}
+      {isBeta() && !isFiling ? <Beta/> : null}
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route path = "/data-browser" component={DataBrowser} />

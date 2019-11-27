@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Alert from '../common/Alert.jsx'
+import { isBeta } from '../common/Beta.jsx'
 
 import './Home.css'
 
 const Home = () => {
-  const isBeta = !!window.location.host.match('beta')
+  const beta = isBeta()
 
   return (
     <main className="App home" id="main-content">
@@ -43,7 +44,7 @@ const Home = () => {
                 accuracy and completeness of the data, and submit data for the
                 filing year.
               </p>
-              {isBeta ? null :
+              {beta ? null :
               <a
                 href="https://ffiec.cfpb.gov/filing/"
                 rel="noopener noreferrer"
@@ -123,7 +124,7 @@ const Home = () => {
                 </a>.
               </li>
             </ul>
-            {isBeta ? null :
+            {beta ? null :
             <header>
               <h3>
                 <Link to="/documentation/">Documentation</Link>
@@ -136,6 +137,7 @@ const Home = () => {
           </div>
 
           <div className="card">
+            { beta ? null :
             <header>
               <h3>
                 <Link to="/data-browser/">HMDA Data Browser</Link>
@@ -144,7 +146,8 @@ const Home = () => {
                  The HMDA Data Browser is a tool that allows users to filter and download HMDA datasets.
               </p>
             </header>
-           {isBeta ? null :
+            }
+           {beta ? null :
             <header>
               <h3>
                 <Link to="/tools/">Tools</Link>
@@ -171,7 +174,7 @@ const Home = () => {
               </ul>
             </header>
             }
-            {isBeta ? null :
+            {beta ? null :
             <header>
               <h3>
                 <Link to="/data-publication/">Data Publication</Link>
@@ -212,7 +215,7 @@ const Home = () => {
               </ul>
             </header>
            }
-           {isBeta ? null :
+           {beta ? null :
             <header>
               <h3>
                 <a href="https://www.consumerfinance.gov/data-research/hmda/">Research and Reports</a>

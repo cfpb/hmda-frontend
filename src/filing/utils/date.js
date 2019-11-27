@@ -95,7 +95,3 @@ export function beforeFilingPeriod(year) {
 export function withinFilingPeriod(year) {
   return !beforeFilingPeriod(year) && !afterFilingPeriod(year)
 }
-
-export function isBeta() {
-  return window.location.hostname.match('beta')
-}

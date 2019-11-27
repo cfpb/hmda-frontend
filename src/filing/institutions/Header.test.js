@@ -3,7 +3,8 @@ jest.unmock('../common/Alert.jsx')
 jest.mock('../utils/date.js')
 
 import InstitutionsHeader from './Header.jsx'
-import { beforeFilingPeriod, afterFilingPeriod, isBeta } from '../utils/date.js'
+import { beforeFilingPeriod, afterFilingPeriod } from '../utils/date.js'
+import { isBeta } from '../../common/Beta.jsx'
 import Wrapper from '../../test-resources/Wrapper.js'
 import React from 'react'
 import ReactDOM from 'react-dom'
