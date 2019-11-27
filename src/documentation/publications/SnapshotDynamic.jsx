@@ -17,7 +17,25 @@ const links = {
     <li key="8"><Link to="/documentation/2018/ts-data-fields/">Public Transmittal Sheet Data Fields with Values and Definitions</Link></li>,
     <li key="9"><Link to="/documentation/2018/public-panel-schema/">Public Panel Schema</Link></li>,
     <li key="10"><Link to="/documentation/2018/panel-data-fields/">Public Panel Data Fields with Values and Definitions</Link></li>
-  ]
+  ],
+  2019: [
+    <li key="2019-1"><Link to="/documentation/2019/lar-data-fields/">Public HMDA Data Fields with Values and Definitions</Link></li>,
+    <li key="2019-2"><Link to="/documentation/2019/derived-data-fields/">Derived Data Fields</Link></li>,
+    <li key="2019-3"><Link to="/documentation/2019/public-lar-schema/">Public LAR Schema</Link></li>,
+    <li key="2019-4"><Link to="/documentation/2019/public-ts-schema/">Public Transmittal Sheet Schema</Link></li>,
+    <li key="2019-5"><Link to="/documentation/2019/ts-data-fields/">Public Transmittal Sheet Data Fields with Values and Definitions</Link></li>,
+    <li key="2019-6"><Link to="/documentation/2019/public-panel-schema/">Public Panel Schema</Link></li>,
+    <li key="2019-7"><Link to="/documentation/2019/panel-data-fields/">Public Panel Data Fields with Values and Definitions</Link></li>
+  ],
+  2020: [
+    <li key="2020-1"><Link to="/documentation/2020/lar-data-fields/">Public HMDA Data Fields with Values and Definitions</Link></li>,
+    <li key="2020-2"><Link to="/documentation/2020/derived-data-fields/">Derived Data Fields</Link></li>,
+    <li key="2020-3"><Link to="/documentation/2020/public-lar-schema/">Public LAR Schema</Link></li>,
+    <li key="2020-4"><Link to="/documentation/2020/public-ts-schema/">Public Transmittal Sheet Schema</Link></li>,
+    <li key="2020-5"><Link to="/documentation/2020/ts-data-fields/">Public Transmittal Sheet Data Fields with Values and Definitions</Link></li>,
+    <li key="2020-6"><Link to="/documentation/2020/public-panel-schema/">Public Panel Schema</Link></li>,
+    <li key="2020-7"><Link to="/documentation/2020/panel-data-fields/">Public Panel Data Fields with Values and Definitions</Link></li>
+  ],
 }
 
 const SnapshotDynamic = props => {

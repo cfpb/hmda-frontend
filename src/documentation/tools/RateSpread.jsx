@@ -6,6 +6,14 @@ const links = {
   2018: [
     <li key="0"><a target="_blank" rel="noopener noreferrer" href="/tools/rate-spread/requirements">Data Requirements</a></li>,
     <li key="1"><a target="_blank" rel="noopener noreferrer" href="/tools/rate-spread/methodology">Methodology for Determining Average Prime Offer Rates</a></li>
+  ],
+  2019: [
+    <li key="2019-0"><a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/tools/rate-spread/requirements">Data Requirements</a></li>,
+    <li key="2019-1"><a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/tools/rate-spread/methodology">Methodology for Determining Average Prime Offer Rates</a></li>
+  ],
+  2020: [
+    <li key="2020-0"><a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/tools/rate-spread/requirements">Data Requirements</a></li>,
+    <li key="2020-1"><a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/tools/rate-spread/methodology">Methodology for Determining Average Prime Offer Rates</a></li>
   ]
 }
 

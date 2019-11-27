@@ -105,7 +105,7 @@ _This guide explains fields that are included in public HMDA data collected in 2
 - **Description:** Total population in tract
 - **Values:**
   - Varying values
- 
+
 ### [tract\_minority\_population\_percent](#tract_minority_population_percent)
 
 - **Description:** Percentage of minority population to total population for tract, rounded to two decimal places
