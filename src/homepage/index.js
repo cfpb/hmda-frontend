@@ -82,13 +82,22 @@ const Home = () => {
                   </a>
                 </li>
                 <li>
-                  For data collected in or before 2018, please visit{' '}
+                  For data collected in 2017 or 2018 please{' '}
                   <a
                     href="/documentation/2018/fig/"
                   >
-                    our documentation page
+                    visit our documentation page
                   </a>
                   .
+                </li>
+                <li>
+                  For data collected in or before 2016, please visit the{' '}
+                  <a
+                    href="https://www.ffiec.gov/hmda/fileformats.htm"
+                  >
+                    FFIEC Website
+                  </a>{' '}
+                  for data submission resources.
                 </li>
               </ul>
               <li>
