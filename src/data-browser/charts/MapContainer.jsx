@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef }  from 'react'
 import Select from 'react-select'
 import COUNTS from '../constants/countyCounts.js'
+import COUNTIES from '../constants/counties.js'
 import VARIABLES from '../constants/variables.js'
 
 import { runFetch } from '../api.js'
@@ -60,12 +61,30 @@ function makeStops(data, variable, value){
   return stops
 }
 
+function buildTags(tag, arr){
+  let str = ''
+  for(let i=0; i<arr.length; i++){
+    str += `<${tag}>${arr[i]}</${tag}>`
+  }
+  return str
+}
 
+function buildPopupHTML(data, features, variable){
+  const fips = features[0].properties['GEOID']
+  const header = '<h4>' + fips + ' - ' + COUNTIES[fips] + '</h4>'
 
+  if(!variable) return header
 
-//map, geometry, "GEOID", joinData, "exponential", stops
-//joinTileset = (map, tileset_id, foreign_key, data, type, stops) {
-//map.setPaintProperty(tileset_id, "fill-color", {property: foreign_key, type: "categorical", default: 'rgba(0,0,0,0)', stops: categoricalStops}
+  const info = data[fips][variable.value]
+
+  const ths = Object.keys(info)
+  const tds = ths.map(v => info[v])
+
+  const table = '<table><thead><tr>' + buildTags('th', [variable.label, ...ths]) + '</tr></thead>' +
+    '<tbody><tr><th>Count</th>' + buildTags('td', tds) + '</tr></tbody></table>'
+
+  return header + table
+}
 
 const MapContainer = () => {
   const mapContainer = useRef(null)
@@ -87,22 +106,22 @@ const MapContainer = () => {
   }, [])
 
   useEffect(() => {
-    const m = new mapbox.Map({
+    const map = new mapbox.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/kronick/cixtov6xg00252qqpoue7ol4c?fresh=true',
       zoom: 3.5,
       center: [-96, 38]
     })
 
-    setMap(m)
+    setMap(map)
 
-    m.on('load', () => {
-      m.addSource('counties', {
+    map.on('load', () => {
+      map.addSource('counties', {
         type: 'vector',
         url: 'mapbox://kronick.6tomuq5i'
       })
 
-      m.addLayer({
+      map.addLayer({
         'id': 'counties',
         'type': 'fill',
         'source': 'counties',
@@ -118,8 +137,37 @@ const MapContainer = () => {
         }
       }, 'waterway-label');
     })
-    return () => m.remove()
+
+    return () => map.remove()
   }, [])
+  useEffect(() => {
+    if(!data) return
+
+    const popup = new mapbox.Popup({
+      closeButton: false,
+      closeOnClick: false,
+      maxWidth: '750px'
+    })
+
+    function showPopup(e) {
+      if(!map.loaded()) return
+        const features = map.queryRenderedFeatures(e.point, {layers: ['counties']})
+
+        map.getCanvas().style.cursor = features.length ? 'pointer' : ''
+
+        if(!features.length) return popup.remove()
+
+        popup.setLngLat(map.unproject(e.point))
+          .setHTML(buildPopupHTML(data, features, selectedVariable))
+          .addTo(map)
+    }
+
+    map.on('mousemove', showPopup)
+    return () => {
+      popup.remove()
+      map.off('mousemove', showPopup)
+    }
+  }, [data, selectedVariable])
 
   useEffect(() => {
    if(data && selectedVariable){
