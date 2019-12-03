@@ -38,8 +38,8 @@ function optionsFromVariables(key, nameAsValue){
 }
 
 function getValuesForVariable(variable) {
-  if(!variable) return null
-  return valsForVar[variable.value] || null
+  if(!variable) return []
+  return valsForVar[variable.value] || []
 }
 
 function generateColor(data, variable, value, total) {
