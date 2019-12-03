@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef }  from 'react'
 import Select from 'react-select'
+import COUNTS from '../constants/countyCounts.js'
 import VARIABLES from '../constants/variables.js'
 
 import { runFetch } from '../api.js'
@@ -8,55 +9,43 @@ import mapbox from 'mapbox-gl'
 import './mapbox.css'
 
 mapbox.accessToken = 'pk.eyJ1Ijoia3JvbmljayIsImEiOiJjaWxyZGZwcHQwOHRidWxrbnd0OTB0cDBzIn0.u2R3NY5PnevWH3cHRk6TWQ'
+/*
+  loanAmount
+  income
+  age
+*/
 
 const colors = ['#edffbd', '#d3f2a3', '#97e196', '#6cc08b', '#4c9b82', '#217a79', '#105965', '#074050', '#002737']
 const variables = [
   {value: 'loanType', label: 'Loan Type'},
-  {value: 'loanPurpose', label: 'Loan Purpose'}
+  {value: 'loanPurpose', label: 'Loan Purpose'},
+  {value: 'race', label: 'Race'},
+  {value: 'ethnicity', label: 'Ethnicity'}
 ]
-/*const fieldCounts= {
-  loanPurpose: 6,
-  loanType: 4,
-  ethnicity: 5,
-  race: 9,
-  income: 7,
-  age: 7
-}*/
-/*
-function zipWithColors(keys, index) {
-  const c = colors.slice(index, index + keys.length)
-  const zipped = {}
-  keys.forEach((key, i) => {
-    zipped[key] = c[i]
-  })
-  return zipped
-}
-
-const stopsByField = {
-  loanType: {
-    1: '#d3f2a3',
-    2: '#6cc08b',
-    3: '#217a79',
-    4: '#074050'
-  },
-  loanPurpose: zipWithColors([1, 2, 31, 32, 4, 5], 1)
-}
-
-const stops = {}
-*/
 
 const valsForVar = {
-  loanType: VARIABLES['loan_types'].options.map(v => {
-    return {value: v.id, label: v.name}
-  }),
-  loanPurpose: VARIABLES['loan_purposes'].options.map( v => {
-    return {value: v.id, label: v.name}
+  loanType: optionsFromVariables('loan_types'),
+  loanPurpose: optionsFromVariables('loan_purposes'),
+  ethnicity: optionsFromVariables('ethnicities', 1),
+  race: optionsFromVariables('races', 1)
+}
+
+function optionsFromVariables(key, nameAsValue){
+  return VARIABLES[key].options.map( v => {
+    return {value: nameAsValue ? v.name : v.id, label: v.name}
   })
 }
 
-function generateColor(data, variable, value) {
+function getValuesForVariable(variable) {
+  if(!variable) return null
+  return valsForVar[variable.value] || null
+}
+
+function generateColor(data, variable, value, total) {
   const count = data[variable][value]
-  let index = Math.min(colors.length -1, Math.floor(count/100))
+  const len = colors.length
+  const BIAS = 30
+  let index = Math.min(len-1, Math.floor(count/total*len*BIAS))
   if(!index) index = 0
   return colors[index]
 }
@@ -65,15 +54,13 @@ function makeStops(data, variable, value){
   const stops = [['0', 'rgba(0,0,0,0.05)']]
   Object.keys(data).forEach(county => {
     const currData = data[county]
-    stops.push([county, generateColor(currData, variable, value)])
+    const total = COUNTS[county] || 20000
+    stops.push([county, generateColor(currData, variable, value, total)])
   })
   return stops
 }
 
-function getValuesForVariable(variable) {
-  if(!variable) return null
-  return valsForVar[variable.value] || null
-}
+
 
 
 //map, geometry, "GEOID", joinData, "exponential", stops
@@ -102,7 +89,9 @@ const MapContainer = () => {
   useEffect(() => {
     const m = new mapbox.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/kronick/cixtov6xg00252qqpoue7ol4c?fresh=true'
+      style: 'mapbox://styles/kronick/cixtov6xg00252qqpoue7ol4c?fresh=true',
+      zoom: 3.5,
+      center: [-96, 38]
     })
 
     setMap(m)
@@ -133,19 +122,28 @@ const MapContainer = () => {
   }, [])
 
   useEffect(() => {
-    if(data && selectedVariable && selectedValue) {
-      const stops = makeStops(data, selectedVariable.value, selectedValue.value)
-      map.setPaintProperty('counties', 'fill-color', {
-        property: 'GEOID',
-        type: 'categorical',
-        default: 'rgba(0,0,0,0.05)',
-        stops
-      })
-    }
+   if(data && selectedVariable){
+     if(selectedValue) {
+       const stops = makeStops(data, selectedVariable.value, selectedValue.value)
+       map.setPaintProperty('counties', 'fill-color', {
+         property: 'GEOID',
+         type: 'categorical',
+         default: 'rgba(0,0,0,0.05)',
+         stops
+       })
+     } else {
+       map.setPaintProperty('counties', 'fill-color', 'rgba(0,0,0,0.05)'
+       )
+     }
+   }
   })
 
   return (
-    <div>
+    <div className="SelectWrapper">
+     <h3>Step 1: Select a Variable</h3>
+      <p>
+        Start by selecting a variable using the dropdown menu below
+      </p>
       <Select
         onChange={onVariableChange}
         placeholder="Enter a variable"
@@ -156,6 +154,10 @@ const MapContainer = () => {
         value={selectedVariable}
         options={variables}
       />
+      <h3>Step 2: Select a value{selectedVariable ? ` for ${selectedVariable.label}`: ''}</h3>
+      <p>
+        Then choose a value of your chosen variable to see how it varies nationally in the map below.
+      </p>
       <Select
         onChange={setValue}
         disabled={!!selectedVariable}
@@ -166,6 +168,7 @@ const MapContainer = () => {
         value={selectedValue}
         options={getValuesForVariable(selectedVariable)}
       />
+      <h3>{selectedVariable && selectedValue ? `${selectedVariable.label}: "${selectedValue.label}" for US Counties`: 'US Counties'}</h3>
       <div className="mapContainer" ref={mapContainer}/>
     </div>
   )
