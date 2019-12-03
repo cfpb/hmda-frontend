@@ -72,10 +72,11 @@ function buildTags(tag, arr){
 function buildPopupHTML(data, features, variable){
   const fips = features[0].properties['GEOID']
   const header = '<h4>' + fips + ' - ' + COUNTIES[fips] + '</h4>'
+  const currData = data[fips]
 
-  if(!variable) return header
+  if(!variable || !currData) return header
 
-  const info = data[fips][variable.value]
+  const info = currData[variable.value]
 
   const ths = Object.keys(info)
   const tds = ths.map(v => info[v])
