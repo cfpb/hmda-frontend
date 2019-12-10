@@ -16,7 +16,12 @@ import { setStore } from './utils/store.js'
 import appReducer from './reducers'
 
 const middleware = [thunkMiddleware]
-setKeycloak(Keycloak(process.env.PUBLIC_URL + '/keycloak.json'))
+
+if(process.env.NODE_ENV === 'development'){
+  setKeycloak(Keycloak(process.env.PUBLIC_URL + '/local_keycloak.json'))
+}else{
+  setKeycloak(Keycloak(process.env.PUBLIC_URL + '/keycloak.json'))
+}
 
 let store
 if (process.env.NODE_ENV !== 'production') {

@@ -34,7 +34,6 @@ export class InstitutionContainer extends Component {
   }
 
   render() {
-    console.log('institutions container props', this.props)
     return <Institutions {...this.props} />
   }
 }

@@ -79,3 +79,4 @@ yarn-error.log
 setupProxy.js
 build/
 env.json
+local_keycloak.json
