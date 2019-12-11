@@ -5,22 +5,24 @@ import Pills from './Pills.jsx'
 import {
   itemStyleFn,
   makeItemPlaceholder,
-  makeItemSelectValues,
-  pruneItemOptions
+  sortByLabel,
+  createLEIOption
 } from './selectUtils.js'
 
-const InstitutionSelect = ({ items, onChange, options, nationwide }) => {
+const InstitutionSelect = ({ items, onChange, leiDetails }) => {
   const category = 'leis'
-  const selectedValues = makeItemSelectValues(category, items)
+  const {leis, loading} = leiDetails
+  const selectedValues = items.map(lei => createLEIOption(lei, leis))
 
   return (
     <div className='SelectWrapper'>
-      <h3>Step 2: Select Financial Institution</h3>
+      <h3>Step 2: Select Financial Institution (optional)</h3>
       <p>
         You can select one or more financial institutions by entering the
         financial institutions LEI or name. <br />
-        <strong>NOTE: Filtering by financial institution is currently only available
-        when the geography filter is set to Nationwide.</strong>
+        <strong>
+          NOTE: Only Institutions that operate in the selected geography are available for selection.
+        </strong>
       </p>
       <Select
         id='lei-item-select'
@@ -29,15 +31,15 @@ const InstitutionSelect = ({ items, onChange, options, nationwide }) => {
         controlShouldRenderValue={false}
         styles={styleFn}
         onChange={onChange}
-        placeholder={itemPlaceholder(nationwide, items.length, category, selectedValues)}
+        placeholder={itemPlaceholder(loading, items.length, category, selectedValues)}
         isMulti={true}
         searchable={true}
         autoFocus
         openOnFocus
         simpleValue
         value={selectedValues}
-        options={pruneItemOptions(category, options, selectedValues)}
-        isDisabled={!nationwide}
+        options={pruneLeiOptions(leis, selectedValues)}
+        isDisabled={loading}
       />
       <Pills values={selectedValues} onChange={onChange} />
     </div>
@@ -50,16 +52,27 @@ const styleFn = {
   control: p => ({ ...p, borderRadius: '4px' })
 }
 
-function itemPlaceholder(nationwide, hasItems, category, selectedValues) {
-  const messageAll = 'All institutions selected'
-  if (!nationwide) return messageAll
-  if (!hasItems)
-    return (
-      messageAll + '. ' +
-      makeItemPlaceholder(category, selectedValues) +
-      ' to filter'
-    )
-  return makeItemPlaceholder(category, selectedValues)
+export function pruneLeiOptions(data, selected) {
+  const selectedLeis = selected.map(s => s.value)
+  const institutions = Object.values(data)
+  const opts = institutions
+    .filter(institution => !selectedLeis.includes(institution.lei))
+    .map(institution => ({ value: institution.lei, label: `${institution.name.toUpperCase()} - ${institution.lei}` }))
+    .sort(sortByLabel)
+  opts.unshift({ value: 'all', label: `All Financial Institutions (${institutions.length})` })
+  return opts
+}
+
+export function itemPlaceholder(loading, hasItems, category, selectedValues) {
+  if(loading) return 'Loading...'
+  const placeholder = makeItemPlaceholder(category, selectedValues)
+  if (!hasItems) return `All institutions selected. ${placeholder} to filter`
+  return placeholder
+}
+
+InstitutionSelect.defaultProps = {
+  items: [],
+  leiDetails: { leis: {}, loading: true}
 }
 
 export default InstitutionSelect
