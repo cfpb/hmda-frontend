@@ -22,8 +22,7 @@ const renderLarErrors = (larErrors, pagination) => {
 
     currentErrs.push(
       <tr key={i}>
-        <td>{err.row}</td>
-        <td>{err.error}</td>
+        {renderErrorColumns(err)}
       </tr>
     )
   }
@@ -40,7 +39,10 @@ const renderLarErrors = (larErrors, pagination) => {
       <thead>
         <tr>
           <th>Row</th>
-          <th>Errors</th>
+          <th>ULI</th>
+          <th>LAR Data Field</th>
+          <th>Found Value</th>
+          <th>Valid Value</th>
         </tr>
       </thead>
       <tbody>{currentErrs}</tbody>
@@ -62,7 +64,9 @@ const renderTSErrors = transmittalSheetErrors => {
       <thead>
         <tr>
           <th>Row</th>
-          <th>Transmittal Sheet Errors</th>
+          <th>TS Data Field</th>
+          <th>Found Value</th>
+          <th>Valid Value</th>
         </tr>
       </thead>
       <tbody>
@@ -70,7 +74,7 @@ const renderTSErrors = transmittalSheetErrors => {
           return (
             <tr key={i}>
               <td>1</td>
-              <td>{tsError}</td>
+              {renderErrorColumns(tsError)}
             </tr>
           )
         })}
@@ -103,6 +107,23 @@ const renderParseResults = (count, errors) => {
       </p>
     </Alert>
   )
+}
+
+function renderErrorColumns(err){
+  const columns = []
+  const { fieldName, inputValue, row, validValues, uli } = err
+  const userInput = inputValue === '' ? <em>(blank)</em> : inputValue
+
+  columns.push(<td key='1'>{fieldName}</td>)
+  columns.push(<td key='2'>{userInput}</td>)
+  columns.push(<td key='3'>{validValues}</td>)
+
+  if(uli) {
+    columns.unshift(<td key='4'>{uli}</td>)
+    columns.unshift(<td key='5'>{row}</td>)
+  }
+
+  return columns
 }
 
 const ParseErrors = props => {

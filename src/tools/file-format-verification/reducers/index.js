@@ -37,7 +37,7 @@ const defaultPagination = {
   fade: 0
 }
 
-const defaultFilingPeriod = '2018'
+const defaultFilingPeriod = '2019'
 
 //empty action logger, temporary / for debugging
 export const empty = (state = {}, action) => {

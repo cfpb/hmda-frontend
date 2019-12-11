@@ -78,7 +78,7 @@ export function triggerParse(file, filingPeriod) {
         .catch(err => console.error(err))
     }
 
-    if (filingPeriod === '2018') {
+    if (['2019', '2018'].includes(filingPeriod)) {
       var formData = new FormData()
       formData.append('file', file)
 
@@ -100,14 +100,17 @@ export function triggerParse(file, filingPeriod) {
         })
         .then(success => {
           let data = { transmittalSheetErrors: [], larErrors: [] }
-          success.validated.forEach(error => {
-            if (error.lineNumber === 1) {
-              data.transmittalSheetErrors.push(error.errors)
+          success.forEach(error => {
+            if (error.rowNumber === 1) {
+              data.transmittalSheetErrors.push(...error.errorMessages)
             } else {
-              data.larErrors.push({
-                error: error.errors,
-                row: error.lineNumber
-              })
+              const messages = error.errorMessages.map(emsg => ({
+                ...emsg,
+                uli: error.estimatedULI,
+                row: error.rowNumber
+              }))
+              
+              data.larErrors.push(...messages)
             }
           })
           dispatch(endParse(data))
