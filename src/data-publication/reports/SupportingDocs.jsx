@@ -29,20 +29,20 @@ const ModifiedLarDocs = () => {
             </div>
           </div>
           <div>
-            <h4>Heading for CSV files</h4>
+            <h4>Header for CSV files</h4>
             <div>
               A list of column names for use with the Modified LAR text files
               <ul>
                 <li>
                   <a
                     title="Modified LAR header for 2018 csv file"
-                    href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/spec/2018_Modified_LAR_Heading.csv"
+                    href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/spec/2018_Modified_LAR_Header.csv"
                   >2018</a>
                 </li>
                 <li>
                   <a
                     title="Modified LAR header for 2017 csv file"
-                    href="https://github.com/cfpb/hmda-platform/blob/master/docs/v1/2017_Modified_LAR_Heading.csv"
+                    href="https://github.com/cfpb/hmda-platform/blob/master/docs/v1/2017_Modified_LAR_Header.csv"
                   >2017</a>
                 </li>
               </ul>
@@ -62,7 +62,7 @@ const ModifiedLarDocs = () => {
                 <li>
                   <a
                     title="Modified LAR 2017 data dictionary"
-                    href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/spec/2017_Modified_LAR_Data_Dictionary.csv"
+                    href="https://github.com/cfpb/hmda-platform/blob/master/docs/v1/2017_Modified_LAR_Data_Dictionary.csv"
                   >2017</a>
                 </li>
               </ul>

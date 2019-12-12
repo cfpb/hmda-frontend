@@ -26,7 +26,7 @@ const Header = ({location: {pathname}, links = defaultLinks}) => {
           <nav className="nav">
             <ul className="nav-primary">
               {links.map(link => {
-                let isActive = pathname.match(link.href)
+                let isActive = pathname.match(new RegExp('^' + link.href))
                 if(link.href === '/') isActive = link.href === pathname
 
                 return (
