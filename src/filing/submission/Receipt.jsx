@@ -24,6 +24,9 @@ const Receipt = ({
           <strong>{ordinalHour(new Date(timestamp))}</strong>.
           <br />
           Your receipt number for this submission is <strong>{receipt}</strong>.
+          <br />
+          <br />
+          A copy of this receipt has been sent to <strong>{email}</strong>.
         </div>
       </Alert>
     </section>

@@ -28,6 +28,7 @@ export default (state = defaultSignature, action) => {
         isFetching: false,
         timestamp: action.timestamp,
         receipt: action.receipt,
+        email: action.email,
         checked: action.timestamp !== 0
       }
 
@@ -42,7 +43,8 @@ export default (state = defaultSignature, action) => {
         ...state,
         isFetching: false,
         timestamp: action.timestamp,
-        receipt: action.receipt
+        receipt: action.receipt,
+        email: action.email
       }
 
     case CHECK_SIGNATURE:

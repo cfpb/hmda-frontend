@@ -62,11 +62,12 @@
   font-size: 1em;
 }
 
-.alert-text {
+.alert-text, .alert-text > p {
   font-family: SourceSansPro, 'Helvetica Neue', 'Helvetica', 'Roboto',
     'Arial', sans-serif;
   margin-bottom: 0;
   margin-top: 0;
+  line-height: 1.4em;
 }
 
 .alert-text:only-child {
