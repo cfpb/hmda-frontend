@@ -25,7 +25,7 @@
 
 #parseErrors table thead th {
   font-family: SourceSansProBold;
-  text-align: center;
+  text-align: left;
 }
 
 #parseErrors table tfoot th,
@@ -41,4 +41,9 @@
 #parseErrors .table-large td,
 #parseErrors .table-large th {
   padding: 0.5rem 1rem;
+}
+
+#parseErrors table td:first-of-type {
+  text-align: right;
+  width: 1px;
 }
