@@ -14,6 +14,7 @@ import SubmissionRouter from './submission/router.jsx'
 import { setKeycloak } from './utils/keycloak.js'
 import { setStore } from './utils/store.js'
 import appReducer from './reducers'
+import { withAppContext } from '../common/appContextHOC'
 
 const middleware = [thunkMiddleware]
 
@@ -45,19 +46,19 @@ if (process.env.NODE_ENV !== 'production') {
 
 setStore(store)
 
-const Filing = () => {
+const Filing = ({ config }) => {
   return (
     <div className="App Filing">
       <Provider store={store}>
         <Switch>
-          <Redirect exact from="/filing" to="/filing/2019/"/>
+          <Redirect exact from="/filing" to={`/filing/${config.defaultPeriod}/`}/>
           <Route exact path={'/filing/:filingPeriod/'} render={props => {
-            return <AppContainer {...props}>
+            return <AppContainer {...props} config={config}>
               <HomeContainer/>
             </AppContainer>
           }}/>
           <Route path={'/filing/:filingPeriod/institutions'} render={props => {
-            return <AppContainer {...props}>
+            return <AppContainer {...props} config={config}>
               <InstitutionContainer/>
             </AppContainer>
           }}/>
@@ -77,4 +78,4 @@ const Filing = () => {
   )
 }
 
-export default Filing
+export default withAppContext(Filing)

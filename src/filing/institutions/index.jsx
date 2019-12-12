@@ -7,7 +7,6 @@ import InstitutionsHeader from './Header.jsx'
 import sortInstitutions from '../utils/sortInstitutions.js'
 import YearSelector from '../../common/YearSelector.jsx'
 import Alert from '../../common/Alert.jsx'
-import { FILING_PERIODS } from '../constants/dates.js'
 
 import './Institutions.css'
 
@@ -81,7 +80,8 @@ const _whatToRender = ({ filings, institutions, submission }) => {
 
 export default class Institutions extends Component {
   render() {
-    const { error, filingPeriod, location } = this.props
+    const { error, filingPeriod, filingYears, location } = this.props
+    
     return (
       <main id="main-content" className="Institutions full-width">
         {error ? <ErrorWarning error={error} /> : null}
@@ -90,7 +90,7 @@ export default class Institutions extends Component {
             <InstitutionsHeader filingPeriod={filingPeriod} />
           ) : null}
 
-          <YearSelector years={FILING_PERIODS} year={filingPeriod} url={location.pathname}/>
+          <YearSelector years={filingYears} year={filingPeriod} url={location.pathname}/>
 
           {_whatToRender(this.props)}
 

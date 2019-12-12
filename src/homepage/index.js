@@ -2,11 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Alert from '../common/Alert.jsx'
 import { isBeta } from '../common/Beta.jsx'
+import { withAppContext } from '../common/appContextHOC'
 
 import './Home.css'
 
-const Home = () => {
+const Home = ({ config }) => {
   const beta = isBeta()
+  const { announcement, defaultPeriod } = config
 
   return (
     <main className="App home" id="main-content">
@@ -18,11 +20,11 @@ const Home = () => {
             publicly disclose information about mortgages.
           </p>
         </header>
-        <Alert heading="Announcement">
-          <p>
-            On September 25th, 2019, the Bureau released the 2020 FIG and the Supplemental Guide for Quarterly Filers.
-          </p>
-        </Alert>
+        {announcement && (
+          <Alert heading='Announcement'>
+            <p>{announcement}</p>
+          </Alert>
+        )}
       </div>
       <div style={{marginTop: '3em'}} className="usa-grid-full">
         <div className="card-container">
@@ -30,11 +32,11 @@ const Home = () => {
             <header>
               <h3>
                 <a
-                  href="/filing/2019/"
+                  href="/filing/"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  Get started filing your HMDA data for 2019
+                  Get started filing your HMDA data for {defaultPeriod}
                 </a>
               </h3>
               <p>
@@ -241,4 +243,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default withAppContext(Home)

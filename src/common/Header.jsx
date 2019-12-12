@@ -1,18 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import BannerUSA from './BannerUSA'
+import { defaultLinks } from './constants/links'
 
 import './Header.css'
 import logo from './images/ffiec-logo.svg'
-
-const defaultLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'Filing', href: '/filing/' },
-  { name: 'Data Browser', href: '/data-browser/' },
-  { name: 'Data Publication', href: '/data-publication/' },
-  { name: 'Tools', href: '/tools/' },
-  { name: 'Documentation', href: '/documentation/' }
-]
 
 const Header = ({location: {pathname}, links = defaultLinks}) => {
   return (

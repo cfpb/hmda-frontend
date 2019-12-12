@@ -41,10 +41,12 @@ export class InstitutionContainer extends Component {
 export function mapStateToProps(state, ownProps) {
   const { institutions, filings, submission, error } = state.app
   const { filingPeriod } = ownProps.match.params
+  const filingYears = ownProps.config.filingPeriods
 
   return {
     submission,
     filingPeriod,
+    filingYears,
     institutions,
     filings,
     error
