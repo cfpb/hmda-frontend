@@ -187,7 +187,7 @@ class Geography extends Component {
 
   onInstitutionChange(selectedLEIs = []){
     let leis = selectedLEIs.map(l => l.value)
-    if(leis.includes('all')) leis = []
+    if(leis.indexOf('all') !== -1) leis = []
 
     return this.setState({leis, details: {}}, () => {
       return this.setStateAndRoute({
