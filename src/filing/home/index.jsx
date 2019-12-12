@@ -1,7 +1,6 @@
 import React from 'react'
 import { login, register } from '../utils/keycloak.js'
 import YearSelector from '../../common/YearSelector.jsx'
-import { FILING_PERIODS } from '../constants/dates.js'
 
 import './Home.css'
 
@@ -10,7 +9,7 @@ const Home = props => {
     <main className="FilingHome" id="main-content">
       <section className="hero">
         <div className="full-width">
-          <YearSelector url={props.pathname}  year={props.filingPeriod} years={FILING_PERIODS} />
+          <YearSelector url={props.pathname}  year={props.filingPeriod} years={props.filingYears} />
           <h1>Get started filing your {props.filingPeriod} HMDA data</h1>
           <p className="font-lead max-width">
              Financial institutions use the HMDA Platform to upload their

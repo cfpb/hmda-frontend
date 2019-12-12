@@ -10,7 +10,6 @@ import * as AccessToken from './api/AccessToken.js'
 import { getKeycloak, refresh } from './utils/keycloak.js'
 import isRedirecting from './actions/isRedirecting.js'
 import updateFilingPeriod from './actions/updateFilingPeriod.js'
-import { FILING_PERIODS } from './constants/dates.js'
 import { detect } from 'detect-browser'
 
 import 'normalize.css'
@@ -56,7 +55,7 @@ export class AppContainer extends Component {
       (!getKeycloak().authenticated && !this._isHome(props))
     )
       return <Loading className="floatingIcon" />
-    return React.cloneElement(props.children, {match: this.props.match, location: this.props.location})
+    return React.cloneElement(props.children, {match: this.props.match, location: this.props.location, config: this.props.config})
   }
 
   _isOldBrowser() {
@@ -68,7 +67,7 @@ export class AppContainer extends Component {
   }
 
   render() {
-    const { match: { params }, location } = this.props
+    const { match: { params }, location, config: { filingPeriods } } = this.props
 
     return (
       <div className="AppContainer">
@@ -78,7 +77,7 @@ export class AppContainer extends Component {
         <Header filingPeriod={params.filingPeriod} pathname={location.pathname} />
         <ConfirmationModal />
         {isBeta() ? <Beta/> : null}
-        {FILING_PERIODS.indexOf(params.filingPeriod) !== -1
+        {filingPeriods.indexOf(params.filingPeriod) !== -1
           ? this._renderAppContents(this.props)
           : params.filingPeriod === '2017'
             ? <p className="full-width">Files are no longer being accepted for the 2017 filing period. For further assistance, please contact <a href="mailto:hmdahelp@cfpb.gov">HMDA Help</a>.</p>
