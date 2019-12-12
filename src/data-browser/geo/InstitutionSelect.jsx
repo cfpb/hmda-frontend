@@ -54,9 +54,9 @@ const styleFn = {
 
 export function pruneLeiOptions(data, selected) {
   const selectedLeis = selected.map(s => s.value)
-  const institutions = Object.values(data)
+  const institutions = Object.keys(data).map(v => data[v])
   const opts = institutions
-    .filter(institution => !selectedLeis.includes(institution.lei))
+    .filter(institution => selectedLeis.indexOf(institution.lei) === -1)
     .map(institution => ({ value: institution.lei, label: `${institution.name.toUpperCase()} - ${institution.lei}` }))
     .sort(sortByLabel)
   opts.unshift({ value: 'all', label: `All Financial Institutions (${institutions.length})` })
