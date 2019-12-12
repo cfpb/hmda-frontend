@@ -2,10 +2,9 @@ import { connect } from 'react-redux'
 import Receipt from './Receipt.jsx'
 
 export function mapStateToProps(state) {
-  const { timestamp, receipt } = state.app.signature
+  const { timestamp, receipt, email } = state.app.signature
 
   const { status } = state.app.submission
-  // const { email } = state.app.user.oidc.profile
 
   const { filingPeriod } = state.app
 
@@ -13,8 +12,8 @@ export function mapStateToProps(state) {
     timestamp,
     receipt,
     status,
-    filingPeriod
-    // email
+    filingPeriod,
+    email
   }
 }
 
