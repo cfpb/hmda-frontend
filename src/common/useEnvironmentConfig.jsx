@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { defaultConfig } from './constants/config'
+import defaultConfig from './constants/config.json'
 import { fetchEnvConfig } from './configUtils'
 
 export function useEnvironmentConfig(host) {

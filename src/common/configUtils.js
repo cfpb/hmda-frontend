@@ -1,5 +1,6 @@
-import { CONFIG_URL } from './constants/config'
 import { isBeta } from './Beta'
+
+const CONFIG_URL = 'https://raw.githubusercontent.com/cfpb/hmda-frontend/src/common/constants/config.json'
 
 export function fetchEnvConfig(setFn, host) {
   return fetch(CONFIG_URL)
