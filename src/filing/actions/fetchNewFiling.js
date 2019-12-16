@@ -4,6 +4,7 @@ import hasHttpError from './hasHttpError.js'
 import requestFiling from './requestFiling.js'
 import { createFiling } from '../api/api.js'
 import { error } from '../utils/log.js'
+import fetchNewLatestSubmission from './fetchNewLatestSubmission'
 
 export default function fetchNewFiling(filing) {
   return dispatch => {
@@ -15,7 +16,10 @@ export default function fetchNewFiling(filing) {
             dispatch(receiveError(json))
             throw new Error(json && `${json.status}: ${json.statusText}`)
           }
-          return dispatch(receiveFiling(json))
+          if (!hasError) {
+            dispatch(receiveFiling(json))
+            return dispatch(fetchNewLatestSubmission(filing.lei, filing.period))
+          }
         })
       })
       .catch(err => {

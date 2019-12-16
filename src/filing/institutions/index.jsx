@@ -10,12 +10,16 @@ import Alert from '../../common/Alert.jsx'
 
 import './Institutions.css'
 
-const _setSubmission = (submission, filingObj) => {
-  if (submission.id && submission.id.lei === filingObj.filing.lei) {
+const _setSubmission = (submission, latest, filingObj) => {
+  if (
+    submission.id &&
+    submission.id.lei === filingObj.filing.lei &&
+    submission.id.period.year.toString() === filingObj.filing.period
+  ) {
     return submission
   }
 
-  return filingObj.submissions[0]
+  return latest
 }
 
 const wrapLoading = (i = 0) => {
@@ -26,7 +30,7 @@ const wrapLoading = (i = 0) => {
   )
 }
 
-const _whatToRender = ({ filings, institutions, submission }) => {
+const _whatToRender = ({ filings, institutions, submission, latestSubmissions }) => {
 
   // we don't have institutions yet
   if (!institutions.fetched) return wrapLoading()
@@ -58,9 +62,13 @@ const _whatToRender = ({ filings, institutions, submission }) => {
   return sortedInstitutions.map((key, i) => {
     const institution = institutions.institutions[key]
     const institutionFilings = filings[institution.lei]
+    const institutionSubmission = latestSubmissions[institution.lei]
 
-    if (!institutionFilings || !institutionFilings.fetched) {
-      // filings are not fetched yet
+    if (
+      !institutionFilings || !institutionFilings.fetched ||
+      !institutionSubmission || institutionSubmission.isFetching
+    ) {
+      // latest submission or filings are not fetched yet
       return wrapLoading(i)
     } else {
       // we have good stuff
@@ -70,7 +78,7 @@ const _whatToRender = ({ filings, institutions, submission }) => {
           key={i}
           filing={filingObj.filing}
           institution={institution}
-          submission={_setSubmission(submission, filingObj)}
+          submission={_setSubmission(submission, institutionSubmission, filingObj)}
           submissions={filingObj.submissions}
         />
       )

@@ -26,6 +26,10 @@ export function getLatestSubmission() {
   return fetchData({ submission: 'latest', noCache: 1 })
 }
 
+export function getNewestSubmission(lei, filing){
+  return fetchData({ pathname: `/institutions/${lei}/filings/${filing}/submissions/latest`})
+}
+
 export function getEdits() {
   return fetchData({ suffix: '/edits' })
 }
