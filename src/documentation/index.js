@@ -44,7 +44,7 @@ const pageSlugs = {
 const Documentation = ({ config }) => {
   return (
     <Switch>
-      <Redirect exact from="/documentation" to={`/documentation/${config.defaultPeriod}/`} />
+      <Redirect exact from="/documentation" to={`/documentation/${config.defaultDocsPeriod}/`} />
 
       <Route exact path="/documentation/:year/" render={props => {
         const { url, params: { year } } = props.match
