@@ -1,22 +1,30 @@
 import React from 'react'
 import Alert from './Alert.jsx'
+import alerts from './constants/betaAlerts'
 
 export function isBeta() {
   return window.location.hostname.match('beta')
 }
 
+export function isFiling(){
+  return window.location.pathname.match('^/filing/')
+}
+
+function pickMessage() {
+  if (isFiling()) return alerts.filing
+  return alerts.default
+}
+
 const Beta = props => {
+  const { heading, message } = pickMessage()
   return (
     <div className="Beta">
       <Alert
-        heading={'HMDA Beta'}
+        heading={heading}
         type="warning"
       >
         <p>
-          Welcome to the portal for HMDA beta applications,
-          where you can test upcoming features and releases.
-          <br />
-          Data included is for testing purposes only.
+          {message}
           <br />
           To view the live version of all HMDA applications,
           {' '}<a href="https://ffiec.cfpb.gov">visit our homepage</a>.

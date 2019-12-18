@@ -5,24 +5,8 @@ import { beforeFilingPeriod, afterFilingPeriod } from '../utils/date.js'
 import { isBeta } from '../../common/Beta.jsx'
 
 const InstitutionsHeader = ({ filingPeriod }) => {
-  if (!filingPeriod) return null
+  if (!filingPeriod || isBeta()) return null
 
-  if (isBeta()) {
-    return (
-      <Alert
-        heading={'HMDA Filing Beta'}
-        type="warning"
-      >
-        <p>
-          The beta HMDA Platform is available to upload, test,
-          and validate HMDA data. All data uploaded to the beta
-          system is for testing purposes only and may be removed
-          at any time. You will need to file your final HMDA data to
-          the live system when the filing period is open.
-        </p>
-      </Alert>
-    )
-  }
   if (beforeFilingPeriod(filingPeriod)) {
     return (
       <Alert
