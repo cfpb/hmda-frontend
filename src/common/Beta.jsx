@@ -1,34 +1,23 @@
 import React from 'react'
 import Alert from './Alert.jsx'
-import alerts from './constants/betaAlerts'
 
 export function isBeta() {
   return window.location.hostname.match('beta')
 }
 
-export function isFiling(){
-  return window.location.pathname.match('^/filing/')
-}
-
-function pickMessage() {
-  if (isFiling()) return alerts.filing
-  return alerts.default
-}
-
 const Beta = props => {
-  const { heading, message } = pickMessage()
   return (
-    <div className="Beta">
-      <Alert
-        heading={heading}
-        type="warning"
-      >
+    <div className='Beta'>
+      <Alert heading='HMDA Beta' type='warning'>
         <p>
-          {message}
+          The beta HMDA Platform is available to upload, test, and validate HMDA
+          data. All data uploaded to the beta system is for testing purposes
+          only and may be removed at any time. You will need to file your final
+          HMDA data to the live system when the filing period is open.
           <br />
-          To view the live version of all HMDA applications,
-          {' '}<a href="https://ffiec.cfpb.gov">visit our homepage</a>.
-          {' '}For questions/suggestions, contact hmdahelp@cfpb.gov.
+          To view the live version of all HMDA applications,{' '}
+          <a href='https://ffiec.cfpb.gov'>visit our homepage</a>. For
+          questions/suggestions, contact hmdahelp@cfpb.gov.
         </p>
       </Alert>
     </div>
