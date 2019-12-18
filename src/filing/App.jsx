@@ -7,7 +7,7 @@ import Footer from './common/Footer.jsx'
 import BrowserBlocker from './common/BrowserBlocker.jsx'
 import Loading from '../common/LoadingIcon.jsx'
 import * as AccessToken from './api/AccessToken.js'
-import { getKeycloak, refresh } from './utils/keycloak.js'
+import { getKeycloak, refresh, login } from './utils/keycloak.js'
 import isRedirecting from './actions/isRedirecting.js'
 import updateFilingPeriod from './actions/updateFilingPeriod.js'
 import { detect } from 'detect-browser'
@@ -22,6 +22,7 @@ export class AppContainer extends Component {
     this.props.dispatch(updateFilingPeriod(this.props.match.params.filingPeriod))
     const keycloak = getKeycloak()
     keycloak.init().then(authenticated => {
+      this.keycloakConfigured = true
       if (authenticated) {
         AccessToken.set(keycloak.token)
         refresh()
@@ -29,14 +30,17 @@ export class AppContainer extends Component {
         else this.forceUpdate()
       } else {
         if (!this._isHome(this.props))
-          keycloak.login(this.props.location.pathname)
+          login(this.props.location.pathname)
       }
     })
   }
 
   componentDidUpdate(prevProps) {
     const keycloak = getKeycloak()
-    if (!keycloak.authenticated && !this._isHome(this.props)) keycloak.login()
+    if (!keycloak.authenticated && !this._isHome(this.props)){
+      if(this.keycloakConfigured) login(this.props.location.pathname)
+    }
+
 
     const period = this.props.match.params.filingPeriod
     if(prevProps.match.params.filingPeriod !== period) {
