@@ -34,13 +34,16 @@ export function mapDispatchToProps(dispatch, ownProps) {
   const triggerRefile = (lei, period, page = '', file) => {
     dispatch(refreshState())
     if (page === 'upload' && file) {
-      const fileErrors = checkFileErrors(file)
-      if (fileErrors.length)
-        return dispatch(processFileErrors(fileErrors, file.name))
+      console.log('MODAL')
+      checkFileErrors(file, fileErrors => {
+        console.log('FILE ERRORS MODAL', fileErrors)
+        if (fileErrors.length)
+          return dispatch(processFileErrors(fileErrors, file.name))
 
-      return dispatch(fetchNewSubmission(lei, period)).then(() => {
-        dispatch(selectFile(file))
-        dispatch(fetchUpload(file))
+        return dispatch(fetchNewSubmission(lei, period)).then(() => {
+          dispatch(selectFile(file))
+          dispatch(fetchUpload(file))
+        })
       })
     } else {
       return dispatch(fetchNewSubmission(lei, period)).then(() => {

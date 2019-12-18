@@ -8,17 +8,18 @@ import checkFileErrors from '../utils/checkFileErrors.js'
 
 export default function handleFile(file, code, error) {
   return dispatch => {
-    const fileErrors = checkFileErrors(file)
+    checkFileErrors(file, fileErrors => {
+console.log('FILE ERRORS', fileErrors)
+      if (fileErrors.length)
+        return dispatch(processFileErrors(fileErrors, file.name))
 
-    if (fileErrors.length)
-      return dispatch(processFileErrors(fileErrors, file.name))
-
-    if (code >= STATUS.UPLOADING || error) {
-      dispatch(showConfirm())
-      dispatch(selectNewFile(file))
-    } else {
-      dispatch(selectFile(file))
-      dispatch(fetchUpload(file))
-    }
+      if (code >= STATUS.UPLOADING || error) {
+        dispatch(showConfirm())
+        dispatch(selectNewFile(file))
+      } else {
+        dispatch(selectFile(file))
+        dispatch(fetchUpload(file))
+      }
+    })
   }
 }
