@@ -56,8 +56,8 @@ If you are having issues uploading a new file and are receiving errors from a pr
 
 ### Submission
 
-**When is the filing period?**
-The filing period is between January 1 and March 1 of each year.  The HMDA platform for each filing period opens January 1st.  The submission deadline is March 1st.  
+**March 1, 2020 falls on a Sunday, what is the filing deadline for submission of 2019 HMDA data?**
+Submissions will be considered timely if received on or before Monday, March 2, 2020. 
 
 **How do I know my file was submitted?**
 Upon signing and submitting your file, an email confirming your submission will be sent to the email address on file. Additionally, when you log into your account, you should see a message stating:
