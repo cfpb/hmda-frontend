@@ -3,9 +3,7 @@ export default function checkFileErrors(file, cb) {
   const reader = new window.FileReader()
 
   reader.addEventListener('load', () => {
-    const firstBytes = reader.readAsText(fileSlice)
-    console.log(firstBytes)
-
+    const firstBytes = reader.result
     const errors = []
 
     if (file && file.size !== undefined && file.name !== undefined) {
@@ -31,4 +29,5 @@ export default function checkFileErrors(file, cb) {
 
     cb(errors)
   })
+  reader.readAsText(fileSlice)
 }

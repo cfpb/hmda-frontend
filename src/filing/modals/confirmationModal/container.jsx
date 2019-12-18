@@ -34,9 +34,7 @@ export function mapDispatchToProps(dispatch, ownProps) {
   const triggerRefile = (lei, period, page = '', file) => {
     dispatch(refreshState())
     if (page === 'upload' && file) {
-      console.log('MODAL')
       checkFileErrors(file, fileErrors => {
-        console.log('FILE ERRORS MODAL', fileErrors)
         if (fileErrors.length)
           return dispatch(processFileErrors(fileErrors, file.name))
 
