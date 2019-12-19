@@ -22,12 +22,11 @@ export function createFiling(lei, filing) {
   })
 }
 
-export function getLatestSubmission() {
-  return fetchData({ submission: 'latest', noCache: 1 })
-}
-
-export function getNewestSubmission(lei, filing){
-  return fetchData({ pathname: `/institutions/${lei}/filings/${filing}/submissions/latest`})
+export function getLatestSubmission(lei, filing) {
+  const options = { submission: 'latest', noCache: 1 }
+  if(lei) options.lei = lei
+  if(filing) options.filing = filing
+  return fetchData(options)
 }
 
 export function getEdits() {
