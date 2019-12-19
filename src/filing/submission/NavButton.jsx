@@ -13,9 +13,8 @@ const NavButton = ({ page, base, code, editsFetched, validationComplete, quality
   let className
   let suffix
   let spinOn = false
-  const editFetchInProgress = !editsFetched
+  const editFetchInProgress = code < 14 && !editsFetched
   const preError = code <= VALIDATING || !validationComplete
-
   switch (page) {
     case 'upload':
       suffix = 'syntacticalvalidity'
