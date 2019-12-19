@@ -26,6 +26,7 @@ export class SubmissionRouter extends Component {
     this.renderChildren = false
     const { submission, match: {params}, dispatch } = this.props
     const status = submission.status
+    const wrongYear = !submission.id || submission.id.period.year !== params.filingPeriod
 
     if (!params.lei) {
       return this.goToAppHome()
@@ -38,7 +39,7 @@ export class SubmissionRouter extends Component {
 
     dispatch(setLei(params.lei))
 
-    if (unmatchedId || !status || status.code === UNINITIALIZED) {
+    if (unmatchedId || !status || status.code === UNINITIALIZED || wrongYear) {
       return dispatch(fetchSubmission()).then(() => {
         if (this.editsNeeded()) {
           dispatch(fetchEdits()).then(() => {

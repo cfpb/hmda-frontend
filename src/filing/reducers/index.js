@@ -17,6 +17,7 @@ import paginationFade from './paginationFade.js'
 import error from './error.js'
 import user from './user.js'
 import redirecting from './redirecting.js'
+import latestSubmissions from './latestSubmissions'
 
 export default combineReducers({
   lei,
@@ -35,5 +36,6 @@ export default combineReducers({
   paginationFade,
   error,
   user,
-  redirecting
+  redirecting,
+  latestSubmissions
 })

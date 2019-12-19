@@ -9,7 +9,7 @@ import {
 } from '../constants'
 import { UNINITIALIZED } from '../constants/statusCodes.js'
 
-const defaultSubmission = {
+export const defaultSubmission = {
   id: null,
   filename: '',
   status: {
