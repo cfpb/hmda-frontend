@@ -18,7 +18,7 @@ export default function fetchNewFiling(filing) {
           }
           if (!hasError) {
             dispatch(receiveFiling(json))
-            return dispatch(receiveLatestSubmission({ lei: filing.lei }))
+            return dispatch(receiveLatestSubmission({ id: { lei: filing.lei } }))
           }
         })
       })
