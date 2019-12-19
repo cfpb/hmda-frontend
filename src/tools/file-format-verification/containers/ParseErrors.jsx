@@ -18,7 +18,7 @@ function mapStateToProps(state) {
 
   const { errors } = state.app.upload
 
-  const { pagination } = state.app
+  const { pagination, filingPeriod } = state.app
 
   return {
     isParsing,
@@ -26,7 +26,8 @@ function mapStateToProps(state) {
     transmittalSheetErrors,
     larErrors,
     pagination,
-    errors
+    errors,
+    filingPeriod
   }
 }
 
