@@ -16,6 +16,7 @@ export default (state = defaultLatestSubmissions, action) => {
       return {
         ...state,
         latestSubmissions: {
+          ...state.latestSubmissions,
           [action.lei]: {
             isFetching: true
           }
