@@ -4,7 +4,7 @@ import hasHttpError from './hasHttpError.js'
 import requestFiling from './requestFiling.js'
 import { createFiling } from '../api/api.js'
 import { error } from '../utils/log.js'
-import fetchNewLatestSubmission from './fetchNewLatestSubmission'
+import receiveLatestSubmission from './receiveLatestSubmission'
 
 export default function fetchNewFiling(filing) {
   return dispatch => {
@@ -18,7 +18,7 @@ export default function fetchNewFiling(filing) {
           }
           if (!hasError) {
             dispatch(receiveFiling(json))
-            return dispatch(fetchNewLatestSubmission(filing.lei, filing.period))
+            return dispatch(receiveLatestSubmission({ lei: filing.lei }))
           }
         })
       })
