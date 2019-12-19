@@ -7,20 +7,17 @@ export function isBeta() {
 
 const Beta = props => {
   return (
-    <div className="Beta">
-      <Alert
-        heading={'HMDA Beta'}
-        type="warning"
-      >
+    <div className='Beta'>
+      <Alert heading='HMDA Beta' type='warning'>
         <p>
-          Welcome to the portal for HMDA beta applications,
-          where you can test upcoming features and releases.
+          The beta HMDA Platform is available to upload, test, and validate HMDA
+          data. All data uploaded to the beta system is for testing purposes
+          only and may be removed at any time. You will need to file your final
+          HMDA data to the live system when the filing period is open.
           <br />
-          Data included is for testing purposes only.
-          <br />
-          To view the live version of all HMDA applications,
-          {' '}<a href="https://ffiec.cfpb.gov">visit our homepage</a>.
-          {' '}For questions/suggestions, contact hmdahelp@cfpb.gov.
+          To view the live version of all HMDA applications,{' '}
+          <a href='https://ffiec.cfpb.gov'>visit our homepage</a>. For
+          questions/suggestions, contact hmdahelp@cfpb.gov.
         </p>
       </Alert>
     </div>
