@@ -12,6 +12,8 @@ export default function fetchLatestSubmission(lei, filing) {
       .then(json => {
         return hasHttpError(json).then(hasError => {
           if (!hasError) return dispatch(receiveLatestSubmission(json))
+          if (json && json.status === 404)
+            return dispatch(receiveLatestSubmission({id:{lei}}))
           if (hasError) {
             dispatch(receiveError(json))
             throw new Error(json && `${json.status}: ${json.statusText}`)

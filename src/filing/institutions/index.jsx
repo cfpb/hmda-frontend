@@ -89,7 +89,7 @@ const _whatToRender = ({ filings, institutions, submission, latestSubmissions })
 export default class Institutions extends Component {
   render() {
     const { error, filingPeriod, filingYears, location } = this.props
-    
+
     return (
       <main id="main-content" className="Institutions full-width">
         {error ? <ErrorWarning error={error} /> : null}
