@@ -7,7 +7,7 @@ import Footer from './common/Footer'
 import Beta, { isBeta } from './common/Beta'
 import makeAsyncComponent from './common/makeAsyncComponent.js'
 import { useEnvironmentConfig } from './common/useEnvironmentConfig'
-import { betaLinks, defaultLinks } from './common/constants/links'
+import { betaLinks, defaultLinks, updateFilingLink } from './common/constants/links'
 import { AppContext } from './common/appContextHOC'
 
 import './app.css'
@@ -28,7 +28,7 @@ const App = () => {
       {isFiling ? null : <Route path="/" render={props => {
         return (
           <Header
-            links={isBeta() ? betaLinks : defaultLinks}
+            links={isBeta() ? betaLinks : updateFilingLink(config, defaultLinks)}
             {...props}
           />
         )

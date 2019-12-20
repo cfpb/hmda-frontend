@@ -32,7 +32,7 @@ const Home = ({ config }) => {
             <header>
               <h3>
                 <a
-                  href="/filing/"
+                  href={`/filing/${defaultPeriod}`}
                   rel="noopener noreferrer"
                   target="_blank"
                 >
@@ -46,7 +46,7 @@ const Home = ({ config }) => {
                 accuracy and completeness of the data, and submit data for the
                 filing year.
               </p>
-              {beta ? null :
+              {beta ? null : config.show2017 &&
               <a
                 href="https://ffiec.cfpb.gov/filing/"
                 rel="noopener noreferrer"

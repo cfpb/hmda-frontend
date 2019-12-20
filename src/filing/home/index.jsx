@@ -4,7 +4,11 @@ import YearSelector from '../../common/YearSelector.jsx'
 
 import './Home.css'
 
+const link2017 = <>For data collected in 2017, please <a href="https://ffiec.cfpb.gov/filing/">visit the 2017 Platform.</a> </>
+
 const Home = props => {
+  const add2017 = props.show2017 ? link2017 : null
+  
   return (
     <main className="FilingHome" id="main-content">
       <section className="hero">
@@ -15,7 +19,7 @@ const Home = props => {
              Financial institutions use the HMDA Platform to upload their
              loan/application registers (LARs), review edits, certify the
              accuracy and completeness of the data, and submit data for the
-             filing year.
+             filing year. {add2017}
            </p>
           <button
             className="button"
