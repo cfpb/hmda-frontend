@@ -32,7 +32,7 @@ const Home = ({ config }) => {
             <header>
               <h3>
                 <a
-                  href={`/filing/${defaultPeriod}`}
+                  href={`/filing/${defaultPeriod}/`}
                   rel="noopener noreferrer"
                   target="_blank"
                 >
