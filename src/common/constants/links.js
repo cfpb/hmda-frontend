@@ -11,3 +11,11 @@ export const defaultLinks = [
   { name: 'Tools', href: '/tools/' },
   { name: 'Documentation', href: '/documentation/' }
 ]
+
+export const updateFilingLink = (config, links) => {
+  return links.map(link => {
+    if(link.name !== 'Filing') return link
+    link.href = `/filing/${config.defaultPeriod}`
+    return link
+  })
+}
