@@ -133,9 +133,9 @@ class ParseErrors extends Component {
 function errorResponseParser(errorResponse, uliNeeded) {
   let apiErrorMessages = []
 
-  errorResponse.forEach(function(errorsFound,i) {
-    if(errorsFound && errorsFound.errorMessages) {
-      for (const [index, errorMessage] of errorsFound.errorMessages.entries()) {
+  errorResponse.forEach(function (errorsFound, i) {
+    if (errorsFound && errorsFound.errorMessages) {
+      errorsFound.errorMessages.forEach(function (errorMessage, index) {
         let inputContent = errorMessage.inputValue
 
         if (errorMessage.inputValue === '') inputContent = <em>(blank)</em>
@@ -143,15 +143,16 @@ function errorResponseParser(errorResponse, uliNeeded) {
         apiErrorMessages.push(
           <tr key={`${i}${index}`}>
             <td>{errorsFound.rowNumber}</td>
-            {uliNeeded ? <td>{errorsFound.estimatedULI}</td>:null}
+            {uliNeeded ? <td>{errorsFound.estimatedULI}</td> : null}
             <td>{errorMessage.fieldName}</td>
             <td>{inputContent}</td>
-            <td>{errorMessage.validValues}</td>
-           </tr>
+            <td> {errorMessage.validValues}</td>
+          </tr>
         )
-      }
+      })
     }
   })
+
   return apiErrorMessages
 }
 
