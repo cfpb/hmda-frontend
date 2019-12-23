@@ -4,14 +4,13 @@
     "defaultPeriod": "2019",
     "defaultDocsPeriod": "2019",
     "filingPeriods": ["2019", "2018"],
-    "show2017": true,
+    "show2017": false,
     "beta": {
       "announcement": "The filing period is open. Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.",
       "defaultPeriod": "2019",
       "defaultDocsPeriod": "2019",
       "filingPeriods": ["2019", "2018"],
-      "show2017": true,
-      "showMaps": false
+      "show2017": false
     }
   },
   "dev": {
@@ -19,15 +18,13 @@
     "defaultPeriod": "2019",
     "defaultDocsPeriod": "2019",
     "filingPeriods": ["2019", "2018"],
-    "show2017": true,
-    "showMaps": true,
+    "show2017": false,
     "beta": {
       "announcement": "The filing period is open. Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.",
       "defaultPeriod": "2019",
       "defaultDocsPeriod": "2019",
       "filingPeriods": ["2019", "2018"],
-      "show2017": true,
-      "showMaps": true
+      "show2017": false
     }
   }
 }
