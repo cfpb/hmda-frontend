@@ -19,7 +19,7 @@ import Signature from './signature/container.jsx'
 import Summary from './summary/container.jsx'
 import ParseErrors from './parseErrors/container.jsx'
 import Loading from '../../common/LoadingIcon.jsx'
-import { FAILED, PARSED_WITH_ERRORS, SIGNED } from '../constants/statusCodes.js'
+import { CREATED, FAILED, PARSED_WITH_ERRORS, SIGNED } from '../constants/statusCodes.js'
 
 import './container.css'
 import './table.css'
@@ -31,6 +31,9 @@ const RefileWarning = submissionProgressHOC(RefileWarningComponent)
 
 const renderByCode = (code, page, lei, filingPeriod) => {
   const toRender = []
+  // avoid rendering the Summary during the transition to the correct URL
+  if (code === CREATED && page !== 'upload')
+    return toRender
   if (code === FAILED) {
     toRender.push(<RefileWarning />)
     return toRender
@@ -87,6 +90,17 @@ class SubmissionContainer extends Component {
     if (!this.props.institutions.institutions[lei]) {
       this.props.dispatch(fetchInstitution( { lei }, filingPeriod, false))
     }
+  }
+
+  componentDidUpdate() {
+    const { lei, filingPeriod } = this.props.match.params
+    const { submission, location } = this.props
+    const status = submission.status
+    const code = status && status.code
+    const page = location.pathname.split('/').slice(-1)[0]
+    
+    if(code === CREATED && page !== 'upload')
+      this.props.history.replace(`/filing/${filingPeriod}/${lei}/upload`)
   }
 
   render() {
