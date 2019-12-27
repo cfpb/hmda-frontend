@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import equal from 'fast-deep-equal'
 import SubmissionContainer from './container.jsx'
 import Loading from '../../common/LoadingIcon.jsx'
 import fetchSubmission from '../actions/fetchSubmission.js'
@@ -22,11 +23,20 @@ const editTypes = ['syntacticalvalidity', 'quality', 'macro']
 const submissionRoutes = ['upload', ...editTypes, 'submission']
 
 export class SubmissionRouter extends Component {
+
+  componentDidUpdate(prev) {
+    if(!equal(this.props, prev)) this.guardRouting()
+  }
+
   componentDidMount() {
+    this.guardRouting()
+  }
+
+  guardRouting() {
     this.renderChildren = false
-    const { submission, match: {params}, dispatch } = this.props
+    const { submission, edits, lei, match: {params}, dispatch } = this.props
     const status = submission.status
-    const wrongYear = !submission.id || submission.id.period.year !== params.filingPeriod
+    const wrongYear = !submission.id || +submission.id.period.year !== +params.filingPeriod
 
     if (!params.lei) {
       return this.goToAppHome()
@@ -36,24 +46,21 @@ export class SubmissionRouter extends Component {
       submission.id && submission.id.lei !== params.lei
 
     if (unmatchedId) dispatch(refreshState())
+    if(!lei || lei !== params.lei) return dispatch(setLei(params.lei))
 
-    dispatch(setLei(params.lei))
+    if(submission.isFetching) return
 
     if (unmatchedId || !status || status.code === UNINITIALIZED || wrongYear) {
       return dispatch(fetchSubmission()).then(() => {
-        if (this.editsNeeded()) {
-          dispatch(fetchEdits()).then(() => {
-            this.route()
-          })
+        if(this.editsNeeded()){
+          if(!edits.fetched && !edits.isFetching){
+            dispatch(fetchEdits()).then(() => {
+              this.route()
+            })
+          }
         } else {
           this.route()
         }
-      })
-    }
-
-    if (this.editsNeeded()) {
-      return dispatch(fetchEdits()).then(() => {
-        this.route()
       })
     }
 
@@ -97,22 +104,20 @@ export class SubmissionRouter extends Component {
     const splat = this.props.match.params.splat
     const latest = this.getLatestPage()
 
-    this.renderChildren = true
-
     if (!splat) {
       return this.replaceHistory(latest)
     }
 
     if (submissionRoutes.indexOf(splat) === -1) {
-      return this.goToAppHome()
+      return this.replaceHistory(latest)
     }
 
     if (code <= VALIDATING)
-      if (splat === 'upload') return this.forceUpdate()
+      if (splat === 'upload') return this.update()
       else return this.replaceHistory('upload')
 
-    if (code >= VALIDATING && code <= VALIDATED) {
-      if (splat === latest) return this.forceUpdate()
+    if (code > VALIDATING && code <= VALIDATED) {
+      if (splat === latest) return this.update()
       else if (
         submissionRoutes.indexOf(splat) > submissionRoutes.indexOf(latest)
       ) {
@@ -120,14 +125,24 @@ export class SubmissionRouter extends Component {
       }
     }
 
+    return this.update()
+  }
+
+  update(){
+    this.renderChildren = true
     return this.forceUpdate()
   }
 
   render() {
-    const { submission, match: {params} } = this.props
+    const { submission, lei, match: {params} } = this.props
+    const { code } = submission.status
+
     if (
-      submission.status.code === UNINITIALIZED ||
+      code === UNINITIALIZED ||
+      (code < VALIDATED && code !== NO_MACRO_EDITS && params.splat === 'submission') ||
+      submission.isFetching ||
       submission.id.lei !== params.lei ||
+      lei !== params.lei ||
       !this.renderChildren ||
       !params.splat
     )
@@ -137,15 +152,15 @@ export class SubmissionRouter extends Component {
 }
 
 export function mapStateToProps(state, ownProps) {
-  const { submission } = state.app
-  const { types } = state.app.edits
+  const { submission, lei, edits } = state.app
 
   const { match: {params} } = ownProps
 
   return {
     submission,
-    types,
-    params
+    params,
+    lei,
+    edits
   }
 }
 
