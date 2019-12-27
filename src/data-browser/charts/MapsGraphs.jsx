@@ -5,7 +5,7 @@ import MapContainer from './MapContainer.jsx'
 
 import './MapsGraphs.css'
 
-const MapsGraphs = () => {
+const MapsGraphs = props => {
   return (
     <div className="MapsGraphs">
       <Link className="BackLink" to="/data-browser/">{'\u2b05'} DATA BROWSER HOME</Link>
@@ -17,7 +17,7 @@ const MapsGraphs = () => {
           </p>
         </Heading>
       </div>
-      <MapContainer/>
+      <MapContainer {...props}/>
     </div>
   )
 }

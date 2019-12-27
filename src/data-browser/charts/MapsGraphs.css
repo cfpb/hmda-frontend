@@ -2,3 +2,11 @@
   height: 600px;
   margin-top: 0.5em;
 }
+
+.mapboxgl-popup-content {
+  padding: 10px;
+}
+
+.mapboxgl-popup-content > h4 {
+  margin: 0;
+}
