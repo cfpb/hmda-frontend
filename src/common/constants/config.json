@@ -5,12 +5,14 @@
     "defaultDocsPeriod": "2019",
     "filingPeriods": ["2018"],
     "show2017": true,
+    "showMaps": false,
     "beta": {
       "announcement": "HMDA Filing season begins Jan. 1st. See our 2019 Documentation page for filing FAQs and other useful information.",
       "defaultPeriod": "2019",
       "defaultDocsPeriod": "2019",
       "filingPeriods": ["2019", "2018"],
-      "show2017": true
+      "show2017": true,
+      "showMaps": false
     }
   },
   "dev": {
@@ -19,12 +21,14 @@
     "defaultDocsPeriod": "2019",
     "filingPeriods": ["2019", "2018"],
     "show2017": true,
+    "showMaps": true,
     "beta": {
       "announcement": "HMDA Filing season begins Jan. 1st. See our 2019 Documentation page for filing FAQs and other useful information.",
       "defaultPeriod": "2019",
       "defaultDocsPeriod": "2019",
       "filingPeriods": ["2019", "2018"],
-      "show2017": true
+      "show2017": true,
+      "showMaps": true
     }
   }
 }
