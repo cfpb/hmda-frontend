@@ -6,6 +6,9 @@ import NotFound from './common/NotFound'
 import Footer from './common/Footer'
 import Beta, { isBeta } from './common/Beta'
 import makeAsyncComponent from './common/makeAsyncComponent.js'
+import { useEnvironmentConfig } from './common/useEnvironmentConfig'
+import { betaLinks, defaultLinks, updateFilingLink } from './common/constants/links'
+import { AppContext } from './common/appContextHOC'
 
 import './app.css'
 
@@ -18,15 +21,14 @@ const Filing = makeAsyncComponent(() => import('./filing'))
 
 const App = () => {
   const isFiling = !!window.location.pathname.match(/^\/filing/)
+  const config = useEnvironmentConfig(window.location.hostname)
+
   return (
-    <>
+    <AppContext.Provider value={{ config }}>
       {isFiling ? null : <Route path="/" render={props => {
         return (
           <Header
-            links={isBeta() ?
-              [{ name: 'Home', href: '/' }, { name: 'Filing', href: '/filing/' }]
-              : undefined
-            }
+            links={isBeta() ? betaLinks : updateFilingLink(config, defaultLinks)}
             {...props}
           />
         )
@@ -41,8 +43,8 @@ const App = () => {
         <Route path = "/filing" component={Filing} />
         <Route component={NotFound} />
       </Switch>
-    {isFiling ? null : <Footer />}
-    </>
+      {isFiling ? null : <Footer />}
+    </AppContext.Provider>
   )
 }
 

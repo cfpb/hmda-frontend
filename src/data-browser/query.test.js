@@ -82,10 +82,10 @@ it('sanitizes an array, allowing empty string', () => {
   expect(sanitizeArray('actions_taken', ['2', '', '44'])).toEqual(['2', ''])
 })
 
-it('sanatizes an array for lei keys', () => {
+it('no longer sanatizes an array for lei keys', () => {
   expect(
     sanitizeArray('leis', ['549300T1F1BRPWSZT586', '549300T1F1BRPWSZT58'])
-  ).toEqual(['549300T1F1BRPWSZT586'])
+  ).toEqual(['549300T1F1BRPWSZT586', '549300T1F1BRPWSZT58'])
 })
 
 it('makes state from search', () => {

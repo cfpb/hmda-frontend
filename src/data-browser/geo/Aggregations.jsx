@@ -2,10 +2,10 @@ import React from 'react'
 import STATEOBJ from '../constants/stateObj.js'
 import MSATONAME from '../constants/msaToName.js'
 import COUNTIES from '../constants/counties.js'
-import LEIS from '../constants/leis.js'
 import VARIABLES from '../constants/variables.js'
 import DocLink from './DocLink.jsx'
 import { formatWithCommas } from './selectUtils.js'
+import LoadingIcon from '../../common/LoadingIcon'
 
 function buildRows(aggregations, orderedVariables) {
   return aggregations.map((row, i) => {
@@ -19,12 +19,12 @@ function buildRows(aggregations, orderedVariables) {
   })
 }
 
-function makeHeader(params, orderedVariables, year) {
+function makeHeader(params, orderedVariables, year, leis) {
   const list = []
   if(params.state) list.push(<li key="0"><h4>State:</h4><ul className="sublist"><li>{params.state.split(',').map(v => STATEOBJ[v]).join(', ')}</li></ul></li>)
   else if(params.msamd) list.push(<li key="0"><h4>MSA/MD:</h4><ul className="sublist"><li>{params.msamd.split(',').map(v => `${v}\u00A0-\u00A0${MSATONAME[v]}`).join(', ')}</li></ul></li>)
   else if(params.county) list.push(<li key="0"><h4>County:</h4><ul className="sublist"><li>{params.county.split(',').map(v => COUNTIES[v]).join(', ')}</li></ul></li>)
-  else if(params.lei) list.push(<li key="0"><h4>Institutions:</h4><ul className="sublist"><li>{params.lei.split(',').map(v => LEIS[v]).join(', ')}</li></ul></li>)
+  if(params.lei) list.push(<li key="1"><h4>Institutions:</h4><ul className="sublist"><li>{institutionsOrLoading(params.lei, leis)}</li></ul></li>)
 
   orderedVariables.forEach((variable) => {
     list.push(
@@ -44,6 +44,11 @@ function makeHeader(params, orderedVariables, year) {
   return <ul>{list}</ul>
 }
 
+function institutionsOrLoading(selected, details){
+  if(details.loading) return <LoadingIcon className="LoadingInline" />
+  return selected.split(',').map(v => details.leis[v].name).join(', ')
+}
+
 // eslint-disable-next-line
 const Aggregations = React.forwardRef((props, ref) => {
   const { aggregations, parameters } = props.details
@@ -57,7 +62,7 @@ const Aggregations = React.forwardRef((props, ref) => {
   return (
     <div ref={ref} className="Aggregations">
       <h2>Data Summary</h2>
-      {makeHeader(parameters, ordered, props.year)}
+      {makeHeader(parameters, ordered, props.year, props.leis)}
       <table>
         <thead>
           <tr>

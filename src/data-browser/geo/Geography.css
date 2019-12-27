@@ -82,18 +82,6 @@ svg {
   border: 1px solid #0071bc;
 }
 
-.QueryButton:hover {
-  background-color: #205493;
-}
-
-.QueryButton:active {
-  background-color: #112e51;
-}
-
-.QueryButton.disabled {
-  background-color: #888;
-}
-
 .QueryButton.secondary {
   color:#254b87;
   color:#002d72;
@@ -101,14 +89,24 @@ svg {
   border-color:#254b87;
 }
 
-.QueryButton.secondary:hover {
-  background: #afd2f2
+.QueryButton:hover {
+  background-color: #205493;
 }
 
+.QueryButton.secondary:hover {
+  background-color: #afd2f2
+}
+
+.QueryButton:active {
+  background-color: #112e51;
+}
+
+.QueryButton.disabled,
 .QueryButton.secondary.disabled {
-  color: #000;
-  border-color: #000;
-  background: #e7ddd7
+  color: #fff;
+  background-color: #888;
+  border-color: #888;
+  cursor: not-allowed;
 }
 
 .Aggregations h2 {

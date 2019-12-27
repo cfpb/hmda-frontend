@@ -34,21 +34,23 @@ export class InstitutionContainer extends Component {
   }
 
   render() {
-    console.log('institutions container props', this.props)
     return <Institutions {...this.props} />
   }
 }
 
 export function mapStateToProps(state, ownProps) {
-  const { institutions, filings, submission, error } = state.app
+  const { institutions, filings, submission, latestSubmissions, error } = state.app
   const { filingPeriod } = ownProps.match.params
+  const filingYears = ownProps.config.filingPeriods
 
   return {
     submission,
     filingPeriod,
+    filingYears,
     institutions,
     filings,
-    error
+    error,
+    latestSubmissions: latestSubmissions.latestSubmissions
   }
 }
 

@@ -7,9 +7,10 @@ import { ERRORS_PER_PAGE } from '../constants'
 
 import './ParseErrors.css'
 
-const renderLarErrors = (larErrors, pagination) => {
+const renderLarErrors = (larErrors, pagination, period) => {
   if (larErrors.length === 0) return null
   const currentErrs = []
+  const is2017 = period === '2017'
 
   //don't move to the next page until fading in
   const end =
@@ -22,8 +23,7 @@ const renderLarErrors = (larErrors, pagination) => {
 
     currentErrs.push(
       <tr key={i}>
-        <td>{err.row}</td>
-        <td>{err.error}</td>
+        {is2017 ? renderErrorColumns2017(err) : renderErrorColumns(err)}
       </tr>
     )
   }
@@ -38,18 +38,16 @@ const renderLarErrors = (larErrors, pagination) => {
         <p>Formatting errors in loan application records, arranged by row.</p>
       </caption>
       <thead>
-        <tr>
-          <th>Row</th>
-          <th>Errors</th>
-        </tr>
+        <tr>{getHeaders(is2017)}</tr>
       </thead>
       <tbody>{currentErrs}</tbody>
     </table>
   )
 }
 
-const renderTSErrors = transmittalSheetErrors => {
+const renderTSErrors = (transmittalSheetErrors, period) => {
   if (transmittalSheetErrors.length === 0) return null
+  const is2017 = period === '2017'
   return (
     <table className="margin-bottom-0" width="100%">
       <caption>
@@ -60,17 +58,14 @@ const renderTSErrors = transmittalSheetErrors => {
         </p>
       </caption>
       <thead>
-        <tr>
-          <th>Row</th>
-          <th>Transmittal Sheet Errors</th>
-        </tr>
+        <tr>{getHeaders(is2017, true)}</tr>
       </thead>
       <tbody>
         {transmittalSheetErrors.map((tsError, i) => {
           return (
             <tr key={i}>
               <td>1</td>
-              <td>{tsError}</td>
+              {is2017 ? renderErrorColumns2017(tsError) : renderErrorColumns(tsError)}
             </tr>
           )
         })}
@@ -105,6 +100,61 @@ const renderParseResults = (count, errors) => {
   )
 }
 
+function renderErrorColumns(err){
+  const columns = []
+  const { fieldName, inputValue, row, validValues, uli } = err
+  const userInput = inputValue === '' ? <em>(blank)</em> : inputValue
+
+  columns.push(<td key='1'>{fieldName}</td>)
+  columns.push(<td key='2'>{userInput}</td>)
+  columns.push(<td key='3'>{validValues}</td>)
+
+  if(uli) {
+    columns.unshift(<td key='4'>{uli}</td>)
+    columns.unshift(<td key='5'>{row}</td>)
+  }
+
+  return columns
+}
+
+function renderErrorColumns2017(err){
+  // TS Error
+  if(!err.row && !err.error)
+    return <td>{err}</td>
+
+  // LAR Error
+  return (
+    <>
+      <td>{err.row}</td>
+      <td>{err.error}</td>
+    </>
+  )
+}
+
+function getHeaders(is2017, isTs) {
+  const headers = ['Row']
+
+  if (is2017) {
+    // 2017 TS & LAR
+    headers.push('Errors')
+  } else {
+    if (isTs) {
+      // 2018+ TS
+      headers.push('TS Data Field')
+      headers.push('Found Value')
+      headers.push('Valid Value')
+    } else {
+      // 2018+ LAR
+      headers.push('ULI')
+      headers.push('LAR Data Field')
+      headers.push('Found Value')
+      headers.push('Valid Value')
+    }
+  }
+
+  return headers.map((label, idx) => <th key={idx}>{label}</th>)
+}
+
 const ParseErrors = props => {
   const {
     parsed,
@@ -112,7 +162,8 @@ const ParseErrors = props => {
     transmittalSheetErrors,
     larErrors,
     pagination,
-    errors
+    errors,
+    filingPeriod
   } = props
   const count = transmittalSheetErrors.length + larErrors.length
 
@@ -122,8 +173,8 @@ const ParseErrors = props => {
   return (
     <div className="ParseErrors usa-grid-full" id="parseErrors">
       {renderParseResults(count, errors)}
-      {renderTSErrors(transmittalSheetErrors)}
-      {renderLarErrors(larErrors, pagination)}
+      {renderTSErrors(transmittalSheetErrors, filingPeriod)}
+      {renderLarErrors(larErrors, pagination, filingPeriod)}
       <Pagination />
     </div>
   )
@@ -131,7 +182,8 @@ const ParseErrors = props => {
 
 ParseErrors.propTypes = {
   transmittalSheetErrors: PropTypes.array,
-  larErrors: PropTypes.array
+  larErrors: PropTypes.array,
+  period: PropTypes.string
 }
 
 export default ParseErrors

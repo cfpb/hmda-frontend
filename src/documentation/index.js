@@ -17,6 +17,7 @@ import Tools from './tools'
 import DataBrowser from './tools/DataBrowser.jsx'
 import RateSpread from './tools/RateSpread.jsx'
 import CheckDigit from './tools/CheckDigit.jsx'
+import { withAppContext } from '../common/appContextHOC'
 
 import './index.css'
 
@@ -40,10 +41,10 @@ const pageSlugs = {
   'check-digit': CheckDigit
 }
 
-const Documentation = () => {
+const Documentation = ({ config }) => {
   return (
     <Switch>
-      <Redirect exact from="/documentation" to="/documentation/2018/" />
+      <Redirect exact from="/documentation" to={`/documentation/${config.defaultDocsPeriod}/`} />
 
       <Route exact path="/documentation/:year/" render={props => {
         const { url, params: { year } } = props.match
@@ -102,4 +103,4 @@ const Documentation = () => {
   )
 }
 
-export default Documentation
+export default withAppContext(Documentation)

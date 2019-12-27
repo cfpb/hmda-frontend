@@ -8,7 +8,7 @@ import './DynamicDataset.css'
 function makeListLink(href, val) {
   return (
     <li>
-      <a download={true} href={href}>{val}</a>
+      <a href={href}>{val}</a>
     </li>
   )
 }

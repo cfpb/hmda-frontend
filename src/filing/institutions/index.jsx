@@ -7,16 +7,19 @@ import InstitutionsHeader from './Header.jsx'
 import sortInstitutions from '../utils/sortInstitutions.js'
 import YearSelector from '../../common/YearSelector.jsx'
 import Alert from '../../common/Alert.jsx'
-import { FILING_PERIODS } from '../constants/dates.js'
 
 import './Institutions.css'
 
-const _setSubmission = (submission, filingObj) => {
-  if (submission.id && submission.id.lei === filingObj.filing.lei) {
+const _setSubmission = (submission, latest, filingObj) => {
+  if (
+    submission.id &&
+    submission.id.lei === filingObj.filing.lei &&
+    submission.id.period.year.toString() === filingObj.filing.period
+  ) {
     return submission
   }
 
-  return filingObj.submissions[0]
+  return latest
 }
 
 const wrapLoading = (i = 0) => {
@@ -27,7 +30,7 @@ const wrapLoading = (i = 0) => {
   )
 }
 
-const _whatToRender = ({ filings, institutions, submission }) => {
+const _whatToRender = ({ filings, institutions, submission, latestSubmissions }) => {
 
   // we don't have institutions yet
   if (!institutions.fetched) return wrapLoading()
@@ -59,9 +62,13 @@ const _whatToRender = ({ filings, institutions, submission }) => {
   return sortedInstitutions.map((key, i) => {
     const institution = institutions.institutions[key]
     const institutionFilings = filings[institution.lei]
+    const institutionSubmission = latestSubmissions[institution.lei]
 
-    if (!institutionFilings || !institutionFilings.fetched) {
-      // filings are not fetched yet
+    if (
+      !institutionFilings || !institutionFilings.fetched ||
+      !institutionSubmission || institutionSubmission.isFetching
+    ) {
+      // latest submission or filings are not fetched yet
       return wrapLoading(i)
     } else {
       // we have good stuff
@@ -71,7 +78,7 @@ const _whatToRender = ({ filings, institutions, submission }) => {
           key={i}
           filing={filingObj.filing}
           institution={institution}
-          submission={_setSubmission(submission, filingObj)}
+          submission={_setSubmission(submission, institutionSubmission, filingObj)}
           submissions={filingObj.submissions}
         />
       )
@@ -81,7 +88,8 @@ const _whatToRender = ({ filings, institutions, submission }) => {
 
 export default class Institutions extends Component {
   render() {
-    const { error, filingPeriod, location } = this.props
+    const { error, filingPeriod, filingYears, location } = this.props
+
     return (
       <main id="main-content" className="Institutions full-width">
         {error ? <ErrorWarning error={error} /> : null}
@@ -90,7 +98,7 @@ export default class Institutions extends Component {
             <InstitutionsHeader filingPeriod={filingPeriod} />
           ) : null}
 
-          <YearSelector years={FILING_PERIODS} year={filingPeriod} url={location.pathname}/>
+          <YearSelector years={filingYears} year={filingPeriod} url={location.pathname}/>
 
           {_whatToRender(this.props)}
 

@@ -3,6 +3,7 @@ import {
   addYears,
   createItemQuerystring,
   makeUrl,
+  makeFilersUrl,
   runFetch,
   makeCSVName,
   getSubsetDetails,
@@ -42,9 +43,9 @@ it('creates an empty item qs', () => {
   expect(qs).toBe('')
 })
 
-it('creates a qs with LEIs for nationwide', () => {
-  const qs = createItemQuerystring({ leis: ['a', 'b'], category: 'nationwide' })
-  expect(qs).toBe('?leis=a,b')
+it('creates a qs with for nationwide', () => {
+  const qs = createItemQuerystring({ items: ['a', 'b'], category: 'nationwide' })
+  expect(qs).toBe('')
 })
 
 it('makes a url', () => {
@@ -190,4 +191,14 @@ it('calls getCSV on makeURL and makeCSVName on getSubsetCSV call', () => {
 
   expect(setAttribute.mock.calls[1][1]).toBe('abc-a.csv')
   expect(a.href).toBe('/v2/data-browser-api/view/csv?states=abc&a=b&years=2018')
+})
+
+describe('makeFilersUrl', () => {
+  it('request all for nationwide', () => {
+    expect(makeFilersUrl({category: 'nationwide'})).toBe('/v2/data-browser-api/view/filers?years=2018');
+  })
+
+  it('request geo-specific for non-nationwide', () => {
+    expect(makeFilersUrl({category: 'states', items: ['CA', 'WA']})).toBe('/v2/data-browser-api/view/filers?states=CA,WA&years=2018');
+  })
 })

@@ -14,9 +14,15 @@ import SubmissionRouter from './submission/router.jsx'
 import { setKeycloak } from './utils/keycloak.js'
 import { setStore } from './utils/store.js'
 import appReducer from './reducers'
+import { withAppContext } from '../common/appContextHOC'
 
 const middleware = [thunkMiddleware]
-setKeycloak(Keycloak(process.env.PUBLIC_URL + '/keycloak.json'))
+
+if(process.env.NODE_ENV === 'development'){
+  setKeycloak(Keycloak(process.env.PUBLIC_URL + '/local_keycloak.json'))
+}else{
+  setKeycloak(Keycloak(process.env.PUBLIC_URL + '/keycloak.json'))
+}
 
 let store
 if (process.env.NODE_ENV !== 'production') {
@@ -40,29 +46,29 @@ if (process.env.NODE_ENV !== 'production') {
 
 setStore(store)
 
-const Filing = () => {
+const Filing = ({ config }) => {
   return (
     <div className="App Filing">
       <Provider store={store}>
         <Switch>
-          <Redirect exact from="/filing" to="/filing/2019/"/>
+          <Redirect exact from="/filing" to={`/filing/${config.defaultPeriod}/`}/>
           <Route exact path={'/filing/:filingPeriod/'} render={props => {
-            return <AppContainer {...props}>
+            return <AppContainer {...props} config={config}>
               <HomeContainer/>
             </AppContainer>
           }}/>
           <Route path={'/filing/:filingPeriod/institutions'} render={props => {
-            return <AppContainer {...props}>
+            return <AppContainer {...props} config={config}>
               <InstitutionContainer/>
             </AppContainer>
           }}/>
           <Route exact path={'/filing/:filingPeriod/:lei/'} render={props => {
-            return <AppContainer {...props}>
+            return <AppContainer {...props} config={config}>
               <SubmissionRouter/>
             </AppContainer>
           }}/>
           <Route path={'/filing/:filingPeriod/:lei/:splat'} render={props => {
-            return <AppContainer {...props}>
+            return <AppContainer {...props} config={config}>
               <SubmissionRouter/>
             </AppContainer>
           }}/>
@@ -72,4 +78,4 @@ const Filing = () => {
   )
 }
 
-export default Filing
+export default withAppContext(Filing)
