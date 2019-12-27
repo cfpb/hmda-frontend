@@ -19,6 +19,7 @@
   "dependencies": {
     "csv-parse": "4.6.3",
     "detect-browser": "4.7.0",
+    "fast-deep-equal": "2.0.1",
     "file-saver": "2.0.2",
     "filereader-stream": "2.0.0",
     "hmda-file-parser": "1.18.0",

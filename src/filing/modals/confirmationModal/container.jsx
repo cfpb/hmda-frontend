@@ -46,7 +46,8 @@ export function mapDispatchToProps(dispatch, ownProps) {
     } else {
       return dispatch(fetchNewSubmission(lei, period)).then(() => {
         const pathname = `/filing/${period}/${lei}/upload`
-        ownProps.history.replace(pathname)
+        if(page === 'institutions') ownProps.history.push(pathname)
+        else ownProps.history.replace(pathname)
       })
     }
   }
