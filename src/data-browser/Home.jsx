@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import ImageCard from './ImageCard.jsx'
 import Heading from '../common/Heading.jsx'
+import { withAppContext } from '../common/appContextHOC'
 
 import './Home.css'
 
 class Home extends Component {
   render() {
+    const { showMaps } = this.props.config
     return (
       <div className="home">
         <div className="intro">
@@ -26,11 +28,12 @@ class Home extends Component {
           >Filter and download HMDA datasets by various filters.
           </ImageCard>
           <ImageCard
-            caption="Maps & Graphs (coming soon)"
+            year="2018"
+            caption={`Maps & Graphs${showMaps ? '' : ' (coming soon)'}`}
             path="maps-graphs"
+            enabled={showMaps ? true : false }
           >
           Visualize HMDA data through charts, graphs, and maps.
-
           </ImageCard>
         </div>
       </div>
@@ -38,4 +41,4 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default withAppContext(Home)
