@@ -1,6 +1,8 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import hideConfirm from '../../actions/hideConfirm.js'
+import startRefile from '../../actions/startRefile.js'
+import refileReady from '../../actions/refileReady.js'
 import fetchNewSubmission from '../../actions/fetchNewSubmission.js'
 import refreshState from '../../actions/refreshState.js'
 import selectFile from '../../actions/selectFile.js'
@@ -32,15 +34,18 @@ export function mapDispatchToProps(dispatch, ownProps) {
   }
 
   const triggerRefile = (lei, period, page = '', file) => {
+    dispatch(startRefile())
     dispatch(refreshState())
     if (page === 'upload' && file) {
       checkFileErrors(file, fileErrors => {
-        if (fileErrors.length)
+        if (fileErrors.length){
+          dispatch(refileReady())
           return dispatch(processFileErrors(fileErrors, file.name))
-
+        }
         return dispatch(fetchNewSubmission(lei, period)).then(() => {
           dispatch(selectFile(file))
           dispatch(fetchUpload(file))
+          dispatch(refileReady())
         })
       })
     } else {
@@ -48,6 +53,7 @@ export function mapDispatchToProps(dispatch, ownProps) {
         const pathname = `/filing/${period}/${lei}/upload`
         if(page === 'institutions') ownProps.history.push(pathname)
         else ownProps.history.replace(pathname)
+        dispatch(refileReady())
       })
     }
   }
