@@ -14,3 +14,15 @@
   margin: 3rem 0;
   padding-right: 75px;
 }
+
+@media print {
+  .Tools #main-content{
+    width: 100%;
+  }
+
+  .Tools #main-content .grid .item {
+    flex: 0 450px;
+    margin: 3rem 0;
+    padding-right: 75px;
+  }
+}
