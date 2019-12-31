@@ -18,6 +18,7 @@ import error from './error.js'
 import user from './user.js'
 import redirecting from './redirecting.js'
 import latestSubmissions from './latestSubmissions'
+import refiling from './refiling'
 
 export default combineReducers({
   lei,
@@ -37,5 +38,6 @@ export default combineReducers({
   error,
   user,
   redirecting,
-  latestSubmissions
+  latestSubmissions,
+  refiling
 })
