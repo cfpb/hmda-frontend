@@ -32,7 +32,7 @@ const InstitutionsHeader = ({ filingPeriod }) => {
     )
   }
 
-  const lastFilingDay = filingPeriod == '2019' ? '2nd' : '1st'
+  const lastFilingDay = filingPeriod === '2019' ? '2nd' : '1st'
 
   return (
     <Alert>
