@@ -31,12 +31,15 @@ const InstitutionsHeader = ({ filingPeriod }) => {
       </Alert>
     )
   }
+
+  const lastFilingDay = filingPeriod === '2019' ? '2nd' : '1st'
+
   return (
     <Alert>
       <div>
         <h2 style={{ margin: '0 0 0.5em 0' }}>{filingPeriod} filing period</h2>
         <p className="font-lead">
-          The filing period is open. March 1st, {+filingPeriod + 1} is the deadline to
+          The filing period is open. March {lastFilingDay}, {+filingPeriod + 1} is the deadline to
           submit your HMDA data.
         </p>
         <p className="font-lead">
