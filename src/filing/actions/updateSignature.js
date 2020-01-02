@@ -10,7 +10,7 @@ const MAX_SIGNING_ATTEMPTS = 10
 
 export default function updateSignature(signed, attempts = 0) {
   return dispatch => {
-    dispatch(requestSignaturePost())
+    if(!attempts) dispatch(requestSignaturePost())
     return postSignature(signed)
       .then(json => {
         // Temp fix for an inconsistent 405 error from signing endpoint.
