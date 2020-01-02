@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ErrorWarning from '../../common/ErrorWarning.jsx'
+import Loading from '../../../common/LoadingIcon.jsx'
 import { VALIDATED, NO_MACRO_EDITS, SIGNED } from '../../constants/statusCodes.js'
 
 import './Signature.css'
@@ -52,6 +53,7 @@ const Signature = props => {
 
       {showWarning(props)}
 
+      {props.isFetching ? <Loading className="LoadingInline"/> : null}
       <ul className="unstyled-list">
         <li>
           <input
@@ -73,7 +75,7 @@ const Signature = props => {
 
       <button
         className={buttonClass}
-        onClick={e => props.onSignatureClick(props.checked)}
+        onClick={() => props.onSignatureClick(props.checked)}
         disabled={isButtonDisabled}
       >
         Submit HMDA data
@@ -85,6 +87,7 @@ const Signature = props => {
 Signature.propTypes = {
   status: PropTypes.object,
   checked: PropTypes.bool,
+  isFetching: PropTypes.bool,
   onSignatureClick: PropTypes.func.isRequired,
   onSignatureCheck: PropTypes.func.isRequired
 }

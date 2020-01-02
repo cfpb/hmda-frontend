@@ -15,6 +15,15 @@
   margin-bottom: 0;
 }
 
+.Signature .LoadingIconWrapper {
+  display: block;
+  margin: 0 0 -47px -40px;
+}
+
+.Signature .LoadingIcon {
+  top: 6px;
+}
+
 .Signature .alert {
   margin-top: 1em;
 }
