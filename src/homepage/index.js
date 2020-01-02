@@ -46,15 +46,6 @@ const Home = ({ config }) => {
                 accuracy and completeness of the data, and submit data for the
                 filing year.
               </p>
-              {beta ? null : config.show2017 &&
-              <a
-                href="https://ffiec.cfpb.gov/filing/"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Access the 2017 HMDA Platform
-              </a>
-              }
             </header>
 
             <header>
