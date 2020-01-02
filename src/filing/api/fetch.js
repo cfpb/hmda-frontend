@@ -1,7 +1,7 @@
 import createQueryString from './createQueryString.js'
 import makeUrl from './makeUrl.js'
 import * as AccessToken from './AccessToken.js'
-import { login } from '../utils/keycloak.js'
+import { login, refresh } from '../utils/keycloak.js'
 import { getStore } from '../utils/store.js'
 import log, { error } from '../utils/log.js'
 
@@ -64,6 +64,7 @@ export function fetchData(options = { method: 'GET' }) {
       return new Promise(resolve => {
         log('got res', response, response.status)
         if (response.status === 401 || response.status === 403) login()
+        if (response.status === 405) refresh()
         if (response.status > 399) return resolve(response)
         if (options.params && options.params.format === 'csv') {
           return resolve(response.text())
