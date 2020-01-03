@@ -70,6 +70,7 @@ export const getText = props => {
       {text}
       {button}
       {periodAfter ? '.' : null}
+      <p style={{marginTop: '2px'}}>Need help? Visit our <a target="_blank" rel="noopener noreferrer" href={`/documentation/${props.match.params.filingPeriod}/`}>documentation page</a> or contact <a href="https://hmdahelp.consumerfinance.gov" target="_blank" rel="noopener noreferrer">HMDA Help</a>.</p>
     </div>
   )
 }
