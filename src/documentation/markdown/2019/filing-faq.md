@@ -57,7 +57,7 @@ If you are having issues uploading a new file and are receiving errors from a pr
 ### Submission
 
 **March 1, 2020 falls on a Sunday, what is the filing deadline for submission of 2019 HMDA data?**
-Submissions will be considered timely if received on or before Monday, March 2, 2020. 
+<a target="_blank" rel="noopener noreferrer" href="https://www.consumerfinance.gov/policy-compliance/rulemaking/regulations/1003/5/#a-1">As stated in Section 1003.5(a)(1)(iii)</a> when the last day for submission falls on a Saturday or Sunday a submission shall be considered timely if it is submitted on the next succeeding Monday. Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.
 
 **How do I know my file was submitted?**
 Upon signing and submitting your file, an email confirming your submission will be sent to the email address on file. Additionally, when you log into your account, you should see a message stating:
