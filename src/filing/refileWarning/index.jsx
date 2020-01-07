@@ -26,9 +26,10 @@ export const getText = props => {
   if (props.code === FAILED) {
     reviewAndDownload = null
     text = (
-      <div>
+      <div className='failed'>
         Please select the &quot;Upload a new file&quot; button to restart the
-        process.
+        process. Ensure that your text file has no spaces between characters in
+        LEI/ULI fields and is pipe delimited, not tab or comma delimited.
       </div>
     )
   } else if (props.code === SYNTACTICAL_VALIDITY_EDITS) {
