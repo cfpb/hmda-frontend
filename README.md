@@ -1,12 +1,12 @@
 # HMDA Frontend Projects
 
 Collection of frontend code and configuration for the following projects:
- - HMDA Platform UI
- - HMDA Data Browser
- - HMDA Platform Tools
- - HMDA Documentation
- - HMDA Homepage
- - HMDA Data Publication
+ - [HMDA Homepage](https://ffiec.cfpb.gov/)
+ - [HMDA Filing Platform UI](https://ffiec.cfpb.gov/filing/)
+ - [HMDA Data Browser](https://ffiec.cfpb.gov/data-browser/)
+ - [HMDA Platform Tools](https://ffiec.cfpb.gov/tools/)
+ - [HMDA Documentation](https://ffiec.cfpb.gov/documentation/)
+ - [HMDA Data Publication](https://ffiec.cfpb.gov/data-publication/)
 
 ## Dependencies
  - node.js
