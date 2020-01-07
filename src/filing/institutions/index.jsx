@@ -5,7 +5,6 @@ import ErrorWarning from '../common/ErrorWarning.jsx'
 import Institution from './Institution.jsx'
 import InstitutionsHeader from './Header.jsx'
 import sortInstitutions from '../utils/sortInstitutions.js'
-// import YearSelector from '../../common/YearSelector.jsx'
 import FilingPeriodSelector from '../common/FilingPeriodSelector'
 import Alert from '../../common/Alert.jsx'
 import { MissingInstitutionsBanner } from './MissingInstitutionsBanner'
@@ -63,7 +62,8 @@ const _whatToRender = ({ filings, institutions, submission, filingPeriod, latest
   )
 
   const showingQuarterly = filingPeriod.indexOf('Q') > -1
-  console.log("Showing Quarterly? :", showingQuarterly)
+  const nonQuarterlyInstitutions = []
+  const showSummary = false
 
   const filteredInstitutions = sortedInstitutions.map((key,i) => {
     const institution = institutions.institutions[key]
@@ -80,8 +80,24 @@ const _whatToRender = ({ filings, institutions, submission, filingPeriod, latest
       return wrapLoading(i)
     } else {
       // we have good stuff
-      if (showingQuarterly && !institution.quarterlyFiler) console.log('Filtering non-quarterly filer: ', institution.lei)
-      if (showingQuarterly && !institution.quarterlyFiler) return null
+
+      // Handle non-quarterly filers
+      if (showingQuarterly && !institution.quarterlyFiler){ 
+        nonQuarterlyInstitutions.push(institution.lei)
+        nonQuarterlyInstitutions.push(institution.lei)
+        if (showSummary) return null
+        return (
+          <section className='institution'>
+            <div className='current-status'>
+            <h3>{institution.lei}</h3>
+              <section className='status'>
+                This institution is not a quarterly filer.
+              </section>
+            </div>
+          </section>
+        )
+      }
+      
       const filingObj = institutionFilings.filing
       return (
         <Institution
@@ -99,7 +115,7 @@ const _whatToRender = ({ filings, institutions, submission, filingPeriod, latest
     return (
       <Alert heading='No associated quarterly filing institutions' type='info'>
         <p>
-          None of your associated institutions are registered as quarterly filers for this period.
+          None of your associated institutions are registered as quarterly filers for this year.
           Please use&nbsp;
           <a href='https://hmdahelp.consumerfinance.gov/accounthelp/'>
             this form
@@ -112,6 +128,23 @@ const _whatToRender = ({ filings, institutions, submission, filingPeriod, latest
       </Alert>
     )
 
+  if(showingQuarterly && nonQuarterlyInstitutions.length && showSummary){
+    const ineligible = (
+      <section className='institution'>
+        <div className='current-status'>
+          <h3>The following institutions are not quarterly filers</h3>
+          <section className='status'>
+            <ul style={{listStyleType: 'disc', paddingLeft: '20px'}}>
+              {nonQuarterlyInstitutions.map(i => <li key={i}>{i}</li>)}
+            </ul>
+            
+          </section>
+        </div>
+      </section>
+    )
+    filteredInstitutions.push(ineligible)
+  }
+  
   return filteredInstitutions
 }
 
