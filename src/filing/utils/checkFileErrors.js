@@ -19,7 +19,7 @@ export default function checkFileErrors(file, cb) {
         )
       }
       if(firstBytes !== ('1|') && !notTxt){
-        errors.push('Your file appears to be a text file (.txt) but has invalid content. Please ensure you are uploading a true text file and your transmittal sheet begins with 1.')
+        errors.push('Your file appears to be a text file (.txt) but has invalid content. Please ensure you are uploading a pipe-delimited text file and that your transmittal sheet begins with 1.');
       }
     } else {
       errors.push('Your file was not uploaded. Please try again.')
