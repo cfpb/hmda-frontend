@@ -106,3 +106,9 @@
 .alert-paragraph {
   width: 66ch;
 }
+
+@media (min-width: 801px){
+  .alert-text > .failed {
+    width: 80%;
+  }
+}
