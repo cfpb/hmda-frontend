@@ -1,6 +1,6 @@
 jest.unmock('./CSVDownload.jsx')
 
-import CSVDownload, { formatPeriod } from './CSVDownload.jsx'
+import CSVDownload from './CSVDownload.jsx'
 import Wrapper from '../../test-resources/Wrapper.js'
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -51,19 +51,5 @@ describe('CSVDownload', () => {
     })
     expect(odc).toBeCalled()
     expect(rendered.props.children[0].props.children).toBe('yo')
-  })
-})
-
-describe('formatPeriod', () => {
-  it('handles strings', () => {
-    expect(formatPeriod('2018')).toBe('2018')
-  })
-
-  it('handles quarterly without quarter', () => {
-    expect(formatPeriod({quarter: null, year: 2018})).toBe('2018')
-  })
-
-  it('handles quarterly with quarter', () => {
-    expect(formatPeriod({quarter: 'q1', year: 2018})).toBe('2018/quarter/Q1')
   })
 })

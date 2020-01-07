@@ -6,7 +6,9 @@ import { isBeta } from '../../common/Beta.jsx'
 
 const InstitutionsHeader = ({ filingPeriod }) => {
   if (!filingPeriod || isBeta()) return null
+  const filingYear = filingPeriod.split('-')[0]
 
+  // TODO: add quarterly messaging
   if (beforeFilingPeriod(filingPeriod)) {
     return (
       <Alert
@@ -32,14 +34,14 @@ const InstitutionsHeader = ({ filingPeriod }) => {
     )
   }
 
-  const lastFilingDay = filingPeriod === '2019' ? '2nd' : '1st'
+  const lastFilingDay = filingYear === '2019' ? '2nd' : '1st'
 
   return (
     <Alert>
       <div>
         <h2 style={{ margin: '0 0 0.5em 0' }}>{filingPeriod} filing period</h2>
         <p className="font-lead">
-          The filing period is open. March {lastFilingDay}, {+filingPeriod + 1} is the deadline to
+          The filing period is open. March {lastFilingDay}, {+filingYear + 1} is the deadline to
           submit your HMDA data.
         </p>
         <p className="font-lead">

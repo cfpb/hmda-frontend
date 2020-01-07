@@ -1,16 +1,8 @@
 import React from 'react'
 import Loading from '../../common/LoadingIcon.jsx'
+import { formatPeriod } from '../api/utils'
 
 import './CSVDownload.css'
-
-export function formatPeriod(period) {
-  if (typeof period === 'string') return period
-
-  let { quarter, year } = period
-
-  if (!quarter) return `${year}`
-  return `${year}/quarter/${quarter.toUpperCase()}`
-}
 
 const CSVDownload = props => {
   if (props.submission.id === null) return null

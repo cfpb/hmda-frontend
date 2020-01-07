@@ -5,6 +5,7 @@ import fetchEachInstitution from '../actions/fetchEachInstitution.js'
 import receiveInstitutions from '../actions/receiveInstitutions.js'
 import Institutions from './index.jsx'
 import { getKeycloak } from '../utils/keycloak.js'
+// import { separateYearQuarter } from '../api/utils.js'
 
 export class InstitutionContainer extends Component {
   componentDidMount() {
@@ -27,7 +28,12 @@ export class InstitutionContainer extends Component {
       leis.forEach(lei => {
         instArr.push({ lei: lei })
       })
-
+      // TODO:
+      // If backend were to send all filings for the year (including quarterly) we already filter for latest filing by filingPeriod, so that should work well.
+      // When fetching Annual
+      //    we can update the store with a list of available PAST filing periods.
+      // When requesting a quarterly filingPeriod (i.e. 2020-Q1)
+      //    we can request Annaul if the list of PAST filing periods is not already populated
       dispatch(fetchEachInstitution(instArr, filingPeriod))
       dispatch(receiveInstitutions())
     }
@@ -42,11 +48,14 @@ export function mapStateToProps(state, ownProps) {
   const { institutions, filings, submission, latestSubmissions, error } = state.app
   const { filingPeriod } = ownProps.match.params
   const filingYears = ownProps.config.filingPeriods
+    // const [filingYear, quarter] = separateYearQuarter(filingPeriod)
 
   return {
     submission,
     filingPeriod,
     filingYears,
+    // filingYear,
+    // quarter,
     institutions,
     filings,
     error,
