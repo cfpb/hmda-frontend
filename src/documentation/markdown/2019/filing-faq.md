@@ -49,8 +49,6 @@ The **Check Digit tool** can be used to either generate check digits or validate
 **I’m having issues when I try to upload my file, what should I do?**
 If you are having issues uploading a new file and are receiving errors from a previous upload, please refresh the page, log out, clear your browser’s cache (clear your browser’s history), and log back in, and upload your file again. Additionally, if you are using Internet Explorer, we have found that filers have fewer browser caching issues using Google Chrome. The time to upload may vary depending on the size of your institution’s LAR(s).  In some cases, very large files can take a day to fully load.  Be sure to allocate enough time for the upload process to complete prior to the filing deadline.  Do not refresh or close the browser window while the file is uploading. If you continue to experience timeouts or other upload errors, we would recommend the following URLs are whitelisted in your DLP to allow for transfer of HMDA files.
  - ffiec.cfpb.gov
- - ffiec-auth.cfpb.gov
- - ffiec-api.cfpb.gov
  - ffiec.beta.cfpb.gov
 
 
