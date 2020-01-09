@@ -24,7 +24,7 @@ reverse\_mortgage|4|Numeric
 open\_end\_line\_of\_credit|4|Numeric
 business\_or\_commercial\_purpose|4|Numeric
 loan\_amount||Alphanumeric
-loan\_to\_value\_ratio||Alphanumeric
+combined\_loan\_to\_value\_ratio||Alphanumeric
 interest\_rate||Alphanumeric
 rate\_spread||Alphanumeric
 hoepa\_status|1|Numeric
