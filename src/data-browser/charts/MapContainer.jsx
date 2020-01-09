@@ -194,7 +194,6 @@ const MapContainer = props => {
 
   useEffect(() => {
     let chartData = '/chartData.json'
-    if('localhost' !== window.location.hostname) chartData = '/data-browser' + chartData
     runFetch(chartData).then(jsonData => {
       setData(jsonData)
     })

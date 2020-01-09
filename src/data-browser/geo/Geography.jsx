@@ -269,7 +269,7 @@ class Geography extends Component {
 
     return (
       <div className='Geography'>
-        <Link className='BackLink' to='../../'>
+        <Link className='BackLink' to='/data-browser/'>
           {'\u2b05'} DATA BROWSER HOME
         </Link>
         <div className='intro'>
