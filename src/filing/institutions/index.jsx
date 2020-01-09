@@ -5,7 +5,7 @@ import ErrorWarning from '../common/ErrorWarning.jsx'
 import Institution from './Institution.jsx'
 import InstitutionsHeader from './Header.jsx'
 import sortInstitutions from '../utils/sortInstitutions.js'
-import FilingPeriodSelector from '../common/FilingPeriodSelector'
+import InstitutionPeriodSelector from './InstitutionPeriodSelector'
 import Alert from '../../common/Alert.jsx'
 import { MissingInstitutionsBanner } from './MissingInstitutionsBanner'
 import { NonQuarterlyInstitutions } from './NonQuarterlyInstitutions'
@@ -139,7 +139,7 @@ export default class Institutions extends Component {
             <InstitutionsHeader filingPeriod={filingPeriod} />
           ) : null}
 
-          <FilingPeriodSelector
+          <InstitutionPeriodSelector
             years={filingYears}
             filingPeriod={filingPeriod}
             pathname={location.pathname}
