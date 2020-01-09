@@ -7,11 +7,18 @@ export function formatPeriod(period) {
   return `${year}/quarter/${quarter.toUpperCase()}`
 }
 
-export function separateYearQuarter(per) {
+export function splitYearQuarter(per) {
   return per.split('-')
 }
 
 export function yearQuarterToPath(yearPeriod) {
-  const [year, quarter] = separateYearQuarter(yearPeriod)
+  const [year, quarter] = splitYearQuarter(yearPeriod)
   return formatPeriod({ year, quarter })
+}
+
+export function readResponseBody(response) {
+  const bodyReader = response.body.getReader()
+  return bodyReader.read().then(body => {
+    return JSON.parse(new TextDecoder('utf-8').decode(body.value))
+  })
 }

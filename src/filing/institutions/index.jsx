@@ -8,6 +8,8 @@ import sortInstitutions from '../utils/sortInstitutions.js'
 import FilingPeriodSelector from '../common/FilingPeriodSelector'
 import Alert from '../../common/Alert.jsx'
 import { MissingInstitutionsBanner } from './MissingInstitutionsBanner'
+import { NonQuarterlyInstitutions } from './NonQuarterlyInstitutions'
+import { splitYearQuarter } from '../api/utils.js'
 
 import './Institutions.css'
 
@@ -61,9 +63,8 @@ const _whatToRender = ({ filings, institutions, submission, filingPeriod, latest
     sortInstitutions
   )
 
-  const showingQuarterly = filingPeriod.indexOf('Q') > -1
+  const [filingYear, showingQuarterly] = splitYearQuarter(filingPeriod)
   const nonQuarterlyInstitutions = []
-  const showSummary = false
 
   const filteredInstitutions = sortedInstitutions.map((key,i) => {
     const institution = institutions.institutions[key]
@@ -81,21 +82,9 @@ const _whatToRender = ({ filings, institutions, submission, filingPeriod, latest
     } else {
       // we have good stuff
 
-      // Handle non-quarterly filers
       if (showingQuarterly && !institution.quarterlyFiler){ 
-        nonQuarterlyInstitutions.push(institution.lei)
-        nonQuarterlyInstitutions.push(institution.lei)
-        if (showSummary) return null
-        return (
-          <section className='institution'>
-            <div className='current-status'>
-            <h3>{institution.lei}</h3>
-              <section className='status'>
-                This institution is not a quarterly filer.
-              </section>
-            </div>
-          </section>
-        )
+        nonQuarterlyInstitutions.push(institution)
+        return null
       }
       
       const filingObj = institutionFilings.filing
@@ -109,40 +98,22 @@ const _whatToRender = ({ filings, institutions, submission, filingPeriod, latest
         />
       )
     }
-  }).filter(x => x)
+  })
 
-  if (filteredInstitutions.length === 0 && showingQuarterly)
-    return (
-      <Alert heading='No associated quarterly filing institutions' type='info'>
-        <p>
-          None of your associated institutions are registered as quarterly filers for this year.
-          Please use&nbsp;
-          <a href='https://hmdahelp.consumerfinance.gov/accounthelp/'>
-            this form
-          </a>{' '}
-          and enter the necessary information, including your HMDA Platform
-          account email address in the &#34;Additional comments&#34; text box.
-          We will apply the update to your account, please check back 2 business
-          days after submitting your information.
-        </p>
-      </Alert>
-    )
+  if (showingQuarterly) {
+    if (!filteredInstitutions.length)
+      return (
+        <Alert heading='No quarterly filing institutions' type='info'>
+          <p>
+            None of your associated institutions are registered as quarterly
+            filers for {filingYear}.
+          </p>
+        </Alert>
+      )
 
-  if(showingQuarterly && nonQuarterlyInstitutions.length && showSummary){
-    const ineligible = (
-      <section className='institution'>
-        <div className='current-status'>
-          <h3>The following institutions are not quarterly filers</h3>
-          <section className='status'>
-            <ul style={{listStyleType: 'disc', paddingLeft: '20px'}}>
-              {nonQuarterlyInstitutions.map(i => <li key={i}>{i}</li>)}
-            </ul>
-            
-          </section>
-        </div>
-      </section>
+    filteredInstitutions.push(
+      <NonQuarterlyInstitutions list={nonQuarterlyInstitutions} />
     )
-    filteredInstitutions.push(ineligible)
   }
   
   return filteredInstitutions
