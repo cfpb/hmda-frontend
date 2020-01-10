@@ -37,14 +37,6 @@ const AppIntro = () => {
     <ul key={3}>
       <li>
         <a
-          href="https://s3.amazonaws.com/cfpb-hmda-public/prod/larft/2017/HMDA_2017_LAR_Formatting_Tool.xlsm"
-          download={true}
-        >
-          2017 LAR Formatting Tool
-        </a>
-      </li>
-      <li>
-        <a
           href="https://s3.amazonaws.com/cfpb-hmda-public/prod/larft/HMDA_LAR_Formatting_Tool.xlsm"
           download={true}
         >
