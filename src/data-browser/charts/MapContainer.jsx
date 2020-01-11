@@ -22,20 +22,42 @@ const variables = [
   {value: 'loanType', label: 'Loan Type'},
   {value: 'loanPurpose', label: 'Loan Purpose'},
   {value: 'race', label: 'Race'},
-  {value: 'ethnicity', label: 'Ethnicity'}
+  {value: 'ethnicity', label: 'Ethnicity'},
+  {value: 'age', label: 'Age'}
 ]
 
 const valsForVar = {
   loanType: optionsFromVariables('loan_types'),
   loanPurpose: optionsFromVariables('loan_purposes'),
   ethnicity: optionsFromVariables('ethnicities', 1),
-  race: optionsFromVariables('races', 1)
+  race: optionsFromVariables('races', 1),
+  age: makeOptions([
+    ['8888', 'N/A'],
+    '<25',
+    '25-34',
+    '35-44',
+    '45-54',
+    '55-64',
+    '65-74',
+    '>74'
+  ])
 }
 
 function optionsFromVariables(key, nameAsValue){
   return VARIABLES[key].options.map( v => {
-    return {value: nameAsValue ? v.name : v.id, label: v.name}
+    return makeOption(nameAsValue ? v.name : v.id, v.id)
   })
+}
+
+function makeOptions(arr) {
+  return arr.map(v => {
+    if(!Array.isArray(v)) return makeOption(v, v)
+    return makeOption(v[0], v[1])
+  })
+}
+
+function makeOption(value, label) {
+  return {value, label}
 }
 
 function getValuesForVariable(variable) {
@@ -267,8 +289,10 @@ const MapContainer = props => {
     if(!data || !map) return
 
     function setOutline(current, isClick=0) {
-      const stops = [[current, 2]]
+      const stops = []
+      if(current) stops.push([current, 2])
       if(!isClick && fips && fips !== current) stops.push([fips, 2])
+      if(!stops.length) return
       map.setPaintProperty('county-lines', 'line-width', {
          property: 'GEOID',
          type: 'categorical',
@@ -290,6 +314,11 @@ const MapContainer = props => {
 
       setOutline(features[0].properties.GEOID)
     }
+
+    function clearHighlight() {
+      setOutline()
+    }
+
     function getTableData(e){
       if(!map.loaded() || !selectedVariable) return
       const features = map.queryRenderedFeatures(e.point, {layers: ['counties']})
@@ -301,10 +330,12 @@ const MapContainer = props => {
     }
 
     map.on('mousemove', highlight)
+    map.on('mouseleave', 'counties', clearHighlight)
     map.on('click', getTableData)
 
     return () => {
       map.off('mousemove', highlight)
+      map.off('mouseleave', clearHighlight)
       map.off('click', getTableData)
     }
   }, [data, map, fips, selectedVariable])
