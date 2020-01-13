@@ -1,56 +1,87 @@
 import React from 'react'
-import { currentQuarterlyPeriod } from '../constants/dates.js'
 import Select from 'react-select'
+import { splitYearQuarter } from '../api/utils.js'
+import { currentQPeriod } from '../utils/dateQuarterly.js'
+import { MIN_QUARTERLY_YEAR } from '../constants/dates.js'
 import '../../common/YearSelector.css'
 
-const InstitutionPeriodSelector = ({ filingPeriod, pathname, years }) => {
-  const period = periodOption(filingPeriod)
+
+const InstitutionPeriodSelector = ({ filingPeriod, pathname, years, selectionPeriods }) => {
+  const [filingYear, filingQuarter] = splitYearQuarter(filingPeriod)
+  const [yearOpt, quarterOpt] = [filingYear, filingQuarter].map(fp => periodOption(fp))
+  const quarterOpts = quarterOptions(filingYear, selectionPeriods, years)
 
   return (
     <div className='YearSelector'>
       <h4>Select a filing period</h4>
       <Select
-        value={period}
-        options={options(years)}
-        onChange={o => window.location = pathname.replace(filingPeriod, o.value)}
-        styles={styleFn}
+        value={yearOpt}
+        options={yearOptions(years)}
+        styles={styleFn()}
+        onChange={opt => window.location = pathname.replace(filingPeriod, opt.value)}
+      />
+      <Select
+        value={quarterOpt || quarterOpts[0]}
+        options={quarterOpts}
+        styles={styleFn()}
+        onChange={opt => window.location = pathname.replace(filingPeriod, formQPath(opt, filingYear))}
+        isDisabled={quarterOpts.length < 2}
       />
     </div>
   )
 }
 
-const options = years =>
-  [...years, currentQuarterlyPeriod()]
-    .sort(byYearThenQuarter)
-    .map(periodOption)
+const ANNUAL = 'annual'
 
-
-function byYearThenQuarter(a,b) {
-  // Test Data
-  // ['2020-Q2', '2020-Q1', '2019-Q3', '2018-Q3']
-  const years = [];
-  const quarters = [];
-
-  [a,b].forEach(period=> {
-    const [yr, qtr] = period.split('-')
-    years.push(yr)
-    quarters.push(qtr)
-  })
-
-  if(years[0] === years[1] && quarters[1] > quarters[0]) 
-    return -1
-
-  return years[1] - years[0]
+function styleFn(zIndex = 1001) {
+  return {
+    container: p => ({ ...p, zIndex, width: '15%', display: 'inline-block' }),
+    control: p => ({ ...p, zIndex })
+  }
 }
 
-const periodOption = per => ({
-  value: per,
-  label: per
-})
+function periodOption(per) {
+  if (!per) return null
+  return {
+    value: per.toUpperCase(),
+    label: per.toUpperCase()
+  }
+}
 
-const styleFn = {
-  container: p => ({ ...p, zIndex: 1001 }),
-  control: p => ({ ...p, zIndex: 1001 })
+function formQPath(opt, year) {
+  if (opt.value === ANNUAL) return year
+  return `${year}-${opt.value}`
+}
+
+function yearOptions(yrs) {
+  const years = [...yrs]
+  const currQuarterly = currentQPeriod()
+
+  if(currQuarterly) years.push(splitYearQuarter(currQuarterly)[0])
+  return years.sort().reverse().map(periodOption)
+}
+
+function quarterOptions(year, periods, openYears) {
+  if (!periods.periods.length) return []
+
+  const _periods = [...periods.periods]
+
+  if(+year >= MIN_QUARTERLY_YEAR){
+    const currQuarterly = currentQPeriod()
+    if (currQuarterly) _periods.push(currQuarterly)
+  }
+
+  const selOpts = Array.from(new Set(_periods))
+    .map(p => splitYearQuarter(p)[1])
+    .filter(p => p)
+    .sort()
+    .reverse()
+    .map(periodOption)
+
+  if (openYears.indexOf(year) > -1) 
+    selOpts.unshift({ value: ANNUAL, label: 'Annual'})
+
+  return selOpts
 }
 
 export default InstitutionPeriodSelector
