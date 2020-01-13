@@ -1,9 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import '../common/images/annual_filing.png'
-import '../common/images/quarterly_filing.png'
-
 const links = {
   2017: [
     <li key="0"><a target="_blank" rel="noopener noreferrer" href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2017-hmda-fig.pdf">For data collected in 2017</a></li>,
