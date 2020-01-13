@@ -112,7 +112,7 @@ const _whatToRender = ({ filings, institutions, submission, filingPeriod, latest
       )
 
     filteredInstitutions.push(
-      <NonQuarterlyInstitutions list={nonQuarterlyInstitutions} />
+      <NonQuarterlyInstitutions key='nq' list={nonQuarterlyInstitutions} />
     )
   }
   
@@ -121,7 +121,7 @@ const _whatToRender = ({ filings, institutions, submission, filingPeriod, latest
 
 export default class Institutions extends Component {
   render() {
-    const { error, filingPeriod, filingYears, location } = this.props
+    const { error, filingPeriod, filingYears, location, selectionPeriods } = this.props
     const institutions = this.props.institutions.institutions
     let unregisteredInstitutions = []
     let leis = []
@@ -143,6 +143,7 @@ export default class Institutions extends Component {
             years={filingYears}
             filingPeriod={filingPeriod}
             pathname={location.pathname}
+            selectionPeriods={selectionPeriods}
           />
 
           {_whatToRender(this.props)}

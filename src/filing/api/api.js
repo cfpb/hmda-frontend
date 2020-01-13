@@ -1,8 +1,8 @@
 import { fetchData } from './fetch.js'
-import { yearQuarterToPath } from './utils.js'
+import { yearQuarterToPath, splitYearQuarter } from './utils.js'
 
 export function getInstitution(lei, filing) {
-  return fetchData({ pathname: `/institutions/${lei}/year/${yearQuarterToPath(filing)}` })
+  return fetchData({ pathname: `/institutions/${lei}/year/${splitYearQuarter(filing)[0]}` })
 }
 
 export function createSubmission(lei, filing) {

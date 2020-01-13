@@ -16,9 +16,10 @@ export function yearQuarterToPath(yearPeriod) {
   return formatPeriod({ year, quarter })
 }
 
-export function readResponseBody(response) {
-  const bodyReader = response.body.getReader()
-  return bodyReader.read().then(body => {
-    return JSON.parse(new TextDecoder('utf-8').decode(body.value))
-  })
-}
+// TODO: Delete
+// export function readResponseBody(response) {
+//   const bodyReader = response.body.getReader()
+//   return bodyReader.read().then(body => {
+//     return JSON.parse(new TextDecoder('utf-8').decode(body.value))
+//   })
+// }
