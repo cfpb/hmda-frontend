@@ -25,7 +25,7 @@ const InstitutionPeriodSelector = ({ filingPeriod, pathname, years, selectionPer
         options={quarterOpts}
         styles={styleFn()}
         onChange={opt => window.location = pathname.replace(filingPeriod, formQPath(opt, filingYear))}
-        isDisabled={quarterOpts.length < 2}
+        isDisabled={!quarterOpts.length}
       />
     </div>
   )
@@ -62,8 +62,6 @@ function yearOptions(yrs) {
 }
 
 function quarterOptions(year, periods, openYears) {
-  if (!periods.periods.length) return []
-
   const _periods = [...periods.periods]
 
   if(+year >= MIN_QUARTERLY_YEAR){
