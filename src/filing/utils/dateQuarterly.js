@@ -16,6 +16,21 @@ export const currentQPeriod = (today = new Date()) => {
 }
 
 /**
+ * Check if year has passed/current quarters
+ */
+export const yearHasQuarterly = (year) => {
+  const today = new Date()
+  if(+year === today.getFullYear()){
+    const monthDay = getMonthDay(today)
+    for (let quarter of Object.keys(FILING_QUARTERS))
+      if (isQtrCurrent(quarter, monthDay) || isQtrPassed(quarter, monthDay))
+        return true
+  }
+
+  return false
+}
+
+/**
  * A quarterly period is valid if:
  * - Its year is at least 2020
  * - Its year is the current year or a configured-as-open year

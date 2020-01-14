@@ -13,7 +13,7 @@ import updateFilingPeriod from './actions/updateFilingPeriod.js'
 import { detect } from 'detect-browser'
 import { FilingAnnouncement } from './common/FilingAnnouncement'
 import { splitYearQuarter } from './api/utils.js'
-import { currentQPeriod, isValidQPeriod } from './utils/dateQuarterly.js'
+import { isValidQPeriod, yearHasQuarterly } from './utils/dateQuarterly.js'
 
 import 'normalize.css'
 import './app.css'
@@ -82,10 +82,9 @@ export class AppContainer extends Component {
   isValidPeriod(period) {
     const filingPeriods = this.props.config.filingPeriods
     const [year, quarter] = splitYearQuarter(period)
-    const currQYear = splitYearQuarter(currentQPeriod())[0]
     
     if(quarter) return isValidQPeriod(period, filingPeriods) 
-    return filingPeriods.indexOf(year) !== -1 || period === currQYear
+    return filingPeriods.indexOf(year) !== -1 || yearHasQuarterly(year)
   }
 
   render() {
