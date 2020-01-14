@@ -22,18 +22,39 @@ export const getLink = filingPeriod => {
   return `/filing/${filingPeriod}/`
 }
 
+const getDocLink = filingPeriod => {
+  const year = filingPeriod.split('-')[0]
+  return `https://ffiec.cfpb.gov/documentation/${year}`
+}
+
 export const makeNav = (props, page) => {
+  const openNewPage = {
+    className: 'nav-link',
+    target: '_blank',
+    rel: 'noopener noreferrer'
+  }
+  
   let userHeader = (
-    <ul className="nav-primary">
+    <ul className='nav-primary'>
       <li>
-        <Link to={getLink(props.filingPeriod)} className="nav-link">
+        <a href='https://ffiec.cfpb.gov' {...openNewPage}>
+          FFIEC Home
+        </a>
+      </li>
+      <li>
+        <Link to={getLink(props.filingPeriod)} className='nav-link'>
           Filing Home
         </Link>
       </li>
+      <li>
+        <a href={getDocLink(props.filingPeriod)} {...openNewPage}>
+          Documentation
+        </a>
+      </li>
       {getKeycloak().authenticated ? (
-        <li className="user">
+        <li className='user'>
           {getKeycloak().tokenParsed.name}
-          <button className="nav-link" onClick={logOutHandler}>
+          <button className='nav-link' onClick={logOutHandler}>
             Logout
           </button>
         </li>
