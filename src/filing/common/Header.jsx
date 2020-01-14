@@ -37,24 +37,18 @@ export const makeNav = (props, page) => {
   let userHeader = (
     <ul className='nav-primary'>
       <li>
+        <a href='https://ffiec.cfpb.gov' {...openNewPage}>
+          FFIEC Home
+        </a>
+      </li>
+      <li>
         <Link to={getLink(props.filingPeriod)} className='nav-link'>
           Filing Home
         </Link>
       </li>
       <li>
-        <a
-          href={getDocLink(props.filingPeriod)}
-          {...openNewPage}
-        >
+        <a href={getDocLink(props.filingPeriod)} {...openNewPage}>
           Documentation
-        </a>
-      </li>
-      <li>
-        <a
-          href='https://ffiec.cfpb.gov'
-          {...openNewPage}
-        >
-          FFIEC Home
         </a>
       </li>
       {getKeycloak().authenticated ? (
