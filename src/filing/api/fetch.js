@@ -63,7 +63,7 @@ export function fetchData(options = { method: 'GET' }) {
     .then(response => {
       return new Promise(resolve => {
         log('got res', response, response.status)
-        if (response.status === 401 || (response.status === 403 && !isQuarterly(url))) login()
+        if (response.status === 401 || response.status === 403) login()
         if (response.status > 399) return resolve(response)
         if (options.params && options.params.format === 'csv') {
           return resolve(response.text())
@@ -75,6 +75,4 @@ export function fetchData(options = { method: 'GET' }) {
       error(err)
     })
 }
-
-const isQuarterly = url => url.match(/\/quarter\//g)
 
