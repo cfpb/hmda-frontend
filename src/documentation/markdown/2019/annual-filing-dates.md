@@ -6,4 +6,4 @@ If you need additional information to help get your file ready you can refer to 
 
 See below for information on HMDA Annual Filing period dates:
 
-![](/static/media/annual_filing.f2f95db6.png)
+![](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/annual_filing.png)

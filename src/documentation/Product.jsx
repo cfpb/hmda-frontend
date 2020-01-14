@@ -4,15 +4,19 @@ import Heading from '../common/Heading.jsx'
 import YearSelector from '../common/YearSelector.jsx'
 
 const Product = props => {
-  const { heading, lead, list, inList, url, year, collection, slug } = props
+  let { list } = props
+  const { heading, lead, inList, url, year, collection, slug } = props
   let header
 
-  if(!list || !list.length) return (
-    <li>
-      <h4>{heading}</h4>
-      <ul><li>No documentation for {year}.</li></ul>
-    </li>
-  )
+  if(!list || !list.length) {
+    if(inList) return (
+      <li>
+        <h4>{heading}</h4>
+        <ul><li>No documentation for {year}.</li></ul>
+      </li>
+    )
+    list = <li>No documentation for {year}.</li>
+  }
 
   if(inList){
     header = <h4><Link to={`/documentation/${year}/${collection}/${slug}/`}>{heading}</Link></h4>
