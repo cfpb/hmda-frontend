@@ -1,6 +1,8 @@
 import * as dates from '../constants/dates.js'
+import { splitYearQuarter } from '../api/utils.js'
+import { qtrBoundaryDate } from './dateQuarterly.js'
 
-const months = 'January,February,March,April,May,June,July,August,September,October,November,December'.split(
+export const months = 'January,February,March,April,May,June,July,August,September,October,November,December'.split(
   ','
 )
 
@@ -64,13 +66,16 @@ export function withinAWeekOfDeadline(year) {
   return today >= week && today <= deadline
 }
 
-export function afterFilingPeriod(year) {
+export function afterFilingPeriod(period) {
   const timezoneOffsetHours = new Date().getTimezoneOffset() / 60 // Calculate UTC Hours Offset
-  const yearPlusOne = parseInt(year, 10) + 1
+  let [year, quarter] = splitYearQuarter(period)
+  year = parseInt(year, 10)
+  const yearAdjusted = quarter ? year : year + 1
+  const endDate = quarter ? qtrBoundaryDate(quarter, 1) : dates.FILING_DEADLINE
   const deadline = Date.UTC(
-    yearPlusOne,
-    dates.FILING_DEADLINE.month,
-    dates.FILING_DEADLINE.day,
+    yearAdjusted,
+    endDate.month,
+    endDate.day,
     23 + timezoneOffsetHours, // 1 second before Midnight, local time
     59,
     59
@@ -79,12 +84,15 @@ export function afterFilingPeriod(year) {
   return Date.now() > deadline
 }
 
-export function beforeFilingPeriod(year) {
-  const yearPlusOne = parseInt(year, 10) + 1
+export function beforeFilingPeriod(period) {
+  let [year, quarter] = splitYearQuarter(period)
+  year = parseInt(year, 10)
+  const yearAdjusted = quarter ? year : year + 1
+  const startDate = quarter ? qtrBoundaryDate(quarter) : dates.FILING_START
   const start = Date.UTC(
-    yearPlusOne,
-    dates.FILING_START.month,
-    dates.FILING_START.day,
+    yearAdjusted,
+    startDate.month,
+    startDate.day,
     5,
     0,
     0 //5 is 0 in UTC-0500

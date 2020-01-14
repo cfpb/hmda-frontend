@@ -1,5 +1,6 @@
 import { FILING_QUARTERS, MIN_QUARTERLY_YEAR } from '../constants/dates'
 import { splitYearQuarter } from '../api/utils'
+import { months } from './date'
 
 /**
  * Year-Quarter string of currently open quarterly filing period
@@ -32,6 +33,19 @@ export const isValidQPeriod = (period, validYears) => {
     return false
 
   return true
+}
+
+// Format quarterly end date for creation of Date object
+export const qtrBoundaryDate = (qtr, startOrEnd=0) => {
+  const monthDay = FILING_QUARTERS[qtr].split(' - ')[startOrEnd]
+  const [month, day] = monthDay.split('/').map(s => parseInt(s, 10))
+  return { day, month: month - 1 }
+}
+
+// MonthName DayNumber
+export const formattedQtrBoundaryDate = (qtr, startOrEnd=1) => {
+  const date = qtrBoundaryDate(qtr, startOrEnd)
+  return `${months[date.month]} ${date.day}`
 }
 
 /**
