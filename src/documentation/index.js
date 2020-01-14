@@ -17,6 +17,8 @@ import Tools from './tools'
 import DataBrowser from './tools/DataBrowser.jsx'
 import RateSpread from './tools/RateSpread.jsx'
 import CheckDigit from './tools/CheckDigit.jsx'
+import LARFT from './tools/LARFT.jsx'
+import FFVT from './tools/FFVT.jsx'
 import { withAppContext } from '../common/appContextHOC'
 
 import './index.css'
@@ -38,7 +40,9 @@ const pageSlugs = {
   'snapshot-dynamic': SnapshotDynamic,
   'data-browser': DataBrowser,
   'rate-spread': RateSpread,
-  'check-digit': CheckDigit
+  'check-digit': CheckDigit,
+  'lar-formatting': LARFT,
+  'file-format-verification': FFVT
 }
 
 const Documentation = ({ config }) => {
