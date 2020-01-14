@@ -75,7 +75,7 @@ export class InstitutionContainer extends Component {
   }
 
   render() {
-    if(this.shouldBeQuarterly())
+    if(this.shouldBeQuarterly() && !this.props.error)
       return (
         <div style={{ height: '100px' }}>
           <Loading className="floatingIcon" />
