@@ -193,7 +193,7 @@
 - **Values:**
   - Varying values
 
-### [loan\_to\_value\_ratio](#loan_to_value_ratio)
+### [combined\_loan\_to\_value\_ratio](#loan_to_value_ratio)
 
 - **Description:** The ratio of the total amount of debt secured by the property to the value of the property relied on in making the credit decision
 - **Values:**
