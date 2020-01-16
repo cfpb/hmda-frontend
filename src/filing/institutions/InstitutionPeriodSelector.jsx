@@ -36,7 +36,7 @@ const InstitutionPeriodSelector = ({ filingPeriod, filingPeriods, history, pathn
           dispatch(updateFilingPeriod(period))
           history.replace(pathname.replace(filingPeriod, period))
         }}
-        isDisabled={quarterOpts[0].value === ANNUAL}
+        isDisabled={quarterOpts.length < 2}
       />
     </div>
   )
@@ -84,7 +84,8 @@ function quarterOptions(filingYear, filingPeriods) {
     return periodOption(splitYearQuarter(v)[1])
   }).filter(v => v)
 
-  if(!quarters.length) quarters.push({ value: ANNUAL, label: 'Annual'})
+  if(filingPeriods.indexOf(filingYear) > -1) 
+    quarters.unshift({ value: ANNUAL, label: 'Annual'})
 
   return quarters
 }
