@@ -110,7 +110,7 @@ class CSVUpload extends Component {
           ) : this.state.error ? (
             <Alert
               type="error"
-              heading="Sorry, an error has occured processing your file."
+              heading="Sorry, an error has occurred processing your file."
             >
               <p>
                 Please check your file format and try again later. If the

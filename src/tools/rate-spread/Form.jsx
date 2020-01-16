@@ -372,7 +372,7 @@ class Form extends Component {
           {this.state.isFetching ? (
             <LoadingIcon className="LoadingInline"/>
           ) : this.state.error ? (
-            <Alert type="error" heading="Sorry, an error has occured.">
+            <Alert type="error" heading="Sorry, an error has occurred.">
               {this.state.errorText ? (
                 <p>{this.state.errorText}</p>
               ) : (
