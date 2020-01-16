@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Alert from '../../common/Alert.jsx'
-import { beforeFilingPeriod, afterFilingPeriod } from '../utils/date.js'
+import { beforeFilingPeriod, afterFilingPeriod, formattedQtrBoundaryDate } from '../utils/date.js'
+import { splitYearQuarter } from '../api/utils.js'
 import { isBeta } from '../../common/Beta.jsx'
-import { formattedQtrBoundaryDate } from '../utils/dateQuarterly.js'
+
 
 const InstitutionsHeader = ({ filingPeriod }) => {
   if (!filingPeriod || isBeta()) return null
-  const [filingYear, filingQtr] = filingPeriod.split('-')
+  const [filingYear, filingQtr] = splitYearQuarter(filingPeriod)
 
   if (beforeFilingPeriod(filingPeriod)) {
     const openingDay = filingQtr ? formattedQtrBoundaryDate(filingQtr, 1) : 'January 1st'
@@ -43,7 +44,7 @@ const InstitutionsHeader = ({ filingPeriod }) => {
   }
 
   const lastFilingDay = filingYear === '2019' ? '2nd' : '1st'
-  const filingDeadline = filingQtr 
+  const filingDeadline = filingQtr
     ? `${formattedQtrBoundaryDate(filingQtr)}, ${filingYear}`
     : `March ${lastFilingDay}, ${+filingYear + 1}`
 

@@ -1,6 +1,5 @@
 import * as dates from '../constants/dates.js'
 import { splitYearQuarter } from '../api/utils.js'
-import { qtrBoundaryDate } from './dateQuarterly.js'
 
 export const months = 'January,February,March,April,May,June,July,August,September,October,November,December'.split(
   ','
@@ -103,4 +102,17 @@ export function beforeFilingPeriod(period) {
 
 export function withinFilingPeriod(year) {
   return !beforeFilingPeriod(year) && !afterFilingPeriod(year)
+}
+
+// MonthName DayNumber
+export const formattedQtrBoundaryDate = (qtr, startOrEnd=1) => {
+  const date = qtrBoundaryDate(qtr, startOrEnd)
+  return `${months[date.month]} ${date.day}`
+}
+
+// Format quarterly end date for creation of Date object
+export const qtrBoundaryDate = (qtr, startOrEnd=0) => {
+  const monthDay = dates.FILING_QUARTERS[qtr].split(' - ')[startOrEnd]
+  const [month, day] = monthDay.split('/').map(s => parseInt(s, 10))
+  return { day, month: month - 1 }
 }

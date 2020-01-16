@@ -82,11 +82,11 @@ const _whatToRender = ({ filings, institutions, submission, filingPeriod, latest
     } else {
       // we have good stuff
 
-      if (showingQuarterly && !institution.quarterlyFiler){ 
+      if (showingQuarterly && !institution.quarterlyFiler){
         nonQuarterlyInstitutions.push(institution)
         return null
       }
-      
+
       const filingObj = institutionFilings.filing
       return (
         <Institution
@@ -115,13 +115,13 @@ const _whatToRender = ({ filings, institutions, submission, filingPeriod, latest
       <NonQuarterlyInstitutions key='nq' list={nonQuarterlyInstitutions} />
     )
   }
-  
+
   return filteredInstitutions
 }
 
 export default class Institutions extends Component {
   render() {
-    const { error, filingPeriod, filingYears, location, selectionPeriods } = this.props
+    const { error, filingPeriod, filingPeriods, history, location, selectionPeriods, dispatch } = this.props
     const institutions = this.props.institutions.institutions
     let unregisteredInstitutions = []
     let leis = []
@@ -130,6 +130,7 @@ export default class Institutions extends Component {
       leis = Object.keys(institutions)
       unregisteredInstitutions = leis.filter(i => institutions[i].notFound)
     }
+    
 
     return (
       <main id="main-content" className="Institutions full-width">
@@ -140,10 +141,12 @@ export default class Institutions extends Component {
           ) : null}
 
           <InstitutionPeriodSelector
-            years={filingYears}
+            filingPeriods={filingPeriods}
             filingPeriod={filingPeriod}
+            history={history}
             pathname={location.pathname}
             selectionPeriods={selectionPeriods}
+            dispatch={dispatch}
           />
 
           {_whatToRender(this.props)}

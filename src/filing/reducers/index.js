@@ -19,7 +19,6 @@ import user from './user.js'
 import redirecting from './redirecting.js'
 import latestSubmissions from './latestSubmissions'
 import refiling from './refiling'
-import selectionPeriods from './selectionPeriods'
 
 export default combineReducers({
   lei,
@@ -40,6 +39,5 @@ export default combineReducers({
   user,
   redirecting,
   latestSubmissions,
-  refiling,
-  selectionPeriods
+  refiling
 })

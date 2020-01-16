@@ -15,11 +15,3 @@ export function yearQuarterToPath(yearPeriod) {
   const [year, quarter] = splitYearQuarter(yearPeriod)
   return formatPeriod({ year, quarter })
 }
-
-// TODO: Delete
-// export function readResponseBody(response) {
-//   const bodyReader = response.body.getReader()
-//   return bodyReader.read().then(body => {
-//     return JSON.parse(new TextDecoder('utf-8').decode(body.value))
-//   })
-// }

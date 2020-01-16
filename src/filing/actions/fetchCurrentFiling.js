@@ -4,7 +4,6 @@ import fetchNewFiling from './fetchNewFiling.js'
 export default function fetchCurrentFiling(institution) {
   return (dispatch, getState) => {
     const period = getState().app.filingPeriod
-
     const filing = institution.filings.filter(filing => {
       return filing.period === period
     })[0]
