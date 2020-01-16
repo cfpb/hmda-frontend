@@ -121,7 +121,7 @@ const _whatToRender = ({ filings, institutions, submission, filingPeriod, latest
 
 export default class Institutions extends Component {
   render() {
-    const { error, filingPeriod, filingPeriods, history, location, selectionPeriods, dispatch } = this.props
+    const { error, filingPeriod, filingPeriods, history, location, dispatch } = this.props
     const institutions = this.props.institutions.institutions
     let unregisteredInstitutions = []
     let leis = []
@@ -131,7 +131,6 @@ export default class Institutions extends Component {
       unregisteredInstitutions = leis.filter(i => institutions[i].notFound)
     }
     
-
     return (
       <main id="main-content" className="Institutions full-width">
         {error ? <ErrorWarning error={error} /> : null}
@@ -145,7 +144,6 @@ export default class Institutions extends Component {
             filingPeriod={filingPeriod}
             history={history}
             pathname={location.pathname}
-            selectionPeriods={selectionPeriods}
             dispatch={dispatch}
           />
 

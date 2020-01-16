@@ -34,7 +34,7 @@ export class InstitutionContainer extends Component {
 }
 
 export function mapStateToProps(state, ownProps) {
-  const { institutions, filingPeriod, filings, submission, latestSubmissions, error, selectionPeriods, redirecting } = state.app
+  const { institutions, filingPeriod, filings, submission, latestSubmissions, error, redirecting } = state.app
   const { filingPeriods } = ownProps.config
 
   return {
@@ -45,7 +45,6 @@ export function mapStateToProps(state, ownProps) {
     filings,
     error,
     latestSubmissions: latestSubmissions.latestSubmissions,
-    selectionPeriods,
     redirecting
   }
 }
