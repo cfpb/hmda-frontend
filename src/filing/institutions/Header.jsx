@@ -11,7 +11,7 @@ const InstitutionsHeader = ({ filingPeriod }) => {
   const [filingYear, filingQtr] = splitYearQuarter(filingPeriod)
 
   if (beforeFilingPeriod(filingPeriod)) {
-    const openingDay = filingQtr ? formattedQtrBoundaryDate(filingQtr, 1) : 'January 1st'
+    const openingDay = filingQtr ? formattedQtrBoundaryDate(filingQtr, 0) : 'January 1st'
     return (
       <Alert
         heading={`The ${filingPeriod} filing period is not yet open.`}
