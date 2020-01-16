@@ -98,7 +98,7 @@ const _whatToRender = ({ filings, institutions, submission, filingPeriod, latest
         />
       )
     }
-  })
+  }).filter(x => x)
 
   if (showingQuarterly) {
     if (!filteredInstitutions.length)

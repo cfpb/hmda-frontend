@@ -5,10 +5,10 @@ export const NonQuarterlyInstitutions = ({ list }) => {
 
   return (
     <section className='institution'>
-      <div className='current-status'>
-        <h3>The following institutions are not quarterly filers:</h3>
+      <div className='non-quarterlies'>
+        <h3>These Institutions are not quarterly filers:</h3>
         <section className='status'>
-          <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+          <ul>
             {list.map(i => <li key={i}>{i.name} - {i.lei}</li>)}
           </ul>
         </section>

@@ -42,6 +42,21 @@
   margin: 0;
 }
 
+.Institutions .institution .non-quarterlies {
+  background-color: #f1f1f1;
+  padding-bottom: 1px;
+}
+
+.Institutions .institution .non-quarterlies h3 {
+  padding: 1rem 1.5rem;
+  background-color: #d6d7d9;
+}
+
+.Institutions .institution .non-quarterlies .status ul {
+  list-style-type: disc;
+  padding-left: 40px;
+}
+
 .Institutions header {
   margin: 0;
 }
