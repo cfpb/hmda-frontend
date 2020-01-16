@@ -5,6 +5,14 @@ import './RefileButton.css'
 
 const RefileButton = props => {
   let refileStyle = 'RefileButton text-small'
+  
+  if (props.isDisabled)
+    return (
+      <div className={`${refileStyle} disabled`}>
+        Filing deadline has passed
+      </div>
+    )
+  
   if (props.isLink) {
     refileStyle = 'RefileButton link'
     if (props.isLower) {

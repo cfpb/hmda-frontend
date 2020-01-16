@@ -28,3 +28,10 @@
 .text-lowercase {
   text-transform: lowercase;
 }
+
+.RefileButton.disabled {
+  color: grey;
+  cursor: not-allowed;
+  display: inline-block;
+  text-decoration: none;
+}

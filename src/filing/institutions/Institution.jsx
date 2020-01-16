@@ -34,7 +34,7 @@ const Institution = ({ institution, filing, submission, submissions }) => {
               filingPeriod={filing.period}
             />
 
-            <InstitutionRefile institution={institution} status={status} />
+            <InstitutionRefile institution={institution} status={status} filingPeriod={filing.period}/>
           </div>
           <InstitutionSubmissionHistory
             submissions={submissions}
