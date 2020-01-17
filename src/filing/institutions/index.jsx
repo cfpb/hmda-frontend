@@ -8,7 +8,7 @@ import sortInstitutions from '../utils/sortInstitutions.js'
 import InstitutionPeriodSelector from './InstitutionPeriodSelector'
 import Alert from '../../common/Alert.jsx'
 import { MissingInstitutionsBanner } from './MissingInstitutionsBanner'
-import { NonQuarterlyInstitutions } from './NonQuarterlyInstitutions'
+import { FilteredOutList } from './FilteredOutList'
 import { splitYearQuarter } from '../api/utils.js'
 
 import './Institutions.css'
@@ -64,7 +64,7 @@ const _whatToRender = ({ filings, institutions, submission, filingPeriod, latest
   )
 
   const [filingYear, showingQuarterly] = splitYearQuarter(filingPeriod)
-  const nonQuarterlyInstitutions = []
+  const noFilingThisQ = []
 
   const filteredInstitutions = sortedInstitutions.map((key,i) => {
     const institution = institutions.institutions[key]
@@ -82,9 +82,14 @@ const _whatToRender = ({ filings, institutions, submission, filingPeriod, latest
     } else {
       // we have good stuff
 
-      if (showingQuarterly && !institution.quarterlyFiler){
-        nonQuarterlyInstitutions.push(institution)
-        return null
+      if (showingQuarterly) {
+        if (!institution.quarterlyFiler) {
+          return null
+        }
+        if (!institutionFilings.filing.filing.status) {
+          noFilingThisQ.push(institution)
+          return null
+        }
       }
 
       const filingObj = institutionFilings.filing
@@ -101,6 +106,23 @@ const _whatToRender = ({ filings, institutions, submission, filingPeriod, latest
   }).filter(x => x)
 
   if (showingQuarterly) {
+    noFilingThisQ.length &&
+      filteredInstitutions.push(
+        <FilteredOutList
+          key='nftq'
+          list={noFilingThisQ}
+          title='Institutions without a Filing for this period'
+        />
+      )
+
+      filteredInstitutions.push(
+        <FilteredOutList
+          key='nq'
+          list={nonQuarterlyInstitutions}
+          title='Institutions that are not Quarterly filers'
+        />
+      )
+
     if (!filteredInstitutions.length)
       return (
         <Alert heading='No quarterly filing institutions' type='info'>
@@ -110,10 +132,6 @@ const _whatToRender = ({ filings, institutions, submission, filingPeriod, latest
           </p>
         </Alert>
       )
-
-    filteredInstitutions.push(
-      <NonQuarterlyInstitutions key='nq' list={nonQuarterlyInstitutions} />
-    )
   }
 
   return filteredInstitutions

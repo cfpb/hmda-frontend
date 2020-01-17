@@ -1,15 +1,15 @@
 import React from 'react'
 
-export const NonQuarterlyInstitutions = ({ list }) => {
+export const FilteredOutList = ({ list, title }) => {
   if (!list.length) return null
 
   return (
     <section className='institution'>
       <div className='non-quarterlies'>
-        <h3>These Institutions are not quarterly filers:</h3>
+        <h3>{title}</h3>
         <section className='status'>
           <ul>
-            {list.map(i => <li key={i}>{i.name} - {i.lei}</li>)}
+            {list.map((i, idx) => <li key={idx}>{i.name} - {i.lei}</li>)}
           </ul>
         </section>
       </div>
@@ -17,6 +17,6 @@ export const NonQuarterlyInstitutions = ({ list }) => {
   )
 }
 
-NonQuarterlyInstitutions.defaultProps = {
+FilteredOutList.defaultProps = {
   list: []
 }
