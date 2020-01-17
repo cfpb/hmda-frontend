@@ -6,12 +6,12 @@ import { splitYearQuarter } from '../api/utils.js'
 import { isBeta } from '../../common/Beta.jsx'
 
 
-const InstitutionsHeader = ({ filingPeriod }) => {
+const InstitutionsHeader = ({ filingPeriod, filingQuarters }) => {
   if (!filingPeriod || isBeta()) return null
   const [filingYear, filingQtr] = splitYearQuarter(filingPeriod)
 
-  if (beforeFilingPeriod(filingPeriod)) {
-    const openingDay = filingQtr ? formattedQtrBoundaryDate(filingQtr, 0) : 'January 1st'
+  if (beforeFilingPeriod(filingPeriod, filingQuarters)) {
+    const openingDay = filingQtr ? formattedQtrBoundaryDate(filingQtr, filingQuarters, 0) : 'January 1st'
     return (
       <Alert
         heading={`The ${filingPeriod} filing period is not yet open.`}
@@ -22,7 +22,7 @@ const InstitutionsHeader = ({ filingPeriod }) => {
         </p>
       </Alert>
     )
-  } else if (afterFilingPeriod(filingPeriod)) {
+  } else if (afterFilingPeriod(filingPeriod, filingQuarters)) {
     return (
       <Alert
         heading={`The ${filingPeriod} filing period is closed.`}
@@ -45,7 +45,7 @@ const InstitutionsHeader = ({ filingPeriod }) => {
 
   const lastFilingDay = filingYear === '2019' ? '2nd' : '1st'
   const filingDeadline = filingQtr
-    ? `${formattedQtrBoundaryDate(filingQtr)}, ${filingYear}`
+    ? `${formattedQtrBoundaryDate(filingQtr, filingQuarters, 1)}, ${filingYear}`
     : `March ${lastFilingDay}, ${+filingYear + 1}`
 
   return (

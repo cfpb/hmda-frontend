@@ -65,12 +65,12 @@ export function withinAWeekOfDeadline(year) {
   return today >= week && today <= deadline
 }
 
-export function afterFilingPeriod(period) {
+  export function afterFilingPeriod(period, filingQuarters) {
   const timezoneOffsetHours = new Date().getTimezoneOffset() / 60 // Calculate UTC Hours Offset
   let [year, quarter] = splitYearQuarter(period)
   year = parseInt(year, 10)
   const yearAdjusted = quarter ? year : year + 1
-  const endDate = quarter ? qtrBoundaryDate(quarter, 1) : dates.FILING_DEADLINE
+  const endDate = quarter ? qtrBoundaryDate(quarter, filingQuarters, 1) : dates.FILING_DEADLINE
   const deadline = Date.UTC(
     yearAdjusted,
     endDate.month,
@@ -83,11 +83,11 @@ export function afterFilingPeriod(period) {
   return Date.now() > deadline
 }
 
-export function beforeFilingPeriod(period) {
+export function beforeFilingPeriod(period, filingQuarters) {
   let [year, quarter] = splitYearQuarter(period)
   year = parseInt(year, 10)
   const yearAdjusted = quarter ? year : year + 1
-  const startDate = quarter ? qtrBoundaryDate(quarter) : dates.FILING_START
+  const startDate = quarter ? qtrBoundaryDate(quarter, filingQuarters) : dates.FILING_START
   const start = Date.UTC(
     yearAdjusted,
     startDate.month,
@@ -100,19 +100,19 @@ export function beforeFilingPeriod(period) {
   return Date.now() < start
 }
 
-export function withinFilingPeriod(year) {
-  return !beforeFilingPeriod(year) && !afterFilingPeriod(year)
+export function withinFilingPeriod(year, filingQuarters) {
+  return !beforeFilingPeriod(year, filingQuarters) && !afterFilingPeriod(year, filingQuarters)
 }
 
 // MonthName DayNumber
-export const formattedQtrBoundaryDate = (qtr, startOrEnd=1) => {
-  const date = qtrBoundaryDate(qtr, startOrEnd)
+export const formattedQtrBoundaryDate = (qtr, filingQuarters, startOrEnd=1) => {
+  const date = qtrBoundaryDate(qtr, filingQuarters, startOrEnd)
   return `${months[date.month]} ${date.day}`
 }
 
 // Format quarterly end date for creation of Date object
-export const qtrBoundaryDate = (qtr, startOrEnd=0) => {
-  const monthDay = dates.FILING_QUARTERS[qtr].split(' - ')[startOrEnd]
+export const qtrBoundaryDate = (qtr, filingQuarters, startOrEnd=0) => {
+  const monthDay = filingQuarters[qtr].split(' - ')[startOrEnd]
   const [month, day] = monthDay.split('/').map(s => parseInt(s, 10))
   return { day, month: month - 1 }
 }

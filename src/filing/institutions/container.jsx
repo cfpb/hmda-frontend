@@ -15,7 +15,7 @@ export class InstitutionContainer extends Component {
   }
 
   fetchIfNeeded() {
-    const { dispatch, filingPeriod, institutions } = this.props
+    const { dispatch, filingPeriod, filingQuarters, institutions } = this.props
 
     if(!institutions.fetched && !institutions.isFetching){
       dispatch(requestInstitutions())
@@ -24,7 +24,7 @@ export class InstitutionContainer extends Component {
 
       // create the expected objects from the array, institutions = [{lei: lei}]
       let instArr = leis.map(lei => ({ lei }))
-      dispatch(fetchEachInstitution(instArr, filingPeriod))
+      dispatch(fetchEachInstitution(instArr, filingPeriod, filingQuarters))
     }
   }
 
@@ -35,12 +35,13 @@ export class InstitutionContainer extends Component {
 
 export function mapStateToProps(state, ownProps) {
   const { institutions, filingPeriod, filings, submission, latestSubmissions, error, redirecting } = state.app
-  const { filingPeriods } = ownProps.config
+  const { filingPeriods, filingQuarters } = ownProps.config
 
   return {
     submission,
     filingPeriod,
     filingPeriods,
+    filingQuarters,
     institutions,
     filings,
     error,

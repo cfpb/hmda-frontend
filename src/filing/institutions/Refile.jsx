@@ -4,20 +4,25 @@ import RefileButton from '../refileButton/container.jsx'
 import { PARSED_WITH_ERRORS, VALIDATING } from '../constants/statusCodes.js'
 import { afterFilingPeriod } from '../utils/date'
 
-const InstitutionRefile = ({ status, institution, filingPeriod }) => {
+const InstitutionRefile = ({ status, institution, filingPeriod, filingQuarters }) => {
   if (!status || !status.code) return null
   if (status.code === PARSED_WITH_ERRORS || status.code > VALIDATING) {
     return (
-      <RefileButton institution={institution} isLink={true} isSmall={true} isDisabled={disableRefile(filingPeriod)} />
+      <RefileButton
+        institution={institution}
+        isLink={true}
+        isSmall={true}
+        isDisabled={disableRefile(filingPeriod, filingQuarters)}
+      />
     )
   } else {
     return null
   }
 }
 
-function disableRefile(filingPeriod) {
+function disableRefile(filingPeriod, filingQuarters) {
   return filingPeriod.indexOf('Q') > -1
-    ? afterFilingPeriod(filingPeriod)
+    ? afterFilingPeriod(filingPeriod, filingQuarters)
     : false
 }
 

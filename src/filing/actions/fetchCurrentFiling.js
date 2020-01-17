@@ -4,7 +4,7 @@ import { splitYearQuarter } from '../api/utils.js'
 import { afterFilingPeriod } from '../utils/date'
 import receiveNonQFiling from './receiveNonQFiling'
 
-export default function fetchCurrentFiling(institution) {
+export default function fetchCurrentFiling(institution, filingQuarters) {
   return (dispatch, getState) => {
     const period = getState().app.filingPeriod
     const isQuarterly = splitYearQuarter(period)[1]
@@ -12,10 +12,10 @@ export default function fetchCurrentFiling(institution) {
       return filing.period === period
     })[0]
 
-    if (filing) return dispatch(fetchFiling(filing))
+    if (filing) return dispatch(fetchFiling(filing, filingQuarters))
 
     // Avoid creating Filings for passed Quarters
-    if (isQuarterly && afterFilingPeriod(period))
+    if (isQuarterly && afterFilingPeriod(period, filingQuarters))
       return dispatch(receiveNonQFiling(institution))
     
     return dispatch(

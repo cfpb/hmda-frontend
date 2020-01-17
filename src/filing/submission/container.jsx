@@ -83,9 +83,10 @@ class SubmissionContainer extends Component {
   componentDidMount() {
     // for institution name in header
     const { lei, filingPeriod } = this.props.match.params
+    const filingQuarters = this.props.filingQuarters
 
     if (!this.props.institutions.institutions[lei]) {
-      this.props.dispatch(fetchInstitution( { lei }, filingPeriod, false))
+      this.props.dispatch(fetchInstitution( { lei }, filingPeriod, filingQuarters, false))
     }
   }
 
