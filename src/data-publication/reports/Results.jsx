@@ -3,7 +3,8 @@ import React from 'react'
 import './Results.css'
 
 const defaultState = {
-  showAll: false
+  showAll: false,
+  withHeader: false,
 }
 
 const DEFAULT_NUMBER_OF_INSTITUTIONS = 10
@@ -89,15 +90,19 @@ class Results extends React.Component {
 
   makeListItem(institution, index) {
     const normalizedInstitution =
-      this.props.year === '2017'
+      this.is2017()
         ? {
             title: 'Institution ID',
             id: institution.institutionId
           }
         : { title: 'LEI', id: institution.lei }
-    const href = `https://s3.amazonaws.com/cfpb-hmda-public/prod/modified-lar/${
-      this.props.year
-    }/${normalizedInstitution.id}.txt`
+
+    const headeredFile =
+      !this.is2017() && this.state.withHeader
+        ? { dir: 'header/', fname: '_header' }
+        : { dir: '', fname: '' }
+
+    const href = `https://s3.amazonaws.com/cfpb-hmda-public/prod/modified-lar/${this.props.year}/${headeredFile.dir}${normalizedInstitution.id}${headeredFile.fname}.txt`
     return (
       <li key={index}>
         <h4>{institution.name}</h4>
@@ -105,7 +110,7 @@ class Results extends React.Component {
           {normalizedInstitution.title}: {normalizedInstitution.id}
         </p>
         <a className="font-small" href={href} download>
-          Download Modified LAR
+          {`Download Modified LAR ${this.state.withHeader ? 'with Header' : ''}`}
         </a>
       </li>
     )
@@ -121,7 +126,29 @@ class Results extends React.Component {
     if (nextProps.inputValue !== this.props.inputValue) return true
     if (nextProps.year !== this.props.year) return true
     if (nextState.showAll !== this.state.showAll) return true
+    if (nextState.withHeader !== this.state.withHeader) return true
     return false
+  }
+
+  is2017() {
+    return this.props.year === '2017'
+  }
+
+  renderIncludeFileHeader() {
+    if (this.is2017()) return null
+
+    return (
+      <p>
+        Include File Header{' '}
+        <input
+          type='checkbox'
+          name='inclHeader'
+          id='inclHeader'
+          value={this.state.withHeader}
+          onChange={e => this.setState({ withHeader: e.target.checked })}
+        />
+      </p>
+    )
   }
 
   render() {
@@ -141,6 +168,7 @@ class Results extends React.Component {
 
     return (
       <React.Fragment>
+        {this.renderIncludeFileHeader()}
         {this.renderHeading(
           this.props.institutions.length,
           this.props.inputValue
