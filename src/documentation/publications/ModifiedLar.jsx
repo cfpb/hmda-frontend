@@ -8,7 +8,8 @@ const links = {
   ],
   2017: [],
   2018: [
-    <li key="2"><a target="_blank" rel="noopener noreferrer" href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/UsingModifiedLar.md">Using Modified LAR Data</a></li>
+    <li key="18-1"><a target="_blank" rel="noopener noreferrer" href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/UsingModifiedLar.md">Using Modified LAR Data</a></li>,
+    <li key="18-2"><a target="_blank" rel="noopener noreferrer" href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2018-public-LAR-code-sheet.pdf">2018 Public LAR Code Sheet PDF</a></li>
   ],
   2019: [
     <li key="3"><a target="_blank" rel="noopener noreferrer" href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/UsingModifiedLar.md">Using Modified LAR Data</a></li>
