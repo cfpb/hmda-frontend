@@ -1,5 +1,6 @@
 import React from 'react'
 import Product from '../Product.jsx'
+import { Link } from 'react-router-dom'
 
 const links = {
   permanent: [
@@ -9,7 +10,8 @@ const links = {
   2017: [],
   2018: [
     <li key="18-1"><a target="_blank" rel="noopener noreferrer" href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/UsingModifiedLar.md">Using Modified LAR Data</a></li>,
-    <li key="18-2"><a target="_blank" rel="noopener noreferrer" href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2018-public-LAR-code-sheet.pdf">2018 Public LAR Code Sheet PDF</a></li>
+    <li key="18-2"><a target="_blank" rel="noopener noreferrer" href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2018-public-LAR-code-sheet.pdf">2018 Public LAR Code Sheet PDF</a></li>,
+    <li key="18-3"><Link to="/documentation/2018/modified-lar-header/">Modified LAR Header</Link></li>,
   ],
   2019: [
     <li key="3"><a target="_blank" rel="noopener noreferrer" href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/UsingModifiedLar.md">Using Modified LAR Data</a></li>
