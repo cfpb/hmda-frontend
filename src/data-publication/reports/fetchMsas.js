@@ -1,6 +1,6 @@
 function getMsaUrl(institutionId, year) {
   if(!year) return
-  if(year === '2017') return `https://ffiec-api.cfpb.gov/public/filers/2017/${institutionId}/msaMds`
+  if(year === '2017') return `https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017/msaMds/${institutionId}.json`
   return `https://ffiec.cfpb.gov/v2/reporting/filers/${year}/${institutionId}/msaMds`
 }
 
