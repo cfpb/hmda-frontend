@@ -13,6 +13,12 @@ export default function fetchInstitution(institution, filingPeriod, fetchFilings
       .then(json => {
         return hasHttpError(json).then(hasError => {
           if (hasError) {
+            if(json.status === 404) {
+              const message = `${institution.lei} does not exist in ${filingPeriod.split('-')[0]}.`
+              dispatch(receiveError({ status: json.status, message, heading: 'Institution not found.' }))
+              throw new Error(message)
+            }
+            
             dispatch(receiveError(json))
             throw new Error(json && `${json.status}: ${json.statusText}`)
           }

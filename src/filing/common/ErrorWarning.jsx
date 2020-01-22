@@ -5,9 +5,12 @@ import Alert from '../../common/Alert.jsx'
 import './ErrorWarning.css'
 
 export function getHeading(props) {
+  const { status, heading } = props.error
+  
   if (props.headerText) return props.headerText
+  if(status === 404 && heading) return heading
 
-  switch (props.error.status) {
+  switch (status) {
     case 401:
       return 'You have been automatically logged out.'
 
@@ -17,9 +20,12 @@ export function getHeading(props) {
 }
 
 export function getText(props) {
-  if (props.bodyText) return props.bodyText
+  const { status, message } = props.error
 
-  switch (props.error.status) {
+  if (props.bodyText) return props.bodyText
+  if(status === 404 && message) return message
+
+  switch (status) {
     case 400:
       return 'Your request could not be completed. Please try again.'
     case 401:
@@ -42,13 +48,20 @@ export function getText(props) {
   }
 }
 
+export function getContact(props) {
+  const { status, message } = props.error
+
+  if (status === 404 && message) return 'To resolve this error, contact '
+  return 'If the problem persists, contact '
+}
+
 const ErrorWarning = props => {
   if (props.error)
     return (
       <div className="ErrorWarning">
         <Alert type="error" heading={getHeading(props)}>
           <p>
-            {getText(props)} If the problem persists, contact{' '}
+            {getText(props)} {getContact(props)}
             <a href="mailto:hmdahelp@cfpb.gov">HMDA Help</a>.
           </p>
         </Alert>
