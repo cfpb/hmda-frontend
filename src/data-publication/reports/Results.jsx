@@ -97,10 +97,9 @@ class Results extends React.Component {
           }
         : { title: 'LEI', id: institution.lei }
 
-    const headeredFile =
-      !this.is2017() && this.state.withHeader
-        ? { dir: 'header/', fname: '_header' }
-        : { dir: '', fname: '' }
+    const headeredFile = this.state.withHeader
+      ? { dir: 'header/', fname: '_header' }
+      : { dir: '', fname: '' }
 
     const href = `https://s3.amazonaws.com/cfpb-hmda-public/prod/modified-lar/${this.props.year}/${headeredFile.dir}${normalizedInstitution.id}${headeredFile.fname}.txt`
     return (
@@ -135,8 +134,6 @@ class Results extends React.Component {
   }
 
   renderIncludeFileHeader() {
-    if (this.is2017()) return null
-
     return (
       <p>
         Include File Header{' '}
