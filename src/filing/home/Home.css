@@ -62,3 +62,8 @@
   top: 0;
   width: 100%;
 }
+
+.FilingHome .hero button:disabled {
+  pointer-events: visible;
+  cursor: not-allowed;
+}

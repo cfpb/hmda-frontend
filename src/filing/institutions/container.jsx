@@ -4,14 +4,17 @@ import requestInstitutions from '../actions/requestInstitutions.js'
 import fetchEachInstitution from '../actions/fetchEachInstitution.js'
 import receiveInstitutions from '../actions/receiveInstitutions.js'
 import Institutions from './index.jsx'
-import { getKeycloak } from '../utils/keycloak.js'
+import { getKeycloak, logout } from '../utils/keycloak.js'
+import Loading from '../../common/LoadingIcon.jsx'
 
 export class InstitutionContainer extends Component {
   componentDidMount() {
+    if(this.props.maintenanceMsg) return logout()
     this.fetchIfNeeded()
   }
 
   componentDidUpdate(){
+    if(this.props.maintenanceMsg) return logout()
     this.fetchIfNeeded()
   }
 
@@ -34,6 +37,11 @@ export class InstitutionContainer extends Component {
   }
 
   render() {
+    if(this.props.maintenanceMsg) return (
+      <div style={{ height: '100px' }}>
+        <Loading className="floatingIcon" />
+      </div>
+    )
     return <Institutions {...this.props} />
   }
 }
@@ -42,6 +50,7 @@ export function mapStateToProps(state, ownProps) {
   const { institutions, filings, submission, latestSubmissions, error } = state.app
   const { filingPeriod } = ownProps.match.params
   const filingYears = ownProps.config.filingPeriods
+  const maintenanceMsg = ownProps.config.maintenanceMsg
 
   return {
     submission,
@@ -50,7 +59,8 @@ export function mapStateToProps(state, ownProps) {
     institutions,
     filings,
     error,
-    latestSubmissions: latestSubmissions.latestSubmissions
+    latestSubmissions: latestSubmissions.latestSubmissions,
+    maintenanceMsg
   }
 }
 
