@@ -17,6 +17,8 @@
   max-width: 46rem;
 }
 
-.SearchList input[disabled] {
-  background-color: $color-gray-lightest;
+.SearchList #inclHeader {
+  display: inline-block;
+  margin-left: 5px;
+  width: 20px;
 }
