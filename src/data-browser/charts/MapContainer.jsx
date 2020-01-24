@@ -10,7 +10,7 @@ import mapbox from 'mapbox-gl'
 
 import './mapbox.css'
 
-mapbox.accessToken = 'pk.eyJ1Ijoia3JvbmljayIsImEiOiJjaWxyZGZwcHQwOHRidWxrbnd0OTB0cDBzIn0.u2R3NY5PnevWH3cHRk6TWQ'
+mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlvaQw'
 /*
   loanAmount
   income
@@ -234,7 +234,7 @@ const MapContainer = props => {
     if(!data) return
     const map = new mapbox.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/kronick/cixtov6xg00252qqpoue7ol4c?fresh=true',
+      style: 'mapbox://styles/mapbox/light-v10',
       zoom: 3.5,
       center: [-96, 38]
     })
@@ -245,14 +245,14 @@ const MapContainer = props => {
     map.on('load', () => {
       map.addSource('counties', {
         type: 'vector',
-        url: 'mapbox://kronick.6tomuq5i'
+        url: 'mapbox://cfpb.00l6sz7f'
       })
 
       map.addLayer({
         'id': 'counties',
         'type': 'fill',
         'source': 'counties',
-        'source-layer': 'Census_US_Counties-453u4s',
+        'source-layer': '2015-county-bc0xsx',
         'paint': {
           'fill-outline-color': 'rgba(0,0,0,0.1)',
           'fill-color': {
@@ -268,7 +268,7 @@ const MapContainer = props => {
         'id': 'county-lines',
         'type': 'line',
         'source': 'counties',
-        'source-layer': 'Census_US_Counties-453u4s',
+        'source-layer': '2015-county-bc0xsx',
         'paint': {
           'line-width': {
             property: 'GEOID',
