@@ -19,6 +19,9 @@ const browser = detect()
 
 export class AppContainer extends Component {
   componentDidMount() {
+    if(this.props.maintenanceMode && !this._isHome(this.props)) 
+      return this.props.history.push('/filing')
+
     this.props.dispatch(updateFilingPeriod(this.props.match.params.filingPeriod))
     const keycloak = getKeycloak()
     keycloak.init().then(authenticated => {
@@ -36,6 +39,9 @@ export class AppContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    if(this.props.maintenanceMode && !this._isHome(this.props)) 
+      return this.props.history.push('/filing') 
+      
     const keycloak = getKeycloak()
     if (!keycloak.authenticated && !this._isHome(this.props)){
       if(this.keycloakConfigured) login(this.props.location.pathname)
@@ -93,13 +99,15 @@ export class AppContainer extends Component {
   }
 }
 
-export function mapStateToProps(state) {
+export function mapStateToProps(state, ownProps) {
   const { redirecting } = state.app
   const { statePathname } = state.app
+  const { maintenanceMode } = ownProps.config
 
   return {
     redirecting,
-    statePathname
+    statePathname,
+    maintenanceMode
   }
 }
 

@@ -6,16 +6,16 @@ import YearSelector from '../../common/YearSelector.jsx'
 import './Home.css'
 
 const Home = props => {
-  const buttonTitle = props.maintenanceMsg ? 'Unavailable during maintenance' : undefined
-  const buttonsDisabled = !!props.maintenanceMsg
+  const buttonTitle = props.maintenanceMode ? 'Unavailable during maintenance' : undefined
+  const buttonsDisabled = !!props.maintenanceMode
 
   return (
     <main className="FilingHome" id="main-content">
       <section className="hero">
         <div className="full-width">
-          {!!props.maintenanceMsg && (
-            <Alert type='info' heading='System Temporarily Unavailable'>
-              <p>{props.maintenanceMsg}</p>
+          {!!props.maintenanceMode && (
+            <Alert type='warning' heading='System Temporarily Unavailable'>
+              <p>{props.announcement}</p>
             </Alert>
           )}
           <YearSelector url={props.pathname}  year={props.filingPeriod} years={props.filingYears} />
