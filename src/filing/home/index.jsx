@@ -14,7 +14,7 @@ const Home = props => {
       <section className="hero">
         <div className="full-width">
           {!!props.maintenanceMode && (
-            <Alert type='warning' heading='System Temporarily Unavailable'>
+            <Alert type='error' heading='System Temporarily Unavailable'>
               <p>{props.announcement}</p>
             </Alert>
           )}

@@ -11,6 +11,7 @@ import { getKeycloak, refresh, login } from './utils/keycloak.js'
 import isRedirecting from './actions/isRedirecting.js'
 import updateFilingPeriod from './actions/updateFilingPeriod.js'
 import { detect } from 'detect-browser'
+import { FilingAnnouncement } from './common/FilingAnnouncement'
 
 import 'normalize.css'
 import './app.css'
@@ -77,7 +78,7 @@ export class AppContainer extends Component {
   }
 
   render() {
-    const { match: { params }, location, config: { filingPeriods } } = this.props
+    const { match: { params }, location, config: { filingPeriods, filingAnnouncement } } = this.props
 
     return (
       <div className="AppContainer">
@@ -87,6 +88,7 @@ export class AppContainer extends Component {
         <Header filingPeriod={params.filingPeriod} pathname={location.pathname} />
         <ConfirmationModal />
         {isBeta() ? <Beta/> : null}
+        {filingAnnouncement ? <FilingAnnouncement data={filingAnnouncement} /> : null}
         {filingPeriods.indexOf(params.filingPeriod) !== -1
           ? this._renderAppContents(this.props)
           : params.filingPeriod === '2017'
@@ -102,12 +104,13 @@ export class AppContainer extends Component {
 export function mapStateToProps(state, ownProps) {
   const { redirecting } = state.app
   const { statePathname } = state.app
-  const { maintenanceMode } = ownProps.config
+  const { maintenanceMode, filingAnnouncement } = ownProps.config
 
   return {
     redirecting,
     statePathname,
-    maintenanceMode
+    maintenanceMode, 
+    filingAnnouncement
   }
 }
 

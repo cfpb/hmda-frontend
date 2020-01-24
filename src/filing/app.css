@@ -19,3 +19,8 @@
 .Filing.App .Beta {
   margin-bottom: 0;
 }
+
+.Filing.App .Announcement {
+  max-width: 1040px;
+  margin: 0 auto;
+}

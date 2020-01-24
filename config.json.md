@@ -46,12 +46,12 @@ Each top level Environment (`prod`, `dev`) will have a `beta` key that will hous
     The year that will be highlighted when users click on the DOCUMENTATION link in the page header.
 
 - ### filingPeriods (Array(String))
-    The filing periods which are accessible by a user of the Filing app.
+    An array of filing periods which are accessible by a user of the Filing app.
 
 - ### maintenanceMode (Boolean)
-    Indicates if the backend is unavailable.  Setting to `true` will prevent the user from logging in to the Filing app or attempting new account creations.
+    A flag indicating if the backend is unavailable.  Value `true` will prevent the user from logging in to the Filing app or attempting new account creations.
 
-    NOTE: Setting to true will also display a
+    NOTE: Setting to `true` will also display a banner on the Filing homepage, mirroring the announcement on the FFIEC landing page.
 
 - ### filingAnnouncement (Object | null)
     Will display a banner across all Filing app pages to inform users of future events, such as scheduled maintenance.  To disable the banner, set the value of this key to `null`.
@@ -59,10 +59,10 @@ Each top level Environment (`prod`, `dev`) will have a `beta` key that will hous
     "filingAnnouncement": {
         "title": "Scheduled Maintenance",
         "message": "System maintenance is scheduled for Monday",
-        "severity": "info"
+        "type": "info"
     }
     ```
-    - severity
+    - type
         - "info" -> blue
         - "warning" -> yellow
         - "error" -> red
