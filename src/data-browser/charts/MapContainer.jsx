@@ -10,11 +10,12 @@ import mapbox from 'mapbox-gl'
 
 import './mapbox.css'
 
-mapbox.accessToken = 'pk.eyJ1Ijoia3JvbmljayIsImEiOiJjaWxyZGZwcHQwOHRidWxrbnd0OTB0cDBzIn0.u2R3NY5PnevWH3cHRk6TWQ'
+mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlvaQw'
+
 /*
+  Remaining features:
   loanAmount
   income
-  age
 */
 
 const colors = ['#edffbd', '#d3f2a3', '#97e196', '#6cc08b', '#4c9b82', '#217a79', '#105965', '#074050', '#002737']
@@ -27,12 +28,12 @@ const variables = [
 ]
 
 const valsForVar = {
-  loanType: optionsFromVariables('loan_types'),
-  loanPurpose: optionsFromVariables('loan_purposes'),
+  loanType: optionsFromVariables('loan_types', 1),
+  loanPurpose: optionsFromVariables('loan_purposes', 1),
   ethnicity: optionsFromVariables('ethnicities', 1),
   race: optionsFromVariables('races', 1),
   age: makeOptions([
-    ['8888', 'N/A'],
+    ['N/A', '8888'],
     '<25',
     '25-34',
     '35-44',
@@ -56,8 +57,8 @@ function makeOptions(arr) {
   })
 }
 
-function makeOption(value, label) {
-  return {value, label}
+function makeOption(label, value) {
+  return {label, value}
 }
 
 function getValuesForVariable(variable) {
@@ -90,10 +91,12 @@ function generateColor(data, variable, value, total) {
 function makeStops(data, variable, value){
   const stops = [['0', 'rgba(0,0,0,0.05)']]
   if(!data || !variable || !value) return stops
+  let val = value.value
+  if(val.match('%')) val = value.label
   Object.keys(data).forEach(county => {
     const currData = data[county]
     const total = COUNTS[county] || 20000
-    stops.push([county, generateColor(currData, variable.value, value.value, total)])
+    stops.push([county, generateColor(currData, variable.value, val, total)])
   })
   return stops
 }
@@ -170,7 +173,9 @@ const MapContainer = props => {
     const currVarData = currData[selectedVariable.value]
     const ths = valsForVar[selectedVariable.value]
     const tds = ths.map(v => {
-      return currVarData[v.value] || 0
+      let val = v.value
+      if(val.match('%')) val = v.label
+      return currVarData[val] || 0
     })
 
     return (
@@ -234,7 +239,7 @@ const MapContainer = props => {
     if(!data) return
     const map = new mapbox.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/kronick/cixtov6xg00252qqpoue7ol4c?fresh=true',
+      style: 'mapbox://styles/mapbox/light-v10',
       zoom: 3.5,
       center: [-96, 38]
     })
@@ -245,14 +250,14 @@ const MapContainer = props => {
     map.on('load', () => {
       map.addSource('counties', {
         type: 'vector',
-        url: 'mapbox://kronick.6tomuq5i'
+        url: 'mapbox://cfpb.00l6sz7f'
       })
 
       map.addLayer({
         'id': 'counties',
         'type': 'fill',
         'source': 'counties',
-        'source-layer': 'Census_US_Counties-453u4s',
+        'source-layer': '2015-county-bc0xsx',
         'paint': {
           'fill-outline-color': 'rgba(0,0,0,0.1)',
           'fill-color': {
@@ -268,7 +273,7 @@ const MapContainer = props => {
         'id': 'county-lines',
         'type': 'line',
         'source': 'counties',
-        'source-layer': 'Census_US_Counties-453u4s',
+        'source-layer': '2015-county-bc0xsx',
         'paint': {
           'line-width': {
             property: 'GEOID',
