@@ -1,6 +1,10 @@
 {
   "prod": {
-    "announcement": "System maintenance is scheduled for Monday, January 27 from 8pm - 11pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "announcement": {
+      "message": "System maintenance is scheduled for Monday, January 27 from 8pm - 11pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+      "type": "info",
+      "heading": "Announcement"
+    },
     "defaultPeriod": "2019",
     "defaultDocsPeriod": "2019",
     "filingPeriods": ["2019", "2018"],
@@ -12,7 +16,11 @@
       "type": "warning"
     },
     "beta": {
-      "announcement": "System maintenance is scheduled for Monday, January 27 from 8pm - 11pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+      "announcement": {
+        "message": "System maintenance is scheduled for Monday, January 27 from 8pm - 11pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+        "type": "info",
+        "heading": "Announcement"
+      },
       "defaultPeriod": "2019",
       "defaultDocsPeriod": "2019",
       "filingPeriods": ["2019", "2018"],
@@ -26,19 +34,27 @@
     }
   },
   "dev": {
-    "announcement": "System maintenance is scheduled for Monday, January 27 from 8pm - 11pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "announcement": {
+      "message": "System maintenance is scheduled for Monday, January 27 from 8pm - 11pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+      "type": "info",
+      "heading": "Announcement"
+    },
     "defaultPeriod": "2019",
     "defaultDocsPeriod": "2019",
     "filingPeriods": ["2019", "2018"],
     "showMaps": true,
-    "maintenanceMode": false,
+    "maintenanceMode": true,
     "filingAnnouncement": {
       "message": "System maintenance is scheduled for Monday, January 27 from 8pm - 11pm EST. During this time users will be unable to log in or create new accounts.",
       "title": "Scheduled Maintenance",
       "type": "warning"
     },
     "beta": {
-      "announcement": "The filing period is open. Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.",
+      "announcement": {
+        "message": "The filing period is open. Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.",
+        "type": "info",
+        "heading": "Announcement"
+      },
       "defaultPeriod": "2019",
       "defaultDocsPeriod": "2019",
       "filingPeriods": ["2019", "2018"],

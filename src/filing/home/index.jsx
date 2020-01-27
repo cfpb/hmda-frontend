@@ -15,7 +15,7 @@ const Home = props => {
         <div className="full-width">
           {!!props.maintenanceMode && (
             <Alert type='error' heading='System Temporarily Unavailable'>
-              <p>{props.announcement}</p>
+              <p>{props.announcement.message}</p>
             </Alert>
           )}
           <YearSelector url={props.pathname}  year={props.filingPeriod} years={props.filingYears} />

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Alert from '../common/Alert.jsx'
 import { isBeta } from '../common/Beta.jsx'
 import { withAppContext } from '../common/appContextHOC'
+import ConfiguredAlert from '../common/ConfiguredAlert'
 
 import './Home.css'
 
@@ -20,11 +20,7 @@ const Home = ({ config }) => {
             publicly disclose information about mortgages.
           </p>
         </header>
-        {announcement && (
-          <Alert heading='Announcement'>
-            <p>{announcement}</p>
-          </Alert>
-        )}
+        {announcement && <ConfiguredAlert {...announcement} />}
       </div>
       <div style={{marginTop: '3em'}} className="usa-grid-full">
         <div className="card-container">
