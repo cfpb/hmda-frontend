@@ -12,7 +12,7 @@
     "maintenanceMode": false,
     "filingAnnouncement": {
       "message": "System maintenance is scheduled for Monday, January 27 from 8pm - 11pm EST. During this time users will be unable to log in or create new accounts.",
-      "title": "Scheduled Maintenance",
+      "heading": "Scheduled Maintenance",
       "type": "warning"
     },
     "beta": {
@@ -28,7 +28,7 @@
       "maintenanceMode": false,
       "filingAnnouncement": {
         "message": "System maintenance is scheduled for Monday, January 27 from 8pm - 11pm EST. During this time users will be unable to log in or create new accounts.",
-        "title": "Scheduled Maintenance",
+        "heading": "Scheduled Maintenance",
         "type": "warning"
       }
     }
@@ -46,7 +46,7 @@
     "maintenanceMode": false,
     "filingAnnouncement": {
       "message": "System maintenance is scheduled for Monday, January 27 from 8pm - 11pm EST. During this time users will be unable to log in or create new accounts.",
-      "title": "Scheduled Maintenance",
+      "heading": "Scheduled Maintenance",
       "type": "warning"
     },
     "beta": {
