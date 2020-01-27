@@ -1,14 +1,23 @@
 import React from 'react'
 import { login, register } from '../utils/keycloak.js'
+import Alert from '../../common/Alert.jsx'
 import YearSelector from '../../common/YearSelector.jsx'
 
 import './Home.css'
 
 const Home = props => {
+  const buttonTitle = props.maintenanceMode ? 'Unavailable during maintenance' : undefined
+  const buttonsDisabled = !!props.maintenanceMode
+
   return (
     <main className="FilingHome" id="main-content">
       <section className="hero">
         <div className="full-width">
+          {!!props.maintenanceMode && (
+            <Alert type='error' heading='System Temporarily Unavailable'>
+              <p>{props.announcement.message}</p>
+            </Alert>
+          )}
           <YearSelector url={props.pathname}  year={props.filingPeriod} years={props.filingYears} />
           <h1>Get started filing your {props.filingPeriod} HMDA data</h1>
           <p className="font-lead max-width">
@@ -23,6 +32,8 @@ const Home = props => {
               e.preventDefault()
               login()
             }}
+            disabled={buttonsDisabled}
+            title={buttonTitle}
           >
             Log in
           </button>
@@ -33,6 +44,8 @@ const Home = props => {
               e.preventDefault()
               register()
             }}
+            disabled={buttonsDisabled}
+            title={buttonTitle}
           >
             Create an account
           </button>

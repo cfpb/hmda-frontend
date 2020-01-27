@@ -11,6 +11,7 @@ import { getKeycloak, refresh, login } from './utils/keycloak.js'
 import isRedirecting from './actions/isRedirecting.js'
 import updateFilingPeriod from './actions/updateFilingPeriod.js'
 import { detect } from 'detect-browser'
+import { FilingAnnouncement } from './common/FilingAnnouncement'
 
 import 'normalize.css'
 import './app.css'
@@ -19,6 +20,9 @@ const browser = detect()
 
 export class AppContainer extends Component {
   componentDidMount() {
+    if(this.props.maintenanceMode && !this._isHome(this.props)) 
+      return this.props.history.push('/filing')
+
     this.props.dispatch(updateFilingPeriod(this.props.match.params.filingPeriod))
     const keycloak = getKeycloak()
     keycloak.init().then(authenticated => {
@@ -36,6 +40,9 @@ export class AppContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    if(this.props.maintenanceMode && !this._isHome(this.props)) 
+      return this.props.history.push('/filing') 
+      
     const keycloak = getKeycloak()
     if (!keycloak.authenticated && !this._isHome(this.props)){
       if(this.keycloakConfigured) login(this.props.location.pathname)
@@ -71,7 +78,7 @@ export class AppContainer extends Component {
   }
 
   render() {
-    const { match: { params }, location, config: { filingPeriods } } = this.props
+    const { match: { params }, location, config: { filingPeriods, filingAnnouncement } } = this.props
 
     return (
       <div className="AppContainer">
@@ -81,6 +88,7 @@ export class AppContainer extends Component {
         <Header filingPeriod={params.filingPeriod} pathname={location.pathname} />
         <ConfirmationModal />
         {isBeta() ? <Beta/> : null}
+        {filingAnnouncement ? <FilingAnnouncement data={filingAnnouncement} /> : null}
         {filingPeriods.indexOf(params.filingPeriod) !== -1
           ? this._renderAppContents(this.props)
           : params.filingPeriod === '2017'
@@ -93,13 +101,16 @@ export class AppContainer extends Component {
   }
 }
 
-export function mapStateToProps(state) {
+export function mapStateToProps(state, ownProps) {
   const { redirecting } = state.app
   const { statePathname } = state.app
+  const { maintenanceMode, filingAnnouncement } = ownProps.config
 
   return {
     redirecting,
-    statePathname
+    statePathname,
+    maintenanceMode, 
+    filingAnnouncement
   }
 }
 
