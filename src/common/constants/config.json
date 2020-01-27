@@ -10,11 +10,7 @@
     "filingPeriods": ["2019", "2018"],
     "showMaps": false,
     "maintenanceMode": false,
-    "filingAnnouncement": {
-      "message": "System maintenance is scheduled for Monday, January 27 from 8pm - 11pm EST. During this time users will be unable to log in or create new accounts.",
-      "heading": "Scheduled Maintenance",
-      "type": "warning"
-    },
+    "filingAnnouncement": null,
     "beta": {
       "announcement": {
         "message": "System maintenance is scheduled for Monday, January 27 from 8pm - 11pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
@@ -26,11 +22,7 @@
       "filingPeriods": ["2019", "2018"],
       "showMaps": false,
       "maintenanceMode": false,
-      "filingAnnouncement": {
-        "message": "System maintenance is scheduled for Monday, January 27 from 8pm - 11pm EST. During this time users will be unable to log in or create new accounts.",
-        "heading": "Scheduled Maintenance",
-        "type": "warning"
-      }
+      "filingAnnouncement": null
     }
   },
   "dev": {
@@ -44,11 +36,7 @@
     "filingPeriods": ["2019", "2018"],
     "showMaps": true,
     "maintenanceMode": false,
-    "filingAnnouncement": {
-      "message": "System maintenance is scheduled for Monday, January 27 from 8pm - 11pm EST. During this time users will be unable to log in or create new accounts.",
-      "heading": "Scheduled Maintenance",
-      "type": "warning"
-    },
+    "filingAnnouncement": null,
     "beta": {
       "announcement": {
         "message": "The filing period is open. Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.",
