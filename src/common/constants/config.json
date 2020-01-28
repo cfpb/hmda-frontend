@@ -1,33 +1,33 @@
 {
   "prod": {
     "announcement": {
-      "message": "We are performing scheduled system maintenance from 8pm - 11pm EST. During this time users will be unable to log in to the Filing application or create new accounts. Thank you for your patience.",
-      "type": "error",
-      "heading": "System Temporarily Unavailable"
+      "message": "The filing period is open. Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.",
+      "type": "info",
+      "heading": "Announcement"
     },
     "defaultPeriod": "2019",
     "defaultDocsPeriod": "2019",
     "filingPeriods": ["2019", "2018"],
     "showMaps": false,
-    "maintenanceMode": true,
+    "maintenanceMode": false,
     "filingAnnouncement": null,
     "beta": {
       "announcement": {
-        "message": "We are performing scheduled system maintenance from 8pm - 11pm EST. During this time users will be unable to log in to the Filing application or create new accounts. Thank you for your patience.",
-        "type": "error",
-        "heading": "System Temporarily Unavailable"
+        "message": "The filing period is open. Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.",
+        "type": "info",
+        "heading": "Announcement"
       },
       "defaultPeriod": "2019",
       "defaultDocsPeriod": "2019",
       "filingPeriods": ["2019", "2018"],
       "showMaps": false,
-      "maintenanceMode": true,
+      "maintenanceMode": false,
       "filingAnnouncement": null
     }
   },
   "dev": {
     "announcement": {
-      "message": "System maintenance is scheduled for Monday, January 27 from 8pm - 11pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+      "message": "The filing period is open. Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.",
       "type": "info",
       "heading": "Announcement"
     },
