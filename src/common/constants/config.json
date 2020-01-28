@@ -1,27 +1,27 @@
 {
   "prod": {
     "announcement": {
-      "message": "System maintenance is scheduled for Monday, January 27 from 8pm - 11pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-      "type": "info",
-      "heading": "Announcement"
+      "message": "We are performing scheduled system maintenance from 8pm - 11pm EST. During this time users will be unable to log in to the Filing application or create new accounts. Thank you for your patience.",
+      "type": "error",
+      "heading": "System Temporarily Unavailable"
     },
     "defaultPeriod": "2019",
     "defaultDocsPeriod": "2019",
     "filingPeriods": ["2019", "2018"],
     "showMaps": false,
-    "maintenanceMode": false,
+    "maintenanceMode": true,
     "filingAnnouncement": null,
     "beta": {
       "announcement": {
-        "message": "System maintenance is scheduled for Monday, January 27 from 8pm - 11pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-        "type": "info",
-        "heading": "Announcement"
+        "message": "We are performing scheduled system maintenance from 8pm - 11pm EST. During this time users will be unable to log in to the Filing application or create new accounts. Thank you for your patience.",
+        "type": "error",
+        "heading": "System Temporarily Unavailable"
       },
       "defaultPeriod": "2019",
       "defaultDocsPeriod": "2019",
       "filingPeriods": ["2019", "2018"],
       "showMaps": false,
-      "maintenanceMode": false,
+      "maintenanceMode": true,
       "filingAnnouncement": null
     }
   },
