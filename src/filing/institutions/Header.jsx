@@ -6,7 +6,7 @@ import { splitYearQuarter } from '../api/utils.js'
 import { isBeta } from '../../common/Beta.jsx'
 
 
-const InstitutionsHeader = ({ filingPeriodOrig, filingQuarters, hasQuarterlyFilers }) => {
+const InstitutionsHeader = ({ filingPeriodOrig, filingQuarters, filingQuartersLate, hasQuarterlyFilers }) => {
   if (!filingPeriodOrig || isBeta()) return null
 
   // Adjust displayed filing period when a non-quarterly user accesses an open quarterly period
@@ -18,7 +18,7 @@ const InstitutionsHeader = ({ filingPeriodOrig, filingQuarters, hasQuarterlyFile
   if (beforeFilingPeriod(filingPeriod, filingQuarters)) {
     const openingDay =
       filingQtr && splitYearQuarter(filingPeriod)[1]
-        ? formattedQtrBoundaryDate(filingQtr, filingQuarters, 0)
+        ? `${formattedQtrBoundaryDate(filingQtr, filingQuarters, 0)}, ${filingYear}`
         : `January 1st, ${+filingYear + 1}`
     return (
       <Alert
@@ -26,11 +26,49 @@ const InstitutionsHeader = ({ filingPeriodOrig, filingQuarters, hasQuarterlyFile
         type="warning"
       >
         <p>
-          The Platform will begin accepting data for the {filingPeriod} filing period on {openingDay}.
+          The Platform will begin accepting data for the {filingPeriod} filing period on <strong>{openingDay}</strong>.
         </p>
       </Alert>
     )
   } else if (afterFilingPeriod(filingPeriod, filingQuarters)) {
+    // Quarterly - Late
+    if(filingQtr && !afterFilingPeriod(filingPeriod, filingQuartersLate))
+      return (
+        <Alert
+          heading={`The ${filingPeriod} filing deadline has passed.`}
+          type='warning'
+        >
+          <>
+            <p>
+              Submissions of {filingPeriod} data are no longer considered
+              timely, as of{' '}
+              <strong>
+                {formattedQtrBoundaryDate(filingQtr, filingQuarters, 1)}, {filingYear}
+              </strong>
+              .
+              <br />
+              The platform will continue to accept late submissions until{' '}
+              <strong>
+                {formattedQtrBoundaryDate(filingQtr, filingQuartersLate, 1)}, {filingYear}
+              </strong>
+              .
+            </p>
+            <p>
+              For more info on quarterly filing dates, visit the{' '}
+              <a
+                target='_blank'
+                href={`https://ffiec.cfpb.gov/documentation/${filingYear}/quarterly-filing-dates/`}
+                rel='noopener noreferrer'
+              >
+                documentation page.
+              </a>
+              <br />
+              You may file HMDA data for your authorized institutions below.
+            </p>
+          </>
+        </Alert>
+      )
+
     return (
       <Alert
         heading={`The ${filingPeriod} filing period is closed.`}
@@ -59,12 +97,33 @@ const InstitutionsHeader = ({ filingPeriodOrig, filingQuarters, hasQuarterlyFile
   return (
     <Alert>
       <div>
-        <h2 style={{ margin: '0 0 0.5em 0' }}>{filingPeriod} filing period</h2>
-        <p className="font-lead">
-          The filing period is open. {filingDeadline} is the deadline to
-          submit your HMDA data.
+        <h2 style={{ margin: '0 0 0.5em 0' }}>The {filingPeriod} filing period is open.</h2>
+        <p className='font-lead'>
+          {filingQtr ? (
+            <>
+              Submission of {filingPeriod} HMDA data will be considered timely
+              if completed by <strong>{filingDeadline}</strong>.<br />
+              Late submissions will not be accepted after{' '}
+              <strong>
+                {formattedQtrBoundaryDate(filingQtr, filingQuartersLate, 1)},{' '}
+                {filingYear}
+              </strong>
+              .<br />
+              <br />
+              For more info on quarterly filing dates, visit the{' '}
+              <a
+                target='_blank'
+                href={`https://ffiec.cfpb.gov/documentation/${filingYear}/quarterly-filing-dates/`}
+                rel='noopener noreferrer'
+              >
+                documentation page.
+              </a>
+            </>
+          ) : (
+            <>{filingDeadline} is the deadline to submit your HMDA data.</>
+          )}
         </p>
-        <p className="font-lead">
+        <p className='font-lead'>
           You may file HMDA data for your authorized institutions below.
         </p>
       </div>

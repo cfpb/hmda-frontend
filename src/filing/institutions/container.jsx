@@ -35,13 +35,14 @@ export class InstitutionContainer extends Component {
 
 export function mapStateToProps(state, ownProps) {
   const { institutions, filingPeriod, filings, submission, latestSubmissions, error, redirecting } = state.app
-  const { filingPeriods, filingQuarters } = ownProps.config
+  const { filingPeriods, filingQuarters, filingQuartersLate } = ownProps.config
 
   return {
     submission,
     filingPeriod,
     filingPeriods,
     filingQuarters,
+    filingQuartersLate,
     institutions,
     filings,
     error,

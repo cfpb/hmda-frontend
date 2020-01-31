@@ -147,7 +147,7 @@ const _whatToRender = ({ filings, institutions, submission, filingPeriod, filing
 
 export default class Institutions extends Component {
   render() {
-    const { error, filingPeriod, filingPeriods, filingQuarters, hasQuarterlyFilers, history, location, dispatch } = this.props
+    const { error, filingPeriod, filingPeriods, filingQuarters, filingQuartersLate, hasQuarterlyFilers, history, location, dispatch } = this.props
     const institutions = this.props.institutions.institutions
     let unregisteredInstitutions = []
     let leis = []
@@ -162,7 +162,12 @@ export default class Institutions extends Component {
         {error ? <ErrorWarning error={error} /> : null}
         <div className="usa-width-one-whole">
           {filingPeriod ? (
-            <InstitutionsHeader filingPeriodOrig={filingPeriod} filingQuarters={filingQuarters} hasQuarterlyFilers={hasQuarterlyFilers}/>
+            <InstitutionsHeader 
+              filingPeriodOrig={filingPeriod} 
+              filingQuarters={filingQuarters} 
+              filingQuartersLate={filingQuartersLate} 
+              hasQuarterlyFilers={hasQuarterlyFilers}
+            />
           ) : null}
 
           <InstitutionPeriodSelector
