@@ -12,8 +12,6 @@ import isRedirecting from './actions/isRedirecting.js'
 import updateFilingPeriod from './actions/updateFilingPeriod.js'
 import { detect } from 'detect-browser'
 import { FilingAnnouncement } from './common/FilingAnnouncement'
-import { splitYearQuarter } from './api/utils.js'
-import { isValidQPeriod, yearHasQuarterly } from './utils/dateQuarterly.js'
 
 import 'normalize.css'
 import './app.css'
