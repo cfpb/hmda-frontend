@@ -1,10 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { splitYearQuarter } from '../../api/utils'
 
 import './Summary.css'
 
 const Summary = props => {
   if (!props.submission || !props.ts) return null
+  const quarter = splitYearQuarter(props.filingPeriod)[1]
 
   return (
     <section className="Summary full-width" id="summary">
@@ -46,6 +48,12 @@ const Summary = props => {
             <dd>{props.submission.fileName}</dd>
             <dt>Year:</dt>
             <dd>{props.ts.year}</dd>
+            {quarter && 
+              <>
+                <dt>Quarter:</dt>
+                <dd>{quarter}</dd>
+              </>
+            }
             <dt>Total Loans/Applications:</dt>
             <dd>{props.ts.totalLines}</dd>
           </dl>

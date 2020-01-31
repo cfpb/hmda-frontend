@@ -7,11 +7,12 @@ import '../../common/YearSelector.css'
 
 const ANNUAL = 'annual'
 
-const InstitutionPeriodSelector = ({ filingPeriod, filingPeriods, history, pathname, dispatch }) => {
+const InstitutionPeriodSelector = ({ filingPeriod, filingPeriods, hasQuarterlyFilers, history, pathname, dispatch }) => {
   const [filingYear, filingQuarter] = splitYearQuarter(filingPeriod)
   const yearOpt = periodOption(filingYear)
   const quarterOpt = periodOption(filingQuarter)
   const quarterOpts = quarterOptions(filingYear, filingPeriods)
+  const showQuarterMenu = +filingYear >= 2020 && hasQuarterlyFilers
 
   return (
     <div className='YearSelector'>
@@ -26,18 +27,20 @@ const InstitutionPeriodSelector = ({ filingPeriod, filingPeriods, history, pathn
           history.replace(pathname.replace(filingPeriod, opt.value))
         }}
       />
-      <Select
-        value={quarterOpt || quarterOpts[0]}
-        options={quarterOpts}
-        styles={styleFn()}
-        onChange={opt => {
-          const period = formQPath(opt, filingYear)
-          dispatch(refreshState())
-          dispatch(updateFilingPeriod(period))
-          history.replace(pathname.replace(filingPeriod, period))
-        }}
-        isDisabled={quarterOpts.length < 2}
-      />
+      { showQuarterMenu &&
+        <Select
+          value={quarterOpt || quarterOpts[0]}
+          options={quarterOpts}
+          styles={styleFn()}
+          onChange={opt => {
+            const period = formQPath(opt, filingYear)
+            dispatch(refreshState())
+            dispatch(updateFilingPeriod(period))
+            history.replace(pathname.replace(filingPeriod, period))
+          }}
+          isDisabled={quarterOpts.length < 2}
+        />
+      }
     </div>
   )
 }
@@ -78,7 +81,7 @@ function yearOptions(filingPeriods) {
 function quarterOptions(filingYear, filingPeriods) {
   const matchingPeriods = filingPeriods.filter(v => {
     return v.indexOf(filingYear) === 0
-  })
+  }).sort().reverse()
 
   const quarters = matchingPeriods.map(v => {
     return periodOption(splitYearQuarter(v)[1])

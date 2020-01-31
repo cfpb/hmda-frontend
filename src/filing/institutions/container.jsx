@@ -46,8 +46,20 @@ export function mapStateToProps(state, ownProps) {
     filings,
     error,
     latestSubmissions: latestSubmissions.latestSubmissions,
-    redirecting
+    redirecting,
+    hasQuarterlyFilers: hasQuarterlyFilers(institutions)
   }
+}
+
+function hasQuarterlyFilers(institutionState){
+  if(institutionState.fetched){
+    const institutions = institutionState.institutions
+    const institutionsList = Object.keys(institutions).map(key => institutions[key])
+    const isQFList = institutionsList.map(i => i.isFetching ? false : i.quarterlyFiler)
+    return isQFList.some(i => i)
+  }
+
+  return false
 }
 
 export default connect(mapStateToProps)(InstitutionContainer)

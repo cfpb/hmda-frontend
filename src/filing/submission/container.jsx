@@ -51,7 +51,7 @@ const renderByCode = (code, page, lei, filingPeriod) => {
       }
       toRender.push(<ReceiptContainer />)
       toRender.push(<IRSReport lei={lei} filingPeriod={filingPeriod}/>)
-      toRender.push(<Summary />)
+      toRender.push(<Summary filingPeriod={filingPeriod} />)
 
       // and just before the signature
       if (code !== SIGNED) {

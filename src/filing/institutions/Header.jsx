@@ -6,12 +6,20 @@ import { splitYearQuarter } from '../api/utils.js'
 import { isBeta } from '../../common/Beta.jsx'
 
 
-const InstitutionsHeader = ({ filingPeriod, filingQuarters }) => {
-  if (!filingPeriod || isBeta()) return null
+const InstitutionsHeader = ({ filingPeriodOrig, filingQuarters, hasQuarterlyFilers }) => {
+  if (!filingPeriodOrig || isBeta()) return null
+
+  // Adjust displayed filing period when a non-quarterly user accesses an open quarterly period
+  const [origYear, origQtr] = splitYearQuarter(filingPeriodOrig)
+  const filingPeriod = origQtr && !hasQuarterlyFilers ? origYear : filingPeriodOrig
+
   const [filingYear, filingQtr] = splitYearQuarter(filingPeriod)
 
   if (beforeFilingPeriod(filingPeriod, filingQuarters)) {
-    const openingDay = filingQtr ? formattedQtrBoundaryDate(filingQtr, filingQuarters, 0) : 'January 1st'
+    const openingDay =
+      filingQtr && splitYearQuarter(filingPeriod)[1]
+        ? formattedQtrBoundaryDate(filingQtr, filingQuarters, 0)
+        : `January 1st, ${+filingYear + 1}`
     return (
       <Alert
         heading={`The ${filingPeriod} filing period is not yet open.`}
