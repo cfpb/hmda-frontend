@@ -19,7 +19,7 @@ const InstitutionPeriodSelector = ({ filingPeriod, filingPeriods, hasQuarterlyFi
       <h4>Select a filing period</h4>
       <Select
         value={yearOpt}
-        options={yearOptions(filingPeriods)}
+        options={yearOptions(filingPeriods, hasQuarterlyFilers)}
         styles={styleFn()}
         onChange={opt => {
           dispatch(refreshState())
@@ -69,10 +69,12 @@ function formQPath(opt, year) {
 }
 
 
-function yearOptions(filingPeriods) {
+function yearOptions(filingPeriods, hasQFilers) {
   const yearSet = new Set()
   filingPeriods.forEach(v => {
-    yearSet.add(splitYearQuarter(v)[0])
+    const [year, quarter] = splitYearQuarter(v)
+    if (quarter && !hasQFilers) return
+    yearSet.add(year)
   })
   return Array.from(yearSet).sort((a,b) => b - a).map(periodOption)
 }
