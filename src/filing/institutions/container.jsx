@@ -56,11 +56,11 @@ function hasQuarterlyFilers(institutionState){
   if(institutionState.fetched){
     const institutions = institutionState.institutions
     const institutionsList = Object.keys(institutions).map(key => institutions[key])
-    const isQFList = institutionsList.map(i => i.isFetching ? false : i.quarterlyFiler)
+    const isQFList = institutionsList.map(i => i.isFetching ? true : i.quarterlyFiler)
     return isQFList.some(i => i)
   }
 
-  return false
+  return true
 }
 
 export default connect(mapStateToProps)(InstitutionContainer)
