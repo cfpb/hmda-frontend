@@ -19,7 +19,8 @@ const InstitutionPeriodSelector = ({ filingPeriod, filingPeriods, hasQuarterlyFi
       <h4>Select a filing period</h4>
       <Select
         value={yearOpt}
-        options={yearOptions(filingPeriods, hasQuarterlyFilers)}
+        // options={yearOptions(filingPeriods, hasQuarterlyFilers)}
+        options={yearOptions(filingPeriods, true)}
         styles={styleFn()}
         onChange={opt => {
           dispatch(refreshState())
