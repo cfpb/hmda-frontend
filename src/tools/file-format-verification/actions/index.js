@@ -78,7 +78,7 @@ export function triggerParse(file, filingPeriod) {
         .catch(err => console.error(err))
     }
 
-    if (['2019', '2018'].includes(filingPeriod)) {
+    if (['2019', '2018'].indexOf(filingPeriod) > -1) {
       var formData = new FormData()
       formData.append('file', file)
 
