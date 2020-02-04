@@ -37,7 +37,8 @@ export class SubmissionRouter extends Component {
     const { submission, refiling, edits, lei, match: {params}, dispatch } = this.props
     const status = submission.status
     const [filingYear, filingQuarter] = params.filingPeriod.split('-')
-    const wrongPeriod = !submission.id || +submission.id.period.year !== +filingYear || submission.id.period.quarter !== filingQuarter
+    // eslint-disable-next-line
+    const wrongPeriod = !submission.id || +submission.id.period.year !== +filingYear || submission.id.period.quarter != filingQuarter
 
     if (!params.lei) {
       return this.goToAppHome()
