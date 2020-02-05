@@ -17,8 +17,8 @@
     },
     "beta": {
       "announcement": {
-        "message": "The beta platform will be unavailable on Wednesday, February 5, 2020 from 12pm - 1pm EST due to required maintenance.",
-        "type": "error",
+        "message": "System maintenance is scheduled for Thursday, February 6 from 8:30pm - 9:30pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+        "type": "warning",
         "heading": "Scheduled Maintenance"
       },
       "defaultPeriod": "2019",
@@ -27,8 +27,12 @@
       "filingQuarters": { "Q1": "01/01 - 05/30", "Q2": "07/01 - 08/29", "Q3": "10/01 - 11/29" },
       "filingQuartersLate": { "Q1": "05/31 - 06/30", "Q2": "08/30 - 09/30", "Q3": "11/30 - 12/31" },
       "showMaps": false,
-      "maintenanceMode": true,
-      "filingAnnouncement": null 
+      "maintenanceMode": false,
+      "filingAnnouncement": {
+        "message": "System maintenance is scheduled for Thursday, February 6 from 8:30pm - 9:30pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+        "type": "warning",
+        "heading": "Scheduled Maintenance"
+      } 
     }
   },
   "dev": {
