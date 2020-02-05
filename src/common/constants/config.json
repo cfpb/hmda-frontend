@@ -18,7 +18,7 @@
     "beta": {
       "announcement": {
         "message": "The beta platform will be unavailable on Wednesday, February 5, 2020 due to required maintenance.",
-        "type": "warning",
+        "type": "error",
         "heading": "Scheduled Maintenance"
       },
       "defaultPeriod": "2019",
@@ -28,11 +28,7 @@
       "filingQuartersLate": { "Q1": "05/31 - 06/30", "Q2": "08/30 - 09/30", "Q3": "11/30 - 12/31" },
       "showMaps": false,
       "maintenanceMode": true,
-      "filingAnnouncement": {
-        "message": "The beta platform will be unavailable on Wednesday, February 5, 2020 due to required maintenance.",
-        "type": "warning",
-        "heading": "Scheduled Maintenance"
-      }
+      "filingAnnouncement": null 
     }
   },
   "dev": {
