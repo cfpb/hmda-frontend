@@ -17,7 +17,7 @@
     },
     "beta": {
       "announcement": {
-        "message": "The beta platform will be unavailable on Wednesday, February 5, 2020 due to required maintenance.",
+        "message": "The beta platform will be unavailable on Wednesday, February 5, 2020 from 12pm - 1pm EST due to required maintenance.",
         "type": "error",
         "heading": "Scheduled Maintenance"
       },
