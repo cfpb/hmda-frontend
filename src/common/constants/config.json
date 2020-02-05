@@ -17,7 +17,7 @@
     },
     "beta": {
       "announcement": {
-        "message": "System maintenance is scheduled for Thursday, February 6 from 8:30pm - 9:30pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+        "message": "The beta platform will be unavailable on Wednesday, February 5, 2020 due to required maintenance.",
         "type": "warning",
         "heading": "Scheduled Maintenance"
       },
@@ -29,7 +29,7 @@
       "showMaps": false,
       "maintenanceMode": true,
       "filingAnnouncement": {
-        "message": "The beta platform will be unavailable on Wednesday, February 5, 2020 due to required maintenance",
+        "message": "The beta platform will be unavailable on Wednesday, February 5, 2020 due to required maintenance.",
         "type": "warning",
         "heading": "Scheduled Maintenance"
       }
