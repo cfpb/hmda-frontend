@@ -4,7 +4,7 @@
   "description": "Collection of HMDA frontend apps",
   "main": "./src/index.js",
   "engines": {
-    "node": ">=8.x"
+    "node": ">=12.x"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -33,7 +33,7 @@
     "react-dropzone": "10.1.10",
     "react-redux": "7.1.1",
     "react-router-dom": "5.1.2",
-    "react-scripts": "3.1.2",
+    "react-scripts": "3.3.0",
     "react-select": "3.0.8",
     "react-window": "1.8.5",
     "redux": "4.0.4",
@@ -49,8 +49,11 @@
     "ie >= 11"
   ],
   "devDependencies": {
+    "enzyme": "3.11.0",
+    "enzyme-adapter-react-16": "1.15.2",
     "eslint-plugin-prettier": "3.1.1",
     "http-proxy-middleware": "0.19.1",
-    "redux-devtools-extension": "2.13.8"
+    "redux-devtools-extension": "2.13.8",
+    "serialize-javascript": "2.1.2"
   }
 }
