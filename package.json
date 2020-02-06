@@ -4,7 +4,7 @@
   "description": "Collection of HMDA frontend apps",
   "main": "./src/index.js",
   "engines": {
-    "node": ">=8.x"
+    "node": ">=12.x"
   },
   "scripts": {
     "start": "react-scripts start",
