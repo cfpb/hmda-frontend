@@ -4,6 +4,8 @@ import requestInstitutions from '../actions/requestInstitutions.js'
 import fetchEachInstitution from '../actions/fetchEachInstitution.js'
 import Institutions from './index.jsx'
 import { getKeycloak } from '../utils/keycloak.js'
+import { afterFilingPeriod } from '../utils/date'
+import { splitYearQuarter } from '../api/utils.js'
 
 export class InstitutionContainer extends Component {
   componentDidMount() {
@@ -36,6 +38,8 @@ export class InstitutionContainer extends Component {
 export function mapStateToProps(state, ownProps) {
   const { institutions, filingPeriod, filings, submission, latestSubmissions, error, redirecting } = state.app
   const { filingPeriods, filingQuarters, filingQuartersLate } = ownProps.config
+  const isQuarterly = Boolean(splitYearQuarter(filingPeriod)[1])
+  const isPassedQuarter = isQuarterly && afterFilingPeriod(filingPeriod, filingQuartersLate)
 
   return {
     submission,
@@ -48,7 +52,8 @@ export function mapStateToProps(state, ownProps) {
     error,
     latestSubmissions: latestSubmissions.latestSubmissions,
     redirecting,
-    hasQuarterlyFilers: hasQuarterlyFilers(institutions)
+    isPassedQuarter,
+    hasQuarterlyFilers: hasQuarterlyFilers(institutions),
   }
 }
 

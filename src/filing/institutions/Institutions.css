@@ -74,6 +74,19 @@
   margin-top: 2.5em;
 }
 
+.Institutions .review-only {
+  border: 5px solid #fdb81e;
+  padding: 20px;
+  background: #fff1d2;
+  text-align: center;
+  margin-top: 2em;
+  line-height: 1.5em;
+}
+
+.Institutions .review-only h4 {
+  margin-top: 0;
+}
+
 .floatingIcon + p.multi-message {
   margin-top: 7em;
 }
