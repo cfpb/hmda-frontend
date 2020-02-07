@@ -5,22 +5,24 @@ import { CREATED, NO_QUALITY_EDITS, NO_MACRO_EDITS, SIGNED, VALIDATING } from '.
 
 import './Status.css'
 
-const defaultSubmission = {
+const defaultSubmission = closed => ({
   status: {
     code: CREATED,
-    message: 'No data has been uploaded yet.',
-    description:
-      'The filing period is open and available to accept HMDA data. Make sure your data is in a pipe-delimited text file.'
+    message: closed
+      ? 'No data was uploaded.'
+      : 'No data has been uploaded yet.',
+    description: closed
+      ? 'The filing period is closed and no longer accepting HMDA data.'
+      : 'The filing period is open and available to accept HMDA data. Make sure your data is in a pipe-delimited text file.'
   }
-}
+})
 
 const qualityMessage = 'Your data has quality edits that need to be reviewed.'
 const submitMessage = 'Your data is ready for submission.'
 const submitDesc = 'Your financial institution has certified that the data is correct, but it has not been submitted yet.'
 
-
 const InstitutionStatus = props => {
-  const submission = props.submission || defaultSubmission
+  const submission = props.submission || defaultSubmission(props.isPassedQuarter)
   const { code, message, description } = submission.status
   const qualityOverride = code > NO_QUALITY_EDITS && (submission.qualityExists && !submission.qualityVerified)
   const submitOverride = code === NO_MACRO_EDITS

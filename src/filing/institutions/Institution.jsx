@@ -8,7 +8,7 @@ import InstitutionRefile from './Refile.jsx'
 import InstitutionSubmissionHistory from './SubmissionHistory.jsx'
 import SubmissionNav from './Progress.jsx'
 
-const Institution = ({ institution, filing, filingQuarters, submission, submissions }) => {
+const Institution = ({ institution, filing, submission, submissions, isPassedQuarter }) => {
   const status = submission && submission.status
 
   return (
@@ -26,19 +26,19 @@ const Institution = ({ institution, filing, filingQuarters, submission, submissi
 
             <SubmissionNav submission={submission} />
 
-            <InstitutionStatus filing={filing} submission={submission} />
+            <InstitutionStatus filing={filing} submission={submission} isPassedQuarter={isPassedQuarter} />
 
             <InstitutionViewButton
               status={status}
               institution={institution}
               filingPeriod={filing.period}
+              isPassedQuarter={isPassedQuarter}
             />
 
             <InstitutionRefile 
               institution={institution} 
               status={status} 
-              filingPeriod={filing.period} 
-              filingQuarters={filingQuarters}
+              isPassedQuarter={isPassedQuarter}
             />
           </div>
           <InstitutionSubmissionHistory
