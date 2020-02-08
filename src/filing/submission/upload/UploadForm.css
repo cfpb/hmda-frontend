@@ -34,9 +34,15 @@
   width: 100%;
 }
 
+.Filing .UploadForm .dropzone.dropzone-disabled:hover {
+  cursor: not-allowed;
+  background-color: #f5e1e1;
+}
+
 .Filing .UploadForm .dropzone.dropzone-disabled {
   border-color: #e59393;
   color: #e31c3d;
+  background-color: #f9eaea;
 }
 
 .Filing .UploadForm .dropzone:hover {

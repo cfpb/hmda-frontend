@@ -38,7 +38,7 @@ const renderByCode = (code, page, lei, filingPeriod, isPassedQuarter) => {
     return toRender
   } else {
     if (page === 'upload') {
-      toRender.push(<UploadForm />)
+      toRender.push(<UploadForm isPassedQuarter={isPassedQuarter} />)
       if (code === PARSED_WITH_ERRORS) {
         toRender.push(<ParseErrors filingPeriod={filingPeriod} />)
       }
