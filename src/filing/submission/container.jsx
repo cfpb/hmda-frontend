@@ -20,6 +20,8 @@ import Summary from './summary/container.jsx'
 import ParseErrors from './parseErrors/container.jsx'
 import Loading from '../../common/LoadingIcon.jsx'
 import { FAILED, PARSED_WITH_ERRORS, SIGNED } from '../constants/statusCodes.js'
+import { splitYearQuarter } from '../api/utils.js'
+import { afterFilingPeriod } from '../utils/date'
 
 import './container.css'
 import './table.css'
@@ -29,10 +31,10 @@ const EditsNav = submissionProgressHOC(EditsNavComponent)
 const NavButton = submissionProgressHOC(NavButtonComponent)
 const RefileWarning = submissionProgressHOC(RefileWarningComponent)
 
-const renderByCode = (code, page, lei, filingPeriod) => {
+const renderByCode = (code, page, lei, filingPeriod, isPassedQuarter) => {
   const toRender = []
   if (code === FAILED) {
-    toRender.push(<RefileWarning />)
+    toRender.push(<RefileWarning isPassedQuarter={isPassedQuarter} />)
     return toRender
   } else {
     if (page === 'upload') {
@@ -92,14 +94,14 @@ class SubmissionContainer extends Component {
 
   render() {
     if (!this.props.location) return null
-    const { submission, match: {params}, location, institutions, lei } = this.props
+    const { submission, match: {params}, location, institutions, lei, isPassedQuarter } = this.props
     const status = submission.status
     const code = status && status.code
     const page = location.pathname.split('/').slice(-1)[0]
     const institution = institutions.institutions[lei]
 
     const toRender = code
-      ? renderByCode(code, page, lei, params.filingPeriod)
+      ? renderByCode(code, page, lei, params.filingPeriod, isPassedQuarter)
       : [<Loading key="0" />]
 
     return (
@@ -126,14 +128,18 @@ class SubmissionContainer extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  const { submission, institutions, lei, error } = state.app
+function mapStateToProps(state, ownProps) {
+  const { submission, institutions, lei, error, filingPeriod } = state.app
+  const { filingQuartersLate } = ownProps.config
+  const isQuarterly = Boolean(splitYearQuarter(filingPeriod)[1])
+  const isPassedQuarter = isQuarterly && afterFilingPeriod(filingPeriod, filingQuartersLate)
 
   return {
     submission,
     institutions,
     lei,
-    error
+    error,
+    isPassedQuarter
   }
 }
 
