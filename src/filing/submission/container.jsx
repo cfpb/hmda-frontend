@@ -49,7 +49,7 @@ const renderByCode = (code, page, lei, filingPeriod, isPassedQuarter) => {
     } else if (page === 'submission') {
       // at the top of the page
       if (code !== SIGNED) {
-        toRender.push(<ReadyToSign />)
+        toRender.push(<ReadyToSign isPassedQuarter={isPassedQuarter} />)
       }
       toRender.push(<ReceiptContainer />)
       toRender.push(<IRSReport lei={lei} filingPeriod={filingPeriod}/>)
@@ -57,7 +57,7 @@ const renderByCode = (code, page, lei, filingPeriod, isPassedQuarter) => {
 
       // and just before the signature
       if (code !== SIGNED) {
-        toRender.push(<ReadyToSign />)
+        toRender.push(<ReadyToSign isPassedQuarter={isPassedQuarter} />)
       }
       toRender.push(<Signature />)
       toRender.push(<ReceiptContainer />)
