@@ -20,6 +20,20 @@ export const renderVerified = (verified, type) => {
   return null
 }
 
+const VerificationClosed = ({ type, verified }) => {
+  return (
+    <section className='Verifier'>
+      <hr />
+      <h2>Verify {type} edits</h2>
+      <p className='font-lead'>
+        The filing period has closed. Changes to the verification status of{' '}
+        {type} edits are not possible at this time.
+      </p>
+      {renderVerified(verified, type)}
+    </section>
+  )
+}
+
 class Verifier extends Component {
   constructor(props) {
     super(props)
@@ -36,6 +50,8 @@ class Verifier extends Component {
   render() {
     const props = this.props
     const disabled = props.code === SIGNED ? true : false
+
+    if(props.isPassedQuarter) return <VerificationClosed type={props.type} verified={props.verified} />
 
     return props.noEditsExist ? null : (
       <section className="Verifier">
