@@ -107,7 +107,7 @@ export function withinFilingPeriod(year, filingQuarters) {
 // MonthName DayNumber
 export const formattedQtrBoundaryDate = (qtr, filingQuarters, startOrEnd=1) => {
   const date = qtrBoundaryDate(qtr, filingQuarters, startOrEnd)
-  return `${months[date.month]} ${date.day}`
+  return formattedBoundaryDate(date)
 }
 
 // Format quarterly end date for creation of Date object
@@ -116,3 +116,5 @@ export const qtrBoundaryDate = (qtr, filingQuarters, startOrEnd=0) => {
   const [month, day] = monthDay.split('/').map(s => parseInt(s, 10))
   return { day, month: month - 1 }
 }
+
+export const formattedBoundaryDate = (obj) => `${months[obj.month]} ${obj.day}`

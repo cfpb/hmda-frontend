@@ -4,7 +4,7 @@ import Alert from '../../common/Alert.jsx'
 import { beforeFilingPeriod, afterFilingPeriod, formattedQtrBoundaryDate } from '../utils/date.js'
 import { splitYearQuarter } from '../api/utils.js'
 import { isBeta } from '../../common/Beta.jsx'
-
+import { HeaderBeforeOpen } from './HeaderBeforeOpen.jsx'
 
 const InstitutionsHeader = ({ filingPeriodOrig, filingQuarters, filingQuartersLate, hasQuarterlyFilers }) => {
   if (!filingPeriodOrig || isBeta()) return null
@@ -16,19 +16,13 @@ const InstitutionsHeader = ({ filingPeriodOrig, filingQuarters, filingQuartersLa
   const [filingYear, filingQtr] = splitYearQuarter(filingPeriod)
 
   if (beforeFilingPeriod(filingPeriod, filingQuarters)) {
-    const openingDay =
-      filingQtr && splitYearQuarter(filingPeriod)[1]
-        ? `${formattedQtrBoundaryDate(filingQtr, filingQuarters, 0)}, ${filingYear}`
-        : `January 1st, ${+filingYear + 1}`
     return (
-      <Alert
-        heading={`The ${filingPeriod} filing period is not yet open.`}
-        type="warning"
-      >
-        <p>
-          The Platform will begin accepting data for the {filingPeriod} filing period on <strong>{openingDay}</strong>.
-        </p>
-      </Alert>
+      <HeaderBeforeOpen
+        filingQtr={filingQtr}
+        filingPeriod={filingPeriod}
+        filingQuarters={filingQuarters}
+        filingYear={filingYear}
+      />
     )
   } else if (afterFilingPeriod(filingPeriod, filingQuarters)) {
     // Quarterly - Late
