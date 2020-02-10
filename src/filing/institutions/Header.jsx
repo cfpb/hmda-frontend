@@ -6,6 +6,7 @@ import { splitYearQuarter } from '../api/utils.js'
 import { isBeta } from '../../common/Beta.jsx'
 import { HeaderBeforeOpen } from './HeaderBeforeOpen.jsx'
 import { HeaderOpen } from './HeaderOpen'
+import { HeaderClosed } from './HeaderClosed'
 
 const InstitutionsHeader = ({ filingPeriodOrig, filingQuarters, filingQuartersLate, hasQuarterlyFilers }) => {
   if (!filingPeriodOrig || isBeta()) return null
@@ -65,22 +66,12 @@ const InstitutionsHeader = ({ filingPeriodOrig, filingQuarters, filingQuartersLa
       )
 
     return (
-      <Alert
-        heading={`The ${filingPeriod} filing period is closed.`}
-        type='warning'
-      >
-        {!filingQtr ? (
-          <p>
-            The HMDA Platform remains available outside of the filing period for
-            late submissions and resubmissions of {filingPeriod} HMDA data.
-          </p>
-        ) : (
-          <p>
-            The filing deadline for the period has passed. The HMDA Platform is
-            no longer accepting submissions of {filingPeriod} HMDA data.
-          </p>
-        )}
-      </Alert>
+      <HeaderClosed
+        filingPeriod={filingPeriod}
+        filingQtr={filingQtr}
+        filingQuartersLate={filingQuartersLate}
+        filingYear={filingYear}
+      />
     )
   }
 
