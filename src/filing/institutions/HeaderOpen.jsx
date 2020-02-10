@@ -33,7 +33,7 @@ export const HeaderOpen = ({
               </strong>
               .<br />
               <br />
-              For more info on quarterly filing dates, visit the{' '}
+              For more information about quarterly filing dates, visit the{' '}
               <a
                 target='_blank'
                 href={`https://ffiec.cfpb.gov/documentation/${filingYear}/quarterly-filing-dates/`}
@@ -46,8 +46,8 @@ export const HeaderOpen = ({
             <>
               <strong>{filingDeadline}</strong> is the deadline to submit your
               HMDA data.
-              <p style={{marginTop: 0, marginBottom: '10px'}}>
-                For more info on filing, visit the{' '}
+              <span style={{ marginTop: 0, marginBottom: '10px', display: 'inline-block' }}>
+                For more information about filing, visit the{' '}
                 <a
                   target='_blank'
                   href={`https://ffiec.cfpb.gov/documentation/${filingYear}/`}
@@ -55,7 +55,7 @@ export const HeaderOpen = ({
                 >
                   documentation page.
                 </a>
-              </p>
+              </span>
             </>
           )}
         </p>
