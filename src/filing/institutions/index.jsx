@@ -15,14 +15,18 @@ import { formattedQtrBoundaryDate } from '../utils/date.js'
 import './Institutions.css'
 
 const _setSubmission = (submission, latest, filingObj) => {
+  let [filingYear, filingQuarter] = splitYearQuarter(filingObj.filing.period)
+  if(!filingQuarter) filingQuarter = null
+  
   if (
     submission.id &&
     submission.id.lei === filingObj.filing.lei &&
-    submission.id.period.year.toString() === filingObj.filing.period
-  ) {
-    return submission
-  }
-
+    filingYear === submission.id.period.year.toString() &&
+    filingQuarter === submission.id.period.quarter
+    ) {
+      return submission
+    }
+    
   return latest
 }
 
