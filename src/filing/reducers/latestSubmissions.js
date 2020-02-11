@@ -1,6 +1,7 @@
 import {
   REQUEST_LATEST_SUBMISSION,
   RECEIVE_LATEST_SUBMISSION,
+  RECEIVE_SUBMISSION,
   UPDATE_STATUS,
   VERIFY_QUALITY,
   VERIFY_MACRO
@@ -42,6 +43,26 @@ export default (state = defaultLatestSubmissions, action) => {
             qualityVerified: action.qualityVerified || defaultSubmission.qualityVerified,
             macroExists: action.macroExists || defaultSubmission.macroExists,
             macroVerified: action.macroVerified || defaultSubmission.macroVerified
+          }
+        }
+      }
+
+    case RECEIVE_SUBMISSION:
+      submission = state.latestSubmissions[action.id.lei] || {}
+
+      return {
+        ...state,
+        latestSubmissions: {
+          ...state.latestSubmissions,
+          [action.id.lei]: {
+            ...submission,
+            id: {...action.id},
+            status: {...action.status},
+            filename: action.fileName,
+            qualityVerified: action.qualityVerified,
+            qualityExists: action.qualityExists,
+            macroVerified: action.macroVerified,
+            macroExists: action.macroExists,
           }
         }
       }
