@@ -59,7 +59,7 @@ const renderByCode = (code, page, lei, filingPeriod, isPassedQuarter) => {
       if (code !== SIGNED) {
         toRender.push(<ReadyToSign isPassedQuarter={isPassedQuarter} />)
       }
-      toRender.push(<Signature isPassedQuarter={isPassedQuarter} />)
+      toRender.push(<Signature isPassedQuarter={isPassedQuarter} lei={lei} />)
       toRender.push(<ReceiptContainer />)
     }
   }

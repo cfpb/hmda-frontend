@@ -32,10 +32,10 @@ export function mapStateToProps(state) {
   }
 }
 
-export function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch, ownProps) {
   return {
     onSignatureClick: signed => {
-      dispatch(updateSignature(signed))
+      dispatch(updateSignature(signed, ownProps.lei))
     },
     onSignatureCheck: checked => {
       dispatch(checkSignature(checked))

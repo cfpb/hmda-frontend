@@ -1,6 +1,7 @@
 import {
   REQUEST_LATEST_SUBMISSION,
-  RECEIVE_LATEST_SUBMISSION
+  RECEIVE_LATEST_SUBMISSION,
+  UPDATE_STATUS,
 } from '../constants'
 import { defaultSubmission } from './submission'
 
@@ -11,6 +12,8 @@ const defaultLatestSubmissions = {
 }
 
 export default (state = defaultLatestSubmissions, action) => {
+  let submission
+
   switch (action.type) {
     case REQUEST_LATEST_SUBMISSION:
       return {
@@ -22,6 +25,7 @@ export default (state = defaultLatestSubmissions, action) => {
           }
         }
       }
+
     case RECEIVE_LATEST_SUBMISSION:
       return {
         ...state,
@@ -39,6 +43,22 @@ export default (state = defaultLatestSubmissions, action) => {
           }
         }
       }
+
+    case UPDATE_STATUS:
+      submission = state.latestSubmissions[action.lei]
+      if(!submission) return state
+
+      return {
+        ...state,
+        latestSubmissions: {
+          ...state.latestSubmissions,
+          [action.lei]: {
+            ...submission,
+            status: {...action.status}
+          }
+        }
+      }
+
     default:
       return state
   }
