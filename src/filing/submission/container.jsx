@@ -45,7 +45,7 @@ const renderByCode = (code, page, lei, filingPeriod, isPassedQuarter) => {
     } else if (
       ['syntacticalvalidity', 'quality', 'macro'].indexOf(page) !== -1
     ) {
-      toRender.push(<Edits isPassedQuarter={isPassedQuarter} />)
+      toRender.push(<Edits isPassedQuarter={isPassedQuarter} lei={lei} />)
     } else if (page === 'submission') {
       // at the top of the page
       if (code !== SIGNED) {

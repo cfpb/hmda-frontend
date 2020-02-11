@@ -2,6 +2,8 @@ import {
   REQUEST_LATEST_SUBMISSION,
   RECEIVE_LATEST_SUBMISSION,
   UPDATE_STATUS,
+  VERIFY_QUALITY,
+  VERIFY_MACRO
 } from '../constants'
 import { defaultSubmission } from './submission'
 
@@ -58,6 +60,34 @@ export default (state = defaultLatestSubmissions, action) => {
           }
         }
       }
+
+    case VERIFY_QUALITY:
+      submission = state.latestSubmissions[action.lei] || {}
+
+      return {
+        ...state,
+        latestSubmissions: {
+          ...state.latestSubmissions,
+          [action.lei]: {
+            ...submission,
+            qualityVerified: action.checked,
+          }
+        }
+      }  
+
+    case VERIFY_MACRO:
+      submission = state.latestSubmissions[action.lei] || {}
+
+      return {
+        ...state,
+        latestSubmissions: {
+          ...state.latestSubmissions,
+          [action.lei]: {
+            ...submission,
+            macroVerified: action.checked,
+          }
+        }
+      }      
 
     default:
       return state

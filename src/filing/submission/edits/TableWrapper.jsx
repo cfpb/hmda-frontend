@@ -94,11 +94,17 @@ const EditsTableWrapper = props => {
   return (
     <section className="EditsTableWrapper">
       {/* warn at the top of the page */}
-      <RefileWarning isPassedQuarter={props.isPassedQuarter}/>
+      <RefileWarning isPassedQuarter={props.isPassedQuarter} />
       {makeEntry(props, type)}
       {/* warn at the bottom of the page */}
-      <RefileWarning isPassedQuarter={props.isPassedQuarter}/>
-      {type === 'quality' || type === 'macro' ? <Verifier type={type} isPassedQuarter={props.isPassedQuarter} /> : null}
+      <RefileWarning isPassedQuarter={props.isPassedQuarter} />
+      {type === "quality" || type === "macro" ? (
+        <Verifier
+          type={type}
+          isPassedQuarter={props.isPassedQuarter}
+          lei={props.lei}
+        />
+      ) : null}
       <hr />
     </section>
   )

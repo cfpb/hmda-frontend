@@ -36,7 +36,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     onVerify: checked => {
-      dispatch(fetchVerify(ownProps.type, checked))
+      dispatch(fetchVerify(ownProps.type, checked, ownProps.lei))
     }
   }
 }
