@@ -13,7 +13,7 @@ COPY public ./public
 
 RUN yarn build
 
-FROM nginx:1.16-alpine
+FROM nginx:1.17-alpine
 ENV NGINX_USER=svc_nginx_hmda
 RUN rm -rf /etc/nginx/conf.d
 COPY nginx /etc/nginx
