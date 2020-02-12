@@ -130,13 +130,13 @@ const _whatToRender = ({
     
     if(isPassedQuarter)
       filteredInstitutions.unshift(
-        <div className='review-only'>
+        <div className='review-only' key='review-only-notice'>
           <h4>For Review Only</h4>
           The following information reflects your filing status as of{' '}
           {formattedQtrBoundaryDate(showingQuarterly, filingQuartersLate, 1)},{' '}
           {filingYear}
           .<br />
-          <strong>No further modifications are possible at this time.</strong>
+          No further modifications are possible at this time.
         </div>
       )
       
