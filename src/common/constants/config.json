@@ -1,7 +1,7 @@
 {
   "prod": {
     "announcement": {
-      "message": "We will be performing scheduled system maintenance from 8pm - 9pm EST. During this time users will be unable to log in to the Filing application or create new accounts. Thank you for your patience.",
+      "message": "We will be performing scheduled system maintenance from 9pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts. Thank you for your patience.",
       "type": "warning",
       "heading": "Scheduled Maintenance"
     },
@@ -11,13 +11,13 @@
     "showMaps": false,
     "maintenanceMode": false,
     "filingAnnouncement": {
-      "message": "We will be performing scheduled system maintenance from 8pm - 9pm EST. During this time users will be unable to log in to the Filing application or create new accounts. Thank you for your patience.",
+      "message": "We will be performing scheduled system maintenance from 9pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts. Thank you for your patience.",
       "type": "warning",
       "heading": "Scheduled Maintenance"
     },
     "beta": {
       "announcement": {
-        "message": "We will be performing scheduled system maintenance from 8pm - 9pm EST. During this time users will be unable to log in to the Filing application or create new accounts. Thank you for your patience.",
+        "message": "We will be performing scheduled system maintenance from 9pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts. Thank you for your patience.",
         "type": "warning",
         "heading": "Scheduled Maintenance"
       },
@@ -29,7 +29,7 @@
       "showMaps": false,
       "maintenanceMode": false,
       "filingAnnouncement": {
-        "message": "We will be performing scheduled system maintenance from 8pm - 9pm EST. During this time users will be unable to log in to the Filing application or create new accounts. Thank you for your patience.",
+        "message": "We will be performing scheduled system maintenance from 9pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts. Thank you for your patience.",
         "type": "warning",
         "heading": "Scheduled Maintenance"
       }
