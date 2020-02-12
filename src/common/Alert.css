@@ -107,6 +107,14 @@
   width: 66ch;
 }
 
+.alert .margin-0 {
+  margin: 0
+}
+
+.alert .margin-bottom-0 {
+  margin-bottom: 0
+}
+
 @media (min-width: 801px){
   .alert-text > .failed {
     width: 80%;

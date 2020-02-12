@@ -1,6 +1,7 @@
 import React from 'react'
 import { formattedQtrBoundaryDate } from '../utils/date'
 import Alert from '../../common/Alert'
+import { HeaderDocsLink } from './Header'
 
 export const HeaderOpen = ({
   filingQtr,
@@ -31,35 +32,19 @@ export const HeaderOpen = ({
                 {formattedQtrBoundaryDate(filingQtr, filingQuartersLate, 1)},{' '}
                 {filingYear}
               </strong>
-              .<br />
-              <br />
-              For more information about quarterly filing dates, visit the{' '}
-              <a
-                target='_blank'
-                href={`https://ffiec.cfpb.gov/documentation/${filingYear}/quarterly-filing-dates/`}
-                rel='noopener noreferrer'
-              >
-                documentation page.
-              </a>
+              .
             </>
           ) : (
             <>
-              <strong>{filingDeadline}</strong> is the deadline to submit your
-              HMDA data.
-              <span style={{ marginTop: 0, marginBottom: '10px', display: 'inline-block' }}>
-                For more information about filing, visit the{' '}
-                <a
-                  target='_blank'
-                  href={`https://ffiec.cfpb.gov/documentation/${filingYear}/`}
-                  rel='noopener noreferrer'
-                >
-                  documentation page.
-                </a>
-              </span>
+              Submission of {filingPeriod} HMDA data will be considered timely
+              if completed by <strong>{filingDeadline}</strong>.
             </>
           )}
         </p>
-        <p className='font-lead'>
+        <br />
+        <p className="font-lead">
+          <HeaderDocsLink filingYear={filingYear} isQuarter={filingQtr} />
+          <br />
           You may file HMDA data for your authorized institutions below.
         </p>
       </div>

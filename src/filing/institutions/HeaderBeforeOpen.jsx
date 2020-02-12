@@ -3,6 +3,7 @@ import Alert from '../../common/Alert'
 import { splitYearQuarter } from '../api/utils'
 import { FILING_START, FILING_DEADLINE } from '../constants/dates'
 import { formattedBoundaryDate, formattedQtrBoundaryDate } from '../utils/date'
+import { HeaderDocsLink } from './Header'
 
 export const HeaderBeforeOpen = ({ filingQtr, filingPeriod, filingQuarters, filingYear }) => {
     let openingDay, timelyEnd
@@ -21,20 +22,12 @@ export const HeaderBeforeOpen = ({ filingQtr, filingPeriod, filingQuarters, fili
         type='warning'
       >
         <>
-          <p style={{ marginBottom: 0 }}>
+          <p className='margin-bottom-0'>
             The Platform will be accepting timely submissions from{' '}
             <strong>{openingDay}</strong> until <strong>{timelyEnd}</strong>.
           </p>
-          <p style={{ margin: 0 }}>
-            For further questions regarding filing, please visit the{' '}
-            <a
-              href={`/documentation/${filingYear}`}
-              rel='noopener noreferrer'
-              target='_blank'
-            >
-              Documentation
-            </a>{' '}
-            page.
+          <p className='margin-0'>
+            <HeaderDocsLink filingYear={filingYear} />
           </p>
         </>
       </Alert>

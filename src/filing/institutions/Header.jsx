@@ -60,6 +60,29 @@ const InstitutionsHeader = ({ filingPeriodOrig, filingQuarters, filingQuartersLa
   )
 }
 
+export const HeaderDocsLink = ({ filingYear, isQuarter }) => {
+  const text = isQuarter
+    ? "For more information on quarterly filing dates, visit the "
+    : "For more information regarding filing, please visit the "
+  
+  const url = isQuarter
+    ? `/documentation/${filingYear}/quarterly-filing-dates/`
+    : `/documentation/${filingYear}`
+  return (
+    <>
+      {text}
+      <a
+        href={url}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Documentation
+      </a>{" "}
+      page.
+    </>
+  )
+}
+
 InstitutionsHeader.propTypes = {
   filingPeriod: PropTypes.string
 }

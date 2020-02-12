@@ -1,5 +1,6 @@
 import React from "react"
 import Alert from "../../common/Alert"
+import { HeaderDocsLink } from './Header'
 import { formattedQtrBoundaryDate } from "../utils/date"
 
 export const HeaderLate = ({
@@ -31,15 +32,8 @@ export const HeaderLate = ({
           </strong>
           .
         </p>
-        <p>
-          For more info on quarterly filing dates, visit the{" "}
-          <a
-            target="_blank"
-            href={`https://ffiec.cfpb.gov/documentation/${filingYear}/quarterly-filing-dates/`}
-            rel="noopener noreferrer"
-          >
-            documentation page.
-          </a>
+        <p className="margin-0">
+          <HeaderDocsLink filingYear={filingYear} isQuarter />
           <br />
           You may file HMDA data for your authorized institutions below.
         </p>
