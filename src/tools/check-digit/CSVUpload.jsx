@@ -119,8 +119,8 @@ class CSVUpload extends PureComponent {
           </p>
           <p className="text-small">
             Please see{' '}
-            <a href="https://cfpb.github.io/hmda-platform/#rate-spread-csv-file-format">
-              the batch section of the API documentation
+            <a href="https://cfpb.github.io/hmda-platform/#hmda-public-api-check-digit-check-digit-example">
+              the API documentation
             </a>{' '}
             for information on csv formatting.
           </p>
