@@ -5,10 +5,10 @@ import { DYNAMIC_DATASET } from '../constants/dynamic-dataset.js'
 
 import './DynamicDataset.css'
 
-function makeListLink(href, val) {
+function makeListLink(href, val, download) {
   return (
     <li>
-      <a href={href}>{val}</a>
+      <a href={href} download={download}>{val}</a>
     </li>
   )
 }
@@ -48,8 +48,8 @@ const DynamicDataset = props => {
           <div className="item">
             <Heading type={4} headingText={params.year + ' Dynamic Datasets'} />
             <ul>
-              {makeListLink(dataForYear.lar, 'Loan/Application Records (LAR)')}
-              {makeListLink(dataForYear.ts, 'Transmittal Sheet Records (TS)')}
+              {makeListLink(dataForYear.lar, 'Loan/Application Records (LAR)', true)}
+              {makeListLink(dataForYear.ts, 'Transmittal Sheet Records (TS)', true)}
             </ul>
           </div>
           <div className="item">
