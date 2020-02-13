@@ -80,3 +80,6 @@ setupProxy.js
 build/
 env.json
 local_keycloak.json
+cypress.env.json
+cypress/videos/
+cypress/screenshots/
