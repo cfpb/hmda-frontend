@@ -5,10 +5,10 @@ import Product from '../Product.jsx'
 const links = {
   2017: [],
   2018: [
-    <li key="2018-0"><Link to="/documentation/2018/file-format-verification/">File Format Verification Tool</Link></li>,
+    <li key="2018-0"><Link to="/documentation/2018/file-format-verification/">File Format Verification Tool Instructions</Link></li>,
   ],
   2019: [
-    <li key="2019-0"><Link to="/documentation/2019/file-format-verification/">File Format Verification Tool</Link></li>,
+    <li key="2019-0"><Link to="/documentation/2019/file-format-verification/">File Format Verification Tool Instructions</Link></li>,
   ],
   2020: []
 }
