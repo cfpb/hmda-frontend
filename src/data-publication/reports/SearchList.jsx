@@ -187,6 +187,7 @@ class SearchList extends React.Component {
             inputValue={textInputValue}
             makeListItem={this.props.makeListItem}
             year={this.props.year}
+            isModLar={this.props.isModLar}
           />
         ) : null}
       </div>

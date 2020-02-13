@@ -31,7 +31,7 @@ const ModifiedLar = props => {
           </p>
         </Heading>
         <YearSelector year={year} url={url} years={years}/>
-        <SearchList year={year}/>
+        <SearchList year={year} isModLar />
       </div>
     </React.Fragment>
   )
