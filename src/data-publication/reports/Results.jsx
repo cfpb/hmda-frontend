@@ -165,7 +165,7 @@ class Results extends React.Component {
 
     return (
       <React.Fragment>
-        {this.renderIncludeFileHeader()}
+        {this.props.isModLar && this.renderIncludeFileHeader()}
         {this.renderHeading(
           this.props.institutions.length,
           this.props.inputValue
