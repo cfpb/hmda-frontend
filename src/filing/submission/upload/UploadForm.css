@@ -41,7 +41,7 @@
 
 .Filing .UploadForm .dropzone.dropzone-disabled {
   border-color: #e59393;
-  color: #e31c3d;
+  color: #5b616b;
   background-color: #f9eaea;
 }
 
@@ -73,6 +73,10 @@
 .Filing .UploadForm .dropzone .file-selected {
   margin-top: 10em;
   color: #5b616b;
+}
+
+.Filing .UploadForm .dropzone.dropzone-disabled .file-selected {
+  color: #e31c3d;
 }
 
 .Filing .UploadForm .dropzone p {
