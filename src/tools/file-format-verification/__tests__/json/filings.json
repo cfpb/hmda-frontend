@@ -8,12 +8,12 @@
     },
     "end": 1487520671000,
     "start": 1484842271000,
-    "period": "2017"
+    "period": "2018"
   },
   "submissions": [{
     "id": {
       "institutionId": "1",
-      "period": "2017",
+      "period": "2018",
       "sequenceNumber": 4
     },
     "status": {
@@ -25,7 +25,7 @@
   }, {
     "id": {
       "institutionId": "1",
-      "period": "2017",
+      "period": "2018",
       "sequenceNumber": 3
     },
     "status": {
@@ -37,7 +37,7 @@
   }, {
     "id": {
       "institutionId": "1",
-      "period": "2017",
+      "period": "2018",
       "sequenceNumber": 2
     },
     "status": {
@@ -49,7 +49,7 @@
   }, {
     "id": {
       "institutionId": "1",
-      "period": "2017",
+      "period": "2018",
       "sequenceNumber": 1
     },
     "status": {

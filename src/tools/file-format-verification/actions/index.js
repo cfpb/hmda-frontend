@@ -1,4 +1,3 @@
-import parseFile from '../helpers/parseFile.js'
 import * as types from '../constants'
 
 export function updateStatus(status) {
@@ -70,14 +69,6 @@ export function triggerParse(file, filingPeriod) {
   return dispatch => {
     dispatch(beginParse())
 
-    if (filingPeriod === '2017') {
-      return parseFile(file)
-        .then(json => {
-          dispatch(endParse(json))
-        })
-        .catch(err => console.error(err))
-    }
-
     if (['2019', '2018'].indexOf(filingPeriod) > -1) {
       var formData = new FormData()
       formData.append('file', file)
@@ -109,7 +100,7 @@ export function triggerParse(file, filingPeriod) {
                 uli: error.estimatedULI,
                 row: error.rowNumber
               }))
-              
+
               data.larErrors.push(...messages)
             }
           })

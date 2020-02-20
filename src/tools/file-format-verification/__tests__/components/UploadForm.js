@@ -22,7 +22,7 @@ describe('submitform', function(){
           uploading={true}
           file={{size:108}}
           code={5}
-          filingPeriod={2017}
+          filingPeriod={2018}
           errors={['this is an error', 'and another']}
         />
       </Wrapper>, node)
