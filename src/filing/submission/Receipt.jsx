@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Alert from '../../common/Alert.jsx'
+import { isBeta } from '../../common/Beta.jsx'
 import { ordinalHour } from '../utils/date.js'
 import { SIGNED } from '../constants/statusCodes.js'
 
@@ -13,6 +14,23 @@ const Receipt = ({
 }) => {
   const code = status.code
   if (code !== SIGNED || receipt === null) return null
+  if (isBeta()) {
+    return (
+      <section className="RefileWarning">
+        <Alert type="warning" heading="Beta filing complete">
+          <div>
+            You have successfully completed your <strong>beta</strong> HMDA filing for{' '}
+            {filingPeriod}.
+            <br />
+            <strong>You will still need to file your final HMDA data to the{' '}
+               <a href="https://ffiec.cfpb.gov/filing">live system</a>{' '}
+               when the filing period is open.
+            </strong>
+          </div>
+        </Alert>
+      </section>
+    )
+  }
   return (
     <section className="RefileWarning">
       <Alert type="success" heading="HMDA filing accepted!">
