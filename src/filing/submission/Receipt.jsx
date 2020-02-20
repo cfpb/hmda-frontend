@@ -22,8 +22,9 @@ const Receipt = ({
             You have successfully completed your <strong>beta</strong> HMDA filing for{' '}
             {filingPeriod}.
             <br />
-            <strong>You will still need to file your final HMDA data to the live
-               system when the filing period is open.
+            <strong>You will still need to file your final HMDA data to the{' '}
+               <a href="https://ffiec.cfpb.gov/filing">live system</a>{' '}
+               when the filing period is open.
             </strong>
           </div>
         </Alert>
