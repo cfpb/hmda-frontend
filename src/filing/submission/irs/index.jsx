@@ -1,10 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { isBeta } from '../../../common/Beta.jsx'
 
 import './IRSReport.css'
 
 const IRSReport = props => {
   const filingPeriod=props.filingPeriod
+  if(isBeta()) return null
   return (
     <section className="IRSReport">
       <header>
