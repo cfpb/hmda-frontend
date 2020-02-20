@@ -5868,11 +5868,6 @@ hmac-drbg@^1.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hmda-file-parser@1.18.0:
-  version "1.18.0"
-  resolved "https://registry.yarnpkg.com/hmda-file-parser/-/hmda-file-parser-1.18.0.tgz#968f507246671a52883b3653f1518d6dbbea0e31"
-  integrity sha1-lo9QckZnGlKIOzZT8VGNbbvqDjE=
-
 hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.0.tgz#b09178f0122184fb95acf525daaecb4d8f45958b"

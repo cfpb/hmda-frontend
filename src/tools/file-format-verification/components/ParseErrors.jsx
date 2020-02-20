@@ -7,10 +7,9 @@ import { ERRORS_PER_PAGE } from '../constants'
 
 import './ParseErrors.css'
 
-const renderLarErrors = (larErrors, pagination, period) => {
+const renderLarErrors = (larErrors, pagination) => {
   if (larErrors.length === 0) return null
   const currentErrs = []
-  const is2017 = period === '2017'
 
   //don't move to the next page until fading in
   const end =
@@ -23,7 +22,7 @@ const renderLarErrors = (larErrors, pagination, period) => {
 
     currentErrs.push(
       <tr key={i}>
-        {is2017 ? renderErrorColumns2017(err) : renderErrorColumns(err)}
+        {renderErrorColumns(err)}
       </tr>
     )
   }
@@ -38,16 +37,15 @@ const renderLarErrors = (larErrors, pagination, period) => {
         <p>Formatting errors in loan application records, arranged by row.</p>
       </caption>
       <thead>
-        <tr>{getHeaders(is2017)}</tr>
+        <tr>{getHeaders()}</tr>
       </thead>
       <tbody>{currentErrs}</tbody>
     </table>
   )
 }
 
-const renderTSErrors = (transmittalSheetErrors, period) => {
+const renderTSErrors = transmittalSheetErrors => {
   if (transmittalSheetErrors.length === 0) return null
-  const is2017 = period === '2017'
   return (
     <table className="margin-bottom-0" width="100%">
       <caption>
@@ -58,14 +56,14 @@ const renderTSErrors = (transmittalSheetErrors, period) => {
         </p>
       </caption>
       <thead>
-        <tr>{getHeaders(is2017, true)}</tr>
+        <tr>{getHeaders(true)}</tr>
       </thead>
       <tbody>
         {transmittalSheetErrors.map((tsError, i) => {
           return (
             <tr key={i}>
               <td>1</td>
-              {is2017 ? renderErrorColumns2017(tsError) : renderErrorColumns(tsError)}
+              {renderErrorColumns(tsError)}
             </tr>
           )
         })}
@@ -117,39 +115,18 @@ function renderErrorColumns(err){
   return columns
 }
 
-function renderErrorColumns2017(err){
-  // TS Error
-  if(!err.row && !err.error)
-    return <td>{err}</td>
-
-  // LAR Error
-  return (
-    <>
-      <td>{err.row}</td>
-      <td>{err.error}</td>
-    </>
-  )
-}
-
-function getHeaders(is2017, isTs) {
+function getHeaders(isTs) {
   const headers = ['Row']
 
-  if (is2017) {
-    // 2017 TS & LAR
-    headers.push('Errors')
+  if (isTs) {
+    headers.push('TS Data Field')
+    headers.push('Found Value')
+    headers.push('Valid Value')
   } else {
-    if (isTs) {
-      // 2018+ TS
-      headers.push('TS Data Field')
-      headers.push('Found Value')
-      headers.push('Valid Value')
-    } else {
-      // 2018+ LAR
-      headers.push('ULI')
-      headers.push('LAR Data Field')
-      headers.push('Found Value')
-      headers.push('Valid Value')
-    }
+    headers.push('ULI')
+    headers.push('LAR Data Field')
+    headers.push('Found Value')
+    headers.push('Valid Value')
   }
 
   return headers.map((label, idx) => <th key={idx}>{label}</th>)

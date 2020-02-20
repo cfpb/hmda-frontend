@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import './FilingPeriodSelector.css'
 
-const filingPeriods = ['2019', '2018', '2017']
+const filingPeriods = ['2019', '2018']
 
 const FilingPeriodSelector = props => {
   return (
