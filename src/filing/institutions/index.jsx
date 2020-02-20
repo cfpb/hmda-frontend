@@ -46,7 +46,8 @@ const _whatToRender = ({
   filingQuartersLate,
   latestSubmissions,
   hasQuarterlyFilers,
-  isPassedQuarter 
+  isPassedQuarter,
+  isClosedQuarter 
 }) => {
 
   // we don't have institutions yet
@@ -115,6 +116,7 @@ const _whatToRender = ({
           submission={_setSubmission(submission, institutionSubmission, filingObj)}
           submissions={filingObj.submissions}
           isPassedQuarter={isPassedQuarter}
+          isClosedQuarter={isClosedQuarter}
         />
       )
     }

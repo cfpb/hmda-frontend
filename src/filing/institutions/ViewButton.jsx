@@ -15,10 +15,10 @@ import {
 
 import './ViewButton.css'
 
-const InstitutionViewButton = ({ status, institution, filingPeriod, isPassedQuarter }) => {
+const InstitutionViewButton = ({ status, institution, filingPeriod, isClosedQuarter }) => {
   const code = status ? status.code : CREATED
   let text
-  if (isPassedQuarter && code <= CREATED) return null
+  if (isClosedQuarter && code <= CREATED) return null
   if (code === FAILED) {
     return <RefileButton className="ViewButton" institution={institution} />
   } else if (code <= CREATED) {
