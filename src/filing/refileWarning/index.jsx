@@ -28,7 +28,7 @@ export const getText = props => {
     text = (
       <div className='failed'>
         Please select the &quot;Upload a new file&quot; button to restart the
-        process. Ensure that your text file has no spaces between characters in
+        process. Ensure that your text file has no spaces or dashes between characters in
         LEI/ULI fields and is pipe delimited, not tab or comma delimited.
       </div>
     )
