@@ -22,6 +22,8 @@ import Loading from '../../common/LoadingIcon.jsx'
 import { FAILED, PARSED_WITH_ERRORS, SIGNED } from '../constants/statusCodes.js'
 import { splitYearQuarter } from '../api/utils.js'
 import { afterFilingPeriod } from '../utils/date'
+import { isBeta } from '../../common/Beta'
+import { BetaAlertComplete } from './BetaAlertComplete'
 
 import './container.css'
 import './table.css'
@@ -47,20 +49,26 @@ const renderByCode = (code, page, lei, filingPeriod, isPassedQuarter) => {
     ) {
       toRender.push(<Edits isPassedQuarter={isPassedQuarter} lei={lei} />)
     } else if (page === 'submission') {
-      // at the top of the page
-      if (code !== SIGNED) {
-        toRender.push(<ReadyToSign isPassedQuarter={isPassedQuarter} />)
+      if(isBeta()){
+        toRender.push(<BetaAlertComplete filingPeriod={filingPeriod} />)
+        toRender.push(<Summary filingPeriod={filingPeriod} />)
+        toRender.push(<BetaAlertComplete filingPeriod={filingPeriod} />)
+      } else {
+        // at the top of the page
+        if (code !== SIGNED) {
+          toRender.push(<ReadyToSign />)
+        }
+        toRender.push(<ReceiptContainer />)
+        toRender.push(<IRSReport lei={lei} filingPeriod={filingPeriod}/>)
+        toRender.push(<Summary filingPeriod={filingPeriod} />)
+  
+        // and just before the signature
+        if (code !== SIGNED) {
+          toRender.push(<ReadyToSign />)
+        }
+        toRender.push(<Signature />)
+        toRender.push(<ReceiptContainer />)
       }
-      toRender.push(<ReceiptContainer />)
-      toRender.push(<IRSReport lei={lei} filingPeriod={filingPeriod}/>)
-      toRender.push(<Summary filingPeriod={filingPeriod} />)
-
-      // and just before the signature
-      if (code !== SIGNED) {
-        toRender.push(<ReadyToSign isPassedQuarter={isPassedQuarter} />)
-      }
-      toRender.push(<Signature isPassedQuarter={isPassedQuarter} lei={lei} />)
-      toRender.push(<ReceiptContainer />)
     }
   }
 
