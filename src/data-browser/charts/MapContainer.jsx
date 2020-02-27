@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef }  from 'react'
 import Select from 'react-select'
 import LoadingButton from '../geo/LoadingButton.jsx'
+import Alert from '../../common/Alert.jsx'
 import COUNTS from '../constants/countyCounts.js'
 import COUNTIES from '../constants/counties.js'
 import VARIABLES from '../constants/variables.js'
@@ -237,12 +238,20 @@ const MapContainer = props => {
 
   useEffect(() => {
     if(!data) return
-    const map = new mapbox.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/light-v10',
-      zoom: 3.5,
-      center: [-96, 38]
-    })
+    let map
+
+    try {
+      map = new mapbox.Map({
+        container: mapContainer.current,
+        style: 'mapbox://styles/mapbox/light-v10',
+        zoom: 3.5,
+        center: [-96, 38]
+      })
+    } catch (e){
+      setMap(false)
+      return
+    }
+
     const stops = makeStops(data, selectedVariable, selectedValue)
 
     setMap(map)
@@ -380,7 +389,14 @@ const MapContainer = props => {
         options={getValuesForVariable(selectedVariable)}
       />
       <h3>{selectedVariable && selectedValue ? `${selectedVariable.label}: "${selectedValue.label}" for US Counties`: 'US Counties'}</h3>
-      <div className="mapContainer" ref={mapContainer}/>
+      <div className="mapContainer" ref={mapContainer}>
+        {map === false
+          ? <Alert type="error">
+              <p>Your browser does not support WebGL, which is needed to run this application.</p>
+            </Alert>
+          : null
+        }
+      </div>
       {data && selectedVariable && fips ? buildTable() : null}
     </div>
   )
