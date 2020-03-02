@@ -65,14 +65,15 @@ export function withinAWeekOfDeadline(year) {
 }
 
 export function afterFilingPeriod(year) {
+  const timezoneOffsetHours = new Date().getTimezoneOffset() / 60 // Calculate UTC Hours Offset
   const yearPlusOne = parseInt(year, 10) + 1
   const deadline = Date.UTC(
     yearPlusOne,
     dates.FILING_DEADLINE.month,
     dates.FILING_DEADLINE.day,
-    28,
+    23 + timezoneOffsetHours, // 1 second before Midnight, local time
     59,
-    59 //28 is 23 in UTC-0500
+    59
   )
   if (!deadline) throw new Error('Error calculating filing period deadline')
   return Date.now() > deadline
