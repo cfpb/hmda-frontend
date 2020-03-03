@@ -1,7 +1,7 @@
 {
   "prod": {
     "announcement": {
-      "message": "The filing period is open. Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.",
+      "message": "Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.",
       "type": "info",
       "heading": "Announcement"
     },
@@ -13,7 +13,7 @@
     "filingAnnouncement": null,
     "beta": {
       "announcement": {
-        "message": "The filing period is open. Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.",
+        "message": "Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.",
         "type": "info",
         "heading": "Announcement"
       },
@@ -29,7 +29,7 @@
   },
   "dev": {
     "announcement": {
-      "message": "The filing period is open. Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.",
+      "message": "Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.",
       "type": "info",
       "heading": "Announcement"
     },
@@ -43,7 +43,7 @@
     "filingAnnouncement": null,
     "beta": {
       "announcement": {
-        "message": "The filing period is open. Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.",
+        "message": "Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.",
         "type": "info",
         "heading": "Announcement"
       },
