@@ -10,11 +10,9 @@ export const HeaderOpen = ({
   filingQuartersLate,
   filingPeriod
 }) => {
-  const lastFilingDay = filingYear === '2019' ? '2nd' : '1st'
-
   const filingDeadline = filingQtr
     ? `${formattedQtrBoundaryDate(filingQtr, filingQuarters, 1)}, ${filingYear}`
-    : `March ${lastFilingDay}, ${+filingYear + 1}`
+    : `${formattedQtrBoundaryDate("ANNUAL", filingQuarters, 1)}, ${+filingYear + 1}`
 
   return (
     <Alert>

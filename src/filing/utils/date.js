@@ -1,4 +1,3 @@
-import * as dates from '../constants/dates.js'
 import { splitYearQuarter } from '../api/utils.js'
 
 export const months = 'January,February,March,April,May,June,July,August,September,October,November,December'.split(
@@ -41,36 +40,14 @@ export function ordinalHour(d) {
   return `${ordinal(d)}, ${hour}:${min}:${sec} ${period}`
 }
 
-export function withinAWeekOfDeadline(year) {
-  const yearPlusOne = parseInt(year, 10) + 1
-  const deadline = Date.UTC(
-    yearPlusOne,
-    dates.FILING_DEADLINE.month,
-    dates.FILING_DEADLINE.day,
-    28,
-    59,
-    59 //28 is 23 in UTC-0500
-  )
-  const week = Date.UTC(
-    year,
-    dates.ONE_WEEK_TO_FILE.month,
-    dates.ONE_WEEK_TO_FILE.day,
-    5,
-    0,
-    0 //5 is 0 in UTC-0500
-  )
-  if (!deadline || !week)
-    throw new Error('Error calculating filing deadline status')
-  const today = Date.now()
-  return today >= week && today <= deadline
-}
-
-  export function afterFilingPeriod(period, filingQuarters) {
+export function afterFilingPeriod(period, filingQuarters) {
   const timezoneOffsetHours = new Date().getTimezoneOffset() / 60 // Calculate UTC Hours Offset
   let [year, quarter] = splitYearQuarter(period)
   year = parseInt(year, 10)
   const yearAdjusted = quarter ? year : year + 1
-  const endDate = quarter ? qtrBoundaryDate(quarter, filingQuarters, 1) : dates.FILING_DEADLINE
+  const endDate = quarter
+    ? qtrBoundaryDate(quarter, filingQuarters, 1)
+    : qtrBoundaryDate("ANNUAL", filingQuarters, 1)
   const deadline = Date.UTC(
     yearAdjusted,
     endDate.month,
@@ -84,19 +61,22 @@ export function withinAWeekOfDeadline(year) {
 }
 
 export function beforeFilingPeriod(period, filingQuarters) {
+  const timezoneOffsetHours = new Date().getTimezoneOffset() / 60 // Calculate UTC Hours Offset
   let [year, quarter] = splitYearQuarter(period)
   year = parseInt(year, 10)
   const yearAdjusted = quarter ? year : year + 1
-  const startDate = quarter ? qtrBoundaryDate(quarter, filingQuarters) : dates.FILING_START
+  const startDate = quarter
+    ? qtrBoundaryDate(quarter, filingQuarters)
+    : qtrBoundaryDate("ANNUAL", filingQuarters)
   const start = Date.UTC(
     yearAdjusted,
     startDate.month,
     startDate.day,
-    5,
+    timezoneOffsetHours, // Midnight, local time
     0,
-    0 //5 is 0 in UTC-0500
+    0
   )
-  if (!start) throw new Error('Error calculating filing period starting date')
+  if (!start) throw new Error("Error calculating filing period starting date")
   return Date.now() < start
 }
 
