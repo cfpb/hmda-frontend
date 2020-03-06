@@ -70,9 +70,10 @@ const validatedInput = {
   },
   loanTerm: {
     validate(term) {
-      return isNaN(asNumber(term)) || term > 50 || term < 1
+      const num = asNumber(term)
+      return isNaN(num) || term > 50 || term < 1 || Math.floor(num) !== num
     },
-    text: 'Loan term must be a number between 1 and 50.'
+    text: 'Loan term must be an integer between 1 and 50.'
   }
 }
 
