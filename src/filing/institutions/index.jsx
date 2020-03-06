@@ -7,6 +7,7 @@ import InstitutionsHeader from './Header.jsx'
 import sortInstitutions from '../utils/sortInstitutions.js'
 import YearSelector from '../../common/YearSelector.jsx'
 import Alert from '../../common/Alert.jsx'
+import { MissingInstitutionsBanner } from './MissingInstitutionsBanner'
 
 import './Institutions.css'
 
@@ -64,6 +65,8 @@ const _whatToRender = ({ filings, institutions, submission, latestSubmissions })
     const institutionFilings = filings[institution.lei]
     const institutionSubmission = latestSubmissions[institution.lei]
 
+    if (institution.notFound) return null
+
     if (
       !institutionFilings || !institutionFilings.fetched ||
       !institutionSubmission || institutionSubmission.isFetching
@@ -89,6 +92,14 @@ const _whatToRender = ({ filings, institutions, submission, latestSubmissions })
 export default class Institutions extends Component {
   render() {
     const { error, filingPeriod, filingYears, location } = this.props
+    const institutions = this.props.institutions.institutions
+    let unregisteredInstitutions = []
+    let leis = []
+
+    if (this.props.institutions.fetched) {
+      leis = Object.keys(institutions)
+      unregisteredInstitutions = leis.filter(i => institutions[i].notFound)
+    }
 
     return (
       <main id="main-content" className="Institutions full-width">
@@ -102,28 +113,10 @@ export default class Institutions extends Component {
 
           {_whatToRender(this.props)}
 
-          {this.props.institutions.fetched &&
-          Object.keys(this.props.institutions.institutions).length !== 0 ? (
-            <Alert
-              heading="Missing an institution?"
-              type="info"
-              headingType="small"
-            >
-              <p className="text-small">
-                In order to access the HMDA Platform, each of your institutions
-                must have a Legal Entity Identifier (LEI). In order to provide
-                your institution&#39;s LEI, please access{' '}
-                <a href="https://hmdahelp.consumerfinance.gov/accounthelp/">
-                  this form
-                </a>{' '}
-                and enter the necessary information, including your HMDA
-                Platform account email address in the &#34;Additional
-                comments&#34; text box. We will apply the update to your
-                account, please check back 2 business days after submitting your
-                information.
-              </p>
-            </Alert>
-          ) : null}
+          {this.props.institutions.fetched && leis.length !== 0 
+            ? ( <MissingInstitutionsBanner leis={unregisteredInstitutions} /> ) 
+            : null
+          }
         </div>
       </main>
     )
