@@ -1,5 +1,6 @@
 import React from 'react'
 import Heading from '../../common/Heading.jsx'
+import { Link } from 'react-router-dom'
 
 import './SupportingDocs.css'
 
@@ -34,10 +35,10 @@ const ModifiedLarDocs = () => {
               A list of column names for use with the Modified LAR text files
               <ul>
                 <li>
-                  <a
+                  <Link
                     title="Modified LAR header for 2018 csv file"
-                    href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/spec/2018_Modified_LAR_Header.csv"
-                  >2018</a>
+                    to="/documentation/2018/modified-lar-header/"
+                  >2018</Link>
                 </li>
                 <li>
                   <a
@@ -56,7 +57,7 @@ const ModifiedLarDocs = () => {
                 <li>
                   <a
                     title="Modified LAR 2018 data dictionary"
-                    href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/spec/2018_Modified_LAR_Data_Dictionary.csv"
+                    href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/spec/markdown/modified_lar/2018_Modified_LAR_Data_Dictionary.md"
                   >2018</a>
                 </li>
                 <li>
@@ -90,7 +91,7 @@ const ModifiedLarDocs = () => {
                 <li>
                     <a
                       title="Modified LAR Code Sheet"
-                      href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/spec/2018_Modified_LAR_Code_Sheet.csv"
+                      href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2018-public-LAR-code-sheet.pdf"
                     >Code Sheet</a>
                 </li>
               </ul>
