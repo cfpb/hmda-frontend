@@ -4,6 +4,7 @@ import receiveError from './receiveError.js'
 import hasHttpError from './hasHttpError.js'
 import { getInstitution } from '../api/api.js'
 import requestInstitution from './requestInstitution.js'
+import receiveInstitutionNotFound from './receiveInstitutionNotFound'
 import { error } from '../utils/log.js'
 
 export default function fetchInstitution(institution, filingPeriod, fetchFilings = true) {
@@ -14,9 +15,12 @@ export default function fetchInstitution(institution, filingPeriod, fetchFilings
         return hasHttpError(json).then(hasError => {
           if (hasError) {
             if(json.status === 404) {
-              const message = `${institution.lei} does not exist in ${filingPeriod.split('-')[0]}.`
-              dispatch(receiveError({ status: json.status, message, heading: 'Institution not found.' }))
-              throw new Error(message)
+              dispatch(receiveInstitutionNotFound({ lei: institution.lei }))
+              throw new Error(
+                `${institution.lei} does not exist in ${
+                  filingPeriod.split("-")[0]
+                }.`
+              )
             }
             
             dispatch(receiveError(json))

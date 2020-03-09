@@ -3,7 +3,8 @@ import {
   RECEIVE_INSTITUTIONS,
   REQUEST_INSTITUTION,
   RECEIVE_INSTITUTION,
-  UPDATE_FILING_PERIOD
+  UPDATE_FILING_PERIOD,
+  RECEIVE_INSTITUTION_NOT_FOUND
 } from '../constants'
 
 const defaultInstitutions = {
@@ -52,6 +53,18 @@ export default (state = defaultInstitutions, action) => {
         ...state,
         isFetching: false,
         fetched: true
+      }
+    case RECEIVE_INSTITUTION_NOT_FOUND:
+      return {
+        ...state,
+        institutions: {
+          ...state.institutions,
+          [action.lei]: {
+            isFetching: false,
+            notFound: true,
+            lei: action.lei
+          }
+        }
       }
     case UPDATE_FILING_PERIOD:
       return defaultInstitutions

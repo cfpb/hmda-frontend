@@ -62,3 +62,8 @@
 .floatingIcon + p.multi-message {
   margin-top: 7em;
 }
+
+.Institutions .missing-leis ul {
+  list-style-type: disc;
+  margin-left: 2rem;
+}
