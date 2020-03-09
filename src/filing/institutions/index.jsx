@@ -79,6 +79,7 @@ const _whatToRender = ({
   )
 
   const [filingYear, showingQuarterly] = splitYearQuarter(filingPeriod)
+  const nonQuarterlyInstitutions = []
   const noFilingThisQ = []
 
   const filteredInstitutions = sortedInstitutions.map((key,i) => {
@@ -99,6 +100,7 @@ const _whatToRender = ({
 
       if (showingQuarterly) {
         if (!institution.quarterlyFiler) {
+          nonQuarterlyInstitutions.push(institution)
           return null
         }
         if (!institutionFilings.filing.filing.status) {
