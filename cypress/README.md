@@ -21,7 +21,15 @@ nvm use
 yarn install
 ```
 
-Configure Cypress environment variables
+### Installation Issues  
+If you encounter `yarn` errors regarding missing packages:
+- Edit the `.yarnc` file to comment-out the `--install.offline` option
+    ```
+    # --install.offline true
+    ```
+- Save changes and re-run `yarn install`
+
+### Environment Configuration
 ```
 export CYPRESS_USERNAME=<username>
 export CYPRESS_PASSWORD=<password>
