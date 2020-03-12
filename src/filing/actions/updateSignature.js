@@ -8,7 +8,7 @@ import { error } from '../utils/log.js'
 
 const MAX_SIGNING_ATTEMPTS = 10
 
-export default function updateSignature(signed, attempts = 0) {
+export default function updateSignature(signed, lei, attempts = 0) {
   return dispatch => {
     if(!attempts) dispatch(requestSignaturePost())
     return postSignature(signed)
@@ -16,7 +16,7 @@ export default function updateSignature(signed, attempts = 0) {
         // Temp fix for an inconsistent 405 error from signing endpoint.
         // Attempt signing up to 10 times before throwing an error.
         if(json.status === 405 && attempts < MAX_SIGNING_ATTEMPTS)
-          return dispatch(updateSignature(signed, attempts + 1))
+          return dispatch(updateSignature(signed, lei, attempts + 1))
 
         return hasHttpError(json).then(hasError => {
           if (hasError) {
@@ -27,7 +27,7 @@ export default function updateSignature(signed, attempts = 0) {
           return dispatch(
             updateStatus({
               ...json.status
-            })
+            }, lei)
           )
         })
       })

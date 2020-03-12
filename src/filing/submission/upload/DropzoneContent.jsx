@@ -10,7 +10,7 @@ const formatMessage = ({ pre, post }, filename) => {
   )
 }
 
-const DropzoneContent = ({ getRootProps, getInputProps, code, filename, errorFile }) => {
+const DropzoneContent = ({ getRootProps, getInputProps, code, filename, errorFile, isDisabled}) => {
   let message = ''
   let messageObj = {}
 
@@ -82,11 +82,17 @@ const DropzoneContent = ({ getRootProps, getInputProps, code, filename, errorFil
     message = formatMessage({ pre: '', post: 'cannot be uploaded' }, errorFile)
   }
 
+  let classname = 'dropzone'
+  if(isDisabled) classname += ' dropzone-disabled'
+
   return (
-    <div {...getRootProps({className: 'dropzone'})}>
+    <div {...getRootProps({className: classname})}>
       <input {...getInputProps()}/>
       <p className="file-selected">
-        To begin uploading a new file, drag it into this box or click here.
+        {isDisabled 
+          ? 'The filing period is closed. New uploads are no longer accepted.'
+          : 'To begin uploading a new file, drag it into this box or click here.'
+        }
       </p>
       {message}
     </div>

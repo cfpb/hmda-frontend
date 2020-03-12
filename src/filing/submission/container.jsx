@@ -20,6 +20,10 @@ import Summary from './summary/container.jsx'
 import ParseErrors from './parseErrors/container.jsx'
 import Loading from '../../common/LoadingIcon.jsx'
 import { FAILED, PARSED_WITH_ERRORS, SIGNED } from '../constants/statusCodes.js'
+import { splitYearQuarter } from '../api/utils.js'
+import { afterFilingPeriod } from '../utils/date'
+import { isBeta } from '../../common/Beta'
+import { BetaAlertComplete } from './BetaAlertComplete'
 
 import './container.css'
 import './table.css'
@@ -29,36 +33,42 @@ const EditsNav = submissionProgressHOC(EditsNavComponent)
 const NavButton = submissionProgressHOC(NavButtonComponent)
 const RefileWarning = submissionProgressHOC(RefileWarningComponent)
 
-const renderByCode = (code, page, lei, filingPeriod) => {
+const renderByCode = (code, page, lei, filingPeriod, isPassedQuarter) => {
   const toRender = []
   if (code === FAILED) {
-    toRender.push(<RefileWarning />)
+    toRender.push(<RefileWarning isPassedQuarter={isPassedQuarter} />)
     return toRender
   } else {
     if (page === 'upload') {
-      toRender.push(<UploadForm />)
+      toRender.push(<UploadForm isPassedQuarter={isPassedQuarter} />)
       if (code === PARSED_WITH_ERRORS) {
         toRender.push(<ParseErrors filingPeriod={filingPeriod} />)
       }
     } else if (
       ['syntacticalvalidity', 'quality', 'macro'].indexOf(page) !== -1
     ) {
-      toRender.push(<Edits />)
+      toRender.push(<Edits isPassedQuarter={isPassedQuarter} lei={lei} />)
     } else if (page === 'submission') {
-      // at the top of the page
-      if (code !== SIGNED) {
-        toRender.push(<ReadyToSign />)
+      if(isBeta()){
+        toRender.push(<BetaAlertComplete filingPeriod={filingPeriod} />)
+        toRender.push(<Summary filingPeriod={filingPeriod} />)
+        toRender.push(<BetaAlertComplete filingPeriod={filingPeriod} />)
+      } else {
+        // at the top of the page
+        if (code !== SIGNED) {
+          toRender.push(<ReadyToSign />)
+        }
+        toRender.push(<ReceiptContainer />)
+        toRender.push(<IRSReport lei={lei} filingPeriod={filingPeriod}/>)
+        toRender.push(<Summary filingPeriod={filingPeriod} />)
+  
+        // and just before the signature
+        if (code !== SIGNED) {
+          toRender.push(<ReadyToSign />)
+        }
+        toRender.push(<Signature />)
+        toRender.push(<ReceiptContainer />)
       }
-      toRender.push(<ReceiptContainer />)
-      toRender.push(<IRSReport lei={lei} filingPeriod={filingPeriod}/>)
-      toRender.push(<Summary />)
-
-      // and just before the signature
-      if (code !== SIGNED) {
-        toRender.push(<ReadyToSign />)
-      }
-      toRender.push(<Signature />)
-      toRender.push(<ReceiptContainer />)
     }
   }
 
@@ -83,22 +93,23 @@ class SubmissionContainer extends Component {
   componentDidMount() {
     // for institution name in header
     const { lei, filingPeriod } = this.props.match.params
+    const filingQuarters = this.props.filingQuarters
 
     if (!this.props.institutions.institutions[lei]) {
-      this.props.dispatch(fetchInstitution( { lei }, filingPeriod, false))
+      this.props.dispatch(fetchInstitution( { lei }, filingPeriod, filingQuarters, false))
     }
   }
 
   render() {
     if (!this.props.location) return null
-    const { submission, match: {params}, location, institutions, lei } = this.props
+    const { submission, match: {params}, location, institutions, lei, isPassedQuarter } = this.props
     const status = submission.status
     const code = status && status.code
     const page = location.pathname.split('/').slice(-1)[0]
     const institution = institutions.institutions[lei]
 
     const toRender = code
-      ? renderByCode(code, page, lei, params.filingPeriod)
+      ? renderByCode(code, page, lei, params.filingPeriod, isPassedQuarter)
       : [<Loading key="0" />]
 
     return (
@@ -125,14 +136,18 @@ class SubmissionContainer extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  const { submission, institutions, lei, error } = state.app
+function mapStateToProps(state, ownProps) {
+  const { submission, institutions, lei, error, filingPeriod } = state.app
+  const { filingQuartersLate } = ownProps.config
+  const isQuarterly = Boolean(splitYearQuarter(filingPeriod)[1])
+  const isPassedQuarter = isQuarterly && afterFilingPeriod(filingPeriod, filingQuartersLate)
 
   return {
     submission,
     institutions,
     lei,
-    error
+    error,
+    isPassedQuarter
   }
 }
 

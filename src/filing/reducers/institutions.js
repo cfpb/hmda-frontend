@@ -44,7 +44,8 @@ export default (state = defaultInstitutions, action) => {
           [action.institution.lei]: {
             isFetching: false,
             name: action.institution.respondent.name,
-            lei: action.institution.lei
+            lei: action.institution.lei,
+            quarterlyFiler: action.institution.quarterlyFiler
           }
         }
       }

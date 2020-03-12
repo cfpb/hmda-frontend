@@ -8,7 +8,7 @@ import hasHttpError from './hasHttpError.js'
 import { postVerify } from '../api/api.js'
 import { error } from '../utils/log.js'
 
-export default function fetchVerify(type, checked) {
+export default function fetchVerify(type, checked, lei) {
   return dispatch => {
     if (type === 'quality') dispatch(requestVerifyQuality())
     else dispatch(requestVerifyMacro())
@@ -21,10 +21,9 @@ export default function fetchVerify(type, checked) {
             throw new Error(json && `${json.status}: ${json.statusText}`)
           }
 
-          if (type === 'quality') dispatch(verifyQuality(json.verified))
-          else dispatch(verifyMacro(json.verified))
-
-          return dispatch(updateStatus(json.status))
+          if (type === 'quality') dispatch(verifyQuality(json.verified, lei))
+          else dispatch(verifyMacro(json.verified, lei))
+          return dispatch(updateStatus(json.status, lei))
         })
       })
       .catch(err => {

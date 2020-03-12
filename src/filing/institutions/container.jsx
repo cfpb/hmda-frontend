@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import requestInstitutions from '../actions/requestInstitutions.js'
 import fetchEachInstitution from '../actions/fetchEachInstitution.js'
-import receiveInstitutions from '../actions/receiveInstitutions.js'
 import Institutions from './index.jsx'
 import { getKeycloak } from '../utils/keycloak.js'
+import { afterFilingPeriod, beforeFilingPeriod } from "../utils/date"
+import { splitYearQuarter } from '../api/utils.js'
 
 export class InstitutionContainer extends Component {
   componentDidMount() {
@@ -16,20 +17,16 @@ export class InstitutionContainer extends Component {
   }
 
   fetchIfNeeded() {
-    const { dispatch, filingPeriod, institutions } = this.props
-    if (!institutions.fetched && !institutions.isFetching){
+    const { dispatch, filingPeriod, filingQuarters, institutions } = this.props
+
+    if(!institutions.fetched && !institutions.isFetching){
       dispatch(requestInstitutions())
       const leiString = getKeycloak().tokenParsed.lei
       const leis = leiString ? leiString.split(',') : []
 
       // create the expected objects from the array, institutions = [{lei: lei}]
-      let instArr = []
-      leis.forEach(lei => {
-        instArr.push({ lei: lei })
-      })
-
-      dispatch(fetchEachInstitution(instArr, filingPeriod))
-      dispatch(receiveInstitutions())
+      let instArr = leis.map(lei => ({ lei }))
+      dispatch(fetchEachInstitution(instArr, filingPeriod, filingQuarters))
     }
   }
 
@@ -39,19 +36,39 @@ export class InstitutionContainer extends Component {
 }
 
 export function mapStateToProps(state, ownProps) {
-  const { institutions, filings, submission, latestSubmissions, error } = state.app
-  const { filingPeriod } = ownProps.match.params
-  const filingYears = ownProps.config.filingPeriods
+  const { institutions, filingPeriod, filings, submission, latestSubmissions, error, redirecting } = state.app
+  const { filingPeriods, filingQuarters, filingQuartersLate } = ownProps.config
+  const isQuarterly = Boolean(splitYearQuarter(filingPeriod)[1])
+  const isPassedQuarter = isQuarterly && afterFilingPeriod(filingPeriod, filingQuartersLate)
+  const isFutureQuarter = isQuarterly && beforeFilingPeriod(filingPeriod, filingQuarters)
+  const isClosedQuarter = isQuarterly && (isPassedQuarter || isFutureQuarter)
 
   return {
     submission,
     filingPeriod,
-    filingYears,
+    filingPeriods,
+    filingQuarters,
+    filingQuartersLate,
     institutions,
     filings,
     error,
-    latestSubmissions: latestSubmissions.latestSubmissions
+    latestSubmissions: latestSubmissions.latestSubmissions,
+    redirecting,
+    isPassedQuarter,
+    isClosedQuarter,
+    hasQuarterlyFilers: hasQuarterlyFilers(institutions),
   }
+}
+
+function hasQuarterlyFilers(institutionState){
+  if(institutionState.fetched){
+    const institutions = institutionState.institutions
+    const institutionsList = Object.keys(institutions).map(key => institutions[key])
+    const isQFList = institutionsList.map(i => i.isFetching ? true : i.quarterlyFiler)
+    return isQFList.some(i => i)
+  }
+
+  return true
 }
 
 export default connect(mapStateToProps)(InstitutionContainer)

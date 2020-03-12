@@ -59,7 +59,7 @@ const Filing = ({ config }) => {
           }}/>
           <Route path={'/filing/:filingPeriod/institutions'} render={props => {
             return <AppContainer {...props} config={config}>
-              <InstitutionContainer/>
+              <InstitutionContainer history={props.history}/>
             </AppContainer>
           }}/>
           <Route exact path={'/filing/:filingPeriod/:lei/'} render={props => {

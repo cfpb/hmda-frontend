@@ -14,53 +14,71 @@ import {
 import './RefileWarning.css'
 
 export const getText = props => {
+  const periodIsClosed = props.isPassedQuarter
   let text = null
-  let button = <RefileButton />
+  let button = periodIsClosed ? null : <RefileButton />
   let periodAfter = false
   let reviewAndDownload = (
     <div>
-      Please review the edits or <CSVDownload inline={true} />
+      {periodIsClosed ? 'View' : 'Please review'} the edits or{' '}
+      <CSVDownload inline={true} />
     </div>
   )
 
   if (props.code === FAILED) {
     reviewAndDownload = null
-    text = (
-      <div className='failed'>
-        Please select the &quot;Upload a new file&quot; button to restart the
-        process. Ensure that your text file has no spaces or dashes between characters in
-        LEI/ULI fields and is pipe delimited, not tab or comma delimited.
-      </div>
-    )
+    if (periodIsClosed) {
+      text = <NoNewChanges className='failed' />
+    } else {
+      text = (
+        <div className='failed'>
+          Please select the &quot;Upload a new file&quot; button to restart the
+          process. Ensure that your text file has no spaces between characters
+          in LEI/ULI fields and is pipe delimited, not tab or comma delimited.
+        </div>
+      )
+    }
   } else if (props.code === SYNTACTICAL_VALIDITY_EDITS) {
-    text = (
-      <div>
-        Then update your file and select the &quot;Upload a new file&quot;
-        button.
-      </div>
-    )
+    if (periodIsClosed){
+      text = <NoNewChanges />
+    } else {
+      text = (
+        <div>
+          Then update your file and select the &quot;Upload a new file&quot;
+          button.
+        </div>
+      )
+    }
   } else if (
     (props.qualityExists && props.page === 'quality') ||
     (props.macroExists && props.page === 'macro')
   ) {
-    text = (
-      <div style={{ display: 'inline' }}>
-        You must verify the edits and select the check box to confirm the data
-        is accurate. If the data need to be corrected, please update your file
-        and{' '}
-      </div>
-    )
-    button = <RefileButton isLink={true} isLower={true} />
-    periodAfter = true
+    if (periodIsClosed){
+      text = <NoNewChanges />
+    } else {
+      text = (
+        <div style={{ display: 'inline' }}>
+          You must verify the edits and select the check box to confirm the data
+          is accurate. If the data need to be corrected, please update your file
+          and{' '}
+        </div>
+      )
+      button = <RefileButton isLink={true} isLower={true} />
+      periodAfter = true
+    }
   }
   if (props.code === PARSED_WITH_ERRORS) {
     reviewAndDownload = null
-    text = (
-      <div>
-        Please update your file and select the &quot;Upload a new file&quot;
-        button.
-      </div>
-    )
+    if (periodIsClosed){
+      text = <NoNewChanges />
+    } else {
+      text = (
+        <div>
+          Please update your file and select the &quot;Upload a new file&quot;
+          button.
+        </div>
+      )
+    }
   }
 
   if (!text) return null
@@ -94,6 +112,14 @@ export const getHeading = props => {
   }
 
   return heading
+}
+
+const NoNewChanges = ({ className }) => {
+  return (
+    <div className={className}>
+      The filing deadline has passed. Changes are no longer accepted.
+    </div>
+  )
 }
 
 const RefileWarning = props => {

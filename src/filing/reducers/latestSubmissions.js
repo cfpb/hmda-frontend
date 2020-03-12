@@ -1,6 +1,10 @@
 import {
   REQUEST_LATEST_SUBMISSION,
-  RECEIVE_LATEST_SUBMISSION
+  RECEIVE_LATEST_SUBMISSION,
+  RECEIVE_SUBMISSION,
+  UPDATE_STATUS,
+  VERIFY_QUALITY,
+  VERIFY_MACRO
 } from '../constants'
 import { defaultSubmission } from './submission'
 
@@ -11,6 +15,8 @@ const defaultLatestSubmissions = {
 }
 
 export default (state = defaultLatestSubmissions, action) => {
+  let submission
+
   switch (action.type) {
     case REQUEST_LATEST_SUBMISSION:
       return {
@@ -22,6 +28,7 @@ export default (state = defaultLatestSubmissions, action) => {
           }
         }
       }
+
     case RECEIVE_LATEST_SUBMISSION:
       return {
         ...state,
@@ -39,6 +46,70 @@ export default (state = defaultLatestSubmissions, action) => {
           }
         }
       }
+
+    case RECEIVE_SUBMISSION:
+      submission = state.latestSubmissions[action.id.lei] || {}
+
+      return {
+        ...state,
+        latestSubmissions: {
+          ...state.latestSubmissions,
+          [action.id.lei]: {
+            ...submission,
+            id: {...action.id},
+            status: {...action.status},
+            filename: action.fileName,
+            qualityVerified: action.qualityVerified,
+            qualityExists: action.qualityExists,
+            macroVerified: action.macroVerified,
+            macroExists: action.macroExists,
+          }
+        }
+      }
+
+    case UPDATE_STATUS:
+      submission = state.latestSubmissions[action.lei]
+      if(!submission) return state
+
+      return {
+        ...state,
+        latestSubmissions: {
+          ...state.latestSubmissions,
+          [action.lei]: {
+            ...submission,
+            status: {...action.status}
+          }
+        }
+      }
+
+    case VERIFY_QUALITY:
+      submission = state.latestSubmissions[action.lei] || {}
+
+      return {
+        ...state,
+        latestSubmissions: {
+          ...state.latestSubmissions,
+          [action.lei]: {
+            ...submission,
+            qualityVerified: action.checked,
+          }
+        }
+      }  
+
+    case VERIFY_MACRO:
+      submission = state.latestSubmissions[action.lei] || {}
+
+      return {
+        ...state,
+        latestSubmissions: {
+          ...state.latestSubmissions,
+          [action.lei]: {
+            ...submission,
+            macroVerified: action.checked,
+          }
+        }
+      }      
+
     default:
       return state
   }

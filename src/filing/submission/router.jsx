@@ -36,7 +36,9 @@ export class SubmissionRouter extends Component {
     this.renderChildren = false
     const { submission, refiling, edits, lei, match: {params}, dispatch } = this.props
     const status = submission.status
-    const wrongYear = !submission.id || +submission.id.period.year !== +params.filingPeriod
+    const [filingYear, filingQuarter] = params.filingPeriod.split('-')
+    // eslint-disable-next-line
+    const wrongPeriod = !submission.id || +submission.id.period.year !== +filingYear || submission.id.period.quarter != filingQuarter
 
     if (!params.lei) {
       return this.goToAppHome()
@@ -50,7 +52,7 @@ export class SubmissionRouter extends Component {
 
     if(refiling || submission.isFetching) return
 
-    if (unmatchedId || !status || status.code === UNINITIALIZED || wrongYear) {
+    if (unmatchedId || !status || status.code === UNINITIALIZED || wrongPeriod) {
       return dispatch(fetchSubmission()).then(() => {
         if(this.editsNeeded()){
           if(!edits.fetched && !edits.isFetching){
@@ -154,14 +156,15 @@ export class SubmissionRouter extends Component {
 export function mapStateToProps(state, ownProps) {
   const { submission, lei, edits, refiling } = state.app
 
-  const { match: {params} } = ownProps
+  const { match: {params}, config: {filingQuarters} } = ownProps
 
   return {
     submission,
     params,
     lei,
     edits,
-    refiling
+    refiling,
+    filingQuarters
   }
 }
 

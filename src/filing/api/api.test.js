@@ -7,15 +7,17 @@ fetch.fetch = mockedFetch
 
 describe('api', () => {
   it('gets institution', () => {
-    api.getInstitution('1')
+    api.getInstitution('lei', 'filingYear')
     expect(mockedFetch.mock.calls[0][0]).toEqual({
-      pathname: '/institutions/1'
+      pathname: '/institutions/lei/year/filingYear'
     })
   })
 
-  it('gets institutions', () => {
-    api.getInstitutions()
-    expect(mockedFetch.mock.calls[1][0]).toEqual({ pathname: '/institutions' })
+  it('gets quarterly institution', () => {
+    api.getInstitution('lei', 'filingYear-fq')
+    expect(mockedFetch.mock.calls[1][0]).toEqual({
+      pathname: '/institutions/lei/year/filingYear/quarter/FQ'
+    })
   })
 
   it('posts upload', () => {
@@ -44,7 +46,8 @@ describe('api', () => {
   it('gets latest submission', () => {
     api.getLatestSubmission()
     expect(mockedFetch.mock.calls[5][0]).toEqual({
-      submission: 'latest'
+      submission: 'latest',
+      noCache: 1
     })
   })
 
@@ -85,28 +88,28 @@ describe('api', () => {
 
   it('gets summary', () => {
     api.getSummary()
-    expect(mockedFetch.mock.calls[14][0]).toEqual({
+    expect(mockedFetch.mock.calls[11][0]).toEqual({
       suffix: '/summary'
     })
   })
 
   it('gets signature', () => {
     api.getSignature()
-    expect(mockedFetch.mock.calls[15][0]).toEqual({
+    expect(mockedFetch.mock.calls[12][0]).toEqual({
       suffix: '/sign'
     })
   })
 
   it('gets parse errors', () => {
     api.getParseErrors()
-    expect(mockedFetch.mock.calls[16][0]).toEqual({
+    expect(mockedFetch.mock.calls[13][0]).toEqual({
       suffix: '/parseErrors'
     })
   })
 
   it('posts signature', () => {
     api.postSignature('2')
-    expect(mockedFetch.mock.calls[17][0]).toEqual({
+    expect(mockedFetch.mock.calls[14][0]).toEqual({
       suffix: '/sign',
       method: 'POST',
       body: { signed: '2' }
@@ -116,7 +119,7 @@ describe('api', () => {
 
   it('creates filing', () => {
     api.createFiling('1', '2')
-    expect(mockedFetch.mock.calls[18][0]).toEqual({
+    expect(mockedFetch.mock.calls[15][0]).toEqual({
       pathname: '/institutions/1/filings/2',
       method: 'POST'
     })

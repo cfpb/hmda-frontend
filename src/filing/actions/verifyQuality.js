@@ -1,9 +1,10 @@
 import * as types from '../constants'
 
-export default function verifyQuality(checked) {
+export default function verifyQuality(checked, lei) {
   return {
     type: types.VERIFY_QUALITY,
     checked: checked,
-    isFetching: false
+    isFetching: false,
+    lei
   }
 }

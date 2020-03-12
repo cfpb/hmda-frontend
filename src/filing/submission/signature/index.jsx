@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import ErrorWarning from '../../common/ErrorWarning.jsx'
 import Loading from '../../../common/LoadingIcon.jsx'
 import { VALIDATED, NO_MACRO_EDITS, SIGNED } from '../../constants/statusCodes.js'
+import Alert from '../../../common/Alert.jsx'
 
 import './Signature.css'
 
@@ -16,7 +17,26 @@ const showWarning = props => {
   )
 }
 
+const SignatureClosed = ({ status }) => {
+  const notSigned = status.code !== SIGNED
+
+  return (
+    <section className='Signature' id='signature'>
+      <header>
+        <h2>Signature</h2>
+      </header>
+      {notSigned && (
+        <Alert type='warning'>
+          <p style={{ padding: 0 }}>This submission was not signed.</p>
+        </Alert>
+      )}
+    </section>
+  )
+}
+
 const Signature = props => {
+  if(props.isPassedQuarter) return <SignatureClosed status={props.status} />
+
   let isButtonDisabled =
     (props.status.code === VALIDATED || props.status.code === NO_MACRO_EDITS) && props.checked ? false : true
 

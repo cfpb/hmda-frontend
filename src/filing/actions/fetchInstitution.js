@@ -6,9 +6,11 @@ import { getInstitution } from '../api/api.js'
 import requestInstitution from './requestInstitution.js'
 import receiveInstitutionNotFound from './receiveInstitutionNotFound'
 import { error } from '../utils/log.js'
+import receiveNonQFiling from './receiveNonQFiling'
+import { splitYearQuarter } from '../api/utils'
 
-export default function fetchInstitution(institution, filingPeriod, fetchFilings = true) {
-  return (dispatch, getState) => {
+export default function fetchInstitution(institution, filingPeriod, filingQuarters, fetchFilings = true) {
+  return dispatch => {
     dispatch(requestInstitution(institution.lei))
     return getInstitution(institution.lei, filingPeriod)
       .then(json => {
@@ -28,7 +30,13 @@ export default function fetchInstitution(institution, filingPeriod, fetchFilings
           }
 
           dispatch(receiveInstitution(json))
-          if(fetchFilings) return dispatch(fetchCurrentFiling(json))
+
+          if(fetchFilings) {
+            const isQuarterly = splitYearQuarter(filingPeriod)[1]
+            return isQuarterly && !json.institution.quarterlyFiler
+              ? dispatch(receiveNonQFiling(json))
+              : dispatch(fetchCurrentFiling(json, filingQuarters))
+          }
         })
       })
       .catch(err => {

@@ -75,3 +75,4 @@ export function fetchData(options = { method: 'GET' }) {
       error(err)
     })
 }
+

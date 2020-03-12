@@ -1,52 +1,85 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Alert from '../../common/Alert.jsx'
 import { beforeFilingPeriod, afterFilingPeriod } from '../utils/date.js'
+import { splitYearQuarter } from '../api/utils.js'
 import { isBeta } from '../../common/Beta.jsx'
+import { HeaderBeforeOpen } from './HeaderBeforeOpen.jsx'
+import { HeaderOpen } from './HeaderOpen'
+import { HeaderClosed } from './HeaderClosed'
+import { HeaderLate } from './HeaderLate'
 
-const InstitutionsHeader = ({ filingPeriod }) => {
-  if (!filingPeriod || isBeta()) return null
+const InstitutionsHeader = ({ filingPeriodOrig, filingQuarters, filingQuartersLate, hasQuarterlyFilers }) => {
+  if (!filingPeriodOrig || isBeta()) return null
 
-  if (beforeFilingPeriod(filingPeriod)) {
+  // Adjust displayed filing period when a non-quarterly user accesses an open quarterly period
+  const [origYear, origQtr] = splitYearQuarter(filingPeriodOrig)
+  const filingPeriod = origQtr && !hasQuarterlyFilers ? origYear : filingPeriodOrig
+
+  const [filingYear, filingQtr] = splitYearQuarter(filingPeriod)
+
+  if (beforeFilingPeriod(filingPeriod, filingQuarters)) {
     return (
-      <Alert
-        heading={`The ${filingPeriod} filing period is not yet open.`}
-        type="warning"
-      >
-        <p>
-          The Platform will begin accepting data for the {filingPeriod} filing period on January 1st.
-        </p>
-      </Alert>
+      <HeaderBeforeOpen
+        filingQtr={filingQtr}
+        filingPeriod={filingPeriod}
+        filingQuarters={filingQuarters}
+        filingYear={filingYear}
+      />
     )
-  } else if (afterFilingPeriod(filingPeriod)) {
+  } else if (afterFilingPeriod(filingPeriod, filingQuarters)) {
+    // Quarterly - Late
+    if(filingQtr && !afterFilingPeriod(filingPeriod, filingQuartersLate))
+      return (
+        <HeaderLate
+          filingPeriod={filingPeriod}
+          filingQuarters={filingQuarters}
+          filingYear={filingYear}
+          filingQuartersLate={filingQuartersLate}
+          filingQtr={filingQtr}
+        />
+      )
+
     return (
-      <Alert
-        heading={`The ${filingPeriod} filing period is closed.`}
-        type="warning"
-      >
-        <p>
-          The HMDA Platform remains available outside of the filing period for
-          late submissions and resubmissions of {filingPeriod} HMDA data.
-        </p>
-      </Alert>
+      <HeaderClosed
+        filingPeriod={filingPeriod}
+        filingQtr={filingQtr}
+        filingQuartersLate={filingQuartersLate}
+        filingYear={filingYear}
+      />
     )
   }
 
-  const lastFilingDay = filingPeriod === '2019' ? '2nd' : '1st'
-
   return (
-    <Alert>
-      <div>
-        <h2 style={{ margin: '0 0 0.5em 0' }}>{filingPeriod} filing period</h2>
-        <p className="font-lead">
-          The filing period is open. March {lastFilingDay}, {+filingPeriod + 1} is the deadline to
-          submit your HMDA data.
-        </p>
-        <p className="font-lead">
-          You may file HMDA data for your authorized institutions below.
-        </p>
-      </div>
-    </Alert>
+    <HeaderOpen
+      filingQtr={filingQtr}
+      filingQuarters={filingQuarters}
+      filingYear={filingYear}
+      filingQuartersLate={filingQuartersLate}
+      filingPeriod={filingPeriod}
+    />
+  )
+}
+
+export const HeaderDocsLink = ({ filingYear, isQuarter }) => {
+  const text = isQuarter
+    ? "For more information on quarterly filing dates, visit the "
+    : "For more information regarding filing, please visit the "
+  
+  const url = isQuarter
+    ? `/documentation/${filingYear}/quarterly-filing-dates/`
+    : `/documentation/${filingYear}`
+  return (
+    <>
+      {text}
+      <a
+        href={url}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Documentation
+      </a>{" "}
+      page.
+    </>
   )
 }
 
