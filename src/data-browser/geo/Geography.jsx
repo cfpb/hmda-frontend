@@ -285,7 +285,13 @@ class Geography extends Component {
                 data fields
               </a>{' '}
               available in the public data record and can be used for advanced
-              analysis. For questions/suggestions, contact hmdahelp@cfpb.gov.
+              analysis. You can also access the{' '}
+              <a
+                target='_blank'
+                rel='noopener noreferrer'
+                href="https://cfpb.github.io/hmda-platform/#data-browser-api">Data Browser API
+              </a>{' '}
+              directly. For questions/suggestions, contact hmdahelp@cfpb.gov.
             </p>
           </Heading>
         </div>

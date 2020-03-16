@@ -15,6 +15,7 @@ class Home extends Component {
           <Heading type={1} headingText="HMDA Data Browser">
             <p className="lead">The HMDA Data Browser allows users to filter, analyze, and download HMDA datasets and visualize data through charts, graphs, and maps.</p>
             <p className="lead">For questions about the HMDA Data Browser, visit our <Link to="/documentation/2018/data-browser-faq/">FAQ page</Link>.</p>
+            <p className="lead">To learn to use the Data Browser API, peruse our <a href="https://cfpb.github.io/hmda-platform/#data-browser-api">API Documentation</a>.</p>
           </Heading>
         </div>
 
