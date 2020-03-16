@@ -12,6 +12,7 @@
 }
 .alert::before {
   background-color: #8b8b8b;
+  border-color: #8b8b8b;
   content: '';
   height: 100%;
   left: 0;
@@ -77,6 +78,7 @@
 
 .alert-success {
   background-color: #e7f4e4;
+  border-color: #2e8540;
 }
 .alert-success::before {
   background-color: #2e8540;
@@ -84,6 +86,7 @@
 
 .alert-warning {
   background-color: #fff1d2;
+  border-color: #fdb81e;
 }
 .alert-warning::before {
   background-color: #fdb81e;
@@ -91,6 +94,7 @@
 
 .alert-error {
   background-color: #f9dede;
+  border-color: #e31c3d;
 }
 .alert-error::before {
   background-color: #e31c3d;
@@ -98,6 +102,7 @@
 
 .alert-info {
   background-color: #e1f3f8;
+  border-color: #02bfe7;
 }
 .alert-info::before {
   background-color: #02bfe7;

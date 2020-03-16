@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Alert from '../../common/Alert.jsx'
+import PrintPageButton from './PrintPageButton'
 import { isBeta } from '../../common/Beta.jsx'
 import { ordinalHour } from '../utils/date.js'
 import { SIGNED } from '../constants/statusCodes.js'
@@ -45,6 +46,7 @@ const Receipt = ({
           <br />
           <br />
           A copy of this receipt has been sent to <strong>{email}</strong>.
+          <PrintPageButton />
         </div>
       </Alert>
     </section>

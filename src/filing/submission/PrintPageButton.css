@@ -1,0 +1,46 @@
+.print-page-container {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  transform: translateY(calc(50% + 15px + .5rem - 2px)); /* transform = half container + half icon + half text - half bottom margin */
+}
+
+.print-page {
+  cursor: pointer;
+  background-color: transparent;
+  color: black;
+  font-size: 1.3rem;
+  text-align: center;
+  padding: 0;
+  letter-spacing: .5px;
+}
+
+.print-page .icon {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+.print-page:hover {
+  color: #0071bc;
+  background-color: transparent;
+}
+
+.print-page:hover .icon {
+  fill: #0071bc;
+}
+
+@media screen and (max-width: 821px) {
+  .print-page-container {
+    position: relative;
+    display: block;
+    text-align: left;
+    top: auto;
+    right: auto;
+    transform: translateY(0);
+    margin-top: 2rem;
+  }
+}
