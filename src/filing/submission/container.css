@@ -11,3 +11,58 @@
   margin-top: 0.5em;
   margin-bottom: 0;
 }
+
+@media print {
+  #header .logo {
+    width: auto;
+    display: block;
+    text-align: center;
+  }
+  #header .banner,
+  .nav-container .nav,
+  .IRSReport,
+  .print-page-container,
+  #summary hr,
+  #signature,
+  .usa-width-one-whole + .usa-width-one-whole .RefileWarning,
+  footer
+  {
+    display: none
+  }
+
+  .RefileWarning,
+  .RefileWarning .alert,
+  #summary {
+    margin-bottom: 0;
+    width: 100%;
+  }
+
+  .RefileWarning .alert {
+    border-width: 1px;
+    border-style: solid;
+    background-color: transparent;
+  }
+
+  #summary dl {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  #summary dt, 
+  #summary dd {
+    display: inline-block;
+    align-items: flex-start;
+    width: 50%;
+  }
+
+  #summary, 
+  #summary dd,
+  .SubmissionContainer .RefileWarning {
+    margin: 0;
+    margin-bottom: .5rem;
+  }
+
+  .Filing.App #main-content {
+    padding: 0;
+  }
+}
