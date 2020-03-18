@@ -99,7 +99,7 @@ export class AppContainer extends Component {
   }
 
   render() {
-    const { match: { params }, location, config: { filingAnnouncement } } = this.props
+    const { match: { params }, location, config: { filingAnnouncement, maintenanceMode } } = this.props
     const validFilingPeriod = this.isValidPeriod(params.filingPeriod)
 
     return (
@@ -117,7 +117,7 @@ export class AppContainer extends Component {
             ? <p className="full-width">Files are no longer being accepted for the 2017 filing period. For further assistance, please contact <a href="mailto:hmdahelp@cfpb.gov">HMDA Help</a>.</p>
             : <p className="full-width">The {params.filingPeriod} filing period does not exist. If this seems wrong please contact <a href="mailto:hmdahelp@cfpb.gov">HMDA Help</a>.</p>
         }
-        <Footer filingPeriod={params.filingPeriod}/>
+        <Footer filingPeriod={params.filingPeriod} maintenanceMode={maintenanceMode} />
       </div>
     )
   }

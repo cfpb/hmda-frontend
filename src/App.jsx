@@ -43,7 +43,7 @@ const App = () => {
         <Route path = "/filing" component={Filing} />
         <Route component={NotFound} />
       </Switch>
-      {isFiling ? null : <Footer />}
+      {isFiling ? null : <Footer config={config} />}
     </AppContext.Provider>
   )
 }

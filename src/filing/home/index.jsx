@@ -7,9 +7,10 @@ import './Home.css'
 const Home = props => {
   const buttonTitle = props.maintenanceMode ? 'Unavailable during maintenance' : undefined
   const buttonsDisabled = !!props.maintenanceMode
+  const cname = "FilingHome" + (props.maintenanceMode ? " maintenance" : "")
 
   return (
-    <main className="FilingHome" id="main-content">
+    <main className={cname} id="main-content">
       <section className="hero">
         <div className="full-width">
           {!!props.maintenanceMode && (
