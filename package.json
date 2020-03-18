@@ -48,6 +48,9 @@
     "ie >= 11"
   ],
   "devDependencies": {
+    "@cypress/skip-test": "2.5.0",
+    "cypress": "4.0.1",
+    "cypress-file-upload": "3.5.3",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.2",
     "eslint-plugin-prettier": "3.1.1",

@@ -1,0 +1,7 @@
+{
+  "chromeWebSecurity": false,
+  "pluginsFile": false,
+  "env": {
+    "HOST": "https://ffiec.cfpb.gov"
+  }
+}
