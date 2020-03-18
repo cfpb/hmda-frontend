@@ -19,6 +19,8 @@ Institutions should provide one of the following agency codes:
 
 Non-depository institutions that are not affiliated with a depository institution should select 7 - HUD. Do not select 9 - CFPB unless your institution is regulated by the CFPB or affiliated with an institution regulated by the CFPB.
 
+For additional information, please review page 272 of the 2019 Getting It Right Guide found here: https://www.ffiec.gov/hmda/pdf/2019guide.pdf. This details how the appropriate federal agency is determined.
+
 ### Filing Preparation
 
 **How can I test my file before submitting it to HMDA?**
@@ -41,15 +43,18 @@ The **File Format Verification Tool** is a resource for testing whether your fil
 - has data fields formatted as integers, where necessary.
 The FFVT does not allow you to submit HMDA data. Additionally, there is a unique File Format Verification Tool for each HMDA data collection year, so please select the relevant year before uploading a file.  
 
-The **Rate Spread calculator** allows institutions to enter their loan data manually, or upload a CSV file of loan information that will help calculate the rate spread.  
+The **Rate Spread Calculator** allows institutions to enter their loan data manually, or upload a CSV file of loan information that will help calculate the rate spread.  
 
-The **Check Digit tool** can be used to either generate check digits or validate ULIs. 
+The **Check Digit Tool** can be used to either generate check digits or validate ULIs. 
 
 
 **I’m having issues when I try to upload my file, what should I do?**
 If you are having issues uploading a new file and are receiving errors from a previous upload, please refresh the page, log out, clear your browser’s cache (clear your browser’s history), and log back in, and upload your file again. Additionally, if you are using Internet Explorer, we have found that filers have fewer browser caching issues using Google Chrome. The time to upload may vary depending on the size of your institution’s LAR(s).  In some cases, very large files can take a day to fully load.  Be sure to allocate enough time for the upload process to complete prior to the filing deadline.  Do not refresh or close the browser window while the file is uploading. If you continue to experience timeouts or other upload errors, we would recommend the following URLs are whitelisted in your DLP to allow for transfer of HMDA files.
  - ffiec.cfpb.gov
  - ffiec.beta.cfpb.gov
+ 
+**If I use separate systems to create my LAR, will uploading more than one at a time be an issue?**
+If using two separate systems to create your LAR File, please combine all entries into one file. Uploading a new file will overwrite the first file uploaded.
 
 
 ### Submission
@@ -85,3 +90,26 @@ If you wish to explain the circumstances surrounding a late submission, contact 
 
 **What steps should I take on the Co-Applicant Credit Score and Co-Applicant Credit Scoring Model when there is no co-applicant?**
 If the Action Taken is 4, 5, or 6, an institution should report 8888 in the Credit Score of Co-Applicant or Co-Borrower data field and 9 in the Co-Applicant or Co-Borrower, Name and Version of Credit Scoring Model data field, regardless of whether there is a Co-Applicant for the record(s).
+
+**I am receiving formatting errors/edits regarding ethnicity and/or race of applicant fields.**
+Please note that the fields 'Ethnicity of Applicant or Borrower 1-5' and 'Race of Applicant or Borrower 1-5' are for up to 5 ethnicities/races of the first applicant. For any co-applicant ethnicities/races, please enter values in the fields **'Ethnicity of Co-Applicant or Co-Borrower 1-5'** or **'Race of Co-Applicant or Co-Borrower 1-5'**.
+
+**I am receiving validity edits regarding my county codes & census tracts. Can you explain how these fields are derived?**
+Your county code is a 5 digit number that combines state and county codes. Your census tract should be an 11 digit number. Your census tract combines the 2 digit state, 3 digit county, and 6 digit tract code (with no decimal). The FFIEC census tool and FFIEC geocoder can assist in providing the correct state, county and census tract combinations.
+Census Tool: https://www.ffiec.gov/%5C/census/default.aspx
+Geocoder: https://geomap.ffiec.gov/FFIECGeocMap/GeocodeMap1.aspx
+
+For example, in the case of Baldwin County, Alabama, the 2 digit state code would be 01 and the 3 digit county code would be 003. Therefore, the reported county code would be 01003. In the case that the 6 digit tract code selected is 020100, the combined census tract code would be 01003020100.
+
+**What decimal precision is the Loan-to-Value ratio rounded to?**
+The precision of the calculated LTV should be rounded to match the decimal precision of the CLTV.
+
+For example, take a calculated LTV (loan amount/property value) of 75.4025 and a reported CLTV of 75. The calculated LTV will round down to 75. In the case that the reported CLTV is 75.4, the calculated LTV will down down to 75.4.
+
+**Where can I find HMDA data prior to 2017?**
+Each year thousands of financial institutions report data about mortgages to the public, under the Home Mortgage Disclosure Act (HMDA). We provide the data collected under HMDA from 2007-2017 for download <a target="_blank" rel="noopener noreferrer" href="https://www.consumerfinance.gov/data-research/hmda/historic-data/">here.</a>
+
+
+
+**I have a question that's not covered in the FAQ section, what can I do?**
+For further questions, please email hmdahelp@cfpb.gov. Note that HMDA Help only operates via email.
