@@ -50,6 +50,10 @@
   margin-bottom: 0;
 }
 
+.Footer.maintenance .content-wrapper {
+  padding-bottom: 5rem;
+}
+
 .return-to-top {
   margin: 0 auto 1em;
   max-width: 1040px;

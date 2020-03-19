@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import './Footer.css'
 import logo from './images/ffiec-logo.svg'
+import MaintenanceMessage from '../MaintenanceMessage'
 
-const Footer = () => {
+const Footer = ({ config }) => {
+  const [maintenance, setMaintenance] = React.useState(null)
+
+  useEffect(() => {
+    if(config.maintenanceMode) setMaintenance(true)
+  }, [config])
+
+  const cname = "Footer" + (maintenance ? " maintenance" : "")
+
   return (
-    <footer className="Footer" role="contentinfo">
+    <footer className={cname} role="contentinfo">
       <div className="return-to-top">
         <button className="button-link" onClick={e=> {
           e.preventDefault()
@@ -46,6 +55,10 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      <MaintenanceMessage 
+        config={config}
+        closeCallback={() => setMaintenance(false)} 
+      />
     </footer>
   )
 }

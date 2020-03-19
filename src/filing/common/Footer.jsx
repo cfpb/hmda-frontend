@@ -10,8 +10,10 @@ export const getLink = filingPeriod => {
 }
 
 const Footer = props => {
+  const cname = "Footer footer footer-slim" + (props.maintenanceMode ? " maintenance" : "")
+
   return (
-    <footer className="Footer footer footer-slim" role="contentinfo">
+    <footer className={cname} role="contentinfo">
       <div className="full-width">
         <button className="return-to-top button-link" onClick={e => {
           e.preventDefault()

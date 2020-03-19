@@ -67,3 +67,7 @@
   pointer-events: visible;
   cursor: not-allowed;
 }
+
+#main-content.maintenance {
+  margin-bottom: 7rem;
+}

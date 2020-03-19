@@ -1,0 +1,82 @@
+#maintenance-message {
+  position: fixed;
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  line-height: 20px;
+  bottom: 0;
+  left:0;
+  color: black;
+  padding: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-top: 2px solid black;
+  animation: 1s ease-in-out 1s slideUp;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+#maintenance-message .closer {
+  line-height: 20px;
+  display: none;
+  margin: 0;
+}
+
+#maintenance-message p {
+  margin: 0;
+}
+
+#maintenance-message .closer button {
+  margin: 0;
+  margin-right: 1rem;
+  padding: .5rem 1rem;
+}
+
+#maintenance-message.success {
+  background-color: #e7f4e4;
+  border-color: #2e8540;
+}
+
+#maintenance-message.warning {
+  background-color: #fff1d2;
+  border-color: #fff1d2;
+}
+
+#maintenance-message.error {
+  background-color: #f9dede;
+  border-color: #e31c3d;
+}
+
+#maintenance-message.closed {
+  animation: 1s ease-in-out slideDown;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+/* Only allow dismissal of message banner on mobile */
+@media screen and (max-width: 768px) {
+  #maintenance-message .closer {
+    display: inline-block;
+  }
+}

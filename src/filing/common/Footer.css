@@ -35,6 +35,11 @@
   margin-bottom: 1em;
 }
 
+
+.Filing.App footer.maintenance {
+  padding-bottom: 6.5rem;
+}
+
 @media screen and (max-width: 679px) {
   .Filing .Footer .nav-link > span {
     display: none;
