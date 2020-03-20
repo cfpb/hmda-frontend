@@ -6,8 +6,9 @@ import EditsTableRow from './TableRow.jsx'
 
 import './Table.css'
 
-export const formatHeader = text => {
+export const formatHeader = (text, isTransmittal) => {
   if (text === 'value' || text === 'fields') return null
+  if (text === 'id' && isTransmittal) return 'Legal Entity Identifier (LEI)'
   if (text === 'id') return 'Universal Loan Identifier (ULI)'
   if (text === 'edit') return 'Edit ID'
   if (text === 'editId') return 'Edit ID'
@@ -15,7 +16,7 @@ export const formatHeader = text => {
   return text
 }
 
-export const renderHeader = (edits, rows, type) => {
+export const renderHeader = (edit, rows, type) => {
   let cellCount = 0
   const cells = []
 
@@ -24,9 +25,10 @@ export const renderHeader = (edits, rows, type) => {
   const numOfCells = fieldCells + 1
   const cellWidth = `${100 / numOfCells}%`
 
-  Object.keys(keyCells).forEach(field => {
-    const text = formatHeader(field)
+  Object.keys(keyCells).forEach((field, index) => {
+    if(edit.edit === 'S303' && index === 0) return
 
+    const text = formatHeader(field, edit.transmittalSheet)
     if (text) {
       cells.push(
         <th key={++cellCount} width={cellWidth}>
@@ -49,7 +51,7 @@ export const renderHeader = (edits, rows, type) => {
 
 export const renderBody = (edits, rows, type) => {
   return rows.map((row, i) => {
-    return <EditsTableRow row={row} key={i} />
+    return <EditsTableRow row={row} key={i} edit={edits} />
   })
 }
 

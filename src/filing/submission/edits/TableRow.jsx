@@ -9,7 +9,8 @@ const EditsTableRow = props => {
   const cells = []
   let cellCount = 0
 
-  cells.push(<EditsTableCell key={++cellCount} cell={props.row.id} />)
+  if(props.edit.edit !== 'S303') 
+    cells.push(<EditsTableCell key={++cellCount} cell={props.row.id} />)
 
   props.row.fields.forEach(field => {
     cells.push(<EditsTableCell key={++cellCount} cell={field.value} cellName={field.name} />)
