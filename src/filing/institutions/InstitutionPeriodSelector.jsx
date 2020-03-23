@@ -77,7 +77,10 @@ function yearOptions(filingPeriods, hasQFilers) {
     if (quarter && !hasQFilers) return
     yearSet.add(year)
   })
-  return Array.from(yearSet).sort((a,b) => b - a).map(periodOption)
+  
+  const yearArray = []
+  yearSet.forEach(el => yearArray.push(el))
+  return yearArray.sort((a,b) => b - a).map(periodOption)
 }
 
 
