@@ -63,13 +63,13 @@ class Report extends React.Component {
 
   buildCSVRows(rows, rowType) {
     let theCSVRows = ''
-    Array.from(rows).forEach((row, rowIndex) => {
+    Array.prototype.forEach.call(rows, (row, rowIndex) => {
       // in a thead, account for the rowSpan by adding an empty cell
       if (rowType === 'head') {
         if (rowIndex !== 0) theCSVRows = theCSVRows + ','
       }
       // loop through the cells
-      Array.from(row.cells).forEach((cell, cellIndex) => {
+      Array.prototype.forEach.call(row.cells, (cell, cellIndex) => {
         // add the content
         theCSVRows = theCSVRows + '"' + cell.innerHTML + '"'
         if (cell.hasAttribute('colspan')) {
