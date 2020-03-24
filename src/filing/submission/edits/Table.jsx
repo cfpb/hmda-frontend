@@ -76,7 +76,7 @@ export const renderTableCaption = props => {
     captionHeader = 'Review your loan/application IDs'
   }
 
-  const description = props.edit.description
+  const description = props.edit.description.replace(/"/g, "")
 
   if (shouldSuppressTable(props)) {
     return (
