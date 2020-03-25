@@ -4,7 +4,7 @@ import LoadingIcon from '../../common/LoadingIcon.jsx'
 
 import './SearchList.css'
 
-let INSTITUTIONS = { 2017: null, 2018: null }
+let INSTITUTIONS = { 2017: null, 2018: null, 2019: null }
 
 class SearchList extends React.Component {
   constructor(props) {
