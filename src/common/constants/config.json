@@ -1,31 +1,56 @@
 {
   "prod": {
     "announcement": {
-      "message": "Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.",
-      "type": "info",
-      "heading": "Announcement"
+      "message": "We are performing system maintenance from 8pm - 11pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+      "type": "error",
+      "heading": "System Temporarily Unavailable"
     },
     "defaultPeriod": "2019",
     "defaultDocsPeriod": "2019",
-    "filingPeriods": ["2019", "2018"],
-    "filingQuarters": { "Q1": "04/01 - 05/30", "Q2": "07/01 - 08/29", "Q3": "10/01 - 11/29", "ANNUAL": "01/01 - 03/02" },
-    "filingQuartersLate": { "Q1": "05/31 - 06/30", "Q2": "08/30 - 09/30", "Q3": "11/30 - 12/31" },
+    "filingPeriods": [
+      "2019",
+      "2018"
+    ],
+    "filingQuarters": {
+      "Q1": "04/01 - 05/30",
+      "Q2": "07/01 - 08/29",
+      "Q3": "10/01 - 11/29",
+      "ANNUAL": "01/01 - 03/02"
+    },
+    "filingQuartersLate": {
+      "Q1": "05/31 - 06/30",
+      "Q2": "08/30 - 09/30",
+      "Q3": "11/30 - 12/31"
+    },
     "showMaps": false,
-    "maintenanceMode": false,
+    "maintenanceMode": true,
     "filingAnnouncement": null,
     "beta": {
       "announcement": {
-        "message": "Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.",
-        "type": "info",
-        "heading": "Announcement"
+        "message": "We are performing system maintenance from 8pm - 11pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+        "type": "error",
+        "heading": "System Temporarily Unavailable"
       },
       "defaultPeriod": "2019",
       "defaultDocsPeriod": "2019",
-      "filingPeriods": ["2020-Q1", "2019", "2018"],
-      "filingQuarters": { "Q1": "01/01 - 05/30", "Q2": "07/01 - 08/29", "Q3": "10/01 - 11/29", "ANNUAL": "01/01 - 03/02" },
-      "filingQuartersLate": { "Q1": "05/31 - 06/30", "Q2": "08/30 - 09/30", "Q3": "11/30 - 12/31" },
+      "filingPeriods": [
+        "2020-Q1",
+        "2019",
+        "2018"
+      ],
+      "filingQuarters": {
+        "Q1": "01/01 - 05/30",
+        "Q2": "07/01 - 08/29",
+        "Q3": "10/01 - 11/29",
+        "ANNUAL": "01/01 - 03/02"
+      },
+      "filingQuartersLate": {
+        "Q1": "05/31 - 06/30",
+        "Q2": "08/30 - 09/30",
+        "Q3": "11/30 - 12/31"
+      },
       "showMaps": false,
-      "maintenanceMode": false,
+      "maintenanceMode": true,
       "filingAnnouncement": null
     }
   },
@@ -37,9 +62,22 @@
     },
     "defaultPeriod": "2019",
     "defaultDocsPeriod": "2019",
-    "filingPeriods": ["2020-Q1", "2019", "2018"],
-    "filingQuarters": { "Q1": "01/01 - 05/30", "Q2": "07/01 - 08/29", "Q3": "10/01 - 11/29", "ANNUAL": "01/01 - 03/02" },
-    "filingQuartersLate": { "Q1": "05/31 - 06/30", "Q2": "08/30 - 09/30", "Q3": "11/30 - 12/31" },
+    "filingPeriods": [
+      "2020-Q1",
+      "2019",
+      "2018"
+    ],
+    "filingQuarters": {
+      "Q1": "01/01 - 05/30",
+      "Q2": "07/01 - 08/29",
+      "Q3": "10/01 - 11/29",
+      "ANNUAL": "01/01 - 03/02"
+    },
+    "filingQuartersLate": {
+      "Q1": "05/31 - 06/30",
+      "Q2": "08/30 - 09/30",
+      "Q3": "11/30 - 12/31"
+    },
     "showMaps": true,
     "maintenanceMode": false,
     "filingAnnouncement": null,
@@ -53,9 +91,23 @@
       "defaultDocsPeriod": "2019",
       "maintenanceMode": false,
       "filingAnnouncement": null,
-      "filingPeriods": ["2020-Q1", "2020", "2019", "2018"],
-      "filingQuarters": { "Q1": "01/01 - 05/30", "Q2": "07/01 - 08/29", "Q3": "10/01 - 11/29", "ANNUAL": "01/01 - 03/02" },
-      "filingQuartersLate": { "Q1": "05/31 - 06/30", "Q2": "08/30 - 09/30", "Q3": "11/30 - 12/31" },
+      "filingPeriods": [
+        "2020-Q1",
+        "2020",
+        "2019",
+        "2018"
+      ],
+      "filingQuarters": {
+        "Q1": "01/01 - 05/30",
+        "Q2": "07/01 - 08/29",
+        "Q3": "10/01 - 11/29",
+        "ANNUAL": "01/01 - 03/02"
+      },
+      "filingQuartersLate": {
+        "Q1": "05/31 - 06/30",
+        "Q2": "08/30 - 09/30",
+        "Q3": "11/30 - 12/31"
+      },
       "showMaps": true
     }
   }
