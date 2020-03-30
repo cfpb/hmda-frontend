@@ -63,3 +63,22 @@
 .SubmissionHistory ol li {
   margin-bottom: 0.5em;
 }
+
+.SubmissionHistory .paginationNav.marginTop {
+  margin-top: 1em;
+}
+
+.SubmissionHistory .paginationNav.marginBottom {
+  margin-bottom: 1em;
+}
+
+.SubmissionHistory .paginationNav ul {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.SubmissionHistory .paginationNav li {
+  margin: auto 20px;
+}

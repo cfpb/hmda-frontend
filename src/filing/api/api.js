@@ -12,8 +12,10 @@ export function createSubmission(lei, filing) {
   })
 }
 
-export function getFiling(lei, filing) {
-  return fetchData({ pathname: `/institutions/${lei}/filings/${yearQuarterToPath(filing)}` })
+export function getFiling(lei, filing, page) {
+  let pathname = `/institutions/${lei}/filings/${yearQuarterToPath(filing)}`
+  if(page) pathname += `?page=${page}`
+  return fetchData({ pathname })
 }
 
 export function createFiling(lei, filing) {

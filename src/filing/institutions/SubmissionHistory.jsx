@@ -1,16 +1,22 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { ordinal } from '../utils/date.js'
 import CSVDownload from '../common/CSVContainer.jsx'
 import { SIGNED, VALIDATING } from '../constants/statusCodes.js'
+import fetchFilingPage from '../actions/fetchFilingPage'
+import SubmissionHistoryNav from './SubmissionHistoryNav'
 
 import './SubmissionHistory.css'
+import LoadingIcon from '../../common/LoadingIcon.jsx'
 
 class InstitutionPreviousSubmissions extends Component {
   constructor(props) {
     super(props)
+    this.state = { page: '1' }
 
     this.handleToggleClick = this.handleToggleClick.bind(this)
+    this.handlePaginationClick = this.handlePaginationClick.bind(this)
   }
 
   handleToggleClick(lei) {
@@ -26,11 +32,24 @@ class InstitutionPreviousSubmissions extends Component {
       .setAttribute('aria-hidden', expanded)
   }
 
+  handlePaginationClick(targetPage){
+    this.setState({ page: targetPage })
+    this.props.dispatch(fetchFilingPage(this.props.lei, targetPage))
+
+    setTimeout(() => {
+      let historyContainer = document.getElementById(`history-${this.props.lei}`)
+      if(historyContainer) historyContainer.scrollIntoView({ behavior: 'smooth' })
+    }, 0)
+  }
+
   render() {
-    if (!this.props.submissions.length) return null
+    if (!Object.keys(this.props.submissionPages).length) return null
+
+    const pageSubmissions = this.props.submissionPages[this.state.page] || []
+    const listStartingNumber =  pageSubmissions[0] && pageSubmissions[0].id.sequenceNumber
 
     return (
-      <section className="SubmissionHistory">
+      <section className="SubmissionHistory" id={`history-${this.props.lei}`}>
         <ul className="accordion-bordered">
           <li>
             <button
@@ -53,8 +72,15 @@ class InstitutionPreviousSubmissions extends Component {
                 The edit report for previous submissions that completed the
                 validation process can be downloaded in csv format below.
               </p>
-              <ol reversed>
-                {this.props.submissions.map((submission, i) => {
+              <SubmissionHistoryNav 
+                clickHandler={this.handlePaginationClick} 
+                links={this.props.links}
+                page={this.state.page}
+                top={true}
+              />
+              <ol reversed start={listStartingNumber} >
+                {!pageSubmissions.length && <LoadingIcon />}
+                {pageSubmissions.map((submission, i) => {
                   const startDate = ordinal(new Date(submission.start))
                   const endDate = ordinal(new Date(submission.end))
                   const message = submission.status.message.slice(0, -1)
@@ -85,6 +111,12 @@ class InstitutionPreviousSubmissions extends Component {
                   )
                 })}
               </ol>
+              <SubmissionHistoryNav 
+                clickHandler={this.handlePaginationClick} 
+                links={this.props.links}
+                page={this.state.page}
+                hidden={pageSubmissions.length < 10}
+              />
             </div>
           </li>
         </ul>
@@ -98,4 +130,4 @@ InstitutionPreviousSubmissions.propTypes = {
   lei: PropTypes.string
 }
 
-export default InstitutionPreviousSubmissions
+export default connect()(InstitutionPreviousSubmissions)
