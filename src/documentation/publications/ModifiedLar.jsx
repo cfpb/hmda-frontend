@@ -16,7 +16,8 @@ const links = {
   ],
   2019: [
     <li key="3"><a target="_blank" rel="noopener noreferrer" href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/UsingModifiedLar.md">Using Modified LAR Data</a></li>,
-    <li key="19-2"><Link to="/documentation/2019/modified-lar-schema/">Modified LAR Schema</Link></li>,
+    <li key="19-2"><Link to="/documentation/2019/modified-lar-header/">Modified LAR Header</Link></li>,
+    <li key="19-3"><Link to="/documentation/2019/modified-lar-schema/">Modified LAR Schema</Link></li>,
   ],
   2020: [
     <li key="4"><a target="_blank" rel="noopener noreferrer" href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/UsingModifiedLar.md">Using Modified LAR Data</a></li>,
