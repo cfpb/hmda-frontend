@@ -23,6 +23,9 @@ spec:
         - name: tz-config
           hostPath:
             path: /usr/share/zoneinfo/America/New_York
+      security:
+        - readOnlyRootFilesystem: true
+          allowPrivilegeEscalation: false
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
