@@ -14,7 +14,7 @@ pipeline {
               ]
           )
 
-          init.setEnvironment('hmda-frontend')
+          init.setEnvironment('hmda_frontend')
         }
       }
     }
