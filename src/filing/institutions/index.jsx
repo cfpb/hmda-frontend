@@ -119,6 +119,8 @@ const _whatToRender = ({
           submissions={filingObj.submissions}
           isPassedQuarter={isPassedQuarter}
           isClosedQuarter={isClosedQuarter}
+          links={institutionFilings.links}
+          submissionPages={institutionFilings.submissionPages}
         />
       )
     }

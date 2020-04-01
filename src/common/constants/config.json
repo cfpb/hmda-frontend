@@ -8,7 +8,7 @@
     "defaultPeriod": "2019",
     "defaultDocsPeriod": "2019",
     "filingPeriods": [
-      "2020-Q1"
+      "2020-Q1",
       "2019",
       "2018"
     ],
@@ -24,7 +24,7 @@
       "Q3": "11/30 - 12/31"
     },
     "showMaps": false,
-    "maintenanceMode": false,
+    "maintenanceMode": true,
     "filingAnnouncement": null,
     "beta": {
       "announcement": {
@@ -51,7 +51,7 @@
         "Q3": "11/30 - 12/31"
       },
       "showMaps": false,
-      "maintenanceMode": false,
+      "maintenanceMode": true,
       "filingAnnouncement": null
     }
   },
