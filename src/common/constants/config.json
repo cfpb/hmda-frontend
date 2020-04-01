@@ -1,7 +1,7 @@
 {
   "prod": {
     "announcement": {
-      "message": "On March 31, 2020, the 2019 Modified LAR reports were released.",
+      "message": "On March 31, 2020, the 2019 Modified LAR data was released.",
       "type": "info",
       "heading": "Announcement"
     },
@@ -28,7 +28,7 @@
     "filingAnnouncement": null,
     "beta": {
       "announcement": {
-        "message": "On March 31, 2020, the 2019 Modified LAR reports were released.",
+        "message": "On March 31, 2020, the 2019 Modified LAR data was released.",
         "type": "info",
         "heading": "Announcement"
       },
@@ -57,7 +57,7 @@
   },
   "dev": {
     "announcement": {
-      "message": "On March 31, 2020, the 2019 Modified LAR reports were released.",
+      "message": "On March 31, 2020, the 2019 Modified LAR data was released.",
       "type": "info",
       "heading": "Announcement"
     },
@@ -84,7 +84,7 @@
     "filingAnnouncement": null,
     "beta": {
       "announcement": {
-        "message": "On March 31, 2020, the 2019 Modified LAR reports were released.",
+        "message": "On March 31, 2020, the 2019 Modified LAR data was released.",
         "type": "info",
         "heading": "Announcement"
       },
