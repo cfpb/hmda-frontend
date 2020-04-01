@@ -1,13 +1,14 @@
 {
   "prod": {
     "announcement": {
-      "message": "Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.",
+      "message": "On March 31, 2020, the 2019 Modified LAR reports were released.",
       "type": "info",
       "heading": "Announcement"
     },
     "defaultPeriod": "2019",
     "defaultDocsPeriod": "2019",
     "filingPeriods": [
+      "2020-Q1"
       "2019",
       "2018"
     ],
@@ -27,7 +28,7 @@
     "filingAnnouncement": null,
     "beta": {
       "announcement": {
-        "message": "Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.",
+        "message": "On March 31, 2020, the 2019 Modified LAR reports were released.",
         "type": "info",
         "heading": "Announcement"
       },
@@ -56,7 +57,7 @@
   },
   "dev": {
     "announcement": {
-      "message": "Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.",
+      "message": "On March 31, 2020, the 2019 Modified LAR reports were released.",
       "type": "info",
       "heading": "Announcement"
     },
@@ -83,7 +84,7 @@
     "filingAnnouncement": null,
     "beta": {
       "announcement": {
-        "message": "Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.",
+        "message": "On March 31, 2020, the 2019 Modified LAR reports were released.",
         "type": "info",
         "heading": "Announcement"
       },
