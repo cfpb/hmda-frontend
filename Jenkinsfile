@@ -28,7 +28,7 @@ pipeline {
               usernameVariable: 'DTR_USER', passwordVariable: 'DTR_PASSWORD']]) {
               withCredentials([string(credentialsId: 'internal-docker-registry', variable: 'DOCKER_REGISTRY_URL')]){
                 dockerBuild.dockerBuild('hmda-frontend', '')
-                security.dockerImageScan('hmda-frontend', env.DOCKER_TAG)
+                scanImage('hmda-frontend', env.DOCKER_TAG)
               }
             }
           }
