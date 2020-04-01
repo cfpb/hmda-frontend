@@ -83,3 +83,4 @@ local_keycloak.json
 cypress.env.json
 cypress/videos/
 cypress/screenshots/
+package-lock.json

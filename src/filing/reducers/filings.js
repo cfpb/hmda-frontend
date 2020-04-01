@@ -1,6 +1,23 @@
-import { REQUEST_FILING, RECEIVE_FILING, UPDATE_FILING_PERIOD } from '../constants'
+import {
+  REQUEST_FILING,
+  RECEIVE_FILING,
+  UPDATE_FILING_PERIOD,
+  RECEIVE_FILING_PAGE
+} from "../constants"
 
 const defaultFilings = {}
+
+/**
+ * Parse page numbers from query strings
+ * @param {Object} originalLinks
+ */
+function parsePageNumbers(originalLinks){
+  const links = {...originalLinks}
+  Object.keys(links).forEach(key =>
+    {if (key !== "href") links[key] = links[key].split("=")[1]}
+  )
+  return links
+}
 
 /*
  * Populate a list with data on every filing period for each institution
@@ -18,17 +35,44 @@ export default (state = defaultFilings, action) => {
           filing: null
         }
       }
+      
     case RECEIVE_FILING:
+      const links = parsePageNumbers(action.filing._links)
+
       return {
         ...state,
         [action.filing.filing.lei]: {
           isFetching: false,
           fetched: true,
-          filing: action.filing
+          filing: {filing: action.filing.filing, submissions: []},
+          links,
+          submissionPages: {
+            ...state[action.filing.filing.lei].submissions,
+            [links.self]: [...action.filing.submissions]
+          }
         }
       }
+      
+    case RECEIVE_FILING_PAGE:
+      const lei = action.json.filing.lei
+      const filingPageLinks = parsePageNumbers(action.json._links)
+      const currentPage = filingPageLinks.self
+
+      return {
+        ...state,
+        [lei]: {
+          ...state[lei],
+          submissionPages: {
+            ...state[lei].submissionPages,
+            [currentPage]: [...action.json.submissions]
+          },
+          links: filingPageLinks
+        }
+      }
+
     case UPDATE_FILING_PERIOD:
       return defaultFilings
+
     default:
       return state
   }
