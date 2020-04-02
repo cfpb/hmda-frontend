@@ -3,6 +3,7 @@ import React from 'react'
 import './Footer.css'
 import logo from '../images/ffiec-logo.svg'
 import { getKeycloak } from '../utils/keycloak.js'
+import ReleaseVersion from '../../common/ReleaseVersion'
 
 export const getLink = filingPeriod => {
   if (getKeycloak().authenticated) return `/filing/${filingPeriod}/institutions`
@@ -42,6 +43,7 @@ const Footer = props => {
           <div className="half-width">
             <a href="mailto:hmdahelp@cfpb.gov">Questions?</a>
           </div>
+          <ReleaseVersion />
         </div>
       </div>
     </footer>

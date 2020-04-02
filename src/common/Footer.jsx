@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import './Footer.css'
 import logo from './images/ffiec-logo.svg'
 import MaintenanceMessage from '../MaintenanceMessage'
+import ReleaseVersion from './ReleaseVersion'
 
 const Footer = ({ config }) => {
   const [maintenance, setMaintenance] = React.useState(null)
@@ -53,6 +54,7 @@ const Footer = ({ config }) => {
               </li>
             </ul>
           </div>
+          <ReleaseVersion />
         </div>
       </div>
       <MaintenanceMessage 

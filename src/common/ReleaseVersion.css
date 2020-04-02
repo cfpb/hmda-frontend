@@ -1,0 +1,17 @@
+/* Common Footer */
+.release-version {
+    flex-basis: 100%;
+    align-self: center;
+    /* display: none; */
+}
+
+/* Filing Footer */
+.Filing.App .release-version {
+    padding: 2em 0 0;
+    float: none;
+    clear: both;
+}
+
+.Filing.App .release-wrapper.full-width {
+    
+}
