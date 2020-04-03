@@ -39,16 +39,24 @@ export default (state = defaultFilings, action) => {
     case RECEIVE_FILING:
       const links = parsePageNumbers(action.filing._links)
 
+      const prevSubmissionPages = state[action.filing.filing.lei]
+        ? state[action.filing.filing.lei].submissionPages
+        : {}
+
+      const newSubmissionPage = links.self
+        ? { [links.self]: action.filing.submissions }
+        : {}
+
       return {
         ...state,
         [action.filing.filing.lei]: {
           isFetching: false,
           fetched: true,
-          filing: {filing: action.filing.filing, submissions: []},
+          filing: { filing: action.filing.filing },
           links,
           submissionPages: {
-            ...state[action.filing.filing.lei].submissions,
-            [links.self]: [...action.filing.submissions]
+            ...prevSubmissionPages,
+            ...newSubmissionPage
           }
         }
       }
