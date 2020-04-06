@@ -32,7 +32,8 @@ const Home = ({ config }) => {
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  Get started filing your HMDA data for {defaultPeriod}
+                  Access the HMDA Filing Platform
+                  {/* Access the HMDA Platform for Filing */}
                 </a>
               </h3>
               <p>
@@ -42,6 +43,24 @@ const Home = ({ config }) => {
                 accuracy and completeness of the data, and submit data for the
                 filing year.
               </p>
+              {/* Display a List */}
+              {/* <ul style={{ listStyle: "none", display: "inline-block", paddingLeft: "0", marginBottom: "0" }}>
+                <span style={{marginRight: "1rem"}}>File for: </span>
+                {config.filingPeriods.map(fp => {
+                  return (
+                    <li style={{ display: "inline-block", marginRight: "1rem" }}>
+                      {" "}
+                      <a
+                        href={`/filing/${fp}`}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        {fp}
+                      </a>
+                    </li>
+                  )
+                })}
+              </ul> */}
             </header>
 
             <header>
