@@ -66,18 +66,8 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/modified-lar/2017`)
 
       cy.get(
-        "#root > .App > #main-content > .YearSelector > a:nth-child(3)"
-      ).click()
-
-      cy.wait(ACTION_DELAY)
-
-      cy.get(
         "#main-content > .SearchList > form > div > #institution-name"
       ).click()
-
-      // cy.get(
-      //   "#main-content > .SearchList > form > div > #institution-name"
-      // ).click()
 
       cy.get(
         "#main-content > .SearchList > form > div > #institution-name"
