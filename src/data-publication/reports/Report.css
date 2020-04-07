@@ -56,3 +56,8 @@
 .Report .table-large th {
   padding: 0.5rem 1rem;
 }
+
+.Report .narrowTable {
+  max-width: 980px;
+  margin: 3em auto 0;
+}

@@ -1,4 +1,3 @@
-
 pipeline {
   agent {
     label 'hmdaops'
@@ -59,4 +58,3 @@ pipeline {
   }
 
 }
-

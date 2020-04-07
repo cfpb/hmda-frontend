@@ -50,7 +50,11 @@ export class AppContainer extends Component {
       return this.props.history.push('/filing') 
       
     const filingPeriod = this.props.match.params.filingPeriod
-    if(!this.isValidPeriod(filingPeriod)) this.checkForValidQuarters(filingPeriod)
+    if (!this.isValidPeriod(filingPeriod)) {
+      this.checkForValidQuarters(filingPeriod)
+    } else if (filingPeriod !== this.props.filingPeriod) {
+      this.props.dispatch(updateFilingPeriod(filingPeriod))
+    }
 
     const keycloak = getKeycloak()
     if (!keycloak.authenticated && !this._isHome(this.props)){
@@ -124,15 +128,15 @@ export class AppContainer extends Component {
 }
 
 export function mapStateToProps(state, ownProps) {
-  const { redirecting } = state.app
-  const { statePathname } = state.app
+  const { filingPeriod, redirecting, statePathname } = state.app
   const { maintenanceMode, filingAnnouncement } = ownProps.config
 
   return {
     redirecting,
     statePathname,
     maintenanceMode, 
-    filingAnnouncement
+    filingAnnouncement,
+    filingPeriod
   }
 }
 

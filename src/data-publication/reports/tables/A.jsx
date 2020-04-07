@@ -51,7 +51,7 @@ const renderDisposition = (disposition, i) => {
 const A = React.forwardRef((props, ref) => {
   if (!props.report) return null
   return (
-    <table ref={ref} style={{ fontSize: '.75em' }}>
+    <table ref={ref} className="narrowTable">
       <thead>
         <tr>
           <th width="20%" rowSpan={2}>
