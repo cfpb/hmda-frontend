@@ -12,12 +12,18 @@ import { AppContext } from './common/appContextHOC'
 
 import './app.css'
 
-const Homepage = makeAsyncComponent(() => import('./homepage'))
-const DataBrowser = makeAsyncComponent(() => import('./data-browser'))
-const Documentation = makeAsyncComponent(() => import('./documentation'))
-const Tools = makeAsyncComponent(() => import('./tools'))
-const DataPublication = makeAsyncComponent(() => import('./data-publication'))
-const Filing = makeAsyncComponent(() => import('./filing'))
+const Homepage = makeAsyncComponent(() => import('./homepage'),
+  'HMDA - Home Mortgage Disclosure Act', 'Explore filing, data publication, and documentation resources for the Home Mortgage Disclosure Act')
+const DataBrowser = makeAsyncComponent(() => import('./data-browser'),
+  'HMDA Data Browser', 'Filter, analyze, and download HMDA datasets and visualize HMDA data through charts, graphs, and maps')
+const Documentation = makeAsyncComponent(() => import('./documentation'),
+  'HMDA Documentation', 'Documentation for HMDA filing, tools, and data publication platforms')
+const Tools = makeAsyncComponent(() => import('./tools'),
+  'HMDA Platform Tools', 'A collection of tools to ensure correct formatting and accuracy of HMDA data')
+const DataPublication = makeAsyncComponent(() => import('./data-publication'),
+  'HMDA Data Publication', 'HMDA data and reports are the most comprehensive publicly available information on mortgage market activity')
+const Filing = makeAsyncComponent(() => import('./filing'),
+  'HMDA Filing Platform', 'Use the HMDA Filing Platform to upload loan/application registers, review edits, and certify the accuracy and completeness of your HMDA data')
 
 const App = () => {
   const isFiling = !!window.location.pathname.match(/^\/filing/)
