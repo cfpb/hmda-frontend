@@ -33,7 +33,7 @@ volumes: [
             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'hmda-platform-jenkins-service',
               usernameVariable: 'DTR_USER', passwordVariable: 'DTR_PASSWORD']]) {
               withCredentials([string(credentialsId: 'internal-docker-registry', variable: 'DOCKER_REGISTRY_URL')]){
-                sh "docker build --rm -t=${env.DOCKER_HUB_USER}/hmda-frontend ."
+                sh "docker build --rm --build-arg DOCKER_TAG=${env.DOCKER_TAG} -t=${env.DOCKER_HUB_USER}/hmda-frontend ."
                 if (gitTagged || gitBranch == "master" || isDeployPR) {
                   //Push to Dockerhub
                   sh """

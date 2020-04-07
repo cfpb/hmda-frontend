@@ -11,7 +11,7 @@ export const getLink = filingPeriod => {
 }
 
 const Footer = props => {
-  const cname = "Footer footer footer-slim" + (props.maintenanceMode ? " maintenance" : "")
+  const cname = 'Footer footer footer-slim' + (props.maintenanceMode ? ' maintenance' : '')
 
   return (
     <footer className={cname} role="contentinfo">
@@ -37,13 +37,13 @@ const Footer = props => {
                   <img src={logo} height="21px" alt="FFIEC" />
                   <span>Home Mortgage Disclosure Act</span>
                 </a>
+                <ReleaseVersion />
               </li>
             </ul>
           </nav>
           <div className="half-width">
             <a href="mailto:hmdahelp@cfpb.gov">Questions?</a>
           </div>
-          <ReleaseVersion />
         </div>
       </div>
     </footer>

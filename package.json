@@ -9,8 +9,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "release": "node ./buildRelease"
+    "test": "react-scripts test"
   },
   "keywords": [
     "HMDA"

@@ -1,5 +1,6 @@
 FROM node:12.14.1-alpine3.11 as build-stage
 WORKDIR /usr/src/app
+ARG DOCKER_TAG="latest"
 
 # install build dependencies
 COPY package.json yarn.lock .yarnrc ./
@@ -10,6 +11,8 @@ RUN yarn install
 # create react app needs src and public directories
 COPY src ./src
 COPY public ./public
+
+RUN echo "{ \"version\": \"${DOCKER_TAG}\" }" > ./src/common/constants/release.json
 
 RUN yarn build
 
