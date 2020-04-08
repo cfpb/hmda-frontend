@@ -99,6 +99,10 @@ export class AppContainer extends Component {
   }
 
   isValidPeriod(period) {
+    // TODO: Account for past periods/use derived period options here
+    // Consider: Once 2020-Q1 closes, will it be removed from the config.filingPeriods array?
+    // if (this.props.filingPeriodOptions.options.length === 0) return true
+    // return this.props.filingPeriodOptions.options.indexOf(period) > -1
     return this.props.config.filingPeriods.indexOf(period) > -1
   }
 
@@ -128,7 +132,7 @@ export class AppContainer extends Component {
 }
 
 export function mapStateToProps(state, ownProps) {
-  const { filingPeriod, redirecting, statePathname } = state.app
+  const { filingPeriod, redirecting, statePathname, filingPeriodOptions } = state.app
   const { maintenanceMode, filingAnnouncement } = ownProps.config
 
   return {
@@ -136,7 +140,8 @@ export function mapStateToProps(state, ownProps) {
     statePathname,
     maintenanceMode, 
     filingAnnouncement,
-    filingPeriod
+    filingPeriod,
+    filingPeriodOptions
   }
 }
 

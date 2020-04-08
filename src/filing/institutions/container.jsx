@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import requestInstitutions from '../actions/requestInstitutions.js'
 import fetchEachInstitution from '../actions/fetchEachInstitution.js'
+import getFilingPeriodOptions from '../actions/getFilingPeriodOptions'
 import Institutions from './index.jsx'
 import { getKeycloak } from '../utils/keycloak.js'
 import { afterFilingPeriod, beforeFilingPeriod } from "../utils/date"
@@ -17,7 +18,7 @@ export class InstitutionContainer extends Component {
   }
 
   fetchIfNeeded() {
-    const { dispatch, filingPeriod, filingQuarters, institutions } = this.props
+    const { dispatch, filingPeriod, filingQuarters, institutions, filingPeriods, filingQuartersLate } = this.props
 
     if(!institutions.fetched && !institutions.isFetching){
       dispatch(requestInstitutions())
@@ -27,6 +28,7 @@ export class InstitutionContainer extends Component {
       // create the expected objects from the array, institutions = [{lei: lei}]
       let instArr = leis.map(lei => ({ lei }))
       dispatch(fetchEachInstitution(instArr, filingPeriod, filingQuarters))
+      dispatch(getFilingPeriodOptions(instArr, filingPeriods, filingQuarters, filingQuartersLate))
     }
   }
 
@@ -36,7 +38,7 @@ export class InstitutionContainer extends Component {
 }
 
 export function mapStateToProps(state, ownProps) {
-  const { institutions, filingPeriod, filings, submission, latestSubmissions, error, redirecting } = state.app
+  const { institutions, filingPeriod, filings, submission, latestSubmissions, error, redirecting, filingPeriodOptions } = state.app
   const { filingPeriods, filingQuarters, filingQuartersLate } = ownProps.config
   const isQuarterly = Boolean(splitYearQuarter(filingPeriod)[1])
   const isPassedQuarter = isQuarterly && afterFilingPeriod(filingPeriod, filingQuartersLate)
@@ -57,6 +59,7 @@ export function mapStateToProps(state, ownProps) {
     isPassedQuarter,
     isClosedQuarter,
     hasQuarterlyFilers: hasQuarterlyFilers(institutions),
+    filingPeriodOptions
   }
 }
 

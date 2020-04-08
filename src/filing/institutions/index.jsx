@@ -188,7 +188,8 @@ export default class Institutions extends Component {
       hasQuarterlyFilers,
       history,
       location,
-      dispatch
+      dispatch,
+      filingPeriodOptions
     } = this.props
     
     const institutions = this.props.institutions.institutions
@@ -220,6 +221,7 @@ export default class Institutions extends Component {
             pathname={location.pathname}
             dispatch={dispatch}
             hasQuarterlyFilers={hasQuarterlyFilers}
+            filingPeriodOptions={filingPeriodOptions}
           />
 
           {_whatToRender(this.props)}
