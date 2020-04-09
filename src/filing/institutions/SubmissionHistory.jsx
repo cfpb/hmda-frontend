@@ -78,7 +78,7 @@ class InstitutionPreviousSubmissions extends Component {
                 page={this.state.page}
                 top={true}
               />
-              <ol reversed start={listStartingNumber} >
+              <ol>
                 {!pageSubmissions.length && <LoadingIcon />}
                 {pageSubmissions.map((submission, i) => {
                   const startDate = ordinal(new Date(submission.start))
@@ -93,7 +93,7 @@ class InstitutionPreviousSubmissions extends Component {
                   // because quality and macro are verified
                   if (submission.status.code > VALIDATING) {
                     return (
-                      <li key={i}>
+                      <li key={i} value={listStartingNumber - i}>
                         Filing progress on {startDate}:{' '}
                         <strong>{message}</strong>
                         {signedOn},{' '}
