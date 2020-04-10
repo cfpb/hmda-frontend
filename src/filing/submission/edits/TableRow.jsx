@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import EditsTableCell from './TableCell.jsx'
+import { supressULI } from "./Table.jsx"
 
 /* Clearly differentiate erroneous "Provided" values */
 export function highlightMismatch(value){
@@ -32,7 +33,7 @@ const EditsTableRow = props => {
   let cellCount = 0
   const isS303 = props.edit.edit === 'S303'
 
-  if(!isS303) 
+  if(!supressULI(props.edit.edit)) 
     cells.push(<EditsTableCell key={++cellCount} cell={props.row.id} />)
 
   props.row.fields.forEach(field => {

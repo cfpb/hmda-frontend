@@ -6,6 +6,8 @@ import EditsTableRow from './TableRow.jsx'
 
 import './Table.css'
 
+export const supressULI = edit => ["S303", "V609"].indexOf(edit) > -1
+
 export const formatHeader = (text, isTransmittal) => {
   if (text === 'value' || text === 'fields') return null
   if (text === 'id' && isTransmittal) return 'Legal Entity Identifier (LEI)'
@@ -26,7 +28,7 @@ export const renderHeader = (edit, rows, type) => {
   const cellWidth = `${100 / numOfCells}%`
 
   Object.keys(keyCells).forEach((field, index) => {
-    if(edit.edit === 'S303' && index === 0) return
+    if(supressULI(edit.edit) && index === 0) return
 
     const text = formatHeader(field, edit.transmittalSheet)
     if (text) {
