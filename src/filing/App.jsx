@@ -99,10 +99,6 @@ export class AppContainer extends Component {
   }
 
   isValidPeriod(period) {
-    // TODO: Account for past periods/use derived period options here
-    // Consider: Once 2020-Q1 closes, will it be removed from the config.filingPeriods array?
-    // if (this.props.filingPeriodOptions.options.length === 0) return true
-    // return this.props.filingPeriodOptions.options.indexOf(period) > -1
     return this.props.config.filingPeriods.indexOf(period) > -1
   }
 

@@ -182,7 +182,6 @@ export default class Institutions extends Component {
     const {
       error,
       filingPeriod,
-      filingPeriods,
       filingQuarters,
       filingQuartersLate,
       hasQuarterlyFilers,
@@ -215,7 +214,6 @@ export default class Institutions extends Component {
           ) : null}
 
           <InstitutionPeriodSelector
-            filingPeriods={filingPeriods}
             filingPeriod={filingPeriod}
             history={history}
             pathname={location.pathname}

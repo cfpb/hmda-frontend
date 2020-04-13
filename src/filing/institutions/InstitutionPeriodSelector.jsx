@@ -12,16 +12,13 @@ const InstitutionPeriodSelector = ({ filingPeriod, history, pathname, dispatch, 
   const yearOpt = periodOption(filingYear)
   const quarterOpt = periodOption(filingQuarter)
   const quarterOpts = quarterOptions(filingYear, filingPeriodOptions.options)
-  const showQuarterMenu =
-    +filingYear >= 2020 &&
-    filingPeriodOptions.options.some((x) => x.indexOf("-Q") > -1)
 
   return (
     <div className='YearSelector'>
       <h4>Select a filing period</h4>
       <Select
         value={yearOpt}
-        options={yearOptions(filingPeriodOptions.options, true)}
+        options={yearOptions(filingPeriodOptions.options)}
         styles={styleFn()}
         onChange={opt => {
           dispatch(refreshState())
@@ -29,7 +26,7 @@ const InstitutionPeriodSelector = ({ filingPeriod, history, pathname, dispatch, 
           history.replace(pathname.replace(filingPeriod, opt.value))
         }}
       />
-      { showQuarterMenu &&
+      { showQuarterMenu(filingYear, filingPeriodOptions) &&
         <Select
           value={quarterOpt || quarterOpts[0]}
           options={quarterOpts}
@@ -95,5 +92,12 @@ function quarterOptions(filingYear, filingPeriods) {
 
   return quarters
 }
+
+function showQuarterMenu(filingYear, periodOptions){
+  return periodOptions.options.filter(x => {
+    const [year, qtr] = splitYearQuarter(x)
+    return year === filingYear && qtr
+  }).length > 0
+} 
 
 export default InstitutionPeriodSelector
