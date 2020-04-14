@@ -182,13 +182,13 @@ export default class Institutions extends Component {
     const {
       error,
       filingPeriod,
-      filingPeriods,
       filingQuarters,
       filingQuartersLate,
       hasQuarterlyFilers,
       history,
       location,
-      dispatch
+      dispatch,
+      filingPeriodOptions
     } = this.props
     
     const institutions = this.props.institutions.institutions
@@ -214,12 +214,12 @@ export default class Institutions extends Component {
           ) : null}
 
           <InstitutionPeriodSelector
-            filingPeriods={filingPeriods}
             filingPeriod={filingPeriod}
             history={history}
             pathname={location.pathname}
             dispatch={dispatch}
             hasQuarterlyFilers={hasQuarterlyFilers}
+            filingPeriodOptions={filingPeriodOptions}
           />
 
           {_whatToRender(this.props)}

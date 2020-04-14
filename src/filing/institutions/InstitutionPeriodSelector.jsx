@@ -7,20 +7,18 @@ import '../../common/YearSelector.css'
 
 const ANNUAL = 'annual'
 
-const InstitutionPeriodSelector = ({ filingPeriod, filingPeriods, hasQuarterlyFilers, history, pathname, dispatch }) => {
+const InstitutionPeriodSelector = ({ filingPeriod, history, pathname, dispatch, filingPeriodOptions }) => {
   const [filingYear, filingQuarter] = splitYearQuarter(filingPeriod)
   const yearOpt = periodOption(filingYear)
   const quarterOpt = periodOption(filingQuarter)
-  const quarterOpts = quarterOptions(filingYear, filingPeriods)
-  const showQuarterMenu = +filingYear >= 2020 && hasQuarterlyFilers
+  const quarterOpts = quarterOptions(filingYear, filingPeriodOptions.options)
 
   return (
     <div className='YearSelector'>
       <h4>Select a filing period</h4>
       <Select
         value={yearOpt}
-        // options={yearOptions(filingPeriods, hasQuarterlyFilers)}
-        options={yearOptions(filingPeriods, true)}
+        options={yearOptions(filingPeriodOptions.options)}
         styles={styleFn()}
         onChange={opt => {
           dispatch(refreshState())
@@ -28,7 +26,7 @@ const InstitutionPeriodSelector = ({ filingPeriod, filingPeriods, hasQuarterlyFi
           history.replace(pathname.replace(filingPeriod, opt.value))
         }}
       />
-      { showQuarterMenu &&
+      { showQuarterMenu(filingYear, filingPeriodOptions) &&
         <Select
           value={quarterOpt || quarterOpts[0]}
           options={quarterOpts}
@@ -70,13 +68,9 @@ function formQPath(opt, year) {
 }
 
 
-function yearOptions(filingPeriods, hasQFilers) {
+function yearOptions(filingPeriods) {
   const yearSet = new Set()
-  filingPeriods.forEach(v => {
-    const [year, quarter] = splitYearQuarter(v)
-    if (quarter && !hasQFilers) return
-    yearSet.add(year)
-  })
+  filingPeriods.forEach((v) => yearSet.add(splitYearQuarter(v)[0]))
   
   const yearArray = []
   yearSet.forEach(el => yearArray.push(el))
@@ -98,5 +92,12 @@ function quarterOptions(filingYear, filingPeriods) {
 
   return quarters
 }
+
+function showQuarterMenu(filingYear, periodOptions){
+  return periodOptions.options.filter(x => {
+    const [year, qtr] = splitYearQuarter(x)
+    return year === filingYear && qtr
+  }).length > 0
+} 
 
 export default InstitutionPeriodSelector

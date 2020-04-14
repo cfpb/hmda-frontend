@@ -19,6 +19,7 @@ import user from './user.js'
 import redirecting from './redirecting.js'
 import latestSubmissions from './latestSubmissions'
 import refiling from './refiling'
+import filingPeriodOptions from './filingPeriodOptions'
 
 export default combineReducers({
   lei,
@@ -39,5 +40,6 @@ export default combineReducers({
   user,
   redirecting,
   latestSubmissions,
-  refiling
+  refiling,
+  filingPeriodOptions
 })

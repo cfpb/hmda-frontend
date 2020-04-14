@@ -32,7 +32,7 @@ const Home = ({ config }) => {
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  Get started filing your HMDA data for {defaultPeriod}
+                  Access the HMDA Filing Platform
                 </a>
               </h3>
               <p>

@@ -128,7 +128,7 @@ export class AppContainer extends Component {
 }
 
 export function mapStateToProps(state, ownProps) {
-  const { filingPeriod, redirecting, statePathname } = state.app
+  const { filingPeriod, redirecting, statePathname, filingPeriodOptions } = state.app
   const { maintenanceMode, filingAnnouncement } = ownProps.config
 
   return {
@@ -136,7 +136,8 @@ export function mapStateToProps(state, ownProps) {
     statePathname,
     maintenanceMode, 
     filingAnnouncement,
-    filingPeriod
+    filingPeriod,
+    filingPeriodOptions
   }
 }
 
