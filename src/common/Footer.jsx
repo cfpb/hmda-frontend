@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import './Footer.css'
 import logo from './images/ffiec-logo.svg'
 import MaintenanceMessage from '../MaintenanceMessage'
+import ReleaseVersion from './ReleaseVersion'
 
 const Footer = ({ config }) => {
   const [maintenance, setMaintenance] = React.useState(null)
@@ -11,7 +12,7 @@ const Footer = ({ config }) => {
     if(config.maintenanceMode) setMaintenance(true)
   }, [config])
 
-  const cname = "Footer" + (maintenance ? " maintenance" : "")
+  const cname = 'Footer' + (maintenance ? ' maintenance' : '')
 
   return (
     <footer className={cname} role="contentinfo">
@@ -29,6 +30,7 @@ const Footer = ({ config }) => {
               <img alt="FFIEC" src={logo} height="21" />
               Home Mortgage Disclosure Act
             </a>
+            <ReleaseVersion />
           </div>
 
           <div className="item">
@@ -55,9 +57,9 @@ const Footer = ({ config }) => {
           </div>
         </div>
       </div>
-      <MaintenanceMessage 
+      <MaintenanceMessage
         config={config}
-        closeCallback={() => setMaintenance(false)} 
+        closeCallback={() => setMaintenance(false)}
       />
     </footer>
   )

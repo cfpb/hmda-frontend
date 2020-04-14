@@ -3,6 +3,7 @@ import React from 'react'
 import './Footer.css'
 import logo from '../images/ffiec-logo.svg'
 import { getKeycloak } from '../utils/keycloak.js'
+import ReleaseVersion from '../../common/ReleaseVersion'
 
 export const getLink = filingPeriod => {
   if (getKeycloak().authenticated) return `/filing/${filingPeriod}/institutions`
@@ -10,7 +11,7 @@ export const getLink = filingPeriod => {
 }
 
 const Footer = props => {
-  const cname = "Footer footer footer-slim" + (props.maintenanceMode ? " maintenance" : "")
+  const cname = 'Footer footer footer-slim' + (props.maintenanceMode ? ' maintenance' : '')
 
   return (
     <footer className={cname} role="contentinfo">
@@ -36,6 +37,7 @@ const Footer = props => {
                   <img src={logo} height="21px" alt="FFIEC" />
                   <span>Home Mortgage Disclosure Act</span>
                 </a>
+                <ReleaseVersion />
               </li>
             </ul>
           </nav>
