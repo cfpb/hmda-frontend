@@ -28,7 +28,4 @@ RUN apt-get update && \
 
 copy / hmda-frontend/
 
-RUN useradd cypress_user 
-USER cypress_user
-
 WORKDIR hmda-frontend/
