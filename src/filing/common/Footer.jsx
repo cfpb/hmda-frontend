@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import './Footer.css'
 import logo from '../images/ffiec-logo.svg'
+import MaintenanceMessage from '../../MaintenanceMessage'
 import { getKeycloak } from '../utils/keycloak.js'
 import ReleaseVersion from '../../common/ReleaseVersion'
 
@@ -10,8 +11,13 @@ export const getLink = filingPeriod => {
   return `/filing/${filingPeriod}/`
 }
 
-const Footer = props => {
-  const cname = 'Footer footer footer-slim' + (props.maintenanceMode ? ' maintenance' : '')
+const Footer = ({ filingPeriod, config}) => {
+  const [maintenance, setMaintenance] = useState(null)
+
+  useEffect(() => {
+    if(config.maintenanceMode) setMaintenance(true)
+  }, [config.maintenanceMode])
+  const cname = 'Footer footer footer-slim' + (maintenance ? ' maintenance' : '')
 
   return (
     <footer className={cname} role="contentinfo">
@@ -30,7 +36,7 @@ const Footer = props => {
               <li className="footer-primary-content">
                 <a
                   className="nav-link"
-                  href={getLink(props.filingPeriod)}
+                  href={getLink(filingPeriod)}
                   title="Home"
                   aria-label="Home"
                 >
@@ -46,6 +52,10 @@ const Footer = props => {
           </div>
         </div>
       </div>
+      <MaintenanceMessage
+        config={config}
+        closeCallback={() => setMaintenance(false)}
+      />
     </footer>
   )
 }
