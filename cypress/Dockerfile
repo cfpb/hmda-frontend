@@ -26,7 +26,6 @@ RUN apt-get update && \
         unzip && \
     rm -rf /var/lib/apt/lists/*
 
-# install build dependencies
 copy / hmda-frontend/
 
 RUN useradd cypress_user 
