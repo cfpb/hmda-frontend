@@ -1,8 +1,9 @@
-import React, { useState} from 'react'
+import React from 'react'
 import './MaintenanceMessage.css'
 
+let maintenanceClosed = false
+
 const MaintenanceMessage = ({ config, closeCallback }) => {
-  const [maintenanceClosed, closeMaintenance] = useState(false)
   const { announcement, maintenanceMode } = config
 
   if(!maintenanceMode) return null
@@ -12,7 +13,7 @@ const MaintenanceMessage = ({ config, closeCallback }) => {
 
   const closeHandler = e => {
     e.preventDefault()
-    closeMaintenance(true)
+    maintenanceClosed = true
     if(closeCallback) closeCallback()
   }
 
