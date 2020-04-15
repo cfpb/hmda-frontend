@@ -29,10 +29,7 @@ RUN apt-get update && \
 # install build dependencies
 copy / hmda-frontend/
 
-# ENV CYPRESS_USER=cypress_user
-# RUN adduser $CYPRESS_USER cypress && \
-#     addgroup $CYPRESS_USER && \
-#     addgroup $CYPRESS_USER $CYPRESS_USER
-# USER cypress_user
+RUN useradd cypress_user 
+USER cypress_user
 
 WORKDIR hmda-frontend/

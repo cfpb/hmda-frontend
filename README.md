@@ -36,3 +36,8 @@ To see the application running in a container you can run:
 ```
 docker run -p 80:80 hmda/hmda-frontend
 ```
+
+To build using docker-compose:
+```
+docker-compose build
+```
