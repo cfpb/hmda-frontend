@@ -29,3 +29,5 @@ RUN apt-get update && \
 copy / hmda-frontend/
 
 WORKDIR hmda-frontend/
+
+RUN yarn
