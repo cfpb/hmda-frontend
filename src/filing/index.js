@@ -15,7 +15,6 @@ import { setKeycloak } from './utils/keycloak.js'
 import { setStore } from './utils/store.js'
 import appReducer from './reducers'
 import { withAppContext } from '../common/appContextHOC'
-import MaintenanceMessage from '../MaintenanceMessage'
 
 const middleware = [thunkMiddleware]
 
@@ -75,7 +74,6 @@ const Filing = ({ config }) => {
           }}/>
         </Switch>
       </Provider>
-      <MaintenanceMessage config={config} />
     </div>
   )
 }

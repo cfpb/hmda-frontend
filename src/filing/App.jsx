@@ -20,7 +20,7 @@ const browser = detect()
 
 export class AppContainer extends Component {
   componentDidMount() {
-    if(this.props.maintenanceMode && !this._isHome(this.props)) 
+    if(this.props.maintenanceMode && !this._isHome(this.props))
       return this.props.history.push('/filing')
 
     const filingPeriod = this.props.match.params.filingPeriod
@@ -46,9 +46,9 @@ export class AppContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(this.props.maintenanceMode && !this._isHome(this.props)) 
-      return this.props.history.push('/filing') 
-      
+    if(this.props.maintenanceMode && !this._isHome(this.props))
+      return this.props.history.push('/filing')
+
     const filingPeriod = this.props.match.params.filingPeriod
     if (!this.isValidPeriod(filingPeriod)) {
       this.checkForValidQuarters(filingPeriod)
@@ -121,7 +121,7 @@ export class AppContainer extends Component {
             ? <p className="full-width">Files are no longer being accepted for the 2017 filing period. For further assistance, please contact <a href="mailto:hmdahelp@cfpb.gov">HMDA Help</a>.</p>
             : <p className="full-width">The {params.filingPeriod} filing period does not exist. If this seems wrong please contact <a href="mailto:hmdahelp@cfpb.gov">HMDA Help</a>.</p>
         }
-        <Footer filingPeriod={params.filingPeriod} maintenanceMode={maintenanceMode} />
+        <Footer filingPeriod={params.filingPeriod} config={this.props.config} />
       </div>
     )
   }
@@ -134,7 +134,7 @@ export function mapStateToProps(state, ownProps) {
   return {
     redirecting,
     statePathname,
-    maintenanceMode, 
+    maintenanceMode,
     filingAnnouncement,
     filingPeriod,
     filingPeriodOptions

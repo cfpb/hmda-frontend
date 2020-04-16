@@ -1,16 +1,19 @@
-import React, { useState } from "react"
+import React from 'react'
 import './MaintenanceMessage.css'
+
+let maintenanceClosed = false
 
 const MaintenanceMessage = ({ config, closeCallback }) => {
   const { announcement, maintenanceMode } = config
-  const [isOpen, setIsOpen] = useState(config.maintenanceMode)
-  const cname = announcement.type + (!isOpen ? " closed" : "")
 
   if(!maintenanceMode) return null
 
+  const isOpen = maintenanceMode && !maintenanceClosed
+  const cname = announcement.type + (!isOpen ? ' closed' : '')
+
   const closeHandler = e => {
     e.preventDefault()
-    setIsOpen(false)
+    maintenanceClosed = true
     if(closeCallback) closeCallback()
   }
 
