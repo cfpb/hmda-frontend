@@ -1,6 +1,6 @@
 # Cypress
 
-In an effort to eliminate manual verification of system deployments, this test suite aims to simulate user interaction with the HMDA Front-end using the Cypress testing library. 
+In an effort to eliminate manual verification of system deployments, this test suite aims to simulate user interaction with the HMDA Front-end using the Cypress testing library.
 
 ## Setup  
 Install [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm#installing-and-updating)  
@@ -60,7 +60,7 @@ yarn cypress run --spec ./cypress/integration/tools/RateSpread.spec.js
 
 ### via Cypress UI
 The Cypress UI allows you to run individual tests, or the full test suite, while observing Cypress in action.  
-  
+
 Note: No videos or snapshots are created when running tests via the Cypress UI, though you will be able to mouse through the before/after state of each testing step after the test run is complete.
 
 ```

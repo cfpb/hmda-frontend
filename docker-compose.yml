@@ -1,0 +1,15 @@
+# docker-compose.yml
+version: '3.7'
+
+services:
+  hmda-frontend:
+    image: hmda-frontend:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+  hmda-cypress:
+    image: hmda-cypress:latest
+    build:
+      context: .
+      dockerfile: cypress/Dockerfile
