@@ -1,7 +1,7 @@
 {
   "prod": {
     "announcement": {
-      "message": "We will be performing scheduled system maintenance on April 21 from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+      "message": "We will be performing scheduled system maintenance on April 22 from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
       "type": "warning",
       "heading": "Scheduled Maintenance"
     },
@@ -26,13 +26,13 @@
     "showMaps": false,
     "maintenanceMode": false,
     "filingAnnouncement": {
-      "message": "We will be performing scheduled system maintenance on April 21 from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+      "message": "We will be performing scheduled system maintenance on April 22 from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
       "type": "warning",
       "heading": "Scheduled Maintenance"
     },
     "beta": {
       "announcement": {
-        "message": "We will be performing scheduled system maintenance on April 21 from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+        "message": "We will be performing scheduled system maintenance on April 22 from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
         "type": "warning",
         "heading": "Scheduled Maintenance"
       },
@@ -57,7 +57,7 @@
       "showMaps": false,
       "maintenanceMode": false,
       "filingAnnouncement": {
-        "message": "We will be performing scheduled system maintenance on April 21 from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+        "message": "We will be performing scheduled system maintenance on April 22 from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
         "type": "warning",
         "heading": "Scheduled Maintenance"
       }
