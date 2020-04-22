@@ -18,11 +18,6 @@ import { urlExists } from "./helpers"
 // Import commands.js using ES2015 syntax:
 // import './commands'
 
-Cypress.Commands.add("hasValidHref", a => {
-  function isValidLink(url, isValid) {
-    console.log("Callback", url, isValid)
-    return isValid ? "Valid" : "Invalid"
-  }
-
-  return urlExists(a.attr("href") + "wrong", isValidLink)
+Cypress.Commands.add("hasValidHref", { prevSubject: true }, anchor => {
+  return urlExists(anchor.attr("href"))
 })
