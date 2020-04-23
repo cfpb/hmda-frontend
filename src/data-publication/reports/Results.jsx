@@ -133,6 +133,10 @@ class Results extends React.Component {
     return this.props.year === '2017'
   }
 
+  is2019(){
+    return this.props.year === '2019'
+  }
+
   renderIncludeFileHeader() {
     return (
       <p>
@@ -165,7 +169,7 @@ class Results extends React.Component {
 
     return (
       <React.Fragment>
-        {this.props.isModLar && this.renderIncludeFileHeader()}
+        {this.props.isModLar && !this.is2019() && this.renderIncludeFileHeader()}
         {this.renderHeading(
           this.props.institutions.length,
           this.props.inputValue
