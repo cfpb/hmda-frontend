@@ -25,7 +25,8 @@
     },
     "showMaps": false,
     "maintenanceMode": false,
-    "filingAnnouncement": null,
+     "filingAnnouncement": null,
+ 
     "beta": {
       "announcement": {
         "message": "On March 31, 2020, the 2019 Modified LAR data was released.",
@@ -52,7 +53,8 @@
       },
       "showMaps": false,
       "maintenanceMode": false,
-      "filingAnnouncement": null
+       "filingAnnouncement": null
+ 
     }
   },
   "dev": {
