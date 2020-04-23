@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { isEqual } from 'lodash'
 import Heading from '../../common/Heading.jsx'
+import DBYearSelector from './DBYearSelector'
 import InstitutionSelect from './InstitutionSelect'
 import ItemSelect from './ItemSelect.jsx'
 import { fetchLeis, filterLeis } from './leiUtils'
@@ -26,6 +27,7 @@ import './Geography.css'
 class Geography extends Component {
   constructor(props) {
     super(props)
+    this.onYearChange = this.onYearChange.bind(this)
     this.onCategoryChange = this.onCategoryChange.bind(this)
     this.onInstitutionChange = this.onInstitutionChange.bind(this)
     this.onItemChange = this.onItemChange.bind(this)
@@ -40,6 +42,8 @@ class Geography extends Component {
     this.scrollToTable = this.scrollToTable.bind(this)
     this.fetchLeis = fetchLeis.bind(this)
     this.filterLeis = filterLeis.bind(this)
+    this.updatePath = this.updatePath.bind(this)
+    this.setStateAndPath = this.setStateAndPath.bind(this)
 
     this.itemOptions = createItemOptions(props)
     this.variableOptions = createVariableOptions()
@@ -64,11 +68,13 @@ class Geography extends Component {
         loading: true,
         counts: {},
         leis: {}
-      }
+      },
+      year: null
     }
 
     const newState = makeStateFromSearch(this.props.location.search, defaultState, this.requestSubset, this.updateSearch)
     newState.isLargeFile = this.checkIfLargeFile(newState.category, isNationwide(newState.category) ? newState.leis : newState.items)
+    newState.year = this.props.match.params.year
     setTimeout(this.updateSearch, 0)
     return newState
   }
@@ -97,9 +103,25 @@ class Geography extends Component {
     this.props.history.replace({search: makeSearchFromState(this.state)})
   }
 
+  updatePath(){
+    const basePath = '/data-browser/data/'
+    const search = makeSearchFromState(this.state)
+    this.props.history.push(`${basePath}${this.state.year}${search}`)
+  }
+
   setStateAndRoute(state){
     state.loadingDetails = false
     return this.setState(state, this.updateSearch)
+  }
+
+  setStateAndPath(state){
+    state.loadingDetails = false
+    return new Promise((resolve) => {
+      this.setState(state, () => {
+        this.updatePath()
+        resolve()
+      })
+    })
   }
 
   scrollToTable(){
@@ -174,6 +196,14 @@ class Geography extends Component {
     const MAX = 1048576
     if(!selected) return countMap > MAX
     return selected.reduce((acc, curr) => acc + countMap[curr], 0) > MAX
+  }
+
+  onYearChange(obj){
+    this.setStateAndPath(obj).then(() => {
+      this.fetchLeis().then(() => {
+        this.filterLeis()
+      })
+    })
   }
 
   onCategoryChange({value}) {
@@ -305,6 +335,10 @@ class Geography extends Component {
             </p>
           </Heading>
         </div>
+        <DBYearSelector 
+          year={this.state.year} 
+          onChange={this.onYearChange}
+        />
         <ItemSelect
           options={this.itemOptions}
           category={category}

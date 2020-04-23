@@ -15,9 +15,9 @@ export function filterLeis() {
 }
 
 export function fetchLeis() {
-  const { category, items } = this.state
+  const { category, items, year } = this.state
   this.setState(state => ({ leiDetails: { ...state.leiDetails, loading: true }}))
-  runFetch(makeFilersUrl({ category, items }))
+  return runFetch(makeFilersUrl({ category, items, year }))
     .then(data => {
       const counts = {}, leis = {}
       data.institutions.forEach(institution => {

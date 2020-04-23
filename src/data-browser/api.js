@@ -24,9 +24,9 @@ export function addVariableParams(obj={}) {
   return qs
 }
 
-export function addYears(url='') {
-  if(url.match(/\?/)) return '&years=2018'
-  return '?years=2018'
+export function addYears(url='', year='2018') {
+  if(url.match(/\?/)) return `&years=${year}`
+  return `?years=${year}`
 }
 
 export function createItemQuerystring(obj = {}) {
@@ -61,7 +61,7 @@ export function makeUrl(obj, isCSV, includeVariables=true) {
   if(!hasItems && !hasLeis) url += '?'
   if(includeVariables) url += addVariableParams(obj)
 
-  url += addYears(url)
+  url += addYears(url, obj.year)
 
   return url
 }
@@ -74,7 +74,7 @@ export function makeFilersUrl(obj){
     return url + addYears(url)
 
   url += createItemQuerystring(obj)
-  url += addYears(url)
+  url += addYears(url, obj.year)
   return url
 }
 
