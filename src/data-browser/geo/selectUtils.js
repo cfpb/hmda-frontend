@@ -1,5 +1,6 @@
 import stateToMsas from '../constants/stateToMsas.js'
 import STATEOBJ from '../constants/stateObj.js'
+import STATEOBJCODES, { abbrToCode } from '../constants/stateObjCodes.js'
 import MSATOSTATE from '../constants/msaToState.js'
 import VARIABLES from '../constants/variables.js'
 import COUNTIES from '../constants/counties.js'
@@ -13,9 +14,9 @@ const itemFnMap = {
   counties: createCountyOption
 }
 
-function makeItemSelectValues(category, items){
+function makeItemSelectValues(category, items, year){
   if(isNationwide(category)) return [{value: 'nationwide', label: 'NATIONWIDE'}]
-  return items.map(itemFnMap[category])
+  return items.map(id => itemFnMap[category](id, year))
 }
 
 export function createLEIOption(id, map){
@@ -92,8 +93,9 @@ function formatWithCommas(str='') {
   return formatted
 }
 
-function createStateOption(id){
-  return {value: id, label: `${STATEOBJ[id]}`}
+function createStateOption(id, year){
+  const states = before2018(year) ? STATEOBJCODES : STATEOBJ
+  return {value: id, label: `${states[id]}`}
 }
 
 function createMSAOption(id){
@@ -127,9 +129,11 @@ function createItemOptions(props) {
   }
 
   const msaSet = new Set()
+  const stateObj = before2018(subsetYear) ? STATEOBJCODES : STATEOBJ
 
   Object.keys(statesWithMsas).forEach(state => {
-    STATEOBJ[state] && itemOptions.states.push(createStateOption(state))
+    const stateMapped = before2018(subsetYear) ? abbrToCode[state] : state
+    stateObj[stateMapped] && itemOptions.states.push(createStateOption(stateMapped, subsetYear))
     statesWithMsas[state].forEach(msa => msaSet.add(msa))
   })
 
@@ -171,6 +175,10 @@ function isNationwide(category) {
   return category === 'nationwide'
 }
 
+function before2018(year) {
+  return +year < 2018
+}
+
 const heightStyleFn = {
   valueContainer: p => ({...p, height: '50px'})
 }
@@ -210,5 +218,6 @@ export {
   someChecksExist,
   setVariableSelect,
   isNationwide,
-  sortByLabel
+  sortByLabel,
+  before2018
 }

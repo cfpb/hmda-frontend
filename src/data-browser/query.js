@@ -1,10 +1,13 @@
 import MSAS from './constants/msaToName.js'
 import STATES from './constants/stateObj.js'
+import STATE_CODES from './constants/stateObjCodes.js'
 import COUNTIES from './constants/counties.js'
 import VARIABLES from './constants/variables.js'
+import { before2018 } from './geo/selectUtils.js'
 
 const msaKeys = Object.keys(MSAS)
 const stateKeys = Object.keys(STATES)
+const stateCodes = Object.keys(STATE_CODES)
 const countyKeys = Object.keys(COUNTIES)
 const varKeys = Object.keys(VARIABLES)
 
@@ -44,12 +47,12 @@ export function isInvalidKey(key, s){
   return true
 }
 
-export function sanitizeArray(key, val) {
+export function sanitizeArray(key, val, year) {
   const arr = []
   let knownKeys
 
   if(key === 'msamds') knownKeys = msaKeys
-  else if(key === 'states') knownKeys = stateKeys
+  else if(key === 'states') knownKeys = before2018(year) ? stateCodes : stateKeys
   else if(key === 'counties') knownKeys = countyKeys
   else if(key === 'leis') return val
   else knownKeys = Object.keys(VARIABLES[key].mapping)
@@ -79,7 +82,7 @@ export function makeStateFromSearch(search, s, detailsCb, updateSearch){
     if(key === 'category') {
       s[key] = val[0]
     } else if(key === 'items' && s.category){
-      const sanitized = sanitizeArray(s.category, val)
+      const sanitized = sanitizeArray(s.category, val, s.year)
       if(sanitized.length !== val.length) regenerateSearch = true
       s[key] = sanitized
     } else if(key === 'leis') {

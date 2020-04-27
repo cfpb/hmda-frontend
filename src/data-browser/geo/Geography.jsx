@@ -13,12 +13,14 @@ import { makeSearchFromState, makeStateFromSearch } from '../query.js'
 import { ActionsWarningsErrors } from './ActionsWarningsErrors'
 import MSAMD_COUNTS from '../constants/msamdCounts.js'
 import STATE_COUNTS from '../constants/stateCounts.js'
+import { abbrToCode, codeToAbbr } from '../constants/stateObjCodes.js'
 import {
   createItemOptions,
   createVariableOptions,
   formatWithCommas,
   isNationwide,
-  someChecksExist
+  someChecksExist,
+  before2018
 } from './selectUtils.js'
 
 import './Geography.css'
@@ -69,12 +71,11 @@ class Geography extends Component {
         counts: {},
         leis: {}
       },
-      year: null
+      year: this.props.match.params.year
     }
 
     const newState = makeStateFromSearch(this.props.location.search, defaultState, this.requestSubset, this.updateSearch)
     newState.isLargeFile = this.checkIfLargeFile(newState.category, isNationwide(newState.category) ? newState.leis : newState.items)
-    newState.year = this.props.match.params.year
     setTimeout(this.updateSearch, 0)
     return newState
   }
@@ -199,10 +200,19 @@ class Geography extends Component {
   }
 
   onYearChange(obj){
+    const { category, items } = this.state
+    
+    // Map path's States in path between code <=> abbr
+    if(category === 'states'){
+      const stateObj = before2018(obj.year) ? abbrToCode : codeToAbbr
+      obj.items = items.map(i => stateObj[i]).filter(x => x)
+    }
+
     this.setStateAndPath(obj).then(() => {
       this.fetchLeis().then(() => {
         this.filterLeis()
       })
+      this.itemOptions = createItemOptions(this.props)
     })
   }
 
@@ -306,7 +316,7 @@ class Geography extends Component {
       loadingDetails, orderedVariables, variables } = this.state
     const enabled = category === 'nationwide' || items.length
     const checksExist = someChecksExist(variables)
-
+      
     return (
       <div className='Geography'>
         <Link className='BackLink' to='/data-browser/'>
@@ -348,6 +358,7 @@ class Geography extends Component {
           enabled={enabled}
           downloadCallback={this.requestItemCSV}
           onChange={this.onItemChange}
+          year={this.state.year} 
         />
         <InstitutionSelect
           items={leis}

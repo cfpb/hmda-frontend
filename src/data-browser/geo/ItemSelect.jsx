@@ -17,9 +17,10 @@ const ItemSelect = ({
   category,
   onCategoryChange,
   items,
-  onChange
+  onChange,
+  year
 }) => {
-  const selectedValues = makeItemSelectValues(category, items)
+  const selectedValues = makeItemSelectValues(category, items, year)
   const nationwide = isNationwide(category)
 
   return (
