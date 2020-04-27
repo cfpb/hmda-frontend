@@ -29,7 +29,11 @@ const legendBody = colors.map((color, i) => {
   return (
     <div className="legWrap" key={i}>
       <span className="legColor" style={{backgroundColor: color}}></span>
-      <span className="legSpan">{i*4} - {(i+1)*4}</span>
+      <span className="legSpan">{
+        i  === colors.length -1
+        ? `> ${i*4}`
+        : `${i*4} - ${(i+1)*4}`
+      }</span>
     </div>
   )
 })
@@ -143,7 +147,6 @@ function scrollToTable(node){
 }
 
 function makeLegend(variable, value){
-  console.log(variable, value)
   if(!variable || !value) return null
   return(
     <div className="legend">
