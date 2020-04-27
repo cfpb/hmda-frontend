@@ -10,3 +10,35 @@
 .mapboxgl-popup-content > h4 {
   margin: 0;
 }
+
+.legend {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  z-index: 9999;
+  width: 140px;
+  background-color: rgba(255, 255, 255, 0.7)
+}
+
+.legend > h4 {
+  margin-top: 0.5em;
+}
+
+.legWrap {
+  height: 22px;
+  margin-bottom: 4px;
+}
+
+.legColor {
+  display: inline-block;
+  width: 40px;
+  height:20px;
+  border: 1px solid black;
+  margin-right: 1em;
+}
+
+.legSpan {
+  display: inline-block;
+  vertical-align: top;
+}

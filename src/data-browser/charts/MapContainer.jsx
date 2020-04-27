@@ -20,6 +20,19 @@ mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlv
 */
 
 const colors = ['#edffbd', '#d3f2a3', '#97e196', '#6cc08b', '#4c9b82', '#217a79', '#105965', '#074050', '#002737']
+const BIAS = 27.7777778
+let geography = 'county'
+//legend for incidence per 1000
+//1000R = 1000x/27.777778/9
+//1000R = 4x
+const legendBody = colors.map((color, i) => {
+  return (
+    <div className="legWrap" key={i}>
+      <span className="legColor" style={{backgroundColor: color}}></span>
+      <span className="legSpan">{i*4} - {(i+1)*4}</span>
+    </div>
+  )
+})
 const variables = [
   {value: 'loanType', label: 'Loan Type'},
   {value: 'loanPurpose', label: 'Loan Purpose'},
@@ -83,7 +96,6 @@ function getValue(variable, val){
 function generateColor(data, variable, value, total) {
   const count = data[variable][value]
   const len = colors.length
-  const BIAS = 30
   let index = Math.min(len-1, Math.floor(count/total*len*BIAS))
   if(!index) index = 0
   return colors[index]
@@ -128,6 +140,18 @@ function getDefaultsFromSearch(props) {
 function scrollToTable(node){
   if(!node) return
   node.scrollIntoView({behavior: 'smooth', block: 'end'})
+}
+
+function makeLegend(variable, value){
+  console.log(variable, value)
+  if(!variable || !value) return null
+  return(
+    <div className="legend">
+      <h4>Originations per 1000 people in each {geography}</h4>
+      <h4>{variable.label}: {value.label}</h4>
+      {legendBody}
+    </div>
+  )
 }
 
 const popup = new mapbox.Popup({
@@ -213,8 +237,7 @@ const MapContainer = props => {
          stops
        })
      } else {
-       map.setPaintProperty('counties', 'fill-color', 'rgba(0,0,0,0.05)'
-       )
+       map.setPaintProperty('counties', 'fill-color', 'rgba(0,0,0,0.05)')
      }
    }
   }
@@ -396,6 +419,7 @@ const MapContainer = props => {
             </Alert>
           : null
         }
+        {makeLegend(selectedVariable, selectedValue)}
       </div>
       {data && selectedVariable && fips ? buildTable() : null}
     </div>
