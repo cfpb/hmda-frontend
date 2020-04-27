@@ -1,9 +1,9 @@
 {
   "prod": {
     "announcement": {
-      "message": "On March 31, 2020, the 2019 Modified LAR data was released.",
-      "type": "info",
-      "heading": "Announcement"
+      "message": "We will be performing scheduled system maintenance on April 27 from 8pm - 9pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+      "type": "warning",
+      "heading": "Scheduled Maintenance"
     },
     "defaultPeriod": "2019",
     "defaultDocsPeriod": "2019",
@@ -25,13 +25,16 @@
     },
     "showMaps": false,
     "maintenanceMode": false,
-     "filingAnnouncement": null,
- 
+    "filingAnnouncement": {
+      "message": "We will be performing scheduled system maintenance on April 27 from 8pm - 9pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+      "type": "warning",
+      "heading": "Scheduled Maintenance"
+    },
     "beta": {
       "announcement": {
-        "message": "On March 31, 2020, the 2019 Modified LAR data was released.",
-        "type": "info",
-        "heading": "Announcement"
+        "message": "We will be performing scheduled system maintenance on April 27 from 8pm - 9pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+        "type": "warning",
+        "heading": "Scheduled Maintenance"
       },
       "defaultPeriod": "2019",
       "defaultDocsPeriod": "2019",
@@ -53,8 +56,11 @@
       },
       "showMaps": false,
       "maintenanceMode": false,
-       "filingAnnouncement": null
- 
+      "filingAnnouncement": {
+        "message": "We will be performing scheduled system maintenance on April 27 from 8pm - 9pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+        "type": "warning",
+        "heading": "Scheduled Maintenance"
+      }
     }
   },
   "dev": {
