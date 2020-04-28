@@ -21,9 +21,9 @@ mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlv
 
 const baseBias = 250/9
 const lowBias = baseBias/2
-const mhBias = baseBias*1.5
-const highBias = baseBias*3
-const xBias = baseBias*6
+const mhBias = baseBias*2
+const highBias = baseBias*4
+const xBias = baseBias*8
 
 const colors = ['#edffbd', '#d3f2a3', '#97e196', '#6cc08b', '#4c9b82', '#217a79', '#105965', '#074050', '#002737']
 const biases = {
@@ -49,13 +49,13 @@ const biases = {
     '2 or more minority races': xBias,
     'Joint': xBias,
     'Free Form Text Only': xBias,
-    'Race Not Available': mhBias
+    'Race Not Available': baseBias
   },
   ethnicity: {
     'Hispanic or Latino': mhBias,
     'Not Hispanic or Latino': lowBias,
     'Joint': xBias,
-    'Ethnicity Not Available': mhBias,
+    'Ethnicity Not Available': baseBias,
     'Free Form Text Only': xBias
   },
   age: {
@@ -64,9 +64,9 @@ const biases = {
     '25-34': mhBias,
     '35-44': baseBias,
     '45-54': baseBias,
-    '55-64': mhBias,
+    '55-64': baseBias,
     '65-74': mhBias,
-    '>74': xBias
+    '>74': highBias
   }
 }
 let geography = 'county'
