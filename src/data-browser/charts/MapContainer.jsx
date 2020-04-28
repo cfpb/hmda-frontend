@@ -19,20 +19,69 @@ mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlv
   income
 */
 
+const baseBias = 250/9
+const lowBias = baseBias/2
+const mhBias = baseBias*1.5
+const highBias = baseBias*3
+const xBias = baseBias*6
+
 const colors = ['#edffbd', '#d3f2a3', '#97e196', '#6cc08b', '#4c9b82', '#217a79', '#105965', '#074050', '#002737']
-const BIAS = 27.7777778
+const biases = {
+  loanType: {
+    1: lowBias,
+    2: mhBias,
+    3: mhBias,
+    4: highBias
+  },
+  loanPurpose: {
+    1: lowBias,
+    2: highBias,
+    3: mhBias,
+    4: highBias,
+    5: xBias
+  },
+  race: {
+    'American Indian or Alaska Native': xBias,
+    'Asian': highBias,
+    'Black or African American': mhBias,
+    'Native Hawaiian or Other Pacific Islander': xBias,
+    'White': lowBias,
+    '2 or more minority races': xBias,
+    'Joint': xBias,
+    'Free Form Text Only': xBias,
+    'Race Not Available': mhBias
+  },
+  ethnicity: {
+    'Hispanic or Latino': mhBias,
+    'Not Hispanic or Latino': lowBias,
+    'Joint': xBias,
+    'Ethnicity Not Available': mhBias,
+    'Free Form Text Only': xBias
+  },
+  age: {
+    '8888': mhBias,
+    '<25': highBias,
+    '25-34': mhBias,
+    '35-44': baseBias,
+    '45-54': baseBias,
+    '55-64': mhBias,
+    '65-74': mhBias,
+    '>74': xBias
+  }
+}
 let geography = 'county'
 //legend for incidence per 1000
-//1000R = 1000x/27.777778/9
-//1000R = 4x
-const legendBody = colors.map((color, i) => {
+const makeLegendBody = bias => colors.map((color, i) => {
+  const step = 1000/bias/colors.length
+  const iStep = Math.round(i*step*10)/10
+  const i1Step = Math.round((i+1)*step*10)/10
   return (
     <div className="legWrap" key={i}>
       <span className="legColor" style={{backgroundColor: color}}></span>
       <span className="legSpan">{
         i  === colors.length -1
-        ? `> ${i*4}`
-        : `${i*4} - ${(i+1)*4}`
+        ? `> ${iStep}`
+        : `${iStep} - ${i1Step}`
       }</span>
     </div>
   )
@@ -100,7 +149,8 @@ function getValue(variable, val){
 function generateColor(data, variable, value, total) {
   const count = data[variable][value]
   const len = colors.length
-  let index = Math.min(len-1, Math.floor(count/total*len*BIAS))
+  const bias = biases[variable][value]
+  let index = Math.min(len-1, Math.floor(count/total*len*bias))
   if(!index) index = 0
   return colors[index]
 }
@@ -148,11 +198,15 @@ function scrollToTable(node){
 
 function makeLegend(variable, value){
   if(!variable || !value) return null
+
+  let val = value.value
+  if(val.match('%')) val = value.label
+
   return(
     <div className="legend">
       <h4>Originations per 1000 people in each {geography}</h4>
       <h4>{variable.label}: {value.label}</h4>
-      {legendBody}
+      {makeLegendBody(biases[variable.value][val])}
     </div>
   )
 }
