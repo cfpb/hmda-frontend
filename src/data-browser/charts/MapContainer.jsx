@@ -36,7 +36,8 @@ const biases = {
   loanPurpose: {
     1: lowBias,
     2: highBias,
-    3: mhBias,
+    31: mhBias,
+    32: mhBias,
     4: highBias,
     5: xBias
   },
