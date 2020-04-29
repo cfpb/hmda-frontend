@@ -19,30 +19,37 @@ mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlv
   income
 */
 
-const baseBias = 250/9
-const lowBias = baseBias/2
+const baseBias = 250/6
+const lowBias = baseBias/3
 const mhBias = baseBias*2
 const highBias = baseBias*4
 const xBias = baseBias*8
 
-const colors = ['#edffbd', '#d3f2a3', '#97e196', '#6cc08b', '#4c9b82', '#217a79', '#105965', '#074050', '#002737']
+const colors = {
+  [lowBias]: ['#eff3ff','#c6dbef','#9ecae1','#6baed6','#3182bd','#08519c'],
+  [baseBias]: ['#edffbd', '#97e196', '#6cc08b', '#4c9b82', '#196A6F', '#074050'],
+  [mhBias]: ['#f2f0f7', '#dadaeb', '#bcbddc', '#9e9ac8', '#756bb1', '#54278f'],
+  [highBias]: ['#fee5d9', '#fcbba1', '#fc9272', '#fb6a4a', '#de2d26', '#a50f15'],
+  [xBias]: ['#feedde', '#fdd0a2', '#fdae6b', '#fd8d3c', '#e6550d', '#a63603']
+}
+
 const biases = {
   loanType: {
     1: lowBias,
-    2: mhBias,
+    2: baseBias,
     3: mhBias,
     4: highBias
   },
   loanPurpose: {
     1: lowBias,
-    2: highBias,
-    31: mhBias,
-    32: mhBias,
-    4: highBias,
+    2: mhBias,
+    31: baseBias,
+    32: baseBias,
+    4: mhBias,
     5: xBias
   },
   race: {
-    'American Indian or Alaska Native': xBias,
+    'American Indian or Alaska Native': highBias,
     'Asian': highBias,
     'Black or African American': mhBias,
     'Native Hawaiian or Other Pacific Islander': xBias,
@@ -61,26 +68,27 @@ const biases = {
   },
   age: {
     '8888': mhBias,
-    '<25': highBias,
-    '25-34': mhBias,
+    '<25': mhBias,
+    '25-34': baseBias,
     '35-44': baseBias,
     '45-54': baseBias,
     '55-64': baseBias,
-    '65-74': mhBias,
-    '>74': highBias
+    '65-74': baseBias,
+    '>74': mhBias
   }
 }
 let geography = 'county'
 //legend for incidence per 1000
-const makeLegendBody = bias => colors.map((color, i) => {
-  const step = 1000/bias/colors.length
+const makeLegendBody = bias => colors[bias].map((color, i) => {
+  const len = colors[bias].length
+  const step = 1000/bias/len
   const iStep = Math.round(i*step*10)/10
   const i1Step = Math.round((i+1)*step*10)/10
   return (
     <div className="legWrap" key={i}>
       <span className="legColor" style={{backgroundColor: color}}></span>
       <span className="legSpan">{
-        i  === colors.length -1
+        i  === len-1
         ? `> ${iStep}`
         : `${iStep} - ${i1Step}`
       }</span>
@@ -149,11 +157,12 @@ function getValue(variable, val){
 
 function generateColor(data, variable, value, total) {
   const count = data[variable][value]
-  const len = colors.length
   const bias = biases[variable][value]
+  const currColors = colors[bias]
+  const len = currColors.length
   let index = Math.min(len-1, Math.floor(count/total*len*bias))
   if(!index) index = 0
-  return colors[index]
+  return currColors[index]
 }
 
 function makeStops(data, variable, value){
