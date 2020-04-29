@@ -1,8 +1,8 @@
 import stateToMsas from '../constants/stateToMsas.js'
 import STATEOBJ from '../constants/stateObj.js'
-import STATEOBJCODES, { abbrToCode } from '../constants/stateObjCodes.js'
+import STATEOBJCODES, { abbrToCode } from '../constants/stateCodesObj.js'
 import MSATOSTATE from '../constants/msaToState.js'
-import VARIABLES from '../constants/variables.js'
+import { variableNameMap, getVariables } from '../constants/variables.js'
 import COUNTIES from '../constants/counties.js'
 import fipsToState from '../constants/fipsToState.js'
 import msaToName from '../constants/msaToName.js'
@@ -29,10 +29,13 @@ function pruneItemOptions(category, options, selectedValues){
   return removeSelected(selectedValues, options[category])
 }
 
-function setVariableSelect(orderedVariables){
+function setVariableSelect(orderedVariables, year) {
   const options = []
+  const variables = getVariables(year)
+  
   orderedVariables.forEach(v => {
-    options.push({value: v, label: VARIABLES[v].label})
+    const value = variables[v] ? v : variableNameMap[v]
+    if(value) options.push({ value, label: variables[value].label })
   })
   return options
 }
@@ -165,9 +168,10 @@ function compareStrings(a,b){
   return -1
 }
 
-function createVariableOptions() {
-  return Object.keys(VARIABLES).map(variable => {
-    return { value: variable, label: VARIABLES[variable].label }
+function createVariableOptions(year) {
+  const variables = getVariables(year)
+  return Object.keys(variables).map(variable => {
+    return { value: variable, label: variables[variable].label }
   })
 }
 

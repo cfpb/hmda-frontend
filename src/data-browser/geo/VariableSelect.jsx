@@ -10,7 +10,7 @@ import {
 
 
 const VariableSelect = ({ options, variables, orderedVariables, year, checkFactory, onChange }) => {
-  const variableValues = setVariableSelect(orderedVariables)
+  const variableValues = setVariableSelect(orderedVariables, year)
   return (
     <div className="SelectWrapper">
       <h3>Step 3: Select a filter (optional)</h3>

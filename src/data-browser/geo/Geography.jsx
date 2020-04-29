@@ -13,18 +13,23 @@ import { makeSearchFromState, makeStateFromSearch } from '../query.js'
 import { ActionsWarningsErrors } from './ActionsWarningsErrors'
 import MSAMD_COUNTS from '../constants/msamdCounts.js'
 import STATE_COUNTS from '../constants/stateCounts.js'
-import { abbrToCode, codeToAbbr } from '../constants/stateObjCodes.js'
+import { abbrToCode, codeToAbbr } from '../constants/stateCodesObj.js'
+import {
+  variableNameMap,
+  variableOptionMap,
+  getVariables,
+} from '../constants/variables.js'
+
 import {
   createItemOptions,
   createVariableOptions,
   formatWithCommas,
   isNationwide,
   someChecksExist,
-  before2018
+  before2018,
 } from './selectUtils.js'
 
 import './Geography.css'
-
 
 class Geography extends Component {
   constructor(props) {
@@ -48,7 +53,7 @@ class Geography extends Component {
     this.setStateAndPath = this.setStateAndPath.bind(this)
 
     this.itemOptions = createItemOptions(props)
-    this.variableOptions = createVariableOptions()
+    this.variableOptions = createVariableOptions(props.match.params.year)
 
     this.tableRef = React.createRef()
     this.state = this.buildStateFromQuerystring()
@@ -200,19 +205,29 @@ class Geography extends Component {
   }
 
   onYearChange(obj){
+    if(this.state.year === obj.year) return
     const { category, items } = this.state
+    const variables = getVariables(obj.year)
+    obj.details = {}
     
-    // Map path's States in path between code <=> abbr
+    // Map selected States between code <=> abbr
     if(category === 'states'){
       const stateObj = before2018(obj.year) ? abbrToCode : codeToAbbr
       obj.items = items.map(i => stateObj[i]).filter(x => x)
     }
 
+    // Map query parameters pre2018 <=> 2018+
+    obj.orderedVariables = this.state.orderedVariables.map(varName => {
+      if(variables[varName]) return varName
+      return variableNameMap[varName]
+    }).filter(x => x)
+
+    obj.variables = this.mapFilterVarsOpts(variables)
+
     this.setStateAndPath(obj).then(() => {
-      this.fetchLeis().then(() => {
-        this.filterLeis()
-      })
+      this.fetchLeis().then(() => this.filterLeis())
       this.itemOptions = createItemOptions(this.props)
+      this.variableOptions = createVariableOptions(obj.year)
     })
   }
 
@@ -311,12 +326,38 @@ class Geography extends Component {
     )
   }
 
+  // Map Filter variables and options pre2018 <=> 2018+
+  mapFilterVarsOpts(variables) {
+    const selectedVars = {}
+    Object.keys(this.state.variables).forEach(oldVarKey => {
+      const varKey = !variables[oldVarKey] ? variableNameMap[oldVarKey] : oldVarKey
+        
+      if(!varKey) return // Exclude invalid variable
+      if(!selectedVars[varKey]) selectedVars[varKey] = {}
+      
+      // Map selected options
+      const optionMap = variableOptionMap[oldVarKey]
+      Object.keys(this.state.variables[oldVarKey]).forEach(oldOptionKey => {
+        const mappedValues = optionMap && optionMap[oldOptionKey]
+        if (mappedValues)
+          // Single options can map to multiple; stored as CSV
+          optionMap[oldOptionKey].split(',').forEach(optionKey => {
+            selectedVars[varKey][optionKey] = true 
+          })
+          // Keep existing value if this is a valid option
+        else if(variables[varKey].mapping[oldOptionKey])
+          selectedVars[varKey][oldOptionKey] = this.state.variables[oldVarKey][oldOptionKey]
+      })
+    })
+    return selectedVars
+  }
+
   render() {
     const { category, details, error, isLargeFile, items, leiDetails, leis,
       loadingDetails, orderedVariables, variables } = this.state
     const enabled = category === 'nationwide' || items.length
     const checksExist = someChecksExist(variables)
-      
+
     return (
       <div className='Geography'>
         <Link className='BackLink' to='/data-browser/'>
@@ -370,7 +411,7 @@ class Geography extends Component {
           variables={variables}
           orderedVariables={orderedVariables}
           checkFactory={this.makeCheckboxChange}
-          year={this.props.match.params.year}
+          year={this.state.year}
           onChange={this.onVariableChange}
         />
         {details.aggregations && !error

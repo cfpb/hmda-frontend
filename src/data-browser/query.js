@@ -1,15 +1,15 @@
 import MSAS from './constants/msaToName.js'
 import STATES from './constants/stateObj.js'
-import STATE_CODES from './constants/stateObjCodes.js'
+import STATE_CODES from './constants/stateCodesObj.js'
 import COUNTIES from './constants/counties.js'
-import VARIABLES from './constants/variables.js'
+import { getVariables } from './constants/variables.js'
 import { before2018 } from './geo/selectUtils.js'
 
 const msaKeys = Object.keys(MSAS)
 const stateKeys = Object.keys(STATES)
 const stateCodes = Object.keys(STATE_CODES)
 const countyKeys = Object.keys(COUNTIES)
-const varKeys = Object.keys(VARIABLES)
+const varKeys = year => Object.keys(getVariables(year))
 
 export function makeParam(s, key) {
   if(key === 'variables'){
@@ -39,7 +39,7 @@ export function formatParam(k, v){
 export function isInvalidKey(key, s){
   const sKeys = Object.keys(s)
   if( sKeys.indexOf(key) !== -1 ||
-      varKeys.indexOf(key) !== -1 ||
+      varKeys(s.year).indexOf(key) !== -1 ||
       key === 'getDetails') {
     return false
   }
@@ -47,15 +47,16 @@ export function isInvalidKey(key, s){
   return true
 }
 
-export function sanitizeArray(key, val, year) {
+export function sanitizeArray(key, val, year = '2018') {
   const arr = []
+  const variables = getVariables(year)
   let knownKeys
 
   if(key === 'msamds') knownKeys = msaKeys
   else if(key === 'states') knownKeys = before2018(year) ? stateCodes : stateKeys
   else if(key === 'counties') knownKeys = countyKeys
   else if(key === 'leis') return val
-  else knownKeys = Object.keys(VARIABLES[key].mapping)
+  else knownKeys = Object.keys(variables[key].mapping)
 
   val.forEach(v => {
     if(knownKeys.indexOf(v) !== -1 || v === '') arr.push(v)
@@ -92,7 +93,7 @@ export function makeStateFromSearch(search, s, detailsCb, updateSearch){
     } else if(key === 'getDetails') {
       setTimeout(detailsCb, 0)
     } else {
-      const sanitized = sanitizeArray(key, val)
+      const sanitized = sanitizeArray(key, val, s.year)
       if(sanitized.length !== val.length) regenerateSearch = true
       if(sanitized.length) s.orderedVariables.push(key)
       sanitized.forEach(v => {
