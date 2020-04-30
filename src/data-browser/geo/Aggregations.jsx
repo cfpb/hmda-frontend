@@ -26,6 +26,7 @@ function makeHeader(params, orderedVariables, year, leis, variables) {
   else if(params.msamd) list.push(<li key="0"><h4>MSA/MD:</h4><ul className="sublist"><li>{params.msamd.split(',').map(v => `${v}\u00A0-\u00A0${MSATONAME[v]}`).join(', ')}</li></ul></li>)
   else if(params.county) list.push(<li key="0"><h4>County:</h4><ul className="sublist"><li>{params.county.split(',').map(v => COUNTIES[v]).join(', ')}</li></ul></li>)
   if(params.lei) list.push(<li key="1"><h4>Institutions:</h4><ul className="sublist"><li>{institutionsOrLoading(params.lei, leis)}</li></ul></li>)
+  else if(params.arid) list.push(<li key="1"><h4>Institutions:</h4><ul className="sublist"><li>{institutionsOrLoading(params.arid, leis)}</li></ul></li>)
 
   orderedVariables.forEach((variable) => {
     list.push(

@@ -1,5 +1,6 @@
 import { runFetch, makeFilersUrl } from '../api.js'
 import { isEqual } from 'lodash'
+import { before2018 } from './selectUtils.js'
 
 export function keepValidLeis(valid, selected) {
   return selected.filter(s => valid[s])
@@ -21,8 +22,9 @@ export function fetchLeis() {
     .then(data => {
       const counts = {}, leis = {}
       data.institutions.forEach(institution => {
-        counts[institution.lei] = institution.count
-        leis[institution.lei] = {...institution}
+        const id = before2018(year) ? institution.arid : institution.lei
+        counts[id] = institution.count
+        leis[id] = {...institution}
       })
       this.setState({
         leiDetails: {

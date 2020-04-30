@@ -3,7 +3,7 @@ import STATES from './constants/stateObj.js'
 import STATE_CODES from './constants/stateCodesObj.js'
 import COUNTIES from './constants/counties.js'
 import { getVariables } from './constants/variables.js'
-import { before2018 } from './geo/selectUtils.js'
+import { before2018, getInstitutionIdKey } from './geo/selectUtils.js'
 
 const msaKeys = Object.keys(MSAS)
 const stateKeys = Object.keys(STATES)
@@ -26,7 +26,7 @@ export function makeParam(s, key) {
 }
 
 export function stringifyIfTruthy(s, key) {
-  const v = s[key]
+  const v = key === 'arids' ? s['leis'] : s[key]
   if(Array.isArray(v))
     return v.length ? formatParam(key, v.join(',')) : ''
   return v ? formatParam(key, v.toString()) : ''
@@ -37,7 +37,11 @@ export function formatParam(k, v){
 }
 
 export function isInvalidKey(key, s){
-  const sKeys = Object.keys(s)
+  let sKeys = Object.keys(s)
+  if( before2018(s.year) ) {
+    sKeys = sKeys.filter(key => key !== 'leis')
+    sKeys.push('arids')
+  }
   if( sKeys.indexOf(key) !== -1 ||
       varKeys(s.year).indexOf(key) !== -1 ||
       key === 'getDetails') {
@@ -86,10 +90,11 @@ export function makeStateFromSearch(search, s, detailsCb, updateSearch){
       const sanitized = sanitizeArray(s.category, val, s.year)
       if(sanitized.length !== val.length) regenerateSearch = true
       s[key] = sanitized
-    } else if(key === 'leis') {
-      const sanitized = sanitizeArray(key, val)
+    } else if(['leis', 'arids'].indexOf(key) > -1) {
+      let stateKey = 'leis'
+      const sanitized = sanitizeArray(stateKey, val)
       if(sanitized.length !== val.length) regenerateSearch = true
-      s[key] = sanitized
+      s[stateKey] = sanitized
     } else if(key === 'getDetails') {
       setTimeout(detailsCb, 0)
     } else {
@@ -114,7 +119,7 @@ export function makeSearchFromState(s){
   let params = [
     makeParam(s, 'category'),
     makeParam(s, 'items'),
-    makeParam(s, 'leis'),
+    makeParam(s, getInstitutionIdKey(s.year)),
     makeParam(s, 'variables'),
     makeParam(s, 'details')
   ]

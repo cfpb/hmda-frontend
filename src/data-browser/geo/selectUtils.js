@@ -43,6 +43,7 @@ function setVariableSelect(orderedVariables, year) {
 function makeItemPlaceholder(category, selectedValues) {
   let type = category === 'msamds' ? 'MSA/MDs' : category
   if(type === 'leis') type = 'LEIs'
+  if(type === 'arids') type = 'ARIDs'
   if(isNationwide(type)) return 'Nationwide selected'
   if(selectedValues.length) return `Select or type additional ${type}`
   return `Select or type the name of one or more ${type}`
@@ -183,6 +184,10 @@ function before2018(year) {
   return +year < 2018
 }
 
+function getInstitutionIdKey(year){
+  return before2018(year) ? 'arids' : 'leis'
+}
+
 const heightStyleFn = {
   valueContainer: p => ({...p, height: '50px'})
 }
@@ -223,5 +228,6 @@ export {
   setVariableSelect,
   isNationwide,
   sortByLabel,
-  before2018
+  before2018,
+  getInstitutionIdKey
 }

@@ -141,6 +141,7 @@ class Geography extends Component {
       const currB = b[orderedVariables[i]]
       if(currA < currB) return -1
       if(currA > currB) return 1
+      if(i === orderedVariables.length) return 0
       return runSort(i+1, a, b)
     }
 
@@ -405,6 +406,7 @@ class Geography extends Component {
           items={leis}
           onChange={this.onInstitutionChange}
           leiDetails={leiDetails}
+          year={this.state.year}
         />
         <VariableSelect
           options={this.variableOptions}
