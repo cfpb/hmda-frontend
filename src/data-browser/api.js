@@ -1,6 +1,9 @@
 import { isNationwide } from './geo/selectUtils'
 
 const API_BASE_URL = '/v2/data-browser-api/view'
+const RETRYABLE = [408, 503, 504]
+const MAX_RETRY = 1
+export const RETRY_DELAY = 5000
 
 export function addVariableParams(obj={}) {
   let qs = ''
@@ -140,3 +143,6 @@ export function getItemCSV(obj){
 export function getSubsetCSV(obj){
   return getCSV(makeUrl(obj, true), makeCSVName(obj))
 }
+
+export const isRetryable = (status, attempts) =>
+  RETRYABLE.indexOf(status) > -1 && attempts < MAX_RETRY

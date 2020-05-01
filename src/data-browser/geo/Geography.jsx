@@ -7,7 +7,7 @@ import ItemSelect from './ItemSelect.jsx'
 import { fetchLeis, filterLeis } from './leiUtils'
 import VariableSelect from './VariableSelect.jsx'
 import Aggregations from './Aggregations.jsx'
-import { getItemCSV, getSubsetDetails, getSubsetCSV } from '../api.js'
+import { getItemCSV, getSubsetDetails, getSubsetCSV, isRetryable, RETRY_DELAY } from '../api.js'
 import { makeSearchFromState, makeStateFromSearch } from '../query.js'
 import { ActionsWarningsErrors } from './ActionsWarningsErrors'
 import MSAMD_COUNTS from '../constants/msamdCounts.js'
@@ -87,6 +87,10 @@ class Geography extends Component {
     if(geographyChanged || leisReloaded) this.filterLeis()
     if(leisReloaded)
       this.setState({ isLargeFile: this.checkIfLargeFile(this.state.category, this.state.items) })
+    if(this.pendingRetry) {
+      clearTimeout(this.pendingRetry)
+      this.pendingRetry = null
+    }
   }
 
   updateSearch() {
@@ -119,7 +123,7 @@ class Geography extends Component {
     getItemCSV(this.state)
   }
 
-  requestSubset() {
+  requestSubset(_binding = null, attempts = 0) {
     this.setState({error: null, loadingDetails: true})
     return getSubsetDetails(this.state)
       .then(details => {
@@ -131,6 +135,12 @@ class Geography extends Component {
         })
       })
       .catch(error => {
+        if (isRetryable(error.status, attempts))
+          return this.pendingRetry = setTimeout(
+            () => this.requestSubset(null, attempts + 1),
+            RETRY_DELAY
+          )
+  
         return this.setStateAndRoute({error})
       })
   }
