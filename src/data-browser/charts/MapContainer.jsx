@@ -83,13 +83,13 @@ const makeLegendBody = bias => colors[bias].map((color, i) => {
   const len = colors[bias].length
   const step = 1000/bias/len
   const iStep = Math.round(i*step*10)/10
-  const i1Step = Math.round((i+1)*step*10)/10
+  const i1Step = Math.round((i+1)*step*10)/10 - 0.01
   return (
     <div className="legWrap" key={i}>
       <span className="legColor" style={{backgroundColor: color}}></span>
       <span className="legSpan">{
         i  === len-1
-        ? `> ${iStep}`
+        ? `>= ${iStep}`
         : `${iStep} - ${i1Step}`
       }</span>
     </div>
