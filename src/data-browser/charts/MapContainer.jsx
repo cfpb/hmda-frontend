@@ -19,7 +19,82 @@ mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlv
   income
 */
 
-const colors = ['#edffbd', '#d3f2a3', '#97e196', '#6cc08b', '#4c9b82', '#217a79', '#105965', '#074050', '#002737']
+const baseBias = 250/6
+const lowBias = baseBias/3
+const mhBias = baseBias*2
+const highBias = baseBias*4
+const xBias = baseBias*8
+
+const colors = {
+  [lowBias]: ['#eff3ff','#c6dbef','#9ecae1','#6baed6','#3182bd','#08519c'],
+  [baseBias]: ['#edffbd', '#97e196', '#6cc08b', '#4c9b82', '#196A6F', '#074050'],
+  [mhBias]: ['#f2f0f7', '#dadaeb', '#bcbddc', '#9e9ac8', '#756bb1', '#54278f'],
+  [highBias]: ['#fee5d9', '#fcbba1', '#fc9272', '#fb6a4a', '#de2d26', '#a50f15'],
+  [xBias]: ['#feedde', '#fdd0a2', '#fdae6b', '#fd8d3c', '#e6550d', '#a63603']
+}
+
+const biases = {
+  loanType: {
+    1: lowBias,
+    2: baseBias,
+    3: mhBias,
+    4: highBias
+  },
+  loanPurpose: {
+    1: lowBias,
+    2: mhBias,
+    31: baseBias,
+    32: baseBias,
+    4: mhBias,
+    5: xBias
+  },
+  race: {
+    'American Indian or Alaska Native': highBias,
+    'Asian': highBias,
+    'Black or African American': mhBias,
+    'Native Hawaiian or Other Pacific Islander': xBias,
+    'White': lowBias,
+    '2 or more minority races': xBias,
+    'Joint': xBias,
+    'Free Form Text Only': xBias,
+    'Race Not Available': baseBias
+  },
+  ethnicity: {
+    'Hispanic or Latino': mhBias,
+    'Not Hispanic or Latino': lowBias,
+    'Joint': xBias,
+    'Ethnicity Not Available': baseBias,
+    'Free Form Text Only': xBias
+  },
+  age: {
+    '8888': mhBias,
+    '<25': mhBias,
+    '25-34': baseBias,
+    '35-44': baseBias,
+    '45-54': baseBias,
+    '55-64': baseBias,
+    '65-74': baseBias,
+    '>74': mhBias
+  }
+}
+let geography = 'county'
+//legend for incidence per 1000
+const makeLegendBody = bias => colors[bias].map((color, i) => {
+  const len = colors[bias].length
+  const step = 1000/bias/len
+  const iStep = Math.round(i*step*10)/10
+  const i1Step = Math.round((i+1)*step*10)/10 - 0.01
+  return (
+    <div className="legWrap" key={i}>
+      <span className="legColor" style={{backgroundColor: color}}></span>
+      <span className="legSpan">{
+        i  === len-1
+        ? `>= ${iStep}`
+        : `${iStep} - ${i1Step}`
+      }</span>
+    </div>
+  )
+})
 const variables = [
   {value: 'loanType', label: 'Loan Type'},
   {value: 'loanPurpose', label: 'Loan Purpose'},
@@ -82,11 +157,12 @@ function getValue(variable, val){
 
 function generateColor(data, variable, value, total) {
   const count = data[variable][value]
-  const len = colors.length
-  const BIAS = 30
-  let index = Math.min(len-1, Math.floor(count/total*len*BIAS))
+  const bias = biases[variable][value]
+  const currColors = colors[bias]
+  const len = currColors.length
+  let index = Math.min(len-1, Math.floor(count/total*len*bias))
   if(!index) index = 0
-  return colors[index]
+  return currColors[index]
 }
 
 function makeStops(data, variable, value){
@@ -128,6 +204,21 @@ function getDefaultsFromSearch(props) {
 function scrollToTable(node){
   if(!node) return
   node.scrollIntoView({behavior: 'smooth', block: 'end'})
+}
+
+function makeLegend(variable, value){
+  if(!variable || !value) return null
+
+  let val = value.value
+  if(val.match('%')) val = value.label
+
+  return(
+    <div className="legend">
+      <h4>Originations per 1000 people in each {geography}</h4>
+      <h4>{variable.label}: {value.label}</h4>
+      {makeLegendBody(biases[variable.value][val])}
+    </div>
+  )
 }
 
 const popup = new mapbox.Popup({
@@ -213,8 +304,7 @@ const MapContainer = props => {
          stops
        })
      } else {
-       map.setPaintProperty('counties', 'fill-color', 'rgba(0,0,0,0.05)'
-       )
+       map.setPaintProperty('counties', 'fill-color', 'rgba(0,0,0,0.05)')
      }
    }
   }
@@ -396,6 +486,7 @@ const MapContainer = props => {
             </Alert>
           : null
         }
+        {makeLegend(selectedVariable, selectedValue)}
       </div>
       {data && selectedVariable && fips ? buildTable() : null}
     </div>
