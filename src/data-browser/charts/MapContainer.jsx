@@ -448,6 +448,12 @@ const MapContainer = props => {
 
   useEffect(styleFill)
 
+  const menuStyle = {
+    menu: provided => ({
+      ...provided,
+      zIndex: 3
+    })
+  }
 
   return (
     <div className="SelectWrapper">
@@ -457,6 +463,7 @@ const MapContainer = props => {
       </p>
       <Select
         onChange={onVariableChange}
+        styles={menuStyle}
         placeholder="Enter a variable"
         searchable={true}
         autoFocus
@@ -471,6 +478,7 @@ const MapContainer = props => {
       </p>
       <Select
         onChange={setValue}
+        styles={menuStyle}
         disabled={!!selectedVariable}
         placeholder={selectedVariable ? `Enter a value for ${selectedVariable.label}` : ''}
         searchable={true}
