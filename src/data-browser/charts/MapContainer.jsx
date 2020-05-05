@@ -337,6 +337,7 @@ const MapContainer = props => {
         zoom: 3.5,
         center: [-96, 38]
       })
+      map.addControl(new mapbox.NavigationControl(), 'top-left')
     } catch (e){
       setMap(false)
       return
