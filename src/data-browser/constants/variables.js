@@ -143,12 +143,12 @@ export default {
   actions_taken,
   loan_types,
   loan_purposes,
-  lien_statuses,
-  construction_methods,
-  total_units,
   ethnicities,
   races,
   sexes,
+  lien_statuses,
+  construction_methods,
+  total_units,
   loan_products,
   dwelling_categories
 }
