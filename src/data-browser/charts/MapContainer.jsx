@@ -34,13 +34,57 @@ const colors = {
 }
 
 const biases = {
-  actionTaken: {},
-  sex: {},
-  lienStatus: {},
-  constructionMethod: {},
-  totalUnits: {},
-  loanProduct: {},
-  dwellingCategory: {},
+  actionTaken: {
+    1: lowBias,
+    2: highBias,
+    3: baseBias,
+    4: baseBias,
+    5: highBias,
+    6: baseBias,
+    7: xBias,
+    8: xBias
+  },
+  sex: {
+    'Male': baseBias,
+    'Female': baseBias,
+    'Joint': lowBias,
+    'Sex Not Available': baseBias
+  },
+  lienStatus: {
+    1: lowBias,
+    2: baseBias
+  },
+  constructionMethod: {
+    1: lowBias,
+    2: baseBias
+  },
+  totalUnits: {
+  '1': lowBias,
+  '2': highBias,
+  '3': xBias,
+  '4': xBias,
+  '5-24': xBias,
+  '25-49': xBias,
+  '50-99': xBias,
+  '100-149': xBias,
+  '>149': xBias
+  },
+  loanProduct: {
+    'Conventional:First Lien': lowBias,
+    'FHA:First Lien': baseBias,
+    'VA:First Lien': baseBias,
+    'FSA/RHS:First Lien': mhBias,
+    'Conventional:Subordinate Lien': baseBias,
+    'FHA:Subordinate Lien': xBias,
+    'VA:Subordinate Lien': xBias,
+    'FSA/RHS:Subordinate Lien': xBias
+  },
+  dwellingCategory: {
+    'Single Family (1-4 Units):Site-Built': lowBias,
+    'Multifamily:Site-Built': xBias,
+    'Single Family (1-4 Units):Manufactured': baseBias,
+    'Multifamily:Manufactured': xBias
+  },
   loanType: {
     1: lowBias,
     2: baseBias,
