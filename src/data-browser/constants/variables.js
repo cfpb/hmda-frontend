@@ -103,8 +103,8 @@ const sexes = buildEncoded('Sex', 'derived_sex', sexList)
 const races = buildEncoded('Race', 'derived_race', raceList)
 const ethnicities = buildEncoded('Ethnicity', 'derived_ethnicity', ethnicityList)
 const total_units = buildEncoded('Total Units', 'total_units', totalUnitList)
-const dwelling_categories = buildEncoded('Dwelling Categories', 'derived_dwelling_category', dwellingCategoryList)
-const loan_products = buildEncoded('Loan Products', 'derived_loan_product_type', loanProductList)
+const dwelling_categories = buildEncoded('Dwelling Category', 'derived_dwelling_category', dwellingCategoryList)
+const loan_products = buildEncoded('Loan Product', 'derived_loan_product_type', loanProductList)
 
 function makeObj(label, definition) {
   return {
@@ -143,12 +143,12 @@ export default {
   actions_taken,
   loan_types,
   loan_purposes,
-  lien_statuses,
-  construction_methods,
-  total_units,
   ethnicities,
   races,
   sexes,
+  lien_statuses,
+  construction_methods,
+  total_units,
   loan_products,
   dwelling_categories
 }

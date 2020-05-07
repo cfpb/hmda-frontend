@@ -34,6 +34,57 @@ const colors = {
 }
 
 const biases = {
+  actionTaken: {
+    1: lowBias,
+    2: highBias,
+    3: baseBias,
+    4: baseBias,
+    5: highBias,
+    6: baseBias,
+    7: xBias,
+    8: xBias
+  },
+  sex: {
+    'Male': baseBias,
+    'Female': baseBias,
+    'Joint': lowBias,
+    'Sex Not Available': baseBias
+  },
+  lienStatus: {
+    1: lowBias,
+    2: baseBias
+  },
+  constructionMethod: {
+    1: lowBias,
+    2: baseBias
+  },
+  totalUnits: {
+  '1': lowBias,
+  '2': highBias,
+  '3': xBias,
+  '4': xBias,
+  '5-24': xBias,
+  '25-49': xBias,
+  '50-99': xBias,
+  '100-149': xBias,
+  '>149': xBias
+  },
+  loanProduct: {
+    'Conventional:First Lien': lowBias,
+    'FHA:First Lien': baseBias,
+    'VA:First Lien': baseBias,
+    'FSA/RHS:First Lien': mhBias,
+    'Conventional:Subordinate Lien': baseBias,
+    'FHA:Subordinate Lien': xBias,
+    'VA:Subordinate Lien': xBias,
+    'FSA/RHS:Subordinate Lien': xBias
+  },
+  dwellingCategory: {
+    'Single Family (1-4 Units):Site-Built': lowBias,
+    'Multifamily:Site-Built': xBias,
+    'Single Family (1-4 Units):Manufactured': baseBias,
+    'Multifamily:Manufactured': xBias
+  },
   loanType: {
     1: lowBias,
     2: baseBias,
@@ -77,7 +128,9 @@ const biases = {
     '>74': mhBias
   }
 }
+
 let geography = 'county'
+
 //legend for incidence per 1000
 const makeLegendBody = bias => colors[bias].map((color, i) => {
   const len = colors[bias].length
@@ -96,18 +149,32 @@ const makeLegendBody = bias => colors[bias].map((color, i) => {
   )
 })
 const variables = [
+  {value: 'actionTaken', label: 'Action Taken'},
   {value: 'loanType', label: 'Loan Type'},
   {value: 'loanPurpose', label: 'Loan Purpose'},
-  {value: 'race', label: 'Race'},
   {value: 'ethnicity', label: 'Ethnicity'},
-  {value: 'age', label: 'Age'}
+  {value: 'race', label: 'Race'},
+  {value: 'sex', label: 'Sex'},
+  {value: 'age', label: 'Age'},
+  {value: 'lienStatus', label: 'Lien Status'},
+  {value: 'constructionMethod', label: 'Construction Method'},
+  {value: 'totalUnits', label: 'Total Units'},
+  {value: 'loanProduct', label: 'Loan Product'},
+  {value: 'dwellingCategory', label: 'Dwelling Category'}
 ]
 
 const valsForVar = {
+  actionTaken: optionsFromVariables('actions_taken', 1),
   loanType: optionsFromVariables('loan_types', 1),
   loanPurpose: optionsFromVariables('loan_purposes', 1),
   ethnicity: optionsFromVariables('ethnicities', 1),
   race: optionsFromVariables('races', 1),
+  sex: optionsFromVariables('sexes', 1),
+  lienStatus: optionsFromVariables('lien_statuses', 1),
+  constructionMethod: optionsFromVariables('construction_methods', 1),
+  totalUnits: optionsFromVariables('total_units', 1),
+  loanProduct: optionsFromVariables('loan_products', 1),
+  dwellingCategory: optionsFromVariables('dwelling_categories', 1),
   age: makeOptions([
     ['N/A', '8888'],
     '<25',
@@ -157,7 +224,7 @@ function getValue(variable, val){
 
 function generateColor(data, variable, value, total) {
   const count = data[variable][value]
-  const bias = biases[variable][value]
+  const bias = biases[variable][value] || baseBias
   const currColors = colors[bias]
   const len = currColors.length
   let index = Math.min(len-1, Math.floor(count/total*len*bias))
@@ -216,7 +283,7 @@ function makeLegend(variable, value){
     <div className="legend">
       <h4>Originations per 1000 people in each {geography}</h4>
       <h4>{variable.label}: {value.label}</h4>
-      {makeLegendBody(biases[variable.value][val])}
+      {makeLegendBody(biases[variable.value][val]|| baseBias)}
     </div>
   )
 }
