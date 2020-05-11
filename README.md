@@ -107,7 +107,8 @@ You will see the build errors and lint warnings in the console.
 To see the application running in a container you can run:
 
 ```
-docker run -p 80:80 hmda/hmda-frontend
+docker build -t hmda/hmda-frontend .
+docker run -p 8080:8080 hmda/hmda-frontend
 ```
 
 To build using docker-compose:
