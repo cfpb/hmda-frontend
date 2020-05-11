@@ -65,7 +65,7 @@ The [HMDA Platform Tools](https://ffiec.cfpb.gov/tools/) assist filers in the pr
 </a>
 
 ### HMDA Documentation
-The [HMDA Documentation](https://ffiec.cfpb.gov/documentation/) site provides product FAQs, detailed Filing instructions, data publication schema and usage guides, as well as direction for using the HMDA Tools. 
+The [HMDA Documentation](https://ffiec.cfpb.gov/documentation/) site provides product FAQs, detailed Filing instructions, data publication schema and usage guides, as well as direction for using the HMDA Tools. Documentation content is hosted as easily editable Markdown files, loaded on-demand with the Fetch API, and rendered dynamically using the markdown-to-jsx library. This allows updates to be pushed to Production without a project redeployment. 
 
 <a href='./readme-files/hmda-documentation.png' alt='HMDA Documentation'>
   <p align='center'>
