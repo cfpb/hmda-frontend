@@ -130,4 +130,4 @@ yarn run cypress run
 ```
 [Cypress](https://www.cypress.io/) is used to perform end-to-end testing of the filing application, tools, data publication products, and data browser.  It mimicks a user's interaction with the site and allows for rapid, automated system validation of project deployments. 
 
-![Cypress automated filing test](./readme-files/filing-2019-cypress.gif)
+![Cypress automated filing test](./readme-files/filing-2020-q1-cypress.gif)
