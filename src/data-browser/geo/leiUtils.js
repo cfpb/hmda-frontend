@@ -11,7 +11,7 @@ export function filterLeis() {
     const validLeis = keepValidLeis(leis, this.state.leis)
     if (!isEqual(this.state.leis, validLeis))
       this.onInstitutionChange(validLeis.map(v => ({ value: v })))
-  }
+  } else this.onInstitutionChange([])
 }
 
 export function fetchLeis() {

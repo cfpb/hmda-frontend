@@ -310,9 +310,6 @@ class Geography extends Component {
           category={category}
           onCategoryChange={this.onCategoryChange}
           items={items}
-          isLargeFile={isLargeFile}
-          enabled={enabled}
-          downloadCallback={this.requestItemCSV}
           onChange={this.onItemChange}
         />
         <InstitutionSelect

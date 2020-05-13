@@ -97,26 +97,40 @@ export function runFetch(url) {
 }
 
 export function makeCSVName(obj, includeVariables=true) {
+  const year = obj.year || 2018
+  const categoryDelim = '_'
+  const itemDelim = '-'
+
   if(!obj) return ''
-  let name = ''
-  if(obj.states && obj.states.length) name += obj.states.join(',') + '-'
-  if(obj.msamds && obj.msamds.length) name += obj.msamds.join(',') + '-'
+  let name = `year${categoryDelim}${year}${categoryDelim}`
 
-  if(isNationwide(obj.category)) {
-    if (obj.leis && obj.leis.length) name = 'leis-' + obj.leis.join(',') + '-'
-    else name = 'nationwide-'
+  // Geography
+  if(isNationwide(obj.category)) name += `nationwide${categoryDelim}`
+  else if(obj.category && obj.items && obj.items.length) {
+     name += obj.category + categoryDelim + obj.items.join(itemDelim) + categoryDelim
   }
+  
+  // Institutions
+  if (obj.leis && obj.leis.length) name += 'leis' + categoryDelim + obj.leis.join(itemDelim) + categoryDelim
 
+  // Filters - Clean up prohibited filename characters and URI encoded options
   if(obj.variables && includeVariables){
     Object.keys(obj.variables).forEach(key => {
-      name += key + '-'
+      if(!Object.keys(obj.variables[key]).length) return
+      name +=
+        key +
+        itemDelim +
+        Object.keys(obj.variables[key])
+          .map((selected) => decodeURIComponent(selected).replace(/:|\//g, ' '))
+          .join(itemDelim) +
+        categoryDelim
     })
   }
 
   name = name.slice(0, -1)
-
+  if(name.length > 251) name = name.slice(0, 251)
+  
   name += '.csv'
-
   return name
 }
 
