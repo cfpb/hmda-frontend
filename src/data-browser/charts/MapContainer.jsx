@@ -19,6 +19,8 @@ mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlv
   income
 */
 
+const LINE_WIDTH = 1.5
+
 const baseBias = 250/6
 const lowBias = baseBias/3
 const mhBias = baseBias*2
@@ -420,6 +422,11 @@ const MapContainer = props => {
         url: 'mapbox://cfpb.00l6sz7f'
       })
 
+      map.addSource('states', {
+        type: 'vector',
+        url: 'mapbox://cfpb.57ndfhgx'
+      })
+
       map.addLayer({
         'id': 'counties',
         'type': 'fill',
@@ -446,11 +453,23 @@ const MapContainer = props => {
             property: 'GEOID',
             type: 'categorical',
             default: 0,
-            stops: fips ? [[fips, 2]] : [[0, 0]]
+            stops: fips ? [[fips, LINE_WIDTH]] : [[0, 0]]
           }
         }
-      }, 'waterway-label')
+      })
+
+      map.addLayer({
+        'id': 'state-lines',
+        'type': 'line',
+        'source': 'states',
+        'source-layer': '2015-state-44cy8q',
+        'paint': {
+          'line-width': 0.5,
+          'line-color': '#777'
+        }
+      })
     })
+
 
     return () => map.remove()
   /*eslint-disable-next-line*/
@@ -462,8 +481,8 @@ const MapContainer = props => {
 
     function setOutline(current, isClick=0) {
       const stops = []
-      if(current) stops.push([current, 2])
-      if(!isClick && fips && fips !== current) stops.push([fips, 2])
+      if(current) stops.push([current, LINE_WIDTH])
+      if(!isClick && fips && fips !== current) stops.push([fips, LINE_WIDTH])
       if(!stops.length) return
       map.setPaintProperty('county-lines', 'line-width', {
          property: 'GEOID',
