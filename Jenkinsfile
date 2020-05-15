@@ -27,8 +27,8 @@ pipeline {
             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'hmda-platform-jenkins-service',
               usernameVariable: 'DTR_USER', passwordVariable: 'DTR_PASSWORD']]) {
               withCredentials([string(credentialsId: 'internal-docker-registry', variable: 'DOCKER_REGISTRY_URL')]){
-                dockerBuild.dockerBuild('hmda-frontend', '')
-                scanImage('hmda-frontend', env.DOCKER_TAG)
+                dockerBuild.dockerBuild('hmda-frontend', '.')
+                scanImage('hmda/hmda-frontend', env.DOCKER_TAG)
               }
             }
           }
@@ -39,7 +39,7 @@ pipeline {
      stage('Deploy') {
       agent {
         docker {
-          image 'hmda/helm'
+          image 'hmda/helm:2.16.6'
           reuseNode true
           args '--entrypoint=\'\''
         }
@@ -48,7 +48,7 @@ pipeline {
         script {
           withCredentials([file(credentialsId: 'hmda-ops-kubeconfig', variable: 'KUBECONFIG')]) {
             if (env.DOCKER_PUSH == 'true') {
-              helm.deploy('hmda-frontend')
+              helm.deploy('hmda-frontend', 'values.yaml')
             }
           }
         }
