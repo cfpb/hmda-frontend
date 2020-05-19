@@ -1,30 +1,5 @@
-# FROM node:12.14.1-alpine3.11 as build-stage
-
-# FROM node:lts-stretch-slim
-
-# FROM centos:7
-
-# RUN apt-get update && \
-#    apt-get install --no-install-recommends -y \
-#        libgtk2.0-0 \
-#        libgtk-3-0 \
-#        libnotify-dev \
-#        libgconf-2-4 \
-#        libnss3 \
-#        libxss1 \
-#        libasound2 \
-#        libxtst6 \
-#        xauth \
-#        xvfb \
-#        wget \
-#        unzip && \
-
 FROM centos:7
 
-# To find which package provides missing dependency, for example libXss.so
-#   yum whatprovides libXss*
-# and then install displayed answer like
-#   yum install -y libXScrnSaver*
 
 # Install dependencies
 RUN yum install -y xorg-x11-server-Xvfb
