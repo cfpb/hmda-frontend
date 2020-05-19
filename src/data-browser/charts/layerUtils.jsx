@@ -1,4 +1,5 @@
 import React from 'react'
+import shortcode2FIPS from '../constants/shortcodeToFips.js'
 import COUNTS from '../constants/countyCounts.js'
 
 const LINE_WIDTH = 1.5
@@ -146,15 +147,21 @@ function makeLegend(geography, variable, value){
   )
 }
 
-function makeStops(data, variable, value){
+function makeStops(data, geography, variable, value){
   const stops = [['0', 'rgba(0,0,0,0.05)']]
   if(!data || !variable || !value) return stops
   let val = value.value
   if(val.match('%')) val = value.label
-  Object.keys(data).forEach(county => {
-    const currData = data[county]
-    const total = COUNTS[county] || 20000
-    stops.push([county, generateColor(currData, variable.value, val, total)])
+  Object.keys(data).forEach(geo => {
+    const currData = data[geo]
+    let fips
+    if(geography.value === 'county'){
+      fips = geo
+    }else{
+      fips = shortcode2FIPS[geo]
+    }
+    const total = COUNTS[fips] || 20000
+    stops.push([fips, generateColor(currData, variable.value, val, total)])
   })
   return stops
 }
@@ -170,11 +177,12 @@ function generateColor(data, variable, value, total) {
 }
 
 function addLayers(map, geography, feature, stops) {
-
-  map.addLayer({
-      'id': 'counties',
+  removeLayers(map)
+  if(geography.value === 'county'){
+    map.addLayer({
+      'id': 'county',
       'type': 'fill',
-      'source': 'counties',
+      'source': 'county',
       'source-layer': '2015-county-bc0xsx',
       'paint': {
         'fill-outline-color': 'rgba(0,0,0,0.1)',
@@ -185,12 +193,12 @@ function addLayers(map, geography, feature, stops) {
           stops
         }
       }
-    }, 'waterway-label')
+    })
 
     map.addLayer({
       'id': 'county-lines',
       'type': 'line',
-      'source': 'counties',
+      'source': 'county',
       'source-layer': '2015-county-bc0xsx',
       'paint': {
         'line-width': {
@@ -201,17 +209,42 @@ function addLayers(map, geography, feature, stops) {
         }
       }
     })
-
+  }else {
     map.addLayer({
-      'id': 'state-lines',
-      'type': 'line',
-      'source': 'states',
+      'id': 'state',
+      'type': 'fill',
+      'source': 'state',
       'source-layer': '2015-state-44cy8q',
       'paint': {
-        'line-width': 0.5,
-        'line-color': '#777'
+        'fill-outline-color': 'rgba(0,0,0,0.1)',
+        'fill-color': {
+          property: 'GEOID',
+          type: 'categorical',
+          default: 'rgba(0,0,0,0.05)',
+          stops
+        }
       }
     })
+  }
+
+  //Always add state lines
+  map.addLayer({
+    'id': 'state-lines',
+    'type': 'line',
+    'source': 'state',
+    'source-layer': '2015-state-44cy8q',
+    'paint': {
+      'line-width': 0.5,
+      'line-color': '#777'
+    }
+  })
+
+}
+
+function removeLayers(map){
+  map.removeLayer('county')
+  map.removeLayer('county-lines')
+  map.removeLayer('state')
 }
 
 export {

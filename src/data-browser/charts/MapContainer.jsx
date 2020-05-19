@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef }  from 'react'
 import Select from 'react-select'
 import LoadingButton from '../geo/LoadingButton.jsx'
 import Alert from '../../common/Alert.jsx'
-import COUNTIES from '../constants/counties.js'
-import { geographies, variables, valsForVar, getValuesForVariable, getSelectData } from './selectUtils.jsx'
+import { geographies, variables, valsForVar, getValuesForVariable, getSelectData, removeOtherLayers } from './selectUtils.jsx'
 import { LINE_WIDTH, makeLegend, makeStops, addLayers } from './layerUtils.jsx'
+import { getFeatureName, popup, buildPopupHTML } from './popupUtils.jsx'
 import { runFetch, getCSV } from '../api.js'
 import mapbox from 'mapbox-gl'
 
@@ -17,11 +17,6 @@ mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlv
   loanAmount
   income
 */
-
-function buildPopupHTML(data, features){
-  const feature = features[0].properties['GEOID']
-  return '<h4>' + feature + ' - ' + COUNTIES[feature] + '</h4>'
-}
 
 function getDefaultsFromSearch(props) {
   const { search } = props.location
@@ -48,12 +43,6 @@ function scrollToTable(node){
   node.scrollIntoView({behavior: 'smooth', block: 'end'})
 }
 
-const popup = new mapbox.Popup({
-  closeButton: false,
-  closeOnClick: false,
-  maxWidth: '750px'
-})
-
 const MapContainer = props => {
   const mapContainer = useRef(null)
   const tableRef = useRef(null)
@@ -75,7 +64,10 @@ const MapContainer = props => {
     : null
 
   const fetchCSV = () => {
-    const csv = `/v2/data-browser-api/view/csv?years=2018&counties=${feature}&${selectedVariable.value}=${selectedValue.value}`
+    const geoType = selectedGeography === 'county'
+      ? 'counties'
+      : 'states'
+    const csv = `/v2/data-browser-api/view/csv?years=2018&${geoType}=${feature}&${selectedVariable.value}=${selectedValue.value}`
     getCSV(csv, feature + '.csv')
   }
 
@@ -108,7 +100,7 @@ const MapContainer = props => {
 
     return (
       <div className="TableWrapper" ref={tableRef}>
-        <h3>{COUNTIES[feature]}</h3>
+        <h3>Originations by {selectedVariable.label} in {getFeatureName(selectedGeography.value, feature)}</h3>
         <table>
           <thead>
             <tr>
@@ -131,16 +123,19 @@ const MapContainer = props => {
 
   function styleFill() {
    if(map && map.loaded() && data && selectedVariable){
+     const geo = selectedGeography.value
      if(selectedValue) {
-       const stops = makeStops(data, selectedVariable, selectedValue)
-       map.setPaintProperty('counties', 'fill-color', {
+       const stops = makeStops(data, selectedGeography, selectedVariable, selectedValue)
+       map.setPaintProperty(geo, 'fill-color', {
          property: 'GEOID',
          type: 'categorical',
          default: 'rgba(0,0,0,0.05)',
          stops
        })
+       removeOtherLayers(map, geo)
      } else {
-       map.setPaintProperty('counties', 'fill-color', 'rgba(0,0,0,0.05)')
+       map.setPaintProperty(geo, 'fill-color', 'rgba(0,0,0,0.05)')
+       removeOtherLayers(map, geo)
      }
    }
   }
@@ -166,7 +161,6 @@ const MapContainer = props => {
 
 
   useEffect(() => {
-    if(!data) return
     let map
 
     try {
@@ -182,27 +176,34 @@ const MapContainer = props => {
       return
     }
 
-    const stops = makeStops(data, selectedVariable, selectedValue)
-
     setMap(map)
 
+    map.on('error', () =>{})
+
     map.on('load', () => {
-      map.addSource('counties', {
+      map.addSource('county', {
         type: 'vector',
         url: 'mapbox://cfpb.00l6sz7f'
       })
 
-      map.addSource('states', {
+      map.addSource('state', {
         type: 'vector',
         url: 'mapbox://cfpb.57ndfhgx'
       })
-
-      addLayers(map, selectedGeography.value, feature, stops)
     })
 
     return () => map.remove()
   /*eslint-disable-next-line*/
-  }, [data])
+  }, [])
+
+  useEffect(() => {
+    if(map && data) {
+      if(map.loaded()) addLayers(map, selectedGeography, feature, makeStops(data, selectedGeography, selectedVariable, selectedValue))
+      else map.on('load', () => {
+        addLayers(map, selectedGeography, feature, makeStops(data, selectedGeography, selectedVariable, selectedValue))
+      })
+    }
+  }, [data, feature, map, selectedGeography, selectedValue, selectedVariable])
 
 
   useEffect(() => {
@@ -213,7 +214,7 @@ const MapContainer = props => {
       if(current) stops.push([current, LINE_WIDTH])
       if(!isClick && feature && feature !== current) stops.push([feature, LINE_WIDTH])
       if(!stops.length) return
-      map.setPaintProperty('county-lines', 'line-width', {
+      map.setPaintProperty(`${selectedGeography.value}-lines`, 'line-width', {
          property: 'GEOID',
          type: 'categorical',
          default: 0,
@@ -224,12 +225,12 @@ const MapContainer = props => {
     function highlight(e) {
       if(!map.loaded()) return
 
-      const features = map.queryRenderedFeatures(e.point, {layers: ['counties']})
+      const features = map.queryRenderedFeatures(e.point, {layers: [selectedGeography.value]})
       if(!features.length) return popup.remove()
       map.getCanvas().style.cursor = 'pointer'
 
       popup.setLngLat(map.unproject(e.point))
-        .setHTML(buildPopupHTML(data, features))
+        .setHTML(buildPopupHTML(selectedGeography.value, data, features))
         .addTo(map)
 
       setOutline(features[0].properties.GEOID)
@@ -241,7 +242,7 @@ const MapContainer = props => {
 
     function getTableData(e){
       if(!map.loaded() || !selectedVariable) return
-      const features = map.queryRenderedFeatures(e.point, {layers: ['counties']})
+      const features = map.queryRenderedFeatures(e.point, {layers: [selectedGeography.value]})
       if(!features.length) return
       const feature = features[0].properties['GEOID']
       setFeature(feature)
@@ -250,7 +251,8 @@ const MapContainer = props => {
     }
 
     map.on('mousemove', highlight)
-    map.on('mouseleave', 'counties', clearHighlight)
+    map.on('mouseleave', 'county', clearHighlight)
+    map.on('mouseleave', 'state', clearHighlight)
     map.on('click', getTableData)
 
     return () => {
@@ -258,7 +260,7 @@ const MapContainer = props => {
       map.off('mouseleave', clearHighlight)
       map.off('click', getTableData)
     }
-  }, [map, feature, selectedVariable, data])
+  }, [map, feature, selectedVariable, data, selectedGeography])
 
 
   useEffect(styleFill)
