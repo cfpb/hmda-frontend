@@ -1,6 +1,7 @@
 import React from 'react'
 import shortcode2FIPS from '../constants/shortcodeToFips.js'
-import COUNTS from '../constants/countyCounts.js'
+import COUNTY_COUNTS from '../constants/countyCounts.js'
+import STATE_COUNTS from '../constants/statePop.js'
 
 const LINE_WIDTH = 1.5
 
@@ -150,6 +151,7 @@ function makeLegend(geography, variable, value){
 function makeStops(data, geography, variable, value){
   const stops = [['0', 'rgba(0,0,0,0.05)']]
   if(!data || !variable || !value) return stops
+  const counts = geography.value === 'county' ? COUNTY_COUNTS : STATE_COUNTS
   let val = value.value
   if(val.match('%')) val = value.label
   Object.keys(data).forEach(geo => {
@@ -160,7 +162,8 @@ function makeStops(data, geography, variable, value){
     }else{
       fips = shortcode2FIPS[geo]
     }
-    const total = COUNTS[fips] || 20000
+    const total = counts[fips] || 0
+    console.log(total, fips, geo)
     stops.push([fips, generateColor(currData, variable.value, val, total)])
   })
   return stops
