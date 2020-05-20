@@ -163,7 +163,6 @@ function makeStops(data, geography, variable, value){
       fips = shortcode2FIPS[geo]
     }
     const total = counts[fips] || 0
-    console.log(total, fips, geo)
     stops.push([fips, generateColor(currData, variable.value, val, total)])
   })
   return stops
@@ -248,6 +247,7 @@ function removeLayers(map){
   map.removeLayer('county')
   map.removeLayer('county-lines')
   map.removeLayer('state')
+  map.removeLayer('state-lines')
 }
 
 export {
