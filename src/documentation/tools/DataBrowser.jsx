@@ -4,7 +4,7 @@ import Product from '../Product.jsx'
 
 const links = {
   2017: [
-    <li key="0"><Link to="/documentation/2017/data-browser-filters/">Available Filters</Link></li>,
+    <li key="0">The HMDA Data Browser currently allows users to filter and download HMDA datasets for 2018 and beyond. Historic data from 2007-2017 is <a target="_blank" rel="noopener noreferrer" href="https://www.consumerfinance.gov/data-research/hmda/historic-data/">available for download here</a>.</li>,
   ],
   2018: [
     <li key="1"><Link to="/documentation/2018/data-browser-faq/">Frequently Asked Questions</Link></li>,
