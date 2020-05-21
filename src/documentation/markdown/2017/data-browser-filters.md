@@ -20,7 +20,7 @@ The dataset filtering feature of the HMDA Data Browser now includes 2017 data. P
 ### [County](#County) 
 - **Description:** Select this option to download by county. 
 - **Values** 
-  - 5 Digit FIPS Code or County Name 
+  - 3 Digit FIPS Code or County Name 
 
 ### Pre-Selected Filters 
 
