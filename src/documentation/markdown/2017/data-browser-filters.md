@@ -1,5 +1,5 @@
 ## List of filters used in the HMDA Data Browser (2017) 
-The dataset filtering feature of the HMDA Data Browser now includes 2017 data. Please note that the number of data fields differ from 2017 to 2018 and beyond. Additionally, some filters (lien status, property type, ARID) also differ in regards to the accepted values. To review these differences in detail, consult the 2017 and 2018 documentation resources.  
+The dataset filtering feature of the HMDA Data Browser now includes 2017 data. Please note that the number of data fields differ from 2017 to 2018 and beyond. Additionally, some filters (lien status, property type, ARID) differ in regards to the accepted values. To review these differences in detail, consult the 2017 and 2018 documentation resources.  
 
 ### Geography Filters 
 
