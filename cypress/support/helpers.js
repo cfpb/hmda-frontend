@@ -34,8 +34,9 @@ export const openSelector = id => cy.get(`${id} > div > div:first`).click()
 export const waitFor = (time = FILERS_DELAY) => cy.wait(time)
 
 /* Data Browser Helpers */
-export const FILERS_DELAY = 10000
-export const SUMMARY_DELAY = 6000
+export const FILERS_DELAY = 1000
+export const SUMMARY_DELAY = 12000
+export const INSTITUTION_DELAY=5000
 
 export const dbClick2018 = () => cy.get('#root > .DataBrowser > .Geography > .YearSelector > a:nth-child(2)').click()
 export const dbClick2017 = () => cy.get('#root > .DataBrowser > .Geography > .YearSelector > a:nth-child(3)').click()
