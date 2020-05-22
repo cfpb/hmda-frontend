@@ -39,6 +39,7 @@ const ItemSelect = ({
       </p>
       <CategorySelect category={category} onChange={onCategoryChange} />
       <Select
+        id='ItemSelector'
         components={{ MenuList }}
         filterOption={createFilter({ ignoreAccents: false })}
         controlShouldRenderValue={false}
