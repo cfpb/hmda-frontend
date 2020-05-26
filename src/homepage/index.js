@@ -6,8 +6,12 @@ import ConfiguredAlert from '../common/ConfiguredAlert'
 
 import './Home.css'
 
+export function isProd() {
+  return window.location.hostname.match('ffiec')
+}
+
 const Home = ({ config }) => {
-  const beta = isBeta()
+  const isProdBeta = isProd() && isBeta()
   const { announcement, defaultPeriod } = config
 
   return (
@@ -122,7 +126,7 @@ const Home = ({ config }) => {
                 </a>.
               </li>
             </ul>
-            {beta ? null :
+            {isProdBeta ? null :
             <header>
               <h3>
                 <Link to="/documentation/">Documentation</Link>
@@ -135,7 +139,7 @@ const Home = ({ config }) => {
           </div>
 
           <div className="card">
-            { beta ? null :
+            { isProdBeta ? null :
             <header>
               <h3>
                 <Link to="/data-browser/">HMDA Data Browser</Link>
@@ -145,7 +149,7 @@ const Home = ({ config }) => {
               </p>
             </header>
             }
-           {beta ? null :
+           {isProdBeta ? null :
             <header>
               <h3>
                 <Link to="/tools/">Tools</Link>
@@ -172,7 +176,7 @@ const Home = ({ config }) => {
               </ul>
             </header>
             }
-            {beta ? null :
+            {isProdBeta ? null :
             <header>
               <h3>
                 <Link to="/data-publication/">Data Publication</Link>
@@ -213,7 +217,7 @@ const Home = ({ config }) => {
               </ul>
             </header>
            }
-           {beta ? null :
+           {isProdBeta ? null :
             <header>
               <h3>
                 <a href="https://www.consumerfinance.gov/data-research/hmda/">Research and Reports</a>
