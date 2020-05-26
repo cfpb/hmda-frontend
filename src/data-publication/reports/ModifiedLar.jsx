@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Heading from '../../common/Heading.jsx'
 import SearchList from './SearchList.jsx'
 import YearSelector from '../../common/YearSelector.jsx'
-import years from '../constants/years-mlar.js'
+import { years2019 } from '../constants/years.js'
 
 import './ModifiedLar.css'
 
@@ -30,7 +30,7 @@ const ModifiedLar = props => {
             </Link>
           </p>
         </Heading>
-        <YearSelector year={year} url={url} years={years}/>
+        <YearSelector year={year} url={url} years={years2019}/>
         <SearchList year={year} isModLar />
       </div>
     </React.Fragment>

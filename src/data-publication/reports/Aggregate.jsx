@@ -9,11 +9,16 @@ import Report from './Report.jsx'
 import STATES from '../constants/states.js'
 import stateToMsas from '../constants/stateToMsas.js'
 import { AGGREGATE_REPORTS } from '../constants/aggregate-reports.js'
-import years from '../constants/years.js'
+import { years2019 } from '../constants/years.js'
 
 import './Aggregate.css'
 
 const detailsCache = {
+  2019: {
+    states: {},
+    msaMds: {},
+    reports: {}
+  },
   2018: {
     states: {},
     msaMds: {},
@@ -191,7 +196,7 @@ class Aggregate extends React.Component {
               </React.Fragment>
               )
             ) : (
-            <YearSelector year={year} url={url} years={years}/>
+            <YearSelector year={year} url={url} years={years2019}/>
           )}
         </div>
 

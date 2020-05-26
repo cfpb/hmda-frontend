@@ -9,9 +9,14 @@ import Reports from './Reports.jsx'
 import Report from './Report.jsx'
 import fetchMsas from './fetchMsas.js'
 import { DISCLOSURE_REPORTS } from '../constants/disclosure-reports.js'
-import years from '../constants/years.js'
+import { years2019 } from '../constants/years.js'
 
 const detailsCache = {
+  2019: {
+    institutions: {},
+    msaMds: {},
+    reports: {}
+  },
   2018: {
     institutions: {},
     msaMds: {},
@@ -242,7 +247,7 @@ class Disclosure extends React.Component {
               <SearchList makeListItem={this.makeListItem} year={params.year} />
             )
           ) : (
-            <YearSelector year={year} url={url} years={years}/>
+            <YearSelector year={year} url={url} years={years2019}/>
           )}
         </div>
 
