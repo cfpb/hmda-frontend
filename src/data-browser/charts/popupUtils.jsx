@@ -13,8 +13,7 @@ const popup = new mapbox.Popup({
   maxWidth: '750px'
 })
 
-function buildPopupHTML(geography, data, features){
-  const feature = features[0].properties['GEOID']
+function buildPopupHTML(geography, data, feature){
   return '<h4>' + feature + ' - ' + getFeatureName(geography, feature) + '</h4>'
 }
 

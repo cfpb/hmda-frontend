@@ -195,7 +195,7 @@ function addLayers(map, geography, feature, stops) {
           stops
         }
       }
-    })
+    }, 'state-label')
 
     map.addLayer({
       'id': 'county-lines',
@@ -226,7 +226,7 @@ function addLayers(map, geography, feature, stops) {
           stops
         }
       }
-    })
+    }, 'state-label')
   }
 
   //Always add state lines

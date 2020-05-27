@@ -166,7 +166,7 @@ const MapContainer = props => {
     try {
       map = new mapbox.Map({
         container: mapContainer.current,
-        style: 'mapbox://styles/mapbox/light-v10',
+        style: 'mapbox://styles/mapbox/light-v10?optimize=true',
         zoom: 3.5,
         center: [-96, 38]
       })
@@ -227,13 +227,14 @@ const MapContainer = props => {
 
       const features = map.queryRenderedFeatures(e.point, {layers: [selectedGeography.value]})
       if(!features.length) return popup.remove()
+      const feat = features[0].properties['GEOID']
       map.getCanvas().style.cursor = 'pointer'
 
       popup.setLngLat(map.unproject(e.point))
-        .setHTML(buildPopupHTML(selectedGeography.value, data, features))
+        .setHTML(buildPopupHTML(selectedGeography.value, data, feat))
         .addTo(map)
 
-      setOutline(features[0].properties.GEOID)
+      setOutline(feat)
     }
 
     function clearHighlight() {
@@ -303,7 +304,7 @@ const MapContainer = props => {
         value={selectedVariable}
         options={variables}
       />
-      <h3>Step 2: Select a value{selectedVariable ? ` for ${selectedVariable.label}`: ''}</h3>
+      <h3>Step 3: Select a value{selectedVariable ? ` for ${selectedVariable.label}`: ''}</h3>
       <p>
         Then choose a value of your chosen variable to see how it varies nationally in the map below.
       </p>
@@ -318,7 +319,7 @@ const MapContainer = props => {
         value={selectedValue}
         options={getValuesForVariable(selectedVariable)}
       />
-      <h3>{selectedVariable && selectedValue ? `${selectedVariable.label}: "${selectedValue.label}" for US Counties`: 'US Counties'}</h3>
+      <h3>{selectedGeography && selectedVariable && selectedValue ? `${selectedVariable.label}: "${selectedValue.label}" for US ${selectedGeography.value === 'state' ? 'States' : 'Counties'}`: 'Select a geography, variable, and value above'}</h3>
       <div className="mapContainer" ref={mapContainer}>
         {map === false
           ? <Alert type="error">
