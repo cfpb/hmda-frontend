@@ -6,6 +6,7 @@ import { geographies, variables, valsForVar, getValuesForVariable, getSelectData
 import { LINE_WIDTH, makeLegend, makeStops, addLayers } from './layerUtils.jsx'
 import { getFeatureName, popup, buildPopupHTML } from './popupUtils.jsx'
 import { runFetch, getCSV } from '../api.js'
+import fips2Shortcode from '../constants/fipsToShortcode.js'
 import mapbox from 'mapbox-gl'
 
 import './mapbox.css'
@@ -71,6 +72,12 @@ const MapContainer = props => {
     getCSV(csv, feature + '.csv')
   }
 
+  const onGeographyChange = selected => {
+    setFeature(null)
+    popup.remove()
+    setGeography(selected)
+  }
+
   const onVariableChange = selected => {
     setValue(null)
     setVariable(selected)
@@ -88,7 +95,9 @@ const MapContainer = props => {
   }
 
   const buildTable = () => {
-    const currData = data[feature]
+    const currData = selectedGeography.value === 'county'
+      ? data[feature]
+      : data[fips2Shortcode[feature]]
     if(!currData) return null
     const currVarData = currData[selectedVariable.value]
     const ths = valsForVar[selectedVariable.value]
@@ -198,12 +207,13 @@ const MapContainer = props => {
 
   useEffect(() => {
     if(map && data) {
-      if(map.loaded()) addLayers(map, selectedGeography, feature, makeStops(data, selectedGeography, selectedVariable, selectedValue))
+      console.log('adding'  )
+      if(map.loaded()) addLayers(map, selectedGeography, makeStops(data, selectedGeography, selectedVariable, selectedValue))
       else map.on('load', () => {
-        addLayers(map, selectedGeography, feature, makeStops(data, selectedGeography, selectedVariable, selectedValue))
+        addLayers(map, selectedGeography, makeStops(data, selectedGeography, selectedVariable, selectedValue))
       })
     }
-  }, [data, feature, map, selectedGeography, selectedValue, selectedVariable])
+  }, [data, map, selectedGeography, selectedValue, selectedVariable])
 
 
   useEffect(() => {
@@ -242,7 +252,7 @@ const MapContainer = props => {
     }
 
     function getTableData(e){
-      if(!map.loaded() || !selectedVariable) return
+      if(!map.loaded() || !selectedGeography || !selectedVariable) return
       const features = map.queryRenderedFeatures(e.point, {layers: [selectedGeography.value]})
       if(!features.length) return
       const feature = features[0].properties['GEOID']
@@ -280,7 +290,7 @@ const MapContainer = props => {
         Start by selecting a geography using dropdown menu below
       </p>
       <Select
-        onChange={setGeography}
+        onChange={onGeographyChange}
         styles={menuStyle}
         placeholder="Enter a geography"
         searchable={true}

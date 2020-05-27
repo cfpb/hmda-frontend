@@ -178,7 +178,7 @@ function generateColor(data, variable, value, total) {
   return currColors[index]
 }
 
-function addLayers(map, geography, feature, stops) {
+function addLayers(map, geography, stops) {
   removeLayers(map)
   if(geography.value === 'county'){
     map.addLayer({
@@ -203,12 +203,8 @@ function addLayers(map, geography, feature, stops) {
       'source': 'county',
       'source-layer': '2015-county-bc0xsx',
       'paint': {
-        'line-width': {
-          property: 'GEOID',
-          type: 'categorical',
-          default: 0,
-          stops: feature ? [[feature, LINE_WIDTH]] : [[0, 0]]
-        }
+        'line-color': '#444',
+        'line-width': 0
       }
     })
   }else {
@@ -218,7 +214,7 @@ function addLayers(map, geography, feature, stops) {
       'source': 'state',
       'source-layer': '2015-state-44cy8q',
       'paint': {
-        'fill-outline-color': 'rgba(0,0,0,0.1)',
+        'fill-outline-color': '#777',
         'fill-color': {
           property: 'GEOID',
           type: 'categorical',
