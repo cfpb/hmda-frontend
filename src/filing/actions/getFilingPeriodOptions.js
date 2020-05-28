@@ -5,11 +5,12 @@ import fetchAllInstitutions from './fetchAllInstitutions'
 
 export default function getFilingPeriodOptions(institutions, filingPeriods) {
   // Only need to check years with quarterly options
-  const yearFilterCandidates = new Set(
-    filingPeriods
-      .filter((po) => po.indexOf("-Q") > -1)
-      .map((po) => splitYearQuarter(po)[0])
-  )
+  const yearFilterCandidates = new Set()
+
+  filingPeriods
+    .filter((po) => po.indexOf("-Q") > -1)
+    .map((po) => splitYearQuarter(po)[0])
+    .forEach(po => yearFilterCandidates.add(po))
 
   return (dispatch) => {
     const optionDisplayMap = {}
