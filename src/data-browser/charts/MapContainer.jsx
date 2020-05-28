@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef }  from 'react'
 import Select from 'react-select'
 import LoadingButton from '../geo/LoadingButton.jsx'
 import Alert from '../../common/Alert.jsx'
-import { geographies, variables, valsForVar, getValuesForVariable, getSelectData, removeOtherLayers } from './selectUtils.jsx'
-import { LINE_WIDTH, makeLegend, makeStops, addLayers } from './layerUtils.jsx'
+import { geographies, variables, valsForVar, getValuesForVariable, getSelectData } from './selectUtils.jsx'
+import { setOutline, makeLegend, makeStops, addLayers } from './layerUtils.jsx'
 import { getFeatureName, popup, buildPopupHTML } from './popupUtils.jsx'
 import { runFetch, getCSV } from '../api.js'
 import fips2Shortcode from '../constants/fipsToShortcode.js'
@@ -73,8 +73,8 @@ const MapContainer = props => {
   }
 
   const onGeographyChange = selected => {
-    setFeature(null)
     popup.remove()
+    setFeature(null)
     setGeography(selected)
   }
 
@@ -130,25 +130,6 @@ const MapContainer = props => {
     )
   }
 
-  function styleFill() {
-   if(map && map.loaded() && data && selectedVariable){
-     const geo = selectedGeography.value
-     if(selectedValue) {
-       const stops = makeStops(data, selectedGeography, selectedVariable, selectedValue)
-       map.setPaintProperty(geo, 'fill-color', {
-         property: 'GEOID',
-         type: 'categorical',
-         default: 'rgba(0,0,0,0.05)',
-         stops
-       })
-       removeOtherLayers(map, geo)
-     } else {
-       map.setPaintProperty(geo, 'fill-color', 'rgba(0,0,0,0.05)')
-       removeOtherLayers(map, geo)
-     }
-   }
-  }
-
 
   useEffect(() => {
     runFetch('/countyData.json').then(jsonData => {
@@ -187,8 +168,6 @@ const MapContainer = props => {
 
     setMap(map)
 
-    map.on('error', () =>{})
-
     map.on('load', () => {
       map.addSource('county', {
         type: 'vector',
@@ -207,30 +186,21 @@ const MapContainer = props => {
 
   useEffect(() => {
     if(map && data) {
-      console.log('adding'  )
-      if(map.loaded()) addLayers(map, selectedGeography, makeStops(data, selectedGeography, selectedVariable, selectedValue))
-      else map.on('load', () => {
+      if(map.loaded()) {
         addLayers(map, selectedGeography, makeStops(data, selectedGeography, selectedVariable, selectedValue))
-      })
+        setOutline(map, selectedGeography, feature)
+      }else{
+        map.on('load', () => {
+          addLayers(map, selectedGeography, makeStops(data, selectedGeography, selectedVariable, selectedValue))
+          setOutline(map, selectedGeography, feature)
+        })
+      }
     }
-  }, [data, map, selectedGeography, selectedValue, selectedVariable])
+  }, [data, feature, map, selectedGeography, selectedValue, selectedVariable])
 
 
   useEffect(() => {
     if(!data || !map) return
-
-    function setOutline(current, isClick=0) {
-      const stops = []
-      if(current) stops.push([current, LINE_WIDTH])
-      if(!isClick && feature && feature !== current) stops.push([feature, LINE_WIDTH])
-      if(!stops.length) return
-      map.setPaintProperty(`${selectedGeography.value}-lines`, 'line-width', {
-         property: 'GEOID',
-         type: 'categorical',
-         default: 0,
-         stops
-       })
-    }
 
     function highlight(e) {
       if(!map.loaded()) return
@@ -244,37 +214,46 @@ const MapContainer = props => {
         .setHTML(buildPopupHTML(selectedGeography.value, data, feat))
         .addTo(map)
 
-      setOutline(feat)
+      setOutline(map, selectedGeography, feature, feat)
     }
 
-    function clearHighlight() {
-      setOutline()
+    function highlightSavedFeature() {
+      setOutline(map, selectedGeography, feature)
     }
 
     function getTableData(e){
       if(!map.loaded() || !selectedGeography || !selectedVariable) return
       const features = map.queryRenderedFeatures(e.point, {layers: [selectedGeography.value]})
       if(!features.length) return
-      const feature = features[0].properties['GEOID']
-      setFeature(feature)
-      setOutline(feature, 1)
+      const feat = features[0].properties['GEOID']
+      setFeature(feat)
+      detachHandlers()
       scrollToTable(tableRef.current)
     }
 
-    map.on('mousemove', highlight)
-    map.on('mouseleave', 'county', clearHighlight)
-    map.on('mouseleave', 'state', clearHighlight)
-    map.on('click', getTableData)
+    function attachHandlers () {
+      if(map.loaded()) highlightSavedFeature()
+      else map.on('load', highlightSavedFeature)
+      map.on('mousemove', highlight)
+      map.on('mouseleave', 'county', highlightSavedFeature)
+      map.on('mouseleave', 'state', highlightSavedFeature)
+      map.on('click', getTableData)
+    }
 
-    return () => {
+    function detachHandlers() {
       map.off('mousemove', highlight)
-      map.off('mouseleave', clearHighlight)
+      map.off('mouseleave', 'county', highlightSavedFeature)
+      map.off('mouseleave', 'state', highlightSavedFeature)
+      map.off('load', highlightSavedFeature)
       map.off('click', getTableData)
     }
-  }, [map, feature, selectedVariable, data, selectedGeography])
 
+    attachHandlers()
 
-  useEffect(styleFill)
+    return detachHandlers
+
+  }, [map, selectedVariable, data, selectedGeography, feature])
+
 
   const menuStyle = {
     menu: provided => ({

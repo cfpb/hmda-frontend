@@ -240,15 +240,29 @@ function addLayers(map, geography, stops) {
 }
 
 function removeLayers(map){
-  map.removeLayer('county')
-  map.removeLayer('county-lines')
-  map.removeLayer('state')
-  map.removeLayer('state-lines')
+  const layers = ['county','county-lines','state','state-lines']
+  layers.forEach(l => {
+    if(map.getLayer(l)) map.removeLayer(l)
+  })
+}
+
+function setOutline(map, selectedGeography, feature, current=null) {
+  const stops = []
+  if(current) stops.push([current, LINE_WIDTH])
+  if(feature && feature !== current) stops.push([feature, LINE_WIDTH])
+  if(!stops.length) stops.push([0, 0])
+  map.setPaintProperty(`${selectedGeography.value}-lines`, 'line-width', {
+     property: 'GEOID',
+     type: 'categorical',
+     default: 0,
+     stops
+   })
 }
 
 export {
   LINE_WIDTH,
   makeLegend,
   makeStops,
-  addLayers
+  addLayers,
+  setOutline
 }
