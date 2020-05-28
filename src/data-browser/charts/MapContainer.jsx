@@ -65,10 +65,10 @@ const MapContainer = props => {
     : null
 
   const fetchCSV = () => {
-    const geoType = selectedGeography === 'county'
-      ? 'counties'
-      : 'states'
-    const csv = `/v2/data-browser-api/view/csv?years=2018&${geoType}=${feature}&${selectedVariable.value}=${selectedValue.value}`
+    const geoString = selectedGeography.value === 'county'
+      ? `counties=${feature}`
+      : `states=${fips2Shortcode[feature]}`
+    const csv = `/v2/data-browser-api/view/csv?years=2018&${geoString}&${selectedVariable.value}=${selectedValue.value}`
     getCSV(csv, feature + '.csv')
   }
 
