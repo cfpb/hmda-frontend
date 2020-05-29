@@ -226,8 +226,10 @@ const MapContainer = props => {
       const features = map.queryRenderedFeatures(e.point, {layers: [selectedGeography.value]})
       if(!features.length) return
       const feat = features[0].properties['GEOID']
-      setFeature(feat)
-      detachHandlers()
+      if(feat !== feature) {
+        setFeature(feat)
+        detachHandlers()
+      }
       scrollToTable(tableRef.current)
     }
 
