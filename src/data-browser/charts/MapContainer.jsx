@@ -2,10 +2,11 @@ import React, { useState, useEffect, useRef }  from 'react'
 import Select from 'react-select'
 import LoadingButton from '../geo/LoadingButton.jsx'
 import Alert from '../../common/Alert.jsx'
-import { geographies, variables, valsForVar, getValuesForVariable, getSelectData, removeOtherLayers } from './selectUtils.jsx'
-import { LINE_WIDTH, makeLegend, makeStops, addLayers } from './layerUtils.jsx'
+import { geographies, variables, valsForVar, getValuesForVariable, getSelectData } from './selectUtils.jsx'
+import { setOutline, makeLegend, makeStops, addLayers } from './layerUtils.jsx'
 import { getFeatureName, popup, buildPopupHTML } from './popupUtils.jsx'
 import { runFetch, getCSV } from '../api.js'
+import fips2Shortcode from '../constants/fipsToShortcode.js'
 import mapbox from 'mapbox-gl'
 
 import './mapbox.css'
@@ -64,11 +65,17 @@ const MapContainer = props => {
     : null
 
   const fetchCSV = () => {
-    const geoType = selectedGeography === 'county'
-      ? 'counties'
-      : 'states'
-    const csv = `/v2/data-browser-api/view/csv?years=2018&${geoType}=${feature}&${selectedVariable.value}=${selectedValue.value}`
+    const geoString = selectedGeography.value === 'county'
+      ? `counties=${feature}`
+      : `states=${fips2Shortcode[feature]}`
+    const csv = `/v2/data-browser-api/view/csv?years=2018&${geoString}&${selectedVariable.value}=${selectedValue.value}`
     getCSV(csv, feature + '.csv')
+  }
+
+  const onGeographyChange = selected => {
+    popup.remove()
+    setFeature(null)
+    setGeography(selected)
   }
 
   const onVariableChange = selected => {
@@ -88,7 +95,9 @@ const MapContainer = props => {
   }
 
   const buildTable = () => {
-    const currData = data[feature]
+    const currData = selectedGeography.value === 'county'
+      ? data[feature]
+      : data[fips2Shortcode[feature]]
     if(!currData) return null
     const currVarData = currData[selectedVariable.value]
     const ths = valsForVar[selectedVariable.value]
@@ -121,25 +130,6 @@ const MapContainer = props => {
     )
   }
 
-  function styleFill() {
-   if(map && map.loaded() && data && selectedVariable){
-     const geo = selectedGeography.value
-     if(selectedValue) {
-       const stops = makeStops(data, selectedGeography, selectedVariable, selectedValue)
-       map.setPaintProperty(geo, 'fill-color', {
-         property: 'GEOID',
-         type: 'categorical',
-         default: 'rgba(0,0,0,0.05)',
-         stops
-       })
-       removeOtherLayers(map, geo)
-     } else {
-       map.setPaintProperty(geo, 'fill-color', 'rgba(0,0,0,0.05)')
-       removeOtherLayers(map, geo)
-     }
-   }
-  }
-
 
   useEffect(() => {
     runFetch('/countyData.json').then(jsonData => {
@@ -166,7 +156,7 @@ const MapContainer = props => {
     try {
       map = new mapbox.Map({
         container: mapContainer.current,
-        style: 'mapbox://styles/mapbox/light-v10',
+        style: 'mapbox://styles/mapbox/light-v10?optimize=true',
         zoom: 3.5,
         center: [-96, 38]
       })
@@ -177,8 +167,6 @@ const MapContainer = props => {
     }
 
     setMap(map)
-
-    map.on('error', () =>{})
 
     map.on('load', () => {
       map.addSource('county', {
@@ -198,10 +186,15 @@ const MapContainer = props => {
 
   useEffect(() => {
     if(map && data) {
-      if(map.loaded()) addLayers(map, selectedGeography, feature, makeStops(data, selectedGeography, selectedVariable, selectedValue))
-      else map.on('load', () => {
-        addLayers(map, selectedGeography, feature, makeStops(data, selectedGeography, selectedVariable, selectedValue))
-      })
+      if(map.loaded()) {
+        addLayers(map, selectedGeography, makeStops(data, selectedGeography, selectedVariable, selectedValue))
+        setOutline(map, selectedGeography, feature)
+      }else{
+        map.on('load', () => {
+          addLayers(map, selectedGeography, makeStops(data, selectedGeography, selectedVariable, selectedValue))
+          setOutline(map, selectedGeography, feature)
+        })
+      }
     }
   }, [data, feature, map, selectedGeography, selectedValue, selectedVariable])
 
@@ -209,61 +202,60 @@ const MapContainer = props => {
   useEffect(() => {
     if(!data || !map) return
 
-    function setOutline(current, isClick=0) {
-      const stops = []
-      if(current) stops.push([current, LINE_WIDTH])
-      if(!isClick && feature && feature !== current) stops.push([feature, LINE_WIDTH])
-      if(!stops.length) return
-      map.setPaintProperty(`${selectedGeography.value}-lines`, 'line-width', {
-         property: 'GEOID',
-         type: 'categorical',
-         default: 0,
-         stops
-       })
-    }
-
     function highlight(e) {
       if(!map.loaded()) return
 
       const features = map.queryRenderedFeatures(e.point, {layers: [selectedGeography.value]})
       if(!features.length) return popup.remove()
+      const feat = features[0].properties['GEOID']
       map.getCanvas().style.cursor = 'pointer'
 
       popup.setLngLat(map.unproject(e.point))
-        .setHTML(buildPopupHTML(selectedGeography.value, data, features))
+        .setHTML(buildPopupHTML(selectedGeography.value, data, feat))
         .addTo(map)
 
-      setOutline(features[0].properties.GEOID)
+      setOutline(map, selectedGeography, feature, feat)
     }
 
-    function clearHighlight() {
-      setOutline()
+    function highlightSavedFeature() {
+      setOutline(map, selectedGeography, feature)
     }
 
     function getTableData(e){
-      if(!map.loaded() || !selectedVariable) return
+      if(!map.loaded() || !selectedGeography || !selectedVariable) return
       const features = map.queryRenderedFeatures(e.point, {layers: [selectedGeography.value]})
       if(!features.length) return
-      const feature = features[0].properties['GEOID']
-      setFeature(feature)
-      setOutline(feature, 1)
+      const feat = features[0].properties['GEOID']
+      if(feat !== feature) {
+        setFeature(feat)
+        detachHandlers()
+      }
       scrollToTable(tableRef.current)
     }
 
-    map.on('mousemove', highlight)
-    map.on('mouseleave', 'county', clearHighlight)
-    map.on('mouseleave', 'state', clearHighlight)
-    map.on('click', getTableData)
+    function attachHandlers () {
+      if(map.loaded()) highlightSavedFeature()
+      else map.on('load', highlightSavedFeature)
+      map.on('mousemove', highlight)
+      map.on('mouseleave', 'county', highlightSavedFeature)
+      map.on('mouseleave', 'state', highlightSavedFeature)
+      map.on('click', getTableData)
+    }
 
-    return () => {
+    function detachHandlers() {
       map.off('mousemove', highlight)
-      map.off('mouseleave', clearHighlight)
+      map.off('mouseleave', 'county', highlightSavedFeature)
+      map.off('mouseleave', 'state', highlightSavedFeature)
+      map.off('load', highlightSavedFeature)
       map.off('click', getTableData)
     }
-  }, [map, feature, selectedVariable, data, selectedGeography])
 
+    attachHandlers()
 
-  useEffect(styleFill)
+    return detachHandlers
+
+  }, [map, selectedVariable, data, selectedGeography, feature])
+
 
   const menuStyle = {
     menu: provided => ({
@@ -279,7 +271,7 @@ const MapContainer = props => {
         Start by selecting a geography using dropdown menu below
       </p>
       <Select
-        onChange={setGeography}
+        onChange={onGeographyChange}
         styles={menuStyle}
         placeholder="Enter a geography"
         searchable={true}
@@ -303,7 +295,7 @@ const MapContainer = props => {
         value={selectedVariable}
         options={variables}
       />
-      <h3>Step 2: Select a value{selectedVariable ? ` for ${selectedVariable.label}`: ''}</h3>
+      <h3>Step 3: Select a value{selectedVariable ? ` for ${selectedVariable.label}`: ''}</h3>
       <p>
         Then choose a value of your chosen variable to see how it varies nationally in the map below.
       </p>
@@ -318,7 +310,7 @@ const MapContainer = props => {
         value={selectedValue}
         options={getValuesForVariable(selectedVariable)}
       />
-      <h3>{selectedVariable && selectedValue ? `${selectedVariable.label}: "${selectedValue.label}" for US Counties`: 'US Counties'}</h3>
+      <h3>{selectedGeography && selectedVariable && selectedValue ? `${selectedVariable.label}: "${selectedValue.label}" for US ${selectedGeography.value === 'state' ? 'States' : 'Counties'}`: 'Select a geography, variable, and value above'}</h3>
       <div className="mapContainer" ref={mapContainer}>
         {map === false
           ? <Alert type="error">

@@ -178,7 +178,7 @@ function generateColor(data, variable, value, total) {
   return currColors[index]
 }
 
-function addLayers(map, geography, feature, stops) {
+function addLayers(map, geography, stops) {
   removeLayers(map)
   if(geography.value === 'county'){
     map.addLayer({
@@ -195,7 +195,7 @@ function addLayers(map, geography, feature, stops) {
           stops
         }
       }
-    })
+    }, 'state-label')
 
     map.addLayer({
       'id': 'county-lines',
@@ -203,12 +203,8 @@ function addLayers(map, geography, feature, stops) {
       'source': 'county',
       'source-layer': '2015-county-bc0xsx',
       'paint': {
-        'line-width': {
-          property: 'GEOID',
-          type: 'categorical',
-          default: 0,
-          stops: feature ? [[feature, LINE_WIDTH]] : [[0, 0]]
-        }
+        'line-color': '#444',
+        'line-width': 0
       }
     })
   }else {
@@ -218,7 +214,7 @@ function addLayers(map, geography, feature, stops) {
       'source': 'state',
       'source-layer': '2015-state-44cy8q',
       'paint': {
-        'fill-outline-color': 'rgba(0,0,0,0.1)',
+        'fill-outline-color': '#777',
         'fill-color': {
           property: 'GEOID',
           type: 'categorical',
@@ -226,7 +222,7 @@ function addLayers(map, geography, feature, stops) {
           stops
         }
       }
-    })
+    }, 'state-label')
   }
 
   //Always add state lines
@@ -244,15 +240,29 @@ function addLayers(map, geography, feature, stops) {
 }
 
 function removeLayers(map){
-  map.removeLayer('county')
-  map.removeLayer('county-lines')
-  map.removeLayer('state')
-  map.removeLayer('state-lines')
+  const layers = ['county','county-lines','state','state-lines']
+  layers.forEach(l => {
+    if(map.getLayer(l)) map.removeLayer(l)
+  })
+}
+
+function setOutline(map, selectedGeography, feature, current=null) {
+  const stops = []
+  if(current) stops.push([current, LINE_WIDTH])
+  if(feature && feature !== current) stops.push([feature, LINE_WIDTH])
+  if(!stops.length) stops.push([0, 0])
+  map.setPaintProperty(`${selectedGeography.value}-lines`, 'line-width', {
+     property: 'GEOID',
+     type: 'categorical',
+     default: 0,
+     stops
+   })
 }
 
 export {
   LINE_WIDTH,
   makeLegend,
   makeStops,
-  addLayers
+  addLayers,
+  setOutline
 }

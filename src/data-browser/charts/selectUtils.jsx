@@ -72,17 +72,10 @@ function getSelectData(arr, val){
   }
 }
 
-function removeOtherLayers(map, geoId) {
-  geographies.forEach(v => {
-    if(v.value !== geoId) map.remove(geoId)
-  })
-}
-
 export {
   geographies,
   variables,
   valsForVar,
   getValuesForVariable,
-  getSelectData,
-  removeOtherLayers
+  getSelectData
 }
