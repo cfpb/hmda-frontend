@@ -14,11 +14,16 @@ export function filterLeis() {
   }
 }
 
+let fetchTracker = 0
+
 export function fetchLeis() {
   const { category, items } = this.state
+  const localTracker = ++fetchTracker
+
   this.setState(state => ({ leiDetails: { ...state.leiDetails, loading: true }}))
   runFetch(makeFilersUrl({ category, items }))
     .then(data => {
+      if(localTracker !== fetchTracker) return
       const counts = {}, leis = {}
       data.institutions.forEach(institution => {
         counts[institution.lei] = institution.count
