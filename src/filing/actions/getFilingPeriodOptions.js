@@ -19,15 +19,12 @@ export default function getFilingPeriodOptions(institutions, filingPeriods) {
 
     fetchAllInstitutions(yearFilterCandidates, institutions).then((jsons) => {
       jsons.forEach((json) => {
-        // Response object (has URL) vs Institution details object
-        let year = json.url
-          ? +json.url.split("/").slice(-1)
-          : json.institution.activityYear
+        if(!json || json.status) return // An error has occurred
+        const { activityYear, quarterlyFiler } = json.institution
+        if(!activityYear) return
 
-        // Any quarterly filer = should display year's quarters
-        if (!json.status)
-          optionDisplayMap[year] =
-            json.institution.quarterlyFiler || optionDisplayMap[year]
+        // Display filing year if it has any quarterly filers
+        optionDisplayMap[activityYear] = quarterlyFiler || optionDisplayMap[activityYear]
       })
 
       dispatch(
