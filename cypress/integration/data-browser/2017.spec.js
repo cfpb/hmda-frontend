@@ -1,10 +1,4 @@
-import {
-  waitFor,
-  openSelector,
-  SUMMARY_DELAY,
-  INSTITUTION_DELAY,
-  dbURL,
-} from '../../support/helpers'
+import { openSelector, MAX_WAIT_SUMMARY, dbURL } from '../../support/helpers'
 
 const { HOST } = Cypress.env()
 const dbUrl = dbURL.bind(null, HOST)
@@ -15,7 +9,6 @@ describe('Data Browser 2017', function () {
     cy.visit(dbUrl('2017?category=states'))
 
     // Select Geography
-    waitFor(INSTITUTION_DELAY)
     openSelector('#ItemSelector')
     cy.get('#react-select-3-option-0').click()
     openSelector('#ItemSelector')
@@ -23,7 +16,6 @@ describe('Data Browser 2017', function () {
     cy.url().should('include', '?category=states&items=01,02')
 
     // Select Institutions
-    waitFor(INSTITUTION_DELAY)
     openSelector('#lei-item-select')
     cy.get('#react-select-4-option-1').click()
     openSelector('#lei-item-select')
@@ -38,12 +30,11 @@ describe('Data Browser 2017', function () {
 
     // View Summary Table
     cy.get('body > #root > .DataBrowser > .Geography > .secondary').click()
-    waitFor(SUMMARY_DELAY)
-    cy.get('.Error').should('not.exist')
-    cy.get('.Aggregations').should('exist')
+    cy.get('.Aggregations', { timeout: MAX_WAIT_SUMMARY }).should('exist')
     cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text', 'ALABAMA, ALASKA')
     cy.get('.Aggregations :nth-child(2) > .sublist > li').should('have.text', '.Huron Valley Financial, Inc., 1ST ALLIANCE LENDING, LLC')
     cy.get('.Aggregations :nth-child(3) > .sublist > li').should('have.text', '3 - Multifamily')
+    cy.get('.Error').should('not.exist')
 
     // TODO: Test if "Download Dataset" points to a valid file
     //  Possible to test without triggering download dialogue? 
@@ -56,7 +47,6 @@ describe('Data Browser 2017', function () {
     cy.visit(dbUrl('2017?category=nationwide'))
 
     // Select Institutions
-    waitFor(INSTITUTION_DELAY)
     openSelector('#lei-item-select')
     cy.get('#react-select-4-option-1').click()
     openSelector('#lei-item-select')
@@ -71,22 +61,19 @@ describe('Data Browser 2017', function () {
 
     // View Summary Table
     cy.get('body > #root > .DataBrowser > .Geography > .secondary').click()
-    waitFor(SUMMARY_DELAY)
-    cy.get('.Error').should('not.exist')
-    cy.get('.Aggregations').should('exist')
+    cy.get('.Aggregations', { timeout: MAX_WAIT_SUMMARY }).should('exist')
     cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text', '.Huron Valley Financial, Inc., 121 FINANCIAL CREDIT UNION')
     cy.get('.Aggregations :nth-child(2) > .sublist > li').should('have.text', '3 - Not secured by a lien')
+    cy.get('.Error').should('not.exist')
 
     // TODO: Test if "Download Dataset" points to a valid file
   })
 
-  // TODO: Filers endpoint not returning data for Counties
   it('County/Institution/Action&Purpose', function () {
     cy.viewport(1000, 940)
     cy.visit(dbUrl('2017?category=counties'))
 
     // Select Geography
-    waitFor(INSTITUTION_DELAY)
     openSelector('#ItemSelector')
     cy.get('#react-select-3-option-0').click()
     openSelector('#ItemSelector')
@@ -94,7 +81,6 @@ describe('Data Browser 2017', function () {
     cy.url().should('include', '?category=counties&items=01001,01003')
 
     // Select Institutions
-    cy.wait(INSTITUTION_DELAY)
     openSelector('#lei-item-select')
     cy.get('#react-select-4-option-1').click()
     openSelector('#lei-item-select')
@@ -109,11 +95,10 @@ describe('Data Browser 2017', function () {
 
     // View Summary Table
     cy.get('body > #root > .DataBrowser > .Geography > .secondary').click()
-    waitFor(SUMMARY_DELAY)
-    cy.get('.Error').should('not.exist')
-    cy.get('.Aggregations').should('exist')
+    cy.get('.Aggregations', { timeout: MAX_WAIT_SUMMARY }).should('exist')
     cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text', '.Huron Valley Financial, Inc., 1ST ALLIANCE LENDING, LLC')
     cy.get('.Aggregations :nth-child(2) > .sublist > li').should('have.text', '3 - Not secured by a lien')
+    cy.get('.Error').should('not.exist')
 
     // TODO: Test if "Download Dataset" points to a valid file
   })
@@ -123,7 +108,6 @@ describe('Data Browser 2017', function () {
     cy.visit(dbUrl('2017?category=msamds'))
 
     // Select Geography
-    waitFor(INSTITUTION_DELAY)
     openSelector('#ItemSelector')
     cy.get('#react-select-3-option-0').click()
     openSelector('#ItemSelector')
@@ -131,7 +115,6 @@ describe('Data Browser 2017', function () {
     cy.url().should('include', '?category=msamds&items=11500,12220')
 
     // Select Institutions
-    waitFor(INSTITUTION_DELAY)
     openSelector('#lei-item-select')
     cy.get('#react-select-4-option-1').click()
     openSelector('#lei-item-select')
@@ -146,11 +129,10 @@ describe('Data Browser 2017', function () {
 
     // View Summary Table
     cy.get('body > #root > .DataBrowser > .Geography > .secondary').click()
-    waitFor(SUMMARY_DELAY)
-    cy.get('.Error').should('not.exist')
-    cy.get('.Aggregations').should('exist')
+    cy.get('.Aggregations', { timeout: MAX_WAIT_SUMMARY }).should('exist')
     cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text',"11500\u00A0-\u00A0ANNISTON-OXFORD-JACKSONVILLE, 12220\u00A0-\u00A0AUBURN-OPELIKA")
     cy.get('.Aggregations :nth-child(3) > .sublist > li').should('have.text', '3 - VA')
+    cy.get('.Error').should('not.exist')
 
     // TODO: Test if "Download Dataset" points to a valid file
   })
