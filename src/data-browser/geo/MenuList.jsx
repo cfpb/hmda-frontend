@@ -9,15 +9,14 @@ export class MenuList extends React.Component {
     this.listRef = undefined
   }
 
-  getFocusIndex = (children) => {
+  getFocusIndex(children) {
     const isArray = children instanceof Array
     children = isArray ? children : [children]
-    return Math.max(
-      children.findIndex(({ props: { isFocused } = {} } = {}) => {
-        return isFocused === true
-      }),
-      0
-    )
+    for (let i = 0; i < children.length - 1; i++) {
+      if (children[i] && children[i].props && children[i].props.isFocused)
+        return i
+    }
+    return children.length - 1
   }
 
   componentDidUpdate(prevProps, prevState) {
