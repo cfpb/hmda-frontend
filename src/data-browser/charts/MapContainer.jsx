@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef }  from 'react'
-import Select from 'react-select'
+import Select from '../Select.jsx'
 import LoadingButton from '../geo/LoadingButton.jsx'
 import Alert from '../../common/Alert.jsx'
 import COUNTS from '../constants/countyCounts.js'

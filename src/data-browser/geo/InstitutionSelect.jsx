@@ -1,5 +1,6 @@
 import React from 'react'
-import Select, { createFilter } from 'react-select'
+import { createFilter } from 'react-select'
+import Select from '../Select.jsx'
 import MenuList from './MenuList.jsx'
 import Pills from './Pills.jsx'
 import {
