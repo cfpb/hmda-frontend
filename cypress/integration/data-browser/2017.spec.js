@@ -1,4 +1,4 @@
-import { openSelector, MAX_WAIT_SUMMARY, dbURL } from '../../support/helpers'
+import { openSelector, MAX_WAIT_SUMMARY, dbURL, isBeta, isProd } from '../../support/helpers'
 
 const { HOST } = Cypress.env()
 const dbUrl = dbURL.bind(null, HOST)
@@ -36,10 +36,12 @@ describe('Data Browser 2017', function () {
     cy.get('.Aggregations :nth-child(3) > .sublist > li').should('have.text', '3 - Multifamily')
     cy.get('.Error').should('not.exist')
 
-    // TODO: Test if "Download Dataset" points to a valid file
-    //  Possible to test without triggering download dialogue? 
-    //  Download link gets dynamically added and immediately deleted.
-    // cy.get('.QueryButton').click()
+    // Test validity of download link
+    if(isProd(HOST) || isBeta(HOST)){
+      cy.get('.QueryButton:first').dataUrl().then(({ status }) => {
+        assert.isTrue(status, 'Has valid download link.')
+      })
+    }
   })
 
   it('Nationwide/Institution/LienStatus', function () {
@@ -66,7 +68,12 @@ describe('Data Browser 2017', function () {
     cy.get('.Aggregations :nth-child(2) > .sublist > li').should('have.text', '3 - Not secured by a lien')
     cy.get('.Error').should('not.exist')
 
-    // TODO: Test if "Download Dataset" points to a valid file
+    // Test validity of download link
+    if(isProd(HOST) || isBeta(HOST)){
+      cy.get('.QueryButton:first').dataUrl().then(({ status }) => {
+        assert.isTrue(status, 'Has valid download link.')
+      })
+    }
   })
 
   it('County/Institution/Action&Purpose', function () {
@@ -100,7 +107,12 @@ describe('Data Browser 2017', function () {
     cy.get('.Aggregations :nth-child(2) > .sublist > li').should('have.text', '3 - Not secured by a lien')
     cy.get('.Error').should('not.exist')
 
-    // TODO: Test if "Download Dataset" points to a valid file
+    // Test validity of download link
+    if(isProd(HOST) || isBeta(HOST)){
+      cy.get('.QueryButton:first').dataUrl().then(({ status }) => {
+        assert.isTrue(status, 'Has valid download link.')
+      })
+    }
   })
 
   it('MSA/Institution/PropertyType', function () {
@@ -134,6 +146,11 @@ describe('Data Browser 2017', function () {
     cy.get('.Aggregations :nth-child(3) > .sublist > li').should('have.text', '3 - VA')
     cy.get('.Error').should('not.exist')
 
-    // TODO: Test if "Download Dataset" points to a valid file
+    // Test validity of download link
+    if(isProd(HOST) || isBeta(HOST)){
+      cy.get('.QueryButton:first').dataUrl().then(({ status }) => {
+        assert.isTrue(status, 'Has valid download link.')
+      })
+    }
   })
 })

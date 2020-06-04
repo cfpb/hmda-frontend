@@ -8,7 +8,7 @@ import ItemSelect from './ItemSelect.jsx'
 import { fetchLeis, filterLeis } from './leiUtils'
 import VariableSelect from './VariableSelect.jsx'
 import Aggregations from './Aggregations.jsx'
-import { getItemCSV, getSubsetDetails, getSubsetCSV, isRetryable, RETRY_DELAY } from '../api.js'
+import { getItemCSV, getSubsetDetails, getSubsetCSV, isRetryable, makeUrl, RETRY_DELAY } from '../api.js'
 import { makeSearchFromState, makeStateFromSearch } from '../query.js'
 import { ActionsWarningsErrors } from './ActionsWarningsErrors'
 import MSAMD_COUNTS from '../constants/msamdCounts.js'
@@ -358,6 +358,11 @@ class Geography extends Component {
       loadingDetails, orderedVariables, variables } = this.state
     const enabled = category === 'nationwide' || items.length
     const checksExist = someChecksExist(variables)
+    const fileDownloadUrl =
+      window.location.origin +
+      (checksExist
+        ? makeUrl(this.state, true)
+        : makeUrl(this.state, true, false))
 
     return (
       <div className='Geography'>
@@ -422,6 +427,7 @@ class Geography extends Component {
         <ActionsWarningsErrors
           downloadEnabled={enabled}
           downloadCallback={checksExist ? this.requestSubsetCSV : this.requestItemCSV}
+          downloadUrl={fileDownloadUrl}
           showSummaryButton={!details.aggregations}
           summaryEnabled={enabled && checksExist}
           loadingDetails={loadingDetails}

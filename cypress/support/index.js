@@ -21,3 +21,7 @@ import { urlExists } from "./helpers"
 Cypress.Commands.add("hasValidHref", { prevSubject: true }, anchor => {
   return urlExists(anchor.attr("href"))
 })
+
+Cypress.Commands.add("dataUrl", { prevSubject: true }, target => {
+  return urlExists(target.attr('data-url'))
+})
