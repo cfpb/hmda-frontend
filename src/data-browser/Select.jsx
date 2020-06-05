@@ -3,14 +3,11 @@ import Select from 'react-select'
 
 const isIE = /*@cc_on!@*/false || !!document.documentMode;
 
-
-
 const WrappedSelect = props => {
   const selRef = useRef(null)
 
   function ieBlurHack() {
-    const focusedElement = document.activeElement
-    if(!isIE || focusedElement === document.body) return
+    if(!isIE || document.activeElement.tagName !== 'DIV') return
     selRef.current.focus()
     throw null
   }
