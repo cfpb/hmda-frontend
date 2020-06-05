@@ -1,16 +1,21 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Select from 'react-select'
 
 const isIE = /*@cc_on!@*/false || !!document.documentMode;
 
-function ieBlurHack() {
-  if(!isIE) return
-  const e = null
-  throw e
-}
+
 
 const WrappedSelect = props => {
-  return <Select onBlur={ieBlurHack} {...props}/>
+  const selRef = useRef(null)
+
+  function ieBlurHack() {
+    const focusedElement = document.activeElement
+    if(!isIE || focusedElement === document.body) return
+    selRef.current.focus()
+    throw null
+  }
+
+  return <Select ref={selRef} onBlur={ieBlurHack} {...props}/>
 }
 
 export default WrappedSelect
