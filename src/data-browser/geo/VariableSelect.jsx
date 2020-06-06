@@ -24,7 +24,7 @@ const VariableSelect = ({ options, variables, orderedVariables, year, checkFacto
           popular variables
         </a>
       </p>
-      <Select
+      <Select id='VariableSelector'
         controlShouldRenderValue={false}
         onChange={onChange}
         placeholder={
