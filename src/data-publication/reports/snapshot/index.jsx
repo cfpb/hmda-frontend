@@ -12,19 +12,19 @@ function makeListLink(href, val) {
   )
 }
 
-function linkToDocs(){
+function linkToDocs(year = '2018'){
   return [
-    <li key="0"><a href="/documentation/2018/public-lar-schema/">Public LAR Schema</a></li>,
-    <li key="1"><a href="/documentation/2018/public-ts-schema/">Public Transmittal Sheet Schema</a></li>,
-    <li key="2"><a href="/documentation/2018/public-panel-schema/">Public Panel Schema</a></li>,
-    <li key="3"><a href="/documentation/2018/lar-data-fields/">Public HMDA Data Fields with Values and Definitions</a></li>,
-    <li key="4"><a href="/documentation/2018/panel-data-fields/">Public Panel Values and Definitions</a></li>
+    <li key="0"><a href={`/documentation/${year}/public-lar-schema/`}>Public LAR Schema</a></li>,
+    <li key="1"><a href={`/documentation/${year}/public-ts-schema/`}>Public Transmittal Sheet Schema</a></li>,
+    <li key="2"><a href={`/documentation/${year}/public-panel-schema/`}>Public Panel Schema</a></li>,
+    <li key="3"><a href={`/documentation/${year}/lar-data-fields/`}>Public HMDA Data Fields with Values and Definitions</a></li>,
+    <li key="4"><a href={`/documentation/${year}/panel-data-fields/`}>Public Panel Values and Definitions</a></li>
   ]
 }
 
 function renderDatasets(datasets){
   return (
-    <ul>
+    <ul id='datasetList'>
       {datasets.map((dataset, i) => {
         return (
           <li key={i}>
@@ -42,9 +42,10 @@ function renderDatasets(datasets){
 
 const Snapshot = props => {
   const { params, url } = props.match
+  const { year } = params
   const years = SNAPSHOT_DATASET.displayedYears
-  const dataForYear = SNAPSHOT_DATASET[params.year]
-  const snapshotDate = params.year ? dataForYear.snapshot_date : 'a fixed date per year'
+  const dataForYear = SNAPSHOT_DATASET[year]
+  const snapshotDate = year ? dataForYear.snapshot_date : 'a fixed date per year'
 
   return (
     <div className="Snapshot" id="main-content">
@@ -55,7 +56,7 @@ const Snapshot = props => {
           ${snapshotDate} for all HMDA reporters, as modified by the Bureau to
           protect applicant and borrower privacy. The snapshot files are available
           to download in both .csv and pipe delimited text file formats.`}>
-        {params.year === '2017'
+        {year === '2017'
           ? <p className="text-small">
               Snapshot data has preserved some elements of historic LAR data files
               that are not present in the Dynamic Data. These columns are &quot;As of
@@ -71,20 +72,20 @@ const Snapshot = props => {
         </p>
       </Heading>
 
-      <YearSelector year={params.year} url={url} years={years} />
+      <YearSelector year={year} url={url} years={years} />
 
-      { params.year ?
+      { year ?
         <div className="grid">
           <div className="item">
-            <Heading type={4} headingText={params.year + ' Datasets'} />
+            <Heading type={4} headingText={year + ' Datasets'} />
             {renderDatasets(dataForYear.datasets)}
           </div>
           <div className="item">
-            <Heading type={4} headingText={params.year + ' File Specifications'} />
+            <Heading type={4} headingText={year + ' File Specifications'} />
             <ul>
-              {params.year === '2017'
+              {year === '2017'
                 ? makeListLink(dataForYear.dataformat, 'LAR, TS and Reporter Panel')
-                : linkToDocs()
+                : linkToDocs(year)
               }
             </ul>
           </div>
