@@ -116,7 +116,8 @@
         "Q2": "09/01 - 09/30",
         "Q3": "12/01 - 12/31"
       },
-      "showMaps": true
+      "showMaps": true,
+      "dataBrowserYears": ["2018", "2017"]
     }
   }
 }

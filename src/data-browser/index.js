@@ -12,7 +12,10 @@ const DataBrowser = props => {
     <div className="DataBrowser App">
       <Switch>
         <Route exact path="/data-browser" component={Home} />
-        <Route path="/data-browser/data/:year?" component={Geography} />
+        <Route 
+          path="/data-browser/data/:year?" 
+          render={(r_props) => <Geography {...r_props} {...props} /> } 
+        />
         {
           props.config.showMaps
           ? <Route path="/data-browser/maps-graphs/:year?" component={MapsGraphs} />

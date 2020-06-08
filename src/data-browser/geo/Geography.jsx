@@ -395,6 +395,7 @@ class Geography extends Component {
         <DBYearSelector 
           year={this.state.year} 
           onChange={this.onYearChange}
+          years={this.props.config.dataBrowserYears}
         />
         <ItemSelect
           options={this.itemOptions}

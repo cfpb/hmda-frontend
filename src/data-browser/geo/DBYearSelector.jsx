@@ -1,8 +1,9 @@
 import React from 'react'
 import '../../common/YearSelector.css'
-import DB_YEARS from '../constants/years'
 
-const DBYearSelector = ({ year, years = DB_YEARS, onChange }) => {
+const DBYearSelector = ({ year, years, onChange }) => {
+  if(!years || years.length < 2) return null
+
   const clickHandler = (e) => {
     e.preventDefault()
     onChange({ year: e.target.text })
