@@ -62,7 +62,8 @@ class Disclosure extends React.Component {
             if (v.id === params.msaMdId) this.setMsaMd(v)
           })
         }
-        const msaMds = [...result.msaMds, { id: 'nationwide' }]
+        const msaMds = result.msaMds.sort((a,b) => a.id - b.id)
+        msaMds.push({ id: 'nationwide' })
         fetchedMsas = msaMds
         this.setState({ fetched: true })
       }).catch(e => {
@@ -126,7 +127,7 @@ class Disclosure extends React.Component {
       <Heading
         type={1}
         headingText="Disclosure reports"
-        paragraphText={`These reports summarize lending activity for individual institutions, both nationwide and by MSA/MD. They are based on the most recent data submission made in each filing period. To find an institution's IRS (Institution Register Summary), select "Nationwide" from the MSA/MD dropdown after choosing an institution.`}
+        paragraphText={'These reports summarize lending activity for individual institutions, both nationwide and by MSA/MD. They are based on the most recent data submission made in each filing period. To find an institution\'s IRS (Institution Register Summary), select "Nationwide" from the MSA/MD dropdown after choosing an institution.'}
       >
           <p>To learn about modifications to these reports over the years, visit the{' '}
           <a target="_blank" rel="noopener noreferrer" href="/documentation/2018/ad-changes/">A&amp;D Report Changes</a> page.<br/>
