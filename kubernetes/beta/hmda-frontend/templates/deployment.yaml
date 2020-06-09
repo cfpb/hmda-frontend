@@ -24,7 +24,6 @@ spec:
           hostPath:
             path: /usr/share/zoneinfo/America/New_York
       securityContext:
-        readOnlyRootFilesystem: true
         allowPrivilegeEscalation: false
         capabilities:
           drop:
