@@ -41,6 +41,7 @@ export function ordinalHour(d) {
 }
 
 export function afterFilingPeriod(period, filingQuarters) {
+  if(openForPreview(period, filingQuarters)) return false
   const timezoneOffsetHours = new Date().getTimezoneOffset() / 60 // Calculate UTC Hours Offset
   let [year, quarter] = splitYearQuarter(period)
   year = parseInt(year, 10)
@@ -61,6 +62,7 @@ export function afterFilingPeriod(period, filingQuarters) {
 }
 
 export function beforeFilingPeriod(period, filingQuarters) {
+  if(openForPreview(period, filingQuarters)) return false
   const timezoneOffsetHours = new Date().getTimezoneOffset() / 60 // Calculate UTC Hours Offset
   let [year, quarter] = splitYearQuarter(period)
   year = parseInt(year, 10)
@@ -98,3 +100,10 @@ export const qtrBoundaryDate = (qtr, filingQuarters, startOrEnd=0) => {
 }
 
 export const formattedBoundaryDate = (obj) => `${months[obj.month]} ${obj.day}`
+
+// Allow for a period to be opened for pre-release without causing ripple effects
+const openForPreview = (period, filingQuarters) => {
+  const previewPeriods = filingQuarters && filingQuarters.PREVIEW
+  if(!previewPeriods) return false
+  return previewPeriods.indexOf(period) > -1
+}

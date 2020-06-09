@@ -169,7 +169,7 @@ class Geography extends Component {
             () => this.requestSubset(null, attempts + 1),
             RETRY_DELAY
           )
-  
+
         return this.setStateAndRoute({error})
       })
   }

@@ -1,5 +1,5 @@
 import React from 'react'
-import Select from 'react-select'
+import Select from '../Select.jsx'
 import Pills from './Pills.jsx'
 import CheckboxContainer from './CheckboxContainer.jsx'
 import {
