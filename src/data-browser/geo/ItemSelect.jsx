@@ -18,9 +18,10 @@ const ItemSelect = ({
   category,
   onCategoryChange,
   items,
-  onChange
+  onChange,
+  year
 }) => {
-  const selectedValues = makeItemSelectValues(category, items)
+  const selectedValues = makeItemSelectValues(category, items, year)
   const nationwide = isNationwide(category)
 
   return (
@@ -39,7 +40,7 @@ const ItemSelect = ({
       </p>
       <CategorySelect category={category} onChange={onCategoryChange} />
       <Select
-        id='ItemSelector'      
+        id='ItemSelector'
         components={{ MenuList }}
         filterOption={createFilter({ ignoreAccents: false })}
         controlShouldRenderValue={false}

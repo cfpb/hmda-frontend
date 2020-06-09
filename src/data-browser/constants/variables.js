@@ -1,3 +1,5 @@
+import { before2018 } from '../geo/selectUtils'
+
 const actionsList = [
   { id: '1', name: 'Loan Originated' },
   { id: '2', name: 'Application approved but not accepted' },
@@ -92,6 +94,54 @@ const loanProductList = [
   'FSA/RHS:Subordinate Lien'
 ]
 
+/**
+ * Pre-2018 Variables
+ */
+const lienStatusListPre2018 = [
+  ...lienStatusList,
+  {id: '3', name: 'Not secured by a lien'},
+  {id: '4', name: 'Not applicable (purchased loan)'},
+]
+
+const propertyTypeList = [
+  {id: '1', name: 'One to four-family (other than manufactured housing)'},
+  {id: '2', name: 'Manufactured housing'},
+  {id: '3', name: 'Multifamily'},
+]
+
+const loanPurposeListPre2018 = [
+  { id: '1', name: 'Home Purchase' },
+  { id: '2', name: 'Home Improvement' },
+  { id: '3', name: 'Refinancing' },
+]
+
+/**
+ * Inter-year mappings
+ **/
+
+export const variableNameMap = {
+  property_types: 'dwelling_categories',
+  dwelling_categories: 'property_types'
+}
+
+export const variableOptionMap = {
+  dwelling_categories: {
+    'Single%20Family%20(1-4%20Units)%3ASite-Built': '1',
+    'Single%20Family%20(1-4%20Units)%3AManufactured': '2',
+    'Multifamily%3AManufactured': '2,3',
+    'Multifamily%3ASite-Built': '3',
+  },
+  property_types: {
+    '1': 'Single%20Family%20(1-4%20Units)%3ASite-Built',
+    '2': 'Single%20Family%20(1-4%20Units)%3AManufactured,Multifamily%3AManufactured',
+    '3': 'Multifamily%3ASite-Built,Multifamily%3AManufactured',
+  },
+  loan_purposes: {
+    '3': '31,32',
+    '31': '3',
+    '32': '3',
+  }
+}
 
 const actions_taken = buildWithId('Action Taken', 'action_taken', actionsList)
 const loan_types = buildWithId('Loan Type', 'loan_type', loanTypeList)
@@ -139,7 +189,11 @@ function buildEncoded(label, definition, list) {
   return obj
 }
 
-export default {
+export function getVariables(year) {
+  return before2018(year) ? VARIABLES2017 : VARIABLES
+}
+
+const VARIABLES = {
   actions_taken,
   loan_types,
   loan_purposes,
@@ -152,3 +206,13 @@ export default {
   loan_products,
   dwelling_categories
 }
+
+export const VARIABLES2017 = {
+  lien_statuses: buildWithId('Lien Status', 'lien_statuses', lienStatusListPre2018),
+  property_types: buildWithId('Property Type', 'property_types', propertyTypeList),
+  actions_taken,
+  loan_types,
+  loan_purposes: buildWithId('Loan Purpose', 'loan_purposes', loanPurposeListPre2018)
+}
+
+export default VARIABLES

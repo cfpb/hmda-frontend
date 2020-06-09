@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { isEqual } from 'lodash'
 import Heading from '../../common/Heading.jsx'
+import DBYearSelector from './DBYearSelector'
 import InstitutionSelect from './InstitutionSelect'
 import ItemSelect from './ItemSelect.jsx'
 import { fetchLeis, filterLeis } from './leiUtils'
@@ -12,20 +13,28 @@ import { makeSearchFromState, makeStateFromSearch } from '../query.js'
 import { ActionsWarningsErrors } from './ActionsWarningsErrors'
 import MSAMD_COUNTS from '../constants/msamdCounts.js'
 import STATE_COUNTS from '../constants/stateCounts.js'
+import { abbrToCode, codeToAbbr } from '../constants/stateCodesObj.js'
+import {
+  variableNameMap,
+  variableOptionMap,
+  getVariables,
+} from '../constants/variables.js'
+
 import {
   createItemOptions,
   createVariableOptions,
   formatWithCommas,
   isNationwide,
-  someChecksExist
+  someChecksExist,
+  before2018,
 } from './selectUtils.js'
 
 import './Geography.css'
 
-
 class Geography extends Component {
   constructor(props) {
     super(props)
+    this.onYearChange = this.onYearChange.bind(this)
     this.onCategoryChange = this.onCategoryChange.bind(this)
     this.onInstitutionChange = this.onInstitutionChange.bind(this)
     this.onItemChange = this.onItemChange.bind(this)
@@ -40,9 +49,11 @@ class Geography extends Component {
     this.scrollToTable = this.scrollToTable.bind(this)
     this.fetchLeis = fetchLeis.bind(this)
     this.filterLeis = filterLeis.bind(this)
+    this.updatePath = this.updatePath.bind(this)
+    this.setStateAndPath = this.setStateAndPath.bind(this)
 
     this.itemOptions = createItemOptions(props)
-    this.variableOptions = createVariableOptions()
+    this.variableOptions = createVariableOptions(props.match.params.year)
 
     this.tableRef = React.createRef()
     this.state = this.buildStateFromQuerystring()
@@ -64,7 +75,8 @@ class Geography extends Component {
         loading: true,
         counts: {},
         leis: {}
-      }
+      },
+      year: this.props.match.params.year
     }
 
     const newState = makeStateFromSearch(this.props.location.search, defaultState, this.requestSubset, this.updateSearch)
@@ -97,9 +109,25 @@ class Geography extends Component {
     this.props.history.replace({search: makeSearchFromState(this.state)})
   }
 
+  updatePath(){
+    const basePath = '/data-browser/data/'
+    const search = makeSearchFromState(this.state)
+    this.props.history.push(`${basePath}${this.state.year}${search}`)
+  }
+
   setStateAndRoute(state){
     state.loadingDetails = false
     return this.setState(state, this.updateSearch)
+  }
+
+  setStateAndPath(state){
+    state.loadingDetails = false
+    return new Promise((resolve) => {
+      this.setState(state, () => {
+        this.updatePath()
+        resolve()
+      })
+    })
   }
 
   scrollToTable(){
@@ -113,6 +141,7 @@ class Geography extends Component {
       const currB = b[orderedVariables[i]]
       if(currA < currB) return -1
       if(currA > currB) return 1
+      if(i === orderedVariables.length) return 0
       return runSort(i+1, a, b)
     }
 
@@ -174,6 +203,33 @@ class Geography extends Component {
     const MAX = 1048576
     if(!selected) return countMap > MAX
     return selected.reduce((acc, curr) => acc + countMap[curr], 0) > MAX
+  }
+
+  onYearChange(obj){
+    if(this.state.year === obj.year) return
+    const { category, items } = this.state
+    const variables = getVariables(obj.year)
+    obj.details = {}
+    
+    // Map selected States between code <=> abbr
+    if(category === 'states'){
+      const stateObj = before2018(obj.year) ? abbrToCode : codeToAbbr
+      obj.items = items.map(i => stateObj[i]).filter(x => x)
+    }
+
+    // Map query parameters pre2018 <=> 2018+
+    obj.orderedVariables = this.state.orderedVariables.map(varName => {
+      if(variables[varName]) return varName
+      return variableNameMap[varName]
+    }).filter(x => x)
+
+    obj.variables = this.mapFilterVarsOpts(variables)
+
+    this.setStateAndPath(obj).then(() => {
+      this.fetchLeis().then(() => this.filterLeis())
+      this.itemOptions = createItemOptions(this.props)
+      this.variableOptions = createVariableOptions(obj.year)
+    })
   }
 
   onCategoryChange({value}) {
@@ -271,6 +327,32 @@ class Geography extends Component {
     )
   }
 
+  // Map Filter variables and options pre2018 <=> 2018+
+  mapFilterVarsOpts(variables) {
+    const selectedVars = {}
+    Object.keys(this.state.variables).forEach(oldVarKey => {
+      const varKey = !variables[oldVarKey] ? variableNameMap[oldVarKey] : oldVarKey
+        
+      if(!varKey) return // Exclude invalid variable
+      if(!selectedVars[varKey]) selectedVars[varKey] = {}
+      
+      // Map selected options
+      const optionMap = variableOptionMap[oldVarKey]
+      Object.keys(this.state.variables[oldVarKey]).forEach(oldOptionKey => {
+        const mappedValues = optionMap && optionMap[oldOptionKey]
+        if (mappedValues)
+          // Single options can map to multiple; stored as CSV
+          optionMap[oldOptionKey].split(',').forEach(optionKey => {
+            selectedVars[varKey][optionKey] = true 
+          })
+          // Keep existing value if this is a valid option
+        else if(variables[varKey].mapping[oldOptionKey])
+          selectedVars[varKey][oldOptionKey] = this.state.variables[oldVarKey][oldOptionKey]
+      })
+    })
+    return selectedVars
+  }
+
   render() {
     const { category, details, error, isLargeFile, items, leiDetails, leis,
       loadingDetails, orderedVariables, variables } = this.state
@@ -280,7 +362,7 @@ class Geography extends Component {
       window.location.origin +
       (checksExist
         ? makeUrl(this.state, true)
-        : makeUrl(this.state, true, false))    
+        : makeUrl(this.state, true, false))
 
     return (
       <div className='Geography'>
@@ -310,6 +392,11 @@ class Geography extends Component {
             </p>
           </Heading>
         </div>
+        <DBYearSelector 
+          year={this.state.year} 
+          onChange={this.onYearChange}
+          years={this.props.config.dataBrowserYears}
+        />
         <ItemSelect
           options={this.itemOptions}
           category={category}
@@ -319,18 +406,20 @@ class Geography extends Component {
           enabled={enabled}
           downloadCallback={this.requestItemCSV}
           onChange={this.onItemChange}
+          year={this.state.year} 
         />
         <InstitutionSelect
           items={leis}
           onChange={this.onInstitutionChange}
           leiDetails={leiDetails}
+          year={this.state.year}
         />
         <VariableSelect
           options={this.variableOptions}
           variables={variables}
           orderedVariables={orderedVariables}
           checkFactory={this.makeCheckboxChange}
-          year={this.props.match.params.year}
+          year={this.state.year}
           onChange={this.onVariableChange}
         />
         {details.aggregations && !error
@@ -339,7 +428,7 @@ class Geography extends Component {
         <ActionsWarningsErrors
           downloadEnabled={enabled}
           downloadCallback={checksExist ? this.requestSubsetCSV : this.requestItemCSV}
-          downloadUrl={fileDownloadUrl}          
+          downloadUrl={fileDownloadUrl}
           showSummaryButton={!details.aggregations}
           summaryEnabled={enabled && checksExist}
           loadingDetails={loadingDetails}
