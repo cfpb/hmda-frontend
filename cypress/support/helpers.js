@@ -28,16 +28,9 @@ export function urlExists(url) {
 }
 
 /* Data Browser Helpers */
-export const MAX_WAIT_INSTITUTIONS = 10000 //10s
-export const MAX_WAIT_SUMMARY = 10000 //10s
-export const DEFAULT_WAIT = 4000 //4s
-
-/* Open react-select drop-down if it's not loading */
-export const openSelector = (id, timeout = MAX_WAIT_INSTITUTIONS) =>
-  cy.get(`${id} > div > div`, { timeout }).first().should('not.contain', 'Loading').click()
-
-/* Delay by {time} milliseconds */
-export const waitFor = (time = DEFAULT_WAIT) => cy.wait(time)
+// Open react-select drop-down if it's not loading
+export const openSelector = (id) =>
+  cy.get(`${id} > div > div`).first().should('not.contain', 'Loading').click()
 
 export const dbClick2018 = () => cy.get('#root > .DataBrowser > .Geography > .YearSelector > a:nth-child(2)').click()
 export const dbClick2017 = () => cy.get('#root > .DataBrowser > .Geography > .YearSelector > a:nth-child(3)').click()

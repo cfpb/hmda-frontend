@@ -1,4 +1,4 @@
-import { openSelector, MAX_WAIT_SUMMARY, dbURL, isBeta, isProd } from '../../support/helpers'
+import { openSelector, dbURL, isBeta, isProd } from '../../support/helpers'
 
 const { HOST } = Cypress.env()
 const dbUrl = dbURL.bind(null, HOST)
@@ -30,7 +30,7 @@ describe('Data Browser 2018', function () {
 
     // View Summary Table
     cy.get('body > #root > .DataBrowser > .Geography > .secondary').click()
-    cy.get('.Aggregations', { timeout: MAX_WAIT_SUMMARY }).should('exist')
+    cy.get('.Aggregations').should('exist')
     cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text', 'ALABAMA, ALASKA')
     cy.get('.Aggregations :nth-child(2) > .sublist > li').should('have.text', '1ST ALLIANCE LENDING, LLC, 21st Mortgage Corporation')
     cy.get('.Aggregations :nth-child(3) > .sublist > li').should('have.text', 'Single Family (1-4 Units):Site-Built')
@@ -63,7 +63,7 @@ describe('Data Browser 2018', function () {
 
     // View Summary Table
     cy.get('body > #root > .DataBrowser > .Geography > .secondary').click()
-    cy.get('.Aggregations', { timeout: MAX_WAIT_SUMMARY }).should('exist')
+    cy.get('.Aggregations').should('exist')
     cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text', '1ST ALLIANCE LENDING, LLC, 121 FINANCIAL')
     cy.get('.Aggregations :nth-child(2) > .sublist > li').should('have.text', '1 - Secured By First Lien')
     cy.get('.Error').should('not.exist')
@@ -102,7 +102,7 @@ describe('Data Browser 2018', function () {
 
     // View Summary Table
     cy.get('body > #root > .DataBrowser > .Geography > .secondary').click()
-    cy.get('.Aggregations', { timeout: MAX_WAIT_SUMMARY }).should('exist')
+    cy.get('.Aggregations').should('exist')
     cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text', 'AUTAUGA COUNTY, BALDWIN COUNTY')
     cy.get('.Aggregations :nth-child(2) > .sublist > li').should('have.text', '1ST ALLIANCE LENDING, LLC, 1st Franklin Financial Corporation')
     cy.get('.Aggregations :nth-child(3) > .sublist > li').should('have.text', '25-49')
@@ -142,7 +142,7 @@ describe('Data Browser 2018', function () {
 
     // View Summary Table
     cy.get('body > #root > .DataBrowser > .Geography > .secondary').click()
-    cy.get('.Aggregations', { timeout: MAX_WAIT_SUMMARY }).should('exist')
+    cy.get('.Aggregations').should('exist')
     cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text',"11500\u00A0-\u00A0ANNISTON-OXFORD-JACKSONVILLE, 12220\u00A0-\u00A0AUBURN-OPELIKA")
     cy.get('.Aggregations :nth-child(3) > .sublist > li').should('have.text', '1 - Conventional')
     cy.get('.Error').should('not.exist')
