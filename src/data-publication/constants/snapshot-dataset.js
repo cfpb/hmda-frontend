@@ -78,6 +78,4 @@ export const SNAPSHOT_DATASET = {
       }
     ]
   },
-  displayedYears: ['2019', '2018', '2017']
-
 }
