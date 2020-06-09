@@ -31,6 +31,7 @@
       "heading": "Scheduled Maintenance"
     },
     "dataPublicationYears": {
+      "disclosure": ["2018", "2017"],
       "shared": ["2019", "2018", "2017"]
     },
     "beta": {
@@ -69,6 +70,7 @@
         "heading": "Scheduled Maintenance"
       },
       "dataPublicationYears": {
+        "disclosure": ["2018", "2017"],
         "shared": ["2019", "2018", "2017"]
       }
     }
@@ -101,6 +103,7 @@
     "maintenanceMode": false,
     "filingAnnouncement": null,
     "dataPublicationYears": {
+      "disclosure": ["2018", "2017"],
       "shared": ["2019", "2018", "2017"]
     },
     "beta": {
