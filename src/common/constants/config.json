@@ -31,6 +31,7 @@
       "heading": "Scheduled Maintenance"
     },
     "dataPublicationYears": {
+      "aggregate": ["2018", "2017"],
       "disclosure": ["2018", "2017"],
       "shared": ["2019", "2018", "2017"]
     },
@@ -70,6 +71,7 @@
         "heading": "Scheduled Maintenance"
       },
       "dataPublicationYears": {
+        "aggregate": ["2018", "2017"],
         "disclosure": ["2018", "2017"],
         "shared": ["2019", "2018", "2017"]
       }
@@ -103,6 +105,7 @@
     "maintenanceMode": false,
     "filingAnnouncement": null,
     "dataPublicationYears": {
+      "aggregate": ["2018", "2017"],
       "disclosure": ["2018", "2017"],
       "shared": ["2019", "2018", "2017"]
     },
