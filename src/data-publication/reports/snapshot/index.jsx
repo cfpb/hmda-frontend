@@ -2,6 +2,7 @@ import React from 'react'
 import Heading from '../../../common/Heading.jsx'
 import YearSelector from '../../../common/YearSelector.jsx'
 import { SNAPSHOT_DATASET } from '../../constants/snapshot-dataset.js'
+import { withAppContext } from '../../../common/appContextHOC.jsx'
 import './Snapshot.css'
 
 function makeListLink(href, val) {
@@ -43,7 +44,8 @@ function renderDatasets(datasets){
 const Snapshot = props => {
   const { params, url } = props.match
   const { year } = params
-  const years = SNAPSHOT_DATASET.displayedYears
+  const { snapshot, shared  } = props.config.dataPublicationYears
+  const years =  snapshot || shared
   const dataForYear = SNAPSHOT_DATASET[year]
   const snapshotDate = year ? dataForYear.snapshot_date : 'a fixed date per year'
 
@@ -95,4 +97,4 @@ const Snapshot = props => {
   )
 }
 
-export default Snapshot
+export default withAppContext(Snapshot)
