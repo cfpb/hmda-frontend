@@ -1,8 +1,6 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
-import { DYNAMIC_DATASET } from './constants/dynamic-dataset'
-
 import Home from './Home'
 import ModifiedLar from './reports/ModifiedLar'
 import SupportingDocs from './reports/SupportingDocs.jsx'
@@ -16,10 +14,11 @@ import { withAppContext } from '../common/appContextHOC.jsx'
 
 import './index.css'
 
-const DataPublication = (dpProps) => {
-  const { snapshot, shared } = dpProps.config.dataPublicationYears
+const DataPublication = ({ config }) => {
+  const { dynamic, snapshot, shared } = config.dataPublicationYears
   const snapshotYears = snapshot || shared
-  
+  const dynamicYears = dynamic || shared
+
   return (
     <div className="App DataPublication">
       <Switch>
@@ -53,9 +52,7 @@ const DataPublication = (dpProps) => {
           path="/data-publication/dynamic-national-loan-level-dataset/:year?"
           render={ props => {
             const { year } = props.match.params
-            if(year && DYNAMIC_DATASET.displayedYears.indexOf(year) === -1){
-              return <NotFound/>
-            }
+            if(year && dynamicYears.indexOf(year) === -1) return <NotFound/>
             return <DynamicDataset {...props}/>
           }}
         />

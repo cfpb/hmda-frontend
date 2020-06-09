@@ -2,6 +2,7 @@ import React from 'react'
 import Heading from '../../common/Heading.jsx'
 import YearSelector from '../../common/YearSelector.jsx'
 import { DYNAMIC_DATASET } from '../constants/dynamic-dataset.js'
+import { withAppContext } from '../../common/appContextHOC.jsx'
 
 import './DynamicDataset.css'
 
@@ -26,7 +27,8 @@ function linkToDocs(year = '2018'){
 const DynamicDataset = props => {
   const { params, url } = props.match
   const year = params.year
-  const years = DYNAMIC_DATASET.displayedYears
+  const { dynamic, shared  } = props.config.dataPublicationYears
+  const years =  dynamic || shared
   const dataForYear = DYNAMIC_DATASET[year]
 
   return (
@@ -67,4 +69,4 @@ const DynamicDataset = props => {
   )
 }
 
-export default DynamicDataset
+export default withAppContext(DynamicDataset)
