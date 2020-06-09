@@ -34,7 +34,7 @@ export const DEFAULT_WAIT = 4000 //4s
 
 /* Open react-select drop-down if it's not loading */
 export const openSelector = (id, timeout = MAX_WAIT_INSTITUTIONS) =>
-  cy.get(`${id} > div > div:first`, { timeout }).should('not.contain', 'Loading').click()
+  cy.get(`${id} > div > div`, { timeout }).first().should('not.contain', 'Loading').click()
 
 /* Delay by {time} milliseconds */
 export const waitFor = (time = DEFAULT_WAIT) => cy.wait(time)
