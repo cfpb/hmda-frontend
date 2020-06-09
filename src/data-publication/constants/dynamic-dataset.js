@@ -13,5 +13,4 @@ export const DYNAMIC_DATASET = {
     lar_spec : 'https://github.com/cfpb/hmda-platform/blob/v1.x/Documents/2017_Dynamic_LAR_Spec.csv',
     ts_spec : 'https://github.com/cfpb/hmda-platform/blob/v1.x/Documents/2017_Dynamic_TS_Spec.csv'
   },
-  displayedYears: ['2019', '2018', '2017']
 }
