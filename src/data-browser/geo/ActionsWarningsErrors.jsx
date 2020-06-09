@@ -5,6 +5,7 @@ import LoadingButton from './LoadingButton.jsx'
 export const ActionsWarningsErrors = ({
   downloadCallback,
   downloadEnabled,
+  downloadUrl,
   showSummaryButton,
   summaryEnabled,
   loadingDetails,
@@ -14,7 +15,7 @@ export const ActionsWarningsErrors = ({
 }) => {
   return (
     <>
-      <LoadingButton onClick={downloadCallback} disabled={!downloadEnabled}>
+      <LoadingButton onClick={downloadCallback} disabled={!downloadEnabled} dataUrl={downloadUrl}>
         Download Dataset
       </LoadingButton>
       {showSummaryButton && (
