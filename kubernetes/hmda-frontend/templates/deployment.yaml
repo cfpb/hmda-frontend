@@ -33,7 +33,6 @@ spec:
             - name: tz-config
               mountPath: /etc/localtime
           securityContext:
-            readOnlyRootFilesystem: true
             allowPrivilegeEscalation: false
             capabilities:
               drop:
