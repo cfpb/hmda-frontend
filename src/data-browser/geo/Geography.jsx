@@ -242,9 +242,11 @@ class Geography extends Component {
   }
 
   onItemChange(selectedItems = []) {
-    const items = selectedItems.map(item => {
-      return item.value + ''
-    })
+    const items = selectedItems
+      ? selectedItems.map((item) => {
+          return item.value + ''
+        })
+      : []
     return this.setStateAndRoute({
       items,
       details: {}
