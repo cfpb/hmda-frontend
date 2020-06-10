@@ -20,8 +20,6 @@ export class MenuList extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.children.length === 1) this.listRef.resetAfterIndex(0)
-
     // Scroll on arrow keys
     const currentIndex = this.getFocusIndex(this.props.children)
     this.listRef.scrollToItem(currentIndex)
@@ -34,7 +32,7 @@ export class MenuList extends React.Component {
       <List
         ref={(ref) => this.listRef = ref}
         height={Math.min(maxHeight, (children.length || 1) * height)}
-        itemCount={children.length}
+        itemCount={children.length || 0}
         itemSize={height}
         overscanCount={5}
       >
