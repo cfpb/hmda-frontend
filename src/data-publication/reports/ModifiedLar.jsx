@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom'
 import Heading from '../../common/Heading.jsx'
 import SearchList from './SearchList.jsx'
 import YearSelector from '../../common/YearSelector.jsx'
-import { years2019 } from '../constants/years.js'
+import { withAppContext } from '../../common/appContextHOC.jsx'
 
 import './ModifiedLar.css'
 
 const ModifiedLar = props => {
   const { url, params: { year } } = props.match
+  const { mlar, shared  } = props.config.dataPublicationYears
+  const years =  mlar || shared
 
   return (
     <React.Fragment>
@@ -30,11 +32,11 @@ const ModifiedLar = props => {
             </Link>
           </p>
         </Heading>
-        <YearSelector year={year} url={url} years={years2019}/>
+        <YearSelector year={year} url={url} years={years}/>
         <SearchList year={year} isModLar />
       </div>
     </React.Fragment>
   )
 }
 
-export default ModifiedLar
+export default withAppContext(ModifiedLar)

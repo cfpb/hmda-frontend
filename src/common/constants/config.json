@@ -25,7 +25,18 @@
     },
     "showMaps": false,
     "maintenanceMode": false,
-    "filingAnnouncement": null,
+    "filingAnnouncement": {
+      "message": "We will be performing scheduled system maintenance on June 8 from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+      "type": "warning",
+      "heading": "Scheduled Maintenance"
+    },
+    "dataPublicationYears": {
+      "aggregate": ["2018", "2017"],
+      "dynamic": ["2018", "2017"],
+      "snapshot": ["2018", "2017"],
+      "disclosure": ["2018", "2017"],
+      "shared": ["2019", "2018", "2017"]
+    },
     "beta": {
       "announcement": {
         "message": "On March 31, 2020, the 2019 Modified LAR data was released.",
@@ -56,7 +67,18 @@
       },
       "showMaps": false,
       "maintenanceMode": false,
-      "filingAnnouncement": null
+      "filingAnnouncement": {
+        "message": "We will be performing scheduled system maintenance on June 8 from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+        "type": "warning",
+        "heading": "Scheduled Maintenance"
+      },
+      "dataPublicationYears": {
+        "aggregate": ["2018", "2017"],
+        "dynamic": ["2018", "2017"],
+        "snapshot": ["2018", "2017"],
+        "disclosure": ["2018", "2017"],
+        "shared": ["2019", "2018", "2017"]
+      }
     }
   },
   "dev": {
@@ -86,6 +108,13 @@
     "showMaps": true,
     "maintenanceMode": false,
     "filingAnnouncement": null,
+    "dataPublicationYears": {
+      "aggregate": ["2018", "2017"],
+      "dynamic": ["2018", "2017"],
+      "snapshot": ["2018", "2017"],
+      "disclosure": ["2018", "2017"],
+      "shared": ["2019", "2018", "2017"]
+    },
     "beta": {
       "announcement": {
         "message": "On March 31, 2020, the 2019 Modified LAR data was released.",
@@ -117,10 +146,10 @@
         "Q3": "12/01 - 12/31"
       },
       "showMaps": true,
-      "dataBrowserYears": [
-        "2018",
-        "2017"
-      ]
+      "dataBrowserYears": ["2018", "2017"],
+      "dataPublicationYears": {
+        "shared": ["2019", "2018", "2017"]
+      }
     }
   }
 }
