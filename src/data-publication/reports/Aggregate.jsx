@@ -187,6 +187,7 @@ class Aggregate extends React.Component {
               <React.Fragment>
                 <Heading type={4} headingText="Select a state" />
                 <Select
+                  id='StateSelector'
                   onChange={this.handleChange}
                   placeholder="Select a state..."
                   searchable={true}

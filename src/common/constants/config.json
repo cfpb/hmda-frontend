@@ -109,10 +109,6 @@
     "maintenanceMode": false,
     "filingAnnouncement": null,
     "dataPublicationYears": {
-      "aggregate": ["2018", "2017"],
-      "dynamic": ["2018", "2017"],
-      "snapshot": ["2018", "2017"],
-      "disclosure": ["2018", "2017"],
       "shared": ["2019", "2018", "2017"]
     },
     "beta": {
