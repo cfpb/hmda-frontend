@@ -6,7 +6,7 @@ let maintenanceClosed = false
 const MaintenanceMessage = ({ config, closeCallback }) => {
   const { announcement, maintenanceMode } = config
 
-  if(!maintenanceMode) return null
+  if(!maintenanceMode || !announcement) return null
 
   const isOpen = maintenanceMode && !maintenanceClosed
   const cname = announcement.type + (!isOpen ? ' closed' : '')
