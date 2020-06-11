@@ -4,6 +4,7 @@ import LoadingIcon from '../../common/LoadingIcon.jsx'
 import Tables from './tables/index.jsx'
 import parse from 'csv-parse'
 import fileSaver from 'file-saver'
+import { isProd } from '../../common/configUtils'
 
 import './Report.css'
 
@@ -116,7 +117,7 @@ class Report extends React.Component {
     let year = params.year
     let msaMdId = params.msaMdId
     let reportId = params.reportId
-    const env = year === '2019' ? 'dev' : 'prod'
+    const env = year === '2019' && !isProd(window.location.host) ? 'dev' : 'prod'
     let ext = year === '2017' ? '.txt' : '.json'
     if(reportId === 'IRS') ext = '.csv'
     let url = `https://s3.amazonaws.com/cfpb-hmda-public/${env}/reports/`
