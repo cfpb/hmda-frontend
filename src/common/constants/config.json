@@ -25,11 +25,7 @@
     },
     "showMaps": false,
     "maintenanceMode": false,
-    "filingAnnouncement": {
-      "message": "We will be performing scheduled system maintenance on June 8 from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-      "type": "warning",
-      "heading": "Scheduled Maintenance"
-    },
+    "filingAnnouncement": null,
     "dataPublicationYears": {
       "aggregate": ["2018", "2017"],
       "dynamic": ["2018", "2017"],
@@ -67,11 +63,7 @@
       },
       "showMaps": false,
       "maintenanceMode": false,
-      "filingAnnouncement": {
-        "message": "We will be performing scheduled system maintenance on June 8 from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-        "type": "warning",
-        "heading": "Scheduled Maintenance"
-      },
+      "filingAnnouncement": null,
       "dataPublicationYears": {
         "aggregate": ["2018", "2017"],
         "dynamic": ["2018", "2017"],
