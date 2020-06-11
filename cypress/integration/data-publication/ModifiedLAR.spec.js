@@ -10,7 +10,7 @@ onlyOn(isBeta(HOST), () => {
 
 onlyOn(!isBeta(HOST), () => {
   describe("Modified LAR", function() {
-    it.only("Searches and finds correct link for 2019", function() {
+    it("Searches and finds correct link for 2019", function() {
       cy.viewport(1680, 867)
       cy.visit(`${HOST}/data-publication/modified-lar/2019`)
   

@@ -1,28 +1,34 @@
-const { HOST, ACTION_DELAY, TEST_DELAY } = Cypress.env()
+const { HOST } = Cypress.env()
 
-describe('National Aggregate Report 2018', () => {
-    it('does not have Reports', () => {
-        expect(true).to.equal(true);
+describe('National Aggregate Report - Not Generated', () => {
+  ['2019', '2018'].forEach((year) => {
+    it(`${year} does not have Reports`, () => {
+      cy.viewport(1000, 867)
+      cy.visit(`${HOST}/data-publication/national-aggregate-reports`)
+      cy.get('#root > .App > #main-content > .YearSelector > a')
+        .contains(year)
+        .click()
+      cy.get('h3').should(
+        'have.text',
+        `National Aggregate reports are not produced for data collected in or after 2018.`
+      )
     })
+  })
 })
 
 describe("National Aggregate Report 2017", function() {
   it("Loans Sold by Purchaser Type", function() {
     cy.viewport(1680, 867)
-
     cy.visit(`${HOST}/data-publication/national-aggregate-reports`)
-
-    cy.get("#root > .App > #main-content > .YearSelector > a:nth-child(3)").click()
-
-    cy.wait(ACTION_DELAY)
-
-    cy.get(".css-26l3qy-menu > .css-11unzgr > .css-1s9izoc > div > #react-select-2-option-0-1").click()
-
-    cy.wait(ACTION_DELAY)
+    cy.get('#root > .App > #main-content > .YearSelector > a')
+      .contains('2017')
+      .click()
+    cy.get("#react-select-2-option-0-1").click()
 
     // Confirm Report Selections
     cy.get(".ProgressCards > :nth-child(1)").should("contain.text", "2017")
-    cy.get(".ProgressCards > :nth-child(2)").should("contain.text", "Loans Sold by Purchaser Type - 3-2")
+    cy.get(".ProgressCards > :nth-child(2)")
+      .should("contain.text", "Loans Sold by Purchaser Type - 3-2")
 
     // Validate a row of report data
     cy.get(".Report table:first-of-type > tbody > tr:first-of-type").within(() => {
@@ -46,7 +52,5 @@ describe("National Aggregate Report 2017", function() {
       cy.get(":nth-child(18)").should("have.text", "309291")
       cy.get(":nth-child(19)").should("have.text", "35227")
     })
-
-    cy.wait(TEST_DELAY)
   })
 })
