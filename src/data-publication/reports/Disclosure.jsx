@@ -9,9 +9,14 @@ import Reports from './Reports.jsx'
 import Report from './Report.jsx'
 import fetchMsas from './fetchMsas.js'
 import { DISCLOSURE_REPORTS } from '../constants/disclosure-reports.js'
-import years from '../constants/years.js'
+import { withAppContext } from '../../common/appContextHOC.jsx'
 
 const detailsCache = {
+  2019: {
+    institutions: {},
+    msaMds: {},
+    reports: {}
+  },
   2018: {
     institutions: {},
     msaMds: {},
@@ -117,6 +122,8 @@ class Disclosure extends React.Component {
   render() {
     const { params, url } = this.props.match
     const year = params.year
+    const { disclosure, shared } = this.props.config.dataPublicationYears
+    const years = disclosure || shared
     const details = detailsCache[year]
     const institution = year && details.institutions[params.institutionId]
     const msaMd = year && details.msaMds[params.msaMdId]
@@ -254,4 +261,4 @@ class Disclosure extends React.Component {
   }
 }
 
-export default Disclosure
+export default withAppContext(Disclosure)

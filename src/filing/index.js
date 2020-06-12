@@ -1,4 +1,5 @@
 import 'react-app-polyfill/ie11' // For IE 11 support
+import 'core-js-pure/stable/array/find-index';
 
 import React from 'react'
 import { createStore, combineReducers, applyMiddleware } from 'redux'

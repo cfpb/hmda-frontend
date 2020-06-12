@@ -5,7 +5,7 @@ import ProgressCard from './ProgressCard.jsx'
 import Reports from './Reports.jsx'
 import Report from './Report.jsx'
 import { NATIONAL_AGGREGATE_REPORTS } from '../constants/national-aggregate-reports.js'
-import years from '../constants/years.js'
+import { withAppContext } from '../../common/appContextHOC.jsx'
 
 import './NationalAggregate.css'
 
@@ -41,6 +41,7 @@ class NationalAggregate extends React.Component {
   render() {
     const { params, url } = this.props.match
     const report = detailsCache.reports[params.reportId]
+    const years = this.props.config.dataPublicationYears.shared
 
     const header = (
       <Heading
@@ -109,4 +110,4 @@ class NationalAggregate extends React.Component {
   }
 }
 
-export default NationalAggregate
+export default withAppContext(NationalAggregate)

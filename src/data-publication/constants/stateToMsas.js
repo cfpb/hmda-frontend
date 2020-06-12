@@ -557,13 +557,114 @@
   NA: [{ id: 99999, name: 'N/A OR OUTSIDE MSA/MD' }]
 }
 
+const add2019 = {
+  AZ: [{ id: 39150, name: 'PRESCOTT VALLEY-PRESCOTT' }],
+  IL: [{ id: 16984, name: 'CHICAGO-NAPERVILLE-EVANSTON' }],
+  MD: [{ id: 23224, name: 'FREDERICK-GAITHERSBURG-ROCKVILLE' }],
+  NJ: [{ id: 35154, name: 'NEW BRUNSWICK-LAKEWOOD' }],
+  NY: [{ id: 39100, name: 'POUGHKEEPSIE-NEWBURGH-MIDDLETOWN' }],
+  OH: [{ id: 19430, name: 'DAYTON-KETTERING' }],
+  PR: [{ id: 49500, name: 'YAUCO' }],
+}
+
+const rename2019 = {
+  AL: [{ id: 11500, name: 'ANNISTON-OXFORD' }],
+  AZ: [{ id: 38060, name: 'PHOENIX-MESA-CHANDLER' }],
+  CA: [
+    { id: 36084, name: 'OAKLAND-BERKELEY-LIVERMORE' },
+    { id: 40900, name: 'SACRAMENTO-ROSEVILLE-FOLSOM' },
+    { id: 41740, name: 'SAN DIEGO-CHULA VISTA-CARLSBAD' },
+    { id: 41884, name: 'SAN FRANCISCO-SAN MATEO-REDWOOD CITY' },
+    { id: 42020, name: 'SAN LUIS OBISPO-PASO ROBLES' },
+    { id: 42220, name: 'SANTA ROSA-PETALUMA' },
+    { id: 44700, name: 'STOCKTON' },
+    { id: 46700, name: 'VALLEJO' },
+    { id: 47300, name: 'VISALIA' },
+  ],
+  CT: [{ id: 25540, name: 'HARTFORD-EAST HARTFORD-MIDDLETOWN' }],
+  FL: [
+    { id: 22744, name: 'FORT LAUDERDALE-POMPANO BEACH-SUNRISE' },
+    { id: 34940, name: 'NAPLES-MARCO ISLAND' },
+    { id: 42700, name: 'SEBRING-AVON PARK' },
+    { id: 48424, name: 'WEST PALM BEACH-BOCA RATON-BOYNTON BEACH' },
+  ],
+  GA: [{ id: 12060, name: 'ATLANTA-SANDY SPRINGS-ALPHARETTA' }],
+  MI: [
+    { id: 24340, name: 'GRAND RAPIDS-KENTWOOD' },
+    { id: 35660, name: 'NILES' },
+  ],
+  MN: [{ id: 31860, name: 'MANKATO' }],
+  MS: [{ id: 25060, name: 'GULFPORT-BILOXI' }],
+  NC: [{ id: 39580, name: 'RALEIGH-CARY' }],
+  NJ: [{ id: 45940, name: 'TRENTON-PRINCETON' }],
+  NY: [{ id: 15380, name: 'BUFFALO-CHEEKTOWAGA' }],
+  OR: [
+    { id: 10540, name: 'ALBANY-LEBANON' },
+    { id: 13460, name: 'BEND' },
+    { id: 21660, name: 'EUGENE-SPRINGFIELD' },
+  ],
+  PA: [{ id: 42540, name: 'SCRANTON--WILKES-BARRE' }],
+  PR: [{ id: 41980, name: 'SAN JUAN-BAYAMÓN-CAGUAS' }],
+  SC: [
+    { id: 24860, name: 'GREENVILLE-ANDERSON' },
+    { id: 25940, name: 'HILTON HEAD ISLAND-BLUFFTON' },
+  ],
+  TN: [{ id: 28700, name: 'KINGSPORT-BRISTOL' }],
+  TX: [
+    { id: 12420, name: 'AUSTIN-ROUND ROCK-GEORGETOWN' },
+    { id: 23104, name: 'FORT WORTH-ARLINGTON-GRAPEVINE' },
+  ],
+  VA: [
+    { id: 13980, name: 'BLACKSBURG-CHRISTIANSBURG' },
+    { id: 28700, name: 'KINGSPORT-BRISTOL' },
+    { id: 44420, name: 'STAUNTON' },
+  ],
+  WA: [
+    { id: 14740, name: 'BREMERTON-SILVERDALE-PORT ORCHARD' },
+    { id: 36500, name: 'OLYMPIA-LACEY-TUMWATER' },
+    { id: 42644, name: 'SEATTLE-BELLEVUE-KENT' },
+  ],
+  WI: [
+    { id: 33340, name: 'MILWAUKEE-WAUKESHA' },
+    { id: 48140, name: 'WAUSAU-WESTON' },
+  ],
+}
+
 const data2018 = {
   ...data2017
 }
 
 data2018.ID.push({ id: 46300, name: 'TWIN FALLS'})
 
+// Add new MSA/MD entries
+function add(additions = {}, existing = {}) {
+  let result = JSON.parse(JSON.stringify(existing))
+  Object.keys(additions).forEach((state) => {
+    if (!result[state]) result[state] = []
+    result[state].push(...additions[state])
+  })
+  return result
+}
+
+// Change the MSA/MD names
+function rename(updaters = {}, existing = {}) {
+  let result = JSON.parse(JSON.stringify(existing))
+  Object.keys(updaters).forEach((state) => {
+    if (!result[state]) result[state] = []
+    updaters[state].forEach((updater) => {
+      let idx = result[state].findIndex((current) => current.id === updater.id)
+      if (idx < 0) result[state].push(updater)
+      else result[state][idx].name = updater.name
+    })
+  })
+  return result
+}
+
+let data2019 = add(add2019, data2018)
+data2019 = rename(rename2019, data2019)
+
 export default {
   2017: data2017,
-  2018: data2018
+  2018: data2018,
+  2019: data2019,
 }

@@ -9,11 +9,16 @@ import Report from './Report.jsx'
 import STATES from '../constants/states.js'
 import stateToMsas from '../constants/stateToMsas.js'
 import { AGGREGATE_REPORTS } from '../constants/aggregate-reports.js'
-import years from '../constants/years.js'
+import { withAppContext } from '../../common/appContextHOC.jsx'
 
 import './Aggregate.css'
 
 const detailsCache = {
+  2019: {
+    states: {},
+    msaMds: {},
+    reports: {}
+  },
   2018: {
     states: {},
     msaMds: {},
@@ -75,6 +80,8 @@ class Aggregate extends React.Component {
   render() {
     const { params, url } = this.props.match
     const year = params.year
+    const { aggregate, shared } = this.props.config.dataPublicationYears
+    const years = aggregate || shared
     const details = detailsCache[year]
     const state = year && details.states[params.stateId]
     const msaMd = year && details.msaMds[params.msaMdId]
@@ -180,6 +187,7 @@ class Aggregate extends React.Component {
               <React.Fragment>
                 <Heading type={4} headingText="Select a state" />
                 <Select
+                  id='StateSelector'
                   onChange={this.handleChange}
                   placeholder="Select a state..."
                   searchable={true}
@@ -201,4 +209,4 @@ class Aggregate extends React.Component {
   }
 }
 
-export default Aggregate
+export default withAppContext(Aggregate)

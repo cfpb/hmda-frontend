@@ -1,9 +1,6 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
-import { DYNAMIC_DATASET } from './constants/dynamic-dataset'
-import { SNAPSHOT_DATASET } from './constants/snapshot-dataset'
-
 import Home from './Home'
 import ModifiedLar from './reports/ModifiedLar'
 import SupportingDocs from './reports/SupportingDocs.jsx'
@@ -13,10 +10,15 @@ import NationalAggregate from './reports/NationalAggregate'
 import Snapshot from './reports/snapshot/index'
 import DynamicDataset from './reports/DynamicDataset'
 import NotFound from '../common/NotFound'
+import { withAppContext } from '../common/appContextHOC.jsx'
 
 import './index.css'
 
-const DataPublication = () => {
+const DataPublication = ({ config }) => {
+  const { dynamic, snapshot, shared } = config.dataPublicationYears
+  const snapshotYears = snapshot || shared
+  const dynamicYears = dynamic || shared
+
   return (
     <div className="App DataPublication">
       <Switch>
@@ -40,7 +42,7 @@ const DataPublication = () => {
           path="/data-publication/snapshot-national-loan-level-dataset/:year?"
           render={ props => {
             const { year } = props.match.params
-            if(year && SNAPSHOT_DATASET.displayedYears.indexOf(year) === -1){
+            if(year && snapshotYears.indexOf(year) === -1){
               return <NotFound/>
             }
             return <Snapshot {...props}/>
@@ -50,9 +52,7 @@ const DataPublication = () => {
           path="/data-publication/dynamic-national-loan-level-dataset/:year?"
           render={ props => {
             const { year } = props.match.params
-            if(year && DYNAMIC_DATASET.displayedYears.indexOf(year) === -1){
-              return <NotFound/>
-            }
+            if(year && dynamicYears.indexOf(year) === -1) return <NotFound/>
             return <DynamicDataset {...props}/>
           }}
         />
@@ -62,4 +62,4 @@ const DataPublication = () => {
   )
 }
 
-export default DataPublication
+export default withAppContext(DataPublication)
