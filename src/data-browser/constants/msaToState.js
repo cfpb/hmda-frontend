@@ -1,4 +1,4 @@
-export default {
+const msaToState = {
   10180: [ 'TX' ],
   10380: [ 'PR' ],
   10420: [ 'OH' ],
@@ -410,3 +410,19 @@ export default {
   49700: [ 'CA' ],
   49740: [ 'AZ' ],
   99999: [ 'NA' ] }
+
+const msaToState2019 = {
+  ...msaToState,
+  16984: ['IL'],
+  19430: ['OH'],
+  23224: ['MD'],
+  35154: ['NJ'],
+  39100: ['NY'],
+  39150: ['AZ'],
+  49500: ['PR'],
+}
+
+export default {
+  2018: msaToState,
+  2019: msaToState2019
+}
