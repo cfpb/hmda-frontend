@@ -28,6 +28,7 @@ import {
   someChecksExist,
   before2018,
 } from './selectUtils.js'
+import { sanitizeArray } from '../query'
 
 import './Geography.css'
 
@@ -178,6 +179,7 @@ class Geography extends Component {
     getSubsetCSV(this.state)
   }
 
+  // TODO: Add State and MSA/MD counts by year
   checkIfLargeFile(category, items) {
     const leisSelected = this.state && this.state.leis.length
     const leisFetched = this.state && !this.state.leiDetails.loading
@@ -216,6 +218,9 @@ class Geography extends Component {
       const stateObj = before2018(obj.year) ? abbrToCode : codeToAbbr
       obj.items = items.map(i => stateObj[i]).filter(x => x)
     }
+
+    // Clean up invalid geographies
+    obj.items = sanitizeArray(category, items, obj.year)
 
     // Map query parameters pre2018 <=> 2018+
     obj.orderedVariables = this.state.orderedVariables.map(varName => {
