@@ -423,6 +423,7 @@ const msaToState2019 = {
 }
 
 export default {
+  2017: msaToState, // TODO: create 2017 msa To state map
   2018: msaToState,
   2019: msaToState2019
 }
