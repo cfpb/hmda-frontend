@@ -13,6 +13,7 @@ import { makeSearchFromState, makeStateFromSearch } from '../query.js'
 import { ActionsWarningsErrors } from './ActionsWarningsErrors'
 import MSAMD_COUNTS from '../constants/msamdCounts.js'
 import STATE_COUNTS from '../constants/stateCounts.js'
+import COUNTY_COUNTS from '../constants/countyCounts.js'
 import { abbrToCode, codeToAbbr } from '../constants/stateCodesObj.js'
 import {
   variableNameMap,
@@ -179,10 +180,10 @@ class Geography extends Component {
     getSubsetCSV(this.state)
   }
 
-  // TODO: Add State and MSA/MD counts by year
   checkIfLargeFile(category, items) {
     const leisSelected = this.state && this.state.leis.length
     const leisFetched = this.state && !this.state.leiDetails.loading
+    const year = this.state && this.state.year
 
     if(category === 'leis'){
       if(items.length && leisFetched)
@@ -196,8 +197,10 @@ class Geography extends Component {
       return this.checkIfLargeCount(this.state.leis, this.state.leiDetails.counts)
 
     if(isNationwide(category)) return true
-    if(category === 'states') return this.checkIfLargeCount(items, STATE_COUNTS)
-    if(category === 'msamds') return this.checkIfLargeCount(items, MSAMD_COUNTS)
+    if(!year) return false
+    if(category === 'states') return this.checkIfLargeCount(items, STATE_COUNTS[year])
+    if(category === 'msamds') return this.checkIfLargeCount(items, MSAMD_COUNTS[year])
+    if(category === 'counties') return this.checkIfLargeCount(items, COUNTY_COUNTS[year])
     return false
   }
 
