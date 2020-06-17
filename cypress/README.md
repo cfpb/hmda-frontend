@@ -6,6 +6,7 @@ In an effort to eliminate manual verification of system deployments, this test s
 Install [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm#installing-and-updating)  
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+source $HOME/.bashrc
 ```
 
 Install [yarn](https://yarnpkg.com/getting-started/install)
