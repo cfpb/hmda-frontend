@@ -23,8 +23,8 @@ function buildRows(aggregations, orderedVariables, variables) {
 function makeHeader(params, orderedVariables, year, leis, variables) {
   const list = []
   if(params.state) list.push(<li key="0"><h4>State:</h4><ul className="sublist"><li>{params.state.split(',').map(v => before2018(year) ? STATEOBJCODES[v] : STATEOBJ[v]).join(', ')}</li></ul></li>)
-  else if(params.msamd) list.push(<li key="0"><h4>MSA/MD:</h4><ul className="sublist"><li>{params.msamd.split(',').map(v => `${v}\u00A0-\u00A0${MSATONAME[v]}`).join(', ')}</li></ul></li>)
-  else if(params.county) list.push(<li key="0"><h4>County:</h4><ul className="sublist"><li>{params.county.split(',').map(v => COUNTIES[v]).join(', ')}</li></ul></li>)
+  else if(params.msamd) list.push(<li key="0"><h4>MSA/MD:</h4><ul className="sublist"><li>{params.msamd.split(',').map(v => `${v}\u00A0-\u00A0${MSATONAME[year][v]}`).join(', ')}</li></ul></li>)
+  else if(params.county) list.push(<li key="0"><h4>County:</h4><ul className="sublist"><li>{params.county.split(',').map(v => COUNTIES[year][v]).join(', ')}</li></ul></li>)
   if(params.lei) list.push(<li key="1"><h4>Institutions:</h4><ul className="sublist"><li>{institutionsOrLoading(params.lei, leis)}</li></ul></li>)
   else if(params.arid) list.push(<li key="1"><h4>Institutions:</h4><ul className="sublist"><li>{institutionsOrLoading(params.arid, leis)}</li></ul></li>)
 
