@@ -53,7 +53,6 @@ export function sanitizeArray(key, val, year = '2018') {
   const arr = []
   const variables = getVariables(year)
   let knownKeys
-  console.log('KEY: ', key)
   if(key === 'nationwide') return
   if(key === 'msamds') knownKeys = Object.keys(MSAS[year])
   else if(key === 'states') knownKeys = before2018(year) ? stateCodes : stateKeys
