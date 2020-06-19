@@ -3,7 +3,7 @@ import COUNTIES from '../constants/counties.js'
 import STATES from '../constants/fipsToState.js'
 
 const geomap = {
-  county: COUNTIES,
+  county: COUNTIES[2018],
   state: STATES
 }
 
