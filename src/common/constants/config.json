@@ -7,6 +7,7 @@
     },
     "defaultPeriod": "2019",
     "defaultDocsPeriod": "2019",
+    "publicationReleaseYear": "2018",
     "filingPeriods": [
       "2020-Q1",
       "2019",
@@ -57,6 +58,7 @@
       },
       "defaultPeriod": "2019",
       "defaultDocsPeriod": "2019",
+      "publicationReleaseYear": "2018",
       "filingPeriods": [
         "2020-Q1",
         "2020",
@@ -113,6 +115,7 @@
     },
     "defaultPeriod": "2019",
     "defaultDocsPeriod": "2019",
+    "publicationReleaseYear": "2019",
     "filingPeriods": [
       "2020-Q1",
       "2019",
@@ -151,6 +154,7 @@
       },
       "defaultPeriod": "2019",
       "defaultDocsPeriod": "2019",
+      "publicationReleaseYear": "2018",
       "maintenanceMode": false,
       "filingAnnouncement": null,
       "filingPeriods": [
