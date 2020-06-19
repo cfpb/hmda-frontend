@@ -155,22 +155,25 @@ class Geography extends Component {
   }
 
   requestSubset(_binding = null, attempts = 0) {
-    this.setState({error: null, loadingDetails: true})
+    this.setState({error: null, loadingDetails: true, longRunningQuery: true})
     return getSubsetDetails(this.state)
       .then(details => {
         this.sortAggregations(details.aggregations, this.state.orderedVariables)
         setTimeout(this.scrollToTable, 100)
         return this.setStateAndRoute({
           details,
-          isLargeFile: this.checkIfLargeCount(null, this.makeTotal(details))
+          isLargeFile: this.checkIfLargeCount(null, this.makeTotal(details)),
+          longRunningQuery: false
         })
       })
       .catch(error => {
-        if (isRetryable(error.status, attempts))
+        if (isRetryable(error.status, attempts)) {
+          this.setState({ longRunningQuery: true})
           return this.pendingRetry = setTimeout(
             () => this.requestSubset(null, attempts + 1),
             RETRY_DELAY
           )
+        }
 
         return this.setStateAndRoute({error})
       })
@@ -365,7 +368,7 @@ class Geography extends Component {
 
   render() {
     const { category, details, error, isLargeFile, items, leiDetails, leis,
-      loadingDetails, orderedVariables, variables } = this.state
+      loadingDetails, orderedVariables, variables, longRunningQuery } = this.state
     const enabled = category === 'nationwide' || items.length
     const checksExist = someChecksExist(variables)
     const fileDownloadUrl =
@@ -445,6 +448,7 @@ class Geography extends Component {
           requestSubset={this.requestSubset}
           isLargeFile={isLargeFile}
           error={error}
+          longRunningQuery={longRunningQuery}
         />
       </div>
     )
