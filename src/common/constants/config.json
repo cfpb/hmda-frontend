@@ -58,7 +58,7 @@
       },
       "defaultPeriod": "2019",
       "defaultDocsPeriod": "2019",
-      "publicationReleaseYear": "2018",
+      "publicationReleaseYear": "2019",
       "filingPeriods": [
         "2020-Q1",
         "2020",
@@ -83,29 +83,17 @@
       "maintenanceMode": false,
       "filingAnnouncement": null,
       "dataPublicationYears": {
-        "aggregate": [
-          "2018",
-          "2017"
-        ],
-        "dynamic": [
-          "2018",
-          "2017"
-        ],
-        "snapshot": [
-          "2018",
-          "2017"
-        ],
-        "disclosure": [
-          "2018",
-          "2017"
-        ],
         "shared": [
           "2019",
           "2018",
           "2017"
         ]
       }
-    }
+    },
+    "dataBrowserYears": [
+      "2019", 
+      "2018"
+    ]
   },
   "dev": {
     "announcement": {
