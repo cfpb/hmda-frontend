@@ -3,6 +3,8 @@ import shortcode2FIPS from '../constants/shortcodeToFips.js'
 import COUNTY_COUNTS from '../constants/countyCounts.js'
 import STATE_COUNTS from '../constants/statePop.js'
 
+const counties2018 = COUNTY_COUNTS['2018']
+
 const LINE_WIDTH = 1.5
 
 const baseBias = 250/6
@@ -151,7 +153,7 @@ function makeLegend(geography, variable, value){
 function makeStops(data, geography, variable, value){
   const stops = [['0', 'rgba(0,0,0,0.05)']]
   if(!data || !variable || !value) return stops
-  const counts = geography.value === 'county' ? COUNTY_COUNTS : STATE_COUNTS
+  const counts = geography.value === 'county' ? counties2018 : STATE_COUNTS
   let val = value.value
   if(val.match('%')) val = value.label
   Object.keys(data).forEach(geo => {

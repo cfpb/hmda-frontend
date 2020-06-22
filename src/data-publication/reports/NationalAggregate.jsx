@@ -52,7 +52,7 @@ class NationalAggregate extends React.Component {
           cross-tabulated by loan, borrower and geographic characteristics."
       >
           <p>To learn about modifications to these reports over the years, visit the{' '}
-          <a target="_blank" rel="noopener noreferrer" href="/documentation/2018/ad-changes/">A&D Report Changes</a> page.<br/>
+          <a target="_blank" rel="noopener noreferrer" href={`/documentation/${years[0]}/ad-changes/`}>A&D Report Changes</a> page.<br/>
           Looking for other HMDA data? Visit the new <a target="_blank" rel="noopener noreferrer" href="/data-browser/">HMDA Data Browser</a> to filter and download HMDA datasets.
           </p>
       </Heading>

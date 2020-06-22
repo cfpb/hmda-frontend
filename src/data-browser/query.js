@@ -5,10 +5,8 @@ import COUNTIES from './constants/counties.js'
 import { getVariables } from './constants/variables.js'
 import { before2018, getInstitutionIdKey } from './geo/selectUtils.js'
 
-const msaKeys = Object.keys(MSAS)
 const stateKeys = Object.keys(STATES)
 const stateCodes = Object.keys(STATE_CODES)
-const countyKeys = Object.keys(COUNTIES)
 const varKeys = year => Object.keys(getVariables(year))
 
 export function makeParam(s, key) {
@@ -55,10 +53,10 @@ export function sanitizeArray(key, val, year = '2018') {
   const arr = []
   const variables = getVariables(year)
   let knownKeys
-
-  if(key === 'msamds') knownKeys = msaKeys
+  if(key === 'nationwide') return
+  if(key === 'msamds') knownKeys = Object.keys(MSAS[year])
   else if(key === 'states') knownKeys = before2018(year) ? stateCodes : stateKeys
-  else if(key === 'counties') knownKeys = countyKeys
+  else if(key === 'counties') knownKeys = Object.keys(COUNTIES[year])
   else if(key === 'leis') return val
   else knownKeys = Object.keys(variables[key].mapping)
 

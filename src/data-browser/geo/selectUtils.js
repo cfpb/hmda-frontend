@@ -102,23 +102,25 @@ function createStateOption(id, year){
   return {value: id, label: `${states[id]}`}
 }
 
-function createMSAOption(id){
-  const stateLabel = MSATOSTATE[id].map(v => STATEOBJ[v]).join(' - ')
+function createMSAOption(id, year){
+  const stateLabel = MSATOSTATE[year][id].map(v => STATEOBJ[v]).join(' - ')
+  const msaName = msaToName[year][id]
   return {
     value: '' + id,
-    label:  `${id} - ${msaToName[id]} - ${stateLabel}`,
+    label:  `${id} - ${msaName} - ${stateLabel}`,
     state: stateLabel,
-    other: msaToName[id]
+    other: msaName
   }
 }
 
-function createCountyOption(id){
+function createCountyOption(id, year){
   const stateLabel = fipsToState[id.slice(0, 2)]
+  const countyName = COUNTIES[year][id]
   return {
     value: id,
-    label: `${id} - ${COUNTIES[id]} - ${stateLabel}`,
+    label: `${id} - ${countyName} - ${stateLabel}`,
     state: stateLabel,
-    other: COUNTIES[id]
+    other: countyName
   }
 }
 
@@ -142,11 +144,13 @@ function createItemOptions(props) {
   })
 
   msaSet.forEach(msa => {
-    itemOptions.msamds.push(createMSAOption(msa))
+    itemOptions.msamds.push(createMSAOption(msa, subsetYear))
   })
 
   itemOptions.msamds = itemOptions.msamds.sort(sortByStateThenOther)
-  itemOptions.counties = Object.keys(COUNTIES).map(createCountyOption).sort(sortByStateThenOther)
+  itemOptions.counties = Object.keys(COUNTIES[subsetYear])
+    .map((id) => createCountyOption(id, subsetYear))
+    .sort(sortByStateThenOther)
 
   return itemOptions
 }

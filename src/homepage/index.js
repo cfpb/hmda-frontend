@@ -12,7 +12,7 @@ export function isProd() {
 
 const Home = ({ config }) => {
   const isProdBeta = isProd() && isBeta()
-  const { announcement, defaultPeriod } = config
+  const { announcement, defaultPeriod, publicationReleaseYear } = config
 
   return (
     <main className="App home" id="main-content">
@@ -187,30 +187,32 @@ const Home = ({ config }) => {
               </p>
               <ul>
                 <li>
-                  <a href="/data-publication/modified-lar">Modified LAR</a>
+                  <a href={`/data-publication/modified-lar/${publicationReleaseYear}`}>
+                    Modified LAR
+                  </a>
                 </li>
                 <li>
-                  <a href="/data-publication/disclosure-reports/2018">
+                  <a href={`/data-publication/disclosure-reports/${publicationReleaseYear}`}>
                     Disclosure Reports
                   </a>
                 </li>
                 <li>
-                  <a href="/data-publication/aggregate-reports/2018">
+                  <a href={`/data-publication/aggregate-reports/${publicationReleaseYear}`}>
                     MSA/MD Aggregate Reports
                   </a>
                 </li>
                 <li>
-                  <a href="/data-publication/national-aggregate-reports/">
+                  <a href={`/data-publication/national-aggregate-reports/${publicationReleaseYear}`}>
                     National Aggregate Reports
                   </a>
                 </li>
                 <li>
-                  <a href="/data-publication/snapshot-national-loan-level-dataset">
+                  <a href={`/data-publication/snapshot-national-loan-level-dataset/${publicationReleaseYear}`}>
                     Snapshot National Loan-Level Dataset
                   </a>
                 </li>
                 <li>
-                  <a href="/data-publication/dynamic-national-loan-level-dataset">
+                  <a href={`/data-publication/dynamic-national-loan-level-dataset/${publicationReleaseYear}`}>
                     Dynamic National Loan-Level Dataset
                   </a>
                 </li>

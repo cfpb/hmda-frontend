@@ -13,6 +13,7 @@ import { makeSearchFromState, makeStateFromSearch } from '../query.js'
 import { ActionsWarningsErrors } from './ActionsWarningsErrors'
 import MSAMD_COUNTS from '../constants/msamdCounts.js'
 import STATE_COUNTS from '../constants/stateCounts.js'
+import COUNTY_COUNTS from '../constants/countyCounts.js'
 import { abbrToCode, codeToAbbr } from '../constants/stateCodesObj.js'
 import {
   variableNameMap,
@@ -28,6 +29,7 @@ import {
   someChecksExist,
   before2018,
 } from './selectUtils.js'
+import { sanitizeArray } from '../query'
 
 import './Geography.css'
 
@@ -153,22 +155,25 @@ class Geography extends Component {
   }
 
   requestSubset(_binding = null, attempts = 0) {
-    this.setState({error: null, loadingDetails: true})
+    this.setState({error: null, loadingDetails: true, longRunningQuery: true})
     return getSubsetDetails(this.state)
       .then(details => {
         this.sortAggregations(details.aggregations, this.state.orderedVariables)
         setTimeout(this.scrollToTable, 100)
         return this.setStateAndRoute({
           details,
-          isLargeFile: this.checkIfLargeCount(null, this.makeTotal(details))
+          isLargeFile: this.checkIfLargeCount(null, this.makeTotal(details)),
+          longRunningQuery: false
         })
       })
       .catch(error => {
-        if (isRetryable(error.status, attempts))
+        if (isRetryable(error.status, attempts)) {
+          this.setState({ longRunningQuery: true})
           return this.pendingRetry = setTimeout(
             () => this.requestSubset(null, attempts + 1),
             RETRY_DELAY
           )
+        }
 
         return this.setStateAndRoute({error})
       })
@@ -181,6 +186,7 @@ class Geography extends Component {
   checkIfLargeFile(category, items) {
     const leisSelected = this.state && this.state.leis.length
     const leisFetched = this.state && !this.state.leiDetails.loading
+    const year = this.state && this.state.year
 
     if(category === 'leis'){
       if(items.length && leisFetched)
@@ -194,8 +200,10 @@ class Geography extends Component {
       return this.checkIfLargeCount(this.state.leis, this.state.leiDetails.counts)
 
     if(isNationwide(category)) return true
-    if(category === 'states') return this.checkIfLargeCount(items, STATE_COUNTS)
-    if(category === 'msamds') return this.checkIfLargeCount(items, MSAMD_COUNTS)
+    if(!year) return false
+    if(category === 'states') return this.checkIfLargeCount(items, STATE_COUNTS[year])
+    if(category === 'msamds') return this.checkIfLargeCount(items, MSAMD_COUNTS[year])
+    if(category === 'counties') return this.checkIfLargeCount(items, COUNTY_COUNTS[year])
     return false
   }
 
@@ -216,6 +224,9 @@ class Geography extends Component {
       const stateObj = before2018(obj.year) ? abbrToCode : codeToAbbr
       obj.items = items.map(i => stateObj[i]).filter(x => x)
     }
+
+    // Clean up invalid geographies
+    obj.items = sanitizeArray(category, items, obj.year)
 
     // Map query parameters pre2018 <=> 2018+
     obj.orderedVariables = this.state.orderedVariables.map(varName => {
@@ -357,7 +368,7 @@ class Geography extends Component {
 
   render() {
     const { category, details, error, isLargeFile, items, leiDetails, leis,
-      loadingDetails, orderedVariables, variables } = this.state
+      loadingDetails, orderedVariables, variables, longRunningQuery } = this.state
     const enabled = category === 'nationwide' || items.length
     const checksExist = someChecksExist(variables)
     const fileDownloadUrl =
@@ -437,6 +448,7 @@ class Geography extends Component {
           requestSubset={this.requestSubset}
           isLargeFile={isLargeFile}
           error={error}
+          longRunningQuery={longRunningQuery}
         />
       </div>
     )
