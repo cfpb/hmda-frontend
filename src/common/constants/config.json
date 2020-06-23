@@ -88,12 +88,12 @@
           "2018",
           "2017"
         ]
-      }
-    },
-    "dataBrowserYears": [
-      "2019", 
-      "2018"
-    ]
+      },
+      "dataBrowserYears": [
+        "2019", 
+        "2018"
+      ]
+    }
   },
   "dev": {
     "announcement": {
