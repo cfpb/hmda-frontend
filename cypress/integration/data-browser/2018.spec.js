@@ -10,17 +10,15 @@ describe('Data Browser 2018', function () {
 
     // Select Geography
     openSelector('#ItemSelector')
-    cy.get('#react-select-3-option-0').click()
-    openSelector('#ItemSelector')
-    cy.get('#react-select-3-option-0').click()
+    cy.get('#ItemSelector').type('alabama{enter}')
+    cy.get('#ItemSelector').type('alaska{enter}')
     cy.url().should('include', '?category=states&items=AL,AK')
 
     // Select Institutions
     openSelector('#lei-item-select')
-    cy.contains('1ST ALLIANCE LENDING, LLC' ).click()
-    openSelector('#lei-item-select')
-    cy.contains('21ST MORTGAGE CORPORATION' ).click()
-    cy.url().should('include', 'leis=549300X973YPKT8V0H73,549300XQVJ1XBNFA5536')
+    cy.get('#lei-item-select').type('bank of america{enter}')
+    cy.get('#lei-item-select').type('chase bank{enter}')
+    cy.url().should('include', 'leis=B4TYDEB6GKMZO031MB27,7H6GLXDRUGQFU57RNE97')
 
     // Variables
     openSelector('#VariableSelector')
@@ -32,7 +30,11 @@ describe('Data Browser 2018', function () {
     cy.get('body > #root > .DataBrowser > .Geography > .secondary').click()
     cy.get('.Aggregations').should('exist')
     cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text', 'ALABAMA, ALASKA')
-    cy.get('.Aggregations :nth-child(2) > .sublist > li').should('have.text', '1ST ALLIANCE LENDING, LLC, 21st Mortgage Corporation')
+    cy.get('.Aggregations :nth-child(2) > .sublist > li').then($li => {
+      let text = $li.text().toLowerCase()
+      cy.wrap(text).should('contain', 'bank of america')
+      cy.wrap(text).should('contain', 'chase bank')
+    })
     cy.get('.Aggregations :nth-child(3) > .sublist > li').should('have.text', 'Single Family (1-4 Units):Site-Built')
     cy.get('.Error').should('not.exist')
 
@@ -50,21 +52,24 @@ describe('Data Browser 2018', function () {
 
     // Select Institutions
     openSelector('#lei-item-select')
-    cy.contains('1ST ALLIANCE LENDING, LLC' ).click()
-    openSelector('#lei-item-select')
-    cy.contains('121 FINANCIAL' ).click()
-    cy.url().should('include', 'leis=549300X973YPKT8V0H73,549300XCP8KCUTKGF379')
+    cy.get('#lei-item-select').type('bank of america{enter}')
+    cy.get('#lei-item-select').type('chase bank{enter}')
+    cy.url().should('include', 'leis=B4TYDEB6GKMZO031MB27,7H6GLXDRUGQFU57RNE97')
 
     // Variables
     openSelector('#VariableSelector')
-    cy.get('.SelectWrapper #react-select-5-option-6').click()
+    cy.get('#VariableSelector').type('lien{enter}')
     cy.get('#lien_statuses1').check('on')
     cy.url().should('include', '&lien_statuses=1')
 
     // View Summary Table
     cy.get('body > #root > .DataBrowser > .Geography > .secondary').click()
     cy.get('.Aggregations').should('exist')
-    cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text', '1ST ALLIANCE LENDING, LLC, 121 FINANCIAL')
+    cy.get('.Aggregations :nth-child(1) > .sublist > li').then($li => {
+      let text = $li.text().toLowerCase()
+      cy.wrap(text).should('contain', 'bank of america')
+      cy.wrap(text).should('contain', 'chase bank')
+    })
     cy.get('.Aggregations :nth-child(2) > .sublist > li').should('have.text', '1 - Secured By First Lien')
     cy.get('.Error').should('not.exist')
 
@@ -89,14 +94,13 @@ describe('Data Browser 2018', function () {
 
     // Select Institutions
     openSelector('#lei-item-select')
-    cy.contains('1ST ALLIANCE LENDING, LLC' ).click()
-    openSelector('#lei-item-select')
-    cy.contains('1ST FRANKLIN FINANCIAL CORPORATION' ).click()
-    cy.url().should('include', 'leis=549300X973YPKT8V0H73,25490092DWDTDJ002J62')
+    cy.get('#lei-item-select').type('bank of america{enter}')
+    cy.get('#lei-item-select').type('chase bank{enter}')
+    cy.url().should('include', 'leis=B4TYDEB6GKMZO031MB27,7H6GLXDRUGQFU57RNE97')
 
     // Variables
     openSelector('#VariableSelector')
-    cy.get('.SelectWrapper #react-select-5-option-8').click()
+    cy.get('#VariableSelector').type('total units{enter}')
     cy.get('#total_units25-49').check('on')
     cy.url().should('include', '&total_units=25-49')
 
@@ -104,7 +108,11 @@ describe('Data Browser 2018', function () {
     cy.get('body > #root > .DataBrowser > .Geography > .secondary').click()
     cy.get('.Aggregations').should('exist')
     cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text', 'AUTAUGA COUNTY, BALDWIN COUNTY')
-    cy.get('.Aggregations :nth-child(2) > .sublist > li').should('have.text', '1ST ALLIANCE LENDING, LLC, 1st Franklin Financial Corporation')
+    cy.get('.Aggregations :nth-child(2) > .sublist > li').then($li => {
+      let text = $li.text().toLowerCase()
+      cy.wrap(text).should('contain', 'bank of america')
+      cy.wrap(text).should('contain', 'chase bank')
+    })
     cy.get('.Aggregations :nth-child(3) > .sublist > li').should('have.text', '25-49')
     cy.get('.Error').should('not.exist')
 
@@ -129,10 +137,9 @@ describe('Data Browser 2018', function () {
 
     // Select Institutions
     openSelector('#lei-item-select')
-    cy.contains('1ST ALLIANCE LENDING, LLC' ).click()
-    openSelector('#lei-item-select')
-    cy.contains('21ST MORTGAGE CORPORATION' ).click()
-    cy.url().should('include', 'leis=549300X973YPKT8V0H73,549300XQVJ1XBNFA5536')
+    cy.get('#lei-item-select').type('bank of america{enter}')
+    cy.get('#lei-item-select').type('chase bank{enter}')
+    cy.url().should('include', 'leis=B4TYDEB6GKMZO031MB27,7H6GLXDRUGQFU57RNE97')
 
     // Variables
     openSelector('#VariableSelector')
@@ -144,6 +151,11 @@ describe('Data Browser 2018', function () {
     cy.get('body > #root > .DataBrowser > .Geography > .secondary').click()
     cy.get('.Aggregations').should('exist')
     cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text',"11500\u00A0-\u00A0ANNISTON-OXFORD-JACKSONVILLE, 12220\u00A0-\u00A0AUBURN-OPELIKA")
+    cy.get('.Aggregations :nth-child(2) > .sublist > li').then($li => {
+      let text = $li.text().toLowerCase()
+      cy.wrap(text).should('contain', 'bank of america')
+      cy.wrap(text).should('contain', 'chase bank')
+    })    
     cy.get('.Aggregations :nth-child(3) > .sublist > li').should('have.text', '1 - Conventional')
     cy.get('.Error').should('not.exist')
 
