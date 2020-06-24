@@ -9,18 +9,15 @@ describe('Data Browser 2017', function () {
     cy.visit(dbUrl('2017?category=states'))
 
     // Select Geography
-    openSelector('#ItemSelector')
-    cy.get('#react-select-3-option-0').click()
-    openSelector('#ItemSelector')
-    cy.get('#react-select-3-option-0').click()
+    cy.get('#ItemSelector').type('alabama{enter}')
+    cy.get('#ItemSelector').type('alaska{enter}')
     cy.url().should('include', '?category=states&items=01,02')
 
     // Select Institutions
     openSelector('#lei-item-select')
-    cy.get('#react-select-4-option-1').click()
-    openSelector('#lei-item-select')
-    cy.get('#react-select-4-option-2').click()
-    cy.url().should('include', 'arids=7383365241,7202053401')
+    cy.get('#lei-item-select').type('bank of america{enter}')
+    cy.get('#lei-item-select').type('chase bank{enter}')
+    cy.url().should('include', 'arids=9480228,9852218')
 
     // Variables
     openSelector('#VariableSelector')
@@ -32,7 +29,11 @@ describe('Data Browser 2017', function () {
     cy.get('body > #root > .DataBrowser > .Geography > .secondary').click()
     cy.get('.Aggregations', { timeout: MAX_WAIT_SUMMARY }).should('exist')
     cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text', 'ALABAMA, ALASKA')
-    cy.get('.Aggregations :nth-child(2) > .sublist > li').should('have.text', '.Huron Valley Financial, Inc., 1ST ALLIANCE LENDING, LLC')
+    cy.get('.Aggregations :nth-child(2) > .sublist > li').then($li => {
+      let text = $li.text().toLowerCase()
+      cy.wrap(text).should('contain', 'bank of america')
+      cy.wrap(text).should('contain', 'chase bank')
+    })
     cy.get('.Aggregations :nth-child(3) > .sublist > li').should('have.text', '3 - Multifamily')
     cy.get('.Error').should('not.exist')
 
@@ -50,10 +51,9 @@ describe('Data Browser 2017', function () {
 
     // Select Institutions
     openSelector('#lei-item-select')
-    cy.get('#react-select-4-option-1').click()
-    openSelector('#lei-item-select')
-    cy.get('#react-select-4-option-2').click()
-    cy.url().should('include', 'arids=7383365241,561605')
+    cy.get('#lei-item-select').type('bank of america{enter}')
+    cy.get('#lei-item-select').type('chase bank{enter}')
+    cy.url().should('include', 'arids=9480228,9852218')
 
     // Variables
     openSelector('#VariableSelector')
@@ -64,7 +64,12 @@ describe('Data Browser 2017', function () {
     // View Summary Table
     cy.get('body > #root > .DataBrowser > .Geography > .secondary').click()
     cy.get('.Aggregations', { timeout: MAX_WAIT_SUMMARY }).should('exist')
-    cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text', '.Huron Valley Financial, Inc., 121 FINANCIAL CREDIT UNION')
+    // cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text', '.Huron Valley Financial, Inc., 121 FINANCIAL CREDIT UNION')
+    cy.get('.Aggregations :nth-child(1) > .sublist > li').then($li => {
+      let text = $li.text().toLowerCase()
+      cy.wrap(text).should('contain', 'bank of america')
+      cy.wrap(text).should('contain', 'chase bank')
+    })
     cy.get('.Aggregations :nth-child(2) > .sublist > li').should('have.text', '3 - Not secured by a lien')
     cy.get('.Error').should('not.exist')
 
@@ -88,11 +93,9 @@ describe('Data Browser 2017', function () {
     cy.url().should('include', '?category=counties&items=01001,01003')
 
     // Select Institutions
-    openSelector('#lei-item-select')
-    cy.get('#react-select-4-option-1').click()
-    openSelector('#lei-item-select')
-    cy.get('#react-select-4-option-2').click()
-    cy.url().should('include', 'arids=7383365241,7202053401')
+    cy.get('#lei-item-select').type('bank of america{enter}')
+    cy.get('#lei-item-select').type('chase bank{enter}')
+    cy.url().should('include', 'arids=9480228,9852218')
 
     // Variables
     openSelector('#VariableSelector')
@@ -103,7 +106,11 @@ describe('Data Browser 2017', function () {
     // View Summary Table
     cy.get('body > #root > .DataBrowser > .Geography > .secondary').click()
     cy.get('.Aggregations', { timeout: MAX_WAIT_SUMMARY }).should('exist')
-    cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text', '.Huron Valley Financial, Inc., 1ST ALLIANCE LENDING, LLC')
+    cy.get('.Aggregations :nth-child(1) > .sublist > li').then($li => {
+      let text = $li.text().toLowerCase()
+      cy.wrap(text).should('contain', 'bank of america')
+      cy.wrap(text).should('contain', 'chase bank')
+    })
     cy.get('.Aggregations :nth-child(2) > .sublist > li').should('have.text', '3 - Not secured by a lien')
     cy.get('.Error').should('not.exist')
 
@@ -127,11 +134,9 @@ describe('Data Browser 2017', function () {
     cy.url().should('include', '?category=msamds&items=11500,12220')
 
     // Select Institutions
-    openSelector('#lei-item-select')
-    cy.get('#react-select-4-option-1').click()
-    openSelector('#lei-item-select')
-    cy.get('#react-select-4-option-2').click()
-    cy.url().should('include', 'arids=7202053401,7580521233')
+    cy.get('#lei-item-select').type('bank of america{enter}')
+    cy.get('#lei-item-select').type('chase bank{enter}')
+    cy.url().should('include', 'arids=9480228,9852218')
 
     // Variables
     openSelector('#VariableSelector')
@@ -143,6 +148,11 @@ describe('Data Browser 2017', function () {
     cy.get('body > #root > .DataBrowser > .Geography > .secondary').click()
     cy.get('.Aggregations', { timeout: MAX_WAIT_SUMMARY }).should('exist')
     cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text',"11500\u00A0-\u00A0ANNISTON-OXFORD-JACKSONVILLE, 12220\u00A0-\u00A0AUBURN-OPELIKA")
+    cy.get('.Aggregations :nth-child(2) > .sublist > li').then($li => {
+      let text = $li.text().toLowerCase()
+      cy.wrap(text).should('contain', 'bank of america')
+      cy.wrap(text).should('contain', 'chase bank')
+    })    
     cy.get('.Aggregations :nth-child(3) > .sublist > li').should('have.text', '3 - VA')
     cy.get('.Error').should('not.exist')
 
