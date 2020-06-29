@@ -27,7 +27,7 @@ export class InstitutionContainer extends Component {
 
       // create the expected objects from the array, institutions = [{lei: lei}]
       let instArr = leis.map(lei => ({ lei }))
-      dispatch(fetchEachInstitution(instArr, filingPeriod, filingQuarters))
+      dispatch(fetchEachInstitution(instArr, filingPeriod, filingQuartersLate))
       dispatch(getFilingPeriodOptions(instArr, filingPeriods, filingQuarters, filingQuartersLate))
     }
   }
