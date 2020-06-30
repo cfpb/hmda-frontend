@@ -46,6 +46,7 @@ class InstitutionPreviousSubmissions extends Component {
     if (!Object.keys(this.props.submissionPages).length) return null
 
     const pageSubmissions = this.props.submissionPages[this.state.page] || []
+    const hasSubmissions = this.props.links.last !== '0'
 
     return (
       <section className="SubmissionHistory" id={`history-${this.props.lei}`}>
@@ -67,18 +68,23 @@ class InstitutionPreviousSubmissions extends Component {
               className="accordion-content"
               aria-hidden="true"
             >
-              <p>
-                The edit report for previous submissions that completed the
-                validation process can be downloaded in csv format below.
-              </p>
+              {hasSubmissions ? (
+                <p>
+                  The edit report for previous submissions that completed the
+                  validation process can be downloaded in csv format below.
+                </p>
+              ) : (
+                'There are no previous submissions.'
+              )}
               <SubmissionHistoryNav 
                 clickHandler={this.handlePaginationClick} 
                 links={this.props.links}
                 page={this.state.page}
                 top={true}
+                hidden={!hasSubmissions}
               />
               <ol>
-                {!pageSubmissions.length && <LoadingIcon />}
+                {!pageSubmissions.length && hasSubmissions && <LoadingIcon />}
                 {pageSubmissions.map((submission, i) => {
                   const startDate = ordinal(new Date(submission.start))
                   const endDate = ordinal(new Date(submission.end))
