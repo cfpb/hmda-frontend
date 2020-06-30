@@ -22,7 +22,8 @@
     "filingQuartersLate": {
       "Q1": "06/02 - 06/30",
       "Q2": "09/01 - 09/30",
-      "Q3": "12/01 - 12/31"
+      "Q3": "12/01 - 12/31",
+      "ANNUAL": "01/01 - 03/02"
     },
     "showMaps": false,
     "maintenanceMode": false,
@@ -65,7 +66,11 @@
       "filingQuartersLate": {
         "Q1": "06/02 - 06/30",
         "Q2": "09/01 - 09/30",
-        "Q3": "12/01 - 12/31"
+        "Q3": "12/01 - 12/31",
+        "ANNUAL": "01/01 - 03/02",
+        "PREVIEW": [
+          "2020"
+        ]
       },
       "showMaps": false,
       "maintenanceMode": false,
@@ -106,7 +111,8 @@
     "filingQuartersLate": {
       "Q1": "06/02 - 06/30",
       "Q2": "09/01 - 09/30",
-      "Q3": "12/01 - 12/31"
+      "Q3": "12/01 - 12/31",
+      "ANNUAL": "01/01 - 03/02"
     },
     "showMaps": true,
     "maintenanceMode": false,
@@ -151,7 +157,8 @@
       "filingQuartersLate": {
         "Q1": "06/02 - 06/30",
         "Q2": "09/01 - 09/30",
-        "Q3": "12/01 - 12/31"
+        "Q3": "12/01 - 12/31",
+        "ANNUAL": "01/01 - 03/02"
       },
       "showMaps": true,
       "dataBrowserYears": [
