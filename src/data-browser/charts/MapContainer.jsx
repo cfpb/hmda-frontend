@@ -186,7 +186,7 @@ const MapContainer = props => {
 
   useEffect(() => {
     if(map && data) {
-      if(map.loaded()) {
+      if(map._loaded)   {
         addLayers(map, selectedGeography, makeStops(data, selectedGeography, selectedVariable, selectedValue))
         setOutline(map, selectedGeography, feature)
       }else{
@@ -203,7 +203,7 @@ const MapContainer = props => {
     if(!data || !map) return
 
     function highlight(e) {
-      if(!map.loaded()) return
+      if(!map._loaded) return
 
       const features = map.queryRenderedFeatures(e.point, {layers: [selectedGeography.value]})
       if(!features.length) return popup.remove()
@@ -222,7 +222,7 @@ const MapContainer = props => {
     }
 
     function getTableData(e){
-      if(!map.loaded() || !selectedGeography || !selectedVariable) return
+      if(!map._loaded || !selectedGeography || !selectedVariable) return
       const features = map.queryRenderedFeatures(e.point, {layers: [selectedGeography.value]})
       if(!features.length) return
       const feat = features[0].properties['GEOID']
@@ -234,7 +234,7 @@ const MapContainer = props => {
     }
 
     function attachHandlers () {
-      if(map.loaded()) highlightSavedFeature()
+      if(map._loaded) highlightSavedFeature()
       else map.on('load', highlightSavedFeature)
       map.on('mousemove', highlight)
       map.on('mouseleave', 'county', highlightSavedFeature)
