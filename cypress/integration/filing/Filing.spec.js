@@ -1,7 +1,10 @@
 import "cypress-file-upload"
 import { isBeta } from '../../support/helpers'
+import { beforeFilingPeriod, afterFilingPeriod } from '../../../src/filing/utils/date'
+import { isQuarterly } from '../../../src/filing/api/utils'
+import { getDefaultConfig } from '../../../src/common/configUtils'
 
-const PERIODS = ["2018", "2019", "2020-Q1"]
+const PERIODS = ["2018", "2019", "2020-Q1", "2020-Q2"]
 
 const {
   HOST,
@@ -12,6 +15,7 @@ const {
   TEST_DELAY
 } = Cypress.env()
 
+const config = getDefaultConfig(HOST)
 const getFilename = (filingPeriod, lei) => `${filingPeriod}-${lei}.txt`
 
 describe("Filing", function() {
@@ -36,6 +40,28 @@ describe("Filing", function() {
       // Action: List Institutions
       cy.visit(`${HOST}/filing/${filingPeriod}/institutions`)
       cy.wait(ACTION_DELAY)
+
+      // Cannot file before a period is open
+      if(beforeFilingPeriod(filingPeriod, config.filingQuarters)){
+        cy.contains(`The ${filingPeriod} filing period is not yet open.`).should('exist')
+        cy.contains('Upload your file').should('not.exist')
+        cy.contains('Upload a new file').should('not.exist')
+        return
+      }      
+
+      if(afterFilingPeriod(filingPeriod, config.filingQuartersLate)) {
+        // Cannot file/refile after a Quarterly Filing period is passed
+        if(isQuarterly(filingPeriod)){
+          cy.contains('Upload your file').should('not.exist')
+          cy.contains('Upload a new file').should('not.exist')
+          cy.contains('For Review Only', { timout: 5000 }).should('exist')
+          return
+        }
+        // Can file after Annual period is closed but should see the message 
+        else {
+          cy.contains(`The ${filingPeriod} filing period is closed.`).should('exist')
+        }
+      }
 
       cy.get(`#main-content .institution`, { timeout: 20000 })
         .then($list => {

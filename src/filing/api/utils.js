@@ -15,3 +15,7 @@ export function yearQuarterToPath(yearPeriod) {
   const [year, quarter] = splitYearQuarter(yearPeriod)
   return formatPeriod({ year, quarter })
 }
+
+export function isQuarterly(period) {
+  return Boolean(splitYearQuarter(period)[1])
+}
