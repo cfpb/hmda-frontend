@@ -1,17 +1,26 @@
 import { isBeta } from './Beta'
 
-const CONFIG_URL = 'https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/common/constants/config.json'
+import prod from './constants/prod-config.json'
+import prodBeta from './constants/prod-beta-config.json'
+import dev from './constants/dev-config.json'
+import devBeta from './constants/dev-beta-config.json'
+
+const CONFIG_URL_PREFIX = 'https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/common/constants/'
 
 export function fetchEnvConfig(setFn, host) {
-  return fetch(CONFIG_URL)
+  return fetch(`${CONFIG_URL_PREFIX}${getDefaultConfig(host).name}-config.json`)
     .then(data => data.json())
-    .then(config => setFn(getEnvConfig(config, host)))
+    .then(config => setFn(config))
 }
 
-export function getEnvConfig(config, host) {
-  let env = isProd(host) ? { ...config.prod } : { ...config.dev }
-  if (isBeta(host)) env = { ...env.beta }
-  return env
+export function getDefaultConfig(host) {
+  return isProd(host)
+    ? isBeta(host)
+      ? prodBeta
+      : prod
+    : isBeta(host)
+      ? devBeta
+      : dev
 }
 
 export function isProd(host) {

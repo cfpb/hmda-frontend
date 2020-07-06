@@ -37,7 +37,7 @@
       ]
     },
     "dataBrowserYears": [
-      "2019", 
+      "2019",
       "2018"
     ],
     "beta": {
@@ -77,7 +77,7 @@
       "showMaps": false,
       "maintenanceMode": false,
       "filingAnnouncement": null,
-      "dataPublicationYears": {     
+      "dataPublicationYears": {
         "shared": [
           "2019",
           "2018",
@@ -85,7 +85,7 @@
         ]
       },
       "dataBrowserYears": [
-        "2019", 
+        "2019",
         "2018"
       ]
     }
