@@ -1,8 +1,7 @@
 {
   "prod": {
     "announcement": {
-      "message": "On June 24, 2020, the Bureau released the 2019 National Loan-Level Dataset, MSA/MD Aggregate Reports, and Disclosure Reports. The HMDA Data Browser
-as also been updated to include the 2019 National Loan-Level Dataset.",
+      "message": "On June 24, 2020, the Bureau released the 2019 National Loan-Level Dataset, MSA/MD Aggregate Reports, and Disclosure Reports. The HMDA Data Browser has also been updated to include the 2019 National Loan-Level Dataset.",
       "type": "info",
       "heading": "Announcement"
     },
