@@ -4,8 +4,6 @@ import { beforeFilingPeriod, afterFilingPeriod } from '../../../src/filing/utils
 import { isQuarterly } from '../../../src/filing/api/utils'
 import { getDefaultConfig } from '../../../src/common/configUtils'
 
-const PERIODS = ["2018", "2019", "2020-Q1", "2020-Q2"]
-
 const {
   HOST,
   USERNAME,
@@ -19,7 +17,7 @@ const config = getDefaultConfig(HOST)
 const getFilename = (filingPeriod, lei) => `${filingPeriod}-${lei}.txt`
 
 describe("Filing", function() {
-  PERIODS.forEach(filingPeriod => {
+  config.filingPeriods.forEach(filingPeriod => {
     it(`${filingPeriod}`, function() {
       const filingYear = filingPeriod.split('-')[0]
 
