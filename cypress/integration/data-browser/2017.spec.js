@@ -128,9 +128,8 @@ describe('Data Browser 2017', function () {
 
       // Select Geography
       openSelector('#ItemSelector')
-      cy.get('#react-select-3-option-0').click()
-      openSelector('#ItemSelector')
-      cy.get('#react-select-3-option-0').click()
+      cy.get('#ItemSelector').type("11500{enter}")
+      cy.get('#ItemSelector').type("12220{enter}")
       cy.url().should('include', '?category=msamds&items=11500,12220')
 
       // Select Institutions
