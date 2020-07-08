@@ -1,9 +1,9 @@
 {
   "name": "prod-beta",
   "announcement": {
-    "message": "On June 24, 2020, the Bureau released the 2019 National Loan-Level Dataset, MSA/MD Aggregate Reports, and Disclosure Reports. The HMDA Data Browser has also been updated to include the 2019 National Loan-Level Dataset.",
-    "type": "info",
-    "heading": "Announcement"
+    "message": "We will be performing scheduled system maintenance on July 8 from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance"
   },
   "defaultPeriod": "2020",
   "defaultDocsPeriod": "2019",
@@ -35,8 +35,12 @@
   },
   "showMaps": false,
   "maintenanceMode": false,
-  "filingAnnouncement": null,
-  "dataPublicationYears": {     
+  "filingAnnouncement": {
+    "message": "We will be performing scheduled system maintenance on July 8 from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance"
+  },
+  "dataPublicationYears": {
     "shared": [
       "2019",
       "2018",
@@ -44,7 +48,7 @@
     ]
   },
   "dataBrowserYears": [
-    "2019", 
+    "2019",
     "2018"
   ]
 }
