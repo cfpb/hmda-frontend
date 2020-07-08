@@ -17,6 +17,12 @@
 
 - **Description:** Select this option to download datasets by county.
 
+
+### Financial Institution Filter
+
+- **Description:** Select one or more financial institution by entering the financial institutions LEI or name
+
+
 ### Pre-Selected Filters
 
 ### [action\_taken](#action_taken)

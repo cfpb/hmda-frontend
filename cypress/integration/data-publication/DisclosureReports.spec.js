@@ -1,38 +1,74 @@
-const { HOST, ACTION_DELAY, TEST_DELAY } = Cypress.env()
+const { HOST } = Cypress.env()
 
 describe("Disclosure Reports", function() {
+  it('Fetches a 2019 Applications by Tract Report', function () {
+    cy.viewport(1000, 978)
+    cy.visit(`${HOST}/data-publication/disclosure-reports`)
+    cy.get('#root > .App > #main-content > .YearSelector > a')
+      .contains('2019')
+      .click()
+
+    cy.get('#institution-name').click()
+    cy.get('#institution-name').type('cypress')
+    cy.get('#main-content > .SearchList > .Results > li > .button-link').click()
+    cy.get('#react-select-2-option-0').click()
+    cy.get('#react-select-3-option-0').click()
+
+    /* Check Report Params */
+
+    // Year
+    cy.get(".ProgressCards > :nth-child(1)").should('contain.text', '2019')
+    
+    // Institution
+    cy.get(".ProgressCards > :nth-child(2) .heading > p").should(
+      "contain.text",
+      "CYPRESS BANK, SSB - 549300I4IUWMEMGLST06"
+    )
+
+    // MSA/MD
+    cy.get(".ProgressCards > :nth-child(3) .heading > p").should(
+      "contain.text",
+      "Dallas-Fort Worth, TX-OK - 19124"
+    )
+
+    // Report Type
+    cy.get(".ProgressCards > :nth-child(4) .heading > p").should(
+      "contain.text",
+      "Applications by Tract"
+    )
+
+    // Validate a row
+    cy.get("tbody > :nth-child(4) > :nth-child(2)").should('have.text', '0')
+    cy.get("tbody > :nth-child(4) > :nth-child(3)").should('have.text', '0')
+    cy.get("tbody > :nth-child(4) > :nth-child(4)").should('have.text', '3')
+    cy.get("tbody > :nth-child(4) > :nth-child(5)").should('have.text', '1845000')
+    cy.get("tbody > :nth-child(4) > :nth-child(6)").should('have.text', '0')
+    cy.get("tbody > :nth-child(4) > :nth-child(7)").should('have.text', '0')
+    cy.get("tbody > :nth-child(4) > :nth-child(8)").should('have.text', '0')
+    cy.get("tbody > :nth-child(4) > :nth-child(9)").should('have.text', '0')
+    cy.get("tbody > :nth-child(4) > :nth-child(10)").should('have.text', '0')
+    cy.get("tbody > :nth-child(4) > :nth-child(11)").should('have.text', '0')
+    cy.get("tbody > :nth-child(4) > :nth-child(12)").should('have.text', '0')
+    cy.get("tbody > :nth-child(4) > :nth-child(13)").should('have.text', '0')
+    cy.get("tbody > :nth-child(4) > :nth-child(14)").should('have.text', '0')
+    cy.get("tbody > :nth-child(4) > :nth-child(15)").should('have.text', '0')
+  })
+   
   it("Fetches a 2018 Applications by Tract Report", function() {
     cy.viewport(1680, 867)
-
     cy.visit(`${HOST}/data-publication/disclosure-reports/`)
+    cy.get('#root > .App > #main-content > .YearSelector > a')
+      .contains('2018')
+      .click()
 
-    cy.get(
-      "#root > .App > #main-content > .YearSelector > a:nth-child(2)"
-    ).click()
-    cy.wait(ACTION_DELAY)
-
-    cy.get(
-      "#main-content > .SearchList > form > div > #institution-name"
-    ).click()
-
-    cy.get("#main-content > .SearchList > form > div > #institution-name").type(
-      "cypress"
-    )
-    cy.wait(ACTION_DELAY)
+    cy.get('#institution-name').click()
+    cy.get('#institution-name').type('cypress')
 
     cy.get("#main-content > .SearchList > .Results > li > .button-link").click()
-    cy.wait(ACTION_DELAY)
 
-    cy.get(
-      "#main-content > .css-2b097c-container > .css-26l3qy-menu > .css-11unzgr > #react-select-2-option-3"
-    ).click()
-    cy.wait(ACTION_DELAY)
-
-    cy.get(
-      "#main-content > .css-2b097c-container > .css-26l3qy-menu > .css-11unzgr > #react-select-3-option-0"
-    ).click()
-    cy.wait(ACTION_DELAY)
-
+    cy.get("#react-select-2-option-2").click()
+    cy.get("#react-select-3-option-0").click()
+    
     /* 
       Check Report Params 
     */
@@ -84,8 +120,6 @@ describe("Disclosure Reports", function() {
     cy.get("tbody > :nth-child(7) > :nth-child(14)").should('have.text', '0')
     cy.get("tbody > :nth-child(7) > :nth-child(15)").should('have.text', '0')
 
-    cy.wait(TEST_DELAY)
-
     // TODO: Test 'Save as CSV' button
     /* Test CSV Download */
     // Possible method
@@ -99,33 +133,17 @@ describe("Disclosure Reports", function() {
 
     cy.visit(`${HOST}/data-publication/disclosure-reports`)
 
-    cy.get(
-      "#root > .App > #main-content > .YearSelector > a:nth-child(3)"
-    ).click()
-    cy.wait(ACTION_DELAY)
+    cy.get('#root > .App > #main-content > .YearSelector > a')
+      .contains('2017')
+      .click()
 
-    cy.get(
-      "#main-content > .SearchList > form > div > #institution-name"
-    ).click()
-
-    cy.get("#main-content > .SearchList > form > div > #institution-name").type(
-      "cypress"
-    )
-    cy.wait(ACTION_DELAY)
+    cy.get('#institution-name').click()
+    cy.get('#institution-name').type('cypress')
 
     cy.get("#main-content > .SearchList > .Results > li > .button-link").click()
     
-    cy.wait(ACTION_DELAY)
-
-    cy.get(
-      "#main-content > .css-2b097c-container > .css-26l3qy-menu > .css-11unzgr > #react-select-2-option-5"
-    ).click()
-
-    cy.wait(ACTION_DELAY)
-
-    cy.get(
-      "#main-content > .css-2b097c-container > .css-26l3qy-menu > .css-11unzgr > #react-select-3-option-1"
-    ).click()
+    cy.get("#react-select-2-option-5").click()
+    cy.get("#react-select-3-option-1").click()
 
     /* 
       Check Report Params 
@@ -174,6 +192,5 @@ describe("Disclosure Reports", function() {
     cy.get("tbody > :nth-child(6) > :nth-child(10)").should("have.text", "0")
 
     // TODO: Test 'Save as CSV' button
-    cy.wait(TEST_DELAY)
   })
 })

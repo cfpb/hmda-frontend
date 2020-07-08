@@ -46,7 +46,7 @@ class InstitutionPreviousSubmissions extends Component {
     if (!Object.keys(this.props.submissionPages).length) return null
 
     const pageSubmissions = this.props.submissionPages[this.state.page] || []
-    const listStartingNumber =  pageSubmissions[0] && pageSubmissions[0].id.sequenceNumber
+    const hasSubmissions = this.props.links.last !== '0'
 
     return (
       <section className="SubmissionHistory" id={`history-${this.props.lei}`}>
@@ -68,18 +68,23 @@ class InstitutionPreviousSubmissions extends Component {
               className="accordion-content"
               aria-hidden="true"
             >
-              <p>
-                The edit report for previous submissions that completed the
-                validation process can be downloaded in csv format below.
-              </p>
+              {hasSubmissions ? (
+                <p>
+                  The edit report for previous submissions that completed the
+                  validation process can be downloaded in csv format below.
+                </p>
+              ) : (
+                'There are no previous submissions.'
+              )}
               <SubmissionHistoryNav 
                 clickHandler={this.handlePaginationClick} 
                 links={this.props.links}
                 page={this.state.page}
                 top={true}
+                hidden={!hasSubmissions}
               />
               <ol>
-                {!pageSubmissions.length && <LoadingIcon />}
+                {!pageSubmissions.length && hasSubmissions && <LoadingIcon />}
                 {pageSubmissions.map((submission, i) => {
                   const startDate = ordinal(new Date(submission.start))
                   const endDate = ordinal(new Date(submission.end))
@@ -93,7 +98,7 @@ class InstitutionPreviousSubmissions extends Component {
                   // because quality and macro are verified
                   if (submission.status.code > VALIDATING) {
                     return (
-                      <li key={i} value={listStartingNumber - i}>
+                      <li key={i} value={submission.id.sequenceNumber}>
                         Filing progress on {startDate}:{' '}
                         <strong>{message}</strong>
                         {signedOn},{' '}
@@ -104,7 +109,7 @@ class InstitutionPreviousSubmissions extends Component {
 
                   // other statuses contain no edits
                   return (
-                    <li key={i}>
+                    <li key={i} value={submission.id.sequenceNumber}>
                       Filing progress on {startDate}: <strong>{message}</strong>
                       .
                     </li>

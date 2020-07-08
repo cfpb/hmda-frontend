@@ -1,13 +1,17 @@
+// Used for year 2018+
+const shared2018_plus = [
+  { value: '1', label: 'Applications by Tract' },
+  { value: '2', label: 'Loans Purchased by Tract' },
+  { value: '3', label: 'Applications by Race and Sex' },
+  { value: '4', label: 'Applications by Ethnicity and Sex' },
+  { value: '5', label: 'Applications by Income, Race, and Ethnicity' },
+  { value: '9', label: 'Applications by Median Age of Homes' },
+  { value: 'i', label: 'Reporting Financial Institutions' }
+]
+
 export const AGGREGATE_REPORTS = {
-  2018: [
-    { value: '1', label: 'Applications by Tract' },
-    { value: '2', label: 'Loans Purchased by Tract' },
-    { value: '3', label: 'Applications by Race and Sex' },
-    { value: '4', label: 'Applications by Ethnicity and Sex' },
-    { value: '5', label: 'Applications by Income, Race, and Ethnicity' },
-    { value: '9', label: 'Applications by Median Age of Homes' },
-    { value: 'i', label: 'Reporting Financial Institutions' }
-  ],
+  2019: shared2018_plus,
+  2018: shared2018_plus,
   2017: [
     { value: 'i', label: 'Reporting Institutions' },
     { value: '1', label: 'Applications by Tract' },

@@ -1,4 +1,4 @@
-import { isNationwide } from './geo/selectUtils'
+import { isNationwide, getInstitutionIdKey } from './geo/selectUtils'
 
 const API_BASE_URL = '/v2/data-browser-api/view'
 const RETRYABLE = [408, 503, 504]
@@ -24,9 +24,9 @@ export function addVariableParams(obj={}) {
   return qs
 }
 
-export function addYears(url='') {
-  if(url.match(/\?/)) return '&years=2018'
-  return '?years=2018'
+export function addYears(url='', year='2018') {
+  if(url.match(/\?/)) return `&years=${year}`
+  return `?years=${year}`
 }
 
 export function createItemQuerystring(obj = {}) {
@@ -56,12 +56,14 @@ export function makeUrl(obj, isCSV, includeVariables=true) {
   if(isCSV) url += '/csv'
   else url += '/aggregations'
 
+  const idKey = getInstitutionIdKey(obj.year)
+
   if(hasItems) url += createQueryString(obj.category, obj.items, hasItems)
-  if(hasLeis) url += createQueryString('leis', obj.leis, !hasItems)
+  if(hasLeis) url += createQueryString(idKey, obj.leis, !hasItems)
   if(!hasItems && !hasLeis) url += '?'
   if(includeVariables) url += addVariableParams(obj)
 
-  url += addYears(url)
+  url += addYears(url, obj.year)
 
   return url
 }
@@ -70,11 +72,10 @@ export function makeFilersUrl(obj){
   if(!obj) return ''
   let url = API_BASE_URL + '/filers'
 
-  if(isNationwide(obj.category))
-    return url + addYears(url)
+  if (isNationwide(obj.category)) return url + addYears(url, obj.year)
 
   url += createItemQuerystring(obj)
-  url += addYears(url)
+  url += addYears(url, obj.year)
   return url
 }
 
@@ -103,7 +104,8 @@ export function makeCSVName(obj, includeVariables=true) {
   if(obj.msamds && obj.msamds.length) name += obj.msamds.join(',') + '-'
 
   if(isNationwide(obj.category)) {
-    if (obj.leis && obj.leis.length) name = 'leis-' + obj.leis.join(',') + '-'
+    if (obj.leis && obj.leis.length)
+      name = getInstitutionIdKey(obj.year) + '-' + obj.leis.join(',') + '-'
     else name = 'nationwide-'
   }
 

@@ -10,7 +10,9 @@ const links = {
   2019: [
     <li key="2019-0"><Link to="/documentation/2019/lar-formatting/">LAR Formatting Tool Instructions</Link></li>,
   ],
-  2020: []
+  2020: [    
+    <li key="2020-0"><Link to="/documentation/2020/lar-formatting/">LAR Formatting Tool Instructions</Link></li>,
+  ]
 }
 
 const LARFT = props => {

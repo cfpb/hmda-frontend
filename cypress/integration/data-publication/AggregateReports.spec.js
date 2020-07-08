@@ -1,9 +1,34 @@
-const { HOST, ACTION_DELAY, TEST_DELAY } = Cypress.env()
+import { openSelector } from '../../support/helpers'
+const { HOST } = Cypress.env()
 
+// TODO: Test CSV Download
 describe("Aggregate Reports", function() {
-// TODO
-// Test CSV Download for both 2018 and 2017.
-// Will mirror method we determine best in Disclosure Reports.
+  it('2019', function() {
+    // Report: Applications by Ethnicity and Sex
+    cy.viewport(1000, 978)
+    cy.visit(`${HOST}/data-publication/aggregate-reports/`)
+    cy.get('#root > .App > #main-content > .YearSelector > a')
+      .contains('2019')
+      .click()
+    openSelector('#StateSelector')
+    cy.get('#react-select-2-option-2').click() // State
+    cy.get('#react-select-3-option-2').click() // MSA/MD
+    cy.get('#react-select-4-option-3').click() // Report
+
+    // Report Content
+    cy.get("tbody > :nth-child(3) > :nth-child(2)").should("have.text", "13409")
+    cy.get("tbody > :nth-child(3) > :nth-child(3)").should("have.text", "2710055000")
+    cy.get("tbody > :nth-child(3) > :nth-child(4)").should("have.text", "608")
+    cy.get("tbody > :nth-child(3) > :nth-child(5)").should("have.text", "108090000")
+    cy.get("tbody > :nth-child(3) > :nth-child(6)").should("have.text", "4384")
+    cy.get("tbody > :nth-child(3) > :nth-child(7)").should("have.text", "610090000")
+    cy.get("tbody > :nth-child(3) > :nth-child(8)").should("have.text", "3634")
+    cy.get("tbody > :nth-child(3) > :nth-child(9)").should("have.text", "734050000")
+    cy.get("tbody > :nth-child(3) > :nth-child(10)").should("have.text", "1210")
+    cy.get("tbody > :nth-child(3) > :nth-child(11)").should("have.text", "235550000")
+    cy.get("tbody > :nth-child(3) > :nth-child(12)").should("have.text", "2089")
+    cy.get("tbody > :nth-child(3) > :nth-child(13)").should("have.text", "462355000")
+  })
 
   it("2018", function() {
     // Report: Applications by Income, Race, and Ethnicity
@@ -12,28 +37,14 @@ describe("Aggregate Reports", function() {
 
     cy.visit(`${HOST}/data-publication/aggregate-reports`)
 
-    cy.get(
-      "#root > .App > #main-content > .YearSelector > a:nth-child(2)"
-    ).click()
+    cy.get('#root > .App > #main-content > .YearSelector > a')
+      .contains('2018')
+      .click()
 
-    cy.get(
-      ".App > #main-content > .css-2b097c-container > .css-1pahdxg-control > .css-1hwfws3"
-    ).click()
-    cy.wait(ACTION_DELAY)
-
-    cy.get(
-      "#main-content > .css-2b097c-container > .css-26l3qy-menu > .css-11unzgr > #react-select-2-option-4"
-    ).click()
-    cy.wait(ACTION_DELAY)
-
-    cy.get(
-      "#main-content > .css-2b097c-container > .css-26l3qy-menu > .css-11unzgr > #react-select-3-option-14"
-    ).click()
-    cy.wait(ACTION_DELAY)
-
-    cy.get(
-      "#main-content > .css-2b097c-container > .css-26l3qy-menu > .css-11unzgr > #react-select-4-option-4"
-    ).click()
+    openSelector('#StateSelector')
+    cy.get('#react-select-2-option-4').click()
+    cy.get('#react-select-3-option-14').click()
+    cy.get('#react-select-4-option-4').click()
 
     /* 
         Check Report Params 
@@ -80,9 +91,6 @@ describe("Aggregate Reports", function() {
     cy.get("tbody > :nth-child(9) > :nth-child(13)").should("have.text", "4410000")
     cy.get("tbody > :nth-child(9) > :nth-child(14)").should("have.text", "2")
     cy.get("tbody > :nth-child(9) > :nth-child(15)").should("have.text", "310000")
-    
-    cy.wait(TEST_DELAY)
-
   })
   
 
@@ -93,28 +101,14 @@ describe("Aggregate Reports", function() {
 
     cy.visit(`${HOST}/data-publication/aggregate-reports`)
 
-    cy.get(
-      "#root > .App > #main-content > .YearSelector > a:nth-child(3)"
-    ).click()
+    cy.get('#root > .App > #main-content > .YearSelector > a')
+      .contains('2017')
+      .click()
 
-    cy.get(
-    ".App > #main-content > .css-2b097c-container > .css-1pahdxg-control > .css-1hwfws3"
-    ).click()
-    cy.wait(ACTION_DELAY)
-
-    cy.get(
-    "#main-content > .css-2b097c-container > .css-26l3qy-menu > .css-11unzgr > #react-select-2-option-5"
-    ).click()
-    cy.wait(ACTION_DELAY)
-
-    cy.get(
-    "#main-content > .css-2b097c-container > .css-26l3qy-menu > .css-11unzgr > #react-select-3-option-0"
-    ).click()
-    cy.wait(ACTION_DELAY)
-
-    cy.get(
-    "#main-content > .css-2b097c-container > .css-26l3qy-menu > .css-11unzgr > #react-select-4-option-1"
-    ).click()
+    openSelector('#StateSelector')
+    cy.get('#react-select-2-option-5').click()
+    cy.get('#react-select-3-option-0').click()
+    cy.get('#react-select-4-option-1').click()
 
     /*
         Check Report Content
@@ -135,7 +129,5 @@ describe("Aggregate Reports", function() {
     cy.get("tbody > :nth-child(2) > :nth-child(13)").should("have.text", "21442")
     cy.get("tbody > :nth-child(2) > :nth-child(14)").should("have.text", "0")
     cy.get("tbody > :nth-child(2) > :nth-child(15)").should("have.text", "0")
-
-    cy.wait(TEST_DELAY)
   })
 })

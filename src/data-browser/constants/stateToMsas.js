@@ -3,13 +3,21 @@ const jsonData = '{"AL":[11500,12220,13820,17980,19300,19460,20020,22520,23460,2
 
 const data2017 = JSON.parse(jsonData)
 
-const data2018 = {
-  ...data2017
-}
-
+const data2018 = JSON.parse(jsonData)
 data2018.ID.push(46300)
+
+const data2019 = JSON.parse(jsonData)
+data2019.AZ.push(39150)
+data2019.ID.push(46300)
+data2019.IL.push(16984)
+data2019.MD.push(23224)
+data2019.NJ.push(35154)
+data2019.NY.push(39100)
+data2019.OH.push(19430)
+data2019.PR.push(49500)
 
 export default {
   2017: data2017,
-  2018: data2018
+  2018: data2018,
+  2019: data2019,
 }

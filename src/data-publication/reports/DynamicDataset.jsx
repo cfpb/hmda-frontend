@@ -2,6 +2,7 @@ import React from 'react'
 import Heading from '../../common/Heading.jsx'
 import YearSelector from '../../common/YearSelector.jsx'
 import { DYNAMIC_DATASET } from '../constants/dynamic-dataset.js'
+import { withAppContext } from '../../common/appContextHOC.jsx'
 
 import './DynamicDataset.css'
 
@@ -13,20 +14,22 @@ function makeListLink(href, val) {
   )
 }
 
-function linkToDocs(){
+function linkToDocs(year = '2018'){
   return [
-    <li key="0"><a href="/documentation/2018/public-lar-schema/">Public LAR Schema</a></li>,
-    <li key="1"><a href="/documentation/2018/public-ts-schema/">Public Transmittal Sheet Schema</a></li>,
-    <li key="2"><a href="/documentation/2018/public-panel-schema/">Public Panel Schema</a></li>,
-    <li key="3"><a href="/documentation/2018/lar-data-fields/">Public HMDA Data Fields with Values and Definitions</a></li>,
-    <li key="4"><a href="/documentation/2018/panel-data-fields/">Public Panel Values and Definitions</a></li>
+    <li key="0"><a href={`/documentation/${year}/public-lar-schema/`}>Public LAR Schema</a></li>,
+    <li key="1"><a href={`/documentation/${year}/public-ts-schema/`}>Public Transmittal Sheet Schema</a></li>,
+    <li key="2"><a href={`/documentation/${year}/public-panel-schema/`}>Public Panel Schema</a></li>,
+    <li key="3"><a href={`/documentation/${year}/lar-data-fields/`}>Public HMDA Data Fields with Values and Definitions</a></li>,
+    <li key="4"><a href={`/documentation/${year}/panel-data-fields/`}>Public Panel Values and Definitions</a></li>
   ]
 }
 
 const DynamicDataset = props => {
   const { params, url } = props.match
-  const years = DYNAMIC_DATASET.displayedYears
-  const dataForYear = DYNAMIC_DATASET[params.year]
+  const year = params.year
+  const { dynamic, shared  } = props.config.dataPublicationYears
+  const years =  dynamic || shared
+  const dataForYear = DYNAMIC_DATASET[year]
 
   return (
     <div className="DynamicDataset" id="main-content">
@@ -41,23 +44,23 @@ const DynamicDataset = props => {
           with HMDA submissions received through the previous Sunday night."
       />
 
-      <YearSelector year={params.year} url={url} years={years} />
+      <YearSelector year={year} url={url} years={years} />
 
-      {params.year ?
+      {year ?
         <div className="grid">
           <div className="item">
-            <Heading type={4} headingText={params.year + ' Dynamic Datasets'} />
-            <ul>
+            <Heading type={4} headingText={year + ' Dynamic Datasets'} />
+            <ul id='datasetList'>
               {makeListLink(dataForYear.lar, 'Loan/Application Records (LAR)')}
               {makeListLink(dataForYear.ts, 'Transmittal Sheet Records (TS)')}
             </ul>
           </div>
           <div className="item">
-            <Heading type={4} headingText={params.year + ' Dynamic File Specifications'} />
+            <Heading type={4} headingText={year + ' Dynamic File Specifications'} />
             <ul>
-              {params.year === '2017' ? makeListLink(dataForYear.lar_spec, 'Loan/Application Records (LAR)') : null}
-              {params.year === '2017' ? makeListLink(dataForYear.ts_spec, 'Transmittal Sheet Records (TS)') : null}
-              {params.year !== '2017' ? linkToDocs() : null}
+              {year === '2017' ? makeListLink(dataForYear.lar_spec, 'Loan/Application Records (LAR)') : null}
+              {year === '2017' ? makeListLink(dataForYear.ts_spec, 'Transmittal Sheet Records (TS)') : null}
+              {year !== '2017' ? linkToDocs(year) : null}
             </ul>
           </div>
         </div>
@@ -66,4 +69,4 @@ const DynamicDataset = props => {
   )
 }
 
-export default DynamicDataset
+export default withAppContext(DynamicDataset)

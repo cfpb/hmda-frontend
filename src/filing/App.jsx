@@ -103,7 +103,7 @@ export class AppContainer extends Component {
   }
 
   render() {
-    const { match: { params }, location, config: { filingAnnouncement, maintenanceMode } } = this.props
+    const { match: { params }, location, config: { filingAnnouncement } } = this.props
     const validFilingPeriod = this.isValidPeriod(params.filingPeriod)
 
     return (

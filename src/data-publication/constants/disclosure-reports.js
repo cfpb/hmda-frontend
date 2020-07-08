@@ -1,13 +1,17 @@
+// Used for year 2018+
+const shared2018_plus = {
+  msa: [
+    { value: '1', label: 'Applications by Tract' },
+    { value: '2', label: 'Loans Purchased by Tract' }
+  ],
+  nationwide: [
+    { value: 'IRS', label: 'Institution Register Summary' }
+  ]
+}
+
 export const DISCLOSURE_REPORTS = {
-  2018: {
-    msa: [
-      { value: '1', label: 'Applications by Tract' },
-      { value: '2', label: 'Loans Purchased by Tract' }
-    ],
-    nationwide: [
-      { value: 'IRS', label: 'Institution Register Summary' }
-    ]
-  },
+  2019: shared2018_plus,
+  2018: shared2018_plus,
   2017: {
     msa: [
       { value: '1', label: 'Applications by Tract' },

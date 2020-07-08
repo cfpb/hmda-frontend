@@ -1,5 +1,5 @@
 import React from 'react'
-import Select from 'react-select'
+import Select from '../Select.jsx'
 import Pills from './Pills.jsx'
 import CheckboxContainer from './CheckboxContainer.jsx'
 import {
@@ -10,7 +10,7 @@ import {
 
 
 const VariableSelect = ({ options, variables, orderedVariables, year, checkFactory, onChange }) => {
-  const variableValues = setVariableSelect(orderedVariables)
+  const variableValues = setVariableSelect(orderedVariables, year)
   return (
     <div className="SelectWrapper">
       <h3>Step 3: Select a filter (optional)</h3>
@@ -24,7 +24,7 @@ const VariableSelect = ({ options, variables, orderedVariables, year, checkFacto
           popular variables
         </a>
       </p>
-      <Select
+      <Select id='VariableSelector'
         controlShouldRenderValue={false}
         onChange={onChange}
         placeholder={

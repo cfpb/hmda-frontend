@@ -1,4 +1,4 @@
-import { isProd, getEnvConfig } from './configUtils'
+import { isProd, getDefaultConfig } from './configUtils'
 
 describe('isProd', () => {
   it('when host starts with ffiec', () => {
@@ -7,35 +7,25 @@ describe('isProd', () => {
   })
 })
 
-describe('getEnvConfig', () => {
-  const testConfig = {
-    prod: {
-      name: 'prod-default',
-      beta: { name: 'prod-beta' }
-    },
-    dev: {
-      name: 'dev-default',
-      beta: { name: 'dev-beta' }
-    }
-  }
+describe('getDefaultConfig', () => {
 
-  it('finds prod-default', () => {
+  it('finds prod', () => {
     const host = 'ffiec.test'
-    expect(getEnvConfig(testConfig, host).name).toEqual('prod-default')
+    expect(getDefaultConfig(host).name).toEqual('prod')
   })
 
-  it('find prod-beta', () => {
+  it('finds prod-beta', () => {
     const host = 'ffiec.test.beta'
-    expect(getEnvConfig(testConfig, host).name).toEqual('prod-beta')
+    expect(getDefaultConfig(host).name).toEqual('prod-beta')
   })
 
-  it('find dev-default', () => {
+  it('finds dev', () => {
     const host = 'dev.test'
-    expect(getEnvConfig(testConfig, host).name).toEqual('dev-default')
+    expect(getDefaultConfig(host).name).toEqual('dev')
   })
 
-  it('find dev-beta', () => {
+  it('finds dev-beta', () => {
     const host = 'dev.test.beta'
-    expect(getEnvConfig(testConfig, host).name).toEqual('dev-beta')
+    expect(getDefaultConfig(host).name).toEqual('dev-beta')
   })
 })

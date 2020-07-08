@@ -3,5 +3,6 @@
   "pluginsFile": false,
   "env": {
     "HOST": "https://ffiec.cfpb.gov"
-  }
+  },
+  "defaultCommandTimeout": 10000
 }

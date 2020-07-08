@@ -1,8 +1,8 @@
 import React from 'react'
 import Alert from './Alert.jsx'
 
-export function isBeta() {
-  return window.location.hostname.match('beta')
+export function isBeta(host=window.location.hostname) {
+  return host.match('beta')
 }
 
 const Beta = props => {

@@ -34,7 +34,7 @@
     "react-redux": "7.1.1",
     "react-router-dom": "5.1.2",
     "react-scripts": "3.4.1",
-    "react-select": "3.0.8",
+    "react-select": "3.1.0",
     "react-window": "1.8.5",
     "redux": "4.0.4",
     "redux-logger": "3.0.6",
@@ -50,7 +50,7 @@
   ],
   "devDependencies": {
     "@cypress/skip-test": "2.5.0",
-    "cypress": "4.0.1",
+    "cypress": "4.6.0",
     "cypress-file-upload": "3.5.3",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.2",

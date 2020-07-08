@@ -1,16 +1,25 @@
 import React from 'react'
-import Select, { createFilter } from 'react-select'
+import { createFilter } from 'react-select'
+import Select from '../Select.jsx'
 import MenuList from './MenuList.jsx'
 import Pills from './Pills.jsx'
 import {
   itemStyleFn,
   makeItemPlaceholder,
   sortByLabel,
-  createLEIOption
+  createLEIOption,
+  before2018
 } from './selectUtils.js'
 
-const InstitutionSelect = ({ items, onChange, leiDetails }) => {
-  const category = 'leis'
+const InstitutionSelect = ({ items, onChange, leiDetails, year }) => {
+  let category, descriptionLabel
+  if (before2018(year)){
+    category = 'arids'
+    descriptionLabel = 'ARID'
+  } else {
+    category = 'leis'
+    descriptionLabel = 'LEI'
+  }
   const {leis, loading} = leiDetails
   const selectedValues = items.map(lei => createLEIOption(lei, leis))
 
@@ -19,7 +28,7 @@ const InstitutionSelect = ({ items, onChange, leiDetails }) => {
       <h3>Step 2: Select Financial Institution (optional)</h3>
       <p>
         You can select one or more financial institutions by entering the
-        financial institutions LEI or name. <br />
+        financial institutions {descriptionLabel} or name. <br />
         <strong>
           NOTE: Only Institutions that operate in the selected geography are available for selection.
         </strong>
@@ -38,7 +47,7 @@ const InstitutionSelect = ({ items, onChange, leiDetails }) => {
         openOnFocus
         simpleValue
         value={selectedValues}
-        options={pruneLeiOptions(leis, selectedValues)}
+        options={pruneLeiOptions(leis, selectedValues, year)}
         isDisabled={loading}
       />
       <Pills values={selectedValues} onChange={onChange} />
@@ -52,12 +61,13 @@ const styleFn = {
   control: p => ({ ...p, borderRadius: '4px' })
 }
 
-export function pruneLeiOptions(data, selected) {
+export function pruneLeiOptions(data, selected, year) {
   const selectedLeis = selected.map(s => s.value)
   const institutions = Object.keys(data).map(v => data[v])
+  const idKey = before2018(year) ? 'arid' : 'lei'
   const opts = institutions
     .filter(institution => selectedLeis.indexOf(institution.lei) === -1)
-    .map(institution => ({ value: institution.lei, label: `${institution.name.toUpperCase()} - ${institution.lei}` }))
+    .map(institution => ({ value: institution[idKey], label: `${institution.name.toUpperCase()} - ${institution[idKey]}` }))
     .sort(sortByLabel)
   opts.unshift({ value: 'all', label: `All Financial Institutions (${institutions.length})` })
   return opts

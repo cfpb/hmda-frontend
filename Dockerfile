@@ -16,8 +16,9 @@ RUN echo "{ \"version\": \"${DOCKER_TAG}\" }" > ./src/common/constants/release.j
 
 RUN yarn build
 
-FROM nginx:1.17-alpine
+FROM nginx:1.19.0-alpine
 ENV NGINX_USER=svc_nginx_hmda
+RUN apk update; apk upgrade
 RUN rm -rf /etc/nginx/conf.d
 COPY nginx /etc/nginx
 COPY --from=build-stage /usr/src/app/build /usr/share/nginx/html

@@ -1,5 +1,6 @@
 import React from 'react'
-import Select, { createFilter } from 'react-select'
+import { createFilter } from 'react-select'
+import Select from '../Select.jsx'
 import MenuList from './MenuList.jsx'
 import CategorySelect from './CategorySelect.jsx'
 import Pills from './Pills.jsx'
@@ -17,9 +18,10 @@ const ItemSelect = ({
   category,
   onCategoryChange,
   items,
-  onChange
+  onChange,
+  year
 }) => {
-  const selectedValues = makeItemSelectValues(category, items)
+  const selectedValues = makeItemSelectValues(category, items, year)
   const nationwide = isNationwide(category)
 
   return (
@@ -38,6 +40,7 @@ const ItemSelect = ({
       </p>
       <CategorySelect category={category} onChange={onCategoryChange} />
       <Select
+        id='ItemSelector'
         components={{ MenuList }}
         filterOption={createFilter({ ignoreAccents: false })}
         controlShouldRenderValue={false}

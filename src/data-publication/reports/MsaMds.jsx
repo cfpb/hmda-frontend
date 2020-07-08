@@ -37,7 +37,8 @@ class MsaMds extends React.Component {
       }
       fetchMsas(params.institutionId, params.year).then(
         result => {
-          const msaMds = [...result.msaMds, { id: 'nationwide' }]
+          const msaMds = result.msaMds.sort((a,b) => a.id - b.id)
+          msaMds.push({ id: 'nationwide' })
           MSA_MDS[params.institutionId] = msaMds
           this.setState({
             isLoaded: true,

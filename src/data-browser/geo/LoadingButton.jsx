@@ -9,10 +9,15 @@ function makeClassname(opts={}){
   return cname
 }
 
-const LoadingButton = ({loading, disabled, onClick, children, secondary}) => {
+const LoadingButton = ({loading, disabled, onClick, children, secondary, dataUrl}) => {
   return (
     <>
-      <button onClick={onClick} disabled={disabled} className={makeClassname({disabled, secondary})}>
+      <button
+        onClick={onClick}
+        disabled={disabled}
+        className={makeClassname({ disabled, secondary })}
+        data-url={dataUrl}
+      >
         {children}
       </button>
       {loading ? <LoadingIcon className="LoadingInline" /> : null}
