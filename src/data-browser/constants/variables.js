@@ -161,14 +161,14 @@ const construction_methods = buildWithId('Construction Method', 'construction_me
 
 const sexes = buildEncoded('Sex', 'derived_sex', sexList)
 const races = buildEncoded('Race', 'derived_race', raceList)
-const ages = buildEncoded('Age', 'applicant_age', ageList)
+const ageapplicant = buildEncoded('Age', 'ageapplicant', ageList)
 const ethnicities = buildEncoded('Ethnicity', 'derived_ethnicity', ethnicityList)
 const total_units = buildEncoded('Total Units', 'total_units', totalUnitList)
 const dwelling_categories = buildEncoded('Dwelling Category', 'derived_dwelling_category', dwellingCategoryList)
 const loan_products = buildEncoded('Loan Product', 'derived_loan_product_type', loanProductList)
 
-ages.options.unshift({id: '8888', name: '8888 - N/A'})
-ages.mapping['8888'] = '8888 - N/A'
+ageapplicant.options.unshift({id: '8888', name: '8888 - N/A'})
+ageapplicant.mapping['8888'] = '8888 - N/A'
 
 function makeObj(label, definition) {
   return {
@@ -214,7 +214,7 @@ const VARIABLES = {
   ethnicities,
   races,
   sexes,
-  ages,
+  ageapplicant,
   lien_statuses,
   construction_methods,
   total_units,
