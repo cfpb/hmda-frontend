@@ -1,5 +1,3 @@
-import { isBeta } from './Beta'
-
 import prod from './constants/prod-config.json'
 import prodBeta from './constants/prod-beta-config.json'
 import dev from './constants/dev-config.json'
@@ -25,4 +23,8 @@ export function getDefaultConfig(host) {
 
 export function isProd(host) {
   return !!host.match('^ffiec')
+}
+
+export function isBeta(host) {
+  return !!host.match('beta')
 }
