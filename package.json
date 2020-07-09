@@ -9,7 +9,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "yarn run cypress run --record"
+    "test": "yarn run cypress run"
   },
   "keywords": [
     "HMDA"
