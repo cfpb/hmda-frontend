@@ -4,7 +4,6 @@ node_js:
 cache: 
   yarn: true
   directories:
-    - node_modules
     - ~/.cache
 install:
-  - yarn
+  - yarn install --frozen-lockfile
