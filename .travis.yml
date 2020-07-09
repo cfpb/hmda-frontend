@@ -10,6 +10,7 @@ addons:
 cache: 
   directories:
     - ~/.cache
+    - ~/.cache/Cypress
 install:
   - yarn install --frozen-lockfile --offline
 script:
