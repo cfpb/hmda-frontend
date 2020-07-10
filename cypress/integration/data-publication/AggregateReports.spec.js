@@ -6,7 +6,7 @@ describe("Aggregate Reports", function() {
   it('2019', function() {
     // Report: Applications by Ethnicity and Sex
     cy.viewport(1680, 867)
-    cy.visit(`${HOST}/data-publication/aggregate-reports/`)
+    cy.visit(`${HOST}/data-publication/aggregate-reports`)
     cy.get('#root > .App > #main-content > .YearSelector > a')
       .contains('2019')
       .click()
