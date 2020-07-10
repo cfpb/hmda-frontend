@@ -15,4 +15,6 @@ install:
   - yarn install --frozen-lockfile --offline
 script:
   - cypress install
+  - yarn start &
   - $(npm bin)/cypress run
+  - kill $(jobs -p) || true
