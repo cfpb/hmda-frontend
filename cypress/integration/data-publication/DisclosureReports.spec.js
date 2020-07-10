@@ -2,7 +2,7 @@ const { HOST } = Cypress.env()
 
 describe("Disclosure Reports", function() {
   it('Fetches a 2019 Applications by Tract Report', function () {
-    cy.viewport(1000, 978)
+    cy.viewport(1680, 916)
     cy.visit(`${HOST}/data-publication/disclosure-reports`)
     cy.get('#root > .App > #main-content > .YearSelector > a')
       .contains('2019')
