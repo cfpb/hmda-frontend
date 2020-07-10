@@ -10,10 +10,10 @@ describe("Aggregate Reports", function() {
     cy.get('#root > .App > #main-content > .YearSelector > a')
       .contains('2019')
       .click()
-    openSelector('#StateSelector')
-    cy.get('#react-select-2-option-2').click() // State
-    cy.get('#react-select-3-option-2').click() // MSA/MD
-    cy.get('#react-select-4-option-3').click() // Report
+    
+    cy.findByText("Select a state...").type("Arizona{enter}")
+    cy.findByText("Select MSA/MD...").type("Phoenix{enter}")
+    cy.findByText("Select report...").type("Applications by Ethnicity and Sex{enter}")
 
     // Report Content
     cy.get("tbody > :nth-child(3) > :nth-child(2)").should("have.text", "13409")

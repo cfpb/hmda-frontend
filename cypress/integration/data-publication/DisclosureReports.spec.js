@@ -10,9 +10,9 @@ describe("Disclosure Reports", function() {
 
     cy.get('#institution-name').click()
     cy.get('#institution-name').type('cypress')
-    cy.get('#main-content > .SearchList > .Results > li > .button-link').click()
-    cy.get('#react-select-2-option-0').click()
-    cy.get('#react-select-3-option-0').click()
+    cy.findByText("View MSA/MDs").click()
+    cy.findByText("Select MSA/MD...").type("Dallas{enter}")
+    cy.findByText("Select report...").type("Applications by Tract{enter}")
 
     /* Check Report Params */
 
