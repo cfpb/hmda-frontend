@@ -1,3 +1,5 @@
+export const isCI = env => env === 'CI'
+
 export const isBeta = (host) => host.indexOf('beta') > -1
 
 export const isProd = (host) => host.indexOf('ffiec') > -1
