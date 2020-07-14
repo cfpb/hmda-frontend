@@ -137,8 +137,8 @@ const makeLegendBody = bias => colors[bias].map((color, i) => {
   )
 })
 
-function makeLegend(geography, variable, value){
-  if(!geography || !variable || !value) return null
+function makeLegend(geography, variable, value, filter, filtervalue){
+  if(!geography || !variable || !value || (filter && !filtervalue)) return null
 
   let val = value.value
   if(val.match('%')) val = value.label

@@ -25,15 +25,18 @@ function getDefaultsFromSearch(props) {
   const defaults = {
     geography: null,
     variable: null,
+    filter: null,
     value: null,
+    filterValue: null,
     feature: null
   }
   qsParts.forEach(part => {
     if(!part) return
     let [key, val] = part.split('=')
     if(key === 'geography') val = getSelectData(geographies, val)
-    else if(key === 'variable') val = getSelectData(variables, val)
+    else if(key === 'variable' || key === 'filter') val = getSelectData(variables, val)
     else if(key === 'value') val = getSelectData(getValuesForVariable(defaults.variable), val)
+    else if(key === 'filtervalue') val = getSelectData(getValuesForVariable(defaults.filter), val)
     defaults[key] = val || null
   })
   return defaults
@@ -55,7 +58,9 @@ const MapContainer = props => {
   const [stateData, setStateData] = useState(null)
   const [selectedGeography, setGeography] = useState(defaults.geography)
   const [selectedVariable, setVariable] = useState(defaults.variable)
+  const [selectedFilter, setFilter] = useState(defaults.filter)
   const [selectedValue, setValue] = useState(defaults.value)
+  const [selectedFilterValue, setFilterValue] = useState(defaults.filterValue)
   const [feature, setFeature] = useState(defaults.feature)
 
   const data = selectedGeography
@@ -83,17 +88,25 @@ const MapContainer = props => {
     setVariable(selected)
   }
 
+  const onFilterChange = selected => {
+    setFilterValue(null)
+    setFilter(selected)
+  }
+
   const makeSearch = () => {
     const searchArr = []
     if(selectedGeography) searchArr.push(`geography=${selectedGeography.value}`)
     if(selectedVariable) searchArr.push(`variable=${selectedVariable.value}`)
     if(selectedValue) searchArr.push(`value=${selectedValue.value}`)
+    if(selectedFilter) searchArr.push(`filter=${selectedFilter.value}`)
+    if(selectedFilterValue) searchArr.push(`filtervalue=${selectedFilterValue.value}`)
     if(feature) searchArr.push(`feature=${feature}`)
 
     if(searchArr.length) return `?${searchArr.join('&')}`
     return ''
   }
 
+  //TODO build from API response
   const buildTable = () => {
     const currData = selectedGeography.value === 'county'
       ? data[feature]
@@ -187,14 +200,16 @@ const MapContainer = props => {
   useEffect(() => {
     if(map && data) {
       if(map._loaded)   {
-        addLayers(map, selectedGeography, makeStops(data, selectedGeography, selectedVariable, selectedValue))
+        addLayers(map, selectedGeography, makeStops(data, selectedGeography, selectedVariable, selectedValue, selectedFilter, selectedFilterValue))
+        setOutline(map, selectedGeography, feature)
       }else{
         map.on('load', () => {
-          addLayers(map, selectedGeography, makeStops(data, selectedGeography, selectedVariable, selectedValue))
+          addLayers(map, selectedGeography, makeStops(data, selectedGeography, selectedVariable, selectedValue, selectedFilter, selectedFilterValue))
+          setOutline(map, selectedGeography, feature)
         })
       }
     }
-  }, [data, map, selectedGeography, selectedValue, selectedVariable])
+  }, [data, feature, map, selectedFilter, selectedFilterValue, selectedGeography, selectedValue, selectedVariable])
 
   useEffect(() => {
     if(!data || !map) return
@@ -234,6 +249,7 @@ const MapContainer = props => {
     }
 
     function getTableData(e){
+      console.log('getTableData needs to parse filter response')
       if(!map._loaded || !selectedGeography || !selectedVariable) return
       const features = map.queryRenderedFeatures(e.point, {layers: [selectedGeography.value]})
       if(!features.length) return
@@ -307,9 +323,23 @@ const MapContainer = props => {
         value={selectedVariable}
         options={variables}
       />
-      <h3>Step 3: Select a value{selectedVariable ? ` for ${selectedVariable.label}`: ''}</h3>
+      <h3>Step 3: Filter your results by another variable <i>(optional)</i></h3>
       <p>
-        Then choose a value of your chosen variable to see how it varies nationally in the map below.
+        You can filter your displayed variable by another to get a more targeted map
+      </p>
+      <Select
+        onChange={onFilterChange}
+        styles={menuStyle}
+        placeholder="Optionally enter a filter variable"
+        searchable={true}
+        openOnFocus
+        simpleValue
+        value={selectedFilter}
+        options={variables}
+      />
+      <h3>Step 4: Select a value{selectedVariable ? ` for ${selectedVariable.label}`: ''}</h3>
+      <p>
+        Then choose the value for your selected variable to see how it varies nationally in the map below.
       </p>
       <Select
         onChange={setValue}
@@ -322,6 +352,24 @@ const MapContainer = props => {
         value={selectedValue}
         options={getValuesForVariable(selectedVariable)}
       />
+      {selectedFilter ?
+      <>
+        <h3>Step 5: Select a value for your {selectedFilter.label} filter</h3>
+          <p>
+            Then choose the value for your selected filter
+          </p>
+          <Select
+            onChange={setFilterValue}
+            styles={menuStyle}
+            placeholder={`Enter a value for ${selectedVariable.label}`}
+            searchable={true}
+            openOnFocus
+            simpleValue
+            value={selectedFilterValue}
+            options={getValuesForVariable(selectedFilter)}
+          />
+      </>
+      : null}
       <h3>{selectedGeography && selectedVariable && selectedValue ? `${selectedVariable.label}: "${selectedValue.label}" for US ${selectedGeography.value === 'state' ? 'States' : 'Counties'}`: 'Select a geography, variable, and value above'}</h3>
       <div className="mapContainer" ref={mapContainer}>
         {map === false
@@ -330,7 +378,7 @@ const MapContainer = props => {
             </Alert>
           : null
         }
-        {makeLegend(selectedGeography, selectedVariable, selectedValue)}
+        {makeLegend(selectedGeography, selectedVariable, selectedValue, selectedFilter, selectedFilterValue)}
       </div>
       {data && selectedVariable && feature ? buildTable() : null}
     </div>
