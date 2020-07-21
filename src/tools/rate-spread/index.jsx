@@ -18,7 +18,7 @@ const App = () => {
       </div>
 
       <div className="alert" style={{ marginTop: '3em' }}>
-        <p><b>7/20/2020:</b> An incorrect rate spread was published for the week of July 20, 2020 in the Fixed APOR table that has now been corrected.</p>
+        <p><b>7/21/2020:</b> An error in the Mortgage Rate Survey table for 15-Year Fixed Points & Fees (cell E135) resulted in incorrect results for Rate Spread on fixed rate loans with terms of 13 to 22 years and rate set date of 7/20/2020. The issue was corrected in the online calculator and the linked tables.</p>
         <p><b>7/18/2019:</b> Two sets of APOR values were published for the week of 03/04/19 and 06/17/19. The APOR values published by the Bureau and incorporated into the Bureau’s rate spread calculator are available in the tables accessible from this page.</p>
         <p>
           <b>2/16/2018:</b> Two sets of APORs were published for certain dates in 2017, one on the
