@@ -2,7 +2,7 @@
 
 # Script that will post a message to a predefined webhook when cypress is done
 
-RESULTS=":starwars-darth: Cypres Has Failed!"
+RESULTS=":starwars-darth: Cypress Has Failed!"
 (yarn cypress run > output.txt) && RESULTS=":thumbs-up-bb8: No Failing specs."
 RES=$(awk '/Run Finished/ {p=1}; p==1 {print}' output.txt)
 curl -i -X POST -H 'Content-Type: application/json' \
