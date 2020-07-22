@@ -1,4 +1,5 @@
 import { urlExists } from "./helpers"
+import '@testing-library/cypress/add-commands';
 
 // ***********************************************************
 // This example support/index.js is processed and

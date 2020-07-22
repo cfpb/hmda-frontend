@@ -12,6 +12,9 @@ cache:
     - ~/.cache
     - ~/.cache/Cypress
 install:
-  - yarn install --frozen-lockfile --offline
+  - yarn install --offline
 script:
-  - $(npm bin)/cypress run
+  - cypress install
+  - yarn start -p 3000 &
+  - $(npm bin)/cypress run --config defaultCommandTimeout=60000 $RECORD
+  - kill $(jobs -p) || true

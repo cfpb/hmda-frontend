@@ -1,10 +1,11 @@
-import { openSelector, MAX_WAIT_SUMMARY, dbURL, isBeta, isProd } from '../../support/helpers'
+import { openSelector, MAX_WAIT_SUMMARY, dbURL, isBeta, isProd, isCI } from '../../support/helpers'
 
-const { HOST } = Cypress.env()
+const { HOST, ENVIRONMENT } = Cypress.env()
 const dbUrl = dbURL.bind(null, HOST)
 
 describe('Data Browser 2017', function () {
-  if(!isProd(HOST) && isBeta(HOST)){
+  if(isCI(ENVIRONMENT)) it("Does not run on CI")
+  else if(!isProd(HOST) && isBeta(HOST)){
     it('State/Institution/PropertyType', function () {
       cy.viewport(1000, 940)
       cy.visit(dbUrl('2017?category=states'))
