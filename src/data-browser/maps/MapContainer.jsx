@@ -5,6 +5,7 @@ import Alert from '../../common/Alert.jsx'
 import { geographies, variables, valsForVar, getValuesForVariable, getSelectData } from './selectUtils.jsx'
 import { setOutline, getOrigPer1000, makeLegend, makeStops, addLayers } from './layerUtils.jsx'
 import { getFeatureName, popup, buildPopupHTML } from './popupUtils.jsx'
+import { fetchFilteredData } from './filterUtils.jsx'
 import { runFetch, getCSV } from '../api.js'
 import fips2Shortcode from '../constants/fipsToShortcode.js'
 import mapbox from 'mapbox-gl'
@@ -212,6 +213,13 @@ const MapContainer = props => {
   }, [data, feature, map, selectedFilter, selectedFilterValue, selectedGeography, selectedValue, selectedVariable])
 
   useEffect(() => {
+    if(selectedGeography && selectedValue && selectedFilter && selectedFilterValue){
+      fetchFilteredData(selectedGeography, selectedVariable, selectedValue, selectedFilter, selectedFilterValue)
+        .then(v => console.log(v))
+    }
+  })
+
+  useEffect(() => {
     if(!data || !map) return
 
     let lastFeat
@@ -323,21 +331,7 @@ const MapContainer = props => {
         value={selectedVariable}
         options={variables}
       />
-      <h3>Step 3: Filter your results by another variable <i>(optional)</i></h3>
-      <p>
-        You can filter your displayed variable by another to get a more targeted map
-      </p>
-      <Select
-        onChange={onFilterChange}
-        styles={menuStyle}
-        placeholder="Optionally enter a filter variable"
-        searchable={true}
-        openOnFocus
-        simpleValue
-        value={selectedFilter}
-        options={variables}
-      />
-      <h3>Step 4: Select a value{selectedVariable ? ` for ${selectedVariable.label}`: ''}</h3>
+      <h3>Step 3: Select a value{selectedVariable ? ` for ${selectedVariable.label}`: ''}</h3>
       <p>
         Then choose the value for your selected variable to see how it varies nationally in the map below.
       </p>
@@ -351,6 +345,20 @@ const MapContainer = props => {
         simpleValue
         value={selectedValue}
         options={getValuesForVariable(selectedVariable)}
+      />
+      <h3>Step 4: Filter your results by another variable <i>(optional)</i></h3>
+      <p>
+        You can filter your displayed variable by another to get a more targeted map
+      </p>
+      <Select
+        onChange={onFilterChange}
+        styles={menuStyle}
+        placeholder="Optionally enter a filter variable"
+        searchable={true}
+        openOnFocus
+        simpleValue
+        value={selectedFilter}
+        options={variables}
       />
       {selectedFilter ?
       <>
