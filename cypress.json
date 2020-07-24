@@ -2,7 +2,14 @@
   "chromeWebSecurity": false,
   "pluginsFile": false,
   "env": {
-    "HOST": "https://ffiec.cfpb.gov"
+    "HOST": "https://ffiec.cfpb.gov",
+    "ENVIRONMENT": "NOT CI",
+    "USERNAME": "frontend.testing@mailinator.com",
+    "INSTITUTION": "FRONTENDTESTBANK9999",
+    "TEST_DELAY": 1000,
+    "ACTION_DELAY": 1000,
+    "AUTH_REALM": "hmda2",
+    "AUTH_CLIENT_ID": "hmda2-api"
   },
   "defaultCommandTimeout": 10000,
   "projectId": "uk89dv"
