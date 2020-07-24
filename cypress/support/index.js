@@ -1,5 +1,6 @@
 import { urlExists } from "./helpers"
 import '@testing-library/cypress/add-commands';
+import 'cypress-keycloak';
 
 // ***********************************************************
 // This example support/index.js is processed and
