@@ -11,33 +11,37 @@ const {
   INSTITUTION,
   ACTION_DELAY,
   TEST_DELAY,
-  ENVIRONMENT
+  ENVIRONMENT,
+  AUTH_BASE_URL,
+  AUTH_REALM,
+  AUTH_CLIENT_ID
 } = Cypress.env()
 
 const config = getDefaultConfig(HOST)
 const getFilename = (filingPeriod, lei) => `${filingPeriod}-${lei}.txt`
 
 describe("Filing", function() {
+  // Only need to provide the Auth url when running locally
+  const authUrl = HOST.indexOf('localhost') > -1 ? AUTH_BASE_URL : HOST
+
+  beforeEach(() => {
+    cy.logout({ root: authUrl, realm: AUTH_REALM })
+    cy.login({
+      root: authUrl,
+      realm: AUTH_REALM,
+      client_id: AUTH_CLIENT_ID,
+      redirect_uri: HOST,
+      username: USERNAME,
+      password: PASSWORD
+    })
+    cy.viewport(1600, 900)
+    cy.visit(HOST)
+  })
+
   if(isCI(ENVIRONMENT)) it("Does not run on CI")
   else {
     config.filingPeriods.forEach(filingPeriod => {
       it(`${filingPeriod}`, function() {
-        const filingYear = filingPeriod.split('-')[0]
-
-        /* Sign In */
-        cy.viewport(1680, 916)
-        cy.visit(`${HOST}/filing/${filingPeriod}/`)
-        cy.wait(2000) // Wait 2s to allow Keycloak to initialize
-
-        // 2020 goes straight to Keycloak login, no need to click 'login'
-        if(+filingYear < 2020){
-          cy.get(".hero button:first-of-type").click()
-        }
-
-        cy.get("#username").type(USERNAME)
-        cy.get("#password").type(PASSWORD, { log: false })
-        cy.get("#kc-login").click()
-
         // Action: List Institutions
         cy.visit(`${HOST}/filing/${filingPeriod}/institutions`)
         cy.wait(ACTION_DELAY)
