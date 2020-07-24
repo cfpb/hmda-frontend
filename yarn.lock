@@ -4570,6 +4570,11 @@ cypress-file-upload@3.5.3:
   resolved "https://registry.yarnpkg.com/cypress-file-upload/-/cypress-file-upload-3.5.3.tgz#cd706485de3fb2cbd4a8c2dd90fe96d537bb4311"
   integrity sha512-S/czzqAj1BYz6Xxnfpx2aSc6hXsj76fd8/iuycJ2RxoxCcQMliw8eQV0ugzVlkzr1GD5dKGviNFGYqv3nRJ+Tg==
 
+cypress-keycloak@1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/cypress-keycloak/-/cypress-keycloak-1.5.0.tgz#5e4f5cce7ec1badb010e8b92268a350abce35dc5"
+  integrity sha512-JZ2RWTd6dmoZdbvG4xAGNDmFgMdOwJ0sKAXNOHyoEIjBlegtaBfdISgvdzE5VeGgwVAmNrH3v/L/dj0PvYDp+A==
+
 cypress@*:
   version "4.10.0"
   resolved "https://registry.yarnpkg.com/cypress/-/cypress-4.10.0.tgz#6b507f4637af6a65ea285953f899951d65e82416"
