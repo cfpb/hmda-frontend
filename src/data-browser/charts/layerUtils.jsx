@@ -1,5 +1,6 @@
 import React from 'react'
 import shortcode2FIPS from '../constants/shortcodeToFips.js'
+import fips2Shortcode from '../constants/fipsToShortcode.js'
 import COUNTY_COUNTS from '../constants/countyCounts.js'
 import STATE_COUNTS from '../constants/statePop.js'
 
@@ -150,6 +151,23 @@ function makeLegend(geography, variable, value){
   )
 }
 
+function getOrigPer1000(data, feature, geography, variable, value){
+  if(geography && variable && value){
+     let orig
+     if(geography.value === 'state') {
+       const dataObj = data[fips2Shortcode[feature]]
+       if(!dataObj) return
+       orig = Math.round(dataObj[variable.value][value.value]/STATE_COUNTS[feature]*100000)/100 || 0
+     }else if (geography.value === 'county') {
+       const dataObj = data[feature]
+       if(!dataObj) return
+       orig = Math.round(dataObj[variable.value][value.value]/counties2018[feature]*100000)/100 || 0
+     }
+
+     return orig
+  }
+}
+
 function makeStops(data, geography, variable, value){
   const stops = [['0', 'rgba(0,0,0,0.05)']]
   if(!data || !variable || !value) return stops
@@ -261,10 +279,13 @@ function setOutline(map, selectedGeography, feature, current=null) {
    })
 }
 
+
+
 export {
   LINE_WIDTH,
   makeLegend,
   makeStops,
   addLayers,
-  setOutline
+  setOutline,
+  getOrigPer1000
 }

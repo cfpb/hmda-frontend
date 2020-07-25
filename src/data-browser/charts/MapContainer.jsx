@@ -3,7 +3,7 @@ import Select from '../Select.jsx'
 import LoadingButton from '../geo/LoadingButton.jsx'
 import Alert from '../../common/Alert.jsx'
 import { geographies, variables, valsForVar, getValuesForVariable, getSelectData } from './selectUtils.jsx'
-import { setOutline, makeLegend, makeStops, addLayers } from './layerUtils.jsx'
+import { setOutline, getOrigPer1000, makeLegend, makeStops, addLayers } from './layerUtils.jsx'
 import { getFeatureName, popup, buildPopupHTML } from './popupUtils.jsx'
 import { runFetch, getCSV } from '../api.js'
 import fips2Shortcode from '../constants/fipsToShortcode.js'
@@ -205,13 +205,17 @@ const MapContainer = props => {
     function highlight(e) {
       if(!map._loaded) return
 
+      const geoVal =  selectedGeography.value
+
       const features = map.queryRenderedFeatures(e.point, {layers: [selectedGeography.value]})
       if(!features.length) return popup.remove()
       const feat = features[0].properties['GEOID']
+      let origPer1000 = getOrigPer1000(data, feat, selectedGeography, selectedVariable, selectedValue)
+
       map.getCanvas().style.cursor = 'pointer'
 
       popup.setLngLat(map.unproject(e.point))
-        .setHTML(buildPopupHTML(selectedGeography.value, data, feat))
+        .setHTML(buildPopupHTML(geoVal, feat, origPer1000))
         .addTo(map)
 
       setOutline(map, selectedGeography, feature, feat)
@@ -254,7 +258,7 @@ const MapContainer = props => {
 
     return detachHandlers
 
-  }, [map, selectedVariable, data, selectedGeography, feature])
+  }, [map, selectedVariable, data, selectedGeography, feature, selectedValue])
 
 
   const menuStyle = {
