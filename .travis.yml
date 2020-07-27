@@ -25,7 +25,7 @@ env:
 
 before_install:
   # Run the Platform
-  - "[ -d backend/.git ] || git clone git@github.com:cfpb/hmda-platform.git backend"
+  - "[ -d backend/.git ] || git clone https://github.com/cfpb/hmda-platform.git backend"
   - "cd backend"
   # Reset the repo so we can have a conflict-less pull
   - "git reset --hard"
