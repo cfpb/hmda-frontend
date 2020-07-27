@@ -35,6 +35,7 @@ before_install:
   # Trick to avoid unnecessary cache updates
   - find $HOME/.sbt -name "*.lock" | xargs rm
   - ./run_travis.sh &
+  - "cd .."
 
 install:
   - yarn install --offline
