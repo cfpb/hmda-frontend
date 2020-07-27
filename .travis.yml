@@ -19,6 +19,7 @@ cache:
     - $HOME/.m2/repository
     - $HOME/.sbt
     - $HOME/.ivy2
+    - $HOME/backend
 
 env:
   - CASSANDRA_CLUSTER_HOSTS=localhost APP_PORT=2551
@@ -43,5 +44,5 @@ install:
 script:
   - cypress install
   - yarn start -p 3000 &
-  - $(npm bin)/cypress run --spec cypress/integration/filing/Filing.spec.js --config defaultCommandTimeout=60000 $RECORD
+  - $(npm bin)/cypress run --spec cypress/integration/filing/Filing.spec.js --config defaultCommandTimeout=10000 $RECORD
   - kill $(jobs -p) || true
