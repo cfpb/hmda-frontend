@@ -40,7 +40,8 @@ describe("Filing", function() {
 
   if(isCI(ENVIRONMENT)) it("Does not run on CI")
   else {
-    config.filingPeriods.forEach(filingPeriod => {
+    config.filingPeriods.forEach((filingPeriod, index) => {
+      if(index !== 0) return // TODO: Remove once we get a single test running
       it(`${filingPeriod}`, function() {
         // Action: List Institutions
         cy.visit(`${HOST}/filing/${filingPeriod}/institutions`)

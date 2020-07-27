@@ -1,20 +1,46 @@
+sudo: false
 language: node_js
 node_js:
   - 12
+scala: 2.12.10
+jdk:
+  - openjdk14
 # if using Ubuntu 16 need this library
 # https://github.com/cypress-io/cypress-documentation/pull/1647
 addons:
   apt:
     packages:
     - libgconf-2-4
+    
 cache: 
   directories:
     - ~/.cache
     - ~/.cache/Cypress
+    - $HOME/.m2/repository
+    - $HOME/.sbt
+    - $HOME/.ivy2
+
+env:
+  - CASSANDRA_CLUSTER_HOSTS=localhost APP_PORT=2551
+
+before_install:
+  # Run the Platform
+  - "[ -d backend/.git ] || git clone git@github.com:cfpb/hmda-platform.git backend"
+  - "cd backend"
+  # Reset the repo so we can have a conflict-less pull
+  - "git reset --hard"
+  - "git clean -f"
+  - "git pull"
+  - "sbt ++$TRAVIS_SCALA_VERSION -batch hmda-platform/docker:publishLocal"
+  # Trick to avoid unnecessary cache updates
+  - find $HOME/.sbt -name "*.lock" | xargs rm
+  - ./run_travis.sh &
+
 install:
   - yarn install --offline
+
 script:
   - cypress install
   - yarn start -p 3000 &
-  - $(npm bin)/cypress run --config defaultCommandTimeout=60000 $RECORD
+  - $(npm bin)/cypress run --spec cypress/integration/filing/Filing.spec.js --config defaultCommandTimeout=60000 $RECORD
   - kill $(jobs -p) || true
