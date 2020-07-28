@@ -32,10 +32,8 @@ before_install:
   - "git reset --hard"
   - "git clean -f"
   - "git pull"
-  # - "sbt ++$TRAVIS_SCALA_VERSION -batch hmda-platform/docker:publishLocal"
   # Trick to avoid unnecessary cache updates
   - find $HOME/.sbt -name "*.lock" | xargs rm
-  # - ./run_travis.sh &
   - (sbt ++$TRAVIS_SCALA_VERSION  "project hmda-platform" "run" &)
   - "cd .."
 
