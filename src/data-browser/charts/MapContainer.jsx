@@ -202,6 +202,9 @@ const MapContainer = props => {
   useEffect(() => {
     if(!data || !map) return
 
+    let lastFeat
+    let lastTimeout
+
     function highlight(e) {
       if(!map._loaded) return
 
@@ -210,6 +213,10 @@ const MapContainer = props => {
       const features = map.queryRenderedFeatures(e.point, {layers: [selectedGeography.value]})
       if(!features.length) return popup.remove()
       const feat = features[0].properties['GEOID']
+
+      if(feat === lastFeat) return
+      else lastFeat = feat
+
       let origPer1000 = getOrigPer1000(data, feat, selectedGeography, selectedVariable, selectedValue)
 
       map.getCanvas().style.cursor = 'pointer'
@@ -218,7 +225,11 @@ const MapContainer = props => {
         .setHTML(buildPopupHTML(geoVal, feat, origPer1000))
         .addTo(map)
 
-      setOutline(map, selectedGeography, feature, feat)
+      clearTimeout(lastTimeout)
+
+      lastTimeout = setTimeout(() => {
+        setOutline(map, selectedGeography, feature, feat)
+      }, 0)
     }
 
     function highlightSavedFeature() {
