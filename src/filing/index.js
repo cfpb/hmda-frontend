@@ -19,7 +19,7 @@ import { withAppContext } from '../common/appContextHOC'
 
 const middleware = [thunkMiddleware]
 
-if(process.env.NODE_ENV === 'development' && !process.env.REACT_APP_CI){
+if(process.env.NODE_ENV === 'development'){
   setKeycloak(Keycloak(process.env.PUBLIC_URL + '/local_keycloak.json'))
 }else{
   setKeycloak(Keycloak(process.env.PUBLIC_URL + '/keycloak.json'))

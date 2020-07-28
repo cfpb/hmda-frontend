@@ -24,24 +24,26 @@ cache:
 env:
   - CASSANDRA_CLUSTER_HOSTS=localhost APP_PORT=2551
 
+# Run the Platform
 before_install:
-  # Run the Platform
   - "[ -d backend/.git ] || git clone https://github.com/cfpb/hmda-platform.git backend"
   - "cd backend"
   # Reset the repo so we can have a conflict-less pull
   - "git reset --hard"
   - "git clean -f"
   - "git pull"
-  - "sbt ++$TRAVIS_SCALA_VERSION -batch hmda-platform/docker:publishLocal"
+  # - "sbt ++$TRAVIS_SCALA_VERSION -batch hmda-platform/docker:publishLocal"
   # Trick to avoid unnecessary cache updates
   - find $HOME/.sbt -name "*.lock" | xargs rm
-  - ./run_travis.sh &
+  # - ./run_travis.sh &
+  - (sbt ++$TRAVIS_SCALA_VERSION  "project hmda-platform" "run" &)
   - "cd .."
 
 install:
   - yarn install --offline
 
 script:
+  - ./cypress/wait-for-server.sh
   - cypress install
   - yarn start -p 3000 &
   - $(npm bin)/cypress run --spec cypress/integration/filing/Filing.spec.js --config defaultCommandTimeout=10000 $RECORD
