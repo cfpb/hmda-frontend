@@ -60,5 +60,6 @@
     "http-proxy-middleware": "0.19.1",
     "redux-devtools-extension": "2.13.8",
     "serialize-javascript": "2.1.2"
-  }
+  },
+  "proxy": "http://localhost:8080"
 }

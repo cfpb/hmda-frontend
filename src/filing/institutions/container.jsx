@@ -19,6 +19,8 @@ export class InstitutionContainer extends Component {
 
   fetchIfNeeded() {
     const { dispatch, filingPeriod, institutions, filingPeriods, filingQuartersLate } = this.props
+    // Fetching institition data without a filingPeriod results in an error that interferes with upload/filing
+    if(!filingPeriod) return 
 
     if(!institutions.fetched && !institutions.isFetching){
       dispatch(requestInstitutions())
