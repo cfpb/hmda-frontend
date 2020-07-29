@@ -188,16 +188,13 @@ const MapContainer = props => {
     if(map && data) {
       if(map._loaded)   {
         addLayers(map, selectedGeography, makeStops(data, selectedGeography, selectedVariable, selectedValue))
-        setOutline(map, selectedGeography, feature)
       }else{
         map.on('load', () => {
           addLayers(map, selectedGeography, makeStops(data, selectedGeography, selectedVariable, selectedValue))
-          setOutline(map, selectedGeography, feature)
         })
       }
     }
-  }, [data, feature, map, selectedGeography, selectedValue, selectedVariable])
-
+  }, [data, map, selectedGeography, selectedValue, selectedVariable])
 
   useEffect(() => {
     if(!data || !map) return
