@@ -1,9 +1,11 @@
 import React from 'react'
 import shortcode2FIPS from '../constants/shortcodeToFips.js'
-import COUNTY_COUNTS from '../constants/countyCounts.js'
+import fips2Shortcode from '../constants/fipsToShortcode.js'
+import COUNTY_COUNTS from '../constants/countyPop.js'
 import STATE_COUNTS from '../constants/statePop.js'
 
 const counties2018 = COUNTY_COUNTS['2018']
+const states2018 = STATE_COUNTS['2018']
 
 const LINE_WIDTH = 1.5
 
@@ -150,10 +152,27 @@ function makeLegend(geography, variable, value){
   )
 }
 
+function getOrigPer1000(data, feature, geography, variable, value){
+  if(geography && variable && value){
+     let orig
+     if(geography.value === 'state') {
+       const dataObj = data[fips2Shortcode[feature]]
+       if(!dataObj) return
+       orig = Math.round(dataObj[variable.value][value.value]/states2018[feature]*100000)/100 || 0
+     }else if (geography.value === 'county') {
+       const dataObj = data[feature]
+       if(!dataObj) return
+       orig = Math.round(dataObj[variable.value][value.value]/counties2018[feature]*100000)/100 || 0
+     }
+
+     return orig
+  }
+}
+
 function makeStops(data, geography, variable, value){
   const stops = [['0', 'rgba(0,0,0,0.05)']]
   if(!data || !variable || !value) return stops
-  const counts = geography.value === 'county' ? counties2018 : STATE_COUNTS
+  const counts = geography.value === 'county' ? counties2018 : states2018
   let val = value.value
   if(val.match('%')) val = value.label
   Object.keys(data).forEach(geo => {
@@ -261,10 +280,13 @@ function setOutline(map, selectedGeography, feature, current=null) {
    })
 }
 
+
+
 export {
   LINE_WIDTH,
   makeLegend,
   makeStops,
   addLayers,
-  setOutline
+  setOutline,
+  getOrigPer1000
 }
