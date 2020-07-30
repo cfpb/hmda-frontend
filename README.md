@@ -21,6 +21,7 @@ The HDMA Frontend monorepo hosts the public facing applications for the collecti
   * [Testing](#testing)
     + [Unit Tests](#unit-tests)
     + [End-to-End Testing](#end-to-end-testing)
+    + [TravisCI](#running-in-travisci)
 
 ## Technical Overview
 Each React application lives in it's own sub-directory of the `/src` folder, with shared assets and components housed in `/common`. All sub-applications are rendered as asynchronous components within an application shell `/App.jsx` that provides a common header.  This approach eliminates unneccesary reloading of the site-wide navigation, giving the separate apps a more connected feel.  [React Router](https://reacttraining.com/react-router/) is used for client side routing with [React Redux](https://redux.js.org/) integrated for state management of the more complex apps, such as Filing.  [Unit tests](#unit-tests) are developed using Enzyme and [end-to-end](#end-to-end-testing) testing performed with Cypress. Dependencies are managed with [yarn](https://classic.yarnpkg.com/en/).
@@ -131,3 +132,17 @@ yarn run cypress run
 [Cypress](https://www.cypress.io/) is used to perform end-to-end testing of the filing application, tools, data publication products, and data browser.  It mimicks a user's interaction with the site and allows for rapid, automated system validation of project deployments. 
 
 ![Cypress automated filing test](./readme-files/filing-2020-q1-cypress.gif)
+
+### Running in TravisCI
+[TravisCI](https://travis-ci.com/github/cfpb/hmda-frontend) is configured to automatically build and test each pull request to the Frontend repo.  This includes running the [HMDA Platform](https://github.com/cfpb/hmda-platform) within the TravisCI virtual machine to enable testing of the Filing application. All mandatory environment variables are configured in the [.travis.yml](https://github.com/cfpb/hmda-frontend/blob/master/.travis.yml) file.
+
+Generation of video recordings is disabled by default using TravisCI environment variables.  
+```
+CONFIG="--config video=false"
+```
+In the event that you need to review video to help debug CI failures, update the environment configuration as follows.  This will save the video output to the [Cypress Dashboard](https://dashboard.cypress.io/projects/uk89dv/runs).
+```
+CONFIG="--config video=true"
+RECORD="--record"
+CYPRESS_RECORD_KEY=<Configured in TravisCI>
+```

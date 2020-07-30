@@ -12,16 +12,17 @@ import AppContainer from './App.jsx'
 import HomeContainer from './home/container.jsx'
 import InstitutionContainer from './institutions/container.jsx'
 import SubmissionRouter from './submission/router.jsx'
-import { setKeycloak } from './utils/keycloak.js'
+import { setKeycloak, mockKeycloak } from './utils/keycloak.js'
 import { setStore } from './utils/store.js'
 import appReducer from './reducers'
 import { withAppContext } from '../common/appContextHOC'
 
 const middleware = [thunkMiddleware]
-
-if(process.env.NODE_ENV === 'development'){
+if(process.env.REACT_APP_ENVIRONMENT === 'CI') 
+  setKeycloak(mockKeycloak)
+else if(process.env.NODE_ENV === 'development') {
   setKeycloak(Keycloak(process.env.PUBLIC_URL + '/local_keycloak.json'))
-}else{
+} else {
   setKeycloak(Keycloak(process.env.PUBLIC_URL + '/keycloak.json'))
 }
 

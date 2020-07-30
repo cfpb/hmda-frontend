@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "94285b2f-a7de-4aab-9430-c3952943503d",
+		"name": "CI HMDA Filing Setup",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Filing API Health Check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cde88b08-474a-4825-87ab-9707ed740aff",
+						"exec": [
+							"pm.test(\"Status code is 200\",function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+							"});",
+							"",
+							"pm.test(\"Filing API Health Check\", function () {",
+							"    let actualResponse = pm.response.json()",
+							"    if(pm.response.code==200){pm.expect(actualResponse.status).to.equal(\"OK\")}",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{URL-FILING}}",
+					"host": [
+						"{{URL-FILING}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create (PUT) Institution - 8081",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ee7779ba-3115-4f6c-89aa-ee3e6ce4f5cf",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"lei\", jsonData.lei);",
+							"",
+							"pm.test(\"Status code is 200, 201, 202\",function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+							"});",
+							"",
+							"pm.test(\"(PUT) Create Institution\", function () {",
+							"    let actualResponse = pm.response.json();",
+							"    if(pm.response.code==200){pm.expect(actualResponse.lei).to.equal(pm.environment.get(\"lei\"))}",
+							"    if(pm.response.code==202){pm.expect(actualResponse.lei).to.equal(pm.environment.get(\"lei\"))}",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"activityYear\": {{year}},\n    \"lei\": \"{{lei}}\",\n    \"agency\": 9,\n    \"institutionType\": -1,\n    \"institutionId2017\": \"\",\n    \"taxId\": \"{{taxId}}\",\n    \"rssd\": -1,\n    \"emailDomains\": [\n        \"frontendtesting.com\"\n    ],\n    \"respondent\": {\n        \"name\": \"{{name}}\",\n        \"state\": \"\",\n        \"city\": \"\"\n    },\n    \"parent\": {\n        \"idRssd\": -1,\n        \"name\": \"\"\n    },\n    \"assets\": -1,\n    \"otherLenderCode\": -1,\n    \"topHolder\": {\n        \"idRssd\": -1,\n        \"name\": \"\"\n    },\n    \"hmdaFiler\": false,\n    \"quarterlyFiler\": {{quarterlyFiler}},\n    \"quarterlyFilerHasFiledQ1\": false,\n    \"quarterlyFilerHasFiledQ2\": false,\n    \"quarterlyFilerHasFiledQ3\": false\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL-ADMIN}}/institutions",
+					"host": [
+						"{{URL-ADMIN}}"
+					],
+					"path": [
+						"institutions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read an institution - 8081",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6590799d-b17d-47d9-bba2-328181013336",
+						"exec": [
+							"pm.test(\"Status code is 200\",function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+							"});",
+							"",
+							"pm.test(\"Read an Institution\", function () {",
+							"    let actualResponse = pm.response.json();",
+							"    if(pm.response.code==200){pm.expect(actualResponse.lei).to.equal(pm.environment.get(\"lei\"))}",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{URL-ADMIN}}/institutions/{{lei}}/year/{{year}}",
+					"host": [
+						"{{URL-ADMIN}}"
+					],
+					"path": [
+						"institutions",
+						"{{lei}}",
+						"year",
+						"{{year}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"testNumber = pm.variables.get(\"testNumber\");",
+					"let testData = pm.environment.get(\"testData\")",
+					"console.log(testData)"
+				],
+				"id": "c835c83c-2d3e-4927-b6df-75fcc02ff82e"
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -2,6 +2,7 @@ import { yearQuarterToPath } from './utils'
 
 export default function(obj) {
   let url = '/v2/filing'
+  if(process.env.REACT_APP_ENVIRONMENT === 'CI') url = ''
 
   if (obj.pathname) return url + obj.pathname
   if (obj.lei) url += '/institutions/' + obj.lei

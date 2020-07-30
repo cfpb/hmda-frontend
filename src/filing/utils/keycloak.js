@@ -55,11 +55,21 @@ const logout = () => {
   keycloak.logout({ redirectUri: location.origin + `/filing/${getStore().getState().app.filingPeriod}/` })
 }
 
+const mockKeycloak = {
+  authenticated: true,
+  tokenParsed: { name: 'Test User', lei: 'FRONTENDTESTBANK9999' },
+  init: () => new Promise((res) => res(true)),
+  updateToken: () => ({ success: () => ({ error: () => false }) }),
+  logout: () => alert('Unable to logout a mocked user'),
+  login: () => alert('Unable to login a mocked user')
+}
+
 export {
   getKeycloak,
   setKeycloak,
   register,
   login,
   logout,
-  refresh
+  refresh,
+  mockKeycloak
 }
