@@ -22,23 +22,20 @@ cache:
     - $HOME/backend
 
 env:
-  - CASSANDRA_CLUSTER_HOSTS=localhost APP_PORT=2551
+  - APP_PORT=2551 CASSANDRA_CLUSTER_HOSTS=localhost CYPRESS_HOST=http://localhost:3000 CYPRESS_ENVIRONMENT=CI HMDA_RUNTIME_MODE=dev 
 
 # Run the Platform
 before_install:
   - "[ -d backend/.git ] || git clone https://github.com/cfpb/hmda-platform.git backend"
-  - "cd backend"
+  - cd backend
   # Reset the repo so we can have a conflict-less pull
-  - "git reset --hard"
-  - "git clean -f"
-  - "git pull"
-  # Temporary: checkout branch with new config/test files
-  - "git checkout generate-institution-test_data-for-travisci"
-  - "git pull --rebase"
+  - git reset --hard
+  - git clean -f
+  - git pull
   # Trick to avoid unnecessary cache updates
-  - find $HOME/.sbt -name "*.lock" | xargs rm
-  - (sbt ++$TRAVIS_SCALA_VERSION  "project hmda-platform" "run" &)
-  - "cd .."
+  - find $HOME/.sbt -name "*.lock" | xargs -r rm
+  - sbt ++$TRAVIS_SCALA_VERSION  "project hmda-platform" "run" &
+  - cd ..
 
 install:
   - yarn install --offline
@@ -46,14 +43,12 @@ install:
 script:
   # Wait for the Platform to become available
   - ./cypress/wait-for-server.sh
-  # Load test Institutions
-  - yarn newman run backend/newman/tests/hmda-filing/tests/ci/CI_FRONTEND_FILING.postman_collection.json -e backend/newman/tests/hmda-filing/configs/ci/CI_FRONTEND_ENV_2018.postman_environment.json
-  - yarn newman run backend/newman/tests/hmda-filing/tests/ci/CI_FRONTEND_FILING.postman_collection.json -e backend/newman/tests/hmda-filing/configs/ci/CI_FRONTEND_ENV_2019.postman_environment.json
-  - yarn newman run backend/newman/tests/hmda-filing/tests/ci/CI_FRONTEND_FILING.postman_collection.json -e backend/newman/tests/hmda-filing/configs/ci/CI_FRONTEND_ENV_2020.postman_environment.json
+  # Create each Institution (institutions) using the Platform configuration (PLATFORM_ENV)
+  - yarn newman run cypress/ci/tests/CREATE_INSTITUTIONS.postman_collection.json -e cypress/ci/config/PLATFORM_ENV.postman_environment.json -d cypress/ci/config/institutions.json
   # Ensure cypress is available in Travis environment
   - cypress install
-  # Start Frontend and run tests
-  - REACT_APP_ENVIRONMENT='CI' yarn start -p 3000 &
-  - $(npm bin)/cypress run $RECORD
+  # Start Frontend  and run tests
+  - REACT_APP_ENVIRONMENT=CI yarn start -p 3000 &
+  - $(npm bin)/cypress run $CONFIG $RECORD
   # Cleanup
   - kill $(jobs -p) || true

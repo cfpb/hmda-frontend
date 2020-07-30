@@ -1,0 +1,23 @@
+[
+  {
+    "year": "2018",
+    "lei": "FRONTENDTESTBANK9999",
+    "name": "Frontend Test Bank",
+    "taxId": "53-1111111",
+    "quarterlyFiler": false
+  },
+  {
+    "year": "2019",
+    "lei": "FRONTENDTESTBANK9999",
+    "name": "Frontend Test Bank",
+    "taxId": "53-1111111",
+    "quarterlyFiler": false
+  },
+  {
+    "year": "2020",
+    "lei": "FRONTENDTESTBANK9999",
+    "name": "Frontend Test Bank",
+    "taxId": "53-1111111",
+    "quarterlyFiler": true
+  }
+]
