@@ -1,10 +1,11 @@
 import React from 'react'
 import shortcode2FIPS from '../constants/shortcodeToFips.js'
 import fips2Shortcode from '../constants/fipsToShortcode.js'
-import COUNTY_COUNTS from '../constants/countyCounts.js'
+import COUNTY_COUNTS from '../constants/countyPop.js'
 import STATE_COUNTS from '../constants/statePop.js'
 
 const counties2018 = COUNTY_COUNTS['2018']
+const states2018 = STATE_COUNTS['2018']
 
 const LINE_WIDTH = 1.5
 
@@ -158,7 +159,7 @@ function getOrigPer1000(data, feature, geography, variable, value){
        const dataObj = data[fips2Shortcode[feature]]
        if(!dataObj) return
        const val = decodeURI(value.value)
-       orig = Math.round(dataObj[variable.value][val]/STATE_COUNTS[feature]*100000)/100 || 0
+       orig = Math.round(dataObj[variable.value][val]/states2018[feature]*100000)/100 || 0
      }else if (geography.value === 'county') {
        const dataObj = data[feature]
        if(!dataObj) return
@@ -173,7 +174,7 @@ function getOrigPer1000(data, feature, geography, variable, value){
 function makeStops(data, geography, variable, value){
   const stops = [['0', 'rgba(0,0,0,0.05)']]
   if(!data || !variable || !value) return stops
-  const counts = geography.value === 'county' ? counties2018 : STATE_COUNTS
+  const counts = geography.value === 'county' ? counties2018 : states2018
   let val = value.value
   if(val.match('%')) val = value.label
   Object.keys(data).forEach(geo => {

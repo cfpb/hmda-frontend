@@ -9,12 +9,13 @@ describe('Data Browser 2019', function () {
     it('State/Institution/PropertyType', function () {
       cy.viewport(1000, 940)
       cy.visit(dbUrl('2019?category=states'))
+
+      // Wait for the Institutions selector to load because it can steal focus when trying to enter data in another input field.
+      openSelector('#lei-item-select')
   
       // Select Geography
-      openSelector('#ItemSelector')
-      cy.get('#react-select-3-option-0').click()
-      openSelector('#ItemSelector')
-      cy.get('#react-select-3-option-0').click()
+      cy.get('#ItemSelector').type('alabama{enter}')
+      cy.get('#ItemSelector').type('alaska{enter}')
       cy.url().should('include', '?category=states&items=AL,AK')
   
       // Select Institutions
@@ -24,13 +25,12 @@ describe('Data Browser 2019', function () {
       cy.url().should('include', 'leis=B4TYDEB6GKMZO031MB27,7H6GLXDRUGQFU57RNE97')
   
       // Variables
-      openSelector('#VariableSelector')
-      cy.get('.SelectWrapper #react-select-5-option-10').click()
-      cy.get('.border > :nth-child(2) :checkbox').check('on')
+      cy.get('#VariableSelector').type("dwelling{enter}")
+      cy.findByText("Single Family (1-4 Units):Site-Built").click()
       cy.url().should('include', '&dwelling_categories=Single%20Family%20(1-4%20Units)%3ASite-Built')
   
       // View Summary Table
-      cy.get('body > #root > .DataBrowser > .Geography > .secondary').click()
+      cy.findByText('View Summary Table').click()
       cy.get('.Aggregations').should('exist')
       cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text', 'ALABAMA, ALASKA')
       cy.get('.Aggregations :nth-child(2) > .sublist > li').then($li => {
@@ -60,13 +60,12 @@ describe('Data Browser 2019', function () {
       cy.url().should('include', 'leis=B4TYDEB6GKMZO031MB27,7H6GLXDRUGQFU57RNE97')
   
       // Variables
-      openSelector('#VariableSelector')
-      cy.get('.SelectWrapper #react-select-5-option-6').click()
-      cy.get('#lien_statuses1').check('on')
+      cy.get('#VariableSelector').type("lien status{enter}")
+      cy.findByText('1 - Secured By First Lien').click()
       cy.url().should('include', '&lien_statuses=1')
   
       // View Summary Table
-      cy.get('body > #root > .DataBrowser > .Geography > .secondary').click()
+      cy.findByText('View Summary Table').click()
       cy.get('.Aggregations').should('exist')
       cy.get('.Aggregations :nth-child(1) > .sublist > li').then($li => {
         let text = $li.text().toLowerCase()
@@ -87,12 +86,13 @@ describe('Data Browser 2019', function () {
     it('County/Institution/Action&Purpose', function () {
       cy.viewport(1000, 940)
       cy.visit(dbUrl('2019?category=counties'))
+
+      // Wait for the Institutions selector to load because it can steal focus when trying to enter data in another input field.
+      openSelector('#lei-item-select')
   
       // Select Geography
-      openSelector('#ItemSelector')
-      cy.get('#react-select-3-option-0').click()
-      openSelector('#ItemSelector')
-      cy.get('#react-select-3-option-0').click()
+      cy.get('#ItemSelector').type("autauga county{enter}")
+      cy.get('#ItemSelector').type("baldwin county{enter}")
       cy.url().should('include', '?category=counties&items=01001,01003')
   
       // Select Institutions
@@ -102,13 +102,12 @@ describe('Data Browser 2019', function () {
       cy.url().should('include', 'leis=B4TYDEB6GKMZO031MB27,7H6GLXDRUGQFU57RNE97')
   
       // Variables
-      openSelector('#VariableSelector')
-      cy.get('.SelectWrapper #react-select-5-option-8').click()
-      cy.get('#total_units25-49').check('on')
+      cy.get('#VariableSelector').type("total units{enter}")
+      cy.findByText('25-49').click()
       cy.url().should('include', '&total_units=25-49')
   
       // View Summary Table
-      cy.get('body > #root > .DataBrowser > .Geography > .secondary').click()
+      cy.findByText('View Summary Table').click()
       cy.get('.Aggregations').should('exist')
       cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text', 'AUTAUGA COUNTY, BALDWIN COUNTY')
       cy.get('.Aggregations :nth-child(2) > .sublist > li').then($li => {
@@ -130,12 +129,13 @@ describe('Data Browser 2019', function () {
     it('MSA/Institution/PropertyType', function () {
       cy.viewport(1000, 940)
       cy.visit(dbUrl('2019?category=msamds'))
+
+      // Wait for the Institutions selector to load because it can steal focus when trying to enter data in another input field.
+      openSelector('#lei-item-select')      
   
       // Select Geography
-      openSelector('#ItemSelector')
-      cy.get('#react-select-3-option-0').click()
-      openSelector('#ItemSelector')
-      cy.get('#react-select-3-option-0').click()
+      cy.get('#ItemSelector').type("11500{enter}")
+      cy.get('#ItemSelector').type("12220{enter}")
       cy.url().should('include', '?category=msamds&items=11500,12220')
   
       // Select Institutions
@@ -145,13 +145,12 @@ describe('Data Browser 2019', function () {
       cy.url().should('include', 'leis=B4TYDEB6GKMZO031MB27,7H6GLXDRUGQFU57RNE97')
   
       // Variables
-      openSelector('#VariableSelector')
-      cy.get('.SelectWrapper #react-select-5-option-1').click()
-      cy.get('#loan_types1').check('on')
+      cy.get('#VariableSelector').type("loan type{enter}")
+      cy.findByText('1 - Conventional').click()
       cy.url().should('include', '&loan_types=1')
   
       // View Summary Table
-      cy.get('body > #root > .DataBrowser > .Geography > .secondary').click()
+      cy.findByText('View Summary Table').click()
       cy.get('.Aggregations').should('exist')
       cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text',"11500\u00A0-\u00A0ANNISTON-OXFORD, 12220\u00A0-\u00A0AUBURN-OPELIKA")
       cy.get('.Aggregations :nth-child(2) > .sublist > li').then($li => {
