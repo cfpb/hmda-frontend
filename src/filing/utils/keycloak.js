@@ -57,11 +57,11 @@ const logout = () => {
 
 const mockKeycloak = {
   authenticated: true,
-  tokenParsed: { name: 'Test User', lei: 'FRONTENDTESTBANK9999' },
+  tokenParsed: { name: 'Test User', lei: process.env.REACT_APP_LEIS || 'FRONTENDTESTBANK9999' },
   init: () => new Promise((res) => res(true)),
   updateToken: () => ({ success: () => ({ error: () => false }) }),
-  logout: () => alert('Unable to logout a mocked user'),
-  login: () => alert('Unable to login a mocked user')
+  logout: () => window.location.href = '/filing',
+  login: () => window.location.href += 'institutions'
 }
 
 export {
