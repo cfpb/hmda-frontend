@@ -17,11 +17,15 @@ The HDMA Frontend monorepo hosts the public facing applications for the collecti
     + [Requirements](#requirements)
     + [Installation](#installation)
     + [Running Locally](#running-locally)
+      - [Integrating with the Filing application](#integrating-with-the-filing-application)
+        * [Create Institutions](#create-institutions)
+        * [Bypass API Authentication](#bypass-api-authentication)
+        * [Configure the UI](#configure-the-ui)
     + [Running via Docker](#running-via-docker)
   * [Testing](#testing)
     + [Unit Tests](#unit-tests)
     + [End-to-End Testing](#end-to-end-testing)
-    + [TravisCI](#running-in-travisci)
+    + [Running in TravisCI](#running-in-travisci)
 
 ## Technical Overview
 Each React application lives in it's own sub-directory of the `/src` folder, with shared assets and components housed in `/common`. All sub-applications are rendered as asynchronous components within an application shell `/App.jsx` that provides a common header.  This approach eliminates unneccesary reloading of the site-wide navigation, giving the separate apps a more connected feel.  [React Router](https://reacttraining.com/react-router/) is used for client side routing with [React Redux](https://redux.js.org/) integrated for state management of the more complex apps, such as Filing.  [Unit tests](#unit-tests) are developed using Enzyme and [end-to-end](#end-to-end-testing) testing performed with Cypress. Dependencies are managed with [yarn](https://classic.yarnpkg.com/en/).
@@ -93,15 +97,50 @@ The [HMDA Documentation](https://ffiec.cfpb.gov/documentation/) site provides pr
   - Run `yarn` from repo root to install depencencies
 
 ### Running Locally
+Several components of the Frontend (ex. Filing, Data Browser) require a connection to the [HMDA Platform](https://github.com/cfpb/hmda-platform) in order to operate.  You can find instructions for the running the HMDA Platform locally [here](https://github.com/cfpb/hmda-platform#running-with-sbt).
 
+If your development does not require this integration, `yarn start` will run the development server, opening a browser window to http://localhost:3000.
+
+#### Integrating with the Filing application
+By default, the locally running [Frontend is configured to use the Filing API](https://github.com/cfpb/hmda-frontend/blob/master/package.json#L65) from the locally running Platform.  In order to go through the Filing process, there are a few elements that need to be completed first:
+- Create Institutions (Platform)
+- Bypass API authentication (Platform)
+- Configure the UI (Frontend)
+
+##### Create Institutions
+Before you can submit a Filing you need to have an Institution created on the Platform for each year you want to test.  The following command will generate the required data for the default test Institution, for all currently available filing periods.  You need to have the HMDA Platform started before running this command:
 ```
-yarn start
+yarn ci-data
 ```
 
-`yarn start` will run the application in development mode, opening a browser window to http://localhost:3000.
+To create data for an Institution other than the default `FRONTENDTESTBANK9999`, you can modify `cypress/ci/config/institutions.json` and rerun the above command.
 
-The page will automatically reload if you make changes to the code.
-You will see the build errors and lint warnings in the console.
+This Institution loading needs to be done each time the HMDA Platform is restarted.
+
+##### Bypass API Authentication
+On the Platform, you will need to set an environment variable to prevent the API from requiring an authentication token for incoming requests.  If already running, you will need to restart the Platform.
+```
+export HMDA_RUNTIME_MODE=dev
+```
+
+##### Configure the UI
+
+If you will be testing against an Institution that is not the default, you can configure this via a `REACT_APP_*` variable:
+```
+REACT_APP_LEIS=INSTITUTION1,INSTITUTION2
+```
+
+Second, you will need to bypass Frontend authentication.  This is most easily done by running the Frontend the way we do in a Continuous Integration environment:
+```
+yarn ci
+```
+
+To combine these configuration options
+```
+REACT_APP_LEIS=INSTITUTION1,INSTITUTION2 yarn ci
+```
+
+You can now visit the filing application at http://localhost:3000/filing.
 
 ### Running via Docker
 
