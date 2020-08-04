@@ -1,9 +1,9 @@
 {
   "name": "prod",
   "announcement": {
-    "message": "We are performing system maintenance from 7pm - 9pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-    "type": "error",
-    "heading": "System Temporarily Unavailable"
+    "message": "On June 24, 2020, the Bureau released the 2019 National Loan-Level Dataset, MSA/MD Aggregate Reports, and Disclosure Reports. The HMDA Data Browser has also been updated to include the 2019 National Loan-Level Dataset.",
+    "type": "info",
+    "heading": "Announcement"
   },
   "defaultPeriod": "2019",
   "defaultDocsPeriod": "2019",
@@ -28,11 +28,7 @@
   },
   "showMaps": false,
   "maintenanceMode": false,
-  "filingAnnouncement": {
-    "message": "We are performing system maintenance from 7pm - 9pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-    "type": "error",
-    "heading": "System Temporarily Unavailable"
-  },
+  "filingAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
       "2019",
