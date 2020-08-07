@@ -41,9 +41,9 @@ install:
   - yarn install --offline
 
 script:
-  - ./cypress/wait-for-server.sh # Wait for the Platform to become available
   - yarn ci-data    # Create test Institutions
   - cypress install # Ensure cypress is available in Travis environment
   - yarn ci &       # Start Frontend
-  - $(npm bin)/cypress run $CONFIG $RECORD # Run tests
+  # Wait for the Platform and then Run tests
+  - ./cypress/wait-for-server.sh && $(npm bin)/cypress run $CONFIG $RECORD 
   - kill $(jobs -p) || true                # Cleanup
