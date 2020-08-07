@@ -40,7 +40,7 @@ describe('Keycloak', () => {
         cy.findByLabelText(emailLabel).type('{selectall}testuser@bank0.com')
         cy.get(institutionError).should('exist')
         cy.findByText("Select your institution").should('exist')
-        cy.findByText('Bank 0').click()
+        cy.get('#institutions li label').first().click()
         cy.findByText(registerText).should('be', 'disabled')
   
         // Validates password
