@@ -35,7 +35,7 @@ before_install:
   # Trick to avoid unnecessary cache updates
   - find $HOME/.sbt -name "*.lock" | xargs -r rm
   # Workaround for broken sbt-launch download
-  - "[ -f $HOME/.sbt/launchers/1.3.10/sbt-launch.jar ] || curl -L -o $HOME/.sbt/launchers/1.3.10/sbt-launch.jar https://repo1.maven.org/maven2/org/scala-sbt/sbt-launch/1.3.10/sbt-launch.jar"
+  - "[ ! -f $HOME/.sbt/launchers/1.3.10/sbt-launch.jar ] && curl -L --create-dirs -o $HOME/.sbt/launchers/1.3.10/sbt-launch.jar https://repo1.maven.org/maven2/org/scala-sbt/sbt-launch/1.3.10/sbt-launch.jar"
   - sbt ++$TRAVIS_SCALA_VERSION  "project hmda-platform" "run" &
   - cd ..
 
