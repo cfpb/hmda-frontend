@@ -49,7 +49,9 @@ describe("Filing", function() {
 
       // Cannot file before a period is open
       if(beforeFilingPeriod(filingPeriod, config.filingQuarters)){
-        cy.contains(`The ${filingPeriod} filing period is not yet open.`).should('exist')
+        if(!isBeta(HOST)){
+          cy.contains(`The ${filingPeriod} filing period is not yet open.`).should('exist')
+        }
         cy.contains('Upload your file').should('not.exist')
         cy.contains('Upload a new file').should('not.exist')
         return
@@ -64,7 +66,7 @@ describe("Filing", function() {
           return
         }
         // Can file after Annual period is closed but should see the message 
-        else {
+        else if(!isBeta(HOST)) {
           cy.contains(`The ${filingPeriod} filing period is closed.`).should('exist')
         }
       }
