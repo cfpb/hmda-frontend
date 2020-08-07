@@ -19,7 +19,7 @@ describe('Keycloak', () => {
     })
   
     describe('Account creation', () => {
-      it('Performs form validation', () => {
+      it.only('Performs form validation', () => {
         const registerText = "Register"
         const formPassword = "1234567890Ab!"
         const passwordMismatch = "Passwords do not match"
@@ -33,11 +33,11 @@ describe('Keycloak', () => {
         cy.findByLabelText('Last name').type('Last')
   
         // Displays error when no Institutions associate with email domain
-        cy.findByLabelText(emailLabel).type('testuser@bank0.co')
+        cy.findByLabelText(emailLabel).type('frontend.testing@mailinator.co')
         cy.get(institutionError).should('exist')
         
         // Find Institutions for associated email domains
-        cy.findByLabelText(emailLabel).type('{selectall}testuser@bank0.com')
+        cy.findByLabelText(emailLabel).type('{selectall}frontend.testing@mailinator.com')
         cy.get(institutionError).should('exist')
         cy.findByText("Select your institution").should('exist')
         cy.get('#institutions li label').first().click()
@@ -51,7 +51,10 @@ describe('Keycloak', () => {
         cy.contains(passwordMismatch).should('not.be.visible')
   
         // Able to submit once form entries are valid
-        cy.findByText(registerText).should('not.be', 'disabled')
+        cy.findByText(registerText).should('not.be', 'disabled').click()
+
+        // Blocks re-registration of existing account
+        cy.findByText('• This email already exists.')
       })
     })
   }
