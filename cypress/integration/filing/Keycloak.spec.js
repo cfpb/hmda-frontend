@@ -19,7 +19,7 @@ describe('Keycloak', () => {
     })
   
     describe('Account creation', () => {
-      it.only('Performs form validation', () => {
+      it('Performs form validation', () => {
         const registerText = "Register"
         const formPassword = "1234567890Ab!"
         const passwordMismatch = "Passwords do not match"
