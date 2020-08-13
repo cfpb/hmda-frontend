@@ -10,9 +10,9 @@ const defaultState = {
 export default (state = defaultState, action) => {
   switch (action.type) {
     case types.REQUEST_PROCESSING_PROGRESS:
-      return defaultState
+      return { ...defaultState, fetched: true }
       case types.RECEIVE_PROCESSING_PROGRESS:
-      return action.status
+      return { ...state, ...action.status }
     default:
       return state
   }
