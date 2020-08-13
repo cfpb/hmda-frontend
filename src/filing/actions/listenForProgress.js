@@ -19,6 +19,8 @@ export const parseProgress = string => {
   return string.match(/\d{1,}/)[0] 
 }
 
+const shouldSkipKey = key => ['done', 'fetched'].indexOf(key) > -1
+
 /* Websocket Listener */
 export default function listenForProgress() {
   return (dispatch) => {
@@ -65,22 +67,19 @@ export default function listenForProgress() {
           socket.onmessage = (event) => {
             const data = event.data && JSON.parse(event.data)[1]
 
-            if (!data)
-              return
+            if (!data) return
 
             const uploadStatus = {
               syntactical: parseProgress(data.syntactical),
               quality: parseProgress(data.quality),
               macro: parseProgress(data.macro),
-              done: ''
             }
 
             // No Syntactical erros and all others Completed
             uploadStatus.done =
               !!uploadStatus.syntactical.match(/Error/) ||
               Object.keys(uploadStatus).every((key) => {
-                if (key === 'done')
-                  return true
+                if (shouldSkipKey(key)) return true
                 return uploadStatus[key].match(/^Completed/)
               })
 
@@ -94,20 +93,18 @@ export default function listenForProgress() {
               // FIX: Shouldn't be needed if we're replacing the single loader bar 
               //      with a multistage version which will be driven by the data 
               //      returned from the Websocket
-              getLatestSubmission().then((json) => dispatch(receiveSubmission(json))
-              )
+              // getLatestSubmission().then((json) => dispatch(receiveSubmission(json))
+              // )
 
               // Save status updates
               dispatch(receiveProcessingProgress({ status: uploadStatus }))
 
               const hasEdits = Object.keys(uploadStatus).some((key) => {
-                if (key === 'done')
-                  return false
+                if (shouldSkipKey(key)) return false
                 return uploadStatus[key].match(/Error/)
               })
 
-              if (hasEdits)
-                return dispatch(fetchEdits())
+              if (hasEdits) return dispatch(fetchEdits())
             }
             else {
               dispatch(receiveProcessingProgress({ status: uploadStatus }))
