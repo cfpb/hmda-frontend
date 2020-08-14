@@ -56,7 +56,7 @@ export default function listenForProgress() {
             ? `/institutions/${lei}/filings/${year}/quarter/${quarter}/submissions/${sequenceNumber}/progress`
             : `/institutions/${lei}/filings/${year}/submissions/${sequenceNumber}/progress`
 
-          let socket = new WebSocket(`ws://${wsBaseUrl}${wsProgressUrl}`)
+          let socket = new WebSocket(`wss://${wsBaseUrl}${wsProgressUrl}`)
 
           socket.onopen = (event) => {
             console.log('>>> Socket open! Listening for Progress...')
@@ -85,16 +85,20 @@ export default function listenForProgress() {
 
             console.log('> Progress: ', uploadStatus)
 
+            // Update Submission for status messaging
+            getLatestSubmission().then((json) => {
+              return hasHttpError(json).then((hasError) => {
+                if (hasError) {
+                  dispatch(receiveError(json))
+                  throw new Error(json && `${json.status}: ${json.statusText}`)
+                }
+                return dispatch(receiveSubmission(json))
+              })
+            })
+
             if (uploadStatus.done) {
               console.log('<<< Closing Socket!')
               socket.close(1000, 'Done Processing')
-
-              // Push loader to 100%
-              // FIX: Shouldn't be needed if we're replacing the single loader bar 
-              //      with a multistage version which will be driven by the data 
-              //      returned from the Websocket
-              // getLatestSubmission().then((json) => dispatch(receiveSubmission(json))
-              // )
 
               // Save status updates
               dispatch(receiveProcessingProgress({ status: uploadStatus }))

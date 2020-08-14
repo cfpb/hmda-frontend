@@ -98,8 +98,11 @@ export default class Upload extends Component {
           progress={processProgress}
           uploading={uploading}
           watchProgress={watchProgress}
+          file={file}
+          filingPeriod={filingPeriod}
+          lei={lei}
         />
-        {/* <ValidationProgress
+        <ValidationProgress
           code={code}
           errorApp={errorApp}
           errorUpload={errorUpload}
@@ -107,7 +110,7 @@ export default class Upload extends Component {
           filingPeriod={filingPeriod}
           lei={lei}
           uploading={uploading}
-        /> */}
+        />        
       </section>
     )
   }
