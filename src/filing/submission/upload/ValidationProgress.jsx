@@ -101,13 +101,14 @@ export default class ValidationProgress extends PureComponent {
     if (code < UPLOADING && !uploading) return null
     return (
       <section className="ValidationProgress">
+        {/* TODO: Cleanup unused styles */}
         {/* the background bar */}
-        <div className="progressTotal" />
+        {/* <div className="progressTotal" /> */}
         {/* the progress bar */}
-        <div
+        {/* <div
           className={`progressFill ${this.getFillError()}`}
           style={{ width: this.getFillWidth() + '%' }}
-        />
+        /> */}
         <ProgressText
           errorApp={errorApp}
           errorUpload={errorUpload}

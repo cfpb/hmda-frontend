@@ -1,5 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { UPLOADING } from '../../constants/statusCodes'
+import { UploadBar } from './UploadBar'
+import { ProgressBar } from './ProgressBar'
+import './FileProcessingProgress.css'
 
 const parseProgress = str => {
   const digits = str.match(/^\d/) && str
@@ -9,22 +12,25 @@ const parseProgress = str => {
   return 'Done √'
 }
 
-const FileProcessingProgress = ({ progress, uploading, code, watchProgress }) => {
+const hasError = str => str.match(/Err/)
+
+const FileProcessingProgress = ({ progress, uploading, code, watchProgress, filingPeriod, lei }) => {
   const { done, syntactical, macro, quality, fetched } = progress
 
   useEffect(() => {
     if (!fetched) watchProgress()
-  }, [fetched])
+  }, [fetched, watchProgress])
 
   if (code < UPLOADING && !uploading) return null
+ 
+  const hasSynEdits = hasError(syntactical)
 
   return (
-    <section>
-      <div>Uploading{uploading ? '...in progress' : ': Done √'}</div>
-      <div>Syntactial: {parseProgress(syntactical)}</div>
-      <div>Quality: {parseProgress(quality)}</div>
-      <div>Macro: {parseProgress(macro)}</div>
-      {done && <div>Done!</div>}
+    <section id='fileProcessProgress'>
+      <UploadBar uploading={uploading} filingPeriod={filingPeriod} lei={lei} key='upload-bar' />
+      <ProgressBar percent={parseProgress(syntactical)} error={hasSynEdits} label='Syntactial' />
+      <ProgressBar percent={parseProgress(quality)} hasPrevError={hasSynEdits} label='Quality' />
+      <ProgressBar percent={parseProgress(macro)} hasPrevError={hasSynEdits} label='Macro' />
     </section>
   )
 }
