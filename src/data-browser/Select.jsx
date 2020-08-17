@@ -9,6 +9,7 @@ const WrappedSelect = props => {
   function ieBlurHack() {
     if(!isIE || document.activeElement.tagName !== 'DIV') return
     selRef.current.focus()
+    // eslint-disable-next-line
     throw null
   }
 
