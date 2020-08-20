@@ -4,8 +4,7 @@
 **Description:** The collection year of the HMDA data to which the Panel file relates
 
 **Values:**
-
-- 2018
+- 2020
 
 ### [lei](#lei)
 **Description:** A financial institution’s Legal Entity Identifier

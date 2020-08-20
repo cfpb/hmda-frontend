@@ -4,7 +4,7 @@
 
 - **Description:** The calendar year the data submission covers
 - **Values:**
-  - 2018
+  - 2020
 
 ### [lei](#lei)
 
