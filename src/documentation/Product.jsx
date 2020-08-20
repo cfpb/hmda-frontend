@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Heading from '../common/Heading.jsx'
 import YearSelector from '../common/YearSelector.jsx'
+import { DOCS_YEARS } from '../common/constants/years.js'
 
 const Product = props => {
   let { list } = props
@@ -33,7 +34,7 @@ const Product = props => {
       <div className="intro">
         { header }
         { inList ? <p>{lead}</p> : null}
-        { inList || slug === 'check-digit' ? null : <YearSelector year={year} url={url}/> }
+        { inList || slug === 'check-digit' ? null : <YearSelector year={year} url={url} years={DOCS_YEARS} /> }
         { inList || slug === 'check-digit' ? null : <h4>Documentation</h4> }
         <ul>
           {list}

@@ -6,6 +6,7 @@ import FAQs from './FAQs.jsx'
 import FigLinks from './FigLinks.jsx'
 import Publications from './publications'
 import Tools from './tools'
+import { DOCS_YEARS } from '../common/constants/years.js'
 
 const Home = props => {
   const { year, url } = props
@@ -16,7 +17,7 @@ const Home = props => {
           <p className="lead">A collection of HMDA Documentation Resources</p>
         </Header>
       </div>
-      <YearSelector year={year} url={url}/>
+      <YearSelector year={year} url={url} years={DOCS_YEARS} />
       <div>
         <h2><Link to={`/documentation/${year}/faqs/`}>Frequently Asked Questions</Link></h2>
         <FAQs year={year}/>
