@@ -19,6 +19,11 @@ const links = {
     <li key="7"><Link to="/documentation/2020/identifiers-faq/">Institution Identifiers FAQ</Link></li>,
     <li key="8"><Link to="/documentation/2020/data-browser-faq/">Data Browser FAQ</Link></li>,
     <li key="9"><Link to="/documentation/2020/filing-faq/">HMDA Filing FAQ</Link></li>,
+  ],
+  2021: [
+    <li key="10"><Link to="/documentation/2021/identifiers-faq/">Institution Identifiers FAQ</Link></li>,
+    <li key="11"><Link to="/documentation/2021/data-browser-faq/">Data Browser FAQ</Link></li>,
+    <li key="12"><Link to="/documentation/2021/filing-faq/">HMDA Filing FAQ</Link></li>,
   ]
 }
 
