@@ -60,6 +60,14 @@ const Home = ({ config }) => {
               <ul>
                 <li>
                   <a
+                    href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2021-hmda-fig.pdf"
+                    download={true}
+                  >
+                    For data collected in 2021
+                  </a>
+                </li>
+                <li>
+                  <a
                     href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2020-hmda-fig.pdf"
                     download={true}
                   >
@@ -95,10 +103,18 @@ const Home = ({ config }) => {
               </ul>
               <li>
                 <a
+                  href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-2021.pdf"
+                  download={true}
+                >
+                  Supplemental Guide for Quarterly Filers for 2021
+                </a>
+              </li>
+              <li>
+                <a
                   href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers.pdf"
                   download={true}
                 >
-                  Supplemental Guide for Quarterly Filers
+                  Supplemental Guide for Quarterly Filers for 2020
                 </a>
               </li>
               <li>
