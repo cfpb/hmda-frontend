@@ -6,10 +6,10 @@ If you need additional information to help get your file ready you can refer to 
 
 See below for information on HMDA Quarterly Filing period dates:
 
-![](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/quarterly_filing.png)
+![](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/quarterly_filing_2021.png)
 
 Quarterly HMDA data submissions are separated into three quarters.   
 
-- Quarter 1 filing period: April 1 - June 1 (Loans with Final Action Taken Date: January 1 – March 31)
-- Quarter 2 filing period: July 1 - August 31 (Loans with Final Action Taken Date: April 1 – June 30)
-- Quarter 3 filing period: October 1 - November 30 (Loans with Final Action Taken Date: July 1 – September 30)
+- Quarter 1 filing period: April 1 - May 31 (Loans with Final Action Taken Date: January 1 – March 31)
+- Quarter 2 filing period: July 1 - August 30 (Loans with Final Action Taken Date: April 1 – June 30)
+- Quarter 3 filing period: October 1 - November 29 (Loans with Final Action Taken Date: July 1 – September 30)
