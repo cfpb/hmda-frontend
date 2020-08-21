@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef }  from 'react'
 import Select from '../Select.jsx'
-import LoadingButton from '../geo/LoadingButton.jsx'
+import LoadingButton from '../datasets/LoadingButton.jsx'
 import Alert from '../../common/Alert.jsx'
 import { geographies, variables, valsForVar, getValuesForVariable, getSelectData } from './selectUtils.jsx'
 import { setOutline, getOrigPer1000, makeLegend, makeStops, addLayers } from './layerUtils.jsx'
 import { getFeatureName, popup, buildPopupHTML } from './popupUtils.jsx'
-import { fetchFilteredData } from './filterUtils.jsx'
+import { fetchFilterData } from './filterUtils.jsx'
 import { runFetch, getCSV } from '../api.js'
 import fips2Shortcode from '../constants/fipsToShortcode.js'
 import mapbox from 'mapbox-gl'
@@ -54,9 +54,18 @@ const MapContainer = props => {
 
   const defaults = getDefaultsFromSearch(props)
 
+  const getBaseData = () => {
+  if(!selectedGeography) return null
+  return selectedGeography.value === 'state'
+    ? stateData
+    : countyData
+  }
+
   const [map, setMap] = useState(null)
+  const [data, setData] = useState(getBaseData())
   const [countyData, setCountyData] = useState(null)
   const [stateData, setStateData] = useState(null)
+  const [filterData, setFilterData] = useState(null)
   const [selectedGeography, setGeography] = useState(defaults.geography)
   const [selectedVariable, setVariable] = useState(defaults.variable)
   const [selectedFilter, setFilter] = useState(defaults.filter)
@@ -64,11 +73,6 @@ const MapContainer = props => {
   const [selectedFilterValue, setFilterValue] = useState(defaults.filterValue)
   const [feature, setFeature] = useState(defaults.feature)
 
-  const data = selectedGeography
-    ? selectedGeography.value === 'state'
-      ? stateData
-      : countyData
-    : null
 
   const fetchCSV = () => {
     const geoString = selectedGeography.value === 'county'
@@ -89,8 +93,15 @@ const MapContainer = props => {
     setVariable(selected)
   }
 
+  const onValueChange = selected => {
+    setValue(selected)
+    fetchFilterData(selectedGeography, selectedVariable, selected)
+      .then(data => setFilterData(data))
+  }
+
   const onFilterChange = selected => {
     setFilterValue(null)
+    setData(getBaseData())
     setFilter(selected)
   }
 
@@ -214,10 +225,11 @@ const MapContainer = props => {
 
   useEffect(() => {
     if(selectedGeography && selectedValue && selectedFilter && selectedFilterValue){
-      fetchFilteredData(selectedGeography, selectedVariable, selectedValue, selectedFilter, selectedFilterValue)
-        .then(v => console.log(v))
+      if(filterData) console.log(filterData)
+      //(selectedGeography, selectedVariable, selectedValue, selectedFilter, selectedFilterValue)
+      //  .then(v => console.log(v))
     }
-  })
+  }, [filterData, selectedFilter, selectedFilterValue, selectedGeography, selectedValue])
 
   useEffect(() => {
     if(!data || !map) return
@@ -336,10 +348,10 @@ const MapContainer = props => {
         Then choose the value for your selected variable to see how it varies nationally in the map below.
       </p>
       <Select
-        onChange={setValue}
+        onChange={onValueChange}
         styles={menuStyle}
-        disabled={!!selectedVariable}
-        placeholder={selectedVariable ? `Enter a value for ${selectedVariable.label}` : ''}
+        isDisabled={!selectedVariable}
+        placeholder={selectedVariable ? `Enter a value for ${selectedVariable.label}` : 'Select a variable to choose its value'}
         searchable={true}
         openOnFocus
         simpleValue
@@ -353,7 +365,8 @@ const MapContainer = props => {
       <Select
         onChange={onFilterChange}
         styles={menuStyle}
-        placeholder="Optionally enter a filter variable"
+        placeholder={selectedVariable && selectedValue ? 'Optionally enter a filter variable' : 'Select your first variable above'}
+        isDisabled={!selectedVariable || !selectedValue}
         searchable={true}
         openOnFocus
         simpleValue
@@ -369,7 +382,7 @@ const MapContainer = props => {
           <Select
             onChange={setFilterValue}
             styles={menuStyle}
-            placeholder={`Enter a value for ${selectedVariable.label}`}
+            placeholder={`Enter a value for ${selectedFilter.label}`}
             searchable={true}
             openOnFocus
             simpleValue

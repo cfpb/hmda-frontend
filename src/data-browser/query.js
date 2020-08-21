@@ -3,7 +3,7 @@ import STATES from './constants/stateObj.js'
 import STATE_CODES from './constants/stateCodesObj.js'
 import COUNTIES from './constants/counties.js'
 import { getVariables } from './constants/variables.js'
-import { before2018, getInstitutionIdKey } from './geo/selectUtils.js'
+import { before2018, getInstitutionIdKey } from './datasets/selectUtils.js'
 
 const stateKeys = Object.keys(STATES)
 const stateCodes = Object.keys(STATE_CODES)
