@@ -10,7 +10,12 @@ const links = {
   2019: [
     <li key="2019-0"><Link to="/documentation/2019/file-format-verification/">File Format Verification Tool Instructions</Link></li>,
   ],
-  2020: []
+  2020: [
+    <li key="2020-0"><Link to="/documentation/2020/file-format-verification/">File Format Verification Tool Instructions</Link></li>,
+  ],
+  2021: [
+    <li key="2021-0"><Link to="/documentation/2021/file-format-verification/">File Format Verification Tool Instructions</Link></li>,
+  ],
 }
 
 const FFVT = props => {

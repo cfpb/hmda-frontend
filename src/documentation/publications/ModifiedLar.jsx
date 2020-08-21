@@ -22,6 +22,10 @@ const links = {
   2020: [
     <li key="4"><a target="_blank" rel="noopener noreferrer" href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/UsingModifiedLar.md">Using Modified LAR Data</a></li>,
     <li key="20-2"><Link to="/documentation/2020/modified-lar-schema/">Modified LAR Schema</Link></li>,
+  ],
+  2021: [
+    <li key="21-1"><a target="_blank" rel="noopener noreferrer" href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/UsingModifiedLar.md">Using Modified LAR Data</a></li>,
+    <li key="21-2"><Link to="/documentation/2021/modified-lar-schema/">Modified LAR Schema</Link></li>,
   ]
 }
 

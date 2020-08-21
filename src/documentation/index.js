@@ -20,6 +20,7 @@ import CheckDigit from './tools/CheckDigit.jsx'
 import LARFT from './tools/LARFT.jsx'
 import FFVT from './tools/FFVT.jsx'
 import { withAppContext } from '../common/appContextHOC'
+import { DOCS_YEARS } from '../common/constants/years'
 
 import './index.css'
 
@@ -28,7 +29,7 @@ function makeCollectionPage(Component, heading, year, url) {
     <div className="App Documentation">
       <Link className="BackLink" to="/documentation/">{'\u2b05'} DOCUMENTATION HOME</Link>
       <Heading type={1} headingText={heading}></Heading>
-      <YearSelector year={year} url={url}/>
+      <YearSelector year={year} url={url} years={DOCS_YEARS} />
       <Component year={year}/>
     </div>
   )

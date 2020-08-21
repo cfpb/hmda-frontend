@@ -1,7 +1,7 @@
-const slugs = ['2017', '2018', '2019', '2020']
+import { DOCS_YEARS } from '../common/constants/years'
 
 function isBadYear(year){
-  return slugs.indexOf(year) === -1
+  return DOCS_YEARS.indexOf(year) === -1
 }
 
 function getMarkdownUrl(year, slug) {

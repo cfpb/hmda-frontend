@@ -24,6 +24,12 @@ const links = {
     <li key="2020-2"><Link to="/documentation/2020/data-browser-filters/">Available Filters</Link></li>,
     <li key="2020-3"><Link to="/documentation/2020/derived-data-fields/">Derived Data Fields</Link></li>,
     <li key="2020-4"><Link to="/documentation/2020/lar-data-fields/">Public HMDA Data Fields with Values and Definitions</Link></li>,
+  ],
+  2021: [
+    <li key="2021-1"><Link to="/documentation/2021/data-browser-faq/">Frequently Asked Questions</Link></li>,
+    <li key="2021-2"><Link to="/documentation/2021/data-browser-filters/">Available Filters</Link></li>,
+    <li key="2021-3"><Link to="/documentation/2021/derived-data-fields/">Derived Data Fields</Link></li>,
+    <li key="2021-4"><Link to="/documentation/2021/lar-data-fields/">Public HMDA Data Fields with Values and Definitions</Link></li>,
   ]
 }
 

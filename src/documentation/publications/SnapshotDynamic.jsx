@@ -36,6 +36,15 @@ const links = {
     <li key="2020-6"><Link to="/documentation/2020/public-panel-schema/">Public Panel Schema</Link></li>,
     <li key="2020-7"><Link to="/documentation/2020/panel-data-fields/">Public Panel Data Fields with Values and Definitions</Link></li>
   ],
+  2021: [
+    <li key="2021-1"><Link to="/documentation/2021/lar-data-fields/">Public HMDA Data Fields with Values and Definitions</Link></li>,
+    <li key="2021-2"><Link to="/documentation/2021/derived-data-fields/">Derived Data Fields</Link></li>,
+    <li key="2021-3"><Link to="/documentation/2021/public-lar-schema/">Public LAR Schema</Link></li>,
+    <li key="2021-4"><Link to="/documentation/2021/public-ts-schema/">Public Transmittal Sheet Schema</Link></li>,
+    <li key="2021-5"><Link to="/documentation/2021/ts-data-fields/">Public Transmittal Sheet Data Fields with Values and Definitions</Link></li>,
+    <li key="2021-6"><Link to="/documentation/2021/public-panel-schema/">Public Panel Schema</Link></li>,
+    <li key="2021-7"><Link to="/documentation/2021/panel-data-fields/">Public Panel Data Fields with Values and Definitions</Link></li>
+  ],
 }
 
 const SnapshotDynamic = props => {

@@ -15,6 +15,10 @@ const links = {
   2020: [
     <li key="2020-0"><Link to="/documentation/2020/ad-changes/">A&amp;D Report Changes Between 2017 and 2018</Link></li>,
     <li key="2020-1"><Link to="/documentation/2020/derived-data-fields/">Derived Data Fields</Link></li>
+  ],
+  2021: [
+    <li key="2021-0"><Link to="/documentation/2021/ad-changes/">A&amp;D Report Changes Between 2017 and 2018</Link></li>,
+    <li key="2021-1"><Link to="/documentation/2021/derived-data-fields/">Derived Data Fields</Link></li>
   ]
 }
 
