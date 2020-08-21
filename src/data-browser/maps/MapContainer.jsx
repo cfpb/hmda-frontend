@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef }  from 'react'
+import React, { useState, useEffect, useCallback, useRef }  from 'react'
 import Select from '../Select.jsx'
 import LoadingButton from '../datasets/LoadingButton.jsx'
 import Alert from '../../common/Alert.jsx'
@@ -54,15 +54,8 @@ const MapContainer = props => {
 
   const defaults = getDefaultsFromSearch(props)
 
-  const getBaseData = () => {
-  if(!selectedGeography) return null
-  return selectedGeography.value === 'state'
-    ? stateData
-    : countyData
-  }
-
   const [map, setMap] = useState(null)
-  const [data, setData] = useState(getBaseData())
+  const [data, setData] = useState(null)
   const [countyData, setCountyData] = useState(null)
   const [stateData, setStateData] = useState(null)
   const [filterData, setFilterData] = useState(null)
@@ -73,6 +66,13 @@ const MapContainer = props => {
   const [selectedFilterValue, setFilterValue] = useState(defaults.filterValue)
   const [feature, setFeature] = useState(defaults.feature)
 
+
+  const getBaseData = useCallback(geography => {
+  if(!geography) return null
+  return geography.value === 'state'
+    ? stateData
+    : countyData
+  }, [countyData, stateData])
 
   const fetchCSV = () => {
     const geoString = selectedGeography.value === 'county'
@@ -95,13 +95,13 @@ const MapContainer = props => {
 
   const onValueChange = selected => {
     setValue(selected)
+    setData(getBaseData(selectedGeography))
     fetchFilterData(selectedGeography, selectedVariable, selected)
       .then(data => setFilterData(data))
   }
 
   const onFilterChange = selected => {
     setFilterValue(null)
-    setData(getBaseData())
     setFilter(selected)
   }
 
@@ -166,6 +166,10 @@ const MapContainer = props => {
     })
   }, [])
 
+  useEffect(() => {
+    setData(getBaseData(selectedGeography))
+  }, [countyData, getBaseData, selectedGeography, stateData])
+
 
   useEffect(() => {
     const search = makeSearch()
@@ -225,9 +229,7 @@ const MapContainer = props => {
 
   useEffect(() => {
     if(selectedGeography && selectedValue && selectedFilter && selectedFilterValue){
-      if(filterData) console.log(filterData)
-      //(selectedGeography, selectedVariable, selectedValue, selectedFilter, selectedFilterValue)
-      //  .then(v => console.log(v))
+      if(filterData) setData(filterData)
     }
   }, [filterData, selectedFilter, selectedFilterValue, selectedGeography, selectedValue])
 
