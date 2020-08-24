@@ -69,7 +69,7 @@ export class UploadBar extends Component {
   }
 
   render() {
-    return <ProgressBar percent={this.getFillWidth()} label='Upload' />
+    return <ProgressBar percent={this.getFillWidth()} label='Upload' error={this.props.hasUploadErrors} />
   }
 }
 

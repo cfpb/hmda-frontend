@@ -14,7 +14,7 @@ const parseProgress = str => {
 
 const hasError = str => str.match(/Err/)
 
-const FileProcessingProgress = ({ progress, uploading, code, watchProgress, filingPeriod, lei }) => {
+const FileProcessingProgress = ({ progress, uploading, code, watchProgress, filingPeriod, lei, hasUploadErrors }) => {
   const { done, syntactical, macro, quality, fetched } = progress
 
   useEffect(() => {
@@ -22,15 +22,16 @@ const FileProcessingProgress = ({ progress, uploading, code, watchProgress, fili
   }, [fetched, watchProgress])
 
   if (code < UPLOADING && !uploading) return null
+  // if (hasUploadErrors) return null
  
   const hasSynEdits = hasError(syntactical)
 
   return (
     <section id='fileProcessProgress'>
-      <UploadBar uploading={uploading} filingPeriod={filingPeriod} lei={lei} key='upload-bar' />
-      <ProgressBar percent={parseProgress(syntactical)} error={hasSynEdits} label='Syntactial' />
-      <ProgressBar percent={parseProgress(quality)} hasPrevError={hasSynEdits} label='Quality' />
-      <ProgressBar percent={parseProgress(macro)} hasPrevError={hasSynEdits} label='Macro' />
+      <UploadBar uploading={uploading} filingPeriod={filingPeriod} lei={lei} hasUploadErrors={hasUploadErrors} key='upload-bar' />
+      <ProgressBar percent={parseProgress(syntactical)} error={hasSynEdits || hasUploadErrors} label='Syntactical/Validity' />
+      <ProgressBar percent={parseProgress(quality)} error={hasError(quality)} hasPrevError={hasSynEdits || hasUploadErrors} label='Quality' />
+      <ProgressBar percent={parseProgress(macro)} error={hasError(macro)} hasPrevError={hasSynEdits || hasUploadErrors} label='Macro' />
     </section>
   )
 }
