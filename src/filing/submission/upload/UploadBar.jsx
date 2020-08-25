@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { ProgressBar } from "./ProgressBar"
+// import { ProgressBar } from "./ProgressBar"
+import ProgressBar from 'react-bootstrap/ProgressBar'
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 export class UploadBar extends Component {
   constructor(props) {
@@ -69,9 +71,12 @@ export class UploadBar extends Component {
   }
 
   render() {
-    return <ProgressBar percent={this.getFillWidth()} label='Upload' />
+    // return <ProgressBar percent={this.getFillWidth()} label='Upload' error={this.props.hasUploadErrors} />
+    return <ProgressBar isChild={true} min={0} max={25} now={capInt(this.getFillWidth())} label='Upload' error={this.props.hasUploadErrors} />
   }
 }
+
+const capInt = (int) => parseInt(int) > 25 ? 25 : int
 
 
 

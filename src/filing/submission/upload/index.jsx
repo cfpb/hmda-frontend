@@ -93,15 +93,6 @@ export default class Upload extends Component {
         {/* 
           TODO: Replace ValidationProgress with a multistage version, driven by Websocket data
         */}
-        <FileProcessingProgress 
-          code={code}
-          progress={processProgress}
-          uploading={uploading}
-          watchProgress={watchProgress}
-          file={file}
-          filingPeriod={filingPeriod}
-          lei={lei}
-        />
         <ValidationProgress
           code={code}
           errorApp={errorApp}
@@ -110,7 +101,18 @@ export default class Upload extends Component {
           filingPeriod={filingPeriod}
           lei={lei}
           uploading={uploading}
+          hasUploadErrors={errors.length}
         />        
+        <FileProcessingProgress 
+          code={code}
+          progress={processProgress}
+          uploading={uploading}
+          watchProgress={watchProgress}
+          file={file}
+          filingPeriod={filingPeriod}
+          lei={lei}
+          hasUploadErrors={errors.length}
+        />
       </section>
     )
   }

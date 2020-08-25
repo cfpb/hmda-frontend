@@ -96,9 +96,10 @@ export default class ValidationProgress extends PureComponent {
   }
 
   render() {
-    const { code, errorApp, errorUpload, file, uploading } = this.props
+    const { code, errorApp, errorUpload, file, uploading, hasUploadErrors } = this.props
 
     if (code < UPLOADING && !uploading) return null
+    // if (hasUploadErrors) return null
     return (
       <section className="ValidationProgress">
         {/* TODO: Cleanup unused styles */}

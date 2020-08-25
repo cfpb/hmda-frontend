@@ -1,0 +1,23 @@
+#fileProcessProgress {
+  /* margin: 2rem 0 0 0; */
+  display: flex;
+  height: 1rem;
+  overflow: hidden;
+  line-height: 0;
+  font-size: .75rem;
+  background-color: #e9ecef;
+  border-radius: .25rem;
+}
+
+
+.progressBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #007bff;
+  transition: width .6s ease;
+}

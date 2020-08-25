@@ -19,6 +19,7 @@ function mapStateToProps(state, ownProps) {
   const editsFetched = state.app.edits.fetched
   const validationComplete =
     code === SYNTACTICAL_VALIDITY_EDITS || code >= NO_MACRO_EDITS
+  const uploadErrors = state.app.lei && state.app.upload[state.app.lei] && state.app.upload[state.app.lei].errors
 
   return {
     page,
@@ -29,7 +30,8 @@ function mapStateToProps(state, ownProps) {
     qualityExists,
     qualityVerified,
     macroExists,
-    macroVerified
+    macroVerified,
+    uploadErrors
   }
 }
 
