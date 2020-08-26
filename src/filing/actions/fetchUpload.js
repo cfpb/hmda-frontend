@@ -6,10 +6,12 @@ import receiveUpload from './receiveUpload.js'
 import hasHttpError from './hasHttpError.js'
 import receiveUploadError from './receiveUploadError.js'
 import { error } from '../utils/log.js'
+import requestProcessingProgress from './requestProcessingProgress'
 
 export default function fetchUpload(file) {
   return dispatch => {
     dispatch(requestUpload())
+    dispatch(requestProcessingProgress())
 
     const data = new FormData()
     data.append('file', file)

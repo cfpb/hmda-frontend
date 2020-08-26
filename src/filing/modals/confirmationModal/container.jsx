@@ -10,6 +10,7 @@ import fetchUpload from '../../actions/fetchUpload.js'
 import processFileErrors from '../../actions/processFileErrors.js'
 import checkFileErrors from '../../utils/checkFileErrors.js'
 import ConfirmationModal from './index.jsx'
+import clearProcessingProgress from '../../actions/clearProcessingProgress'
 
 export function mapStateToProps(state) {
   const lei = state.app.lei
@@ -40,6 +41,7 @@ export function mapDispatchToProps(dispatch, ownProps) {
       checkFileErrors(file, fileErrors => {
         if (fileErrors.length){
           dispatch(refileReady())
+          dispatch(clearProcessingProgress())
           return dispatch(processFileErrors(fileErrors, file.name))
         }
         return dispatch(fetchNewSubmission(lei, period)).then(() => {

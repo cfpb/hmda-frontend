@@ -2,9 +2,10 @@ import { connect } from 'react-redux'
 import Upload from './index.jsx'
 import handleFile from '../../actions/handleFile.js'
 import pollForProgress from '../../actions/pollForProgress.js'
+import listenForProgress from '../../actions/listenForProgress.js'
 
 export function mapStateToProps(state) {
-  const { lei, filingPeriod, submission }= state.app
+  const { lei, filingPeriod, submission, processProgress }= state.app
   const code = submission.status.code
   const filename = submission.filename
 
@@ -23,7 +24,8 @@ export function mapStateToProps(state) {
     filename,
     filingPeriod,
     lei,
-    uploading
+    uploading,
+    processProgress,
   }
 }
 
@@ -35,6 +37,9 @@ export function mapDispatchToProps(dispatch) {
     },
     pollSubmission() {
       dispatch(pollForProgress())
+    },
+    watchProgress() {
+      dispatch(listenForProgress())
     }
   }
 }

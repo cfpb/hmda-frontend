@@ -9,7 +9,8 @@ import {
 
 import './NavButton.css'
 
-const NavButton = ({ page, base, code, editsFetched, validationComplete, qualityExists, qualityVerified, macroExists, macroVerified }) => {
+// TODO: Add error text for uploadErrors
+const NavButton = ({ page, base, code, editsFetched, validationComplete, qualityExists, qualityVerified, macroExists, macroVerified, uploadErrors }) => {
   let className
   let suffix
   let spinOn = false

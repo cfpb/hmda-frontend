@@ -14,7 +14,7 @@
 }
 
 .ValidationProgress {
-  padding-top: 1em;
+  padding-top: 0rem;
   position: relative;
 }
 .ValidationProgress .usa-button {

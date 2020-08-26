@@ -1,5 +1,6 @@
 import fetchEdits from './fetchEdits.js'
 import receiveSubmission from './receiveSubmission.js'
+import listenForProgress from './listenForProgress'
 import receiveError from './receiveError.js'
 import hasHttpError from './hasHttpError.js'
 import { getLatestSubmission } from '../api/api.js'
@@ -9,7 +10,9 @@ import {
   SYNTACTICAL_VALIDITY_EDITS,
   NO_MACRO_EDITS,
   MACRO_EDITS,
-  VALIDATED
+  UPLOADED,
+  VALIDATED,
+  VALIDATING,
 } from '../constants/statusCodes.js'
 
 export const makeDurationGetter = () => {
@@ -51,6 +54,11 @@ export default function pollForProgress() {
       .then(json => {
         if (!json) return
         const { code } = json.status
+
+        // Switch to Websocket if file is uploaded and still processing
+        if(code >= UPLOADED && code <= VALIDATING) 
+          return dispatch(listenForProgress())
+
         if (
           // continue polling until we reach a status that isn't processing
           code !== PARSED_WITH_ERRORS &&
