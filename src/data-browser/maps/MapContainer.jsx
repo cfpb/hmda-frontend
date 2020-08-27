@@ -3,7 +3,7 @@ import Select from '../Select.jsx'
 import LoadingButton from '../datasets/LoadingButton.jsx'
 import Alert from '../../common/Alert.jsx'
 import { geographies, variables, valsForVar, getValuesForVariable, getSelectData } from './selectUtils.jsx'
-import { setOutline, getOrigPer1000, makeLegend, makeStops, addLayers } from './layerUtils.jsx'
+import { setOutline, getOrigPer1000, makeLegend, makeStops, addLayers, makeMapLabel } from './layerUtils.jsx'
 import { getFeatureName, popup, buildPopupHTML } from './popupUtils.jsx'
 import { fetchFilterData } from './filterUtils.jsx'
 import { runFetch, getCSV } from '../api.js'
@@ -408,7 +408,7 @@ const MapContainer = props => {
           />
       </>
       : null}
-      <h3>{selectedGeography && selectedVariable && selectedValue ? `${selectedVariable.label}: "${selectedValue.label}" for US ${selectedGeography.value === 'state' ? 'States' : 'Counties'}`: 'Select a geography, variable, and value above'}</h3>
+      <h3>{makeMapLabel(selectedGeography, selectedVariable, selectedValue, selectedFilter, selectedFilterValue)}</h3>
       <div className="mapContainer" ref={mapContainer}>
         {map === false
           ? <Alert type="error">

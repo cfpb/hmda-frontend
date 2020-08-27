@@ -251,6 +251,15 @@ function setOutline(map, selectedGeography, feature, current=null) {
      stops
    })
 }
+function makeMapLabel(geography, variable, value, filter, filtervalue) {
+  let label = ''
+  if(geography && variable && value){
+    label = `${variable.label}: "${value.label}"`
+    if(filter && filtervalue) label += ` and ${filter.label}: "${filtervalue.label}"`
+    label += ` for US ${geography.value === 'state' ? 'States' : 'Counties'}`
+  }else label = 'Select a geography, variable, and value above'
+  return label
+}
 
 
 
@@ -260,5 +269,6 @@ export {
   makeStops,
   addLayers,
   setOutline,
-  getOrigPer1000
+  getOrigPer1000,
+  makeMapLabel
 }
