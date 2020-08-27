@@ -28,7 +28,7 @@ function getDefaultsFromSearch(props) {
     variable: null,
     filter: null,
     value: null,
-    filterValue: null,
+    filtervalue: null,
     feature: null
   }
   qsParts.forEach(part => {
@@ -63,7 +63,7 @@ const MapContainer = props => {
   const [selectedVariable, setVariable] = useState(defaults.variable)
   const [selectedFilter, setFilter] = useState(defaults.filter)
   const [selectedValue, setValue] = useState(defaults.value)
-  const [selectedFilterValue, setFilterValue] = useState(defaults.filterValue)
+  const [selectedFilterValue, setFilterValue] = useState(defaults.filtervalue)
   const [feature, setFeature] = useState(defaults.feature)
 
 
@@ -73,6 +73,12 @@ const MapContainer = props => {
     ? stateData
     : countyData
   }, [countyData, stateData])
+
+  const resolveData = useCallback(() => {
+    if(selectedFilterValue) return [filterData, selectedFilter, selectedFilterValue]
+    else if(data) return [data, selectedVariable, selectedValue]
+    return null
+  }, [data, filterData, selectedFilter, selectedFilterValue, selectedValue, selectedVariable])
 
   const fetchCSV = () => {
     const geoString = selectedGeography.value === 'county'
@@ -90,14 +96,16 @@ const MapContainer = props => {
 
   const onVariableChange = selected => {
     setValue(null)
+    if(selectedFilter && selectedFilter.value === selected.value) {
+      setFilter(null)
+      setFilterValue(null)
+    }
     setVariable(selected)
   }
 
   const onValueChange = selected => {
+    setFilterData(null)
     setValue(selected)
-    setData(getBaseData(selectedGeography))
-    fetchFilterData(selectedGeography, selectedVariable, selected)
-      .then(data => setFilterData(data))
   }
 
   const onFilterChange = selected => {
@@ -120,6 +128,7 @@ const MapContainer = props => {
 
   //TODO build from API response
   const buildTable = () => {
+    console.log('build table from filtered as needed')
     const currData = selectedGeography.value === 'county'
       ? data[feature]
       : data[fips2Shortcode[feature]]
@@ -164,12 +173,20 @@ const MapContainer = props => {
     runFetch('/stateData.json').then(jsonData => {
       setStateData(jsonData)
     })
+
   }, [])
 
   useEffect(() => {
     setData(getBaseData(selectedGeography))
   }, [countyData, getBaseData, selectedGeography, stateData])
 
+
+  useEffect(() => {
+    if(selectedValue) {
+      fetchFilterData(selectedGeography, selectedVariable, selectedValue)
+        .then(d => setFilterData(d))
+    }
+  }, [selectedGeography, selectedValue, selectedVariable])
 
   useEffect(() => {
     const search = makeSearch()
@@ -213,25 +230,21 @@ const MapContainer = props => {
   /*eslint-disable-next-line*/
   }, [])
 
-  useEffect(() => {
-    if(map && data) {
-      if(map._loaded)   {
-        addLayers(map, selectedGeography, makeStops(data, selectedGeography, selectedVariable, selectedValue, selectedFilter, selectedFilterValue))
-        setOutline(map, selectedGeography, feature)
-      }else{
-        map.on('load', () => {
-          addLayers(map, selectedGeography, makeStops(data, selectedGeography, selectedVariable, selectedValue, selectedFilter, selectedFilterValue))
-          setOutline(map, selectedGeography, feature)
-        })
-      }
-    }
-  }, [data, feature, map, selectedFilter, selectedFilterValue, selectedGeography, selectedValue, selectedVariable])
 
   useEffect(() => {
-    if(selectedGeography && selectedValue && selectedFilter && selectedFilterValue){
-      if(filterData) setData(filterData)
+    if(map) {
+      const addLayersAndOutline = () => {
+        const resolved = resolveData()
+        if(resolved){
+          addLayers(map, selectedGeography, makeStops(...resolved, selectedGeography, selectedVariable, selectedValue))
+          setOutline(map, selectedGeography, feature)
+        }
+      }
+      if(map._loaded) addLayersAndOutline()
+      else map.on('load', addLayersAndOutline)
     }
-  }, [filterData, selectedFilter, selectedFilterValue, selectedGeography, selectedValue])
+  }, [feature, map, resolveData, selectedGeography, selectedValue, selectedVariable])
+
 
   useEffect(() => {
     if(!data || !map) return
@@ -314,6 +327,8 @@ const MapContainer = props => {
     })
   }
 
+  const resolved = resolveData()
+
   return (
     <div className="SelectWrapper">
       <h3>Step 1: Select a Geography</h3>
@@ -352,7 +367,6 @@ const MapContainer = props => {
       <Select
         onChange={onValueChange}
         styles={menuStyle}
-        isDisabled={!selectedVariable}
         placeholder={selectedVariable ? `Enter a value for ${selectedVariable.label}` : 'Select a variable to choose its value'}
         searchable={true}
         openOnFocus
@@ -368,12 +382,12 @@ const MapContainer = props => {
         onChange={onFilterChange}
         styles={menuStyle}
         placeholder={selectedVariable && selectedValue ? 'Optionally enter a filter variable' : 'Select your first variable above'}
-        isDisabled={!selectedVariable || !selectedValue}
         searchable={true}
+        isClearable={true}
         openOnFocus
         simpleValue
         value={selectedFilter}
-        options={variables}
+        options={variables.filter(v => selectedVariable && v.value !== selectedVariable.value)}
       />
       {selectedFilter ?
       <>
@@ -386,6 +400,7 @@ const MapContainer = props => {
             styles={menuStyle}
             placeholder={`Enter a value for ${selectedFilter.label}`}
             searchable={true}
+            isClearable={true}
             openOnFocus
             simpleValue
             value={selectedFilterValue}
@@ -401,7 +416,7 @@ const MapContainer = props => {
             </Alert>
           : null
         }
-        {makeLegend(selectedGeography, selectedVariable, selectedValue, selectedFilter, selectedFilterValue)}
+        {resolved ? makeLegend(...resolved, selectedGeography, selectedVariable, selectedValue) : null}
       </div>
       {data && selectedVariable && feature ? buildTable() : null}
     </div>
