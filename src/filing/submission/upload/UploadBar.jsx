@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { ProgressBar } from "./ProgressBar"
+import ProgressBar from "./ProgressBar/"
+import { STATUS } from './ProgressBar/constants'
 
+const MIN_PCT = 10
 export class UploadBar extends Component {
   constructor(props) {
     super(props)
@@ -10,7 +12,7 @@ export class UploadBar extends Component {
       if (this.SCALING_FACTOR < 1) this.SCALING_FACTOR = 1
       if (this.SCALING_FACTOR > 5) this.SCALING_FACTOR = 5
     }
-    const fillWidth = this.getSavedWidth(props.filingPeriod, props.lei) || 1
+    const fillWidth = this.getSavedWidth(props.filingPeriod, props.lei) || MIN_PCT
     this.state = { fillWidth, firstRender: true }
     this.setState = this.setState.bind(this)
   }
@@ -33,14 +35,14 @@ export class UploadBar extends Component {
   }
 
   getSavedWidth(filingPeriod, lei) {
-    return lei ? JSON.parse(localStorage.getItem(`HMDA_UPLOAD_PROGRESS/${filingPeriod}/${lei}`)) : 0
+    return lei ? JSON.parse(localStorage.getItem(`HMDA_UPLOAD_PROGRESS/${filingPeriod}/${lei}`)) : MIN_PCT
   }
 
   getNextWidth() {
     const fillWidth = this.state.fillWidth
     this.timeout = setTimeout(
       this.setNextWidth(fillWidth),
-      this.SCALING_FACTOR * 200 * Math.pow(2, 50 / (100 - fillWidth))
+      this.SCALING_FACTOR * 75 * Math.pow(2, 50 / (100 - fillWidth))
     )
   }
 
@@ -49,6 +51,7 @@ export class UploadBar extends Component {
       this.timeout = null
       let nextWidth = parseInt(currWidth) + 1
       if (nextWidth > 100) nextWidth = '100'
+      if (nextWidth < MIN_PCT) nextWidth = `${MIN_PCT}`
       this.saveWidth(this.props.filingPeriod, this.props.lei, nextWidth)
       this.setState({ fillWidth: nextWidth })
     }
@@ -68,10 +71,22 @@ export class UploadBar extends Component {
     return this.state.fillWidth
   }
 
+  status() {
+    if(this.props.uploading) return STATUS.PROGRESS
+    return STATUS.DONE
+  }
+
   render() {
-    return <ProgressBar percent={this.getFillWidth()} label='Upload' />
+    return (
+      <ProgressBar
+        pct={this.getFillWidth()}
+        status={this.status()}
+        label='Upload'
+      />
+    )
   }
 }
+
 
 
 

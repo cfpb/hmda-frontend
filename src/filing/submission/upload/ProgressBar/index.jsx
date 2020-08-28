@@ -33,7 +33,6 @@ const fillStyles = ({ pct, minWidth, maxWidth, status, label }) => {
   if (status100.indexOf(status) > -1) pctAdjusted = 100
   else pctAdjusted = pct > maxWidth ? maxWidth : pct < minWidth ? minWidth : pct
 
-  label === "Macro" && console.log(`${label} ${status} ${pctAdjusted}%`)
   return { width: `${pctAdjusted}%` }
 }
 

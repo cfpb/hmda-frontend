@@ -56,7 +56,7 @@ export default function listenForProgress() {
             ? `/institutions/${lei}/filings/${year}/quarter/${quarter}/submissions/${sequenceNumber}/progress`
             : `/institutions/${lei}/filings/${year}/submissions/${sequenceNumber}/progress`
 
-          let socket = new WebSocket(`wss://${wsBaseUrl}${wsProgressUrl}`)
+          let socket = new WebSocket(`ws://${wsBaseUrl}${wsProgressUrl}`)
 
           socket.onopen = (event) => {
             console.log('>>> Socket open! Listening for Progress...')

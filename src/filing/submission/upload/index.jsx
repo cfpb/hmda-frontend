@@ -90,9 +90,6 @@ export default class Upload extends Component {
             )
           }}
         </Dropzone>
-        {/* 
-          TODO: Replace ValidationProgress with a multistage version, driven by Websocket data
-        */}
         <FileProcessingProgress 
           code={code}
           progress={processProgress}
