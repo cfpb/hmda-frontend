@@ -1,5 +1,6 @@
 function getFile(g, v, val) {
-  return `/data-browser-filter-data/${g}-${v}-${val.replace(/[^a-z0-9]/ig, '-').toLowerCase()}.json`
+  const dec = decodeURIComponent(val)
+  return `/data-browser-filter-data/${g}-${v}-${dec.replace(/[^a-z0-9]/ig, '-').toLowerCase()}.json`
 }
 
 export function fetchFilterData(geography, variable, value) {

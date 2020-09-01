@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef }  from 'react'
 import Select from '../Select.jsx'
 import LoadingButton from '../datasets/LoadingButton.jsx'
+import LoadingIcon from '../../common/LoadingIcon.jsx'
 import Alert from '../../common/Alert.jsx'
 import { geographies, variables, valsForVar, getValuesForVariable, getSelectData } from './selectUtils.jsx'
 import { setOutline, getOrigPer1000, makeLegend, makeStops, addLayers, makeMapLabel } from './layerUtils.jsx'
@@ -59,6 +60,7 @@ const MapContainer = props => {
   const [countyData, setCountyData] = useState(null)
   const [stateData, setStateData] = useState(null)
   const [filterData, setFilterData] = useState(null)
+  const [tableFilterData, setTableFilterData] = useState(null)
   const [selectedGeography, setGeography] = useState(defaults.geography)
   const [selectedVariable, setVariable] = useState(defaults.variable)
   const [selectedFilter, setFilter] = useState(defaults.filter)
@@ -126,14 +128,20 @@ const MapContainer = props => {
     return ''
   }
 
-  //TODO build from API response
   const buildTable = () => {
-    console.log('build table from filtered as needed')
+    if(!data || !selectedGeography || !selectedValue || !feature) return null
+    if(selectedFilterValue && !tableFilterData) return <LoadingIcon/>
+
+    const dataset = selectedFilterValue ? tableFilterData : data
+
     const currData = selectedGeography.value === 'county'
-      ? data[feature]
-      : data[fips2Shortcode[feature]]
+      ? dataset[feature]
+      : dataset[fips2Shortcode[feature]]
+
     if(!currData) return null
+
     const currVarData = currData[selectedVariable.value]
+
     const ths = valsForVar[selectedVariable.value]
     const tds = ths.map(v => {
       let val = v.value
@@ -143,7 +151,7 @@ const MapContainer = props => {
 
     return (
       <div className="TableWrapper" ref={tableRef}>
-        <h3>Originations by {selectedVariable.label} in {getFeatureName(selectedGeography.value, feature)}</h3>
+        <h3>Originations by {selectedVariable.label} in {getFeatureName(selectedGeography.value, feature)}{selectedFilterValue ? ` when ${selectedFilter.label} equals ${selectedFilterValue.label}` : ''}</h3>
         <table>
           <thead>
             <tr>
@@ -187,6 +195,13 @@ const MapContainer = props => {
         .then(d => setFilterData(d))
     }
   }, [selectedGeography, selectedValue, selectedVariable])
+
+  useEffect(() => {
+    if(selectedFilterValue) {
+      fetchFilterData(selectedGeography, selectedFilter, selectedFilterValue)
+        .then(d => setTableFilterData(d))
+    }
+  }, [selectedFilter, selectedFilterValue, selectedGeography])
 
   useEffect(() => {
     const search = makeSearch()
@@ -284,7 +299,6 @@ const MapContainer = props => {
     }
 
     function getTableData(e){
-      console.log('getTableData needs to parse filter response')
       if(!map._loaded || !selectedGeography || !selectedVariable) return
       const features = map.queryRenderedFeatures(e.point, {layers: [selectedGeography.value]})
       if(!features.length) return
@@ -418,7 +432,7 @@ const MapContainer = props => {
         }
         {resolved ? makeLegend(...resolved, selectedGeography, selectedVariable, selectedValue) : null}
       </div>
-      {data && selectedVariable && feature ? buildTable() : null}
+      {buildTable()}
     </div>
   )
 }
