@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Loading from '../../common/LoadingIcon.jsx'
 import ErrorWarning from '../common/ErrorWarning.jsx'
 import Institution from './Institution.jsx'
 import InstitutionsHeader from './Header.jsx'
@@ -11,6 +10,7 @@ import { MissingInstitutionsBanner } from './MissingInstitutionsBanner'
 import { FilteredOutList } from './FilteredOutList'
 import { splitYearQuarter } from '../api/utils.js'
 import { formattedQtrBoundaryDate } from '../utils/date.js'
+import { wrapLoading } from './wrapLoading'
 
 import './Institutions.css'
 
@@ -30,14 +30,6 @@ const _setSubmission = (submission, latest, filingObj) => {
   return latest
 }
 
-const wrapLoading = (i = 0) => {
-  return (
-    <div key={i} style={{ height: '100px' }}>
-      <Loading className="floatingIcon" />
-    </div>
-  )
-}
-
 const _whatToRender = ({ 
   filings,
   institutions,
@@ -47,7 +39,8 @@ const _whatToRender = ({
   latestSubmissions,
   hasQuarterlyFilers,
   isPassedQuarter,
-  isClosedQuarter 
+  isClosedQuarter,
+  setSelected
 }) => {
 
   // we don't have institutions yet
@@ -121,6 +114,7 @@ const _whatToRender = ({
           isClosedQuarter={isClosedQuarter}
           links={institutionFilings.links}
           submissionPages={institutionFilings.submissionPages}
+          setSelected={setSelected}
         />
       )
     }

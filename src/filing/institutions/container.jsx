@@ -7,14 +7,23 @@ import Institutions from './index.jsx'
 import { getKeycloak } from '../utils/keycloak.js'
 import { afterFilingPeriod, beforeFilingPeriod } from "../utils/date"
 import { splitYearQuarter } from '../api/utils.js'
+import InstitutionsDetails from './InstitutionsDetails'
 
 export class InstitutionContainer extends Component {
+  constructor(props){
+    super(props)
+    this.state = { selected: null }
+    this.setSelected = this.setSelected.bind(this)
+  }
+
   componentDidMount() {
     this.fetchIfNeeded()
+    this.updateUrlIfNeeded()
   }
 
   componentDidUpdate(){
     this.fetchIfNeeded()
+    this.updateUrlIfNeeded()
   }
 
   fetchIfNeeded() {
@@ -34,8 +43,28 @@ export class InstitutionContainer extends Component {
     }
   }
 
+  updateUrlIfNeeded(){
+    if (window.location.pathname.match(/details$/) && !this.state.selected)
+      this.props.history.replace(this.props.match.url)
+  }
+
+  setSelected(selected) {
+    this.setState({ selected })
+  }
+
   render() {
-    return <Institutions {...this.props} />
+    const { selected } = this.state
+    
+    if(selected) 
+      return (
+        <InstitutionsDetails
+          {...this.props}
+          close={() => this.setSelected(null)}
+          selected={selected}
+        />
+      )
+      
+    return <Institutions {...this.props} setSelected={this.setSelected} />
   }
 }
 
