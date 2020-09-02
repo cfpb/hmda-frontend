@@ -4,10 +4,10 @@ import requestInstitutions from '../actions/requestInstitutions.js'
 import fetchEachInstitution from '../actions/fetchEachInstitution.js'
 import getFilingPeriodOptions from '../actions/getFilingPeriodOptions'
 import Institutions from './index.jsx'
+import InstitutionDetailsWrapper from './details/InstitutionDetailsWrapper'
 import { getKeycloak } from '../utils/keycloak.js'
 import { afterFilingPeriod, beforeFilingPeriod } from "../utils/date"
 import { splitYearQuarter } from '../api/utils.js'
-import InstitutionsDetails from './InstitutionsDetails'
 
 export class InstitutionContainer extends Component {
   constructor(props){
@@ -57,7 +57,7 @@ export class InstitutionContainer extends Component {
     
     if(selected) 
       return (
-        <InstitutionsDetails
+        <InstitutionDetailsWrapper
           {...this.props}
           close={() => this.setSelected(null)}
           selected={selected}

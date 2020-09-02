@@ -2,13 +2,6 @@
   margin-top: 2rem;
 }
 
-/* .institutions-details .top {
-  display: flex;
-  justify-content: space-between;
-  flex-flow: row nowrap;
-  align-items: center;
-} */
-
 .institutions-details h1 {
   margin: 0 0 2rem 0;
   font-size: 2.4rem;
@@ -38,7 +31,6 @@
 .institutions-details .input-wrap label {
   margin-bottom: 8px;
   position: relative;
-  /* text-decoration: underline; */
   text-decoration-color: grey;
   text-transform: uppercase;
   font-size: 1.5rem;
@@ -46,37 +38,39 @@
 }
 
 .institutions-details .input-wrap input {
-  /* color: rgb(0, 123, 255); */
   font-size: 1.8rem;
   color: #000;
 }
 
 
-.institutions-details .singles {
+.institutions-details .center {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;  
-}
-
-.institutions-details .input-group {
-  display: flex;
-  flex-flow: row wrap;
-  margin: .5rem auto;
-  align-content: center;
-  justify-content: center;
-}
-
-.institutions-details .input-group .header {
-  display: block;
-  width: 100%;
-  border: none;
-  margin: 0;
-  padding: 0;
-  background: lightgrey;
 }
 
 .institutions-details .input-wrap.filler input,
 .institutions-details input:disabled {
   border: none;
   padding: 0;
+}
+
+.institutions-details .btn.show-more {
+  margin: 2rem 4.5rem;
+  display: block;
+  padding: 3px;
+  background: #fff;
+  color: #0071bc;
+}
+
+.institutions-details .btn.show-more:hover {
+  color: #205493;
+}
+
+.institutions-details .other-fields {
+  display: none;
+}
+
+.institutions-details .other-fields.show {
+  display: flex;
 }
