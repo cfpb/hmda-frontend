@@ -103,7 +103,7 @@ function makeLegend(data, variable, value, geography, mainVar, mainVal){
   if(!data || !variable || !value || !geography || !mainVar || !mainVal) return null
 
   const val = normalizeValue(value)
-  const counts = geography.value === 'county' ? counties2018 : STATE_COUNTS
+  const counts = geography.value === 'county' ? counties2018 : states2018
 
   const mVar = mainVar ? mainVar.value : null
   const mVal = mainVal ? normalizeValue(mainVal) : null
@@ -148,7 +148,7 @@ function makeStops(data, variable, value, geography, mainVar, mainVal){
   if(!data || !variable || !value || !mainVar || !mainVal) return stops
 
   const val = normalizeValue(value)
-  const counts = geography.value === 'county' ? counties2018 : STATE_COUNTS
+  const counts = geography.value === 'county' ? counties2018 : states2018
   const mVar = mainVar ? mainVar.value : null
   const mVal = mainVal ? normalizeValue(mainVal) : null
   const bias = getBias(data, variable.value, val, geography, counts, mVar, mVal)
