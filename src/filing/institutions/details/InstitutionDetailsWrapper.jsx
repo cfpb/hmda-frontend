@@ -1,36 +1,24 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import { Link } from 'react-router-dom'
 import { wrapLoading } from '../wrapLoading'
 import { InstitutionDetails } from './InstitutionDetails'
 import './InstitutionsDetails.css'
 
 const InstitutionDetailsWrapper = (props) => {
-  let { institutions, close, selected, history, match } = props
-
-  const onClose = () => {
-    close()
-    history.replace(match.url)
-  }
-
-  useEffect(() => {
-    history.push(`${match.url}/${selected}/details`)
-    window.onpopstate = () => onClose()
-    return () => (window.onpopstate = null)
-    // eslint-disable-next-line
-  }, [])
-
-  useEffect(() => {
-    if (!window.location.pathname.match(/details$/)) onClose()
-    // eslint-disable-next-line
-  }, [window.location.key, match])
+  let { institutions, match } = props
+  const selected = match.params.institution
 
   if (!institutions || !institutions.fetched) return wrapLoading()
   institutions = institutions.institutions
 
   return (
     <main id='main-content' className='institutions-details full-width'>
-      <button className='back' type='button' onClick={onClose}>
+      <Link
+        to={match.url.split('/').slice(0, -1).join('/')}
+        className='button back'
+      >
         &#9668; Back
-      </button>
+      </Link>
       <InstitutionDetails data={institutions[selected]} />
     </main>
   )

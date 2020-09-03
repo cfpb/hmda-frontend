@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { agencyCodes } from '../constants'
 import { Input } from './InstitutionInput'
 import { OtherFields } from './OtherFields'
+import { wrapLoading } from '../wrapLoading'
 
 export const InstitutionDetails = ({ data }) => {
   const {
@@ -12,9 +13,12 @@ export const InstitutionDetails = ({ data }) => {
     taxId,
     emailDomains,
     activityYear,
+    isFetching
   } = data
 
   useEffect(() => window.scrollTo(0, 0), [])
+
+  if (isFetching) return wrapLoading()
 
   return (
     <form id={`form-${lei}`} onSubmit={() => null}>
