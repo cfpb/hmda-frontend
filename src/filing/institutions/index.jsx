@@ -39,8 +39,7 @@ const _whatToRender = ({
   latestSubmissions,
   hasQuarterlyFilers,
   isPassedQuarter,
-  isClosedQuarter,
-  setSelected
+  isClosedQuarter
 }) => {
 
   // we don't have institutions yet
@@ -114,7 +113,6 @@ const _whatToRender = ({
           isClosedQuarter={isClosedQuarter}
           links={institutionFilings.links}
           submissionPages={institutionFilings.submissionPages}
-          setSelected={setSelected}
         />
       )
     }

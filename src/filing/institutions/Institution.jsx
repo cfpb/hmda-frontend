@@ -16,8 +16,7 @@ const Institution = ({
   isPassedQuarter,
   isClosedQuarter,
   links,
-  submissionPages,
-  setSelected
+  submissionPages
 }) => {
   const status = submission && submission.status
 
@@ -36,7 +35,6 @@ const Institution = ({
               name={institution.name} 
               lei={institution.lei} 
               filingPeriod={filing.period} 
-              setSelected={setSelected} 
             />
 
             <SubmissionNav submission={submission} />
