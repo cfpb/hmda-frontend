@@ -10,20 +10,12 @@ import { afterFilingPeriod, beforeFilingPeriod } from "../utils/date"
 import { splitYearQuarter } from '../api/utils.js'
 
 export class InstitutionContainer extends Component {
-  constructor(props){
-    super(props)
-    this.state = { selected: null }
-    this.setSelected = this.setSelected.bind(this)
-  }
-
   componentDidMount() {
     this.fetchIfNeeded()
-    this.updateUrlIfNeeded()
   }
 
   componentDidUpdate(){
     this.fetchIfNeeded()
-    this.updateUrlIfNeeded()
   }
 
   fetchIfNeeded() {
@@ -43,28 +35,11 @@ export class InstitutionContainer extends Component {
     }
   }
 
-  updateUrlIfNeeded(){
-    if (window.location.pathname.match(/details$/) && !this.state.selected)
-      this.props.history.replace(this.props.match.url)
-  }
-
-  setSelected(selected) {
-    this.setState({ selected })
-  }
-
   render() {
-    const { selected } = this.state
-    
-    if(selected) 
-      return (
-        <InstitutionDetailsWrapper
-          {...this.props}
-          close={() => this.setSelected(null)}
-          selected={selected}
-        />
-      )
+    if(this.props.match.params.institution) 
+      return <InstitutionDetailsWrapper {...this.props} />
       
-    return <Institutions {...this.props} setSelected={this.setSelected} />
+    return <Institutions {...this.props} />
   }
 }
 
