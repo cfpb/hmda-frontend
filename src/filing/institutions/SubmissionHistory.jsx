@@ -98,7 +98,7 @@ class InstitutionPreviousSubmissions extends Component {
                   // because quality and macro are verified
                   if (submission.status.code > VALIDATING) {
                     if (submission.signerUsername)
-                      message += ` and was signed by "${submission.signerUsername}"`
+                      message += ` and was signed by ${submission.signerUsername}`
                       
                     return (
                       <li key={i} value={submission.id.sequenceNumber}>
