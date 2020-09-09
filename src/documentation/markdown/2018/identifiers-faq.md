@@ -29,4 +29,4 @@ An institution’s Agency Code can change from year to year. These changes are d
 
 ### Institution Respondent ID Changes
 **Do respondent IDs change with agency code changes?** 
-Changes to an institution's Agency Code may result in changes to that institution's Respondent ID, especially in the case of depository institutions. Please see the 2017 HMDA FIG Table 1 for a breakout of how Respondent ID is derived based on Agency Code.
+Changes to an institution's Agency Code may result in changes to that institution's Respondent ID, especially in the case of depository institutions. Please see the [2017 HMDA FIG Table 1](https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2017-hmda-fig.pdf#page=14) for a breakout of how Respondent ID is derived based on Agency Code.
