@@ -24,9 +24,8 @@ const DataPublication = ({ config }) => {
   return (
     <div className="App DataPublication">
       <Switch>
-        <Route exact path="/data-publication" component={Home} />
-        <Route exact path = "/data-publication/updates" component={PublicationChanges} />
-        <Redirect exact from="/data-publication/modified-lar" to={`/data-publication/modified-lar/${mlarYear}`} />
+        <Redirect exact from="/data-publication" to={`/data-publication/${shared[0]}`} />
+        <Redirect exact from="/data-publication/modified-lar" to="/data-publication/modified-lar/2019" />
         <Route path="/data-publication/documents" component={SupportingDocs} />
         <Route path="/data-publication/modified-lar/:year" component={ModifiedLar} />
         <Route
@@ -59,6 +58,7 @@ const DataPublication = ({ config }) => {
             return <DynamicDataset {...props}/>
           }}
         />
+        <Route path="/data-publication/:year" component={Home} />
         <Route component={NotFound} />
       </Switch>
     </div>
