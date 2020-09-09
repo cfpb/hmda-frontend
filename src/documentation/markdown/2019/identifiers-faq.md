@@ -13,7 +13,7 @@ Respondent ID is for 2017 and prior is one of the following: OCC charter number,
 
 **How can I map 2017 institution identifiers to 2018 institution identifiers?**
 The 2018 Panel file contains two identifiers related to 2017 identity: ID_2017 and ARID_2017. Use the ARID_2017 column to match to the concatenation of Agency Code and Respondent ID from 2017. The ID_2017 column relates to the file name of an institution's modified LAR data found on this page.
-See the 2018 HMDA Panel file schema here and field definitions here.
+See the 2018 HMDA Panel file schema [here](https://ffiec.cfpb.gov/documentation/2018/public-panel-schema/) and field definitions [here](https://ffiec.cfpb.gov/documentation/2018/panel-data-fields/).
 
 ### Institution Name Changes:
 
