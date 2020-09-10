@@ -1,0 +1,41 @@
+.Ultimate {
+  margin: 0 auto;
+  max-width: 1040px;
+  padding: 0 3rem;
+}
+
+.Ultimate .header {
+  border-bottom: none;
+}
+
+.Ultimate h1 {
+  font-size: 4rem;
+  margin-top: 1.5em;
+}
+
+.Ultimate .font-lead {
+  font-size: 2rem;
+  max-width: 77rem;
+}
+
+.Ultimate .grid {
+  align-items: stretch;
+  display: flex;
+  margin: 0 auto;
+  max-width: 1040px;
+  padding: 3rem 0;
+}
+.Ultimate .item {
+  flex: 1;
+  margin: 0 20px;
+}
+.Ultimate .item:first-child {
+  margin-left: 0;
+}
+.Ultimate .item:last-child {
+  margin-right: 0;
+}
+
+.Ultimate .item li > ul {
+  margin-top: 0.5em;
+}

@@ -25,9 +25,11 @@
   ],
   "dataPublicationYears": {
     "shared": [
-      "2020",
       "2019",
       "2018",
+      "2017"
+    ],
+    "ultimate": [
       "2017"
     ]
   },
