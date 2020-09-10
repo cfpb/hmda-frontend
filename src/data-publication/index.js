@@ -8,7 +8,8 @@ import Disclosure from './reports/Disclosure'
 import Aggregate from './reports/Aggregate'
 import NationalAggregate from './reports/NationalAggregate'
 import Snapshot from './reports/snapshot/index'
-import Ultimate from './reports/ultimate/index'
+import UltimateDataset from './reports/ultimate/index'
+import FinalDataset from './reports/final/index'
 import DynamicDataset from './reports/DynamicDataset'
 import NotFound from '../common/NotFound'
 import { withAppContext } from '../common/appContextHOC.jsx'
@@ -17,10 +18,11 @@ import PublicationChanges from './ChangeLog/'
 import './index.css'
 
 const DataPublication = ({ config }) => {
-  const { dynamic, snapshot, shared, ultimate } = config.dataPublicationYears
+  const { dynamic, final, snapshot, shared, ultimate } = config.dataPublicationYears
   const snapshotYears = snapshot || shared
   const dynamicYears = dynamic || shared
   const ultimateYears = ultimate || shared
+  const finalYears = final || shared
 
   return (
     <div className="App DataPublication">
@@ -56,7 +58,15 @@ const DataPublication = ({ config }) => {
           render={ props => {
             const { year } = props.match.params
             if(year && ultimateYears.indexOf(year) === -1) return <NotFound/>
-            return <Ultimate {...props}/>
+            return <UltimateDataset {...props}/>
+          }}
+        />
+        <Route
+          path="/data-publication/final-national-loan-level-dataset/:year?"
+          render={ props => {
+            const { year } = props.match.params
+            if(year && finalYears.indexOf(year) === -1) return <NotFound/>
+            return <FinalDataset {...props}/>
           }}
         />
         <Route
