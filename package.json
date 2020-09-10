@@ -63,7 +63,7 @@
     "http-proxy-middleware": "0.19.1",
     "newman": "5.1.2",
     "redux-devtools-extension": "2.13.8",
-    "serialize-javascript": "2.1.2"
+    "serialize-javascript": "5.0.1"
   },
   "proxy": "http://localhost:8080"
 }
