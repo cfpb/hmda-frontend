@@ -9,10 +9,10 @@ For 2018 and forward, Legal Entity Identifier (LEI) sourced from a Global LEI Fo
 **What are the institution identifiers for 2017?** 
 For 2017 and prior, an institution's unique identifier is the concatenation of Agency Code and Respondent ID. The use of both Agency Code and Respondent ID is important as Respondent ID by itself is not always sufficient to uniquely identify an institution.
 
-Respondent ID is for 2017 and prior is one of the following: OCC charter number, FDIC certificate number, NCUA charter number, National Information Center (NIC) RSSD, or federal tax ID. The OCC, FDIC< NCUA, and RSSD identifiers all use a sequential integer system. Meaning that identifiers start at 1 and progress in increments of 1 when new institutions are registered. This creates the potential for duplicate IDs for HMDA filers. Joining an institution's Agency Code to its Respondent ID ensures that the resulting identifier is unique.
+Respondent ID is for 2017 and prior is one of the following: OCC charter number, FDIC certificate number, NCUA charter number, National Information Center (NIC) RSSD, or federal tax ID. The OCC, FDIC, NCUA, and RSSD identifiers all use a sequential integer system. Meaning that identifiers start at 1 and progress in increments of 1 when new institutions are registered. This creates the potential for duplicate IDs for HMDA filers. Joining an institution's Agency Code to its Respondent ID ensures that the resulting identifier is unique.
 
 **How can I map 2017 institution identifiers to 2018 institution identifiers?**
-The 2018 Panel file contains two identifiers related to 2017 identity: ID_2017 and ARID_2017. Use the ARID_2017 column to match to the concatenation of Agency Code and Respondent ID from 2017. The ID_2017 column relates to the file name of an institution's modified LAR data found on this page.
+The 2018 Panel file contains two identifiers related to 2017 identity: ID\_2017 and ARID\_2017. Use the ARID\_2017 column to match to the concatenation of Agency Code and Respondent ID from 2017. The ID\_2017 column relates to the file name of an institution's modified LAR data found on this page.
 See the 2018 HMDA Panel file schema [here](https://ffiec.cfpb.gov/documentation/2018/public-panel-schema/) and field definitions [here](https://ffiec.cfpb.gov/documentation/2018/panel-data-fields/).
 
 ### Institution Name Changes:
