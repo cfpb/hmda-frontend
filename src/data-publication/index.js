@@ -8,6 +8,7 @@ import Disclosure from './reports/Disclosure'
 import Aggregate from './reports/Aggregate'
 import NationalAggregate from './reports/NationalAggregate'
 import Snapshot from './reports/snapshot/index'
+import Ultimate from './reports/ultimate/index'
 import DynamicDataset from './reports/DynamicDataset'
 import NotFound from '../common/NotFound'
 import { withAppContext } from '../common/appContextHOC.jsx'
@@ -16,10 +17,10 @@ import PublicationChanges from './ChangeLog/'
 import './index.css'
 
 const DataPublication = ({ config }) => {
-  const { dynamic, snapshot, shared, mlar } = config.dataPublicationYears
+  const { dynamic, snapshot, shared, ultimate } = config.dataPublicationYears
   const snapshotYears = snapshot || shared
   const dynamicYears = dynamic || shared
-  const mlarYear = (mlar || shared)[0]
+  const ultimateYears = ultimate || shared
 
   return (
     <div className="App DataPublication">
@@ -48,6 +49,14 @@ const DataPublication = ({ config }) => {
               return <NotFound/>
             }
             return <Snapshot {...props}/>
+          }}
+        />
+        <Route
+          path="/data-publication/ultimate-national-loan-level-dataset/:year?"
+          render={ props => {
+            const { year } = props.match.params
+            if(year && ultimateYears.indexOf(year) === -1) return <NotFound/>
+            return <Ultimate {...props}/>
           }}
         />
         <Route
