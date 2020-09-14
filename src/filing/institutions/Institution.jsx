@@ -31,7 +31,11 @@ const Institution = ({
       {filing ? (
         <section className="institution">
           <div className="current-status">
-            <InstitutionNameAndId name={institution.name} lei={institution.lei} filingPeriod={filing.period} />
+            <InstitutionNameAndId 
+              name={institution.name} 
+              lei={institution.lei} 
+              filingPeriod={filing.period} 
+            />
 
             <SubmissionNav submission={submission} />
 

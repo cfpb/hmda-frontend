@@ -16,6 +16,29 @@
   margin-top: 0;
 }
 
+.Institutions .institution h3 .details-icon {
+  float: right;
+  margin-left: 5rem;
+  cursor: pointer;
+}
+
+.Institutions .institution h3 .details-icon  {
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+}
+
+.Institutions .institution h3 .details-icon:hover svg{
+  border-radius: 50%;
+  fill: #0071bc;
+
+}
+
+.Institutions .institution h3 .details-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
 .Institutions .institution .previous-submissions h4 {
   margin-top: 0;
 }
