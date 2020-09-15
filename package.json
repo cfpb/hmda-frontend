@@ -41,7 +41,7 @@
     "redux": "4.0.4",
     "redux-logger": "3.0.6",
     "redux-thunk": "2.3.0",
-    "split2": "3.1.1"
+    "split2": "3.2.2"
   },
   "browserslist": [
     "Chrome >= 60",
