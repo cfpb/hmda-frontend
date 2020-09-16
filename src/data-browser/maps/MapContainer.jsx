@@ -102,6 +102,7 @@ const MapContainer = props => {
     if(selectedFilter && selectedFilter.value === selected.value) {
       setFilter(null)
       setFilterValue(null)
+      setTableFilterData(null)
     }
     setVariable(selected)
   }
