@@ -114,7 +114,13 @@ const MapContainer = props => {
 
   const onFilterChange = selected => {
     setFilterValue(null)
+    setTableFilterData(null)
     setFilter(selected)
+  }
+
+  const onFilterValueChange = selected => {
+    if(selected === null) setTableFilterData(null)
+    setFilterValue(selected)
   }
 
   const makeSearch = () => {
@@ -281,7 +287,9 @@ const MapContainer = props => {
       if(feat === lastFeat) return
       else lastFeat = feat
 
-      let origPer1000 = getOrigPer1000(data, feat, selectedGeography, selectedVariable, selectedValue)
+
+      const d = tableFilterData ? tableFilterData : data
+      const origPer1000 = getOrigPer1000(d, feat, selectedGeography, selectedVariable, selectedValue)
 
       map.getCanvas().style.cursor = 'pointer'
 
@@ -333,7 +341,7 @@ const MapContainer = props => {
 
     return detachHandlers
 
-  }, [map, selectedVariable, data, selectedGeography, feature, selectedValue])
+  }, [map, selectedVariable, data, selectedGeography, feature, selectedValue, tableFilterData])
 
 
   const menuStyle = {
@@ -412,7 +420,7 @@ const MapContainer = props => {
             Then choose the value for your selected filter
           </p>
           <Select
-            onChange={setFilterValue}
+            onChange={onFilterValueChange}
             styles={menuStyle}
             placeholder={`Enter a value for ${selectedFilter.label}`}
             searchable={true}
