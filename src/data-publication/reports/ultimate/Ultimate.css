@@ -4,6 +4,13 @@
   padding: 0 3rem;
 }
 
+.Ultimate .source-date {
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: grey;
+}
+
 .Ultimate .header {
   border-bottom: none;
 }

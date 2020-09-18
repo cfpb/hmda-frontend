@@ -1,7 +1,7 @@
 // TODO: Plug in actual files
 export const FINAL_DATASET = {
   2018: {
-    date: '<TODO: Add Final generation date>',
+    date: 'Pending...',
     dataformat: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/final-data/2018_publicstatic_dataformat.pdf',
     codesheet: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/final-data/2018_publicstatic_codesheet.pdf',
     datasets: [
@@ -28,7 +28,7 @@ export const FINAL_DATASET = {
     ]
   },
   2017: {
-    date: '<TODO: Add Final generation date>',
+    date: 'Pending...',
     dataformat: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/final-data/2017_publicstatic_dataformat.pdf',
     codesheet: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/final-data/2017_publicstatic_codesheet.pdf',
     datasets: [
