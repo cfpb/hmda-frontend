@@ -1,11 +1,8 @@
 import React from 'react'
 import shortcode2FIPS from '../constants/shortcodeToFips.js'
 import fips2Shortcode from '../constants/fipsToShortcode.js'
-import COUNTY_COUNTS from '../constants/countyPop.js'
-import STATE_COUNTS from '../constants/statePop.js'
-
-const counties2018 = COUNTY_COUNTS['2018']
-const states2018 = STATE_COUNTS['2018']
+import COUNTY_POP from '../constants/countyPop.js'
+import STATE_POP from '../constants/statePop.js'
 
 const LINE_WIDTH = 1.5
 
@@ -99,11 +96,11 @@ function normalizeValue(value) {
   return val
 }
 
-function makeLegend(data, variable, value, geography, mainVar, mainVal){
+function makeLegend(data, variable, value, year, geography, mainVar, mainVal){
   if(!data || !variable || !value || !geography || !mainVar || !mainVal) return null
 
   const val = normalizeValue(value)
-  const counts = geography.value === 'county' ? counties2018 : states2018
+  const counts = geography.value === 'county' ? COUNTY_POP[year] : STATE_POP[year]
 
   const mVar = mainVar ? mainVar.value : null
   const mVal = mainVal ? normalizeValue(mainVal) : null
@@ -119,19 +116,19 @@ function makeLegend(data, variable, value, geography, mainVar, mainVal){
   )
 }
 
-function getOrigPer1000(data, feature, geography, variable, value){
+function getOrigPer1000(data, feature, year, geography, variable, value){
   if(geography && variable && value){
      let orig
      if(geography.value === 'state') {
        const dataObj = data[fips2Shortcode[feature]]
        if(!dataObj) return
        const val = decodeURI(value.value)
-       orig = Math.round(dataObj[variable.value][val]/states2018[feature]*100000)/100 || 0
+       orig = Math.round(dataObj[variable.value][val]/STATE_POP[year][feature]*100000)/100 || 0
      }else if (geography.value === 'county') {
        const dataObj = data[feature]
        if(!dataObj) return
        const val = decodeURI(value.value)
-       orig = Math.round(dataObj[variable.value][val]/counties2018[feature]*100000)/100 || 0
+       orig = Math.round(dataObj[variable.value][val]/COUNTY_POP[year][feature]*100000)/100 || 0
      }
 
      return orig
@@ -143,12 +140,12 @@ function resolveFips(code, geography) {
   return shortcode2FIPS[code]
 }
 
-function makeStops(data, variable, value, geography, mainVar, mainVal){
+function makeStops(data, variable, value, year, geography, mainVar, mainVal){
   const stops = [['0', 'rgba(0,0,0,0.05)']]
   if(!data || !variable || !value || !mainVar || !mainVal) return stops
 
   const val = normalizeValue(value)
-  const counts = geography.value === 'county' ? counties2018 : states2018
+  const counts = geography.value === 'county' ? COUNTY_POP[year] : STATE_POP[year]
   const mVar = mainVar ? mainVar.value : null
   const mVal = mainVal ? normalizeValue(mainVal) : null
   const bias = getBias(data, variable.value, val, geography, counts, mVar, mVal)
