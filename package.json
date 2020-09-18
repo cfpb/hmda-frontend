@@ -64,5 +64,8 @@
     "redux-devtools-extension": "2.13.8",
     "serialize-javascript": "5.0.1"
   },
+  "resolutions": {
+    "cypress": "4.10.0"
+  },
   "proxy": "http://localhost:8080"
 }
