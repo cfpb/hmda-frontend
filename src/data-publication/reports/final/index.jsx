@@ -47,17 +47,14 @@ const Final = props => {
   const { final, shared  } = props.config.dataPublicationYears
   const years =  final || shared
   const dataForYear = FINAL_DATASET[year]
-  const sourceDate = year ? dataForYear.date : 'a fixed date per year'
+  const sourceDate = year ? dataForYear.date : null
 
   return (
     <div className="Final" id="main-content">
       <Heading
         type={1}
         headingText="Final National Loan Level Dataset"
-        paragraphText={`The ultimate files contain the national HMDA datasets as of
-          ${sourceDate} for all HMDA reporters, as modified by the Bureau to
-          protect applicant and borrower privacy. The ultimate files are available
-          to download in both .csv and pipe delimited text file formats.`}>
+        paragraphText={`The data includes the Loan Application Register (LAR) and Transmittal Sheet (TS) submitted to the Bureau, which are cutoff when revisions to the data filing period is complete. Transmittal sheets include information about the filing institution, reporting period, and contact information. LARs include all data fields relating to the reported loan or application. Each covered loan or application appears on its own line.`}>
         {year === '2017'
           ? <p className="text-small">
               Final data has preserved some elements of historic LAR data files
@@ -80,6 +77,7 @@ const Final = props => {
         <div className="grid">
           <div className="item">
             <Heading type={4} headingText={year + ' Datasets'} />
+            {sourceDate && <span className='source-date'>Last updated: {sourceDate}</span>}
             {renderDatasets(dataForYear.datasets)}
           </div>
           <div className="item">

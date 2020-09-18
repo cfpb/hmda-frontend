@@ -1,119 +1,134 @@
 const base = '/data-publication/'
-const mlarLink = year => `${base}modified-lar/${year}`
-const drLink = year => `${base}disclosure-reports/${year}`
 const arLink = year => `${base}aggregate-reports/${year}`
-const narLink = year => `${base}national-aggregate-reports/${year}`
-const snapLink = year => `${base}snapshot-national-loan-level-dataset/${year}`
+const drLink = year => `${base}disclosure-reports/${year}`
 const dynLink = year => `${base}dynamic-national-loan-level-dataset/${year}`
 const finLink = year => `${base}final-national-loan-level-dataset/${year}`
+const mlarLink = year => `${base}modified-lar/${year}`
+const narLink = year => `${base}national-aggregate-reports/${year}`
+const snapLink = year => `${base}snapshot-national-loan-level-dataset/${year}`
 const ultLink = year => `${base}ultimate-national-loan-level-dataset/${year}`
 
-const publications =  {
-  '2019': [
-      {
-        headingLink: mlarLink(2019),
-        headingText: "Modified Loan/Application Register (LAR)",
-        paragraphText: "The modified LAR provides loan-level data for an individual financial institution, as modified by the Bureau to protect applicant and borrower privacy.",
-      },
-      {
-        headingLink: drLink(2019),
-        headingText: "Disclosure Reports",
-        paragraphText: "These reports summarize lending activity for individual institutions, both nationwide and by MSA/MD.",
-      },
-      {
-        headingLink: arLink(2019),
-        headingText: "MSA/MD Aggregate Reports",
-        paragraphText: "These reports summarize lending activity by MSA/MD.",
-        
-      },
-      {
-        headingLink: snapLink(2019),
-        headingText: "Snapshot National Loan-Level Dataset",
-        paragraphText: "The snapshot files contain the national HMDA datasets as of a fixed date for all HMDA reporters, as modified by the Bureau to protect applicant and borrower privacy.",
-      },
-      {
-        headingLink: dynLink(2019),
-        headingText: "Dynamic National Loan-Level Dataset",
-        paragraphText: "The dynamic files contain the national HMDA datasets, modified by the Bureau to protect applicant and borrower privacy, updated weekly for all HMDA reporters.",
-      },
+const arDesc = "These reports summarize lending activity by MSA/MD."
+const drDesc = "These reports summarize lending activity for individual institutions, both nationwide and by MSA/MD."
+const dynDesc = "The dynamic files contain the national HMDA datasets, modified by the Bureau to protect applicant and borrower privacy, updated weekly for all HMDA reporters."
+const finDesc = "The data includes the Loan Application Register (LAR) and Transmittal Sheet (TS) submitted to the Bureau, which are cutoff when revisions to the data filing period is complete. Transmittal sheets include information about the filing institution, reporting period, and contact information. LARs include all data fields relating to the reported loan or application. Each covered loan or application appears on its own line."
+const mlarDesc = "The modified LAR provides loan-level data for an individual financial institution, as modified by the Bureau to protect applicant and borrower privacy."
+const narDesc = "These reports summarize nationwide lending activity. They indicate the number and dollar amounts of loan applications, cross-tabulated by loan, borrower and geographic characteristics."
+const snapDesc = "The snapshot files contain the national HMDA datasets as of a fixed date for all HMDA reporters, as modified by the Bureau to protect applicant and borrower privacy."
+const ultDesc = "The dataultDesc includes the Loan Application Register (LAR) and Transmittal Sheet (TS) submitted to the Bureau, which are made available to the public and include adjustments to the data incorporated in the 24 months following the reporting deadline. Transmittal sheets include information about the filing institution, reporting period, and contact information. LARs include all data fields relating to the reported loan or application. Each covered loan or application appears on its own line."
+
+const arTitle = "MSA/MD Aggregate Reports"
+const drTitle = "Disclosure Reports"
+const dynTitle = "Dynamic National Loan-Level Dataset"
+const finTitle = "Final National Loan-Level Dataset"
+const mlarTitle = "Modified Loan/Application Register (LAR)"
+const narTitle = "National Aggregate Reports"
+const snapTitle = "Snapshot National Loan-Level Dataset"
+const ultTitle = "Ultimate National Loan-Level Dataset"
+
+
+const publications = {
+  2019: [
+    {
+      headingLink: mlarLink(2019),
+      headingText: mlarTitle,
+      paragraphText: mlarDesc,
+    },
+    {
+      headingLink: drLink(2019),
+      headingText: drTitle,
+      paragraphText: drDesc,
+    },
+    {
+      headingLink: arLink(2019),
+      headingText: arTitle,
+      paragraphText: arDesc,
+    },
+    {
+      headingLink: snapLink(2019),
+      headingText: snapTitle,
+      paragraphText: snapDesc,
+    },
+    {
+      headingLink: dynLink(2019),
+      headingText: dynTitle,
+      paragraphText: dynDesc,
+    },
   ],
-  '2018': [
+  2018: [
     {
       headingLink: mlarLink(2018),
-      headingText: "Modified Loan/Application Register (LAR)",
-      paragraphText: "The modified LAR provides loan-level data for an individual financial institution, as modified by the Bureau to protect applicant and borrower privacy.",
+      headingText: mlarTitle,
+      paragraphText: mlarDesc,
     },
     {
       headingLink: drLink(2018),
-      headingText: "Disclosure Reports",
-      paragraphText: "These reports summarize lending activity for individual institutions, both nationwide and by MSA/MD.",
+      headingText: drTitle,
+      paragraphText: drDesc,
     },
     {
       headingLink: arLink(2018),
-      headingText: "MSA/MD Aggregate Reports",
-      paragraphText: "These reports summarize lending activity by MSA/MD.",
-      
+      headingText: arTitle,
+      paragraphText: arDesc,
     },
     {
       headingLink: finLink(2018),
-      headingText: "Final National Loan-Level Dataset",
-      paragraphText: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quaerat non deleniti! Voluptatem esse corrupti eligendi animi suscipit, at explicabo.",
+      headingText: finTitle,
+      paragraphText: finDesc,
     },
     {
       headingLink: snapLink(2018),
-      headingText: "Snapshot National Loan-Level Dataset",
-      paragraphText: "The snapshot files contain the national HMDA datasets as of a fixed date for all HMDA reporters, as modified by the Bureau to protect applicant and borrower privacy.",
+      headingText: snapTitle,
+      paragraphText: snapDesc,
     },
     {
       headingLink: dynLink(2018),
-      headingText: "Dynamic National Loan-Level Dataset",
-      paragraphText: "The dynamic files contain the national HMDA datasets, modified by the Bureau to protect applicant and borrower privacy, updated weekly for all HMDA reporters.",
+      headingText: dynTitle,
+      paragraphText: dynDesc,
     },
   ],
-  '2017': [
+  2017: [
     {
       headingLink: mlarLink(2017),
-      headingText: "Modified Loan/Application Register (LAR)",
-      paragraphText: "The modified LAR provides loan-level data for an individual financial institution, as modified by the Bureau to protect applicant and borrower privacy.",
+      headingText: mlarTitle,
+      paragraphText: mlarDesc,
     },
     {
       headingLink: drLink(2017),
-      headingText: "Disclosure Reports",
-      paragraphText: "These reports summarize lending activity for individual institutions, both nationwide and by MSA/MD.",
+      headingText: drTitle,
+      paragraphText: drDesc,
     },
     {
       headingLink: arLink(2017),
-      headingText: "MSA/MD Aggregate Reports",
-      paragraphText: "These reports summarize lending activity by MSA/MD.",
-      
+      headingText: arTitle,
+      paragraphText: arDesc,
     },
     {
       headingLink: narLink(2017),
-      headingText: "National Aggregate Reports",
-      paragraphText: "These reports summarize nationwide lending activity. They indicate the number and dollar amounts of loan applications, cross-tabulated by loan, borrower and geographic characteristics.",
-      
+      headingText: narTitle,
+      paragraphText: narDesc,
     },
     {
       headingLink: ultLink(2017),
-      headingText: "Ultimate National Loan-Level Dataset",
-      paragraphText: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero a consectetur expedita omnis quasi quod, dolorem provident ducimus soluta eum praesentium nobis minus odio tempora quae aperiam? Magnam, deleniti possimus.",
+      headingText: ultTitle,
+      paragraphText: ultDesc,
     },
     {
       headingLink: finLink(2017),
-      headingText: "Final National Loan-Level Dataset",
-      paragraphText: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quaerat non deleniti! Voluptatem esse corrupti eligendi animi suscipit, at explicabo.",
+      headingText: finTitle,
+      paragraphText: finDesc,
     },
     {
       headingLink: snapLink(2017),
-      headingText: "Snapshot National Loan-Level Dataset",
-      paragraphText: "The snapshot files contain the national HMDA datasets as of a fixed date for all HMDA reporters, as modified by the Bureau to protect applicant and borrower privacy.",
+      headingText: snapTitle,
+      paragraphText: snapDesc,
     },
     {
       headingLink: dynLink(2017),
-      headingText: "Dynamic National Loan-Level Dataset",
-      paragraphText: "The dynamic files contain the national HMDA datasets, modified by the Bureau to protect applicant and borrower privacy, updated weekly for all HMDA reporters.",
+      headingText: dynTitle,
+      paragraphText: dynDesc,
     },
-  ]
+  ],
 }
 
 export default publications
