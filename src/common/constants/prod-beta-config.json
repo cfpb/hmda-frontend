@@ -1,9 +1,9 @@
 {
   "name": "prod-beta",
   "announcement": {
-    "message": "On August 21st, 2020, the Bureau released the 2021 FIG and the Supplemental Guide for Quarterly Filers for 2021.",
-    "type": "info",
-    "heading": "Announcement"
+    "message": "We will be performing scheduled system maintenance on September 22th from 8pm - 11pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance"
   },
   "defaultPeriod": "2020",
   "defaultDocsPeriod": "2019",
@@ -35,7 +35,11 @@
   },
   "showMaps": false,
   "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "filingAnnouncement": {
+    "message": "We will be performing scheduled system maintenance on September 22th from 8pm - 11pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance"
+  },
   "dataPublicationYears": {
     "shared": [
       "2019",
