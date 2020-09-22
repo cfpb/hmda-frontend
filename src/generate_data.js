@@ -134,7 +134,7 @@ let firstLine = 1
 let geoIndex
 const geoArg = process.argv[2]
 
-if(process.argv.length > 5 || process.argv.length < 4) return
+if(process.argv.length > 5 || process.argv.length < 4) throw new Error('Wrong number of arguments.')
 
 if(geoArg === 'county'){
   geoIndex = 4
@@ -186,7 +186,6 @@ fs.createReadStream(process.argv[3])
   .pipe(split())
   .on('data', processLine)
   .on('end', function(){
-    console.log(outputs['age-55-64'])
     Object.keys(outputs).forEach(key => {
       const f = path.join(
         (process.argv[4] || '.'),

@@ -207,17 +207,17 @@ const MapContainer = props => {
 
   useEffect(() => {
     if(selectedValue) {
-      fetchFilterData(selectedGeography, selectedVariable, selectedValue)
+      fetchFilterData(year, selectedGeography, selectedVariable, selectedValue)
         .then(d => setFilterData(d))
     }
-  }, [selectedGeography, selectedValue, selectedVariable])
+  }, [selectedGeography, selectedValue, selectedVariable, year])
 
   useEffect(() => {
     if(selectedFilterValue) {
-      fetchFilterData(selectedGeography, selectedFilter, selectedFilterValue)
+      fetchFilterData(year, selectedGeography, selectedFilter, selectedFilterValue)
         .then(d => setTableFilterData(d))
     }
-  }, [selectedFilter, selectedFilterValue, selectedGeography])
+  }, [selectedFilter, selectedFilterValue, selectedGeography, year])
 
   useEffect(() => {
     const search = makeSearch()
