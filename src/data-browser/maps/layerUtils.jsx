@@ -23,100 +23,56 @@ const colors = {
   [xBias]: ['#feedde', '#fdd0a2', '#fdae6b', '#fd8d3c', '#e6550d', '#a63603']
 }
 
-const biases = {
-  actionTaken: {
-    1: lowBias,
-    2: highBias,
-    3: baseBias,
-    4: baseBias,
-    5: highBias,
-    6: baseBias,
-    7: xBias,
-    8: xBias
-  },
-  sex: {
-    'Male': baseBias,
-    'Female': baseBias,
-    'Joint': lowBias,
-    'Sex Not Available': baseBias
-  },
-  lienStatus: {
-    1: lowBias,
-    2: baseBias
-  },
-  constructionMethod: {
-    1: lowBias,
-    2: baseBias
-  },
-  totalUnits: {
-  '1': lowBias,
-  '2': highBias,
-  '3': xBias,
-  '4': xBias,
-  '5-24': xBias,
-  '25-49': xBias,
-  '50-99': xBias,
-  '100-149': xBias,
-  '>149': xBias
-  },
-  loanProduct: {
-    'Conventional:First Lien': lowBias,
-    'FHA:First Lien': baseBias,
-    'VA:First Lien': baseBias,
-    'FSA/RHS:First Lien': mhBias,
-    'Conventional:Subordinate Lien': baseBias,
-    'FHA:Subordinate Lien': xBias,
-    'VA:Subordinate Lien': xBias,
-    'FSA/RHS:Subordinate Lien': xBias
-  },
-  dwellingCategory: {
-    'Single Family (1-4 Units):Site-Built': lowBias,
-    'Multifamily:Site-Built': xBias,
-    'Single Family (1-4 Units):Manufactured': baseBias,
-    'Multifamily:Manufactured': xBias
-  },
-  loanType: {
-    1: lowBias,
-    2: baseBias,
-    3: mhBias,
-    4: highBias
-  },
-  loanPurpose: {
-    1: lowBias,
-    2: mhBias,
-    31: baseBias,
-    32: baseBias,
-    4: mhBias,
-    5: xBias
-  },
-  race: {
-    'American Indian or Alaska Native': highBias,
-    'Asian': highBias,
-    'Black or African American': mhBias,
-    'Native Hawaiian or Other Pacific Islander': xBias,
-    'White': lowBias,
-    '2 or more minority races': xBias,
-    'Joint': xBias,
-    'Free Form Text Only': xBias,
-    'Race Not Available': baseBias
-  },
-  ethnicity: {
-    'Hispanic or Latino': mhBias,
-    'Not Hispanic or Latino': lowBias,
-    'Joint': xBias,
-    'Ethnicity Not Available': baseBias,
-    'Free Form Text Only': xBias
-  },
-  age: {
-    '8888': mhBias,
-    '<25': mhBias,
-    '25-34': baseBias,
-    '35-44': baseBias,
-    '45-54': baseBias,
-    '55-64': baseBias,
-    '65-74': baseBias,
-    '>74': mhBias
+const biasCache = {}
+const fbc = {}
+
+const resolveFromCache = (cache, variable, value) => {
+  const bVar = cache[variable]
+  if(bVar) {
+    const bVal = bVar[value]
+    if(bVal){
+      return bVal
+    }
+  } else {
+    cache[variable] = {}
   }
+}
+
+const getBias = (data, variable, value, geography, counts, mVar, mVal) => {
+  let cache = biasCache
+
+  if(variable === mVar) {
+    const cached = resolveFromCache(cache, variable, value)
+    if(cached) return cached
+  } else {
+    if(!fbc[mVar]) fbc[mVar] = {}
+    if(!fbc[mVar][mVal]) cache = fbc[mVar][mVal] = {}
+    cache = fbc[mVar][mVal]
+
+    const cached = resolveFromCache(cache, variable, value)
+    if(cached) return cached
+  }
+
+  const keys = Object.keys(data)
+  let max = 0
+  for(let i=0; i< keys.length; i++){
+    const key = keys[i]
+    const curr = data[key][variable][value]
+    const fips = resolveFips(key, geography.value)
+    const norm = curr/counts[fips]
+    if(norm > max) max = norm
+  }
+
+  let bias
+  if(max < .004) bias = xBias
+  else if(max < .008) bias = highBias
+  else if(max < .016) bias = mhBias
+  else if(max < .032) bias = baseBias
+  else bias = lowBias
+
+
+  cache[variable][value] = bias
+  return bias
 }
 
 //legend for incidence per 1000
@@ -137,17 +93,28 @@ const makeLegendBody = bias => colors[bias].map((color, i) => {
   )
 })
 
-function makeLegend(geography, variable, value){
-  if(!geography || !variable || !value) return null
-
+function normalizeValue(value) {
   let val = value.value
   if(val.match('%')) val = value.label
+  return val
+}
+
+function makeLegend(data, variable, value, geography, mainVar, mainVal){
+  if(!data || !variable || !value || !geography || !mainVar || !mainVal) return null
+
+  const val = normalizeValue(value)
+  const counts = geography.value === 'county' ? counties2018 : states2018
+
+  const mVar = mainVar ? mainVar.value : null
+  const mVal = mainVal ? normalizeValue(mainVal) : null
+  const bias = getBias(data, variable.value, val, geography, counts, mVar, mVal)
 
   return(
     <div className="legend">
       <h4>Originations per 1000 people in each {geography.value}</h4>
+      {(mVar && mVar !== variable.value) ? <h4>{mainVar.label}: {mainVal.label}</h4> : null}
       <h4>{variable.label}: {value.label}</h4>
-      {makeLegendBody(biases[variable.value][val]|| baseBias)}
+      {makeLegendBody(bias)}
     </div>
   )
 }
@@ -171,29 +138,32 @@ function getOrigPer1000(data, feature, geography, variable, value){
   }
 }
 
-function makeStops(data, geography, variable, value){
+function resolveFips(code, geography) {
+  if(geography === 'county') return code
+  return shortcode2FIPS[code]
+}
+
+function makeStops(data, variable, value, geography, mainVar, mainVal){
   const stops = [['0', 'rgba(0,0,0,0.05)']]
-  if(!data || !variable || !value) return stops
+  if(!data || !variable || !value || !mainVar || !mainVal) return stops
+
+  const val = normalizeValue(value)
   const counts = geography.value === 'county' ? counties2018 : states2018
-  let val = value.value
-  if(val.match('%')) val = value.label
+  const mVar = mainVar ? mainVar.value : null
+  const mVal = mainVal ? normalizeValue(mainVal) : null
+  const bias = getBias(data, variable.value, val, geography, counts, mVar, mVal)
+
   Object.keys(data).forEach(geo => {
     const currData = data[geo]
-    let fips
-    if(geography.value === 'county'){
-      fips = geo
-    }else{
-      fips = shortcode2FIPS[geo]
-    }
+    const fips = resolveFips(geo, geography.value)
     const total = counts[fips] || 0
-    stops.push([fips, generateColor(currData, variable.value, val, total)])
+    stops.push([fips, generateColor(currData, variable.value, val, bias, total)])
   })
   return stops
 }
 
-function generateColor(data, variable, value, total) {
+function generateColor(data, variable, value, bias, total) {
   const count = data[variable][value]
-  const bias = biases[variable][value] || baseBias
   const currColors = colors[bias]
   const len = currColors.length
   let index = Math.min(len-1, Math.floor(count/total*len*bias))
@@ -281,6 +251,15 @@ function setOutline(map, selectedGeography, feature, current=null) {
      stops
    })
 }
+function makeMapLabel(geography, variable, value, filter, filtervalue) {
+  let label = ''
+  if(geography && variable && value){
+    label = `${variable.label}: "${value.label}"`
+    if(filter && filtervalue) label += ` and ${filter.label}: "${filtervalue.label}"`
+    label += ` for US ${geography.value === 'state' ? 'States' : 'Counties'}`
+  }else label = 'Select a geography, variable, and value above'
+  return label
+}
 
 
 
@@ -290,5 +269,6 @@ export {
   makeStops,
   addLayers,
   setOutline,
-  getOrigPer1000
+  getOrigPer1000,
+  makeMapLabel
 }

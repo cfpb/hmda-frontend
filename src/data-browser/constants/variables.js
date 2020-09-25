@@ -1,4 +1,4 @@
-import { before2018 } from '../geo/selectUtils'
+import { before2018 } from '../datasets/selectUtils'
 
 const actionsList = [
   { id: '1', name: 'Loan Originated' },

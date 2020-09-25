@@ -1,4 +1,4 @@
-import { isNationwide, getInstitutionIdKey } from './geo/selectUtils'
+import { isNationwide, getInstitutionIdKey } from './datasets/selectUtils'
 
 const API_BASE_URL = '/v2/data-browser-api/view'
 const RETRYABLE = [408, 503, 504]
