@@ -10,7 +10,7 @@ describe('Keycloak', () => {
       cy.visit(`${HOST}/filing`)
     })
   
-    it('Can log in via UI', () => {
+    it.skip('Can log in via UI', () => {
       cy.findByText('Log in').click()
       cy.findByLabelText('Email').type(USERNAME)
       cy.findByLabelText('Password').type(PASSWORD)

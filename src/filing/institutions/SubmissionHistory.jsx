@@ -88,7 +88,7 @@ class InstitutionPreviousSubmissions extends Component {
                 {pageSubmissions.map((submission, i) => {
                   const startDate = ordinal(new Date(submission.start))
                   const endDate = ordinal(new Date(submission.end))
-                  const message = submission.status.message.slice(0, -1)
+                  let message = submission.status.message.slice(0, -1)
 
                   const signedOn =
                     submission.status.code === SIGNED ? ` on ${endDate}` : null
@@ -97,6 +97,9 @@ class InstitutionPreviousSubmissions extends Component {
                   // even signed submissions could have an edit report
                   // because quality and macro are verified
                   if (submission.status.code > VALIDATING) {
+                    if (submission.signerUsername)
+                      message += ` and was signed by ${submission.signerUsername}`
+                      
                     return (
                       <li key={i} value={submission.id.sequenceNumber}>
                         Filing progress on {startDate}:{' '}

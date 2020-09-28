@@ -45,7 +45,23 @@ export default (state = defaultInstitutions, action) => {
             isFetching: false,
             name: action.institution.respondent.name,
             lei: action.institution.lei,
-            quarterlyFiler: action.institution.quarterlyFiler
+            activityYear: action.institution.activityYear,
+            quarterlyFiler: action.institution.quarterlyFiler,
+            agency: action.institution.agency,
+            institutionType: action.institution.institutionType,
+            institutionId2017: action.institution.institutionId2017,
+            taxId: action.institution.taxId,
+            rssd: action.institution.rssd,
+            emailDomains: action.institution.emailDomains ? [...action.institution.emailDomains] : [],
+            respondent: action.institution.respondent ? {...action.institution.respondent} : {},
+            parent: action.institution.parent ? {...action.institution.parent} : {},
+            assets: action.institution.assets,
+            otherLenderCode: action.institution.otherLenderCode,
+            topHolder: action.institution.topHolder ? {...action.institution.topHolder} : {},
+            hmdaFiler: action.institution.hmdaFiler,
+            quarterlyFilerHasFiledQ1: action.institution.quarterlyFilerHasFiledQ1,
+            quarterlyFilerHasFiledQ2: action.institution.quarterlyFilerHasFiledQ2,
+            quarterlyFilerHasFiledQ3: action.institution.quarterlyFilerHasFiledQ3,
           }
         }
       }
