@@ -5,9 +5,9 @@
 export const formatHistoryDate = historyId => {
   if(!historyId) return null
   const split = historyId.split('-')
-  const d = new Date(parseInt(split[split.length - 1]))
+  const d = (new Date(parseInt(split[split.length - 1], 10))).toDateString()
   if(d === 'Invalid Date') return null
-  return d.toDateString()
+  return d
 }
 
 
@@ -25,6 +25,8 @@ export const sortNotes = notes => notes.sort((a,b) => b.id - a.id)
  */
 export const calcDiff = (curr, prev) => {
   if(!prev) return allDiff(curr)
+  if(!curr) return allDiff(prev)
+
   const diffs = {}
 
   Object.keys(curr).forEach(key => {
@@ -41,7 +43,10 @@ export const calcDiff = (curr, prev) => {
       return
     }  
     if(curr[key] !== prev[key]){
-      diffs[key] = {oldVal: prev[key], newVal: curr[key]}
+      diffs[key] = { 
+        oldVal: !prev[key] ? null : prev[key], 
+        newVal: curr[key] 
+      }
     }
   })
 
@@ -54,7 +59,9 @@ export const calcDiff = (curr, prev) => {
  * Treat every field with a non-null value as changed
  * @param {Object} curr 
  */
-const allDiff = (curr) => {
+export const allDiff = (curr) => {
+  if(!curr) return null
+
   const diffs = {}
 
   Object.keys(curr).forEach((key) => {
@@ -86,7 +93,7 @@ const allDiff = (curr) => {
 export const addDiff = notes => notes.map((note, idx) => {
   let prevNote = notes[idx + 1]
   const noteData = JSON.parse(note.updatedPanel)
-  const prevNoteData = prevNote && JSON.parse(prevNote.updatedPanel)
+  const prevNoteData = prevNote && prevNote.updatedPanel && JSON.parse(prevNote.updatedPanel)
   note.diff = calcDiff(noteData, prevNoteData)
   return note
 })

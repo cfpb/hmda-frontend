@@ -14,12 +14,11 @@ import InputRadio from '../InputRadio'
 import InputSelect from '../InputSelect'
 import InputSubmit from '../InputSubmit'
 import Alert from '../Alert'
-import Loading from '../Loading.jsx'
+import Loading from '../../common/LoadingIcon.jsx'
 import Notes from '../Notes'
 import NoteHistory from './NoteHistory/'
 
 import './Form.css'
-import '../Loading.css'
 
 let defaultInstitutionState = {}
 searchInputs
@@ -68,11 +67,11 @@ class Institution extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if(prevState.error !== this.state.error){
-      let errorMsg = document.getElementById('bottomError') 
+      let errorMsg = document.getElementById('bottomError')
       errorMsg && errorMsg.scrollIntoView({ behavior: 'smooth' })
     } else if( this.state.isSubmitted ) {
       const successMsg = document.querySelectorAll('.alert-success')
-      if ( successMsg.length ) 
+      if ( successMsg.length )
         successMsg[successMsg.length - 1].scrollIntoView({
           behavior: 'smooth'
         })
@@ -89,13 +88,13 @@ class Institution extends Component {
     let additionalKeys = { isSubmitted: false, error: null }
 
     if(this.props.location.pathname === '/update'){
-      // Update to Notes field required on Institution data change 
+      // Update to Notes field required on Institution data change
       additionalKeys.requiresNewNotes = true
       if(event.target.id !== 'notes' && this.state.notes === this.state.prevNotes){
         additionalKeys.notes = ''
       }
     }
-    
+
     if (['radio', 'select-one'].includes(event.target.type)) {
       this.setState({ [event.target.name]: event.target.value, ...additionalKeys }, () => {
         this.onInputBlur()
@@ -128,7 +127,7 @@ class Institution extends Component {
 
     const method = this.props.location.pathname === '/add' ? 'POST' : 'PUT'
 
-    fetch(`/v2/admin/institutions`, {
+    fetch('/v2/admin/institutions', {
       method: method,
       body: JSON.stringify(nestInstitutionStateForAPI(this.state)),
       headers: {
@@ -138,7 +137,7 @@ class Institution extends Component {
     })
       .then(response => {
         if (response.ok) return response.json()
-        if ([403, 404].indexOf(response.status) > -1) 
+        if ([403, 404].indexOf(response.status) > -1)
           return Promise.reject(
             new Promise(resolve => resolve({ httpStatus: response.status }))
           )
@@ -154,6 +153,7 @@ class Institution extends Component {
           isSubmitted: true,
           wasAddition: false,
           fetching: false,
+          disabledSubmit: true,
           fetchNotesHistory: true
         })
       })
@@ -192,11 +192,11 @@ class Institution extends Component {
 
   getErrorText() {
     switch(this.state.error){
-      case '400': return "Sorry, that LEI already exists. You can verify that by using the search."
-      case '403': return "Sorry, you don't have the correct permissions. Please contact a HMDA Help administrator."
-      case '404': return "Something went wrong. It doesn't look like this institution can be added. Please check your data and try again."
-      case '412': return "Local Operating Units (LOU) are not valid HMDA Filers."
-      case '601': return "Please verify the format of the LEI and try again."
+      case '400': return 'Sorry, that LEI already exists. You can verify that by using the search.'
+      case '403': return 'Sorry, you don\'t have the correct permissions. Please contact a HMDA Help administrator.'
+      case '404': return 'Something went wrong. It doesn\'t look like this institution can be added. Please check your data and try again.'
+      case '412': return 'Local Operating Units (LOU) are not valid HMDA Filers.'
+      case '601': return 'Please verify the format of the LEI and try again.'
       default: return ''
     }
   }
@@ -280,9 +280,9 @@ class Institution extends Component {
             )
           })}
 
-          <Notes  
+          <Notes
             onChange={this.onInputChange}
-            onBlur={this.onInputBlur} 
+            onBlur={this.onInputBlur}
             required={this.state.requiresNewNotes}
             notes={this.state.notes}
             prevNotes={this.state.prevNotes}
@@ -299,7 +299,7 @@ class Institution extends Component {
           )}
 
           <button
-            className="toggleButton"
+            className="button-link toggleButton"
             type="button"
             onClick={this.toggleShowOtherFields}
           >

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import LoadingIcon from '../Loading'
+import LoadingIcon from '../../common/LoadingIcon'
 import { LABELS, TOPICS } from './constants'
 import { fetchData } from '../utils/api'
 import { DownloadButton } from './DownloadButton'

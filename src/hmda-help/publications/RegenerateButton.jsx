@@ -1,6 +1,6 @@
 import React from 'react'
 import Message from './Message'
-import LoadingIcon from '../Loading'
+import LoadingIcon from '../../common/LoadingIcon'
 
 export const RegenerateButton = ({ onClick, error, message, waiting, disabled }) => {
   let cname = 'inputSubmit'

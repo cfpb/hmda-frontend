@@ -33,9 +33,9 @@ const fetchNotesHistory = ({ lei, year, setFetched, setError, setNotes }) => {
   .then((res) => {
     if (res.error) {
       if(res.status === 404) return setError(<HistoryError />)
-      setError(<HistoryError text={res.message} />)
-      return null
+      return setError(<HistoryError text={res.message} />)
     }
+    setError(null)
     return res.response.json()
   })
   .then((json) =>{

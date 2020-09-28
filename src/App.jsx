@@ -24,6 +24,8 @@ const DataPublication = makeAsyncComponent(() => import('./data-publication'),
   'HMDA Data Publication', 'HMDA data and reports are the most comprehensive publicly available information on mortgage market activity')
 const Filing = makeAsyncComponent(() => import('./filing'),
   'HMDA Filing Platform', 'Use the HMDA Filing Platform to upload loan/application registers, review edits, and certify the accuracy and completeness of your HMDA data')
+const HmdaHelp = makeAsyncComponent(() => import('./hmda-help'),
+  'HMDA Help', 'Use HMDA Help to manage your HMDA Institutions and Publications')
 
 const App = () => {
   const isFiling = !!window.location.pathname.match(/^\/filing/)
@@ -47,6 +49,7 @@ const App = () => {
         <Route path = "/tools" component={Tools} />
         <Route path = "/data-publication" component={DataPublication} />
         <Route path = "/filing" component={Filing} />
+        <Route path = "/hmda-help" component={HmdaHelp} />
         <Route component={NotFound} />
       </Switch>
       {isFiling ? null : <Footer config={config} />}

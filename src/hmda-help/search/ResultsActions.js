@@ -3,10 +3,9 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 import Alert from '../Alert'
-import Loading from '../Loading.jsx'
+import Loading from '../../common/LoadingIcon.jsx'
 
 import './Results.css'
-import '../Loading.css'
 
 class ResultsActions extends Component {
   constructor(props) {

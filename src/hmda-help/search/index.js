@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import '../Loading.css'
-
 import { searchInputs } from '../constants/inputs.js'
 import { nestInstitutionStateForAPI } from '../utils/convert'
 
 import Results from './Results'
 import InputSubmit from '../InputSubmit'
 import InputText from '../InputText'
-import Loading from '../Loading.jsx'
+import Loading from '../../common/LoadingIcon.jsx'
 import InstitutionNotFound from './InstitutionNotFound'
 import ServerErrors from './ServerErrors'
 import { fetchInstitution } from './fetchInstitution'
