@@ -1,0 +1,11 @@
+[type='radio'] {
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+[type='radio'] + label {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0.65em 0 0.65em 10px;
+  max-width: 100%;
+}

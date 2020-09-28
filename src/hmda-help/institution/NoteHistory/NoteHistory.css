@@ -1,0 +1,234 @@
+/* 
+  Top Level 
+*/
+
+#NoteHistory {
+  height: 0;
+  margin: 3rem 0 4rem;
+  position: relative;
+  transition: height .5s;
+}
+
+#NoteHistory.open {
+  height: auto;
+}
+
+/* 
+  Header 
+*/
+
+#NoteHistory .header {
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-flow: row nowrap;
+  font-size: inherit;
+  font-weight: bold;
+  justify-content: flex-start;
+  padding-left: 0;
+  user-select: none;
+}
+
+#NoteHistory .header .toggle {
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid #000000;
+  display: flex;
+  flex-flow: row nowrap;
+  font-size: 12px;
+  justify-content: center;
+  margin-left: 1rem;
+  padding: 0px 5px 0px 3px;
+}
+
+#NoteHistory .header .toggle .text {
+  font-size: 12px;
+  font-weight: normal;
+  height: 100%;
+  line-height: 12px;
+  margin-left: 4px;
+}
+
+#NoteHistory .header:hover .toggle {
+  background: #3d4f6d;
+  color: white;
+}
+
+
+/* 
+  Note List 
+*/
+
+#NoteHistory .note-list {
+  display: none;
+  list-style: none;
+  margin: 1rem 0;
+  padding: 0;
+}
+
+#NoteHistory .note-list.open {
+  display: block;
+}
+
+/* 
+  Note Item 
+*/
+
+#NoteHistory .note-list .item {
+  border-top: 1px solid #aabdcd;
+  width: 100%;
+}
+
+#NoteHistory .note-list .item:last-child {
+  border-bottom: 1px solid #aabdcd;
+}
+
+#NoteHistory .note-list .item button {
+  background-color: #f2f2f2;
+  border: none;
+  cursor: pointer;
+  display: block;
+  font-size: 1.5rem;
+  padding: 1.5rem 1rem;
+  text-align: left;
+  width: 100%;
+}
+
+#NoteHistory .note-list .item button .icon {
+  float: left;
+  font-size: 2rem;
+  line-height: 2rem;
+  margin-right: 1rem;
+}
+
+#NoteHistory .note-list .item button .text {
+  float: left;
+  line-height: 2rem;
+  max-width: 80%;
+}
+
+#NoteHistory .note-list .item button .date {
+  color: #649ab0;
+  float: right;
+  font-size: 1.1rem;
+  margin-right: 1rem;
+  margin-top: .5rem;
+}
+
+#NoteHistory .note-list .item .details {
+  border-top: none;
+  display: block;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .1s;
+}
+
+#NoteHistory .note-list .item.open  {
+  border: 1px solid #aabdcd;
+}
+
+#NoteHistory .note-list .item.open button {
+  background: #256596;
+  color: #ffffff;
+}
+
+#NoteHistory .note-list .item.open button:focus {
+  outline: none;
+}
+
+#NoteHistory .note-list .item.open .date {
+  color: #e3e3f9;
+}
+
+#NoteHistory .note-list .item .details.open {
+  max-height: 100vh;
+  transition: max-height .3s;
+  padding: 2rem 1rem;
+  background: #80807f;
+}
+
+#NoteHistory .note-list .item:not(.open) button:hover {
+  background: #256596;
+  color: white;
+}
+
+#NoteHistory .note-list .item:not(.open) button:hover .date {
+  color: #e3e3f9;
+}
+
+/* 
+  Note Details 
+*/
+
+#NoteHistory .diff-table {
+  border-collapse: collapse;
+  border-bottom: 1px solid #808080;
+  width: 100%;
+  background: white;
+  text-align: center;
+}
+
+#NoteHistory .diff-table td {
+  width: 33%;
+  border-left: 1px solid #808080;
+  border-right: 1px solid #808080;
+}
+
+#NoteHistory .diff-table tr {
+  border-bottom: 1px solid #808080;
+}
+
+#NoteHistory .diff-table thead td {
+  width: 33%;
+  padding: 1rem;
+  border: 1px solid #808080;
+  background: #808080;
+  color: #ffffff;
+  font-size: .9em;
+}
+
+#NoteHistory .diff-table tbody td {
+  padding: 1.3rem 1rem;
+}
+
+/* 
+  No Changes 
+*/
+
+#NoteHistory .item.open .no-changes {
+  padding: 1rem;
+  max-height: 100vh;
+}
+
+#NoteHistory .no-changes {
+  color: white;
+  text-align: center;
+  max-height: 0;
+}
+
+/* 
+  Error 
+*/
+
+#NoteHistory .error {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 1.5rem 0;
+  padding: 0 1.2rem;
+}
+
+#NoteHistory .error .icon {
+  height: 20px;
+  margin-right: 5px;
+  width: 20px;
+}
+
+/*
+  Debug
+*/
+#NoteHistory .json {
+  display: none;
+  background: white;
+}

@@ -9,7 +9,8 @@
     "TEST_DELAY": 1000,
     "ACTION_DELAY": 1000,
     "AUTH_REALM": "hmda2",
-    "AUTH_CLIENT_ID": "hmda2-api"
+    "AUTH_CLIENT_ID": "hmda2-api",
+    "HH_HOST": "http://localhost:3000"
   },
   "defaultCommandTimeout": 10000,
   "projectId": "uk89dv"

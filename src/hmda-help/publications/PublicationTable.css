@@ -1,0 +1,34 @@
+#publications * {
+  box-sizing: border-box;
+}
+
+#publications .message {
+  position: relative;
+  padding: 1rem 1.5rem;
+  background: rgb(212, 235, 247);
+  display: block;
+  margin-top: 1rem;
+}
+
+#publications .message::before {
+  content: '';
+  height: 100%;
+  width: 1rem;
+  background-color: #0071bc;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+#publications .message.error {
+  background-color: rgb(249, 229, 216);
+}
+
+#publications .message.error::before {
+  background-color: rgb(237, 119, 29);
+}
+
+#publications .inputSubmit.disabled {
+  pointer-events: none;
+  background-color: rgb(164, 160, 160);
+}

@@ -1,0 +1,27 @@
+.toggleButton {
+  margin-top: 2em;
+  border: 0;
+  color: #0071bc;
+  cursor: pointer;
+  display: block;
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 0;
+}
+@media screen and (min-width: 481px) {
+  .toggleButton {
+    width: auto;
+  }
+}
+.toggleButton:hover,
+.toggleButton:visited:hover {
+  color: #205493;
+}
+.toggleButton:active,
+.toggleButton:visited:active {
+  color: #112e51;
+}
+
+select{
+  padding: 1rem 2.5em;
+}
