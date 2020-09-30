@@ -1,5 +1,5 @@
 const {
-  HH_HOST,
+  HOST,
   HH_USERNAME,
   HH_PASSWORD,
   HH_INSTITUTION,
@@ -15,12 +15,12 @@ describe('HMDA Help', () => {
       root: HH_AUTH_URL,
       realm: HH_AUTH_REALM,
       client_id: HH_AUTH_CLIENT_ID,
-      redirect_uri: HH_HOST,
+      redirect_uri: HOST,
       username: HH_USERNAME,
       password: HH_PASSWORD
     })
     cy.viewport(1600, 900)
-    cy.visit(HH_HOST)
+    cy.visit(`${HOST}/hmda-help`)
   })
 
   it('Can update existing Institutions', () => {
@@ -45,7 +45,6 @@ describe('HMDA Help', () => {
 
     cy.findByLabelText(nameLabelText).then($name => {
       const savedName = $name.attr('value')
-      expect($name.attr('value')).to.not.contain(testName)
 
       // Change Respondent Name
       cy.findByLabelText(nameLabelText)
@@ -128,7 +127,7 @@ describe('HMDA Help', () => {
     cy.get('table.institutions tbody tr').first().get('td').first().should('not.contain', year)
 
     // Create
-    cy.visit(HH_HOST)
+    cy.visit(`${HOST}/hmda-help`)
     cy.findByLabelText("LEI").type("MEISSADIATESTBANK001{enter}")
     cy.findByText(`Add ${institution} for ${year}`).click()
 
@@ -137,6 +136,7 @@ describe('HMDA Help', () => {
     cy.findByLabelText('Email Domains').type('bank1.com')
     cy.findByLabelText('Tax Id').type('53-0000001')
     cy.findByLabelText('9 - Consumer Financial Protection Bureau (CFPB)').click()
+    cy.findByLabelText('Quarterly Filer').select("true").should('have.value', "true")
     
     cy.findByText('Show other fields').click()
     cy.findByLabelText('RSSD').type('-1')
