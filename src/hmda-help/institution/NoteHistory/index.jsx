@@ -47,7 +47,11 @@ const fetchNotesHistory = ({ lei, year, setFetched, setError, setNotes }) => {
 
 const NotesError = ({ error, isMenuOpen }) => {
   if(!isMenuOpen || !error) return null
-  return <div className="error">{error}</div>
+  return (
+    <ul className='note-list open'>
+      <li className='error'>{error}</li>
+    </ul>
+  )
 }
 
 
