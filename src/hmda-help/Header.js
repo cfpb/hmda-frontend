@@ -32,7 +32,7 @@ const Header = props => {
 
 Header.propTypes = {
   logout: PropTypes.func.isRequired,
-  token: PropTypes.string.isRequired
+  token: PropTypes.string
 }
 
 export default Header

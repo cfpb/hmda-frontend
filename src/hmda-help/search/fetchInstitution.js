@@ -5,14 +5,17 @@ import { flattenApiForInstitutionState } from '../utils/convert.js'
 export const fetchInstitution = (lei, setState, token) => {
   return Object.keys(FILING_PERIODS).map(y => {
     let year = FILING_PERIODS[y].id
+    const base = process.env.REACT_APP_ENVIRONMENT === 'CI' ? '' : '/v2/admin'
+    const headers = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    }
 
-    return fetch(`/v2/admin/institutions/${lei}/year/${year}`, {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      }
-    })
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`
+    }
+
+    return fetch(`${base}/institutions/${lei}/year/${year}`, { headers })
       .then(response => {
         if (response.status > 400) return response.status
         if (response.status < 300) return response.json()

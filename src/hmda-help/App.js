@@ -6,9 +6,19 @@ import NotAuthorized from './NotAuthorized'
 import Header from './Header'
 import Search from './search/'
 import Institution from './institution/'
+import { mockKeycloak, setKeycloak } from '../filing/utils/keycloak'
 import './App.css'
 
-const keycloak = Keycloak(process.env.PUBLIC_URL + '/keycloak.json')
+let keycloak
+
+if(process.env.REACT_APP_ENVIRONMENT === 'CI') 
+  keycloak = setKeycloak(mockKeycloak)
+else if(process.env.NODE_ENV === 'development') {
+  keycloak = setKeycloak(Keycloak(process.env.PUBLIC_URL + '/local_keycloak.json'))
+} else {
+  keycloak = setKeycloak(Keycloak(process.env.PUBLIC_URL + '/keycloak.json'))
+}
+
 
 const refreshToken = self => {
   const updateKeycloak = () => {
