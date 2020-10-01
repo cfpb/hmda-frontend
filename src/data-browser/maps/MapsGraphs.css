@@ -10,7 +10,7 @@
 .mapboxgl-popup-content > h4 {
   margin: 0;
 }
-.mapboxgl-ctrl-icon {
+.mapboxgl-ctrl-icon, .mapboxgl-ctrl > button {
   margin: 0;
 }
 
