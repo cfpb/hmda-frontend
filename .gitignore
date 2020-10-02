@@ -76,7 +76,7 @@ bower_components/
 src/vendor/
 dist/
 yarn-error.log
-setupProxy.js
+# setupProxy.js
 build/
 env.json
 local_keycloak.json

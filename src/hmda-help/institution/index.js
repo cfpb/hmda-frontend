@@ -126,14 +126,13 @@ class Institution extends Component {
     this.setState({ fetching: true, error: null, isSubmitted: false })
 
     const method = this.props.location.pathname === '/add' ? 'POST' : 'PUT'
+    const headers = { 'Content-Type': 'application/json' }
+    if (token) headers['Authorization'] = 'Bearer ' + token
 
     fetch('/v2/admin/institutions', {
       method: method,
       body: JSON.stringify(nestInstitutionStateForAPI(this.state)),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + token
-      }
+      headers
     })
       .then(response => {
         if (response.ok) return response.json()
