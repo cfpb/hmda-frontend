@@ -22,6 +22,8 @@ mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlv
   income
 */
 
+const dataPrefix = 'https://s3.amazonaws.com/cfpb-hmda-public/prod/data-browser/filter-data'
+
 function getDefaultsFromSearch(props) {
   const { search } = props.location
   const qsParts = search.slice(1).split('&')
@@ -59,8 +61,12 @@ const MapContainer = props => {
 
   const [map, setMap] = useState(null)
   const [data, setData] = useState(null)
-  const [countyData, setCountyData] = useState(null)
-  const [stateData, setStateData] = useState(null)
+
+  const [county2018Data, setCounty2018Data] = useState(null)
+  const [state2018Data, setState2018Data] = useState(null)
+  const [county2019Data, setCounty2019Data] = useState(null)
+  const [state2019Data, setState2019Data] = useState(null)
+
   const [filterData, setFilterData] = useState(null)
   const [tableFilterData, setTableFilterData] = useState(null)
   const [selectedGeography, setGeography] = useState(defaults.geography)
@@ -71,12 +77,15 @@ const MapContainer = props => {
   const [feature, setFeature] = useState(defaults.feature)
 
 
-  const getBaseData = useCallback(geography => {
-  if(!geography) return null
-  return geography.value === 'state'
-    ? stateData
-    : countyData
-  }, [countyData, stateData])
+  const getBaseData = useCallback((year, geography) => {
+    if(!year || !geography) return null
+    switch (year) {
+      case '2018':
+        return geography.value === 'state' ? state2018Data : county2018Data
+      case '2019':
+        return geography.value === 'state' ? state2019Data : county2019Data
+    }
+  }, [county2018Data, county2019Data, state2018Data, state2019Data])
 
   const resolveData = useCallback(() => {
     if(selectedFilterValue) return [filterData, selectedFilter, selectedFilterValue]
@@ -145,6 +154,7 @@ const MapContainer = props => {
   }
 
   const buildTable = () => {
+    console.log('BUILDING')
     if(!data || !selectedGeography || !selectedValue || !feature) return null
     if(selectedFilterValue && !tableFilterData) return <LoadingIcon/>
 
@@ -190,19 +200,44 @@ const MapContainer = props => {
 
 
   useEffect(() => {
-    runFetch('/countyData.json').then(jsonData => {
-      setCountyData(jsonData)
-    })
+    if(!county2018Data && selectedGeography.value === 'county' && year === '2018'){
+      runFetch(`${dataPrefix}/2018/county.json`).then(jsonData => {
+        setCounty2018Data(jsonData)
+      })
+    }
+  }, [county2018Data, selectedGeography, year])
 
-    runFetch('/stateData.json').then(jsonData => {
-      setStateData(jsonData)
-    })
-
-  }, [])
 
   useEffect(() => {
-    setData(getBaseData(selectedGeography))
-  }, [countyData, getBaseData, selectedGeography, stateData])
+    if(!county2019Data && selectedGeography.value === 'county' && year === '2019'){
+      runFetch(`${dataPrefix}/2019/county.json`).then(jsonData => {
+        setCounty2019Data(jsonData)
+      })
+    }
+  }, [county2019Data, selectedGeography, year])
+
+
+  useEffect(() => {
+    if(!state2018Data && selectedGeography.value === 'state' && year === '2018'){
+      runFetch(`${dataPrefix}/2018/state.json`).then(jsonData => {
+        setState2018Data(jsonData)
+      })
+    }
+  }, [selectedGeography, state2018Data, year])
+
+
+  useEffect(() => {
+    if(!state2019Data && selectedGeography.value === 'state' && year === '2019'){
+      runFetch(`${dataPrefix}/2019/state.json`).then(jsonData => {
+        setState2019Data(jsonData)
+      })
+    }
+  }, [selectedGeography, state2019Data, year])
+
+
+  useEffect(() => {
+    setData(getBaseData(year, selectedGeography))
+  }, [year, getBaseData, selectedGeography])
 
 
   useEffect(() => {
