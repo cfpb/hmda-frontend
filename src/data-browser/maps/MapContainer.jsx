@@ -79,6 +79,7 @@ const MapContainer = props => {
 
   const getBaseData = useCallback((year, geography) => {
     if(!year || !geography) return null
+    popup.remove()
     switch (year) {
       case '2018':
         return geography.value === 'state' ? state2018Data : county2018Data
@@ -154,7 +155,6 @@ const MapContainer = props => {
   }
 
   const buildTable = () => {
-    console.log('BUILDING')
     if(!data || !selectedGeography || !selectedValue || !feature) return null
     if(selectedFilterValue && !tableFilterData) return <LoadingIcon/>
 
