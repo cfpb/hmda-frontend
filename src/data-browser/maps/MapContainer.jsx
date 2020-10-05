@@ -26,7 +26,7 @@ function getDefaultsFromSearch(props) {
   const { search } = props.location
   const qsParts = search.slice(1).split('&')
   const defaults = {
-    geography: null,
+    geography: geographies[0],
     variable: null,
     filter: null,
     value: null,
