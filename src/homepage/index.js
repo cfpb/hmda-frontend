@@ -58,39 +58,16 @@ const Home = ({ config }) => {
             <ul>
               <li>Filing Instructions Guide</li>
               <ul>
-                <li>
-                  <a
-                    href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2021-hmda-fig.pdf"
-                    download={true}
-                  >
-                    For data collected in 2021
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2020-hmda-fig.pdf"
-                    download={true}
-                  >
-                    For data collected in 2020
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2019-hmda-fig.pdf"
-                    download={true}
-                  >
-                    For data collected in 2019
-                  </a>
-                </li>
-                <li>
-                  For data collected in 2017 or 2018 please{' '}
-                  <a
-                    href="/documentation/2018/fig/"
-                  >
-                    visit our documentation page
-                  </a>
-                  .
-                </li>
+                {[2021, 2020, 2019, 2018, 2017].map(year => (
+                  <li>
+                    <a
+                      href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${year}-hmda-fig.pdf`}
+                      download={true}
+                    >
+                      For data collected in {year}
+                    </a>
+                  </li>
+                ))}                              
                 <li>
                   For data collected in or before 2016, please visit the{' '}
                   <a

@@ -1,0 +1,75 @@
+.institutions-details {
+  margin-top: 2rem;
+}
+
+.institutions-details h1 {
+  margin: 0 0 2rem 0;
+  font-size: 2.4rem;
+  font-weight: normal;
+}
+
+.institutions-details h2 { 
+  font-size: 2rem;
+  font-weight: normal;
+}
+
+.institutions-details .button.back {
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  text-decoration: none;
+}
+
+.institutions-details .input-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.institutions-details .input-wrap label {
+  margin-bottom: 8px;
+  position: relative;
+  text-decoration-color: grey;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  color: #777;
+}
+
+.institutions-details .input-wrap input {
+  font-size: 1.8rem;
+  color: #000;
+}
+
+
+.institutions-details .center {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;  
+}
+
+.institutions-details .input-wrap.filler input,
+.institutions-details input:disabled {
+  border: none;
+  padding: 0;
+}
+
+.institutions-details .btn.show-more {
+  margin: 2rem 4.5rem;
+  display: block;
+  padding: 3px;
+  background: #fff;
+  color: #0071bc;
+}
+
+.institutions-details .btn.show-more:hover {
+  color: #205493;
+}
+
+.institutions-details .other-fields {
+  display: none;
+}
+
+.institutions-details .other-fields.show {
+  display: flex;
+}
