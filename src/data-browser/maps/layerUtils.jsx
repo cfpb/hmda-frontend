@@ -154,6 +154,7 @@ function makeStops(data, variable, value, year, geography, mainVar, mainVal){
     const currData = data[geo]
     const fips = resolveFips(geo, geography.value)
     const total = counts[fips] || 0
+
     stops.push([fips, generateColor(currData, variable.value, val, bias, total)])
   })
   return stops
@@ -248,6 +249,7 @@ function setOutline(map, selectedGeography, feature, current=null) {
      stops
    })
 }
+
 function makeMapLabel(geography, variable, value, filter, filtervalue) {
   let label = ''
   if(geography && variable && value){
