@@ -22,8 +22,6 @@ mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlv
   income
 */
 
-const dataPrefix = 'https://s3.amazonaws.com/cfpb-hmda-public/prod/data-browser/filter-data'
-
 function getDefaultsFromSearch(props) {
   const { search } = props.location
   const qsParts = search.slice(1).split('&')
@@ -201,7 +199,7 @@ const MapContainer = props => {
 
   useEffect(() => {
     if(!county2018Data && selectedGeography.value === 'county' && year === '2018'){
-      runFetch(`${dataPrefix}/2018/county.json`).then(jsonData => {
+      runFetch('/2018/county.json').then(jsonData => {
         setCounty2018Data(jsonData)
       })
     }
@@ -210,7 +208,7 @@ const MapContainer = props => {
 
   useEffect(() => {
     if(!county2019Data && selectedGeography.value === 'county' && year === '2019'){
-      runFetch(`${dataPrefix}/2019/county.json`).then(jsonData => {
+      runFetch('/2019/county.json').then(jsonData => {
         setCounty2019Data(jsonData)
       })
     }
@@ -219,7 +217,7 @@ const MapContainer = props => {
 
   useEffect(() => {
     if(!state2018Data && selectedGeography.value === 'state' && year === '2018'){
-      runFetch(`${dataPrefix}/2018/state.json`).then(jsonData => {
+      runFetch('/2018/state.json').then(jsonData => {
         setState2018Data(jsonData)
       })
     }
@@ -228,7 +226,7 @@ const MapContainer = props => {
 
   useEffect(() => {
     if(!state2019Data && selectedGeography.value === 'state' && year === '2019'){
-      runFetch(`${dataPrefix}/2019/state.json`).then(jsonData => {
+      runFetch('/2019/state.json').then(jsonData => {
         setState2019Data(jsonData)
       })
     }
