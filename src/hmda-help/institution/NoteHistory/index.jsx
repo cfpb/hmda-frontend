@@ -5,6 +5,8 @@ import { fetchData } from '../../utils/api'
 import { sortNotes, addDiff } from './utils'
 import './NoteHistory.css'
 
+const isCI = () => process.env.REACT_APP_ENVIRONMENT === 'CI'
+
 const NoteHistory = ({ lei, year, fetchHistory, setFetched }) => {
   const [notes, setNotes] = useState(null)
   const [error, setError] = useState(null)
@@ -29,7 +31,10 @@ const NoteHistory = ({ lei, year, fetchHistory, setFetched }) => {
 
 
 const fetchNotesHistory = ({ lei, year, setFetched, setError, setNotes }) => {
-  return fetchData(`/v2/public/institutions/${lei}/year/${year}/history`)
+  const host = isCI() ? 'http://localhost:9092' : ''
+  const apiPath = isCI() ? '/' : '/v2/public/'
+
+  return fetchData(`${host}${apiPath}institutions/${lei}/year/${year}/history`)
   .then((res) => {
     if (res.error) {
       if(res.status === 404) return setError(<HistoryError />)
