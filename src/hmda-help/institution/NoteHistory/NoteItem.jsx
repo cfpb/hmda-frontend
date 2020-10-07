@@ -17,7 +17,7 @@ export const NoteItem = ({ item, isOpen, setOpen }) => {
     <li className={itemClass}>
       <button type="button" onClick={handleOpen}>
         <span className="icon">{isOpen ? '-' : '+'}</span>
-        <span className="text">{item.notes}</span>
+        <span className="text">{item.notes || "<Empty Note Title>"}</span>
         <span className="date">{formatHistoryDate(item.historyID)}</span>
       </button>
       <NotesDetails

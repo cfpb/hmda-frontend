@@ -1,5 +1,7 @@
+import { isCI } from '../../support/helpers'
 const {
   HOST,
+  ENVIRONMENT,
   HH_USERNAME,
   HH_PASSWORD,
   HH_INSTITUTION,
@@ -10,15 +12,18 @@ const {
 
 describe('HMDA Help', () => {
   beforeEach(() => {
-    cy.logout({ root: HH_AUTH_URL, realm: HH_AUTH_REALM })
-    cy.login({
-      root: HH_AUTH_URL,
-      realm: HH_AUTH_REALM,
-      client_id: HH_AUTH_CLIENT_ID,
-      redirect_uri: HOST,
-      username: HH_USERNAME,
-      password: HH_PASSWORD
-    })
+    if (!isCI(ENVIRONMENT)) {
+      cy.logout({ root: HH_AUTH_URL, realm: HH_AUTH_REALM })
+      cy.login({
+        root: HH_AUTH_URL,
+        realm: HH_AUTH_REALM,
+        client_id: HH_AUTH_CLIENT_ID,
+        redirect_uri: HOST,
+        username: HH_USERNAME,
+        password: HH_PASSWORD
+      })
+    }
+
     cy.viewport(1600, 900)
     cy.visit(`${HOST}/hmda-help`)
   })

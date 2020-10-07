@@ -40,5 +40,12 @@
     "name": "Bank 0",
     "taxId": "01-0123456",
     "quarterlyFiler": true
+  },
+  {
+    "year": "2020",
+    "lei": "MEISSADIATESTBANK001",
+    "name": "Meissa Test Bank",
+    "taxId": "53-0000001",
+    "quarterlyFiler": true
   }
 ]

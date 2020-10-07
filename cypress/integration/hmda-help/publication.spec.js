@@ -1,5 +1,8 @@
+import { isCI } from '../../support/helpers'
+
 const {
   HOST,
+  ENVIRONMENT,
   HH_USERNAME,
   HH_PASSWORD,
   HH_INSTITUTION,
@@ -8,11 +11,9 @@ const {
   HH_AUTH_CLIENT_ID
 } = Cypress.env()
 
-const isCI = () => process.env.REACT_APP_ENVIRONMENT === 'CI'
-
 describe('HMDA Help', () => {
   beforeEach(() => {
-    if (!isCI()){
+    if (!isCI(ENVIRONMENT)){
       // Authentication
       cy.logout({ root: HH_AUTH_URL, realm: HH_AUTH_REALM })
       cy.login({
