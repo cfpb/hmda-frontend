@@ -50,7 +50,8 @@ const PublicationRows = ({ institution, token }) => {
   // Need sequenceNumber in order trigger a Regeneration
   useEffect(() => {
     const latestURL = `/v2/filing/institutions/${lei}/filings/${activityYear}/submissions/latest`
-    const headers = { Authorization: `Bearer ${token}` }
+    const headers = {}
+    if (token) headers['Authorization'] = `Bearer ${token}`
     fetchSequenceNumber(latestURL, { headers }, setSeqNum)
   }, [setSeqNum, lei, activityYear, token])
 

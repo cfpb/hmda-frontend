@@ -1,5 +1,5 @@
 const {
-  HH_HOST,
+  HOST,
   HH_USERNAME,
   HH_PASSWORD,
   HH_INSTITUTION,
@@ -8,19 +8,25 @@ const {
   HH_AUTH_CLIENT_ID
 } = Cypress.env()
 
+const isCI = () => process.env.REACT_APP_ENVIRONMENT === 'CI'
+
 describe('HMDA Help', () => {
   beforeEach(() => {
-    cy.logout({ root: HH_AUTH_URL, realm: HH_AUTH_REALM })
-    cy.login({
-      root: HH_AUTH_URL,
-      realm: HH_AUTH_REALM,
-      client_id: HH_AUTH_CLIENT_ID,
-      redirect_uri: HH_HOST,
-      username: HH_USERNAME,
-      password: HH_PASSWORD
-    })
+    if (!isCI()){
+      // Authentication
+      cy.logout({ root: HH_AUTH_URL, realm: HH_AUTH_REALM })
+      cy.login({
+        root: HH_AUTH_URL,
+        realm: HH_AUTH_REALM,
+        client_id: HH_AUTH_CLIENT_ID,
+        redirect_uri: HOST,
+        username: HH_USERNAME,
+        password: HH_PASSWORD
+      })
+    }
+    
     cy.viewport(1600, 900)
-    cy.visit(HH_HOST)
+    cy.visit(`${HOST}/hmda-help`)
   })
 
   it('Can trigger Publication regeneration', () => {

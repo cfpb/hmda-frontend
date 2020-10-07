@@ -19,7 +19,6 @@ export const fetchInstitution = (lei, setState, token) => {
       })
       .then(json => {
         if (typeof json === 'object') {
-            console.log('JSON: ', json)
             addFound(json, setState)
         } else {
           if (json === 404) addNotFound(lei, year, setState)
