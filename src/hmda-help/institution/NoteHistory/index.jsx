@@ -33,12 +33,12 @@ const NoteHistory = ({ lei, year, fetchHistory, setFetched }) => {
 const fetchNotesHistory = ({ lei, year, setFetched, setError, setNotes }) => {
   const host = isCI() ? 'http://localhost:9092' : ''
   const apiPath = isCI() ? '/' : '/v2/public/'
-
+  
   return fetchData(`${host}${apiPath}institutions/${lei}/year/${year}/history`)
   .then((res) => {
     if (res.error) {
-      if(res.status === 404) return setError(<HistoryError />)
-      return setError(<HistoryError text={res.message} />)
+      if(res.status === 404) return setError('No recorded History')
+      return setError(typeof res.error === 'object' ? res.error.message : res.message)
     }
     setError(null)
     return res.response.json()
@@ -52,9 +52,10 @@ const fetchNotesHistory = ({ lei, year, setFetched, setError, setNotes }) => {
 
 const NotesError = ({ error, isMenuOpen }) => {
   if(!isMenuOpen || !error) return null
+  const message = typeof error === 'object' ? error.message : error
   return (
     <ul className='note-list open'>
-      <li className='error'>{error}</li>
+      <li className='error'><HistoryError text={message} /></li>
     </ul>
   )
 }

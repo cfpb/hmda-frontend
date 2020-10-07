@@ -79,6 +79,13 @@
 #NoteHistory .note-list .item {
   border-top: 1px solid #aabdcd;
   width: 100%;
+  margin-bottom: 0;
+}
+
+#NoteHistory .note-list.open .item button,
+#NoteHistory .note-list.open .item.open button {
+  margin: 0;
+  border-radius: 0;
 }
 
 #NoteHistory .note-list .item:last-child {
@@ -97,6 +104,7 @@
 }
 
 #NoteHistory .note-list .item button .icon {
+  color: #649ab0;
   float: left;
   font-size: 2rem;
   line-height: 2rem;
@@ -104,6 +112,7 @@
 }
 
 #NoteHistory .note-list .item button .text {
+  color: #649ab0;
   float: left;
   line-height: 2rem;
   max-width: 80%;
@@ -138,8 +147,10 @@
   outline: none;
 }
 
-#NoteHistory .note-list .item.open .date {
-  color: #e3e3f9;
+#NoteHistory .note-list .item.open .date,
+#NoteHistory .note-list .item.open .icon,
+#NoteHistory .note-list .item.open .text {
+  color: #fff;
 }
 
 #NoteHistory .note-list .item .details.open {
@@ -154,8 +165,10 @@
   color: white;
 }
 
-#NoteHistory .note-list .item:not(.open) button:hover .date {
-  color: #e3e3f9;
+#NoteHistory .note-list .item button:hover .date,
+#NoteHistory .note-list .item button:hover .icon,
+#NoteHistory .note-list .item button:hover .text {
+  color: white;
 }
 
 /* 
