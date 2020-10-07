@@ -51,14 +51,17 @@ class Form extends Component {
   }
 
   handleDeleteClick(institution, key) {
+    const headers = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    }
+
+    if (this.props.token) headers['Authorization'] = `Bearer ${this.props.token}`
+    
     fetch('/v2/admin/institutions', {
       method: 'DELETE',
       body: JSON.stringify(nestInstitutionStateForAPI(institution)),
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + this.props.token
-      }
+      headers
     })
       .then(response => {
         if (response.ok) {
@@ -179,7 +182,7 @@ class Form extends Component {
 }
 
 Form.propTypes = {
-  token: PropTypes.string.isRequired
+  token: PropTypes.string
 }
 
 export default Form

@@ -26,7 +26,8 @@ export const PublicationRow = ({
   const topic = TOPICS[type]
 
   const { lei, respondentName, activityYear: year } = institution
-  const headers = { Authorization: `Bearer ${token}` }
+  const headers = {}
+  if (token) headers['Authorization'] = `Bearer ${token}`
 
   const [state, setState] = useState(defaultState)
 
