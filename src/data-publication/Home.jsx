@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import Heading from '../common/Heading.jsx'
 
@@ -21,6 +22,7 @@ class Home extends Component {
               </a>
               .
             </p>
+            <p className="lead">Visit the <Link to='updates'>Publication Updates</Link> page for additional information about changes to HMDA Publications.</p>
           </Heading>
         </div>
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import LoadingIcon from '../common/LoadingIcon'
 import defaultData from './constants/publication-changes.json'
 import './PublicationChanges.css'
@@ -55,7 +56,8 @@ const PublicationChanges = () => {
   if (loading) return <LoadingState />
 
   return (
-    <div id='publication-changes' class='full-width'>
+    <div id='publication-changes' className='full-width'>
+      <div className='BackLink'><Link to='/data-publication/'>{'\u2b05'} Back to HMDA Data Publications</Link></div>
       <h1>Data Publication: Updates and Notes</h1>
       <p className='intro'>
         The HMDA data and reports are the most comprehensive publicly available
@@ -68,8 +70,9 @@ const PublicationChanges = () => {
       <div className='split'>
         <div className='updates'>
           <h3><span></span> Updates</h3>
-          {PRODUCT_KEYS.map((key) => (
+          {PRODUCT_KEYS.map((key, idx) => (
             <UpdateItem
+              key={`${key}-${idx}`}
               data={changes.updates[key]}
               title={PRODUCT_TITLES[key]}
               open={openUpdates[key]}
@@ -94,14 +97,14 @@ const ChangeTable = ({ changes, headers }) => {
     <table className='change-table'>
       <thead>
         <tr>
-          {headers.map((header) => (
-            <th>{header}</th>
+          {headers.map((header, idx) => (
+            <th key={`${header}-${idx}`}>{header}</th>
           ))}
         </tr>
       </thead>
       <tbody>
-        {changes.map(({ date, description }) => (
-          <tr>
+        {changes.map(({ date, description }, idx) => (
+          <tr key={`change-${idx}`}>
             <td className='description'>{description}</td>
             <td className='date'>{date}</td>
           </tr>
@@ -120,8 +123,8 @@ const UpdateItem = ({ data, title, open, toggle }) => {
         {open ? '▾' : '▸'} {title}
       </span>
       <ul className={open ? 'open' : undefined}>
-        {data.map((item) => (
-          <li>{item}</li>
+        {data.map((item, idx) => (
+          <li key={idx}>{item}</li>
         ))}
       </ul>
     </div>
@@ -129,7 +132,7 @@ const UpdateItem = ({ data, title, open, toggle }) => {
 }
 
 const LoadingState = () => (
-  <div id='publication-changes' class='full-width'>
+  <div id='publication-changes' className='full-width'>
     <h1>Data Publication: Updates and Notes</h1>
     <LoadingIcon />
   </div>
