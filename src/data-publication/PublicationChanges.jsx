@@ -11,6 +11,11 @@ const HEADERS = {
 
 const PRODUCT_KEYS = ['mlar', 'datasets', 'aggregate', 'disclosure']
 
+const OPEN_PRODUCT_UPDATES = PRODUCT_KEYS.reduce((acc, key) => {
+  acc[key] = true // Open by default?
+  return acc
+}, {})
+
 const PRODUCT_TITLES = {
   mlar: 'Modified LAR',
   datasets: 'National Loan Level Datasets',
@@ -27,7 +32,7 @@ const shouldFetch =
 const PublicationChanges = () => {
   const [changes, setChanges] = useState(defaultData)
   const [loading, setLoading] = useState(false)
-  const [openUpdates, setOpenUpdates] = useState({})
+  const [openUpdates, setOpenUpdates] = useState(OPEN_PRODUCT_UPDATES)
 
   const toggleOpen = (key) => {
     setOpenUpdates((state) => ({ ...state, [key]: state[key] ? false : true }))
@@ -36,14 +41,20 @@ const PublicationChanges = () => {
   useEffect(() => {
     if (!shouldFetch) return
 
-    setLoading(true)
-
+    // TODO
+    // Check if file exists
+    // If not, return
+    // If so, setLoading(true)
+    //        fetch(FILE_URL).then(() => setLoading(false))
+    //
     fetch(FILE_URL)
       .then((response) => {
+        setLoading(true)
         if (response.ok) {
           return response.json()
         } else {
-          return Promise.reject('Failed to fetch')
+          setLoading(false)
+          return Promise.reject('Unable to fetch remote publication notes!')
         }
       })
       .then((result) => {
@@ -91,8 +102,6 @@ const PublicationChanges = () => {
 }
 
 const ChangeTable = ({ changes, headers }) => {
-  if (!changes.length) return null
-
   return (
     <table className='change-table'>
       <thead>
@@ -109,6 +118,11 @@ const ChangeTable = ({ changes, headers }) => {
             <td className='date'>{date}</td>
           </tr>
         ))}
+        {!changes.length && (
+          <tr key={`change-0`}>
+            <td colSpan={headers.length}>None</td>
+          </tr>
+        )}
       </tbody>
     </table>
   )
