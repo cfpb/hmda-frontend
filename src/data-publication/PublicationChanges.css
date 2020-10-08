@@ -53,6 +53,7 @@
 #publication-changes .update-item ul {
   display: none;
   margin-top: .5rem;
+  list-style: square;
 }
 
 #publication-changes .update-item ul.open {
