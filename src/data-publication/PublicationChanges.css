@@ -1,0 +1,60 @@
+#publication-changes h3 span {
+  color: #4675c2;
+}
+
+#publication-changes .updates,
+#publication-changes .intro {
+  font-size: 1.8rem;
+}
+
+#publication-changes .updates,
+#publication-changes .release-notes {
+  width: 100%;
+}
+
+#publication-changes .change-table * {
+  border-color: white;
+}
+
+#publication-changes .change-table {
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+#publication-changes .change-table thead tr th {
+  color: white;
+  background: #4675c2;
+}
+
+#publication-changes .change-table tbody tr td {
+  color: black;
+  background: #cfd5ea;
+}
+
+#publication-changes .split {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+
+#publication-changes .update-item {
+  margin-left: 2rem;
+}
+
+#publication-changes .update-item span:hover {
+  color: #4675c2;
+}
+
+#publication-changes .update-item span {
+  cursor: pointer;
+  user-select: none;
+}
+
+#publication-changes .update-item ul {
+  display: none;
+  margin-top: .5rem;
+}
+
+#publication-changes .update-item ul.open {
+  display: block;
+}
