@@ -11,7 +11,8 @@ export function fetchEnvConfig(setFn, host) {
     .then(config => setFn(config))
 }
 
-export function getDefaultConfig(host) {
+export function getDefaultConfig(str) {
+  const host = str.replace(/https?:\/\//, "")
   return isProd(host)
     ? isBeta(host)
       ? prodBeta
