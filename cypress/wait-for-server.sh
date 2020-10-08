@@ -26,15 +26,15 @@ while ! curl -s "localhost:3000" >/dev/null; do
     sleep $WAIT_TIME
 done
 
-i=0
+# i=0
 
-# Wait for the Institution API to be reachable
-while ! curl -s "localhost:9092" >/dev/null; do
-    ((i = i + 1))
-    if [[ "$i" -gt 30 ]]; then
-        echo "Error: Timed out waiting for the HMDA Institutions API to load! "
-        exit 1
-    fi
-    echo "Waiting for the HMDA Institutions API to load on localhost:9092..."
-    sleep 10s
-done
+# # Wait for the Institution API to be reachable
+# while ! curl -s "localhost:9092" >/dev/null; do
+#     ((i = i + 1))
+#     if [[ "$i" -gt 30 ]]; then
+#         echo "Error: Timed out waiting for the HMDA Institutions API to load! "
+#         exit 1
+#     fi
+#     echo "Waiting for the HMDA Institutions API to load on localhost:9092..."
+#     sleep 10s
+# done
