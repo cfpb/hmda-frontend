@@ -47,5 +47,12 @@
     "name": "Meissa Test Bank",
     "taxId": "53-0000001",
     "quarterlyFiler": true
+  },
+  {
+    "year": "2019",
+    "lei": "MEISSADIATESTBANK001",
+    "name": "Meissa Test Bank",
+    "taxId": "53-0000001",
+    "quarterlyFiler": false
   }
 ]

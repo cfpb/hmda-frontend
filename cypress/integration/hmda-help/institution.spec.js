@@ -25,7 +25,7 @@ describe('HMDA Help', () => {
     }
 
     cy.viewport(1600, 900)
-    cy.visit(`${HOST}/hmda-help`)
+    cy.visit(`${HOST}/hmda-help/`)
   })
 
   it('Can update existing Institutions', () => {
@@ -132,7 +132,7 @@ describe('HMDA Help', () => {
     cy.get('table.institutions tbody tr').first().get('td').first().should('not.contain', year)
 
     // Create
-    cy.visit(`${HOST}/hmda-help`)
+    cy.visit(`${HOST}/hmda-help/`)
     cy.findByLabelText("LEI").type("MEISSADIATESTBANK001{enter}")
     cy.findByText(`Add ${institution} for ${year}`).click()
 

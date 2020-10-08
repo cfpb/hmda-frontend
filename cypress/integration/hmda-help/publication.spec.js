@@ -27,7 +27,7 @@ describe('HMDA Help', () => {
     }
     
     cy.viewport(1600, 900)
-    cy.visit(`${HOST}/hmda-help`)
+    cy.visit(`${HOST}/hmda-help/`)
   })
 
   it('Can trigger Publication regeneration', () => {

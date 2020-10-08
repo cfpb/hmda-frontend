@@ -31,10 +31,20 @@ const NoteHistory = ({ lei, year, fetchHistory, setFetched }) => {
 
 
 const fetchNotesHistory = ({ lei, year, setFetched, setError, setNotes }) => {
-  const host = isCI() ? 'http://localhost:9092' : ''
-  const apiPath = isCI() ? '/' : '/v2/public/'
-  
-  return fetchData(`${host}${apiPath}institutions/${lei}/year/${year}/history`)
+  let host = ''
+  let apiPath = '/v2/public/'
+
+  if (isCI()) {
+    host = 'http://localhost:9092'
+    apiPath = '/'
+  }
+
+  const headers = {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  }
+
+  return fetchData(`${host}${apiPath}institutions/${lei}/year/${year}/history`, { headers })
   .then((res) => {
     if (res.error) {
       if(res.status === 404) return setError('No recorded History')
