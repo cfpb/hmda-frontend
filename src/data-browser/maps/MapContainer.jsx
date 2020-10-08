@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef }  from 'react'
 import Select from '../Select.jsx'
+import DBYearSelector from '../datasets/DBYearSelector'
 import LoadingButton from '../datasets/LoadingButton.jsx'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
 import Alert from '../../common/Alert.jsx'
@@ -25,7 +26,7 @@ function getDefaultsFromSearch(props) {
   const { search } = props.location
   const qsParts = search.slice(1).split('&')
   const defaults = {
-    geography: null,
+    geography: geographies[0],
     variable: null,
     filter: null,
     value: null,
@@ -52,13 +53,18 @@ function scrollToTable(node){
 const MapContainer = props => {
   const mapContainer = useRef(null)
   const tableRef = useRef(null)
+  const { year } = props.match.params
 
   const defaults = getDefaultsFromSearch(props)
 
   const [map, setMap] = useState(null)
   const [data, setData] = useState(null)
-  const [countyData, setCountyData] = useState(null)
-  const [stateData, setStateData] = useState(null)
+
+  const [county2018Data, setCounty2018Data] = useState(null)
+  const [state2018Data, setState2018Data] = useState(null)
+  const [county2019Data, setCounty2019Data] = useState(null)
+  const [state2019Data, setState2019Data] = useState(null)
+
   const [filterData, setFilterData] = useState(null)
   const [tableFilterData, setTableFilterData] = useState(null)
   const [selectedGeography, setGeography] = useState(defaults.geography)
@@ -69,12 +75,16 @@ const MapContainer = props => {
   const [feature, setFeature] = useState(defaults.feature)
 
 
-  const getBaseData = useCallback(geography => {
-  if(!geography) return null
-  return geography.value === 'state'
-    ? stateData
-    : countyData
-  }, [countyData, stateData])
+  const getBaseData = useCallback((year, geography) => {
+    if(!year || !geography) return null
+    popup.remove()
+    switch (year) {
+      case '2018':
+        return geography.value === 'state' ? state2018Data : county2018Data
+      case '2019':
+        return geography.value === 'state' ? state2019Data : county2019Data
+    }
+  }, [county2018Data, county2019Data, state2018Data, state2019Data])
 
   const resolveData = useCallback(() => {
     if(selectedFilterValue) return [filterData, selectedFilter, selectedFilterValue]
@@ -87,8 +97,14 @@ const MapContainer = props => {
       ? `counties=${feature}`
       : `states=${fips2Shortcode[feature]}`
     const filter = selectedFilterValue ? `&${selectedFilter.value}=${selectedFilterValue.value}` : ''
-    const csv = `/v2/data-browser-api/view/csv?years=2018&${geoString}&${selectedVariable.value}=${selectedValue.value}${filter}`
+    const csv = `/v2/data-browser-api/view/csv?years=${year}&${geoString}&${selectedVariable.value}=${selectedValue.value}${filter}`
     getCSV(csv, feature + '.csv')
+  }
+
+  const onYearChange = selected=> {
+    const basePath = '/data-browser/maps-graphs/'
+    const search = makeSearch()
+    props.history.push(`${basePath}${selected.year}${search}`)
   }
 
   const onGeographyChange = selected => {
@@ -182,34 +198,59 @@ const MapContainer = props => {
 
 
   useEffect(() => {
-    runFetch('/countyData.json').then(jsonData => {
-      setCountyData(jsonData)
-    })
+    if(!county2018Data && selectedGeography.value === 'county' && year === '2018'){
+      runFetch('/2018/county.json').then(jsonData => {
+        setCounty2018Data(jsonData)
+      })
+    }
+  }, [county2018Data, selectedGeography, year])
 
-    runFetch('/stateData.json').then(jsonData => {
-      setStateData(jsonData)
-    })
-
-  }, [])
 
   useEffect(() => {
-    setData(getBaseData(selectedGeography))
-  }, [countyData, getBaseData, selectedGeography, stateData])
+    if(!county2019Data && selectedGeography.value === 'county' && year === '2019'){
+      runFetch('/2019/county.json').then(jsonData => {
+        setCounty2019Data(jsonData)
+      })
+    }
+  }, [county2019Data, selectedGeography, year])
+
+
+  useEffect(() => {
+    if(!state2018Data && selectedGeography.value === 'state' && year === '2018'){
+      runFetch('/2018/state.json').then(jsonData => {
+        setState2018Data(jsonData)
+      })
+    }
+  }, [selectedGeography, state2018Data, year])
+
+
+  useEffect(() => {
+    if(!state2019Data && selectedGeography.value === 'state' && year === '2019'){
+      runFetch('/2019/state.json').then(jsonData => {
+        setState2019Data(jsonData)
+      })
+    }
+  }, [selectedGeography, state2019Data, year])
+
+
+  useEffect(() => {
+    setData(getBaseData(year, selectedGeography))
+  }, [year, getBaseData, selectedGeography])
 
 
   useEffect(() => {
     if(selectedValue) {
-      fetchFilterData(selectedGeography, selectedVariable, selectedValue)
+      fetchFilterData(year, selectedGeography, selectedVariable, selectedValue)
         .then(d => setFilterData(d))
     }
-  }, [selectedGeography, selectedValue, selectedVariable])
+  }, [selectedGeography, selectedValue, selectedVariable, year])
 
   useEffect(() => {
     if(selectedFilterValue) {
-      fetchFilterData(selectedGeography, selectedFilter, selectedFilterValue)
+      fetchFilterData(year, selectedGeography, selectedFilter, selectedFilterValue)
         .then(d => setTableFilterData(d))
     }
-  }, [selectedFilter, selectedFilterValue, selectedGeography])
+  }, [selectedFilter, selectedFilterValue, selectedGeography, year])
 
   useEffect(() => {
     const search = makeSearch()
@@ -259,14 +300,14 @@ const MapContainer = props => {
       const addLayersAndOutline = () => {
         const resolved = resolveData()
         if(resolved){
-          addLayers(map, selectedGeography, makeStops(...resolved, selectedGeography, selectedVariable, selectedValue))
+          addLayers(map, selectedGeography, makeStops(...resolved, year, selectedGeography, selectedVariable, selectedValue))
           setOutline(map, selectedGeography, feature)
         }
       }
       if(map._loaded) addLayersAndOutline()
       else map.on('load', addLayersAndOutline)
     }
-  }, [feature, map, resolveData, selectedGeography, selectedValue, selectedVariable])
+  }, [feature, map, resolveData, selectedGeography, selectedValue, selectedVariable, year])
 
 
   useEffect(() => {
@@ -289,7 +330,7 @@ const MapContainer = props => {
 
 
       const d = tableFilterData ? tableFilterData : data
-      const origPer1000 = getOrigPer1000(d, feat, selectedGeography, selectedVariable, selectedValue)
+      const origPer1000 = getOrigPer1000(d, feat, year, selectedGeography, selectedVariable, selectedValue)
 
       map.getCanvas().style.cursor = 'pointer'
 
@@ -341,7 +382,7 @@ const MapContainer = props => {
 
     return detachHandlers
 
-  }, [map, selectedVariable, data, selectedGeography, feature, selectedValue, tableFilterData])
+  }, [map, selectedVariable, data, selectedGeography, feature, selectedValue, tableFilterData, year])
 
 
   const menuStyle = {
@@ -355,6 +396,11 @@ const MapContainer = props => {
 
   return (
     <div className="SelectWrapper">
+      <DBYearSelector
+        year={year}
+        onChange={onYearChange}
+        years={props.config.dataBrowserYears}
+      />
       <h3>Step 1: Select a Geography</h3>
       <p>
         Start by selecting a geography using dropdown menu below
@@ -440,7 +486,7 @@ const MapContainer = props => {
             </Alert>
           : null
         }
-        {resolved ? makeLegend(...resolved, selectedGeography, selectedVariable, selectedValue) : null}
+        {resolved ? makeLegend(...resolved, year, selectedGeography, selectedVariable, selectedValue) : null}
       </div>
       {buildTable()}
     </div>

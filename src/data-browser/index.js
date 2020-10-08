@@ -18,7 +18,10 @@ const DataBrowser = props => {
         />
         {
           props.config.showMaps
-          ? <Route path="/data-browser/maps-graphs/:year?" component={MapsGraphs} />
+          ? <Route
+              path="/data-browser/maps-graphs/:year?"
+              render={(r_props) => <MapsGraphs {...r_props} {...props} /> }
+            />
           : null
         }
         <Route component={NotFound} />

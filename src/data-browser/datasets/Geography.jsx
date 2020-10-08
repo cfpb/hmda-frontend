@@ -218,7 +218,7 @@ class Geography extends Component {
     const { category, items } = this.state
     const variables = getVariables(obj.year)
     obj.details = {}
-    
+
     // Map selected States between code <=> abbr
     if(category === 'states'){
       const stateObj = before2018(obj.year) ? abbrToCode : codeToAbbr
@@ -345,10 +345,10 @@ class Geography extends Component {
     const selectedVars = {}
     Object.keys(this.state.variables).forEach(oldVarKey => {
       const varKey = !variables[oldVarKey] ? variableNameMap[oldVarKey] : oldVarKey
-        
+
       if(!varKey) return // Exclude invalid variable
       if(!selectedVars[varKey]) selectedVars[varKey] = {}
-      
+
       // Map selected options
       const optionMap = variableOptionMap[oldVarKey]
       Object.keys(this.state.variables[oldVarKey]).forEach(oldOptionKey => {
@@ -356,7 +356,7 @@ class Geography extends Component {
         if (mappedValues)
           // Single options can map to multiple; stored as CSV
           optionMap[oldOptionKey].split(',').forEach(optionKey => {
-            selectedVars[varKey][optionKey] = true 
+            selectedVars[varKey][optionKey] = true
           })
           // Keep existing value if this is a valid option
         else if(variables[varKey].mapping[oldOptionKey])
@@ -405,8 +405,8 @@ class Geography extends Component {
             </p>
           </Heading>
         </div>
-        <DBYearSelector 
-          year={this.state.year} 
+        <DBYearSelector
+          year={this.state.year}
           onChange={this.onYearChange}
           years={this.props.config.dataBrowserYears}
         />
@@ -419,7 +419,7 @@ class Geography extends Component {
           enabled={enabled}
           downloadCallback={this.requestItemCSV}
           onChange={this.onItemChange}
-          year={this.state.year} 
+          year={this.state.year}
         />
         <InstitutionSelect
           items={leis}

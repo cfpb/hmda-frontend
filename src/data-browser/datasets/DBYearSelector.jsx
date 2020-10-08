@@ -15,7 +15,7 @@ const DBYearSelector = ({ year, years, onChange }) => {
       {years.map((y, i) => {
         const className = y === year ? 'active' : ''
         return (
-          <a href={`/data-browser/data/${y}`} className={className} onClick={clickHandler} key={i}>
+          <a className={className} onClick={clickHandler} key={i}>
             {y}
           </a>
         )
