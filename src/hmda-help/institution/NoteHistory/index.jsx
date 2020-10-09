@@ -5,8 +5,6 @@ import { fetchData } from '../../utils/api'
 import { sortNotes, addDiff } from './utils'
 import './NoteHistory.css'
 
-const isCI = () => process.env.REACT_APP_ENVIRONMENT === 'CI'
-
 const NoteHistory = ({ lei, year, fetchHistory, setFetched }) => {
   const [notes, setNotes] = useState(null)
   const [error, setError] = useState(null)

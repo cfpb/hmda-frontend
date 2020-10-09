@@ -51,7 +51,7 @@ script:
   # Verify dev server availability, create test data, run test suite.
   - ./cypress/wait-for-server.sh frontend && yarn ci-data
   # - yarn cypress run $CONFIG $RECORD # Run all tests
-  - yarn cypress run --spec cypress/integration/filing/Filing.spec.js
-  - yarn cypress run --spec cypress/integration/hmda-help/institutions.spec.js
-  - yarn cypress run --spec cypress/integration/hmda-help/publication.spec.js
+  - yarn cypress run $RECORD --spec cypress/integration/filing/Filing.spec.js
+  - yarn cypress run $RECORD --spec cypress/integration/hmda-help/institutions.spec.js
+  - yarn cypress run $RECORD --spec cypress/integration/hmda-help/publication.spec.js
   - kill $(jobs -p) || true # Cleanup
