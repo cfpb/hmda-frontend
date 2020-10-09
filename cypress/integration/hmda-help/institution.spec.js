@@ -28,42 +28,38 @@ describe('HMDA Help', () => {
     cy.visit(`${HOST}/hmda-help/`)
   })
 
-  // TODO: Get this test running on CI
-  if (isCI(ENVIRONMENT)) it('Does not update Institutions on CI')
-  else {
     it('Can update existing Institutions', () => {
       // Search for existing Instititution
-      cy.findByLabelText("LEI").type(HH_INSTITUTION)
+      cy.findByLabelText('LEI').type(HH_INSTITUTION)
       cy.findByText('Search institutions').click()
       cy.findAllByText('Update')
         .eq(1) // 2019
         .click()
-  
+
       const successMessage = `The institution, ${HH_INSTITUTION}, has been updated.`
       const nameLabelText = 'Respondent Name'
       const updateButtonText = 'Update the institution'
       const testName = 'Cypress Test Name Update'
-  
+
       const timestamp1 = Date.now()
-      cy.findByText("Note History").click()
+      cy.findByText('Note History').click()
       cy.get('.note-list li')
         .first()
         .find('button .text')
         .should('not.contain.text', timestamp1)
-  
-      cy.findByLabelText(nameLabelText).then($name => {
+
+      cy.findByLabelText(nameLabelText).then(($name) => {
         const savedName = $name.attr('value')
-  
+
         // Change Respondent Name
         cy.findByLabelText(nameLabelText)
           .type('{selectAll}' + testName)
           .blur()
-          .then($name2 => {
+          .then(($name2) => {
             // Notes field is required on Update
-            cy.findByText(updateButtonText)
-              .should('not.be.enabled')
+            cy.findByText(updateButtonText).should('not.be.enabled')
             cy.findByLabelText('Notes')
-              .type('Cypress - Change respondent name ' + timestamp1 )
+              .type('Cypress - Change respondent name ' + timestamp1)
               .blur()
             cy.findByText(updateButtonText)
               .should('be.enabled')
@@ -83,8 +79,8 @@ describe('HMDA Help', () => {
                     cy.get('@firstNote')
                       .find('.details tbody td')
                       .eq(0)
-                      .should('contain.text', "respondent")
-                      .should('contain.text', "name")
+                      .should('contain.text', 'respondent')
+                      .should('contain.text', 'name')
                     cy.get('@firstNote')
                       .find('.details tbody td')
                       .eq(1)
@@ -96,17 +92,16 @@ describe('HMDA Help', () => {
                   })
               })
           })
-  
+
         // Change it back
         cy.findByLabelText(nameLabelText)
           .type('{selectAll}' + savedName)
           .blur()
-        // Notes field is required on Update  
-        cy.findByText(updateButtonText)
-          .should('not.be.enabled')
+        // Notes field is required on Update
+        cy.findByText(updateButtonText).should('not.be.enabled')
         cy.findByLabelText('Notes')
           .type('Cypress - Change respondent name back')
-          .blur()        
+          .blur()
           .then(() => {
             cy.findByText(updateButtonText)
               .should('be.enabled')
@@ -122,7 +117,6 @@ describe('HMDA Help', () => {
           })
       })
     })
-  }
 
   it('Can delete and create Institutions', () => {
     const institution = 'MEISSADIATESTBANK001'
