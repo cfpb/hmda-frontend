@@ -1,4 +1,4 @@
-import { isCI } from '../../support/helpers'
+import { isCI, isProd } from '../../support/helpers'
 
 const {
   HOST,
@@ -56,11 +56,13 @@ describe('HMDA Help', () => {
     cy.findAllByText('Regenerate').eq(row).click()
     cy.get('@irsRow').contains('Regeneration of 2019 IRS triggered!')
 
-    // Has valid Download links
-    cy.findAllByText('Download').each(link => {
-      cy.get(link).hasValidHref().then(({ status, url }) => {
-        assert.isTrue(status, `"${link.text()}" is a valid link. URL: ${url}`)
+    if (isProd(HOST)) {
+      // Has valid Download links
+      cy.findAllByText('Download').each(link => {
+        cy.get(link).hasValidHref().then(({ status, url }) => {
+          assert.isTrue(status, `"${link.text()}" is a valid link. URL: ${url}`)
+        })
       })
-    })
+    }
   })
 })
