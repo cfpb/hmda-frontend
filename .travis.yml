@@ -14,8 +14,8 @@ addons:
     
 cache: 
   directories:
-    - ~/.cache
-    - ~/.cache/Cypress
+    - $HOME/.cache
+    - $HOME/.cache/Cypress
     - $HOME/.m2/repository
     - $HOME/.sbt
     - $HOME/.ivy2
