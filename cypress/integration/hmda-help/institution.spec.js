@@ -28,7 +28,7 @@ describe('HMDA Help', () => {
     cy.visit(`${HOST}/hmda-help/`)
   })
 
-    it('Can update existing Institutions', () => {
+  it('Can update existing Institutions', () => {
       // Search for existing Instititution
       cy.findByLabelText('LEI').type(HH_INSTITUTION)
       cy.findByText('Search institutions').click()
@@ -43,7 +43,7 @@ describe('HMDA Help', () => {
 
       const timestamp1 = Date.now()
       cy.findByText('Note History').click()
-      cy.get('.note-list li')
+      cy.get('.note-list li', { timeout: 30000 })
         .first()
         .find('button .text')
         .should('not.contain.text', timestamp1)

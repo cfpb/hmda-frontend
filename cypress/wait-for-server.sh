@@ -15,14 +15,14 @@ then
 elif [[ $API = 'institutions' ]]
 then
     # Wait for the Institution API to be reachable
-    while ! curl -s "localhost:7000" >/dev/null; do
+    while ! curl -s "localhost:3010" >/dev/null; do
         ((i = i + 1))
         if [[ "$i" -gt "$MAX" ]]
         then
             echo "Error: Timed out waiting for the HMDA Institutions API to load! "
             exit 1
         fi
-        echo "Waiting for the HMDA Institutions API to load on localhost:7000..."
+        echo "Waiting for the HMDA Institutions API to load on localhost:3010..."
         sleep 10s
     done
     exit 0
