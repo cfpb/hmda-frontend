@@ -23,7 +23,7 @@ const PRODUCT_TITLES = {
   disclosure: 'Disclosure Reports',
 }
 
-const FILE_URL = 'https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/data-publication/constants/publication-changes.js'
+const FILE_URL = 'https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/data-publication/constants/publication-changes.json'
 
 const shouldFetch =
   window.location.host.indexOf('localhost') < 0 ||
