@@ -1,15 +1,60 @@
 {
-  "completed": [
-    { "date": "03/31/20", "description": "2019 Modified LAR reports were released"}
-  ],
-
-  "upcoming": [
-  ],
-  
-  "updates": {
-    "mlar": ["2019 Modified LAR"],
-    "datasets": [],
-    "aggregate": [],
-    "disclosure": []
-  }
+  "log": [
+    {
+      "date": "01/01/21",
+      "type": "release",
+      "product": "mlar",
+      "description": "MLAR Released!",
+      "tags": ["tag-one"]
+    },
+    {
+      "date": "01/01/21",
+      "type": "update",
+      "product": "disclosure",
+      "description": "Disclosure reports are coming soon!",
+      "tags": ["tag-one"]
+    },
+    {
+      "date": "12/31/20",
+      "type": "update",
+      "product": "aggregate",
+      "description": "Aggregate reports Updated!",
+      "tags": ["tag-expose"]
+    },
+    {
+      "date": "12/31/20",
+      "type": "correction",
+      "product": "aggregate",
+      "description": "Aggregate reports corrected!",
+      "tags": ["tag-expose"]
+    },
+    {
+      "date": "04/31/20",
+      "type": "notice",
+      "product": "datasets",
+      "description": "2017 Ultimate LAR/TS reports are coming soon!",
+      "tags": ["tag-chump"]
+    },
+    {
+      "date": "04/31/20",
+      "type": "correction",
+      "product": "datasets",
+      "description": "Datasets corrected!",
+      "tags": ["tag-chump"]
+    },
+    {
+      "date": "03/31/20",
+      "type": "update",
+      "product": "mlar",
+      "description": "2019 Modified LAR reports were updated!",
+      "tags": ["tag-and-1"]
+    },
+    {
+      "date": "03/31/20",
+      "type": "release",
+      "product": "mlar",
+      "description": "2019 Modified LAR reports were released",
+      "tags": ["tag-and-1"]
+    }
+  ]
 }
