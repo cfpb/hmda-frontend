@@ -43,6 +43,7 @@
   /* background: rgb(33, 110, 33); */
   /* color: white; */
   padding: .5rem;
+  text-transform: uppercase;
 }
 
 #publication-changes .pub-change-item span.type {

@@ -364,8 +364,15 @@ const OptionPill = ({ type, value, addFilter, removeFilter, selected, toggleFilt
   const [wasClicked, setWasClicked] = useState(false)
 
   useEffect(() => {
-    document.getElementById('#pub-whats-new').scrollIntoView()
+    if (wasClicked) {
+      document.getElementById('#pub-whats-new').scrollIntoView()
+      setWasClicked(false)
+    }
   }, [wasClicked])
+
+  useEffect(() => {
+    window.scrollTo(0,0)
+  }, [])
 
   return (
     <div id={id} className={`pill ${type} ${value} ${selected}`} onClick={() => {
