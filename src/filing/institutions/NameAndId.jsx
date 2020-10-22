@@ -6,7 +6,7 @@ import { ReactComponent as InfoIcon } from '../images/info.svg'
 const InstitutionNameAndId = ({ name, lei, filingPeriod }) => {
   return (
     <h3>
-      {name} - {lei} - {filingPeriod}
+      <span>{name} - {lei} - {filingPeriod}</span>
       <Link to={`/filing/${filingPeriod}/institutions/${lei}`} className="details-icon">
         <InfoIcon title="Institution details" />
       </Link>

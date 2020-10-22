@@ -14,11 +14,12 @@
 
 .Institutions .institution h3 {
   margin-top: 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .Institutions .institution h3 .details-icon {
   float: right;
-  margin-left: 5rem;
   cursor: pointer;
 }
 
