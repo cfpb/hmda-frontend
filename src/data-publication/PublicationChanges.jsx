@@ -209,12 +209,12 @@ const PubChangeLog = ({
                     {ordinal(new Date(item.changeDate || 0))}
                   </div>
                   <div class='column-type'>
-                    <span
-                      className={`type ${item.type}`}
+                    <div
+                      className={`pill type ${item.type}`}
                       onClick={() => toggleFilter('type', item.type)}
                     >
-                      {item.type}
-                    </span>
+                      <div className='text'>{item.type}</div>
+                    </div>
                   </div>
                   <div
                     className={`product ${item.product} ${
