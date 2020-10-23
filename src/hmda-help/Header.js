@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import ReleaseVersion from '../common/ReleaseVersion'
 
 const Header = props => {
   return (
     <header className="grid">
-      <h1 className="App-title">HMDA Help</h1>
+      <h1 className="App-title">HMDA Help<ReleaseVersion /></h1>
       <nav>
         <Link to="/">Search</Link>
         <Link
