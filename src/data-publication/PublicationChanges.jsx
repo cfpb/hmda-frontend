@@ -178,7 +178,8 @@ const PubChangeLog = ({
       />
       <h3 className='filter header'>Publication Change Log</h3>
       <div className='pub-change-item split'>
-        <h4 class='header'>Change Type</h4>
+        <h4 class='date header'>Change Date</h4>
+        <h4 class='header column-type'>Change Type</h4>
         <h4 class='product header'>Product</h4>
         <h4 class='description header'>Change Description</h4>
       </div>
@@ -199,15 +200,15 @@ const PubChangeLog = ({
 
         return (
           <div className='pub-change-day'>
-            <div className='date'>
-              <span class='icon'>📆</span>
-              {ordinal(new Date(todaysItems[0].date))}
-            </div>
             {todaysItems.map((item, idx) => {
               console.log('Item: ', item)
               return (
                 <div className='pub-change-item split'>
-                  <div>
+                  <div className='date'>
+                    <span class='icon'>📆</span>
+                    {ordinal(new Date(item.changeDate || 0))}
+                  </div>
+                  <div class='column-type'>
                     <span
                       className={`type ${item.type}`}
                       onClick={() => toggleFilter('type', item.type)}
@@ -236,6 +237,7 @@ const PubChangeLog = ({
   )
 }
 
+// Groups data by changeDate
 export const organizeChangeData = (input) => {
   const data = input && input.log ? input.log : {}
   const result = {}
@@ -243,18 +245,20 @@ export const organizeChangeData = (input) => {
   // Group by date
   // results['02/01/2020'] => [
   //   {
-  //     "date": "01/01/21",
+  //     "date": "03/02/22",
+  //     "changeDate": "02/01/21",
   //     "type": "update",
   //     "product": "disclosure",
+  //     "productYear": "2019",
   //     "description": "Disclosure reports are coming soon!",
   //     "tags": ["tag-one"]
   //   },
   // ...
   // ]
   data.forEach((item) => {
-    if (!item || !item.date) return
-    if (!result[item.date]) result[item.date] = []
-    result[item.date].push({ ...item })
+    if (!item || !item.changeDate) return
+    if (!result[item.changeDate]) result[item.changeDate] = []
+    result[item.changeDate].push({ ...item })
   })
 
   Object.keys(result).forEach((date) => {

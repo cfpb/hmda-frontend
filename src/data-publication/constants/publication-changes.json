@@ -2,13 +2,16 @@
   "log": [
     {
       "date": "01/01/21",
+      "changeDate": "01/01/21",
       "type": "release",
       "product": "mlar",
-      "description": "MLAR Released!",
+      "productYear": "2018",
+      "description": "MLAR Released! This is a long description text that should wrap around.  Hopefully it looks awesome!",
       "tags": ["tag-one"]
     },
     {
       "date": "01/01/21",
+      "changeDate": "01/01/21",
       "type": "update",
       "product": "disclosure",
       "description": "Disclosure reports are coming soon!",
@@ -16,6 +19,7 @@
     },
     {
       "date": "12/31/20",
+      "changeDate": "12/31/20",
       "type": "update",
       "product": "aggregate",
       "description": "Aggregate reports Updated!",
@@ -23,6 +27,7 @@
     },
     {
       "date": "12/31/20",
+      "changeDate": "12/31/20",
       "type": "correction",
       "product": "aggregate",
       "description": "Aggregate reports corrected!",
@@ -30,6 +35,7 @@
     },
     {
       "date": "04/31/20",
+      "changeDate": "04/31/20",
       "type": "notice",
       "product": "datasets",
       "description": "2017 Ultimate LAR/TS reports are coming soon!",
@@ -37,6 +43,7 @@
     },
     {
       "date": "04/31/20",
+      "changeDate": "04/31/20",
       "type": "correction",
       "product": "datasets",
       "description": "Datasets corrected!",
@@ -44,6 +51,7 @@
     },
     {
       "date": "03/31/20",
+      "changeDate": "03/31/20",
       "type": "update",
       "product": "mlar",
       "description": "2019 Modified LAR reports were updated!",
@@ -51,6 +59,7 @@
     },
     {
       "date": "03/31/20",
+      "changeDate": "03/31/20",
       "type": "release",
       "product": "mlar",
       "description": "2019 Modified LAR reports were released",
