@@ -206,7 +206,7 @@ const PubChangeLog = ({
                 <div className='pub-change-item split'>
                   <div className='date'>
                     <span class='icon'>📆</span>
-                    {ordinal(new Date(item.changeDate || 0))}
+                    {item.changeDateOrdinal}
                   </div>
                   <div class='column-type'>
                     <div
@@ -257,6 +257,8 @@ export const organizeChangeData = (input) => {
   // ]
   data.forEach((item) => {
     if (!item || !item.changeDate) return
+    if (!item.changeDateOrdinal)
+      item.changeDateOrdinal = ordinal(new Date(item.changeDate || 0))
     if (!result[item.changeDate]) result[item.changeDate] = []
     result[item.changeDate].push({ ...item })
   })
