@@ -38,12 +38,22 @@
   margin-right: 1rem;
 }
 
-#publication-changes .pub-change-day .date {
+#publication-changes .pub-change-day .date,
+#publication-changes .pub-change-item .date.header {
   text-transform: capitalize;
+  padding-left: .5rem;
+}
+
+#publication-changes .pub-change-item {
+  padding: 20px 5px;
 }
 
 #publication-changes .pub-change-item .column-type {
   padding-left: 1rem;
+}
+
+#publication-changes .pub-change-item .column-type .pill {
+  margin: 0
 }
 
 #publication-changes .pub-change-item .type {
@@ -69,22 +79,57 @@
 
 .filter-bar .pill.product.disclosure:hover,
 .filter-bar .pill.product.disclosure.selected {
-  background-color: #5375a7;
+  background-color: #9c7d2e;
 }
+#publication-changes .pub-change-item .product.disclosure:hover,
+#publication-changes .pub-change-item .product.disclosure.selected,
+#publication-changes .pub-change-item .product.disclosure.selected::before,
+#publication-changes .pub-change-item .product.disclosure.selected::after {
+  color: #9c7d2e;
+}
+
+/** Modified LAR color - .mlar */
 
 .filter-bar .pill.product.mlar:hover,
 .filter-bar .pill.product.mlar.selected {
   background-color: #288a64;
+  background-color: #6d248f;
+}
+
+#publication-changes .pub-change-item .product.mlar:hover,
+#publication-changes .pub-change-item .product.mlar.selected,
+#publication-changes .pub-change-item .product.mlar.selected::before,
+#publication-changes .pub-change-item .product.mlar.selected::after {
+  color: #288a64;
+  color: #6d248f;
 }
 
 .filter-bar .pill.product.datasets:hover,
 .filter-bar .pill.product.datasets.selected {
-  background-color: #6d248f;
+  background-color: #6d9cd8;
+}
+#publication-changes .pub-change-item .product.datasets:hover,
+#publication-changes .pub-change-item .product.datasets.selected,
+#publication-changes .pub-change-item .product.datasets.selected::before,
+#publication-changes .pub-change-item .product.datasets.selected::after {
+  color: #6d9cd8;
 }
 
 .filter-bar .pill.product.aggregate:hover,
 .filter-bar .pill.product.aggregate.selected {
   background-color: #4aa791;
+  background-color: #0ca59b;
+}
+#publication-changes .pub-change-item .product.aggregate:hover,
+#publication-changes .pub-change-item .product.aggregate.selected,
+#publication-changes .pub-change-item .product.aggregate.selected::before,
+#publication-changes .pub-change-item .product.aggregate.selected::after {
+  color: #4aa791;
+  color: #0ca59b;
+}
+
+#publication-changes .pub-change-item .product.selected {
+  font-weight: 400;
 }
 
 #publication-changes .pub-change-item .product.selected::before,
@@ -93,33 +138,10 @@
   margin: auto 5px;
 }
 
-#publication-changes .pub-change-item .product.disclosure:hover,
-#publication-changes .pub-change-item .product.disclosure.selected,
-#publication-changes .pub-change-item .product.disclosure.selected::before,
-#publication-changes .pub-change-item .product.disclosure.selected::after {
-  color: #5375a7;
-}
 
-#publication-changes .pub-change-item .product.mlar:hover,
-#publication-changes .pub-change-item .product.mlar.selected,
-#publication-changes .pub-change-item .product.mlar.selected::before,
-#publication-changes .pub-change-item .product.mlar.selected::after {
-  color: #288a64;
-}
 
-#publication-changes .pub-change-item .product.datasets:hover,
-#publication-changes .pub-change-item .product.datasets.selected,
-#publication-changes .pub-change-item .product.datasets.selected::before,
-#publication-changes .pub-change-item .product.datasets.selected::after {
-  color: #6d248f;
-}
 
-#publication-changes .pub-change-item .product.aggregate:hover,
-#publication-changes .pub-change-item .product.aggregate.selected,
-#publication-changes .pub-change-item .product.aggregate.selected::before,
-#publication-changes .pub-change-item .product.aggregate.selected::after {
-  color: #4aa791;
-}
+
 
 #publication-changes .pub-change-item .description {
   flex-basis: 50%;
@@ -183,7 +205,8 @@
 #publication-changes .pub-change-item .type.notice,
 .filter-bar .pill.type.notice:hover,
 .filter-bar .pill.type.notice.selected {
-  background-color: #f8650a;
+  background-color: #cfb014;
+  color: white;
 }
 
 /* .filter-bar .type.correction.selected:hover,
@@ -241,6 +264,10 @@
 .pub-change-item .pill .close:hover,
 .filter-bar .pill .close:hover {
   background-color: orange;
+}
+
+.pub-change-item:not(.header).odd {
+  background: #eee;
 }
 
 .filter-bar .text-input {

@@ -156,6 +156,7 @@ const PubChangeLog = ({
   toggleFilter,
 }) => {
   const keys = Object.keys(data)
+  let pubItemCount = -1
 
   return (
     <div className='pub-change-log'>
@@ -177,7 +178,7 @@ const PubChangeLog = ({
         toggleFilter={toggleFilter}
       />
       <h3 className='filter header'>Publication Change Log</h3>
-      <div className='pub-change-item split'>
+      <div className='pub-change-item header split'>
         <h4 class='date header'>Change Date</h4>
         <h4 class='header column-type'>Change Type</h4>
         <h4 class='product header'>Product</h4>
@@ -202,8 +203,9 @@ const PubChangeLog = ({
           <div className='pub-change-day'>
             {todaysItems.map((item, idx) => {
               console.log('Item: ', item)
+              pubItemCount += 1
               return (
-                <div className='pub-change-item split'>
+                <div className={'pub-change-item split' + (!(pubItemCount%2) ? ' odd' : ' even')}>
                   <div className='date'>
                     <span class='icon'>📆</span>
                     {item.changeDateOrdinal}
@@ -312,22 +314,28 @@ const applyFilters = (sourceData = {}, filterLists = {}) => {
         console.log('Words: ', words)
         console.log('result: ', result)
         console.log('result[date]: ', result[date])
-        result[date] = result[date].filter(
-          (item) =>
-            words.indexOf(item.type.toLowerCase()) > -1 || // Matches on type
-            words.some((word) => item.type.toLowerCase().indexOf(word) > -1) || // Matches part of type
-            words.indexOf(item.product.toLowerCase()) > -1 || // Matches a product
-            words.some(
-              (word) => item.product.toLowerCase().indexOf(word) > -1
-            ) || // Matches part of product
-            words.some(
-              (word) =>
-                item.description.toLowerCase().indexOf(word.toLowerCase()) > -1
-            ) // Matches one of the description words
+
+        // @string contains @word
+        const hasPartialTextMatch = (string, word) => {
+          if (!string || !word) return false
+          return string.toLowerCase().indexOf(word.toLowerCase()) > -1
+        }
+
+        result[date] = result[date].filter((item) =>
+          words.some((word) => {
+            return (
+              hasPartialTextMatch(item.type, word) || // Matches part of type
+              hasPartialTextMatch(item.product, word) || // Matches part of product
+              hasPartialTextMatch(item.description, word) || // Matches part of description
+              hasPartialTextMatch(item.changeDateOrdinal, word) || // Matches part of changeDateOrdinal
+              hasPartialTextMatch(item.productYear, word) // Matches part of productYear
+            )
+          })
         )
       }
     }
-  })
+  }
+  )
 
   return result
 }

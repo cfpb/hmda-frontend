@@ -6,7 +6,7 @@
       "type": "release",
       "product": "mlar",
       "productYear": "2018",
-      "description": "MLAR Released! This is a long description text that should wrap around.  Hopefully it looks awesome!",
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus numquam vitae eveniet? Quis doloribus nam et cumque. Maiores possimus eos assumenda, ea excepturi similique repudiandae harum minus animi a laudantium repellat fugit eum. Maxime voluptates repellendus harum sint error, commodi eius ullam, ut ex quibusdam quidem provident quis dignissimos fugit!",
       "tags": ["tag-one"]
     },
     {
@@ -23,6 +23,14 @@
       "type": "update",
       "product": "aggregate",
       "description": "Aggregate reports Updated!",
+      "tags": ["tag-expose"]
+    },
+    {
+      "date": "12/31/20",
+      "changeDate": "12/31/20",
+      "type": "update",
+      "product": "aggregate",
+      "description": "Another reports Updated!",
       "tags": ["tag-expose"]
     },
     {
