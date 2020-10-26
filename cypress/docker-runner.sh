@@ -2,7 +2,7 @@
 
 # Script that will post a message to a predefined webhook when cypress is done
 
-FAILED=$(yarn cypress run > output.txt)
+yarn cypress run > output.txt
 if  grep -q "All specs passed!" "output.txt" ; then
 	curl -i -X POST -H 'Content-Type: application/json' -d "{\"text\": \"CYPRESS_HOST: ${CYPRESS_HOST} Complete. :thumbs-up-bb8: No Failing specs.\"}" $CYPRESS_WEB_HOOK
 else
