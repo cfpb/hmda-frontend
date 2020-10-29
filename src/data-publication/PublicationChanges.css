@@ -33,7 +33,7 @@
   flex-basis: 25%;
 }
 
-  #publication-changes .pub-change-day .date .icon {
+#publication-changes .pub-change-day .date .icon {
   display: none;
   margin-right: 1rem;
 }
@@ -137,10 +137,6 @@
   /* content: '◆'; */
   margin: auto 5px;
 }
-
-
-
-
 
 
 #publication-changes .pub-change-item .description {
@@ -266,7 +262,7 @@
   background-color: orange;
 }
 
-.pub-change-item:not(.header).odd {
+.pub-change-item:not(.header).even {
   background: #eee;
 }
 
@@ -329,4 +325,10 @@
 
 .filter-bar .filter-wrapper .search-wrapper {
   width: 40%;
+}
+
+#pub-whats-new {
+  font-size: 0;
+  height: 0;
+  display: block
 }
