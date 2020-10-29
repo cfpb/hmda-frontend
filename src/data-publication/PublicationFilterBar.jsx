@@ -26,7 +26,7 @@ const PublicationFilterBar = ({
           filter={filter}
         />
         <div className='search-wrapper'>
-          <h4>by Keyword</h4>
+          <h3>by Keyword</h3>
           <div className='text-input'>
             <input
               type='text'
@@ -49,7 +49,7 @@ const PublicationFilterBar = ({
 
 const OptionColumn = ({ name, options, heading, filter }) => (
   <div className={`pills-wrapper ${name}`}>
-    <h4>{heading}</h4>
+    <h3>{heading}</h3>
     <div className='pills split columns'>
       {options.map((option, idx) => (
         <Option

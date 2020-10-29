@@ -1,9 +1,15 @@
 #publication-changes h2 {
   margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #4675c2;
 }
 
-#publication-changes h3 span {
-  color: #4675c2;
+#publication-changes h3 {
+  margin-bottom: 2rem;
+}
+
+#publication-changes h3 {
+  margin-top: 1rem;
 }
 
 #publication-changes .intro {
@@ -20,8 +26,12 @@
 }
 
 #publication-changes .pub-change-item {
-  padding: 0.5rem 0;
   align-items: flex-start;
+  padding: 3rem 1rem;
+}
+
+#publication-changes .pub-change-item.header {
+  padding: 3rem 0 1rem;
 }
 
 #publication-changes .pub-change-item.split {
@@ -44,9 +54,6 @@
   padding-left: .5rem;
 }
 
-#publication-changes .pub-change-item {
-  padding: 20px 5px;
-}
 
 #publication-changes .pub-change-item .column-type {
   padding-left: 1rem;
@@ -90,8 +97,8 @@
 
 /** Modified LAR color - .mlar */
 
-.filter-bar .pill.product.mlar:hover,
-.filter-bar .pill.product.mlar.selected {
+#publication-changes .filter-bar .pill.product.mlar:hover,
+#publication-changes .filter-bar .pill.product.mlar.selected {
   background-color: #288a64;
   background-color: #6d248f;
 }
@@ -141,12 +148,13 @@
 
 #publication-changes .pub-change-item .description {
   flex-basis: 50%;
-  flex-grow: 1;
+  /* flex-grow: 1; */
 }
 
 #publication-changes .pub-change-log {
   min-height: 70vh;
 }
+
 #publication-changes .pub-change-log h3 {
   margin-top: 0;
 }
@@ -159,11 +167,11 @@
 
 #publication-changes .pill {
   font-size: 1.4rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   text-align: center;
 }
 
-.filter-bar .pills {
+#publication-changes .filter-bar .pills {
   padding: 1.5rem 0;
 }
 
@@ -173,10 +181,15 @@
   text-transform: capitalize;
 }
 
+#publication-changes .pub-change-item.header {
+  border-top: 1px solid green;
+  border-top: 1px solid lightgrey;
+}
+
 #publication-changes .pub-change-item > .header {
   width: 33%;
   margin: 0;
-  text-decoration: underline;
+  /* text-decoration: underline; */
   text-decoration-color: grey;
 }
 
@@ -279,7 +292,7 @@
   background: #555;
   border-radius: 10px;
   color: white;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   display: block;
   text-align: center;
 }
@@ -309,10 +322,11 @@
   background-color: #555;
 }
 
-.filter-bar .pills-wrapper h3,
-.filter-bar .pills-wrapper h4,
-.search-wrapper h4 {
+#publication-changes .filter-bar .pills-wrapper h3,
+#publication-changes .filter-bar .pills-wrapper h4,
+#publication-changes .search-wrapper h3 {
   margin-top: 0;
+  margin-bottom: 0;
 }
 
 .filter-bar .pills-wrapper {
@@ -331,4 +345,139 @@
   font-size: 0;
   height: 0;
   display: block
+}
+
+
+
+/* Publication Highlights */
+#publicationHighlights .split {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+#publicationHighlights .split > * {
+  width: 50%;
+  justify-content: space-between;
+}
+
+#publicationHighlights .product-highlights {
+  /* padding-right: 3rem; */
+  /* width: 40%; */
+  display: flex;
+  flex-flow: column nowrap;
+  /* align-items: center; */
+  justify-content: space-between;
+  height: 100%;
+
+}
+
+#publicationHighlights .product-highlights .header,
+#publicationHighlights .change-type-highlights .header {
+  display: flex;
+  align-items: center;
+  margin-top: 0;
+  user-select: none;
+  font-size: 1.7rem;
+}
+
+#publicationHighlights .product-highlights .header .toggle {
+  font-size: 1rem;
+  font-weight: normal;
+  border-radius: 12px;
+  padding: .1rem 1rem;
+  border: 1px solid black;
+  margin: 0 3rem 0 1rem;
+  max-width: 80px;
+  cursor: pointer;
+}
+
+#publicationHighlights .product-highlights .header .toggle:hover {
+  background-color: #4675c2;
+  color: white;
+}
+
+#publication-changes .pub-change-log h3 {
+  font-size: 1.7rem;
+}
+
+
+
+/* UpdateItem */
+
+#publication-changes .update-item {
+  /* padding-left: 2rem; */
+  /* padding-right:  3rem; */
+  /* margin-bottom: 5rem; */
+}
+
+#publication-changes .update-item span:hover {
+  color: #4675c2;
+}
+
+#publication-changes .update-item span {
+  cursor: pointer;
+  user-select: none;
+}
+
+#publication-changes .update-item ul {
+  display: none;
+  margin-top: .5rem;
+  margin-bottom: inherit;
+}
+
+#publication-changes .update-item ul.open {
+  display: block;
+  margin-bottom: inherit;
+}
+
+#publication-changes .update-item.open {
+  margin-bottom: 1.25rem;
+}
+
+#publication-changes .update-item.open .title .text {
+  /* border-bottom: 1px solid #4675c2; */
+  /* padding-bottom: 2px; */
+  color: #4675c2;
+}
+
+#publication-changes .update-item:not(.open) {
+  margin-bottom: 3rem;
+}
+
+#publication-changes .update-item ul.open .date {
+  color: #5465c6
+}
+
+
+#publication-changes .update-item li {
+  line-height: 1.25;
+  padding-right: 3rem;
+}
+
+
+
+/* Change Table */
+#publication-changes .change-table * {
+  border-color: white;
+}
+
+#publication-changes .change-table {
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+#publication-changes .change-table thead tr th {
+  color: white;
+  background: #4675c2;
+}
+
+#publication-changes .change-table tbody tr td {
+  color: black;
+  background: #cfd5ea;
+}
+
+#publication-changes .change-table tr :first-child {
+  width: 65%;
 }

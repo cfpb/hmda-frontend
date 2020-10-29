@@ -45,20 +45,6 @@ export function useChangeLogFilter(initState = defaultState) {
     Object.keys(result).forEach((date) => {
       // Array of Changes on this date
       if (result[date] && result[date].length) {
-        // Type filter
-        if (filterLists.type && filterLists.type.length > 0) {
-          result[date] = result[date].filter(
-            (item) => filterLists.type.indexOf(item.type) > -1
-          )
-        }
-
-        // Product filter
-        if (filterLists.product && filterLists.product.length > 0) {
-          result[date] = result[date].filter(
-            (item) => filterLists.product.indexOf(item.product) > -1
-          )
-        }
-
         // Keyword filter
         // TODO: Offer case sensitive option?
         if (filterLists.keywords && filterLists.keywords.length > 0) {
@@ -83,6 +69,20 @@ export function useChangeLogFilter(initState = defaultState) {
                 hasPartialTextMatch(item.productYear, word) // Matches part of productYear
               )
             })
+          )
+        }
+
+        // Change Type filter
+        if (filterLists.type && filterLists.type.length > 0) {
+          result[date] = result[date].filter(
+            (item) => filterLists.type.indexOf(item.type) > -1
+          )
+        }
+
+        // Product filter
+        if (filterLists.product && filterLists.product.length > 0) {
+          result[date] = result[date].filter(
+            (item) => filterLists.product.indexOf(item.product) > -1
           )
         }
       }

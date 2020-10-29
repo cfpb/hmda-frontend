@@ -6,6 +6,7 @@ import { CATEGORIES, DEFAULT_FILTERS, PRODUCTS, PUB_CHANGELOG_URL } from './cons
 import defaultData from './constants/publicationChangeLog.json'
 import PublicationChangeLogTable from './PublicationChangeLogTable'
 import PublicationFilterBar from './PublicationFilterBar'
+import PublicationHighlights from './PublicationHighlights'
 import { useChangeLogFilter } from './useChangeLogFilter'
 import { useRemoteJSON } from '../common/useRemoteJSON'
 import './PublicationChanges.css'
@@ -52,6 +53,7 @@ const PublicationChanges = () => {
         This includes header changes, data product differences over the years,
         release notes, and information on which product may be best for you.
       </p>
+      <PublicationHighlights data={changeLog} />
       <a
         id='pub-whats-new'
         role='note'
@@ -61,7 +63,7 @@ const PublicationChanges = () => {
         invisible filter anchor
       </a>
       <div className='pub-change-log'>
-        <h3 className='filter header'>Filter Change Log</h3>
+        <h2 className='filter header'>Filter the Change Log</h2>
         <PublicationFilterBar
           filter={filter}
           productOptions={productOptions}

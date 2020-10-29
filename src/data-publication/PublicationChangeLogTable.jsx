@@ -62,7 +62,6 @@ const EmptyState = ({ clear, isEmpty }) => {
 const Header = () => {
   return (
     <>
-      <h3 className='filter header'>Publication Change Log</h3>
       <div className='pub-change-item header split'>
         <h4 className='date header'>Change Date</h4>
         <h4 className='header column-type'>Change Type</h4>
