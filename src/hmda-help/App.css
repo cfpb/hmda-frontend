@@ -1,0 +1,27 @@
+.grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+nav {
+  margin-top: 1.5em;
+  text-align: right;
+}
+
+nav a {
+  margin-right: 2em;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-top: 3rem;
+  max-width: 46rem;
+}
+
+.unstyled-list {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+  padding-left: 0;
+}

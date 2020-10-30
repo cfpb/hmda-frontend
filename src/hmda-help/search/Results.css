@@ -1,0 +1,200 @@
+.SearchResults h2 {
+  font-weight: bold;
+  margin-bottom: 1em;
+  margin-top: 2em;
+}
+.SearchResults table {
+  border-spacing: 0;
+  width: 100%;
+}
+.SearchResults table.institutions {
+  margin: 0 0 2em;
+}
+
+.SearchResults tr.otherData {
+  margin-top: 0;
+}
+
+.SearchResults tr.otherData table {
+  border: none;
+  font-size: 0.8em;
+  margin-bottom: 2.5em;
+}
+
+.SearchResults tr.otherData thead th {
+  background-color: transparent;
+}
+
+.SearchResults tr.otherData td {
+  border-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+}
+
+.SearchResults tr.otherData td td {
+  padding: 1rem 1.5rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.SearchResults thead th {
+  background-color: transparent;
+  border-bottom: 1px solid #d6d7d9;
+  border-top: 0;
+  color: #323a45;
+  font-weight: 700;
+  padding: 1rem 1.5rem;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.SearchResults thead th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+
+.SearchResults td {
+  background-color: #ffffff;
+  border-top: 1px solid #d6d7d9;
+  border-bottom: 0;
+  font-weight: 400;
+  padding: 2rem 1.5rem;
+  vertical-align: top;
+}
+
+.SearchResults td.action {
+  padding: 2rem 1rem;
+}
+
+.SearchResults td span.name {
+  font-weight: bold;
+}
+
+.SearchResults td span.lei {
+  color: #5b616b;
+}
+
+.SearchResults th,
+.SearchResults td {
+  border-left: 0;
+  border-right: 0;
+}
+
+.SearchResults caption {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: 'Merriweather', 'Georgia', 'Cambria', 'Times New Roman', 'Times',
+    serif;
+  margin-bottom: 1.2rem;
+  text-align: left;
+}
+
+.SearchResults .action {
+  text-align: center;
+}
+
+.SearchResults .action a,
+.SearchResults .action a:visited {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background-color: #0071bc;
+  border: 0;
+  border-radius: 2px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 0.9em;
+  line-height: 1;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+}
+
+.SearchResults .action a:hover,
+.SearchResults .action a:focus,
+.SearchResults .action a:visited:hover {
+  background-color: #205493;
+}
+
+.SearchResults .action a:active,
+.SearchResults .action a:visited:focus,
+.SearchResults .action a:visited:active {
+  background-color: #112e51;
+}
+
+.SearchResults button {
+  border: 0;
+  border-radius: 2px;
+  color: #0071bc;
+  cursor: pointer;
+  font-size: 0.9em;
+  line-height: 1;
+  padding: 0;
+}
+
+.SearchResults button:hover,
+.SearchResults button:focus,
+.SearchResults button:visited:focus,
+.SearchResults button:visited:hover {
+  color: #205493;
+}
+
+.SearchResults button:active,
+.SearchResults button:visited:active {
+  color: #112e51;
+}
+
+.SearchResults button.delete,
+.SearchResults button.yes {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background-color: #e31c3d;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 0.9em;
+  font-weight: bold;
+  line-height: 1;
+  padding: 0.5rem 1rem;
+  margin-top: 2px;
+}
+
+.SearchResults button.showOtherFields {
+  display: block;
+  margin-top: 2em;
+  background-color: white;
+}
+
+.SearchResults button.delete:hover,
+.SearchResults button.delete:focus {
+  background-color: #cd2026;
+}
+
+.SearchResults .areYouSure span {
+  display: inline-block;
+  font-size: 1em;
+}
+
+.SearchResults .areYouSure .buttons {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  margin-top: 5px;
+}
+
+.SearchResults .areYouSure .buttons button {
+  margin: 0 5px;
+}
+
+.SearchResults button.yes {
+  color: #0071bc;
+  background-color: white;
+}
+
+.SearchResults .areYouSure button.yes:hover,
+.SearchResults .areYouSure button.yes:focus {
+  background: #205493;
+  color: white;
+}

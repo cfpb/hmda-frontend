@@ -1,0 +1,70 @@
+.inputSubmit,
+.inputSubmit:visited {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background-color: #0071bc;
+  border: 0;
+  border-radius: 2px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.7rem;
+  font-weight: bold;
+  line-height: 1;
+  margin: 3rem 0;
+  padding: 1rem 2rem;
+}
+@media screen and (min-width: 481px) {
+  .inputSubmit,
+  .inputSubmit:visited {
+    width: auto;
+  }
+}
+.inputSubmit:hover,
+.inputSubmit:visited:hover {
+  background-color: #205493;
+}
+.inputSubmit:active,
+.inputSubmit:visited:active {
+  background-color: #112e51;
+}
+.inputSubmit:disabled,
+.inputSubmit:visited:disabled {
+  background-color: #d6d7d9;
+  pointer-events: none;
+}
+.inputSubmit:disabled:hover,
+.inputSubmit:disabled:active,
+.inputSubmit:disabled:focus,
+.inputSubmit:visited:disabled:hover,
+.inputSubmit:visited:disabled:focus,
+.inputSubmit:visited:disabled:active {
+  background-color: #d6d7d9;
+}
+
+
+.inputSubmit.secondary {
+  background-color: #5d3a85;
+  margin-left: 1rem;
+}
+.inputSubmit.secondary:hover,
+.inputSubmit.secondary:visited:hover {
+  background-color: #4a039b;
+}
+.inputSubmit.secondary:active,
+.inputSubmit.secondary:visited:active {
+  background-color: #7f54b0;
+}
+.inputSubmit.secondary:disabled,
+.inputSubmit.secondary:visited:disabled {
+  background-color: #aa9dba;
+  pointer-events: none;
+}
+.inputSubmit.secondary:disabled:hover,
+.inputSubmit.secondary:disabled:active,
+.inputSubmit.secondary:disabled:focus,
+.inputSubmit.secondary:visited:disabled:hover,
+.inputSubmit.secondary:visited:disabled:focus,
+.inputSubmit.secondary:visited:disabled:active {
+  background-color: #d6d7d9;
+}

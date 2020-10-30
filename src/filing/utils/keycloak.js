@@ -7,6 +7,7 @@ let keycloak = null
 
 const setKeycloak = cloak => {
   keycloak = cloak
+  return keycloak
 }
 
 const getKeycloak = () => {
@@ -61,7 +62,8 @@ const mockKeycloak = {
   init: () => new Promise((res) => res(true)),
   updateToken: () => ({ success: () => ({ error: () => false }) }),
   logout: () => window.location.href = '/filing',
-  login: () => window.location.href += 'institutions'
+  login: () => window.location.href += 'institutions',
+  hasResourceRole: () => true
 }
 
 export {

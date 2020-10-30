@@ -1,4 +1,4 @@
-import { withFormData, isCI } from "../../support/helpers"
+import { withFormData, isProd } from "../../support/helpers"
 
 const { HOST, TEST_DELAY, ENVIRONMENT } = Cypress.env()
 
@@ -45,7 +45,7 @@ describe("Rate Spread Tool", function() {
 })
 
 describe("Rate Spread API", () => {
-  if(isCI(ENVIRONMENT)) it("Does not run on CI")
+  if(!isProd(ENVIRONMENT)) it("Only runs in Production")
   else {
     it("Generates rates from file", () => {
       let response

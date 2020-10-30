@@ -14,15 +14,15 @@ addons:
     
 cache: 
   directories:
-    - ~/.cache
-    - ~/.cache/Cypress
+    - $HOME/.cache
+    - $HOME/.cache/Cypress
     - $HOME/.m2/repository
     - $HOME/.sbt
     - $HOME/.ivy2
     - $HOME/backend
 
 env:
-  - APP_PORT=2551 CASSANDRA_CLUSTER_HOSTS=localhost CYPRESS_HOST=http://localhost:3000 CYPRESS_ENVIRONMENT=CI HMDA_RUNTIME_MODE=dev 
+  - APP_PORT=2551 CASSANDRA_CLUSTER_HOSTS=localhost CYPRESS_HOST=http://localhost:3000 CYPRESS_ENVIRONMENT=CI HMDA_RUNTIME_MODE=dev INSTITUTION_PORT=3010
 
 # Run the Platform
 before_install:
@@ -31,20 +31,25 @@ before_install:
   # Reset the repo so we can have a conflict-less pull
   - git reset --hard
   - git clean -f
-  - git pull
+  - git pull --rebase
   # Trick to avoid unnecessary cache updates
   - find $HOME/.sbt -name "*.lock" | xargs -r rm
   # Workaround for broken sbt-launch download
   - "[ -f $HOME/.sbt/launchers/1.3.10/sbt-launch.jar ] || curl -L --create-dirs -o $HOME/.sbt/launchers/1.3.10/sbt-launch.jar https://repo1.maven.org/maven2/org/scala-sbt/sbt-launch/1.3.10/sbt-launch.jar"
   - sbt ++$TRAVIS_SCALA_VERSION  "project hmda-platform" "run" &
+  - ../cypress/wait-for-server.sh platform
+  - sbt ++$TRAVIS_SCALA_VERSION  "project institutions-api" "run" & 
+  - ../cypress/wait-for-server.sh institutions
   - cd ..
 
 install:
   - yarn install --offline
 
 script:
+  - lsof -i -P -n | grep LISTEN # List port listeners
   - yarn ci &       # Start Frontend
   - cypress install # Ensure cypress is available in Travis environment
   # Verify dev server availability, create test data, run test suite.
-  - ./cypress/wait-for-server.sh && yarn ci-data && yarn cypress run $CONFIG $RECORD
+  - ./cypress/wait-for-server.sh frontend && yarn ci-data
+  - yarn cypress run $CONFIG $RECORD # Run all tests
   - kill $(jobs -p) || true # Cleanup

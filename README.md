@@ -99,6 +99,8 @@ The [HMDA Documentation](https://ffiec.cfpb.gov/documentation/) site provides pr
 ### Running Locally
 Several components of the Frontend (ex. Filing, Data Browser) require a connection to the [HMDA Platform](https://github.com/cfpb/hmda-platform) in order to operate.  You can find instructions for the running the HMDA Platform locally [here](https://github.com/cfpb/hmda-platform#running-with-sbt).
 
+HMDA Help requires a connection to the [HMDA Institutions API](https://github.com/cfpb/hmda-platform/tree/master/institutions-api) in order to operate.  You can find instructions for the running the HMDA Institutions API locally [in the README](https://github.com/cfpb/hmda-platform/blob/master/institutions-api/README.md).  Note that having the HMDA Platform running is a pre-requisite to starting the HDMA Institutions API. 
+
 If your development does not require this integration, `yarn start` will run the development server, opening a browser window to http://localhost:3000.
 
 #### Integrating with the Filing application
