@@ -25,7 +25,8 @@ export function urlExists(url) {
     const xhr = new XMLHttpRequest()
 
     xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4) resolve({ url, status: xhr.status === 200 })
+      if (xhr.readyState === 4)
+        resolve({ url, status: xhr.status < 400, statusCode: xhr.status })
     }
 
     xhr.open('HEAD', url)
