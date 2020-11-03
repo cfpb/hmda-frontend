@@ -43,8 +43,8 @@ describe('Data Browser 2018', function () {
 
       // Test validity of download link
       if(isProd(HOST) || isBeta(HOST)){
-        cy.get('.QueryButton:first').dataUrl().then(({ status }) => {
-          assert.isTrue(status, 'Has valid download link.')
+        cy.get('.QueryButton:first').dataUrl().then(({ status, statusCode, url }) => {
+          assert.isTrue(status, `\nURL: ${url}\nStatus Code: ${statusCode}\nHas valid download link`)
         })
       }
     })
@@ -77,8 +77,8 @@ describe('Data Browser 2018', function () {
 
       // Test validity of download link
       if(isProd(HOST) || isBeta(HOST)){
-        cy.get('.QueryButton:first').dataUrl().then(({ status }) => {
-          assert.isTrue(status, 'Has valid download link.')
+        cy.get('.QueryButton:first').dataUrl().then(({ status, statusCode, url }) => {
+          assert.isTrue(status, `\nURL: ${url}\nStatus Code: ${statusCode}\nHas valid download link`)
         })
       }
     })
@@ -121,8 +121,8 @@ describe('Data Browser 2018', function () {
 
       // Test validity of download link
       if(isProd(HOST) || isBeta(HOST)){
-        cy.get('.QueryButton:first').dataUrl().then(({ status }) => {
-          assert.isTrue(status, 'Has valid download link.')
+        cy.get('.QueryButton:first').dataUrl().then(({ status, statusCode, url }) => {
+          assert.isTrue(status, `\nURL: ${url}\nStatus Code: ${statusCode}\nHas valid download link`)
         })
       }
     })
@@ -165,8 +165,8 @@ describe('Data Browser 2018', function () {
 
       // Test validity of download link
       if(isProd(HOST) || isBeta(HOST)){
-        cy.get('.QueryButton:first').dataUrl().then(({ status }) => {
-          assert.isTrue(status, 'Has valid download link.')
+        cy.get('.QueryButton:first').dataUrl().then(({ status, statusCode, url }) => {
+          assert.isTrue(status, `\nURL: ${url}\nStatus Code: ${statusCode}\nHas valid download link`)
         })
       }
     })
