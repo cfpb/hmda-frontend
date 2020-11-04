@@ -64,6 +64,6 @@ export function useRemoteJSON(sourceUrl, options = {}) {
 
 const checkFileExists = (url) =>
   fetch(url, { method: 'head' }).then((res) => ({
-    success: res.status === 200,
+    success: res.status < 400,
     message: res.statusText,
   }))
