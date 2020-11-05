@@ -58,16 +58,43 @@ const Home = ({ config }) => {
             <ul>
               <li>Filing Instructions Guide</li>
               <ul>
-                {[2021, 2020, 2019, 2018, 2017].map(year => (
-                  <li>
-                    <a
-                      href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${year}-hmda-fig.pdf`}
-                      download={true}
-                    >
-                      For data collected in {year}
-                    </a>
-                  </li>
-                ))}                              
+                {[2021, 2020, 2019, 2018, 2017].map(year => {
+                  if (year === 2018) {
+                    return (
+                      <li>
+                        For data collected in {year}
+                        <ul>
+                          <li key={year + '-hmda-rule'}>
+                            <a
+                              href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2018-hmda-fig-2018-hmda-rule.pdf`}
+                              download={true}
+                            >
+                              incorporating the 2018 HMDA rule
+                            </a>
+                          </li>
+                          <li key={year}>
+                            <a
+                              href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${year}-hmda-fig.pdf`}
+                              download={true}
+                            >
+                              prior to the 2018 HMDA rule
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    )
+                  }
+                  return (
+                    <li key={year}>
+                      <a
+                        href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${year}-hmda-fig.pdf`}
+                        download={true}
+                      >
+                        For data collected in {year}
+                      </a>
+                    </li>
+                  )
+                })}                             
                 <li>
                   For data collected in or before 2016, please visit the{' '}
                   <a
