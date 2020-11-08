@@ -189,7 +189,6 @@
 #publication-changes .pub-change-item > .header {
   width: 33%;
   margin: 0;
-  /* text-decoration: underline; */
   text-decoration-color: grey;
 }
 
@@ -214,20 +213,9 @@
 #publication-changes .pub-change-item .type.notice,
 .filter-bar .pill.type.notice:hover,
 .filter-bar .pill.type.notice.selected {
-  background-color: #cfb014;
+  background-color: #a58d12;
   color: white;
 }
-
-/* .filter-bar .type.correction.selected:hover,
-.filter-bar .type.update.selected:hover,
-.filter-bar .type.notice.selected:hover,
-.filter-bar .type.release.selected:hover,
-.filter-bar .product.disclosure.selected:hover,
-.filter-bar .product.mlar.selected:hover,
-.filter-bar .product.datasets.selected:hover,
-.filter-bar .product.reports.selected:hover {
-  background: #b8aeae;
-} */
 
 #publication-changes .empty-state {
   margin-top: 3rem;
@@ -239,8 +227,6 @@
   display: flex;
   margin-right: 0.5rem;
   padding: 0.5rem;
-  background: #b8aeae;
-  color: white;
   text-align: center;
   position: relative;
   border-radius: 10px;
@@ -248,6 +234,23 @@
   text-transform: capitalize;
   user-select: none;
 }
+
+.filter-bar .pill {
+  border: 2px solid black;
+  color: black;
+  background: white;
+}
+
+.filter-bar .pill:hover,
+.filter-bar .pill.selected {
+  color: white;
+  border-color: transparent;
+}
+
+.filter-bar .pill.selected {
+  text-decoration: underline;
+}
+
 
 .pub-change-item .pill {
   max-width: 100px !important;
@@ -405,13 +408,6 @@
 
 
 /* UpdateItem */
-
-#publication-changes .update-item {
-  /* padding-left: 2rem; */
-  /* padding-right:  3rem; */
-  /* margin-bottom: 5rem; */
-}
-
 #publication-changes .update-item span:hover {
   color: #4675c2;
 }
