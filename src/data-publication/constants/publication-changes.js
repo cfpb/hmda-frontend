@@ -1,11 +1,13 @@
-export const PRODUCTS = ['mlar', 'datasets', 'aggregate', 'disclosure']
+export const PRODUCTS = ['mlar', 'datasets', 'reports']
+// export const PRODUCTS = ['mlar', 'datasets', 'aggregate', 'disclosure']
 
 
 export const PRODUCT_NAMES = {
   mlar: 'Modified LAR',
   datasets: 'Datasets',
-  aggregate: 'Aggregate Reports',
-  disclosure: 'Disclosure Reports',
+  reports: 'Reports',
+  // aggregate: 'Aggregate Reports',
+  // disclosure: 'Disclosure Reports',
 }
 
 

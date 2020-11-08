@@ -6,7 +6,6 @@
       "type": "release",
       "product": "mlar",
       "productYear": "2018",
-      "description": "Hamburger wallet grape sinus breeze",
       "description": "When we love, we always strive to become better than we are. When we strive to become better than we are, everything around us becomes better too.",
       "tags": ["tag-one"]
     },
@@ -14,7 +13,7 @@
       "date": "01/01/21",
       "changeDate": "01/01/21",
       "type": "update",
-      "product": "disclosure",
+      "product": "reports",
       "description": "Disclosure reports are coming soon!",
       "tags": ["tag-one"]
     },
@@ -22,7 +21,7 @@
       "date": "12/31/20",
       "changeDate": "12/31/20",
       "type": "update",
-      "product": "aggregate",
+      "product": "reports",
       "description": "Aggregate reports Updated!",
       "tags": ["tag-expose"]
     },
@@ -30,7 +29,7 @@
       "date": "12/31/20",
       "changeDate": "12/31/20",
       "type": "update",
-      "product": "aggregate",
+      "product": "reports",
       "description": "Another reports Updated!",
       "tags": ["tag-expose"]
     },
@@ -38,7 +37,7 @@
       "date": "12/31/20",
       "changeDate": "12/31/20",
       "type": "correction",
-      "product": "aggregate",
+      "product": "reports",
       "description": "Aggregate reports corrected!",
       "tags": ["tag-expose"]
     },

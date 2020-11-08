@@ -122,15 +122,15 @@
   color: #6d9cd8;
 }
 
-.filter-bar .pill.product.aggregate:hover,
-.filter-bar .pill.product.aggregate.selected {
+.filter-bar .pill.product.reports:hover,
+.filter-bar .pill.product.reports.selected {
   background-color: #4aa791;
   background-color: #0ca59b;
 }
-#publication-changes .pub-change-item .product.aggregate:hover,
-#publication-changes .pub-change-item .product.aggregate.selected,
-#publication-changes .pub-change-item .product.aggregate.selected::before,
-#publication-changes .pub-change-item .product.aggregate.selected::after {
+#publication-changes .pub-change-item .product.reports:hover,
+#publication-changes .pub-change-item .product.reports.selected,
+#publication-changes .pub-change-item .product.reports.selected::before,
+#publication-changes .pub-change-item .product.reports.selected::after {
   color: #4aa791;
   color: #0ca59b;
 }
@@ -225,7 +225,7 @@
 .filter-bar .product.disclosure.selected:hover,
 .filter-bar .product.mlar.selected:hover,
 .filter-bar .product.datasets.selected:hover,
-.filter-bar .product.aggregate.selected:hover {
+.filter-bar .product.reports.selected:hover {
   background: #b8aeae;
 } */
 
