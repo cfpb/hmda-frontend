@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { PRODUCTS, PRODUCT_NAMES } from './constants/publication-changes'
 
 const HEADERS = {
-  CHANGE: ['Completed', 'Date'],
-  UPCOMING: ['Upcoming', 'Date'],
+  update: ['Update', 'Date'],
+  correction: ['Correction', 'Date'],
+  release: ['Release', 'Date'],
+  notice: ['Notice', 'Date'],
 }
 
 // Organize the change log data into highlights
@@ -12,8 +14,6 @@ const collectHighlights = data => {
 
   const result = {
     product: {},
-    completed: [],
-    upcoming: []
   }
 
   const addProduct = (product, value) => {
@@ -28,14 +28,10 @@ const collectHighlights = data => {
       // Collect changes per Product
       addProduct(item.product, item)
 
-      // Collect recent updates
-      if (item.type !== 'future' && result.completed.length < LIMIT) {
-        result.completed.push(item)
-      }
-
-      // Collect upcoming updates
-      if (item.type === 'future' && result.upcoming.length < LIMIT) {
-        result.upcoming.push(item)
+      // Collect changes by Change Type
+      if (!result[item.type]) result[item.type] = []
+      if (result[item.type].length < LIMIT) {
+        result[item.type].push(item)
       }
     })
     
@@ -56,6 +52,7 @@ const PublicationHighlights = ({ data }) => {
   )
 
   const highlights = collectHighlights(data)
+  const changeTypes = Object.keys(highlights).filter(key => key !== 'product')
 
   const toggleOpen = (key) => {
     setOpenUpdates((state) => {
@@ -100,14 +97,9 @@ const PublicationHighlights = ({ data }) => {
         </div>
         <div className='change-type-highlights'>
           <h3 className='header'>by Change Type</h3>
-          <ChangeTable
-            changes={highlights.completed}
-            headers={HEADERS.CHANGE}
-          />
-          <ChangeTable
-            changes={highlights.upcoming}
-            headers={HEADERS.UPCOMING}
-          />
+          {changeTypes.map((cType) => (
+            <ChangeTable changes={highlights[cType]} headers={HEADERS[cType]} />
+          ))}
         </div>
       </div>
     </div>
