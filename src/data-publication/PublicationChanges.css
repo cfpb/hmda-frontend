@@ -463,9 +463,13 @@
 
 #publication-changes .change-table tbody tr td {
   color: black;
-  background: #cfd5ea;
+  background: #e3e7f1;
 }
 
 #publication-changes .change-table tr :first-child {
   width: 65%;
+}
+
+#publication-changes .change-table .date {
+  min-width: 185px;
 }
