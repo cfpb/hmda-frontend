@@ -40,39 +40,10 @@ const collectHighlights = data => {
   return result
 }
 
-const DEFAULT_OPEN = true
-
-const PublicationHighlights = ({ data }) => {
-  const [expandAll, setExpandAll] = useState(false)
-  const [openUpdates, setOpenUpdates] = useState(
-    PRODUCTS.reduce((acc, p) => {
-      acc[p] = DEFAULT_OPEN
-      return acc
-    }, {})
-  )
+const PublicationHighlights = ({ data, filter }) => {
 
   const highlights = collectHighlights(data)
   const changeTypes = Object.keys(highlights).filter(key => key !== 'product')
-
-  const toggleOpen = (key) => {
-    setOpenUpdates((state) => {
-      const nextState = { ...state, [key]: state[key] ? false : true }
-      if (Object.keys(nextState).some(key => nextState[key])) setExpandAll(false)
-      else setExpandAll(true)
-
-      return { ...state, [key]: state[key] ? false : true }
-    })
-  }
-  
-  const toggleExpandAll = () => {
-    setOpenUpdates((state) =>
-      Object.keys(state).reduce((acc, key) => {
-        acc[key] = expandAll
-        return acc
-      }, {})
-    )
-    setExpandAll(!expandAll)
-  }
 
   return (
     <div id='publicationHighlights'>
@@ -81,17 +52,12 @@ const PublicationHighlights = ({ data }) => {
         <div className='product-highlights'>
           <h3 className='header'>
             <span>by Product</span>
-            <span className='toggle' onClick={toggleExpandAll}>
-              {expandAll ? 'Expand' : 'Collapse'}
-            </span>
           </h3>
           {PRODUCTS.map((productId, idx) => (
-            <UpdateItem
+            <ProductHighlight
               key={`${productId}-${idx}`}
-              data={highlights.product[productId]}
-              title={PRODUCT_NAMES[productId]}
-              open={openUpdates[productId]}
-              toggle={() => toggleOpen(productId)}
+              items={highlights.product[productId]}
+              name={PRODUCT_NAMES[productId]}
             />
           ))}
         </div>
@@ -129,25 +95,36 @@ const ChangeTable = ({ changes, headers }) => {
   )
 }
 
-const UpdateItem = ({ data, title, open, toggle }) => {
-  if (!data || !data.length) return null
+const ProductHighlight = ({ items, name, open, toggle }) => {
+  if (!items || !items.length) return null
 
   const openClass = open ? 'open' : ''
 
   return (
-    <div className={'update-item ' + openClass}>
-      <span className='title' onClick={toggle}>
-        <span className="icon">{open ? '▾' : '▸'}</span>
-        <span className="text"> {title}</span>
+    <div className={'product ' + openClass}>
+      <span className='name' onClick={toggle}>
+        <span className='text'> {name}</span>
       </span>
-      <ul className={openClass || undefined}>
-        {data.map((item, idx) => (
-          <li key={idx}>
-            {/* <div className='date'>{item.changeDateOrdinal}</div> */}
-            {item.description}
-          </li>
+      <div>
+        {items.map((item, idx) => (
+          <Accordion key={idx} header={item.headline} body={item.description} />
         ))}
-      </ul>
+      </div>
+    </div>
+  )
+}
+
+const Accordion = ({ header, body }) => {
+  const [open, setOpen] = useState(false)
+  const openClass = open ? 'open' : ''
+
+  return (
+    <div className={'accordion ' + openClass}>
+      <span className='title' onClick={() => setOpen(!open)}>
+        <span className='icon'>{open ? '▾' : '▸'}</span>
+        <span className='text'> {header}</span>
+      </span>
+      <span className='body'>{body}</span>
     </div>
   )
 }

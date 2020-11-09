@@ -6,7 +6,8 @@
       "type": "release",
       "product": "mlar",
       "productYear": "2018",
-      "description": "Hamburger wallet grape sinus breeze",
+      "description": "A longer, more detailed, description should be provided in this field that provides the specifics about the change.",
+      "headline": "2018 Modified LAR has been regenerated.",
       "tags": ["tag-one"]
     },
     {
@@ -14,7 +15,8 @@
       "changeDate": "01/01/21",
       "type": "update",
       "product": "reports",
-      "description": "Disclosure reports are coming soon!",
+      "description": "A longer, more detailed, description should be provided in this field that provides the specifics about the change.",
+      "headline": "Disclosure reports are coming soon!",
       "tags": ["tag-one"]
     },
     {
@@ -22,7 +24,8 @@
       "changeDate": "12/31/20",
       "type": "update",
       "product": "reports",
-      "description": "Aggregate reports Updated!",
+      "description": "A longer, more detailed, description should be provided in this field that provides the specifics about the change.",
+      "headline": "Aggregate reports Updated!",
       "tags": ["tag-expose"]
     },
     {
@@ -30,7 +33,8 @@
       "changeDate": "12/31/20",
       "type": "update",
       "product": "reports",
-      "description": "Another reports Updated!",
+      "description": "A longer, more detailed, description should be provided in this field that provides the specifics about the change.",
+      "headline": "Another reports Updated!",
       "tags": ["tag-expose"]
     },
     {
@@ -38,7 +42,8 @@
       "changeDate": "12/31/20",
       "type": "correction",
       "product": "reports",
-      "description": "Aggregate reports corrected!",
+      "description": "A longer, more detailed, description should be provided in this field that provides the specifics about the change.",
+      "headline": "Aggregate reports corrected!",
       "tags": ["tag-expose"]
     },
     {
@@ -46,7 +51,8 @@
       "changeDate": "04/31/20",
       "type": "notice",
       "product": "datasets",
-      "description": "2017 Ultimate LAR/TS reports are coming soon!",
+      "description": "A longer, more detailed, description should be provided in this field that provides the specifics about the change.",
+      "headline": "2017 Ultimate LAR/TS reports are coming soon!",
       "tags": ["tag-chump"]
     },
     {
@@ -54,7 +60,8 @@
       "changeDate": "04/31/20",
       "type": "correction",
       "product": "datasets",
-      "description": "Datasets corrected!",
+      "description": "A longer, more detailed, description should be provided in this field that provides the specifics about the change.",
+      "headline": "Datasets corrected!",
       "tags": ["tag-chump"]
     },
     {
@@ -62,7 +69,8 @@
       "changeDate": "03/31/20",
       "type": "update",
       "product": "mlar",
-      "description": "2019 Modified LAR reports were updated!",
+      "description": "A longer, more detailed, description should be provided in this field that provides the specifics about the change.",
+      "headline": "2019 Modified LAR reports were updated!",
       "tags": ["tag-and-1"]
     },
     {
@@ -70,7 +78,8 @@
       "changeDate": "03/31/20",
       "type": "release",
       "product": "mlar",
-      "description": "2019 Modified LAR reports were released",
+      "description": "A longer, more detailed, description should be provided in this field that provides the specifics about the change.",
+      "headline": "2019 Modified LAR reports were released",
       "tags": ["tag-and-1"]
     }
   ]
