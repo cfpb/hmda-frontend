@@ -11,6 +11,8 @@
   "maintenanceMode": false,
   "filingAnnouncement": null,
   "filingPeriods": [
+    "2021-Q1",
+    "2021",
     "2020-Q3",
     "2020-Q2",
     "2020-Q1",
@@ -24,6 +26,8 @@
     "Q3": "10/01 - 11/30",
     "ANNUAL": "01/01 - 03/02",
     "PREVIEW": [
+      "2021-Q1",
+      "2021",
       "2020"
     ]
   },
