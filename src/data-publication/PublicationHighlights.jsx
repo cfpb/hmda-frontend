@@ -84,9 +84,9 @@ const ChangeTable = ({ changes, headers }) => {
       </thead>
       <tbody>
         {!changes.length && <tr><td colSpan='2'>No entries</td></tr>}
-        {changes.map(({ changeDateOrdinal, description }, idx) => (
+        {changes.map(({ changeDateOrdinal, headline }, idx) => (
           <tr key={`change-${idx}`}>
-            <td className='description'>{description}</td>
+            <td className='description'>{headline}</td>
             <td className='date'>{changeDateOrdinal}</td>
           </tr>
         ))}
