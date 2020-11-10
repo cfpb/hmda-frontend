@@ -28,7 +28,7 @@ describe('Keycloak', () => {
         const institutionError = '#institutions .hmda-error-message'
 
         cy.findByText('Create an account').click()
-        cy.findByText(registerText).should('be', 'disabled')
+        cy.findByText(registerText).should('be.disabled')
         cy.findByLabelText('First name').type('First')
         cy.findByLabelText('Last name').type('Last')
   
@@ -41,7 +41,6 @@ describe('Keycloak', () => {
         cy.get(institutionError).should('exist')
         cy.findByText("Select your institution").should('exist')
         cy.get('#institutions li label').first().click()
-        cy.findByText(registerText).should('be', 'disabled')
   
         // Validates password
         cy.findByLabelText("Password").type(formPassword)
@@ -51,7 +50,7 @@ describe('Keycloak', () => {
         cy.contains(passwordMismatch).should('not.be.visible')
   
         // Able to submit once form entries are valid
-        cy.findByText(registerText).should('not.be', 'disabled').click()
+        cy.findByText(registerText).should('not.be.disabled').click()
 
         // Blocks re-registration of existing account
         cy.findByText('• This email already exists.')
