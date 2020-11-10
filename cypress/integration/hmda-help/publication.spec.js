@@ -3,6 +3,7 @@ import { isCI, isProd } from '../../support/helpers'
 const {
   HOST,
   ENVIRONMENT,
+  AUTH_BASE_URL,
   HH_USERNAME,
   HH_PASSWORD,
   HH_INSTITUTION,
