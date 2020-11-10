@@ -258,8 +258,9 @@ class Report extends React.Component {
   makeHeadingText(report) {
     if (!report) return null
     const suppressTable = report.year !== '2017'
+    const irsCsvYear = this.props.match.params.year
     let table = report.table
-    if(table === 'IRSCSV') return 'Home Mortgage Disclosure Act Institution Register Summary for 2018'
+    if(table === 'IRSCSV') return `Home Mortgage Disclosure Act Institution Register Summary for ${irsCsvYear}`
     if (table === 'IRS') table = 'R1'
     let tableText = suppressTable ? '' : `Table ${table}: `
     return `${tableText}${report.description}${
