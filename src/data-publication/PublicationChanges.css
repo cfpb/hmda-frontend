@@ -132,14 +132,22 @@
 }
 
 #publication-changes .pub-change-item .product.selected {
-  font-weight: 400;
+  font-weight: bold;
 }
 
-#publication-changes .pub-change-item .product.selected::before,
-#publication-changes .pub-change-item .product.selected::before {
-  /* content: '◆'; */
+
+/* #publication-changes .pub-change-item .product.selected::before {
+  content: '◆';
   margin: auto 5px;
 }
+
+#publication-changes .pub-change-item .product.mlar.selected::before {
+  content: '•';
+}
+
+#publication-changes .pub-change-item .product.reports.selected::before {
+  content: '∆';
+} */
 
 
 #publication-changes .pub-change-item .description {
@@ -479,13 +487,15 @@
   margin-bottom: 1.25rem;
 }
 
-#publication-changes .accordion .link {
+#publication-changes .accordion .link,
+#publication-changes .change-table .link {
   cursor: pointer;
   color: #4675c2;
   text-decoration: underline;
 }
 
-#publication-changes .accordion .link:hover {
+#publication-changes .accordion .link:hover,
+#publication-changes .change-table .link:hover {
   text-decoration: double underline;
 }
 

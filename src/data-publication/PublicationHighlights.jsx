@@ -65,7 +65,11 @@ const PublicationHighlights = ({ data, filter }) => {
         <div className='change-type-highlights'>
           <h3 className='header'>by Change Type</h3>
           {changeTypes.map((cType) => (
-            <ChangeTable changes={highlights[cType]} headers={HEADERS[cType]} />
+            <ChangeTable
+              changes={highlights[cType]}
+              headers={HEADERS[cType]}
+              filter={filter}
+            />
           ))}
         </div>
       </div>
@@ -73,7 +77,7 @@ const PublicationHighlights = ({ data, filter }) => {
   )
 }
 
-const ChangeTable = ({ changes, headers }) => {
+const ChangeTable = ({ changes, headers, filter }) => {
   return (
     <table className='change-table'>
       <thead>
@@ -85,9 +89,10 @@ const ChangeTable = ({ changes, headers }) => {
       </thead>
       <tbody>
         {!changes.length && <tr><td colSpan='2'>No entries</td></tr>}
-        {changes.map(({ changeDateOrdinal, headline }, idx) => (
+        {changes.map(({ changeDateOrdinal, headline, tags }, idx) => (
           <tr key={`change-${idx}`}>
             <td className='description'>{headline}</td>
+            {/* <td className='description'>{addFilterLinks(headline, tags, filter)}</td> */}
             <td className='date'>{changeDateOrdinal}</td>
           </tr>
         ))}
@@ -108,7 +113,7 @@ const ProductHighlight = ({ items, name, filter }) => {
         {items.map((item, idx) => (
           <Accordion key={idx} 
             header={item.headline} 
-            body={addFilterLinks(item, filter)} 
+            body={addFilterLinks(item.description, item.tags, filter)} 
             />
         ))}
       </div>
@@ -117,10 +122,10 @@ const ProductHighlight = ({ items, name, filter }) => {
 }
 
 
-function addFilterLinks(item, filter) {
-  let infused = <>{item.description}</>
-  item.tags.forEach(tag => {
-    let parts = item.description.replace(tag, "$_INJECT").split(" ")
+function addFilterLinks(content, tags, filter) {
+  let infused = <>{content}</>
+  tags.forEach(tag => {
+    let parts = content.replace(tag, "$_INJECT").split(" ")
     parts = parts.map(part => {
       if (part.indexOf('$_INJECT') > -1) {
         const remainder = part.replace('$_INJECT', '') // Preserve trailing punctuation
