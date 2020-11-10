@@ -6,7 +6,6 @@ const {
   HH_USERNAME,
   HH_PASSWORD,
   HH_INSTITUTION,
-  HH_AUTH_URL,
   HH_AUTH_REALM,
   HH_AUTH_CLIENT_ID
 } = Cypress.env()
