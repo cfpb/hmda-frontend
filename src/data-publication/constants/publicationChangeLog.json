@@ -6,81 +6,81 @@
       "type": "release",
       "product": "mlar",
       "productYear": "2018",
-      "description": "A longer, more detailed, description should be provided in this field that provides the specifics about the change.",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam reprehenderit commodi magni sapiente!",
       "headline": "2018 Modified LAR has been regenerated.",
-      "tags": ["tag-one"]
+      "tags": ["sapiente"]
     },
     {
       "date": "01/01/21",
       "changeDate": "01/01/21",
       "type": "update",
       "product": "reports",
-      "description": "A longer, more detailed, description should be provided in this field that provides the specifics about the change.",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab asperiores excepturi dicta sit.",
       "headline": "Disclosure reports are coming soon!",
-      "tags": ["tag-one"]
+      "tags": ["asperiores"]
     },
     {
       "date": "12/31/20",
       "changeDate": "12/31/20",
       "type": "update",
       "product": "reports",
-      "description": "A longer, more detailed, description should be provided in this field that provides the specifics about the change.",
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam quo voluptatem aliquam eos!",
       "headline": "Aggregate reports Updated!",
-      "tags": ["tag-expose"]
+      "tags": ["voluptatem"]
     },
     {
       "date": "12/31/20",
       "changeDate": "12/31/20",
       "type": "update",
       "product": "reports",
-      "description": "A longer, more detailed, description should be provided in this field that provides the specifics about the change.",
+      "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae maxime nihil ex perferendis cupiditate!",
       "headline": "Another reports Updated!",
-      "tags": ["tag-expose"]
+      "tags": ["maxime"]
     },
     {
       "date": "12/31/20",
       "changeDate": "12/31/20",
       "type": "correction",
       "product": "reports",
-      "description": "A longer, more detailed, description should be provided in this field that provides the specifics about the change.",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci veniam ullam atque.",
       "headline": "Aggregate reports corrected!",
-      "tags": ["tag-expose"]
+      "tags": ["adipisci"]
     },
     {
       "date": "04/31/20",
       "changeDate": "04/31/20",
       "type": "notice",
       "product": "datasets",
-      "description": "A longer, more detailed, description should be provided in this field that provides the specifics about the change.",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, ullam aliquid?",
       "headline": "2017 Ultimate LAR/TS reports are coming soon!",
-      "tags": ["tag-chump"]
+      "tags": ["ullam"]
     },
     {
       "date": "04/31/20",
       "changeDate": "04/31/20",
       "type": "correction",
       "product": "datasets",
-      "description": "A longer, more detailed, description should be provided in this field that provides the specifics about the change.",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione quas excepturi assumenda.",
       "headline": "Datasets corrected!",
-      "tags": ["tag-chump"]
+      "tags": ["quas"]
     },
     {
       "date": "03/31/20",
       "changeDate": "03/31/20",
       "type": "update",
       "product": "mlar",
-      "description": "A longer, more detailed, description should be provided in this field that provides the specifics about the change.",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi commodi voluptatum quae aliquam.",
       "headline": "2019 Modified LAR reports were updated!",
-      "tags": ["tag-and-1"]
+      "tags": ["nisi"]
     },
     {
       "date": "03/31/20",
       "changeDate": "03/31/20",
       "type": "release",
       "product": "mlar",
-      "description": "A longer, more detailed, description should be provided in this field that provides the specifics about the change.",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab reprehenderit ullam accusantium?",
       "headline": "2019 Modified LAR reports were released",
-      "tags": ["tag-and-1"]
+      "tags": ["accusantium"]
     }
   ]
 }

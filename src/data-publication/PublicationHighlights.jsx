@@ -58,6 +58,7 @@ const PublicationHighlights = ({ data, filter }) => {
               key={`${productId}-${idx}`}
               items={highlights.product[productId]}
               name={PRODUCT_NAMES[productId]}
+              filter={filter}
             />
           ))}
         </div>
@@ -95,24 +96,65 @@ const ChangeTable = ({ changes, headers }) => {
   )
 }
 
-const ProductHighlight = ({ items, name, open, toggle }) => {
+const ProductHighlight = ({ items, name, filter }) => {
   if (!items || !items.length) return null
 
-  const openClass = open ? 'open' : ''
-
   return (
-    <div className={'product ' + openClass}>
-      <span className='name' onClick={toggle}>
+    <div className='product'>
+      <span className='name'>
         <span className='text'> {name}</span>
       </span>
       <div>
         {items.map((item, idx) => (
-          <Accordion key={idx} header={item.headline} body={item.description} />
+          <Accordion key={idx} 
+            header={item.headline} 
+            body={addFilterLinks(item, filter)} 
+            />
         ))}
       </div>
     </div>
   )
 }
+
+
+function addFilterLinks(item, filter) {
+  let infused = <>{item.description}</>
+  item.tags.forEach(tag => {
+    let parts = item.description.replace(tag, "$_INJECT").split(" ")
+    parts = parts.map(part => {
+      if (part.indexOf('$_INJECT') > -1) {
+        const remainder = part.replace('$_INJECT', '') // Preserve trailing punctuation
+        return (
+          <>
+            <Linked text={tag} filter={filter} />
+            {remainder}{' '}
+          </>
+        )
+      }
+      return part + " "
+    })
+    infused = <>{parts}</>
+  })
+  return infused
+}
+
+
+const Linked = ({ text, filter }) => {
+  const handleClick = () => {
+    filter.add('keywords', text)
+    document
+      .getElementById('pub-whats-new')
+      .scrollIntoView({ behavior: 'smooth' })
+    setTimeout(() => document.getElementById('keyword-input').focus(), 500)
+  }
+
+  return (
+    <span className='link' onClick={handleClick}>
+      {text}
+    </span>
+  )
+}
+
 
 const Accordion = ({ header, body }) => {
   const [open, setOpen] = useState(false)

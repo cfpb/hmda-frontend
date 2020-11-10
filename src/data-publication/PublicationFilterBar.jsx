@@ -26,9 +26,10 @@ const PublicationFilterBar = ({
           filter={filter}
         />
         <div className='search-wrapper'>
-          <h3>by Keyword</h3>
+          <h3><label htmlFor='keyword-input'>by Keyword</label></h3>
           <div className='text-input'>
             <input
+              id='keyword-input'
               type='text'
               value={filter.filters.keywords}
               onChange={(e) => filter.add('keywords', e.target.value)}

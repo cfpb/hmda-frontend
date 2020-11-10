@@ -99,40 +99,36 @@
 
 #publication-changes .filter-bar .pill.product.mlar:hover,
 #publication-changes .filter-bar .pill.product.mlar.selected {
-  background-color: #288a64;
-  background-color: #6d248f;
+  background-color: #a01b68;
 }
 
 #publication-changes .pub-change-item .product.mlar:hover,
 #publication-changes .pub-change-item .product.mlar.selected,
 #publication-changes .pub-change-item .product.mlar.selected::before,
 #publication-changes .pub-change-item .product.mlar.selected::after {
-  color: #288a64;
-  color: #6d248f;
+  color: #a01b68;
 }
 
 .filter-bar .pill.product.datasets:hover,
 .filter-bar .pill.product.datasets.selected {
-  background-color: #6d9cd8;
+  background-color: 	#2765b0;
 }
 #publication-changes .pub-change-item .product.datasets:hover,
 #publication-changes .pub-change-item .product.datasets.selected,
 #publication-changes .pub-change-item .product.datasets.selected::before,
 #publication-changes .pub-change-item .product.datasets.selected::after {
-  color: #6d9cd8;
+  color: 	#2765b0;
 }
 
 .filter-bar .pill.product.reports:hover,
 .filter-bar .pill.product.reports.selected {
-  background-color: #4aa791;
-  background-color: #0ca59b;
+  background-color: 	#126b69;
 }
 #publication-changes .pub-change-item .product.reports:hover,
 #publication-changes .pub-change-item .product.reports.selected,
 #publication-changes .pub-change-item .product.reports.selected::before,
 #publication-changes .pub-change-item .product.reports.selected::after {
-  color: #4aa791;
-  color: #0ca59b;
+  color: 	#126b69;
 }
 
 #publication-changes .pub-change-item .product.selected {
@@ -201,7 +197,7 @@
 #publication-changes .pub-change-item .type.update,
 .filter-bar .pill.type.update:hover,
 .filter-bar .pill.type.update.selected {
-  background-color: #2765b0;
+  background-color: #254b87;
 }
 
 #publication-changes .pub-change-item .type.release,
@@ -213,7 +209,7 @@
 #publication-changes .pub-change-item .type.notice,
 .filter-bar .pill.type.notice:hover,
 .filter-bar .pill.type.notice.selected {
-  background-color: #a58d12;
+  background-color: #dc731c;
   color: white;
 }
 
@@ -239,6 +235,7 @@
   border: 2px solid black;
   color: black;
   background: white;
+  position: relative;
 }
 
 .filter-bar .pill:hover,
@@ -247,8 +244,16 @@
   border-color: transparent;
 }
 
-.filter-bar .pill.selected {
-  text-decoration: underline;
+.filter-bar .pill::before {
+  content: '+';
+  margin-left: 1rem;
+  position: absolute;
+  font-size: 2rem
+}
+
+.filter-bar .pill.selected::before {
+  content: "\2713";
+  font-size: 1.5rem
 }
 
 
@@ -290,6 +295,27 @@
   border-radius: 10px;
 }
 
+.filter-bar .text-input input[type='text']:focus {
+  outline: none;
+  border-color: transparent;
+  animation: highlight-focus 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes highlight-focus {
+  0% {
+    box-shadow: 0 0 2pt 2pt #4675c2;
+  }
+
+  50% {
+    box-shadow: 0 0 5pt 5pt #4675c2;
+  }
+
+  100% {
+    box-shadow: 0 0 2pt 2pt #4675c2;
+  }
+}
+
 .reset-filters {
   padding: 1rem;
   background: #555;
@@ -327,7 +353,8 @@
 
 #publication-changes .filter-bar .pills-wrapper h3,
 #publication-changes .filter-bar .pills-wrapper h4,
-#publication-changes .search-wrapper h3 {
+#publication-changes .search-wrapper h3,
+#publication-changes .search-wrapper h3 label {
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -417,9 +444,16 @@
 }
 
 /* Accordion */
-#publication-changes .accordion .title:hover,
-#publication-changes .accordion.open .title {
+#publication-changes .accordion .title:hover{
   color: #4675c2;
+}
+
+#publication-changes .accordion .icon {
+  margin-right: .5rem;
+}
+#publication-changes .accordion.open .icon {
+  color: #4675c2;
+  font-size: 2rem;
 }
 
 #publication-changes .accordion .title {
@@ -436,14 +470,25 @@
 #publication-changes .accordion.open .body {
   display: block;
   margin-bottom: inherit;
-  margin-left: 1.5rem;
+  margin-left: .6rem;
   border-left: 1px solid #4675c2;
-  padding-left: 15px;
+  padding-left: 25px;
 }
 
 #publication-changes .accordion.open {
   margin-bottom: 1.25rem;
 }
+
+#publication-changes .accordion .link {
+  cursor: pointer;
+  color: #4675c2;
+  text-decoration: underline;
+}
+
+#publication-changes .accordion .link:hover {
+  text-decoration: double underline;
+}
+
 
 
 /* Change Table */
@@ -463,7 +508,7 @@
 
 #publication-changes .change-table tbody tr td {
   color: black;
-  background: #e3e7f1;
+  background: #f1f2f5;
 }
 
 #publication-changes .change-table tr :first-child {

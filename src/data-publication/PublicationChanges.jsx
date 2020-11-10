@@ -53,7 +53,7 @@ const PublicationChanges = () => {
         This includes header changes, data product differences over the years,
         release notes, and information on which product may be best for you.
       </p>
-      <PublicationHighlights data={changeLog} />
+      <PublicationHighlights data={changeLog} filter={filter} />
       <a
         id='pub-whats-new'
         role='note'
