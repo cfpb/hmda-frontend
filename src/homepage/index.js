@@ -69,7 +69,7 @@ const Home = ({ config }) => {
                               href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2018-hmda-fig-2018-hmda-rule.pdf`}
                               download={true}
                             >
-                              incorporating the 2018 HMDA rule
+                              Incorporating the 2018 HMDA rule
                             </a>
                           </li>
                           <li key={year}>
@@ -77,7 +77,7 @@ const Home = ({ config }) => {
                               href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${year}-hmda-fig.pdf`}
                               download={true}
                             >
-                              prior to the 2018 HMDA rule
+                              Prior to the 2018 HMDA rule
                             </a>
                           </li>
                         </ul>
