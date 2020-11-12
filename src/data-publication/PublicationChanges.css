@@ -291,8 +291,8 @@
   background-color: orange;
 }
 
-.pub-change-item:not(.header).even {
-  background: #eee;
+.pub-change-item:not(.header) {
+  border-top: 1px solid black;
 }
 
 .filter-bar .text-input {
@@ -503,7 +503,7 @@
 
 /* Change Table */
 #publication-changes .change-table * {
-  border-color: white;
+  /* border-color: white; */
 }
 
 #publication-changes .change-table {
@@ -518,7 +518,7 @@
 
 #publication-changes .change-table tbody tr td {
   color: black;
-  background: #f1f2f5;
+  /* background: #f1f2f5; */
 }
 
 #publication-changes .change-table tr :first-child {
