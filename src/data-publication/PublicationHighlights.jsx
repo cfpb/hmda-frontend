@@ -11,9 +11,11 @@ const HEADERS = {
 // Organize the change log data into highlights
 const collectHighlights = data => {
   const LIMIT = 2
+  const LIMIT_CHANGE_TYPES = 3
 
   const result = {
     product: {},
+    visibleChangeTypes: []
   }
 
   const addProduct = (product, value) => {
@@ -32,9 +34,14 @@ const collectHighlights = data => {
       if (!result[item.type]) result[item.type] = []
       if (result[item.type].length < LIMIT) {
         result[item.type].push(item)
+        // Restrict number of Change Type tables shown
+        if (
+          result.visibleChangeTypes.indexOf(item.type) < 0 &&
+          result.visibleChangeTypes.length < LIMIT_CHANGE_TYPES
+        )
+          result.visibleChangeTypes.unshift(item.type)
       }
     })
-    
   })
 
   return result
@@ -43,7 +50,6 @@ const collectHighlights = data => {
 const PublicationHighlights = ({ data, filter }) => {
 
   const highlights = collectHighlights(data)
-  const changeTypes = Object.keys(highlights).filter(key => key !== 'product')
 
   return (
     <div id='publicationHighlights'>
@@ -64,7 +70,7 @@ const PublicationHighlights = ({ data, filter }) => {
         </div>
         <div className='change-type-highlights'>
           <h3 className='header'>by Change Type</h3>
-          {changeTypes.map((cType) => (
+          {highlights.visibleChangeTypes.map((cType) => (
             <ChangeTable
               changes={highlights[cType]}
               headers={HEADERS[cType]}
