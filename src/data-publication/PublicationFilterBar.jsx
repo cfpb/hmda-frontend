@@ -34,12 +34,13 @@ const PublicationFilterBar = ({
               value={filter.filters.keywords}
               onChange={(e) => filter.add('keywords', e.target.value)}
             ></input>
-            <span
+            <button
               className='reset-filters'
               onClick={() => filter.clear()}
-            >
+              type="button"
+            >       
               Reset Filters
-            </span>
+            </button>
           </div>
         </div>
       </div>
@@ -88,16 +89,18 @@ const Option = ({ option, filter }) => {
   }, [wasClicked])
 
   return (
-    <div
+    <button
       id={id}
       className={`pill ${type} ${value} ${selected}`}
       onClick={() => {
         toggle(type, value)
         setWasClicked(!wasClicked)
       }}
+      tabIndex="0"
+      type="button"
     >
       <div className='text'>{mappedVal}</div>
-    </div>
+    </button>
   )
 }
 

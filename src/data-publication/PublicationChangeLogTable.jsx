@@ -87,9 +87,9 @@ const Row = ({ item, isOdd, filter, products }) => {
     <div className={rowClassname}>
       <Column className='date' value={item.changeDateOrdinal} />
       <Column className='column-type'>
-        <div className={`pill type ${item.type}`} onClick={toggleType}>
+        <button className={`pill type ${item.type}`} onClick={toggleType} type="button">
           <div className='text'>{item.type}</div>
-        </div>
+        </button>
       </Column>
       <Column
         className={productClassname}
@@ -103,6 +103,19 @@ const Row = ({ item, isOdd, filter, products }) => {
 
 
 const Column = ({ value, onClick = () => null, className, children }) => {
+  if (className.indexOf('product') > -1)
+    return (
+      <div>
+        <button
+          onClick={onClick}
+          className={'column ' + className}
+          type='button'
+        >
+          {value || children}
+        </button>
+      </div>  
+    )
+
   return (
     <div onClick={onClick} className={'column ' + className}>
       {value || children}

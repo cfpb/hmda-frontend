@@ -82,7 +82,19 @@
 
 #publication-changes .pub-change-item .product {
   text-transform: capitalize;
-  min-width: 100px;
+}
+
+#publication-changes .pub-change-item button.product,
+#publication-changes .accordion .link {
+  background: none;
+  color: black;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  font-weight: normal;
+  font-family: "SourceSansPro";
+  font-size: 1.7rem;
+  display: inline-block;
 }
 
 .filter-bar .pill.product.disclosure:hover,
@@ -172,8 +184,10 @@
 
 #publication-changes .pill {
   font-size: 1.4rem;
+  margin: 0 0 1.5rem;
   margin-bottom: 1.5rem;
   text-align: center;
+  line-height: normal;
 }
 
 #publication-changes .filter-bar .pills {
@@ -333,6 +347,7 @@
   margin-top: 1rem;
   display: block;
   text-align: center;
+  width: 100%;
 }
 
 .reset-filters:hover {

@@ -160,9 +160,9 @@ const Linked = ({ text, filter }) => {
   }
 
   return (
-    <span className='link' onClick={handleClick}>
+    <button className='link' onClick={handleClick}>
       {text}
-    </span>
+    </button>
   )
 }
 
