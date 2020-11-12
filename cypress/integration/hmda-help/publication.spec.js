@@ -3,21 +3,22 @@ import { isCI, isProd } from '../../support/helpers'
 const {
   HOST,
   ENVIRONMENT,
+  AUTH_BASE_URL,
   HH_USERNAME,
   HH_PASSWORD,
   HH_INSTITUTION,
-  HH_AUTH_URL,
   HH_AUTH_REALM,
   HH_AUTH_CLIENT_ID
 } = Cypress.env()
 
 describe('HMDA Help', () => {
+  const authUrl = HOST.indexOf('localhost') > -1 ? AUTH_BASE_URL : HOST
+
   beforeEach(() => {
-    if (!isCI(ENVIRONMENT)){
-      // Authentication
-      cy.logout({ root: HH_AUTH_URL, realm: HH_AUTH_REALM })
+    if (!isCI(ENVIRONMENT)) {
+      cy.logout({ root: authUrl, realm: HH_AUTH_REALM })
       cy.login({
-        root: HH_AUTH_URL,
+        root: authUrl,
         realm: HH_AUTH_REALM,
         client_id: HH_AUTH_CLIENT_ID,
         redirect_uri: HOST,
