@@ -1,86 +1,34 @@
 {
   "log": [
     {
-      "date": "01/01/21",
-      "changeDate": "01/01/21",
+      "date": "11/20/20",
+      "changeDate": "11/20/20",
+      "type": "update",
+      "product": "other",
+      "productYear": "2021",
+      "description": "An updated version of the 2021 Filer's Instruction Guide (FIG)",
+      "headline": "The 2021 FIG has been updated.",
+      "tags": ["FIG"]
+    },
+    {
+      "date": "08/21/20",
+      "changeDate": "08/21/20",
       "type": "release",
-      "product": "mlar",
-      "productYear": "2018",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam reprehenderit commodi magni sapiente!",
-      "headline": "2018 Modified LAR has been regenerated.",
-      "tags": ["sapiente"]
+      "product": "other",
+      "productYear": "2021",
+      "description": "The 2021 FIG and Supplemental Guide for Quarterly Filers has been released",
+      "headline": "The Bureau released the 2021 FIG and the Supplemental Guide for Quarterly Filers for 2021",
+      "tags": ["FIG"]
     },
     {
-      "date": "01/01/21",
-      "changeDate": "01/01/21",
-      "type": "update",
-      "product": "reports",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab asperiores excepturi dicta sit.",
-      "headline": "Disclosure reports are coming soon!",
-      "tags": ["asperiores", "Disclosure"]
-    },
-    {
-      "date": "12/31/20",
-      "changeDate": "12/31/20",
-      "type": "update",
-      "product": "reports",
-      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam quo voluptatem aliquam eos!",
-      "headline": "Aggregate reports Updated!",
-      "tags": ["voluptatem", "Aggregate"]
-    },
-    {
-      "date": "12/31/20",
-      "changeDate": "12/31/20",
-      "type": "update",
-      "product": "reports",
-      "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae maxime nihil ex perferendis cupiditate!",
-      "headline": "Another reports Updated!",
-      "tags": ["maxime"]
-    },
-    {
-      "date": "12/31/20",
-      "changeDate": "12/31/20",
-      "type": "correction",
-      "product": "reports",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci veniam ullam atque.",
-      "headline": "Aggregate reports corrected!",
-      "tags": ["adipisci"]
-    },
-    {
-      "date": "04/31/20",
-      "changeDate": "04/31/20",
-      "type": "notice",
-      "product": "datasets",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, ullam aliquid?",
-      "headline": "2017 Ultimate LAR/TS reports are coming soon!",
-      "tags": ["ullam"]
-    },
-    {
-      "date": "04/31/20",
-      "changeDate": "04/31/20",
-      "type": "correction",
-      "product": "datasets",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione quas excepturi assumenda.",
-      "headline": "Datasets corrected!",
-      "tags": ["quas"]
-    },
-    {
-      "date": "03/31/20",
-      "changeDate": "03/31/20",
-      "type": "update",
-      "product": "mlar",
-      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi commodi voluptatum quae aliquam.",
-      "headline": "2019 Modified LAR reports were updated!",
-      "tags": ["nisi"]
-    },
-    {
-      "date": "03/31/20",
-      "changeDate": "03/31/20",
+      "date": "08/21/20",
+      "changeDate": "08/21/20",
       "type": "release",
-      "product": "mlar",
-      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab reprehenderit ullam accusantium?",
-      "headline": "2019 Modified LAR reports were released",
-      "tags": ["accusantium"]
+      "product": "other",
+      "productYear": "2021",
+      "description": "The 2021 FIG and Supplemental Guide for Quarterly Filers has been released",
+      "headline": "The Bureau released the 2021 FIG and the Supplemental Guide for Quarterly Filers for 2021",
+      "tags": ["FIG"]
     }
   ]
 }
