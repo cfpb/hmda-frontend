@@ -20,7 +20,7 @@ const links = {
     <li key="8"><Link to="/documentation/2020/quarterly-filing-dates/">Quarterly HMDA Filing Period Dates</Link></li>
   ],
   2021: [
-    <li key="9"><a target="_blank" rel="noopener noreferrer" href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2021-hmda-fig.pdf">For data collected in 2021</a></li>,
+    <li key="9"><a target="_blank" rel="noopener noreferrer" href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2021-hmda-fig.pdf">For data collected in 2021 ( Last updated: 11/20/2020 )</a></li>,
     <li key="10"><a target="_blank" rel="noopener noreferrer" href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-2021.pdf">Supplemental Guide for Quarterly Filers for 2021</a></li>,
     <li key="11"><Link to="/documentation/2021/annual-filing-dates/">Annual HMDA Filing Period Dates</Link></li>,
     <li key="12"><Link to="/documentation/2021/quarterly-filing-dates/">Quarterly HMDA Filing Period Dates</Link></li>
