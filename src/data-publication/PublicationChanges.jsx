@@ -87,10 +87,13 @@ const byChangeType = (a, b) => {
   return -1
 }
 
+const byChangeDate = (a, b) => new Date(b.changeDate) - new Date(a.changeDate)
+
 
 /** Groups and sorts data by changeDate */
 export const organizeChangeData = (input) => {
-  const data = input && input.log ? input.log : {}
+  let data = input && input.log ? input.log : {}
+  data = data.sort(byChangeDate)
   const result = {}
 
   data.forEach((item) => {
