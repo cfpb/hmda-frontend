@@ -1,11 +1,19 @@
-export const PRODUCTS = ['mlar', 'datasets', 'reports']
+// export const PRODUCTS = ['mlar', 'datasets', 'reports']
 
 
 export const PRODUCT_NAMES = {
   mlar: 'Modified LAR',
   datasets: 'Datasets',
   reports: 'Reports',
+  "hmda-filing": "HMDA Filing",
+  "hmda-homepage": "HMDA Homepage",
+  documentation: "Documentation", 
+  tools: "HMDA Tools",
+  "data-browser": "Data Browser",
+  "rate-spread": "Rate Spread"
 }
+
+export const PRODUCTS = Object.keys(PRODUCT_NAMES)
 
 
 export const CATEGORIES = {

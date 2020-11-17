@@ -97,6 +97,11 @@
   display: inline-block;
 }
 
+.filter-bar .pill.product.selected,
+.filter-bar .pill.product:hover {
+  background: #017294;
+}
+
 .filter-bar .pill.product.disclosure:hover,
 .filter-bar .pill.product.disclosure.selected {
   background-color: #9c7d2e;
