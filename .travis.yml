@@ -50,6 +50,5 @@ script:
   - yarn ci &       # Start Frontend
   - cypress install # Ensure cypress is available in Travis environment
   # Verify dev server availability, create test data, run test suite.
-  - ./cypress/wait-for-server.sh frontend && yarn ci-data
-  - yarn cypress run $CONFIG $RECORD # Run all tests
+  - ./cypress/wait-for-server.sh frontend && yarn ci-data && yarn cypress run $CONFIG $RECORD
   - kill $(jobs -p) || true # Cleanup
