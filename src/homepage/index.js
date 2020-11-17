@@ -84,6 +84,19 @@ const Home = ({ config }) => {
                       </li>
                     )
                   }
+
+                  { if (year === 2021) {
+                    return <li key={year}>
+                    <a
+                      href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${year}-hmda-fig.pdf`}
+                      download={true}
+                    >
+                      For data collected in {year}
+                      <span className='last-updated'>( Last updated: 11/20/2020 )</span>
+                    </a>
+                  </li>
+                  }}
+
                   return (
                     <li key={year}>
                       <a
