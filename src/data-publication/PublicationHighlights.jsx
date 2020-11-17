@@ -117,10 +117,16 @@ const ProductHighlight = ({ items, name, filter }) => {
       </span>
       <div>
         {items.map((item, idx) => (
-          <Accordion key={idx} 
-            header={item.headline} 
-            body={addFilterLinks(item.description, item.tags, filter)} 
-            />
+          <Accordion
+            key={idx}
+            header={item.headline}
+            body={
+              <>
+                {addFilterLinks(item.description, item.tags, filter)}
+                {<span className='date'>{item.changeDateOrdinal}</span>}
+              </>
+            }
+          />
         ))}
       </div>
     </div>

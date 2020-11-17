@@ -462,10 +462,6 @@
   font-size: 1.7rem;
 }
 
-#publication-changes .product-highlights .accordion {
-  margin-left: 1.5rem;
-  margin-top: .75rem;
-}
 
 #publication-changes .product-highlights .name {
   display: inline-block;
@@ -476,21 +472,33 @@
 }
 
 /* Accordion */
-#publication-changes .accordion .title:hover{
+
+#publication-changes .product-highlights .accordion {
+  margin-left: 1.5rem;
+  margin-top: .75rem;
+  position: relative;
+}
+
+#publication-changes .accordion:hover .icon
+{
   color: #4675c2;
+}
+
+#publication-changes .accordion:hover .title {
+  font-weight: bold;
 }
 
 #publication-changes .accordion .icon {
   margin-right: .5rem;
 }
-#publication-changes .accordion.open .icon {
-  color: #4675c2;
-  font-size: 2rem;
-}
 
-#publication-changes .accordion .title {
+#publication-changes .accordion .title,
+#publication-changes .accordion .text {
   cursor: pointer;
   user-select: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 #publication-changes .accordion .body {
@@ -499,12 +507,41 @@
   margin-bottom: inherit;
 }
 
+#publication-changes .accordion.open .title {
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+
+#publication-changes .accordion.open .icon {
+  color: #4675c2;
+  font-size: 2rem;
+}
+
 #publication-changes .accordion.open .body {
   display: block;
   margin-bottom: inherit;
   margin-left: .6rem;
-  border-left: 1px solid #4675c2;
+  padding: 1rem;
   padding-left: 25px;
+}
+
+#publication-changes .accordion.open .body .date {
+  display: block;
+  color: grey;
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+#publication-changes .accordion.open .body::before {
+  content: '';
+  background-color:  #4675c2;
+  color:  #4675c2;
+  width: 15px;
+  position: absolute;
+  left: 0;
+  top: 3rem;
+  bottom: 0;
+  z-index: -1;
 }
 
 #publication-changes .accordion.open {
