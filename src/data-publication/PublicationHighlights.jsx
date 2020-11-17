@@ -97,8 +97,8 @@ const ChangeTable = ({ changes, headers, filter }) => {
         {!changes.length && <tr><td colSpan='2'>No entries</td></tr>}
         {changes.map(({ changeDateOrdinal, headline, tags }, idx) => (
           <tr key={`change-${idx}`}>
-            <td className='description'>{headline}</td>
-            {/* <td className='description'>{addFilterLinks(headline, tags, filter)}</td> */}
+            {/* <td className='description'>{headline}</td> */}
+            <td className='description'>{addFilterLinks(headline, tags, filter)}</td>
             <td className='date'>{changeDateOrdinal}</td>
           </tr>
         ))}
@@ -160,7 +160,7 @@ const Linked = ({ text, filter }) => {
   }
 
   return (
-    <button className='link' onClick={handleClick}>
+    <button className='search-link link' onClick={handleClick}>
       {text}
     </button>
   )

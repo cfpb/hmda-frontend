@@ -85,7 +85,7 @@
 }
 
 #publication-changes .pub-change-item button.product,
-#publication-changes .accordion .link {
+#publication-changes .search-link {
   background: none;
   color: black;
   margin: 0;
@@ -508,15 +508,13 @@
   margin-bottom: 1.25rem;
 }
 
-#publication-changes .accordion .link,
-#publication-changes .change-table .link {
+#publication-changes .search-link {
   cursor: pointer;
   color: #4675c2;
   text-decoration: underline;
 }
 
-#publication-changes .accordion .link:hover,
-#publication-changes .change-table .link:hover {
+#publication-changes .search-link:hover {
   text-decoration: double underline;
 }
 
@@ -542,8 +540,8 @@
   /* background: #f1f2f5; */
 }
 
-#publication-changes .change-table tr :first-child {
-  width: 65%;
+#publication-changes .change-table tr td.description {
+  width: 60%;
 }
 
 #publication-changes .change-table .date {
