@@ -26,14 +26,17 @@ const PublicationFilterBar = ({
           filter={filter}
         />
         <div className='search-wrapper'>
-          <h3><label htmlFor='keyword-input'>by Keyword</label></h3>
+          <h3><label htmlFor='keyword-input'>by Change Description</label></h3>
           <div className='text-input'>
-            <input
-              id='keyword-input'
-              type='text'
-              value={filter.filters.keywords}
-              onChange={(e) => filter.add('keywords', e.target.value)}
-            ></input>
+            <div className='keyword-input-wrapper'>
+              <input
+                id='keyword-input'
+                type='text'
+                value={filter.filters.keywords}
+                onChange={(e) => filter.add('keywords', e.target.value)}
+              />
+              <button type='button' className='clear-text' onClick={() => filter.add('keywords', '')}>x</button>
+            </div>
             <button
               className='reset-filters'
               onClick={() => filter.clear()}

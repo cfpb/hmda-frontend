@@ -53,22 +53,21 @@ export function useChangeLogFilter(initState = defaultState) {
             .filter((wrd) => wrd)
             .map((wrd) => wrd.toLowerCase())
 
-          // Check if @string contains @word
-          const hasPartialTextMatch = (string, word) => {
-            if (!string || !word) return false
-            return string.toLowerCase().indexOf(word.toLowerCase()) > -1
+          // // Check if @string contains @word
+          // const hasPartialTextMatch = (string, word) => {
+          //   if (!string || !word) return false
+          //   return string.toLowerCase().indexOf(word.toLowerCase()) > -1
+          // }
+
+          // Check if @string contains all strings @words
+          const hasAllWords = (string, words) => {
+            if (!string || !words || !words.length) return false
+            return words.every(word => string.toLowerCase().indexOf(word.toLowerCase()) > -1)
           }
 
+          // Search only Change Description by keyword
           result[date] = result[date].filter((item) =>
-            words.some((word) => {
-              return (
-                hasPartialTextMatch(item.type, word) || // Matches part of type
-                hasPartialTextMatch(item.product, word) || // Matches part of product
-                hasPartialTextMatch(item.description, word) || // Matches part of description
-                hasPartialTextMatch(item.changeDateOrdinal, word) || // Matches part of changeDateOrdinal
-                hasPartialTextMatch(item.productYear, word) // Matches part of productYear
-              )
-            })
+            hasAllWords(item.description, words)
           )
         }
 

@@ -400,6 +400,28 @@
   width: 40%;
 }
 
+.filter-bar .keyword-input-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  position: relative;
+}
+
+.filter-bar .clear-text {
+  margin: 0;
+  padding: .2rem .7rem .3rem .7rem;
+  display: inline-block;
+  position: absolute;
+  right: 1rem;
+  top: 1.3rem;
+  background: #555;
+}
+
+.filter-bar .clear-text:hover {
+  background: #017294;
+  color: white;
+}
+
 #pub-whats-new {
   font-size: 0;
   height: 0;
