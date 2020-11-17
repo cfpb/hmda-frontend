@@ -129,24 +129,37 @@ const ProductHighlight = ({ items, name, filter }) => {
 
 
 function addFilterLinks(content, tags, filter) {
-  let infused = <>{content}</>
+  let jsxContent = <>{content}</>
   tags.forEach(tag => {
-    let parts = content.replace(tag, "$_INJECT").split(" ")
-    parts = parts.map(part => {
-      if (part.indexOf('$_INJECT') > -1) {
-        const remainder = part.replace('$_INJECT', '') // Preserve trailing punctuation
-        return (
-          <>
-            <Linked text={tag} filter={filter} />
-            {remainder}{' '}
-          </>
-        )
-      }
-      return part + " "
-    })
-    infused = <>{parts}</>
+    let parts = content
+      .replace(tag, '$_INJECT')
+      .split(' ')
+      .map((part) => {
+        // TODO: Fix fragile logic and unit test. 
+        if (part.indexOf('$_INJECT') > -1) {
+          const tagged_parts = part.split('$_INJECT').filter((x) => x)
+          let combined = []
+
+          if (tagged_parts.length < 2)
+            combined.push(<Linked text={tag} filter={filter} />)
+          else {
+            combined = tagged_parts.reduce((acc, curr, currIdx) => {
+              acc.push(curr)
+              if (currIdx !== tagged_parts.length - 1)
+                acc.push(<Linked text={tag} filter={filter} />)
+              return acc
+            }, [])
+          }
+
+          combined.push(' ')
+          return combined
+        }
+
+        return part + ' '
+      })
+    jsxContent = <>{parts}</>
   })
-  return infused
+  return jsxContent
 }
 
 
