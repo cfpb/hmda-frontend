@@ -14,15 +14,15 @@ const PublicationFilterBar = ({
     <div className='filter-bar'>
       <div className='filter-wrapper split'>
         <OptionColumn
-          name='product'
-          heading='by Product'
-          options={productOptions}
-          filter={filter}
-        />
-        <OptionColumn
           name='type'
           heading='by Change Type'
           options={typeOptions}
+          filter={filter}
+        />
+        <OptionColumn
+          name='product'
+          heading='by Product'
+          options={productOptions}
           filter={filter}
         />
         <div className='search-wrapper'>

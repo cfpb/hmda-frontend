@@ -64,8 +64,8 @@ const Header = () => {
     <>
       <div className='pub-change-item header split'>
         <h4 className='date header'>Change Date</h4>
-        <h4 className='product header'>Product</h4>
         <h4 className='header column-type'>Change Type</h4>
+        <h4 className='product header'>Product</h4>
         <h4 className='description header'>Change Description</h4>
       </div>
     </>
@@ -86,16 +86,16 @@ const Row = ({ item, isOdd, filter, products }) => {
   return (
     <div className={rowClassname}>
       <Column className='date' value={item.changeDateOrdinal} />
-      <Column
-        className={productClassname}
-        value={products[item.product]}
-        onClick={toggleProduct}
-      />
       <Column className='column-type'>
         <button className={`pill type ${item.type}`} onClick={toggleType} type="button">
           <div className='text'>{item.type}</div>
         </button>
       </Column>
+      <Column
+        className={productClassname}
+        value={products[item.product]}
+        onClick={toggleProduct}
+      />
       <Column className='description' value={item.description} />
     </div>
   )
