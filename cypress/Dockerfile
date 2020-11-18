@@ -33,11 +33,11 @@ RUN yum install -y unzip
 
 RUN npm install yarn -g
 
-RUN mkdir -p ~/.cache/Cypress/4.6.0/Cypress && \
-    wget --no-check-certificate http://download.cypress.io/desktop/4.6.0?platform=linux -O /tmp/z.$$ && \
-    unzip -d ~/.cache/Cypress/4.6.0/ /tmp/z.$$ && \
+RUN mkdir -p ~/.cache/Cypress/5.6.0/Cypress && \
+    wget --no-check-certificate http://download.cypress.io/desktop/5.6.0?platform=linux -O /tmp/z.$$ && \
+    unzip -d ~/.cache/Cypress/5.6.0/ /tmp/z.$$ && \
     rm /tmp/z.$$ && \
-    chmod +x ~/.cache/Cypress/4.6.0/Cypress/Cypress && \
+    chmod +x ~/.cache/Cypress/5.6.0/Cypress/Cypress && \
     rm -rf /var/lib/apt/lists/*
 
 COPY / hmda-frontend/
