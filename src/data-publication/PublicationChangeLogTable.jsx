@@ -51,7 +51,7 @@ const EmptyState = ({ clear, isEmpty }) => {
       No matches found.
       <div>
         <span className='reset-filters' onClick={() => clear()}>
-          Reset Filters
+          Reset All Filters
         </span>
       </div>
     </div>
@@ -96,7 +96,7 @@ const Row = ({ item, isOdd, filter, products }) => {
         value={products[item.product]}
         onClick={toggleProduct}
       />
-      <Column className='description' value={item.description} />
+      <Column className='description' value={filter.highlightKeywords(item.description)} />
     </div>
   )
 }

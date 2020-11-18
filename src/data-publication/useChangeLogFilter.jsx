@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import React from 'react';
 
 const defaultState = {
   type: [],
@@ -90,6 +91,42 @@ export function useChangeLogFilter(initState = defaultState) {
     return result
   }
 
+  const highlightKeywords = (content) => {
+    let newContent = content.split(' ').filter(x => x).map((word, w_idx) => {
+      const keywords = filters.keywords.split(' ').filter(x => x)
+      if (!keywords.length) return word + ' '
+
+      let highlightedWord = word
+      let wordHighlighted = false
+
+      keywords.forEach(keyword => {
+        if (wordHighlighted) return
+        const index = highlightedWord.toString().toLowerCase().indexOf(keyword.toLowerCase())
+
+        if (index > -1) { 
+          const before = word.substr(0, index)
+          const highlight = word.substr(index, keyword.length)
+          const after = word.substr(index + keyword.length )
+        
+          highlightedWord = (
+            <>
+              {before}
+              <Highlighted text={highlight} />
+              {after}
+            </>
+          )
+
+          wordHighlighted = true
+        }
+
+      })
+
+      return <span key={`highlight-${word}-${w_idx}`}>{highlightedWord}{' '}</span>
+    })
+
+    return <>{newContent}</>
+  }
+
   return {
     filters,
     add,
@@ -97,5 +134,15 @@ export function useChangeLogFilter(initState = defaultState) {
     clear,
     remove,
     toggle,
+    highlightKeywords
   }
+}
+
+
+const Highlighted = ({ text }) => {
+  return (
+    <span className='highlighted' >
+      {text}
+    </span>
+  )
 }
