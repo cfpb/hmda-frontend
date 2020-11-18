@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { PRODUCT_NAMES } from './constants/publication-changes'
+import spyGlass from '../common/images/cf-gov-search.svg'
 
 /**
  * UI to adjust Filter criteria
@@ -28,22 +29,24 @@ const PublicationFilterBar = ({
         <div className='search-wrapper'>
           <h3><label htmlFor='keyword-input'>by Change Description</label></h3>
           <div className='text-input'>
+            <span className='icon'><img src={spyGlass} alt='Magnifying glass'/></span>
             <div className='keyword-input-wrapper'>
               <input
                 id='keyword-input'
                 type='text'
                 value={filter.filters.keywords}
                 onChange={(e) => filter.add('keywords', e.target.value)}
+                placeholder='Enter terms to search'
               />
               <button type='button' className='clear-text' onClick={() => filter.add('keywords', '')}>x</button>
             </div>
-            <button
+            {/* <button
               className='reset-filters'
               onClick={() => filter.clear()}
               type="button"
             >       
-              Reset Filters
-            </button>
+              Reset All Filters
+            </button> */}
           </div>
         </div>
       </div>
