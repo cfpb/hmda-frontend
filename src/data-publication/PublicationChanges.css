@@ -296,6 +296,7 @@
 
 .filter-bar .text-input {
   padding: 1.5rem 0;
+  position: relative;
 }
 
 .filter-bar .text-input input[type='text'] {
@@ -385,6 +386,11 @@
   flex-flow: row nowrap;
   align-items: center;
   position: relative;
+}
+
+.filter-bar #keyword-input {
+  padding-left: 3rem;
+  border-width: 2px;
 }
 
 .filter-bar .clear-text {
@@ -586,4 +592,16 @@
 
 #publication-changes .change-table .date {
   min-width: 185px;
+}
+
+#publication-changes .highlighted {
+  background: yellow;
+}
+
+#publication-changes .text-input .icon img {
+  width: 15px;
+  position: absolute;
+  z-index: 10;
+  top: 3rem;
+  left: 1rem;
 }
