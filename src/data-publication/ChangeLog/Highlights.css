@@ -52,3 +52,13 @@
 #publicationHighlights .product-highlights .product {
   margin-bottom: 3rem;
 }
+
+#publication-changes .search-link {
+  cursor: pointer;
+  color: #4675c2;
+  text-decoration: underline;
+}
+
+#publication-changes .search-link:hover {
+  text-decoration: double underline;
+}

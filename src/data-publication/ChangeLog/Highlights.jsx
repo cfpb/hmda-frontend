@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Accordion } from './Accordion'
 import { PRODUCTS, PRODUCT_NAMES } from './constants/publication-changes'
 import './Highlights.css'
 
@@ -98,7 +99,6 @@ const ChangeTable = ({ changes, headers, filter }) => {
         {!changes.length && <tr><td colSpan='2'>No entries</td></tr>}
         {changes.map(({ changeDateOrdinal, headline, tags }, idx) => (
           <tr key={`change-${idx}`}>
-            {/* <td className='description'>{headline}</td> */}
             <td className='description'>{addFilterLinks(headline, tags, filter)}</td>
             <td className='date'>{changeDateOrdinal}</td>
           </tr>
@@ -185,22 +185,5 @@ const Linked = ({ text, filter }) => {
     </button>
   )
 }
-
-
-const Accordion = ({ header, body }) => {
-  const [open, setOpen] = useState(false)
-  const openClass = open ? 'open' : ''
-
-  return (
-    <div className={'accordion ' + openClass}>
-      <span className='title' onClick={() => setOpen(!open)}>
-        <span className='icon'>{open ? '▾' : '▸'}</span>
-        <span className='text'> {header}</span>
-      </span>
-      <span className='body'>{body}</span>
-    </div>
-  )
-}
-
 
 export default PublicationHighlights
