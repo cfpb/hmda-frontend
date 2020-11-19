@@ -1,7 +1,7 @@
 import React from 'react'
 import { PRODUCT_NAMES } from '../constants/publication-changes'
 import { FilterResetButton } from './FilterResetButton'
-
+import './ChangeLogTable.css'
 /** 
  * Display Publication Change Log Entries
  * (default export)
@@ -9,7 +9,6 @@ import { FilterResetButton } from './FilterResetButton'
 const ChangeLogTable = ({ data = {}, products = PRODUCT_NAMES, filter }) => {
   const dates = Object.keys(data)
   const isEmpty = dates.every((key) => !data[key].length)
-  let pubItemCount = -1
 
   return (
     <div id='ChangeLogTable'>
@@ -19,22 +18,16 @@ const ChangeLogTable = ({ data = {}, products = PRODUCT_NAMES, filter }) => {
         const todaysItems = data[date]
         if (!todaysItems || !todaysItems.length) return null
 
-        return (
-          <div key={'cl-day-group-' + row} className='pub-change-day'>
-            {todaysItems.map((item, col) => {
-              pubItemCount += 1
-              return (
-                <Row
-                  key={'clt-row-' + row + 'col-' + col}
-                  item={item}
-                  isOdd={pubItemCount % 2 !== 0}
-                  products={products}
-                  filter={filter}
-                />
-              )
-            })}
-          </div>
-        )
+        return todaysItems.map((item, col) => {
+          return (
+            <Row
+              key={'clt-row-' + row + 'col-' + col}
+              item={item}
+              products={products}
+              filter={filter}
+            />
+          )
+        })
       })}
     </div>
   )
@@ -58,20 +51,18 @@ const EmptyState = ({ clear, isEmpty }) => {
 
 const Header = () => {
   return (
-    <>
-      <div className='pub-change-item header split'>
-        <h4 className='date header'>Change Date</h4>
-        <h4 className='header column-type'>Change Type</h4>
-        <h4 className='product header'>Product</h4>
-        <h4 className='description header'>Change Description</h4>
-      </div>
-    </>
+    <div className='pub-change-item header split'>
+      <h4 className='header date'>Change Date</h4>
+      <h4 className='header column-type'>Change Type</h4>
+      <h4 className='header product'>Product</h4>
+      <h4 className='header description'>Change Description</h4>
+    </div>
   )
 }
 
 
-const Row = ({ item, isOdd, filter, products }) => {
-  let rowClassname = 'pub-change-item split' + (isOdd ? ' odd' : ' even')
+const Row = ({ item, filter, products }) => {
+  let rowClassname = 'pub-change-item split'
 
   let productClassname =
     `product ${item.product}` +

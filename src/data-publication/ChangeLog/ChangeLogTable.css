@@ -1,0 +1,121 @@
+#ChangeLogTable .pub-change-item {
+  align-items: flex-start;
+  padding: 3rem 1rem;
+}
+
+#ChangeLogTable .pub-change-item.header {
+  padding: 3rem 1rem 1rem;
+  border-bottom: 1px solid black;
+}
+
+#ChangeLogTable .pub-change-item.split {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+#ChangeLogTable .pub-change-item > * {
+  flex-basis: 25%;
+}
+
+#ChangeLogTable .pub-change-item .date .icon {
+  display: none;
+  margin-right: 1rem;
+}
+
+#ChangeLogTable .pub-change-item .date,
+#ChangeLogTable .pub-change-item .date.header {
+  text-transform: capitalize;
+  padding-left: .5rem;
+}
+
+
+#ChangeLogTable .pub-change-item .column-type {
+  padding-left: 1rem;
+}
+
+#ChangeLogTable .pub-change-item .column-type .pill {
+  margin: 0
+}
+
+#ChangeLogTable .pub-change-item .type {
+  width: 200px;
+  text-align: center;
+  padding: .3rem .5rem;
+  border-radius: 7px;
+  text-transform: uppercase;
+  color: white;
+  font-size: 1.3rem;
+}
+
+#ChangeLogTable .pub-change-item .type:hover,
+#ChangeLogTable .pub-change-item .product:not(.header):hover {
+  cursor: pointer;
+  user-select: none;
+}
+
+#ChangeLogTable .pub-change-item .product {
+  text-transform: capitalize;
+}
+
+#ChangeLogTable .pub-change-item button.product,
+#ChangeLogTable .search-link {
+  background: none;
+  color: black;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  font-weight: normal;
+  font-family: "SourceSansPro";
+  font-size: 1.7rem;
+  display: inline-block;
+}
+
+/** Color - Correction */
+#ChangeLogTable .pub-change-item .type.correction {
+  background-color: #c41613;
+}
+
+/** Color - Update */
+.pub-change-item .pill.type.update  {
+  background-color: #254b87;
+}
+
+/** Color - Release */
+#ChangeLogTable .pub-change-item .type.release  {
+  background-color: #0b6e4f;
+}
+
+/** Color - Notice */
+#ChangeLogTable .pub-change-item .type.notice  {
+  background-color: #dc731c;
+  color: white;
+}
+
+#ChangeLogTable .pub-change-item .product.selected {
+  font-weight: bold;
+}
+
+#ChangeLogTable .pub-change-item .description {
+  flex-basis: 50%;
+}
+
+#ChangeLogTable .pub-change-item .type.header {
+  color: black;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+
+#ChangeLogTable .pub-change-item > .header {
+  width: 33%;
+  margin: 0;
+  text-decoration-color: grey;
+}
+
+#ChangeLogTable .pub-change-item .pill {
+  max-width: 100px !important;
+  margin-bottom: 0;
+}
+
+#ChangeLogTable .pub-change-item:not(.header) {
+  border-top: 1px solid lightgrey;
+}
