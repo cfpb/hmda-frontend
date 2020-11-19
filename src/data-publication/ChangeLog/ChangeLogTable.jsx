@@ -1,4 +1,5 @@
 import React from 'react'
+import Highlighter from "react-highlight-words";
 import { PRODUCT_NAMES } from '../constants/publication-changes'
 import { FilterResetButton } from './FilterResetButton'
 import './ChangeLogTable.css'
@@ -75,7 +76,11 @@ const Row = ({ item, filter, products }) => {
     <div className={rowClassname}>
       <Column className='date' value={item.changeDateOrdinal} />
       <Column className='column-type'>
-        <button className={`pill type ${item.type}`} onClick={toggleType} type="button">
+        <button
+          className={`pill type ${item.type}`}
+          onClick={toggleType}
+          type='button'
+        >
           <div className='text'>{item.type}</div>
         </button>
       </Column>
@@ -84,7 +89,14 @@ const Row = ({ item, filter, products }) => {
         value={products[item.product]}
         onClick={toggleProduct}
       />
-      <Column className='description' value={filter.highlightKeywords(item.description)} />
+      <Column className='description'>
+        <Highlighter
+          highlightClassName='highlighted'
+          searchWords={filter.filters.keywords}
+          autoEscape={true}
+          textToHighlight={item.description}
+        />
+      </Column>
     </div>
   )
 }

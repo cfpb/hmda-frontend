@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 
 const defaultState = {
@@ -105,51 +105,6 @@ export function useChangeLogFilter(initState = defaultState) {
     return result
   }
 
-  const highlightKeywords = (content) => {
-    if (!filters.keywords) return content
-    const keywords = filters.keywords.filter((x) => x)
-
-    let newContent = content
-      .split(' ')
-      .filter((x) => x)
-      .map((word, w_idx) => {
-        if (!keywords.length) return word + ' '
-
-        let highlightedWord = word
-        let wordHighlighted = false
-
-        keywords.forEach((keyword) => {
-          if (wordHighlighted) return
-          const index = highlightedWord
-            .toString()
-            .toLowerCase()
-            .indexOf(keyword.toLowerCase())
-
-          if (index > -1) {
-            const before = word.substr(0, index)
-            const highlight = word.substr(index, keyword.length)
-            const after = word.substr(index + keyword.length)
-
-            highlightedWord = (
-              <>
-                {before}
-                <Highlighted text={highlight} />
-                {after}
-              </>
-            )
-
-            wordHighlighted = true
-          }
-        })
-
-        return (
-          <span key={`highlight-${word}-${w_idx}`}>{highlightedWord} </span>
-        )
-      })
-
-    return <>{newContent}</>
-  }
-
   /* Derive query string from filter state */
   const toQueryString = (filters) => {
     const params = Object.keys(defaultState)
@@ -183,12 +138,7 @@ export function useChangeLogFilter(initState = defaultState) {
     clear,
     remove,
     toggle,
-    highlightKeywords,
     toQueryString,
     fromQueryString,
   }
-}
-
-const Highlighted = ({ text }) => {
-  return <span className='highlighted'>{text}</span>
 }
