@@ -34,19 +34,19 @@ const PublicationFilterBar = ({
               <input
                 id='keyword-input'
                 type='text'
-                value={filter.filters.keywords}
+                value={filter.filters.keywords ? filter.filters.keywords.join(' ') : ''}
                 onChange={(e) => filter.add('keywords', e.target.value)}
                 placeholder='Enter terms to search'
               />
-              <button type='button' className='clear-text' onClick={() => filter.add('keywords', '')}>x</button>
+              <button type='button' className='clear-text' onClick={() => filter.clear('keywords')}>x</button>
             </div>
-            {/* <button
+            <button
               className='reset-filters'
               onClick={() => filter.clear()}
               type="button"
             >       
               Reset All Filters
-            </button> */}
+            </button>
           </div>
         </div>
       </div>

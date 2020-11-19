@@ -6,7 +6,7 @@ import { CATEGORIES, DEFAULT_FILTERS, PRODUCTS, PUB_CHANGELOG_URL } from './cons
 import defaultData from './constants/publicationChangeLog.json'
 import PublicationChangeLogTable from './PublicationChangeLogTable'
 import PublicationFilterBar from './PublicationFilterBar'
-import PublicationHighlights from './PublicationHighlights'
+// import PublicationHighlights from './PublicationHighlights'
 import { useChangeLogFilter } from './useChangeLogFilter'
 import { useRemoteJSON } from '../common/useRemoteJSON'
 import './PublicationChanges.css'

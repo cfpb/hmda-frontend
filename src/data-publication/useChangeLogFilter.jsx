@@ -1,11 +1,13 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import React from 'react';
+import { useHistory, useLocation } from 'react-router-dom'
 
 const defaultState = {
   type: [],
   product: [],
-  keywords: '',
+  keywords: [],
 }
+const validParams = Object.keys(defaultState)
 
 /**
  * State management for Change Log Filters
@@ -13,16 +15,36 @@ const defaultState = {
  */
 export function useChangeLogFilter(initState = defaultState) {
   const [filters, setFilters] = useState(initState)
+  const history = useHistory()
+  const location = useLocation()
+
+  // Load filters from search query on initial render
+  useEffect(() => fromQueryString(location.search), [])
+
+  // Update URL everytime the filters are updated
+  useEffect(() => history.push(location.pathname + toQueryString(filters)), [
+    filters,
+  ])
 
   /* Add a filter */
   const add = (key, value) => {
-    if (key === 'keywords') setFilters((state) => ({ ...state, [key]: value }))
+    if (key === 'keywords') {
+      setFilters((state) => ({
+        ...state,
+        [key]: value ? value.split(' ') : [],
+      }))
+    }
     else setFilters((state) => ({ ...state, [key]: [...state[key], value] }))
   }
 
   /* Remove a filter */
   const remove = (key, value) => {
-    if (key === 'keywords') setFilters((state) => ({ ...state, [key]: value }))
+    if (key === 'keywords') {
+      setFilters((state) => ({
+        ...state,
+        [key]: state[key].filter((word) => word !== value),
+      }))
+    }
     else
       setFilters((state) => ({
         ...state,
@@ -30,8 +52,11 @@ export function useChangeLogFilter(initState = defaultState) {
       }))
   }
 
-  /* Clear all filters */
-  const clear = () => setFilters(initState)
+  /* Clear a single filter or all filters */
+  const clear = (filterType) => {
+    if (filterType) setFilters((state) => ({ ...state, [filterType]: [] }))
+    else setFilters(initState)
+  }
 
   /* Remove filter if it exists, add filter otherwise */
   const toggle = (key, value) => {
@@ -48,17 +73,10 @@ export function useChangeLogFilter(initState = defaultState) {
       if (result[date] && result[date].length) {
         // Keyword filter
         // TODO: Offer case sensitive option?
-        if (filterLists.keywords && filterLists.keywords.length > 0) {
+        if (filterLists.keywords.length > 0) {
           const words = filterLists.keywords
-            .split(' ')
             .filter((wrd) => wrd)
             .map((wrd) => wrd.toLowerCase())
-
-          // // Check if @string contains @word
-          // const hasPartialTextMatch = (string, word) => {
-          //   if (!string || !word) return false
-          //   return string.toLowerCase().indexOf(word.toLowerCase()) > -1
-          // }
 
           // Check if @string contains all strings @words
           const hasAllWords = (string, words) => {
@@ -92,8 +110,10 @@ export function useChangeLogFilter(initState = defaultState) {
   }
 
   const highlightKeywords = (content) => {
+    if (!filters.keywords) return content
+    const keywords = filters.keywords.filter(x => x)
+
     let newContent = content.split(' ').filter(x => x).map((word, w_idx) => {
-      const keywords = filters.keywords.split(' ').filter(x => x)
       if (!keywords.length) return word + ' '
 
       let highlightedWord = word
@@ -127,6 +147,29 @@ export function useChangeLogFilter(initState = defaultState) {
     return <>{newContent}</>
   }
 
+  /* Derive query string from filter state */
+  const toQueryString = (filters) => {
+    const params = Object.keys(defaultState)
+    .filter(filterType => filters[filterType].length)
+    .map((filterType) => `${filterType}=${filters[filterType].join(',')}`)
+
+    return params ? `?${params.join('&')}` : ''
+  }
+
+  /* Derive filter state from query string */
+  const fromQueryString = (qs) => {
+    const qStrings = qs.replace(/\?/g, '').split('&').reduce((acc, curr) => {
+      const [param, values] = curr.split('=')
+      if (validParams.indexOf(param) > -1)
+        acc[param] = values.split(',').filter(x => x)
+      return acc
+    }, {})
+
+    if (Object.keys(qStrings).length) {
+      setFilters(({ ...defaultState, ...qStrings}))
+    }
+  }
+
   return {
     filters,
     add,
@@ -134,7 +177,9 @@ export function useChangeLogFilter(initState = defaultState) {
     clear,
     remove,
     toggle,
-    highlightKeywords
+    highlightKeywords,
+    toQueryString,
+    fromQueryString
   }
 }
 
