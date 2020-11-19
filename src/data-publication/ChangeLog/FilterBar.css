@@ -133,7 +133,7 @@
 #filter-bar .text-input input[type='text']:focus {
   outline: none;
   border-color: transparent;
-  animation: highlight-focus .5s;
+  animation: highlight-focus .25s;
   animation-fill-mode: forwards;
 }
 
