@@ -57,14 +57,14 @@
   width: 40%;
 }
 
-#filter-bar .keyword-input-wrapper {
+#filter-bar .search-input-wrapper {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   position: relative;
 }
 
-#filter-bar #keyword-input {
+#filter-bar #search-input {
   padding-left: 3rem;
   border-width: 2px;
 }

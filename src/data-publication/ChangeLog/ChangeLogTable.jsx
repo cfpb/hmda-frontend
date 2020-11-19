@@ -1,5 +1,6 @@
 import React from 'react'
 import { PRODUCT_NAMES } from '../constants/publication-changes'
+import { FilterResetButton } from './FilterResetButton'
 
 /** 
  * Display Publication Change Log Entries
@@ -49,11 +50,7 @@ const EmptyState = ({ clear, isEmpty }) => {
         ⚠️
       </span>{' '}
       No matches found.
-      <div>
-        <span className='reset-filters' onClick={() => clear()}>
-          Reset All Filters
-        </span>
-      </div>
+      <FilterResetButton onClick={() => clear()} />
     </div>
   )
 }

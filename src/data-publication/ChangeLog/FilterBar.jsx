@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { PRODUCT_NAMES } from '../constants/publication-changes'
+import { FilterResetButton } from './FilterResetButton'
 import spyGlass from '../../common/images/cf-gov-search.svg'
 import './FilterBar.css'
 
@@ -7,11 +8,13 @@ import './FilterBar.css'
  * UI to adjust Filter criteria
  * (default export)
  */
-const PublicationFilterBar = ({
+const FilterBar = ({
   productOptions,
   typeOptions,
   filter,
 }) => {
+  const searchValue = filter.filters.keywords ? filter.filters.keywords.join(' ') : ''
+
   return (
     <div id='filter-bar'>
       <div className='filter-wrapper split'>
@@ -28,33 +31,51 @@ const PublicationFilterBar = ({
           filter={filter}
         />
         <div className='search-wrapper'>
-          <h3><label htmlFor='keyword-input'>by Change Description</label></h3>
-          <div className='text-input'>
-            <span className='icon'><img src={spyGlass} alt='Magnifying glass'/></span>
-            <div className='keyword-input-wrapper'>
-              <input
-                id='keyword-input'
-                type='text'
-                value={filter.filters.keywords ? filter.filters.keywords.join(' ') : ''}
-                onChange={(e) => filter.add('keywords', e.target.value)}
-                placeholder='Enter terms to search'
-              />
-              <button type='button' className='clear-text' onClick={() => filter.clear('keywords')}>x</button>
-            </div>
-            <button
-              className='reset-filters'
-              onClick={() => filter.clear()}
-              type="button"
-            >       
-              Reset All Filters
-            </button>
-          </div>
+          <SearchField
+            id='search-input'
+            value={searchValue}
+            label='by Change Description'
+            onChange={(e) => filter.add('keywords', e.target.value)}
+            onClear={() => filter.clear('keywords')}
+          />
+          <FilterResetButton onClick={() => filter.clear()} />
         </div>
       </div>
     </div>
   )
 }
 
+const SearchField = ({
+  id,
+  label,
+  value,
+  onChange,
+  placeholder = 'Enter terms to search',
+  onClear,
+}) => (
+  <>
+    <h3>
+      <label htmlFor={id}>{label}</label>
+    </h3>
+    <div className='text-input'>
+      <span className='icon'>
+        <img src={spyGlass} alt='Magnifying glass' />
+      </span>
+      <div className='search-input-wrapper'>
+        <input
+          id={id}
+          type='text'
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+        />
+        <button type='button' className='clear-text' onClick={onClear}>
+          x
+        </button>
+      </div>
+    </div>
+  </>
+)
 
 const FilterColumn = ({ name, options, heading, filter }) => (
   <div className={`pills-wrapper ${name}`}>
@@ -78,7 +99,6 @@ const FilterPill = ({ option, filter }) => {
   const { toggle, filters } = filter
   const id = `pill-${type}-${value}`
   const map = type === 'product' ? PRODUCT_NAMES : null
-  const mappedVal = map ? map[value] : value
   const selected = filters[option.type].indexOf(option.value) > -1 
     ? 'selected' 
     : ''
@@ -98,18 +118,17 @@ const FilterPill = ({ option, filter }) => {
   return (
     <button
       id={id}
+      type="button"
       className={`pill ${type} ${value} ${selected}`}
       onClick={() => {
         toggle(type, value)
         setWasClicked(!wasClicked)
       }}
-      tabIndex="0"
-      type="button"
     >
-      <div className='text'>{mappedVal}</div>
+      <div className='text'>{map ? map[value] : value}</div>
     </button>
   )
 }
 
 
-export default PublicationFilterBar
+export default FilterBar
