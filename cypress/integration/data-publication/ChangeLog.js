@@ -10,7 +10,7 @@ describe('Change Log', () => {
       cy.visit(`${HOST}/data-publication/updates?type=release,notice&product=documentation,apps&keywords=2020,tool`)
       // Validate pills get set on load
       EXPECTED_SELECTED_PILLS.forEach(pillClass => {
-        cy.get(`.filter-bar .pill.selected.${pillClass}`)
+        cy.get(`#filter-bar .pill.selected.${pillClass}`)
       })
 
       // Check keyword filter works
@@ -21,12 +21,12 @@ describe('Change Log', () => {
       cy.get('.pub-change-day > .pub-change-item').should('have.length', entries.length)
 
       // Changing filters should update the URL
-      cy.get('.filter-bar').findByText('notice').click()
+      cy.get('#filter-bar').findByText('notice').click()
       cy.url().should('contain', '?type=notice')
       cy.get('.pub-change-day > .pub-change-item').should('not.exist')
 
-      cy.get('.filter-bar').findByText('update').click()
-      cy.get('.filter-bar').findByText('HMDA Apps').click()
+      cy.get('#filter-bar').findByText('update').click()
+      cy.get('#filter-bar').findByText('HMDA Apps').click()
       cy.url().should('contain', '?type=notice,update&product=apps')
       cy.get('.pub-change-day > .pub-change-item').should('have.length', 4)
       

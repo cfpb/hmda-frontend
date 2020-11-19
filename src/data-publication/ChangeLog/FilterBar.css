@@ -1,0 +1,137 @@
+/** Color - Product */
+#filter-bar .pill.product.selected,
+#filter-bar .pill.product:hover {
+  background: #0f8fb6;
+  background-color: #017294;
+}
+
+/** Color - Correction */
+#filter-bar .pill.type.correction:hover,
+#filter-bar .pill.type.correction.selected {
+  background-color: #c41613;
+}
+
+/** Color - Update */
+#filter-bar .pill.type.update:hover,
+#filter-bar .pill.type.update.selected {
+  background-color: #254b87;
+}
+
+/** Color - Release */
+#filter-bar .pill.type.release:hover,
+#filter-bar .pill.type.release.selected {
+  background-color: #0b6e4f;
+}
+
+/** Color - Notice */
+#filter-bar .pill.type.notice:hover,
+#filter-bar .pill.type.notice.selected {
+  background-color: #dc731c;
+  color: white;
+}
+
+#filter-bar .text-input .close {
+  margin-left: 1rem;
+  align-self: center;
+  cursor: pointer;
+  background: grey;
+  color: white;
+  height: 100%;
+  border-radius: 10px;
+  padding: 0 0.5rem;
+}
+
+#filter-bar .text-input .close:hover {
+  background-color: #555;
+}
+
+#filter-bar .pills-wrapper {
+  margin-right: 10rem;
+}
+
+#filter-bar .filter-wrapper > * {
+  width: 18%;
+}
+
+#filter-bar .filter-wrapper .search-wrapper {
+  width: 40%;
+}
+
+#filter-bar .keyword-input-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  position: relative;
+}
+
+#filter-bar #keyword-input {
+  padding-left: 3rem;
+  border-width: 2px;
+}
+
+#filter-bar .clear-text {
+  margin: 0;
+  padding: .2rem .7rem .3rem .7rem;
+  display: inline-block;
+  position: absolute;
+  right: 1rem;
+  top: 1.3rem;
+  background: #555;
+}
+
+#filter-bar .clear-text:hover {
+  background: #017294;
+  color: white;
+}
+
+#filter-bar .pills {
+  padding: 1.5rem 0;
+}
+
+#filter-bar .pill {
+  border: 2px solid black;
+  color: black;
+  background: white;
+  position: relative;
+}
+
+#filter-bar .pill:hover,
+#filter-bar .pill.selected {
+  color: white;
+  border-color: transparent;
+}
+
+#filter-bar .pill::before {
+  content: '+';
+  margin-left: 1rem;
+  position: absolute;
+  font-size: 2rem
+}
+
+#filter-bar .pill.selected::before {
+  content: "\2713";
+  font-size: 1.5rem
+}
+
+#filter-bar .text-input {
+  padding: 1.5rem 0;
+  position: relative;
+}
+
+#filter-bar .text-input input[type='text'] {
+  border-radius: 10px;
+}
+
+#filter-bar .text-input input[type='text']:focus {
+  outline: none;
+  border-color: transparent;
+  animation: highlight-focus 1s;
+  animation-fill-mode: forwards;
+}
+
+#publication-changes #filter-bar h3,
+#publication-changes #filter-bar h4,
+#publication-changes #filter-bar label {
+  margin-top: 0;
+  margin-bottom: 0;
+}
