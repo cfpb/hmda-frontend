@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { PRODUCT_NAMES } from './constants/publication-changes'
-import spyGlass from '../common/images/cf-gov-search.svg'
+import { PRODUCT_NAMES } from '../constants/publication-changes'
+import spyGlass from '../../common/images/cf-gov-search.svg'
 
 /**
  * UI to adjust Filter criteria

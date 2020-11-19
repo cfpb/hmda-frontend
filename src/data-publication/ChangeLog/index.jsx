@@ -1,15 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import LoadingIcon from '../common/LoadingIcon'
-import { ordinal } from '../filing/utils/date'
-import { CATEGORIES, DEFAULT_FILTERS, PRODUCTS, PUB_CHANGELOG_URL } from './constants/publication-changes'
-import defaultData from './constants/publicationChangeLog.json'
-import PublicationChangeLogTable from './PublicationChangeLogTable'
-import PublicationFilterBar from './PublicationFilterBar'
-// import PublicationHighlights from './PublicationHighlights'
+import LoadingIcon from '../../common/LoadingIcon'
+import { ordinal } from '../../filing/utils/date'
+import { CATEGORIES, DEFAULT_FILTERS, PRODUCTS, PUB_CHANGELOG_URL } from '../constants/publication-changes'
+import defaultData from '../constants/publicationChangeLog.json'
+import PublicationChangeLogTable from './ChangeLogTable'
+import PublicationFilterBar from './FilterBar'
 import { useChangeLogFilter } from './useChangeLogFilter'
-import { useRemoteJSON } from '../common/useRemoteJSON'
-import './PublicationChanges.css'
+import { useRemoteJSON } from '../../common/useRemoteJSON'
+import './ChangeLog.css'
 
 /** 
  * Publications: Updates and Notes

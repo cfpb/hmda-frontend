@@ -11,7 +11,7 @@ import Snapshot from './reports/snapshot/index'
 import DynamicDataset from './reports/DynamicDataset'
 import NotFound from '../common/NotFound'
 import { withAppContext } from '../common/appContextHOC.jsx'
-import PublicationChanges from './PublicationChanges'
+import PublicationChanges from './ChangeLog/'
 
 import './index.css'
 

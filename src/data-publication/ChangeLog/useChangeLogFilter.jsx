@@ -19,9 +19,11 @@ export function useChangeLogFilter(initState = defaultState) {
   const location = useLocation()
 
   // Load filters from search query on initial render
+  // eslint-disable-next-line
   useEffect(() => fromQueryString(location.search), [])
 
   // Update URL everytime the filters are updated
+  // eslint-disable-next-line
   useEffect(() => history.push(location.pathname + toQueryString(filters)), [
     filters,
   ])

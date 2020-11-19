@@ -1,5 +1,5 @@
 import React from 'react'
-import { PRODUCT_NAMES } from './constants/publication-changes'
+import { PRODUCT_NAMES } from '../constants/publication-changes'
 
 /** 
  * Display Publication Change Log Entries
