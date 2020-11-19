@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import LoadingIcon from '../../common/LoadingIcon'
-import { ordinal } from '../../filing/utils/date'
-import { CATEGORIES, DEFAULT_FILTERS, PRODUCTS, PUB_CHANGELOG_URL } from '../constants/publication-changes'
+import { DEFAULT_FILTERS, PUB_CHANGELOG_URL, FILTER_OPTIONS } from '../constants/publication-changes'
 import defaultData from '../constants/publicationChangeLog.json'
 import PublicationChangeLogTable from './ChangeLogTable'
 import PublicationFilterBar from './FilterBar'
 import { useChangeLogFilter } from './useChangeLogFilter'
 import { useRemoteJSON } from '../../common/useRemoteJSON'
+import { organizeChangeData } from './sortFunctions'
 import './ChangeLog.css'
 
 /** 
@@ -25,20 +25,10 @@ const PublicationChanges = () => {
   
   const heading = 'Data Publication: Updates and Notes'
 
-  const productOptions = PRODUCTS.map((product) => ({
-    value: product,
-    type: 'product',
-  }))
-
-  const typeOptions = Object.keys(CATEGORIES).map((type) => ({
-    value: type,
-    type: 'type',
-  }))
-
   if (loading) return <LoadingState heading={heading} />
 
   return (
-    <div id='publication-changes' className='full-width'>
+    <PageWrapper>
       <div className='BackLink'>
         <Link to='/data-publication/'>
           {'\u2b05'} Back to HMDA Data Publications
@@ -64,57 +54,28 @@ const PublicationChanges = () => {
         <h2 className='filter header'>Filter the Change Log</h2>
         <PublicationFilterBar
           filter={filter}
-          productOptions={productOptions}
-          typeOptions={typeOptions}
+          productOptions={FILTER_OPTIONS.PRODUCT}
+          typeOptions={FILTER_OPTIONS.TYPE}
         />
         <PublicationChangeLogTable
           data={filter.apply(changeLog)}
           filter={filter}
         />
       </div>
-    </div>
+    </PageWrapper>
   )
 }
 
-
-/** Sort by Change Type */
-const byChangeType = (a, b) => {
-  if (!a.type || !b.type || CATEGORIES[a.type] > CATEGORIES[b.type]) return 0
-  if (CATEGORIES[a.type].order > CATEGORIES[b.type].order) return 1
-  if (CATEGORIES[a.type].order < CATEGORIES[b.type].order) return -1
-  return -1
-}
-
-const byChangeDate = (a, b) => new Date(b.date) - new Date(a.date)
-
-
-/** Groups and sorts data by date */
-export const organizeChangeData = (input) => {
-  let data = input && input.log ? input.log : {}
-  data = data.sort(byChangeDate)
-  const result = {}
-
-  data.forEach((item) => {
-    if (!item || !item.date) return
-    if (!item.changeDateOrdinal)
-      item.changeDateOrdinal = ordinal(new Date(item.date || 0))
-    if (!result[item.date]) result[item.date] = []
-    result[item.date].push({ ...item })
-  })
-
-  Object.keys(result).forEach((date) => {
-    result[date] = result[date].sort(byChangeType)
-  })
-
-  return result
-}
-
-
-/** Loading Spinner */
 const LoadingState = ({ heading }) => (
-  <div id='publication-changes' className='full-width'>
+  <PageWrapper>
     <h1>{heading}</h1>
     <LoadingIcon />
+  </PageWrapper>
+)
+
+const PageWrapper = ({ children }) => (
+  <div id='publication-changes' className='full-width'>
+    {children}
   </div>
 )
 
