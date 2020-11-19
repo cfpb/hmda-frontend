@@ -53,12 +53,12 @@
   margin-bottom: 3rem;
 }
 
-#publication-changes .search-link {
+#ChangeLog .search-link {
   cursor: pointer;
   color: #4675c2;
   text-decoration: underline;
 }
 
-#publication-changes .search-link:hover {
+#ChangeLog .search-link:hover {
   text-decoration: double underline;
 }

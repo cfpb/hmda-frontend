@@ -137,9 +137,9 @@
   animation-fill-mode: forwards;
 }
 
-#publication-changes #filter-bar h3,
-#publication-changes #filter-bar h4,
-#publication-changes #filter-bar label {
+#ChangeLog #filter-bar h3,
+#ChangeLog #filter-bar h4,
+#ChangeLog #filter-bar label {
   margin-top: 0;
   margin-bottom: 0;
 }
