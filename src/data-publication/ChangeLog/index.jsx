@@ -43,10 +43,10 @@ const PublicationChanges = () => {
         release notes, and information on which product may be best for you.
       </p>
       <a
-        id='pub-whats-new'
+        id='focus-on-filter-bar'
         className='nav-anchor'
         role='note'
-        href='#pub-whats-new'
+        href='#focus-on-filter-bar'
         aria-hidden='true'
         tabIndex='-1'
       >

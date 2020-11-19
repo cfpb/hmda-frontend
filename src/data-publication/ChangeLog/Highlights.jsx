@@ -174,7 +174,7 @@ const Linked = ({ text, filter }) => {
   const handleClick = () => {
     filter.add('keywords', text)
     document
-      .getElementById('pub-whats-new')
+      .getElementById('focus-on-filter-bar')
       .scrollIntoView({ behavior: 'smooth' })
     setTimeout(() => document.getElementById('keyword-input').focus(), 500)
   }

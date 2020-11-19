@@ -110,7 +110,7 @@ const FilterPill = ({ option, filter }) => {
   // Keep Filter Bar in view on filter change
   useEffect(() => {
     if (wasClicked) {
-      document.getElementById('pub-whats-new').scrollIntoView()
+      document.getElementById('focus-on-filter-bar').scrollIntoView()
       setWasClicked(false)
     }
   }, [wasClicked])
