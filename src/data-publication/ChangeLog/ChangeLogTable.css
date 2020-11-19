@@ -1,3 +1,7 @@
+#ChangeLogTable {
+  min-height: 25vh;
+}
+
 #ChangeLogTable .pub-change-item {
   align-items: flex-start;
   padding: 3rem 1rem;
