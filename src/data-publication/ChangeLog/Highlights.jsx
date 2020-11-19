@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PRODUCTS, PRODUCT_NAMES } from './constants/publication-changes'
+import './Highlights.css'
 
 const HEADERS = {
   update: ['Update', 'Date'],
