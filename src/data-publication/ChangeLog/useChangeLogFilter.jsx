@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-import React from 'react';
+import React, { useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 
 const defaultState = {
@@ -7,7 +6,16 @@ const defaultState = {
   product: [],
   keywords: [],
 }
+
 const validParams = Object.keys(defaultState)
+
+// Check if @string contains all substrings in @words
+const hasAllWords = (string, words) => {
+  if (!string || !words || !words.length) return false
+  return words.every(
+    (word) => string.toLowerCase().indexOf(word.toLowerCase()) > -1
+  )
+}
 
 /**
  * State management for Change Log Filters
@@ -35,26 +43,18 @@ export function useChangeLogFilter(initState = defaultState) {
         ...state,
         [key]: value ? value.split(' ') : [],
       }))
-    }
-    else setFilters((state) => ({ ...state, [key]: [...state[key], value] }))
+    } else setFilters((state) => ({ ...state, [key]: [...state[key], value] }))
   }
 
   /* Remove a filter */
   const remove = (key, value) => {
-    if (key === 'keywords') {
-      setFilters((state) => ({
-        ...state,
-        [key]: state[key].filter((word) => word !== value),
-      }))
-    }
-    else
-      setFilters((state) => ({
-        ...state,
-        [key]: [...state[key].filter((val) => val !== value)],
-      }))
+    setFilters((state) => ({
+      ...state,
+      [key]: [...state[key].filter((val) => val !== value)],
+    }))
   }
 
-  /* Clear a single filter or all filters */
+  /* Clear a single filter if given a type, or all filters */
   const clear = (filterType) => {
     if (filterType) setFilters((state) => ({ ...state, [filterType]: [] }))
     else setFilters(initState)
@@ -79,12 +79,6 @@ export function useChangeLogFilter(initState = defaultState) {
           const words = filterLists.keywords
             .filter((wrd) => wrd)
             .map((wrd) => wrd.toLowerCase())
-
-          // Check if @string contains all strings @words
-          const hasAllWords = (string, words) => {
-            if (!string || !words || !words.length) return false
-            return words.every(word => string.toLowerCase().indexOf(word.toLowerCase()) > -1)
-          }
 
           // Search only Change Description by keyword
           result[date] = result[date].filter((item) =>
@@ -113,38 +107,45 @@ export function useChangeLogFilter(initState = defaultState) {
 
   const highlightKeywords = (content) => {
     if (!filters.keywords) return content
-    const keywords = filters.keywords.filter(x => x)
+    const keywords = filters.keywords.filter((x) => x)
 
-    let newContent = content.split(' ').filter(x => x).map((word, w_idx) => {
-      if (!keywords.length) return word + ' '
+    let newContent = content
+      .split(' ')
+      .filter((x) => x)
+      .map((word, w_idx) => {
+        if (!keywords.length) return word + ' '
 
-      let highlightedWord = word
-      let wordHighlighted = false
+        let highlightedWord = word
+        let wordHighlighted = false
 
-      keywords.forEach(keyword => {
-        if (wordHighlighted) return
-        const index = highlightedWord.toString().toLowerCase().indexOf(keyword.toLowerCase())
+        keywords.forEach((keyword) => {
+          if (wordHighlighted) return
+          const index = highlightedWord
+            .toString()
+            .toLowerCase()
+            .indexOf(keyword.toLowerCase())
 
-        if (index > -1) { 
-          const before = word.substr(0, index)
-          const highlight = word.substr(index, keyword.length)
-          const after = word.substr(index + keyword.length )
-        
-          highlightedWord = (
-            <>
-              {before}
-              <Highlighted text={highlight} />
-              {after}
-            </>
-          )
+          if (index > -1) {
+            const before = word.substr(0, index)
+            const highlight = word.substr(index, keyword.length)
+            const after = word.substr(index + keyword.length)
 
-          wordHighlighted = true
-        }
+            highlightedWord = (
+              <>
+                {before}
+                <Highlighted text={highlight} />
+                {after}
+              </>
+            )
 
+            wordHighlighted = true
+          }
+        })
+
+        return (
+          <span key={`highlight-${word}-${w_idx}`}>{highlightedWord} </span>
+        )
       })
-
-      return <span key={`highlight-${word}-${w_idx}`}>{highlightedWord}{' '}</span>
-    })
 
     return <>{newContent}</>
   }
@@ -152,23 +153,26 @@ export function useChangeLogFilter(initState = defaultState) {
   /* Derive query string from filter state */
   const toQueryString = (filters) => {
     const params = Object.keys(defaultState)
-    .filter(filterType => filters[filterType].length)
-    .map((filterType) => `${filterType}=${filters[filterType].join(',')}`)
+      .filter((filterType) => filters[filterType].length)
+      .map((filterType) => `${filterType}=${filters[filterType].join(',')}`)
 
     return params ? `?${params.join('&')}` : ''
   }
 
   /* Derive filter state from query string */
   const fromQueryString = (qs) => {
-    const qStrings = qs.replace(/\?/g, '').split('&').reduce((acc, curr) => {
-      const [param, values] = curr.split('=')
-      if (validParams.indexOf(param) > -1)
-        acc[param] = values.split(',').filter(x => x)
-      return acc
-    }, {})
+    const qStrings = qs
+      .replace(/\?/g, '')
+      .split('&')
+      .reduce((acc, curr) => {
+        const [param, values] = curr.split('=')
+        if (validParams.indexOf(param) > -1)
+          acc[param] = values.split(',').filter((x) => x)
+        return acc
+      }, {})
 
     if (Object.keys(qStrings).length) {
-      setFilters(({ ...defaultState, ...qStrings}))
+      setFilters({ ...defaultState, ...qStrings })
     }
   }
 
@@ -181,15 +185,10 @@ export function useChangeLogFilter(initState = defaultState) {
     toggle,
     highlightKeywords,
     toQueryString,
-    fromQueryString
+    fromQueryString,
   }
 }
 
-
 const Highlighted = ({ text }) => {
-  return (
-    <span className='highlighted' >
-      {text}
-    </span>
-  )
+  return <span className='highlighted'>{text}</span>
 }

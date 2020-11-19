@@ -23,5 +23,5 @@ export const PUB_CHANGELOG_URL = 'https://raw.githubusercontent.com/cfpb/hmda-fr
 export const DEFAULT_FILTERS = {
   type: [],
   product: [],
-  keywords: '',
+  keywords: [],
 }
