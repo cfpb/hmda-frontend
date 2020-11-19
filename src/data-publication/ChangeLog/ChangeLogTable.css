@@ -2,46 +2,46 @@
   min-height: 25vh;
 }
 
-#ChangeLogTable .pub-change-item {
+#ChangeLogTable .change-row {
   align-items: flex-start;
   padding: 3rem 1rem;
 }
 
-#ChangeLogTable .pub-change-item.header {
+#ChangeLogTable .change-row.header {
   padding: 3rem 1rem 1rem;
   border-bottom: 1px solid black;
 }
 
-#ChangeLogTable .pub-change-item.split {
+#ChangeLogTable .change-row.split {
   justify-content: flex-start;
   align-items: flex-start;
 }
 
-#ChangeLogTable .pub-change-item > * {
+#ChangeLogTable .change-row > * {
   flex-basis: 25%;
 }
 
-#ChangeLogTable .pub-change-item .date .icon {
+#ChangeLogTable .change-row .date .icon {
   display: none;
   margin-right: 1rem;
 }
 
-#ChangeLogTable .pub-change-item .date,
-#ChangeLogTable .pub-change-item .date.header {
+#ChangeLogTable .change-row .date,
+#ChangeLogTable .change-row .date.header {
   text-transform: capitalize;
   padding-left: .5rem;
 }
 
 
-#ChangeLogTable .pub-change-item .column-type {
+#ChangeLogTable .change-row .changeType {
   padding-left: 1rem;
 }
 
-#ChangeLogTable .pub-change-item .column-type .pill {
+#ChangeLogTable .change-row .changeType .pill {
   margin: 0
 }
 
-#ChangeLogTable .pub-change-item .type {
+#ChangeLogTable .change-row .type {
   width: 200px;
   text-align: center;
   padding: .3rem .5rem;
@@ -51,17 +51,17 @@
   font-size: 1.3rem;
 }
 
-#ChangeLogTable .pub-change-item .type:hover,
-#ChangeLogTable .pub-change-item .product:not(.header):hover {
+#ChangeLogTable .change-row .type:hover,
+#ChangeLogTable .change-row .product:not(.header):hover {
   cursor: pointer;
   user-select: none;
 }
 
-#ChangeLogTable .pub-change-item .product {
+#ChangeLogTable .change-row .product {
   text-transform: capitalize;
 }
 
-#ChangeLogTable .pub-change-item button.product,
+#ChangeLogTable .change-row button.product,
 #ChangeLogTable .search-link {
   background: none;
   color: black;
@@ -75,51 +75,51 @@
 }
 
 /** Color - Correction */
-#ChangeLogTable .pub-change-item .type.correction {
+#ChangeLogTable .change-row .type.correction {
   background-color: #c41613;
 }
 
 /** Color - Update */
-.pub-change-item .pill.type.update  {
+#ChangeLogTable .change-row .type.update  {
   background-color: #254b87;
 }
 
 /** Color - Release */
-#ChangeLogTable .pub-change-item .type.release  {
+#ChangeLogTable .change-row .type.release  {
   background-color: #0b6e4f;
 }
 
 /** Color - Notice */
-#ChangeLogTable .pub-change-item .type.notice  {
+#ChangeLogTable .change-row .type.notice  {
   background-color: #dc731c;
   color: white;
 }
 
-#ChangeLogTable .pub-change-item .product.selected {
+#ChangeLogTable .change-row .product.selected {
   font-weight: bold;
 }
 
-#ChangeLogTable .pub-change-item .description {
+#ChangeLogTable .change-row .description {
   flex-basis: 50%;
 }
 
-#ChangeLogTable .pub-change-item .type.header {
+#ChangeLogTable .change-row .type.header {
   color: black;
   white-space: nowrap;
   text-transform: capitalize;
 }
 
-#ChangeLogTable .pub-change-item > .header {
+#ChangeLogTable .change-row > .header {
   width: 33%;
   margin: 0;
   text-decoration-color: grey;
 }
 
-#ChangeLogTable .pub-change-item .pill {
+#ChangeLogTable .change-row .pill {
   max-width: 100px !important;
   margin-bottom: 0;
 }
 
-#ChangeLogTable .pub-change-item:not(.header) {
+#ChangeLogTable .change-row:not(.header) {
   border-top: 1px solid lightgrey;
 }

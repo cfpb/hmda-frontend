@@ -52,9 +52,9 @@ const EmptyState = ({ clear, isEmpty }) => {
 
 const Header = () => {
   return (
-    <div className='pub-change-item header split'>
+    <div className='change-row header split'>
       <h4 className='header date'>Change Date</h4>
-      <h4 className='header column-type'>Change Type</h4>
+      <h4 className='header changeType'>Change Type</h4>
       <h4 className='header product'>Product</h4>
       <h4 className='header description'>Change Description</h4>
     </div>
@@ -63,7 +63,7 @@ const Header = () => {
 
 
 const Row = ({ item, filter, products }) => {
-  let rowClassname = 'pub-change-item split'
+  let rowClassname = 'change-row split'
 
   let productClassname =
     `product ${item.product}` +
@@ -75,7 +75,7 @@ const Row = ({ item, filter, products }) => {
   return (
     <div className={rowClassname}>
       <Column className='date' value={item.changeDateOrdinal} />
-      <Column className='column-type'>
+      <Column className='changeType'>
         <button
           className={`pill type ${item.type}`}
           onClick={toggleType}
