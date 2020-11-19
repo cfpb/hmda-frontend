@@ -45,6 +45,14 @@
   background-color: #555;
 }
 
+#filter-bar .text-input .icon img {
+  width: 15px;
+  position: absolute;
+  z-index: 10;
+  top: 3rem;
+  left: 1rem;
+}
+
 #filter-bar .pills-wrapper {
   margin-right: 10rem;
 }
@@ -125,7 +133,7 @@
 #filter-bar .text-input input[type='text']:focus {
   outline: none;
   border-color: transparent;
-  animation: highlight-focus 1s;
+  animation: highlight-focus .5s;
   animation-fill-mode: forwards;
 }
 

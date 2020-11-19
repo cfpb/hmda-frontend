@@ -44,13 +44,15 @@ const PublicationChanges = () => {
       </p>
       <a
         id='pub-whats-new'
+        className='nav-anchor'
         role='note'
         href='#pub-whats-new'
         aria-hidden='true'
+        tabIndex='-1'
       >
         invisible filter anchor
       </a>
-      <div className='pub-change-log'>
+      <div className='filter-wrapper'>
         <h2 className='filter header'>Filter the Change Log</h2>
         <PublicationFilterBar
           filter={filter}
