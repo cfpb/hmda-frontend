@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import LoadingIcon from '../../common/LoadingIcon'
-import { DEFAULT_FILTERS, PUB_CHANGELOG_URL, FILTER_OPTIONS } from '../constants/publication-changes'
+import { DEFAULT_FILTERS, PUB_CHANGELOG_URL, FILTER_OPTIONS } from './constants'
 import defaultData from '../constants/publicationChangeLog.json'
 import ChangeLogTable from './ChangeLogTable'
 import FilterBar from './FilterBar'

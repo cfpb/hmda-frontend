@@ -1,5 +1,5 @@
 import { ordinal } from '../../filing/utils/date'
-import { CATEGORIES } from '../constants/publication-changes'
+import { CATEGORIES } from './constants'
 
 /** Sort by Type */
 export const byType = (a, b) => {

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import Highlighter from "react-highlight-words";
-import { PRODUCT_NAMES } from '../constants/publication-changes'
+import { PRODUCT_NAMES } from './constants'
 import { FilterResetButton } from './FilterResetButton'
 import filterImg from '../../common/images/filters.svg'
 import './ChangeLogTable.css'
