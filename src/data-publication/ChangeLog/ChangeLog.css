@@ -1,3 +1,7 @@
+#ChangeLog * {
+  font-family: 'Arial', "Segoe UI", 'Roboto', -apple-system;
+}
+
 #ChangeLog h2 {
   margin-bottom: 2rem;
   padding-bottom: 1rem;
