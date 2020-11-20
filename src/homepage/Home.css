@@ -1,3 +1,16 @@
 .App.home .card:nth-of-type(2){
   margin-right: 0;
 }
+
+.App.home .last-updated:hover {
+  color: inherit;
+}
+
+.App.home .last-updated {
+  display: inline-block;
+  text-decoration: inherit;
+  margin: 0 0 0 .5rem;
+  color: grey;
+  font-size: 1.25rem;
+  text-align: right;
+}
