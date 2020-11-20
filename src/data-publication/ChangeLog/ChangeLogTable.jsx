@@ -1,38 +1,68 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import Highlighter from "react-highlight-words";
 import { PRODUCT_NAMES } from '../constants/publication-changes'
 import { FilterResetButton } from './FilterResetButton'
+import filterImg from '../../common/images/filters.svg'
 import './ChangeLogTable.css'
 /** 
  * Display Publication Change Log Entries
  * (default export)
  */
-const ChangeLogTable = ({ data = {}, products = PRODUCT_NAMES, filter }) => {
+const ChangeLogTable = ({ data = {}, products = PRODUCT_NAMES, filter, changeLog }) => {
+  const totalEntries = useMemo(
+    () =>
+      Object.keys(changeLog)
+        .map((key) => changeLog[key].length)
+        .reduce((acc, curr) => acc + curr, 0),
+    [changeLog]
+  )
+
+  const hasFilters = Object.keys(filter.filters).some(key => filter.filters[key].length)
+  
   const dates = Object.keys(data)
-  const isEmpty = dates.every((key) => !data[key].length)
+  const rows = dates.map((date, row) => {
+    const todaysItems = data[date]
+    if (!todaysItems || !todaysItems.length) return null
+
+    return todaysItems.map((item, col) => {
+      return (
+        <Row
+          key={'clt-row-' + row + 'col-' + col}
+          item={item}
+          products={products}
+          filter={filter}
+        />
+      )
+    })
+  }).flat().filter(x => x)
+
+  const isEmpty = !rows.length
 
   return (
     <div id='ChangeLogTable'>
-      <Header />
+      <ResultCount count={rows.length} total={totalEntries} hide={!hasFilters} />
+      {!isEmpty && <Header />}
       <EmptyState clear={filter.clear} isEmpty={isEmpty} />
-      {dates.map((date, row) => {
-        const todaysItems = data[date]
-        if (!todaysItems || !todaysItems.length) return null
-
-        return todaysItems.map((item, col) => {
-          return (
-            <Row
-              key={'clt-row-' + row + 'col-' + col}
-              item={item}
-              products={products}
-              filter={filter}
-            />
-          )
-        })
-      })}
+      {rows}
     </div>
   )
 }
+
+const ResultCount = ({ count, total, hide }) => {
+  if (hide) return null
+
+  return (
+    <div className='result-count'>
+      <h3 className='header'>
+        <img src={filterImg} alt='filter sliders' />
+        Filtered results
+      </h3>
+      <div className='body'>
+        Showing <span className='highlight'>{count}</span> out of{' '}
+        <span className='highlight'>{total}</span> entries
+      </div>
+    </div>
+  )}
 
 
 const EmptyState = ({ clear, isEmpty }) => {

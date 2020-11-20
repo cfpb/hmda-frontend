@@ -62,6 +62,7 @@ const ChangeLog = () => {
         <ChangeLogTable
           data={filter.apply(changeLog)}
           filter={filter}
+          changeLog={changeLog}
         />
       </div>
     </PageWrapper>

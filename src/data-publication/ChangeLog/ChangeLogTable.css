@@ -3,13 +3,49 @@
   overflow: auto;
 }
 
+
+#ChangeLogTable .result-count {
+  margin: 3rem 0;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+#ChangeLogTable .result-count .header {
+  text-transform: uppercase;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  margin: 0;
+  margin-right: 3rem;
+}
+
+#ChangeLogTable .result-count .body {
+  font-size: 1.7rem;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 1rem;
+}
+
+#ChangeLogTable .result-count img {
+  height: 25px;
+  margin-right: 1rem;
+}
+
+#ChangeLogTable .result-count .highlight {
+  font-weight: bolder;
+  font-size: 2.3rem;
+  padding: 0 .25rem;
+  color: #0b6e4f;
+}
+
 #ChangeLogTable .change-row {
   align-items: flex-start;
   padding: 3rem 1rem;
 }
 
 #ChangeLogTable .change-row.header {
-  padding: 3rem 1rem 1rem;
+  padding: 1rem 1rem 1rem;
   border-bottom: 1px solid black;
 }
 
@@ -129,10 +165,16 @@
 #ChangeLogTable .change-row .header {
   min-width: 165px;
 }
-/* 
+
+
 @media screen and (max-width: 850px) {
-  #ChangeLogTable .change-row {
-    flex-flow: column nowrap;
+  #ChangeLogTable {
+    margin-top: 3rem;
   }
-  
-} */
+
+  #ChangeLogTable .result-count {
+    margin: 3rem 0;
+    font-size: 1.9rem;
+    text-align: center;
+  }
+}
