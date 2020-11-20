@@ -34,14 +34,19 @@ const ChangeLog = () => {
           {'\u2b05'} Back to HMDA Data Publications
         </Link>
       </div>
-      <h1>{heading}</h1>
-      <p className='intro'>
-        The HMDA data and reports are the most comprehensive publicly available
-        information on mortgage market activity. This page includes all updates
-        related to data products for the HDMA data collected in or after 2017.
-        This includes header changes, data product differences over the years,
-        release notes, and information on which product may be best for you.
-      </p>
+      <header className="heading">
+      <div className='intro'>
+        <h1>{heading}</h1>
+        <p className='lead'>
+          The HMDA data and reports are the most comprehensive publicly
+          available information on mortgage market activity. This page includes
+          all updates related to data products for the HDMA data collected in or
+          after 2017. This includes header changes, data product differences
+          over the years, release notes, and information on which product may be
+          best for you.
+        </p>
+      </div>
+      </header>
       <a
         id='focus-on-filter-bar'
         className='nav-anchor'

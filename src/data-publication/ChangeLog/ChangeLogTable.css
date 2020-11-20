@@ -16,6 +16,7 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
+  align-items: center;
   margin: 0;
   margin-right: 3rem;
 }
@@ -24,7 +25,6 @@
   font-size: 1.7rem;
   margin: 0;
   padding: 0;
-  padding-bottom: 1rem;
 }
 
 #ChangeLogTable .result-count img {
@@ -34,7 +34,7 @@
 
 #ChangeLogTable .result-count .highlight {
   font-weight: bolder;
-  font-size: 2.3rem;
+  font-size: 1.75rem;
   padding: 0 .25rem;
   color: #0b6e4f;
 }
