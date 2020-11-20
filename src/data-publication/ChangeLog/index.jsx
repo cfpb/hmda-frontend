@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import LoadingIcon from '../../common/LoadingIcon'
 import { DEFAULT_FILTERS, PUB_CHANGELOG_URL, FILTER_OPTIONS } from '../constants/publication-changes'
 import defaultData from '../constants/publicationChangeLog.json'
-import PublicationChangeLogTable from './ChangeLogTable'
-import PublicationFilterBar from './FilterBar'
+import ChangeLogTable from './ChangeLogTable'
+import FilterBar from './FilterBar'
 import { useChangeLogFilter } from './useChangeLogFilter'
 import { useRemoteJSON } from '../../common/useRemoteJSON'
 import { organizeChangeData } from './sortFunctions'
@@ -14,7 +14,7 @@ import './ChangeLog.css'
  * Publications: Updates and Notes
  * (default export)
  * */
-const PublicationChanges = () => {
+const ChangeLog = () => {
   const filter = useChangeLogFilter(DEFAULT_FILTERS)
 
   const [changeLog, loading] = useRemoteJSON(PUB_CHANGELOG_URL, {
@@ -54,12 +54,12 @@ const PublicationChanges = () => {
       </a>
       <div className='filter-wrapper'>
         <h2 className='filter header'>Filter the Change Log</h2>
-        <PublicationFilterBar
+        <FilterBar
           filter={filter}
           productOptions={FILTER_OPTIONS.PRODUCT}
           typeOptions={FILTER_OPTIONS.TYPE}
         />
-        <PublicationChangeLogTable
+        <ChangeLogTable
           data={filter.apply(changeLog)}
           filter={filter}
         />
@@ -76,9 +76,9 @@ const LoadingState = ({ heading }) => (
 )
 
 const PageWrapper = ({ children }) => (
-  <div id='publication-changes' className='full-width'>
+  <div id='ChangeLog' className='full-width'>
     {children}
   </div>
 )
 
-export default PublicationChanges
+export default ChangeLog

@@ -1,5 +1,6 @@
 #ChangeLogTable {
   min-height: 25vh;
+  overflow: auto;
 }
 
 #ChangeLogTable .change-row {
@@ -123,3 +124,15 @@
 #ChangeLogTable .change-row:not(.header) {
   border-top: 1px solid lightgrey;
 }
+
+#ChangeLogTable .change-row .column,
+#ChangeLogTable .change-row .header {
+  min-width: 165px;
+}
+/* 
+@media screen and (max-width: 850px) {
+  #ChangeLogTable .change-row {
+    flex-flow: column nowrap;
+  }
+  
+} */

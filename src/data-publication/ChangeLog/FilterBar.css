@@ -1,3 +1,14 @@
+#filter-bar {
+  overflow: visible;
+}
+
+#filter-bar .filter-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: .5rem;
+}
+
 /** Color - Product */
 #filter-bar .pill.product.selected,
 #filter-bar .pill.product:hover {
@@ -41,10 +52,6 @@
   padding: 0 0.5rem;
 }
 
-#filter-bar .text-input .close:hover {
-  background-color: #555;
-}
-
 #filter-bar .text-input .icon img {
   width: 15px;
   position: absolute;
@@ -53,16 +60,13 @@
   left: 1rem;
 }
 
-#filter-bar .pills-wrapper {
-  margin-right: 10rem;
-}
-
 #filter-bar .filter-wrapper > * {
   width: 18%;
 }
 
 #filter-bar .filter-wrapper .search-wrapper {
   width: 40%;
+  padding-left: .5rem;
 }
 
 #filter-bar .search-input-wrapper {
@@ -79,7 +83,7 @@
 
 #filter-bar .clear-text {
   margin: 0;
-  padding: .2rem .7rem .3rem .7rem;
+  padding: 0.2rem 0.7rem 0.3rem 0.7rem;
   display: inline-block;
   position: absolute;
   right: 1rem;
@@ -101,6 +105,7 @@
   color: black;
   background: white;
   position: relative;
+  min-width: 165px;
 }
 
 #filter-bar .pill:hover,
@@ -113,12 +118,12 @@
   content: '+';
   margin-left: 1rem;
   position: absolute;
-  font-size: 2rem
+  font-size: 2rem;
 }
 
 #filter-bar .pill.selected::before {
-  content: "\2713";
-  font-size: 1.5rem
+  content: '\2713';
+  font-size: 1.5rem;
 }
 
 #filter-bar .text-input {
@@ -128,12 +133,13 @@
 
 #filter-bar .text-input input[type='text'] {
   border-radius: 10px;
+  min-width: 265px;
 }
 
 #filter-bar .text-input input[type='text']:focus {
   outline: none;
   border-color: transparent;
-  animation: highlight-focus .25s;
+  animation: highlight-focus 0.25s;
   animation-fill-mode: forwards;
 }
 
@@ -142,4 +148,27 @@
 #ChangeLog #filter-bar label {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+@media screen and (max-width: 850px) {
+  #filter-bar .filter-wrapper.split {
+    flex-flow: column nowrap;
+  }
+
+  #filter-bar .filter-wrapper.split > * {
+    width: 100%;
+  }
+
+  #filter-bar .pills.columns.split {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  #filter-bar .filter-wrapper .search-input-wrapper #search-input {
+    max-width: none;
+  }
+
+  #filter-bar .filter-wrapper > * {
+    width: 100%
+  }
 }
