@@ -18,9 +18,8 @@ const ChangeLog = () => {
   const filter = useChangeLogFilter(DEFAULT_FILTERS)
 
   const [changeLog, loading] = useRemoteJSON(PUB_CHANGELOG_URL, {
-    beforeUpdate: (data) => organizeChangeData(data),
-    defaultContent: organizeChangeData(defaultData),
-    msgReject: 'Unable to fetch remote Publication Change Log!',
+    transformReceive: (data) => organizeChangeData(data),
+    defaultData: organizeChangeData(defaultData),
   })
   
   const heading = 'Data Publication: Updates and Notes'
