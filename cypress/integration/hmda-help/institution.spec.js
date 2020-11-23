@@ -11,32 +11,58 @@ const {
   HH_AUTH_CLIENT_ID,
 } = Cypress.env()
 
+const LOCAL_ACTION_DELAY = 250
+
 const NOTE_HISTORY_ON_CI_FIXED = false
 
-describe('HMDA Help', () => {
+describe('HMDA Help - Institutions', () => {
   const authUrl = HOST.indexOf('localhost') > -1 ? AUTH_BASE_URL : HOST
 
-  beforeEach(() => {
+  // beforeEach(() => {
+  //   if (!isCI(ENVIRONMENT)) {
+  //     cy.logout({ root: authUrl, realm: HH_AUTH_REALM })
+  //     cy.wait(LOCAL_ACTION_DELAY)
+  //     cy.login({
+  //       root: authUrl,
+  //       realm: HH_AUTH_REALM,
+  //       client_id: HH_AUTH_CLIENT_ID,
+  //       redirect_uri: HOST,
+  //       username: HH_USERNAME,
+  //       password: HH_PASSWORD,
+  //     })
+  //   }
+
+  //   cy.viewport(1600, 900)
+  //   cy.visit(`${HOST}/hmda-help/`)
+  //   cy.wait(LOCAL_ACTION_DELAY)
+  // })
+
+  it('Can update existing Institutions', () => {
+
+    // Log in
     if (!isCI(ENVIRONMENT)) {
       cy.logout({ root: authUrl, realm: HH_AUTH_REALM })
+      cy.wait(LOCAL_ACTION_DELAY)
       cy.login({
         root: authUrl,
         realm: HH_AUTH_REALM,
         client_id: HH_AUTH_CLIENT_ID,
         redirect_uri: HOST,
         username: HH_USERNAME,
-        password: HH_PASSWORD,
+        password: HH_PASSWORD
       })
     }
-
+    
+    // Load site
     cy.viewport(1600, 900)
     cy.visit(`${HOST}/hmda-help/`)
-  })
+    cy.wait(LOCAL_ACTION_DELAY)
 
-  it('Can update existing Institutions', () => {
+
     // Search for existing Instititution
     cy.findByLabelText('LEI').type(HH_INSTITUTION)
     cy.findByText('Search institutions').click()
+    cy.wait(LOCAL_ACTION_DELAY)
     cy.findAllByText('Update')
       .eq(1) // 2019
       .click()
@@ -134,6 +160,7 @@ describe('HMDA Help', () => {
           .type('Cypress - Change respondent name back')
           .blur()
           .then(() => {
+            cy.wait(LOCAL_ACTION_DELAY)
             cy.findByText(updateButtonText)
               .should('be.enabled')
               .click()
@@ -159,6 +186,7 @@ describe('HMDA Help', () => {
 
     // Delete
     cy.findByLabelText('LEI').type(`${institution}{enter}`)
+    cy.wait(LOCAL_ACTION_DELAY)
     cy.get('table.institutions tbody tr')
       .first()
       .get('td')
@@ -173,8 +201,10 @@ describe('HMDA Help', () => {
       .should('not.contain', year)
 
     // Create
+    cy.wait(LOCAL_ACTION_DELAY)
     cy.visit(`${HOST}/hmda-help/`)
     cy.findByLabelText('LEI').type('MEISSADIATESTBANK001{enter}')
+    cy.wait(LOCAL_ACTION_DELAY)
     cy.findByText(`Add ${institution} for ${year}`).click()
 
     cy.findByLabelText('Activity Year').select(year).should('have.value', year)

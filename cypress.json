@@ -16,5 +16,9 @@
     "HH_HOST": "http://localhost:3000/hmda-help"
   },
   "defaultCommandTimeout": 10000,
-  "projectId": "uk89dv"
+  "projectId": "uk89dv",
+  "retries": {
+    "runMode": 3,
+    "openMode": 1
+  }
 }
