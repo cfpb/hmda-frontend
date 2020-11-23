@@ -29,7 +29,7 @@
     "markdown-to-jsx": "6.11.4",
     "normalize.css": "8.0.1",
     "react": "16.13.1",
-    "react-app-polyfill": "1.0.6",
+    "react-app-polyfill": "2.0.0",
     "react-dom": "16.13.1",
     "react-dropzone": "10.2.2",
     "react-helmet": "5.2.1",
