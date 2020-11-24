@@ -125,6 +125,8 @@ const FilterPill = ({ option, filter }) => {
         setWasClicked(!wasClicked)
       }}
     >
+      
+      <span className="icon">{ selected ? '\u2713': '+' }</span>
       <div className='text'>{map ? map[value] : value}</div>
     </button>
   )

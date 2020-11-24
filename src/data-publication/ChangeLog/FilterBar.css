@@ -114,15 +114,14 @@
   border-color: transparent;
 }
 
-#filter-bar .pill::before {
-  content: '+';
-  margin-left: 1rem;
+#filter-bar .pill .icon {
+  top: 3px;
+  margin-left: .75rem;
   position: absolute;
   font-size: 2rem;
 }
 
-#filter-bar .pill.selected::before {
-  content: '\2713';
+#filter-bar .pill.selected .icon {
   font-size: 1.5rem;
 }
 
