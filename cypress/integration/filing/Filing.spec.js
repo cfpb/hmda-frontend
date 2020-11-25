@@ -112,9 +112,9 @@ describe("Filing", function() {
               mimeType: "text/plain"
             })
 
-            // Wait up to 2 minutes for upload to complete, then start reviewing edits
+            // Wait up to 3 minutes for upload to complete, then start reviewing edits
             cy.get(".NavButtonContainer > .NavButton").click({
-              timeout: 120000
+              timeout: 180000
             })
 
             // Action: Review Quality Edits
