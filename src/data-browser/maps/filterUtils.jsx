@@ -4,6 +4,9 @@ function getFile(y, g, v, val) {
 }
 
 export function fetchFilterData(year, geography, variable, value) {
+  if (!year)
+    return new Promise((_res, rej) => rej('Missing Required parameter: year'))
+    
   return fetch(getFile(year, geography.value, variable.value, value.value))
     .then(res => {
       return new Promise(resolve => {

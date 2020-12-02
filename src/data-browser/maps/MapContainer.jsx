@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef }  from 'react'
+import { Redirect } from 'react-router-dom'
 import Select from '../Select.jsx'
 import DBYearSelector from '../datasets/DBYearSelector'
 import LoadingButton from '../datasets/LoadingButton.jsx'
@@ -11,7 +12,6 @@ import { fetchFilterData } from './filterUtils.jsx'
 import { runFetch, getCSV } from '../api.js'
 import fips2Shortcode from '../constants/fipsToShortcode.js'
 import mapbox from 'mapbox-gl'
-
 import './mapbox.css'
 
 mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlvaQw'
@@ -83,6 +83,8 @@ const MapContainer = props => {
         return geography.value === 'state' ? state2018Data : county2018Data
       case '2019':
         return geography.value === 'state' ? state2019Data : county2019Data
+      default:
+        return null
     }
   }, [county2018Data, county2019Data, state2018Data, state2019Data])
 
@@ -393,6 +395,11 @@ const MapContainer = props => {
   }
 
   const resolved = resolveData()
+
+  if (!year)
+    return (
+      <Redirect to={props.location.pathname + `${props.config.publicationReleaseYear}` + props.location.search} />
+    )
 
   return (
     <div className="SelectWrapper">

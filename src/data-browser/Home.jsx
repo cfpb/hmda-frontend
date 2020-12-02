@@ -30,7 +30,7 @@ class Home extends Component {
           >Filter and download HMDA datasets by various filters.
           </ImageCard>
           <ImageCard
-            year="2018"
+            year={publicationReleaseYear}
             caption={`Maps & Graphs${showMaps ? '' : ' (coming soon)'}`}
             path="maps-graphs"
             enabled={showMaps ? true : false }
