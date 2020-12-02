@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback, useRef }  from 'react'
-import { useLocation } from 'react-router-dom'
 import Select from '../Select.jsx'
 import DBYearSelector from '../datasets/DBYearSelector'
 import LoadingButton from '../datasets/LoadingButton.jsx'
@@ -420,7 +419,14 @@ const MapContainer = props => {
       />
       <h3>Step 2: Select a Variable</h3>
       <p>
-        Then select a variable with the next dropdown
+        Narrow down your selection by filtering on up to two{' '}
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={`/documentation/${year}/data-browser-filters/#action_taken`}
+        >
+          popular variables
+        </a>
       </p>
       <Select
         onChange={onVariableChange}
