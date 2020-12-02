@@ -1,17 +1,18 @@
 {
   "name": "prod",
   "announcement": {
-    "message": "On August 21st, 2020, the Bureau released the 2021 FIG and the Supplemental Guide for Quarterly Filers for 2021.",
+    "message": "The filing period is open. Submissions of 2020 HMDA data will be considered timely if received on or before Monday, March 1st, 2021.",
     "type": "info",
     "heading": "Announcement"
   },
-  "defaultPeriod": "2019",
+  "defaultPeriod": "2020",
   "defaultDocsPeriod": "2020",
   "publicationReleaseYear": "2019",
   "filingPeriods": [
     "2020-Q3",
     "2020-Q2",
     "2020-Q1",
+    "2020",
     "2019",
     "2018"
   ],
