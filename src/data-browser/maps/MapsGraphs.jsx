@@ -7,17 +7,20 @@ import './MapsGraphs.css'
 
 const MapsGraphs = props => {
   return (
-    <div className="MapsGraphs">
-      <Link className="BackLink" to="/data-browser/">{'\u2b05'} DATA BROWSER HOME</Link>
-      <div className="intro">
-        <Heading type={1} headingText="Map of HMDA Data">
-          <p className="lead">
-            Map of various interesting HMDA data attributes.
-            For questions/suggestions, contact hmdahelp@cfpb.gov.
+    <div className='MapsGraphs'>
+      <Link className='BackLink' to='/data-browser/'>
+        {'\u2b05'} DATA BROWSER HOME
+      </Link>
+      <div className='intro'>
+        <Heading type={1} headingText='Map of HMDA Data'>
+          <p className='lead'>
+            The Map tool gives you the opportunity to visualize cross-selections
+            of HMDA Data variables. For questions/suggestions, contact{' '}
+            <a href='mailto:hmdahelp@cfpb.gov'>hmdahelp@cfpb.gov</a>.
           </p>
         </Heading>
       </div>
-      <MapContainer {...props}/>
+      <MapContainer {...props} />
     </div>
   )
 }
