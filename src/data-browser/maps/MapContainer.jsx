@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef }  from 'react'
-import { Redirect } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import Select from '../Select.jsx'
 import DBYearSelector from '../datasets/DBYearSelector'
 import LoadingButton from '../datasets/LoadingButton.jsx'
@@ -395,11 +395,6 @@ const MapContainer = props => {
   }
 
   const resolved = resolveData()
-
-  if (!year)
-    return (
-      <Redirect to={props.location.pathname + `${props.config.publicationReleaseYear}` + props.location.search} />
-    )
 
   return (
     <div className="SelectWrapper">
