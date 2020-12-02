@@ -1,4 +1,4 @@
-import { isProd, isBeta } from '../../common/configUtils'
+import { isBeta } from '../../common/configUtils'
 
 // YYYY will come from state as filingPeriod
 const dates = [
@@ -9,10 +9,10 @@ const dates = [
 
 /* TODO: 
 *    Build HHelp environment config or integrate broader Frontend env config.
-*    For now, we want this behavior to persist in the Dev Beta environment without 
+*    For now, we want this behavior to persist in the Prod & Dev Beta environments without 
 *     having to constantly ensure the "correct" version of the application is deployed.
 */ 
-if (!isProd(window.location.host) && isBeta(window.location.host))
+if (isBeta(window.location.host))
   dates.unshift({ id: '2021', name:'2021' })
 
 export default dates
