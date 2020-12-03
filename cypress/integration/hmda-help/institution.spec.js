@@ -181,6 +181,25 @@ describe('HMDA Help - Institutions', () => {
   })
 
   it('Can delete and create Institutions', () => {
+    // Log in
+    if (!isCI(ENVIRONMENT)) {
+      cy.logout({ root: authUrl, realm: HH_AUTH_REALM })
+      cy.wait(LOCAL_ACTION_DELAY)
+      cy.login({
+        root: authUrl,
+        realm: HH_AUTH_REALM,
+        client_id: HH_AUTH_CLIENT_ID,
+        redirect_uri: HOST,
+        username: HH_USERNAME,
+        password: HH_PASSWORD,
+      })
+    }
+
+    // Load site
+    cy.viewport(1600, 900)
+    cy.visit(`${HOST}/hmda-help/`)
+    cy.wait(LOCAL_ACTION_DELAY)
+
     const institution = 'MEISSADIATESTBANK001'
     const year = '2020'
 
