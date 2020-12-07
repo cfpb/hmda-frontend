@@ -4,6 +4,7 @@ const { HOST } = Cypress.env()
 // TODO: Test CSV Download
 describe("Aggregate Reports", function() {
   it('2019', function() {
+    cy.get({ HOST }).logEnv()
     // Report: Applications by Ethnicity and Sex
     cy.viewport(1680, 867)
     cy.visit(`${HOST}/data-publication/aggregate-reports`)
@@ -31,6 +32,7 @@ describe("Aggregate Reports", function() {
   })
 
   it("2018", function() {
+    cy.get({ HOST }).logEnv()
     // Report: Applications by Income, Race, and Ethnicity
 
     cy.viewport(1680, 867)
@@ -95,6 +97,7 @@ describe("Aggregate Reports", function() {
   
 
   it("2017", function() {
+    cy.get({ HOST }).logEnv()
     // Report: Disposition of loan applications, by location of property and type of loan, 2017
 
     cy.viewport(1680, 867)

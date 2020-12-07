@@ -3,6 +3,7 @@ const { HOST } = Cypress.env()
 describe('National Aggregate Report - Not Generated', () => {
   ['2019', '2018'].forEach((year) => {
     it(`${year} does not have Reports`, () => {
+      cy.get({ HOST }).logEnv()
       cy.viewport(1000, 867)
       cy.visit(`${HOST}/data-publication/national-aggregate-reports`)
       cy.get('#root > .App > #main-content > .YearSelector > a')
@@ -18,6 +19,7 @@ describe('National Aggregate Report - Not Generated', () => {
 
 describe("National Aggregate Report 2017", function() {
   it("Loans Sold by Purchaser Type", function() {
+    cy.get({ HOST }).logEnv()
     cy.viewport(1680, 867)
     cy.visit(`${HOST}/data-publication/national-aggregate-reports`)
     cy.get('#root > .App > #main-content > .YearSelector > a')

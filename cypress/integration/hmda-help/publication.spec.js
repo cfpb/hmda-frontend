@@ -16,25 +16,18 @@ const ACTION_DELAY = 250
 describe('HMDA Help - Publications', () => {
   const authUrl = HOST.indexOf('localhost') > -1 ? AUTH_BASE_URL : HOST
 
-  // beforeEach(() => {
-    // if (!isCI(ENVIRONMENT)) {
-    //   cy.logout({ root: authUrl, realm: AUTH_REALM })
-    //   cy.wait(ACTION_DELAY)
-    //   cy.login({
-    //     root: authUrl,
-    //     realm: AUTH_REALM,
-    //     client_id: HH_AUTH_CLIENT_ID,
-    //     redirect_uri: HOST,
-    //     username: HH_USERNAME,
-    //     password: HH_PASSWORD
-    //   })
-    // }
-    
-    // cy.viewport(1600, 900)
-    // cy.visit(`${HOST}/hmda-help/`)
-  // })
-
   it('Can trigger Publication regeneration', () => {
+    cy.get({
+      HOST,
+      ENVIRONMENT,
+      AUTH_BASE_URL,
+      AUTH_CLIENT_ID,
+      AUTH_REALM,
+      USERNAME,
+      PASSWORD,
+      INSTITUTION,
+    }).logEnv()
+    
     cy.on('window:confirm', () => true)
     let row = 0
 

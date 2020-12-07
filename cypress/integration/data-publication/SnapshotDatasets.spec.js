@@ -15,6 +15,7 @@ describe('Snapshot National Loan-Level Dataset', function () {
   years.forEach((year) => {
     describe(year + ' Datasets', function () {
       it('has valid Dataset links', function () {
+        cy.get({ HOST, ACTION_DELAY, TEST_DELAY }).logEnv()
         cy.viewport(1440, 798)
         cy.visit(`${HOST}${datasetUrl}${year}`)
 

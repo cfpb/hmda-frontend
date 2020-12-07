@@ -2,6 +2,7 @@ const { HOST } = Cypress.env()
 
 describe("Disclosure Reports", function() {
   it('Fetches a 2019 Applications by Tract Report', function () {
+    cy.get({ HOST }).logEnv()
     cy.viewport(1680, 916)
     cy.visit(`${HOST}/data-publication/disclosure-reports`)
     cy.get('#root > .App > #main-content > .YearSelector > a')
@@ -55,6 +56,7 @@ describe("Disclosure Reports", function() {
   })
    
   it("Fetches a 2018 Applications by Tract Report", function() {
+    cy.get({ HOST }).logEnv()
     cy.viewport(1680, 867)
     cy.visit(`${HOST}/data-publication/disclosure-reports/`)
     cy.get('#root > .App > #main-content > .YearSelector > a')
@@ -129,6 +131,7 @@ describe("Disclosure Reports", function() {
   })
 
   it("Fetches a 2017 Conv Price Info Nationwide report", () => {
+    cy.get({ HOST }).logEnv()
     cy.viewport(1680, 916)
 
     cy.visit(`${HOST}/data-publication/disclosure-reports`)

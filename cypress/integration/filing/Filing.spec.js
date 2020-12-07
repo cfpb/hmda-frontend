@@ -25,6 +25,19 @@ describe("Filing", function() {
   const authUrl = HOST.indexOf('localhost') > -1 ? AUTH_BASE_URL : HOST
 
   beforeEach(() => {
+    cy.get({
+      HOST,
+      USERNAME,
+      PASSWORD,
+      INSTITUTION,
+      ACTION_DELAY,
+      TEST_DELAY,
+      ENVIRONMENT,
+      AUTH_BASE_URL,
+      AUTH_REALM,
+      AUTH_CLIENT_ID
+    }).logEnv()
+
     // Skip authentication on CI
     if(!isCI(ENVIRONMENT)) {
       cy.logout({ root: authUrl, realm: AUTH_REALM })

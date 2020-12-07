@@ -18,26 +18,18 @@ const NOTE_HISTORY_ON_CI_FIXED = false
 describe('HMDA Help - Institutions', () => {
   const authUrl = HOST.indexOf('localhost') > -1 ? AUTH_BASE_URL : HOST
 
-  // beforeEach(() => {
-  //   if (!isCI(ENVIRONMENT)) {
-  //     cy.logout({ root: authUrl, realm: AUTH_REALM })
-  //     cy.wait(LOCAL_ACTION_DELAY)
-  //     cy.login({
-  //       root: authUrl,
-  //       realm: AUTH_REALM,
-  //       client_id: AUTH_CLIENT_ID,
-  //       redirect_uri: HOST,
-  //       username: USERNAME,
-  //       password: PASSWORD,
-  //     })
-  //   }
-
-  //   cy.viewport(1600, 900)
-  //   cy.visit(`${HOST}/hmda-help/`)
-  //   cy.wait(LOCAL_ACTION_DELAY)
-  // })
-
   it('Can update existing Institutions', () => {
+    cy.get({
+      HOST,
+      ENVIRONMENT,
+      AUTH_BASE_URL,
+      AUTH_CLIENT_ID,
+      AUTH_REALM,
+      USERNAME,
+      PASSWORD,
+      INSTITUTION,
+    }).logEnv()
+    
 
     // Log in
     if (!isCI(ENVIRONMENT)) {
@@ -181,6 +173,17 @@ describe('HMDA Help - Institutions', () => {
   })
 
   it('Can delete and create Institutions', () => {
+    cy.get({
+      HOST,
+      ENVIRONMENT,
+      AUTH_BASE_URL,
+      AUTH_CLIENT_ID,
+      AUTH_REALM,
+      USERNAME,
+      PASSWORD,
+      INSTITUTION,
+    }).logEnv()
+    
     // Log in
     if (!isCI(ENVIRONMENT)) {
       cy.logout({ root: authUrl, realm: AUTH_REALM })

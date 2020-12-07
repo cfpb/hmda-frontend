@@ -18,6 +18,7 @@ onlyOn(!isBeta(HOST), () => {
   describe("Modified LAR", function() {
     testCases.forEach(({ year, name, institution }) => {
       it(`Searches and finds correct links for ${year}`, () => {
+        cy.get({ HOST }).logEnv()
         cy.visit(`${HOST}/data-publication/modified-lar/${year}`)
   
         // Search finds the expected Institution
