@@ -78,14 +78,14 @@ onlyOn(isProd(HOST) && !isBeta(HOST), () => {
       // Get file from fixtures as binary
       cy.fixture(fileName, "binary").then(excelBin => {
         // File in binary format gets converted to blob so it can be sent as Form data
-        Cypress.Blob.binaryStringToBlob(excelBin, fileType).then(blob => {
-          // Build up the form
-          const formData = new FormData()
-          formData.set("file", blob, fileName) //adding a file to the form
-          // Perform the request
-          withFormData(method, url, formData, function(res) {
-            response = res
-          })
+        const blob = Cypress.Blob.binaryStringToBlob(excelBin, fileType)
+      
+        // Build up the form
+        const formData = new FormData()
+        formData.set("file", blob, fileName) //adding a file to the form
+        // Perform the request
+        withFormData(method, url, formData, function(res) {
+          response = res
         })
 
         cy.wrap(null).should(() => {
@@ -117,14 +117,14 @@ onlyOn(isProd(HOST) && !isBeta(HOST), () => {
       // Get file from fixtures as binary
       cy.fixture(fileName, "binary").then(excelBin => {
         // File in binary format gets converted to blob so it can be sent as Form data
-        Cypress.Blob.binaryStringToBlob(excelBin, fileType).then(blob => {
-          // Build up the form
-          const formData = new FormData()
-          formData.set("file", blob, fileName) //adding a file to the form
-          // Perform the request
-          withFormData(method, url, formData, function(res) {
-            response = res
-          })
+        const blob = Cypress.Blob.binaryStringToBlob(excelBin, fileType)
+      
+        // Build up the form
+        const formData = new FormData()
+        formData.set("file", blob, fileName) //adding a file to the form
+        // Perform the request
+        withFormData(method, url, formData, function(res) {
+          response = res
         })
 
         cy.wrap(null).should(() => {
