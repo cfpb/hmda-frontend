@@ -1,6 +1,6 @@
 import { withFormData, isProd } from "../../support/helpers"
 
-const { HOST, TEST_DELAY, ENVIRONMENT } = Cypress.env()
+const { HOST, TEST_DELAY } = Cypress.env()
 
 describe("Rate Spread Tool", function() {
   beforeEach(() => {
@@ -45,7 +45,8 @@ describe("Rate Spread Tool", function() {
 })
 
 describe("Rate Spread API", () => {
-  if(!isProd(ENVIRONMENT)) it("Only runs in Production")
+  
+  if(!isProd(HOST)) it("Only runs in Production", () => cy.log(`Is Prod: ${isProd(HOST)}`))
   else {
     it("Generates rates from file", () => {
       let response
@@ -61,14 +62,15 @@ describe("Rate Spread API", () => {
       // Get file from fixtures as binary
       cy.fixture(fileName, "binary").then(excelBin => {
         // File in binary format gets converted to blob so it can be sent as Form data
-        Cypress.Blob.binaryStringToBlob(excelBin, fileType).then(blob => {
-          // Build up the form
-          const formData = new FormData()
-          formData.set("file", blob, fileName) //adding a file to the form
-          // Perform the request
-          withFormData(method, url, formData, function(res) {
-            response = res
-          })
+        const blob = Cypress.Blob.binaryStringToBlob(excelBin, fileType)
+
+        // Build up the form
+        const formData = new FormData()
+        formData.set("file", blob, fileName) //adding a file to the form
+        
+        // Perform the request
+        withFormData(method, url, formData, function(res) {
+          response = res
         })
 
         cy.wrap(null).should(() => {
