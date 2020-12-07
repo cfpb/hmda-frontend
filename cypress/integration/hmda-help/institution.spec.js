@@ -4,11 +4,11 @@ const {
   HOST,
   ENVIRONMENT,
   AUTH_BASE_URL,
-  HH_USERNAME,
-  HH_PASSWORD,
-  HH_INSTITUTION,
-  HH_AUTH_REALM,
-  HH_AUTH_CLIENT_ID,
+  AUTH_CLIENT_ID,
+  AUTH_REALM,
+  USERNAME,
+  PASSWORD,
+  INSTITUTION,
 } = Cypress.env()
 
 const LOCAL_ACTION_DELAY = 250
@@ -20,15 +20,15 @@ describe('HMDA Help - Institutions', () => {
 
   // beforeEach(() => {
   //   if (!isCI(ENVIRONMENT)) {
-  //     cy.logout({ root: authUrl, realm: HH_AUTH_REALM })
+  //     cy.logout({ root: authUrl, realm: AUTH_REALM })
   //     cy.wait(LOCAL_ACTION_DELAY)
   //     cy.login({
   //       root: authUrl,
-  //       realm: HH_AUTH_REALM,
-  //       client_id: HH_AUTH_CLIENT_ID,
+  //       realm: AUTH_REALM,
+  //       client_id: AUTH_CLIENT_ID,
   //       redirect_uri: HOST,
-  //       username: HH_USERNAME,
-  //       password: HH_PASSWORD,
+  //       username: USERNAME,
+  //       password: PASSWORD,
   //     })
   //   }
 
@@ -41,15 +41,15 @@ describe('HMDA Help - Institutions', () => {
 
     // Log in
     if (!isCI(ENVIRONMENT)) {
-      cy.logout({ root: authUrl, realm: HH_AUTH_REALM })
+      cy.logout({ root: authUrl, realm: AUTH_REALM })
       cy.wait(LOCAL_ACTION_DELAY)
       cy.login({
         root: authUrl,
-        realm: HH_AUTH_REALM,
-        client_id: HH_AUTH_CLIENT_ID,
+        realm: AUTH_REALM,
+        client_id: AUTH_CLIENT_ID,
         redirect_uri: HOST,
-        username: HH_USERNAME,
-        password: HH_PASSWORD
+        username: USERNAME,
+        password: PASSWORD,
       })
     }
     
@@ -60,14 +60,14 @@ describe('HMDA Help - Institutions', () => {
 
 
     // Search for existing Instititution
-    cy.findByLabelText('LEI').type(HH_INSTITUTION)
+    cy.findByLabelText('LEI').type(INSTITUTION)
     cy.findByText('Search institutions').click()
     cy.wait(LOCAL_ACTION_DELAY)
     cy.findAllByText('Update')
       .eq(1) // 2019
       .click()
 
-    const successMessage = `The institution, ${HH_INSTITUTION}, has been updated.`
+    const successMessage = `The institution, ${INSTITUTION}, has been updated.`
     const nameLabelText = 'Respondent Name'
     const updateButtonText = 'Update the institution'
     const testName = 'Cypress Test Name Update'
@@ -183,15 +183,15 @@ describe('HMDA Help - Institutions', () => {
   it('Can delete and create Institutions', () => {
     // Log in
     if (!isCI(ENVIRONMENT)) {
-      cy.logout({ root: authUrl, realm: HH_AUTH_REALM })
+      cy.logout({ root: authUrl, realm: AUTH_REALM })
       cy.wait(LOCAL_ACTION_DELAY)
       cy.login({
         root: authUrl,
-        realm: HH_AUTH_REALM,
-        client_id: HH_AUTH_CLIENT_ID,
+        realm: AUTH_REALM,
+        client_id: AUTH_CLIENT_ID,
         redirect_uri: HOST,
-        username: HH_USERNAME,
-        password: HH_PASSWORD,
+        username: USERNAME,
+        password: PASSWORD,
       })
     }
 

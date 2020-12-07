@@ -4,11 +4,11 @@ const {
   HOST,
   ENVIRONMENT,
   AUTH_BASE_URL,
-  HH_USERNAME,
-  HH_PASSWORD,
-  HH_INSTITUTION,
-  HH_AUTH_REALM,
-  HH_AUTH_CLIENT_ID
+  AUTH_CLIENT_ID,
+  AUTH_REALM,
+  USERNAME,
+  PASSWORD,
+  INSTITUTION,
 } = Cypress.env()
 
 const ACTION_DELAY = 250
@@ -18,11 +18,11 @@ describe('HMDA Help - Publications', () => {
 
   // beforeEach(() => {
     // if (!isCI(ENVIRONMENT)) {
-    //   cy.logout({ root: authUrl, realm: HH_AUTH_REALM })
+    //   cy.logout({ root: authUrl, realm: AUTH_REALM })
     //   cy.wait(ACTION_DELAY)
     //   cy.login({
     //     root: authUrl,
-    //     realm: HH_AUTH_REALM,
+    //     realm: AUTH_REALM,
     //     client_id: HH_AUTH_CLIENT_ID,
     //     redirect_uri: HOST,
     //     username: HH_USERNAME,
@@ -40,15 +40,15 @@ describe('HMDA Help - Publications', () => {
 
     // Log in
     if (!isCI(ENVIRONMENT)) {
-      cy.logout({ root: authUrl, realm: HH_AUTH_REALM })
+      cy.logout({ root: authUrl, realm: AUTH_REALM })
       cy.wait(ACTION_DELAY)
       cy.login({
         root: authUrl,
-        realm: HH_AUTH_REALM,
-        client_id: HH_AUTH_CLIENT_ID,
+        realm: AUTH_REALM,
+        client_id: AUTH_CLIENT_ID,
         redirect_uri: HOST,
-        username: HH_USERNAME,
-        password: HH_PASSWORD
+        username: USERNAME,
+        password: PASSWORD
       })
     }
     
@@ -58,7 +58,7 @@ describe('HMDA Help - Publications', () => {
     cy.wait(ACTION_DELAY)
 
     // Search for existing Instititution
-    cy.findByLabelText("LEI").type(HH_INSTITUTION)
+    cy.findByLabelText("LEI").type(INSTITUTION)
     cy.findByText('Search publications').click()
     cy.wait(ACTION_DELAY)
 

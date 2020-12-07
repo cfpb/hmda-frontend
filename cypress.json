@@ -9,11 +9,7 @@
     "TEST_DELAY": 1000,
     "ACTION_DELAY": 1000,
     "AUTH_REALM": "hmda2",
-    "AUTH_CLIENT_ID": "hmda2-api",
-    "HH_INSTITUTION": "FRONTENDTESTBANK9999",
-    "HH_AUTH_REALM": "hmda2",
-    "HH_AUTH_CLIENT_ID": "hmda2-api",
-    "HH_HOST": "http://localhost:3000/hmda-help"
+    "AUTH_CLIENT_ID": "hmda2-api"
   },
   "defaultCommandTimeout": 10000,
   "projectId": "uk89dv",
