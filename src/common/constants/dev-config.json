@@ -5,13 +5,14 @@
     "type": "info",
     "heading": "Announcement"
   },
-  "defaultPeriod": "2019",
+  "defaultPeriod": "2020",
   "defaultDocsPeriod": "2020",
   "publicationReleaseYear": "2019",
   "filingPeriods": [
     "2020-Q3",
     "2020-Q2",
     "2020-Q1",
+    "2020",
     "2019",
     "2018"
   ],
@@ -19,7 +20,10 @@
     "Q1": "04/01 - 06/01",
     "Q2": "06/30 - 08/31",
     "Q3": "10/01 - 11/30",
-    "ANNUAL": "01/01 - 03/02"
+    "ANNUAL": "01/01 - 03/02",
+    "PREVIEW": [
+      "2020"
+    ]
   },
   "filingQuartersLate": {
     "Q1": "06/02 - 06/30",
