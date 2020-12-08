@@ -17,6 +17,8 @@ onlyOn(isProd(HOST) && !isBeta(HOST), () => {
       cy.visit(`${HOST}/tools/check-digit`)
     })
     it("Generates a check digit", () => {
+      cy.get({ HOST, TEST_DELAY }).logEnv()
+      
       cy.get(".item > .Form > .unstyled-list > li > #getCheckDigit").click()
 
       cy.get(".grid > .item > .Form > div > #dataInput").click()
@@ -38,6 +40,8 @@ onlyOn(isProd(HOST) && !isBeta(HOST), () => {
     })
 
     it("Validates a check digit", () => {
+      cy.get({ HOST, TEST_DELAY }).logEnv()
+      
       cy.get(
         ".item > .Form > .unstyled-list > li > #validateCheckDigit"
       ).click()
@@ -59,6 +63,8 @@ onlyOn(isProd(HOST) && !isBeta(HOST), () => {
 
   describe("Check Digit API", () => {
     it("Generates Check Digit file", function() {
+      cy.get({ HOST, TEST_DELAY }).logEnv()
+      
       // https://stackoverflow.com/questions/47533989/upload-file-with-cypress-io-via-request
 
       let response
@@ -98,6 +104,8 @@ onlyOn(isProd(HOST) && !isBeta(HOST), () => {
     })
 
     it("Validates Check Digits file", function() {
+      cy.get({ HOST, TEST_DELAY }).logEnv()
+      
       // https://stackoverflow.com/questions/47533989/upload-file-with-cypress-io-via-request
 
       let response

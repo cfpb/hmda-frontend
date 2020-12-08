@@ -59,3 +59,20 @@ export function getSelectedOptionValue(jqueryInitObj, defaultValue) {
   
   return jqueryInitObj.get(0).selectedOptions.item(0).value
 }
+
+/**
+ * Add environment variables to the Cypress log for easier debugging
+ * @param {Object} ENV_VARS KV store of Environment variables 
+ */
+const ENV_HIDDEN_KEYS = ['PASSWORD']
+
+export const logEnv = obj => {
+  if (!obj || typeof obj !== 'object') return
+  const keys = Object.keys(obj)
+  if (!keys.length) return
+  
+  keys.forEach(key => {
+    if (ENV_HIDDEN_KEYS.indexOf(key) > -1) return
+    cy.log(`${key}: ${obj[key]}`)
+  })
+}

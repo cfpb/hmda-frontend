@@ -7,6 +7,7 @@ describe('Data Browser 2019', function () {
   if(isCI(ENVIRONMENT)) it("Does not run on CI")
   else if(!isBeta(HOST)){
     it('State/Institution/PropertyType', function () {
+      cy.get({ HOST, ENVIRONMENT }).logEnv()
       cy.viewport(1000, 940)
       cy.visit(dbUrl('2019?category=states'))
 
@@ -50,6 +51,7 @@ describe('Data Browser 2019', function () {
     })
   
     it('Nationwide/Institution/LienStatus', function () {
+      cy.get({ HOST, ENVIRONMENT }).logEnv()
       cy.viewport(1000, 940)
       cy.visit(dbUrl('2019?category=nationwide'))
   
@@ -84,6 +86,7 @@ describe('Data Browser 2019', function () {
     })
   
     it('County/Institution/Action&Purpose', function () {
+      cy.get({ HOST, ENVIRONMENT }).logEnv()
       cy.viewport(1000, 940)
       cy.visit(dbUrl('2019?category=counties'))
 
@@ -127,6 +130,7 @@ describe('Data Browser 2019', function () {
     })
   
     it('MSA/Institution/PropertyType', function () {
+      cy.get({ HOST, ENVIRONMENT }).logEnv()
       cy.viewport(1000, 940)
       cy.visit(dbUrl('2019?category=msamds'))
 

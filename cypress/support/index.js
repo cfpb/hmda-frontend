@@ -1,4 +1,4 @@
-import { urlExists } from "./helpers"
+import { logEnv, urlExists } from "./helpers"
 import '@testing-library/cypress/add-commands';
 import 'cypress-keycloak';
 
@@ -26,4 +26,8 @@ Cypress.Commands.add("hasValidHref", { prevSubject: true }, anchor => {
 
 Cypress.Commands.add("dataUrl", { prevSubject: true }, target => {
   return urlExists(target.attr('data-url'))
+})
+
+Cypress.Commands.add("logEnv", { prevSubject: true }, vars => {
+  logEnv(vars[0])
 })

@@ -11,6 +11,7 @@ describe("FFVT", function() {
   if(isCI(ENVIRONMENT)) it("Does not run on CI")
   else {
     it("Validates clean 2018+", function() {
+      cy.get({ HOST, TEST_DELAY, ENVIRONMENT }).logEnv()
       cy.get(
         "div > .UploadForm > .container-upload > .dropzone > .dropzone-content"
       ).click()
@@ -37,6 +38,7 @@ describe("FFVT", function() {
     })
   
     it("Catches error 2018+", function() {
+      cy.get({ HOST, TEST_DELAY, ENVIRONMENT }).logEnv()
       cy.get(
         "div > .UploadForm > .container-upload > .dropzone > .dropzone-content"
       ).click()

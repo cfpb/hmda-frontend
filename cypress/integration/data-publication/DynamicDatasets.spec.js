@@ -8,6 +8,7 @@ describe('Dynamic National Loan-Level Dataset', function () {
   years.forEach((year) => {
     describe(year + ' Dynamic Datasets', function () {
       it('has valid Dataset links', function () {
+        cy.get({ HOST, TEST_DELAY, ACTION_DELAY }).logEnv()
         cy.viewport(1440, 798)
         cy.visit(`${HOST}${datasetUrl}${year}`)
         

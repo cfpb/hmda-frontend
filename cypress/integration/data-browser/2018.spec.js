@@ -7,6 +7,7 @@ describe('Data Browser 2018', function () {
   if(isCI(ENVIRONMENT)) it("Does not run on CI")
   else if((!isBeta(HOST) || (isBeta(HOST) && !isProd(HOST)))){
     it('State/Institution/PropertyType', function () {
+      cy.get({ HOST, ENVIRONMENT }).logEnv()
       cy.viewport(1000, 940)
       cy.visit(dbUrl('2018?category=states'))
 

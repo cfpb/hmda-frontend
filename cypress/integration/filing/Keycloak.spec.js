@@ -8,6 +8,7 @@ describe('Keycloak', () => {
   else {
     beforeEach(() => {
       cy.visit(`${HOST}/filing`)
+      cy.get({ HOST, USERNAME, PASSWORD, ENVIRONMENT }).logEnv()
     })
   
     it.skip('Can log in via UI', () => {

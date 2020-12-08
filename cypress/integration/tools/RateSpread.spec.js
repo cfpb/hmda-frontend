@@ -9,6 +9,7 @@ describe("Rate Spread Tool", function() {
   })
 
   it("Generates Fixed Rate", function() {
+    cy.get({ HOST, TEST_DELAY }).logEnv()
     cy.get(".item > div > .Form > div > #rateSetDate").click()
     cy.get(".item > div > .Form > div > #rateSetDate").type("12/16/2019")
     cy.get(".item > div > .Form > div > #APR").type("3.2")
@@ -23,6 +24,7 @@ describe("Rate Spread Tool", function() {
   })
 
   it("Generates Variable Rate", function() {
+    cy.get({ HOST, TEST_DELAY }).logEnv()
     cy.get(".Form > fieldset > .unstyled-list > li > #actionTaken1").click()
     cy.get(
       ".Form > fieldset > .unstyled-list > li > #amortizationVariable"
@@ -46,9 +48,10 @@ describe("Rate Spread Tool", function() {
 
 describe("Rate Spread API", () => {
   
-  if(!isProd(HOST)) it("Only runs in Production", () => cy.log(`Is Prod: ${isProd(HOST)}`))
+  if(!isProd(HOST)) it("Only runs in Production", () => cy.get({ HOST, TEST_DELAY }).logEnv())
   else {
     it("Generates rates from file", () => {
+      cy.get({ HOST, TEST_DELAY }).logEnv()
       let response
       const fileName = "RateSpread_Generate.csv"
       const method = "POST"

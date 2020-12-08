@@ -4,44 +4,62 @@ const {
   HOST,
   ENVIRONMENT,
   AUTH_BASE_URL,
-  HH_USERNAME,
-  HH_PASSWORD,
-  HH_INSTITUTION,
-  HH_AUTH_REALM,
-  HH_AUTH_CLIENT_ID,
+  AUTH_CLIENT_ID,
+  AUTH_REALM,
+  USERNAME,
+  PASSWORD,
+  INSTITUTION,
 } = Cypress.env()
+
+const LOCAL_ACTION_DELAY = 250
 
 const NOTE_HISTORY_ON_CI_FIXED = false
 
-describe('HMDA Help', () => {
+describe('HMDA Help - Institutions', () => {
   const authUrl = HOST.indexOf('localhost') > -1 ? AUTH_BASE_URL : HOST
 
-  beforeEach(() => {
+  it('Can update existing Institutions', () => {
+    cy.get({
+      HOST,
+      ENVIRONMENT,
+      AUTH_BASE_URL,
+      AUTH_CLIENT_ID,
+      AUTH_REALM,
+      USERNAME,
+      PASSWORD,
+      INSTITUTION,
+    }).logEnv()
+    
+
+    // Log in
     if (!isCI(ENVIRONMENT)) {
-      cy.logout({ root: authUrl, realm: HH_AUTH_REALM })
+      cy.logout({ root: authUrl, realm: AUTH_REALM })
+      cy.wait(LOCAL_ACTION_DELAY)
       cy.login({
         root: authUrl,
-        realm: HH_AUTH_REALM,
-        client_id: HH_AUTH_CLIENT_ID,
+        realm: AUTH_REALM,
+        client_id: AUTH_CLIENT_ID,
         redirect_uri: HOST,
-        username: HH_USERNAME,
-        password: HH_PASSWORD,
+        username: USERNAME,
+        password: PASSWORD,
       })
     }
-
+    
+    // Load site
     cy.viewport(1600, 900)
     cy.visit(`${HOST}/hmda-help/`)
-  })
+    cy.wait(LOCAL_ACTION_DELAY)
 
-  it('Can update existing Institutions', () => {
+
     // Search for existing Instititution
-    cy.findByLabelText('LEI').type(HH_INSTITUTION)
+    cy.findByLabelText('LEI').type(INSTITUTION)
     cy.findByText('Search institutions').click()
+    cy.wait(LOCAL_ACTION_DELAY)
     cy.findAllByText('Update')
       .eq(1) // 2019
       .click()
 
-    const successMessage = `The institution, ${HH_INSTITUTION}, has been updated.`
+    const successMessage = `The institution, ${INSTITUTION}, has been updated.`
     const nameLabelText = 'Respondent Name'
     const updateButtonText = 'Update the institution'
     const testName = 'Cypress Test Name Update'
@@ -134,6 +152,7 @@ describe('HMDA Help', () => {
           .type('Cypress - Change respondent name back')
           .blur()
           .then(() => {
+            cy.wait(LOCAL_ACTION_DELAY)
             cy.findByText(updateButtonText)
               .should('be.enabled')
               .click()
@@ -154,11 +173,42 @@ describe('HMDA Help', () => {
   })
 
   it('Can delete and create Institutions', () => {
+    cy.get({
+      HOST,
+      ENVIRONMENT,
+      AUTH_BASE_URL,
+      AUTH_CLIENT_ID,
+      AUTH_REALM,
+      USERNAME,
+      PASSWORD,
+      INSTITUTION,
+    }).logEnv()
+    
+    // Log in
+    if (!isCI(ENVIRONMENT)) {
+      cy.logout({ root: authUrl, realm: AUTH_REALM })
+      cy.wait(LOCAL_ACTION_DELAY)
+      cy.login({
+        root: authUrl,
+        realm: AUTH_REALM,
+        client_id: AUTH_CLIENT_ID,
+        redirect_uri: HOST,
+        username: USERNAME,
+        password: PASSWORD,
+      })
+    }
+
+    // Load site
+    cy.viewport(1600, 900)
+    cy.visit(`${HOST}/hmda-help/`)
+    cy.wait(LOCAL_ACTION_DELAY)
+
     const institution = 'MEISSADIATESTBANK001'
     const year = '2020'
 
     // Delete
     cy.findByLabelText('LEI').type(`${institution}{enter}`)
+    cy.wait(LOCAL_ACTION_DELAY)
     cy.get('table.institutions tbody tr')
       .first()
       .get('td')
@@ -173,8 +223,10 @@ describe('HMDA Help', () => {
       .should('not.contain', year)
 
     // Create
+    cy.wait(LOCAL_ACTION_DELAY)
     cy.visit(`${HOST}/hmda-help/`)
     cy.findByLabelText('LEI').type('MEISSADIATESTBANK001{enter}')
+    cy.wait(LOCAL_ACTION_DELAY)
     cy.findByText(`Add ${institution} for ${year}`).click()
 
     cy.findByLabelText('Activity Year').select(year).should('have.value', year)
