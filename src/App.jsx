@@ -29,11 +29,13 @@ const HmdaHelp = makeAsyncComponent(() => import('./hmda-help'),
 
 const App = () => {
   const isFiling = !!window.location.pathname.match(/^\/filing/)
+  const isHelp = !!window.location.pathname.match(/^\/hmda-help/)
+  const hideHeader = isFiling || isHelp
   const config = useEnvironmentConfig(window.location.hostname)
 
   return (
     <AppContext.Provider value={{ config }}>
-      {isFiling ? null : <Route path="/" render={props => {
+      {hideHeader  ? null : <Route path="/" render={props => {
         return (
           <Header
             links={isBeta() ? betaLinks : updateFilingLink(config, defaultLinks)}
