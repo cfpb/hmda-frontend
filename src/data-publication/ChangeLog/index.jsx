@@ -41,8 +41,7 @@ const ChangeLog = () => {
           available information on mortgage market activity. This page includes
           all updates related to data products for the HDMA data collected in or
           after 2017. This includes header changes, data product differences
-          over the years, release notes, and information on which product may be
-          best for you.
+          over the years, and release notes.
         </p>
       </div>
       </header>
