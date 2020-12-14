@@ -3,7 +3,7 @@ export const PRODUCT_NAMES = {
   datasets: 'Datasets',
   reports: 'Reports',
   documentation: 'Documentation',
-  apps: 'HMDA Apps',
+  tools: 'HMDA Tools',
 }
 
 
