@@ -8,11 +8,51 @@
       "url": "https://github.com/cfpb/hmda-frontend/issues/745"
     },
     {
+      "date": "09/11/20",
+      "type": "update",
+      "product": "documentation",
+      "description": "Provide links for Panel schema, Panel field definitions, and the 2017 FIG."
+    },
+    {
       "date": "08/21/20",
       "type": "release",
       "product": "documentation",
       "description": "The Filing Instructions Guide (FIG) and the Supplemental Guide for Quarterly Filers for 2021 have been released.",
       "url": "https://github.com/cfpb/hmda-frontend/issues/632"
+    },
+    {
+      "date": "08/03/20",
+      "type": "release",
+      "product": "documentation",
+      "description": "Documentation for running the HMDA Frontend in a development environment has been released.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/590"
+    },
+    {
+      "date": "07/30/20",
+      "type": "update",
+      "product": "tools",
+      "description": "The Data Browser for 2018 has been updated with corrected per County counts.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/588"
+    },
+    {
+      "date": "07/21/20",
+      "type": "correction",
+      "product": "tools",
+      "description": "An error in the Mortgage Rate Survey table for 15-Year Fixed Points & Fees (cell E135) resulted in incorrect results for Rate Spread on fixed rate loans with terms of 13 to 22 years and rate set date of 7/20/2020. The issue was corrected in the online calculator and the linked tables."
+    },
+    {
+      "date": "07/08/20",
+      "type": "update",
+      "product": "reports",
+      "description": "The Modified LAR for 2019 have the 'with Header' option re-enabled.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/550"
+    },
+    {
+      "date": "07/01/20",
+      "type": "release",
+      "product": "documentation",
+      "description": "The Docmentation for the 2020 Loan/Application Register Formatting Tool (LARFT) has been released.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/530"
     },
     {
       "date": "06/24/20",
@@ -118,46 +158,6 @@
       "product": "documentation",
       "description": "The Documentation for 2020 Annual and Quarterly filing deadlines has been released.",
       "url": "https://github.com/cfpb/hmda-platform-ui/issues/1317"
-    },
-    {
-      "date": "09/11/20",
-      "type": "update",
-      "product": "documentation",
-      "description": "Provide links for Panel schema, Panel field definitions, and the 2017 FIG."
-    },
-    {
-      "date": "08/03/20",
-      "type": "release",
-      "product": "documentation",
-      "description": "Documentation for running the HMDA Frontend in a development environment has been released.",
-      "url": "https://github.com/cfpb/hmda-frontend/issues/590"
-    },
-    {
-      "date": "07/30/20",
-      "type": "update",
-      "product": "tools",
-      "description": "The Data Browser for 2018 has been updated with corrected per County counts.",
-      "url": "https://github.com/cfpb/hmda-frontend/issues/588"
-    },
-    {
-      "date": "07/21/20",
-      "type": "correction",
-      "product": "tools",
-      "description": "An error in the Mortgage Rate Survey table for 15-Year Fixed Points & Fees (cell E135) resulted in incorrect results for Rate Spread on fixed rate loans with terms of 13 to 22 years and rate set date of 7/20/2020. The issue was corrected in the online calculator and the linked tables."
-    },
-    {
-      "date": "07/08/20",
-      "type": "update",
-      "product": "reports",
-      "description": "The Modified LAR for 2019 have the 'with Header' option re-enabled.",
-      "url": "https://github.com/cfpb/hmda-frontend/issues/550"
-    },
-    {
-      "date": "07/01/20",
-      "type": "release",
-      "product": "documentation",
-      "description": "The Docmentation for the 2020 Loan/Application Register Formatting Tool (LARFT) has been released.",
-      "url": "https://github.com/cfpb/hmda-frontend/issues/530"
     }
   ]
 }
