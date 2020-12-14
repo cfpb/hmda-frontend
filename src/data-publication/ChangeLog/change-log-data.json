@@ -4,239 +4,160 @@
       "date": "11/20/20",
       "type": "update",
       "product": "documentation",
-      "productYear": "2021",
-      "description": "The 2021 Filer's Instruction Guide (FIG) has been updated.",
-      "headline": "The 2021 Filer's Instruction Guide (FIG) has been updated.",
-      "tags": ["2021 FIG", "FIG"]
+      "description": "The Filing Instructions Guide (FIG) for 2021 has been updated.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/745"
     },
     {
       "date": "08/21/20",
       "type": "release",
       "product": "documentation",
-      "productYear": "2021",
-      "headline": "The 2021 FIG and Supplemental Guide for Quarterly Filers has been released.",
-      "description": "The Bureau released the 2021 Filer's Instruction Guide (FIG) and the Supplemental Guide for Quarterly Filers for 2021.",
-      "tags": ["2021 FIG", "FIG"]
-    },
-    {
-      "date": "06/30/20",
-      "type": "correction",
-      "product": "apps",
-      "productYear": "2020",
-      "headline": "Fixes an issue with the HMDA Filing app where a Quarterly Filing was not automatically being created for new filers, filing for the first time during the 'late' filing window.",
-      "description": "HMDA Filing app gets bugfix for Quarterly Filers 2020",
-      "tags": ["Quarterly Filing"],
-      "url": "https://github.com/cfpb/hmda-frontend/pull/528"
+      "description": "The Filing Instructions Guide (FIG) and the Supplemental Guide for Quarterly Filers for 2021 have been released.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/632"
     },
     {
       "date": "06/24/20",
       "type": "release",
       "product": "datasets",
-      "productYear": "2019",
-      "headline": "2019 National Loan-Level Dataset released.",
-      "description": "The Bureau released the 2019 National Loan-Level Dataset.",
-      "tags": ["Loan-Level Dataset"],
+      "description": "The National Loan-Level Dataset for 2019 has been released.",
       "url": "https://github.com/cfpb/hmda-frontend/pull/517"
     },
     {
       "date": "06/24/20",
       "type": "release",
       "product": "reports",
-      "productYear": "2019",
-      "headline": "2019 MSA/MD Aggregate and Disclosure Reports released.",
-      "description": "The Bureau released the 2019 MSA/MD Aggregate Reports and Disclosure Reports.",
-      "tags": ["Aggregate Reports", "Disclosure Reports"],
+      "description": "The MSA/MD Aggregate Reports and Disclosure Reports for 2019 have been released.",
       "url": "https://github.com/cfpb/hmda-frontend/pull/517"
     },
     {
       "date": "06/22/20",
       "type": "release",
-      "product": "apps",
-      "productYear": "2019",
-      "headline": "HMDA Data Browser adds 2019 data.",
-      "description": "The HMDA Data Browser has been updated to include data for 2019.",
-      "tags": ["Data Browser", "2019"],
-      "url": "https://github.com/cfpb/hmda-frontend/pull/506"
+      "product": "tools",
+      "description": "The Data Browser for 2019 has been released.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/442"
     },
     {
       "date": "06/18/20",
       "type": "update",
       "product": "documentation",
-      "productYear": "2020",
-      "headline": "The 2020 Quarterly Filing dates have been updated.",
-      "description": "The closing date of each 2020 Quarterly Filing period has been updated.",
-      "tags": ["Quarterly Filing"],
-      "url": "https://github.com/cfpb/hmda-frontend/pull/511"
+      "description": "The closing dates for 2020 Quarterly Filing period have been updated.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/509"
     },
     {
       "date": "05/19/20",
       "type": "release",
       "product": "documentation",
-      "productYear": "2017",
-      "headline": "Add documentation of Data Browser 2017 variables.",
-      "description": "Provide definitions and descriptions for the 2017 Data Browser values, as well as the difference in data structure compared to 2018.",
-      "tags": ["Data Browser", "2017"],
-      "url": "https://github.com/cfpb/hmda-frontend/pull/449"
+      "description": "The Data Browser documentation for 2017 has been updated with definitions and descriptions of Filters, as well as data structure differences when compared to 2018.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/419"
     },
     {
       "date": "05/14/20",
       "type": "update",
       "product": "documentation",
-      "productYear": "2019",
-      "headline": "Improved guidance for finding your IRS.",
-      "description": "Improved guidance for finding your Insitutions Register Summary (IRS).",
-      "tags": ["IRS"],
-      "url": ["https://github.com/cfpb/hmda-frontend/pull/439", "https://ffiec.cfpb.gov/data-publication/disclosure-reports"]
+      "description": "The Disclosure Reports page was updated with improved guidance for finding your Insitutions Register Summary (IRS).",
+      "url": ["https://github.com/cfpb/hmda-frontend/issues/438"]
     },
     {
       "date": "04/22/20",
       "type": "update",
       "product": "reports",
-      "productYear": "2019",
-      "headline": "Disable download of 2019 Modified LAR with Header.",
-      "description": "Temporarily disabling the download of the 2019 Modified LAR with Header row.",
-      "tags": ["Data Browser", "2017"],
+      "description": "The Modified LAR for 2019 temporarily have the 'with Header' option disabled.",
       "url": "https://github.com/cfpb/hmda-frontend/pull/402"
     },
     {
       "date": "03/26/20",
       "type": "release",
       "product": "reports",
-      "productYear": "2019",
-      "headline": "The 2019 Modified LAR has been released.",
-      "description": "You can now download the 2019 Modified LAR reports.",
-      "tags": ["Data Browser", "2017"],
-      "url": "https://github.com/cfpb/hmda-frontend/pull/323"
+      "description": "The Modified LAR for 2019 have been released.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/293"
     },
     {
       "date": "03/09/20",
       "type": "update",
       "product": "documentation",
-      "productYear": "2018",
-      "headline": "Fixed broken links in 2018 documentation.",
-      "description": "Fixed broken links in 2018 documentation.",
-      "tags": [],
-      "url": "https://github.com/cfpb/hmda-frontend/pull/284"
+      "description": "The Documentation for 2018 has been updated to fix broken links.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/283"
     },
     {
       "date": "02/20/20",
       "type": "update",
-      "product": "apps",
-      "productYear": "2017",
-      "headline": "Removed the 2017 FFVT Tool.",
-      "description": "Submissions for the 2017 Platform are now closed, we are removing the 2017 File Format Verification Tool (FFVT).",
-      "tags": ["FFVT"],
-      "url": "https://github.com/cfpb/hmda-frontend/pull/253"
+      "product": "tools",
+      "description": "The 2017 File Format Verification Tool (FFVT) has been removed.  Filing of 2017 HMDA Data is closed.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/250"
     },
     {
       "date": "02/12/20",
       "type": "release",
       "product": "datasets",
-      "productYear": "2017",
-      "headline": "2017 Dynamic National Loan-Level Dataset released.",
-      "description": "The 2017 Dynamic National Loan-Level Dataset was released. Maybe this is just a renaming of the files? Not clear from the ticket.",
-      "tags": ["Dynamic", "National", "Loan-Level", "Dataset", "2017"],
-      "url": "https://github.com/cfpb/hmda-frontend/pull/241"
+      "description": "The Dynamic National Loan-Level Dataset for 2017 was released.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/238"
     },
     {
       "date": "01/10/20",
       "type": "update",
-      "product": "apps",
-      "productYear": "2017",
-      "headline": "Removed the 2017 LARFT Tool.",
-      "description": "Submissions for the 2017 Platform are now closed, we are removing the 2017 Loan Application Register Formatting Tool (LARFT).",
-      "tags": ["LARFT"],
-      "url": "https://github.com/cfpb/hmda-frontend/pull/148"
+      "product": "tools",
+      "description": "The 2017 Loan Application Register Formatting Tool (LARFT) has been removed.  Filing of 2017 HMDA Data is closed.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/143"
     },
     {
       "date": "01/02/20",
       "type": "update",
-      "product": "apps",
-      "productYear": "2017",
-      "headline": "Removed homepage links to 2017 Filing platform.",
-      "description": "Submissions for the 2017 Platform are now closed.",
-      "tags": ["2017"],
-      "url": "https://github.com/cfpb/hmda-frontend/pull/107"
+      "product": "tools",
+      "description": "The Platform for 2017 is closed. Filing of 2017 HMDA Data is no longer possible.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/102"
     },
     {
       "date": "11/14/19",
       "type": "release",
-      "product": "apps",
-      "productYear": "2019",
-      "headline": "New LEI filter for the HMDA Data Browser.",
-      "description": "The HMDA Data Browser now supports filtering of datasets by Institution (LEI).",
-      "tags": ["2019", "Data Browser"],
-      "url": "https://github.com/cfpb/hmda-frontend/pull/17"
+      "product": "tools",
+      "description": "The Data Browser now supports filtering of datasets by Institution (LEI).",
+      "url": "https://github.com/cfpb/hmda-data-browser/issues/117"
     },
     {
       "date": "11/14/19",
       "type": "release",
       "product": "documentation",
-      "productYear": "2019",
-      "headline": "Released Filing Deadlines for 2020 Annual and Quarterly periods.",
-      "description": "New documentation pages outlining the 2020 Annual and Quarterly filing deadlines have been released.",
-      "tags": ["2019"],
-      "url": "https://github.com/cfpb/hmda-documentation/pull/38"
+      "description": "The Documentation for 2020 Annual and Quarterly filing deadlines has been released.",
+      "url": "https://github.com/cfpb/hmda-platform-ui/issues/1317"
     },
     {
       "date": "09/11/20",
       "type": "update",
       "product": "documentation",
-      "productYear": "2020",
-      "headline": "Provide links for ambiguous documentation references.",
-      "description": "Provides URL links, as opposed to just a text reference, for Panel schema, Panel field definitions, and the 2017 FIG.",
-      "tags": ["2017 FIG", "Panel"],
-      "url": "https://github.com/cfpb/hmda-documentation/pull/38"
+      "description": "Provide links for Panel schema, Panel field definitions, and the 2017 FIG."
     },
     {
       "date": "08/03/20",
       "type": "release",
       "product": "documentation",
-      "productYear": "2020",
-      "headline": "Dev Notes: Running the HMDA Frontend with HMDA Platform locally.",
-      "description": "Several components of the HMDA Frontend (ex. Filing, Data Browser) require a connection to the HMDA Platform.  We've added documentation about running these apps in a dev environment.",
-      "tags": ["HMDA Frontend"],
-      "url": "https://github.com/cfpb/hmda-frontend/pull/601"
+      "description": "Documentation for running the HMDA Frontend in a development environment has been released.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/590"
     },
     {
       "date": "07/30/20",
       "type": "update",
-      "product": "apps",
-      "productYear": "2018",
-      "headline": "HMDA Data Browser correction for 2018 County counts.",
-      "description": "HMDA Data Browser gets corrected the per County counts for 2018.",
-      "tags": ["Data Browser", "correct", "2018"],
-      "url": "https://github.com/cfpb/hmda-frontend/pull/589"
+      "product": "tools",
+      "description": "The Data Browser for 2018 has been updated with corrected per County counts.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/588"
     },
     {
       "date": "07/21/20",
       "type": "correction",
-      "product": "apps",
-      "productYear": "2020",
-      "headline": "Correction to Rate Spread Calculator results.",
-      "description": "An error in the Mortgage Rate Survey table for 15-Year Fixed Points & Fees (cell E135) resulted in incorrect results for Rate Spread on fixed rate loans with terms of 13 to 22 years and rate set date of 7/20/2020. The issue was corrected in the online calculator and the linked tables.",
-      "tags": ["Rate Spread", "Correction"],
-      "url": "https://github.com/cfpb/hmda-frontend/pull/589"
+      "product": "tools",
+      "description": "An error in the Mortgage Rate Survey table for 15-Year Fixed Points & Fees (cell E135) resulted in incorrect results for Rate Spread on fixed rate loans with terms of 13 to 22 years and rate set date of 7/20/2020. The issue was corrected in the online calculator and the linked tables."
     },
     {
       "date": "07/08/20",
       "type": "update",
       "product": "reports",
-      "productYear": "2019",
-      "headline": "Re-enable download of 2019 Modified LAR with Header.",
-      "description": "Re-enable download of 2019 Modified LAR with Header.",
-      "tags": ["Modified LAR", "2019"],
-      "url": "https://github.com/cfpb/hmda-frontend/pull/551"
+      "description": "The Modified LAR for 2019 have the 'with Header' option re-enabled.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/550"
     },
     {
       "date": "07/01/20",
       "type": "release",
       "product": "documentation",
-      "productYear": "2020",
-      "headline": "Add LARFT Documentation for 2020",
-      "description": "Add 2020 Loan/Application Register Formatting Tool (LARFT) Documentation",
-      "tags": ["LARFT", "2020"],
-      "url": "https://github.com/cfpb/hmda-frontend/pull/540"
+      "description": "The Docmentation for the 2020 Loan/Application Register Formatting Tool (LARFT) has been released.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/530"
     }
   ]
 }
