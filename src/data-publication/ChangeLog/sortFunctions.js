@@ -23,7 +23,9 @@ export const organizeChangeData = (input) => {
   data.forEach((item) => {
     if (!item || !item.date) return
     if (!item.changeDateOrdinal)
-      item.changeDateOrdinal = ordinal(new Date(item.date || 0))
+      item.changeDateOrdinal = ordinal(new Date(item.date || 0), {
+        nthDate: false,
+      })
     if (!result[item.date]) result[item.date] = []
     result[item.date].push({ ...item })
   })
