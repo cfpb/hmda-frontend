@@ -43,7 +43,7 @@
     {
       "date": "07/08/20",
       "type": "update",
-      "product": "reports",
+      "product": "mlar",
       "description": "The Modified LAR for 2019 have the 'with Header' option re-enabled.",
       "url": "https://github.com/cfpb/hmda-frontend/issues/550"
     },
@@ -99,14 +99,14 @@
     {
       "date": "04/22/20",
       "type": "update",
-      "product": "reports",
+      "product": "mlar",
       "description": "The Modified LAR for 2019 temporarily have the 'with Header' option disabled.",
       "url": "https://github.com/cfpb/hmda-frontend/pull/402"
     },
     {
       "date": "03/26/20",
       "type": "release",
-      "product": "reports",
+      "product": "mlar",
       "description": "The Modified LAR for 2019 have been released.",
       "url": "https://github.com/cfpb/hmda-frontend/issues/293"
     },
