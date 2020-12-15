@@ -61,7 +61,7 @@
 }
 
 #filter-bar .filter-wrapper > * {
-  width: 18%;
+  width: 20%;
 }
 
 #filter-bar .filter-wrapper .search-wrapper {
@@ -105,7 +105,7 @@
   color: black;
   background: white;
   position: relative;
-  min-width: 165px;
+  min-width: 180px;
 }
 
 #filter-bar .pill:hover,

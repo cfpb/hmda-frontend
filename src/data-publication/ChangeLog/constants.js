@@ -1,6 +1,6 @@
 export const PRODUCT_NAMES = {
   mlar: 'Modified LAR',
-  datasets: 'Datasets',
+  datasets: 'National Datasets',
   reports: 'Reports',
   documentation: 'Documentation',
   tools: 'HMDA Tools',
