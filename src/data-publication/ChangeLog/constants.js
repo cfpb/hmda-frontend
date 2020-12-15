@@ -11,10 +11,9 @@ export const PRODUCTS = Object.keys(PRODUCT_NAMES)
 
 
 export const CATEGORIES = {
-  correction: { order: 1 },
+  correction: { order: 3 },
   update: { order: 2 },
-  release: { order: 3 },
-  notice: { order: 4 },
+  release: { order: 1 },
 }
 
 
@@ -34,7 +33,7 @@ export const FILTER_OPTIONS = {
     type: 'product',
   })),
 
-  TYPE: Object.keys(CATEGORIES).map((type) => ({
+  TYPE: Object.keys(CATEGORIES).sort((a,b) => CATEGORIES[a].order - CATEGORIES[b].order).map((type) => ({
     value: type,
     type: 'type',
   })),
