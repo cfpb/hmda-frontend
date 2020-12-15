@@ -1,5 +1,10 @@
 .oc-option {
   position: relative;
+  user-select: none;
+}
+
+.oc-option.inline {
+  margin-left: 25px;
 }
 
 .oc-option:before {
