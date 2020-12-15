@@ -1,0 +1,42 @@
+.oc-option {
+  position: relative;
+}
+
+.oc-option:before {
+  background: #dfb753;
+  border-radius: 100%;
+  content: '!';
+  font-size: 1.5rem;
+  font-weight: bold;
+  left: -25px;
+  position: absolute;
+  text-align: center;
+  width: 20px;
+}
+
+.oc-option:hover {
+  cursor: pointer;
+  background: #d8d2c3;
+}
+
+.oc-option-custom {
+  width: 80%;
+  border: 2px solid transparent;
+  font-family: "SourceSansPro";
+  font-size: 15px;
+  color: rgb(91, 97, 107);
+  margin-left: 0;
+
+}
+
+.oc-option-custom:focus {
+  border: 2px solid grey;
+}
+
+.oc-button {
+  margin: 0;
+  font-size: 1rem;
+  padding: .75rem;
+  margin-left: 1rem;
+  line-height: inherit;
+}
