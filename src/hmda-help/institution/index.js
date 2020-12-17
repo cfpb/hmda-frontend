@@ -17,6 +17,7 @@ import Alert from '../Alert'
 import Loading from '../../common/LoadingIcon.jsx'
 import Notes from '../Notes'
 import NoteHistory from './NoteHistory/'
+import { getFilingYears } from '../../common/constants/configHelpers'
 
 import './Form.css'
 
@@ -201,6 +202,7 @@ class Institution extends Component {
   }
 
   render() {
+    const filingYears = getFilingYears(this.props.config)
     const { pathname } = this.props.location
     const successAlert = this.state.isSubmitted ? (
       <Alert
@@ -243,6 +245,18 @@ class Institution extends Component {
         >
           {searchInputs.concat(requiredInputs).map((searchInput) => {
             if (searchInput.type === 'select') {
+
+              if (searchInput.id === 'activityYear') {
+                // Derive options from config
+                searchInput.options = [
+                  { name: 'Select Year' },
+                  ...filingYears.map((yr) => ({
+                    id: `${yr}`,
+                    name: `${yr}`,
+                  }))
+                ]
+              }
+
               return (
                 <InputSelect
                   key={searchInput.id}

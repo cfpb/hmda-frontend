@@ -12,6 +12,7 @@ import InstitutionNotFound from './InstitutionNotFound'
 import ServerErrors from './ServerErrors'
 import { fetchInstitution } from './fetchInstitution'
 import PublicationTable from '../publications/PublicationTable'
+import { getFilingYears } from '../../common/constants/configHelpers'
 
 const defaultState = {
   errors: [],
@@ -90,7 +91,7 @@ class Form extends Component {
       errors: []
     })
 
-    Promise.all(fetchInstitution(this.state.lei, this.setState, this.props.token))
+    Promise.all(fetchInstitution(this.state.lei, this.setState, this.props.token, getFilingYears(this.props.config)))
       .then(() => this.setState({ fetching: false }))
       .catch(error =>
         this.setState(state => ({
