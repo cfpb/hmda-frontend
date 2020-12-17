@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import { getDefaultConfig } from '../../../common/configUtils'
 import {
   SELECT_FILE,
   UPDATE_STATUS,
@@ -11,6 +12,8 @@ import {
   SET_FILING_PERIOD,
   UPLOAD_ERROR
 } from '../constants'
+
+const config = getDefaultConfig(window.location.host)
 
 const defaultUpload = {
   uploading: false,
@@ -37,7 +40,7 @@ const defaultPagination = {
   fade: 0
 }
 
-const defaultFilingPeriod = '2019'
+const defaultFilingPeriod = config && config.defaultPeriod
 
 //empty action logger, temporary / for debugging
 export const empty = (state = {}, action) => {
