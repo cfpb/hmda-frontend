@@ -4,7 +4,7 @@
       "date": "11/20/20",
       "type": "update",
       "product": "documentation",
-      "description": "The Filing Instructions Guide (FIG) for 2021 has been updated.",
+      "description": "The Filing Instructions Guide (FIG) for the year 2021 has been updated.",
       "url": "https://github.com/cfpb/hmda-frontend/issues/745"
     },
     {
@@ -17,7 +17,7 @@
       "date": "08/21/20",
       "type": "release",
       "product": "documentation",
-      "description": "The Filing Instructions Guide (FIG) and the Supplemental Guide for Quarterly Filers for 2021 have been released.",
+      "description": "The Filing Instructions Guide (FIG) and the Supplemental Guide for Quarterly Filers for the year 2021 have been released.",
       "url": "https://github.com/cfpb/hmda-frontend/issues/632"
     },
     {
@@ -31,7 +31,7 @@
       "date": "07/30/20",
       "type": "update",
       "product": "tools",
-      "description": "The Data Browser for 2018 has been updated with corrected per County counts.",
+      "description": "The Data Browser for the year 2018 has been updated with corrected per County counts.",
       "url": "https://github.com/cfpb/hmda-frontend/issues/588"
     },
     {
@@ -44,7 +44,7 @@
       "date": "07/08/20",
       "type": "update",
       "product": "mlar",
-      "description": "The Modified LAR for 2019 have the 'with Header' option re-enabled.",
+      "description": "The Modified LAR for the year 2019 have the 'with Header' option re-enabled.",
       "url": "https://github.com/cfpb/hmda-frontend/issues/550"
     },
     {
@@ -58,35 +58,35 @@
       "date": "06/24/20",
       "type": "release",
       "product": "datasets",
-      "description": "The National Loan-Level Dataset for 2019 has been released.",
+      "description": "The National Loan-Level Dataset for the year 2019 has been released.",
       "url": "https://github.com/cfpb/hmda-frontend/pull/517"
     },
     {
       "date": "06/24/20",
       "type": "release",
       "product": "reports",
-      "description": "The MSA/MD Aggregate Reports and Disclosure Reports for 2019 have been released.",
+      "description": "The MSA/MD Aggregate Reports and Disclosure Reports for the year 2019 have been released.",
       "url": "https://github.com/cfpb/hmda-frontend/pull/517"
     },
     {
       "date": "06/22/20",
       "type": "release",
       "product": "tools",
-      "description": "The Data Browser for 2019 has been released.",
+      "description": "The Data Browser for the year 2019 has been released.",
       "url": "https://github.com/cfpb/hmda-frontend/issues/442"
     },
     {
       "date": "06/18/20",
       "type": "update",
       "product": "documentation",
-      "description": "The closing dates for 2020 Quarterly Filing period have been updated.",
+      "description": "The closing dates for the year 2020 Quarterly Filing period have been updated.",
       "url": "https://github.com/cfpb/hmda-frontend/issues/509"
     },
     {
       "date": "05/19/20",
       "type": "release",
       "product": "documentation",
-      "description": "The Data Browser documentation for 2017 has been updated with definitions and descriptions of Filters, as well as data structure differences when compared to 2018.",
+      "description": "The Data Browser documentation for the year 2017 has been updated with definitions and descriptions of Filters, as well as data structure differences when compared to 2018.",
       "url": "https://github.com/cfpb/hmda-frontend/issues/419"
     },
     {
@@ -100,21 +100,21 @@
       "date": "04/22/20",
       "type": "update",
       "product": "mlar",
-      "description": "The Modified LAR for 2019 temporarily have the 'with Header' option disabled.",
+      "description": "The Modified LAR for the year 2019 temporarily have the 'with Header' option disabled.",
       "url": "https://github.com/cfpb/hmda-frontend/pull/402"
     },
     {
       "date": "03/26/20",
       "type": "release",
       "product": "mlar",
-      "description": "The Modified LAR for 2019 have been released.",
+      "description": "The Modified LAR for the year 2019 have been released.",
       "url": "https://github.com/cfpb/hmda-frontend/issues/293"
     },
     {
       "date": "03/09/20",
       "type": "update",
       "product": "documentation",
-      "description": "The Documentation for 2018 has been updated to fix broken links.",
+      "description": "The Documentation for the year 2018 has been updated to fix broken links.",
       "url": "https://github.com/cfpb/hmda-frontend/issues/283"
     },
     {
@@ -128,7 +128,7 @@
       "date": "02/12/20",
       "type": "release",
       "product": "datasets",
-      "description": "The Dynamic National Loan-Level Dataset for 2017 was released.",
+      "description": "The Dynamic National Loan-Level Dataset for the year 2017 was released.",
       "url": "https://github.com/cfpb/hmda-frontend/issues/238"
     },
     {
@@ -142,7 +142,7 @@
       "date": "01/02/20",
       "type": "update",
       "product": "tools",
-      "description": "The Platform for 2017 is closed. Filing of 2017 HMDA Data is no longer possible.",
+      "description": "The Platform for the year 2017 is closed. Filing of 2017 HMDA Data is no longer possible.",
       "url": "https://github.com/cfpb/hmda-frontend/issues/102"
     },
     {
