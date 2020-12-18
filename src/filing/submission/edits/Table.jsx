@@ -6,7 +6,7 @@ import EditsTableRow from './TableRow.jsx'
 
 import './Table.css'
 
-export const supressULI = edit => ["S303", "V609"].indexOf(edit) > -1
+export const supressULI = edit => ["S303", "V609","V608-1","V608-2"].indexOf(edit) > -1
 
 export const formatHeader = (text, isTransmittal) => {
   if (text === 'value' || text === 'fields') return null
