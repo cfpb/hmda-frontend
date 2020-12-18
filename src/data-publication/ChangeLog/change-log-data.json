@@ -51,7 +51,7 @@
       "date": "07/01/20",
       "type": "release",
       "product": "documentation",
-      "description": "The Docmentation for the 2020 Loan/Application Register Formatting Tool (LARFT) has been released.",
+      "description": "Documentation for the 2020 Loan/Application Register Formatting Tool (LARFT) has been released.",
       "url": "https://github.com/cfpb/hmda-frontend/issues/530"
     },
     {
@@ -79,7 +79,7 @@
       "date": "06/18/20",
       "type": "update",
       "product": "documentation",
-      "description": "The closing dates for the year 2020 Quarterly Filing period have been updated.",
+      "description": "The closing dates for 2020 Quarterly Filing periods have been updated.",
       "url": "https://github.com/cfpb/hmda-frontend/issues/509"
     },
     {
