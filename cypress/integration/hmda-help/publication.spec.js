@@ -29,7 +29,6 @@ describe('HMDA Help - Publications', () => {
     }).logEnv()
     
     cy.on('window:confirm', () => true)
-    let row = 0
 
     // Log in
     if (!isCI(ENVIRONMENT)) {
@@ -55,24 +54,16 @@ describe('HMDA Help - Publications', () => {
     cy.findByText('Search publications').click()
     cy.wait(ACTION_DELAY)
 
-    // Can't generate Publication for future year
-    cy.get('#publications table tbody tr').eq(row).as('mlarRow')
-    cy.get('@mlarRow').contains('td', '2021')
-    cy.get('@mlarRow').contains('td', 'Modified LAR')
-    cy.get('@mlarRow').contains('td', 'No file')
-    cy.get('@mlarRow').contains('td', 'Regenerate')
-    cy.findAllByText('Regenerate').eq(row).should('have.class', 'disabled')
-
-    // Can generate Publication for past year
-    row = 5
-    cy.get('#publications table tbody tr').eq(row).as('irsRow')
-    cy.get('@irsRow').contains('td', '2019')
-    cy.get('@irsRow').contains('td', 'IRS')
-    cy.get('@irsRow').contains('td', 'Download')
-    cy.get('@irsRow').contains('td', 'Regenerate')
-    cy.findAllByText('Regenerate').eq(row).click()
-    cy.get('@irsRow').contains('Regeneration of 2019 IRS triggered!')
-    cy.wait(ACTION_DELAY)
+    // Trigger Publication regeneration
+    cy.findAllByText('IRS')
+      .parent('tr')
+      .last()
+      .findByText('Regenerate')
+      .should('not.have.class', 'disabled')
+      .as('lastRow')
+      .click()
+      
+    cy.get('@lastRow').parent('div').should('contain.text', 'triggered!')
 
     if (isProd(HOST)) {
       // Has valid Download links
