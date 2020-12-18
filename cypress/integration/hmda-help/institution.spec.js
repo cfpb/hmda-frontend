@@ -1,4 +1,6 @@
 import { isCI, getSelectedOptionValue } from '../../support/helpers'
+import { getFilingYears } from '../../../src/common/constants/configHelpers'
+import { getDefaultConfig } from '../../../src/common/configUtils'
 
 const {
   HOST,
@@ -17,6 +19,7 @@ const NOTE_HISTORY_ON_CI_FIXED = false
 
 describe('HMDA Help - Institutions', () => {
   const authUrl = HOST.indexOf('localhost') > -1 ? AUTH_BASE_URL : HOST
+  const years = getFilingYears(getDefaultConfig(HOST))
 
   it('Can update existing Institutions', () => {
     cy.get({
@@ -56,7 +59,7 @@ describe('HMDA Help - Institutions', () => {
     cy.findByText('Search institutions').click()
     cy.wait(LOCAL_ACTION_DELAY)
     cy.findAllByText('Update')
-      .eq(1) // 2019
+      .eq(1) // First row
       .click()
 
     const successMessage = `The institution, ${INSTITUTION}, has been updated.`
@@ -204,7 +207,7 @@ describe('HMDA Help - Institutions', () => {
     cy.wait(LOCAL_ACTION_DELAY)
 
     const institution = 'MEISSADIATESTBANK001'
-    const year = '2020'
+    const year = years[0].toString()
 
     // Delete
     cy.findByLabelText('LEI').type(`${institution}{enter}`)
