@@ -1,12 +1,12 @@
 import log from '../../../src/data-publication/ChangeLog/change-log-data.json'
 const { HOST } = Cypress.env()
-const EXPECTED_SELECTED_PILLS = ['release', 'notice', 'documentation', 'tools']
+const EXPECTED_SELECTED_PILLS = ['release', 'documentation', 'tools']
 const entries = log.log
 
 describe('Change Log', () => {
   describe('Filter Bar', () => {
     it('Loads config from query string', () => {
-      cy.visit(`${HOST}/data-publication/updates?type=release,notice&product=documentation,tools&keywords=2020,tool`)
+      cy.visit(`${HOST}/data-publication/updates?type=release&product=documentation,tools&keywords=2020,tool`)
       
       cy.log(">> Validate pills get set on load")
       EXPECTED_SELECTED_PILLS.forEach(pillClass => {
@@ -23,20 +23,20 @@ describe('Change Log', () => {
       cy.get('.result-count').should('not.exist')
 
       cy.log(">> Changing filters should update the URL")
-      cy.get('#filter-bar').findByText('notice').click()
-      cy.url().should('contain', '?type=notice')
-      cy.get('.change-row:not(.header)').should('not.exist')
-      cy.get('.result-count .body').should('contain', 'Showing ' + 0 + ' out of')
+      cy.get('#filter-bar').findByText('correction').click()
+      cy.url().should('contain', '?type=correction')
+      cy.get('.change-row:not(.header)').should('exist')
+      cy.get('.result-count .body').should('contain', 'Showing ' + 1 + ' out of')
 
       cy.get('#filter-bar').findByText('update').click()
       cy.get('#filter-bar').findByText('HMDA Tools').click()
-      cy.url().should('contain', '?type=notice,update&product=tools')
-      cy.get('.change-row').should('have.length', 5)
-      cy.get('.result-count .body').should('contain', 'Showing ' + 4 + ' out of')
+      cy.url().should('contain', '?type=correction,update&product=tools')
+      cy.get('.change-row:not(.header)').should('have.length', 5)
+      cy.get('.result-count .body').should('contain', 'Showing ' + 5 + ' out of')
       
       cy.log(">> Search by Keyword")
       cy.findByLabelText('by Change Description').type('2018')
-      cy.url().should('contain', '?type=notice,update&product=tools&keywords=2018')
+      cy.url().should('contain', '?type=correction,update&product=tools&keywords=2018')
       cy.get('.change-row').should('have.length', 2)
       cy.get('.result-count .body').should('contain', 'Showing ' + 1 + ' out of')
       cy.log(">> Highlight keywords")
@@ -44,8 +44,8 @@ describe('Change Log', () => {
 
       cy.log(">> Clear keyword search with button")
       cy.get('.clear-text').click()
-      cy.get('.change-row').should('have.length', 5)
-      cy.get('.result-count .body').should('contain', 'Showing ' + 4 + ' out of')
+      cy.get('.change-row:not(.header)').should('have.length', 5)
+      cy.get('.result-count .body').should('contain', 'Showing ' + 5 + ' out of')
       
       // TODO: Test that entries are sorted by date
       // TODO: Only show entries for the past year
