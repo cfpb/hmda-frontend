@@ -1,0 +1,116 @@
+#ChangeLog * {
+  font-family: 'Arial', "Segoe UI", 'Roboto', -apple-system;
+}
+
+#ChangeLog h2 {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #4675c2;
+}
+
+#ChangeLog h3 {
+  margin-bottom: 2rem;
+  margin-top: 0;
+  font-size: 1.7rem;
+}
+
+#ChangeLog .intro {
+  font-size: 1.8rem;
+}
+
+#ChangeLog .split {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+#ChangeLog .split.columns {
+  flex-flow: column nowrap;
+}
+
+
+#ChangeLog .highlighted {
+  background: yellow;
+}
+
+.empty-state {
+  margin-top: 3rem;
+  font-size: 2rem;
+}
+
+.empty-state .reset-filters {
+  max-width: 250px;
+  margin-top: 4rem;
+}
+
+.reset-filters {
+  padding: 1rem;
+  background: #555;
+  border-radius: 10px;
+  color: white;
+  margin-top: 1rem;
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
+.reset-filters:hover,
+#filter-bar .clear-text:hover {
+  background-color: #0a6a58;
+  cursor: pointer;
+}
+
+
+.pill {
+  align-items: center;
+  border-radius: 10px;
+  display: flex;
+  font-size: 1.4rem;
+  margin: 0 0.5rem 1.5rem;
+  padding: 0.5rem;
+  position: relative;
+  text-align: center;
+  text-transform: capitalize;
+  user-select: none;
+}
+
+.pill .text {
+  width: 100%;
+}
+
+.pill:hover {
+  cursor: pointer;
+}
+
+.nav-anchor {
+  font-size: 0;
+  height: 0;
+  line-height: 0;
+  display: block;
+}
+
+.search-input:focus,
+.pill:focus,
+.reset-filters:focus,
+.column.product:focus,
+.clear-text:focus   {
+  outline: none;
+  border-color: transparent;
+  box-shadow: none;
+  animation: highlight-focus .25s;
+  animation-fill-mode: forwards;
+}
+
+/* Animations */
+@keyframes highlight-focus {
+  0% {
+    box-shadow: 0 0 2pt 2pt #4675c2;
+  }
+
+  50% {
+    box-shadow: 0 0 2pt 4pt #4675c2;
+  }
+
+  100% {
+    box-shadow: 0 0 2pt 2pt #4675c2;
+  }
+}

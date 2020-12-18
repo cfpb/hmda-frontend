@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from "react"
+import { Link } from "react-router-dom"
 
-import Heading from '../common/Heading.jsx'
+import Heading from "../common/Heading.jsx"
 
 class Home extends Component {
   render() {
@@ -21,9 +22,12 @@ class Home extends Component {
               </a>
               .
             </p>
+            <p className='lead'>
+              For information about changes to HMDA Publications visit{' '}
+              <Link to='updates'>Publication Updates &amp; Notes</Link>.
+            </p>
           </Heading>
         </div>
-
         <div className="card-container">
           <div className="card">
             <Heading

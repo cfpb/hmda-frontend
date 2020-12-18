@@ -11,6 +11,7 @@ import Snapshot from './reports/snapshot/index'
 import DynamicDataset from './reports/DynamicDataset'
 import NotFound from '../common/NotFound'
 import { withAppContext } from '../common/appContextHOC.jsx'
+import PublicationChanges from './ChangeLog/'
 
 import './index.css'
 
@@ -23,6 +24,7 @@ const DataPublication = ({ config }) => {
     <div className="App DataPublication">
       <Switch>
         <Route exact path="/data-publication" component={Home} />
+        <Route exact path = "/data-publication/updates" component={PublicationChanges} />
         <Redirect exact from="/data-publication/modified-lar" to="/data-publication/modified-lar/2019" />
         <Route path="/data-publication/documents" component={SupportingDocs} />
         <Route path="/data-publication/modified-lar/:year" component={ModifiedLar} />

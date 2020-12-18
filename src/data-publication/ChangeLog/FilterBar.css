@@ -1,0 +1,173 @@
+#filter-bar {
+  overflow: visible;
+}
+
+#filter-bar .filter-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: .5rem;
+}
+
+/** Color - Product */
+#filter-bar .pill.product.selected,
+#filter-bar .pill.product:hover {
+  background: #0f8fb6;
+  background-color: #017294;
+}
+
+/** Color - Correction */
+#filter-bar .pill.type.correction:hover,
+#filter-bar .pill.type.correction.selected {
+  background-color: #c41613;
+}
+
+/** Color - Update */
+#filter-bar .pill.type.update:hover,
+#filter-bar .pill.type.update.selected {
+  background-color: #254b87;
+}
+
+/** Color - Release */
+#filter-bar .pill.type.release:hover,
+#filter-bar .pill.type.release.selected {
+  background-color: #0b6e4f;
+}
+
+/** Color - Notice */
+#filter-bar .pill.type.notice:hover,
+#filter-bar .pill.type.notice.selected {
+  background-color: #dc731c;
+  color: white;
+}
+
+#filter-bar .text-input .close {
+  margin-left: 1rem;
+  align-self: center;
+  cursor: pointer;
+  background: grey;
+  color: white;
+  height: 100%;
+  border-radius: 10px;
+  padding: 0 0.5rem;
+}
+
+#filter-bar .text-input .icon img {
+  width: 15px;
+  position: absolute;
+  z-index: 10;
+  top: 3rem;
+  left: 1rem;
+}
+
+#filter-bar .filter-wrapper > * {
+  width: 20%;
+}
+
+#filter-bar .filter-wrapper .search-wrapper {
+  width: 40%;
+  padding-left: .5rem;
+}
+
+#filter-bar .search-input-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  position: relative;
+}
+
+#filter-bar #search-input {
+  padding-left: 3rem;
+  border-width: 2px;
+}
+
+#filter-bar .clear-text {
+  margin: 0;
+  padding: 0.2rem 0.7rem 0.3rem 0.7rem;
+  display: inline-block;
+  position: absolute;
+  right: 1rem;
+  top: 1.3rem;
+  background: #555;
+}
+
+#filter-bar .clear-text:hover {
+  background: #017294;
+  color: white;
+}
+
+#filter-bar .pills {
+  padding: 1.5rem 0;
+}
+
+#filter-bar .pill {
+  border: 2px solid black;
+  color: black;
+  background: white;
+  position: relative;
+  min-width: 180px;
+}
+
+#filter-bar .pill:hover,
+#filter-bar .pill.selected {
+  color: white;
+  border-color: transparent;
+}
+
+#filter-bar .pill .icon {
+  top: 3px;
+  margin-left: .75rem;
+  position: absolute;
+  font-size: 2rem;
+}
+
+#filter-bar .pill.selected .icon {
+  font-size: 1.5rem;
+}
+
+#filter-bar .text-input {
+  padding: 1.5rem 0;
+  position: relative;
+}
+
+#filter-bar .text-input input[type='text'] {
+  border-radius: 10px;
+  min-width: 265px;
+}
+
+#filter-bar .text-input input[type='text']:focus {
+  outline: none;
+  border-color: transparent;
+  animation: highlight-focus 0.25s;
+  animation-fill-mode: forwards;
+}
+
+#ChangeLog #filter-bar h3,
+#ChangeLog #filter-bar h4,
+#ChangeLog #filter-bar label {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 850px) {
+  #filter-bar .filter-wrapper.split {
+    flex-flow: column nowrap;
+  }
+
+  #filter-bar .filter-wrapper.split > * {
+    width: 100%;
+  }
+
+  #filter-bar .pills.columns.split {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  #filter-bar .filter-wrapper .search-input-wrapper #search-input {
+    max-width: none;
+  }
+
+  #filter-bar .filter-wrapper > * {
+    width: 100%
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "log": [
+    {
+      "date": "11/20/20",
+      "type": "update",
+      "product": "documentation",
+      "description": "The Filing Instructions Guide (FIG) for the year 2021 has been updated.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/745"
+    },
+    {
+      "date": "09/11/20",
+      "type": "update",
+      "product": "documentation",
+      "description": "Provide links for Panel schema, Panel field definitions, and the 2017 FIG."
+    },
+    {
+      "date": "08/21/20",
+      "type": "release",
+      "product": "documentation",
+      "description": "The Filing Instructions Guide (FIG) and the Supplemental Guide for Quarterly Filers for the year 2021 have been released.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/632"
+    },
+    {
+      "date": "08/03/20",
+      "type": "release",
+      "product": "documentation",
+      "description": "Documentation for running the HMDA Frontend in a development environment has been released.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/590"
+    },
+    {
+      "date": "07/30/20",
+      "type": "update",
+      "product": "tools",
+      "description": "The Data Browser for the year 2018 has been updated with corrected per County counts.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/588"
+    },
+    {
+      "date": "07/21/20",
+      "type": "correction",
+      "product": "tools",
+      "description": "An error in the Mortgage Rate Survey table for 15-Year Fixed Points & Fees (cell E135) resulted in incorrect results for Rate Spread on fixed rate loans with terms of 13 to 22 years and rate set date of 7/20/2020. The issue was corrected in the online calculator and the linked tables."
+    },
+    {
+      "date": "07/08/20",
+      "type": "update",
+      "product": "mlar",
+      "description": "The Modified LAR for the year 2019 have the 'with Header' option re-enabled.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/550"
+    },
+    {
+      "date": "07/01/20",
+      "type": "release",
+      "product": "documentation",
+      "description": "Documentation for the 2020 Loan/Application Register Formatting Tool (LARFT) has been released.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/530"
+    },
+    {
+      "date": "06/24/20",
+      "type": "release",
+      "product": "datasets",
+      "description": "The National Loan-Level Dataset for the year 2019 has been released.",
+      "url": "https://github.com/cfpb/hmda-frontend/pull/517"
+    },
+    {
+      "date": "06/24/20",
+      "type": "release",
+      "product": "reports",
+      "description": "The MSA/MD Aggregate Reports and Disclosure Reports for the year 2019 have been released.",
+      "url": "https://github.com/cfpb/hmda-frontend/pull/517"
+    },
+    {
+      "date": "06/22/20",
+      "type": "release",
+      "product": "tools",
+      "description": "The Data Browser for the year 2019 has been released.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/442"
+    },
+    {
+      "date": "06/18/20",
+      "type": "update",
+      "product": "documentation",
+      "description": "The closing dates for 2020 Quarterly Filing periods have been updated.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/509"
+    },
+    {
+      "date": "05/19/20",
+      "type": "release",
+      "product": "documentation",
+      "description": "The Data Browser documentation for the year 2017 has been updated with definitions and descriptions of Filters, as well as data structure differences when compared to 2018.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/419"
+    },
+    {
+      "date": "05/14/20",
+      "type": "update",
+      "product": "documentation",
+      "description": "The Disclosure Reports page was updated with improved guidance for finding your Insitutions Register Summary (IRS).",
+      "url": ["https://github.com/cfpb/hmda-frontend/issues/438"]
+    },
+    {
+      "date": "04/22/20",
+      "type": "update",
+      "product": "mlar",
+      "description": "The Modified LAR for the year 2019 temporarily have the 'with Header' option disabled.",
+      "url": "https://github.com/cfpb/hmda-frontend/pull/402"
+    },
+    {
+      "date": "03/26/20",
+      "type": "release",
+      "product": "mlar",
+      "description": "The Modified LAR for the year 2019 have been released.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/293"
+    },
+    {
+      "date": "03/09/20",
+      "type": "update",
+      "product": "documentation",
+      "description": "The Documentation for the year 2018 has been updated to fix broken links.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/283"
+    },
+    {
+      "date": "02/20/20",
+      "type": "update",
+      "product": "tools",
+      "description": "The 2017 File Format Verification Tool (FFVT) has been removed.  Filing of 2017 HMDA Data is closed.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/250"
+    },
+    {
+      "date": "02/12/20",
+      "type": "release",
+      "product": "datasets",
+      "description": "The Dynamic National Loan-Level Dataset for the year 2017 was released.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/238"
+    },
+    {
+      "date": "01/10/20",
+      "type": "update",
+      "product": "tools",
+      "description": "The 2017 Loan Application Register Formatting Tool (LARFT) has been removed.  Filing of 2017 HMDA Data is closed.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/143"
+    },
+    {
+      "date": "01/02/20",
+      "type": "update",
+      "product": "tools",
+      "description": "The Platform for the year 2017 is closed. Filing of 2017 HMDA Data is no longer possible.",
+      "url": "https://github.com/cfpb/hmda-frontend/issues/102"
+    },
+    {
+      "date": "11/14/19",
+      "type": "release",
+      "product": "tools",
+      "description": "The Data Browser now supports filtering of datasets by Institution (LEI).",
+      "url": "https://github.com/cfpb/hmda-data-browser/issues/117"
+    },
+    {
+      "date": "11/14/19",
+      "type": "release",
+      "product": "documentation",
+      "description": "The Documentation for 2020 Annual and Quarterly filing deadlines has been released.",
+      "url": "https://github.com/cfpb/hmda-platform-ui/issues/1317"
+    }
+  ]
+}

@@ -1,7 +1,9 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 import '../../common/YearSelector.css'
 
 const DBYearSelector = ({ year, years, onChange }) => {
+  const location = useLocation()
   if(!years || years.length < 2) return null
 
   const clickHandler = (e) => {
@@ -15,7 +17,14 @@ const DBYearSelector = ({ year, years, onChange }) => {
       {years.map((y, i) => {
         const className = y === year ? 'active' : ''
         return (
-          <a className={className} onClick={clickHandler} key={i}>
+          <a
+            href={`${location.pathname.replace(/20\d\d$/, y)}${
+              location.search
+            }`}
+            className={className}
+            onClick={clickHandler}
+            key={i}
+          >
             {y}
           </a>
         )
