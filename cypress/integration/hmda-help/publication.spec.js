@@ -57,14 +57,14 @@ describe('HMDA Help - Publications', () => {
 
     // Can't generate Publication for future year
     cy.get('#publications table tbody tr').eq(row).as('mlarRow')
-    cy.get('@mlarRow').contains('td', '2020')
+    cy.get('@mlarRow').contains('td', '2021')
     cy.get('@mlarRow').contains('td', 'Modified LAR')
     cy.get('@mlarRow').contains('td', 'No file')
     cy.get('@mlarRow').contains('td', 'Regenerate')
     cy.findAllByText('Regenerate').eq(row).should('have.class', 'disabled')
 
     // Can generate Publication for past year
-    row = 3
+    row = 5
     cy.get('#publications table tbody tr').eq(row).as('irsRow')
     cy.get('@irsRow').contains('td', '2019')
     cy.get('@irsRow').contains('td', 'IRS')
