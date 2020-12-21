@@ -12,7 +12,7 @@ import { runFetch, getCSV } from '../api.js'
 import fips2Shortcode from '../constants/fipsToShortcode.js'
 import mapbox from 'mapbox-gl'
 import './mapbox.css'
-import { OptionCarousel } from '../../common/OptionCarousel'
+import { PopularVariableLink } from './PopularVariableLink'
 
 mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlvaQw'
 
@@ -73,16 +73,6 @@ const MapContainer = props => {
   const [selectedValue, setValue] = useState(defaults.value)
   const [selectedFilterValue, setFilterValue] = useState(defaults.filtervalue)
   const [feature, setFeature] = useState(defaults.feature)
-
-  const PopularVariableLink = ({ children = 'popular variable' }) => (
-    <a
-      target='_blank'
-      rel='noopener noreferrer'
-      href={`/documentation/${year}/data-browser-filters/#action_taken`}
-    >
-      {children}
-    </a>
-  )
 
   const getBaseData = useCallback((year, geography) => {
     if(!year || !geography) return null
@@ -413,7 +403,7 @@ const MapContainer = props => {
         years={props.config.dataBrowserYears}
       />
       <h3>Step 1: Select a Geography</h3>
-      <p>Start by selecting a geography using dropdown menu below</p>
+      <p>Start by selecting a geography using the dropdown menu below</p>
       <Select
         onChange={onGeographyChange}
         styles={menuStyle}
@@ -427,14 +417,7 @@ const MapContainer = props => {
       />
       <h3>Step 2: Select a Variable</h3>
       <p>
-        {/* Narrow down your selection by filtering on up to two{' '} */}
-        <OptionCarousel
-          options={[
-            <>Focus your results by filtering on a <PopularVariableLink /></>,
-            <>Narrow down your selection by filtering on a <PopularVariableLink /></>,
-            <>Narrow down your selection by filtering on up to two <PopularVariableLink>popular variables</PopularVariableLink> </>,
-          ]}
-        />
+        Narrow down your selection by filtering on a <PopularVariableLink year={year}/>
       </p>
       <Select
         onChange={onVariableChange}
@@ -462,21 +445,7 @@ const MapContainer = props => {
       />
       <h3>Step 4: Filter your results by another variable <i>(optional)</i></h3>
       <p>
-        {/* You can filter your displayed variable by another to get a more targeted map */}
-        <OptionCarousel
-          options={[
-            <>
-              Select another <PopularVariableLink /> to get a more targeted map
-            </>,
-            <>
-              You can further filter the data by adding another <PopularVariableLink />, creating a more targeted map
-            </>,
-            <>
-              You can filter your displayed variable by another{' '}
-              <PopularVariableLink /> to get a more targeted map{' '}
-            </>,
-          ]}
-        />
+        You can further filter the data by adding another <PopularVariableLink year={year}/>, creating a more targeted map
       </p>
       <Select
         onChange={onFilterChange}
@@ -492,7 +461,7 @@ const MapContainer = props => {
       {selectedFilter ? (
         <>
           <h3>Step 5: Select a value for your {selectedFilter.label} filter</h3>
-          <p>Then choose the value for your selected filter</p>
+          <p>Then choose the value for your selected filter.</p>
           <Select
             onChange={onFilterValueChange}
             styles={menuStyle}
