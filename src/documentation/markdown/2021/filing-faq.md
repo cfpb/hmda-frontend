@@ -64,7 +64,7 @@ Below that message is a button that says 'View Completed Filing'. Select that an
 
 **When can I submit my file?**
 To test your HMDA data, the beta platform will be open throughout the year. Visit https://ffiec.beta.cfpb.gov/ to test your HMDA data.
-Annual HMDA data submissions for the 2019 filing year are accepted January 1 - March 1, 2020. Quarterly HMDA data submissions are separated into three quarters. Quarter 1 filing period: April 1 - May 30, 2020; Quarter 2 filing period: July 1 - August 29, 2020; Quarter 3 filing period: October 1 - November 29, 2020.
+Annual HMDA data submissions for the 2019 filing year are accepted January 1 - March 1, 2020. Quarterly HMDA data submissions are separated into three quarters. For 2021 quarterly filing, Quarter 1 filing period: April 1 - May 31, 2020; Quarter 2 filing period: July 1 - August 30, 2020; Quarter 3 filing period: October 1 - November 29, 2020.
 
 **Should I file quarterly?**
 Beginning January 1, 2020, the 2015 HMDA Final Rule requires quarterly reporting for financial institutions that reported a combined total of at least 60,000 applications and covered loans, excluding purchased covered loans, for the preceding calendar year. Thus, in addition to their annual data submission, these larger-volume reporters will submit HMDA data for each of the first three quarters of the year on a quarterly basis. Further information can be found in Regulation C, 12 CFR 1003.5(a)(1)(ii). 
