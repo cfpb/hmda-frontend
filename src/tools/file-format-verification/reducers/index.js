@@ -40,7 +40,7 @@ const defaultPagination = {
   fade: 0
 }
 
-const defaultFilingPeriod = config && config.defaultPeriod
+const defaultFilingPeriod = config && config.defaultDocsPeriod
 
 //empty action logger, temporary / for debugging
 export const empty = (state = {}, action) => {
