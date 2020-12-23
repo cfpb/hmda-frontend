@@ -15,7 +15,8 @@ describe('FFVT', function () {
     cy.visit(`${HOST}/tools/file-format-verification`)
   })
 
-  if (isCI(ENVIRONMENT)) it('Does not run on CI')
+  if (isCI(ENVIRONMENT)) return it('Does not run on CI')
+  
   // For all open years
   openYears.forEach((year) => {
     it(`Validates a clean file for ${year}`, function () {
