@@ -1,3 +1,5 @@
+import { getDefaultConfig } from '../../../common/configUtils'
+import { getOpenFilingYears } from '../../../common/constants/configHelpers'
 import * as types from '../constants'
 
 export function updateStatus(status) {
@@ -68,8 +70,9 @@ export function endParse(data) {
 export function triggerParse(file, filingPeriod) {
   return dispatch => {
     dispatch(beginParse())
+    const openYears = getOpenFilingYears(getDefaultConfig(window.location.hostname))
 
-    if (['2019', '2018'].indexOf(filingPeriod) > -1) {
+    if (openYears.indexOf(filingPeriod) > -1) {
       var formData = new FormData()
       formData.append('file', file)
 

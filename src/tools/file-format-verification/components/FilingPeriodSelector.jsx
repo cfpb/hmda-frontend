@@ -1,9 +1,10 @@
-import React from 'react'
 import PropTypes from 'prop-types'
-
+import React from 'react'
+import { getDefaultConfig } from '../../../common/configUtils'
+import { getOpenFilingYears } from '../../../common/constants/configHelpers'
 import './FilingPeriodSelector.css'
 
-const filingPeriods = ['2020', '2019', '2018']
+const filingPeriods = getOpenFilingYears(getDefaultConfig(window.location.hostname))
 
 const FilingPeriodSelector = props => {
   return (

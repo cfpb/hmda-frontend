@@ -14,7 +14,7 @@
   "defaultCommandTimeout": 10000,
   "projectId": "uk89dv",
   "retries": {
-    "runMode": 3,
-    "openMode": 1
+    "runMode": 2,
+    "openMode": 0
   }
 }
