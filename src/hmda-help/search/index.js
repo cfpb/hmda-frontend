@@ -201,8 +201,8 @@ class Form extends Component {
               <thead>
                 <tr>
                   <th>Filing Period</th>
-                  <th>Oldest</th>
-                  <th>Latest</th>
+                  <th className='split'>Oldest</th>
+                  <th className='split'>Latest</th>
                 </tr>
               </thead>
               <tbody>

@@ -10,6 +10,10 @@
   margin: 3rem 0 5rem 0;
 }
 
+#submissions #SubmissionResults .split{
+  width: 40%;
+}
+
 
 #submissions #SubmissionResults th,
 #submissions #SubmissionResults td {
