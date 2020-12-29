@@ -8,7 +8,13 @@ export const SubmissionStatus = ({ lei, latest, year, token }) => {
   const [data, setData] = useState(null)
   const [err, setErr] = useState(null)
   const [fetching, setFetching] = useState(true)
-  const latestOldest = latest ? 'latest' : 'oldest'
+  let latestOldest = 'oldest'
+  let errorColSpan = 2
+
+  if (latest) {
+    latestOldest = 'latest'
+    errorColSpan = 1
+  }
 
   useEffect(() => {
     if (data || err) return
@@ -38,7 +44,7 @@ export const SubmissionStatus = ({ lei, latest, year, token }) => {
       .catch((error) => {})
   })
 
-  if (err) return <td className='error'>{err}</td>
+  if (err) return <td className='error' colSpan={errorColSpan}>{err}</td>
 
   if (fetching) return (
     <td>
@@ -47,7 +53,6 @@ export const SubmissionStatus = ({ lei, latest, year, token }) => {
   )
   const { id, status, start, end, fileName, receipt, signerUsername } = data
 
-  console.log(data)
   return (
     <td>
       <div className='col'><div className='label'>Status:</div> <div>{status.message}</div></div>

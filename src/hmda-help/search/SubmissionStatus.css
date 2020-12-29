@@ -44,9 +44,14 @@
 
 
 #submissions #SubmissionResults .submission-row .error {
-  padding: 2rem 1rem;
+  padding: 2.5rem 1rem;
   text-align: center;
   background: lightyellow;
+}
+
+/* Show single message for No Submissions */
+#submissions #SubmissionResults .submission-row .error + .error {
+  display: none;
 }
 
 
