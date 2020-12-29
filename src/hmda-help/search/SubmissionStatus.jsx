@@ -47,15 +47,15 @@ export const SubmissionStatus = ({ lei, latest, year, token }) => {
   )
   const { id, status, start, end, fileName, receipt, signerUsername } = data
 
-  // console.log('Data: ', data)
+  console.log(data)
   return (
     <td>
-      <p><span className='label'>Message:</span> {status.message}</p>
-      <p>
-        <span className='label'>File:</span> <a href={`/v2/admin/receipt/${receipt}/hmdafile`}>{fileName}</a>
-      </p>
-      <p><span className='label'>Signed On:</span> {ordinal(new Date(end))}</p>
-      <p><span className='label'>Signed By:</span> {signerUsername}</p>
+      <div className='col'><div className='label'>Status:</div> <div>{status.message}</div></div>
+      <div className='col'>
+        <div className='label'>File:</div> <div><a href={`/v2/admin/receipt/${receipt}/hmdafile`}>{fileName}</a></div>
+      </div>
+      <div className='col'><div className='label'>Signed On:</div> <div>{ordinal(new Date(end))}</div></div>
+      <div className='col'><div className='label'>Signed By:</div> <div>{signerUsername}</div></div>
     </td>
   )
 }
