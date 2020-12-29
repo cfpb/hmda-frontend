@@ -7,7 +7,6 @@ const defaultOpts = {
 // Filing Periods open for Administrative tasks via the HMDA Help UI
 export const getFilingPeriods = config => {
   if (!config) return []
-  console.log([...config.filingPeriods, ...(config.filingQuarters.PREVIEW || [])])
   return [...config.filingPeriods, ...(config.filingQuarters.PREVIEW || [])]
 }
 

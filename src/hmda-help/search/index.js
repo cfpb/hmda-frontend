@@ -33,7 +33,6 @@ const defaultState = {
 class Form extends Component {
   constructor(props) {
     super(props)
-    console.log('Form props should have config: ', props)
 
     this.state = defaultState
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -132,9 +131,6 @@ class Form extends Component {
     } = this.state
 
     const { token, config } = this.props
-
-    console.log('Institutions: ', institutions)
-    console.log('Props: ', this.props)
 
     let leis = institutions && institutions.map(i => i.lei).filter(onlyUnique)
 
