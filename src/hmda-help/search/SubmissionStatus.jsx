@@ -57,7 +57,8 @@ export const SubmissionStatus = ({ lei, latest, year, token }) => {
     <td>
       <div className='col'><div className='label'>Status:</div> <div>{status.message}</div></div>
       <div className='col'>
-        <div className='label'>File:</div> <div><a href={`/v2/admin/receipt/${receipt}/hmdafile`}>{fileName}</a></div>
+        <div className='label'>File:</div> <div>{fileName}</div>
+        {/* <div className='label'>File:</div> <div><a href={`/v2/admin/receipt/${receipt}/hmdafile` download}>{fileName}</a></div> */}
       </div>
       <div className='col'><div className='label'>Signed On:</div> <div>{ordinal(new Date(end))}</div></div>
       <div className='col'><div className='label'>Signed By:</div> <div>{signerUsername}</div></div>
