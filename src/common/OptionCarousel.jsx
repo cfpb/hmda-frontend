@@ -21,7 +21,6 @@ export const OptionCarousel = ({ options, ...rest }) => {
           {options[idx]}
         </span>
       )}
-      {/* <button className='oc-button' onClick={() => setCustom(!custom)}>Use custom text</button> */}
     </>
   )
 }
