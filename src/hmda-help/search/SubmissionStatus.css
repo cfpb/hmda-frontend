@@ -44,15 +44,14 @@
 }
 
 
-#submissions #SubmissionResults .submission-row .error {
+#submissions #SubmissionResults .submission-row .message {
   padding: 2.5rem 1rem;
   text-align: center;
   background: lightyellow;
 }
 
-/* Show single message for No Submissions */
-#submissions #SubmissionResults .submission-row .error + .error {
-  display: none;
+#submissions #SubmissionResults .submission-row .message.err {
+  background: #f2ccd2;
 }
 
 

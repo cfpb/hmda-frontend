@@ -8,13 +8,7 @@ export const SubmissionStatus = ({ lei, latest, year, token }) => {
   const [data, setData] = useState(null)
   const [err, setErr] = useState(null)
   const [fetching, setFetching] = useState(true)
-  let latestOldest = 'oldest'
-  let errorColSpan = 2
-
-  if (latest) {
-    latestOldest = 'latest'
-    errorColSpan = 1
-  }
+  let latestOldest = latest ? 'latest' : 'oldest'
 
   useEffect(() => {
     if (data || err) return
@@ -36,15 +30,15 @@ export const SubmissionStatus = ({ lei, latest, year, token }) => {
       .then((json) => {
         if (typeof json === 'object') setData(json)
         else {
-          if (json === 404) setErr('No Submission')
-          else setErr(`Server error!`)
+          if (json === 404) setErr({type: 'warn', text: 'No Submission'})
+          else setErr({type: 'err', text: `Server error! ${json}`})
         }
         setFetching(false)
       })
       .catch((error) => {})
   })
 
-  if (err) return <td className='error' colSpan={errorColSpan}>{err}</td>
+  if (err) return <td className={'message ' + err.type}>{err.text}</td>
 
   if (fetching) return (
     <td>

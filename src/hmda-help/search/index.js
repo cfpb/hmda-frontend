@@ -205,30 +205,32 @@ class Form extends Component {
                   <th>Latest</th>
                 </tr>
               </thead>
-              {leis.map((lei, idx) =>
-                getFilingPeriods(config)
-                  .filter(onlyUnique)
-                  .sort()
-                  .reverse()
-                  .map((fPeriod) => (
-                    <tr key={`${lei}-${idx}`} className='submission-row'>
-                      <td className='period'>{fPeriod}</td>
-                      <SubmissionStatus
-                        key={`oldest-${idx}`}
-                        lei={lei}
-                        year={fPeriod}
-                        token={token}
-                      />
-                      <SubmissionStatus
-                        key={`latest-${idx}`}
-                        lei={lei}
-                        year={fPeriod}
-                        token={token}
-                        latest
-                      />
-                    </tr>
-                  ))
-              )}
+              <tbody>
+                {leis.map((lei, idx) =>
+                  getFilingPeriods(config)
+                    .filter(onlyUnique)
+                    .sort()
+                    .reverse()
+                    .map((fPeriod) => (
+                      <tr key={`${lei}-${idx}-${fPeriod}`} className='submission-row'>
+                        <td className='period'>{fPeriod}</td>
+                        <SubmissionStatus
+                          key={`oldest-${idx}`}
+                          lei={lei}
+                          year={fPeriod}
+                          token={token}
+                        />
+                        <SubmissionStatus
+                          key={`latest-${idx}`}
+                          lei={lei}
+                          year={fPeriod}
+                          token={token}
+                          latest
+                        />
+                      </tr>
+                    ))
+                )}
+              </tbody>
             </table>
           </section>
         )}
