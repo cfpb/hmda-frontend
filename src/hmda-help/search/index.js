@@ -12,7 +12,12 @@ import InstitutionNotFound from './InstitutionNotFound'
 import ServerErrors from './ServerErrors'
 import { fetchInstitution } from './fetchInstitution'
 import PublicationTable from '../publications/PublicationTable'
-import { getFilingYears } from '../../common/constants/configHelpers'
+import { getFilingYears, getFilingPeriods } from '../../common/constants/configHelpers'
+import { SubmissionStatus } from './SubmissionStatus'
+
+function onlyUnique(value, index, self) {
+  return self.indexOf(value) === index;
+}
 
 const defaultState = {
   errors: [],
@@ -28,6 +33,7 @@ const defaultState = {
 class Form extends Component {
   constructor(props) {
     super(props)
+    console.log('Form props should have config: ', props)
 
     this.state = defaultState
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -103,6 +109,7 @@ class Form extends Component {
 
   handleSubmitButton = (event, searchType) => {
     this.setState({ searchType })
+    if (searchType === 'submissions') return
     this.handleSubmit(event)
   }
 
@@ -124,44 +131,57 @@ class Form extends Component {
       searchType,
     } = this.state
 
-    const { token } = this.props
+    const { token, config } = this.props
+
+    console.log('Institutions: ', institutions)
+    console.log('Props: ', this.props)
+
+    let leis = institutions && institutions.map(i => i.lei).filter(onlyUnique)
 
     return (
       <React.Fragment>
-          <div >
-            <h3>Search for institution records</h3>
-            <form
-              className="SearchForm"
-              onSubmit={event => this.handleSubmit(event)}
-            >
-              {searchInputs.map(textInput => {
-                delete textInput.validation
-                return (
-                  <InputText
-                    key={textInput.id}
-                    ref={input => {
-                      this[textInput.id] = input
-                    }}
-                    {...textInput}
-                    onChange={this.onInputTextChange}
-                    value={this.state[textInput.id]}
-                  />
-                )
-              })}
-              <InputSubmit 
-                actionType="search" 
-                onClick={event => this.handleSubmitButton(event, "search")} 
-                disabled={this.isBtnDisabled("search")} 
-              />
-              <InputSubmit 
-                actionType="publications" 
-                addClass='secondary' 
-                onClick={event => this.handleSubmitButton(event, "publications")} 
-                disabled={this.isBtnDisabled("publications")} 
-              />
-              {isFetching && <Loading className="LoadingInline" />}
-            </form>
-          </div>
+        <div>
+          <h3>Search for institution records</h3>
+          <form
+            className='SearchForm'
+            onSubmit={(event) => this.handleSubmit(event)}
+          >
+            {searchInputs.map((textInput) => {
+              delete textInput.validation
+              return (
+                <InputText
+                  key={textInput.id}
+                  ref={(input) => {
+                    this[textInput.id] = input
+                  }}
+                  {...textInput}
+                  onChange={this.onInputTextChange}
+                  value={this.state[textInput.id]}
+                />
+              )
+            })}
+            <InputSubmit
+              actionType='search'
+              onClick={(event) => this.handleSubmitButton(event, 'search')}
+              disabled={this.isBtnDisabled('search')}
+            />
+            <InputSubmit
+              actionType='publications'
+              addClass='secondary'
+              onClick={(event) =>
+                this.handleSubmitButton(event, 'publications')
+              }
+              disabled={this.isBtnDisabled('publications')}
+            />
+            <InputSubmit
+              actionType='submissions'
+              addClass='secondary'
+              onClick={(event) => this.handleSubmitButton(event, 'submissions')}
+              disabled={this.isBtnDisabled('submissions')}
+            />
+            {isFetching && <Loading className='LoadingInline' />}
+          </form>
+        </div>
 
         {!isFetching && <ServerErrors errors={errors} />}
         {!isFetching && <InstitutionNotFound yearList={notFound} />}
@@ -175,7 +195,46 @@ class Form extends Component {
         )}
 
         {searchType === 'publications' && !isFetching && institutions && (
-          <PublicationTable institutions={institutions} token={token}/>
+          <PublicationTable institutions={institutions} token={token} />
+        )}
+
+        {searchType === 'submissions' && !isFetching && leis && (
+          <section id='submissions'>
+            <h2>Submissions by Filing Period</h2>
+            <table id='SubmissionResults'>
+              <thead>
+                <tr>
+                  <th>Filing Period</th>
+                  <th>Oldest</th>
+                  <th>Latest</th>
+                </tr>
+              </thead>
+              {leis.map((lei, idx) =>
+                getFilingPeriods(config)
+                  .filter(onlyUnique)
+                  .sort()
+                  .reverse()
+                  .map((fPeriod) => (
+                    <tr key={`${lei}-${idx}`} className='submission-row'>
+                      <td className='period'>{fPeriod}</td>
+                      <SubmissionStatus
+                        key={`oldest-${idx}`}
+                        lei={lei}
+                        year={fPeriod}
+                        token={token}
+                      />
+                      <SubmissionStatus
+                        key={`latest-${idx}`}
+                        lei={lei}
+                        year={fPeriod}
+                        token={token}
+                        latest
+                      />
+                    </tr>
+                  ))
+              )}
+            </table>
+          </section>
         )}
       </React.Fragment>
     )

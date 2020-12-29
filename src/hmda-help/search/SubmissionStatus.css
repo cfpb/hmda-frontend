@@ -1,0 +1,39 @@
+#submissions h2 {
+  font-weight: bold;
+  margin-bottom: 1em;
+  margin-top: 2em;
+}
+
+
+#submissions #SubmissionResults {
+  width: 100%;
+  margin: 3rem 0 5rem 0;
+}
+
+
+#submissions #SubmissionResults th,
+#submissions #SubmissionResults td {
+  border: none;
+  border-bottom: 1px solid lightgrey;
+}
+
+
+#submissions #SubmissionResults th {
+  text-align: center;
+}
+
+
+#submissions #SubmissionResults .submission-row .period {
+  width: 15%;
+  text-align: center;
+}
+
+
+#submissions #SubmissionResults .submission-row .label {
+  font-weight: bold;
+}
+
+
+#submissions #SubmissionResults .submission-row .error {
+  padding: 4rem 2rem;
+}

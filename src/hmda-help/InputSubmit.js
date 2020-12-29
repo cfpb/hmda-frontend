@@ -4,10 +4,11 @@ import PropTypes from 'prop-types'
 import './InputSubmit.css'
 
 const values = {
-  search: 'Search institutions',
-  add: 'Add the institution',
-  update: 'Update the institution',
-  publications: 'Search publications'
+  search: 'Search Institutions',
+  add: 'Add the Institution',
+  update: 'Update the Institution',
+  publications: 'Search Publications',
+  submissions: 'Search Submissions'
 }
 
 class InputSubmit extends Component {
