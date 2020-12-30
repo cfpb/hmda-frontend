@@ -59,7 +59,6 @@ const Home = props => {
           <iframe
             src="https://www.youtube.com/embed/C_73Swgyc4g?rel=0"
             frameBorder="0"
-            gesture="media"
             allow="encrypted-media"
             allowFullScreen
             title="HMDA Video"
