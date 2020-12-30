@@ -61,7 +61,7 @@ const Home = ({ config }) => {
                 {[2021, 2020, 2019, 2018, 2017].map(year => {
                   if (year === 2018) {
                     return (
-                      <li>
+                      <li key={`${year}`}>
                         For data collected in {year}
                         <ul>
                           <li key={year + '-hmda-rule'}>
