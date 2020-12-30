@@ -27,13 +27,13 @@ const refresh = () => {
     setTimeout(() => {
       keycloak
         .updateToken(20)
-        .success(refreshed => {
+        .then(refreshed => {
           if (refreshed) {
             AccessToken.set(keycloak.token)
           }
           updateKeycloak()
         })
-        .error(() => {
+        .catch(() => {
           return keycloak.login()
         })
     }, +(keycloak.tokenParsed.exp + '000') - Date.now() - 10000)
