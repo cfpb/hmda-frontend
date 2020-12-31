@@ -30,7 +30,7 @@ const refreshToken = self => {
     setTimeout(() => {
       keycloak
         .updateToken(20)
-        .success(refreshed => {
+        .then(refreshed => {
           if (refreshed) {
             self.setState({
               token: keycloak.token,
@@ -39,7 +39,7 @@ const refreshToken = self => {
           }
           updateKeycloak()
         })
-        .error(() => {
+        .catch(() => {
           return keycloak.login()
         })
     }, +(keycloak.tokenParsed.exp + '000') - Date.now() - 10000)
