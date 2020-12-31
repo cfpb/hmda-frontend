@@ -4,8 +4,15 @@ const defaultOpts = {
   withAdmin: true // Include administrative years (PREVIEW) in the returned list
 }
 
+// Filing Periods open for Administrative tasks via the HMDA Help UI
+export const getFilingPeriods = config => {
+  if (!config) return []
+  return [...config.filingPeriods, ...(config.filingQuarters.PREVIEW || [])]
+}
+
+
 /**
- * 
+ * Open Annual Filing Years
  * @param {Object} config Environment configuration
  * @param {Object} options See defaultOps for all options
  */
