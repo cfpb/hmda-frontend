@@ -56,7 +56,7 @@ describe('HMDA Help - Institutions', () => {
 
     // Search for existing Instititution
     cy.findByLabelText('LEI').type(INSTITUTION)
-    cy.findByText('Search institutions').click()
+    cy.findByText('Search Institutions').click()
     cy.wait(LOCAL_ACTION_DELAY)
     cy.findAllByText('Update')
       .eq(1) // First row
@@ -64,7 +64,7 @@ describe('HMDA Help - Institutions', () => {
 
     const successMessage = `The institution, ${INSTITUTION}, has been updated.`
     const nameLabelText = 'Respondent Name'
-    const updateButtonText = 'Update the institution'
+    const updateButtonText = 'Update the Institution'
     const testName = 'Cypress Test Name Update'
     const quarterlyFilerLabel = 'Quarterly Filer'
 
@@ -249,7 +249,7 @@ describe('HMDA Help - Institutions', () => {
     cy.findByLabelText('Assets').type('-1')
     cy.findByLabelText('Top Holder ID RSSD').type('-1')
 
-    cy.findByText('Add the institution').should('be.enabled').click()
+    cy.findByText('Add the Institution').should('be.enabled').click()
 
     cy.findAllByText(`The institution, ${institution}, has been added!`).should(
       'exist'
