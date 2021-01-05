@@ -58,12 +58,22 @@ const logout = () => {
 
 const mockKeycloak = {
   authenticated: true,
-  tokenParsed: { name: 'Test User', lei: process.env.REACT_APP_LEIS || 'FRONTENDTESTBANK9999' },
+  tokenParsed: {
+    name: 'Test User',
+    lei: process.env.REACT_APP_LEIS || 'FRONTENDTESTBANK9999',
+  },
   init: () => new Promise((res) => res(true)),
-  updateToken: () => ({ success: () => ({ error: () => false }) }),
-  logout: () => window.location.href = '/filing',
-  login: () => window.location.href += 'institutions',
-  hasResourceRole: () => true
+  updateToken: () =>
+    new Promise((resolve) =>
+      resolve({
+        success: () => {
+          error: () => false
+        },
+      })
+    ),
+  logout: () => (window.location.href = '/filing'),
+  login: () => (window.location.href += 'institutions'),
+  hasResourceRole: () => true,
 }
 
 export {
