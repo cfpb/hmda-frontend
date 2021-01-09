@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback, useRef }  from 'react'
-import { useLocation } from 'react-router-dom'
 import Select from '../Select.jsx'
 import DBYearSelector from '../datasets/DBYearSelector'
 import LoadingButton from '../datasets/LoadingButton.jsx'
@@ -13,6 +12,7 @@ import { runFetch, getCSV } from '../api.js'
 import fips2Shortcode from '../constants/fipsToShortcode.js'
 import mapbox from 'mapbox-gl'
 import './mapbox.css'
+import { PopularVariableLink } from './PopularVariableLink'
 
 mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlvaQw'
 
@@ -73,7 +73,6 @@ const MapContainer = props => {
   const [selectedValue, setValue] = useState(defaults.value)
   const [selectedFilterValue, setFilterValue] = useState(defaults.filtervalue)
   const [feature, setFeature] = useState(defaults.feature)
-
 
   const getBaseData = useCallback((year, geography) => {
     if(!year || !geography) return null
@@ -404,9 +403,7 @@ const MapContainer = props => {
         years={props.config.dataBrowserYears}
       />
       <h3>Step 1: Select a Geography</h3>
-      <p>
-        Start by selecting a geography using dropdown menu below
-      </p>
+      <p>Start by selecting a geography using the dropdown menu below</p>
       <Select
         onChange={onGeographyChange}
         styles={menuStyle}
@@ -420,7 +417,7 @@ const MapContainer = props => {
       />
       <h3>Step 2: Select a Variable</h3>
       <p>
-        Then select a variable with the next dropdown
+        Narrow down your selection by filtering on a <PopularVariableLink year={year}/>
       </p>
       <Select
         onChange={onVariableChange}
@@ -448,7 +445,7 @@ const MapContainer = props => {
       />
       <h3>Step 4: Filter your results by another variable <i>(optional)</i></h3>
       <p>
-        You can filter your displayed variable by another to get a more targeted map
+        You can further filter the data by adding another <PopularVariableLink year={year}/>, creating a more targeted map
       </p>
       <Select
         onChange={onFilterChange}
@@ -461,12 +458,10 @@ const MapContainer = props => {
         value={selectedFilter}
         options={variables.filter(v => selectedVariable && v.value !== selectedVariable.value)}
       />
-      {selectedFilter ?
-      <>
-        <h3>Step 5: Select a value for your {selectedFilter.label} filter</h3>
-          <p>
-            Then choose the value for your selected filter
-          </p>
+      {selectedFilter ? (
+        <>
+          <h3>Step 5: Select a value for your {selectedFilter.label} filter</h3>
+          <p>Then choose the value for your selected filter.</p>
           <Select
             onChange={onFilterValueChange}
             styles={menuStyle}
@@ -478,17 +473,35 @@ const MapContainer = props => {
             value={selectedFilterValue}
             options={getValuesForVariable(selectedFilter)}
           />
-      </>
-      : null}
-      <h3>{makeMapLabel(selectedGeography, selectedVariable, selectedValue, selectedFilter, selectedFilterValue)}</h3>
-      <div className="mapContainer" ref={mapContainer}>
-        {map === false
-          ? <Alert type="error">
-              <p>Your browser does not support WebGL, which is needed to run this application.</p>
-            </Alert>
-          : null
-        }
-        {resolved ? makeLegend(...resolved, year, selectedGeography, selectedVariable, selectedValue) : null}
+        </>
+      ) : null}
+      <h3>
+        {makeMapLabel(
+          selectedGeography,
+          selectedVariable,
+          selectedValue,
+          selectedFilter,
+          selectedFilterValue
+        )}
+      </h3>
+      <div className='mapContainer' ref={mapContainer}>
+        {map === false ? (
+          <Alert type='error'>
+            <p>
+              Your browser does not support WebGL, which is needed to run this
+              application.
+            </p>
+          </Alert>
+        ) : null}
+        {resolved
+          ? makeLegend(
+              ...resolved,
+              year,
+              selectedGeography,
+              selectedVariable,
+              selectedValue
+            )
+          : null}
       </div>
       {buildTable()}
     </div>
