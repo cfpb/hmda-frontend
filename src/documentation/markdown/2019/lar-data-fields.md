@@ -14,7 +14,7 @@
 
 ### [derived\_msa-md](#derived_msa-md)
 
-- **Description:** Derived MSA/MD from the property location reported for the record
+- **Description:** The 5 digit derived MSA (metropolitan statistical area) or MD (metropolitan division) code. An MSA/MD is an area that has at least one urbanized area of 50,000 or more population.
 - **Values:**
   - Varying values
 
