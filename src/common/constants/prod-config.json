@@ -1,9 +1,9 @@
 {
   "name": "prod",
   "announcement": {
-    "message": "The filing period is open. Submissions of 2020 HMDA data will be considered timely if received on or before Monday, March 1st, 2021.",
-    "type": "info",
-    "heading": "Announcement"
+    "message": "We will be performing scheduled system maintenance on January 16 from 2pm - 5pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance"
   },
   "defaultPeriod": "2020",
   "defaultDocsPeriod": "2020",
@@ -33,7 +33,11 @@
   },
   "showMaps": false,
   "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "filingAnnouncement": {
+    "message": "We will be performing scheduled system maintenance on January 16 from 2pm - 5pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance"
+  },
   "dataPublicationYears": {
     "shared": [
       "2019",
