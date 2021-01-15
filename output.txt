@@ -1,0 +1,67 @@
+yarn run v1.17.3
+$ /Users/StoutB/hmda/hmda-frontend/node_modules/.bin/cypress run --spec ./cypress/integration/data-publication/SnapshotDatasets.spec.js
+
+====================================================================================================
+
+  (Run Starting)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Cypress:    4.6.0                                                                              │
+  │ Browser:    Electron 80 (headless)                                                             │
+  │ Specs:      1 found (data-publication/SnapshotDatasets.spec.js)                                │
+  │ Searched:   cypress/integration/data-publication/SnapshotDatasets.spec.js                      │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  data-publication/SnapshotDatasets.spec.js                                       (1 of 1)
+
+
+  Snapshot National Loan-Level Dataset
+    2019 Datasets
+      ✓ has valid Dataset links (46281ms)
+    2018 Datasets
+      ✓ has valid Dataset links (46198ms)
+    2017 Datasets
+      ✓ has valid Dataset links (46149ms)
+
+
+  3 passing (2m)
+
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        3                                                                                │
+  │ Passing:      3                                                                                │
+  │ Failing:      0                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  0                                                                                │
+  │ Video:        true                                                                             │
+  │ Duration:     2 minutes, 19 seconds                                                            │
+  │ Spec Ran:     data-publication/SnapshotDatasets.spec.js                                        │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Video)
+
+  -  Started processing:  Compressing to 32 CRF                                                     
+  -  Finished processing: /Users/StoutB/hmda/hmda-frontend/cypress/videos/data-public    (6 seconds)
+                          ation/SnapshotDatasets.spec.js.mp4                                        
+
+
+====================================================================================================
+
+  (Run Finished)
+
+
+       Spec                                              Tests  Passing  Failing  Pending  Skipped  
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ ✔  data-publication/SnapshotDatasets.s      02:19        3        3        -        -        - │
+  │    pec.js                                                                                      │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+    ✔  All specs passed!                        02:19        3        3        -        -        -  
+
+Done in 153.04s.
