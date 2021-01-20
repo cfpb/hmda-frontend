@@ -45,23 +45,21 @@
 
 - **Description:** The purpose of covered loan or application
 - **Values:**
-  - 1 - Home purchase (one-to-four family)
-  - 2 - Home improvement (one-to-four family)
-  - 3 - Refinancing (home purchase or home improvement,
- one-to-four family) 
-  - 4 - Multifamily dwelling (home purchase, home improvement, and refinancings)
+  - 1 - Home purchase
+  - 2 - Home improvement
+  - 3 - Refinancing
 
 ### [occupancy_type](#occupancy_type)
 
 - **Description:** Occupancy type for the dwelling
 - **Values:**
-  - 1 - Principal residence
-  - 2 - Second residence
-  - 3 - Investment property
+  - 1 - Owner-occupied as a principal dwelling
+  - 2 - Not owner-occupied
+  - 3 - Not applicable
 
 ### [loan\_amount](#loan_amount)
 
-- **Description:** The amount of the covered loan, or the amount applied for
+- **Description:** The amount of the covered loan, or the amount applied for, rounded to the nearest thousand dollars.
 - **Values:**
   - Varying values  
 
@@ -69,8 +67,9 @@
 
 - **Description:** Whether the covered loan or application involved a request for a preapproval of a home purchase loan under a preapproval program 
 - **Values:**
-  - 1 - Preapproval requested
-  - 2 - Preapproval not requested
+  - 1 - Preapproval was requested
+  - 2 - Preapproval was not requested
+  - 3 - Not applicable
 
 ### [action\_taken](#action_taken)
 
@@ -82,10 +81,12 @@
   - 4 - Application withdrawn by applicant
   - 5 - File closed for incompleteness
   - 6 - Loan purchased by your institution
+  - 7 - Preapproval request denied by financial institution
+  - 8 - Preapproval request approved but not accepted (optional reporting)
 
 ### [msa_md](#msa_md)
 
-- **Description:** The 5 digit MSA (metropolitan statistical area) or MD (metropolitan division) code. An MSA/MD is an area that has at least one urbanized area of 50,000 or more population.
+- **Description:** The 5 digit MSA (metropolitan statistical area) or MD (metropolitan division) code. An MSA/MD is an area that has at least one urbanized area of 50,000 or more population. Note, that in 2017 MSA/MD values were reported by HMDA filers and not derived by the CFPB.
 - **Values:**
   - Varying values
 
@@ -97,13 +98,13 @@
 
 ### [county\_code](#county_code)
 
-- **Description:** State-county FIPS code
+- **Description:** Three digit county FIPS code
 - **Values:**
   - Varying values
 
 ### [census\_tract](#census_tract)
 
-- **Description:** 11 digit census tract number
+- **Description:** Five digit Census Tract number with decimal. Example: 109.02
 - **Values:**
   - Varying values
 
@@ -122,66 +123,60 @@
 - **Values:**
   - 1 - Hispanic or Latino
   - 2 - Not Hispanic or Latino
+  - 3 - Information not provided by applicant in mail, internet, or telephone application
+  - 4 - Not applicable
+  - 5 - No co-applicant
 
 ### [applicant\_race\_1](#applicant_race_1)
 
 - **Description:** Race of the applicant or borrower
 - **Values:**
   - 1 - American Indian or Alaska Native
-  - 2 - Asian or Pacific Islander
+  - 2 - Asian
   - 3 - Black or African American
-  - 4 - Hispanic
+  - 4 - Native Hawaiian or Other Pacific Islander
   - 5 - White
-  - 6 - Information not provided by applicant in mail, internet, or telephone application
-  - 7 - Not applicable
 
 ### [applicant\_race\_2](#applicant_race_2)
 
 - **Description:** Race of the applicant or borrower
 - **Values:**
   - 1 - American Indian or Alaska Native
-  - 2 - Asian or Pacific Islander
+  - 2 - Asian
   - 3 - Black or African American
-  - 4 - Hispanic
+  - 4 - Native Hawaiian or Other Pacific Islander
   - 5 - White
-  - 6 - Information not provided by applicant in mail, internet, or telephone application
-  - 7 - Not applicable
+
 
 ### [applicant\_race\_3](#applicant_race_3)
 
 - **Description:** Race of the applicant or borrower
 - **Values:**
   - 1 - American Indian or Alaska Native
-  - 2 - Asian or Pacific Islander
+  - 2 - Asian
   - 3 - Black or African American
-  - 4 - Hispanic
+  - 4 - Native Hawaiian or Other Pacific Islander
   - 5 - White
-  - 6 - Information not provided by applicant in mail, internet, or telephone application
-  - 7 - Not applicable
 
 ### [applicant\_race\_4](#applicant_race_4)
 
 - **Description:** Race of the applicant or borrower
 - **Values:**
   - 1 - American Indian or Alaska Native
-  - 2 - Asian or Pacific Islander
+  - 2 - Asian
   - 3 - Black or African American
-  - 4 - Hispanic
+  - 4 - Native Hawaiian or Other Pacific Islander
   - 5 - White
-  - 6 - Information not provided by applicant in mail, internet, or telephone application
-  - 7 - Not applicable
 
 ### [applicant\_race\_5](#applicant_race_5)
 
 - **Description:** Race of the applicant or borrower
 - **Values:**
   - 1 - American Indian or Alaska Native
-  - 2 - Asian or Pacific Islander
+  - 2 - Asian
   - 3 - Black or African American
-  - 4 - Hispanic
+  - 4 - Native Hawaiian or Other Pacific Islander
   - 5 - White
-  - 6 - Information not provided by applicant in mail, internet, or telephone application
-  - 7 - Not applicable
 
 ### [co\_applicant\_race\_1](#co_applicant_race_1)
 
@@ -192,9 +187,6 @@
   - 3 - Black or African American
   - 4 - Hispanic
   - 5 - White
-  - 6 - Information not provided by applicant in mail, internet, or telephone application
-  - 7 - Not applicable
-  - 8 - No co-applicant
 
 ### [co\_applicant\_race\_2](#co_applicant_race_2)
 
@@ -242,9 +234,8 @@
 - **Values:**
   - 1 - Male
   - 2 - Female
-  - 3 - Information not provided by applicant in mail, internet, or telephone application
+  - 3 - Information not provided by applicant in mail, internet, or telephone application (see App. A, I.D.2.)
   - 4 - Not applicable
-  - 6 - Applicant selected both male and female
 
 ### [co\_applicant\_sex](#co_applicant_sex)
 
@@ -252,10 +243,9 @@
 - **Values:**
   - 1 - Male
   - 2 - Female
-  - 3 - Information not provided by applicant in mail, internet, or telephone application
+  - 3 - Information not provided by applicant in mail, internet, or telephone application (see App. A, I.D.2.)
   - 4 - Not applicable
   - 5 - No co-applicant
-  - 6 - Co-applicant selected both male and female  
 
 ### [income](#income)
 
@@ -330,9 +320,8 @@
 
 - **Description:** Whether the covered loan is a high-cost mortgage
 - **Values:**
-  - 1 - High-cost mortgage
-  - 2 - Not a high-cost mortgage
-  - 3 - Not applicable
+  - 1 - HOEPA loan
+  - 2 - Not a HOEPA loan
 
 ### [lien\_status](#lien_status)
 
@@ -340,6 +329,8 @@
 - **Values:**
   - 1 - Secured by a first lien
   - 2 - Secured by a subordinate lien
+  - 3 - Not secured by a lien
+  - 3 - Not applicable (purchased loans)
 
 ### [tract\_population](#tract_population)
 
