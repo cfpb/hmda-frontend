@@ -7,7 +7,10 @@ const links = {
     <li key="0" ><a target="_blank" rel="noopener noreferrer" href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_dataformat.pdf">Snapshot File Specifications – LAR, TS, and Reporter Panel</a></li>,
     <li key="1"><a target="_blank" rel="noopener noreferrer" href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_codesheet.pdf">Snapshot File Specifications – LAR Code Sheet</a></li>,
     <li key="2"><a target="_blank" rel="noopener noreferrer" href="https://github.com/cfpb/hmda-platform/blob/v1.x/Documents/2017_Dynamic_LAR_Spec.csv">Dynamic File Specifications – Loan/Application Records</a></li>,
-    <li key="3"><a target="_blank" rel="noopener noreferrer" href="https://github.com/cfpb/hmda-platform/blob/v1.x/Documents/2017_Dynamic_TS_Spec.csv">Dynamic File Specifications – Transmittal Sheet Records</a></li>
+    <li key="3"><a target="_blank" rel="noopener noreferrer" href="https://github.com/cfpb/hmda-platform/blob/v1.x/Documents/2017_Dynamic_TS_Spec.csv">Dynamic File Specifications – Transmittal Sheet Records</a></li>,
+    <li key="4"><Link to="/documentation/2017/lar-data-fields/">Public HMDA Data Fields with Values and Definitions</Link></li>,
+    <li key="5"><Link to="/documentation/2017/ts-data-fields/">Public Transmittal Sheet Data Fields with Values and Definitions</Link></li>,
+    <li key="6"><Link to="/documentation/2017/panel-data-fields/">Public Panel Data Fields with Values and Definitions</Link></li>
   ],
   2018: [
     <li key="4"><Link to="/documentation/2018/lar-data-fields/">Public HMDA Data Fields with Values and Definitions</Link></li>,
