@@ -5,7 +5,7 @@
 
 **Values:**
 
-- 2018
+- 2017
 
 ### [lei](#lei)
 **Description:** A financial institution’s Legal Entity Identifier
@@ -56,7 +56,7 @@
 - Varying values
 
 ### [respondent\_name](#respondent_name)
-**Description:** The name of the institution as registered with GLEIF
+**Description:** The name of the institution from the National Information Center (NIC) or Transmittal Sheet
 
 **Values:**
 
@@ -104,7 +104,7 @@
 - Varying values
 
 ### [parent\_name](#parent_name)
-**Description:** The legal name of the parent institution
+**Description:** The National Information Center's legal name of the parent institution
 
 **Values:**
 
@@ -119,7 +119,7 @@
 - Varying values
 
 ### [top\_holder\_name](#top_holder_name)
-**Description:** The legal name of the top holder of the institution
+**Description:** The National Information Center's legal name of the top holder of the institution 
 
 **Values:**
 

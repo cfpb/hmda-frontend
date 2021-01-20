@@ -6,14 +6,8 @@
 **Values:**
 - Integer values for year
 
-### [calendar\_quarter](#calendar_quarter)
-**Description:** The calandar quarter to which the data refer. Quarter 4 is for the annual submission of data.
-
-**Values:**
-- 4
-
-### [lei](#lei)
-**Description:** The Legal Entity Identifier (LEI) of the filing institution.
+### [respondent\_id](#respondent_id)
+**Description:** The Respondent ID of the filing institution.
 
 **Values:**
 - Various values
