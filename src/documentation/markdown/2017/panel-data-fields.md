@@ -7,15 +7,14 @@
 
 - 2017
 
-### [lei](#lei)
-**Description:** A financial institution’s Legal Entity Identifier
+### [respondent\_id](#respondent_id)
 
-**Values:**
-
-- Varying values
+- **Description:** One component of the primary key identifier for HMDA reporters in 2017 and prior. Respondent ID must be concatenated with Agency Code to guarantee uniqueness in the HMDA data. See Table 1 in the 2017 FIG for derivation instructions.
+- **Values:**
+  - Varying values
 
 ### [tax\_id](#tax_id)
-**Description:** The federal tax ID of the institution
+**Description:** The federal tax ID of the institution in 10-digit format with a dash.
 
 **Values:**
 
@@ -28,20 +27,19 @@
   - 1: Office of the Comptroller of the Currency (OCC)
   - 2: Federal Reserve System (FRB)
   - 3: Federal Deposit Insurance Corporation (FDIC)
-  - 4: Office of Thrift Supervision (OTS)
   - 5: National Credit Union Administration (NCUA)
   - 7: Department of Housing and Urban Development (HUD)
   - 9: Consumer Financial Protection Bureau (CFPB)
 
 ### [id\_2017](#id_2017)
-**Description:** The 2017 HMDA Platform primary identifier for an institution. This identifier is used in naming modified LAR files on [this page](https://ffiec.cfpb.gov/data-publication/modified-lar/2017)
+**Description:** This identifier is used in naming modified LAR files on [this page](https://ffiec.cfpb.gov/data-publication/modified-lar/2017)
 
 **Values:**
 
 - Varying values
 
 ### [arid\_2017](#arid_2017)
-**Description:** The concatenation of an institution's 2017 Agency Code and Respondent ID. In order to match between 2017 and 2018, take the arid_2017 column from the 2018 panel and use this to join to the concatenation of the agency code and respondent ID in the 2017 panel. Respondent ID in 2017 and prior is not a unique value and must be joined to agency code to generate a primary key for the HMDA dataset. For 2018 and forward, LEI will be the primary key.
+**Description:** The concatenation of an institution's 2017 Agency Code and Respondent ID. In order to match between 2017 and 2018, take the arid_2017 column from the 2018 panel and use this to join to the concatenation of the agency code and respondent ID in the 2017 panel. Respondent ID in 2017 and prior is not a unique value and must be joined to agency code to generate a primary key for the HMDA dataset. For 2018 and forward, LEI will be the primary key. For more information on institution identifiers, please see the [Institution Identifiers FAQ](https://ffiec.cfpb.gov/documentation/2020/identifiers-faq/)
 
 **Values:**
 
