@@ -8,21 +8,21 @@
 
 ### [respondent\_id](#respondent_id)
 
-- **Description:** A financial institution’s Respondent ID
+- **Description:** One component of the primary key identifier for HMDA reporters in 2017 and prior. Respondent ID must be concatenated with Agency Code to guarantee uniqueness in the HMDA data. See Table 1 in the 2017 FIG for derivation instructions.
 - **Values:**
   - Varying values
 
-### [agency](#agency)
+### [agency\_code](#agency_code)
 
 - **Description:** A financial institution's associated Agency Code
 - **Values:**
-  - 1 - OCC
-  - 2 - FRB
-  - 3 - FDIC
-  - 4 - OTS
-  - 5 - NCUA
-  - 7 - HUD
-  - 9 - CFPB
+  - 1 - Office of the Comptroller of the Currency (OCC)
+  - 2 - Federal Reserve System (FRB)
+  - 3 - Federal Deposit Insurance Corporation (FDIC)
+  - 4 - Office of Thrift Supervision (OTS)
+  - 5 - National Credit Union Administration (NCUA)
+  - 7 - Department of Housing and Urban Development (HUD)
+  - 9 - Consumer Financial Protection Bureau (CFPB)
 
 ### [loan\_type](#loan_type)
 
@@ -35,21 +35,23 @@
 
 ### [property\_type](#property_type)
 
-- **Description:** <needed>
-- **Values:** <needed>
+- **Description:** Classification of dwelling
+- **Values:** 
+ - 1 - Single family with 1-4 units
+ - 2 - Manufactured housing
+ - 3 - Multifamily housing
 
 ### [loan\_purpose](#loan_purpose)
 
 - **Description:** The purpose of covered loan or application
 - **Values:**
-  - 1 - Home purchase
-  - 2 - Home improvement
-  - 31 - Refinancing
-  - 32 - Cash-out refinancing
-  - 4 - Other purpose
-  - 5 - Not applicable
+  - 1 - Home purchase (one-to-four family)
+  - 2 - Home improvement (one-to-four family)
+  - 3 - Refinancing (home purchase or home improvement,
+ one-to-four family) 
+  - 4 - Multifamily dwelling (home purchase, home improvement, and refinancings)
 
-### [occupancy](#occupancy)
+### [occupancy_type](#occupancy_type)
 
 - **Description:** Occupancy type for the dwelling
 - **Values:**
@@ -70,291 +72,171 @@
   - 1 - Preapproval requested
   - 2 - Preapproval not requested
 
-### [action\_taken\_type](#action_taken_type) <needed>
+### [action\_taken](#action_taken)
 
 - **Description:** The action taken on the covered loan or application
 - **Values:**
   - 1 - Loan originated
   - 2 - Application approved but not accepted
-  - 3 - Application denied
+  - 3 - Application denied by financial institution 
   - 4 - Application withdrawn by applicant
   - 5 - File closed for incompleteness
-  - 6 - Purchased loan
-  - 7 - Preapproval request denied
-  - 8 - Preapproval request approved but not accepted
+  - 6 - Loan purchased by your institution
 
-### [msa_md](#msa_md) <needed>
+### [msa_md](#msa_md)
 
-- **Description:** The 5 digit derived MSA (metropolitan statistical area) or MD (metropolitan division) code. An MSA/MD is an area that has at least one urbanized area of 50,000 or more population.
+- **Description:** The 5 digit MSA (metropolitan statistical area) or MD (metropolitan division) code. An MSA/MD is an area that has at least one urbanized area of 50,000 or more population.
 - **Values:**
   - Varying values
 
-### [state](#state)
+### [state\_code](#state_code)
 
 - **Description:** Two-letter state code
 - **Values:**
   - Varying values
 
-### [county](#county)
+### [county\_code](#county_code)
 
 - **Description:** State-county FIPS code
 - **Values:**
   - Varying values
 
-### [tract](#tract)
+### [census\_tract](#census_tract)
 
 - **Description:** 11 digit census tract number
 - **Values:**
   - Varying values
 
-### [ethnicity\_applicant\_1](#ethnicity_applicant_1)
+### [applicant\_ethnicity\_1](#applicant_ethnicity_1)
 
 - **Description:** Ethnicity of the applicant or borrower
 - **Values:**
   - 1 - Hispanic or Latino
-  - 11 - Mexican
-  - 12 - Puerto Rican
-  - 13 - Cuban
-  - 14 - Other Hispanic or Latino
   - 2 - Not Hispanic or Latino
   - 3 - Information not provided by applicant in mail, internet, or telephone application
   - 4 - Not applicable
 
-### [ethnicity\_co\_applicant\_1](#ethnicity_co_applicant_1)
+### [co\_applicant\_ethnicity\_1](#co_applicant_ethnicity_1)
 
 - **Description:** Ethnicity of the first co-applicant or co-borrower
 - **Values:**
   - 1 - Hispanic or Latino
-  - 11 - Mexican
-  - 12 - Puerto Rican
-  - 13 - Cuban
-  - 14 - Other Hispanic or Latino
   - 2 - Not Hispanic or Latino
 
-### [race\_applicant\_1](#race_applicant_1)
+### [applicant\_race\_1](#applicant_race_1)
 
 - **Description:** Race of the applicant or borrower
 - **Values:**
   - 1 - American Indian or Alaska Native
-  - 2 - Asian
-  - 21 - Asian Indian
-  - 22 - Chinese
-  - 23 - Filipino
-  - 24 - Japanese
-  - 25 - Korean
-  - 26 - Vietnamese
-  - 27 - Other Asian
+  - 2 - Asian or Pacific Islander
   - 3 - Black or African American
-  - 4 - Native Hawaiian or Other Pacific Islander
-  - 41 - Native Hawaiian
-  - 42 - Guamanian or Chamorro
-  - 43 - Samoan
-  - 44 - Other Pacific Islander
+  - 4 - Hispanic
   - 5 - White
   - 6 - Information not provided by applicant in mail, internet, or telephone application
   - 7 - Not applicable
 
-### [race\_applicant\_2](#race_applicant_2)
+### [applicant\_race\_2](#applicant_race_2)
 
 - **Description:** Race of the applicant or borrower
 - **Values:**
   - 1 - American Indian or Alaska Native
-  - 2 - Asian
-  - 21 - Asian Indian
-  - 22 - Chinese
-  - 23 - Filipino
-  - 24 - Japanese
-  - 25 - Korean
-  - 26 - Vietnamese
-  - 27 - Other Asian
+  - 2 - Asian or Pacific Islander
   - 3 - Black or African American
-  - 4 - Native Hawaiian or Other Pacific Islander
-  - 41 - Native Hawaiian
-  - 42 - Guamanian or Chamorro
-  - 43 - Samoan
-  - 44 - Other Pacific Islander
+  - 4 - Hispanic
   - 5 - White
   - 6 - Information not provided by applicant in mail, internet, or telephone application
   - 7 - Not applicable
 
-### [race\_applicant\_3](#race_applicant_3)
+### [applicant\_race\_3](#applicant_race_3)
 
 - **Description:** Race of the applicant or borrower
 - **Values:**
   - 1 - American Indian or Alaska Native
-  - 2 - Asian
-  - 21 - Asian Indian
-  - 22 - Chinese
-  - 23 - Filipino
-  - 24 - Japanese
-  - 25 - Korean
-  - 26 - Vietnamese
-  - 27 - Other Asian
+  - 2 - Asian or Pacific Islander
   - 3 - Black or African American
-  - 4 - Native Hawaiian or Other Pacific Islander
-  - 41 - Native Hawaiian
-  - 42 - Guamanian or Chamorro
-  - 43 - Samoan
-  - 44 - Other Pacific Islander
+  - 4 - Hispanic
   - 5 - White
   - 6 - Information not provided by applicant in mail, internet, or telephone application
   - 7 - Not applicable
 
-### [race\_applicant\_4](#race_applicant_4)
+### [applicant\_race\_4](#applicant_race_4)
 
 - **Description:** Race of the applicant or borrower
 - **Values:**
   - 1 - American Indian or Alaska Native
-  - 2 - Asian
-  - 21 - Asian Indian
-  - 22 - Chinese
-  - 23 - Filipino
-  - 24 - Japanese
-  - 25 - Korean
-  - 26 - Vietnamese
-  - 27 - Other Asian
+  - 2 - Asian or Pacific Islander
   - 3 - Black or African American
-  - 4 - Native Hawaiian or Other Pacific Islander
-  - 41 - Native Hawaiian
-  - 42 - Guamanian or Chamorro
-  - 43 - Samoan
-  - 44 - Other Pacific Islander
+  - 4 - Hispanic
   - 5 - White
   - 6 - Information not provided by applicant in mail, internet, or telephone application
   - 7 - Not applicable
 
-### [race\_applicant\_5](#race_applicant_5)
+### [applicant\_race\_5](#applicant_race_5)
 
 - **Description:** Race of the applicant or borrower
 - **Values:**
   - 1 - American Indian or Alaska Native
-  - 2 - Asian
-  - 21 - Asian Indian
-  - 22 - Chinese
-  - 23 - Filipino
-  - 24 - Japanese
-  - 25 - Korean
-  - 26 - Vietnamese
-  - 27 - Other Asian
+  - 2 - Asian or Pacific Islander
   - 3 - Black or African American
-  - 4 - Native Hawaiian or Other Pacific Islander
-  - 41 - Native Hawaiian
-  - 42 - Guamanian or Chamorro
-  - 43 - Samoan
-  - 44 - Other Pacific Islander
+  - 4 - Hispanic
   - 5 - White
   - 6 - Information not provided by applicant in mail, internet, or telephone application
   - 7 - Not applicable
 
-### [co\_race\_applicant\_1](#co_race_applicant_1)
+### [co\_applicant\_race\_1](#co_applicant_race_1)
 
 - **Description:** Race of the first co-applicant or co-borrower
 - **Values:**
   - 1 - American Indian or Alaska Native
-  - 2 - Asian
-  - 21 - Asian Indian
-  - 22 - Chinese
-  - 23 - Filipino
-  - 24 - Japanese
-  - 25 - Korean
-  - 26 - Vietnamese
-  - 27 - Other Asian
+  - 2 - Asian or Pacific Islander
   - 3 - Black or African American
-  - 4 - Native Hawaiian or Other Pacific Islander
-  - 41 - Native Hawaiian
-  - 42 - Guamanian or Chamorro
-  - 43 - Samoan
-  - 44 - Other Pacific Islander
+  - 4 - Hispanic
   - 5 - White
   - 6 - Information not provided by applicant in mail, internet, or telephone application
   - 7 - Not applicable
   - 8 - No co-applicant
 
-### [co\_race\_applicant\_2](#co_race_applicant_2)
+### [co\_applicant\_race\_2](#co_applicant_race_2)
 
 - **Description:** Race of the first co-applicant or co-borrower
 - **Values:**
   - 1 - American Indian or Alaska Native
-  - 2 - Asian
-  - 21 - Asian Indian
-  - 22 - Chinese
-  - 23 - Filipino
-  - 24 - Japanese
-  - 25 - Korean
-  - 26 - Vietnamese
-  - 27 - Other Asian
+  - 2 - Asian or Pacific Islander
   - 3 - Black or African American
-  - 4 - Native Hawaiian or Other Pacific Islander
-  - 41 - Native Hawaiian
-  - 42 - Guamanian or Chamorro
-  - 43 - Samoan
-  - 44 - Other Pacific Islander
+  - 4 - Hispanic
   - 5 - White
 
-### [co\_race\_applicant\_3](#co_race_applicant_3)
+### [co\_applicant\_race\_3](#co_applicant_race_3)
 
 - **Description:** Race of the first co-applicant or co-borrower
 - **Values:**
   - 1 - American Indian or Alaska Native
-  - 2 - Asian
-  - 21 - Asian Indian
-  - 22 - Chinese
-  - 23 - Filipino
-  - 24 - Japanese
-  - 25 - Korean
-  - 26 - Vietnamese
-  - 27 - Other Asian
+  - 2 - Asian or Pacific Islander
   - 3 - Black or African American
-  - 4 - Native Hawaiian or Other Pacific Islander
-  - 41 - Native Hawaiian
-  - 42 - Guamanian or Chamorro
-  - 43 - Samoan
-  - 44 - Other Pacific Islander
+  - 4 - Hispanic
   - 5 - White
 
-### [co\_race\_applicant\_4](#co_race_applicant_4)
+### [co\_applicant\_race\_4](#co_applicant_race_4)
 
 - **Description:** Race of the first co-applicant or co-borrower
 - **Values:**
   - 1 - American Indian or Alaska Native
-  - 2 - Asian
-  - 21 - Asian Indian
-  - 22 - Chinese
-  - 23 - Filipino
-  - 24 - Japanese
-  - 25 - Korean
-  - 26 - Vietnamese
-  - 27 - Other Asian
+  - 2 - Asian or Pacific Islander
   - 3 - Black or African American
-  - 4 - Native Hawaiian or Other Pacific Islander
-  - 41 - Native Hawaiian
-  - 42 - Guamanian or Chamorro
-  - 43 - Samoan
-  - 44 - Other Pacific Islander
+  - 4 - Hispanic
   - 5 - White
 
-### [co\_race\_applicant\_5](#co_race_applicant_5)
+### [co\_applicant\_race\_5](#co_applicant_race_5)
 
 - **Description:** Race of the first co-applicant or co-borrower
 - **Values:**
   - 1 - American Indian or Alaska Native
-  - 2 - Asian
-  - 21 - Asian Indian
-  - 22 - Chinese
-  - 23 - Filipino
-  - 24 - Japanese
-  - 25 - Korean
-  - 26 - Vietnamese
-  - 27 - Other Asian
+  - 2 - Asian or Pacific Islander
   - 3 - Black or African American
-  - 4 - Native Hawaiian or Other Pacific Islander
-  - 41 - Native Hawaiian
-  - 42 - Guamanian or Chamorro
-  - 43 - Samoan
-  - 44 - Other Pacific Islander
+  - 4 - Hispanic
   - 5 - White
 
-### [sex\_applicant](#sex_applicant)
+### [applicant\_sex](#applicant_sex)
 
 - **Description:** Sex of the applicant or borrower
 - **Values:**
@@ -364,7 +246,7 @@
   - 4 - Not applicable
   - 6 - Applicant selected both male and female
 
-### [co\_sex\_applicant](#co_sex_applicant)
+### [co\_applicant\_sex](#co_applicant_sex)
 
 - **Description:** Sex of the first co-applicant or co-borrower
 - **Values:**
@@ -385,34 +267,18 @@
 
 - **Description:** Type of entity purchasing a covered loan from the institution
 - **Values:**
-  - 0 - Not applicable
-  - 1 - Fannie Mae
-  - 2 - Ginnie Mae
-  - 3 - Freddie Mac
-  - 4 - Farmer Mac
-  - 5 - Private securitizer
-  - 6 - Commercial bank, savings bank, or savings association
-  - 71 - Credit union, mortgage company, or finance company
-  - 72 - Life insurance company
+  - 0 - Loan was not originated or was not sold in calendar year covered by register
+  - 1 - FNMA (Federal National Mortgage Association)
+  - 2 - GNMA (Government National Mortgage Association)
+  - 3 - FHLMC (Federal Home Loan Mortgage Corporation)
+  - 4 – FAMC (Federal Agricultural Mortgage Corporation)
+  - 5 - Commercial bank
+  - 6 - Savings bank or savings association
+  - 7 - Life insurance company
   - 8 - Affiliate institution
-  - 9 - Other type of purchaser
+  - 9 - Other type of purchaser 
 
-### [denial\_reason-1](#denial_reason-1)
-
-- **Description:** The principal reason, or reasons, for denial
-- **Values:**
-  - 1 - Debt-to-income ratio
-  - 2 - Employment history
-  - 3 - Credit history
-  - 4 - Collateral
-  - 5 - Insufficient cash (downpayment, closing costs)
-  - 6 - Unverifiable information
-  - 7 - Credit application incomplete
-  - 8 - Mortgage insurance denied
-  - 9 - Other
-  - 10 - Not applicable
-
-### [denial\_reason-2](#denial_reason-2)
+### [denial\_reason\_1](#denial_reason_1)
 
 - **Description:** The principal reason, or reasons, for denial
 - **Values:**
@@ -426,7 +292,21 @@
   - 8 - Mortgage insurance denied
   - 9 - Other
 
-### [denial\_reason-3](#denial_reason-3)
+### [denial\_reason\_2](#denial_reason_2)
+
+- **Description:** The principal reason, or reasons, for denial
+- **Values:**
+  - 1 - Debt-to-income ratio
+  - 2 - Employment history
+  - 3 - Credit history
+  - 4 - Collateral
+  - 5 - Insufficient cash (downpayment, closing costs)
+  - 6 - Unverifiable information
+  - 7 - Credit application incomplete
+  - 8 - Mortgage insurance denied
+  - 9 - Other
+
+### [denial\_reason\_3](#denial_reason_3)
 
 - **Description:** The principal reason, or reasons, for denial
 - **Values:**
@@ -461,54 +341,38 @@
   - 1 - Secured by a first lien
   - 2 - Secured by a subordinate lien
 
-### [edit\_status](#edit_status)
-
-- **Description:** <needed>
-- **Values:** <needed>
-
-### [sequence\_number](#sequence_number)
-
-- **Description:** <needed>
-- **Values:** <needed>
-
-### [population](#population)
+### [tract\_population](#tract_population)
 
 - **Description:** Total population in tract
 - **Values:**
   - Varying values
 
-### [minority\_population\_percent](#minority_population_percent)
+### [tract\_minority\_population\_percent](#tract_minority_population_percent)
 
 - **Description:** Percentage of minority population to total population for tract, rounded to two decimal places
 - **Values:**
   - Varying values
 
-### [ffiec\_med\_fam\_income](#ffiec_med_fam_income)
+### [ffiec\_msa\_md\_median\_family\_income](#ffiec_msa_md_median_family_income)
 
 - **Description:** FFIEC Median family income in dollars for the MSA/MD in which the tract is located (adjusted annually by FFIEC)
 - **Values:**
   - Varying values
 
-### [tract\_to\_msa\_income\_pct](#tract_to_msa_income_pct)
+### [tract\_to\_msa\_income\_percentage](#tract_to_msa_income_percentage)
 
 - **Description:** Percentage of tract median family income compared to MSA/MD median family income
 - **Values:**
   - Varying values
 
-### [owner\_occupied\_units](#owner\_occupied\_units)
+### [tract\_owner\_occupied\_units](#tract_owner_occupied_units)
 
 - **Description:** Number of dwellings, including individual condominiums, that are lived in by the owner
 - **Values:**
   - Varying values
 
-### [one\_to\_four\_fam\_units](#one_to_four_fam_units)
+### [tract\_one\_to\_four\_family\_housing\_units](#tract_one_to_four_family_housing_units)
 
 - **Description:** Dwellings that are built to houses with fewer than 5 families
-- **Values:**
-  - Varying values
-
-### [arid](#arid)
-
-- **Description:** <needed>
 - **Values:**
   - Varying values
