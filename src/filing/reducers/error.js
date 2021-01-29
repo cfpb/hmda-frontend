@@ -9,8 +9,12 @@ const defaultError = null
 export default (state = defaultError, action) => {
   switch (action.type) {
     case RECEIVE_ERROR:
+      const { status, statusText } = action.error
+      return { status, statusText }
+
     case RECEIVE_UPLOAD_ERROR:
       const { status, statusText } = action.error
+      if (status === 504) return state // Ignore 504 errors for file upload
       return { status, statusText }
 
     case REFRESH_STATE:
