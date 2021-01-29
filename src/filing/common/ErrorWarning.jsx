@@ -27,24 +27,25 @@ export function getText(props) {
 
   switch (status) {
     case 400:
-      return 'Your request could not be completed. Please try again.'
+      return `Your request could not be completed. Please try again.`
+
     case 401:
-      return 'Please log in to complete this request.'
+      return `Please log in to complete this request.`
 
     case 403:
-      return "You don't have access to the requested resources. Please ensure you are filing for the correct institution."
+      return `You don't have access to the requested resources. Please ensure you are filing for the correct institution.`
 
     case 500:
-      return "We're quickly working on resolving the issue, please refresh the page."
+      return `We're quickly working on resolving the issue, please refresh the page.`
 
     case 502:
-      return "We're having trouble routing your request, please refresh the page or try again later."
+      return `We're having trouble routing your request, please refresh the page or try again later.`
 
     case 503:
-      return "We're experiencing some issues on our end, please refresh the page or try again later."
+      return `We're experiencing some issues on our end, please refresh the page or try again later.`
 
     default:
-      return 'Please refresh the page.'
+      return `Please refresh the page.`
   }
 }
 
@@ -55,6 +56,8 @@ export function getContact(props) {
   return 'If the problem persists, contact '
 }
 
+const showErrorStatus = ({ status }) => status ? <span className='error-code'>Error code: {status}</span> : ''
+
 const ErrorWarning = props => {
   if (props.error)
     return (
@@ -63,6 +66,7 @@ const ErrorWarning = props => {
           <p>
             {getText(props)} {getContact(props)}
             <a href="mailto:hmdahelp@cfpb.gov">HMDA Help</a>.
+            {showErrorStatus(props.error)}
           </p>
         </Alert>
       </div>

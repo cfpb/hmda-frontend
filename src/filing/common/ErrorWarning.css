@@ -1,3 +1,9 @@
 .ErrorWarning {
   margin: 2em 0;
 }
+
+.ErrorWarning .error-code{
+  display: block;
+  margin-top: .5rem;
+  font-weight: bold;
+}

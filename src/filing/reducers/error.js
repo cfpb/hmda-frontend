@@ -10,7 +10,8 @@ export default (state = defaultError, action) => {
   switch (action.type) {
     case RECEIVE_ERROR:
     case RECEIVE_UPLOAD_ERROR:
-      return action.error
+      const { status, statusText } = action.error
+      return { status, statusText }
 
     case REFRESH_STATE:
       return defaultError
