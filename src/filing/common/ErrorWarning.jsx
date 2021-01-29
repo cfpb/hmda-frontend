@@ -56,7 +56,12 @@ export function getContact(props) {
   return 'If the problem persists, contact '
 }
 
-const showErrorStatus = ({ status }) => status ? <span className='error-code'>Error code: {status}</span> : ''
+const showErrorStatus = ({ status, statusText }) => {
+  if (!status) return ''
+  let text = statusText ? `Error: ${status}` : `Error code: ${status}`
+  if (statusText) text += `  - ${statusText}`
+  return <span className='error-code'>{text}</span>
+}
 
 const ErrorWarning = props => {
   if (props.error)

@@ -5,15 +5,16 @@ import {
 } from '../constants'
 
 const defaultError = null
+const unknownError = { status: 999, statusText: 'Unknown error'}
 
 export default (state = defaultError, action) => {
+  const { status, statusText } = action.error || unknownError
+
   switch (action.type) {
     case RECEIVE_ERROR:
-      const { status, statusText } = action.error
       return { status, statusText }
 
     case RECEIVE_UPLOAD_ERROR:
-      const { status, statusText } = action.error
       if (status === 504) return state // Ignore 504 errors for file upload
       return { status, statusText }
 
