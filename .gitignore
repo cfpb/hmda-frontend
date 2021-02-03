@@ -87,3 +87,4 @@ package-lock.json
 
 # Editor Configs #
 .vscode/
+.eslintcache
