@@ -70,10 +70,14 @@ describe('HMDA Help - Institutions', () => {
 
     const timestamp1 = Date.now()
     cy.findByText('Note History').click()
-    cy.get('.note-list li', { timeout: 30000 })
+    
+    // CI will not have any existing History 
+    if(!isCI(ENVIRONMENT)) {
+      cy.get('.note-list li', { timeout: 30000 })
       .first()
       .find('button .text')
       .should('not.contain.text', timestamp1)
+    } 
 
     cy.findByLabelText(nameLabelText).then(($name) => {
       const savedName = $name.attr('value')
