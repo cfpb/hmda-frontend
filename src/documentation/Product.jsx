@@ -10,12 +10,7 @@ const Product = props => {
   let header
 
   if(!list || !list.length) {
-    if(inList) return (
-      <li>
-        <h4>{heading}</h4>
-        <ul><li>No documentation for {year}.</li></ul>
-      </li>
-    )
+    if(inList) return null
     list = <li>No documentation for {year}.</li>
   }
 
