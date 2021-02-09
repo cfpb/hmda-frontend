@@ -40,7 +40,7 @@ describe('Keycloak', () => {
         // Find Institutions for associated email domains
         cy.findByLabelText(emailLabel).type('{selectall}frontend.testing@mailinator.com')
         cy.get(institutionError).should('exist')
-        cy.findByText("Select your institution").should('exist')
+        cy.findByText("Select all available institutions you wish to file for. You may select more than one.").should('exist')
         cy.get('#institutions li label').first().click()
   
         // Validates password
