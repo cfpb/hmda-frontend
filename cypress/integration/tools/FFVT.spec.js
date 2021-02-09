@@ -1,4 +1,3 @@
-import 'cypress-file-upload'
 import { isCI } from '../../support/helpers'
 import { getOpenFilingYears } from '../../../src/common/constants/configHelpers'
 import { getDefaultConfig } from '../../../src/common/configUtils'

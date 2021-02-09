@@ -1,4 +1,3 @@
-import "cypress-file-upload"
 import { isBeta, isProd, withFormData } from "../../support/helpers"
 import { onlyOn } from "@cypress/skip-test"
 

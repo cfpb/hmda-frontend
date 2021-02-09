@@ -1,4 +1,3 @@
-import "cypress-file-upload"
 import { isBeta, isCI } from '../../support/helpers'
 import { beforeFilingPeriod, afterFilingPeriod } from '../../../src/filing/utils/date'
 import { isQuarterly } from '../../../src/filing/api/utils'
