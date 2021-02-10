@@ -11,14 +11,66 @@ describe('Keycloak', () => {
       cy.get({ HOST, USERNAME, PASSWORD, ENVIRONMENT }).logEnv()
     })
   
-    it.skip('Can log in via UI', () => {
-      cy.findByText('Log in').click()
-      cy.findByLabelText('Email').type(USERNAME)
-      cy.findByLabelText('Password').type(PASSWORD)
-      cy.findByText('Log In').click()
-      cy.url().should('match', /\/filing\/\d{4}\/institutions$/)
-    })
+    describe('Sign In', () => {
+      it('Can log in and out', () => {
+        cy.findByText('Log in').click()
+        cy.findByLabelText('Email').type(USERNAME)
+        cy.findByLabelText('Password').type(PASSWORD)
+        cy.findByText('Sign In').click()
+        
+        // Successful sign in lands on Instutituions page
+        cy.url().should('match', /\/filing\/\d{4}\/institutions$/)
+
+        // Logout
+        cy.findByText('Logout').click()
+      })
+
+      it('Provides valid password reset link', () => {
+        cy.findByText('Log in').click()
+
+        // Always displayed password reset link
+        cy.findByText('Forgot Password?').click()
+
+        // Verify we're on the Reset page
+        cy.findByText('Reset password').should('exist')
+
+        // Navigate back to Sign In
+        cy.findByText('go back to login').click()
+        cy.findByText('Sign in')
+
+        // Navigate to the account creation page
+        const createTitle = 'Create an account'
+        cy.findByText(createTitle).should('not.exist')
+        cy.findByText('create an account').click()
+        cy.findByText(createTitle).should('exist')
+      })      
+
+      it('Failed login attempt provides valid password reset links', () => {
+        const msg = '• Invalid username or password provided.'
+        // No error message
+        cy.findByText(msg).should('not.exist')
   
+        // Attempt sign in with wrong password
+        cy.findByText('Log in').click()
+        cy.findByLabelText('Email').type(USERNAME)
+        cy.findByLabelText('Password').type(PASSWORD + 'wrong')
+        cy.findByText('Sign In').click()
+  
+        // Verify password error is shown
+        cy.findByText(msg).should('exist')
+  
+        // Navigate to password reset page
+        cy.findByText('Reset password').should('not.exist')
+        cy.findAllByText('Forgot password?').click()
+        cy.findByText('Reset password').should('exist')
+        cy.findByText('Submit')
+  
+        // Navigate back to sign in page
+        cy.findByText('go back to login').click()
+        cy.findByText('Sign In').click()
+      })
+    })
+
     describe('Account creation', () => {
       it('Performs form validation', () => {
         const registerText = "Register"
