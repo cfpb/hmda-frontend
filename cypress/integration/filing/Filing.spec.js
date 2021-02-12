@@ -1,4 +1,3 @@
-import "cypress-file-upload"
 import { isBeta, isCI } from '../../support/helpers'
 import { beforeFilingPeriod, afterFilingPeriod } from '../../../src/filing/utils/date'
 import { isQuarterly } from '../../../src/filing/api/utils'
@@ -119,7 +118,7 @@ describe("Filing", function() {
           const FILENAME = getFilename(filingPeriod, INSTITUTION)
 
           cy.fixture(FILENAME).then(fileContent => {
-            cy.get(".UploadForm input", { force: true }).upload({
+            cy.get(".UploadForm input", { force: true }).attachFile({
               fileContent,
               fileName: FILENAME,
               mimeType: "text/plain"

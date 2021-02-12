@@ -1,4 +1,3 @@
-import 'cypress-file-upload'
 import { isCI } from '../../support/helpers'
 import { getOpenFilingYears } from '../../../src/common/constants/configHelpers'
 import { getDefaultConfig } from '../../../src/common/configUtils'
@@ -34,7 +33,7 @@ describe('FFVT', function () {
       cy.fixture(CLEAN_FILE).then((fileContent) => {
         cy.get(
           'div > .UploadForm > .container-upload > .dropzone > input'
-        ).upload({
+        ).attachFile({
           fileContent,
           fileName: CLEAN_FILE,
           mimeType: 'text/plain',
@@ -61,7 +60,7 @@ describe('FFVT', function () {
       cy.fixture(ERROR_FILE).then((fileContent) => {
         cy.get(
           'div > .UploadForm > .container-upload > .dropzone > input'
-        ).upload({
+        ).attachFile({
           fileContent,
           fileName: ERROR_FILE,
           mimeType: 'text/plain',

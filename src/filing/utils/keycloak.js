@@ -61,6 +61,7 @@ const mockKeycloak = {
   tokenParsed: {
     name: 'Test User',
     lei: process.env.REACT_APP_LEIS || 'FRONTENDTESTBANK9999',
+    exp: Date.now() + 18000000,
   },
   init: () => new Promise((res) => res(true)),
   updateToken: () =>
