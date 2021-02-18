@@ -15,7 +15,6 @@ export default (state = defaultError, action) => {
       return { status, statusText }
 
     case RECEIVE_UPLOAD_ERROR:
-      if (status === 504) return state // Ignore 504 errors for file upload
       return { status, statusText }
 
     case REFRESH_STATE:
