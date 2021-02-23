@@ -67,9 +67,8 @@ const mockKeycloak = {
   updateToken: () =>
     new Promise((resolve) =>
       resolve({
-        success: () => {
-          error: () => false
-        },
+        success: () => {},
+        error: () => false
       })
     ),
   logout: () => (window.location.href = '/filing'),
