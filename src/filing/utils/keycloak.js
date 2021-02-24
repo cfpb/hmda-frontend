@@ -2,7 +2,8 @@
 import { error } from './log.js'
 import { getStore } from './store.js'
 import isRedirecting from '../actions/isRedirecting.js'
-import * as AccessToken from '../api/AccessToken.js'
+import * as AccessToken from '../../common/api/AccessToken.js'
+
 let keycloak = null
 
 const setKeycloak = cloak => {
