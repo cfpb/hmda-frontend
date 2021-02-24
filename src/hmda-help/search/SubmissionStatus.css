@@ -45,6 +45,30 @@
 #submissions #SubmissionResults .submission-row .label {
   font-weight: bold;
   width: 25%;
+  display: flex;
+  align-items: center;
+}
+
+#submissions #SubmissionResults .submission-row .link:hover {
+  color: #0071bc;
+}
+
+#submissions #SubmissionResults .submission-row .link {
+  cursor: pointer;
+}
+
+#submissions #SubmissionResults .submission-row .status,
+#submissions #SubmissionResults .submission-row .status img,
+#submissions #SubmissionResults .submission-row .status .LoadingInline.LoadingIconWrapper .LoadingIcon {
+  height: 20px;
+  width: 20px;
+}
+
+#submissions .status img {
+  margin-left: 10px;
+}
+#submissions .LoadingIconWrapper {
+  padding: 0;
 }
 
 
