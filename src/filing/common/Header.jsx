@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { getKeycloak, logout } from '../utils/keycloak.js'
+import { logout } from '../utils/keycloak.js'
+import { getKeycloak } from '../../common/api/Keycloak.js'
 import BannerUSA from '../../common/BannerUSA.jsx'
 
 import './Header.css'

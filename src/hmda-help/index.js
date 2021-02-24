@@ -9,7 +9,7 @@ import NotAuthorized from './NotAuthorized'
 import Header from './Header'
 import Search from './search'
 import Institution from './institution'
-import { mockKeycloak, setKeycloak } from '../filing/utils/keycloak'
+import { mockKeycloak, setKeycloak } from '../common/api/Keycloak'
 import { withAppContext } from '../common/appContextHOC'
 
 import './index.css'
