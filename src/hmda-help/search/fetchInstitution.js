@@ -1,13 +1,15 @@
 import { flattenApiForInstitutionState } from '../utils/convert.js'
+import * as AccessToken from '../../common/api/AccessToken'
 
 // Returns an array of Promises, one for each year for which the institution is being fetched
-export const fetchInstitution = (lei, setState, token, availableYears) => {
+export const fetchInstitution = (lei, setState, availableYears) => {
   return availableYears.map(year => {
     const headers = {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     }
-
+    
+    const token = AccessToken.get()
     if (token) headers['Authorization'] = `Bearer ${token}`
 
     return fetch(`/v2/admin/institutions/${lei}/year/${year}`, { headers })

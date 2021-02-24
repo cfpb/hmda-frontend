@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { PublicationRow } from './PublicationRow'
 import { fileExists } from '../utils/file'
 import { fetchSequenceNumber } from '../utils/api'
+import * as AccessToken from '../../common/api/AccessToken'
 
 const defaultPubState = { fetched: false, url: null, error: null }
 
-const PublicationRows = ({ institution, token }) => {
+const PublicationRows = ({ institution }) => {
   const [mlar, setMlar] = useState({ ...defaultPubState })
   const [irs, setIrs] = useState({ ...defaultPubState })
   const [loading, setLoading] = useState(true)
@@ -51,23 +52,22 @@ const PublicationRows = ({ institution, token }) => {
   useEffect(() => {
     const latestURL = `/v2/filing/institutions/${lei}/filings/${activityYear}/submissions/latest`
     const headers = {}
+    const token = AccessToken.get()
     if (token) headers['Authorization'] = `Bearer ${token}`
     fetchSequenceNumber(latestURL, { headers }, setSeqNum)
-  }, [setSeqNum, lei, activityYear, token])
+  }, [setSeqNum, lei, activityYear])
 
   return (
     <>
       <PublicationRow
         type="mlar"
         institution={institution}
-        token={token}
         seqNum={seqNum}
         {...mlar}
       />
       <PublicationRow
         type="irs"
         institution={institution}
-        token={token}
         seqNum={seqNum}
         {...irs}
       />

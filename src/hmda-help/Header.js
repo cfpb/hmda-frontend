@@ -19,8 +19,7 @@ const Header = props => {
                 respondentName: ''
               },
               wasAddition: false
-            },
-            token: props.token
+            }
           }}
         >
           Add a new institution
@@ -33,7 +32,6 @@ const Header = props => {
 
 Header.propTypes = {
   logout: PropTypes.func.isRequired,
-  token: PropTypes.string
 }
 
 export default Header

@@ -18,6 +18,7 @@ import Loading from '../../common/LoadingIcon.jsx'
 import Notes from '../Notes'
 import NoteHistory from './NoteHistory/'
 import { getFilingYears } from '../../common/constants/configHelpers'
+import * as AccessToken from '../../common/api/AccessToken' 
 
 import './Form.css'
 
@@ -122,12 +123,13 @@ class Institution extends Component {
     })
   }
 
-  handleSubmit(event, token) {
+  handleSubmit(event) {
     event.preventDefault()
     this.setState({ fetching: true, error: null, isSubmitted: false })
 
     const method = this.props.location.pathname === '/add' ? 'POST' : 'PUT'
     const headers = { 'Content-Type': 'application/json' }
+    const token = AccessToken.get()
     if (token) headers['Authorization'] = 'Bearer ' + token
 
     fetch('/v2/admin/institutions', {
@@ -241,7 +243,7 @@ class Institution extends Component {
         {successAlert}
         <form
           className="InstitutionForm"
-          onSubmit={(event) => this.handleSubmit(event, this.props.token)}
+          onSubmit={(event) => this.handleSubmit(event)}
         >
           {searchInputs.concat(requiredInputs).map((searchInput) => {
             if (searchInput.type === 'select') {

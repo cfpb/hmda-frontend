@@ -2,7 +2,7 @@ import React from 'react'
 import PublicationRows from './PublicationRows'
 import './PublicationTable.css'
 
-const PublicationTable = ({ institutions, token }) => {
+const PublicationTable = ({ institutions }) => {
   if(!institutions || (institutions && !institutions.length))
     return null
   
@@ -24,7 +24,7 @@ const PublicationTable = ({ institutions, token }) => {
         </thead>
         <tbody>
           {institutions.map((institution) => (
-            <PublicationRows key={`${institution.lei}-${institution.activityYear}`} institution={institution} token={token}/>
+            <PublicationRows key={`${institution.lei}-${institution.activityYear}`} institution={institution} />
           ))}
         </tbody>
       </table>
