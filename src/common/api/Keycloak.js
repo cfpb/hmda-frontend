@@ -9,10 +9,12 @@ export const setKeycloak = (cloak) => {
 }
 
 export const getKeycloak = () => {
+  if(!keycloak) return initKeycloak()
   return keycloak
 }
 
 export const initKeycloak = (overrides) => {
+  if(keycloak) return keycloak
   if (process.env.REACT_APP_ENVIRONMENT === 'CI')
     return setKeycloak(mockKeycloak(overrides))
   if (process.env.NODE_ENV === 'development')

@@ -8,7 +8,7 @@ import BrowserBlocker from './common/BrowserBlocker.jsx'
 import Loading from '../common/LoadingIcon.jsx'
 import * as AccessToken from '../common/api/AccessToken.js'
 import { refresh, login } from './utils/keycloak.js'
-import { getKeycloak } from '../common/api/Keycloak.js'
+import { getKeycloak, initKeycloak } from '../common/api/Keycloak.js'
 import isRedirecting from './actions/isRedirecting.js'
 import updateFilingPeriod from './actions/updateFilingPeriod.js'
 import { detect } from 'detect-browser'
@@ -31,7 +31,7 @@ export class AppContainer extends Component {
       this.checkForValidQuarters(filingPeriod)
     }
 
-    const keycloak = getKeycloak()
+    const keycloak = initKeycloak()
     keycloak.init().then(authenticated => {
       this.keycloakConfigured = true
       if (authenticated) {
