@@ -50,6 +50,31 @@ function scrollToTable(node){
   node.scrollIntoView({behavior: 'smooth', block: 'end'})
 }
 
+const zoomMapping = {
+  state: { default: 5 },
+  county: { default: 7 },
+}
+
+const addZoom = (geo, zoomLevel, list) => {
+  list.forEach((item) => (zoomMapping[geo][item] = zoomLevel))
+}
+
+const getZoom = (geo, featureId) => {
+  if (geo === 'state') return zoomMapping[geo][featureId] || zoomMapping[geo].default
+  return zoomMapping[geo][featureId.substr(0, 2)] || zoomMapping[geo].default
+}
+
+// Zoom more on small states, less on large states (default zoom: 5)
+addZoom('state', 3, ['02'])
+addZoom('state', 6, ['09', '10', '15', '24', '25', '33', '34', '44', '45', '50', '54'])
+addZoom('state', 7, ['44'])
+
+// Zoom less on counties in states with large counties (default zoom: 7)
+addZoom('county', 4, ['02'])
+addZoom('county', 6, ['04', '32'])
+
+
+
 const MapContainer = props => {
   const mapContainer = useRef(null)
   const tableRef = useRef(null)
@@ -350,16 +375,33 @@ const MapContainer = props => {
       setOutline(map, selectedGeography, feature)
     }
 
-    function getTableData(e){
-      if(!map._loaded || !selectedGeography || !selectedVariable) return
-      const features = map.queryRenderedFeatures(e.point, {layers: [selectedGeography.value]})
-      if(!features.length) return
-      const feat = features[0].properties['GEOID']
+    function getTableData(properties){
+      const feat = properties['GEOID']
       if(feat !== feature) {
         setFeature(feat)
         detachHandlers()
       }
-      scrollToTable(tableRef.current)
+      
+      // TODO: Indicate table has been updated without forcing it into view
+      // scrollToTable(tableRef.current)
+    }
+
+    function zoomToGeography(properties) {
+      const feat = properties['GEOID']
+      const center = [properties.CENTROID_LNG, properties.CENTROID_LAT]
+      const zoom = getZoom(selectedGeography.value, feat)
+
+      map.flyTo({ center, zoom })
+    }
+
+    function handleMapClick(e) {
+      if(!map._loaded || !selectedGeography || !selectedVariable) return
+      const features = map.queryRenderedFeatures(e.point, {layers: [selectedGeography.value]})
+      if(!features.length) return
+      const properties = features[0].properties
+
+      getTableData(properties)
+      zoomToGeography(properties)
     }
 
     function attachHandlers () {
@@ -368,7 +410,7 @@ const MapContainer = props => {
       map.on('mousemove', highlight)
       map.on('mouseleave', 'county', highlightSavedFeature)
       map.on('mouseleave', 'state', highlightSavedFeature)
-      map.on('click', getTableData)
+      map.on('click', handleMapClick)
     }
 
     function detachHandlers() {
@@ -376,7 +418,7 @@ const MapContainer = props => {
       map.off('mouseleave', 'county', highlightSavedFeature)
       map.off('mouseleave', 'state', highlightSavedFeature)
       map.off('load', highlightSavedFeature)
-      map.off('click', getTableData)
+      map.off('click', handleMapClick)
     }
 
     attachHandlers()
