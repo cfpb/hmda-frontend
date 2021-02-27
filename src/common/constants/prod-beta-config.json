@@ -25,18 +25,14 @@
     "ANNUAL": "01/01 - 03/01",
     "PREVIEW": [
       "2021-Q1",
-      "2021",
-      "2020"
+      "2021"
     ]
   },
   "filingQuartersLate": {
     "Q1": "06/02 - 06/30",
     "Q2": "09/01 - 09/30",
     "Q3": "12/01 - 12/31",
-    "ANNUAL": "01/01 - 03/01",
-    "PREVIEW": [
-      "2020"
-    ]
+    "ANNUAL": "01/01 - 03/01"
   },
   "showMaps": false,
   "maintenanceMode": false,
