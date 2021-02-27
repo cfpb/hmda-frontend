@@ -4,7 +4,8 @@ import fips2Shortcode from '../constants/fipsToShortcode.js'
 import COUNTY_POP from '../constants/countyPop.js'
 import STATE_POP from '../constants/statePop.js'
 
-const LINE_WIDTH = 1.5
+const LINE_WIDTH = 3
+const LINE_GAP_WIDTH = 0
 
 const baseBias = 250/6
 const lowBias = baseBias/3
@@ -12,12 +13,23 @@ const mhBias = baseBias*2
 const highBias = baseBias*4
 const xBias = baseBias*8
 
+export let biasHighlightColor = '#000'
+
 const colors = {
-  [lowBias]: ['#eff3ff','#c6dbef','#9ecae1','#6baed6','#3182bd','#08519c'],
-  [baseBias]: ['#edffbd', '#97e196', '#6cc08b', '#4c9b82', '#196A6F', '#074050'],
-  [mhBias]: ['#f2f0f7', '#dadaeb', '#bcbddc', '#9e9ac8', '#756bb1', '#54278f'],
-  [highBias]: ['#fee5d9', '#fcbba1', '#fc9272', '#fb6a4a', '#de2d26', '#a50f15'],
-  [xBias]: ['#feedde', '#fdd0a2', '#fdae6b', '#fd8d3c', '#e6550d', '#a63603']
+  [lowBias]: ['#eff3ff','#c6dbef','#9ecae1','#6baed6','#3182bd','#08519c'],       // Blues
+  [baseBias]: ['#edffbd', '#97e196', '#6cc08b', '#4c9b82', '#196A6F', '#074050'], // Greens
+  [mhBias]: ['#f2f0f7', '#dadaeb', '#bcbddc', '#9e9ac8', '#756bb1', '#54278f'],   // Purples
+  [highBias]: ['#fee5d9', '#fcbba1', '#fc9272', '#fb6a4a', '#de2d26', '#a50f15'], // Reds
+  [xBias]: ['#feedde', '#fdd0a2', '#fdae6b', '#fd8d3c', '#e6550d', '#a63603'],    // Oranges
+}
+
+const highlightColors = {
+  [lowBias]:  '#ef561c',  // Blues highlighted by orange
+  [baseBias]: '#f34545',     // Greens highlighted by pinkish red
+  [mhBias]:   '#ffc800',  // Purples highlighted by gold
+  [highBias]: '#00806e', // Reds highlighted by green
+  [xBias]:    '#0066ff',  // Oranges highlighted by blue
+
 }
 
 const biasCache = {}
@@ -140,9 +152,13 @@ function resolveFips(code, geography) {
   return shortcode2FIPS[code]
 }
 
+/* 
+* Determines geographic stops along with the highlight color for the current bias.
+* @returns {Array} Array[0] = stops, Array[1] = hightlight color
+*/
 function makeStops(data, variable, value, year, geography, mainVar, mainVal){
   const stops = [['0', 'rgba(0,0,0,0.05)']]
-  if(!data || !variable || !value || !mainVar || !mainVal) return stops
+  if(!data || !variable || !value || !mainVar || !mainVal) return [stops, 'rgba(0,0,0,0)']
 
   const val = normalizeValue(value)
   const counts = geography.value === 'county' ? COUNTY_POP[year] : STATE_POP[year]
@@ -157,7 +173,8 @@ function makeStops(data, variable, value, year, geography, mainVar, mainVal){
 
     stops.push([fips, generateColor(currData, variable.value, val, bias, total)])
   })
-  return stops
+
+  return [stops, highlightColors[bias]]
 }
 
 function generateColor(data, variable, value, bias, total) {
@@ -237,7 +254,7 @@ function removeLayers(map){
   })
 }
 
-function setOutline(map, selectedGeography, feature, current=null) {
+function setOutline(map, selectedGeography, feature, current=null, lineColor='#fff') {
   const stops = []
   if(current) stops.push([current, LINE_WIDTH])
   if(feature && feature !== current) stops.push([feature, LINE_WIDTH])
@@ -247,6 +264,20 @@ function setOutline(map, selectedGeography, feature, current=null) {
      type: 'categorical',
      default: 0,
      stops
+   })
+  
+  map.setPaintProperty(`${selectedGeography.value}-lines`, 'line-color', {
+     property: 'GEOID',
+     type: 'categorical',
+     default: '#444',
+     stops: stops.map(s => [s[0], lineColor])
+   })
+   
+  map.setPaintProperty(`${selectedGeography.value}-lines`, 'line-gap-width', {
+     property: 'GEOID',
+     type: 'categorical',
+     default: 0,
+     stops: stops.map(s => [s[0], LINE_GAP_WIDTH])
    })
 }
 

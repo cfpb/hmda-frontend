@@ -73,7 +73,7 @@ addZoom('state', 7, ['44'])
 addZoom('county', 4, ['02'])
 addZoom('county', 6, ['04', '32'])
 
-
+let currentHighlightColor = null
 
 const MapContainer = props => {
   const mapContainer = useRef(null)
@@ -326,8 +326,10 @@ const MapContainer = props => {
       const addLayersAndOutline = () => {
         const resolved = resolveData()
         if(resolved){
-          addLayers(map, selectedGeography, makeStops(...resolved, year, selectedGeography, selectedVariable, selectedValue))
-          setOutline(map, selectedGeography, feature)
+          const [stops, highlightColor] = makeStops(...resolved, year, selectedGeography, selectedVariable, selectedValue)
+          currentHighlightColor = highlightColor
+          addLayers(map, selectedGeography, stops)
+          setOutline(map, selectedGeography, feature, null, currentHighlightColor)
         }
       }
       if(map._loaded) addLayersAndOutline()
@@ -339,8 +341,17 @@ const MapContainer = props => {
   useEffect(() => {
     if(!data || !map) return
 
-    let lastFeat
+    // let lastFeat
     let lastTimeout
+
+
+    function mouseIsLeavingMap(e) {
+      const EDGE_LIMIT_PX = 35
+      const {height, width} = e.target.transform
+      if (e.point.x < EDGE_LIMIT_PX || e.point.x > width - EDGE_LIMIT_PX) return true
+      if (e.point.y < EDGE_LIMIT_PX || e.point.y > height - EDGE_LIMIT_PX) return true
+      return false
+    }
 
     function highlight(e) {
       if(!map._loaded) return
@@ -348,12 +359,18 @@ const MapContainer = props => {
       const geoVal =  selectedGeography.value
 
       const features = map.queryRenderedFeatures(e.point, {layers: [selectedGeography.value]})
-      if(!features.length) return popup.remove()
+      if(!features.length || mouseIsLeavingMap(e)) return popup.remove()
       const feat = features[0].properties['GEOID']
 
-      if(feat === lastFeat) return
-      else lastFeat = feat
-
+      /* 
+       * Commented this out to allow the popup to follow the cursor position.
+       * Having it stationary (at the geography border where the mouse entered)
+       * felt like it was causing usability issues when combined with the zoom-to-geography.
+       * 
+       * Uncomment definition of lastFeat when re-enabling.
+       */
+      // if(feat === lastFeat) return
+      // else lastFeat = feat
 
       const d = tableFilterData ? tableFilterData : data
       const origPer1000 = getOrigPer1000(d, feat, year, selectedGeography, selectedVariable, selectedValue)
@@ -367,12 +384,12 @@ const MapContainer = props => {
       clearTimeout(lastTimeout)
 
       lastTimeout = setTimeout(() => {
-        setOutline(map, selectedGeography, feature, feat)
+        setOutline(map, selectedGeography, feature, feat, currentHighlightColor)
       }, 0)
     }
 
     function highlightSavedFeature() {
-      setOutline(map, selectedGeography, feature)
+      setOutline(map, selectedGeography, feature, null, currentHighlightColor)
     }
 
     function getTableData(properties){
