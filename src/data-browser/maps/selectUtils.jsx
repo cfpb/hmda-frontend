@@ -1,3 +1,4 @@
+import React from 'react';
 import VARIABLES from '../constants/variables.js'
 
 const geographies = [
@@ -17,7 +18,7 @@ const variables = [
   {value: 'constructionMethod', label: 'Construction Method'},
   {value: 'totalUnits', label: 'Total Units'},
   {value: 'loanProduct', label: 'Loan Product'},
-  {value: 'dwellingCategory', label: 'Dwelling Category'}
+  {value: 'dwellingCategory', label: 'Dwelling Category'},
 ]
 
 const valsForVar = {
@@ -72,10 +73,111 @@ function getSelectData(arr, val){
   }
 }
 
+const COMBINED_DELIMITER = ' - '
+const join = (...strings) => strings.join(COMBINED_DELIMITER)
+const split = (string) => string ? string.split(COMBINED_DELIMITER) : []
+const getOptionDataKey = selectedOption => selectedOption && split(selectedOption.value)[0]
+
+/**
+ * Full text search of select options 
+ * @param {{ label, value }} option SelectOption 
+ * @param {String} query The text entered into the search box
+ */
+const searchFilter = (option, query) => {
+  const keys = ['label', 'value']
+  const valueText = keys.map(key => option[key].toLowerCase()).join(' ')
+  const search = query.split(' ').map(s => s.toLowerCase())
+  return search.every(s => valueText.indexOf(s) > -1)
+}
+
+
+/** 
+  * Creates select-options grouped by variable label, 
+  * excluding options for already selected variables, 
+  * presenting the currently selected group first in the list.
+  * @param {Object} exclude Selected option of OTHER filter
+  * @param {Object} highlight Selected option of CURRENT filter
+  * @returns {Array[SelectOption]} List of options
+*/
+const getCombinedOptions = (exclude, highlight) =>
+  Object.keys(VARIABLES)
+    .map((varConfig) => VARIABLES[varConfig])
+    .map(({ maps_id, label, options, ...rest }) => {
+      if (maps_id === getOptionDataKey(exclude)) return
+
+      return {
+        label,
+        options: makeCombinedOptions(options, maps_id, label),
+        maps_id,
+        ...rest,
+      }
+    })
+    .filter(Boolean)
+    .sort((group) => (group.maps_id === getOptionDataKey(highlight) ? -1 : 1))
+
+
+/**
+ * Generate select-options with their variable and values combined
+ * @returns {Array[Object]} ex. [{ value: 'actionTaken - 1', label: 'Action Taken - 1 - Loan Originated' }]
+ */
+const makeCombinedOptions = (options, maps_id, label) =>
+  options.map(({ id, name }) => ({
+    value: join(maps_id, id),
+    label: join(name),
+  }))
+
+
+/**
+ * Derive the selected variable/value options for a given Filter
+ * @param {Object} defaults Values derived from the query string
+ * @param {Number} filterId 1 or 2
+ * @returns {SelectOption|null} SelectOption 
+ */
+const makeCombinedDefaultValue = (defaults, filterId) => {
+  if (!defaults || !filterId) return 
+
+  const _selectedData = (filterId, valueId) => {
+    if (!defaults[filterId] || !defaults[valueId]) return []
+    const variable = getSelectData(variables, defaults[filterId].value)
+    const value = getSelectData(getValuesForVariable(variable), defaults[valueId].value)
+    if(!variable || !value) return []
+    return [variable, value]
+  }
+
+  const [variable, value] =
+    filterId === 1
+      ? _selectedData('variable', 'value')
+      : _selectedData('filter', 'filtervalue')
+
+  if (!variable || !value) return 
+  return makeOption(value.label, join(variable.value, value.value))
+}
+
+
+/* Builds the group header w/ documentation link for Select menus */
+const formatGroupLabel = (data, year) => (
+  <div className='menu-group'>
+    <span className='menu-group-label'>{data.label}</span>
+    <a
+      target='_blank'
+      rel='noopener noreferrer'
+      className='menu-group-badge'
+      title={`Documentation for ${data.label} (${year})`}
+      href={`/documentation/${year}/data-browser-filters/#${data.definition}`}
+    >
+      Documentation
+    </a>
+  </div>
+)
+
 export {
   geographies,
   variables,
   valsForVar,
+  makeCombinedDefaultValue,
   getValuesForVariable,
-  getSelectData
+  getSelectData,
+  getCombinedOptions,
+  formatGroupLabel,
+  searchFilter
 }
