@@ -4,7 +4,9 @@ import DBYearSelector from '../datasets/DBYearSelector'
 import LoadingButton from '../datasets/LoadingButton.jsx'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
 import Alert from '../../common/Alert.jsx'
-import { geographies, variables, valsForVar, getValuesForVariable, getSelectData } from './selectUtils.jsx'
+import ExternalLink from '../../common/ExternalLink.jsx'
+import PopularVariableLink from './PopularVariableLink'
+import { geographies, variables, valsForVar, getValuesForVariable, getSelectData, getCombinedOptions, makeCombinedDefaultValue, formatGroupLabel, searchFilter } from './selectUtils.jsx'
 import { setOutline, getOrigPer1000, makeLegend, makeStops, addLayers, makeMapLabel } from './layerUtils.jsx'
 import { getFeatureName, popup, buildPopupHTML } from './popupUtils.jsx'
 import { fetchFilterData } from './filterUtils.jsx'
@@ -12,7 +14,6 @@ import { runFetch, getCSV } from '../api.js'
 import fips2Shortcode from '../constants/fipsToShortcode.js'
 import mapbox from 'mapbox-gl'
 import './mapbox.css'
-import { PopularVariableLink } from './PopularVariableLink'
 
 mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlvaQw'
 
@@ -42,6 +43,10 @@ function getDefaultsFromSearch(props) {
     else if(key === 'filtervalue') val = getSelectData(getValuesForVariable(defaults.filter), val)
     defaults[key] = val || null
   })
+
+  defaults.combinedFilter1 = makeCombinedDefaultValue(defaults, 1)
+  defaults.combinedFilter2 = makeCombinedDefaultValue(defaults, 2)
+
   return defaults
 }
 
@@ -93,12 +98,17 @@ const MapContainer = props => {
   const [filterData, setFilterData] = useState(null)
   const [tableFilterData, setTableFilterData] = useState(null)
   const [selectedGeography, setGeography] = useState(defaults.geography)
+  
+  const [combinedFilter1, setCombinedFilter1] = useState(defaults.combinedFilter1)
   const [selectedVariable, setVariable] = useState(defaults.variable)
-  const [selectedFilter, setFilter] = useState(defaults.filter)
   const [selectedValue, setValue] = useState(defaults.value)
+  
+  const [combinedFilter2, setCombinedFilter2] = useState(defaults.combinedFilter2)
+  const [selectedFilter, setFilter] = useState(defaults.filter)
   const [selectedFilterValue, setFilterValue] = useState(defaults.filtervalue)
+ 
   const [feature, setFeature] = useState(defaults.feature)
-
+  
   const getBaseData = useCallback((year, geography) => {
     if(!year || !geography) return null
     popup.remove()
@@ -139,30 +149,59 @@ const MapContainer = props => {
     setGeography(selected)
   }
 
-  const onVariableChange = selected => {
-    setValue(null)
-    if(selectedFilter && selectedFilter.value === selected.value) {
-      setFilter(null)
-      setFilterValue(null)
-      setTableFilterData(null)
+  const parseCombinedFilter = (selected) => {
+    if (!selected) return {}
+    const optionValue = selected.value
+    const [variable, value] = optionValue.split(' - ')
+    
+    const variableOpt = getSelectData(variables, variable)
+    const valueOpt = getSelectData(getValuesForVariable(variableOpt), value)
+
+    return { variable: variableOpt, value: valueOpt }
+  }
+
+  const onFilter1Change = (selected) => {
+    if(!selected) {
+      setCombinedFilter1(selected)
+      setCombinedFilter2(selected)
+      setVariable(selected)
+      setValue(selected)
+      setFilter(selected)
+      setFilterValue(selected)
+      return
     }
-    setVariable(selected)
+
+    const parsed = parseCombinedFilter(selected)
+    setCombinedFilter1(selected)
+    setVariable(parsed.variable)
+    setValue(parsed.value)
   }
 
-  const onValueChange = selected => {
-    setFilterData(null)
-    setValue(selected)
+  const onFilter2Change = (selected) => {
+    if (!selected) {
+      setCombinedFilter2(selected)
+      setFilter(selected)
+      setFilterValue(selected)
+      return
+    }
+
+    const parsed = parseCombinedFilter(selected)
+    setCombinedFilter2(selected)
+    setFilter(parsed.variable)
+    setFilterValue(parsed.value)
   }
 
-  const onFilterChange = selected => {
-    setFilterValue(null)
-    setTableFilterData(null)
-    setFilter(selected)
-  }
+  const getSelectedFilterLabels = (filter1, filter2) => {
+    if (!filter1) return [] 
 
-  const onFilterValueChange = selected => {
-    if(selected === null) setTableFilterData(null)
-    setFilterValue(selected)
+    const _buildLabel = (filter) => {
+      const parsed = parseCombinedFilter(filter)
+      const text = parsed.variable ? parsed.variable.label : '[Optional]'
+      const cname = 'selected-label' + (!parsed.variable ? ' none' : '' )
+      return <h4 className={cname}>{text}</h4>
+    }
+
+    return [_buildLabel(filter1), _buildLabel(filter2)]
   }
 
   const makeSearch = () => {
@@ -367,7 +406,7 @@ const MapContainer = props => {
        * Having it stationary (at the geography border where the mouse entered)
        * felt like it was causing usability issues when combined with the zoom-to-geography.
        * 
-       * Uncomment definition of lastFeat when re-enabling.
+       * Uncomment declaration of lastFeat when re-enabling.
        */
       // if(feat === lastFeat) return
       // else lastFeat = feat
@@ -454,6 +493,14 @@ const MapContainer = props => {
 
   const resolved = resolveData()
 
+  const geoLevelLink = <ExternalLink 
+    label='geographic level' 
+    url='https://www.census.gov/programs-surveys/economic-census/guidance-geographies/levels.html' 
+  />
+
+  const [filter1Label, filter2Label] = getSelectedFilterLabels(combinedFilter1, combinedFilter2)
+
+
   return (
     <div className="SelectWrapper">
       <DBYearSelector
@@ -461,79 +508,61 @@ const MapContainer = props => {
         onChange={onYearChange}
         years={props.config.dataBrowserYears}
       />
-      <h3>Step 1: Select a Geography</h3>
-      <p>Start by selecting a geography using the dropdown menu below</p>
+      <h3>Step 1: Select the Geographic Level</h3>
+      <p>Start by setting the map's {geoLevelLink} using the dropdown menu below.</p>
       <Select
         onChange={onGeographyChange}
         styles={menuStyle}
         placeholder="Enter a geography"
         searchable={true}
-        autoFocus
         openOnFocus
         simpleValue
         value={selectedGeography}
         options={geographies}
       />
-      <h3>Step 2: Select a Variable</h3>
+
+      <h3>Step 2: Apply up to two filters</h3>
       <p>
-        Narrow down your selection by filtering on a <PopularVariableLink year={year}/>
+        Narrow down your selection by filtering on{' '}
+        <PopularVariableLink year={year} />.
       </p>
-      <Select
-        onChange={onVariableChange}
-        styles={menuStyle}
-        placeholder="Enter a variable"
-        searchable={true}
-        openOnFocus
-        simpleValue
-        value={selectedVariable}
-        options={variables}
-      />
-      <h3>Step 3: Select a value{selectedVariable ? ` for ${selectedVariable.label}`: ''}</h3>
-      <p>
-        Then choose the value for your selected variable to see how it varies nationally in the map below.
-      </p>
-      <Select
-        onChange={onValueChange}
-        styles={menuStyle}
-        placeholder={selectedVariable ? `Enter a value for ${selectedVariable.label}` : 'Select a variable to choose its value'}
-        searchable={true}
-        openOnFocus
-        simpleValue
-        value={selectedValue}
-        options={getValuesForVariable(selectedVariable)}
-      />
-      <h3>Step 4: Filter your results by another variable <i>(optional)</i></h3>
-      <p>
-        You can further filter the data by adding another <PopularVariableLink year={year}/>, creating a more targeted map
-      </p>
-      <Select
-        onChange={onFilterChange}
-        styles={menuStyle}
-        placeholder={selectedVariable && selectedValue ? 'Optionally enter a filter variable' : 'Select your first variable above'}
-        searchable={true}
-        isClearable={true}
-        openOnFocus
-        simpleValue
-        value={selectedFilter}
-        options={variables.filter(v => selectedVariable && v.value !== selectedVariable.value)}
-      />
-      {selectedFilter ? (
-        <>
-          <h3>Step 5: Select a value for your {selectedFilter.label} filter</h3>
-          <p>Then choose the value for your selected filter.</p>
+      <div className='filter-selections'>
+        <div className='filter'>
+          {filter1Label}
           <Select
-            onChange={onFilterValueChange}
-            styles={menuStyle}
-            placeholder={`Enter a value for ${selectedFilter.label}`}
-            searchable={true}
-            isClearable={true}
+            autoFocus
+            isClearable
             openOnFocus
+            searchable
             simpleValue
-            value={selectedFilterValue}
-            options={getValuesForVariable(selectedFilter)}
+            styles={menuStyle}
+            value={combinedFilter1}
+            onChange={onFilter1Change}
+            filterOption={searchFilter}
+            options={getCombinedOptions(combinedFilter2, combinedFilter1)}
+            formatGroupLabel={data => formatGroupLabel(data, year)}
+            placeholder='Select a filter (type to search)'
           />
-        </>
-      ) : null}
+        </div>
+        <div className='filter'>
+          {filter2Label}
+          <Select
+            autoFocus
+            isClearable
+            openOnFocus
+            searchable
+            simpleValue
+            isDisabled={!combinedFilter1}
+            styles={menuStyle}
+            value={combinedFilter2}
+            onChange={onFilter2Change}
+            filterOption={searchFilter}
+            options={getCombinedOptions(combinedFilter1, combinedFilter2)}
+            formatGroupLabel={data => formatGroupLabel(data, year)}
+            placeholder={'Add a second filter' + (combinedFilter1 ? ' (type to search)' : '')}
+          />
+        </div>
+      </div>
       <h3>
         {makeMapLabel(
           selectedGeography,
