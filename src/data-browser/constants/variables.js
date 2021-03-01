@@ -104,6 +104,15 @@ const loanProductList = [
   'FSA/RHS:Subordinate Lien'
 ]
 
+const mapsDefinition = {
+  'ageapplicant': 'age',
+  'derived_dwelling_category': 'dwelling_category',
+  'derived_ethnicity': 'ethnicity',
+  'derived_loan_product_type': 'loan_product',
+  'derived_race': 'race',
+  'derived_sex': 'sex',
+}
+
 /**
  * Pre-2018 Variables
  */
@@ -170,12 +179,26 @@ const loan_products = buildEncoded('Loan Product', 'derived_loan_product_type', 
 ageapplicant.options.unshift({id: '8888', name: '8888 - N/A'})
 ageapplicant.mapping['8888'] = '8888 - N/A'
 
+
+function makeMapsId(definition) {
+  const def = mapsDefinition[definition] || definition
+  if (!def) return
+  return def
+    .split('_')
+    .map((x, idx) => (idx != 0 ? `${x[0].toUpperCase()}${x.substr(1)}` : x)) // Camelcase
+    .join('')
+}
+
+
 function makeObj(label, definition) {
+  const maps_id = makeMapsId(definition)
+
   return {
-    label,
-    definition,
-    options: [],
-    mapping: {}
+    maps_id,     // ex. ethnicity | The key used to identify this object in Maps & Graphs
+    label,       // ex. Ethnicity
+    definition,  // ex. derived_ethnicity | Census field name
+    options: [], // [{ id: (id || encodedName), name: ("id - name" || name) }] ex. [{ id: 1, name: "1 - Loan Originated"}]
+    mapping: {}, // Used for Data Browser -2017/2018+ selection mapping,
   }
 }
 
