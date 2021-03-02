@@ -1,7 +1,7 @@
 {
   "name": "prod-beta",
   "announcement": {
-    "message": "The filing period is open. Submissions of 2020 HMDA data will be considered timely if received on or before Monday, March 1st, 2021.",
+    "message": "The Beta Platform is available for testing of HMDA data collected in 2018 through 2021.",
     "type": "info",
     "heading": "Announcement"
   },
