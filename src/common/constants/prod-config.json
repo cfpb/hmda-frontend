@@ -1,7 +1,7 @@
 {
   "name": "prod",
   "announcement": {
-    "message": "The filing period is open. Submissions of 2020 HMDA data will be considered timely if received on or before Monday, March 1st, 2021.",
+    "message": "The 2020 Annual filing period is closed. The HMDA Platform remains available outside of the filing period for late submissions and resubmissions of 2018-2020 HMDA data.",
     "type": "info",
     "heading": "Announcement"
   },
