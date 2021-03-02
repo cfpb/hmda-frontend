@@ -60,8 +60,15 @@ const zoomMapping = {
   county: { default: 7 },
 }
 
-const addZoom = (geo, zoomLevel, list) => {
-  list.forEach((item) => (zoomMapping[geo][item] = zoomLevel))
+/**
+ * @param {String} geo Geographic Level
+ * @param {Number} amount Amount to shift the default zoom level for this Geographic Level
+ * @param {Array} list Feature IDs for which this adjustment applies
+ * @returns 
+ */
+const adjustZoom = (geo, amount, list) => {
+  const dflt = zoomMapping[geo].default
+  list.forEach((item) => (zoomMapping[geo][item] = dflt + amount))
 }
 
 const getZoom = (geo, featureId) => {
@@ -70,13 +77,14 @@ const getZoom = (geo, featureId) => {
 }
 
 // Zoom more on small states, less on large states (default zoom: 5)
-addZoom('state', 3, ['02'])
-addZoom('state', 6, ['09', '10', '15', '24', '25', '33', '34', '44', '45', '50', '54'])
-addZoom('state', 7, ['44'])
+adjustZoom('state', -2, ['02'])
+adjustZoom('state', -0.5, ['16', '48'])
+adjustZoom('state', 0.5, [ '15', '23', '24', '25', '33', '42', '44', '45', '50', '54'])
+adjustZoom('state', 1.5, ['09', '10', '33', '34', '44'])
 
 // Zoom less on counties in states with large counties (default zoom: 7)
-addZoom('county', 4, ['02'])
-addZoom('county', 6, ['04', '32'])
+adjustZoom('county', -2, ['02'])
+adjustZoom('county', -0.5, ['04', '32'])
 
 let currentHighlightColor = null
 
@@ -414,7 +422,7 @@ const MapContainer = props => {
       const d = tableFilterData ? tableFilterData : data
       const origPer1000 = getOrigPer1000(d, feat, year, selectedGeography, selectedVariable, selectedValue)
 
-      map.getCanvas().style.cursor = 'pointer'
+      map.getCanvas().style.cursor = selectedVariable ? 'pointer' : 'initial'
 
       popup.setLngLat(map.unproject(e.point))
         .setHTML(buildPopupHTML(geoVal, feat, origPer1000))
@@ -460,6 +468,8 @@ const MapContainer = props => {
       zoomToGeography(properties)
     }
 
+    const clearPopup = () => popup.remove()
+
     function attachHandlers () {
       if(map._loaded) highlightSavedFeature()
       else map.on('load', highlightSavedFeature)
@@ -467,14 +477,16 @@ const MapContainer = props => {
       map.on('mouseleave', 'county', highlightSavedFeature)
       map.on('mouseleave', 'state', highlightSavedFeature)
       map.on('click', handleMapClick)
+      map.on('wheel', clearPopup) // Popup tends to capture mouse focus, causing page to scroll instead of map to zoom
     }
-
+    
     function detachHandlers() {
       map.off('mousemove', highlight)
       map.off('mouseleave', 'county', highlightSavedFeature)
       map.off('mouseleave', 'state', highlightSavedFeature)
       map.off('load', highlightSavedFeature)
       map.off('click', handleMapClick)
+      map.off('wheel', clearPopup)
     }
 
     attachHandlers()
