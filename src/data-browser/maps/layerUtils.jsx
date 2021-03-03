@@ -13,7 +13,6 @@ const mhBias = baseBias*2
 const highBias = baseBias*4
 const xBias = baseBias*8
 
-export let biasHighlightColor = '#000'
 const GEO_FILL_OPACITY = .75
 
 const colors = {

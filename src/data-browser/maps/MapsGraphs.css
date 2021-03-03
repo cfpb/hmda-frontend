@@ -35,7 +35,9 @@
   padding: 0.5em 1em;
   z-index: 2;
   width: 140px;
-  background-color: rgba(255, 255, 255, 0.7)
+  background-color: rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+  user-select: none;
 }
 
 .legend > h4 {
