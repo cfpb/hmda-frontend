@@ -4,7 +4,7 @@ import fips2Shortcode from '../constants/fipsToShortcode.js'
 import COUNTY_POP from '../constants/countyPop.js'
 import STATE_POP from '../constants/statePop.js'
 
-const LINE_WIDTH = 3
+const LINE_WIDTH = 5
 const LINE_GAP_WIDTH = 0
 
 const baseBias = 250/6
@@ -14,21 +14,57 @@ const highBias = baseBias*4
 const xBias = baseBias*8
 
 export let biasHighlightColor = '#000'
+const GEO_FILL_OPACITY = .75
 
 const colors = {
-  [lowBias]: ['#eff3ff','#c6dbef','#9ecae1','#6baed6','#3182bd','#08519c'],       // Blues
-  [baseBias]: ['#edffbd', '#97e196', '#6cc08b', '#4c9b82', '#196A6F', '#074050'], // Greens
-  [mhBias]: ['#f2f0f7', '#dadaeb', '#bcbddc', '#9e9ac8', '#756bb1', '#54278f'],   // Purples
-  [highBias]: ['#fee5d9', '#fcbba1', '#fc9272', '#fb6a4a', '#de2d26', '#a50f15'], // Reds
-  [xBias]: ['#feedde', '#fdd0a2', '#fdae6b', '#fd8d3c', '#e6550d', '#a63603'],    // Oranges
+  [lowBias]: [ // Blues
+    `rgba(239, 243, 255, ${GEO_FILL_OPACITY})`,
+    `rgba(198, 219, 239, ${GEO_FILL_OPACITY})`,
+    `rgba(158, 202, 225, ${GEO_FILL_OPACITY})`,
+    `rgba(107, 174, 214, ${GEO_FILL_OPACITY})`,
+    `rgba(49, 130, 189, ${GEO_FILL_OPACITY})`,
+    `rgba(8, 81, 156, ${GEO_FILL_OPACITY})`,
+  ],
+  [baseBias]: [ // Greens
+    `rgba(237, 255, 189, ${GEO_FILL_OPACITY})`,
+    `rgba(151, 225, 150, ${GEO_FILL_OPACITY})`,
+    `rgba(108, 192, 139, ${GEO_FILL_OPACITY})`,
+    `rgba(76, 155, 130, ${GEO_FILL_OPACITY})`,
+    `rgba(25, 106, 111, ${GEO_FILL_OPACITY})`,
+    `rgba(7, 64, 80, ${GEO_FILL_OPACITY})`,
+  ],
+  [mhBias]: [ // Purples
+    `rgba(242, 240, 247, ${GEO_FILL_OPACITY})`,
+    `rgba(218, 218, 235, ${GEO_FILL_OPACITY})`,
+    `rgba(188, 189, 220, ${GEO_FILL_OPACITY})`,
+    `rgba(158, 154, 200, ${GEO_FILL_OPACITY})`,
+    `rgba(117, 107, 177, ${GEO_FILL_OPACITY})`,
+    `rgba(84, 39, 143, ${GEO_FILL_OPACITY})`,
+  ],
+  [highBias]: [ // Reds
+    `rgba(254, 229, 217, ${GEO_FILL_OPACITY})`,
+    `rgba(252, 187, 161, ${GEO_FILL_OPACITY})`,
+    `rgba(252, 146, 114, ${GEO_FILL_OPACITY})`,
+    `rgba(251, 106, 74, ${GEO_FILL_OPACITY})`,
+    `rgba(222, 45, 38, ${GEO_FILL_OPACITY})`,
+    `rgba(165, 15, 21, ${GEO_FILL_OPACITY})`,
+  ],
+  [xBias]: [ // Oranges
+    `rgba(254, 237, 222, ${GEO_FILL_OPACITY})`,
+    `rgba(253, 208, 162, ${GEO_FILL_OPACITY})`,
+    `rgba(253, 174, 107, ${GEO_FILL_OPACITY})`,
+    `rgba(253, 141, 60, ${GEO_FILL_OPACITY})`,
+    `rgba(230, 85, 13, ${GEO_FILL_OPACITY})`,
+    `rgba(166, 54, 3, ${GEO_FILL_OPACITY})`,
+  ],
 }
 
 const highlightColors = {
-  [lowBias]:  '#ef561c',  // Blues highlighted by orange
-  [baseBias]: '#f34545',     // Greens highlighted by pinkish red
-  [mhBias]:   '#ffc800',  // Purples highlighted by gold
-  [highBias]: '#00806e', // Reds highlighted by green
-  [xBias]:    '#0066ff',  // Oranges highlighted by blue
+  [lowBias]:  '#ffa600',  // Blues highlighted by orange    http://localhost:3000/data-browser/maps-graphs/2019?geography=county&variable=actionTaken&value=1&filter=loanType&filtervalue=1&feature=01009
+  [baseBias]: '#ffb657',  // Greens highlighted by peach    http://localhost:3000/data-browser/maps-graphs/2019?geography=county&variable=actionTaken&value=1&filter=loanPurpose&filtervalue=31&feature=49017
+  [mhBias]:   '#ffc800',  // Purples highlighted by gold    http://localhost:3000/data-browser/maps-graphs/2019?geography=county&variable=actionTaken&value=1&filter=loanType&filtervalue=2&feature=01009
+  [highBias]: '#57b9ff',  // Reds highlighted by blue      http://localhost:3000/data-browser/maps-graphs/2019?geography=county&variable=actionTaken&value=1&filter=loanPurpose&filtervalue=2&feature=47187
+  [xBias]:    '#57b9ff',  // Oranges highlighted by blue    http://localhost:3000/data-browser/maps-graphs/2019?geography=county&variable=actionTaken&value=1&filter=loanPurpose&filtervalue=5&feature=49029
 
 }
 
@@ -187,15 +223,17 @@ function generateColor(data, variable, value, bias, total) {
 }
 
 function addLayers(map, geography, stops) {
+  const isCounty = geography.value === 'county'
   removeLayers(map)
-  if(geography.value === 'county'){
+
+  if(isCounty){
     map.addLayer({
       'id': 'county',
       'type': 'fill',
       'source': 'county',
       'source-layer': '2015-county-bc0xsx',
       'paint': {
-        'fill-outline-color': 'rgba(0,0,0,0.1)',
+        'fill-outline-color': 'rgba(0,0,0,0.3)',
         'fill-color': {
           property: 'GEOID',
           type: 'categorical',
@@ -215,7 +253,7 @@ function addLayers(map, geography, stops) {
         'line-width': 0
       }
     })
-  }else {
+  } else {
     map.addLayer({
       'id': 'state',
       'type': 'fill',
@@ -245,6 +283,26 @@ function addLayers(map, geography, stops) {
     }
   })
 
+  formatAndOrderLabels(map)
+}
+
+
+/**
+ * Keep label layers above choropleth to help users maintain their bearings
+ * @param {Object} map Mapbox map object
+ * @param {Object} options Default overrides
+ */
+function formatAndOrderLabels(map, options = {}) {
+  const label_layers = ['settlement-label', 'state-label']
+  const { textColor, textHaloColor, textHaloWidth } = options
+
+  label_layers.forEach((layer) => {
+    if (!map || !map.getLayer(layer)) return
+    map.setPaintProperty(layer, 'text-color', textColor || '#555')
+    map.setPaintProperty(layer, 'text-halo-color', textHaloColor || '#FFF')
+    map.setPaintProperty(layer, 'text-halo-width', textHaloWidth || 0.65)
+    map.moveLayer(layer) // Lift layer to top
+  })
 }
 
 function removeLayers(map){
@@ -300,5 +358,5 @@ export {
   addLayers,
   setOutline,
   getOrigPer1000,
-  makeMapLabel
+  makeMapLabel,
 }
