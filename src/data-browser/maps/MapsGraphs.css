@@ -3,6 +3,12 @@
   margin-top: 0.5em;
 }
 
+.map-placeholder {
+  height: 90vh;
+  display: none;
+  color: white;
+}
+
 .mapContainer.full-screen {
   position: absolute;
   width: 100vw;
@@ -33,7 +39,7 @@
   bottom: 20px;
   right: 0;
   padding: 0.5em 1em;
-  z-index: 2;
+  z-index: 1; /* Allow maps-control-box to overlay */
   width: 140px;
   background-color: rgba(255, 255, 255, 0.7);
   pointer-events: none;
@@ -120,4 +126,66 @@
 }
 
 
+.maps-control-box {
+  user-select: none;
+  position: absolute;
+  left: 65px;
+  top: 6px;
+  display: flex;
+  justify-content: space-around;
+  padding: 1em;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 1);
+  border: 1px solid rgb(144, 177, 203);
+  border-radius: 10px;
+  width: 90%;
+  box-shadow: 1px 1px 5px black;
+}
+
+.maps-control-box > div:not(:first-child){
+  margin-left: 1em;
+}
+
+.maps-control-box .text-selectors {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.maps-control-box .TextSelector:not(:first-child),
+.maps-control-box .filter:not(:first-child) {
+  margin-top: .25em;
+}
+
+.maps-control-box .filter-selectors {
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+}
+
+.maps-control-box .filter-selectors .filter {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.maps-control-box .filter-selectors .filter > div { /* react-select container */
+  width: 100%;
+  margin-left: .5em;
+}
+
+.maps-control-box .filter-selectors .filter-clause {
+  min-width: 75px;
+  text-align: right;
+  margin-left: .5em;
+  margin-right: .5em;
+  font-weight: bold;
+  color: #555;
+}
+
+.maps-control-box .filter-selectors .filter-clause {
+  color: #777;
+}
 

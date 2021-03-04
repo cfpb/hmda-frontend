@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useCallback, useRef }  from 'react'
 import Select from '../Select.jsx'
-import DBYearSelector from '../datasets/DBYearSelector'
 import LoadingButton from '../datasets/LoadingButton.jsx'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
 import Alert from '../../common/Alert.jsx'
 import ExternalLink from '../../common/ExternalLink.jsx'
-import PopularVariableLink from './PopularVariableLink'
+import TextSelector from './TextSelector'
 import { geographies, variables, valsForVar, getValuesForVariable, getSelectData, getCombinedOptions, makeCombinedDefaultValue, formatGroupLabel, searchFilter } from './selectUtils.jsx'
 import { setOutline, getOrigPer1000, makeLegend, makeStops, addLayers, makeMapLabel } from './layerUtils.jsx'
 import { getFeatureName, popup, buildPopupHTML } from './popupUtils.jsx'
@@ -500,6 +499,10 @@ const MapContainer = props => {
     menu: provided => ({
       ...provided,
       zIndex: 3
+    }),
+    control: p => ({ 
+      ...p, 
+      fontSize: '1.25em'
     })
   }
 
@@ -510,71 +513,13 @@ const MapContainer = props => {
     url='https://www.census.gov/programs-surveys/economic-census/guidance-geographies/levels.html' 
   />
 
-  const [filter1Label, filter2Label] = getSelectedFilterLabels(combinedFilter1, combinedFilter2)
+  // TODO: Might need these?
+  // const [filter1Label, filter2Label] = getSelectedFilterLabels(combinedFilter1, combinedFilter2)
+  // console.log(filter1Label, filter2Label)
 
 
   return (
     <div className="SelectWrapper">
-      <DBYearSelector
-        year={year}
-        onChange={onYearChange}
-        years={props.config.dataBrowserYears}
-      />
-      <h3>Step 1: Select the Geographic Level</h3>
-      <p>Start by setting the map's {geoLevelLink} using the dropdown menu below.</p>
-      <Select
-        onChange={onGeographyChange}
-        styles={menuStyle}
-        placeholder="Enter a geography"
-        searchable={true}
-        openOnFocus
-        simpleValue
-        value={selectedGeography}
-        options={geographies}
-      />
-
-      <h3>Step 2: Apply up to two filters</h3>
-      <p>
-        Narrow down your selection by filtering on{' '}
-        <PopularVariableLink year={year} />.
-      </p>
-      <div className='filter-selections'>
-        <div className='filter'>
-          {filter1Label}
-          <Select
-            autoFocus
-            isClearable
-            openOnFocus
-            searchable
-            simpleValue
-            styles={menuStyle}
-            value={combinedFilter1}
-            onChange={onFilter1Change}
-            filterOption={searchFilter}
-            options={getCombinedOptions(combinedFilter2, combinedFilter1)}
-            formatGroupLabel={data => formatGroupLabel(data, year)}
-            placeholder='Select a filter (type to search)'
-          />
-        </div>
-        <div className='filter'>
-          {filter2Label}
-          <Select
-            autoFocus
-            isClearable
-            openOnFocus
-            searchable
-            simpleValue
-            isDisabled={!combinedFilter1}
-            styles={menuStyle}
-            value={combinedFilter2}
-            onChange={onFilter2Change}
-            filterOption={searchFilter}
-            options={getCombinedOptions(combinedFilter1, combinedFilter2)}
-            formatGroupLabel={data => formatGroupLabel(data, year)}
-            placeholder={'Add a second filter' + (combinedFilter1 ? ' (type to search)' : '')}
-          />
-        </div>
-      </div>
       <h3>
         {makeMapLabel(
           selectedGeography,
@@ -584,7 +529,64 @@ const MapContainer = props => {
           selectedFilterValue
         )}
       </h3>
+      <div className="map-placeholder">-</div>
       <div className='mapContainer' ref={mapContainer}>
+        {/* TODO: Refactor each selector section into it's own component */}
+        {/* <MapsControlBox {...{ selectedGeography, geographies, onGeographyChange, year, menuStyle, combinedFilter1, combinedFilter2, onFilter1Change, onFilter2Change, years: props.config.dataBrowserYears, ...........}} /> */}
+        <div className="maps-control-box">
+          <div className='text-selectors'>
+            <TextSelector
+              selected={selectedGeography}
+              options={geographies.map(g => g.label)}
+              onChange={g => onGeographyChange({value: g.toLowerCase(), label: g})}
+              label='Map Level'
+            />
+            <TextSelector
+              selected={year}
+              options={props.config.dataBrowserYears} 
+              onChange={year => onYearChange({year})}
+              label='Year'
+            />
+
+          </div>
+          <div className='filter-selectors'>
+            <div className='filter'>
+              <span className='filter-clause'>WHERE</span>
+              <Select
+                autoFocus
+                isClearable
+                openOnFocus
+                searchable
+                simpleValue
+                styles={menuStyle}
+                value={combinedFilter1}
+                onChange={onFilter1Change}
+                filterOption={searchFilter}
+                options={getCombinedOptions(combinedFilter2, combinedFilter1)}
+                formatGroupLabel={data => formatGroupLabel(data, year)}
+                placeholder='Select a filter (type to search)'
+              />
+            </div>
+            <div className='filter'>
+              <span className={'filter-clause' + (combinedFilter1 ? ' disabled' : '')}>{combinedFilter1 ? 'AND' : '[OPTIONAL]'}</span>
+              <Select
+                autoFocus
+                isClearable
+                openOnFocus
+                searchable
+                simpleValue
+                isDisabled={!combinedFilter1}
+                styles={menuStyle}
+                value={combinedFilter2}
+                onChange={onFilter2Change}
+                filterOption={searchFilter}
+                options={getCombinedOptions(combinedFilter1, combinedFilter2)}
+                formatGroupLabel={data => formatGroupLabel(data, year)}
+                placeholder={'Add a second filter' + (combinedFilter1 ? ' (type to search)' : '')}
+              />
+            </div>
+          </div>          
+        </div>
         {map === false ? (
           <Alert type='error'>
             <p>

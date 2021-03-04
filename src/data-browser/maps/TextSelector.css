@@ -1,0 +1,55 @@
+.TextSelector {
+  display: flex;
+  border: 1px solid #aaa;
+  border-radius: 10px;
+  padding: 0em 1em;
+  align-items: center;
+  line-height: 1.25em;
+  font-size: 1.25em;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.TextSelector .label {
+  color: #555;
+  text-transform: uppercase;
+  margin-right: 0.5em;
+  width: 6em;
+}
+
+.TextSelector .label,
+.TextSelector .option {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.TextSelector .option {
+  padding: 0.25em 0.5em;
+  cursor: pointer;
+  text-decoration: none;
+  color: #555;
+  min-width: 70px;
+  max-width: 90px;
+  border: 2px solid white;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.TextSelector .option.active {
+  padding: 0.2em 0.6em;
+  cursor: pointer;
+  color: white;
+  background: #55739f;
+  border-radius: 10px;
+}
+
+.TextSelector .option:not(.active):hover {
+  text-decoration: underline;
+  text-decoration-color: #55739f;
+  border-color: #55739f;
+}
+
+.TextSelector .options {
+  padding: 0.25em 0;
+  display: flex;
+}
