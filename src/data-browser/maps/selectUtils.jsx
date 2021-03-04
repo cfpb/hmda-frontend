@@ -123,7 +123,7 @@ const getCombinedOptions = (exclude, highlight) =>
 const makeCombinedOptions = (options, maps_id, label) =>
   options.map(({ id, name }) => ({
     value: join(maps_id, id),
-    label: join(name),
+    label: join(label, name),
   }))
 
 
@@ -150,7 +150,7 @@ const makeCombinedDefaultValue = (defaults, filterId) => {
       : _selectedData('filter', 'filtervalue')
 
   if (!variable || !value) return 
-  return makeOption(value.label, join(variable.value, value.value))
+  return makeOption(join(variable.label, value.label), join(variable.value, value.value))
 }
 
 
@@ -179,5 +179,6 @@ export {
   getSelectData,
   getCombinedOptions,
   formatGroupLabel,
-  searchFilter
+  searchFilter,
+  makeOption
 }

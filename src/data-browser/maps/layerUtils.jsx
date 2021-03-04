@@ -344,7 +344,7 @@ function makeMapLabel(geography, variable, value, filter, filtervalue) {
     label = `${variable.label}: "${value.label}"`
     if(filter && filtervalue) label += ` and ${filter.label}: "${filtervalue.label}"`
     label += ` for US ${geography.value === 'state' ? 'States' : 'Counties'}`
-  }else label = 'Select a geography, variable, and value above'
+  } else label = 'Select a Filter below'
   return label
 }
 
