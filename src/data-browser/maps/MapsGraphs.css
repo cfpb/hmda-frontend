@@ -1,6 +1,7 @@
 .mapContainer {
   height: 600px;
   margin-top: 0.5em;
+  box-shadow: 1px 1px 5px black;
 }
 
 .map-placeholder {
@@ -126,13 +127,11 @@
 }
 
 
-.maps-control-box {
-  user-select: none;
+.maps-control-wrapper {
   position: absolute;
   left: 65px;
   top: 6px;
-  display: flex;
-  justify-content: space-around;
+  user-select: none;
   padding: 1em;
   z-index: 2;
   background-color: rgba(255, 255, 255, 1);
@@ -140,6 +139,46 @@
   border-radius: 10px;
   width: 90%;
   box-shadow: 1px 1px 5px black;
+}
+
+.maps-control-wrapper.title-only, 
+.maps-control-wrapper.title-only .maps-title {
+  margin: .5em auto;
+}
+
+.maps-control-wrapper .maps-title {
+  margin: .5em auto 1em;
+  font-size: 1.5em;
+  text-align: center;
+  position: relative;
+  max-width: 90%;
+
+}
+
+.maps-control-wrapper .maps-title .show-control-indicator {
+  color: black;
+  position: absolute;
+  right: -35px;
+  top: 0;
+}
+
+
+.maps-control-wrapper .maps-title:hover,
+.maps-control-wrapper .maps-title:hover .show-control-indicator {
+  cursor: pointer;
+  color:rgba(11,62,104,0.7);
+}
+
+.maps-control-wrapper .maps-title .inactive {
+  color: #777;
+}
+
+.maps-control-box {
+  display: flex;
+  justify-content: space-around;
+  padding: 1em;
+  border: 1px solid rgb(144, 177, 203);
+  border-radius: 10px;
 }
 
 .maps-control-box > div:not(:first-child){
@@ -176,16 +215,16 @@
   margin-left: .5em;
 }
 
-.maps-control-box .filter-selectors .filter-clause {
+.maps-control-wrapper .filter-clause {
+  color: #777;
+  font-weight: bold;
+}
+
+.maps-control-wrapper .filter-selectors .filter-clause {
   min-width: 75px;
   text-align: right;
   margin-left: .5em;
   margin-right: .5em;
-  font-weight: bold;
-  color: #555;
-}
-
-.maps-control-box .filter-selectors .filter-clause {
-  color: #777;
+  
 }
 

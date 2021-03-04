@@ -115,6 +115,8 @@ const MapContainer = props => {
   const [selectedFilterValue, setFilterValue] = useState(defaults.filtervalue)
  
   const [feature, setFeature] = useState(defaults.feature)
+
+  const [showControls, setShowControls] = useState(true)
   
   const getBaseData = useCallback((year, geography) => {
     if(!year || !geography) return null
@@ -196,19 +198,6 @@ const MapContainer = props => {
     setCombinedFilter2(selected)
     setFilter(parsed.variable)
     setFilterValue(parsed.value)
-  }
-
-  const getSelectedFilterLabels = (filter1, filter2) => {
-    if (!filter1) return [] 
-
-    const _buildLabel = (filter) => {
-      const parsed = parseCombinedFilter(filter)
-      const text = parsed.variable ? parsed.variable.label : '[Optional]'
-      const cname = 'selected-label' + (!parsed.variable ? ' none' : '' )
-      return <h4 className={cname}>{text}</h4>
-    }
-
-    return [_buildLabel(filter1), _buildLabel(filter2)]
   }
 
   const makeSearch = () => {
@@ -513,80 +502,88 @@ const MapContainer = props => {
     url='https://www.census.gov/programs-surveys/economic-census/guidance-geographies/levels.html' 
   />
 
-  // TODO: Might need these?
-  // const [filter1Label, filter2Label] = getSelectedFilterLabels(combinedFilter1, combinedFilter2)
-  // console.log(filter1Label, filter2Label)
-
-
   return (
-    <div className="SelectWrapper">
-      <h3>
-        {makeMapLabel(
-          selectedGeography,
-          selectedVariable,
-          selectedValue,
-          selectedFilter,
-          selectedFilterValue
-        )}
-      </h3>
-      <div className="map-placeholder">-</div>
+    <div className='SelectWrapper'>
+      <div className='map-placeholder'>-</div>
       <div className='mapContainer' ref={mapContainer}>
         {/* TODO: Refactor each selector section into it's own component */}
         {/* <MapsControlBox {...{ selectedGeography, geographies, onGeographyChange, year, menuStyle, combinedFilter1, combinedFilter2, onFilter1Change, onFilter2Change, years: props.config.dataBrowserYears, ...........}} /> */}
-        <div className="maps-control-box">
-          <div className='text-selectors'>
-            <TextSelector
-              selected={selectedGeography}
-              options={geographies.map(g => g.label)}
-              onChange={g => onGeographyChange({value: g.toLowerCase(), label: g})}
-              label='Map Level'
-            />
-            <TextSelector
-              selected={year}
-              options={props.config.dataBrowserYears} 
-              onChange={year => onYearChange({year})}
-              label='Year'
-            />
-
-          </div>
-          <div className='filter-selectors'>
-            <div className='filter'>
-              <span className='filter-clause'>WHERE</span>
-              <Select
-                autoFocus
-                isClearable
-                openOnFocus
-                searchable
-                simpleValue
-                styles={menuStyle}
-                value={combinedFilter1}
-                onChange={onFilter1Change}
-                filterOption={searchFilter}
-                options={getCombinedOptions(combinedFilter2, combinedFilter1)}
-                formatGroupLabel={data => formatGroupLabel(data, year)}
-                placeholder='Select a filter (type to search)'
+        <div className={'maps-control-wrapper' + (!showControls ? ' title-only' : '')}>
+          <h3 className='maps-title' onClick={() => setShowControls(!showControls)}>
+            {makeMapLabel(
+              selectedGeography,
+              selectedVariable,
+              selectedValue,
+              selectedFilter,
+              selectedFilterValue,
+            )}
+            <span className='show-control-indicator'>&#8645;</span>
+          </h3>
+          {showControls && <div className='maps-control-box'>
+            <div className='text-selectors'>
+              <TextSelector
+                selected={selectedGeography}
+                options={geographies.map((g) => g.label)}
+                onChange={(g) =>
+                  onGeographyChange({ value: g.toLowerCase(), label: g })
+                }
+                label='Map Level'
+              />
+              <TextSelector
+                selected={year}
+                options={props.config.dataBrowserYears}
+                onChange={(year) => onYearChange({ year })}
+                label='Year'
               />
             </div>
-            <div className='filter'>
-              <span className={'filter-clause' + (combinedFilter1 ? ' disabled' : '')}>{combinedFilter1 ? 'AND' : '[OPTIONAL]'}</span>
-              <Select
-                autoFocus
-                isClearable
-                openOnFocus
-                searchable
-                simpleValue
-                isDisabled={!combinedFilter1}
-                styles={menuStyle}
-                value={combinedFilter2}
-                onChange={onFilter2Change}
-                filterOption={searchFilter}
-                options={getCombinedOptions(combinedFilter1, combinedFilter2)}
-                formatGroupLabel={data => formatGroupLabel(data, year)}
-                placeholder={'Add a second filter' + (combinedFilter1 ? ' (type to search)' : '')}
-              />
-            </div>
-          </div>          
-        </div>
+            <div className='filter-selectors'>
+              <div className='filter'>
+                <span className='filter-clause'>WHERE</span>
+                <Select
+                  autoFocus
+                  isClearable
+                  openOnFocus
+                  searchable
+                  simpleValue
+                  styles={menuStyle}
+                  value={combinedFilter1}
+                  onChange={onFilter1Change}
+                  filterOption={searchFilter}
+                  options={getCombinedOptions(combinedFilter2, combinedFilter1)}
+                  formatGroupLabel={(data) => formatGroupLabel(data, year)}
+                  placeholder='Select a filter (type to search)'
+                />
+              </div>
+              <div className='filter'>
+                <span
+                  className={
+                    'filter-clause' + (combinedFilter1 ? ' disabled' : '')
+                  }
+                >
+                  {combinedFilter1 ? 'AND' : '[OPTIONAL]'}
+                </span>
+                <Select
+                  autoFocus
+                  isClearable
+                  openOnFocus
+                  searchable
+                  simpleValue
+                  isDisabled={!combinedFilter1}
+                  styles={menuStyle}
+                  value={combinedFilter2}
+                  onChange={onFilter2Change}
+                  filterOption={searchFilter}
+                  options={getCombinedOptions(combinedFilter1, combinedFilter2)}
+                  formatGroupLabel={(data) => formatGroupLabel(data, year)}
+                  placeholder={
+                    'Add a second filter' +
+                    (combinedFilter1 ? ' (type to search)' : '')
+                  }
+                />
+              </div> {/* end filter */}
+            </div> {/* end filter-selectors */}
+          </div>} {/* end maps-control-box */}
+        </div> {/* end maps-control-wrapper */}
         {map === false ? (
           <Alert type='error'>
             <p>

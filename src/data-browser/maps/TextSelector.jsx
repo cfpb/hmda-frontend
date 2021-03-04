@@ -20,7 +20,6 @@ const TextSelector = ({ selected, options, onChange, label, className }) => {
       {label && <h4 className='label'>{label}</h4>}
       <div className="options">
         {options.map((current, i) => {
-          console.log(current, 'is active', getActiveClass(current, selected))
           return (
             <a
               className={'option ' + getActiveClass(current, selected)}
