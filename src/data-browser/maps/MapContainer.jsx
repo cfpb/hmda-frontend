@@ -516,14 +516,15 @@ const MapContainer = props => {
       <div className="maps-header">
         <h3 className='maps-title' onClick={() => {
             scrollToMap()
-            setShowControls(!showControls)
+            if (!selectedVariable || !selectedFilter) setShowControls(true)
           }}>
           {makeMapLabel(
             selectedGeography,
             selectedVariable,
             selectedValue,
             selectedFilter,
-            selectedFilterValue
+            selectedFilterValue,
+            year
           )}
         </h3>
         <div className="controls">

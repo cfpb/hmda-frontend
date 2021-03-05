@@ -129,13 +129,19 @@
 .maps-header {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
+  padding: .5em 1em;
 }
 
 .maps-header .maps-title {
-  width: 80%;
   margin: 0;
+  cursor: pointer;
+}
+
+
+.maps-header .maps-title .inactive {
+  color: #777;
 }
 
 .maps-header .control {
@@ -226,9 +232,29 @@
   margin-left: .5em;
 }
 
+.maps-header .maps-title .filter-clause,
 .maps-control-wrapper .filter-clause {
   color: #777;
   font-weight: bold;
+}
+
+.maps-header .maps-title .filter-clause {
+  display: inline-block;
+  width: 4em;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.maps-header .row2,
+.maps-header .row3 {
+  font-size: .9em;
+  font-weight: bold;
+  font-family: 'SourceSansPro';
+  margin-top: .25em;
+}
+
+.maps-header .filter-clause {
+  font-family: 'SourceSansProBold'
 }
 
 .maps-control-wrapper .filter-selectors .filter-clause {

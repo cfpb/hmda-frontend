@@ -338,14 +338,19 @@ function setOutline(map, selectedGeography, feature, current=null, lineColor='#f
    })
 }
 
-function makeMapLabel(geography, variable, value, filter, filtervalue) {
-  let label = ''
-  if(geography && variable && value){
-    label = `${variable.label}: "${value.label}"`
-    if(filter && filtervalue) label += ` and ${filter.label}: "${filtervalue.label}"`
-    label += ` for US ${geography.value === 'state' ? 'States' : 'Counties'}`
-  } else label = <span className='inactive'>Select a Filter below</span>
-  return label
+function makeMapLabel(geography, variable, value, filter, filtervalue, year) {
+  if (!geography || !variable || !value) return <div className='inactive'>Select a Filter below</div>
+  let row1 = <div className="row row1">{`HMDA Data for ${year} by ${geography.label}`}</div>
+  let row2 = (variable && value) ? <div className="row row2"><span className='filter-clause'>WHERE </span> {`${variable.label} - ${value.label}`}</div> : null
+  let row3 = (filter && filtervalue) ? <div className="row row3"><span className='filter-clause'>AND</span> {`${filter.label} - ${filtervalue.label}`}</div> : null
+
+  return (
+    <>
+      {row1}
+      {row2}
+      {row3}
+    </>
+  )
 }
 
 
