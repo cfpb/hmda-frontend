@@ -91,6 +91,7 @@ let currentHighlightColor = null
 const MapContainer = props => {
   const mapContainer = useRef(null)
   const tableRef = useRef(null)
+  const mapRef = useRef(null)
   const { year } = props.match.params
 
   const defaults = getDefaultsFromSearch(props)
@@ -258,6 +259,11 @@ const MapContainer = props => {
     )
   }
 
+  function scrollToMap() {
+    if (!mapRef.current) return
+    return setTimeout(() => mapRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' }), 0)
+    
+  }
 
   useEffect(() => {
     if(!county2018Data && selectedGeography.value === 'county' && year === '2018'){
@@ -455,6 +461,7 @@ const MapContainer = props => {
 
       getTableData(properties)
       zoomToGeography(properties)
+      scrollToMap()
     }
 
     const clearPopup = () => popup.remove()
@@ -504,10 +511,13 @@ const MapContainer = props => {
   />
 
   return (
-    <div className='SelectWrapper'>
+    <div className='SelectWrapper' ref={mapRef}>
       {/* TODO: Refactor all these maps parts into components */}
       <div className="maps-header">
-        <h3 className='maps-title' onClick={() => setShowControls(!showControls)}>
+        <h3 className='maps-title' onClick={() => {
+            scrollToMap()
+            setShowControls(!showControls)
+          }}>
           {makeMapLabel(
             selectedGeography,
             selectedVariable,
@@ -519,7 +529,10 @@ const MapContainer = props => {
         <div className="controls">
           <div
               className={'control filter-control ' + (showControls ? 'active' : '')}
-              onClick={() => setShowControls(!showControls)}
+              onClick={() => {
+                scrollToMap()
+                setShowControls(!showControls)
+              }}
               title='Show/Hide Filters'
             >
             <img className='icon' src={settingsIcon} />
