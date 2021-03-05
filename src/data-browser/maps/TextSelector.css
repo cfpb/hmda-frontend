@@ -44,7 +44,6 @@
 }
 
 .TextSelector .option:not(.active):hover {
-  text-decoration: underline;
   text-decoration-color: #55739f;
   border-color: #55739f;
 }

@@ -1,7 +1,7 @@
 .mapContainer {
   height: 600px;
   margin-top: 0.5em;
-  box-shadow: 1px 1px 5px black;
+  /* box-shadow: 1px 1px 5px black; */
 }
 
 .map-placeholder {
@@ -126,47 +126,59 @@
   user-select: none;
 }
 
+.maps-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.maps-header .maps-title {
+  width: 80%;
+  margin: 0;
+}
+
+.maps-header .control {
+  color: black;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: .5em;
+  border-radius: 10px;
+}
+
+.maps-header .control.active,
+.maps-header .control:hover {
+  background: rgba(11,62,104,0.7);
+  
+}
+.maps-header .control.active .icon,
+.maps-header .control:hover .icon {
+  filter: invert()
+}
+
+.maps-header .control .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.maps-header .control:hover {
+  cursor: pointer;
+  background:rgba(11,62,104,0.7);
+}
 
 .maps-control-wrapper {
   position: absolute;
   left: 65px;
   top: 6px;
   user-select: none;
-  padding: 1em;
   z-index: 2;
-  background-color: rgba(255, 255, 255, 1);
-  border: 1px solid rgb(144, 177, 203);
+  background-color: #fff;
   border-radius: 10px;
   width: 90%;
-  box-shadow: 1px 1px 5px black;
-}
-
-.maps-control-wrapper.title-only, 
-.maps-control-wrapper.title-only .maps-title {
-  margin: .5em auto;
-}
-
-.maps-control-wrapper .maps-title {
-  margin: .5em auto 1em;
-  font-size: 1.5em;
-  text-align: center;
-  position: relative;
-  max-width: 90%;
-
-}
-
-.maps-control-wrapper .maps-title .show-control-indicator {
-  color: black;
-  position: absolute;
-  right: -35px;
-  top: 0;
-}
-
-
-.maps-control-wrapper .maps-title:hover,
-.maps-control-wrapper .maps-title:hover .show-control-indicator {
-  cursor: pointer;
-  color:rgba(11,62,104,0.7);
+  box-shadow: 0px 1px 5px black;
 }
 
 .maps-control-wrapper .maps-title .inactive {
@@ -176,8 +188,7 @@
 .maps-control-box {
   display: flex;
   justify-content: space-around;
-  padding: 1em;
-  border: 1px solid rgb(144, 177, 203);
+  padding: .5em;
   border-radius: 10px;
 }
 
@@ -225,6 +236,15 @@
   text-align: right;
   margin-left: .5em;
   margin-right: .5em;
-  
+}
+
+.maps-control-wrapper .TextSelector,
+.maps-control-wrapper .filter {
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+}
+
+.maps-control-wrapper .TextSelector {
+  border: 1px solid #ddd;
 }
 
