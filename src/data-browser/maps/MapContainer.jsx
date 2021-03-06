@@ -52,7 +52,7 @@ function getDefaultsFromSearch(props) {
 
 function scrollToTable(node){
   if(!node) return
-  node.scrollIntoView({behavior: 'smooth', block: 'end'})
+  node.scrollIntoView({behavior: 'smooth', block: 'start'})
 }
 
 const zoomMapping = {
@@ -215,11 +215,14 @@ const MapContainer = props => {
     return ''
   }
 
+  const toPct = (val, total) => (Math.round((val/total)*10000) / 100).toFixed(2)
+
   const buildTable = () => {
     if(!data || !selectedGeography || !selectedValue || !feature) return null
     if(selectedFilterValue && !tableFilterData) return <LoadingIcon/>
 
     const dataset = selectedFilterValue ? tableFilterData : data
+    const datasetLabel = selectedFilterValue ? 'tableFilterData' : 'data'
 
     const currData = selectedGeography.value === 'county'
       ? dataset[feature]
@@ -235,10 +238,13 @@ const MapContainer = props => {
       if(val.match('%')) val = v.label
       return currVarData[val] || 0
     })
+    
+    const total = tds.reduce((m, curr) => m + parseInt(curr, 10), 0)
 
     return (
       <div className="TableWrapper" ref={tableRef}>
-        <h3>Originations by {selectedVariable.label} in {getFeatureName(selectedGeography.value, feature)}{selectedFilterValue ? ` when ${selectedFilter.label} equals ${selectedFilterValue.label}` : ''}</h3>
+        <h3 className= 'title' onClick={() => scrollToTable(tableRef.current)}>Originations by {selectedVariable.label} in {getFeatureName(selectedGeography.value, feature)}{selectedFilterValue ? ` when ${selectedFilter.label} equals ${selectedFilterValue.label}` : ''}</h3>
+        <h4>Total: {total}</h4>
         <table>
           <thead>
             <tr>
@@ -251,6 +257,10 @@ const MapContainer = props => {
             <tr>
               <th>Count</th>
               {tds.map((v, i) => <td key={i}>{v}</td>)}
+            </tr>
+            <tr>
+              <th>%</th>
+              {tds.map((v, i) => <td key={i}>{toPct(v, total)}%</td>)}
             </tr>
           </tbody>
         </table>
@@ -440,9 +450,6 @@ const MapContainer = props => {
         setFeature(feat)
         detachHandlers()
       }
-      
-      // TODO: Indicate table has been updated without forcing it into view
-      // scrollToTable(tableRef.current)
     }
 
     function zoomToGeography(properties) {
