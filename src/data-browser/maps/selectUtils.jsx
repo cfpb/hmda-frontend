@@ -35,15 +35,16 @@ const valsForVar = {
   dwellingCategory: optionsFromVariables('dwelling_categories', 1),
   age: makeOptions([
     ['N/A', '8888'],
-    '<25',
+    ['<25', '%3C25'],
     '25-34',
     '35-44',
     '45-54',
     '55-64',
     '65-74',
-    '>74'
+    ['>74', '%3E74']
   ])
 }
+
 
 function optionsFromVariables(key, nameAsValue){
   return VARIABLES[key].options.map( v => {
@@ -151,6 +152,18 @@ const makeCombinedDefaultValue = (defaults, filterId) => {
 
   if (!variable || !value) return 
   return makeOption(join(variable.label, value.label), join(variable.value, value.value))
+}
+
+/** ex. parseCombinedFilter({ value: 'actionTaken - 1' }) */
+export const parseCombinedFilter = (selected) => {
+  if (!selected) return {}
+  const optionValue = selected.value
+  const [variable, value] = optionValue.split(' - ')
+  
+  const variableOpt = getSelectData(variables, variable)
+  const valueOpt = getSelectData(getValuesForVariable(variableOpt), value)
+
+  return { variable: variableOpt, value: valueOpt }
 }
 
 

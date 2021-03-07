@@ -5,7 +5,7 @@ import LoadingIcon from '../../common/LoadingIcon.jsx'
 import Alert from '../../common/Alert.jsx'
 import ExternalLink from '../../common/ExternalLink.jsx'
 import TextSelector from './TextSelector'
-import { geographies, variables, valsForVar, getValuesForVariable, getSelectData, getCombinedOptions, makeCombinedDefaultValue, formatGroupLabel, searchFilter } from './selectUtils.jsx'
+import { geographies, variables, valsForVar, getValuesForVariable, getSelectData, getCombinedOptions, makeCombinedDefaultValue, formatGroupLabel, searchFilter, parseCombinedFilter } from './selectUtils.jsx'
 import { setOutline, getOrigPer1000, makeLegend, makeStops, addLayers, makeMapLabel } from './layerUtils.jsx'
 import { getFeatureName, popup, buildPopupHTML } from './popupUtils.jsx'
 import { fetchFilterData } from './filterUtils.jsx'
@@ -160,17 +160,6 @@ const MapContainer = props => {
     setGeography(selected)
   }
 
-  const parseCombinedFilter = (selected) => {
-    if (!selected) return {}
-    const optionValue = selected.value
-    const [variable, value] = optionValue.split(' - ')
-    
-    const variableOpt = getSelectData(variables, variable)
-    const valueOpt = getSelectData(getValuesForVariable(variableOpt), value)
-
-    return { variable: variableOpt, value: valueOpt }
-  }
-
   const onFilter1Change = (selected) => {
     if(!selected) {
       setCombinedFilter1(selected)
@@ -179,6 +168,7 @@ const MapContainer = props => {
       setValue(selected)
       setFilter(selected)
       setFilterValue(selected)
+      setFeature(selected)
       return
     }
 
