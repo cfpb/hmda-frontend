@@ -4244,50 +4244,6 @@ cypress-keycloak@1.5.0:
   resolved "https://registry.yarnpkg.com/cypress-keycloak/-/cypress-keycloak-1.5.0.tgz#5e4f5cce7ec1badb010e8b92268a350abce35dc5"
   integrity sha512-JZ2RWTd6dmoZdbvG4xAGNDmFgMdOwJ0sKAXNOHyoEIjBlegtaBfdISgvdzE5VeGgwVAmNrH3v/L/dj0PvYDp+A==
 
-cypress@6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/cypress/-/cypress-6.0.1.tgz#86857ca2f527c3723575737deab42fd8f2a209df"
-  integrity sha512-3xtQZ0YM65soLgKQUgn2wg2IbWsM6A2yBg6L4RF31mZHr5LNKdO2/9sgiwxEVMKu2C2m6+IQ75zHP41kZP5rPg==
-  dependencies:
-    "@cypress/listr-verbose-renderer" "^0.4.1"
-    "@cypress/request" "^2.88.5"
-    "@cypress/xvfb" "^1.2.4"
-    "@types/sinonjs__fake-timers" "^6.0.1"
-    "@types/sizzle" "^2.3.2"
-    arch "^2.1.2"
-    blob-util "2.0.2"
-    bluebird "^3.7.2"
-    cachedir "^2.3.0"
-    chalk "^4.1.0"
-    check-more-types "^2.24.0"
-    cli-table3 "~0.6.0"
-    commander "^5.1.0"
-    common-tags "^1.8.0"
-    debug "^4.1.1"
-    eventemitter2 "^6.4.2"
-    execa "^4.0.2"
-    executable "^4.1.1"
-    extract-zip "^1.7.0"
-    fs-extra "^9.0.1"
-    getos "^3.2.1"
-    is-ci "^2.0.0"
-    is-installed-globally "^0.3.2"
-    lazy-ass "^1.6.0"
-    listr "^0.14.3"
-    lodash "^4.17.19"
-    log-symbols "^4.0.0"
-    minimist "^1.2.5"
-    moment "^2.27.0"
-    ospath "^1.2.2"
-    pretty-bytes "^5.4.1"
-    ramda "~0.26.1"
-    request-progress "^3.0.0"
-    supports-color "^7.2.0"
-    tmp "~0.2.1"
-    untildify "^4.0.0"
-    url "^0.11.0"
-    yauzl "^2.10.0"
-
 cypress@6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/cypress/-/cypress-6.4.0.tgz#432c516bf4f1a0f042a6aa1f2c3a4278fa35a8b2"
@@ -8078,10 +8034,10 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-mapbox-gl@1.13.0:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/mapbox-gl/-/mapbox-gl-1.13.0.tgz#23b339ba5116b7e3b5a2043ea968f7fcb53e34a6"
-  integrity sha512-g8zlzuJxYJqbOPXT19/UBYpVrcefBQ06F/Cbj0fyEfFnFesDcU3cFTxd75/FZ6Upx2ZEjCsD61CHxrcxZidVpA==
+mapbox-gl@1.13.1:
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/mapbox-gl/-/mapbox-gl-1.13.1.tgz#322efe75ab4c764fc4c776da1506aad58d5a5b9d"
+  integrity sha512-GSyubcoSF5MyaP8z+DasLu5v7KmDK2pp4S5+VQ5WdVQUOaAqQY4jwl4JpcdNho3uWm2bIKs7x1l7q3ynGmW60g==
   dependencies:
     "@mapbox/geojson-rewind" "^0.5.0"
     "@mapbox/geojson-types" "^1.0.2"
@@ -8398,7 +8354,7 @@ mkdirp@^0.5.1, mkdirp@^0.5.3, mkdirp@^0.5.4, mkdirp@^0.5.5, mkdirp@~0.5.1:
   dependencies:
     minimist "^1.2.5"
 
-moment@^2.27.0, moment@^2.29.1:
+moment@^2.29.1:
   version "2.29.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
   integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
