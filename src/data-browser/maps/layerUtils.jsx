@@ -363,4 +363,5 @@ export {
   setOutline,
   getOrigPer1000,
   makeMapLabel,
+  normalizeValue,
 }

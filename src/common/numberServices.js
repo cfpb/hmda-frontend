@@ -3,7 +3,7 @@
 export const toInt = (str) => parseInt(str, 10)
 
 // Add the thousands separator
-export function formatNumber(x) {
+export function formatNumber(x = 0) {
   if(!isNumber(x)) return x
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
@@ -43,5 +43,6 @@ export function abbrevNum(x){
 
 // Calculate percentage
 export const calcPct = (numer, denom, precision = 2) => {
+  if (!numer || !denom) return 0
   return (Math.round((numer / denom) * 10000) / 100).toFixed(precision)
 }
