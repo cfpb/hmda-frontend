@@ -1,0 +1,129 @@
+import React from 'react';
+import { asNum, calcPct, isNumber } from '../../common/numberServices'
+import { valsForVar } from './selectUtils'
+
+const combinedLabel = (filter) => filter && `${filter.variable.label} - ${filter.value.label}`
+
+export const FilterReports = ({ data, tableRef, onClick, year, download }) => {
+  if (!data) return null
+  return (
+    <div className='reports-wrapper'>
+      <h3 className='report-heading' ref={tableRef} onClick={onClick}>
+        {data.featureName}
+        {data.filter1 && data.filter2 && (
+          <div className='union-highlight'>
+            <div className='count'>{asNum(data.union12)}</div>
+            <div>Originations in {year}</div>
+          </div>
+        )}
+        {data.filter1 && (
+          <div className='filter-label'>
+            <div className='filter-clause'>WHERE</div>{' '}
+            <div className='filter-text'>{combinedLabel(data.filter1)}</div>
+          </div>
+        )}
+        {data.filter2 && (
+          <div className='filter-label'>
+            <div className='filter-clause'>AND</div>{' '}
+            <div className='filter-text'>{combinedLabel(data.filter2)}</div>
+          </div>
+        )}
+      </h3>
+
+      <div className='reports'>
+        <FilterReport
+          filter={data.filter1}
+          otherFilter={data.filter2}
+          values={[data.filter1_geo, data.v1_where_f2]}
+          label={data.filter1_geo_label}
+          total={[data.filter1_geo_total, data.v1_where_f2_total]}
+          level={data.geoLevel.label}
+        />
+        <FilterReport
+          filter={data.filter2}
+          otherFilter={data.filter1}
+          values={[data.filter2_geo, data.v2_where_f1]}
+          label={data.filter2_geo_label}
+          total={[data.filter2_geo_total, data.v2_where_f1_total]}
+          level={data.geoLevel.label}
+        />
+      </div>
+      {download}
+    </div>
+  )
+}
+
+
+const FilterReport = ({ filter, otherFilter, values, label, total, level }) => {
+  const values_f = values.filter(Boolean)
+  
+  if (!filter || !filter.variable || !filter.value || !values_f) return null
+  const {variable, value} = filter
+
+  const rows = valsForVar[variable.value].map((v, idx) => {
+    let val = v.value
+    let cname = ''
+    if(val.match('%')) val = v.label
+
+    if (val === value.value) cname += ' highlight'
+
+    return (
+      <tr key={idx} className={cname}>
+        <td>{v.label}</td>
+        {values_f.map((v, v_idx) => (
+          <>
+            <td className={'count' + (v_idx > 0 ? cname : '')}>
+              {asNum(values_f[v_idx][val])}
+            </td>
+            <td className={'count' + (v_idx > 0 ? cname : '')}>
+              {calcPct(values_f[v_idx][val], total[v_idx])}%
+            </td>
+          </>
+        ))}
+      </tr>
+    )})
+
+  return (
+    <div>
+      <table className='filter-report'>
+        <thead>
+          <tr>
+            <th className='group-header spacer'>{label}</th>
+            <th className='group-header' colSpan={2}>{level}wide</th>
+            {otherFilter && (
+              <th className='group-header' colSpan={2}>
+                <div className='variable'>{otherFilter.variable.label}</div>
+                <div className='value'>{otherFilter.value.label}</div>
+              </th>
+            )}
+          </tr>
+          <tr>
+            {[variable.label, 'Count', 'Pct'].map((x, x_idx) => (
+              <th key={x_idx} className={x_idx ? 'count' : ''}>
+                {x}
+              </th>
+            ))}
+            {values_f.length > 1 &&
+              ['Count', 'Pct'].map((x, x_idx) => (
+                <th key={x_idx} className='count'>
+                  {x}
+                </th>
+              ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows}
+          <tr>
+            <th>Total</th>
+            {total.filter(t => isNumber(t)).map((t, idx) => (
+              <>
+                <td className='count'>{asNum(t)}</td>
+                <td className='spacer'></td>
+              </>
+            ))}
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  )
+}

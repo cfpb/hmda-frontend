@@ -13,8 +13,10 @@ import { runFetch, getCSV } from '../api.js'
 import fips2Shortcode from '../constants/fipsToShortcode.js'
 import mapbox from 'mapbox-gl'
 import settingsIcon from '../../common/images/settings_gear.png'
+import { useReportData } from './useReportData.jsx'
+import { FilterReports } from './reports'
+import { calcPct } from '../../common/numberServices.js'
 import './mapbox.css'
-
 mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlvaQw'
 
 /*
@@ -205,8 +207,6 @@ const MapContainer = props => {
     return ''
   }
 
-  const toPct = (val, total) => (Math.round((val/total)*10000) / 100).toFixed(2)
-
   const buildTable = () => {
     if(!data || !selectedGeography || !selectedValue || !feature) return null
     if(selectedFilterValue && !tableFilterData) return <LoadingIcon/>
@@ -250,7 +250,7 @@ const MapContainer = props => {
             </tr>
             <tr>
               <th>%</th>
-              {tds.map((v, i) => <td key={i}>{toPct(v, total)}%</td>)}
+              {tds.map((v, i) => <td key={i}>{calcPct(v, total)}%</td>)}
             </tr>
           </tbody>
         </table>
@@ -488,6 +488,7 @@ const MapContainer = props => {
 
   }, [map, selectedVariable, data, selectedGeography, feature, selectedValue, tableFilterData, year])
 
+  const reportData = useReportData(selectedGeography, feature, data, combinedFilter1, filterData, combinedFilter2, tableFilterData)
 
   const menuStyle = {
     menu: provided => ({
@@ -511,19 +512,6 @@ const MapContainer = props => {
     <div className='SelectWrapper' ref={mapRef}>
       {/* TODO: Refactor all these maps parts into components */}
       <div className="maps-header">
-        <h3 className='maps-title' onClick={() => {
-            scrollToMap()
-            if (!selectedVariable || !selectedFilter) setShowControls(true)
-          }}>
-          {makeMapLabel(
-            selectedGeography,
-            selectedVariable,
-            selectedValue,
-            selectedFilter,
-            selectedFilterValue,
-            year
-          )}
-        </h3>
         <div className="controls">
           <div
               className={'control filter-control ' + (showControls ? 'active' : '')}
@@ -632,7 +620,7 @@ const MapContainer = props => {
             )
           : null}
       </div>
-      {buildTable()}
+      <FilterReports data={reportData} year={year} tableRef={tableRef} onClick={() => scrollToTable(tableRef.current)} download={<LoadingButton onClick={fetchCSV}>Download Dataset</LoadingButton>} />
     </div>
   )
 }

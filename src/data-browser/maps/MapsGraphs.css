@@ -134,16 +134,6 @@
   padding: .5em 1em;
 }
 
-.maps-header .maps-title {
-  margin: 0;
-  cursor: pointer;
-}
-
-
-.maps-header .maps-title .inactive {
-  color: #777;
-}
-
 .maps-header .control {
   color: black;
   z-index: 3;
@@ -187,10 +177,6 @@
   box-shadow: 0px 1px 5px black;
 }
 
-.maps-control-wrapper .maps-title .inactive {
-  color: #777;
-}
-
 .maps-control-box {
   display: flex;
   justify-content: space-around;
@@ -232,18 +218,11 @@
   margin-left: .5em;
 }
 
-.maps-header .maps-title .filter-clause,
 .maps-control-wrapper .filter-clause {
   color: #777;
   font-weight: bold;
 }
 
-.maps-header .maps-title .filter-clause {
-  display: inline-block;
-  width: 4em;
-  text-align: right;
-  margin-right: 10px;
-}
 
 .maps-header .row2,
 .maps-header .row3 {
@@ -276,4 +255,105 @@
 
 .mapContainer + .TableWrapper .title {
   cursor: pointer;
+}
+
+
+.reports-wrapper .reports table {
+  width: 100%;
+}
+
+.reports-wrapper .reports th { 
+  background: rgba(27, 152, 255, 0.1);
+  background: #e5e5e2;
+}
+
+.reports-wrapper .reports .count {
+  text-align: right;
+}
+
+.reports-wrapper .reports .highlight * {
+  background:rgb(1,111, 123, .3);
+}
+
+.reports-wrapper .reports .highlight .highlight {
+  background:rgb(1,111, 123, .5);
+  font-weight: bold;
+}
+
+.reports-wrapper .reports td.spacer,
+.reports-wrapper .reports th.group-header.spacer {
+  border: none;
+  background: none;
+  color: black;
+  text-shadow: none;
+}
+
+.reports-wrapper .reports th.group-header {
+  background:rgb(1,111, 123, .85);
+  color: white;
+  text-shadow: 0 0 2px black;
+  text-align: center;
+}
+
+.reports-wrapper .reports th.group-header .variable {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 3px;
+}
+
+.reports-wrapper .reports th.group-header .value {
+  padding-top: 3px;
+}
+
+.reports-wrapper .reports .filter-report {
+  margin-bottom: 8rem;
+  page-break-inside: avoid;
+}
+
+.reports-wrapper .union-highlight {
+  margin: 0 auto .5em;
+  text-align: center;
+}
+
+.reports-wrapper .union-highlight .count {
+  font-size: 2em;
+  color: rgb(1,111, 123, .85);
+}
+
+.reports-wrapper .filter-clause {
+  display: inline-block;
+  text-align: right;
+  margin-right: 10px;
+  font-weight: bold;
+  font-family: 'SourceSansProBold';
+  color: rgb(1,111, 123, .85);
+}
+
+
+.reports-wrapper .report-heading {
+  font-size: 2em;
+  text-align: center;
+  margin-bottom: 2em;
+  cursor: pointer;
+}
+
+.reports-wrapper .filter-label {
+  font-size: .65em;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.reports-wrapper .filter-label > * {
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+
+.reports-wrapper .QueryButton:hover {
+  background: rgb(1,111, 123, 1);
+  border-color: black;
+}
+
+.reports-wrapper .QueryButton {
+  background: rgb(1,111, 123, .8);
+  border-color: white;
 }
