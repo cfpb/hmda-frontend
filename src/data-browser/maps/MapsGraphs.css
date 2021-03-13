@@ -357,3 +357,7 @@
   background: rgb(1,111, 123, .8);
   border-color: white;
 }
+
+.clickable {
+  cursor: pointer;
+}
