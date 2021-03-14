@@ -518,24 +518,7 @@ const MapContainer = props => {
   return (
     <div className={'SelectWrapper ' + biasLabel } ref={mapRef}>
       {/* TODO: Refactor all these maps parts into components */}
-      <div className="maps-header">
-        <div className="controls">
-          <div
-              className={'control filter-control ' + (showControls ? 'active' : '')}
-              onClick={() => {
-                scrollToMap()
-                setShowControls(!showControls)
-              }}
-              title='Show/Hide Filters'
-            >
-            <img className='icon' src={settingsIcon} />
-          </div>
-        </div>
-      </div> {/* end maps-header */}
-
-      <div className='mapContainer' ref={mapContainer}>
-        {/* <MapsControlBox {...{ selectedGeography, geographies, onGeographyChange, year, menuStyle, combinedFilter1, combinedFilter2, onFilter1Change, onFilter2Change, years: props.config.dataBrowserYears, ...........}} /> */}
-        <div className={ 'maps-control-wrapper' + (!showControls ? ' title-only' : '') }>
+      <div className={ 'maps-control-wrapper' + (!showControls ? ' title-only' : '') }>
           {showControls && (
             <div className='maps-control-box'>
               <div className='text-selectors'>
@@ -609,6 +592,9 @@ const MapContainer = props => {
             </div> // end maps-control-box
           )} {/* end showControls */}
         </div> {/* end maps-control-wrapper */}
+
+      <div className='mapContainer' ref={mapContainer}>
+        {/* <MapsControlBox {...{ selectedGeography, geographies, onGeographyChange, year, menuStyle, combinedFilter1, combinedFilter2, onFilter1Change, onFilter2Change, years: props.config.dataBrowserYears, ...........}} /> */}
         {map === false ? (
           <Alert type='error'>
             <p>

@@ -1,7 +1,6 @@
 .mapContainer {
-  height: 600px;
-  margin-top: 0.5em;
-  /* box-shadow: 1px 1px 5px black; */
+  height: calc(90vh - 115px);
+  box-shadow: 0px 0px 2px black;
 }
 
 .map-placeholder {
@@ -126,55 +125,16 @@
   user-select: none;
 }
 
-.maps-header {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  padding: .5em 1em;
-}
-
-.maps-header .control {
-  color: black;
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: .5em;
-  border-radius: 10px;
-}
-
-.maps-header .control.active,
-.maps-header .control:hover {
-  background: rgba(11,62,104,0.7);
-  
-}
-.maps-header .control.active .icon,
-.maps-header .control:hover .icon {
-  filter: invert()
-}
-
-.maps-header .control .icon {
-  width: 20px;
-  height: 20px;
-}
-
-.maps-header .control:hover {
-  cursor: pointer;
-  background:rgba(11,62,104,0.7);
-}
-
 .maps-control-wrapper {
-  position: absolute;
-  left: 65px;
-  top: 6px;
   user-select: none;
   z-index: 2;
   background-color: #fff;
-  border-radius: 10px;
-  width: 90%;
-  box-shadow: 0px 1px 5px black;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0px 0px 2px black;
+  margin: 0 auto;
+  font-size: .9em;
+  padding: .5em .5em 1em;
 }
 
 .maps-control-box {
@@ -204,7 +164,8 @@
   width: 100%;
   display: flex;
   flex-flow: column wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  font-size: 1.1em;
 }
 
 .maps-control-box .filter-selectors .filter {
@@ -237,10 +198,11 @@
 }
 
 .maps-control-wrapper .filter-selectors .filter-clause {
-  min-width: 75px;
+  min-width: 50px;
   text-align: right;
   margin-left: .5em;
   margin-right: .5em;
+  padding: .75em 0;
 }
 
 .maps-control-wrapper .TextSelector,
