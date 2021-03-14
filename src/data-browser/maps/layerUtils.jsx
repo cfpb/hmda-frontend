@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import shortcode2FIPS from '../constants/shortcodeToFips.js'
 import fips2Shortcode from '../constants/fipsToShortcode.js'
 import COUNTY_POP from '../constants/countyPop.js'
@@ -108,14 +108,32 @@ const getBias = (data, variable, value, geography, counts, mVar, mVal) => {
   }
 
   let bias
-  if(max < .004) bias = xBias
-  else if(max < .008) bias = highBias
-  else if(max < .016) bias = mhBias
-  else if(max < .032) bias = baseBias
-  else bias = lowBias
+  if(max < .004) bias = [xBias, 'xBias']
+  else if(max < .008) bias = [highBias, 'highBias']
+  else if(max < .016) bias = [mhBias, 'mhBias']
+  else if(max < .032) bias = [baseBias, 'baseBias']
+  else bias = [lowBias, 'lowBias']
 
 
   cache[variable][value] = bias
+  return bias
+}
+
+
+const useBias = (data, variable, value, year, geography, mainVar, mainVal) => {
+  const [bias, setBias] = useState([null, ''])
+
+  useEffect(() => {
+    if(!data || !variable || !value || !geography || !mainVar || !mainVal) return
+  
+    const val = normalizeValue(value)
+    const counts = geography.value === 'county' ? COUNTY_POP[year] : STATE_POP[year]
+  
+    const mVar = mainVar ? mainVar.value : null
+    const mVal = mainVal ? normalizeValue(mainVal) : null
+    setBias(getBias(data, variable.value, val, geography, counts, mVar, mVal))
+  }, [data, variable, value, year, geography, mainVar, mainVal])
+  
   return bias
 }
 
@@ -151,7 +169,7 @@ function makeLegend(data, variable, value, year, geography, mainVar, mainVal){
 
   const mVar = mainVar ? mainVar.value : null
   const mVal = mainVal ? normalizeValue(mainVal) : null
-  const bias = getBias(data, variable.value, val, geography, counts, mVar, mVal)
+  const [bias, _biasLabel] = getBias(data, variable.value, val, geography, counts, mVar, mVal)
 
   return(
     <div className="legend">
@@ -199,7 +217,7 @@ function makeStops(data, variable, value, year, geography, mainVar, mainVal){
   const counts = geography.value === 'county' ? COUNTY_POP[year] : STATE_POP[year]
   const mVar = mainVar ? mainVar.value : null
   const mVal = mainVal ? normalizeValue(mainVal) : null
-  const bias = getBias(data, variable.value, val, geography, counts, mVar, mVal)
+  const [bias, _biasLabel] = getBias(data, variable.value, val, geography, counts, mVar, mVal)
 
   Object.keys(data).forEach(geo => {
     const currData = data[geo]
@@ -364,4 +382,5 @@ export {
   getOrigPer1000,
   makeMapLabel,
   normalizeValue,
+  useBias
 }

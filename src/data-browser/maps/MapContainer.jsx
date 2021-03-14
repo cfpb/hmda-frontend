@@ -6,7 +6,7 @@ import Alert from '../../common/Alert.jsx'
 import ExternalLink from '../../common/ExternalLink.jsx'
 import TextSelector from './TextSelector'
 import { geographies, variables, valsForVar, getValuesForVariable, getSelectData, getCombinedOptions, makeCombinedDefaultValue, formatGroupLabel, searchFilter, parseCombinedFilter } from './selectUtils.jsx'
-import { setOutline, getOrigPer1000, makeLegend, makeStops, addLayers, makeMapLabel } from './layerUtils.jsx'
+import { setOutline, getOrigPer1000, makeLegend, makeStops, addLayers, useBias } from './layerUtils.jsx'
 import { getFeatureName, popup, buildPopupHTML } from './popupUtils.jsx'
 import { fetchFilterData } from './filterUtils.jsx'
 import { runFetch, getCSV } from '../api.js'
@@ -500,8 +500,15 @@ const MapContainer = props => {
       fontSize: '1.25em'
     })
   }
-
   const resolved = resolveData()
+  
+  const [_bias, biasLabel] = useBias(
+    ...(resolved || [null, null, null]),
+    year,
+    selectedGeography,
+    selectedVariable,
+    selectedValue
+  )
 
   const geoLevelLink = <ExternalLink 
     label='geographic level' 
@@ -509,7 +516,7 @@ const MapContainer = props => {
   />
 
   return (
-    <div className='SelectWrapper' ref={mapRef}>
+    <div className={'SelectWrapper ' + biasLabel } ref={mapRef}>
       {/* TODO: Refactor all these maps parts into components */}
       <div className="maps-header">
         <div className="controls">
@@ -620,8 +627,16 @@ const MapContainer = props => {
             )
           : null}
       </div>
-      <FilterReports data={reportData} year={year} tableRef={tableRef} onClick={() => scrollToTable(tableRef.current)} download={<LoadingButton onClick={fetchCSV}>Download Dataset</LoadingButton>} />
-    </div>
+      
+      <FilterReports
+        data={reportData}
+        year={year}
+        tableRef={tableRef}
+        onClick={() => scrollToTable(tableRef.current)}
+        download={
+          <LoadingButton onClick={fetchCSV}>Download Dataset</LoadingButton>
+        }
+      />    </div>
   )
 }
 

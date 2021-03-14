@@ -82,10 +82,10 @@ const FilterReport = ({ filter, otherFilter, values, label, total, level }) => {
     vs.reduce(
       (v_mem, v, v_idx) =>
         v_mem.concat([
-          <td className={'count' + (v_idx === vs.length - 1 ? cname : '')}>
+          <td key={`${v_idx}_count`} className={'count' + (v_idx === vs.length - 1 ? cname : '')}>
             {asNum(vs[v_idx][val])}
           </td>,
-          <td className={'count' + (v_idx === vs.length - 1 ? cname : '')}>
+          <td key={`${v_idx}_pct`} className={'count' + (v_idx === vs.length - 1 ? cname : '')}>
             {calcPct(vs[v_idx][val], total[v_idx])}%
           </td>,
         ]),
