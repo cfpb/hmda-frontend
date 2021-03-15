@@ -1,9 +1,9 @@
 {
   "name": "prod",
   "announcement": {
-    "message": "The 2020 Annual filing period is closed. The HMDA Platform remains available outside of the filing period for late submissions and resubmissions of 2018-2020 HMDA data.",
-    "type": "info",
-    "heading": "Announcement"
+    "message": "We will be performing scheduled system maintenance on March 16th from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance"
   },
   "defaultPeriod": "2020",
   "defaultDocsPeriod": "2020",
@@ -31,7 +31,11 @@
   },
   "showMaps": false,
   "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "filingAnnouncement": {
+    "message": "We will be performing scheduled system maintenance on March 16th from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance"
+  },
   "dataPublicationYears": {
     "shared": [
       "2019",
