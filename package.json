@@ -19,7 +19,7 @@
   "author": "Consumer Financial Protection Bureau",
   "license": "CC0-1.0",
   "dependencies": {
-    "csv-parse": "4.15.1",
+    "csv-parse": "4.15.3",
     "detect-browser": "4.8.0",
     "elliptic": "6.5.4",
     "fast-deep-equal": "2.0.1",
