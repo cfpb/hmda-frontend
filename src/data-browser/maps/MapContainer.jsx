@@ -493,7 +493,8 @@ const MapContainer = props => {
   const menuStyle = {
     menu: provided => ({
       ...provided,
-      zIndex: 3
+      zIndex: 3,
+      fontSize: '1.2em',
     }),
     control: p => ({ 
       ...p, 

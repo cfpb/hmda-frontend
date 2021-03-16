@@ -114,11 +114,12 @@
   background-color: rgba(11,62,104,0.7);
   border-radius: 2em;
   display: inline-block;
-  font-size: 1em;
+  font-size: 1.1em;
   font-weight: bold;
   line-height: 1;
   min-width: 1;
-  padding: .25em 0.5em .35em;
+  padding: .35em 0.5em .35em;
+  margin-bottom: .1em;
   text-align: center;
   text-decoration: none;
   text-transform: none;
@@ -134,7 +135,7 @@
   box-shadow: 0px 0px 2px black;
   margin: 0 auto;
   font-size: .9em;
-  padding: .5em .5em 1em;
+  padding: .5em .5em .5em;
 }
 
 .maps-control-box {
@@ -142,6 +143,7 @@
   justify-content: space-around;
   padding: .5em;
   border-radius: 10px;
+  font-size: .75em;
 }
 
 .maps-control-box > div:not(:first-child){
