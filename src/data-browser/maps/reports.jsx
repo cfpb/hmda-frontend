@@ -13,7 +13,7 @@ const ReportHighlight = ({ data, year }) => {
   if (v === undefined) return null
   return (
     <div className='union-highlight'>
-      <div className='count'>{asNum(v)}</div>
+      <div className='count colorTextWithBias' >{asNum(v)}</div>
       <div>Originations in {year}</div>
     </div>
   )
@@ -28,13 +28,13 @@ export const FilterReports = ({ data, tableRef, onClick, year, download }) => {
         <ReportHighlight data={data} year={year} />
         {data.filter1 && (
           <div className='filter-label'>
-            <div className='filter-clause'>WHERE</div>{' '}
+            <div className='filter-clause colorTextWithBias'>WHERE</div>{' '}
             <div className='filter-text'>{combinedLabel(data.filter1)}</div>
           </div>
         )}
         {data.filter2 && (
           <div className='filter-label'>
-            <div className='filter-clause'>AND</div>{' '}
+            <div className='filter-clause colorTextWithBias'>AND</div>{' '}
             <div className='filter-text'>{combinedLabel(data.filter2)}</div>
           </div>
         )}
@@ -97,7 +97,7 @@ const FilterReport = ({ filter, otherFilter, values, label, total, level }) => {
     let cname = ''
     if (val.match('%')) val = v.label
 
-    if (val === value.value) cname += ' highlight'
+    if (val === value.value) cname += ' highlight colorBgWithBias'
 
     return (
       <tr key={idx} className={cname}>
@@ -115,11 +115,11 @@ const FilterReport = ({ filter, otherFilter, values, label, total, level }) => {
             <th onClick={scrollToTable} className='group-header spacer clickable'>
               {label}
             </th>
-            <th className='group-header' colSpan={2}>
+            <th className='group-header colorBgWithBias' colSpan={2}>
               {level}wide
             </th>
             {otherFilter && (
-              <th className='group-header' colSpan={2}>
+              <th className='group-header colorBgWithBias' colSpan={2}>
                 <div className='variable'>{otherFilter.variable.label}</div>
                 <div className='value'>{otherFilter.value.label}</div>
               </th>

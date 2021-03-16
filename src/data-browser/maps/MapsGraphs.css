@@ -226,21 +226,11 @@
   width: 100%;
 }
 
-.reports-wrapper .reports th { 
-  background: rgba(27, 152, 255, 0.1);
-  background: #e5e5e2;
-}
-
 .reports-wrapper .reports .count {
   text-align: right;
 }
 
-.reports-wrapper .reports .highlight * {
-  background:rgb(1,111, 123, .3);
-}
-
 .reports-wrapper .reports .highlight .highlight {
-  background:rgb(1,111, 123, .5);
   font-weight: bold;
 }
 
@@ -253,7 +243,6 @@
 }
 
 .reports-wrapper .reports th.group-header {
-  background:rgb(1,111, 123, .85);
   color: white;
   text-shadow: 0 0 2px black;
   text-align: center;
@@ -280,7 +269,6 @@
 
 .reports-wrapper .union-highlight .count {
   font-size: 2em;
-  color: rgb(1,111, 123, .85);
 }
 
 .reports-wrapper .filter-clause {
@@ -289,7 +277,6 @@
   margin-right: 10px;
   font-weight: bold;
   font-family: 'SourceSansProBold';
-  color: rgb(1,111, 123, .85);
 }
 
 
@@ -325,3 +312,43 @@
 .clickable {
   cursor: pointer;
 }
+
+/* Blues */
+.lowBias .colorTextWithBias { color:rgba(8, 81, 156, 0.7)}
+.lowBias .group-header.colorBgWithBias,
+.lowBias tr.highlight.colorBgWithBias td,
+.lowBias .QueryButton { color: white; background-color:rgba(8, 81, 156, 0.7); text-shadow: 0 0 1px black; }
+.lowBias tr.highlight.colorBgWithBias .highlight,
+.lowBias .QueryButton:hover { color: white; background-color:rgba(8, 81, 156, 1.0000)}
+
+/* Greens */
+.baseBias .colorTextWithBias { color:rgba(7, 64, 80, 0.7)}
+.baseBias .group-header.colorBgWithBias,
+.baseBias tr.highlight.colorBgWithBias td,
+.baseBias .QueryButton { color: white; background-color:rgba(7, 64, 80, 0.7); text-shadow: 0 0 1px black; }
+.baseBias tr.highlight.colorBgWithBias .highlight,
+.baseBias .QueryButton:hover { color: white; background-color:rgba(7, 64, 80, 1.0000)}
+
+/* Purples */
+.mhBias .colorTextWithBias { color:rgba(84, 39, 143, 0.7)}
+.mhBias .group-header.colorBgWithBias,
+.mhBias tr.highlight.colorBgWithBias td,
+.mhBias .QueryButton { color: white; background-color:rgba(84, 39, 143, 0.7); text-shadow: 0 0 1px black; }
+.mhBias tr.highlight.colorBgWithBias .highlight,
+.mhBias .QueryButton:hover { color: white; background-color:rgba(84, 39, 143, 1.0000)}
+
+/* Reds */
+.highBias .colorTextWithBias { color:rgba(165, 15, 21, 0.7)}
+.highBias .group-header.colorBgWithBias,
+.highBias tr.highlight.colorBgWithBias td,
+.highBias .QueryButton { color: white; background-color:rgba(165, 15, 21, 0.7); text-shadow: 0 0 1px black; }
+.highBias tr.highlight.colorBgWithBias .highlight,
+.highBias .QueryButton:hover { color: white; background-color:rgba(165, 15, 21, 1.0000)}
+
+/* Oranges */
+.xBias .colorTextWithBias { color:rgba(166, 54, 3, 0.7)}
+.xBias .group-header.colorBgWithBias,
+.xBias tr.highlight.colorBgWithBias td,
+.xBias .QueryButton { color: white; background-color:rgba(166, 54, 3, 0.7); text-shadow: 0 0 1px black; }
+.xBias tr.highlight.colorBgWithBias .highlight,
+.xBias .QueryButton:hover { color: white; background-color:rgba(166, 54, 3, 1.0000)}
