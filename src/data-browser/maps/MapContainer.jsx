@@ -152,18 +152,21 @@ const MapContainer = props => {
   }
 
   const onYearChange = selected=> {
+    scrollToMap()
     const basePath = '/data-browser/maps-graphs/'
     const search = makeSearch()
     props.history.push(`${basePath}${selected.year}${search}`)
   }
 
   const onGeographyChange = selected => {
+    scrollToMap()
     popup.remove()
     setFeature(null)
     setGeography(selected)
   }
 
   const onFilter1Change = (selected) => {
+    scrollToMap()
     if(!selected) {
       setCombinedFilter1(selected)
       setCombinedFilter2(selected)
@@ -182,6 +185,7 @@ const MapContainer = props => {
   }
 
   const onFilter2Change = (selected) => {
+    scrollToMap()
     if (!selected) {
       setCombinedFilter2(selected)
       setFilter(selected)
