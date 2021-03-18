@@ -28,12 +28,12 @@
   cursor: pointer;
   text-decoration: none;
   color: #555;
-  min-width: 70px;
-  max-width: 90px;
+  width: 85px;
   border: 2px solid white;
   border-radius: 10px;
   text-align: center;
   background: transparent;
+  font-size: 1em;
 }
 
 .TextSelector .option.active {

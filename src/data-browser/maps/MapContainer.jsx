@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useCallback, useRef }  from 'react'
-import Select from '../Select.jsx'
 import LoadingButton from '../datasets/LoadingButton.jsx'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
 import Alert from '../../common/Alert.jsx'
 import ExternalLink from '../../common/ExternalLink.jsx'
-import TextSelector from './TextSelector'
-import { geographies, variables, valsForVar, getValuesForVariable, getSelectData, getCombinedOptions, makeCombinedDefaultValue, formatGroupLabel, searchFilter, parseCombinedFilter } from './selectUtils.jsx'
+import { geographies, variables, valsForVar, getValuesForVariable, getSelectData, makeCombinedDefaultValue, parseCombinedFilter } from './selectUtils.jsx'
 import { setOutline, getOrigPer1000, makeLegend, makeStops, addLayers, useBias } from './layerUtils.jsx'
 import { getFeatureName, popup, buildPopupHTML } from './popupUtils.jsx'
 import { fetchFilterData } from './filterUtils.jsx'
@@ -18,6 +16,7 @@ import { FilterReports } from './reports'
 import { calcPct } from '../../common/numberServices.js'
 import './mapbox.css'
 import { MapsNavBar } from './MapsNavBar'
+import { MapsController } from './MapsController'
 mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlvaQw'
 
 /*
@@ -121,8 +120,6 @@ const MapContainer = props => {
  
   const [feature, setFeature] = useState(defaults.feature)
 
-  const [showControls, setShowControls] = useState(true)
-  
   const getBaseData = useCallback((year, geography) => {
     if(!year || !geography) return null
     popup.remove()
@@ -495,17 +492,6 @@ const MapContainer = props => {
 
   const reportData = useReportData(selectedGeography, feature, data, combinedFilter1, filterData, combinedFilter2, tableFilterData)
 
-  const menuStyle = {
-    menu: provided => ({
-      ...provided,
-      zIndex: 3,
-      fontSize: '1.2em',
-    }),
-    control: p => ({ 
-      ...p, 
-      fontSize: '1.25em'
-    })
-  }
   const resolved = resolveData()
   
   const [_bias, biasLabel] = useBias(
@@ -521,109 +507,48 @@ const MapContainer = props => {
     url='https://www.census.gov/programs-surveys/economic-census/guidance-geographies/levels.html' 
   />
 
-  return (
-    <div className={'SelectWrapper ' + biasLabel } ref={mapRef}>
-      {/* TODO: Refactor all these maps parts into components */}
-      <div className={ 'maps-control-wrapper' + (!showControls ? ' title-only' : '') }>
-          {showControls && (
-            <div className='maps-control-box'>
-              <div className='text-selectors'>
-                <TextSelector
-                  selected={selectedGeography}
-                  options={geographies.map((g) => g.label)}
-                  onChange={(g) =>
-                    onGeographyChange({ value: g.toLowerCase(), label: g })
-                  }
-                  label='Map Level'
-                />
-                <TextSelector
-                  selected={year}
-                  options={props.config.dataBrowserYears}
-                  onChange={(year) => onYearChange({ year })}
-                  label='Year'
-                />
-              </div>
-              <div className='filter-selectors'>
-                <div className='filter'>
-                  <span className='filter-clause'>WHERE</span>
-                  <Select
-                    autoFocus
-                    isClearable
-                    openOnFocus
-                    searchable
-                    simpleValue
-                    styles={menuStyle}
-                    value={combinedFilter1}
-                    onChange={onFilter1Change}
-                    filterOption={searchFilter}
-                    options={getCombinedOptions(
-                      combinedFilter2,
-                      combinedFilter1
-                    )}
-                    formatGroupLabel={(data) => formatGroupLabel(data, year)}
-                    placeholder='Select a filter (type to search)'
-                  />
-                </div>
-                <div className='filter'>
-                  <span
-                    className={
-                      'filter-clause' + (combinedFilter1 ? ' disabled' : '')
-                    }
-                  >
-                    {combinedFilter1 ? 'AND' : '[OPTIONAL]'}
-                  </span>
-                  <Select
-                    autoFocus
-                    isClearable
-                    openOnFocus
-                    searchable
-                    simpleValue
-                    isDisabled={!combinedFilter1}
-                    styles={menuStyle}
-                    value={combinedFilter2}
-                    onChange={onFilter2Change}
-                    filterOption={searchFilter}
-                    options={getCombinedOptions(
-                      combinedFilter1,
-                      combinedFilter2
-                    )}
-                    formatGroupLabel={(data) => formatGroupLabel(data, year)}
-                    placeholder={
-                      'Add a second filter' +
-                      (combinedFilter1 ? ' (type to search)' : '')
-                    }
-                  />
-                </div> {/* end filter */}
-              </div> {/* end filter-selectors */}
-            </div> // end maps-control-box
-          )} {/* end showControls */}
-          <MapsNavBar
-            data={reportData}
-            hasFilter={!!combinedFilter1}
-            viewReport={() => scrollToTable(tableRef.current)}
-            download={fetchCSV}
-          />
-        </div> {/* end maps-control-wrapper */}
+  const mapsControllerProps = {
+    selectedGeography,
+    geographies,
+    year,
+    combinedFilter1,
+    combinedFilter2,
+    onFilter1Change,
+    onFilter2Change,
+    years: props.config.dataBrowserYears,
+    handleGeographyChange: (g) => onGeographyChange({ value: g.toLowerCase(), label: g }),
+    handleYearChange: (year) => onYearChange({ year }),
+  }
 
-      <div className='mapContainer' ref={mapContainer}>
-        {/* <MapsControlBox {...{ selectedGeography, geographies, onGeographyChange, year, menuStyle, combinedFilter1, combinedFilter2, onFilter1Change, onFilter2Change, years: props.config.dataBrowserYears, ...........}} /> */}
-        {map === false ? (
-          <Alert type='error'>
-            <p>
-              Your browser does not support WebGL, which is needed to run this
-              application.
-            </p>
-          </Alert>
-        ) : null}
-        {resolved
-          ? makeLegend(
-              ...resolved,
-              year,
-              selectedGeography,
-              selectedVariable,
-              selectedValue
-            )
-          : null}
+  return (
+    <div className={'SelectWrapper ' + biasLabel} ref={mapRef}>
+      <MapsController {...mapsControllerProps} />
+      <div className="page map-page">
+        <MapsNavBar
+          data={reportData}
+          hasFilter={!!combinedFilter1}
+          viewReport={() => scrollToTable(tableRef.current)}
+          download={fetchCSV}
+        />
+        <div className='mapContainer' ref={mapContainer}>
+          {map === false ? (
+            <Alert type='error'>
+              <p>
+                Your browser does not support WebGL, which is needed to run this
+                application.
+              </p>
+            </Alert>
+          ) : null}
+          {resolved
+            ? makeLegend(
+                ...resolved,
+                year,
+                selectedGeography,
+                selectedVariable,
+                selectedValue
+              )
+            : null}
+        </div>
       </div>
       <FilterReports
         data={reportData}
@@ -632,7 +557,7 @@ const MapContainer = props => {
         onClick={() => scrollToTable(tableRef.current)}
         viewMap={scrollToMap}
         download={fetchCSV}
-      />    
+      />
     </div>
   )
 }

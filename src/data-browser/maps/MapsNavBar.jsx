@@ -33,14 +33,28 @@ export const MapsNavBar = ({ data, viewReport, download, hasFilter }) => {
 export const NavBtn = ({ cname, label, onClick }) => <button type='button' className={`nav-btn clickable ${cname || ''}`} onClick={onClick}>{label}</button>
 
 export const MapsNavBtns = ({ download, viewReport, viewMap }) => {
-  return <>
-    {viewReport && <NavBtn cname='view-report QueryButton colorBgWithBias' onClick={viewReport} label='View Report' />}
-    {viewMap && <NavBtn cname='view-map QueryButton colorBgWithBias' onClick={viewMap} label='View Map' />}
-    <NavBtn
-      cname='print-report'
-      onClick={openPrintDialog}
-      label='Print Report'
-    />
-    <NavBtn cname='download-data' onClick={download} label='Download Data' />
-  </>
+  return (
+    <span className='no-print'>
+      {viewReport && (
+        <NavBtn
+          cname='view-report QueryButton colorBgWithBias'
+          onClick={viewReport}
+          label='View Report'
+        />
+      )}
+      {viewMap && (
+        <NavBtn
+          cname='view-map QueryButton colorBgWithBias'
+          onClick={viewMap}
+          label='View Map'
+        />
+      )}
+      <NavBtn
+        cname='print-report'
+        onClick={openPrintDialog}
+        label='Print Report'
+      />
+      <NavBtn cname='download-data' onClick={download} label='Download Data' />
+    </span>
+  )
 }

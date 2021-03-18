@@ -28,7 +28,7 @@ export function openPrintDialog(e) {
 export const FilterReports = ({ data, tableRef, onClick, year, viewMap, download }) => {
   if (!data || !data.featureName) return null
   return (
-    <div className='reports-wrapper'>
+    <div className='reports-wrapper page report-page'>
       <div className="report-nav-btns" ref={tableRef}>
         <MapsNavBtns download={download} viewMap={viewMap} />
       </div>
