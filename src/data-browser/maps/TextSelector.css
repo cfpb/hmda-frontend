@@ -51,4 +51,6 @@
 .TextSelector .options {
   padding: 0.25em 0;
   display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
 }

@@ -121,7 +121,7 @@ const getBias = (data, variable, value, geography, counts, mVar, mVal) => {
 
 
 const useBias = (data, variable, value, year, geography, mainVar, mainVal) => {
-  const [bias, setBias] = useState([null, ''])
+  const [bias, setBias] = useState([0, 'lowBias'])
 
   useEffect(() => {
     if(!data || !variable || !value || !geography || !mainVar || !mainVal) return

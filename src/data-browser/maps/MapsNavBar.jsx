@@ -2,10 +2,18 @@ import React from 'react'
 import { openPrintDialog } from './reports'
 import { asNum } from '../../common/numberServices.js'
 
-export const MapsNavBar = ({ data, viewReport, download }) => {
-  const { filter1, filter2, union12, filter1_geo, featureName } = (data || {})
-  if (filter1 && !featureName || !filter1_geo)
-    return null
+export const MapsNavBar = ({ data, viewReport, download, hasFilter }) => {
+  const { filter1, filter2, union12, filter1_geo, featureName, geoLevel } = (data || {})
+  
+  if (!geoLevel || !hasFilter) return null
+  if (!featureName || !filter1_geo)
+    return (
+      <div className='maps-nav-bar'>
+        <span className='feature empty highlight colorTextWithBias'>
+          Select a {geoLevel.label} using the map below.
+        </span>
+      </div>
+    )
 
   const value = (!filter2 ? filter1_geo[filter1.value.value] : union12) || 0
 

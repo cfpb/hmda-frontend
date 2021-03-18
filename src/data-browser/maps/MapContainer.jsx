@@ -599,6 +599,7 @@ const MapContainer = props => {
           )} {/* end showControls */}
           <MapsNavBar
             data={reportData}
+            hasFilter={!!combinedFilter1}
             viewReport={() => scrollToTable(tableRef.current)}
             download={fetchCSV}
           />

@@ -24,18 +24,21 @@ const normalizeFeature = (feature, isCounty) => isCounty ? feature : fips2Shortc
 // isCounty {boolean} 
 // geoLevel {{value, label}} 
 export const gatherReportData = (geoLevel, rawFeature, baseData, combinedFilter1, filter1Data, combinedFilter2, filter2Data) => {
-  if(!geoLevel || !rawFeature || !baseData) return null
+  if(!geoLevel) return null
   const isCounty = geoLevel.value === 'county'
-  const feature = normalizeFeature(rawFeature, isCounty)
-  const featureName = getFeatureName(geoLevel.value, rawFeature)
 
   let obj = {
-    featureName,
     geoTotals: {},
     isCounty,
     geoLevel,
   }
 
+  if(!rawFeature) return obj
+  const feature = normalizeFeature(rawFeature, isCounty)
+  const featureName = getFeatureName(geoLevel.value, rawFeature)
+  obj.featureName = featureName
+  
+  if (!baseData) return obj
   let geoBaseData = dataByLevel(baseData, feature)
 
   // Total number of originations in this State/County by Variable
