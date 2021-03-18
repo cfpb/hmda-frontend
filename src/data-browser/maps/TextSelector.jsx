@@ -6,7 +6,7 @@ const TextSelector = ({ selected, options, onChange, label, className }) => {
 
   const _clickHandler = (e) => {
     e.preventDefault()
-    onChange(e.target.text)
+    onChange(e.target.textContent)
   }
 
   const getActiveClass = (current, selected) => {
@@ -21,13 +21,14 @@ const TextSelector = ({ selected, options, onChange, label, className }) => {
       <div className="options">
         {options.map((current, i) => {
           return (
-            <a
+            <button
+              type='button'
               className={'option ' + getActiveClass(current, selected)}
               onClick={_clickHandler}
               key={i}
             >
               {current}
-            </a>
+            </button>
           )
         })}
       </div>

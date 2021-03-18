@@ -33,6 +33,7 @@
   border: 2px solid white;
   border-radius: 10px;
   text-align: center;
+  background: transparent;
 }
 
 .TextSelector .option.active {

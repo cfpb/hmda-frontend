@@ -30,7 +30,7 @@ export const FilterReports = ({ data, tableRef, onClick, year, viewMap, download
   return (
     <div className='reports-wrapper'>
       <div className="report-nav-btns" ref={tableRef}>
-        <MapsNavBtns getData={download} viewMap={viewMap} />
+        <MapsNavBtns download={download} viewMap={viewMap} />
       </div>
       <h3 className='report-heading' onClick={onClick}>
         {data.featureName}
