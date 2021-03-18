@@ -17,6 +17,7 @@ import { useReportData } from './useReportData.jsx'
 import { FilterReports } from './reports'
 import { calcPct } from '../../common/numberServices.js'
 import './mapbox.css'
+import { MapsNavBar } from './MapsNavBar'
 mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlvaQw'
 
 /*
@@ -592,6 +593,11 @@ const MapContainer = props => {
               </div> {/* end filter-selectors */}
             </div> // end maps-control-box
           )} {/* end showControls */}
+          <MapsNavBar
+            data={reportData}
+            viewReport={() => scrollToTable(tableRef.current)}
+            download={fetchCSV}
+          />
         </div> {/* end maps-control-wrapper */}
 
       <div className='mapContainer' ref={mapContainer}>
@@ -614,16 +620,15 @@ const MapContainer = props => {
             )
           : null}
       </div>
-      
       <FilterReports
         data={reportData}
         year={year}
         tableRef={tableRef}
         onClick={() => scrollToTable(tableRef.current)}
-        download={
-          <LoadingButton onClick={fetchCSV}>Download Dataset</LoadingButton>
-        }
-      />    </div>
+        viewMap={scrollToMap}
+        download={fetchCSV}
+      />    
+    </div>
   )
 }
 

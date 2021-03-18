@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { asNum, calcPct, isNumber } from '../../common/numberServices'
 import { valsForVar } from './selectUtils'
+import { MapsNavBtns } from './MapsNavBar'
 
 const combinedLabel = (filter) => filter && `${filter.variable.label} - ${filter.value.label}`
 
@@ -8,9 +9,8 @@ const ReportHighlight = ({ data, year }) => {
   const { filter1, filter2, union12, filter1_geo } = data
   
   if (!filter1) return null
-  const v = !filter2 ? filter1_geo[filter1.value.value] : union12
+  const v = (!filter2 ? filter1_geo[filter1.value.value] : union12) || 0
 
-  if (v === undefined) return null
   return (
     <div className='union-highlight'>
       <div className='count colorTextWithBias' >{asNum(v)}</div>
@@ -19,11 +19,20 @@ const ReportHighlight = ({ data, year }) => {
   )
 }
 
-export const FilterReports = ({ data, tableRef, onClick, year, download }) => {
+export function openPrintDialog(e) {
+  e.preventDefault()
+  window.print()
+  document.activeElement.blur()
+}
+
+export const FilterReports = ({ data, tableRef, onClick, year, viewMap, download }) => {
   if (!data) return null
   return (
     <div className='reports-wrapper'>
-      <h3 className='report-heading' ref={tableRef} onClick={onClick}>
+      <div className="report-nav-btns" ref={tableRef}>
+        <MapsNavBtns getData={download} viewMap={viewMap} />
+      </div>
+      <h3 className='report-heading' onClick={onClick}>
         {data.featureName}
         <ReportHighlight data={data} year={year} />
         {data.filter1 && (
@@ -58,7 +67,6 @@ export const FilterReports = ({ data, tableRef, onClick, year, download }) => {
           level={data.geoLevel.label}
         />
       </div>
-      {download}
     </div>
   )
 }

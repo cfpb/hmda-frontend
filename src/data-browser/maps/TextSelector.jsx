@@ -11,7 +11,7 @@ const TextSelector = ({ selected, options, onChange, label, className }) => {
 
   const getActiveClass = (current, selected) => {
     const selectedValue = (typeof selected === 'string') ? selected.toLowerCase() : selected.value
-    return current.toLowerCase() === selectedValue ? 'active' : ''
+    return current.toLowerCase() === selectedValue ? 'active QueryButton' : ''
   }
 
 

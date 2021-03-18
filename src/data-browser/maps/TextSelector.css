@@ -39,13 +39,12 @@
   padding: 0.2em 0.6em;
   cursor: pointer;
   color: white;
-  background: #55739f;
   border-radius: 10px;
 }
 
 .TextSelector .option:not(.active):hover {
-  text-decoration-color: #55739f;
-  border-color: #55739f;
+  text-decoration-color: #666;
+  border-color: #666;
 }
 
 .TextSelector .options {
