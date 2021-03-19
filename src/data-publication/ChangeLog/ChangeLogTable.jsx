@@ -126,8 +126,22 @@ const Row = ({ item, filter, products }) => {
           autoEscape={true}
           textToHighlight={item.description}
         />
+        <Links links={item.links} />
       </Column>
     </div>
+  )
+}
+
+const Links = ({ links }) => {
+  if (!links) return null
+  return (
+    <ul className='links'>
+      {links.map((l, l_idx) => (
+        <li key={l_idx}>
+          <a href={l.url}>{l.text}</a>
+        </li>
+      ))}
+    </ul>
   )
 }
 
