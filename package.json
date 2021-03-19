@@ -44,7 +44,9 @@
     "redux": "4.0.5",
     "redux-logger": "3.0.6",
     "redux-thunk": "2.3.0",
-    "split2": "3.2.2"
+    "split2": "3.2.2",
+    "streamsaver": "2.0.5",
+    "web-streams-ponyfill": "1.4.2"
   },
   "browserslist": [
     "Chrome >= 60",

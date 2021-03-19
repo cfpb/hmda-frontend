@@ -74,7 +74,7 @@ class ResultsActions extends Component {
                   className="yes"
                   onClick={event => {
                     this.setState({ deleting: true })
-                    handleDeleteClick(institution, index, this.props.token)
+                    handleDeleteClick(institution, index)
                   }}
                 >
                   Yes

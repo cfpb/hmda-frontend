@@ -1,6 +1,6 @@
 import createQueryString from './createQueryString.js'
 import makeUrl from './makeUrl.js'
-import * as AccessToken from './AccessToken.js'
+import * as AccessToken from '../../common/api/AccessToken.js'
 import { login } from '../utils/keycloak.js'
 import { getStore } from '../utils/store.js'
 import log, { error } from '../utils/log.js'

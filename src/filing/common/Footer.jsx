@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import './Footer.css'
 import logo from '../images/ffiec-logo.svg'
 import MaintenanceMessage from '../../MaintenanceMessage'
-import { getKeycloak } from '../utils/keycloak.js'
+import { getKeycloak } from '../../common/api/Keycloak'
 import ReleaseVersion from '../../common/ReleaseVersion'
 
 export const getLink = filingPeriod => {

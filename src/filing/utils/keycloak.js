@@ -2,17 +2,10 @@
 import { error } from './log.js'
 import { getStore } from './store.js'
 import isRedirecting from '../actions/isRedirecting.js'
-import * as AccessToken from '../api/AccessToken.js'
-let keycloak = null
+import { getKeycloak } from '../../common/api/Keycloak'
+import * as AccessToken from '../../common/api/AccessToken.js'
 
-const setKeycloak = cloak => {
-  keycloak = cloak
-  return keycloak
-}
-
-const getKeycloak = () => {
-  return keycloak
-}
+let keycloak = getKeycloak()
 
 const login = (path) => {
   const store = getStore()
@@ -56,32 +49,10 @@ const logout = () => {
   keycloak.logout({ redirectUri: location.origin + `/filing/${getStore().getState().app.filingPeriod}/` })
 }
 
-const mockKeycloak = {
-  authenticated: true,
-  tokenParsed: {
-    name: 'Test User',
-    lei: process.env.REACT_APP_LEIS || 'FRONTENDTESTBANK9999',
-    exp: Date.now() + 18000000,
-  },
-  init: () => new Promise((res) => res(true)),
-  updateToken: () =>
-    new Promise((resolve) =>
-      resolve({
-        success: () => {},
-        error: () => false
-      })
-    ),
-  logout: () => (window.location.href = '/filing'),
-  login: () => (window.location.href += 'institutions'),
-  hasResourceRole: () => true,
-}
 
 export {
-  getKeycloak,
-  setKeycloak,
   register,
   login,
   logout,
   refresh,
-  mockKeycloak
 }

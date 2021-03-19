@@ -3,27 +3,17 @@ import 'react-app-polyfill/stable' // For fancy JS
 
 import React, { Component } from 'react'
 import { BrowserRouter as Switch, Route } from 'react-router-dom'
-import Keycloak from 'keycloak-js'
-
 import NotAuthorized from './NotAuthorized'
 import Header from './Header'
 import Search from './search'
 import Institution from './institution'
-import { mockKeycloak, setKeycloak } from '../filing/utils/keycloak'
+import { initKeycloak } from '../common/api/Keycloak'
 import { withAppContext } from '../common/appContextHOC'
+import * as AccessToken from '../common/api/AccessToken'
 
 import './index.css'
 
-let keycloak
-
-if(process.env.REACT_APP_ENVIRONMENT === 'CI') 
-  keycloak = setKeycloak(mockKeycloak)
-else if(process.env.NODE_ENV === 'development') {
-  keycloak = setKeycloak(Keycloak(process.env.PUBLIC_URL + '/local_keycloak.json'))
-} else {
-  keycloak = setKeycloak(Keycloak(process.env.PUBLIC_URL + '/keycloak.json'))
-}
-
+let keycloak = initKeycloak()
 
 const refreshToken = self => {
   const updateKeycloak = () => {
@@ -32,6 +22,7 @@ const refreshToken = self => {
         .updateToken(20)
         .then(refreshed => {
           if (refreshed) {
+            AccessToken.set(keycloak.token)
             self.setState({
               token: keycloak.token,
               tokenParsed: keycloak.tokenParsed
@@ -51,7 +42,6 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      token: null,
       tokenParsed: null,
       authenticated: false,
       authorized: false
@@ -60,13 +50,15 @@ class App extends Component {
 
   componentDidMount() {
     keycloak.init({ onLoad: 'login-required' }).then(authenticated => {
-      refreshToken(this)
-      this.setState({
-        token: keycloak.token,
-        tokenParsed: keycloak.tokenParsed,
-        authenticated: authenticated,
-        authorized: keycloak.hasResourceRole('hmda-admin', 'hmda2-api')
-      })
+      if (authenticated) {
+        AccessToken.set(keycloak.token)
+        refreshToken(this)
+        this.setState({
+          tokenParsed: keycloak.tokenParsed,
+          authenticated: authenticated,
+          authorized: keycloak.hasResourceRole('hmda-admin', 'hmda2-api'),
+        })
+      } else keycloak.login({ redirectUri: location.href })
     })
   }
 
@@ -76,7 +68,7 @@ class App extends Component {
         <Route
           {...rest}
           render={(props) => (
-            <Component {...props} config={rest.config} token={rest.token} />
+            <Component {...props} config={rest.config} />
           )}
         />
       )
@@ -89,26 +81,23 @@ class App extends Component {
         return (
           <Switch basename="/hmda-help">
             <React.Fragment>
-              <Header token={this.state.token} logout={keycloak.logout} />
+              <Header logout={keycloak.logout} />
               <ProtectedRoute
                 exact
                 path="/"
                 component={Search}
-                token={this.state.token}
                 config={config}
               />
               <ProtectedRoute
                 exact
                 path="/add"
                 component={Institution}
-                token={this.state.token}
                 config={config}
               />
               <ProtectedRoute
                 exact
                 path="/update"
                 component={Institution}
-                token={this.state.token}
                 config={config}
               />
             </React.Fragment>

@@ -14,6 +14,7 @@ import { fetchInstitution } from './fetchInstitution'
 import PublicationTable from '../publications/PublicationTable'
 import { getFilingYears, getFilingPeriods } from '../../common/constants/configHelpers'
 import { SubmissionStatus } from './SubmissionStatus'
+import * as AccessToken from '../../common/api/AccessToken' 
 
 function onlyUnique(value, index, self) {
   return self.indexOf(value) === index;
@@ -61,8 +62,8 @@ class Form extends Component {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     }
-
-    if (this.props.token) headers['Authorization'] = `Bearer ${this.props.token}`
+    const token = AccessToken.get()
+    if (token) headers['Authorization'] = `Bearer ${token}`
     
     fetch('/v2/admin/institutions', {
       method: 'DELETE',
@@ -96,7 +97,7 @@ class Form extends Component {
       errors: []
     })
 
-    Promise.all(fetchInstitution(this.state.lei, this.setState, this.props.token, getFilingYears(this.props.config)))
+    Promise.all(fetchInstitution(this.state.lei, this.setState, getFilingYears(this.props.config)))
       .then(() => this.setState({ fetching: false }))
       .catch(error =>
         this.setState(state => ({
@@ -130,7 +131,7 @@ class Form extends Component {
       searchType,
     } = this.state
 
-    const { token, config } = this.props
+    const { config } = this.props
 
     let leis = institutions && institutions.map(i => i.lei).filter(onlyUnique)
 
@@ -191,7 +192,7 @@ class Form extends Component {
         )}
 
         {searchType === 'publications' && !isFetching && institutions && (
-          <PublicationTable institutions={institutions} token={token} />
+          <PublicationTable institutions={institutions} />
         )}
 
         {searchType === 'submissions' && !isFetching && leis && (
@@ -218,13 +219,11 @@ class Form extends Component {
                           key={`oldest-${idx}`}
                           lei={lei}
                           year={fPeriod}
-                          token={token}
                         />
                         <SubmissionStatus
                           key={`latest-${idx}`}
                           lei={lei}
                           year={fPeriod}
-                          token={token}
                           latest
                         />
                       </tr>

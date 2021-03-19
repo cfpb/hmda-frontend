@@ -5,7 +5,7 @@ import fetchEachInstitution from '../actions/fetchEachInstitution.js'
 import getFilingPeriodOptions from '../actions/getFilingPeriodOptions'
 import Institutions from './index.jsx'
 import InstitutionDetailsWrapper from './details/InstitutionDetailsWrapper'
-import { getKeycloak } from '../utils/keycloak.js'
+import { getKeycloak } from '../../common/api/Keycloak.js'
 import { afterFilingPeriod, beforeFilingPeriod } from "../utils/date"
 import { splitYearQuarter } from '../api/utils.js'
 

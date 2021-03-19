@@ -4,6 +4,7 @@ import { LABELS, TOPICS } from './constants'
 import { fetchData } from '../utils/api'
 import { DownloadButton } from './DownloadButton'
 import { RegenerateButton } from './RegenerateButton'
+import * as AccessToken from '../../common/api/AccessToken'
 
 const defaultState = {
   waiting: false,
@@ -16,7 +17,6 @@ const regenMsg = (label) => 'Begin the regeneration process for ' + label + '?'
 export const PublicationRow = ({
   fetched,
   institution,
-  token,
   type,
   url,
   error,
@@ -27,6 +27,7 @@ export const PublicationRow = ({
 
   const { lei, respondentName, activityYear: year } = institution
   const headers = {}
+  const token = AccessToken.get()
   if (token) headers['Authorization'] = `Bearer ${token}`
 
   const [state, setState] = useState(defaultState)
