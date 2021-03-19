@@ -1,6 +1,14 @@
 {
   "log": [
     {
+      "date": "02/23/21",
+      "type": "correction",
+      "product": "tools",
+      "description": "Two sets of APORs were published for the week of 7/20/2020 for fixed rate loans with terms of 13 to 22 years. The first set was published on 7/16/2020 and was briefly incorporated into the Bureau’s rate spread calculator. The second set was published on 7/20/2020 and was substituted for the first in the Bureau’s rate spread calculator. Both sets of APORs are available below.",
+      "links": [{"text": "APOR Table - 7.20.20", "url": "https://files.consumerfinance.gov/hmda/7_20_2020_APORs_table.csv" }],
+      "url": ""
+    },
+    {
       "date": "11/20/20",
       "type": "update",
       "product": "documentation",
@@ -33,12 +41,6 @@
       "product": "tools",
       "description": "The Data Browser for the year 2018 has been updated with corrected per County counts.",
       "url": "https://github.com/cfpb/hmda-frontend/issues/588"
-    },
-    {
-      "date": "07/21/20",
-      "type": "correction",
-      "product": "tools",
-      "description": "An error in the Mortgage Rate Survey table for 15-Year Fixed Points & Fees (cell E135) resulted in incorrect results for Rate Spread on fixed rate loans with terms of 13 to 22 years and rate set date of 7/20/2020. The issue was corrected in the online calculator and the linked tables."
     },
     {
       "date": "07/08/20",

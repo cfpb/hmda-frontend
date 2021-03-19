@@ -166,6 +166,12 @@
   min-width: 165px;
 }
 
+#ChangeLogTable .links,
+#ChangeLogTable .links li {
+  margin-bottom: 0;
+  padding-left: 1em;
+}
+
 
 @media screen and (max-width: 850px) {
   #ChangeLogTable {
