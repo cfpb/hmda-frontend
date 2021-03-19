@@ -1,0 +1,39 @@
+.filter-report {
+  margin-bottom: 8rem;
+}
+
+.filter-report table {
+  page-break-inside: avoid;
+  width: 100%;
+}
+
+.filter-report td.spacer,
+.filter-report th.group-header.spacer {
+  border: none;
+  background: none;
+  color: black;
+  text-shadow: none;
+}
+
+.filter-report th.group-header {
+  color: white;
+  text-shadow: 0 0 2px black;
+  text-align: center;
+}
+
+.filter-report th.group-header .variable {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 3px;
+}
+
+.filter-report th.group-header .value {
+  padding-top: 3px;
+}
+
+.filter-report .count {
+  text-align: right;
+}
+
+.filter-report .highlight .highlight {
+  font-weight: bold;
+}

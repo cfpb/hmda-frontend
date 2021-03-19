@@ -1,6 +1,12 @@
 import React from 'react'
-import { openPrintDialog } from './reports'
 import { asNum } from '../../common/numberServices.js'
+
+function openPrintDialog(e) {
+  e.preventDefault()
+  document.activeElement.blur()
+  window.print()
+}
+
 
 export const MapsNavBar = ({ data, viewReport, download, hasFilter }) => {
   const { filter1, filter2, union12, filter1_geo, featureName, geoLevel } = (data || {})

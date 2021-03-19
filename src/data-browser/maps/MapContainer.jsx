@@ -12,11 +12,12 @@ import fips2Shortcode from '../constants/fipsToShortcode.js'
 import mapbox from 'mapbox-gl'
 import settingsIcon from '../../common/images/settings_gear.png'
 import { useReportData } from './useReportData.jsx'
-import { FilterReports } from './reports'
+import { FilterReports } from './FilterReports'
 import { calcPct } from '../../common/numberServices.js'
 import './mapbox.css'
 import { MapsNavBar } from './MapsNavBar'
 import { MapsController } from './MapsController'
+import { ReportSummary } from './ReportSummary'
 mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlvaQw'
 
 /*
@@ -523,7 +524,7 @@ const MapContainer = props => {
   return (
     <div className={'SelectWrapper ' + biasLabel} ref={mapRef}>
       <MapsController {...mapsControllerProps} />
-      <div className="page map-page">
+      <div className='page map-page'>
         <MapsNavBar
           data={reportData}
           hasFilter={!!combinedFilter1}
@@ -550,14 +551,15 @@ const MapContainer = props => {
             : null}
         </div>
       </div>
-      <FilterReports
-        data={reportData}
-        year={year}
+      <ReportSummary
         tableRef={tableRef}
         onClick={() => scrollToTable(tableRef.current)}
         viewMap={scrollToMap}
         download={fetchCSV}
+        year={year}
+        data={reportData}
       />
+      <FilterReports data={reportData}  />
     </div>
   )
 }

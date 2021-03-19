@@ -1,0 +1,45 @@
+
+.summary-page .report-nav-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: .55em;
+}
+
+.summary-page .union-highlight {
+  margin: 0 auto .5em;
+  text-align: center;
+}
+
+.summary-page .union-highlight .count {
+  font-size: 2em;
+}
+
+.summary-page .report-heading {
+  font-size: 2em;
+  text-align: center;
+  margin-bottom: 2em;
+  cursor: pointer;
+}
+
+.summary-page .filter-label {
+  font-size: .65em;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.summary-page .filter-label > * {
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+
+.summary-page .QueryButton:hover {
+  background: rgb(1,111, 123, 1);
+  border-color: black;
+}
+
+.summary-page .QueryButton {
+  background: rgb(1,111, 123, .8);
+  border-color: white;
+}

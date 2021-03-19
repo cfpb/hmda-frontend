@@ -8,10 +8,10 @@ import './MapsGraphs.css'
 const MapsGraphs = props => {
   return (
     <div className='MapsGraphs'>
-      <Link className='BackLink' to='/data-browser/'>
+      <Link className='BackLink no-print' to='/data-browser/'>
         {'\u2b05'} DATA BROWSER HOME
       </Link>
-      <div className='intro'>
+      <div className='intro no-print'>
         <Heading type={1} headingText='Map of HMDA Data'>
           <p className='lead'>
             The Map tool gives you the opportunity to visualize subsets of HMDA
