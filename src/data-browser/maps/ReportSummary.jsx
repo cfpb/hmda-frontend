@@ -27,18 +27,20 @@ export const ReportSummary = ({ data, tableRef, onClick, year, viewMap, download
         <MapsNavBtns download={download} viewMap={viewMap} />
       </div>
       <h3 className='report-heading' onClick={onClick}>
-        {data.featureName}
+         <span className='featureName'>{data.featureName}</span>
+         <div className="divider colorBgWithBias">&nbsp;</div>
+
         <ReportHighlight data={data} year={year} />
         {data.filter1 && (
           <div className='filter-label'>
-            <div className='filter-clause colorTextWithBias'>WHERE</div>{' '}
-            <div className='filter-text'>{combinedLabel(data.filter1)}</div>
+            <div className='filter-clause'>WHERE</div>{' '}
+            <div className='filter-text colorTextWithBias'>{combinedLabel(data.filter1)}</div>
           </div>
         )}
         {data.filter2 && (
           <div className='filter-label'>
-            <div className='filter-clause colorTextWithBias'>AND</div>{' '}
-            <div className='filter-text'>{combinedLabel(data.filter2)}</div>
+            <div className='filter-clause'>AND</div>{' '}
+            <div className='filter-text colorTextWithBias'>{combinedLabel(data.filter2)}</div>
           </div>
         )}
       </h3>
