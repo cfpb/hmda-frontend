@@ -320,6 +320,8 @@ const MapContainer = props => {
     if(selectedFilterValue) {
       fetchFilterData(year, selectedGeography, selectedFilter, selectedFilterValue)
         .then(d => setTableFilterData(d))
+    } else {
+      setTableFilterData(undefined)
     }
   }, [selectedFilter, selectedFilterValue, selectedGeography, year])
 
