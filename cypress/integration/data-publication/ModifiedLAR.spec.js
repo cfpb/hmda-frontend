@@ -3,6 +3,7 @@ import { isBeta } from "../../support/helpers"
 const { HOST } = Cypress.env()
 
 const testCases = [
+  { year: 2020, name: "cypress", institution: "549300I4IUWMEMGLST06"},
   { year: 2019, name: "cypress", institution: "549300I4IUWMEMGLST06"},
   { year: 2018, name: "cypress", institution: "549300I4IUWMEMGLST06"},
   { year: 2017, name: "cypress", institution: "729178"}

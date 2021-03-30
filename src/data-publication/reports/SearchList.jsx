@@ -4,7 +4,7 @@ import LoadingIcon from '../../common/LoadingIcon.jsx'
 
 import './SearchList.css'
 
-let INSTITUTIONS = { 2017: null, 2018: null, 2019: null }
+let INSTITUTIONS = {}
 
 class SearchList extends React.Component {
   constructor(props) {
@@ -51,15 +51,15 @@ class SearchList extends React.Component {
   }
 
   componentDidMount() {
-    if (INSTITUTIONS[this.props.year] === null) {
+    if (!INSTITUTIONS[this.props.year]) {
       this.getData()
     }
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.year !== prevProps.year) {
-      this.setState({ institutionsFiltered: [], textInputValue: '' })
-      if (INSTITUTIONS[this.props.year] === null) {
+      this.setState({ institutionsFiltered: [], textInputValue: '', error: null })
+      if (!INSTITUTIONS[this.props.year]) {
         this.getData()
       }else{
         this.setState({institutions: INSTITUTIONS[this.props.year]})
