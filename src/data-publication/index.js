@@ -16,16 +16,17 @@ import PublicationChanges from './ChangeLog/'
 import './index.css'
 
 const DataPublication = ({ config }) => {
-  const { dynamic, snapshot, shared } = config.dataPublicationYears
+  const { dynamic, snapshot, shared, mlar } = config.dataPublicationYears
   const snapshotYears = snapshot || shared
   const dynamicYears = dynamic || shared
+  const mlarYear = (mlar || shared)[0]
 
   return (
     <div className="App DataPublication">
       <Switch>
         <Route exact path="/data-publication" component={Home} />
         <Route exact path = "/data-publication/updates" component={PublicationChanges} />
-        <Redirect exact from="/data-publication/modified-lar" to="/data-publication/modified-lar/2019" />
+        <Redirect exact from="/data-publication/modified-lar" to={`/data-publication/modified-lar/${mlarYear}`} />
         <Route path="/data-publication/documents" component={SupportingDocs} />
         <Route path="/data-publication/modified-lar/:year" component={ModifiedLar} />
         <Route
