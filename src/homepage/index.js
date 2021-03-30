@@ -220,7 +220,7 @@ const Home = ({ config }) => {
               </p>
               <ul>
                 <li>
-                  <a href={`/data-publication/modified-lar/${publicationReleaseYear}`}>
+                  <a href={`/data-publication/modified-lar/`}>
                     Modified LAR
                   </a>
                 </li>
