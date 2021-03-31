@@ -1,6 +1,6 @@
-import { ReadableStream, WritableStream } from 'web-streams-ponyfill'
 import 'react-app-polyfill/ie11' // For IE 11 support
 import 'react-app-polyfill/stable'
+import { ReadableStream, WritableStream } from 'web-streams-ponyfill'
 
 // StreamSaver support for Firefox/IE
 window.WritableStream = WritableStream
