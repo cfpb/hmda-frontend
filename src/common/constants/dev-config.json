@@ -5,14 +5,15 @@
     "type": "info",
     "heading": "Announcement"
   },
-  "defaultPeriod": "2020",
-  "defaultDocsPeriod": "2020",
+  "defaultPeriod": "2021-Q1",
+  "defaultDocsPeriod": "2021",
   "publicationReleaseYear": "2019",
   "filingPeriods": [
+    "2021-Q1",
+    "2020",
     "2020-Q3",
     "2020-Q2",
     "2020-Q1",
-    "2020",
     "2019",
     "2018"
   ],
@@ -22,6 +23,7 @@
     "Q3": "10/01 - 11/30",
     "ANNUAL": "01/01 - 03/01",
     "PREVIEW": [
+      "2021-Q1",
       "2021"
     ]
   },

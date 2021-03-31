@@ -5,8 +5,8 @@
     "type": "info",
     "heading": "Announcement"
   },
-  "defaultPeriod": "2020",
-  "defaultDocsPeriod": "2020",
+  "defaultPeriod": "2021-Q1",
+  "defaultDocsPeriod": "2021",
   "publicationReleaseYearDesc": [
     "Homepage -> Default year for Datasets, Reports, and mLAR Links",
     "Data Browser -> Default year for Browser and Maps features"
