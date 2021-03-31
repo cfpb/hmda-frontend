@@ -3,7 +3,11 @@
   "announcement": {
     "message": "On March 31, 2021, the 2020 Modified LAR data was released.",
     "type": "info",
-    "heading": "Announcement"
+    "heading": "Announcement",
+    "link": {
+      "url": "https://www.consumerfinance.gov/about-us/newsroom/2020-hmda-data-on-mortgage-lending-now-available/",
+      "text": "View the press release."
+    }
   },
   "defaultPeriod": "2020",
   "defaultDocsPeriod": "2020",
