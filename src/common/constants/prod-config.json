@@ -1,9 +1,13 @@
 {
   "name": "prod",
   "announcement": {
-    "message": "The 2020 Annual filing period is closed. The HMDA Platform remains available outside of the filing period for late submissions and resubmissions of 2018-2020 HMDA data.",
+    "message": "On March 31, 2021, the 2020 Modified LAR data was released.",
     "type": "info",
-    "heading": "Announcement"
+    "heading": "Announcement",
+    "link": {
+      "url": "https://www.consumerfinance.gov/about-us/newsroom/2020-hmda-data-on-mortgage-lending-now-available/",
+      "text": "View the press release."
+    }
   },
   "defaultPeriod": "2020",
   "defaultDocsPeriod": "2020",

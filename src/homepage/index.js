@@ -12,7 +12,7 @@ export function isProd() {
 
 const Home = ({ config }) => {
   const isProdBeta = isProd() && isBeta()
-  const { announcement, defaultPeriod, publicationReleaseYear } = config
+  const { announcement, defaultPeriod, publicationReleaseYear, mlarReleaseYear } = config
 
   return (
     <main className="App home" id="main-content">
@@ -220,7 +220,7 @@ const Home = ({ config }) => {
               </p>
               <ul>
                 <li>
-                  <a href={`/data-publication/modified-lar/`}>
+                  <a href={`/data-publication/modified-lar/${mlarReleaseYear || publicationReleaseYear}`}>
                     Modified LAR
                   </a>
                 </li>

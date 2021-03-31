@@ -1,9 +1,13 @@
 {
   "name": "dev-beta",
   "announcement": {
-    "message": "The filing period is open. Submissions of 2020 HMDA data will be considered timely if received on or before Monday, March 1st, 2021.",
+    "message": "On March 31, 2021, the 2020 Modified LAR data was released.",
     "type": "info",
-    "heading": "Announcement"
+    "heading": "Announcement",
+    "link": {
+      "url": "https://www.consumerfinance.gov/about-us/newsroom/2020-hmda-data-on-mortgage-lending-now-available/",
+      "text": "View the press release."
+    }
   },
   "defaultPeriod": "2021-Q1",
   "defaultDocsPeriod": "2021",
