@@ -82,7 +82,7 @@ export class AppContainer extends Component {
   }
 
   _isHome(props) {
-    return !!props.location.pathname.match(/^\/filing\/\d{4}\/$/)
+    return !!props.location.pathname.match(/^\/filing\/\d{4}(-Q\d)?\/$/)
   }
 
   checkForValidQuarters(period){

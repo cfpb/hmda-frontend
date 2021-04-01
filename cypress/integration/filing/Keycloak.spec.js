@@ -1,14 +1,17 @@
 import { isCI } from '../../support/helpers'
 
-const { HOST, USERNAME, PASSWORD, ENVIRONMENT } = Cypress.env()
+const { HOST, USERNAME, PASSWORD, ENVIRONMENT, AUTH_REALM, AUTH_BASE_URL } = Cypress.env()
 
 describe('Keycloak', () => {
+  const authUrl = HOST.indexOf('localhost') > -1 ? AUTH_BASE_URL : HOST
+
   if(isCI(ENVIRONMENT)) 
     it('Does not run on CI')
   else {
     beforeEach(() => {
       cy.visit(`${HOST}/filing`)
       cy.get({ HOST, USERNAME, PASSWORD, ENVIRONMENT }).logEnv()
+      cy.logout({ root: authUrl, realm: AUTH_REALM })
     })
   
     describe('Sign In', () => {
@@ -19,7 +22,7 @@ describe('Keycloak', () => {
         cy.findByText('Sign In').click()
         
         // Successful sign in lands on Instutituions page
-        cy.url().should('match', /\/filing\/\d{4}\/institutions$/)
+        cy.url().should('match', /\/filing\/\d{4}(-Q\d)?\/institutions$/)
 
         // Logout
         cy.findByText('Logout').click()
