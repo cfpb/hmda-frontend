@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router'
 import ConfirmationModal from './modals/confirmationModal/container.jsx'
 import Beta, { isBeta } from '../common/Beta'
 import Header from './common/Header.jsx'
@@ -13,7 +14,6 @@ import isRedirecting from './actions/isRedirecting.js'
 import updateFilingPeriod from './actions/updateFilingPeriod.js'
 import { detect } from 'detect-browser'
 import { FilingAnnouncement } from './common/FilingAnnouncement'
-
 import 'normalize.css'
 import './app.css'
 
@@ -106,6 +106,8 @@ export class AppContainer extends Component {
   render() {
     const { match: { params }, location, config: { filingAnnouncement } } = this.props
     const validFilingPeriod = this.isValidPeriod(params.filingPeriod)
+    if (!validFilingPeriod && params.filingPeriod !== '2017') 
+      return <Redirect to={`/filing/${this.props.config.filingPeriods[0]}/`} />
 
     return (
       <div className="AppContainer">
@@ -116,12 +118,16 @@ export class AppContainer extends Component {
         <ConfirmationModal />
         {isBeta() ? <Beta/> : null}
         {filingAnnouncement ? <FilingAnnouncement data={filingAnnouncement} /> : null}
-        {validFilingPeriod
-          ? this._renderAppContents(this.props)
-          : params.filingPeriod === '2017'
-            ? <p className="full-width">Files are no longer being accepted for the 2017 filing period. For further assistance, please contact <a href="mailto:hmdahelp@cfpb.gov">HMDA Help</a>.</p>
-            : <p className="full-width">The {params.filingPeriod} filing period does not exist. If this seems wrong please contact <a href="mailto:hmdahelp@cfpb.gov">HMDA Help</a>.</p>
-        }
+        {params.filingPeriod === '2017' ? (
+          <p className='full-width'>
+            Files are no longer being accepted for the 2017 filing period. For
+            further assistance, please contact{' '}
+            <a href='mailto:hmdahelp@cfpb.gov'>HMDA Help</a>.
+          </p>
+        ) : (
+          this._renderAppContents(this.props)
+        )}
+
         <Footer filingPeriod={params.filingPeriod} config={this.props.config} />
       </div>
     )
