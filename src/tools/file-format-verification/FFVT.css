@@ -23,6 +23,19 @@
   margin-top: 0;
 }
 
+.Tools #main-content.FFVT .grid .item {
+  flex: 1 1 100%;
+  margin: 3rem 0 0 0;
+}
+
+.FFVT .dropzone-content {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2em;
+}
+
 @media screen and (max-width: 800px) {
   #main-content.FFVT .grid .item {
     padding: 0;
