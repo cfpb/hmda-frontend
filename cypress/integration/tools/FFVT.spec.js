@@ -68,7 +68,7 @@ describe('FFVT', function () {
       })
 
       // Validate
-      cy.get('#parseErrors .alert-heading').contains('1 Formatting Error')
+      cy.get('#parseErrors .alert-heading').contains('2 Formatting Errors')
       cy.get('tbody > tr > :nth-child(1)').contains('1')
       cy.get('tbody > tr > :nth-child(2)').contains('Federal Agency')
       cy.get('tbody > tr > :nth-child(3)').contains('taco')
