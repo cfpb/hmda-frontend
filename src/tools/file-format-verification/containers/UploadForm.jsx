@@ -1,3 +1,4 @@
+import React from 'react'
 import { connect } from 'react-redux'
 import Upload from '../components/UploadForm.jsx'
 import { selectFile, triggerParse } from '../actions'
@@ -10,12 +11,18 @@ export function mapStateToProps(state) {
   }
 
   const filingPeriod = state.app.filingPeriod || null
+  const parseErrors = state.app.parseErrors || {
+    transmittalSheetErrors: [],
+    larErrors: [],
+  }
+  const errorCount = parseErrors.transmittalSheetErrors.length + parseErrors.larErrors.length
 
   return {
     uploading,
     file,
     filingPeriod,
-    errors
+    errors,
+    parseErrors: {...parseErrors, errorCount}
   }
 }
 
@@ -33,9 +40,35 @@ export function mapDispatchToProps(dispatch) {
     setFile: (acceptedFiles, rejectedFiles) => {
       if (!acceptedFiles || !rejectedFiles) return
       let file = acceptedFiles[0] || rejectedFiles[0]
+      if(!file) return
       dispatch(setAndParseFile(file))
     }
   }
 }
 
+
+const UploadButton = (props) => {
+  const text = props.text || 'Upload file' 
+
+  const handleSelection = (event) => {
+    if (!event || !event.target.files) return
+    props.setFile(event.target.files, [])
+  }
+
+  return (
+    <>
+      <input id='uploadFileInput' type='file' onChange={handleSelection} />
+      <button
+        id='uploadFileButton'
+        type='button'
+        onClick={() => document.getElementById('uploadFileInput').click()}
+      >
+        {text}
+      </button>
+    </>
+  )
+}
+
+
+export const ConnectedUploadButton = connect(mapStateToProps, mapDispatchToProps)(UploadButton)
 export default connect(mapStateToProps, mapDispatchToProps)(Upload)

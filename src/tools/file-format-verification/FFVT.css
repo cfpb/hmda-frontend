@@ -28,13 +28,47 @@
   margin: 3rem 0 0 0;
 }
 
+.FFVT .UploadForm .container-upload {
+  background-color: rgba(200, 240, 250, 0.2);
+}
+
 .FFVT .dropzone-content {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   padding: 0 2em;
+  font-size: 1.5rem;
+  background: white;
 }
+
+.FFVT #uploadFileInput {
+   display: none 
+}
+
+.FFVT #uploadFileButton {
+  margin: 1rem;
+  margin-left: 2rem;
+  font-size: .75em;
+  white-space: nowrap;
+  text-transform: uppercase;
+  background: rgb(227, 28, 61);
+  
+}
+
+.FFVT #uploadFileButton:hover,
+.FFVT #uploadFileButton:focus {
+  background: rgb(184, 20, 45);
+}
+
+.FFVT .UploadForm.success .container-upload {
+  background-color: #e7f4e4;
+}
+
+.FFVT .UploadForm.error .container-upload {
+  background-color: #f9dede;
+}
+
 
 @media screen and (max-width: 800px) {
   #main-content.FFVT .grid .item {
