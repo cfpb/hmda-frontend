@@ -16,7 +16,11 @@ Add your update to the [change-log-data.json](./src/data-publication/ChangeLog/c
     "type": "release | update | correction",
     "product": "mlar | datasets | reports | documentation | tools",
     "description": "This example has been created!",
-    "url": "https://github.com/cfpb/hmda-frontend/issues/007"
+    "url": "https://github.com/cfpb/hmda-frontend/issues/007",
+    "links": [
+      {"text": "First link", "url": "https://link.url.com" },
+      {"text": "A second link", "url": "https://link2.url.com" }
+    ]
   },
 ```  
 
@@ -43,3 +47,8 @@ Add your update to the [change-log-data.json](./src/data-publication/ChangeLog/c
 
 - `url`
   - Not currently used but could provide a link to additional info.
+  
+- `links`
+  - Links to supporting documents or websites
+    - `text` - Link text
+    - `url` - Link target
