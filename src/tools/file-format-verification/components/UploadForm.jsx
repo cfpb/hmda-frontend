@@ -20,17 +20,16 @@ export const UploadErrors = ({ errors, parsed, parseErrors }) => {
   if (errors.length)
     return (
       <span ref={ref}>
-        <Alert
-          type='error'
-          heading={`${errors.length} Parsing Error${
-            errors.length > 1 ? 's' : ''
-          }`}
-        >
-          <ul>
-            {errors.map((error, i) => {
-              return <li key={i}>{error}</li>
-            })}
-          </ul>
+        <Alert type='error' heading='Invalid File'>
+          {errors.length > 1 ? (
+            <ul>
+              {errors.map((error, i) => {
+                return <li key={i}>{error}</li>
+              })}
+            </ul>
+          ) : (
+            <p>{errors[0]}</p>
+          )}
         </Alert>
       </span>
     )
