@@ -159,7 +159,7 @@ const ParseErrors = props => {
   }, [transmittalSheetErrors, larErrors])
 
   if (isParsing) return <LoadingIcon />
-  if (!parsed) return null
+  if (!parsed || errors.length) return null
 
   return (
     <div className="ParseErrors usa-grid-full" id="parseErrors" ref={statusRef}>
