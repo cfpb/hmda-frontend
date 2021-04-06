@@ -80,6 +80,7 @@ export default class Upload extends Component {
   }
 
   componentDidUpdate() {
+    if (!document.activeElement) return
     if (document.activeElement.classList[0] === 'dropzone')
       document.activeElement.blur()
   }
