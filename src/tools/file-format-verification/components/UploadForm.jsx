@@ -2,32 +2,51 @@ import React, { Component, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Dropzone from 'react-dropzone'
 import { useScrollIntoView } from '../../../common/useScrollIntoView'
+import Alert from '../../../common/Alert'
 
 import './UploadForm.css'
 
 let timeout = null
 
-export const UploadErrors = ({errors}) => {
+export const UploadErrors = ({ errors, parsed, parseErrors }) => {
   const[ref, scrollToRef] = useScrollIntoView()
 
   useEffect(() => {
-    timeout && clearTimeout(timeout)
-    timeout = setTimeout(scrollToRef(), 100)
-  }, [errors, scrollToRef])
+    scrollToRef()
+  }, [errors, scrollToRef, parseErrors, parsed, ref])
 
-  if (errors.length === 0) return null
+  if (!parsed && !parseErrors && !errors.length) return null
 
-  return (
-    <div className="alert alert-error" role="alert" ref={ref}>
-      <div className="alert-body">
-        <ul className="alert-text">
-          {errors.map((error, i) => {
-            return <li key={i}>{error}</li>
-          })}
-        </ul>
-      </div>
-    </div>
+  if (errors.length)
+    return (
+      <span ref={ref}>
+        <Alert
+          type='error'
+          heading={`${errors.length} Parsing Error${
+            errors.length > 1 ? 's' : ''
+          }`}
+        >
+          <ul>
+            {errors.map((error, i) => {
+              return <li key={i}>{error}</li>
+            })}
+          </ul>
+        </Alert>
+      </span>
+    )
+
+  if (!errors.length && !parseErrors) return (
+    <span ref={ref}>
+      <Alert
+        type='success'
+        heading='Congratulations! No Formatting Errors.'
+      >
+        <p>Your file meets the specified formatting requirements.</p>
+      </Alert>
+    </span>
   )
+
+  return null
 }
 
 export default class Upload extends Component {
@@ -82,7 +101,7 @@ export default class Upload extends Component {
     return (
       <div>
         <div className={`UploadForm ${fileStatus}`}>
-          <UploadErrors errors={this.props.errors} />
+          <UploadErrors errors={this.props.errors} parsed={parsed} parseErrors={errorCount} />
           <div className="container-upload">
             <Dropzone
               disablePreview={true}

@@ -76,15 +76,7 @@ const renderTSErrors = transmittalSheetErrors => {
 
 const renderParseResults = (count, errors) => {
   if (errors.length > 0) return null
-
-  const noErrors = count === 0
-  if (noErrors) {
-    return (
-      <Alert type="success" heading="Congratulations! No Formatting Errors">
-        <p>Your file meets the specified formatting requirements.</p>
-      </Alert>
-    )
-  }
+  if (count === 0) return null
 
   const errorText = count === 1 ? 'Error' : 'Errors'
   const heading = `${count} Formatting ${errorText}`
@@ -163,7 +155,6 @@ const ParseErrors = props => {
 
   useEffect(() => {
     if (isParsing || !parsed) return
-    if (count === 0) scrollToStatus({ block: 'end'})
     if (count > 0) scrollToStatus()
   }, [transmittalSheetErrors, larErrors])
 
