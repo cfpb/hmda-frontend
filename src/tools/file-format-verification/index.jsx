@@ -23,7 +23,14 @@ const store = createStore(
   applyMiddleware(...middleware)
 )
 
+let timeout = null
+
 class FFVT extends React.Component {
+  componentDidMount() {
+    timeout && clearTimeout(timeout)
+    timeout = setTimeout(() => window.scrollTo(0,0), 100)
+  }
+
   render() {
     const selector = <FilingPeriodSelectorContainer />
     return (
