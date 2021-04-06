@@ -69,6 +69,9 @@
   background-color: #f9dede;
 }
 
+.FFVT .ParseErrors .alert-body {
+  display: block; /* Fix for content overflowing in IE */
+}
 
 @media screen and (max-width: 800px) {
   #main-content.FFVT .grid .item {
