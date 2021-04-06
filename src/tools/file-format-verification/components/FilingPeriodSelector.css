@@ -34,3 +34,17 @@
     font-size: 3rem;
   }
 }
+
+/* IE 10+ targeted CSS */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  /* Hide the default dropdown indicator */
+  form.FilingPeriodSelector select::-ms-expand {
+    display: none;
+  }
+
+  /* Resize and reposition image based dropdown indicator */
+  form.FilingPeriodSelector select {
+    background-size: 30px;
+    background-position: right center;
+  }
+}
