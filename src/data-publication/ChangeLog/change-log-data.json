@@ -1,6 +1,30 @@
 {
   "log": [
     {
+      "date": "04/07/21",
+      "type": "correction",
+      "product": "mlar",
+      "description": "County level census data was missing from modified LAR records in the 2018 and 2019 data. This census information, primarily related to MSAs and small counties, was added to the records and the modified LARs were regenerated."
+    },
+    {
+      "date": "04/07/21",
+      "type": "correction",
+      "product": "mlar",
+      "description": "The Tract MSA Income field was incorrectly displaying percentage fields with truncated decimals. We have corrected this so that the field now correctly displays decimal information."
+    },
+    {
+      "date": "04/07/21",
+      "type": "correction",
+      "product": "mlar",
+      "description": "Some LARs were assigned an incorrect conforming loan limit status and were not correctly regenerated after the associated code fixes were made. These LARs have been regenerated."
+    },
+    {
+      "date": "04/07/21",
+      "type": "update",
+      "product": "mlar",
+      "description": "The column headers of the 2018 and 2019 modified LARs were reordered and some were renamed for consistency across years. The record_identifier data field was removed and the activity_year data field was added. "
+    },
+    {
       "date": "03/31/21",
       "type": "release",
       "product": "mlar",
