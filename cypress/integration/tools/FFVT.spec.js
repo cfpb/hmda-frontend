@@ -7,6 +7,8 @@ const openYears = getOpenFilingYears(getDefaultConfig(HOST))
 
 const CLEAN_FILE = 'FFVT-2018-clean.txt'
 const ERROR_FILE = 'FFVT-2018-error.txt'
+const INVALID_FILE_1 = 'FFVT-Invalid-single-error.txt'
+const INVALID_FILE_2 = 'FFVT-Invalid-multi-error.abc'
 
 describe('FFVT', function () {
   beforeEach(() => {
@@ -14,7 +16,59 @@ describe('FFVT', function () {
     cy.visit(`${HOST}/tools/file-format-verification`)
   })
 
-  if (isCI(ENVIRONMENT)) return it('Does not run on CI')
+  describe('Invalid Files', () => {
+    it('Lists multiple errors', () => {
+      cy.get(
+        'div > .UploadForm > .container-upload > .dropzone > .dropzone-content'
+      ).click()
+      cy.get('div > .UploadForm > .container-upload > .dropzone > input').click(
+        {
+          force: true,
+        }
+      )
+
+      cy.fixture(INVALID_FILE_2).then((fileContent) => {
+        cy.get(
+          'div > .UploadForm > .container-upload > .dropzone > input'
+        ).attachFile({
+          fileContent,
+          fileName: INVALID_FILE_2,
+          mimeType: 'text/plain',
+        })
+      })
+
+      // Validate
+      cy.get('.alert-error .alert-heading').contains('Invalid File')
+      cy.get('.alert-error .alert-text').contains('Please check your file and re-upload.').find('li').should('have.length', 2)
+      cy.wait(TEST_DELAY)
+    })
+
+    it('Uses a paragraph for a single error', () => {
+      cy.get(
+        'div > .UploadForm > .container-upload > .dropzone > .dropzone-content'
+      ).click()
+      cy.get('div > .UploadForm > .container-upload > .dropzone > input').click(
+        {
+          force: true,
+        }
+      )
+
+      cy.fixture(INVALID_FILE_1).then((fileContent) => {
+        cy.get(
+          'div > .UploadForm > .container-upload > .dropzone > input'
+        ).attachFile({
+          fileContent,
+          fileName: INVALID_FILE_1,
+          mimeType: 'text/plain',
+        })
+      })
+
+      // Validate
+      cy.get('.alert-error .alert-heading').contains('Invalid File')
+      cy.get('.alert-error .alert-text p').contains('Please check your file and re-upload.').should('have.length', 1)
+      cy.wait(TEST_DELAY)
+    })
+  })
   
   // For all open years
   openYears.forEach((year) => {
@@ -41,7 +95,7 @@ describe('FFVT', function () {
       })
 
       // Validate
-      cy.get('#parseErrors .alert').contains('Congratulations')
+      cy.get('.alert-success').contains('Congratulations')
       cy.wait(TEST_DELAY)
     })
 

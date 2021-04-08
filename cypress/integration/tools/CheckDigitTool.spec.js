@@ -1,15 +1,15 @@
-import { isBeta, isProd, withFormData } from "../../support/helpers"
+import { isBeta, isCI, isProd, withFormData } from "../../support/helpers"
 import { onlyOn } from "@cypress/skip-test"
 
 const { HOST, TEST_DELAY } = Cypress.env()
 
-onlyOn(isBeta(HOST) || !isProd(HOST), () => {
+onlyOn(!isCI(HOST) && (isBeta(HOST) || !isProd(HOST)), () => {
   describe("Check Digit Tool UI", function() {
     it(`Does not run on ${HOST}`, () => {})
   })
 })
 
-onlyOn(isProd(HOST) && !isBeta(HOST), () => {
+onlyOn(isCI(HOST) || (isProd(HOST) && !isBeta(HOST)), () => {
   describe("Check Digit Tool UI", () => {
     beforeEach(() => {
       cy.viewport(1680, 916)
