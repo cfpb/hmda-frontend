@@ -16,7 +16,7 @@
       "date": "04/07/21",
       "type": "correction",
       "product": "mlar",
-      "description": "Some LARs were assigned an incorrect conforming loan limit status and were not correctly regenerated after the associated code fixes has been made. These LARs have been regenerated."
+      "description": "Some LARs were assigned an incorrect conforming loan limit status and were not correctly regenerated after the associated code fixes were made. These LARs have been regenerated."
     },
     {
       "date": "04/07/21",
