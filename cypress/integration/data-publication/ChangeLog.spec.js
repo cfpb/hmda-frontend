@@ -26,7 +26,7 @@ describe('Change Log', () => {
       cy.get('#filter-bar').findByText('correction').click()
       cy.url().should('contain', '?type=correction')
       cy.get('.change-row:not(.header)').should('exist')
-      cy.get('.result-count .body').should('contain', 'Showing ' + 1 + ' out of')
+      cy.get('.result-count .body').should('contain', 'Showing ' + 4 + ' out of')
 
       cy.get('#filter-bar').findByText('update').click()
       cy.get('#filter-bar').findByText('HMDA Tools').click()
