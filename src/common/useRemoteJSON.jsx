@@ -27,8 +27,10 @@ export function useRemoteJSON(sourceUrl, options = {}) {
 
     fetch(sourceUrl)
       .then((response) => {
-        if (hasHttpError(response)) return Promise.reject(response)
-        return response.json()
+        return hasHttpError(response).then(res => {
+          if(res) return Promise.reject(response)
+          return response.json()
+        })
       })
       .then((json) => {
         if (options.transformReceive) setData(options.transformReceive(json))
