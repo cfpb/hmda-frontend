@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import fileSaver from 'file-saver'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
 import Alert from '../../common/Alert.jsx'
+import { isCI } from '../../common/environmentChecks'
 import Heading from '../../common/Heading.jsx'
 import runFetch from './runFetch.js'
 
@@ -64,7 +65,7 @@ class CSVUpload extends Component {
     event.target.value = null
 
     this.onCSVFetch()
-    const CSV_URL = '/public/rateSpread/csv'
+    const CSV_URL = (isCI() ? '' : 'https://ffiec.cfpb.gov') + '/public/rateSpread/csv'
     runFetch(CSV_URL, this.prepareCSVBody(file), true).then(res => {
       this.onCSVCalculated(res, file)
     })
