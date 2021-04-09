@@ -4,8 +4,8 @@ const { HOST, ENVIRONMENT } = Cypress.env()
 const dbUrl = dbURL.bind(null, HOST)
 
 describe('Data Browser 2019', function () {
-  if(isCI(ENVIRONMENT)) it("Does not run on CI")
-  else if(!isBeta(HOST)){
+  if(!isProd(HOST)) it("Only runs in Production")
+  else {
     it('State/Institution/PropertyType', function () {
       cy.get({ HOST, ENVIRONMENT }).logEnv()
       cy.viewport(1000, 940)
@@ -172,7 +172,5 @@ describe('Data Browser 2019', function () {
         })
       }
     })
-  } else {
-    it(`does not run on host: ${HOST}`)
   }
 })
