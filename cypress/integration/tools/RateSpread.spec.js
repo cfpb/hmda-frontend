@@ -1,6 +1,6 @@
-import { withFormData, isProd } from "../../support/helpers"
+import { withFormData, isProd, isCI } from "../../support/helpers"
 
-const { HOST, TEST_DELAY } = Cypress.env()
+const { HOST, TEST_DELAY, ENVIRONMENT } = Cypress.env()
 
 describe("Rate Spread Tool", function() {
   beforeEach(() => {
@@ -48,10 +48,11 @@ describe("Rate Spread Tool", function() {
 
 describe("Rate Spread API", () => {
   
-  if(!isProd(HOST)) it("Only runs in Production", () => cy.get({ HOST, TEST_DELAY }).logEnv())
+  if(!isCI(ENVIRONMENT) && !isProd(HOST)) 
+    it(`Does not run on ${HOST}`, () => cy.get({ HOST, TEST_DELAY, ENVIRONMENT }).logEnv())
   else {
     it("Generates rates from file", () => {
-      cy.get({ HOST, TEST_DELAY }).logEnv()
+      cy.get({ HOST, TEST_DELAY, ENVIRONMENT }).logEnv()
       let response
       const fileName = "RateSpread_Generate.csv"
       const method = "POST"

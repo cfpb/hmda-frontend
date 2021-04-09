@@ -64,7 +64,7 @@ class CSVUpload extends Component {
     event.target.value = null
 
     this.onCSVFetch()
-    const CSV_URL = 'https://ffiec.cfpb.gov/public/rateSpread/csv'
+    const CSV_URL = '/public/rateSpread/csv'
     runFetch(CSV_URL, this.prepareCSVBody(file), true).then(res => {
       this.onCSVCalculated(res, file)
     })

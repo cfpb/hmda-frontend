@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Pagination from '../containers/Pagination.jsx'
+import { ConnectedUploadButton } from '../containers/UploadForm'
 import Alert from '../../../common/Alert.jsx'
 import LoadingIcon from '../../../common/LoadingIcon.jsx'
+import { useScrollIntoView } from '../../../common/useScrollIntoView.jsx'
 import { ERRORS_PER_PAGE } from '../constants'
 
 import './ParseErrors.css'
@@ -74,26 +76,32 @@ const renderTSErrors = transmittalSheetErrors => {
 
 const renderParseResults = (count, errors) => {
   if (errors.length > 0) return null
-
-  const noErrors = count === 0
-  if (noErrors) {
-    return (
-      <Alert type="success" heading="Congratulations! No Formatting Errors">
-        <p>Your file meets the specified formatting requirements.</p>
-      </Alert>
-    )
-  }
+  if (count === 0) return null
 
   const errorText = count === 1 ? 'Error' : 'Errors'
   const heading = `${count} Formatting ${errorText}`
   return (
-    <Alert type="error" heading={heading}>
-      <p>
-        Your file has formatting errors.<br />Please fix the following errors
-        and try again.<br />Rows with incorrect number of fields will need to be
-        fixed and the file will need to be reuploaded before the remaining
-        formatting requirements can be checked.
-      </p>
+    <Alert type='error' heading={heading}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <p>
+          Your file has formatting errors.
+          <br />
+          Please fix the following errors and try again.
+          <br />
+          Rows with incorrect number of fields will need to be fixed and the
+          file will need to be reuploaded before the remaining formatting
+          requirements can be checked.
+        </p>
+        <div>
+          <ConnectedUploadButton  />
+        </div>
+      </div>
     </Alert>
   )
 }
@@ -143,12 +151,18 @@ const ParseErrors = props => {
     filingPeriod
   } = props
   const count = transmittalSheetErrors.length + larErrors.length
+  const [statusRef, scrollToStatus] = useScrollIntoView()
+
+  useEffect(() => {
+    if (isParsing || !parsed) return
+    if (count > 0) scrollToStatus()
+  }, [transmittalSheetErrors, larErrors])
 
   if (isParsing) return <LoadingIcon />
-  if (!parsed) return null
+  if (!parsed || errors.length) return null
 
   return (
-    <div className="ParseErrors usa-grid-full" id="parseErrors">
+    <div className="ParseErrors usa-grid-full" id="parseErrors" ref={statusRef}>
       {renderParseResults(count, errors)}
       {renderTSErrors(transmittalSheetErrors, filingPeriod)}
       {renderLarErrors(larErrors, pagination, filingPeriod)}

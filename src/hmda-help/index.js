@@ -14,19 +14,17 @@ import * as AccessToken from '../common/api/AccessToken'
 import './index.css'
 
 let keycloak = initKeycloak()
+let refreshTimeout = null
 
 const refreshToken = self => {
   const updateKeycloak = () => {
-    setTimeout(() => {
+    refreshTimeout && clearTimeout(refreshTimeout)
+    refreshTimeout = setTimeout(() => {
       keycloak
         .updateToken(20)
         .then(refreshed => {
           if (refreshed) {
             AccessToken.set(keycloak.token)
-            self.setState({
-              token: keycloak.token,
-              tokenParsed: keycloak.tokenParsed
-            })
           }
           updateKeycloak()
         })
@@ -49,7 +47,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    keycloak.init({ onLoad: 'login-required' }).then(authenticated => {
+    keycloak.init().then(authenticated => {
       if (authenticated) {
         AccessToken.set(keycloak.token)
         refreshToken(this)
