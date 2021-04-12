@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
 import Alert from '../../common/Alert.jsx'
+import { isCI } from '../../common/environmentChecks'
 import Heading from '../../common/Heading.jsx'
 import runFetch from './runFetch.js'
 
@@ -175,7 +176,7 @@ class Form extends Component {
       if (errs.rateSetDate || errs.APR || errs.loanTerm) return
 
       this.onFetch()
-      const API_URL = '/public/rateSpread'
+      const API_URL = (isCI() ? '' : 'https://ffiec.cfpb.gov') + '/public/rateSpread'
       runFetch(API_URL, this.prepareBodyFromState()).then(res => {
         this.onCalculated(res)
       })

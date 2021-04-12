@@ -1,0 +1,1 @@
+export const isCI = () => process.env.REACT_APP_ENVIRONMENT === 'CI'
