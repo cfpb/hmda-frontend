@@ -4,6 +4,7 @@ import YearSelector from '../common/YearSelector'
 import { withAppContext } from '../common/appContextHOC.jsx'
 import publicationsByYear from './constants/publications-by-year'
 import NotFound from '../common/NotFound.jsx'
+import { Link } from 'react-router-dom'
 
 class Home extends Component {
   render() {
