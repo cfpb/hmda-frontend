@@ -1,10 +1,18 @@
-import React, { Component } from "react"
-import { Link } from "react-router-dom"
-
-import Heading from "../common/Heading.jsx"
+import React, { Component } from 'react'
+import Heading from '../common/Heading.jsx'
+import YearSelector from '../common/YearSelector'
+import { withAppContext } from '../common/appContextHOC.jsx'
+import publicationsByYear from './constants/publications-by-year'
+import NotFound from '../common/NotFound.jsx'
+import { Link } from 'react-router-dom'
 
 class Home extends Component {
   render() {
+    const { year } = this.props.match.params
+    const { shared } = this.props.config.dataPublicationYears
+    
+    if (shared.indexOf(year) === -1) return <NotFound />
+
     return (
       <div className="home">
         <div className="intro">
@@ -28,73 +36,26 @@ class Home extends Component {
             </p>
           </Heading>
         </div>
+
+        <YearSelector 
+          year={year}
+          years={shared}
+          url='/data-publication'
+        />
+
         <div className="card-container">
-          <div className="card">
-            <Heading
-              headingLink="/data-publication/modified-lar"
-              headingText="Modified Loan/Application Register (LAR)"
-              paragraphText="The modified LAR provides loan-level data for an individual
-              financial institution, as modified by the Bureau to protect applicant and
-              borrower privacy."
-              type={4}
-            />
-          </div>
-
-          <div className="card">
-            <Heading
-              headingLink="/data-publication/disclosure-reports"
-              headingText="Disclosure Reports"
-              paragraphText="These reports summarize lending activity for individual
-              institutions, both nationwide and by MSA/MD."
-              type={4}
-            />
-          </div>
-
-          <div className="card">
-            <Heading
-              headingLink="/data-publication/aggregate-reports"
-              headingText="MSA/MD Aggregate Reports"
-              paragraphText="These reports summarize lending activity by MSA/MD."
-              type={4}
-            />
-          </div>
-
-          <div className="card">
-            <Heading
-              headingLink="/data-publication/national-aggregate-reports"
-              headingText="National Aggregate Reports"
-              paragraphText="These reports summarize nationwide lending activity.
-                They indicate the number and dollar amounts of loan applications,
-                cross-tabulated by loan, borrower and geographic characteristics."
-              type={4}
-            />
-          </div>
-
-          <div className="card">
-            <Heading
-              headingLink="/data-publication/snapshot-national-loan-level-dataset"
-              headingText="Snapshot National Loan-Level Dataset"
-              paragraphText="The snapshot files contain the national HMDA datasets as of
-                a fixed date for all HMDA reporters, as modified by the Bureau to
-                protect applicant and borrower privacy."
-              type={4}
-            />
-          </div>
-
-          <div className="card">
-            <Heading
-              headingLink="/data-publication/dynamic-national-loan-level-dataset"
-              headingText="Dynamic National Loan-Level Dataset"
-              paragraphText="The dynamic files contain the national HMDA datasets,
-              modified by the Bureau to protect applicant and borrower privacy,
-              updated weekly for all HMDA reporters."
-              type={4}
-            />
-          </div>
+          {publicationsByYear[year].map((pub, idx) => (
+            <div className="card" key={`${year}-${idx}`}>
+              <Heading
+                type={4}
+                {...pub}
+              />
+            </div>
+          ))}
         </div>
       </div>
     )
   }
 }
 
-export default Home
+export default withAppContext(Home)
