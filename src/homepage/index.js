@@ -36,7 +36,7 @@ const Home = ({ config }) => {
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  Access the HMDA Filing Platform
+                  Access the HMDA {isBeta() && 'Beta '} Filing Platform
                 </a>
               </h3>
               <p>
