@@ -7,6 +7,7 @@ import FigLinks from './FigLinks.jsx'
 import Publications from './publications'
 import Tools from './tools'
 import { DOCS_YEARS } from '../common/constants/years.js'
+import Product from './Product.jsx'
 
 const Home = props => {
   const { year, url } = props
@@ -35,9 +36,14 @@ const Home = props => {
         <Tools year={year}/>
       </div>
       <div>
-        <h2>Other HMDA Documentation</h2>
+        <h2>HMDA APIs</h2>
+          <p>Endpoints, schemas, and examples to help you access HMDA Data via the HMDA APIs.</p>
           <ul>
-            <li><a target="_blank" rel="noopener noreferrer" href="https://cfpb.github.io/hmda-platform/">API Documentation</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://cfpb.github.io/hmda-platform/">HMDA APIs - Overview</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://cfpb.github.io/hmda-platform/#data-browser-api">HMDA Data Browser API</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://cfpb.github.io/hmda-platform/#hmda-filing-api">HMDA Filing API</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://cfpb.github.io/hmda-platform/#hmda-public-api">HMDA Public API</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://cfpb.github.io/hmda-platform/#rate-spread">HMDA Rate Spread API</a></li>
           </ul>
       </div>
     </div>
