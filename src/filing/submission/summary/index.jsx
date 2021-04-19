@@ -13,13 +13,19 @@ const Summary = props => {
       <header>
         <h2>HMDA Filing Summary</h2>
         <p className="font-lead">
-          You have completed the verification process for your HMDA data. Please
-          review the respondent and file information below from your HMDA file.
+          You have completed the verification process for your HMDA data.
         </p>
+        <p className="font-lead">Please review your Respondent Information.</p>
       </header>
       <div className="info full-width">
-        <section className="usa-width-one-half">
+        <section className="usa-width-one-half info-section">
           <h3>Respondent Information</h3>
+          <p className='info-section-lead'>
+            This information is pulled directly from the Transmittal Sheet
+            (first row) of your submitted LAR file. <b><em>If changes are needed, please
+            update your file's Transmittal Sheet and resubmit your data for{' '}
+            {props.filingPeriod}.</em></b>
+          </p>
           <dl>
             <dt>Name:</dt>
             <dd>{props.ts.institutionName}</dd>
@@ -41,8 +47,11 @@ const Summary = props => {
             </dd>
           </dl>
         </section>
-        <section className="usa-width-one-half">
+        <section className="usa-width-one-half info-section">
           <h3>File Information</h3>
+          <p className='info-section-lead'>
+            This section provides a high-level summary of the data you've provided in your LAR file.
+          </p>
           <dl>
             <dt>File Name:</dt>
             <dd>{props.submission.fileName}</dd>
