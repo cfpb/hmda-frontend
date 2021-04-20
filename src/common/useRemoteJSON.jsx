@@ -15,8 +15,10 @@ export function useRemoteJSON(sourceUrl, options = {}) {
   const [isFetching, setIsFetching] = useState(false)
   const [error, setError] = useState(null)
 
+  const { forceFetch } = options
+
   const shouldFetch =
-    options.forceFetch ||
+    forceFetch ||
     (process.env.REACT_APP_ENVIRONMENT !== 'CI' &&   // Not CI
       window.location.host.indexOf('localhost') < 0) // Not localhost
 
