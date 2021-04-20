@@ -1,0 +1,20 @@
+.SearchForm #lei-select {
+  max-width: 100%;
+  text-transform: uppercase;
+}
+
+.SearchForm #lei-select input {
+  margin-top: -0.2em;
+}
+
+.SearchForm .error {
+  color: red;
+}
+
+.SearchForm .success {
+  color: green;
+}
+
+.SearchForm #validation {
+  margin-bottom: 1em;
+}

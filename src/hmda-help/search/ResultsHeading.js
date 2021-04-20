@@ -8,7 +8,7 @@ const ResultsHeading = props => {
   let resultsText = numOfResults === 1 ? 'result' : 'results'
   return (
     <h2>
-      {numOfResults} {resultsText} found
+      {numOfResults} {resultsText} found for this institution
     </h2>
   )
 }
