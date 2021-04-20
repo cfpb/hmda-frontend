@@ -4,7 +4,7 @@ const { HOST, ENVIRONMENT } = Cypress.env()
 const dbUrl = dbURL.bind(null, HOST)
 
 describe('Data Browser 2019', function () {
-  if(!isProd(HOST)) it("Only runs in Production")
+  if(!isProd(HOST) || isBeta(HOST)) it("Only runs in Production")
   else {
     it('State/Institution/PropertyType', function () {
       cy.get({ HOST, ENVIRONMENT }).logEnv()
