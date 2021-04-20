@@ -6,7 +6,6 @@ import { nestInstitutionStateForAPI } from '../utils/convert'
 
 import Results from './Results'
 import InputSubmit from '../InputSubmit'
-import InputText from '../InputText'
 import Loading from '../../common/LoadingIcon.jsx'
 import InstitutionNotFound from './InstitutionNotFound'
 import ServerErrors from './ServerErrors'
@@ -15,6 +14,8 @@ import PublicationTable from '../publications/PublicationTable'
 import { getFilingYears, getFilingPeriods } from '../../common/constants/configHelpers'
 import { SubmissionStatus } from './SubmissionStatus'
 import * as AccessToken from '../../common/api/AccessToken' 
+import { FilersSearchBox } from './FilersSelectBox'
+import './Search.css'
 
 function onlyUnique(value, index, self) {
   return self.indexOf(value) === index;
@@ -89,6 +90,7 @@ class Form extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
+    if (!this.state.lei) return
 
     this.setState({
       fetching: true,
@@ -113,12 +115,19 @@ class Form extends Component {
     this.handleSubmit(event)
   }
 
-  isBtnDisabled = (type) => this.state.searchType === type && this.state.fetching
+  isBtnDisabled = (type) => !this.state.lei || (this.state.lei.length !== 20) || (this.state.searchType === type && this.state.fetching)
 
   onInputTextChange = event => {
     let {id, value} = event.target
-    if(id === 'lei') value = value.toUpperCase()
-    this.setState({ [id]: value })
+     
+    if (id === 'lei') // Sanitize LEI input
+      value = value.toUpperCase().replace(/[\s]/g, '')
+
+    // Automatically retrieve Institution listings after storing selection
+    this.setState({ [id]: value }, () => {
+      if (this.state.lei.length !== 20) return
+      this.handleSubmitButton(event, 'search')
+    })
   }
 
   render() {
@@ -134,6 +143,7 @@ class Form extends Component {
     const { config } = this.props
 
     let leis = institutions && institutions.map(i => i.lei).filter(onlyUnique)
+    const year = getFilingYears(this.props.config).filter(x => !x.includes('Q'))[1]
 
     return (
       <React.Fragment>
@@ -146,14 +156,12 @@ class Form extends Component {
             {searchInputs.map((textInput) => {
               delete textInput.validation
               return (
-                <InputText
+                <FilersSearchBox
                   key={textInput.id}
-                  ref={(input) => {
-                    this[textInput.id] = input
-                  }}
-                  {...textInput}
                   onChange={this.onInputTextChange}
                   value={this.state[textInput.id]}
+                  year={year}
+                  {...textInput}
                 />
               )
             })}
