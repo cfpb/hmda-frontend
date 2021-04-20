@@ -17,12 +17,11 @@ function makeListLink(href, val) {
 function linkToDocs(year = '2018'){
   return [
     <li key="0"><a href={`/documentation/${year}/public-lar-schema/`}>Public LAR Schema</a></li>,
-    <li key="1"><a href={`/documentation/${year}/public-ts-schema/`}>Public Transmittal Sheet Schema</a></li>,
-    <li key="2"><a href={`/documentation/${year}/public-panel-schema/`}>Public Panel Schema</a></li>,
-    <li key="3"><a href={`/documentation/${year}/lar-data-fields/`}>Public HMDA Data Fields with Values and Definitions</a></li>,
-    <li key="4"><a href={`/documentation/${year}/panel-data-fields/`}>Public Panel Values and Definitions</a></li>
+    <li key="1"><a href={`/documentation/${year}/lar-data-fields/`}>Public LAR Field Definitions and Values</a></li>,
+    <li key="2"><a href={`/documentation/${year}/public-ts-schema/`}>Public Transmittal Sheet Schema</a></li>,
   ]
 }
+
 
 const DynamicDataset = props => {
   const { params, url } = props.match
