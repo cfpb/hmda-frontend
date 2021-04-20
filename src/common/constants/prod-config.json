@@ -1,9 +1,9 @@
 {
   "name": "prod",
   "announcement": {
-    "message": "On March 31, 2021, the 2020 Modified LAR data was released.",
-    "type": "info",
-    "heading": "Announcement",
+    "message": "We will be performing scheduled system maintenance on April 22nd from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance",
     "link": {
       "url": "https://www.consumerfinance.gov/about-us/newsroom/2020-hmda-data-on-mortgage-lending-now-available/",
       "text": "View the press release."
@@ -12,7 +12,7 @@
   "defaultPeriod": "2021-Q1",
   "defaultDocsPeriod": "2021",
   "publicationReleaseYear": "2019",
-  "mlarReleaseYear":"2020",
+  "mlarReleaseYear": "2020",
   "filingPeriods": [
     "2021-Q1",
     "2020",
@@ -37,7 +37,11 @@
   },
   "showMaps": false,
   "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "filingAnnouncement": {
+    "message": "We will be performing scheduled system maintenance on April 22nd from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance"
+  },
   "dataPublicationYears": {
     "shared": [
       "2019",
