@@ -6,7 +6,7 @@
 To register your financial institution on the [HMDA Platform](https://ffiec.cfpb.gov/filing) you will need to provide your institution name, [LEI (legal entity identifier)](http://ffiec.cfpb.gov/documentation/2021/filing-faq#what-is-a-legal-entity-identifier-lei), tax ID number, email domain (example: cfpb.gov), and agency code. Registration is a two-step process. You must create a filer account **and** register your institution in the system. You can register your financial institution here: https://hmdahelp.consumerfinance.gov/accounthelp/. Do not use a personal email address to register for an account. The [HMDA Platform](https://ffiec.cfpb.gov/filing) is designed to authenticate users based upon a financial institution’s registered email domain. If you do not have an email address within your financial institution's email domain, [[contact HMDA Help](mailto:hmdahelp@cfpb.gov)](mailto:hmdahelp@cfpb.gov).
 
 #### What is a Legal Entity Identifier (LEI)?
-Every institution that files a HMDA submission will be required to obtain a LEI for their submission whether they are exempt or not. The Global LEI Foundation website provides a list of LEI issuing organizations at https://www.gleif.org/en/about-lei/get-an-lei-find-lei-issuing-organizations. A financial institution may obtain an LEI, for HMDA reporting purposes, from any one of the issuing organizations listed on the website. For general information on the “LEI,” see section 5.2 of the [HMDA Small Entity Compliance Guide](https://files.consumerfinance.gov/f/documents/cfpb_hmda_small-entity-compliance-guide.pdf), and [Regulation C, 12 CFR §§ 1003.4(a)(1)(i)(A)](https://www.consumerfinance.gov/rules-policy/regulations/1003/4/#a-1-i-A), effective January 1, 2018, and [1003.5(a)(3)(vii)](https://www.consumerfinance.gov/rules-policy/regulations/1003/5/#a-3-vii), effective January 1, 2019.
+Every institution that files a HMDA submission will be required to obtain a LEI for their submission whether they are exempt or not. The [Global LEI Foundation website](https://www.gleif.org/) provides a list of LEI issuing organizations at https://www.gleif.org/en/about-lei/get-an-lei-find-lei-issuing-organizations. A financial institution may obtain an LEI, for HMDA reporting purposes, from any one of the issuing organizations listed on the website. For general information on the “LEI,” see section 5.2 of the [HMDA Small Entity Compliance Guide](https://files.consumerfinance.gov/f/documents/cfpb_hmda_small-entity-compliance-guide.pdf), and [Regulation C, 12 CFR §§ 1003.4(a)(1)(i)(A)](https://www.consumerfinance.gov/rules-policy/regulations/1003/4/#a-1-i-A), effective January 1, 2018, and [1003.5(a)(3)(vii)](https://www.consumerfinance.gov/rules-policy/regulations/1003/5/#a-3-vii), effective January 1, 2019.
 
 #### What is my agency code?
 Institutions should provide one of the following agency codes: 
@@ -82,9 +82,9 @@ _Annual HMDA data submissions_ for the 2019 filing year are accepted January 1 -
 ![2020 annual filing dates](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/annual_filing.png)  
 
 _Quarterly HMDA data submissions_ are separated into three quarters.  
-- Quarter 1 filing period: April 1 - May 30, 2020  
-- Quarter 2 filing period: July 1 - August 29, 2020
-- Quarter 3 filing period: October 1 - November 29, 2020  
+- Quarter 1 filing period: April 1 - May 30, 2021  
+- Quarter 2 filing period: July 1 - August 29, 2021
+- Quarter 3 filing period: October 1 - November 29, 2021  
 
 <br/> 
 
