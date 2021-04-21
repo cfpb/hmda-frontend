@@ -3,7 +3,7 @@
 ### Account Registration
 
 #### What information do I need to provide to register my financial institution?
-To register your financial institution on the [HMDA Platform](https://ffiec.cfpb.gov/filing) you will need to provide your institution name, [LEI (legal entity identifier)](http://ffiec.cfpb.gov/documentation/2021/filing-faq#what-is-a-legal-entity-identifier-lei), tax ID number, email domain (example: cfpb.gov), and agency code. Registration is a two-step process. You must create a filer account **and** register your institution in the system. You can register your financial institution here: https://hmdahelp.consumerfinance.gov/accounthelp/. Do not use a personal email address to register for an account. The [HMDA Platform](https://ffiec.cfpb.gov/filing) is designed to authenticate users based upon a financial institution’s registered email domain. If you do not have an email address within your financial institution's email domain, [[contact HMDA Help](mailto:hmdahelp@cfpb.gov)](mailto:hmdahelp@cfpb.gov).
+To register your financial institution on the [HMDA Platform](https://ffiec.cfpb.gov/filing) you will need to provide your institution name, [LEI (legal entity identifier)](http://ffiec.cfpb.gov/documentation/2021/filing-faq#what-is-a-legal-entity-identifier-lei), tax ID number, email domain (example: cfpb.gov), and agency code. Registration is a two-step process. You must create a filer account **and** register your institution in the system. You can register your financial institution here: https://hmdahelp.consumerfinance.gov/accounthelp/. Do not use a personal email address to register for an account. The [HMDA Platform](https://ffiec.cfpb.gov/filing) is designed to authenticate users based upon a financial institution’s registered email domain. If you do not have an email address within your financial institution's email domain, [contact HMDA Help](mailto:hmdahelp@cfpb.gov).
 
 #### What is a Legal Entity Identifier (LEI)?
 Every institution that files a HMDA submission will be required to obtain a LEI for their submission whether they are exempt or not. The [Global LEI Foundation website](https://www.gleif.org/) provides a list of LEI issuing organizations at https://www.gleif.org/en/about-lei/get-an-lei-find-lei-issuing-organizations. A financial institution may obtain an LEI, for HMDA reporting purposes, from any one of the issuing organizations listed on the website. For general information on the “LEI,” see section 5.2 of the [HMDA Small Entity Compliance Guide](https://files.consumerfinance.gov/f/documents/cfpb_hmda_small-entity-compliance-guide.pdf), and [Regulation C, 12 CFR §§ 1003.4(a)(1)(i)(A)](https://www.consumerfinance.gov/rules-policy/regulations/1003/4/#a-1-i-A), effective January 1, 2018, and [1003.5(a)(3)(vii)](https://www.consumerfinance.gov/rules-policy/regulations/1003/5/#a-3-vii), effective January 1, 2019.
@@ -108,4 +108,25 @@ If you wish to explain the circumstances surrounding a late submission, contact 
 ### Miscellaneous 
 
 #### What steps should I take on the Co-Applicant Credit Score and Co-Applicant Credit Scoring Model when there is no co-applicant?
-If the Action Taken is 4, 5, or 6, an institution should report 8888 in the Credit Score of Co-Applicant or Co-Borrower data field and 9 in the Co-Applicant or Co-Borrower, Name and Version of Credit Scoring Model data field, regardless of whether there is a Co-Applicant for the record(s).
+If the Action Taken is 4, 5, or 6, an institution should report 8888 in the Credit Score of Co-Applicant or Co-Borrower data field and 9 in the Co-Applicant or Co-Borrower, Name and Version of Credit Scoring Model data field, regardless of whether there is a Co-Applicant for the record(s). 
+
+#### I am receiving formatting errors/edits regarding ethnicity and/or race of applicant fields.
+Please note that the fields 'Ethnicity of Applicant or Borrower 1-5' and 'Race of Applicant or Borrower 1-5' are for up to 5 ethnicities/races of the first applicant. For any co-applicant ethnicities/races, please enter values in the fields **'Ethnicity of Co-Applicant or Co-Borrower 1-5'** or **'Race of Co-Applicant or Co-Borrower 1-5'**.
+
+#### I am receiving validity edits regarding my county codes & census tracts. Can you explain how these fields are derived?
+Your county code is a 5 digit number that combines state and county codes. Your census tract should be an 11 digit number. Your census tract combines the 2 digit state, 3 digit county, and 6 digit tract code (with no decimal). The FFIEC census tool and FFIEC geocoder can assist in providing the correct state, county and census tract combinations.
+- Census Tool: https://www.ffiec.gov/%5C/census/default.aspx
+- Geocoder: https://geomap.ffiec.gov/FFIECGeocMap/GeocodeMap1.aspx
+
+For example, in the case of Baldwin County, Alabama, the 2 digit state code would be 01 and the 3 digit county code would be 003. Therefore, the reported county code would be 01003. In the case that the 6 digit tract code selected is 020100, the combined census tract code would be 01003020100.
+
+#### What decimal precision is the Loan-to-Value ratio rounded to?  
+The precision of the calculated LTV should be rounded to match the decimal precision of the CLTV.  
+
+For example, take a calculated LTV (loan amount/property value) of 75.4025 and a reported CLTV of 75. The calculated LTV will round down to 75. In the case that the reported CLTV is 75.4, the calculated LTV will down down to 75.4.  
+
+#### Where can I find HMDA data prior to 2017?
+Each year thousands of financial institutions report data about mortgages to the public, under the Home Mortgage Disclosure Act (HMDA). We provide the data collected under HMDA from 2007-2017 for download <a target="_blank" rel="noopener noreferrer" href="https://www.consumerfinance.gov/data-research/hmda/historic-data/">here.</a>  
+
+#### I have a question that's not covered in the FAQ section, what can I do?
+For further questions, please email [hmdahelp@cfpb.gov](mailto:hmdahelp@cfpb.gov). Note that [HMDA Help](mailto:hmdahelp@cfpb.gov) only operates via email.
