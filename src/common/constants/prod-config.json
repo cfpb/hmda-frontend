@@ -1,9 +1,9 @@
 {
   "name": "prod",
   "announcement": {
-    "message": "Apr 21, 2021: 11:30am EDT We are aware that some users are experiencing issues connecting to the HMDA Platform. We hope to have this resolved shortly.",
+    "message": "We will be performing scheduled system maintenance on April 22nd from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
     "type": "warning",
-    "heading": "Maintenance"
+    "heading": "Scheduled Maintenance"
   },
   "defaultPeriod": "2021-Q1",
   "defaultDocsPeriod": "2021",
