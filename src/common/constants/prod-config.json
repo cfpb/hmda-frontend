@@ -3,11 +3,7 @@
   "announcement": {
     "message": "Apr 21, 2021: 11:30am EDT We are aware that some users are experiencing issues connecting to the HMDA Platform. We hope to have this resolved shortly.",
     "type": "warning",
-    "heading": "Scheduled Maintenance",
-    "link": {
-      "url": "https://www.consumerfinance.gov/about-us/newsroom/2020-hmda-data-on-mortgage-lending-now-available/",
-      "text": "View the press release."
-    }
+    "heading": "Maintenance",
   },
   "defaultPeriod": "2021-Q1",
   "defaultDocsPeriod": "2021",
