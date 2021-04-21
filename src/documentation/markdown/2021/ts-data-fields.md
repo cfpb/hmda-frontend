@@ -1,6 +1,6 @@
-## Public Transmittal Sheet data fields with values and definitions
+## Public Transmittal Sheet - Data Fields with Values and Definitions
 
-### [activity\_year](#activity_year)
+### [activity\_year](#activity_year)  
 **Description:** The calendar year of data collection.
 
 **Values:**  
