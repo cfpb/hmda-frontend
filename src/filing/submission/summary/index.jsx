@@ -1,31 +1,53 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { splitYearQuarter } from '../../api/utils'
+import ExternalLink from '../../../common/ExternalLink'
 
 import './Summary.css'
 
+const tsSchemaLink = (year) => (
+  <ExternalLink
+    url={`/documentation/${year}/ts-data-fields/`}
+    text='Transmittal Sheet'
+    className='dotted'
+  />
+)
+
 const Summary = props => {
   if (!props.submission || !props.ts) return null
-  const quarter = splitYearQuarter(props.filingPeriod)[1]
+  const [year, quarter] = splitYearQuarter(props.filingPeriod)
 
   return (
-    <section className="Summary full-width" id="summary">
+    <section className='Summary full-width' id='summary'>
       <header>
         <h2>HMDA Filing Summary</h2>
-        <p className="font-lead">
+        <p className='font-lead'>
           You have completed the verification process for your HMDA data.
         </p>
-        <p className="font-lead">Please review your Respondent Information.</p>
+        <p className='font-lead'>
+          The values below come from your {tsSchemaLink(year)}, the first
+          row of your LAR file.
+        </p>
+        <p className='emphasize'>
+          Please review your Respondent Information and submit any necessary
+          corrections.
+        </p>
       </header>
-      <div className="info full-width">
-        <section className="usa-width-one-half info-section">
-          <h3>Respondent Information</h3>
-          <p className='info-section-lead'>
-            This information is pulled directly from the Transmittal Sheet
-            (first row) of your submitted LAR file. <b><em>If changes are needed, please
-            update your file's Transmittal Sheet and resubmit your data for{' '}
-            {props.filingPeriod}.</em></b>
+      <div className='info'>
+        <div className='note'>
+          <span className='point'>*</span>
+          <p className='emphasize'>
+            To make changes, update your Transmittal Sheet and resubmit
+            your data for {props.filingPeriod}.
           </p>
+        </div>        
+        <section className='info-section'>
+          <div className='section-heading'>
+            <h3>Respondent Information *</h3>
+            <p className='info-section-lead'>
+              Institution identifiers and contact details
+            </p>
+          </div>
           <dl>
             <dt>Name:</dt>
             <dd>{props.ts.institutionName}</dd>
@@ -34,35 +56,31 @@ const Summary = props => {
             <dt>Tax ID:</dt>
             <dd>{props.ts.taxId}</dd>
             <dt>Agency:</dt>
-            <dd className="text-uppercase">{props.ts.agency}</dd>
+            <dd className='text-uppercase'>{props.ts.agency}</dd>
             <dt>Contact Name:</dt>
             <dd>{props.ts.contact && props.ts.contact.name}</dd>
             <dt>Phone:</dt>
-            <dd>
-              {props.ts.contact && props.ts.contact.phone}
-            </dd>
+            <dd>{props.ts.contact && props.ts.contact.phone}</dd>
             <dt>Email</dt>
-            <dd>
-              {props.ts.contact && props.ts.contact.email}
-            </dd>
+            <dd>{props.ts.contact && props.ts.contact.email}</dd>
           </dl>
         </section>
-        <section className="usa-width-one-half info-section">
-          <h3>File Information</h3>
-          <p className='info-section-lead'>
-            This section provides a high-level summary of the data you've provided in your LAR file.
-          </p>
+        <section className='info-section'>
+          <div className='section-heading flex'>
+            <h3>File Information *</h3>
+            <p className='info-section-lead'>Filing Period details and LAR count</p>
+          </div>
           <dl>
             <dt>File Name:</dt>
             <dd>{props.submission.fileName}</dd>
             <dt>Year:</dt>
             <dd>{props.ts.year}</dd>
-            {quarter && 
+            {quarter && (
               <>
                 <dt>Quarter:</dt>
                 <dd>{quarter}</dd>
               </>
-            }
+            )}
             <dt>Total Loans/Applications:</dt>
             <dd>{props.ts.totalLines}</dd>
           </dl>
