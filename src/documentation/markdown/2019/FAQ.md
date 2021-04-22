@@ -1,4 +1,4 @@
-## HMDA Data Browser Frequently Asked Questions
+## HMDA Data Browser - Frequently Asked Questions
 
 - **How do I use this tool?** 
 Answer: The HMDA Data Browser allows users to filter and download HMDA datasets. Users can select from geographic areas that they’d like to filter by. Upon selection, they can then download a CSV file that includes this geographic data, along with all 99 public data fields. If a user would like to filter data further, they can select from up to two of 11 available variables. Users can then view an aggregated summary table of the data requested and download a CSV file of the filtered data.

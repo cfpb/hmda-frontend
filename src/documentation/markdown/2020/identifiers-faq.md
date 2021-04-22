@@ -1,4 +1,4 @@
-##Institution Identifiers Frequently Asked Questions
+## Institution Identifiers - Frequently Asked Questions
 
 ### Institution Identifiers
 The following information below details guidance regarding institution identifiers in 2017 and 2018. 

@@ -1,4 +1,4 @@
-## List of filters used in the HMDA Data Browser
+## HMDA Data Browser - List of filters
 
 ### Geography Filters
 ### [Nationwide](#Nationwide)

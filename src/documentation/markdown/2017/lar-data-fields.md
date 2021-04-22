@@ -1,4 +1,4 @@
-## Public HMDA data fields with values and definitions
+## Public HMDA - Data Fields with Values and Definitions
 
 ### [activity\_year](#activity_year)
 
@@ -16,13 +16,14 @@
 
 - **Description:** A financial institution's associated Agency Code
 - **Values:**
-  - 1 - Office of the Comptroller of the Currency (OCC)
-  - 2 - Federal Reserve System (FRB)
-  - 3 - Federal Deposit Insurance Corporation (FDIC)
-  - 4 - Office of Thrift Supervision (OTS)
-  - 5 - National Credit Union Administration (NCUA)
-  - 7 - Department of Housing and Urban Development (HUD)
-  - 9 - Consumer Financial Protection Bureau (CFPB)
+  |Value|Abbreviation|Name|
+  |--|--|--|
+  |**1**|_OCC_|Office of the Comptroller of the Currency|
+  |**2**|_FRB_|Federal Reserve System|
+  |**3**|_FDIC_|Federal Deposit Insurance Corporation|
+  |**5**|_NCUA_|National Credit Union Administration|
+  |**7**|_HUD_|Department of Housing and Urban Development|
+  |**9**|_CFPB_|Consumer Financial Protection Bureau|
 
 ### [loan\_type](#loan_type)
 

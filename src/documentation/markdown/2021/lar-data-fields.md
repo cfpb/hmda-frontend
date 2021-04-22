@@ -1,4 +1,4 @@
-## Public HMDA data fields with values and definitions
+## Public HMDA - Data Fields with Values and Definitions
 
 ### [activity\_year](#activity_year)
 
