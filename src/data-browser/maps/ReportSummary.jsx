@@ -9,7 +9,7 @@ const combinedLabel = (filter) => filter && `${filter.variable.label} - ${filter
 const ReportHighlight = ({ data, year }) => {
   const { filter1, filter2, union12, filter1_geo } = data
   
-  if (!filter1) return null
+  if (!filter1 || !filter1_geo) return null
   const originations = (!filter2 ? filter1_geo[filter1.value.value] : union12) || 0
 
   return (
@@ -43,7 +43,7 @@ const ReportFilters = ({ data }) => {
 
 const ReportNarrative = ({ data, year }) => {
   const { filter1_geo_total, filter1_geo, filter2_geo, v1_where_f2_total, geoLevel, featureName, filter1, filter2, union12, v2_where_f1 } = data
-  if (!filter1) return null
+  if (!filter1 || !filter1_geo) return null
   const geowideLabel = geoLevel.value + 'wide'
   const filter1_total = filter1_geo[filter1.value.value]
 
@@ -83,7 +83,8 @@ const ReportNarrative = ({ data, year }) => {
   )
 }
 
-const getRank = (filter, dataset) => {
+const getRank = (filter, dset) => {
+  const dataset = dset || {}
   const vals = Object.keys(dataset).reduce((mem,key) => {
     let val = dataset[key]
     mem.push(val)
@@ -105,7 +106,7 @@ export const ReportSummary = ({ data, tableRef, onClick, year, viewMap, download
         <span className='featureName'>{data.featureName}</span>
         <div className='divider colorBgWithBias'>&nbsp;</div>
         <ReportHighlight data={data} year={year} />
-        <ReportNarrative {...{ data, year }} />
+        {/* <ReportNarrative {...{ data, year }} /> */}
       </h3>
     </span>
   )

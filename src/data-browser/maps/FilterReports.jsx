@@ -37,16 +37,24 @@ const FilterReport = ({ id, filter, otherFilter, values, label, total, level }) 
 
   if (!filter || !filter.variable || !filter.value || !truthy_values) return null
   const { variable, value } = filter
-
+  const otherFilterHasData = values.length > 1 && !!values[1]
   return (
     <div className={`page filter-report filter-report-${id}`}>
       <table ref={tableRef}>
         <thead onClick={scrollToTable} className='clickable'>
-          <GroupHeaders {...{ label, level, otherFilter }} />
+          <GroupHeaders
+            {...{
+              label,
+              level,
+              otherFilter: !otherFilterHasData ? null : otherFilter,
+            }}
+          />
           <CountHeaders {...{ variable, values: truthy_values }} />
         </thead>
         <tbody>
-          <BodyRows {...{ valsForVar, variable, value, total, truthy_values }} />
+          <BodyRows
+            {...{ valsForVar, variable, value, total, truthy_values }}
+          />
           <TotalsRow {...{ total }} />
         </tbody>
       </table>
