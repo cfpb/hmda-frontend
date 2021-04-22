@@ -223,7 +223,7 @@ function makeStops(data, variable, value, year, geography, mainVar, mainVal){
     const currData = data[geo]
     const fips = resolveFips(geo, geography.value)
     const total = counts[fips] || 0
-
+    if (!fips) return // Fix "undefined stop domain type" error when switching geographies!
     stops.push([fips, generateColor(currData, variable.value, val, bias, total)])
   })
 
