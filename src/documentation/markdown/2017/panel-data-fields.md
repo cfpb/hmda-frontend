@@ -23,12 +23,14 @@
 - **Description:** The integer code corresponding to an institution's regulatory agency
 
 - **Values:**
-  - 1: Office of the Comptroller of the Currency (OCC)
-  - 2: Federal Reserve System (FRB)
-  - 3: Federal Deposit Insurance Corporation (FDIC)
-  - 5: National Credit Union Administration (NCUA)
-  - 7: Department of Housing and Urban Development (HUD)
-  - 9: Consumer Financial Protection Bureau (CFPB)
+  |Value|Abbreviation|Name|
+  |--|--|--|
+  |**1**|_OCC_|Office of the Comptroller of the Currency|
+  |**2**|_FRB_|Federal Reserve System|
+  |**3**|_FDIC_|Federal Deposit Insurance Corporation|
+  |**5**|_NCUA_|National Credit Union Administration|
+  |**7**|_HUD_|Department of Housing and Urban Development|
+  |**9**|_CFPB_|Consumer Financial Protection Bureau|
 
 ### [id\_2017](#id_2017)
 - **Description:** This identifier is used in naming modified LAR files on [this page](https://ffiec.cfpb.gov/data-publication/modified-lar/2017)

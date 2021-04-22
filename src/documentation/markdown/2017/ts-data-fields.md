@@ -22,12 +22,14 @@
 - **Description:** The HMDA agency code of the filing institution.
 
 - **Values:**
-  - 1: OCC
-  - 2: FRB
-  - 3: FDIC
-  - 5: NCUA
-  - 7: HUD
-  - 9: CFPB
+  |Value|Abbreviation|Name|
+  |--|--|--|
+  |**1**|_OCC_|Office of the Comptroller of the Currency|
+  |**2**|_FRB_|Federal Reserve System|
+  |**3**|_FDIC_|Federal Deposit Insurance Corporation|
+  |**5**|_NCUA_|National Credit Union Administration|
+  |**7**|_HUD_|Department of Housing and Urban Development|
+  |**9**|_CFPB_|Consumer Financial Protection Bureau|
 
 ### [respondent\_name](#respondent_name)
 - **Description:** The name of the filing institution.
