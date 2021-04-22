@@ -18,7 +18,7 @@
 .summary-page .report-heading {
   font-size: 2em;
   text-align: center;
-  margin: 2em 0 3em;
+  margin: .5em 0 3em;
   cursor: pointer;
 }
 
@@ -54,4 +54,8 @@
 .summary-page .QueryButton {
   background: rgb(1,111, 123, .8);
   border-color: white;
+}
+
+.narrative {
+  font-size: .75em;
 }
