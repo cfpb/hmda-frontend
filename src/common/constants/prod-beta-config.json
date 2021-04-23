@@ -1,9 +1,9 @@
 {
   "name": "prod-beta",
   "announcement": {
-    "message": "We are performing system maintenance from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-    "type": "error",
-    "heading": "System Temporarily Unavailable"
+    "message": "The Beta Platform is available for testing of HMDA data collected in 2018 through 2021.",
+    "type": "info",
+    "heading": "Announcement"
   },
   "defaultPeriod": "2021-Q1",
   "defaultDocsPeriod": "2021",
@@ -36,11 +36,7 @@
   },
   "showMaps": false,
   "maintenanceMode": false,
-  "filingAnnouncement": {
-    "message": "We are performing system maintenance from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-    "type": "error",
-    "heading": "System Temporarily Unavailable"
-  },
+  "filingAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
       "2019",
