@@ -28,7 +28,7 @@
   |**9**|_CFPB_|Consumer Financial Protection Bureau|
 
 ### [id\_2017](#id_2017)
-- **Description:** The 2017 HMDA Platform primary identifier for an institution. This identifier is used in naming modified LAR files on [this page](https://ffiec.cfpb.gov/data-publication/modified-lar/2017)
+- **Description:** The 2017 HMDA Platform primary identifier for an institution. This identifier is used in naming modified LAR files for <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/data-publication/modified-lar/2017">Data Publication - Modified LAR 2017</a>
 - **Values:**
   - Varying values
 

@@ -1,8 +1,8 @@
 ## HMDA Filing - Quarterly Filing Period Dates
 
-Beginning January 1, 2020, the 2015 HMDA Final Rule requires quarterly reporting for financial institutions that reported a combined total of at least 60,000 applications and covered loans, excluding purchased covered loans, for the preceding calendar year. Thus, in addition to their annual data submission, these larger-volume reporters will submit HMDA data for each of the first three quarters of the year on a quarterly basis. Further information can be found in Regulation C, 12 CFR 1003.5(a)(1)(ii).
+Beginning January 1, 2020, the 2015 HMDA Final Rule requires quarterly reporting for financial institutions that reported a combined total of at least 60,000 applications and covered loans, excluding purchased covered loans, for the preceding calendar year. Thus, in addition to their annual data submission, these larger-volume reporters will submit HMDA data for each of the first three quarters of the year on a quarterly basis. Further information can be found in <a target="_blank" rel="noopener noreferrer" href="https://www.consumerfinance.gov/rules-policy/regulations/1003/5/#a-1-ii">Regulation C, 12 CFR 1003.5(a)(1)(ii)</a>.
 
-If you need additional information to help get your file ready you can refer to the [Supplemental Guide for Quarterly Filers](https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-2021.pdf) or the [Filing Instructions Guide](https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2021-hmda-fig.pdf) for 2021.
+If you need additional information to help get your file ready you can refer to the <a target="_blank" rel="noopener noreferrer" href="(https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-2021.pdf) or the ">Supplemental Guide for Quarterly Filers</a> or the <a target="_blank" rel="noopener noreferrer" href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2021-hmda-fig.pdf">Filing Instructions Guide for 2021</a>.
 
 See below for information on HMDA Quarterly Filing period dates:
 

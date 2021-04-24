@@ -13,7 +13,7 @@ Respondent ID is for 2017 and prior is one of the following: OCC charter number,
 
 **How can I map 2017 institution identifiers to 2018 institution identifiers?**
 The 2018 Panel file contains two identifiers related to 2017 identity: ID\_2017 and ARID\_2017. Use the ARID\_2017 column to match to the concatenation of Agency Code and Respondent ID from 2017. The ID\_2017 column relates to the file name of an institution's modified LAR data found on this page.
-See the [2018 HMDA Panel file schema](https://ffiec.cfpb.gov/documentation/2018/public-panel-schema/) and [field definitions](https://ffiec.cfpb.gov/documentation/2018/panel-data-fields/).
+See the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/documentation/2018/public-panel-schema/">2018 HMDA Panel - File schema</a> and <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/documentation/2018/panel-data-fields/">2018 HMDA Panel - Field definitions</a>.
 
 ### Institution Name Changes:
 
@@ -29,10 +29,10 @@ An institution’s Agency Code can change from year to year. These changes are d
 
 ### Institution Respondent ID Changes
 #### Do respondent IDs change with agency code changes?  
-Changes to an institution's Agency Code may result in changes to that institution's Respondent ID, especially in the case of depository institutions. Please see the [2017 HMDA FIG Table 1](https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2017-hmda-fig.pdf#page=14) for a breakout of how Respondent ID is derived based on Agency Code.
+Changes to an institution's Agency Code may result in changes to that institution's Respondent ID, especially in the case of depository institutions. Please see the <a target="_blank" rel="noopener noreferrer" href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2017-hmda-fig.pdf#page=14">2017 HMDA FIG Table 1</a> for a breakout of how Respondent ID is derived based on Agency Code.
 
 **How do I distinguish between a depository and a non-depository institution?**
-In order to distinguish between depository and non-depository institutions in the HMDA data, refer to the [HMDA Panel](https://ffiec.cfpb.gov/documentation/2020/panel-data-fields/) data field [Other Lender Code](https://ffiec.cfpb.gov/documentation/2020/panel-data-fields/#other_lender_code). Depository institutions all have Code 0 as their Other Lender Code. The remaining codes are all for non-depository institutions.
+In order to distinguish between depository and non-depository institutions in the HMDA data, refer to the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/documentation/2020/panel-data-fields/">HMDA Panel</a> data field <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/documentation/2020/panel-data-fields/#other_lender_code">Other Lender Code</a>. Depository institutions all have Code 0 as their Other Lender Code. The remaining codes are all for non-depository institutions.
 
 The use of Other Lender Code to distinguish between institution types is more accurate than using Agency Code. 
 
@@ -42,5 +42,5 @@ Agency Code is not intended to differentiate between depository and non-deposito
 
 For example, if a non-depository has a parent entity that has Agency Code 1 for OCC, the non-depository will also have Agency Code 1. 
 
-Additionally, all institutions that shares an ownership chain with an institution that has a CFPB [large depository](https://www.consumerfinance.gov/compliance/supervision-examinations/institutions/) institution will have a CFPB Agency Code.
+Additionally, all institutions that shares an ownership chain with an institution that has a CFPB <a target="_blank" rel="noopener noreferrer" href="https://www.consumerfinance.gov/compliance/supervision-examinations/institutions/">large depository</a> institution will have a CFPB Agency Code.
 
