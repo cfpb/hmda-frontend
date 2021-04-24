@@ -3,7 +3,7 @@
 ### Account Registration
 
 #### What information do I need to provide to register my financial institution?
-To register your financial institution on the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/filing">HMDA Platform</a> you will need to provide your institution name, <a target="_blank" rel="noopener noreferrer" href="http://ffiec.cfpb.gov/documentation/2019/filing-faq#what-is-a-legal-entity-identifier-lei">Legal Entity Identifier (LEI)</a>, tax ID number, email domain (example: cfpb.gov), and agency code. Registration is a two-step process. You must create a filer account **and** register your institution in the system. You can register your financial institution here: https://hmdahelp.consumerfinance.gov/accounthelp/. Do not use a personal email address to register for an account. The <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/filing">HMDA Platform</a> is designed to authenticate users based upon a financial institution’s registered email domain. If you do not have an email address within your financial institution's email domain, [contact HMDA Help](mailto:hmdahelp@cfpb.gov).
+To register your financial institution on the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/filing">HMDA Filing Platform</a> you will need to provide your institution name, <a target="_blank" rel="noopener noreferrer" href="http://ffiec.cfpb.gov/documentation/2019/filing-faq#what-is-a-legal-entity-identifier-lei">Legal Entity Identifier (LEI)</a>, tax ID number, email domain (example: cfpb.gov), and agency code. Registration is a two-step process. You must create a filer account **and** register your institution in the system. You can register your financial institution here: https://hmdahelp.consumerfinance.gov/accounthelp/. Do not use a personal email address to register for an account. The <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/filing">HMDA Filing Platform</a> is designed to authenticate users based upon a financial institution’s registered email domain. If you do not have an email address within your financial institution's email domain, [contact HMDA Help](mailto:hmdahelp@cfpb.gov).
 
 #### What is a Legal Entity Identifier (LEI)?
 Every institution that files a HMDA submission will be required to obtain a LEI for their submission whether they are exempt or not. The <a target="_blank" rel="noopener noreferrer" href="https://www.gleif.org/">Global LEI Foundation website</a> provides a list of LEI issuing organizations at https://www.gleif.org/en/about-lei/get-an-lei-find-lei-issuing-organizations. A financial institution may obtain an LEI, for HMDA reporting purposes, from any one of the issuing organizations listed on the website. For general information on the “LEI,” see section 5.2 of the <a target="_blank" rel="noopener noreferrer" href="https://files.consumerfinance.gov/f/documents/cfpb_hmda_small-entity-compliance-guide.pdf">HMDA Small Entity Compliance Guide</a>, and <a target="_blank" rel="noopener noreferrer" href="https://www.consumerfinance.gov/rules-policy/regulations/1003/4/#a-1-i-A">Regulation C, 12 CFR §§ 1003.4(a)(1)(i)(A)</a>, effective January 1, 2018, and <a target="_blank" rel="noopener noreferrer" href="https://www.consumerfinance.gov/rules-policy/regulations/1003/5/#a-3-vii">1003.5(a)(3)(vii)</a>, effective January 1, 2019.
@@ -27,7 +27,7 @@ For additional information, please review page 272 of the 2019 <a target="_blank
 ### Filing Preparation
 
 #### How can I test my file before submitting it to HMDA?
-The Bureau hosts the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.beta.cfpb.gov/">Beta submission platform</a> where you can submit HMDA data in a sandboxed environment (a non-production system designed for application testing) prior to the official filing period. This gives you an early opportunity to <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/documentation/markdown/2021/filing-faq.md#what-tools-can-i-use-to-help-prepare-my-file-for-submission">prepare your data</a>, review and resolve edits, as well as identify and correct formatting errors. **Data submitted to the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.beta.cfpb.gov/">Beta submission platform</a> is not retained by the Bureau, or any other regulatory agency.**
+The Bureau hosts the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.beta.cfpb.gov/">HMDA Beta Filing Platform</a> where you can submit HMDA data in a sandboxed environment (a non-production system designed for application testing) prior to the official filing period. This gives you an early opportunity to <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/documentation/markdown/2021/filing-faq.md#what-tools-can-i-use-to-help-prepare-my-file-for-submission">prepare your data</a>, review and resolve edits, as well as identify and correct formatting errors. **Data submitted to the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.beta.cfpb.gov/">HMDA Beta Filing Platform</a> is not retained by the Bureau, or any other regulatory agency.**
 
 #### What tools can I use to help prepare my file for submission?
 You can use the <a target="_blank" rel="noopener noreferrer" href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2019-hmda-fig.pdf">**Filing Instructions Guide (FIG)**</a> applicable to the year you are filing data for. Filing Instructions Guides for each year can be found on the home page of https://ffiec.cfpb.gov/, under the “Help For Filers” section. 
@@ -73,7 +73,7 @@ If using two separate systems to create your LAR File, please combine all entrie
 <a target="_blank" rel="noopener noreferrer" href="https://www.consumerfinance.gov/policy-compliance/rulemaking/regulations/1003/5/#a-1">As stated in Section 1003.5(a)(1)(iii)</a> when the last day for submission falls on a Saturday or Sunday a submission shall be considered timely if it is submitted on the next succeeding Monday. Submissions of 2019 HMDA data will be considered timely if received on or before Monday, March 2, 2020.
 
 #### When is the filing period?
-The **Annual filing** period is between <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/documentation/2019/annual-filing-dates/">January 1 and March 1</a> of each year.  The <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/filing">HMDA Platform</a> for each filing period opens January 1st.  The submission deadline is March 1st.  
+The **Annual filing** period is between <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/documentation/2019/annual-filing-dates/">January 1 and March 1</a> of each year.  The <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/filing">HMDA Filing Platform</a> for each filing period opens January 1st.  The submission deadline is March 1st.  
 
 #### How do I know my file was submitted?
 Upon signing and submitting your file, an email confirming your submission will be sent to the email address on file. Additionally, when you log into your account, you should see a message stating:
@@ -81,7 +81,7 @@ Upon signing and submitting your file, an email confirming your submission will 
 Below that message is a button that says 'View Completed Filing'. Select that and you will see the date and timestamp your file was accepted along with a receipt number for the submission. 
 
 #### When can I submit my file?
-The <a target="_blank" rel="noopener noreferrer" href="https://ffiec.beta.cfpb.gov/) (https://ffiec.beta.cfpb.gov/">Beta submission platform</a> is open throughout the year to test your HMDA data.
+The <a target="_blank" rel="noopener noreferrer" href="https://ffiec.beta.cfpb.gov/) (https://ffiec.beta.cfpb.gov/">HMDA Beta Filing Platform</a> is open throughout the year to test your HMDA data.
 
 _Annual HMDA data submissions_ for the 2019 filing year are accepted January 1 - March 1, 2020.  
 <br/>
@@ -95,7 +95,7 @@ Beginning January 1, 2020, the 2015 HMDA Final Rule requires quarterly reporting
 ### Resubmissions
 
 #### I need to resubmit my data, what do I do?
-In order to resubmit, please log into the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/filing">HMDA Platform</a>. The corrected file that you upload will overwrite the old file. 
+In order to resubmit, please log into the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/filing">HMDA Filing Platform</a>. The corrected file that you upload will overwrite the old file. 
 
 #### I missed the annual filing period deadline and am submitting my file late. Who do I need to notify?
 If you wish to explain the circumstances surrounding a late submission, contact your federal HMDA supervisory agency.
