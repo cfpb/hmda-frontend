@@ -42,10 +42,7 @@
 
 - **Description:** The type of covered loan or application
 - **Values:**
-  - 1 - Conventional (not insured or guaranteed by FHA
-  - VA
-  - RHS
-  - or FSA)
+  - 1 - Conventional (not insured or guaranteed by FHA, VA, RHS, FSA)
   - 2 - Federal Housing Administration insured (FHA)
   - 3 - Veterans Affairs guaranteed (VA)
   - 4 - USDA Rural Housing Service or Farm Service Agency guaranteed (RHS or FSA)
