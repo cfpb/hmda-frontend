@@ -44,7 +44,7 @@
 - Varying values
 
 ### [respondent\_name](#respondent_name)
-- **Description:** The name of the institution as registered with GLEIF
+- **Description:** The name of the institution as registered with <a target="_blank" rel="noopener noreferrer" href="https://www.gleif.org/">GLEIF</a>
 - **Values:**
   - Varying values
 

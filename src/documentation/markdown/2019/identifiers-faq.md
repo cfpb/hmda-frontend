@@ -4,7 +4,7 @@
 The following information below details guidance regarding institution identifiers in 2017 and 2018. 
 
 #### What are the institution identifiers for 2018?  
-For 2018 and forward, Legal Entity Identifier (LEI) sourced from a Global LEI Foundation (GLEIF) operating unit is the unique identifier for HMDA Filers. Institutions can be searched by name or LEI on this site.
+For 2018 and forward, <a target="_blank" rel="noopener noreferrer" href="http://ffiec.cfpb.gov/documentation/2021/filing-faq#what-is-a-legal-entity-identifier-lei">LEI (Legal Entity Identifier)</a> sourced from a <a target="_blank" rel="noopener noreferrer" href="https://www.gleif.org/">Global LEI Foundation (GLEIF)</a> operating unit is the unique identifier for HMDA Filers. Institutions can be searched by name or LEI on this site.
 
 #### What are the institution identifiers for 2017?  
 For 2017 and prior, an institution's unique identifier is the concatenation of Agency Code and Respondent ID. The use of both Agency Code and Respondent ID is important as Respondent ID by itself is not always sufficient to uniquely identify an institution.
@@ -18,7 +18,7 @@ See the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.go
 ### Institution Name Changes:
 
 **What happens with institution name changes for 2018 and beyond?**
-In 2018 and subsequent years, an institution's name in the HMDA Panel dataset is pulled from GLEIF using the LEI provided by that institution. If the institution changes their legal name with GLEIF after the publication of the HMDA Panel, that change will populate in the subsequent HMDA Panel.
+In 2018 and subsequent years, an institution's name in the HMDA Panel dataset is pulled from <a target="_blank" rel="noopener noreferrer" href="https://www.gleif.org/">GLEIF</a> using the <a target="_blank" rel="noopener noreferrer" href="http://ffiec.cfpb.gov/documentation/2021/filing-faq#what-is-a-legal-entity-identifier-lei">LEI</a> provided by that institution. If the institution changes their legal name with <a target="_blank" rel="noopener noreferrer" href="https://www.gleif.org/">GLEIF</a> after the publication of the HMDA Panel, that change will populate in the subsequent HMDA Panel.
 
 #### What happens with institution name changes for 2017 and prior?  
 In 2017 an institution's name in the HMDA Panel is pulled from the National Information Center (NIC) dataset. If an institution changed its legal name in NIC after the publication of the HMDA Panel, this change was not back populated.
