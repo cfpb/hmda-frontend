@@ -26,6 +26,8 @@ mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlv
   income
 */
 
+let fetchQ = []
+
 function getDefaultsFromSearch(props) {
   const { search } = props.location
   const qsParts = search.slice(1).split('&')
@@ -270,8 +272,10 @@ const MapContainer = props => {
 
   useEffect(() => {
     if(!county2018Data && selectedGeography.value === 'county' && year === '2018'){
+      fetchQ.push(1)
       runFetch('/2018/county.json').then(jsonData => {
         setCounty2018Data(jsonData)
+        fetchQ.pop()
       })
     }
   }, [county2018Data, selectedGeography, year])
@@ -279,8 +283,10 @@ const MapContainer = props => {
 
   useEffect(() => {
     if(!county2019Data && selectedGeography.value === 'county' && year === '2019'){
+      fetchQ.push(1)
       runFetch('/2019/county.json').then(jsonData => {
         setCounty2019Data(jsonData)
+        fetchQ.pop()
       })
     }
   }, [county2019Data, selectedGeography, year])
@@ -288,8 +294,10 @@ const MapContainer = props => {
 
   useEffect(() => {
     if(!state2018Data && selectedGeography.value === 'state' && year === '2018'){
+      fetchQ.push(1)
       runFetch('/2018/state.json').then(jsonData => {
         setState2018Data(jsonData)
+        fetchQ.pop()
       })
     }
   }, [selectedGeography, state2018Data, year])
@@ -297,8 +305,10 @@ const MapContainer = props => {
 
   useEffect(() => {
     if(!state2019Data && selectedGeography.value === 'state' && year === '2019'){
+      fetchQ.push(1)
       runFetch('/2019/state.json').then(jsonData => {
         setState2019Data(jsonData)
+        fetchQ.pop()
       })
     }
   }, [selectedGeography, state2019Data, year])
@@ -442,6 +452,7 @@ const MapContainer = props => {
     function getTableData(properties){
       const feat = properties['GEOID']
       if(feat !== feature) {
+        console.log(`Feature changed! feat: ${feat}, feature: ${feature}`)
         setFeature(feat)
         detachHandlers()
       }
@@ -523,34 +534,40 @@ const MapContainer = props => {
     handleYearChange: (year) => onYearChange({ year }),
   }
 
+  const isLoading = !!fetchQ.length
+  console.log(map)
+
   return (
     <div className={'SelectWrapper ' + biasLabel} ref={mapRef}>
-      <MapsController {...mapsControllerProps} />
-      <div className='page map-page'>
-        <MapsNavBar
-          data={reportData}
-          hasFilter={!!combinedFilter1}
-          viewReport={() => scrollToTable(tableRef.current)}
-          download={fetchCSV}
-        />
-        <div className='mapContainer' ref={mapContainer}>
-          {map === false ? (
-            <Alert type='error'>
-              <p>
-                Your browser does not support WebGL, which is needed to run this
-                application.
-              </p>
-            </Alert>
-          ) : null}
-          {resolved
-            ? makeLegend(
-                ...resolved,
-                year,
-                selectedGeography,
-                selectedVariable,
-                selectedValue
-              )
-            : null}
+      <div id='maps-overlay-container'>
+        <LoadingOverlay isLoading={isLoading} />
+        <MapsController {...mapsControllerProps} />
+        <div className='page map-page'>
+          <MapsNavBar
+            data={reportData}
+            hasFilter={!!combinedFilter1}
+            viewReport={() => scrollToTable(tableRef.current)}
+            download={fetchCSV}
+          />
+          <div className='mapContainer' ref={mapContainer}>
+            {map === false ? (
+              <Alert type='error'>
+                <p>
+                  Your browser does not support WebGL, which is needed to run
+                  this application.
+                </p>
+              </Alert>
+            ) : null}
+            {resolved
+              ? makeLegend(
+                  ...resolved,
+                  year,
+                  selectedGeography,
+                  selectedVariable,
+                  selectedValue
+                )
+              : null}
+          </div>
         </div>
       </div>
       <ReportSummary
@@ -561,7 +578,35 @@ const MapContainer = props => {
         year={year}
         data={reportData}
       />
-      <FilterReports data={reportData}  />
+      <FilterReports data={reportData} />
+    </div>
+  )
+}
+
+const LoadingOverlay = ({ isLoading, symbol='*' }) => {
+  const [text, setText] = useState(`${symbol}`)
+  let interval
+  
+  const updateIndicator = () => {
+    let newText = text.length > 10 ? symbol : text + symbol
+    setText(newText)
+  }
+
+  useEffect(() => {
+    if (!isLoading) {
+      clearInterval(interval)
+      setText(symbol)
+      return
+    }
+    interval = setInterval(updateIndicator, 500)
+    return () => clearInterval(interval)
+  }, [text, isLoading])
+
+  return (
+    <div id='maps-loading-overlay' className={ isLoading ? 'loading' : undefined }>
+      <div>{text}</div>
+      <div style={{ margin: '1em auto' }}>LOADING</div>
+      <div>{text}</div>
     </div>
   )
 }

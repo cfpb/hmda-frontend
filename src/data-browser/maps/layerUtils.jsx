@@ -219,12 +219,21 @@ function makeStops(data, variable, value, year, geography, mainVar, mainVal){
   const mVal = mainVal ? normalizeValue(mainVal) : null
   const [bias, _biasLabel] = getBias(data, variable.value, val, geography, counts, mVar, mVal)
 
+  let oneExample = false
   Object.keys(data).forEach(geo => {
+    if(!geo) return
     const currData = data[geo]
     const fips = resolveFips(geo, geography.value)
     const total = counts[fips] || 0
-    if (!fips) return // Fix "undefined stop domain type" error when switching geographies!
-    stops.push([fips, generateColor(currData, variable.value, val, bias, total)])
+    if (!fips) {
+      if (!oneExample) {
+        oneExample = true
+        console.log("No FIPS!! ", {currData, data, geo, geography, counts})
+
+      }
+      return // Fix "undefined stop domain type" error when switching geographies!
+    }
+    stops.push([fips || '', generateColor(currData, variable.value, val, bias, total)])
   })
 
   return [stops, highlightColors[bias]]
@@ -325,7 +334,7 @@ function formatAndOrderLabels(map, options = {}) {
 function removeLayers(map){
   const layers = ['county','county-lines','state','state-lines']
   layers.forEach(l => {
-    if(map.getLayer(l)) map.removeLayer(l)
+    if(map && map.getLayer(l)) map.removeLayer(l)
   })
 }
 
