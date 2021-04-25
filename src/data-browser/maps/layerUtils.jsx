@@ -248,8 +248,107 @@ function generateColor(data, variable, value, bias, total) {
   return currColors[index]
 }
 
+// These layers are included by default, 
+// removing them seems to reduce 
+// the resources required to draw the map.
+//
+// - Use map.getZoom() to add roads, etc. at deeper zoom levels?
+// - Add a configuration panel to add/remove layers?
+const SPARE_LAYERS = [
+  "national-park",
+  "landuse",
+  "water-shadow",
+  "waterway",
+  'waterway-label',
+  "land-structure-polygon",
+  "land-structure-line",
+  "aeroway-polygon",
+  "aeroway-line",
+  "tunnel-street-minor-low",
+  "tunnel-street-minor-case",
+  "tunnel-primary-secondary-tertiary-case",
+  "tunnel-major-link-case",
+  "tunnel-motorway-trunk-case",
+  "tunnel-construction",
+  "tunnel-path",
+  "tunnel-steps",
+  "tunnel-major-link",
+  "tunnel-pedestrian",
+  "tunnel-street-minor",
+  "tunnel-primary-secondary-tertiary",
+  "tunnel-motorway-trunk",
+  "road-pedestrian-case",  
+  "road-minor-low",
+  "road-street-low",
+  "road-minor-case",
+  "road-street-case",
+  "road-secondary-tertiary-case",
+  "road-primary-case",
+  "road-major-link-case",
+  "road-motorway-trunk-case",
+  "road-construction",
+  "road-path",
+  "road-steps",
+  "road-major-link",
+  "road-pedestrian",
+  "road-minor",
+  "road-street",
+  "road-secondary-tertiary",
+  "road-motorway-trunk",
+  "road-rail",
+  "bridge-pedestrian-case",
+  "bridge-street-minor-low",
+  "bridge-street-minor-case",
+  "bridge-primary-secondary-tertiary-case",
+  "bridge-major-link-case",
+  "bridge-motorway-trunk-case",
+  "bridge-construction",
+  "bridge-path",
+  "bridge-steps",
+  "bridge-major-link",
+  "bridge-pedestrian",
+  "bridge-street-minor",
+  "bridge-motorway-trunk",
+  "bridge-rail",
+  "bridge-major-link-2-case",
+  "bridge-motorway-trunk-2-case",
+  "bridge-major-link-2",
+  "bridge-motorway-trunk-2",
+  "admin-1-boundary-bg",
+  "admin-0-boundary-bg",
+  "admin-1-boundary",
+  "admin-0-boundary",
+  "admin-0-boundary-disputed",  
+  'road-primary',
+  'bridge-primary-secondary-tertiary',
+  'road-label',
+  'landcover',
+]
+
+
+const ACTIVE_LAYERS_IN_ORDER = [
+  'land',
+  'water',
+  'hillshade',
+  'county', // Ours
+  'state', // Ours
+  'natural-line-label',
+  'natural-point-label',
+  'water-line-label',
+  'water-point-label',
+  'poi-label',
+  'airport-label',
+  'settlement-subdivision-label',
+  'country-label',
+  'county-lines', // Ours
+  'state-lines', // Ours
+  'settlement-label',
+  'state-label',
+]
+
 function addLayers(map, geography, stops) {
   const isCounty = geography.value === 'county'
+  const targetLayer = 'natural-line-label' 
   removeLayers(map)
 
   if(isCounty){
@@ -267,7 +366,7 @@ function addLayers(map, geography, stops) {
           stops
         }
       }
-    }, 'state-label')
+    }, targetLayer)
 
     map.addLayer({
       'id': 'county-lines',
@@ -294,7 +393,7 @@ function addLayers(map, geography, stops) {
           stops
         }
       }
-    }, 'state-label')
+    }, targetLayer)
   }
 
   //Always add state lines
@@ -322,18 +421,32 @@ function formatAndOrderLabels(map, options = {}) {
   const label_layers = ['settlement-label', 'state-label']
   const { textColor, textHaloColor, textHaloWidth } = options
 
+  map.moveLayer('hillshade') // Add some geological context
+  map.moveLayer('water')
+  map.moveLayer('building', 'water') // Building outlines visible at very high zoom
+
   label_layers.forEach((layer) => {
     if (!map || !map.getLayer(layer)) return
-    map.setPaintProperty(layer, 'text-color', textColor || '#555')
+    map.setPaintProperty(layer, 'text-color', textColor || '#000')
     map.setPaintProperty(layer, 'text-halo-color', textHaloColor || '#FFF')
-    map.setPaintProperty(layer, 'text-halo-width', textHaloWidth || 0.65)
+    map.setPaintProperty(layer, 'text-halo-width', textHaloWidth || .25)
     map.moveLayer(layer) // Lift layer to top
   })
+
+  map.setLayoutProperty('settlement-label', 'text-field', [
+    'format',
+    ['get', 'name_en'],
+    { 'font-scale': 1.2 }
+  ])
+  map.setPaintProperty('water', 'fill-color', 'rgba(0,0,0,0.2)') // Gently differentiate water  
 }
 
 function removeLayers(map){
   const layers = ['county','county-lines','state','state-lines']
   layers.forEach(l => {
+    if(map && map.getLayer(l)) map.removeLayer(l)
+  })
+  SPARE_LAYERS.forEach(l => {
     if(map && map.getLayer(l)) map.removeLayer(l)
   })
 }
@@ -363,6 +476,7 @@ function setOutline(map, selectedGeography, feature, current=null, lineColor='#f
      default: 0,
      stops: stops.map(s => [s[0], LINE_GAP_WIDTH])
    })
+   formatAndOrderLabels(map)
 }
 
 function makeMapLabel(geography, variable, value, filter, filtervalue, year) {

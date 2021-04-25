@@ -85,11 +85,12 @@ const getZoom = (geo, featureId) => {
 adjustZoom('state', -2, ['02'])
 adjustZoom('state', -0.5, ['16', '48'])
 adjustZoom('state', 0.5, [ '15', '23', '24', '25', '33', '42', '44', '45', '50', '54'])
-adjustZoom('state', 1.5, ['09', '10', '33', '34', '44'])
+adjustZoom('state', 1.5, ['09', '10', '33', '34', '44', '72'])
 
 // Zoom less on counties in states with large counties (default zoom: 7)
 adjustZoom('county', -2, ['02'])
 adjustZoom('county', -0.5, ['04', '32'])
+adjustZoom('county', 2.5, ['72'])
 
 let currentHighlightColor = null
 
@@ -535,7 +536,6 @@ const MapContainer = props => {
   }
 
   const isLoading = !!fetchQ.length
-  console.log(map)
 
   return (
     <div className={'SelectWrapper ' + biasLabel} ref={mapRef}>
