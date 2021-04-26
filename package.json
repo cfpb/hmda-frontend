@@ -58,7 +58,7 @@
   "devDependencies": {
     "@cypress/skip-test": "2.6.0",
     "@testing-library/cypress": "7.0.3",
-    "cypress": "6.6.0",
+    "cypress": "7.1.0",
     "cypress-file-upload": "5.0.2",
     "cypress-keycloak": "1.5.0",
     "enzyme": "3.11.0",
@@ -70,6 +70,6 @@
     "serialize-javascript": "5.0.1"
   },
   "resolutions": {
-    "cypress": "6.6.0"
+    "cypress": "7.1.0"
   }
 }
