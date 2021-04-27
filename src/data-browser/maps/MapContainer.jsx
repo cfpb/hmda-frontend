@@ -466,7 +466,6 @@ const MapContainer = props => {
     function getTableData(properties){
       const feat = properties['GEOID']
       if(feat !== feature) {
-        console.log(`Feature changed! feat: ${feat}, feature: ${feature}`)
         setFeature(feat)
         detachHandlers()
       }
@@ -562,6 +561,7 @@ const MapContainer = props => {
             hasFilter={!!combinedFilter1}
             viewReport={() => scrollToTable(tableRef.current)}
             download={fetchCSV}
+            clearFeature={() =>  setFeature(null)}
           />
           <div className='mapContainer' ref={mapContainer}>
             {map === false ? (

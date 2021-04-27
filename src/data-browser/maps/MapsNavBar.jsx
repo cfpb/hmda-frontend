@@ -1,5 +1,6 @@
 import React from 'react'
 import { asNum } from '../../common/numberServices.js'
+import closeX from '../../common/images/maps-close-x.png'
 
 function openPrintDialog(e) {
   e.preventDefault()
@@ -8,7 +9,7 @@ function openPrintDialog(e) {
 }
 
 
-export const MapsNavBar = ({ data, viewReport, download, hasFilter }) => {
+export const MapsNavBar = ({ data, viewReport, download, hasFilter, clearFeature }) => {
   const { filter1, filter2, union12, filter1_geo, featureName, geoLevel } = (data || {})
   
   if (!geoLevel || !hasFilter) return null
@@ -16,7 +17,7 @@ export const MapsNavBar = ({ data, viewReport, download, hasFilter }) => {
     return (
       <div className='maps-nav-bar'>
         <span className='feature empty highlight colorTextWithBias'>
-          Select a {geoLevel.label} using the map below.
+          Select a {geoLevel.label} using the map below
         </span>
       </div>
     )
@@ -28,7 +29,17 @@ export const MapsNavBar = ({ data, viewReport, download, hasFilter }) => {
   return (
     <div className='maps-nav-bar'>
       <div className='feature'>
-        {featureName}
+        <span>
+          {featureName}
+          <span className='clear-feature no-print'>
+            <img
+              src={closeX}
+              alt='Close X'
+              title={`Clear selected ${geoLevel.value}`}
+              onClick={clearFeature}
+            />
+          </span>
+        </span>
         <div>
           <span className='count-desc'>Matching LAR: </span>{' '}
           <span className='count highlight colorTextWithBias'>

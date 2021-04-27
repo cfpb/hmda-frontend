@@ -261,6 +261,15 @@
   flex-direction: column;
 }
 
+.SelectWrapper .maps-nav-bar .clear-feature:hover {
+  cursor: pointer;
+}
+.SelectWrapper .maps-nav-bar .clear-feature img {
+  margin-left: .25em;
+  height: 20px;
+  width: 20px;
+}
+
 .SelectWrapper .maps-nav-bar .feature.empty {
   margin: 0 auto;
   text-align: center;

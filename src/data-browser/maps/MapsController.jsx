@@ -70,6 +70,7 @@ export const MapsController = ({
             onChange={onFilter1Change}
             options={getCombinedOptions(combinedFilter2, combinedFilter1)}
             placeholder='Select a filter (type to search)'
+            menuIsOpen={!combinedFilter1 || undefined}
           />
         </div>
         <div className='filter'>
