@@ -46,6 +46,7 @@ function getDefaultsFromSearch(props) {
     else if(key === 'variable' || key === 'filter') val = getSelectData(variables, val)
     else if(key === 'value') val = getSelectData(getValuesForVariable(defaults.variable), val)
     else if(key === 'filtervalue') val = getSelectData(getValuesForVariable(defaults.filter), val)
+    else if(key === 'mapCenter') null // No processing needed
     defaults[key] = val || null
   })
 
@@ -77,6 +78,7 @@ const adjustZoom = (geo, amount, list) => {
 }
 
 const getZoom = (geo, featureId) => {
+  if (!geo || !featureId) return 3.5
   if (geo === 'state') return zoomMapping[geo][featureId] || zoomMapping[geo].default
   return zoomMapping[geo][featureId.substr(0, 2)] || zoomMapping[geo].default
 }
@@ -123,6 +125,7 @@ const MapContainer = props => {
   const [selectedFilterValue, setFilterValue] = useState(defaults.filtervalue)
  
   const [feature, setFeature] = useState(defaults.feature)
+  const [mapCenter, setMapCenter] = useState(defaults.mapCenter)
 
   const getBaseData = useCallback((year, geography) => {
     if(!year || !geography) return null
@@ -208,6 +211,7 @@ const MapContainer = props => {
     if(selectedFilter) searchArr.push(`filter=${selectedFilter.value}`)
     if(selectedFilterValue) searchArr.push(`filtervalue=${selectedFilterValue.value}`)
     if(feature) searchArr.push(`feature=${feature}`)
+    if(mapCenter) searchArr.push(`mapCenter=${mapCenter}`)
 
     if(searchArr.length) return `?${searchArr.join('&')}`
     return ''
@@ -266,9 +270,8 @@ const MapContainer = props => {
   }
 
   function scrollToMap() {
-    if (!mapRef.current) return
+    if (!mapRef.current || !mapRef.current.scrollIntoView) return
     return setTimeout(() => mapRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' }), 0)
-    
   }
 
   useEffect(() => {
@@ -446,8 +449,18 @@ const MapContainer = props => {
       }, 0)
     }
 
-    function highlightSavedFeature() {
+    function highlightSavedFeature({ scroll, zoom }) {
+      const [lng,lat] = mapCenter ? mapCenter.split(',') : []
       setOutline(map, selectedGeography, feature, null, currentHighlightColor)
+      const tmp_a = [lng,lat]
+      if (tmp_a.every(x => x || x === 0)){
+        zoom && zoomToGeography({
+          GEOID: feature,
+          CENTROID_LNG: lng,
+          CENTROID_LAT: lat,
+        })
+        scroll && setTimeout(() => scrollToMap(), 0)
+      }
     }
 
     function getTableData(properties){
@@ -463,7 +476,6 @@ const MapContainer = props => {
       const feat = properties['GEOID']
       const center = [properties.CENTROID_LNG, properties.CENTROID_LAT]
       const zoom = getZoom(selectedGeography.value, feat)
-
       map.flyTo({ center, zoom })
     }
 
@@ -472,17 +484,19 @@ const MapContainer = props => {
       const features = map.queryRenderedFeatures(e.point, {layers: [selectedGeography.value]})
       if(!features.length) return
       const properties = features[0].properties
+      const center = [properties.CENTROID_LNG, properties.CENTROID_LAT]
 
+      setMapCenter((center || [-96, 38]).join(','))
       getTableData(properties)
       zoomToGeography(properties)
-      scrollToMap()
+      setTimeout(() => scrollToMap(), 0)
     }
 
     const clearPopup = () => popup.remove()
 
     function attachHandlers () {
-      if(map._loaded) highlightSavedFeature()
-      else map.on('load', highlightSavedFeature)
+      if(map._loaded) highlightSavedFeature({ scroll: true, zoom: true })
+      else map.on('load', () => highlightSavedFeature({ scroll: true, zoom: true }))
       map.on('mousemove', highlight)
       map.on('mouseleave', 'county', highlightSavedFeature)
       map.on('mouseleave', 'state', highlightSavedFeature)
