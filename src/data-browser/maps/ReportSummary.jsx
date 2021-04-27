@@ -12,7 +12,7 @@ const ReportHighlight = ({ data, year }) => {
   if (!filter1 || !filter1_geo)
     return (
       <div className='union-highlight no-data colorTextWithBias'>
-        There is no LAR data for this region.
+        No LAR data for this region in {year}
       </div>
     )
 
@@ -20,8 +20,11 @@ const ReportHighlight = ({ data, year }) => {
 
   return (
     <div className='union-highlight'>
-      <div className='count colorTextWithBias' >{asNum(originations)}</div>
-      <div>Loans in {year}</div>
+      <div className='count colorTextWithBias'>{asNum(originations)}</div>
+      <div>
+        Loan Application Records in{' '}
+        <span className='colorTextWithBias'>{year}</span>
+      </div>
       <ReportFilters data={data} />
     </div>
   )
@@ -29,39 +32,24 @@ const ReportHighlight = ({ data, year }) => {
 
 const ReportFilters = ({ data }) => {
   const results = []
-  // TODO: improve alignment for long var/val strings
-  // return (
-  //   <table className='report-filters'>
-  //     {data.filter1 && (
-  //       <tr>
-  //         <th className='filter-clause'>WHERE</th>
-  //         <td className='filter-text colorTextWithBias'>
-  //           {combinedLabel(data.filter1)}
-  //         </td>
-  //       </tr>
-  //     )}
-  //     {data.filter2 && (
-  //       <tr>
-  //         <th className='filter-clause'>AND</th>
-  //         <td className='filter-text colorTextWithBias'>
-  //           {combinedLabel(data.filter2)}
-  //         </td>
-  //       </tr>
-  //     )}
-  //   </table>
-  // )
+  let label = combinedLabel(data.filter1)
+  let long = label.length > 38
 
+  
   data.filter1 && results.push(
-    <div className='filter-label' key='f-where'>
+    <div className={'filter-label' + (long ? ' long' : '')} key='f-where'>
       <div className='filter-clause'>WHERE</div>{' '}
-      <div className='filter-text colorTextWithBias'>{combinedLabel(data.filter1)}</div>
+      <div className='filter-text colorTextWithBias'>{label}</div>
     </div>
   )
 
+  label = data.filter2 ? combinedLabel(data.filter2) : ''
+  long = label.length > 38
+
   data.filter2 && results.push(
-    <div className='filter-label' key='f-and'>
+    <div className={'filter-label' + (long ? ' long' : '')} key='f-and'>
       <div className='filter-clause'>AND</div>{' '}
-      <div className='filter-text colorTextWithBias'>{combinedLabel(data.filter2)}</div>
+      <div className='filter-text colorTextWithBias'>{label}</div>
     </div>
   )
 

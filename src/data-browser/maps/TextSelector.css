@@ -29,11 +29,13 @@
   text-decoration: none;
   color: #555;
   width: 85px;
-  border: 2px solid white;
+  border: 2px solid transparent;
   border-radius: 10px;
   text-align: center;
   background: transparent;
   font-size: 1em;
+  margin: 0 .25em;
+  transition: all .25s ease-in-out;
 }
 
 .TextSelector .option.active {

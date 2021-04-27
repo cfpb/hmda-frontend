@@ -539,7 +539,7 @@ const MapContainer = props => {
 
   return (
     <div className={'SelectWrapper ' + biasLabel} ref={mapRef}>
-      <div id='maps-overlay-container'>
+      <div id='maps-overlay-container' className='page'>
         <LoadingOverlay isLoading={isLoading} />
         <MapsController {...mapsControllerProps} />
         <div className='page map-page'>

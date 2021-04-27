@@ -235,8 +235,8 @@
   font-size: .9em;
   margin: 0;
   background: transparent;
-  background: #666;
-  color: white;
+  color: #555;
+  transition: all .25s ease-in-out, scale .1s;
 }
 
 .SelectWrapper .nav-btn:not(:last-child) {
@@ -250,7 +250,7 @@
 }
 
 .SelectWrapper button:hover {
-  box-shadow: 5px 2px 5px grey;
+  box-shadow: 3px 4px 3px rgba(73, 55, 58,.5);
 }
 
 .SelectWrapper .maps-nav-bar .feature {
@@ -368,7 +368,7 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
 }
 
 .MapsGraphs .report-heading .featureName {
-  font-size: 2em;
+  font-size: 5vw;
   color: #333;
 }
 
@@ -439,7 +439,7 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
 
   .MapsGraphs .page.filter-report-1 { order: 3; }
   .MapsGraphs .page.filter-report-2 { order: 4; }
-  .MapsGraphs .page.map-page { order: 2; }
+  .MapsGraphs .page#maps-overlay-container { order: 2; }
   .MapsGraphs .page.summary-page { order: 1; }
 
   .MapsGraphs .mapboxgl-canvas {

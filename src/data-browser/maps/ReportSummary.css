@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
   margin-top: .55em;
+  margin-bottom: 3em;
 }
 
 .summary-page .union-highlight {
@@ -15,6 +16,7 @@
   margin-top: 2em;
   border: 10px double #888;
   padding: 3em;
+  white-space: nowrap;
 }
 
 .summary-page .union-highlight .count {
@@ -22,7 +24,7 @@
 }
 
 .summary-page .report-heading {
-  font-size: 2em;
+  font-size: 3vw;
   text-align: center;
   margin: .5em 0 3em;
   cursor: pointer;
@@ -34,16 +36,24 @@
 
 .summary-page .filter-label {
   text-align: center;
-  margin: 0 auto;
+  margin: 1em auto;
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
   text-transform: lowercase;
+  font-size: 3vw;
+  flex-direction: column;
 }
 
-.summary-page .filter-label .filter-text {
+.summary-page .filter-label.long .filter-text { /* > 35chars */
+  font-size: 2.5vw;
+}
+
+.summary-page .filter-label .filter-text,
+.summary-page .filter-label .filter-clause {
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .summary-page .filter-label > * {

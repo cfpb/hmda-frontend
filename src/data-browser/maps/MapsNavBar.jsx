@@ -23,7 +23,7 @@ export const MapsNavBar = ({ data, viewReport, download, hasFilter }) => {
 
   let value = 0
   if (filter2) value = union12
-  if (filter1_geo) value = filter1_geo[filter1.value.value]
+  else if (filter1_geo) value = filter1_geo[filter1.value.value]
 
   return (
     <div className='maps-nav-bar'>
