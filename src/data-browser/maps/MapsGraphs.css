@@ -367,14 +367,9 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
   display: none;
 }
 
-.MapsGraphs .report-heading .featureName {
-  font-size: 5vw;
-  color: #333;
-}
-
 .MapsGraphs .divider {
   height: 2px;
-  width: 50%;
+  width: 45%;
   margin: 0 auto;
 }
 
@@ -405,7 +400,6 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
   pointer-events: all;
 }
 
-
 @media print {
   .print-only { display: block; }
   .MapsGraphs .maps-nav-bar { border: none !important; }
@@ -414,6 +408,8 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
   .no-print,
   .mapboxgl-control-container { 
     display: none !important; 
+    margin: 0;
+    padding: 0;
   }
 
   body, 
@@ -445,5 +441,5 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
   .MapsGraphs .mapboxgl-canvas {
     height: 100% !important;
   }
-  .MapsGraphs .divider { width: 100%}
+  /* .MapsGraphs .divider { width: 100%} */
 }

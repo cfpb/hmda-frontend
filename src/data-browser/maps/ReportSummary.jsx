@@ -20,11 +20,10 @@ const ReportHighlight = ({ data, year }) => {
 
   return (
     <div className='union-highlight'>
-      <div className='count colorTextWithBias'>{asNum(originations)}</div>
-      <div>
-        Loan Application Records in{' '}
-        <span className='colorTextWithBias'>{year}</span>
+      <div className='count-label'>
+        Loan Application Records
       </div>
+      <div className='count colorTextWithBias'>{asNum(originations)}</div>
       <ReportFilters data={data} />
     </div>
   )
@@ -37,7 +36,7 @@ const ReportFilters = ({ data }) => {
 
   
   data.filter1 && results.push(
-    <div className={'filter-label' + (long ? ' long' : '')} key='f-where'>
+    <div className={'filter-label first' + (long ? ' long' : '')} key='f-where'>
       <div className='filter-clause'>WHERE</div>{' '}
       <div className='filter-text colorTextWithBias'>{label}</div>
     </div>
@@ -114,11 +113,14 @@ export const ReportSummary = ({ data, tableRef, onClick, year, viewMap, download
   if (!data || !data.featureName) return null
   return (
     <span className='page summary-page'>
-      <div className='report-nav-btns' ref={tableRef}>
+      <div className='no-print report-nav-btns' ref={tableRef}>
         <MapsNavBtns download={download} viewMap={viewMap} />
       </div>
       <h3 className='report-heading' onClick={onClick}>
-        <span className='featureName'>{data.featureName}</span>
+        <span className='featureName'>
+          <span className='colorTextWithBias'>{data.featureName}</span>
+          <span className='year'>{year}</span>
+        </span>
         <div className='divider colorBgWithBias'>&nbsp;</div>
         <ReportHighlight data={data} year={year} />
         {/* <ReportNarrative {...{ data, year }} /> */}

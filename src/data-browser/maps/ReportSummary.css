@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: .55em;
+  padding-top: 3em;
   margin-bottom: 3em;
 }
 
@@ -19,35 +19,48 @@
   white-space: nowrap;
 }
 
+.summary-page .report-heading .featureName {
+  font-size: 3vw;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-page .report-heading .featureName .year {
+  font-family: SourceSansPro;
+  margin-bottom: .5em;
+}
+
 .summary-page .union-highlight .count {
   font-size: 2em;
 }
 
+.summary-page .union-highlight .count-label {
+  margin-top: .75em;
+  font-size: .75em;
+}
+
 .summary-page .report-heading {
-  font-size: 3vw;
+  font-size: 2.5vw;
   text-align: center;
   margin: .5em 0 3em;
   cursor: pointer;
 }
 
-.summary-page .report-heading > * {
-  margin: .75em
-}
-
 .summary-page .filter-label {
   text-align: center;
-  margin: 1em auto;
+  margin: .5em auto;
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
   text-transform: lowercase;
-  font-size: 3vw;
+  font-size: 2vw;
   flex-direction: column;
 }
 
-.summary-page .filter-label.long .filter-text { /* > 35chars */
-  font-size: 2.5vw;
+.summary-page .filter-label.first {
+  /* margin-top: .5em; */
 }
 
 .summary-page .filter-label .filter-text,
@@ -74,4 +87,32 @@
 
 .narrative {
   font-size: .75em;
+}
+
+@media print {
+  .summary-page .report-heading {
+    font-size: 2.5vw;
+  }
+
+  .summary-page .report-heading .featureName {
+    font-size: 5vw;
+  }
+
+  .summary-page .union-highlight,
+  .summary-page .filter-label {
+    font-size: 3.5vw;
+  }
+
+  .summary-page .union-highlight .count-label {
+    font-size: 3.3vw;
+  }
+
+  .summary-page .union-highlight .count {
+    font-size: 5.5vw;
+  }
+
+  .summary-page .filter-label.long .filter-text { /* > 38 chars */
+    font-size: 2.5vw;
+  }
+
 }
