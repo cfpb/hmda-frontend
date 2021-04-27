@@ -212,7 +212,7 @@
 
 .SelectWrapper .maps-nav-bar {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   padding: 0 1em .5em;
   border: 1px solid #ddd;
@@ -251,6 +251,8 @@
   font-size: 1.75em;
   font-weight: bold;
   margin-right: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .SelectWrapper .maps-nav-bar .feature.empty {
@@ -259,9 +261,10 @@
 }
 
 
-.SelectWrapper .maps-nav-bar .count {
-  font-size: 1em;
-  margin-left: .5em;
+.SelectWrapper .maps-nav-bar .count-desc {
+  font-size: .75em;
+  color: #777;
+  margin-right: .5em;
 }
 
 

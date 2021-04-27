@@ -12,7 +12,7 @@ export const MapsNavBar = ({ data, viewReport, download, hasFilter }) => {
   const { filter1, filter2, union12, filter1_geo, featureName, geoLevel } = (data || {})
   
   if (!geoLevel || !hasFilter) return null
-  if (!featureName || !filter1_geo)
+  if (!featureName && !filter1_geo)
     return (
       <div className='maps-nav-bar'>
         <span className='feature empty highlight colorTextWithBias'>
@@ -21,16 +21,21 @@ export const MapsNavBar = ({ data, viewReport, download, hasFilter }) => {
       </div>
     )
 
-  const value = (!filter2 ? filter1_geo[filter1.value.value] : union12) || 0
+  let value = 0
+  if (filter2) value = union12
+  if (filter1_geo) value = filter1_geo[filter1.value.value]
 
   return (
     <div className='maps-nav-bar'>
-      <span className='feature'>
-        {featureName}{' '}
-        <span className='count highlight colorTextWithBias'>
-          {asNum(value)}
-        </span>
-      </span>
+      <div className='feature'>
+        {featureName}
+        <div>
+          <span className='count-desc'>Matching LAR: </span>{' '}
+          <span className='count highlight colorTextWithBias'>
+            {asNum(value)}
+          </span>
+        </div>
+      </div>
       <MapsNavBtns download={download} viewReport={viewReport} />
     </div>
   )
