@@ -9,7 +9,13 @@ const combinedLabel = (filter) => filter && `${filter.variable.label} - ${filter
 const ReportHighlight = ({ data, year }) => {
   const { filter1, filter2, union12, filter1_geo } = data
   
-  if (!filter1 || !filter1_geo) return null
+  if (!filter1 || !filter1_geo)
+    return (
+      <div className='union-highlight no-data colorTextWithBias'>
+        There is no LAR data for this region.
+      </div>
+    )
+
   const originations = (!filter2 ? filter1_geo[filter1.value.value] : union12) || 0
 
   return (
@@ -23,6 +29,27 @@ const ReportHighlight = ({ data, year }) => {
 
 const ReportFilters = ({ data }) => {
   const results = []
+  // TODO: improve alignment for long var/val strings
+  // return (
+  //   <table className='report-filters'>
+  //     {data.filter1 && (
+  //       <tr>
+  //         <th className='filter-clause'>WHERE</th>
+  //         <td className='filter-text colorTextWithBias'>
+  //           {combinedLabel(data.filter1)}
+  //         </td>
+  //       </tr>
+  //     )}
+  //     {data.filter2 && (
+  //       <tr>
+  //         <th className='filter-clause'>AND</th>
+  //         <td className='filter-text colorTextWithBias'>
+  //           {combinedLabel(data.filter2)}
+  //         </td>
+  //       </tr>
+  //     )}
+  //   </table>
+  // )
 
   data.filter1 && results.push(
     <div className='filter-label' key='f-where'>

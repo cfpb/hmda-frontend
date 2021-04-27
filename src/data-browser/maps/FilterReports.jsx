@@ -37,7 +37,10 @@ const FilterReport = ({ id, filter, otherFilter, values, label, total, level }) 
 
   if (!filter || !filter.variable || !filter.value || !truthy_values) return null
   const { variable, value } = filter
+  const primaryFilterHasData = values.length >= 1 && !!values[0]
   const otherFilterHasData = values.length > 1 && !!values[1]
+
+  if (!primaryFilterHasData) return null
   return (
     <div className={`page filter-report filter-report-${id}`}>
       <table ref={tableRef}>

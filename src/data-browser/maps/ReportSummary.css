@@ -11,6 +11,12 @@
   text-align: center;
 }
 
+.summary-page .union-highlight.no-data {
+  margin-top: 2em;
+  border: 10px double #888;
+  padding: 3em;
+}
+
 .summary-page .union-highlight .count {
   font-size: 2em;
 }
