@@ -221,6 +221,8 @@
 
 .SelectWrapper .maps-nav-bar .btns {
   display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .SelectWrapper .nav-btn {
@@ -247,6 +249,10 @@
   color: white;
 }
 
+.SelectWrapper button:hover {
+  box-shadow: 5px 2px 5px grey;
+}
+
 .SelectWrapper .maps-nav-bar .feature {
   font-size: 1.75em;
   font-weight: bold;
@@ -267,6 +273,20 @@
   margin-right: .5em;
 }
 
+.SelectWrapper .maps-nav-bar .primary {
+  margin-bottom: .75em;
+  width: 100%;
+}
+
+.SelectWrapper .maps-nav-bar .primary .nav-btn {
+  width: 100%;
+  max-width: none;
+  padding: .5em;
+}
+
+.SelectWrapper .view-map {
+  margin-right: .75em !important;
+}
 
 .filter-clause {
   display: inline-block;
@@ -389,10 +409,11 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
 @media print {
   .print-only { display: block; }
   .MapsGraphs .maps-nav-bar { border: none !important; }
+  .MapsGraphs .maps-nav-bar .feature { text-align: center; }
   
   .no-print,
   .mapboxgl-control-container { 
-    display: none; 
+    display: none !important; 
   }
 
   body, 

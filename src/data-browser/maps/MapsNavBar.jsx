@@ -45,27 +45,35 @@ export const NavBtn = ({ cname, label, onClick }) => <button type='button' class
 
 export const MapsNavBtns = ({ download, viewReport, viewMap }) => {
   return (
-    <span className='no-print'>
-      {viewReport && (
+    <span className='no-print btns'>
+      <span className='primary'>
+        {viewReport && (
+          <NavBtn
+            cname='view-report QueryButton colorBgWithBias'
+            onClick={viewReport}
+            label='View Report'
+          />
+        )}
+        {viewMap && (
+          <NavBtn
+            cname='view-map QueryButton colorBgWithBias'
+            onClick={viewMap}
+            label='View Map'
+          />
+        )}
+      </span>
+      <span className='options'>
         <NavBtn
-          cname='view-report QueryButton colorBgWithBias'
-          onClick={viewReport}
-          label='View Report'
+          cname='print-report'
+          onClick={openPrintDialog}
+          label='Print Report'
         />
-      )}
-      {viewMap && (
         <NavBtn
-          cname='view-map QueryButton colorBgWithBias'
-          onClick={viewMap}
-          label='View Map'
+          cname='download-data'
+          onClick={download}
+          label='Download Data'
         />
-      )}
-      <NavBtn
-        cname='print-report'
-        onClick={openPrintDialog}
-        label='Print Report'
-      />
-      <NavBtn cname='download-data' onClick={download} label='Download Data' />
+      </span>
     </span>
   )
 }
