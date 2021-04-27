@@ -88,6 +88,7 @@ adjustZoom('state', -2, ['02'])
 adjustZoom('state', -0.5, ['16', '48'])
 adjustZoom('state', 0.5, [ '15', '23', '24', '25', '33', '42', '44', '45', '50', '54'])
 adjustZoom('state', 1.5, ['09', '10', '33', '34', '44', '72'])
+adjustZoom('state', 3, ['11'])
 
 // Zoom less on counties in states with large counties (default zoom: 7)
 adjustZoom('county', -2, ['02'])
@@ -167,6 +168,7 @@ const MapContainer = props => {
     popup.remove()
     setFeature(null)
     setGeography(selected)
+    !mapCenter && setMapCenter("-96,38")
   }
 
   const onFilter1Change = (selected) => {

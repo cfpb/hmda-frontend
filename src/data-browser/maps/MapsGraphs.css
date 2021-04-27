@@ -264,6 +264,7 @@
 .SelectWrapper .maps-nav-bar .clear-feature:hover {
   cursor: pointer;
 }
+
 .SelectWrapper .maps-nav-bar .clear-feature img {
   margin-left: .25em;
   height: 20px;
