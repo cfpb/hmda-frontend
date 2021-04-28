@@ -2,10 +2,16 @@ import React from 'react'
 import { asNum } from '../../common/numberServices.js'
 import closeX from '../../common/images/maps-close-x.png'
 
+const MAX_DISPLAY = 2
+let displayCount = 0
+
 function openPrintDialog(e) {
   e.preventDefault()
   document.activeElement.blur()
-  window.print()
+  displayCount += 1
+  if( displayCount > MAX_DISPLAY || window.confirm('On the next screen, please adjust the following settings:\n  - set the "Layout" to "Landscape"\n\nThis will provide optimal results for PDF or print output.')){
+    window.print()
+  }
 }
 
 
