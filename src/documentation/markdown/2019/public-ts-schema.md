@@ -1,4 +1,4 @@
-## Public Transmittal Sheet Schema
+## Public Transmittal Sheet - Schema
 
 Fields|Max Length|Type|
 ------|----------|----|

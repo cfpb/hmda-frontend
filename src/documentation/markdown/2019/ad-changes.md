@@ -2,9 +2,9 @@
 
 The Home Mortgage Disclosure Act (HMDA) requires lending institutions to make annual public disclosures of their home mortgage and home improvement lending activity. In addition to each lending institution's individual disclosure statement, aggregate data tables covering the lending activity of all institutions subject to HMDA in each MSA/MD for the entire nation are made available. Aggregate Reports summarize lending activity by MSA/MD. Disclosure reports summarize lending activity for individual institutions, both nationwide and by MSA/MD.
 
-Aggregate and Disclosure reports available for 2019 are listed below. Reports that have been discontinued in 2019 can now be produced using the [HMDA Data Browser](/data-browser/). New in 2019, derived fields, based on new data points collected, are reported using the CFPB disclosure methodology.
+Aggregate and Disclosure reports available for 2019 are listed below. Reports that have been discontinued in 2019 can now be produced using the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/data-browser/">HMDA Data Browser</a>. New in 2019, derived fields, based on new data points collected, are reported using the CFPB disclosure methodology.
 
-Explanations of derived fields that were used in the creation of these reports can be found in the [Derived Data Fields Guide](/documentation/2019/derived-data-fields/). For custom report creation, visit the [HMDA Data Browser](/data-browser/).
+Explanations of derived fields that were used in the creation of these reports can be found in the <a target="_blank" rel="noopener noreferrer" href="/documentation/2019/derived-data-fields/">Derived Data Fields Guide</a>. For custom report creation, visit the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/data-browser/">HMDA Data Browser</a>.
 Note: Series identifiers (i, 1, 2, 3, etc.) have been discontinued for all reports.
 
 ### National Aggregate Reports

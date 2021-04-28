@@ -1,4 +1,4 @@
-## Public HMDA data fields with values and definitions
+## Public HMDA - Data Fields with Values and Definitions
 
 ### [activity\_year](#activity_year)
 
@@ -293,7 +293,7 @@
 
 ### [other\_nonamortizing\_features](#other_nonamortizing_features)
 
-- **Description:** Whether the contractual terms include, or would have included, any term, other than those described in [Paragraphs 1003.4(a)(27)(i), (ii), and (iii)](https://www.consumerfinance.gov/policy-compliance/rulemaking/regulations/1003/4/#a-27) that would allow for payments other than fully amortizing payments during the loan term
+- **Description:** Whether the contractual terms include, or would have included, any term, other than those described in <a target="_blank" rel="noopener noreferrer" href="https://www.consumerfinance.gov/policy-compliance/rulemaking/regulations/1003/4/#a-27">Paragraphs 1003.4(a)(27)(i), (ii), and (iii)</a> that would allow for payments other than fully amortizing payments during the loan term
 - **Values:**
   - 1 - Other non-fully amortizing features
   - 2 - No other non-fully amortizing features
