@@ -9,7 +9,7 @@ function openPrintDialog(e) {
   e.preventDefault()
   document.activeElement.blur()
   displayCount += 1
-  if( displayCount > MAX_DISPLAY || window.confirm('On the next screen, please adjust the following settings:\n  - set the "Layout" to "Landscape"\n\nThis will provide optimal results for PDF or print output.')){
+  if( displayCount > MAX_DISPLAY || window.confirm('On the next screen, please adjust the following settings:\n  - set the "Layout" to "Landscape"\n  - Check the box for printing "Background Graphics"\n\nThis will optimize results for PDF or print output.')){
     window.print()
   }
 }

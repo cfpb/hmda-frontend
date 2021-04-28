@@ -45,3 +45,12 @@
   line-height: 1.5;
   padding-left: 2px;
 }
+
+.home .ImageCard h4 {
+  margin: .25em 0 !important;
+}
+
+.home .ImageCard .desc {
+  display: inline-block;
+  margin: .25em 0 .5em !important;
+}

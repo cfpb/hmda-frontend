@@ -348,6 +348,11 @@ const MapContainer = props => {
     }
   })
 
+  useEffect(() => {
+    if (!mapCenter)
+      setTimeout(() => window.scrollTo(0,0))
+  }, [])
+
 
   useEffect(() => {
     let map

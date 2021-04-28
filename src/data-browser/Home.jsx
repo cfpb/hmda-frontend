@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import ImageCard from './ImageCard.jsx'
 import Heading from '../common/Heading.jsx'
 import { withAppContext } from '../common/appContextHOC'
+import mapImage from '../common/images/maps-dc-wide.png'
+import tableImage from '../common/images/db-data-table-2.png'
 
 import './Home.css'
 
@@ -27,15 +29,18 @@ class Home extends Component {
             caption="HMDA Dataset Filtering"
             path="data"
             enabled
-          >Filter and download HMDA datasets by various filters.
+            image={tableImage}
+          >
+            <span className='desc'>Filter and download HMDA datasets by various filters.</span>
           </ImageCard>
           <ImageCard
             year={publicationReleaseYear}
             caption={`Maps & Graphs${showMaps ? '' : ' (coming soon)'}`}
             path="maps-graphs"
             enabled={showMaps ? true : false }
+            image={mapImage}
           >
-          Visualize HMDA data through charts, graphs, and maps.
+            <span className='desc'>Visualize HMDA data through charts, graphs, and maps.</span>
           </ImageCard>
         </div>
       </div>
