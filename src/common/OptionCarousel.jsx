@@ -10,7 +10,8 @@ export const OptionCarousel = ({ options, ...rest }) => {
     setIdx((idx + 1) % options.length)
   }
 
-  const classname = [rest.className, 'oc-option'].filter((x) => x).join(' ')
+  const noIcon = rest.noIcon ? 'no-icon' : ''
+  const classname = [rest.className, 'oc-option', noIcon].filter((x) => x).join(' ')
 
   return (
     <>

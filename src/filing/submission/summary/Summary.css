@@ -1,21 +1,52 @@
 .Summary {
-  margin-top: 3em;
+  margin-top: 2em;
+}
+
+.Summary .flex {
+  display: flex;
+  align-items: flex-start;
 }
 
 .Summary header {
   max-width: 77rem;
-  margin-bottom: 2em;
+  margin-bottom: 0em;
 }
+
 .Summary h2 {
   font-size: 3rem;
 }
-.Summary .font-lead {
+
+.Summary .info-section {
+  border-top: 1px solid #dadada;
+}
+
+.Summary .info-section h3 {
+  margin-top: .5em;
+}
+
+.Summary .font-lead, 
+.Summary .info-section-lead {
   color: #323a45;
   margin-top: 0.5em;
   margin-bottom: 0;
 }
-.Summary .info {
-  margin: 2em 0;
+
+.Summary .info-section-lead {
+  font-size: 1em;
+  color: #666;
+  margin: .75em 0;
+}
+
+.Summary .section-heading {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  background: #eee;
+  padding: 0 .5em;
+}
+
+.Summary .section-heading .info-section-lead {
+  margin-right: 1em;
 }
 
 .Summary dt {
@@ -24,4 +55,74 @@
 .Summary dd {
   margin-bottom: 1em;
   margin-left: 0;
+}
+
+.Summary .emphasize {
+  font-weight: bold;
+  margin: .75em 0 0;
+}
+
+.Summary .info .emphasize {
+  color: #2e8540;
+}
+
+.Summary .emphasize .point {
+  padding-right: .3em;
+  color: black;
+  font-style: normal;
+}
+
+.Summary .external.link {
+  text-decoration: none;
+}
+
+.Summary .external.link.dotted {
+  border-bottom: 2px dashed #777;
+  color: #666;
+  font-style: italic;
+}
+
+.Summary .external.link:hover,
+.Summary .external.link:focus {
+  color: rgb(22, 114, 175);
+  border-bottom-color: rgb(22, 114, 175);
+  border-bottom-width: 3px;
+}
+
+.Summary .note {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+
+.Summary .note .point {
+  width: 10px;
+  height: 10px;
+  margin: 0 10px 0 0;
+  font-size: 1.5em;
+}
+
+.Summary .info .note {
+  margin-bottom: 1em;
+}
+
+#summary header {
+  margin-bottom: 0em;
+}
+
+#summary dt,
+#summary dd {
+  padding-left: .5em;
+}
+
+/*
+* PRINT STYLES 
+*/
+@media print {
+  .Summary .section-heading {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
 }

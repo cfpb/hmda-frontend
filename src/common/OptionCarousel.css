@@ -19,6 +19,12 @@
   width: 20px;
 }
 
+.oc-option.no-icon:before{
+  background: none;
+  border-radius: inherit;
+  content: '';
+}
+
 .oc-option:hover {
   cursor: pointer;
   background: #d8d2c3;
