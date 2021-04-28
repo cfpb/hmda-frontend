@@ -533,7 +533,7 @@ const MapContainer = props => {
   )
 
   const geoLevelLink = <ExternalLink 
-    label='geographic level' 
+    text='geographic level' 
     url='https://www.census.gov/programs-surveys/economic-census/guidance-geographies/levels.html' 
   />
 

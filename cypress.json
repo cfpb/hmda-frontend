@@ -1,6 +1,6 @@
 {
   "chromeWebSecurity": false,
-  "pluginsFile": false,
+  "pluginsFile": "cypress/plugins/index.js",
   "env": {
     "HOST": "https://ffiec.cfpb.gov",
     "ENVIRONMENT": "NOT CI",
