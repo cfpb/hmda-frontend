@@ -55,8 +55,7 @@ describe('HMDA Help - Institutions', () => {
 
 
     // Search for existing Instititution
-    cy.findByLabelText('LEI').type(INSTITUTION)
-    cy.findByText('Search Institutions').click()
+    cy.get('#lei-select').click().type(INSTITUTION + "{enter}")
     cy.wait(LOCAL_ACTION_DELAY)
     cy.findAllByText('Update')
       .eq(1) // First row
@@ -214,7 +213,7 @@ describe('HMDA Help - Institutions', () => {
     const year = years[0].toString()
 
     // Delete
-    cy.findByLabelText('LEI').type(`${institution}{enter}`)
+    cy.get('#lei-select').click().type(`${institution}{enter}`)
     cy.wait(LOCAL_ACTION_DELAY)
     cy.get('table.institutions tbody tr')
       .first()
@@ -232,7 +231,7 @@ describe('HMDA Help - Institutions', () => {
     // Create
     cy.wait(LOCAL_ACTION_DELAY)
     cy.visit(`${HOST}/hmda-help/`)
-    cy.findByLabelText('LEI').type('MEISSADIATESTBANK001{enter}')
+    cy.get('#lei-select').click().type('MEISSADIATESTBANK001{enter}')
     cy.wait(LOCAL_ACTION_DELAY)
     cy.findByText(`Add ${institution} for ${year}`).click()
 
