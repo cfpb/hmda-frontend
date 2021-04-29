@@ -213,7 +213,7 @@
 .SelectWrapper .maps-nav-bar {
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 0 1em .5em;
   border: 1px solid #ddd;
   border-top: none;
