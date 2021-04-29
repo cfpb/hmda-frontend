@@ -116,3 +116,55 @@
   }
 
 }
+
+/* Safari only */
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    @media print {
+      body, .page, html {
+        width: 13in !important;
+        height: 9.7in !important;
+        margin: 0;
+        padding: 0;
+      }
+
+      .DataBrowser.App {
+       max-width: none; 
+       padding: 0;
+      }
+
+      .page {
+        margin: 0;
+        page-break-after: auto;
+        page-break-inside: avoid;
+      }
+
+      .summary-page .report-heading {
+        font-size: 3rem;
+        margin-top: -3rem;
+      }
+    
+      .summary-page .report-heading .featureName {
+        font-size: 1.2em ;
+      }
+       
+      .summary-page .union-highlight .count-label {
+        font-size: 1em;
+      }
+        
+      .summary-page .union-highlight,
+      .summary-page .filter-label {
+        font-size: 1em;
+      }
+    
+      .summary-page .union-highlight .count {
+        font-size: 1.75em;
+      }
+    
+      .summary-page .filter-label.long .filter-text { /* > 38 chars */
+        font-size: .75em;
+        white-space: normal;
+      }
+    }
+  }
+}
