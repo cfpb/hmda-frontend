@@ -37,14 +37,14 @@ export const MapsNavBar = ({ data, viewReport, download, hasFilter, clearFeature
       <div className='feature'>
         <span>
           {featureName}
-          <span className='clear-feature no-print'>
+          <button className='clear-feature no-print'>
             <img
               src={closeX}
               alt='Close X'
               title={`Clear selected ${geoLevel.value}`}
               onClick={clearFeature}
             />
-          </span>
+          </button>
         </span>
         <div>
           <span className='count-desc'>Matching LAR: </span>{' '}

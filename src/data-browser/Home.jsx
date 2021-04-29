@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import ImageCard from './ImageCard.jsx'
 import Heading from '../common/Heading.jsx'
 import { withAppContext } from '../common/appContextHOC'
-import mapImage from '../common/images/maps-dc-wide.png'
-import tableImage from '../common/images/db-data-table-2.png'
+import mapImage from '../common/images/maps-county-select.png'
+import tableImage from '../common/images/db-filter-select.png'
 
 import './Home.css'
 

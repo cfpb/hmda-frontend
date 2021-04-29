@@ -41,9 +41,10 @@
   padding: 0.5em 1em;
   z-index: 1; /* Allow maps-control-box to overlay */
   width: 140px;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 1);
   pointer-events: none;
   user-select: none;
+  border-top-left-radius: 10px;
 }
 
 .legend > h4 {
@@ -261,14 +262,28 @@
   flex-direction: column;
 }
 
+.SelectWrapper .maps-nav-bar button.clear-feature {
+  margin: 0;
+  margin-left: .25em;
+  padding: 0;
+  background: transparent;
+  height: 20px;
+  width: 20px;
+  transition: all .25s ease-in-out;
+  transform: scale(1);
+}
+
 .SelectWrapper .maps-nav-bar .clear-feature:hover {
   cursor: pointer;
+  box-shadow: 5px 5px 3px rgba(73, 55, 58, .5);
+  transform: scale(1.1);
 }
 
 .SelectWrapper .maps-nav-bar .clear-feature img {
-  margin-left: .25em;
+  border: .25px solid transparent;
   height: 20px;
   width: 20px;
+  border-radius: 30%;
 }
 
 .SelectWrapper .maps-nav-bar .feature.empty {
