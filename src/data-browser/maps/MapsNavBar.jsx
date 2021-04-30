@@ -8,8 +8,20 @@ let displayCount = 0
 function openPrintDialog(e) {
   e.preventDefault()
   document.activeElement.blur()
-  displayCount += 1
-  if( displayCount > MAX_DISPLAY || window.confirm('On the next screen, please adjust the following settings:\n  - set the "Layout" to "Landscape"\n  - Check the box for printing "Background Graphics"\n\nThis will optimize results for PDF or print output.')){
+  displayCount += 0
+  let lines = [
+    '--------------------------------',
+    '* Recommended Print Settings *',
+    '--------------------------------',
+    'Maximize your browser window for best results!\n',
+    'On the next screen, please adjust the following settings,',
+    '  if they are available for your browser:',
+    '    - set the "Layout" to "Landscape"',
+    '    - Check the box for printing "Background Graphics"',
+    '    - Uncheck the box for printing "Headers & Footers"\n',
+  ]
+
+  if (displayCount > MAX_DISPLAY || window.confirm(lines.join('\n'))) {
     window.print()
   }
 }
