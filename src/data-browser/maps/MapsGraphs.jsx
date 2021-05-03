@@ -12,14 +12,14 @@ const MapsGraphs = props => {
         {'\u2b05'} DATA BROWSER HOME
       </Link>
       <div className='intro no-print'>
-        <Heading type={1} headingText='Map of HMDA Data'>
+        <Heading type={1} headingText='HMDA Data Visualizations'>
           <p className='lead'>
-            The Map tool gives you the opportunity to visualize subsets of HMDA
-            Data, filtered by{' '}
+            The HMDA Data Visualizations tool gives you the opportunity to explore subsets
+            of HMDA Data, filtered by{' '}
             <PopularVariableLink year={props.match.params.year}>
               popular variables
             </PopularVariableLink>
-            . For questions/suggestions, contact{' '}
+            , in a more illustrative format. For questions/suggestions, contact{' '}
             <a href='mailto:hmdahelp@cfpb.gov'>hmdahelp@cfpb.gov</a>.
           </p>
         </Heading>

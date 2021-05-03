@@ -35,7 +35,7 @@ class Home extends Component {
           </ImageCard>
           <ImageCard
             year={publicationReleaseYear}
-            caption={`Maps & Graphs${showMaps ? '' : ' (coming soon)'}`}
+            caption={`HMDA Data Visualizations${showMaps ? '' : ' (coming soon)'}`}
             path="maps-graphs"
             enabled={showMaps ? true : false }
             image={mapImage}
