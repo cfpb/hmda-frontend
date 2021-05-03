@@ -67,37 +67,49 @@ const highlightColors = {
 
 }
 
-const biasCache = {}
-const fbc = {}
+const biasCache = { county: {}, state: {} }
+const fbc = { county: {}, state: {} }
 
-const resolveFromCache = (cache, variable, value) => {
-  const bVar = cache[variable]
+const resolveFromCache = (cache, variable, value, geography) => {
+  const bVar = cache[geography.value] && cache[geography.value][variable]
   if(bVar) {
     const bVal = bVar[value]
     if(bVal){
       return bVal
     }
   } else {
-    cache[variable] = {}
+    if(!cache[geography.value]) cache[geography.value] = {}
+    if(!cache[geography.value][variable]) cache[geography.value][variable] = {}
   }
+}
+
+const dataMatchesGeography = (geography, key) => {
+  const sampleKey = key || ''
+  const geo = geography.value
+  if (geo === 'county' && sampleKey.match(/^\d{5}/)) return true
+  if (geo === 'state'  && sampleKey.match(/^[A-Z]{2}/)) return true
+  return false
 }
 
 const getBias = (data, variable, value, geography, counts, mVar, mVal) => {
   let cache = biasCache
+  const keys = Object.keys(data)
+  const hasCorrectData = dataMatchesGeography(geography, keys[0])
 
-  if(variable === mVar) {
-    const cached = resolveFromCache(cache, variable, value)
-    if(cached) return cached
-  } else {
-    if(!fbc[mVar]) fbc[mVar] = {}
-    if(!fbc[mVar][mVal]) cache = fbc[mVar][mVal] = {}
-    cache = fbc[mVar][mVal]
-
-    const cached = resolveFromCache(cache, variable, value)
-    if(cached) return cached
+  if(hasCorrectData) {
+    if(variable === mVar) {
+      const cached = resolveFromCache(cache, variable, value, geography)
+      if(cached) return cached
+    } else {
+      if(!fbc[mVar]) fbc[mVar] = {}
+      if(!fbc[mVar][mVal]) cache = fbc[mVar][mVal] = {}
+      cache = fbc[mVar][mVal]
+  
+      const cached = resolveFromCache(cache, variable, value, geography)
+      if(cached) return cached
+    }
   }
 
-  const keys = Object.keys(data)
   let max = 0
   for(let i=0; i< keys.length; i++){
     const key = keys[i]
@@ -115,7 +127,7 @@ const getBias = (data, variable, value, geography, counts, mVar, mVal) => {
   else bias = [lowBias, 'lowBias']
 
 
-  cache[variable][value] = bias
+  if(hasCorrectData) cache[geography.value][variable][value] = bias
   return bias
 }
 
@@ -219,7 +231,6 @@ function makeStops(data, variable, value, year, geography, mainVar, mainVal){
   const mVal = mainVal ? normalizeValue(mainVal) : null
   const [bias, _biasLabel] = getBias(data, variable.value, val, geography, counts, mVar, mVal)
 
-  let oneExample = false
   Object.keys(data).forEach(geo => {
     if(!geo) return
     const currData = data[geo]
@@ -245,8 +256,7 @@ function generateColor(data, variable, value, bias, total) {
 // removing them seems to reduce 
 // the resources required to draw the map.
 //
-// - Use map.getZoom() to add roads, etc. at deeper zoom levels?
-// - Add a configuration panel to add/remove layers?
+// - Add a configuration panel where user can add/remove layers?
 const SPARE_LAYERS = [
   "national-park",
   "landuse",
