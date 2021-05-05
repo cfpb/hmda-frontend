@@ -26,6 +26,7 @@ env:
 
 # Run the Platform
 before_install:
+  - yarn global add wait-on
   - "[ -d backend/.git ] || git clone https://github.com/cfpb/hmda-platform.git backend"
   - cd backend
   # Reset the repo so we can have a conflict-less pull
@@ -37,11 +38,11 @@ before_install:
   # Workaround for broken sbt-launch download
   - "[ -f $HOME/.sbt/launchers/1.3.10/sbt-launch.jar ] || curl -L --create-dirs -o $HOME/.sbt/launchers/1.3.10/sbt-launch.jar https://repo1.maven.org/maven2/org/scala-sbt/sbt-launch/1.3.10/sbt-launch.jar"
   - sbt ++$TRAVIS_SCALA_VERSION  "project hmda-platform" "run" &
-  - ../cypress/wait-for-server.sh platform
+  - wait-on http://localhost:8080
   - sbt ++$TRAVIS_SCALA_VERSION  "project check-digit" "run" & 
-  - ../cypress/wait-for-server.sh checkdigit
+  - wait-on http://localhost:9091
   - sbt ++$TRAVIS_SCALA_VERSION  "project ratespread-calculator" "run" & 
-  - ../cypress/wait-for-server.sh ratespread
+  - wait-on http://localhost:9095
   - cd ..
 
 install:
@@ -52,5 +53,5 @@ script:
   - yarn ci &       # Start Frontend
   - cypress install # Ensure cypress is available in Travis environment
   # Verify dev server availability, create test data, run test suite.
-  - ./cypress/wait-for-server.sh frontend && yarn ci-data && yarn cypress run $CONFIG $RECORD
+  - wait-on http://localhost:3000 && yarn ci-data && yarn cypress run $CONFIG $RECORD
   - kill $(jobs -p) || true # Cleanup
