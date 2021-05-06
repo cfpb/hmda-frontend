@@ -3,11 +3,7 @@
   "announcement": {
     "message": "We will be performing scheduled system maintenance on May 6th from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
     "type": "warning",
-    "heading": "Scheduled Maintenance",
-    "link": {
-      "url": "https://www.consumerfinance.gov/about-us/newsroom/2020-hmda-data-on-mortgage-lending-now-available/",
-      "text": "View the press release."
-    }
+    "heading": "Scheduled Maintenance"
   },
   "defaultPeriod": "2021-Q1",
   "defaultDocsPeriod": "2021",
