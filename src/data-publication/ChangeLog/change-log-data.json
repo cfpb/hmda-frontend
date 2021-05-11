@@ -4,7 +4,10 @@
       "date": "04/29/21",
       "type": "update",
       "product": "documentation",
-      "description": "The API documentation has been updated to provide users with more information on our endpoints and the filing process as well as to bring the styling of the page more in line with the filing platform."
+      "description": "The HMDA API documentation has been updated to provide users more information about our endpoints and the Filing process. Additionally, the styling of the page has been better aligned with the Filing platform.",
+      "links": [
+        {"text": "HMDA API Documentation", "url": "https://cfpb.github.io/hmda-platform/"}
+      ]
     },
     {
       "date": "04/07/21",
