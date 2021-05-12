@@ -5,6 +5,6 @@ export const LABELS = {
 
 // Regeneration - Kafka Topic
 export const TOPICS = {
-  'mlar': 'hmda-analytics',
+  'mlar': 'modified-lar',
   'irs': 'hmda-irs'
 }
