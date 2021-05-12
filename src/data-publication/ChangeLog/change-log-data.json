@@ -1,6 +1,15 @@
 {
   "log": [
     {
+      "date": "04/29/21",
+      "type": "update",
+      "product": "documentation",
+      "description": "The HMDA API documentation has been updated to provide users more information about our endpoints and the Filing process. Additionally, the styling of the page has been better aligned with the Filing platform.",
+      "links": [
+        {"text": "HMDA API Documentation", "url": "https://cfpb.github.io/hmda-platform/"}
+      ]
+    },
+    {
       "date": "04/07/21",
       "type": "correction",
       "product": "mlar",
