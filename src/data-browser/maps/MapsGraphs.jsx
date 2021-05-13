@@ -12,9 +12,9 @@ const MapsGraphs = props => {
         {'\u2b05'} DATA BROWSER HOME
       </Link>
       <div className='intro no-print'>
-        <Heading type={1} headingText='HMDA Data Visualizations'>
+        <Heading type={1} headingText='HMDA Maps'>
           <p className='lead'>
-            The HMDA Data Visualizations tool gives you the opportunity to explore subsets
+            The HMDA Maps tool gives you the opportunity to explore subsets
             of HMDA Data, filtered by{' '}
             <PopularVariableLink year={props.match.params.year}>
               popular variables
