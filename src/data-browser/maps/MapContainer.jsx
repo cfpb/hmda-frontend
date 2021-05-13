@@ -556,6 +556,14 @@ const MapContainer = props => {
   }
 
   const isLoading = !!fetchQ.length
+  const origPer100 = getOrigPer1000(
+    tableFilterData ? tableFilterData : data,
+    feature,
+    year,
+    selectedGeography,
+    selectedVariable,
+    selectedValue
+  )
 
   return (
     <div className={'SelectWrapper ' + biasLabel} ref={mapRef}>
@@ -569,6 +577,7 @@ const MapContainer = props => {
             viewReport={() => scrollToTable(tableRef.current)}
             download={fetchCSV}
             clearFeature={() =>  setFeature(null)}
+            origPer1000={origPer100}
           />
           <div className='mapContainer' ref={mapContainer}>
             {map === false ? (
@@ -598,6 +607,7 @@ const MapContainer = props => {
         download={fetchCSV}
         year={year}
         data={reportData}
+        origPer1000={origPer100}
       />
       <FilterReports data={reportData} />
     </div>

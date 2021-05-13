@@ -27,7 +27,7 @@ function openPrintDialog(e) {
 }
 
 
-export const MapsNavBar = ({ data, viewReport, download, hasFilter, clearFeature }) => {
+export const MapsNavBar = ({ data, viewReport, download, hasFilter, clearFeature, origPer1000 }) => {
   const { filter1, filter2, union12, filter1_geo, featureName, geoLevel } = (data || {})
   
   if (!geoLevel || !hasFilter) return null
@@ -58,10 +58,14 @@ export const MapsNavBar = ({ data, viewReport, download, hasFilter, clearFeature
             />
           </button>
         </span>
-        <div>
+        <div className='highlight-wrapper'>
           <span className='count-desc'>Matching LAR: </span>{' '}
           <span className='count highlight colorTextWithBias'>
             {asNum(value)}
+          </span>
+          <span className='count-desc count-per1000'>Per 1000 people: </span>{' '}
+          <span className='count highlight colorTextWithBias'>
+            {origPer1000}
           </span>
         </div>
       </div>

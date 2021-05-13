@@ -298,6 +298,12 @@
   margin-right: .5em;
 }
 
+.SelectWrapper .maps-nav-bar .count-desc.count-per1000 {
+  color: #777;
+  margin-left: 1em;
+  display: inline-block;
+}
+
 .SelectWrapper .maps-nav-bar .primary {
   margin-bottom: .75em;
   width: 100%;
@@ -465,6 +471,10 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
 
   .MapsGraphs .mapboxgl-canvas {
     height: 100% !important;
+  }
+
+  .SelectWrapper .maps-nav-bar .highlight-wrapper {
+    margin: .25em 0;
   }
 }
 

@@ -194,6 +194,7 @@ function makeLegend(data, variable, value, year, geography, mainVar, mainVal){
 }
 
 function getOrigPer1000(data, feature, year, geography, variable, value){
+  if(!data) return 
   if(geography && variable && value){
      let orig
      if(geography.value === 'state') {
