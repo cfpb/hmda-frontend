@@ -64,7 +64,7 @@ export const MapsNavBar = ({ data, viewReport, download, hasFilter, clearFeature
             {asNum(value)}
           </span>
           <span className='count-desc count-per1000'>Per 1000 people: </span>{' '}
-          <span className='count highlight colorTextWithBias'>
+          <span className='count count-per1000 highlight colorTextWithBias'>
             {origPer1000}
           </span>
         </div>

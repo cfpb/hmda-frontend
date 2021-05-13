@@ -607,7 +607,6 @@ const MapContainer = props => {
         download={fetchCSV}
         year={year}
         data={reportData}
-        origPer1000={origPer100}
       />
       <FilterReports data={reportData} />
     </div>

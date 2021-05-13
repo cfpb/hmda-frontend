@@ -6,7 +6,7 @@ import './ReportSummary.css'
 
 const combinedLabel = (filter) => filter && `${filter.variable.label} - ${filter.value.label}`
 
-const ReportHighlight = ({ data, year, origPer1000 }) => {
+const ReportHighlight = ({ data, year }) => {
   const { filter1, filter2, union12, filter1_geo } = data
   
   if (!filter1 || !filter1_geo)
@@ -22,10 +22,6 @@ const ReportHighlight = ({ data, year, origPer1000 }) => {
     <div className='union-highlight'>
       <div className='count-label'>Loan Application Records</div>
       <div className='count colorTextWithBias'>{asNum(originations)}</div>
-      <div className='count-per1000'>
-        <span className='count-label text'>Per 1000 people</span>
-        <span className='count colorTextWithBias'>{origPer1000}</span>{' '}
-      </div>
       <ReportFilters data={data} />
     </div>
   )
@@ -111,7 +107,7 @@ const getRank = (filter, dset) => {
   return index + nth(index)
 }
 
-export const ReportSummary = ({ data, tableRef, onClick, year, viewMap, download, origPer1000 }) => {
+export const ReportSummary = ({ data, tableRef, onClick, year, viewMap, download }) => {
   if (!data || !data.featureName) return null
   return (
     <span className='page summary-page'>
@@ -124,7 +120,7 @@ export const ReportSummary = ({ data, tableRef, onClick, year, viewMap, download
           <span className='year'>{year}</span>
         </span>
         <div className='divider colorBgWithBias'>&nbsp;</div>
-        <ReportHighlight data={data} year={year} origPer1000={origPer1000}/>
+        <ReportHighlight data={data} year={year} />
         {/* <ReportNarrative {...{ data, year }} /> */}
       </h3>
     </span>
