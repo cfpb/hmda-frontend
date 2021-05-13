@@ -214,7 +214,7 @@
 .SelectWrapper .maps-nav-bar {
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-between;
   padding: 0 1em .5em;
   border: 1px solid #ddd;
   border-top: none;
@@ -257,9 +257,9 @@
 .SelectWrapper .maps-nav-bar .feature {
   font-size: 1.75em;
   font-weight: bold;
-  margin-right: auto;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
 
 .SelectWrapper .maps-nav-bar button.clear-feature {
@@ -313,6 +313,10 @@
   width: 100%;
   max-width: none;
   padding: .5em;
+}
+
+.SelectWrapper .maps-nav-bar .highlight-wrapper {
+  display: flex;
 }
 
 .SelectWrapper .view-map {
@@ -433,7 +437,7 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
 
 @media print {
   .print-only { display: block; }
-  .MapsGraphs .maps-nav-bar { border: none !important; }
+  .MapsGraphs .maps-nav-bar { border: none !important;  width: 100%; padding: 0 0 .5em; }
   .MapsGraphs .maps-nav-bar .feature { text-align: center; }
   
   .no-print,
@@ -475,6 +479,7 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
 
   .SelectWrapper .maps-nav-bar .highlight-wrapper {
     margin: .25em 0;
+    justify-content: space-between;
   }
 }
 

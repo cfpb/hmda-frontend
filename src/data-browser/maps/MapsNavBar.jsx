@@ -59,13 +59,17 @@ export const MapsNavBar = ({ data, viewReport, download, hasFilter, clearFeature
           </button>
         </span>
         <div className='highlight-wrapper'>
-          <span className='count-desc'>Matching LAR: </span>{' '}
-          <span className='count highlight colorTextWithBias'>
-            {asNum(value)}
+          <span className='left'>
+            <span className='count-desc'>Matching LAR: </span>{' '}
+            <span className='count highlight colorTextWithBias'>
+              {asNum(value)}
+            </span>
           </span>
-          <span className='count-desc count-per1000'>Per 1000 people: </span>{' '}
-          <span className='count count-per1000 highlight colorTextWithBias'>
-            {origPer1000}
+          <span className='right'>
+            <span className='count-desc count-per1000'>Per 1000 people: </span>{' '}
+            <span className='count count-per1000 highlight colorTextWithBias'>
+              {origPer1000}
+            </span>
           </span>
         </div>
       </div>

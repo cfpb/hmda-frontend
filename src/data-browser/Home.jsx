@@ -18,9 +18,8 @@ class Home extends Component {
         <div className='intro'>
           <Heading type={1} headingText='HMDA Data Browser'>
             <p className='lead'>
-              The HMDA Data Browser allows users to filter, analyze, and
-              download HMDA datasets and visualize data through charts, graphs,
-              and maps.
+              The HMDA Data Browser toolkit allow users to easily filter, visualize, analyze, and
+              download HMDA datasets.
             </p>
             <p className='lead'>
               For questions about the HMDA Data Browser, visit our{' '}
