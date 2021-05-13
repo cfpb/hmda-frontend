@@ -59,11 +59,11 @@ const colors = {
 }
 
 const highlightColors = {
-  [lowBias]:  '#ffa600',  // Blues highlighted by orange    http://localhost:3000/data-browser/maps-graphs/2019?geography=county&variable=actionTaken&value=1&filter=loanType&filtervalue=1&feature=01009
-  [baseBias]: '#ffb657',  // Greens highlighted by peach    http://localhost:3000/data-browser/maps-graphs/2019?geography=county&variable=actionTaken&value=1&filter=loanPurpose&filtervalue=31&feature=49017
-  [mhBias]:   '#ffc800',  // Purples highlighted by gold    http://localhost:3000/data-browser/maps-graphs/2019?geography=county&variable=actionTaken&value=1&filter=loanType&filtervalue=2&feature=01009
-  [highBias]: '#57b9ff',  // Reds highlighted by blue      http://localhost:3000/data-browser/maps-graphs/2019?geography=county&variable=actionTaken&value=1&filter=loanPurpose&filtervalue=2&feature=47187
-  [xBias]:    '#57b9ff',  // Oranges highlighted by blue    http://localhost:3000/data-browser/maps-graphs/2019?geography=county&variable=actionTaken&value=1&filter=loanPurpose&filtervalue=5&feature=49029
+  [lowBias]:  '#ffa600',  // Blues highlighted by orange    http://localhost:3000/data-browser/maps/2019?geography=county&variable=actionTaken&value=1&filter=loanType&filtervalue=1&feature=01009
+  [baseBias]: '#ffb657',  // Greens highlighted by peach    http://localhost:3000/data-browser/maps/2019?geography=county&variable=actionTaken&value=1&filter=loanPurpose&filtervalue=31&feature=49017
+  [mhBias]:   '#ffc800',  // Purples highlighted by gold    http://localhost:3000/data-browser/maps/2019?geography=county&variable=actionTaken&value=1&filter=loanType&filtervalue=2&feature=01009
+  [highBias]: '#57b9ff',  // Reds highlighted by blue      http://localhost:3000/data-browser/maps/2019?geography=county&variable=actionTaken&value=1&filter=loanPurpose&filtervalue=2&feature=47187
+  [xBias]:    '#57b9ff',  // Oranges highlighted by blue    http://localhost:3000/data-browser/maps/2019?geography=county&variable=actionTaken&value=1&filter=loanPurpose&filtervalue=5&feature=49029
 
 }
 

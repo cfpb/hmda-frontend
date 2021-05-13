@@ -58,7 +58,7 @@ class Home extends Component {
             caption={`Explore, Compare, Share${
               showMaps ? '' : ' (coming soon)'
             }`}
-            path='maps-graphs'
+            path='maps'
             enabled={showMaps ? true : false}
             description='Explore HMDA datasets using an interactive map'
             image={mapBw}

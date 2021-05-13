@@ -12,7 +12,7 @@ export const hideHeaderFooter = (path) => {
   if (parts[2] && !parts[2].match(/^(\d){4}/)) {
     section = parts[2]
   }
-  return section === 'maps-graphs' ? 'no-print' : ''
+  return section === 'maps' ? 'no-print' : ''
 }
 
 const Header = ({location: {pathname}, links = defaultLinks, ...others}) => {

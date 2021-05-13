@@ -158,7 +158,7 @@ const MapContainer = props => {
 
   const onYearChange = selected=> {
     scrollToMap()
-    const basePath = '/data-browser/maps-graphs/'
+    const basePath = '/data-browser/maps/'
     const search = makeSearch()
     props.history.push(`${basePath}${selected.year}${search}`)
   }
