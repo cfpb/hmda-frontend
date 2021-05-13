@@ -1,4 +1,5 @@
 .DataBrowser .home .card {
-  flex: 1 1 286px;
-  margin: 3rem 40px 3rem 0;
+  flex: 0 0 30%;
+  margin: 3rem 2rem 0 0;
+  cursor: pointer;
 }

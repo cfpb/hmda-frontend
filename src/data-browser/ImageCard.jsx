@@ -1,31 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './ImageCard.css'
 
-const ImageCard = props => {
-  let cardClass='ImageCard card'
-  if(props.enabled) cardClass += ' enabled'
+const TileImage = ({ src }) => <img className='tile-image' src={src} />
+
+const ImageCard = (props) => {
+  const [isHovered, setIsHovered] = useState(false)
+  
+  let cardClass = 'ImageCard'
+  if (props.enabled) cardClass += ' enabled'
+  const linkUrl = `/data-browser/${props.path}/${props.year}`
 
   return (
-    <div className={cardClass}>
-      <Link
-        disabled={!props.enabled}
-        to={`/data-browser/${props.path}/${props.year}`}
-      >
-        <h4>{props.caption}</h4>
-      </Link>
-        {props.children}
-      <Link
-        disabled={!props.enabled}
-        to={`/data-browser/${props.path}/${props.year}`}
-      >
-        {props.image ? (
-          <div className='ImageWrapper'>
-            <img src={props.image} alt={props.caption} className='imagechild' />
-          </div>
-        ) : null}
-      </Link>
-    </div>
+    <Link
+      className='card'
+      disabled={!props.enabled}
+      to={linkUrl}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className={cardClass}>
+        <TileImage src={isHovered ? props.imageHover : props.image} />
+        <span>
+          <h4>{props.caption}</h4>
+          <span className='desc'>{props.description}</span>
+        </span>
+      </div>
+    </Link>
   )
 }
 
