@@ -7,9 +7,9 @@ HMDA Maps provides a way to visually analyze population-density adjusted, geogra
 ## What does each option mean?
 | Definition | Screenshot |  
 |---|---|
-|<span style="font-weight: bold;">Year</span> - The year in which the loan was processed.|![Year Selector](../images/maps/maps-year-selection.png)|  
-|<span style="font-weight: bold;">Map Level</span> - The geographic level at which the HMDA Data is aggregated. | ![Level Selector](../images/maps/maps-geography-selection.png) |
-|<span style="font-weight: bold;">Where & And</span> - These filters allow you to narrow the selected data based on <a target="_blank" rel="noopener noreferrer" href="/documentation/2019/data-browser-filters/#action_taken">popular variables</a>. | ![Filters Selector](../images/maps/maps-filters.png)  |
+|**YEAR**: The year in which the loan was processed.|![Year Selector](../images/maps/maps-year-selection.png)|  
+|**MAP LEVEL**: The geographic level at which the HMDA Data is aggregated. | ![Level Selector](../images/maps/maps-geography-selection.png) |
+|**WHERE & AND**: These filters allow you to narrow the selected data based on <a target="_blank" rel="noopener noreferrer" href="/documentation/2019/data-browser-filters/#action_taken">popular variables</a>. | ![Filters Selector](../images/maps/maps-filters.png)  |
 
 
 ## What does the map show?  
@@ -39,29 +39,10 @@ The URL will take the visitor directly to the map, and zoom to the selected geog
 ![Map Zoom](../images/maps/maps-zoom-share.gif)  
 
 ### » Save as PDF
-<div style="border: 0px dotted #ddd; padding: 1em .5em">
-  <div style="padding: 0em .25em; padding-bottom: .5em; display: flex; justify-content: space-between; align-items: flex-start;">
-    <div style="width: 60%;">
-      Use the <code>Print Report</code> button to generate a summary report, complete with cover page, map, and the supporting data in tabular format.
-    </div>
-    <div><img style="margin: 0 auto; max-width: 250px;" src="../images/maps/maps-data-controls.png" alt="Data Controls"> </div>
-  </div>
-    
-  <div style="padding: 1em .25em; display: flex; justify-content: space-between; align-items: flex-start; background: #eee;  border-top: 1px dotted #999;">
-    <div style="width: 60%;">In the print dialog, after making the recommended updates to print settings, look for the option to <code>Save as PDF</code>. </div>
-    <div><img style="margin: 0 auto; max-width: 250px;" src="../images/maps/maps-print-pdf.png" alt="Save as PDF"></div>
-  </div>
-</div>
-
-
+![Maps Save PDF](../images/maps/maps-save-pdf.png)
 
 ## How can I download the raw data used to generate my report?
-  <div style="display: flex; justify-content: space-between;">
-    <div style="width: 60%">
-      Use the <code>Download Data</code> button.  Similar to the Dataset Filtering tool, Maps uses the Data Browser API to provide a CSV file containing the filtered data presented in the summary report.
-    </div>
-    <div style="text-align: center"><img style="margin: 0 auto; max-width: 250px;" src="../images/maps/maps-data-controls.png" alt="Data Controls"></div>
-  </div>
+![Maps Download Data](../images/maps/maps-download-data.png)
 
 
 ## How do I interact with the map?
