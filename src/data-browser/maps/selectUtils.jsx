@@ -45,6 +45,34 @@ const valsForVar = {
   ])
 }
 
+// Maps <=> Data Browser variable name conversion
+const varNameMapping = {
+  actions_taken: 'actionTaken',
+  actionTaken: 'actions_taken',
+  loan_types: 'loanType',
+  loanType: 'loan_types',
+  loan_purposes: 'loanPurpose',
+  loanPurpose: 'loan_purposes',
+  ethnicity: 'ethnicities',
+  ethnicities: 'ethnicity',
+  races: 'race',
+  race: 'races',
+  sex: 'sexes',
+  sexes: 'sex',
+  lien_statuses: 'lienStatus',
+  lienStatus: 'lien_statuses',
+  construction_methods: 'constructionMethod',
+  constructionMethod: 'construction_methods',
+  total_units: 'totalUnits',
+  totalUnits: 'total_units',
+  loan_products: 'loanProduct',
+  loanProduct: 'loan_products',
+  dwelling_categories: 'dwellingCategory',
+  dwellingCategory: 'dwelling_categories',
+  age: 'ageapplicant',
+  ageapplicant: 'age',
+}
+
 
 function optionsFromVariables(key, nameAsValue){
   return VARIABLES[key].options.map( v => {
@@ -193,5 +221,6 @@ export {
   getCombinedOptions,
   formatGroupLabel,
   searchFilter,
-  makeOption
+  makeOption,
+  varNameMapping
 }

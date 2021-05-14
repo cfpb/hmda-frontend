@@ -3,14 +3,22 @@ import LoadingButton from '../datasets/LoadingButton.jsx'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
 import Alert from '../../common/Alert.jsx'
 import ExternalLink from '../../common/ExternalLink.jsx'
-import { geographies, variables, valsForVar, getValuesForVariable, getSelectData, makeCombinedDefaultValue, parseCombinedFilter } from './selectUtils.jsx'
+import {
+  geographies,
+  variables,
+  valsForVar,
+  getValuesForVariable,
+  getSelectData,
+  makeCombinedDefaultValue,
+  parseCombinedFilter,
+  varNameMapping,
+} from './selectUtils.jsx'
 import { setOutline, getOrigPer1000, makeLegend, makeStops, addLayers, useBias } from './layerUtils.jsx'
 import { getFeatureName, popup, buildPopupHTML } from './popupUtils.jsx'
 import { fetchFilterData } from './filterUtils.jsx'
 import { runFetch, getCSV } from '../api.js'
 import fips2Shortcode from '../constants/fipsToShortcode.js'
 import mapbox from 'mapbox-gl'
-import settingsIcon from '../../common/images/settings_gear.png'
 import { useReportData } from './useReportData.jsx'
 import { FilterReports } from './FilterReports'
 import { calcPct } from '../../common/numberServices.js'
@@ -18,6 +26,7 @@ import './mapbox.css'
 import { MapsNavBar } from './MapsNavBar'
 import { MapsController } from './MapsController'
 import { ReportSummary } from './ReportSummary'
+
 mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlvaQw'
 
 /*
@@ -151,8 +160,8 @@ const MapContainer = props => {
     const geoString = selectedGeography.value === 'county'
       ? `counties=${feature}`
       : `states=${fips2Shortcode[feature]}`
-    const filter = selectedFilterValue ? `&${selectedFilter.value}=${selectedFilterValue.value}` : ''
-    const csv = `/v2/data-browser-api/view/csv?years=${year}&${geoString}&${selectedVariable.value}=${selectedValue.value}${filter}`
+    const filter = selectedFilterValue ? `&${varNameMapping[selectedFilter.value]}=${selectedFilterValue.value}` : ''
+    const csv = `/v2/data-browser-api/view/csv?years=${year}&${geoString}&${varNameMapping[selectedVariable.value]}=${selectedValue.value}${filter}`
     getCSV(csv, feature + '.csv')
   }
 
