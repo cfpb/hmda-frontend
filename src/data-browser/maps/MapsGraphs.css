@@ -42,6 +42,7 @@
   z-index: 1; /* Allow maps-control-box to overlay */
   width: 140px;
   background-color: rgba(255, 255, 255, 1);
+  box-shadow: -1px 1px 3px grey;
   pointer-events: none;
   user-select: none;
   border-top-left-radius: 10px;
@@ -480,6 +481,10 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
   .SelectWrapper .maps-nav-bar .highlight-wrapper {
     margin: .25em 0;
     justify-content: space-between;
+  }
+
+  .legend {
+    bottom: 0px;
   }
 }
 
