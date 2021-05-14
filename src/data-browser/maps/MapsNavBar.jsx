@@ -60,7 +60,7 @@ export const MapsNavBar = ({ data, viewReport, download, hasFilter, clearFeature
         </span>
         <div className='highlight-wrapper'>
           <span className='left'>
-            <span className='count-desc'>Matching LAR: </span>{' '}
+            <span className='count-desc'>Applications: </span>{' '}
             <span className='count highlight colorTextWithBias'>
               {asNum(value)}
             </span>
