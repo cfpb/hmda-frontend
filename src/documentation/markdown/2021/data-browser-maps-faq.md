@@ -40,9 +40,23 @@ The URL will take the visitor directly to the map, and zoom to the selected geog
 
 ### » Save as PDF
 ![Maps Save PDF](../images/maps/maps-save-pdf.png)
+<!-- <div style="border: 0px dotted #ddd; padding: 1em .5em">
+  <div style="padding: 0em .25em; padding-bottom: .5em; display: flex; justify-content: space-between; align-items: flex-start;">
+    <div style="width: 60%;">
+      Use the <code>Print Report</code> button to generate a summary report, complete with cover page, map, and the supporting data in tabular format.
+    </div>
+    <div><img style="margin: 0 auto; max-width: 250px;" src="../images/maps/maps-data-controls.png" alt="Data Controls"> </div>
+  </div> -->
+    
 
 ## How can I download the raw data used to generate my report?
 ![Maps Download Data](../images/maps/maps-download-data.png)
+  <!-- <div style="display: flex; justify-content: space-between;">
+    <div style="width: 60%">
+      Use the <code>Download Data</code> button.  Similar to the Dataset Filtering tool, Maps uses the Data Browser API to provide a CSV file containing the filtered data presented in the summary report.
+    </div>
+    <div style="text-align: center"><img style="margin: 0 auto; max-width: 250px;" src="../images/maps/maps-data-controls.png" alt="Data Controls"></div>
+  </div> -->
 
 
 ## How do I interact with the map?
