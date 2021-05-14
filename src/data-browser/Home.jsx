@@ -9,6 +9,7 @@ import mapColor from '../common/images/db-map-color.png'
 import mapBw from '../common/images/db-map-bw.png'
 
 import './Home.css'
+import ExternalLink from '../common/ExternalLink'
 
 class Home extends Component {
   render() {
@@ -18,23 +19,12 @@ class Home extends Component {
         <div className='intro'>
           <Heading type={1} headingText='HMDA Data Browser'>
             <p className='lead'>
-              The HMDA Data Browser toolkit allow users to easily filter, visualize, analyze, and
-              download HMDA datasets.
-            </p>
-            <p className='lead'>
-              For questions about the HMDA Data Browser, visit our{' '}
-              <Link
-                to={`/documentation/${publicationReleaseYear}/data-browser-faq/`}
-              >
-                FAQ page
-              </Link>
-              .
+              The HMDA Data Browser allows users to easily filter,
+              visualize, analyze, and download HMDA datasets.
             </p>
             <p className='lead'>
               To learn to use the Data Browser API, peruse our{' '}
-              <a href='https://cfpb.github.io/hmda-platform/#data-browser-api'>
-                API Documentation
-              </a>
+              <ExternalLink url='https://cfpb.github.io/hmda-platform/#data-browser-api' text='API documentation'/>
               .
             </p>
           </Heading>
@@ -51,6 +41,10 @@ class Home extends Component {
             enabled
             image={filterBw}
             imageHover={filterColor}
+            faq={{
+              url: `/documentation/${publicationReleaseYear}/data-browser-faq`,
+              label: 'HMDA Dataset Filtering FAQ',
+            }}
           />
           <ImageCard
             year={publicationReleaseYear}
@@ -62,6 +56,10 @@ class Home extends Component {
             description='Explore HMDA datasets using an interactive map'
             image={mapBw}
             imageHover={mapColor}
+            faq={{
+              url: `/documentation/${publicationReleaseYear}/data-browser-maps-faq`,
+              label: 'HMDA Maps FAQ',
+            }}
           />
         </div>
       </div>

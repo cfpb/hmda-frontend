@@ -1,5 +1,19 @@
 .DataBrowser .home .card {
   flex: 0 0 30%;
-  margin: 3rem 2rem 0 0;
   cursor: pointer;
+}
+
+.DataBrowser .home .card-wrapper {
+  margin: 3rem 2rem 0 0;
+  width: 31%;
+  text-align: center;
+  position: relative;
+}
+
+.DataBrowser .home .card-wrapper .faq {
+  display: block;
+  width: 100%;
+  position: absolute;
+  bottom: -2em;
+  font-size: 1.1em;
 }

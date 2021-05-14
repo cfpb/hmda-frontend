@@ -12,21 +12,24 @@ const ImageCard = (props) => {
   const linkUrl = `/data-browser/${props.path}/${props.year}`
 
   return (
-    <Link
-      className='card'
-      disabled={!props.enabled}
-      to={linkUrl}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className={cardClass}>
-        <TileImage src={isHovered ? props.imageHover : props.image} />
-        <span>
-          <h4>{props.caption}</h4>
-          <span className='desc'>{props.description}</span>
-        </span>
-      </div>
-    </Link>
+    <div className='card-wrapper'>
+      <Link
+        className='card'
+        disabled={!props.enabled}
+        to={linkUrl}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <div className={cardClass}>
+          <TileImage src={isHovered ? props.imageHover : props.image} />
+          <span>
+            <h4>{props.caption}</h4>
+            <span className='desc'>{props.description}</span>
+          </span>
+        </div>
+      </Link>
+      {props.faq && <Link to={props.faq.url} target="_blank" rel="noopener noreferrer" className='faq'>{props.faq.label || "FAQ"}</Link>}
+    </div>
   )
 }
 

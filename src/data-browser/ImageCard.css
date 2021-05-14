@@ -3,12 +3,13 @@ a.card {
 }
 
 .ImageCard {
+  position: relative;
   overflow: hidden;
   opacity: 0.5;
   pointer-events: none;
   border: 2px solid white;
   border-radius: 5%;
-  padding: 1.5em 1em; 
+  padding: 1.5em 1em .25em; 
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
