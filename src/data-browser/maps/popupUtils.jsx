@@ -1,6 +1,7 @@
 import mapbox from 'mapbox-gl'
 import COUNTIES from '../constants/counties.js'
 import STATES from '../constants/fipsToState.js'
+import { fipsToShortcode } from '../constants/shortcodeToFips'
 
 const geomap = {
   county: COUNTIES[2018],
@@ -9,8 +10,10 @@ const geomap = {
 
 const popup = new mapbox.Popup({
   closeButton: false,
-  closeOnClick: false,
-  maxWidth: '750px'
+  closeOnClick: true,
+  closeOnMove: true,
+  maxWidth: '750px',
+  offset: 15,
 })
 
 function buildPopupHTML(geography, feature, origPer1000){
@@ -18,7 +21,8 @@ function buildPopupHTML(geography, feature, origPer1000){
 }
 
 function getFeatureName(geography, feature){
-  return geomap[geography][feature]
+  const stateAbbr = geography === 'county' ? `, ${fipsToShortcode[feature.substr(0,2)]}` : ''
+  return geomap[geography][feature] + stateAbbr
 }
 
 export {

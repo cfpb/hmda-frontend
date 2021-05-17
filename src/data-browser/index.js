@@ -19,7 +19,7 @@ const DataBrowser = props => {
         />
         {props.config.showMaps ? (
           <Route
-            path='/data-browser/maps-graphs/:year?'
+            path='/data-browser/maps/:year?'
             render={(r_props) => {
               const year = r_props.match.params.year
               const { pathname, search } = r_props.location

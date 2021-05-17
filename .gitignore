@@ -89,4 +89,4 @@ package-lock.json
 .vscode/
 .eslintcache
 
-dev-notes.txt
+dev-notes.*

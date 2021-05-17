@@ -3,40 +3,64 @@ import { Link } from 'react-router-dom'
 import ImageCard from './ImageCard.jsx'
 import Heading from '../common/Heading.jsx'
 import { withAppContext } from '../common/appContextHOC'
+import filterColor from '../common/images/db-filter-color.png'
+import filterBw from '../common/images/db-filter-bw.png'
+import mapColor from '../common/images/db-map-color.png'
+import mapBw from '../common/images/db-map-bw.png'
 
 import './Home.css'
+import ExternalLink from '../common/ExternalLink'
 
 class Home extends Component {
   render() {
     const { showMaps, publicationReleaseYear } = this.props.config
     return (
-      <div className="home">
-        <div className="intro">
-          <Heading type={1} headingText="HMDA Data Browser">
-            <p className="lead">The HMDA Data Browser allows users to filter, analyze, and download HMDA datasets and visualize data through charts, graphs, and maps.</p>
-            <p className="lead">For questions about the HMDA Data Browser, visit our <Link to={`/documentation/${publicationReleaseYear}/data-browser-faq/`}>FAQ page</Link>.</p>
-            <p className="lead">To learn to use the Data Browser API, peruse our <a href="https://cfpb.github.io/hmda-platform/#data-browser-api">API Documentation</a>.</p>
+      <div className='home'>
+        <div className='intro'>
+          <Heading type={1} headingText='HMDA Data Browser'>
+            <p className='lead'>
+              The HMDA Data Browser allows users to easily filter,
+              visualize, analyze, and download HMDA datasets.
+            </p>
+            <p className='lead'>
+              To learn to use the Data Browser API, peruse our{' '}
+              <ExternalLink url='https://cfpb.github.io/hmda-platform/#data-browser-api' text='API documentation'/>
+              .
+            </p>
           </Heading>
         </div>
 
-        <h3>I&#39;m interested in:</h3>
+        <h3>I would like to...</h3>
 
-        <div className="card-container">
+        <div className='card-container'>
           <ImageCard
             year={publicationReleaseYear}
-            caption="HMDA Dataset Filtering"
-            path="data"
+            caption='Select, Summarize, Download'
+            description='Filter and download HMDA datasets'
+            path='data'
             enabled
-          >Filter and download HMDA datasets by various filters.
-          </ImageCard>
+            image={filterBw}
+            imageHover={filterColor}
+            faq={{
+              url: `/documentation/${publicationReleaseYear}/data-browser-faq`,
+              label: 'HMDA Dataset Filtering FAQ',
+            }}
+          />
           <ImageCard
             year={publicationReleaseYear}
-            caption={`Maps & Graphs${showMaps ? '' : ' (coming soon)'}`}
-            path="maps-graphs"
-            enabled={showMaps ? true : false }
-          >
-          Visualize HMDA data through charts, graphs, and maps.
-          </ImageCard>
+            caption={`Explore, Compare, Share${
+              showMaps ? '' : ' (coming soon)'
+            }`}
+            path='maps'
+            enabled={showMaps ? true : false}
+            description='Explore HMDA datasets using an interactive map'
+            image={mapBw}
+            imageHover={mapColor}
+            faq={{
+              url: `/documentation/${publicationReleaseYear}/data-browser-maps-faq`,
+              label: 'HMDA Maps FAQ',
+            }}
+          />
         </div>
       </div>
     )

@@ -9,21 +9,25 @@ const links = {
     <li key="1"><Link to="/documentation/2018/identifiers-faq/">Institution Identifiers FAQ</Link></li>,
     <li key="2"><Link to="/documentation/2018/data-browser-faq/">Data Browser FAQ</Link></li>,
     <li key="3"><Link to="/documentation/2018/filing-faq/">HMDA Filing FAQ</Link></li>,
+    <li key="13"><Link to="/documentation/2018/data-browser-maps-faq/">Maps FAQ</Link></li>,
   ],
   2019: [
     <li key="4"><Link to="/documentation/2019/identifiers-faq/">Institution Identifiers FAQ</Link></li>,
     <li key="5"><Link to="/documentation/2019/data-browser-faq/">Data Browser FAQ</Link></li>,
     <li key="6"><Link to="/documentation/2019/filing-faq/">HMDA Filing FAQ</Link></li>,
+    <li key="13"><Link to="/documentation/2019/data-browser-maps-faq/">Maps FAQ</Link></li>,
   ],
   2020: [
     <li key="7"><Link to="/documentation/2020/identifiers-faq/">Institution Identifiers FAQ</Link></li>,
     <li key="8"><Link to="/documentation/2020/data-browser-faq/">Data Browser FAQ</Link></li>,
     <li key="9"><Link to="/documentation/2020/filing-faq/">HMDA Filing FAQ</Link></li>,
+    <li key="13"><Link to="/documentation/2020/data-browser-maps-faq/">Maps FAQ</Link></li>,
   ],
   2021: [
     <li key="10"><Link to="/documentation/2021/identifiers-faq/">Institution Identifiers FAQ</Link></li>,
     <li key="11"><Link to="/documentation/2021/data-browser-faq/">Data Browser FAQ</Link></li>,
     <li key="12"><Link to="/documentation/2021/filing-faq/">HMDA Filing FAQ</Link></li>,
+    <li key="13"><Link to="/documentation/2021/data-browser-maps-faq/">Maps FAQ</Link></li>,
   ]
 }
 

@@ -12,24 +12,28 @@ const links = {
     <li key="2"><Link to="/documentation/2018/data-browser-filters/">Available Filters</Link></li>,
     <li key="3"><Link to="/documentation/2018/derived-data-fields/">Derived Data Fields</Link></li>,
     <li key="4"><Link to="/documentation/2018/lar-data-fields/">Public HMDA Data Fields with Values and Definitions</Link></li>,
+    <li key="2018-5"><Link to="/documentation/2018/data-browser-maps-faq/">Maps - Frequently Asked Questions</Link></li>,
   ],
   2019: [
     <li key="2019-1"><Link to="/documentation/2019/data-browser-faq/">Frequently Asked Questions</Link></li>,
     <li key="2019-2"><Link to="/documentation/2019/data-browser-filters/">Available Filters</Link></li>,
     <li key="2019-3"><Link to="/documentation/2019/derived-data-fields/">Derived Data Fields</Link></li>,
     <li key="2019-4"><Link to="/documentation/2019/lar-data-fields/">Public HMDA Data Fields with Values and Definitions</Link></li>,
+    <li key="2019-5"><Link to="/documentation/2019/data-browser-maps-faq/">Maps - Frequently Asked Questions</Link></li>,
   ],
   2020: [
     <li key="2020-1"><Link to="/documentation/2020/data-browser-faq/">Frequently Asked Questions</Link></li>,
     <li key="2020-2"><Link to="/documentation/2020/data-browser-filters/">Available Filters</Link></li>,
     <li key="2020-3"><Link to="/documentation/2020/derived-data-fields/">Derived Data Fields</Link></li>,
     <li key="2020-4"><Link to="/documentation/2020/lar-data-fields/">Public HMDA Data Fields with Values and Definitions</Link></li>,
+    <li key="2020-5"><Link to="/documentation/2020/data-browser-maps-faq/">Maps - Frequently Asked Questions</Link></li>,
   ],
   2021: [
     <li key="2021-1"><Link to="/documentation/2021/data-browser-faq/">Frequently Asked Questions</Link></li>,
     <li key="2021-2"><Link to="/documentation/2021/data-browser-filters/">Available Filters</Link></li>,
     <li key="2021-3"><Link to="/documentation/2021/derived-data-fields/">Derived Data Fields</Link></li>,
     <li key="2021-4"><Link to="/documentation/2021/lar-data-fields/">Public HMDA Data Fields with Values and Definitions</Link></li>,
+    <li key="2021-5"><Link to="/documentation/2021/data-browser-maps-faq/">Maps - Frequently Asked Questions</Link></li>,
   ]
 }
 

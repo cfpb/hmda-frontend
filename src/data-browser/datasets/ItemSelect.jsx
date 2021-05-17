@@ -38,24 +38,26 @@ const ItemSelect = ({
           View more information on the available filters.
         </a>
       </p>
-      <CategorySelect category={category} onChange={onCategoryChange} />
-      <Select
-        id='ItemSelector'
-        components={{ MenuList }}
-        filterOption={createFilter({ ignoreAccents: false })}
-        controlShouldRenderValue={false}
-        styles={itemStyleFn}
-        onChange={onChange}
-        placeholder={makeItemPlaceholder(category, selectedValues)}
-        isMulti={true}
-        searchable={true}
-        isDisabled={nationwide}
-        autoFocus
-        openOnFocus
-        simpleValue
-        value={selectedValues}
-        options={pruneItemOptions(category, options, selectedValues)}
-      />
+      <div className='inline-selects'>
+        <CategorySelect category={category} onChange={onCategoryChange} />
+        <Select
+          id='ItemSelector'
+          components={{ MenuList }}
+          filterOption={createFilter({ ignoreAccents: false })}
+          controlShouldRenderValue={false}
+          styles={itemStyleFn}
+          onChange={onChange}
+          placeholder={makeItemPlaceholder(category, selectedValues)}
+          isMulti={true}
+          searchable={true}
+          isDisabled={nationwide}
+          autoFocus
+          openOnFocus
+          simpleValue
+          value={selectedValues}
+          options={pruneItemOptions(category, options, selectedValues)}
+        />
+      </div>
       {nationwide ? null : (
         <Pills values={selectedValues} onChange={onChange} />
       )}

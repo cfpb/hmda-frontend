@@ -1,0 +1,170 @@
+
+.summary-page .report-nav-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2em;
+  margin-bottom: 2em;
+}
+
+.summary-page .union-highlight {
+  margin: 0 auto .5em;
+  text-align: center;
+}
+
+.summary-page .union-highlight.no-data {
+  margin-top: 2em;
+  border: 10px double #888;
+  padding: 3em;
+  white-space: nowrap;
+}
+
+.summary-page .report-heading .featureName {
+  font-size: 3vw;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-page .report-heading .featureName .year {
+  font-family: SourceSansPro;
+  margin-bottom: .5em;
+}
+
+.summary-page .union-highlight .count {
+  font-size: 2em;
+}
+
+.summary-page .union-highlight .count-label {
+  margin-top: .75em;
+  font-size: .75em;
+}
+
+.summary-page .report-heading {
+  font-size: 2.5vw;
+  text-align: center;
+  margin: .5em 0 3em;
+  cursor: pointer;
+}
+
+.summary-page .filter-label {
+  text-align: center;
+  margin: .5em auto;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  text-transform: lowercase;
+  font-size: 2vw;
+  flex-direction: column;
+}
+
+.summary-page .filter-label.first {
+  /* margin-top: .5em; */
+}
+
+.summary-page .filter-label .filter-text,
+.summary-page .filter-label .filter-clause {
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.summary-page .filter-label > * {
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+
+.summary-page .QueryButton:hover {
+  background: rgb(1,111, 123, 1);
+  border-color: black;
+}
+
+.summary-page .QueryButton {
+  background: rgb(1,111, 123, .8);
+  border-color: white;
+}
+
+.narrative {
+  font-size: .75em;
+}
+
+@media print {
+  .summary-page .report-heading {
+    font-size: 2.5vw;
+  }
+
+  .summary-page .report-heading .featureName {
+    font-size: 5vw;
+  }
+
+  .summary-page .union-highlight,
+  .summary-page .filter-label {
+    font-size: 3.5vw;
+  }
+
+  .summary-page .union-highlight .count-label {
+    font-size: 3.3vw;
+  }
+
+  .summary-page .union-highlight .count {
+    font-size: 5.5vw;
+  }
+
+  .summary-page .filter-label.long .filter-text { /* > 38 chars */
+    font-size: 2.5vw;
+  }
+
+}
+
+/* Safari only */
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    @media print {
+      body, .page, html {
+        width: 13in !important;
+        height: 9.7in !important;
+        margin: 0;
+        padding: 0;
+      }
+
+      .DataBrowser.App {
+       max-width: none; 
+       padding: 0;
+      }
+
+      .page {
+        margin: 0;
+        page-break-after: auto;
+        page-break-inside: avoid;
+      }
+
+      .summary-page .report-heading {
+        font-size: 3rem;
+        margin-top: -3rem;
+      }
+    
+      .summary-page .report-heading .featureName {
+        font-size: 1.2em ;
+      }
+       
+      .summary-page .union-highlight .count-label {
+        font-size: 1em;
+      }
+        
+      .summary-page .union-highlight,
+      .summary-page .filter-label {
+        font-size: 1em;
+      }
+    
+      .summary-page .union-highlight .count {
+        font-size: 1.75em;
+      }
+    
+      .summary-page .filter-label.long .filter-text { /* > 38 chars */
+        font-size: .75em;
+        white-space: normal;
+      }
+    }
+  }
+}

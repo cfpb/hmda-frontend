@@ -6,9 +6,18 @@ import { defaultLinks } from './constants/links'
 import './Header.css'
 import logo from './images/ffiec-logo.svg'
 
-const Header = ({location: {pathname}, links = defaultLinks}) => {
+export const hideHeaderFooter = (path) => {
+  const parts = path && path.split('/')
+  let section = parts[1]
+  if (parts[2] && !parts[2].match(/^(\d){4}/)) {
+    section = parts[2]
+  }
+  return section === 'maps' ? 'no-print' : ''
+}
+
+const Header = ({location: {pathname}, links = defaultLinks, ...others}) => {
   return (
-    <>
+    <div className={hideHeaderFooter(pathname)}>
       <a className="skipnav" href="#main-content">
         Skip to main content
       </a>
@@ -52,7 +61,7 @@ const Header = ({location: {pathname}, links = defaultLinks}) => {
           </nav>
         </div>
       </header>
-    </>
+    </div>
   )
 }
 

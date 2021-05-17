@@ -13,16 +13,18 @@ const {
   ENVIRONMENT,
   AUTH_BASE_URL,
   AUTH_REALM,
-  AUTH_CLIENT_ID
+  AUTH_CLIENT_ID,
+  YEARS
 } = Cypress.env()
 
 const config = getDefaultConfig(HOST)
 const getFilename = (filingPeriod, lei) => `${filingPeriod}-${lei}.txt`
+const years = (YEARS && YEARS.toString().split(',')) || config.filingPeriods
 
 describe("Filing", function() {
   // Only need to provide an Auth URL when running locally
   const authUrl = HOST.indexOf('localhost') > -1 ? AUTH_BASE_URL : HOST
-
+  
   beforeEach(() => {
     cy.get({
       HOST,
@@ -36,7 +38,7 @@ describe("Filing", function() {
       AUTH_REALM,
       AUTH_CLIENT_ID
     }).logEnv()
-
+    
     // Skip authentication on CI
     if(!isCI(ENVIRONMENT)) {
       cy.logout({ root: authUrl, realm: AUTH_REALM })
@@ -49,11 +51,11 @@ describe("Filing", function() {
         password: PASSWORD
       })
     }
-
+    
     cy.viewport(1600, 900)
   })
-
-  config.filingPeriods.forEach((filingPeriod, index) => {
+  
+  years.forEach((filingPeriod, index) => {
     it(`${filingPeriod}`, function() {
       // Action: List Institutions
       cy.visit(`${HOST}/filing/${filingPeriod}/institutions`)

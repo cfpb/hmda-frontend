@@ -4,15 +4,17 @@ import './Footer.css'
 import logo from './images/ffiec-logo.svg'
 import MaintenanceMessage from '../MaintenanceMessage'
 import ReleaseVersion from './ReleaseVersion'
+import { withRouter } from 'react-router-dom'
+import { hideHeaderFooter } from './Header'
 
-const Footer = ({ config }) => {
+const Footer = ({ config, location: {pathname} }) => {
   const [maintenance, setMaintenance] = React.useState(null)
 
   useEffect(() => {
     if(config.maintenanceMode) setMaintenance(true)
   }, [config])
 
-  const cname = 'Footer' + (maintenance ? ' maintenance' : '')
+  let cname = 'Footer ' + (maintenance ? 'maintenance ' : '') + hideHeaderFooter(pathname)
 
   return (
     <footer className={cname} role="contentinfo">
@@ -65,4 +67,4 @@ const Footer = ({ config }) => {
   )
 }
 
-export default Footer
+export default withRouter(Footer)

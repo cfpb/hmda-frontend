@@ -1,7 +1,57 @@
+a.card {
+  text-decoration: none;
+}
+
 .ImageCard {
+  position: relative;
   overflow: hidden;
   opacity: 0.5;
   pointer-events: none;
+  border: 2px solid white;
+  border-radius: 5%;
+  padding: 1.5em 1em .25em; 
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  background: #ececec;
+  transition: box-shadow .1s, transform .1s;
+  box-shadow: inset 0 0 5px #a5a5a5;
+}
+
+.ImageCard a span {
+  padding: 0 .5em;
+}
+
+.ImageCard .tile-image {
+  display: block;
+  margin: .5em auto;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  border: 2px solid #999;
+  background-color: white;
+  padding: 5px;
+}
+
+a:hover .ImageCard,
+a:focus .ImageCard {
+  border: 2px solid transparent;
+  background: #003b56;
+  box-shadow: 0 5px 15px #404a4d;
+}
+
+a:hover .ImageCard .tile-image,
+a:focus .ImageCard .tile-image {
+  background-color: #003b56;
+  box-shadow: -0px 0px 20px black;
+  border: 2px solid white;
+}
+
+.ImageCard h4 {
+  white-space: nowrap;
 }
 
 .ImageCard.enabled {
@@ -14,16 +64,14 @@
 }
 
 .ImageCard.enabled .ImageWrapper:hover {
-  border-color: #0071bc;
   cursor: pointer;
 }
 
-.ImageWrapper:hover .imagechild {
-  transform: scale(1.1);
-}
-
-.ImageCard.enabled:hover h4 {
-  color: #0071bc;
+a:hover .ImageCard.enabled h4,
+a:hover .ImageCard.enabled .desc,
+a:focus .ImageCard.enabled h4,
+a:focus .ImageCard.enabled .desc {
+  color: white;
 }
 
 .ImageWrapper {
@@ -38,10 +86,21 @@
   height:285px;
 }
 
-.ImageCard > h4 {
-  position: relative;
+.ImageCard  h4 {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 2.5em;
   line-height: 1.5;
   padding-left: 2px;
+  margin: .5em 0;
+}
+
+.home .ImageCard h4 {
+  color: black;
+  font-size: max(1em, min(1.4vw, 1.2em));
+}
+
+.home .ImageCard .desc {
+  display: inline-block;
+  margin: .25em 0 .5em !important;
+  color: black;
 }
