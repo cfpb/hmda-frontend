@@ -352,7 +352,19 @@
   - 25-49
   - 50-99
   - 100-149
-  - >149
+  - \>149
+### [ageapplicant](#ageapplicant)
+
+- **Description:** The age of the applicant
+- **Values:**
+  - <25
+  - 25-34
+  - 35-44
+  - 45-54
+  - 55-64
+  - 65-74
+  - \>74
+  - 8888
 
 ### [multifamily\_affordable\_units](#multifamily_affordable_units)
 
