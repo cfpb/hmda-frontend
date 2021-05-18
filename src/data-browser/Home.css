@@ -10,10 +10,15 @@
   position: relative;
 }
 
+.DataBrowser .home .card-wrapper:not(.enabled) {
+  pointer-events: none;
+}
+
 .DataBrowser .home .card-wrapper .faq {
   display: block;
   width: 100%;
   position: absolute;
   bottom: -2em;
   font-size: 1.1em;
+  pointer-events: all;
 }

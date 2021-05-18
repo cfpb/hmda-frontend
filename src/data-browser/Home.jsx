@@ -19,12 +19,15 @@ class Home extends Component {
         <div className='intro'>
           <Heading type={1} headingText='HMDA Data Browser'>
             <p className='lead'>
-              The HMDA Data Browser allows users to easily filter,
-              visualize, analyze, and download HMDA datasets.
+              The HMDA Data Browser allows users to easily filter, visualize,
+              analyze, and download HMDA datasets.
             </p>
             <p className='lead'>
               To learn to use the Data Browser API, peruse our{' '}
-              <ExternalLink url='https://cfpb.github.io/hmda-platform/#data-browser-api' text='API documentation'/>
+              <ExternalLink
+                url='https://cfpb.github.io/hmda-platform/#data-browser-api'
+                text='API documentation'
+              />
               .
             </p>
           </Heading>
@@ -48,9 +51,11 @@ class Home extends Component {
           />
           <ImageCard
             year={publicationReleaseYear}
-            caption={`Explore, Compare, Share${
-              showMaps ? '' : ' (coming soon)'
-            }`}
+            caption={
+              <span>
+                Explore, Compare, Share{showMaps ? '' : <><br/>(coming soon)</>}
+              </span>
+            }
             path='maps'
             enabled={showMaps ? true : false}
             description='Explore HMDA datasets using an interactive map'
