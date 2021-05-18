@@ -96,7 +96,7 @@ a:focus .ImageCard.enabled .desc {
 
 .home .ImageCard h4 {
   color: black;
-  font-size: max(1em, min(1.4vw, 1.2em));
+  font-size: 1.2em;
 }
 
 .home .ImageCard .desc {
