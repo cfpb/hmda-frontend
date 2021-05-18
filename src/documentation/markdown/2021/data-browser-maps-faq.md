@@ -74,4 +74,4 @@ The URL will take the visitor directly to the map, and zoom to the selected geog
 
 
 ## Still need help?
-  - Please reach out to [HMDA Help](mailto:hmdahelp@cfpb.gov) via email with additional inqueries.
+  - Please reach out to [HMDA Help](mailto:hmdahelp@cfpb.gov) via email with additional inquiries.
