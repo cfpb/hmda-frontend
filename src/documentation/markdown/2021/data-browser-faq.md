@@ -16,4 +16,4 @@ Answer: The columns of the Static and Dynamic dataset, including data available 
 Answer: The Data Browser uses the static dataset. The static data for the 2018 collection were frozen on August 7, 2019. The static data for the 2019 collection were frozen on April 27, 2020.
 
 ### I have a suggestion/improvement, who can I contact?
-Answer: For questions/suggestions regarding the HMDA Data Browser, [contact hmdahelp@cfpb.gov](mailto:hmdahelp@cfpb.gov).
+Answer: For questions/suggestions regarding the HMDA Data Browser, contact [hmdahelp@cfpb.gov](mailto:hmdahelp@cfpb.gov).
