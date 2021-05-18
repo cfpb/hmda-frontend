@@ -28,8 +28,9 @@ a.card {
 .ImageCard .tile-image {
   display: block;
   margin: .5em auto;
-  width: 250px;
-  height: 250px;
+  max-width: 250px;
+  max-height: 250px;
+  width: 100%;
   border-radius: 50%;
   border: 2px solid #999;
   background-color: white;
@@ -48,10 +49,6 @@ a:focus .ImageCard .tile-image {
   background-color: #003b56;
   box-shadow: -0px 0px 20px black;
   border: 2px solid white;
-}
-
-.ImageCard h4 {
-  white-space: nowrap;
 }
 
 .ImageCard.enabled {
@@ -86,21 +83,74 @@ a:focus .ImageCard.enabled .desc {
   height:285px;
 }
 
-.ImageCard  h4 {
+.ImageCard h4 {
+  color: black;
+  white-space: nowrap;
   font-weight: bold;
-  font-size: 2.5em;
+  font-size: 3vw;
+  font-size: 2rem;
   line-height: 1.5;
   padding-left: 2px;
-  margin: .5em 0;
+  margin: .5em auto;
+  width: 25ch;
 }
 
-.home .ImageCard h4 {
-  color: black;
-  font-size: 1.2em;
-}
-
-.home .ImageCard .desc {
+.ImageCard .desc {
+  width: 100%;
   display: inline-block;
   margin: .25em 0 .5em !important;
   color: black;
+  font-size: 2rem;
+  height: 5ch;
+}
+
+.DataBrowser .home .card-wrapper {
+  flex: 0 0 100%;
+  text-align: center;
+  position: relative;
+  box-sizing: border-box;
+  height: 100%;
+  display: block;
+  margin-bottom: 3rem;
+  margin-right: 1rem;
+}
+
+.DataBrowser .home .card-wrapper .faq {
+  display: block;
+  width: 100%;
+  position: absolute;
+  bottom: -2em;
+  font-size: 1.1em;
+  pointer-events: all;
+  overflow: auto;
+}
+
+.DataBrowser .home .card-wrapper:not(.enabled) {
+  pointer-events: none;
+}
+
+.DataBrowser .home .card {
+  box-sizing: border-box;
+  display: inline-block;
+  cursor: pointer;
+  margin: 2rem 0rem;
+  width: 100%;
+  height: 100%;
+}
+
+.DataBrowser .home .card-wrapper .faq {
+  display: block;
+  margin: 2rem 0;
+}
+
+@media screen and (min-width: 700px) {
+  .DataBrowser .home .card-wrapper {
+    flex: 1 0 48%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .DataBrowser .home .card-wrapper {
+    flex: 1 0 30%;
+  }
 }

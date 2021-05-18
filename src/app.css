@@ -205,6 +205,7 @@ hr {
   font-family: SourceSansProBold;
   margin-bottom: 0;
 }
+
 .home .card-container {
   align-items: stretch;
   display: flex;
@@ -216,6 +217,15 @@ hr {
   flex: 1 1 422px;
   margin: 0 8em 0 0;
 }
+
+.DataBrowser .home .card-container {
+  align-items: flex-start;
+  justify-content: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
 .home .card > ul {
   margin-bottom: 4em;
 }
