@@ -7,12 +7,12 @@ const TileImage = ({ src }) => <img className='tile-image' src={src} />
 const ImageCard = (props) => {
   const [isHovered, setIsHovered] = useState(false)
   
-  let cardClass = 'ImageCard'
-  if (props.enabled) cardClass += ' enabled'
+  const enabled = props.enabled ? ' enabled' : ''
+  let cardClass = 'ImageCard' + enabled
   const linkUrl = `/data-browser/${props.path}/${props.year}`
 
   return (
-    <div className='card-wrapper'>
+    <div className={'card-wrapper' + enabled}>
       <Link
         className='card'
         disabled={!props.enabled}
