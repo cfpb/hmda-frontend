@@ -7,19 +7,19 @@ HMDA Maps provides a way to visually analyze population-density adjusted, geogra
 ## What does each option mean?
 | Definition | Screenshot |  
 |---|---|
-|**YEAR**: The year in which the loan was processed.|![Year Selector](../images/maps/maps-year-selection.png)|  
-|**MAP LEVEL**: The geographic level at which the HMDA Data is aggregated. | ![Level Selector](../images/maps/maps-geography-selection.png) |
-|**WHERE & AND**: These filters allow you to narrow the selected data based on <a target="_blank" rel="noopener noreferrer" href="/documentation/2019/data-browser-filters/#action_taken">popular variables</a>. | ![Filters Selector](../images/maps/maps-filters.png)  |
+|**YEAR**: The year in which the loan was processed.|![Year Selector](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/maps/maps-year-selection.png)|  
+|**MAP LEVEL**: The geographic level at which the HMDA Data is aggregated. | ![Level Selector](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/maps/maps-geography-selection.png) |
+|**WHERE & AND**: These filters allow you to narrow the selected data based on <a target="_blank" rel="noopener noreferrer" href="/documentation/2019/data-browser-filters/#action_taken">popular variables</a>. | ![Filters Selector](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/maps/maps-filters.png)  |
 
 
 ## What does the map show?  
 The map displays the concentration of loans that match your selected filters, adjusted for population density, across the selected Geography (State or County). Darker colors indicate a higher occurrence rate in that region, while lighter colors indicate a lower occurrence rate.  
 
-![Map](../images/maps/maps-map.png)  
+![Map](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/maps/maps-map.png)  
 
 The various color palettes (orange, red, purple, green, blue) are used to highlight the fact that the application uses different "bucketing" algorithms in order to display a useful level of color variation on the map, and are not indicative of any interpretation about the outcomes presented.  
 
-![Maps Buckets](../images/maps/maps-buckets.png)  
+![Maps Buckets](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/maps/maps-buckets.png)  
   
   
 ## What do the data tables show? 
@@ -29,17 +29,17 @@ The data tables show the aggregated data for the selected filter variables.
   
 |One Filter|Two Filters|
 |---|---|
-|![Aggregate Table Single](../images/maps/maps-table-1.png)  | ![Aggregate Table Two](../images/maps/maps-table-2.png)  |
+|![Aggregate Table Single](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/maps/maps-table-1.png)  | ![Aggregate Table Two](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/maps/maps-table-2.png)  |
 
 
 ## How can I save and share my map?
 ### » Share the URL
 The URL will take the visitor directly to the map, and zoom to the selected geography. Users can then print the report, or continue to explore HMDA Data using your selections as a starting point.  
 
-![Map Zoom](../images/maps/maps-zoom-share.gif)  
+![Map Zoom](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/maps/maps-zoom-share.gif)  
 
 ### » Save as PDF
-![Maps Save PDF](../images/maps/maps-save-pdf.png)
+![Maps Save PDF](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/maps/maps-save-pdf.png)
 <!-- <div style="border: 0px dotted #ddd; padding: 1em .5em">
   <div style="padding: 0em .25em; padding-bottom: .5em; display: flex; justify-content: space-between; align-items: flex-start;">
     <div style="width: 60%;">
@@ -50,7 +50,7 @@ The URL will take the visitor directly to the map, and zoom to the selected geog
     
 
 ## How can I download the raw data used to generate my report?
-![Maps Download Data](../images/maps/maps-download-data.png)
+![Maps Download Data](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/maps/maps-download-data.png)
   <!-- <div style="display: flex; justify-content: space-between;">
     <div style="width: 60%">
       Use the <code>Download Data</code> button.  Similar to the Dataset Filtering tool, Maps uses the Data Browser API to provide a CSV file containing the filtered data presented in the summary report.
