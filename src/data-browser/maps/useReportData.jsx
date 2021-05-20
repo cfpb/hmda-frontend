@@ -19,7 +19,7 @@ const dataByLevel = (dataset, feature) => dataset ? dataset[feature] : {}
 const normalizeFeature = (feature, isCounty) => isCounty ? feature : fips2Shortcode[feature]
 
 
-// geoTotals {number} Total number of originations in this State/County by Variable
+// geoTotals {number} Total number of records in this State/County by Variable
 // featureName {string} COLORADO or GRAND COUNTY, CO
 // isCounty {boolean} 
 // geoLevel {{value, label}} 
@@ -41,7 +41,7 @@ export const gatherReportData = (geoLevel, rawFeature, baseData, combinedFilter1
   if (!baseData) return obj
   let geoBaseData = dataByLevel(baseData, feature)
 
-  // Total number of originations in this State/County by Variable
+  // Total number of records in this State/County by Variable
   obj.geoTotals = sumByVariable(geoBaseData)
 
   if (!combinedFilter1 || !filter1Data) return obj

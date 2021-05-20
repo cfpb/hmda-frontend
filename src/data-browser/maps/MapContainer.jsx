@@ -254,7 +254,7 @@ const MapContainer = props => {
 
     return (
       <div className="TableWrapper" ref={tableRef}>
-        <h3 className= 'title' onClick={() => scrollToTable(tableRef.current)}>Originations by {selectedVariable.label} in {getFeatureName(selectedGeography.value, feature)}{selectedFilterValue ? ` when ${selectedFilter.label} equals ${selectedFilterValue.label}` : ''}</h3>
+        <h3 className= 'title' onClick={() => scrollToTable(tableRef.current)}>Records by {selectedVariable.label} in {getFeatureName(selectedGeography.value, feature)}{selectedFilterValue ? ` when ${selectedFilter.label} equals ${selectedFilterValue.label}` : ''}</h3>
         <h4>Total: {total}</h4>
         <table>
           <thead>

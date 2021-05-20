@@ -4,7 +4,7 @@ import { nth } from '../../filing/utils/date'
 import { MapsNavBtns } from './MapsNavBar'
 import './ReportSummary.css'
 
-const combinedLabel = (filter) => filter && `${filter.variable.label} - ${filter.value.label}`
+const combinedLabel = (filter) => filter && `${filter.variable.label} = ${filter.value.label}`
 
 const ReportHighlight = ({ data, year }) => {
   const { filter1, filter2, union12, filter1_geo } = data
@@ -16,12 +16,12 @@ const ReportHighlight = ({ data, year }) => {
       </div>
     )
 
-  const originations = (!filter2 ? filter1_geo[filter1.value.value] : union12) || 0
+  const applications = (!filter2 ? filter1_geo[filter1.value.value] : union12) || 0
 
   return (
     <div className='union-highlight'>
       <div className='count-label'>Loan Application Records</div>
-      <div className='count colorTextWithBias'>{asNum(originations)}</div>
+      <div className='count colorTextWithBias'>{asNum(applications)}</div>
       <ReportFilters data={data} />
     </div>
   )
