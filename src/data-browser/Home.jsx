@@ -23,7 +23,7 @@ class Home extends Component {
               analyze, and download HMDA datasets.
             </p>
             <p className='lead'>
-              To learn to use the Data Browser API, peruse our{' '}
+              To learn to use the Data Browser API, visit our{' '}
               <ExternalLink
                 url='https://cfpb.github.io/hmda-platform/#data-browser-api'
                 text='API documentation'
