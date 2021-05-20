@@ -17,9 +17,11 @@
 
 - **Description:** Select this option to download datasets by county.
 
+
 ### Financial Institution Filter
 
 - **Description:** Select one or more financial institution by entering the financial institutions LEI or name
+
 
 ### Pre-Selected Filters
 
@@ -83,7 +85,7 @@
   - 50-99
   - 100-149
   - \>149  
-  
+
 ### [ageapplicant](#ageapplicant)
 
 - **Description:** The age of the applicant

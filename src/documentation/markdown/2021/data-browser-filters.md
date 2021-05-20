@@ -85,7 +85,7 @@
   - 50-99
   - 100-149
   - \>149  
-  
+
 ### [ageapplicant](#ageapplicant)
 
 - **Description:** The age of the applicant
