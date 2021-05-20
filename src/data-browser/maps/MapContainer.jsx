@@ -107,14 +107,14 @@ adjustZoom('county', 2.5, ['72'])
 // Generate strings of Fips => Center coordinates for each geography
 const extractGeoCenters = (map) => {
   if (!map) return
-  map.zoomToo(-100)
+  map.zoomTo(-100)
   var fs = map
     .querySourceFeatures('state', {
       sourceLayer: '2015-state-44cy8q',
     })
     .reduce((mem, curr) => {
       const { CENTROID_LAT, CENTROID_LNG, GEOID } = curr.properties
-      mem[GEOID] = [CENTROID_LAT, CENTROID_LNG]
+      mem[GEOID] = [CENTROID_LNG, CENTROID_LAT]
       return mem
     }, {})
 
