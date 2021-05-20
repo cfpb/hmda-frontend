@@ -53,7 +53,7 @@ export const gatherReportData = (geoLevel, rawFeature, baseData, combinedFilter1
   if (geoBaseData) {
     obj.filter1_geo = geoBaseData[filter1.variable.value]
     obj.filter1_geo_total = obj.geoTotals[filter1.variable.value]
-    obj.filter1_geo_label = `Applications by ${filter1.variable.label} in ${featureName}`
+    obj.filter1_geo_label = `Records by ${filter1.variable.label} in ${featureName}`
   }
   
   if (!combinedFilter2 || !filter2Data) return obj
@@ -66,7 +66,7 @@ export const gatherReportData = (geoLevel, rawFeature, baseData, combinedFilter1
   if (geoBaseData) {
     obj.filter2_geo = geoBaseData[filter2.variable.value]
     obj.filter2_geo_total = obj.geoTotals[filter2.variable.value]
-    obj.filter2_geo_label = `Applications by ${filter2.variable.label} in ${featureName}`
+    obj.filter2_geo_label = `Records by ${filter2.variable.label} in ${featureName}`
   }
 
   // Find Filter intersections
@@ -75,7 +75,7 @@ export const gatherReportData = (geoLevel, rawFeature, baseData, combinedFilter1
   } else {
     obj.v2_where_f1 = F1Data[filter2.variable.value]
     obj.v2_where_f1_total = sumByValue(F1Data[filter2.variable.value])
-    obj.v2_where_f1_label = `Applications by ${filter2.variable.label} where ${filter1.variable.label} - ${filter1.value.label}`
+    obj.v2_where_f1_label = `Records by ${filter2.variable.label} where ${filter1.variable.label} - ${filter1.value.label}`
     obj.union12 = F1Data[filter2.variable.value][filter2.value.value]
   }
 
@@ -84,7 +84,7 @@ export const gatherReportData = (geoLevel, rawFeature, baseData, combinedFilter1
   } else {
     obj.v1_where_f2 = F2Data[filter1.variable.value]
     obj.v1_where_f2_total = sumByValue(F2Data[filter1.variable.value])
-    obj.v1_where_f2_label = `Applications by ${filter1.variable.label} where ${filter2.variable.label} - ${filter2.value.label}`
+    obj.v1_where_f2_label = `Records by ${filter1.variable.label} where ${filter2.variable.label} - ${filter2.value.label}`
     obj.union21 = F2Data[filter1.variable.value][filter1.value.value]
   }
 
