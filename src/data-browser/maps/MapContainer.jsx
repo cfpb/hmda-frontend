@@ -104,6 +104,35 @@ adjustZoom('county', -2, ['02'])
 adjustZoom('county', -0.5, ['04', '32'])
 adjustZoom('county', 2.5, ['72'])
 
+// Generate strings of Fips => Center coordinates for each geography
+const extractGeoCenters = (map) => {
+  if (!map) return
+  map.zoomToo(-100)
+  var fs = map
+    .querySourceFeatures('state', {
+      sourceLayer: '2015-state-44cy8q',
+    })
+    .reduce((mem, curr) => {
+      const { CENTROID_LAT, CENTROID_LNG, GEOID } = curr.properties
+      mem[GEOID] = [CENTROID_LAT, CENTROID_LNG]
+      return mem
+    }, {})
+
+  var cs = map
+    .querySourceFeatures('county', {
+      sourceLayer: '2015-county-bc0xsx',
+    })
+    .reduce((mem, curr) => {
+      const { CENTROID_LAT, CENTROID_LNG, GEOID } = curr.properties
+      mem[GEOID] = [CENTROID_LAT, CENTROID_LNG]
+      return mem
+    }, {})
+
+  console.log('state center: ', JSON.stringify(fs))
+  console.log('counts center: ', JSON.stringify(cs))
+}
+
+
 let currentHighlightColor = null
 
 const MapContainer = props => {
