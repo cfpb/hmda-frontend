@@ -34,7 +34,7 @@
     "Q3": "12/01 - 12/31",
     "ANNUAL": "01/01 - 03/01"
   },
-  "showMaps": false,
+  "showMaps": true,
   "maintenanceMode": false,
   "filingAnnouncement": null,
   "dataPublicationYears": {
