@@ -18,21 +18,22 @@ const MapsGraphs = props => {
       <div className='intro no-print'>
         <Heading type={1} headingText='HMDA Maps'>
           <p className='lead'>
-            The HMDA Maps tool gives you the opportunity to explore subsets of
-            HMDA Data, filtered by{' '}
+            The HMDA Maps tool allows you to explore subsets of HMDA data,
+            filtered by{' '}
             <PopularVariableLink year={year}>
               popular variables
             </PopularVariableLink>
-            , in a more illustrative format. Visit the{' '}
+            . For help getting started, visit the{' '}
             <ExternalLink url={docsUrl('data-browser-maps-faq')}>
               HMDA Maps FAQ
-            </ExternalLink>{' '}
-            for help getting started. Download the data to view{' '}
+            </ExternalLink>
+            . For advanced analysis, use the <code>Download Data</code> button
+            to access all{' '}
             <ExternalLink url={docsUrl('lar-data-fields')}>
-              all 110 data fields
-            </ExternalLink>{' '}
-            for your selected records. Additional questions/suggestions can be
-            sent to <a href='mailto:hmdahelp@cfpb.gov'>hmdahelp@cfpb.gov</a>.
+              publicly available data fields
+            </ExternalLink>
+            . Additional questions/suggestions can be sent to{' '}
+            <a href='mailto:hmdahelp@cfpb.gov'>hmdahelp@cfpb.gov</a>.
           </p>
         </Heading>
       </div>
