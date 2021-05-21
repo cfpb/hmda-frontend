@@ -50,7 +50,7 @@ describe('State Report', () => {
     const data = gatherReportData(stateOpt, FEATURE_S, BASE_STATE_2019, combinedFilter1, FILTER1_STATE_BY_V2)
     expect(data.filter1_geo).toEqual(FILTER1_STATE_AT);
     expect(data.filter1_geo_total).toEqual(FEATURE_S_TOTAL);
-    expect(data.filter1_geo_label).toEqual("Originations by Action Taken in COLORADO");
+    expect(data.filter1_geo_label).toEqual("Records by Action Taken in COLORADO");
   })
 
   it('with two filters', () => {
@@ -59,16 +59,16 @@ describe('State Report', () => {
     // We're able to determine geo level data about Filter 2
     expect(data.filter2_geo).toEqual(FILTER2_STATE_LT);
     expect(data.filter2_geo_total).toEqual(FEATURE_S_TOTAL);
-    expect(data.filter2_geo_label).toEqual("Originations by Loan Type in COLORADO");
+    expect(data.filter2_geo_label).toEqual("Records by Loan Type in COLORADO");
     
     // We're able to determine intersections
     expect(data.v2_where_f1).toBe(FILTER1_STATE_BY_V2[FEATURE_S_NORM]['loanType'])
-    expect(data.v2_where_f1_label).toBe('Originations by Loan Type where Action Taken - 1 - Loan Originated')
+    expect(data.v2_where_f1_label).toBe('Records by Loan Type where Action Taken - 1 - Loan Originated')
     expect(data.v2_where_f1_total).toBe(302870)
     expect(data.union12).toBe(FILTER1_STATE_BY_V2[FEATURE_S_NORM]['loanType']['3'])
     
     expect(data.v1_where_f2).toBe(FILTER2_STATE_BY_V1[FEATURE_S_NORM]['actionTaken'])
-    expect(data.v1_where_f2_label).toBe('Originations by Action Taken where Loan Type - 3 - VA')
+    expect(data.v1_where_f2_label).toBe('Records by Action Taken where Loan Type - 3 - VA')
     expect(data.v1_where_f2_total).toBe(66445)
     expect(data.union21).toBe(FILTER2_STATE_BY_V1[FEATURE_S_NORM]['actionTaken']['1'])
     
@@ -95,7 +95,7 @@ describe('County Report', () => {
     const data = gatherReportData(countyOpt, FEATURE_C, BASE_COUNTY_2019, combinedFilter1, FILTER1_COUNTY_BY_V2)
     expect(data.filter1_geo).toEqual(FILTER1_COUNTY_AT);
     expect(data.filter1_geo_total).toEqual(FEATURE_C_TOTAL);
-    expect(data.filter1_geo_label).toEqual("Originations by Action Taken in GRAND COUNTY, CO");
+    expect(data.filter1_geo_label).toEqual("Records by Action Taken in GRAND COUNTY, CO");
   })
 
   it('with two filters', () => {
@@ -104,16 +104,16 @@ describe('County Report', () => {
     // We're able to determine geo level data about Filter 2
     expect(data.filter2_geo).toEqual(FILTER2_COUNTY_LT);
     expect(data.filter2_geo_total).toEqual(FEATURE_C_TOTAL);
-    expect(data.filter2_geo_label).toEqual("Originations by Loan Type in GRAND COUNTY, CO");
+    expect(data.filter2_geo_label).toEqual("Records by Loan Type in GRAND COUNTY, CO");
     
     // We're able to determine intersections
     expect(data.v2_where_f1).toBe(FILTER1_COUNTY_BY_V2[FEATURE_C]['loanType'])
-    expect(data.v2_where_f1_label).toBe('Originations by Loan Type where Action Taken - 1 - Loan Originated')
+    expect(data.v2_where_f1_label).toBe('Records by Loan Type where Action Taken - 1 - Loan Originated')
     expect(data.v2_where_f1_total).toBe(1592)
     expect(data.union12).toBe(FILTER1_COUNTY_BY_V2[FEATURE_C]['loanType']['3'])
 
     expect(data.v1_where_f2).toBe(FILTER2_COUNTY_BY_V1[FEATURE_C]['actionTaken'])
-    expect(data.v1_where_f2_label).toBe('Originations by Action Taken where Loan Type - 3 - VA')
+    expect(data.v1_where_f2_label).toBe('Records by Action Taken where Loan Type - 3 - VA')
     expect(data.v1_where_f2_total).toBe(85)
     expect(data.union21).toBe(FILTER2_COUNTY_BY_V1[FEATURE_C]['actionTaken']['1'])
     

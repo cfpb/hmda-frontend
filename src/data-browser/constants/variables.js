@@ -207,7 +207,7 @@ function buildWithId(label, definition, list) {
 
   list.forEach(o => {
     const nameWithId = `${o.id} - ${o.name}`
-    obj.options.push({id: o.id, name: nameWithId})
+    obj.options.push({id: o.id, name: o.name})
     obj.mapping[o.id] = nameWithId
   })
 

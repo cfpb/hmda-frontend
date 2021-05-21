@@ -23,7 +23,8 @@ The various color palettes (orange, red, purple, green, blue) are used to highli
   
   
 ## What do the data tables show? 
-The data tables show the aggregated data for the selected filter variables. 
+The data tables show the aggregated data for the selected filter variables.  
+
 - When only one filter is selected, you will be presented with a single table that includes a row for each option of the filter.  
 - When two filters are selected, another table will be displayed for the second filter's data.  Additionally, a new set of columns will be included in each table to highlight the intersection between the selected filters.
   
@@ -62,10 +63,10 @@ The URL will take the visitor directly to the map, and zoom to the selected geog
 ## How do I interact with the map?
 | Function | Mouse | Keyboard | Touchpad |
 |---|---|---|---|
-| - Zoom In<br/>- Zoom Out<br/>- Orient North | <img style="max-height: 85px; margin-left:35%;" src="../images/maps/maps-zoom.png" alt="Zoom Controls" /> | `+`<br/>`-`<br/> `Tab` to highlight the Orient North icon, then press `Enter`| - `pinch`/`scroll`<br/>- `pinch`/`scroll`<br/>- Click `Orient` button |
-| - Select a region | Click on map | None? | Click on map |
-| - Rotate the map | <img style="max-width: 50px; margin-left:35%;" src="../images/maps/maps-orient.png" alt="Orient North button" /> | None? | Right-click and drag on map |
-| - Pan the map | Left-click and drag | Arrow keys | Left-click and drag  |
+| <div>- Zoom In</div><div>- Zoom Out</div><div>- Orient North</div> | <img style="display: block; margin: 0 auto; height: 85px; width: auto;" src="https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/maps/maps-zoom.png" alt="Zoom Controls" /> | <div>`+`</div><div>`-`</div> <div>`Tab` to highlight the Orient North icon, then press `Enter`</div>| <div>- `pinch`/`scroll`</div><div>- `pinch`/`scroll`</div><div>- Click `Orient` button</div> |
+|<div>- Select a region</div> | Click on map | None? | Click on map |
+|<div>- Rotate the map</div> | <img style="display: block; height: auto; width: 35px; margin: 0 auto;" src="https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/maps/maps-orient.png" alt="Orient North button" /> | None? | Right-click and drag on map |
+| <div>- Pan the map</div> | Left-click and drag | Arrow keys | Left-click and drag  |
 | <div style='width: 14ch'>- Reset the view</div> | Reload the page | Reload the page | Reload the page |
 
 
