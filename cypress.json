@@ -16,5 +16,6 @@
   "retries": {
     "runMode": 1,
     "openMode": 0
-  }
+  },
+  "experimentalStudio": true
 }
