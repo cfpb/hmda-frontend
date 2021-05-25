@@ -1,9 +1,10 @@
 {
   "name": "prod-beta",
   "announcement": {
-    "message": "We will be performing scheduled system maintenance on May 26th from 7pm - 7:30pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "message": "We will be performing scheduled system maintenance on May 25th from 1pm - 1:30pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
     "type": "warning",
-    "heading": "Scheduled Maintenance"
+    "heading": "Scheduled Maintenance",
+    "link": null
   },
   "defaultPeriod": "2021-Q1",
   "defaultDocsPeriod": "2021",
@@ -37,7 +38,7 @@
   "showMaps": true,
   "maintenanceMode": false,
   "filingAnnouncement": {
-    "message": "We will be performing scheduled system maintenance on May 26th from 7pm - 7:30pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "message": "We will be performing scheduled system maintenance on May 25th from 1pm - 1:30pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
     "type": "warning",
     "heading": "Scheduled Maintenance"
   },
