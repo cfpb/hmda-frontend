@@ -65,6 +65,7 @@ export const MapsController = ({
         <div className='filter'>
           <span className='filter-clause'>WHERE</span>
           <Select
+            id="map-filter-1"
             {...sharedProps}
             value={combinedFilter1}
             onChange={onFilter1Change}
@@ -80,6 +81,7 @@ export const MapsController = ({
             {combinedFilter1 ? 'AND' : '[OPTIONAL]'}
           </span>
           <Select
+            id="map-filter-2"
             {...sharedProps}
             isDisabled={!combinedFilter1}
             value={combinedFilter2}

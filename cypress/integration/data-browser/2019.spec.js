@@ -43,11 +43,11 @@ describe('Data Browser 2019', function () {
       cy.get('.Error').should('not.exist')
   
       // Test validity of download link
-      if(isProd(HOST) || isBeta(HOST)){
-        cy.get('.QueryButton:first').dataUrl().then(({ status, statusCode, url }) => {
-          assert.isTrue(status, `\nURL: ${url}\nStatus Code: ${statusCode}\nHas valid download link`)
-        })
-      }
+      // if(isProd(HOST) || isBeta(HOST)){
+      //   cy.get('.QueryButton:first').dataUrl().then(({ status, statusCode, url }) => {
+      //     assert.isTrue(status, `\nURL: ${url}\nStatus Code: ${statusCode}\nHas valid download link`)
+      //   })
+      // }
     })
   
     it('Nationwide/Institution/LienStatus', function () {
@@ -78,11 +78,11 @@ describe('Data Browser 2019', function () {
       cy.get('.Error').should('not.exist')
   
       // Test validity of download link
-      if(isProd(HOST) || isBeta(HOST)){
-        cy.get('.QueryButton:first').dataUrl().then(({ status, statusCode, url }) => {
-          assert.isTrue(status, `\nURL: ${url}\nStatus Code: ${statusCode}\nHas valid download link`)
-        })
-      }
+      // if(isProd(HOST) || isBeta(HOST)){
+      //   cy.get('.QueryButton:first').dataUrl().then(({ status, statusCode, url }) => {
+      //     assert.isTrue(status, `\nURL: ${url}\nStatus Code: ${statusCode}\nHas valid download link`)
+      //   })
+      // }
     })
   
     it('County/Institution/Action&Purpose', function () {
@@ -122,11 +122,11 @@ describe('Data Browser 2019', function () {
       cy.get('.Error').should('not.exist')
   
       // Test validity of download link
-      if(isProd(HOST) || isBeta(HOST)){
-        cy.get('.QueryButton:first').dataUrl().then(({ status, statusCode, url }) => {
-          assert.isTrue(status, `\nURL: ${url}\nStatus Code: ${statusCode}\nHas valid download link`)
-        })
-      }
+      // if(isProd(HOST) || isBeta(HOST)){
+      //   cy.get('.QueryButton:first').dataUrl().then(({ status, statusCode, url }) => {
+      //     assert.isTrue(status, `\nURL: ${url}\nStatus Code: ${statusCode}\nHas valid download link`)
+      //   })
+      // }
     })
   
     it('MSA/Institution/PropertyType', function () {
@@ -166,11 +166,11 @@ describe('Data Browser 2019', function () {
       cy.get('.Error').should('not.exist')
   
       // Test validity of download link
-      if(isProd(HOST) || isBeta(HOST)){
-        cy.get('.QueryButton:first').dataUrl().then(({ status, statusCode, url }) => {
-          assert.isTrue(status, `\nURL: ${url}\nStatus Code: ${statusCode}\nHas valid download link`)
-        })
-      }
+      // if(isProd(HOST) || isBeta(HOST)){
+      //   cy.get('.QueryButton:first').dataUrl().then(({ status, statusCode, url }) => {
+      //     assert.isTrue(status, `\nURL: ${url}\nStatus Code: ${statusCode}\nHas valid download link`)
+      //   })
+      // }
     })
   }
 })

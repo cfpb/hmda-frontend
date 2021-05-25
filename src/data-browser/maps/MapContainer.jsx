@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef }  from 'react'
+import React, { useState, useEffect, useCallback, useRef, createContext }  from 'react'
 import LoadingButton from '../datasets/LoadingButton.jsx'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
 import Alert from '../../common/Alert.jsx'
@@ -28,6 +28,8 @@ import { MapsController } from './MapsController'
 import { ReportSummary } from './ReportSummary'
 
 mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlvaQw'
+
+export const MapContext = createContext({})
 
 /*
   Remaining features:
@@ -185,13 +187,22 @@ const MapContainer = props => {
     return null
   }, [data, filterData, selectedFilter, selectedFilterValue, selectedValue, selectedVariable])
 
-  const fetchCSV = () => {
-    const geoString = selectedGeography.value === 'county'
-      ? `counties=${feature}`
-      : `states=${fips2Shortcode[feature]}`
-    const filter = selectedFilterValue ? `&${varNameMapping[selectedFilter.value]}=${selectedFilterValue.value}` : ''
+  const makeCsvUrl = () => {
+    const geoString =
+      selectedGeography.value === 'county'
+        ? `counties=${feature}`
+        : `states=${fips2Shortcode[feature]}`
+
+    const filter = selectedFilterValue
+      ? `&${varNameMapping[selectedFilter.value]}=${selectedFilterValue.value}`
+      : ''
+
     const csv = `/v2/data-browser-api/view/csv?years=${year}&${geoString}&${varNameMapping[selectedVariable.value]}=${selectedValue.value}${filter}`
-    getCSV(csv, feature + '.csv')
+    return csv
+  }
+  
+  const fetchCSV = () => {
+    getCSV(makeCsvUrl(), feature + '.csv')
   }
 
   const onYearChange = selected=> {
@@ -255,58 +266,6 @@ const MapContainer = props => {
 
     if(searchArr.length) return `?${searchArr.join('&')}`
     return ''
-  }
-
-  const buildTable = () => {
-    if(!data || !selectedGeography || !selectedValue || !feature) return null
-    if(selectedFilterValue && !tableFilterData) return <LoadingIcon/>
-
-    const dataset = selectedFilterValue ? tableFilterData : data
-    const datasetLabel = selectedFilterValue ? 'tableFilterData' : 'data'
-
-    const currData = selectedGeography.value === 'county'
-      ? dataset[feature]
-      : dataset[fips2Shortcode[feature]]
-
-    if(!currData) return null
-
-    const currVarData = currData[selectedVariable.value]
-
-    const ths = valsForVar[selectedVariable.value]
-    const tds = ths.map(v => {
-      let val = v.value
-      if(val.match('%')) val = v.label
-      return currVarData[val] || 0
-    })
-    
-    const total = tds.reduce((m, curr) => m + parseInt(curr, 10), 0)
-
-    return (
-      <div className="TableWrapper" ref={tableRef}>
-        <h3 className= 'title' onClick={() => scrollToTable(tableRef.current)}>Records by {selectedVariable.label} in {getFeatureName(selectedGeography.value, feature)}{selectedFilterValue ? ` when ${selectedFilter.label} equals ${selectedFilterValue.label}` : ''}</h3>
-        <h4>Total: {total}</h4>
-        <table>
-          <thead>
-            <tr>
-              {[selectedVariable, ...ths].map((v,i) => {
-                return <th key={i}>{v.label}</th>
-              })}
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Count</th>
-              {tds.map((v, i) => <td key={i}>{v}</td>)}
-            </tr>
-            <tr>
-              <th>%</th>
-              {tds.map((v, i) => <td key={i}>{calcPct(v, total)}%</td>)}
-            </tr>
-          </tbody>
-        </table>
-        <LoadingButton onClick={fetchCSV}>Download Dataset</LoadingButton>
-      </div>
-    )
   }
 
   function scrollToMap() {
@@ -575,11 +534,6 @@ const MapContainer = props => {
     selectedValue
   )
 
-  const geoLevelLink = <ExternalLink 
-    text='geographic level' 
-    url='https://www.census.gov/programs-surveys/economic-census/guidance-geographies/levels.html' 
-  />
-
   const mapsControllerProps = {
     selectedGeography,
     geographies,
@@ -603,51 +557,57 @@ const MapContainer = props => {
     selectedValue
   )
 
+  const ctxValues = {
+    makeCsvUrl
+  }
+
   return (
-    <div className={'SelectWrapper ' + biasLabel} ref={mapRef}>
-      <div id='maps-overlay-container' className='page'>
-        <LoadingOverlay isLoading={isLoading} />
-        <MapsController {...mapsControllerProps} />
-        <div className='page map-page'>
-          <MapsNavBar
-            data={reportData}
-            hasFilter={!!combinedFilter1}
-            viewReport={() => scrollToTable(tableRef.current)}
-            download={fetchCSV}
-            clearFeature={() =>  setFeature(null)}
-            origPer1000={origPer100}
-          />
-          <div className='mapContainer' ref={mapContainer}>
-            {map === false ? (
-              <Alert type='error'>
-                <p>
-                  Your browser does not support WebGL, which is needed to run
-                  this application.
-                </p>
-              </Alert>
-            ) : null}
-            {resolved
-              ? makeLegend(
-                  ...resolved,
-                  year,
-                  selectedGeography,
-                  selectedVariable,
-                  selectedValue
-                )
-              : null}
+    <MapContext.Provider value={ctxValues}>
+      <div className={'SelectWrapper ' + biasLabel} ref={mapRef}>
+        <div id='maps-overlay-container' className='page'>
+          <LoadingOverlay isLoading={isLoading} />
+          <MapsController {...mapsControllerProps} />
+          <div className='page map-page'>
+            <MapsNavBar
+              data={reportData}
+              hasFilter={!!combinedFilter1}
+              viewReport={() => scrollToTable(tableRef.current)}
+              download={fetchCSV}
+              clearFeature={() => setFeature(null)}
+              origPer1000={origPer100}
+            />
+            <div className='mapContainer' ref={mapContainer}>
+              {map === false ? (
+                <Alert type='error'>
+                  <p>
+                    Your browser does not support WebGL, which is needed to run
+                    this application.
+                  </p>
+                </Alert>
+              ) : null}
+              {resolved
+                ? makeLegend(
+                    ...resolved,
+                    year,
+                    selectedGeography,
+                    selectedVariable,
+                    selectedValue
+                  )
+                : null}
+            </div>
           </div>
         </div>
+        <ReportSummary
+          tableRef={tableRef}
+          onClick={() => scrollToTable(tableRef.current)}
+          viewMap={scrollToMap}
+          download={fetchCSV}
+          year={year}
+          data={reportData}
+        />
+        <FilterReports data={reportData} />
       </div>
-      <ReportSummary
-        tableRef={tableRef}
-        onClick={() => scrollToTable(tableRef.current)}
-        viewMap={scrollToMap}
-        download={fetchCSV}
-        year={year}
-        data={reportData}
-      />
-      <FilterReports data={reportData} />
-    </div>
+    </MapContext.Provider>
   )
 }
 

@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { asNum } from '../../common/numberServices.js'
 import closeX from '../../common/images/maps-close-x.png'
+import { MapContext } from './MapContainer'
 
 const MAX_DISPLAY = 2
 let displayCount = 0
@@ -82,9 +83,20 @@ export const MapsNavBar = ({ data, viewReport, download, hasFilter, clearFeature
   )
 }
 
-export const NavBtn = ({ cname, label, onClick }) => <button type='button' className={`nav-btn clickable ${cname || ''}`} onClick={onClick}>{label}</button>
+export const NavBtn = ({ cname, label, onClick, dataUrl }) => (
+  <button
+    type='button'
+    className={`nav-btn clickable ${cname || ''}`}
+    onClick={onClick}
+    data-url={dataUrl}
+  >
+    {label}
+  </button>
+)
 
 export const MapsNavBtns = ({ download, viewReport, viewMap }) => {
+  const mapCtx = useContext(MapContext)
+
   return (
     <span className='no-print btns'>
       <span className='primary'>
@@ -113,6 +125,7 @@ export const MapsNavBtns = ({ download, viewReport, viewMap }) => {
           cname='download-data'
           onClick={download}
           label='Download Data'
+          dataUrl={mapCtx.makeCsvUrl()}
         />
       </span>
     </span>

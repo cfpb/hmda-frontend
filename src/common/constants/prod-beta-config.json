@@ -34,7 +34,7 @@
     "Q3": "12/01 - 12/31",
     "ANNUAL": "01/01 - 03/01"
   },
-  "showMaps": false,
+  "showMaps": true,
   "maintenanceMode": false,
   "filingAnnouncement": {
     "message": "We will be performing scheduled system maintenance on May 26th from 7pm - 7:30pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
