@@ -1,4 +1,8 @@
 export const DYNAMIC_DATASET = {
+  2020: {
+    lar : 'https://s3.amazonaws.com/cfpb-hmda-public/dev/dynamic-data/2020/2020_lar.txt',
+    ts : 'https://s3.amazonaws.com/cfpb-hmda-public/dev/dynamic-data/2020/2020_ts.txt',
+  },
   2019: {
     lar : 'https://s3.amazonaws.com/cfpb-hmda-public/prod/dynamic-data/2019/2019_lar.txt',
     ts : 'https://s3.amazonaws.com/cfpb-hmda-public/prod/dynamic-data/2019/2019_ts.txt',
