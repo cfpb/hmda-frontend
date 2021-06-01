@@ -1,4 +1,30 @@
 export const SNAPSHOT_DATASET = {
+  2020: {
+    snapshot_date: 'May 31, 2020',
+    codesheet: 'https://github.com/cfpb/hmda-platform/raw/master/docs/v2/spec/2020_Public_LAR_Code_Sheet_PDF.pdf',
+    datasets: [
+      {
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/snapshot-data/2020/2020_public_lar_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/snapshot-data/2020/2020_public_lar_pipe.zip',
+        label: 'Loan/Application Records (LAR)'
+      },
+      {
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/snapshot-data/2020/2020_public_ts_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/snapshot-data/2020/2020_public_ts_pipe.zip',
+        label: 'Transmittal Sheet Records (TS)'
+      },
+      {
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/snapshot-data/2020/2020_public_panel_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/snapshot-data/2020/2020_public_panel_pipe.zip',
+        label: 'Reporter Panel'
+      },
+      {
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/snapshot-data/2020/2020_public_msamd_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/snapshot-data/2020/2020_public_msamd_pipe.zip',
+        label: 'MSA/MD Description'
+      }
+    ]
+  },
   2019: {
     snapshot_date: 'April 27, 2020',
     codesheet: 'https://github.com/cfpb/hmda-platform/raw/master/docs/v2/spec/2019_Public_LAR_Code_Sheet_PDF.pdf',
