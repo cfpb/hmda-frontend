@@ -26,7 +26,7 @@ The various color palettes (orange, red, purple, green, blue) are used to highli
 The data tables show the aggregated data for the selected filter variables.  
 
 - When only one filter is selected, you will be presented with a single table that includes a row for each option of the filter.  
-- When two filters are selected, another table will be displayed for the secon filter's data.  Additionally, a new set of columns will be included in each table to highlight the intersection between the selected filters.
+- When two filters are selected, another table will be displayed for the second filter's data.  Additionally, a new set of columns will be included in each table to highlight the intersection between the selected filters.
   
 |One Filter|Two Filters|
 |---|---|
