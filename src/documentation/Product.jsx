@@ -4,10 +4,13 @@ import Heading from '../common/Heading.jsx'
 import YearSelector from '../common/YearSelector.jsx'
 import { DOCS_YEARS } from '../common/constants/years.js'
 
+export const excludeYearSelector = (slug) => ['check-digit', 'rate-spread'].indexOf(slug) > -1
+
 const Product = props => {
   let { list } = props
   const { heading, lead, inList, url, year, collection, slug } = props
   let header
+  
 
   if(!list || !list.length) {
     if(inList) return null
@@ -29,7 +32,7 @@ const Product = props => {
       <div className="intro">
         { header }
         { inList ? <p>{lead}</p> : null}
-        { inList || slug === 'check-digit' ? null : <YearSelector year={year} url={url} years={DOCS_YEARS} /> }
+        { inList || excludeYearSelector(slug) ? null : <YearSelector year={year} url={url} years={DOCS_YEARS} /> }
         { inList || slug === 'check-digit' ? null : <h4>Documentation</h4> }
         <ul>
           {list}
