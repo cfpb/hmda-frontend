@@ -1,9 +1,10 @@
 {
   "name": "prod-beta",
   "announcement": {
-    "message": "The Beta Platform is available for testing of HMDA data collected in 2018 through 2021.",
-    "type": "info",
-    "heading": "Announcement"
+    "message": "We will be performing scheduled system maintenance on June 8 from 8pm - 11pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance",
+    "link": null
   },
   "defaultPeriod": "2021-Q1",
   "defaultDocsPeriod": "2021",
@@ -36,7 +37,11 @@
   },
   "showMaps": true,
   "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "filingAnnouncement": {
+    "message": "We will be performing scheduled system maintenance on June 8 from 8pm - 11pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance"
+  },
   "dataPublicationYears": {
     "shared": [
       "2019",
