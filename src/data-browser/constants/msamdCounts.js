@@ -1585,4 +1585,5 @@ export default {
   2017: counts2017,
   2018: counts2018,
   2019: counts2019,
+  2020: counts2019, //TODO 2020 - Generate these counts
 }

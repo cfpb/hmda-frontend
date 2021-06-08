@@ -475,5 +475,6 @@ const msamdToName2017 = {...JSON.parse(cbsasRaw), ...msaToName}
 export default {
   2017: msamdToName2017,
   2018: msaToName,
-  2019: msaToName2019
+  2019: msaToName2019,
+  2020: msaToName2019, //TODO 2020 - Check for name changes, I should have a script somewhere
 }

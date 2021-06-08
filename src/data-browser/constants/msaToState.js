@@ -429,5 +429,6 @@ const msaToState2017 = { ...JSON.parse(cbsaToState), ...msaToState}
 export default {
   2017: msaToState2017,
   2018: msaToState,
-  2019: msaToState2019
+  2019: msaToState2019,
+  2020: msaToState2019, // TODO 2020 - Check for changes
 }

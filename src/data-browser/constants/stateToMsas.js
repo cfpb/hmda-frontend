@@ -20,4 +20,5 @@ export default {
   2017: data2017,
   2018: data2018,
   2019: data2019,
+  2020: data2019, // TODO 2020 - Check for new/removed MSAs
 }
