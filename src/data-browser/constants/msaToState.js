@@ -424,11 +424,22 @@ const msaToState2019 = {
   49500: ['PR'],
 }
 
-const msaToState2017 = { ...JSON.parse(cbsaToState), ...msaToState}
+const msaToState2020 = { ...msaToState2019, 22220: ['AR'] }
+
+const deleteFrom2020 = [
+  16974, // ['IL' ]
+  19380, // ['OH' ]
+  20524, // ['NY' ]
+  22220, // ['AR', 'MO' ]
+  39140, // ['AZ' ]
+  43524, // ['MD' ]
+]
+
+deleteFrom2020.forEach(key => delete msaToState2020[key])
 
 export default {
-  2017: msaToState2017,
+  2017: { ...JSON.parse(cbsaToState), ...msaToState },
   2018: msaToState,
   2019: msaToState2019,
-  2020: msaToState2019, // TODO 2020 - Check for changes
+  2020: msaToState2020,
 }
