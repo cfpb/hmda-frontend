@@ -188,6 +188,7 @@ const MapContainer = props => {
   }, [data, filterData, selectedFilter, selectedFilterValue, selectedValue, selectedVariable])
 
   const makeCsvUrl = () => {
+    if (!selectedVariable || !selectedValue) return 
     const geoString =
       selectedGeography.value === 'county'
         ? `counties=${feature}`
