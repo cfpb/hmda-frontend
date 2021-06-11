@@ -6,5 +6,5 @@ export default {
   2017: counties, // TODO: Create 2017 code to County name map
   2018: counties,
   2019: counties,
-  2020: counties, // TODO 2020 - Check county names
+  2020: counties,
 }
