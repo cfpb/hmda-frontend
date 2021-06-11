@@ -29,7 +29,7 @@
   text-decoration: none;
   color: #555;
   width: 85px;
-  border: 2px solid transparent;
+  border: 2px solid #eee;
   border-radius: 10px;
   text-align: center;
   background: transparent;
@@ -55,3 +55,5 @@
   display: flex;
   flex-grow: 1;
 }
+
+.TextSelector .option.QueryButton {  margin: 0; }
