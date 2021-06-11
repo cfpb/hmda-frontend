@@ -24,7 +24,7 @@
 }
 
 .TextSelector .option {
-  padding: 0.25em 0.5em;
+  padding: .25em;
   cursor: pointer;
   text-decoration: none;
   color: #555;
@@ -53,6 +53,5 @@
 .TextSelector .options {
   padding: 0.25em 0;
   display: flex;
-  justify-content: space-between;
   flex-grow: 1;
 }
