@@ -185,10 +185,14 @@ function makeLegend(data, variable, value, year, geography, mainVar, mainVal){
 
   return(
     <div className="legend">
-      <h4>Records per 1000 people in each {geography.value}</h4>
-      {(mVar && mVar !== variable.value) ? <h4>{mainVar.label}: {mainVal.label}</h4> : null}
-      <h4>{variable.label}: {value.label}</h4>
-      {makeLegendBody(bias)}
+      <div className="legendHeaderWrapper">
+        <h4>Records per 1000 people in each {geography.value}</h4>
+        {(mVar && mVar !== variable.value) ? <h4>{mainVar.label}: {mainVal.label}</h4> : null}
+        <h4>{variable.label}: {value.label}</h4>
+      </div>
+      <div className='legItemWrapper'>
+        {makeLegendBody(bias)}
+      </div>
     </div>
   )
 }

@@ -1,5 +1,3 @@
-// TODO: Make this file numberServices.js
-
 export const toInt = (str) => parseInt(str, 10)
 
 // Add the thousands separator

@@ -48,7 +48,7 @@
   border-top-left-radius: 10px;
 }
 
-.legend > h4 {
+.legend h4 {
   margin-top: 0.5em;
 }
 
@@ -507,6 +507,7 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
 @media only screen and (max-width: 830px) {
   .mapContainer { height: 40vh; }
   .maps-control-box { flex-direction: column; }
+  .mapboxgl-ctrl-bottom-right { display: none;}
 
   .maps-control-box .TextSelector { justify-content: flex-start; border: none;}
   .maps-control-box .TextSelector .options { justify-content: flex-start; flex-grow: 0; }
@@ -548,6 +549,41 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
   .summary-page .filter-label { font-size: 2em; }
   .summary-page .filter-label .filter-text,
   .summary-page .filter-label .filter-clause { white-space: initial; }
+
+  .legItemWrapper,
+  .legendHeaderWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .legendHeaderWrapper {
+    justify-content: space-evenly;
+    margin-bottom: .5em;
+  }
+  
+  .legend {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 0;
+    height: auto;
+    max-height: 100px;
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  .legend h4 {
+    margin-top: .25em;
+    margin-right: .25em;
+    padding-top: .25em;
+  }
+
+  .legWrap {
+    display: flex;
+    flex-flow: row wrap;
+  }
 }
 
 @media only screen and (max-width: 640px) {
