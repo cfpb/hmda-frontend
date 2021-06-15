@@ -36,7 +36,7 @@ export const MapsNavBar = ({ data, viewReport, download, hasFilter, clearFeature
     return (
       <div className='maps-nav-bar'>
         <span className='feature empty highlight colorTextWithBias'>
-          Select a {geoLevel.label} using the map below
+          Select a {geoLevel.label} on the map
         </span>
       </div>
     )
