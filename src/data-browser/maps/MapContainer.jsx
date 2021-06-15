@@ -74,7 +74,7 @@ function scrollToTable(node){
 
 const zoomMapping = {
   state: { default: 5 },
-  county: { default: 7 },
+  county: { default: 6 },
 }
 
 /**
@@ -488,7 +488,6 @@ const MapContainer = props => {
           CENTROID_LNG: lng,
           CENTROID_LAT: lat,
         })
-        scroll && setTimeout(() => scrollToMap(), 0)
       }
     }
 
@@ -517,7 +516,6 @@ const MapContainer = props => {
       setMapCenter((center || [-96, 38]).join(','))
       getTableData(properties)
       zoomToGeography(properties)
-      setTimeout(() => scrollToMap(), 0)
     }
 
     const clearPopup = () => popup.remove()
@@ -622,6 +620,17 @@ const MapContainer = props => {
             </div>
           </div>
         </div>
+        {/* vv Display Off-Map Legend for smaller screens vv */}
+        {resolved
+          ? makeLegend(
+              ...resolved,
+              year,
+              selectedGeography,
+              selectedVariable,
+              selectedValue,
+              'below'
+            )
+          : null}
         <ReportSummary
           tableRef={tableRef}
           onClick={() => scrollToTable(tableRef.current)}

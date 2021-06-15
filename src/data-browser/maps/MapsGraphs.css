@@ -48,6 +48,10 @@
   border-top-left-radius: 10px;
 }
 
+.legend.below { 
+  display: none;
+}
+
 .legend h4 {
   margin-top: 0.5em;
 }
@@ -438,6 +442,8 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
   pointer-events: all;
 }
 
+
+/* Print View */
 @media print {
   .print-only { display: block; }
   .MapsGraphs .maps-nav-bar { border: none !important;  width: 100%; padding: 0 0 .5em; }
@@ -485,9 +491,13 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
     justify-content: space-between;
   }
 
-  .legend {
+  .legend.on {
     bottom: 0px;
     box-shadow: none;
+  }
+
+  .legend.below { 
+    display: none;
   }
 }
 
@@ -505,7 +515,7 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
 
 /* Mobile Views */
 @media only screen and (max-width: 830px) {
-  .mapContainer { height: 40vh; }
+  .mapContainer { height: 60vh; }
   .maps-control-box { flex-direction: column; }
   .mapboxgl-ctrl-bottom-right { display: none;}
 
@@ -532,15 +542,19 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
     padding-bottom: 1.5em; 
     align-items:initial; 
   }
-  .SelectWrapper .maps-nav-bar .btns {  padding-top: 1em; padding-bottom: 0; max-width: 200px;}
+
+  .SelectWrapper .maps-nav-bar .btns { padding-bottom: 0; max-width: 200px; }
   .SelectWrapper .summary-page .btns {  display: flex; flex-flow: column nowrap; }
   .SelectWrapper .maps-nav-bar .primary {  width: 100%; display: block; margin: 0 auto;}
   .SelectWrapper .summary-page .btns .primary button {  width: 100%; }
   .SelectWrapper .nav-btn {  width: 100%; max-width: 100%; margin-top: .25em;}
-  .SelectWrapper .summary-page .btns .options {  display: flex; flex-flow: row nowrap; }
+  .SelectWrapper .summary-page .btns .options {  display: flex; flex-flow: row nowrap; flex-grow: 0; }
 
   .summary-page .report-nav-btns { padding-top: .25em;}
   
+  .SelectWrapper .maps-nav-bar  { font-size: 1em; padding: .5em;}
+  .SelectWrapper .maps-nav-bar .feature { font-size: 1.25em }
+  .SelectWrapper .maps-nav-bar .feature > * {flex-grow: 1 }
   .SelectWrapper .maps-nav-bar .highlight-wrapper { flex-flow: column wrap; }
   .SelectWrapper .maps-nav-bar .count-desc.count-per1000 { margin-left: 0; }
 
@@ -550,6 +564,11 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
   .summary-page .filter-label .filter-text,
   .summary-page .filter-label .filter-clause { white-space: initial; }
 
+
+  .filter-report {
+    overflow: scroll;
+  }
+
   .legItemWrapper,
   .legendHeaderWrapper {
     display: flex;
@@ -557,21 +576,38 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
     justify-content: space-evenly;
   }
 
+  .legItemWrapper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
   .legendHeaderWrapper {
     justify-content: space-evenly;
     margin-bottom: .5em;
+    text-align: center;
+    flex-direction: column;
+    font-size: .75em;
+  }
+
+  .legWrap span{
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
   }
   
-  .legend {
-    margin: 0;
-    padding: 0;
+  .legend.on { display: none }
+
+  .legend.below { 
+    display: block; 
+    max-height: none;
     position: relative;
-    top: 0;
     height: auto;
-    max-height: 100px;
     width: 100%;
     border-radius: 0;
     box-shadow: none;
+    margin-bottom: 1em;
   }
   
   .legend h4 {
@@ -586,6 +622,16 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
   }
 }
 
+@media only screen and (max-width: 730px) {
+  .SelectWrapper .maps-nav-bar .feature { 
+    font-size: 1.2em;
+  }
+
+  .SelectWrapper .maps-nav-bar .feature .count-desc { 
+    font-size: 1em;
+  }
+}
+
 @media only screen and (max-width: 640px) {
   .SelectWrapper .maps-nav-bar { 
     flex-direction: column;
@@ -593,6 +639,7 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
     padding-bottom: 1.5em;
     align-items: center;
     text-align: center;
+    font-size: 1em;
   }
 
   .SelectWrapper .highlight-wrapper span { 

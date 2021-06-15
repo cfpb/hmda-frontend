@@ -54,7 +54,12 @@
   padding: 0.25em 0;
   display: flex;
   flex-grow: 1;
-  overflow: scroll;
 }
 
 .TextSelector .option.QueryButton {  margin: 0; }
+
+@media only screen and (max-width:430px) {
+  .TextSelector .options {
+    overflow: scroll;
+  }
+}
