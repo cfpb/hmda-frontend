@@ -1,13 +1,13 @@
 {
   "name": "prod",
   "announcement": {
-    "message": "On March 31, 2021, the 2020 Modified LAR data was released.",
+    "message": "On June 17, 2021, the Disclosure Reports, MSA/MD Aggregate Reports, Snapshot National Loan-Level dataset, and Dynamic National Loan-Level dataset for 2020 were released. These files are accessible from the HMDA Data Publication page",
     "type": "info",
     "heading": "Announcement"
   },
   "defaultPeriod": "2021-Q1",
   "defaultDocsPeriod": "2021",
-  "publicationReleaseYear": "2019",
+  "publicationReleaseYear": "2020",
   "mlarReleaseYear": "2020",
   "filingPeriods": [
     "2021-Q1",
@@ -36,6 +36,7 @@
   "filingAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
+      "2020",
       "2019",
       "2018",
       "2017"
@@ -48,6 +49,7 @@
     ]
   },
   "dataBrowserYears": [
+    "2020",
     "2019",
     "2018"
   ]
