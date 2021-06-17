@@ -1,12 +1,12 @@
 {
   "name": "dev",
   "announcement": {
-    "message": "On March 31, 2021, the 2020 Modified LAR data was released.",
+    "message": "On June 17, 2021, the Disclosure Reports, MSA/MD Aggregate Reports, Snapshot National Loan-Level dataset, and Dynamic National Loan-Level dataset for 2020 were released. These files are accessible from the ",
     "type": "info",
     "heading": "Announcement",
     "link": {
-      "url": "https://www.consumerfinance.gov/about-us/newsroom/2020-hmda-data-on-mortgage-lending-now-available/",
-      "text": "View the press release."
+      "url": "https://ffiec.cfpb.gov/data-publication/",
+      "text": "HMDA Data Publications page."
     }
   },
   "defaultPeriod": "2021-Q1",
@@ -43,18 +43,6 @@
   "filingAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "mlar": [
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "aggregate": [
       "2020",
       "2019",
       "2018",

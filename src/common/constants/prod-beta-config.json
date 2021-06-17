@@ -7,7 +7,7 @@
   },
   "defaultPeriod": "2021-Q1",
   "defaultDocsPeriod": "2021",
-  "publicationReleaseYear": "2019",
+  "publicationReleaseYear": "2020",
   "filingPeriods": [
     "2021",
     "2021-Q1",
@@ -39,11 +39,6 @@
   "filingAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "mlar": [
       "2020",
       "2019",
       "2018",
@@ -51,6 +46,7 @@
     ]
   },
   "dataBrowserYears": [
+    "2020",
     "2019",
     "2018"
   ]

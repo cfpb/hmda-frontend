@@ -1,10 +1,19 @@
 {
   "log": [
     {
-      "date": "06/16/21",
+      "date": "06/17/21",
+      "type": "release",
+      "product": "datasets",
+      "description": "Disclosure Reports, MSA/MD Aggregate Reports, Snapshot National Loan-Level dataset, and Dynamic National Loan-Level dataset for 2020 were released.",
+      "links": [
+        {"text": "HMDA Data Publications", "url": "https://ffiec.cfpb.gov/data-publication/"}
+      ]
+    },
+    {
+      "date": "06/17/21",
       "type": "update",
       "product": "datasets",
-      "description": "Links to Dynamic Dataset files for 2018+ have been updated to point to compressed ZIP files instead of raw text files"
+      "description": "Links to Dynamic Dataset files for 2018+ have been updated to point to compressed (.zip) files instead of raw text files."
     },
     {
       "date": "04/29/21",
