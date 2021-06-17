@@ -24,12 +24,12 @@
 }
 
 .TextSelector .option {
-  padding: 0.25em 0.5em;
+  padding: .25em;
   cursor: pointer;
   text-decoration: none;
   color: #555;
   width: 85px;
-  border: 2px solid transparent;
+  border: 2px solid #eee;
   border-radius: 10px;
   text-align: center;
   background: transparent;
@@ -53,6 +53,13 @@
 .TextSelector .options {
   padding: 0.25em 0;
   display: flex;
-  justify-content: space-between;
   flex-grow: 1;
+}
+
+.TextSelector .option.QueryButton {  margin: 0; }
+
+@media only screen and (max-width:430px) {
+  .TextSelector .options {
+    overflow: scroll;
+  }
 }

@@ -74,7 +74,7 @@ function scrollToTable(node){
 
 const zoomMapping = {
   state: { default: 5 },
-  county: { default: 7 },
+  county: { default: 6 },
 }
 
 /**
@@ -152,6 +152,8 @@ const MapContainer = props => {
   const [state2018Data, setState2018Data] = useState(null)
   const [county2019Data, setCounty2019Data] = useState(null)
   const [state2019Data, setState2019Data] = useState(null)
+  const [county2020Data, setCounty2020Data] = useState(null)
+  const [state2020Data, setState2020Data] = useState(null)
 
   const [filterData, setFilterData] = useState(null)
   const [tableFilterData, setTableFilterData] = useState(null)
@@ -176,10 +178,12 @@ const MapContainer = props => {
         return geography.value === 'state' ? state2018Data : county2018Data
       case '2019':
         return geography.value === 'state' ? state2019Data : county2019Data
+      case '2020':
+        return geography.value === 'state' ? state2020Data : county2020Data
       default:
         return null
     }
-  }, [county2018Data, county2019Data, state2018Data, state2019Data])
+  }, [county2018Data, county2019Data, state2018Data, state2019Data, state2020Data, county2020Data])
 
   const resolveData = useCallback(() => {
     if(selectedFilterValue) return [filterData, selectedFilter, selectedFilterValue]
@@ -295,6 +299,16 @@ const MapContainer = props => {
     }
   }, [county2019Data, selectedGeography, year])
 
+  useEffect(() => {
+    if(!county2020Data && selectedGeography.value === 'county' && year === '2020'){
+      fetchQ.push(1)
+      runFetch('/2020/county.json').then(jsonData => {
+        setCounty2020Data(jsonData)
+        fetchQ.pop()
+      })
+    }
+  }, [county2020Data, selectedGeography, year])
+
 
   useEffect(() => {
     if(!state2018Data && selectedGeography.value === 'state' && year === '2018'){
@@ -316,6 +330,16 @@ const MapContainer = props => {
       })
     }
   }, [selectedGeography, state2019Data, year])
+
+  useEffect(() => {
+    if(!state2020Data && selectedGeography.value === 'state' && year === '2020'){
+      fetchQ.push(1)
+      runFetch('/2020/state.json').then(jsonData => {
+        setState2020Data(jsonData)
+        fetchQ.pop()
+      })
+    }
+  }, [selectedGeography, state2020Data, year])
 
 
   useEffect(() => {
@@ -464,7 +488,6 @@ const MapContainer = props => {
           CENTROID_LNG: lng,
           CENTROID_LAT: lat,
         })
-        scroll && setTimeout(() => scrollToMap(), 0)
       }
     }
 
@@ -493,7 +516,6 @@ const MapContainer = props => {
       setMapCenter((center || [-96, 38]).join(','))
       getTableData(properties)
       zoomToGeography(properties)
-      setTimeout(() => scrollToMap(), 0)
     }
 
     const clearPopup = () => popup.remove()
@@ -598,6 +620,17 @@ const MapContainer = props => {
             </div>
           </div>
         </div>
+        {/* vv Display Off-Map Legend for smaller screens vv */}
+        {resolved
+          ? makeLegend(
+              ...resolved,
+              year,
+              selectedGeography,
+              selectedVariable,
+              selectedValue,
+              'below'
+            )
+          : null}
         <ReportSummary
           tableRef={tableRef}
           onClick={() => scrollToTable(tableRef.current)}

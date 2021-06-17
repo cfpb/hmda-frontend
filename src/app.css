@@ -269,12 +269,6 @@ hr {
   font-size: 2rem;
   line-height: 1.7;
   max-width: 77rem;
-  text-align: justify;
-}
-
-.DataBrowser .home .lead,
-.DataBrowser .heading p {
-  text-align: justify;
 }
 
 .home h2 a {

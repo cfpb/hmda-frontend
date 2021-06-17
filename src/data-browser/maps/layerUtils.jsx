@@ -173,7 +173,8 @@ function normalizeValue(value) {
   return val
 }
 
-function makeLegend(data, variable, value, year, geography, mainVar, mainVal){
+// placement - on (overlayed on map), below (underneath map)
+function makeLegend(data, variable, value, year, geography, mainVar, mainVal, placement='on'){
   if(!data || !variable || !value || !geography || !mainVar || !mainVal) return null
 
   const val = normalizeValue(value)
@@ -184,11 +185,15 @@ function makeLegend(data, variable, value, year, geography, mainVar, mainVal){
   const [bias, _biasLabel] = getBias(data, variable.value, val, geography, counts, mVar, mVal)
 
   return(
-    <div className="legend">
-      <h4>Records per 1000 people in each {geography.value}</h4>
-      {(mVar && mVar !== variable.value) ? <h4>{mainVar.label}: {mainVal.label}</h4> : null}
-      <h4>{variable.label}: {value.label}</h4>
-      {makeLegendBody(bias)}
+    <div className={"legend " + placement}>
+      <div className="legendHeaderWrapper">
+        <h4>Records per 1000 people in each {geography.value}</h4>
+        {(mVar && mVar !== variable.value) ? <h4>{mainVar.label}: {mainVal.label}</h4> : null}
+        <h4>{variable.label}: {value.label}</h4>
+      </div>
+      <div className='legItemWrapper'>
+        {makeLegendBody(bias)}
+      </div>
     </div>
   )
 }

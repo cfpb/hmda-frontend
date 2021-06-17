@@ -14,6 +14,11 @@ import { withAppContext } from '../../common/appContextHOC.jsx'
 import './Aggregate.css'
 
 const detailsCache = {
+  2020: {
+    states: {},
+    msaMds: {},
+    reports: {}
+  },
   2019: {
     states: {},
     msaMds: {},

@@ -12,6 +12,11 @@ import { DISCLOSURE_REPORTS } from '../constants/disclosure-reports.js'
 import { withAppContext } from '../../common/appContextHOC.jsx'
 
 const detailsCache = {
+  2020: {
+    institutions: {},
+    msaMds: {},
+    reports: {}
+  },
   2019: {
     institutions: {},
     msaMds: {},

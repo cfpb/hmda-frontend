@@ -1,6 +1,12 @@
 {
   "log": [
     {
+      "date": "06/16/21",
+      "type": "update",
+      "product": "datasets",
+      "description": "Links to Dynamic Dataset files for 2018+ have been updated to point to compressed ZIP files instead of raw text files"
+    },
+    {
       "date": "04/29/21",
       "type": "update",
       "product": "documentation",
