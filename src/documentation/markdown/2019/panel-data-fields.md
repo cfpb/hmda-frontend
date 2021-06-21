@@ -17,13 +17,16 @@
 
 ### [agency\_code](#agency_code)
 - **Description:** The integer code corresponding to an institution's regulatory agency
-- **Values:**
-  - 1: OCC
-  - 2: FRB
-  - 3: FDIC
-  - 5: NCUA
-  - 7: HUD
-  - 9: CFPB
+- **Values:**  
+
+  |Value|Abbreviation|Name|
+  |--|--|--|
+  |**1**|_OCC_|Office of the Comptroller of the Currency|
+  |**2**|_FRB_|Federal Reserve System|
+  |**3**|_FDIC_|Federal Deposit Insurance Corporation|
+  |**5**|_NCUA_|National Credit Union Administration|
+  |**7**|_HUD_|Department of Housing and Urban Development|
+  |**9**|_CFPB_|Consumer Financial Protection Bureau|
 
 ### [id\_2017](#id_2017)
 - **Description:** The 2017 HMDA Platform primary identifier for an institution. This identifier is used in naming modified LAR files for <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/data-publication/modified-lar/2017">Data Publication - Modified LAR 2017</a>
