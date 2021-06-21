@@ -21,6 +21,11 @@
   padding: 0 3rem;
 }
 
+.DataPublication.App .Report table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .App .Report {
   max-width: 100%;
 }
