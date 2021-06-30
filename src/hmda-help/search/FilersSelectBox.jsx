@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState, useRef } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import { createFilter } from 'react-select'
 import CreatableSelect from 'react-select/creatable'
 import { MenuList } from '../../data-browser/datasets/MenuList'
@@ -48,7 +48,6 @@ export const FilersSearchBox = ({ endpoint, onChange, year, ...rest }) => {
   const [selectedValue, setSelectedValue] = useState(null)
   const [isInitial, setIsInitial] = useState(true)
   const [validationMsgs, setValidationMsgs] = useState([])
-  const selectRef = useRef()
 
   const [data, isFetching, error] = useRemoteJSON(
     endpoint || `https://ffiec.cfpb.gov/v2/reporting/filers/${year}`,
@@ -93,7 +92,6 @@ export const FilersSearchBox = ({ endpoint, onChange, year, ...rest }) => {
     else if (lengthCheck === 20) { // If you're trying to enter an LEI, this is a correctly formatted LEI
       setValidationMsgs([{ type: 'success', text: 'LEI (20 characters)' }])
       handleSelection({ value: text, label: text }) // Automatically perform an Institution search
-      if(selectRef && selectRef.current) selectRef.current.blur()
     }
     else if (lengthCheck > 20)  // You're probably searching for an Institution name, but if you were trying to enter an LEI...
       setValidationMsgs([{ type: 'status', text: `Not an LEI: ${lengthCheck} characters` }])
@@ -107,7 +105,6 @@ export const FilersSearchBox = ({ endpoint, onChange, year, ...rest }) => {
     <>
       <ValidationStatus items={validationMsgs} />
       <CreatableSelect
-        ref={ref => selectRef.current = ref }
         id='lei-select'
         autoFocus
         openOnFocus
