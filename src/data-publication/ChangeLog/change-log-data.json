@@ -1,6 +1,18 @@
 {
   "log": [
     {
+      "date": "07/01/21",
+      "type": "correction",
+      "product": "datasets",
+      "description": "A small number of entries reported a 'city' field column  which contained unescaped commas in the 2020 Snapshot Transmittal Sheet CSV file. We made the appropriate updates to the file to resolve this issue to prevent any parsing inconsistencies."
+    },
+    {
+      "date": "07/01/21",
+      "type": "correction",
+      "product": "datasets",
+      "description": "The LEI column header was incorrectly named 'upper' in the Reporter Panel file. We have corrected this so the column header displays the correct header name 'lei'."
+    },
+    {
       "date": "06/17/21",
       "type": "release",
       "product": "datasets",
