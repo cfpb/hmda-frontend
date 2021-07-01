@@ -1,7 +1,7 @@
 {
   "name": "prod-beta",
   "announcement": {
-    "message": "The Beta Platform is available for testing of HMDA data collected in 2018 through 2021.",
+    "message": "We will be making updates to the HMDA Beta Platform beginning July 6. Outages may intermittently occur during this time.",
     "type": "info",
     "heading": "Announcement"
   },
