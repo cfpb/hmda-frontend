@@ -5,11 +5,12 @@
     "type": "info",
     "heading": "Announcement"
   },
-  "defaultPeriod": "2021-Q1",
+  "defaultPeriod": "2021-Q2",
   "defaultDocsPeriod": "2021",
   "publicationReleaseYear": "2020",
   "filingPeriods": [
     "2021",
+    "2021-Q2",
     "2021-Q1",
     "2020",
     "2020-Q3",
