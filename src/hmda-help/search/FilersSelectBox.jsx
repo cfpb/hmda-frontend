@@ -89,8 +89,10 @@ export const FilersSearchBox = ({ endpoint, onChange, year, ...rest }) => {
     const lengthCheck = cleanNoSpace.length
     if (lengthCheck < 20 && cleanNoSpace.match(/[0-9]$/)) // Could be an LEI but it's too short
       setValidationMsgs([{ type: 'error', text: 'LEI must be 20 characters' }])
-    else if (lengthCheck === 20) // If you're trying to enter an LEI, this is a correctly formatted LEI
+    else if (lengthCheck === 20) { // If you're trying to enter an LEI, this is a correctly formatted LEI
       setValidationMsgs([{ type: 'success', text: 'LEI (20 characters)' }])
+      handleSelection({ value: text, label: text }) // Automatically perform an Institution search
+    }
     else if (lengthCheck > 20)  // You're probably searching for an Institution name, but if you were trying to enter an LEI...
       setValidationMsgs([{ type: 'status', text: `Not an LEI: ${lengthCheck} characters` }])
     else
