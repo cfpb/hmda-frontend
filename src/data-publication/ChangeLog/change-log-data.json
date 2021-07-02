@@ -11,6 +11,16 @@
       "type": "correction",
       "product": "datasets",
       "description": "The LEI column header was incorrectly named 'upper' in the Reporter Panel file. We have corrected this so the column header displays the correct header name 'lei'."
+
+    },
+    {
+      "date": "06/29/21",
+      "type": "correction",
+      "product": "reports",
+      "description": "Aggregate Report \"Applications by Median Age of Homes\" has been regenerated for 2020 and 2019 in order to address an error in the data format, which was causing the UI to crash.",
+      "links": [
+        {"text": "HMDA Aggregate Reports", "url": "https://ffiec.cfpb.gov/data-publication/aggregate-reports/"}
+      ]
     },
     {
       "date": "06/17/21",
