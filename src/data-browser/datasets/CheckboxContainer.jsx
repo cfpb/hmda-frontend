@@ -13,7 +13,9 @@ function renderCheckboxes(variable, vars, makeCb, year) {
           id={variable + v.id}
           type='checkbox'
         ></input>
-        <label htmlFor={variable + v.id}>{v.name}</label>
+        <label htmlFor={variable + v.id}>
+          {variables[variable].mapping[v.id]}
+        </label>
       </div>
     )
   })
