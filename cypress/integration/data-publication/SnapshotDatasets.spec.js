@@ -8,7 +8,7 @@ const sectionMap = {
 }
 
 describe('Snapshot National Loan-Level Dataset', function () {
-  const years = ['2019', '2018', '2017']
+  const years = ['2020', '2019', '2018', '2017']
   const datasetUrl = '/data-publication/snapshot-national-loan-level-dataset/'
   const basePath = '.grid > :nth-child(1) > :nth-child(2)'
   
