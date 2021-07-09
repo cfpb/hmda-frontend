@@ -37,7 +37,7 @@ export function urlExists(url) {
 /* Data Browser Helpers */
 // Open react-select drop-down if it's not loading
 export const openSelector = (id) =>
-  cy.get(`${id} > div > div`).first().should('not.contain', 'Loading').click()
+  cy.get(`${id} > div > div`).first({ timeout: 60000 }).should('not.contain', 'Loading').click()
 
 export const dbClick2018 = () => cy.get('#root > .DataBrowser > .Geography > .YearSelector > a:nth-child(2)').click()
 export const dbClick2017 = () => cy.get('#root > .DataBrowser > .Geography > .YearSelector > a:nth-child(3)').click()

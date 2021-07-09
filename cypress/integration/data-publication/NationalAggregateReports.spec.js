@@ -1,7 +1,7 @@
 const { HOST } = Cypress.env()
 
 describe('National Aggregate Report - Not Generated', () => {
-  ['2019', '2018'].forEach((year) => {
+  ['2020', '2019', '2018'].forEach((year) => {
     it(`${year} does not have Reports`, () => {
       cy.get({ HOST }).logEnv()
       cy.viewport(1000, 867)

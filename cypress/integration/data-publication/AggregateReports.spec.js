@@ -3,6 +3,34 @@ const { HOST } = Cypress.env()
 
 // TODO: Test CSV Download
 describe("Aggregate Reports", function() {
+  it('2020', function() {
+    cy.get({ HOST }).logEnv()
+    // Report: Applications by Ethnicity and Sex
+    cy.viewport(1680, 867)
+    cy.visit(`${HOST}/data-publication/aggregate-reports`)
+    cy.get('#root > .App > #main-content > .YearSelector > a')
+      .contains('2020')
+      .click()
+    
+    cy.findByText("Select a state...").type("Arizona{enter}")
+    cy.findByText("Select MSA/MD...").type("Phoenix{enter}")
+    cy.findByText("Select report...").type("Applications by Ethnicity and Sex{enter}")
+
+    // Report Content
+    cy.get("tbody > :nth-child(3) > :nth-child(2)").should("have.text", "20367")
+    cy.get("tbody > :nth-child(3) > :nth-child(3)").should("have.text", "4558205000")
+    cy.get("tbody > :nth-child(3) > :nth-child(4)").should("have.text", "999")
+    cy.get("tbody > :nth-child(3) > :nth-child(5)").should("have.text", "198315000")
+    cy.get("tbody > :nth-child(3) > :nth-child(6)").should("have.text", "4726")
+    cy.get("tbody > :nth-child(3) > :nth-child(7)").should("have.text", "861490000")
+    cy.get("tbody > :nth-child(3) > :nth-child(8)").should("have.text", "5432")
+    cy.get("tbody > :nth-child(3) > :nth-child(9)").should("have.text", "1201990000")
+    cy.get("tbody > :nth-child(3) > :nth-child(10)").should("have.text", "1946")
+    cy.get("tbody > :nth-child(3) > :nth-child(11)").should("have.text", "403290000")
+    cy.get("tbody > :nth-child(3) > :nth-child(12)").should("have.text", "1953")
+    cy.get("tbody > :nth-child(3) > :nth-child(13)").should("have.text", "376535000")
+  })
+
   it('2019', function() {
     cy.get({ HOST }).logEnv()
     // Report: Applications by Ethnicity and Sex

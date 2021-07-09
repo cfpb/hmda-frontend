@@ -1,7 +1,7 @@
 const { HOST, TEST_DELAY, ACTION_DELAY } = Cypress.env()
 
 describe('Dynamic National Loan-Level Dataset', function () {
-  const years = ['2019', '2018', '2017']
+  const years = ['2020', '2019', '2018', '2017']
   const datasetUrl = '/data-publication/dynamic-national-loan-level-dataset/'
   const linksPath = '#main-content > .grid > :nth-child(1) > ul > li > a'
 
