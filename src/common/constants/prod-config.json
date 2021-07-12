@@ -1,13 +1,10 @@
 {
   "name": "prod",
   "announcement": {
-    "message": "On June 17, 2021, the Disclosure Reports, MSA/MD Aggregate Reports, Snapshot National Loan-Level dataset, and Dynamic National Loan-Level dataset for 2020 were released. These files are accessible from the ",
-    "type": "info",
-    "heading": "Announcement",
-    "link": {
-      "url": "https://ffiec.cfpb.gov/data-publication/",
-      "text": "HMDA Data Publications page."
-    }
+    "message": "We will be performing scheduled system maintenance on July 13 from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance",
+    "link": null
   },
   "defaultPeriod": "2021-Q2",
   "defaultDocsPeriod": "2021",
@@ -38,7 +35,11 @@
   },
   "showMaps": true,
   "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "filingAnnouncement": {
+    "message": "We will be performing scheduled system maintenance on July 13 from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance"
+  },
   "dataPublicationYears": {
     "shared": [
       "2020",
