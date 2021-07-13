@@ -5,25 +5,7 @@ import DocLink from './DocLink.jsx'
 function renderCheckboxes(variable, vars, makeCb, year) {
   const variables = getVariables(year)
 
-  return variables[variable].options.map((v) => {
-    // Add a "Select/Unselect all" box that behaves a bit differently
-    if(v.id === 'all') { 
-      const allChecked =
-        Object.keys(vars[variable]).length &&
-        Object.keys(vars[variable]).every((x) => vars[variable][x])
-
-        return (
-          <button
-            className='CheckboxToggleBtn'
-            key={v.id}
-            onClick={makeCb(variable, v)}
-            id={variable + v.id}
-          >
-            {allChecked ? 'Clear Selected' : 'Select All'}
-          </button>
-        )
-    }
-
+  const boxes = variables[variable].options.map((v) => {
     return (
       <div className='CheckboxWrapper' key={v.id}>
         <input
@@ -36,6 +18,24 @@ function renderCheckboxes(variable, vars, makeCb, year) {
       </div>
     )
   })
+
+  const allChecked =
+    Object.keys(vars[variable]).length &&
+    Object.keys(vars[variable]).every((x) => vars[variable][x])
+
+  boxes.unshift(
+    // Add a button to Select/Clear all options for this variable
+    <button
+      className='CheckboxToggleBtn'
+      key={'all'}
+      onClick={makeCb(variable, {id: 'all'})}
+      id={variable + "-all"}
+    >
+      {allChecked ? 'Clear Selected' : 'Select All'}
+    </button>
+  )
+
+  return boxes
 }
 
 const CheckboxContainer = props => {

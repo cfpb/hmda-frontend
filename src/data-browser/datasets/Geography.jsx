@@ -318,6 +318,7 @@ class Geography extends Component {
         const nextVal = !allChecked
         newState.variables[variable] = variables[variable].options.reduce(
           (acc, opt) => {
+            // Only create entries for options that are selected
             nextVal && opt.id !== 'all' && (acc[opt.id] = nextVal)
             return acc
           },
