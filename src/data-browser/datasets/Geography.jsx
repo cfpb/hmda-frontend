@@ -307,7 +307,27 @@ class Geography extends Component {
         }
       }
 
-      if(!newState.variables[variable][subvar.id]) delete newState.variables[variable][subvar.id]
+      // Check/Uncheck all options for a variable
+      if (subvar.id === 'all') {
+        const allChecked =
+          Object.keys(this.state.variables[variable]).length &&
+          Object.keys(this.state.variables[variable]).every(
+            (key) => this.state.variables[variable][key]
+          )
+        const variables = getVariables(this.state.year)
+        const nextVal = !allChecked
+        newState.variables[variable] = variables[variable].options.reduce(
+          (acc, opt) => {
+            // Only create entries for options that are selected
+            nextVal && opt.id !== 'all' && (acc[opt.id] = nextVal)
+            return acc
+          },
+          {}
+        )
+      } else if (!newState.variables[variable][subvar.id]){
+        // Clear a single option's checkbox
+        delete newState.variables[variable][subvar.id]
+      }
 
       const largeFile = this.checkIfLargeFile(this.state.category, this.state.items)
 
