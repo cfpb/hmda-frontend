@@ -204,7 +204,8 @@ function makeObj(label, definition) {
 
 function buildWithId(label, definition, list) {
   const obj = makeObj(label, definition)
-
+  obj.options.push({ id: 'all', name: 'Select All' })
+  
   list.forEach(o => {
     const nameWithId = `${o.id} - ${o.name}`
     obj.options.push({id: o.id, name: o.name})
@@ -216,7 +217,8 @@ function buildWithId(label, definition, list) {
 
 function buildEncoded(label, definition, list) {
   const obj = makeObj(label, definition)
-
+  obj.options.push({ id: 'all', name: 'Select All' })
+  
   list.forEach(name => {
     const id = encodeURIComponent(name)
     obj.options.push({ id, name })

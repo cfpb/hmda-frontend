@@ -4,7 +4,26 @@ import DocLink from './DocLink.jsx'
 
 function renderCheckboxes(variable, vars, makeCb, year) {
   const variables = getVariables(year)
+
   return variables[variable].options.map((v) => {
+    // Add a "Select/Unselect all" box that behaves a bit differently
+    if(v.id === 'all') { 
+      const allChecked =
+        Object.keys(vars[variable]).length &&
+        Object.keys(vars[variable]).every((x) => vars[variable][x])
+
+        return (
+          <button
+            className='CheckboxToggleBtn'
+            key={v.id}
+            onClick={makeCb(variable, v)}
+            id={variable + v.id}
+          >
+            {allChecked ? 'Clear Selected' : 'Select All'}
+          </button>
+        )
+    }
+
     return (
       <div className='CheckboxWrapper' key={v.id}>
         <input
