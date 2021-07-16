@@ -77,6 +77,10 @@ svg {
   margin-bottom: 5px;
 }
 
+.SelectWrapper .CheckboxToggleBtn:hover {
+  box-shadow: none;
+}
+
 .QueryButton {
   background-color: #0071bc;
   color: #fff;
