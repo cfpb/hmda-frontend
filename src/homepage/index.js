@@ -2,8 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { isBeta } from '../common/Beta.jsx'
 import { withAppContext } from '../common/appContextHOC'
-import ConfiguredAlert from '../common/ConfiguredAlert'
-
+import { AnnouncementBanner } from './AnnouncementBanner'
 import './Home.css'
 
 export function isProd() {
@@ -12,7 +11,7 @@ export function isProd() {
 
 const Home = ({ config }) => {
   const isProdBeta = isProd() && isBeta()
-  const { announcement, defaultPeriod, publicationReleaseYear, mlarReleaseYear } = config
+  const { defaultPeriod, publicationReleaseYear, mlarReleaseYear } = config
 
   return (
     <main className="App home" id="main-content">
@@ -24,7 +23,7 @@ const Home = ({ config }) => {
             publicly disclose information about mortgages.
           </p>
         </header>
-        {announcement && <ConfiguredAlert {...announcement} />}
+        <AnnouncementBanner {...config} />
       </div>
       <div style={{marginTop: '3em'}} className="usa-grid-full">
         <div className="card-container">
