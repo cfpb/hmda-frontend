@@ -63,7 +63,7 @@ describe('Data Browser 2019', function () {
   
       // Variables
       cy.get('#VariableSelector').type("lien status{enter}")
-      cy.findByText('1 - Secured By First Lien').click()
+      cy.findByText('Secured By First Lien').click()
       cy.url().should('include', '&lien_statuses=1')
   
       // View Summary Table
@@ -74,7 +74,7 @@ describe('Data Browser 2019', function () {
         cy.wrap(text).should('contain', 'bank of america')
         cy.wrap(text).should('contain', 'chase bank')
       })
-      cy.get('.Aggregations :nth-child(2) > .sublist > li').should('have.text', '1 - Secured By First Lien')
+      cy.get('.Aggregations :nth-child(2) > .sublist > li').should('have.text', 'Secured By First Lien')
       cy.get('.Error').should('not.exist')
   
       // Test validity of download link
@@ -150,7 +150,7 @@ describe('Data Browser 2019', function () {
   
       // Variables
       cy.get('#VariableSelector').type("loan type{enter}")
-      cy.findByText('1 - Conventional').click()
+      cy.findByText('Conventional').click()
       cy.url().should('include', '&loan_types=1')
   
       // View Summary Table
@@ -162,7 +162,7 @@ describe('Data Browser 2019', function () {
         cy.wrap(text).should('contain', 'bank of america')
         cy.wrap(text).should('contain', 'chase bank')
       })
-      cy.get('.Aggregations :nth-child(3) > .sublist > li').should('have.text', '1 - Conventional')
+      cy.get('.Aggregations :nth-child(3) > .sublist > li').should('have.text', 'Conventional')
       cy.get('.Error').should('not.exist')
   
       // Test validity of download link
