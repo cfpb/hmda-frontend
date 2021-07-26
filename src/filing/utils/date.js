@@ -108,3 +108,9 @@ const openForPreview = (period, filingQuarters) => {
   if(!previewPeriods) return false
   return previewPeriods.indexOf(period) > -1
 }
+
+export const numDaysBetween = function(d1, d2) {
+  var diff = Math.abs(d1.getTime() - d2.getTime());
+  const daysDiff = diff / (1000 * 60 * 60 * 24)
+  return daysDiff
+};
