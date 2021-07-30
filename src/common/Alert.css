@@ -120,6 +120,16 @@
   margin-bottom: 0
 }
 
+.alert .official {
+  font-weight: bold;
+  border-bottom: 2px solid #02bfe7;
+}
+
+.alert .simulated {
+  font-weight: bold;
+  border-bottom: 2px solid #fdb81e;
+}
+
 @media (min-width: 801px){
   .alert-text > .failed {
     width: 80%;

@@ -2,6 +2,7 @@ import React from 'react'
 import { formattedQtrBoundaryDate } from '../utils/date'
 import Alert from '../../common/Alert'
 import { HeaderDocsLink } from './Header'
+import { isBeta } from '../../common/Beta'
 
 export const HeaderOpen = ({
   filingQtr,
@@ -13,6 +14,18 @@ export const HeaderOpen = ({
   const filingDeadline = filingQtr
     ? `${formattedQtrBoundaryDate(filingQtr, filingQuarters, 1)}, ${filingYear}`
     : `${formattedQtrBoundaryDate("ANNUAL", filingQuarters, 1)}, ${+filingYear + 1}`
+
+  const officialOrSimulated = isBeta() ? (
+    <>
+      You may <span className="simulated">simulate filing of HMDA data</span> for
+      your authorized institutions below.
+    </>
+  ) : (
+    <>
+      You may <span className="official">file official HMDA data</span> for your
+      authorized institutions below.
+    </>
+  );
 
   return (
     <Alert>
@@ -43,7 +56,8 @@ export const HeaderOpen = ({
         <p className="font-lead">
           <HeaderDocsLink filingYear={filingYear} isQuarter={filingQtr} />
           <br />
-          You may file HMDA data for your authorized institutions below.
+          <br />
+          {officialOrSimulated}
         </p>
       </div>
     </Alert>

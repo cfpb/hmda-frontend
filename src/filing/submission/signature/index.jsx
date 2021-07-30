@@ -4,7 +4,7 @@ import ErrorWarning from '../../common/ErrorWarning.jsx'
 import Loading from '../../../common/LoadingIcon.jsx'
 import { VALIDATED, NO_MACRO_EDITS, SIGNED } from '../../constants/statusCodes.js'
 import Alert from '../../../common/Alert.jsx'
-
+import { isBeta } from '../../../common/Beta.jsx'
 import './Signature.css'
 
 const showWarning = props => {
@@ -64,10 +64,9 @@ const Signature = props => {
       <header>
         <h2>Signature</h2>
         <p className="font-lead">
-          To complete your submission, select the checkbox below. Next,
-          select the &quot;Submit HMDA data&quot; button to practice
-          submitting data. When the filing period opens, selecting the checkbox
-          will certify the accuracy and completeness of the data submitted.
+          To complete your official regulatory submission, select the checkbox below to certify the
+          accuracy and completeness of the data submitted. Then, click the
+          &quot;Submit HMDA data&quot; button.
         </p>
       </header>
 
@@ -87,7 +86,7 @@ const Signature = props => {
           />
           <label htmlFor="signatureAuth">
             I am an authorized representative of my institution with knowledge of
-            the data submitted and am certifying to the accuracy and completeness
+            the data submitted and I am certifying the accuracy and completeness
             of the data submitted.
           </label>
         </li>

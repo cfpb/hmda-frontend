@@ -34,6 +34,11 @@ const RefileText = props => {
       <p className="usa-font-lead">
         Are you sure you want to replace your HMDA data for this filing?
       </p>
+      <br />
+      <p className="usa-font-lead">
+        If you choose to proceed, your previously submitted HMDA data<br/>
+        <b>will be deleted and cannot be recovered.</b>
+      </p>
       {getStatus(props.code)}
     </div>
   )

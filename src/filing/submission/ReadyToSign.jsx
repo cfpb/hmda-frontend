@@ -10,7 +10,7 @@ const SubmissionPageInfo = ({ isPassedQuarter }) => {
     content = <div>The filing deadline has passed. New signings are no longer accepted.</div>
   } else {
     type = 'info'
-    heading = 'Your filing is ready to be signed and submitted'
+    heading = 'Your official filing is ready to be signed and submitted'
     content = (
       <div>
         Please review your filing summary and sign your filing at the bottom of
