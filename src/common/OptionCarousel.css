@@ -1,3 +1,62 @@
+.oc {
+  position: relative;
+  user-select: all;
+}
+
+.oc .progress {
+  display: flex;
+  flex-flow: row nowrap;
+  position: absolute;
+  user-select: none;
+  top: 5px;
+  right: 5px;
+  z-index: 1;
+  border-radius: 5px;
+  background: rgba(153, 153, 153, .8); 
+}
+
+.oc .progress button {
+  cursor: default;
+  position:relative;
+  user-select: none;
+  margin: 0;
+  padding: 3px 6px;
+  background: none;
+  color: white;
+  border: 1px solid rgba(0,0,0,0)
+}
+
+.oc .progress button.clickable {
+  cursor: pointer;
+}
+
+.oc .progress button.clickable:hover,
+.oc .progress button.clickable:focus-visible { 
+  background: #DDD;
+  border: 1px solid darkgrey;
+  color: black;
+}
+
+.oc .progress button.pause svg {
+  width: 10px;
+  height: 10px;
+}
+
+.oc .progress button.pause svg * {
+  fill: white;
+  stroke: white;
+}
+
+.oc .progress button.pause:hover svg *,
+.oc .progress button.pause:focus-visible svg * {
+  fill: #000; 
+  stroke: black;
+}
+
+.oc .progress button.clickable:active {
+  background: #fff;
+}
+
 .oc-option {
   position: relative;
   user-select: none;
@@ -25,9 +84,9 @@
   content: '';
 }
 
-.oc-option:hover {
+.oc .clickable .oc-option:hover {
   cursor: pointer;
-  background: #d8d2c3;
+  background: #ccc;
 }
 
 .oc-option-custom {
