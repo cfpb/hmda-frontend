@@ -58,6 +58,21 @@
   transition: visibility 0.2s, opacity 0.2s;
 }
 
+.modal .inline {
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: space-between;
+}
+
+.modal h3.notice {
+  margin: 1em 1.25em 0 0;
+  color: red;
+}
+
+.modal .red {
+  color: red;
+}
+
 div.showing-blurred-blocker {
   visibility: visible;
   opacity: 1;
