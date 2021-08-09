@@ -1,3 +1,18 @@
 .RefileText .question {
   margin-bottom: 1em;
 }
+
+.RefileText .emphasized {
+  font-weight: bolder;
+  letter-spacing: 1px;
+}
+
+.RefileText .emphasized.urgent {
+  letter-spacing: 0;
+  color: red;
+}
+
+.RefileText .notice-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+}
