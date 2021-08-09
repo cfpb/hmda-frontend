@@ -59,7 +59,7 @@ export default class ModalConfirm extends Component {
 
     if (!filingPeriod || !lei || !hideConfirmModal || !triggerRefile) return null
 
-    const dataOfficialVsTest = isBeta() ? 'HMDA test' : 'offical HMDA'
+    const dataOfficialVsTest = isBeta() ? 'HMDA test' : 'official HMDA'
 
     const headerOfficialVsTest = isBeta() 
       ? <h3 className="notice test">For Testing Purposes Only</h3> 
