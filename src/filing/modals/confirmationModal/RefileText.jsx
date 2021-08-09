@@ -5,25 +5,25 @@ import { isBeta } from '../../../common/Beta.jsx'
 
 import './RefileText.css'
 
-export const getStatus = code => {
+export const getStatus = (code, filingPeriod) => {
   let status
   let appendComplete = null
 
   if (code > VALIDATING) {
     status = 'is in progress'
-    if (code === SIGNED) status = 'has already been submitted'
+    if (code === SIGNED) status = 'has already been submitted.'
   }
 
   if (code === SIGNED) {
     appendComplete =
-      ' and your new HMDA file will not be submitted until you clear and/or verify all edits and submit the data'
+      ' Resubmissions are not complete until you clear and/or verify all edits and submit the signed replacement data'
   }
 
   const message = status ? (
     <>
       <br />
       <p>
-        The HMDA data for this filing year <strong>{status}</strong>
+        HMDA data for <strong>{filingPeriod} {status}</strong>
         {appendComplete}.
       </p>
     </>
@@ -46,23 +46,24 @@ const BetaInfoBlock = () => (
   </>
 );
 
-const WarningDataWillBeDeleted = () =>
+const WarningDataWillBeDeleted = ({ institution, filingPeriod }) =>
   !isBeta() && (
     <>
       <br />
       <span className="notice-wrapper">
         <p className="usa-font-lead">
-          If you choose to proceed, your previously submitted HMDA data
-          <br />
-          <span className="emphasized urgent">
-            will be deleted and cannot be recovered.
-          </span>
+          The previously submitted {filingPeriod} HMDA data for{" "}
+          <span className="bold">{institution.name} </span>
+          <span className="emphasized urgent nowrap">
+            will be deleted and cannot be recovered
+          </span> if you choose to proceed.
         </p>
       </span>
     </>
   );
 
 const RefileText = (props) => {
+  const { institution, code, filingPeriod } = props
   const dataOfficialVsTest = isBeta() ? "HMDA test data" : "official HMDA data";
 
   return (
@@ -71,8 +72,11 @@ const RefileText = (props) => {
       <p className="usa-font-lead">
         Are you sure you want to replace your {dataOfficialVsTest} for this filing?
       </p>
-      {getStatus(props.code)}
-      <WarningDataWillBeDeleted />
+      {getStatus(code, filingPeriod)}
+      <WarningDataWillBeDeleted 
+        institution={institution} 
+        filingPeriod={filingPeriod}
+      />
     </div>
   );
 };

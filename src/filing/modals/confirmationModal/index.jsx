@@ -52,6 +52,7 @@ export default class ModalConfirm extends Component {
       newFile,
       hideConfirmModal,
       triggerRefile,
+      institution
     } = this.props
 
     // get the page
@@ -78,7 +79,11 @@ export default class ModalConfirm extends Component {
           </span>
           <hr />
           <div className="modal-contents">
-            <RefileText code={code} />
+            <RefileText
+              code={code}
+              filingPeriod={filingPeriod}
+              institution={institution}
+            />
             <button
               tabIndex={showing ? 0 : -1}
               onClick={e => {

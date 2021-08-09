@@ -11,8 +11,3 @@
   letter-spacing: 0;
   color: red;
 }
-
-.RefileText .notice-wrapper {
-  display: flex;
-  flex-wrap: nowrap;
-}
