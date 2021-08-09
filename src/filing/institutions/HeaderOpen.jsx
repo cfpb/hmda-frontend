@@ -57,6 +57,17 @@ export const HeaderOpen = ({
           <HeaderDocsLink filingYear={filingYear} isQuarter={filingQtr} />
           <br />
           <br />
+          {!isBeta() && (
+            <>
+              The{" "}
+              <a href="https://ffiec.beta.cfpb.gov/filing" target="_blank">
+                HMDA Beta Platform
+              </a>{" "}
+              is available to test your HMDA data prior to official submission.
+            </>
+          )}
+          <br />
+          <br />
           {officialOrSimulated}
         </p>
       </div>
