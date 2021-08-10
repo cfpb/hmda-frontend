@@ -72,7 +72,7 @@ const RefileText = (props) => {
       <p className="usa-font-lead">
         Are you sure you want to replace your {dataOfficialVsTest} for this filing?
       </p>
-      {getStatus(code, filingPeriod)}
+      {!isBeta() && getStatus(code, filingPeriod)}
       <WarningDataWillBeDeleted 
         institution={institution} 
         filingPeriod={filingPeriod}

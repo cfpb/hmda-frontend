@@ -4,7 +4,6 @@ import ErrorWarning from '../../common/ErrorWarning.jsx'
 import Loading from '../../../common/LoadingIcon.jsx'
 import { VALIDATED, NO_MACRO_EDITS, SIGNED } from '../../constants/statusCodes.js'
 import Alert from '../../../common/Alert.jsx'
-import { isBeta } from '../../../common/Beta.jsx'
 import './Signature.css'
 
 const showWarning = props => {
