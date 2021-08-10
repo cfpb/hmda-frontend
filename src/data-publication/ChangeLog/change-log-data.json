@@ -6,7 +6,7 @@
       "product": "datasets",
       "description": "The ARID2017 to LEI Reference Table has been released. This provides a mapping of 2017 Agency Code and Respondent IDs (ARID2017) to their current LEIs.",
       "links": [
-        {"text": "HMDA Snapshot Datasets", "url": "http://localhost:3000/data-publication/snapshot-national-loan-level-dataset/2020"}
+        {"text": "HMDA Snapshot Datasets", "url": "https://ffiec.cfpb.gov/data-publication/snapshot-national-loan-level-dataset/2020"}
       ]
     },
     {
