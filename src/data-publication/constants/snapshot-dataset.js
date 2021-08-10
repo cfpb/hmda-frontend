@@ -1,3 +1,10 @@
+// Cross Reference for ARID2017 to LEI.  Same source for all years
+const ARID2017_XREF = {
+  csv: "https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/arid2017tolei/arid2017_to_lei_xref_csv.zip",
+  txt: "https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/arid2017tolei/arid2017_to_lei_xref_psv.zip",
+  label: "ARID2017 to LEI Reference Table",
+}
+
 export const SNAPSHOT_DATASET = {
   2020: {
     snapshot_date: 'May 3, 2021',
@@ -22,7 +29,8 @@ export const SNAPSHOT_DATASET = {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2020/2020_public_msamd_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2020/2020_public_msamd_pipe.zip',
         label: 'MSA/MD Description'
-      }
+      },
+      ARID2017_XREF
     ]
   },
   2019: {
@@ -48,7 +56,8 @@ export const SNAPSHOT_DATASET = {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2019/2019_public_msamd_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2019/2019_public_msamd_pipe.zip',
         label: 'MSA/MD Description'
-      }
+      },
+      ARID2017_XREF
     ]
   },
   2018: {
@@ -74,7 +83,8 @@ export const SNAPSHOT_DATASET = {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2018/2018_public_msamd_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2018/2018_public_msamd_pipe.zip',
         label: 'MSA/MD Description'
-      }
+      },
+      ARID2017_XREF
     ]
   },
   2017: {
@@ -101,7 +111,8 @@ export const SNAPSHOT_DATASET = {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_msamd_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_msamd_txt.zip',
         label: 'MSA/MD Description'
-      }
+      },
+      ARID2017_XREF
     ]
   },
 }
