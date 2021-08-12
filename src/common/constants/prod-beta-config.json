@@ -1,13 +1,10 @@
 {
   "name": "prod-beta",
   "announcement": {
-    "message": "This month, we are testing new updates to the Beta platform. Outages may intermittently occur during this time. Please note that the Beta platform is for testing purposes only. Send any feedback or questions regarding your Beta platform usage experience to ",
-    "type": "info",
-    "heading": "Announcement",
-    "link": {
-      "url": "mailto:hmdahelp@cfpb.gov?subject=HMDA Beta Platform",
-      "text": "hmdahelp@cfpb.gov."
-    }
+    "message": "We will be performing scheduled system maintenance on August 11 from 8pm - 11pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance",
+    "link": null
   },
   "defaultPeriod": "2021-Q2",
   "defaultDocsPeriod": "2021",
@@ -41,7 +38,11 @@
   },
   "showMaps": true,
   "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "filingAnnouncement": {
+    "message": "We will be performing scheduled system maintenance on August 11 from 8pm - 11pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance"
+  },
   "dataPublicationYears": {
     "shared": [
       "2020",
