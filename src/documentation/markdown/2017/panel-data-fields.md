@@ -30,12 +30,12 @@
   |**9**|_CFPB_|Consumer Financial Protection Bureau|
 
 ### [id\_2017](#id_2017)
-- **Description:** This identifier is used in naming modified LAR files for <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/data-publication/modified-lar/2017">Data Publication - Modified LAR 2017</a>
+- **Description:** The 2017 HMDA Platform primary identifier for an institution. This identifier is used in the naming of <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/data-publication/modified-lar/2017">2017 Modified LAR</a> files.
 - **Values:**
   - Varying values
 
 ### [arid\_2017](#arid_2017)
-- **Description:** The concatenation of an institution's 2017 Agency Code and Respondent ID. In order to match between 2017 and 2018, take the arid_2017 column from the 2018 panel and use this to join to the concatenation of the agency code and respondent ID in the 2017 panel. Respondent ID in 2017 and prior is not a unique value and must be joined to agency code to generate a primary key for the HMDA dataset. For 2018 and forward, LEI will be the primary key. For more information on institution identifiers, please see the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/documentation/2020/identifiers-faq/">Institution Identifiers FAQ</a>
+- **Description:** The concatenation of an institution's 2017 Agency Code and Respondent ID. In order to match between 2017 and 2018, take the arid\_2017 column from the 2018 panel and use this to join to the concatenation of the agency code and respondent ID in the 2017 panel. Respondent ID in 2017 and prior is not a unique value and must be joined to agency code to generate a primary key for the HMDA dataset. For 2018 and forward, LEI will be the primary key. For more information on institution identifiers, please see the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/documentation/2020/identifiers-faq/">Institution Identifiers FAQ</a>
 - **Values:**
   - Varying values
 
