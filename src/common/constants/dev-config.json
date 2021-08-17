@@ -1,14 +1,21 @@
 {
   "name": "dev",
-  "announcement": {
-    "message": "On June 17, 2021, the Disclosure Reports, MSA/MD Aggregate Reports, Snapshot National Loan-Level dataset, and Dynamic National Loan-Level dataset for 2020 were released. These files are accessible from the ",
-    "type": "info",
-    "heading": "Announcement",
-    "link": {
-      "url": "https://ffiec.cfpb.gov/data-publication/",
-      "text": "HMDA Data Publications page."
+  "announcement": [
+    {
+      "message": "The HMDA Filing application will be unavailable from August 31st through September 10th while we perform scheduled system maintenance.  During this time users will be unable to login, submit, or view HMDA data via the Filing application.  Data Browser, Data Publications, Tools, and Documentation will not be affected and will remain accessible during this maintenance window.",
+      "type": "warning",
+      "heading": "Scheduled Maintenance (Aug 31 - Sept 10)"
+    },
+    {
+      "message": "On June 17, 2021, the Disclosure Reports, MSA/MD Aggregate Reports, Snapshot National Loan-Level dataset, and Dynamic National Loan-Level dataset for 2020 were released. These files are accessible from the ",
+      "type": "info",
+      "heading": "Data Publication Release",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/data-publication/",
+        "text": "HMDA Data Publications page."
+      }
     }
-  },
+  ],
   "defaultPeriod": "2021-Q2",
   "defaultDocsPeriod": "2021",
   "publicationReleaseYear": "2020",
@@ -41,7 +48,11 @@
   },
   "showMaps": true,
   "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "filingAnnouncement": {
+    "message": "The HMDA Filing application will be unavailable from August 31st through September 10th while we perform scheduled system maintenance.  During this time users will be unable to login, submit, or view HMDA data via the Filing application.  Data Browser, Data Publications, Tools, and Documentation will not be affected and will remain accessible during this maintenance window.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance (Aug 31 - Sept 10)"
+  },
   "dataPublicationYears": {
     "shared": [
       "2020",
