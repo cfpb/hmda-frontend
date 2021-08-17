@@ -51,6 +51,7 @@ describe('HMDA Help - Publications', () => {
 
     // Search for existing Instititution
     cy.get('#lei-select').click().type(INSTITUTION + "{enter}")
+    cy.wait(2*ACTION_DELAY)
     cy.findByText('Search Publications').click()
     cy.wait(ACTION_DELAY)
 
