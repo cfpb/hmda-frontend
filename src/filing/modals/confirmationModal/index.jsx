@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import RefileText from './RefileText.jsx'
+import { isBeta } from '../../../common/Beta.jsx'
 
 import '../Modal.css'
 
@@ -51,12 +52,19 @@ export default class ModalConfirm extends Component {
       newFile,
       hideConfirmModal,
       triggerRefile,
+      institution
     } = this.props
 
     // get the page
     const page = window.location.pathname.split('/').slice(-1)[0]
 
     if (!filingPeriod || !lei || !hideConfirmModal || !triggerRefile) return null
+
+    const dataOfficialVsTest = isBeta() ? 'HMDA test' : 'official HMDA'
+
+    const headerOfficialVsTest = isBeta() 
+      ? <h3 className="notice test">For Testing Purposes Only</h3> 
+      : <h3 className="notice official">Official Submission</h3>
 
     return (
       <div
@@ -65,10 +73,17 @@ export default class ModalConfirm extends Component {
         }
       >
         <section role="dialog" className="modal">
-          <h2>Upload a new file?</h2>
+          <span className="inline space-between">
+            <h2>Upload a new file?</h2>
+            {headerOfficialVsTest}
+          </span>
           <hr />
           <div className="modal-contents">
-            <RefileText code={code} />
+            <RefileText
+              code={code}
+              filingPeriod={filingPeriod}
+              institution={institution}
+            />
             <button
               tabIndex={showing ? 0 : -1}
               onClick={e => {
@@ -82,7 +97,7 @@ export default class ModalConfirm extends Component {
               }}
               ref={button => (this.confirmButton = button)}
             >
-              Yes, replace HMDA data.
+              Yes, replace {dataOfficialVsTest} data.
             </button>
             <button
               tabIndex={showing ? 0 : -1}

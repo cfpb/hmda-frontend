@@ -18,13 +18,17 @@ export function mapStateToProps(state) {
   const { code } = state.app.submission.status
   const { newFile } =
     state.app.upload[lei] || state.app.upload['__DEFAULT_UPLOAD__']
+  const institution = lei && 
+    state.app.institutions.fetched && 
+    state.app.institutions.institutions[lei]
 
   return {
     lei,
     filingPeriod,
     code,
     showing,
-    newFile
+    newFile,
+    institution
   }
 }
 

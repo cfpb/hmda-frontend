@@ -375,3 +375,11 @@ input[type='submit']:visited:disabled:active {
   background-color: #d6d7d9;
   color: #ffffff;
 }
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.bold {
+  font-weight: bold;
+}
