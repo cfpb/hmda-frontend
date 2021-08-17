@@ -1,6 +1,7 @@
 import { openSelector, mapsURL, isBeta, isProd, isCI } from '../../support/helpers'
 
 const { HOST, ENVIRONMENT } = Cypress.env()
+const ACTION_DELAY = 1500 // milliseconds
 
 describe('Maps', function () {
   it('State 2019', function () {
@@ -11,7 +12,7 @@ describe('Maps', function () {
     openSelector('#map-filter-1').type('denied{enter}');
     openSelector('#map-filter-2').type('age 55{enter}');
 
-    cy.wait(500)
+    cy.wait(ACTION_DELAY) // Allow the map to complete it's initial render
     cy.get('.mapboxgl-canvas').click();
 
     cy.get('.maps-nav-bar .left .count').should('contain', '2,688')
@@ -44,7 +45,7 @@ describe('Maps', function () {
     openSelector('#map-filter-1').type('denied{enter}');
     openSelector('#map-filter-2').type('age 55{enter}');
 
-    cy.wait(500)
+    cy.wait(ACTION_DELAY) // Allow the map to complete it's initial render
     cy.get('.mapboxgl-canvas').click();
 
     cy.get('.maps-nav-bar .feature').should('contain', 'GREENWOOD COUNTY, KS')
