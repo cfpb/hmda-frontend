@@ -1,4 +1,4 @@
-import { withFormData, isProd, isCI } from "../../support/helpers"
+import { withFormData, isProd, isCI, isBeta } from "../../support/helpers"
 
 const { HOST, TEST_DELAY, ENVIRONMENT } = Cypress.env()
 
