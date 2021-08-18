@@ -18,7 +18,7 @@ describe("Rate Spread Tool", function() {
     cy.get(".grid > .item > div > .Form > input").click()
 
     // Validate
-    cy.get(":nth-child(2) > .alert").contains("-0.590")
+    cy.get(".item  .alert").contains("-0.590")
 
     cy.wait(TEST_DELAY)
   })
@@ -40,7 +40,7 @@ describe("Rate Spread Tool", function() {
     cy.get(".grid > .item > div > .Form > input").click()
 
     // Validate
-    cy.get(":nth-child(2) > .alert").contains("-1.500")
+    cy.get(".item  .alert").contains("-1.500")
 
     cy.wait(TEST_DELAY)
   })
@@ -48,9 +48,7 @@ describe("Rate Spread Tool", function() {
 
 describe("Rate Spread API", () => {
   
-  if(!isCI(ENVIRONMENT) || !isProd(HOST) || isBeta(HOST)) 
-    it(`Does not run on ${HOST}`, () => cy.get({ HOST, TEST_DELAY, ENVIRONMENT }).logEnv())
-  else {
+  if(isProd(HOST) || isCI(ENVIRONMENT)) {
     it("Generates rates from file", () => {
       cy.get({ HOST, TEST_DELAY, ENVIRONMENT }).logEnv()
       let response
@@ -85,5 +83,8 @@ describe("Rate Spread API", () => {
         cy.wait(TEST_DELAY)
       })
     })
+  }
+  else {
+    it(`Does not run on ${HOST}`, () => cy.get({ HOST, TEST_DELAY, ENVIRONMENT }).logEnv())
   }
 })
