@@ -1,7 +1,7 @@
 import { openSelector, mapsURL, isBeta, isProd, isCI } from '../../support/helpers'
 
 const { HOST, ENVIRONMENT } = Cypress.env()
-const ACTION_DELAY = 1500 // milliseconds
+const ACTION_DELAY = 4000 // milliseconds
 
 describe('Maps', function () {
   it('State 2019', function () {
