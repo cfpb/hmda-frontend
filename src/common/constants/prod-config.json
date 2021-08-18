@@ -2,7 +2,7 @@
   "name": "prod",
   "announcement": [
     {
-      "message": "The HMDA Filing application will be unavailable from August 31st through September 10th while we perform scheduled system maintenance.  During this time users will be unable to login, submit, or view HMDA data via the Filing application.  Data Browser, Data Publications, Tools, and Documentation will not be affected and will remain accessible during this maintenance window.",
+      "message": "Submission and Re-submission of HMDA files will be unavailable 8/31 to 9/10. All other HMDA services will function normally.",
       "type": "warning",
       "heading": "Scheduled Maintenance (Aug 31 - Sept 10)"
     },
@@ -46,7 +46,7 @@
   "showMaps": true,
   "maintenanceMode": false,
   "filingAnnouncement": {
-    "message": "The HMDA Filing application will be unavailable from August 31st through September 10th while we perform scheduled system maintenance.  During this time users will be unable to login, submit, or view HMDA data via the Filing application.  Data Browser, Data Publications, Tools, and Documentation will not be affected and will remain accessible during this maintenance window.",
+    "message": "Submission and Re-submission of HMDA test files will be unavailable 8/31 to 9/10. All other HMDA services will function normally.",
     "type": "warning",
     "heading": "Scheduled Maintenance (Aug 31 - Sept 10)"
   },
