@@ -1,14 +1,21 @@
 {
   "name": "prod",
-  "announcement": {
-    "message": "On June 17, 2021, the Disclosure Reports, MSA/MD Aggregate Reports, Snapshot National Loan-Level dataset, and Dynamic National Loan-Level dataset for 2020 were released. These files are accessible from the ",
-    "type": "info",
-    "heading": "Announcement",
-    "link": {
-      "url": "https://ffiec.cfpb.gov/data-publication/",
-      "text": "HMDA Data Publications page."
+  "announcement": [
+    {
+      "message": "Submission and Re-submission of HMDA files will be unavailable 8/31 to 9/10. All other HMDA services will function normally.",
+      "type": "warning",
+      "heading": "Scheduled Maintenance (Aug 31 - Sept 10)"
+    },
+    {
+      "message": "On June 17, 2021, the Disclosure Reports, MSA/MD Aggregate Reports, Snapshot National Loan-Level dataset, and Dynamic National Loan-Level dataset for 2020 were released. These files are accessible from the ",
+      "type": "info",
+      "heading": "Data Publication Release",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/data-publication/",
+        "text": "HMDA Data Publications page."
+      }
     }
-  },
+  ],
   "defaultPeriod": "2021-Q2",
   "defaultDocsPeriod": "2021",
   "publicationReleaseYear": "2020",
@@ -38,7 +45,11 @@
   },
   "showMaps": true,
   "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "filingAnnouncement": {
+    "message": "Submission and Re-submission of HMDA test files will be unavailable 8/31 to 9/10. All other HMDA services will function normally.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance (Aug 31 - Sept 10)"
+  },
   "dataPublicationYears": {
     "shared": [
       "2020",
