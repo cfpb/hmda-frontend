@@ -42,7 +42,12 @@ describe("Rate Spread Tool", function() {
     // Validate
     cy.get(".item  .alert").contains("-1.500")
 
-    cy.wait(TEST_DELAY)
+    // Todo: 
+    //   Determine why this trailing wait() causes a pageLoadTimeout error.
+    //   This only seems to be an issue when wait() is the final command of the final test 
+    //   in a large suite, as this error only manifests when running the entire 
+    //   Cypress collection, but not when running the RateSpread specs specificially.
+    // cy.wait(TEST_DELAY) 
   })
 })
 
