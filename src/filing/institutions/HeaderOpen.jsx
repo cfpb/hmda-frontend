@@ -37,8 +37,8 @@ export const HeaderOpen = ({
           {filingQtr ? (
             <>
               Submission of {filingPeriod} HMDA data will be considered timely
-              if completed by <strong>{filingDeadline}</strong>.<br />
-              Late submissions will not be accepted after{' '}
+              if completed on or before <strong>{filingDeadline}</strong>. Late
+              submissions will not be accepted after{" "}
               <strong>
                 {formattedQtrBoundaryDate(filingQtr, filingQuartersLate, 1)},{' '}
                 {filingYear}
@@ -48,7 +48,7 @@ export const HeaderOpen = ({
           ) : (
             <>
               Submission of {filingPeriod} HMDA data will be considered timely
-              if completed by <strong>{filingDeadline}</strong>.
+              if completed on or before <strong>{filingDeadline}</strong>.
             </>
           )}
         </p>
