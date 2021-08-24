@@ -38,11 +38,11 @@ function checkErrors(file) {
   return errors
 }
 
-export function selectFile(file) {
+export function selectFile(file, previousErrors=[]) {
   return {
     type: types.SELECT_FILE,
     file,
-    errors: checkErrors(file)
+    errors: checkErrors(file).concat(previousErrors)
   }
 }
 
