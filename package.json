@@ -21,6 +21,7 @@
   "dependencies": {
     "csv-parse": "4.15.4",
     "detect-browser": "4.8.0",
+    "detect-file-encoding-and-language": "^2.1.0",
     "elliptic": "6.5.4",
     "fast-deep-equal": "2.0.1",
     "file-saver": "2.0.5",
