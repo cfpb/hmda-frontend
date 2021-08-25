@@ -8,6 +8,9 @@ export const isProdBeta = (host) => isProd(host) && isBeta(host)
 export const isDevDefault = (host) => isDev(host) && !isBeta(host)
 export const isProdDefault = (host) => isProd(host) && !isBeta(host)
 
+// Option object configured to wait up to 2 minutes
+export const waitUpto2Mins = { timeout: 120000 }
+
 export function withFormData(method, url, formData, done) {
   const xhr = new XMLHttpRequest()
   xhr.open(method, url)
@@ -37,7 +40,7 @@ export function urlExists(url) {
 /* Data Browser Helpers */
 // Open react-select drop-down if it's not loading
 export const openSelector = (id) =>
-  cy.get(`${id} > div > div`).first({ timeout: 60000 }).should('not.contain', 'Loading').click()
+  cy.get(`${id} > div > div`).first(waitUpto2Mins).should('not.contain', 'Loading').click()
 
 export const dbClick2018 = () => cy.get('#root > .DataBrowser > .Geography > .YearSelector > a:nth-child(2)').click()
 export const dbClick2017 = () => cy.get('#root > .DataBrowser > .Geography > .YearSelector > a:nth-child(3)').click()
