@@ -2,6 +2,11 @@
   "name": "prod-beta",
   "announcement": [
     {
+      "message": "Submission and resubmission of HMDA files are unavailable 8/31 to 9/10. All other HMDA services will function normally.",
+      "type": "error",
+      "heading": "Scheduled Maintenance (Aug 31 - Sept 10)"
+    },
+    {
       "message": "This month, we are testing new updates to the Beta platform. Outages may intermittently occur during this time. Please note that the Beta platform is for testing purposes only. Send any feedback or questions regarding your Beta platform usage experience to ",
       "type": "info",
       "heading": "Announcement",
@@ -9,11 +14,6 @@
         "url": "mailto:hmdahelp@cfpb.gov?subject=HMDA Beta Platform",
         "text": "hmdahelp@cfpb.gov."
       }
-    },
-    {
-      "message": "Submission and Re-submission of HMDA test files will be unavailable 8/31 to 9/10. All other HMDA services will function normally.",
-      "type": "warning",
-      "heading": "Scheduled Maintenance (Aug 31 - Sept 10)"
     }
   ],
   "defaultPeriod": "2021-Q2",
@@ -47,10 +47,10 @@
     "ANNUAL": "01/01 - 03/01"
   },
   "showMaps": true,
-  "maintenanceMode": false,
+  "maintenanceMode": true,
   "filingAnnouncement": {
-    "message": "Submission and Re-submission of HMDA test files will be unavailable 8/31 to 9/10. All other HMDA services will function normally.",
-    "type": "warning",
+    "message": "Submission and resubmission of HMDA files are unavailable 8/31 to 9/10. All other HMDA services will function normally.",
+    "type": "error",
     "heading": "Scheduled Maintenance (Aug 31 - Sept 10)"
   },
   "dataPublicationYears": {
