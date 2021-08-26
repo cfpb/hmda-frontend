@@ -47,7 +47,7 @@
     "ANNUAL": "01/01 - 03/01"
   },
   "showMaps": true,
-  "maintenanceMode": false,
+  "maintenanceMode": true,
   "filingAnnouncement": {
     "message": "Submission and resubmission of HMDA files are unavailable 8/31 to 9/10. All other HMDA services will function normally.",
     "type": "error",
