@@ -9,7 +9,8 @@ To register your financial institution on the <a target="_blank" rel="noopener n
 Every institution that files a HMDA submission will be required to obtain a LEI for their submission whether they are exempt or not. The website for the <a target="_blank" rel="noopener noreferrer" href="https://www.gleif.org/">Global LEI Foundation (GLEIF)</a> provides a list of LEI issuing organizations at https://www.gleif.org/en/about-lei/get-an-lei-find-lei-issuing-organizations. A financial institution may obtain an LEI, for HMDA reporting purposes, from any one of the issuing organizations listed on the website. For general information on the “LEI,” see section 5.2 of the <a target="_blank" rel="noopener noreferrer" href="https://files.consumerfinance.gov/f/documents/cfpb_hmda_small-entity-compliance-guide.pdf">HMDA Small Entity Compliance Guide</a>, and <a target="_blank" rel="noopener noreferrer" href="https://www.consumerfinance.gov/rules-policy/regulations/1003/4/#a-1-i-A">Regulation C, 12 CFR §§ 1003.4(a)(1)(i)(A)</a>, effective January 1, 2018, and <a target="_blank" rel="noopener noreferrer" href="https://www.consumerfinance.gov/rules-policy/regulations/1003/5/#a-3-vii">1003.5(a)(3)(vii)</a>, effective January 1, 2019.
 
 #### What is my agency code?
-Institutions should provide one of the following agency codes: 
+Institutions should provide one of the following agency codes:  
+  
 - 1 - Office of the Comptroller of the Currency (OCC)  
 - 2 - Federal Reserve System (FRS)  
 - 3 - Federal Deposit Insurance Corporation (FDIC)  

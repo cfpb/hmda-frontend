@@ -10,6 +10,7 @@ Every institution that files a HMDA submission will be required to obtain a LEI 
 
 #### What is my agency code?
 Institutions should provide one of the following agency codes:  
+  
 - 1 - Office of the Comptroller of the Currency (OCC)  
 - 2 - Federal Reserve System (FRS)  
 - 3 - Federal Deposit Insurance Corporation (FDIC)  
