@@ -9,7 +9,7 @@ To register your financial institution on the <a target="_blank" rel="noopener n
 Every institution that files a HMDA submission will be required to obtain a LEI for their submission whether they are exempt or not. The website for the <a target="_blank" rel="noopener noreferrer" href="https://www.gleif.org/">Global LEI Foundation (GLEIF)</a> provides a list of LEI issuing organizations at https://www.gleif.org/en/about-lei/get-an-lei-find-lei-issuing-organizations. A financial institution may obtain an LEI, for HMDA reporting purposes, from any one of the issuing organizations listed on the website. For general information on the “LEI,” see section 5.2 of the <a target="_blank" rel="noopener noreferrer" href="https://files.consumerfinance.gov/f/documents/cfpb_hmda_small-entity-compliance-guide.pdf">HMDA Small Entity Compliance Guide</a>, and <a target="_blank" rel="noopener noreferrer" href="https://www.consumerfinance.gov/rules-policy/regulations/1003/4/#a-1-i-A">Regulation C, 12 CFR §§ 1003.4(a)(1)(i)(A)</a>, effective January 1, 2018, and <a target="_blank" rel="noopener noreferrer" href="https://www.consumerfinance.gov/rules-policy/regulations/1003/5/#a-3-vii">1003.5(a)(3)(vii)</a>, effective January 1, 2019.
 
 #### What is my agency code?
-Institutions should provide one of the following agency codes: 
+Institutions should provide one of the following agency codes:  
 - 1 - Office of the Comptroller of the Currency (OCC)  
 - 2 - Federal Reserve System (FRS)  
 - 3 - Federal Deposit Insurance Corporation (FDIC)  
@@ -83,7 +83,7 @@ _Annual HMDA data submissions_ for the 2019 filing year are accepted January 1 -
 
 _Quarterly HMDA data submissions_ are separated into three quarters.  
 - Quarter 1 filing period: April 1 - May 30, 2021  
-- Quarter 2 filing period: July 1 - August 29, 2021
+- Quarter 2 filing period: July 1 - August 29, 2020  
 - Quarter 3 filing period: October 1 - November 29, 2021  
 
 <br/> 
@@ -114,9 +114,9 @@ If the Action Taken is 4, 5, or 6, an institution should report 8888 in the Cred
 Please note that the fields 'Ethnicity of Applicant or Borrower 1-5' and 'Race of Applicant or Borrower 1-5' are for up to 5 ethnicities/races of the first applicant. For any co-applicant ethnicities/races, please enter values in the fields **'Ethnicity of Co-Applicant or Co-Borrower 1-5'** or **'Race of Co-Applicant or Co-Borrower 1-5'**.
 
 #### I am receiving validity edits regarding my county codes & census tracts. Can you explain how these fields are derived?
-Your county code is a 5 digit number that combines state and county codes. Your census tract should be an 11 digit number. Your census tract combines the 2 digit state, 3 digit county, and 6 digit tract code (with no decimal). The FFIEC census tool and FFIEC geocoder can assist in providing the correct state, county and census tract combinations.
-- <a target="_blank" rel="noopener noreferrer" href="https://www.ffiec.gov/%5C/census/default.aspx">Census Tool</a>
-- <a target="_blank" rel="noopener noreferrer" href="https://geomap.ffiec.gov/FFIECGeocMap/GeocodeMap1.aspx">Geocoder</a>
+Your county code is a 5 digit number that combines state and county codes. Your census tract should be an 11 digit number. Your census tract combines the 2 digit state, 3 digit county, and 6 digit tract code (with no decimal). The FFIEC census tool and FFIEC geocoder can assist in providing the correct state, county and census tract combinations.  
+- <a target="_blank" rel="noopener noreferrer" href="https://www.ffiec.gov/%5C/census/default.aspx">Census Tool</a>  
+- <a target="_blank" rel="noopener noreferrer" href="https://geomap.ffiec.gov/FFIECGeocMap/GeocodeMap1.aspx">Geocoder</a>  
 
 For example, in the case of Baldwin County, Alabama, the 2 digit state code would be 01 and the 3 digit county code would be 003. Therefore, the reported county code would be 01003. In the case that the 6 digit tract code selected is 020100, the combined census tract code would be 01003020100.
 
