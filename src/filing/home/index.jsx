@@ -8,6 +8,7 @@ const Home = props => {
   const buttonTitle = props.maintenanceMode ? 'Unavailable during maintenance' : undefined
   const buttonsDisabled = !!props.maintenanceMode
   const cname = 'FilingHome' + (props.maintenanceMode ? ' maintenance' : '')
+  const sessionExpired = window.location.href.indexOf('session=expired') > -1
 
   return (
     <main className={cname} id="main-content">
@@ -16,6 +17,11 @@ const Home = props => {
           {!!props.maintenanceMode && !!props.filingAnnouncement && (
             <Alert type='error' heading='System Temporarily Unavailable'>
               <p>{props.filingAnnouncement.message}</p>
+            </Alert>
+          )}
+          {sessionExpired && (
+            <Alert type="success" heading="Session Expired">
+              <p>Please log in. If you are having trouble accessing the Filing application please contact <a href="mailto:hmdahelp@cfpb.gov">HMDA Help</a>.</p>
             </Alert>
           )}
           <h1>Get started filing your HMDA data</h1>
