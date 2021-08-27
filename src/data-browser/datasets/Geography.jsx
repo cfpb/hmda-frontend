@@ -213,6 +213,13 @@ class Geography extends Component {
     return selected.reduce((acc, curr) => acc + countMap[curr], 0) > MAX
   }
 
+  // Do we need to Map query parameters 2017 <=> 2018+
+  yearChangeRequiresMapping(year1, year2) {
+    if (year1 === '2017') return year2 !== '2017'
+    if (year2 === '2017') return year1 !== '2017'
+    return false
+  }
+
   onYearChange(obj){
     if(this.state.year === obj.year) return
     const { category, items } = this.state
@@ -229,12 +236,18 @@ class Geography extends Component {
     obj.items = sanitizeArray(category, items, obj.year)
 
     // Map query parameters pre2018 <=> 2018+
-    obj.orderedVariables = this.state.orderedVariables.map(varName => {
-      if(variables[varName]) return varName
-      return variableNameMap[varName]
-    }).filter(x => x)
+    if (this.yearChangeRequiresMapping(this.state.year, obj.year)){
+      // Map variable names 
+      // ex. dwelling_categories <=> property_type
+      obj.orderedVariables = this.state.orderedVariables.map(varName => {
+        if(variables[varName]) return varName
+        return variableNameMap[varName]
+      }).filter(x => x)
 
-    obj.variables = this.mapFilterVarsOpts(variables)
+      // Map variable options 
+      // ex. dwelling_categories 'Single%20Family%20(1-4%20Units)%3ASite-Built' <=> '1'
+      obj.variables = this.mapFilterVarsOpts(variables);
+    }
 
     this.setStateAndPath(obj).then(() => {
       this.fetchLeis().then(() => this.filterLeis())
