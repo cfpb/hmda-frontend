@@ -419,7 +419,7 @@ class Geography extends Component {
               <a
                 target='_blank'
                 rel='noopener noreferrer'
-                href="https://cfpb.github.io/hmda-platform/#data-browser-api">Data Browser API
+                href="https://cfpb.github.io/hmda-platform/#data-browser">Data Browser API
               </a>{' '}
               directly. For questions/suggestions, contact hmdahelp@cfpb.gov.
             </p>
