@@ -4640,6 +4640,11 @@ detect-browser@4.8.0:
   resolved "https://registry.yarnpkg.com/detect-browser/-/detect-browser-4.8.0.tgz#1d73bd88c17be866901950ce0aaae1ed060902c6"
   integrity sha512-f4h2dFgzHUIpjpBLjhnDIteXv8VQiUm8XzAuzQtYUqECX/eKh67ykuiVoyb7Db7a0PUSmJa3OGXStG0CbQFUVw==
 
+detect-file-encoding-and-language@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/detect-file-encoding-and-language/-/detect-file-encoding-and-language-2.1.0.tgz#6a930889b429009b337ec82d5c5342d243f69b3c"
+  integrity sha512-gN+I5fAasgDKJ0XXZQUPh1vC6cTLsMhcTqu/eWKiBx5ikW5WwTZnMdI5wjSQ6q1KXghjUHst5f426x0Cst15/Q==
+
 detect-newline@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/detect-newline/-/detect-newline-3.1.0.tgz#576f5dfc63ae1a192ff192d8ad3af6308991b651"
