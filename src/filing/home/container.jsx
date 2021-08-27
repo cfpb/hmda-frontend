@@ -12,7 +12,7 @@ export class HomeContainer extends Component {
         filingPeriod={this.props.match.params.filingPeriod}
         filingYears={this.props.filingPeriods}
         maintenanceMode={this.props.maintenanceMode}
-        announcement={this.props.announcement}
+        filingAnnouncement={this.props.filingAnnouncement}
       />
     )
     return <InstitutionsContainer />

@@ -13,9 +13,9 @@ const Home = props => {
     <main className={cname} id="main-content">
       <section className="hero">
         <div className="full-width">
-          {!!props.maintenanceMode && !!props.announcement && (
+          {!!props.maintenanceMode && !!props.filingAnnouncement && (
             <Alert type='error' heading='System Temporarily Unavailable'>
-              <p>{props.announcement.message}</p>
+              <p>{props.filingAnnouncement.message}</p>
             </Alert>
           )}
           <h1>Get started filing your HMDA data</h1>
