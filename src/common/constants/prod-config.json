@@ -2,8 +2,8 @@
   "name": "prod",
   "announcement": [
     {
-      "message": "Submission and Re-submission of HMDA files will be unavailable 8/31 to 9/10. All other HMDA services will function normally.",
-      "type": "warning",
+      "message": "Submission and resubmission of HMDA files are unavailable 8/31 to 9/10. All other HMDA services will function normally.",
+      "type": "error",
       "heading": "Scheduled Maintenance (Aug 31 - Sept 10)"
     },
     {
@@ -44,10 +44,10 @@
     "ANNUAL": "01/01 - 03/01"
   },
   "showMaps": true,
-  "maintenanceMode": false,
+  "maintenanceMode": true,
   "filingAnnouncement": {
-    "message": "Submission and Re-submission of HMDA test files will be unavailable 8/31 to 9/10. All other HMDA services will function normally.",
-    "type": "warning",
+    "message": "Submission and resubmission of HMDA files are unavailable 8/31 to 9/10. All other HMDA services will function normally.",
+    "type": "error",
     "heading": "Scheduled Maintenance (Aug 31 - Sept 10)"
   },
   "dataPublicationYears": {
