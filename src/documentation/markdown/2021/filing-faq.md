@@ -84,7 +84,7 @@ _Annual HMDA data submissions_ for the 2019 filing year are accepted January 1 -
 
 _Quarterly HMDA data submissions_ are separated into three quarters.  
 - Quarter 1 filing period: April 1 - May 30, 2021  
-- Quarter 2 filing period: July 1 - August 29, 2020  
+- Quarter 2 filing period: July 1 - August 30, 2021  
 - Quarter 3 filing period: October 1 - November 29, 2021  
 
 <br/> 
