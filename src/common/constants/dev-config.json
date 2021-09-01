@@ -47,12 +47,13 @@
     "ANNUAL": "01/01 - 03/01"
   },
   "showMaps": true,
-  "maintenanceMode": false,
+  "maintenanceMode": true,
   "filingAnnouncement": {
     "message": "Submission and Re-submission of HMDA test files will be unavailable 8/31 to 9/10. All other HMDA services will function normally.",
     "type": "warning",
     "heading": "Scheduled Maintenance (Aug 31 - Sept 10)"
   },
+  "ffvtAnnouncement": "The HMDA Filing application and API are currently unavailable. Normal operations will resume September 11th.",
   "dataPublicationYears": {
     "shared": [
       "2020",

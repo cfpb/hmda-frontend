@@ -4,12 +4,14 @@ import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 
+import Alert from '../../common/Alert'
 import Heading from '../../common/Heading'
 import AppContainer from './containers/App'
 import UploadContainer from './containers/UploadForm'
 import ParseErrorsContainer from './containers/ParseErrors'
 import FilingPeriodSelectorContainer from './containers/FilingPeriodSelector'
 import appReducer from './reducers'
+import { withAppContext } from '../../common/appContextHOC'
 
 import './FFVT.css'
 
@@ -25,6 +27,12 @@ const store = createStore(
 
 let timeout = null
 
+const FFVTDowntimeBanner = ({ message }) => message && (
+  <Alert type="error" heading="FFVT Unavailable">
+    <p>{message}</p>
+  </Alert>
+);
+
 class FFVT extends React.Component {
   componentDidMount() {
     timeout && clearTimeout(timeout)
@@ -33,6 +41,8 @@ class FFVT extends React.Component {
 
   render() {
     const selector = <FilingPeriodSelectorContainer />
+    const { maintenanceMode, ffvtAnnouncement, filingAnnouncement } = this.props.config
+    const downtimeMessage = ffvtAnnouncement || (filingAnnouncement && filingAnnouncement.message)
     return (
       <Provider store={store}>
         <AppContainer>
@@ -51,8 +61,14 @@ class FFVT extends React.Component {
 
             <div className="grid">
               <div className="item">
-                <UploadContainer />
-                <ParseErrorsContainer />
+                {maintenanceMode && downtimeMessage ? (
+                  <FFVTDowntimeBanner message={downtimeMessage}/>
+                ) : (
+                  <>
+                    <UploadContainer />
+                    <ParseErrorsContainer />
+                  </>
+                )}
               </div>
               <div className="item content text-small">
                 <p>
@@ -96,4 +112,4 @@ class FFVT extends React.Component {
   }
 }
 
-export default FFVT
+export default withAppContext(FFVT)
