@@ -423,7 +423,7 @@ class Geography extends Component {
               <a
                 target='_blank'
                 rel='noopener noreferrer'
-                href='https://ffiec.cfpb.gov/documentation/2018/lar-data-fields/'
+                href='/documentation/2018/lar-data-fields/'
               >
                 data fields
               </a>{' '}

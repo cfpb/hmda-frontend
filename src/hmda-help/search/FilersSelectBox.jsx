@@ -50,7 +50,7 @@ export const FilersSearchBox = ({ endpoint, onChange, year, ...rest }) => {
   const [validationMsgs, setValidationMsgs] = useState([])
 
   const [data, isFetching, error] = useRemoteJSON(
-    endpoint || `https://ffiec.cfpb.gov/v2/reporting/filers/${year}`,
+    endpoint || `/v2/reporting/filers/${year}`,
     { transformReceive: createLeiMap, forceFetch: true }
   )
 
