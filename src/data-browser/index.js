@@ -19,17 +19,19 @@ const DataBrowser = props => {
         />
         {props.config.showMaps ? (
           <Route
-            path='/data-browser/maps/:year?'
+            path={['/data-browser/maps/:year?', '/data-browser/maps']}
             render={(r_props) => {
               const year = r_props.match.params.year
-              const { pathname, search } = r_props.location
+              let { pathname, search } = r_props.location
 
-              if (!year)
+              if (!year) {
+                if (pathname.substr(-1) !== "/") pathname = pathname + "/";
                 return (
                   <Redirect
                     to={`${pathname}${publicationReleaseYear}${search}`}
                   />
                 )
+              }
                 
               return <MapsGraphs {...r_props} {...props} />
             }}

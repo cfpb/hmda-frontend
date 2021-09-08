@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Upload from '../components/UploadForm.jsx'
 import { selectFile, triggerParse } from '../actions'
+import detectFileEncoding from 'detect-file-encoding-and-language'
 
 export function mapStateToProps(state) {
   const { uploading, file, errors } = state.app.upload || {
@@ -28,10 +29,26 @@ export function mapStateToProps(state) {
 
 function setAndParseFile(file) {
   return (dispatch, getState) => {
-    dispatch(selectFile(file))
-    if (getState().app.upload.errors.length === 0) {
-      dispatch(triggerParse(file, getState().app.filingPeriod))
-    }
+    // Check file encoding prior to performing other file validations
+    detectFileEncoding(file).then((fileInfo) => {
+      const encodingErrors = []
+
+      if (fileInfo.encoding !== "UTF-8")
+        encodingErrors.push(
+          "The file you uploaded is not UTF-8 encoded. Please check your file and re-upload."
+        )
+
+      // Save client-side validation errors, whose presence will halt backend processing
+      dispatch(selectFile(file, encodingErrors))
+
+      // Submit file for backend parsing only if all client-side validations pass
+      if (getState().app.upload.errors.length === 0) {
+        dispatch(triggerParse(file, getState().app.filingPeriod))
+      }
+    }).catch(err => {
+      // Save client-side validation errors
+      dispatch(selectFile(file, [err.message]));
+    })
   }
 }
 

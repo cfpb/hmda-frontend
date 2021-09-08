@@ -65,7 +65,7 @@ class CSVUpload extends Component {
     event.target.value = null
 
     this.onCSVFetch()
-    const CSV_URL = (isCI() ? '' : 'https://ffiec.cfpb.gov') + '/public/rateSpread/csv'
+    const CSV_URL = '/public/rateSpread/csv'
     runFetch(CSV_URL, this.prepareCSVBody(file), true).then(res => {
       this.onCSVCalculated(res, file)
     })
@@ -99,7 +99,7 @@ class CSVUpload extends Component {
           </p>
           <p className="text-small">
             Please see{' '}
-            <a href="https://cfpb.github.io/hmda-platform/#rate-spread-csv-file-format">
+            <a href="https://cfpb.github.io/hmda-platform/#rate-spread-batch-ratespreads">
               the batch section of the API documentation
             </a>{' '}
             for information on csv formatting.
