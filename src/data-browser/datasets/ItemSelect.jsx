@@ -33,7 +33,7 @@ const ItemSelect = ({
         <a
           target='_blank'
           rel='noopener noreferrer'
-          href='https://ffiec.cfpb.gov/documentation/2018/data-browser-filters/#Nationwide'
+          href='/documentation/2018/data-browser-filters/#Nationwide'
         >
           View more information on the available filters.
         </a>

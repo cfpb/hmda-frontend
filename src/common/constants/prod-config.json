@@ -2,7 +2,7 @@
   "name": "prod",
   "announcement": [
     {
-      "message": "Submission and resubmission of HMDA files are unavailable 8/31 to 9/10. All other HMDA services will function normally.",
+      "message": "HMDA filing and file format verification services are unavailable 8/31 to 9/10. All other HMDA services are functioning normally.",
       "type": "error",
       "heading": "Scheduled Maintenance (Aug 31 - Sept 10)"
     },
@@ -45,11 +45,12 @@
   },
   "showMaps": true,
   "maintenanceMode": true,
-  "filingAnnouncement": {
-    "message": "Submission and resubmission of HMDA files are unavailable 8/31 to 9/10. All other HMDA services will function normally.",
+  "filingAnnouncement":     {
+    "message": "HMDA filing and file format verification services are unavailable 8/31 to 9/10. All other HMDA services are functioning normally.",
     "type": "error",
     "heading": "Scheduled Maintenance (Aug 31 - Sept 10)"
   },
+  "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
       "2020",

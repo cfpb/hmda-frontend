@@ -22,7 +22,7 @@ class SearchList extends React.Component {
     const fetchURL =
       year === '2017'
         ? 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017/2017_filers.json'
-        : `https://ffiec.cfpb.gov/v2/reporting/filers/${year}`
+        : `/v2/reporting/filers/${year}`
     fetch(fetchURL)
       .then(response => {
         if (response.ok) {

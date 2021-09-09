@@ -4,7 +4,7 @@
   "description": "Collection of HMDA frontend apps",
   "main": "./src/index.js",
   "engines": {
-    "node": ">=12.x"
+    "node": ">=14.17.6"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -21,6 +21,7 @@
   "dependencies": {
     "csv-parse": "4.15.4",
     "detect-browser": "4.8.0",
+    "detect-file-encoding-and-language": "^2.1.0",
     "elliptic": "6.5.4",
     "fast-deep-equal": "2.0.1",
     "file-saver": "2.0.5",
@@ -57,7 +58,7 @@
   ],
   "devDependencies": {
     "@cypress/skip-test": "2.6.0",
-    "@testing-library/cypress": "8.0.0",
+    "@testing-library/cypress": "8.0.1",
     "cypress": "8.3.0",
     "cypress-file-upload": "5.0.2",
     "cypress-keycloak": "1.5.0",
