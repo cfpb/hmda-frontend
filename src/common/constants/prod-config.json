@@ -2,9 +2,9 @@
   "name": "prod",
   "announcement": [
     {
-      "message": "HMDA filing and file format verification services are unavailable 8/31 to 9/10. All other HMDA services are functioning normally.",
-      "type": "error",
-      "heading": "Scheduled Maintenance (Aug 31 - Sept 10)"
+      "message": "Our scheduled maintenance is complete. HMDA filers may resume submission and resubmission of HMDA files. Please contact hmdahelp@cfpb.gov if you are experiencing issues.",
+      "type": "success",
+      "heading": "HMDA Filing Platform is available"
     },
     {
       "message": "On June 17, 2021, the Disclosure Reports, MSA/MD Aggregate Reports, Snapshot National Loan-Level dataset, and Dynamic National Loan-Level dataset for 2020 were released. These files are accessible from the ",
@@ -45,11 +45,7 @@
   },
   "showMaps": true,
   "maintenanceMode": false,
-  "filingAnnouncement":     {
-    "message": "HMDA filing and file format verification services are unavailable 8/31 to 9/10. All other HMDA services are functioning normally.",
-    "type": "error",
-    "heading": "Scheduled Maintenance (Aug 31 - Sept 10)"
-  },
+  "filingAnnouncement": null,
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
