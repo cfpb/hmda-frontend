@@ -119,7 +119,7 @@ class CSVUpload extends PureComponent {
           </p>
           <p className="text-small">
             Please see{' '}
-            <a href="https://cfpb.github.io/hmda-platform/#hmda-public-api-check-digit-check-digit-example">
+            <a href="https://cfpb.github.io/hmda-platform/#check-digit-batch-check-digit-generation">
               the API documentation
             </a>{' '}
             for information on csv formatting.
