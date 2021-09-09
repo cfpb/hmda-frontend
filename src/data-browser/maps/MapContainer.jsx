@@ -238,7 +238,7 @@ const MapContainer = props => {
       return
     }
 
-    const parsed = parseCombinedFilter(selected)
+  const parsed = parseCombinedFilter(selected)
     setCombinedFilter1(selected)
     setVariable(parsed.variable)
     setValue(parsed.value)

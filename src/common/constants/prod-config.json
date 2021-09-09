@@ -46,6 +46,7 @@
   "showMaps": true,
   "maintenanceMode": false,
   "filingAnnouncement": null,
+  "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
       "2020",

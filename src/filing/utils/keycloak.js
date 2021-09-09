@@ -7,15 +7,31 @@ import * as AccessToken from '../../common/api/AccessToken.js'
 
 let keycloak = getKeycloak()
 
+let loginAttempts = 0
+const resetLoginAttempts = () => loginAttempts = 0
+
 const login = (path) => {
+  loginAttempts++
+  if(loginAttempts > 2) {
+    // Require re-authentication after too many calls to login(), 
+    //  which is indicative that current user session is invalid.
+    resetLoginAttempts()
+    return logout("?session=expired")
+  }
   const store = getStore()
   if (!keycloak) return error('keycloak needs to be set on app initialization')
   if(!path) path = `/filing/${store.getState().app.filingPeriod}/institutions`
   store.dispatch(isRedirecting(true))
-  keycloak.login({ redirectUri: location.origin + path })
+  // Delay keycloak.login attempts for a progressively longer period in order
+  // to allow time to recognize invalid session.
+  setTimeout(
+    () => keycloak.login({ redirectUri: location.origin + path }),
+    loginAttempts * 750
+  )
 }
 
 const refresh = () => {
+  resetLoginAttempts()
   const updateKeycloak = () => {
     setTimeout(() => {
       keycloak
@@ -44,9 +60,10 @@ const register = () => {
   })
 }
 
-const logout = () => {
+const logout = (queryString='') => {
+  resetLoginAttempts()
   if (!keycloak) return error('keycloak needs to be set on app initialization')
-  keycloak.logout({ redirectUri: location.origin + `/filing/${getStore().getState().app.filingPeriod}/` })
+  keycloak.logout({ redirectUri: location.origin + `/filing/${getStore().getState().app.filingPeriod}/` + queryString })
 }
 
 

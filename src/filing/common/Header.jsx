@@ -26,7 +26,7 @@ export const getLink = filingPeriod => {
 
 const getDocLink = filingPeriod => {
   const year = filingPeriod.split('-')[0]
-  return `https://ffiec.cfpb.gov/documentation/${year}`
+  return `/documentation/${year}`
 }
 
 export const makeNav = (props, page) => {
@@ -39,7 +39,7 @@ export const makeNav = (props, page) => {
   let userHeader = (
     <ul className='nav-primary'>
       <li>
-        <a href='https://ffiec.cfpb.gov' {...openNewPage}>
+        <a href='/' {...openNewPage}>
           FFIEC Home
         </a>
       </li>
