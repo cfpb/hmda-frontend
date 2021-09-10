@@ -57,7 +57,7 @@ const Home = ({ config }) => {
             <ul>
               <li>Filing Instructions Guide</li>
               <ul>
-                {[2022,2022,2021, 2020, 2019, 2018, 2017].map(year => {
+                {[2022,2021, 2020, 2019, 2018, 2017].map(year => {
                   if (year === 2018) {
                     return (
                       <li key={`${year}`}>
