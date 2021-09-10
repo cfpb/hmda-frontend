@@ -57,7 +57,7 @@ const Home = ({ config }) => {
             <ul>
               <li>Filing Instructions Guide</li>
               <ul>
-                {[2021, 2020, 2019, 2018, 2017].map(year => {
+                {[2022, 2021, 2020, 2019, 2018, 2017].map(year => {
                   if (year === 2018) {
                     return (
                       <li key={`${year}`}>
@@ -117,6 +117,14 @@ const Home = ({ config }) => {
                   for data submission resources.
                 </li>
               </ul>
+              <li>
+                <a
+                  href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-2022.pdf"
+                  download={true}
+                >
+                  Supplemental Guide for Quarterly Filers for 2022
+                </a>
+              </li>
               <li>
                 <a
                   href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-2021.pdf"
