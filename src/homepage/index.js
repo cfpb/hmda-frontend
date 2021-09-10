@@ -57,7 +57,7 @@ const Home = ({ config }) => {
             <ul>
               <li>Filing Instructions Guide</li>
               <ul>
-                {[2021, 2020, 2019, 2018, 2017].map(year => {
+                {[2022,2021, 2020, 2019, 2018, 2017].map(year => {
                   if (year === 2018) {
                     return (
                       <li key={`${year}`}>
@@ -92,6 +92,18 @@ const Home = ({ config }) => {
                     >
                       For data collected in {year}
                       <span className='last-updated'>( Last updated: 11/20/2020 )</span>
+                    </a>
+                  </li>
+                  }
+
+                  if (year === 2022) {
+                    return <li key={year}>
+                    <a
+                      href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${year}-hmda-fig.pdf`}
+                      download={true}
+                    >
+                      For data collected in {year}
+                      <span className='last-updated'>( Last updated: 09/09/2021 )</span>
                     </a>
                   </li>
                   }
