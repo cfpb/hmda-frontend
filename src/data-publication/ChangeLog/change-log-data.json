@@ -4,6 +4,15 @@
       "date": "09/10/21",
       "type": "release",
       "product": "documentation",
+      "description": "The Filing Instructions Guide (FIG) and the Supplemental Guide for Quarterly Filers for the year 2022 have been released.",
+      "links": [
+        {"text": "HMDA Quarterly FIG 2022", "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2022-hmda-fig.pdf"} 
+           ]
+    },
+    {
+      "date": "09/10/21",
+      "type": "release",
+      "product": "documentation",
       "description": "The Filing Instructions Guide (FIG) and the Supplemental Guide for  Filers for the year 2022 have been released.",
       "links": [
         {"text": "HMDA FIG 2022", "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2022-hmda-fig.pdf"} 
