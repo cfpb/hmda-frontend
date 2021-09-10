@@ -97,17 +97,31 @@ const Home = ({ config }) => {
                   }
 
                   if (year ==2022) {
-                    return <li key={year}>
-                    <a
-                      href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${year}-hmda-fig.pdf`}
-                      download={true}
-                    >
+                   return (
+                    <li key={`${year}`}>
                       For data collected in {year}
-                      <span className='last-updated'>( Last updated: 09/09/2021 )</span>
-                    </a>
-                  </li>
+                      <ul>
+                        <li key={year + '-annual-fig'}>
+                          <a
+                            href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${year}-hmda-fig.pdf`}
+                            download={true}
+                          >
+                            Annual 2022 FIG
+                          </a>
+                        </li>
+                        <li key={year + 'quarterly-fig'}>
+                          <a
+                            href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-${year}.pdf`}
+                            download={true}
+                          >
+                            Quarterly 2022 FIG
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                    )
                   }
-
+                
                   return (
                     <li key={year}>
                       <a
