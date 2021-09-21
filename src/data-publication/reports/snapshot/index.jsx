@@ -19,7 +19,8 @@ function linkToDocs(year = '2018'){
     <li key="1"><a href={`/documentation/${year}/public-ts-schema/`}>Public Transmittal Sheet Schema</a></li>,
     <li key="2"><a href={`/documentation/${year}/public-panel-schema/`}>Public Panel Schema</a></li>,
     <li key="3"><a href={`/documentation/${year}/lar-data-fields/`}>Public HMDA Data Fields with Values and Definitions</a></li>,
-    <li key="4"><a href={`/documentation/${year}/panel-data-fields/`}>Public Panel Values and Definitions</a></li>
+    <li key="4"><a href={`/documentation/${year}/panel-data-fields/`}>Public Panel Values and Definitions</a></li>,
+    <li key="5"><a href={`/documentation/${year}/arid2017-to-lei-schema/`}>ARID2017 to LEI Reference Table Schema</a></li>
   ]
 }
 
