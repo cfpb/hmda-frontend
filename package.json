@@ -11,7 +11,8 @@
     "build": "react-scripts build",
     "test": "yarn run cypress run",
     "ci": "REACT_APP_ENVIRONMENT=CI yarn start -p 3000",
-    "ci-data": "yarn newman run cypress/ci/tests/CREATE_INSTITUTIONS.postman_collection.json -e cypress/ci/config/PLATFORM_ENV.postman_environment.json -d cypress/ci/config/institutions.json"
+    "ci-data": "yarn newman run cypress/ci/tests/CREATE_INSTITUTIONS.postman_collection.json -e cypress/ci/config/PLATFORM_ENV.postman_environment.json -d cypress/ci/config/institutions.json",
+    "dev-docs": "cp -R ./src/documentation/markdown ./public/"
   },
   "keywords": [
     "HMDA"
