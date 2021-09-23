@@ -75,24 +75,16 @@ Note: No videos or snapshots are created when running tests via the Cypress UI, 
 ```
 yarn cypress open
 ```
-<<<<<<< HEAD
 
-### Building
-From the `hmda-frontend` folder:
-```
-docker build . -f cypress/Dockerfile
-```
-=======
-## Cronjob integration
+## Building & Cronjob integration
 
 ### Updating Specs
 Integration testing automatically runs twice daily via cronjob. To update the testing pod with the latest specs we need only update the image `hmda-cypress:latest`.  From the root directory `/hmda-frontend/` run:
 ```
-docker build . -t hmda-cypress -f cypress/Dockerfile && 
-docker tag hmda-cypress <image_repo>/hmda/hmda-cypress && 
+docker build . -t hmda-cypress -f cypress/Dockerfile &&
+docker tag hmda-cypress <image_repo>/hmda/hmda-cypress &&
 docker push  <image_repo>/hmda/hmda-cypress
-``` 
+```
 
-### Updating Credentials 
+### Updating Credentials
 In order to update the login credentials used by the testing pod, please see the `Quick Start` section in `/hmda-devops/kubernetes/cypress/README.md`.
->>>>>>> upstream/master
