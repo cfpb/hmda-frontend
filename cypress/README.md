@@ -67,3 +67,9 @@ Note: No videos or snapshots are created when running tests via the Cypress UI, 
 ```
 yarn cypress open
 ```
+
+### Building
+From the `hmda-frontend` folder:
+```
+docker build . -f cypress/Dockerfile
+```
