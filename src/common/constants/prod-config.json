@@ -45,7 +45,11 @@
   },
   "showMaps": true,
   "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "filingAnnouncement": {
+    "message": "",
+    "type": "",
+    "heading": ""
+  },
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
