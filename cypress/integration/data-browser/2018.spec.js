@@ -1,4 +1,4 @@
-import { openSelector, dbURL, isBeta, isProd, isCI } from '../../support/helpers'
+import { openSelector, dbURL, isBeta, isProd, waitUpto2Mins } from '../../support/helpers'
 
 const { HOST, ENVIRONMENT } = Cypress.env()
 const dbUrl = dbURL.bind(null, HOST)
@@ -32,7 +32,7 @@ describe('Data Browser 2018', function () {
 
       // View Summary Table
       cy.findByText('View Summary Table').click()
-      cy.get('.Aggregations').should('exist')
+      cy.get('.Aggregations', waitUpto2Mins).should('exist')
       cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text', 'ALABAMA, ALASKA')
       cy.get('.Aggregations :nth-child(2) > .sublist > li').then($li => {
         let text = $li.text().toLowerCase()
@@ -67,7 +67,7 @@ describe('Data Browser 2018', function () {
 
       // View Summary Table
       cy.findByText('View Summary Table').click()
-      cy.get('.Aggregations').should('exist')
+      cy.get('.Aggregations', waitUpto2Mins).should('exist')
       cy.get('.Aggregations :nth-child(1) > .sublist > li').then($li => {
         let text = $li.text().toLowerCase()
         cy.wrap(text).should('contain', 'bank of america')
@@ -110,7 +110,7 @@ describe('Data Browser 2018', function () {
 
       // View Summary Table
       cy.findByText('View Summary Table').click()
-      cy.get('.Aggregations').should('exist')
+      cy.get('.Aggregations', waitUpto2Mins).should('exist')
       cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text', 'AUTAUGA COUNTY, BALDWIN COUNTY')
       cy.get('.Aggregations :nth-child(2) > .sublist > li').then($li => {
         let text = $li.text().toLowerCase()
@@ -154,7 +154,7 @@ describe('Data Browser 2018', function () {
 
       // View Summary Table
       cy.findByText('View Summary Table').click()
-      cy.get('.Aggregations').should('exist')
+      cy.get('.Aggregations', waitUpto2Mins).should('exist')
       cy.get('.Aggregations :nth-child(1) > .sublist > li').should('have.text',"11500\u00A0-\u00A0ANNISTON-OXFORD-JACKSONVILLE, 12220\u00A0-\u00A0AUBURN-OPELIKA")
       cy.get('.Aggregations :nth-child(2) > .sublist > li').then($li => {
         let text = $li.text().toLowerCase()

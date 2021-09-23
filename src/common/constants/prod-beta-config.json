@@ -1,14 +1,21 @@
 {
   "name": "prod-beta",
-  "announcement": {
-    "message": "This month, we are testing new updates to the Beta platform. Outages may intermittently occur during this time. Please note that the Beta platform is for testing purposes only. Send any feedback or questions regarding your Beta platform usage experience to ",
-    "type": "info",
-    "heading": "Announcement",
-    "link": {
-      "url": "mailto:hmdahelp@cfpb.gov?subject=HMDA Beta Platform",
-      "text": "hmdahelp@cfpb.gov."
+  "announcement": [
+    {
+      "message": "We will be performing scheduled system maintenance on September 23 from 6:30pm - 7pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+      "type": "warning",
+      "heading": "Scheduled Maintenance"
+    },
+    {
+      "message": "This month, we are testing new updates to the Beta platform. Outages may intermittently occur during this time. Please note that the Beta platform is for testing purposes only. Send any feedback or questions regarding your Beta platform usage experience to ",
+      "type": "info",
+      "heading": "Announcement",
+      "link": {
+        "url": "mailto:hmdahelp@cfpb.gov?subject=HMDA Beta Platform",
+        "text": "hmdahelp@cfpb.gov."
+      }
     }
-  },
+  ],
   "defaultPeriod": "2021-Q2",
   "defaultDocsPeriod": "2021",
   "publicationReleaseYear": "2020",
@@ -25,7 +32,7 @@
   ],
   "filingQuarters": {
     "Q1": "04/01 - 06/01",
-    "Q2": "07/01 - 08/31",
+    "Q2": "07/01 - 08/30",
     "Q3": "10/01 - 11/30",
     "ANNUAL": "01/01 - 03/01",
     "PREVIEW": [
@@ -41,7 +48,12 @@
   },
   "showMaps": true,
   "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "filingAnnouncement": {
+    "message": "We will be performing scheduled system maintenance on September 23 from 6:30pm - 7pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance"
+  },
+  "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
       "2020",

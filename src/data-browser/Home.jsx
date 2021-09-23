@@ -25,7 +25,7 @@ class Home extends Component {
             <p className='lead'>
               Visit our{' '}
               <ExternalLink
-                url='https://cfpb.github.io/hmda-platform/#data-browser-api'
+                url='https://cfpb.github.io/hmda-platform/#data-browser'
                 text='HMDA API Documentation'
               />{' '}
               page to learn more about the HMDA Data Browser API.

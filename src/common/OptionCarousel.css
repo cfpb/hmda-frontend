@@ -1,6 +1,6 @@
 .oc {
   position: relative;
-  user-select: all;
+  user-select: text;
 }
 
 .oc .progress {
@@ -59,7 +59,7 @@
 
 .oc-option {
   position: relative;
-  user-select: none;
+  user-select: text;
 }
 
 .oc-option.inline {

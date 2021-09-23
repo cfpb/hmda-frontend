@@ -2,7 +2,7 @@ import React from 'react'
 import Alert from './Alert.jsx'
 
 export function isBeta(host=window.location.hostname) {
-  return true || host.match('beta')
+  return host.match('beta')
 }
 
 const Beta = props => {

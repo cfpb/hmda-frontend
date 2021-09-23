@@ -1,4 +1,4 @@
-import { withFormData, isProd, isCI } from "../../support/helpers"
+import { withFormData, isProd, isCI, isBeta } from "../../support/helpers"
 
 const { HOST, TEST_DELAY, ENVIRONMENT } = Cypress.env()
 
@@ -18,7 +18,7 @@ describe("Rate Spread Tool", function() {
     cy.get(".grid > .item > div > .Form > input").click()
 
     // Validate
-    cy.get(":nth-child(2) > .alert").contains("-0.590")
+    cy.get(".item  .alert").contains("-0.590")
 
     cy.wait(TEST_DELAY)
   })
@@ -40,17 +40,20 @@ describe("Rate Spread Tool", function() {
     cy.get(".grid > .item > div > .Form > input").click()
 
     // Validate
-    cy.get(":nth-child(2) > .alert").contains("-1.500")
+    cy.get(".item  .alert").contains("-1.500")
 
-    cy.wait(TEST_DELAY)
+    // Todo: 
+    //   Determine why this trailing wait() causes a pageLoadTimeout error.
+    //   This only seems to be an issue when wait() is the final command of the final test 
+    //   in a large suite, as this error only manifests when running the entire 
+    //   Cypress collection, but not when running the RateSpread specs specificially.
+    // cy.wait(TEST_DELAY) 
   })
 })
 
 describe("Rate Spread API", () => {
   
-  if(!isCI(ENVIRONMENT) || !isProd(HOST) || isBeta(HOST)) 
-    it(`Does not run on ${HOST}`, () => cy.get({ HOST, TEST_DELAY, ENVIRONMENT }).logEnv())
-  else {
+  if(isProd(HOST) || isCI(ENVIRONMENT)) {
     it("Generates rates from file", () => {
       cy.get({ HOST, TEST_DELAY, ENVIRONMENT }).logEnv()
       let response
@@ -85,5 +88,8 @@ describe("Rate Spread API", () => {
         cy.wait(TEST_DELAY)
       })
     })
+  }
+  else {
+    it(`Does not run on ${HOST}`, () => cy.get({ HOST, TEST_DELAY, ENVIRONMENT }).logEnv())
   }
 })

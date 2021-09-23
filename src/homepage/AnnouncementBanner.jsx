@@ -12,9 +12,9 @@ const TIMEZONE_OFFSET_HOURS = new Date().getTimezoneOffset() / 60
 
 /* Length of time, in days, to display the announcement after the event has occurred. */
 const SCHEDULED_EVENT_DURATIONS = {
-  annualOpen: 45,    // Annual Filing period is open.
+  annualOpen: 60,    // Annual Filing period is open.
   annualClose: 30,   // Annual Filing Timely deadline is passed.  Resubmissions still accepted.
-  quarterlyOpen: 30, // Quarterly Filing period is open.
+  quarterlyOpen: 60, // Quarterly Filing period is open.
   quarterlyClose: 0, // Quarterly Filing period is closed (no message)
 }
 
@@ -153,7 +153,19 @@ export const AnnouncementBanner = ({
   const announcements = scheduledFilingAnnouncements(defaultPeriod, filingQuarters, filingPeriods)
 
   // Prioritize the message set in the external configuration
-  if (announcement) announcements.unshift(<ConfiguredAlert {...announcement} />)
+  if (announcement) {
+    if (Array.isArray(announcement)) {
+      // Support multiple unscheduled announcements
+      announcement.length && announcement
+        .reverse()
+        .forEach((item) =>
+          announcements.unshift(<ConfiguredAlert {...item} />)
+        )
+    } else if (announcement) {
+      // Single announcement object (maintenance script)
+      announcements.unshift(<ConfiguredAlert {...announcement} />);
+    }
+  }
 
   // Display an auto-advancing, navigable carousel of announcements
   return (

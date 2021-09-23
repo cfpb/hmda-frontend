@@ -7,6 +7,7 @@ import BannerUSA from '../../common/BannerUSA.jsx'
 
 import './Header.css'
 import logo from '../images/ffiec-logo.svg'
+import { isBeta } from '../../common/Beta';
 
 export const addActiveClass = (selected, current) => {
   if (selected === current) return 'active'
@@ -25,7 +26,7 @@ export const getLink = filingPeriod => {
 
 const getDocLink = filingPeriod => {
   const year = filingPeriod.split('-')[0]
-  return `https://ffiec.cfpb.gov/documentation/${year}`
+  return `/documentation/${year}`
 }
 
 export const makeNav = (props, page) => {
@@ -38,7 +39,7 @@ export const makeNav = (props, page) => {
   let userHeader = (
     <ul className='nav-primary'>
       <li>
-        <a href='https://ffiec.cfpb.gov' {...openNewPage}>
+        <a href='/' {...openNewPage}>
           FFIEC Home
         </a>
       </li>
@@ -70,6 +71,7 @@ export const makeNav = (props, page) => {
 
 const Header = props => {
   const page = props.pathname.split('/').slice(-1)[0]
+  const platformLabel = isBeta() ? 'Beta' : 'Filing'
 
   return (
     <header className="Header header header-basic" id="header" role="banner">
@@ -84,7 +86,7 @@ const Header = props => {
               aria-label="Home"
             >
               <img src={logo} height="32px" alt="FFIEC" />
-              <span>HMDA Filing Platform</span>
+              <span>HMDA {platformLabel} Platform</span>
             </Link>
           </span>
         </div>

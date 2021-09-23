@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import RefileButton from '../refileButton/container.jsx'
+import { isBeta } from '../../common/Beta';
 
 import {
   FAILED,
@@ -22,7 +23,7 @@ const InstitutionViewButton = ({ status, institution, filingPeriod, isClosedQuar
   if (code === FAILED) {
     return <RefileButton className="ViewButton" institution={institution} />
   } else if (code <= CREATED) {
-    text = 'Upload your file'
+    text = "Upload your " + (isBeta() ? 'test file' : 'official file')
   } else if (code < PARSED_WITH_ERRORS) {
     text = 'View upload progress'
   } else if (code === PARSED_WITH_ERRORS) {

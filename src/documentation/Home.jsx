@@ -40,10 +40,11 @@ const Home = props => {
           <p>Endpoints, schemas, and examples to help you access HMDA Data via the HMDA APIs.</p>
           <ul>
             <li><a target="_blank" rel="noopener noreferrer" href="https://cfpb.github.io/hmda-platform/">HMDA APIs - Overview</a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="https://cfpb.github.io/hmda-platform/#data-browser-api">HMDA Data Browser API</a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="https://cfpb.github.io/hmda-platform/#hmda-filing-api">HMDA Filing API</a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="https://cfpb.github.io/hmda-platform/#hmda-public-api">HMDA Public API</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://cfpb.github.io/hmda-platform/#data-browser">HMDA Data Browser API</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://cfpb.github.io/hmda-platform/#hmda-filing">HMDA Filing API</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://cfpb.github.io/hmda-platform/#public-data-verification">HMDA Public API</a></li>
             <li><a target="_blank" rel="noopener noreferrer" href="https://cfpb.github.io/hmda-platform/#rate-spread">HMDA Rate Spread API</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://cfpb.github.io/hmda-platform/#check-digit">HMDA Check Digit API</a></li>
           </ul>
       </div>
     </div>

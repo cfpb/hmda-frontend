@@ -1,6 +1,14 @@
-# Cypress
-
-In an effort to eliminate manual verification of system deployments, this test suite aims to simulate user interaction with the HMDA Front-end using the Cypress testing library.
+# Cypress Integration Testing
+In an effort to automate system validation, this test suite emulates user interaction with the HMDA Frontend using the Cypress testing library.
+  * [Setup](#setup)
+    + [Installation Issues](#installation-issues)
+    + [Environment Configuration](#environment-configuration)
+  * [Running Tests](#running-tests)
+    + [via CLI](#via-cli)
+    + [via Cypress UI](#via-cypress-ui)
+  * [Cronjob integration](#cronjob-integration)
+    + [Updating Specs](#updating-specs)
+    + [Updating Credentials](#updating-credentials)
 
 ## Setup  
 Install [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm#installing-and-updating)  
@@ -35,8 +43,8 @@ If you encounter `yarn` errors regarding missing packages:
 export CYPRESS_USERNAME=<username>
 export CYPRESS_PASSWORD=<password>
 export CYPRESS_INSTITUTION=<target-institution-lei>
-export CYPRESS_TEST_DELAY=0 # No delay (milliseconds)
-export CYPRESS_ACTION_DELAY=0 # No delay (milliseconds)
+export CYPRESS_TEST_DELAY=1000 # No delay (milliseconds)
+export CYPRESS_ACTION_DELAY=1000 # No delay (milliseconds)
 ```
 
 ## Running Tests
@@ -67,9 +75,24 @@ Note: No videos or snapshots are created when running tests via the Cypress UI, 
 ```
 yarn cypress open
 ```
+<<<<<<< HEAD
 
 ### Building
 From the `hmda-frontend` folder:
 ```
 docker build . -f cypress/Dockerfile
 ```
+=======
+## Cronjob integration
+
+### Updating Specs
+Integration testing automatically runs twice daily via cronjob. To update the testing pod with the latest specs we need only update the image `hmda-cypress:latest`.  From the root directory `/hmda-frontend/` run:
+```
+docker build . -t hmda-cypress -f cypress/Dockerfile && 
+docker tag hmda-cypress <image_repo>/hmda/hmda-cypress && 
+docker push  <image_repo>/hmda/hmda-cypress
+``` 
+
+### Updating Credentials 
+In order to update the login credentials used by the testing pod, please see the `Quick Start` section in `/hmda-devops/kubernetes/cypress/README.md`.
+>>>>>>> upstream/master
