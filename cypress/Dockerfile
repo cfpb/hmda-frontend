@@ -45,3 +45,8 @@ COPY / hmda-frontend/
 WORKDIR hmda-frontend/
 
 RUN yarn
+
+RUN useradd -ms /bin/bash hmda_cypress_user && \
+  chown -R hmda_cypress_user:hmda_cypress_user /hmda-frontend/
+
+USER hmda_cypress_user
