@@ -33,16 +33,11 @@
 - **Values:**
   - Varying values
 
-### [arid\_2017](#arid_2017)
-- **Description:** The concatenation of an institution's 2017 Agency Code and Respondent ID. In order to match between 2017 and 2018, take the arid_2017 column from the 2018 panel and use this to join to the concatenation of the agency code and respondent ID in the 2017 panel. Respondent ID in 2017 and prior is not a unique value and must be joined to agency code to generate a primary key for the HMDA dataset. For 2018 and forward, LEI will be the primary key.
-- **Values:**
-  - Varying values
-
 ### [respondent\_rssd](#respondent_rssd)
 - **Description:** The National Information Center RSSD of the institution
 - **Values:**
   - -1: NULL/blank
-- Varying values
+  - Varying values
 
 ### [respondent\_name](#respondent_name)
 - **Description:** The name of the institution as registered with <a target="_blank" rel="noopener noreferrer" href="https://www.gleif.org/">GLEIF</a>

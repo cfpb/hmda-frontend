@@ -7,7 +7,6 @@ lei|20|Alphanumeric
 tax\_id|10|Alphanumeric
 agency\_code|1|Numeric
 id\_2017||Alphanumeric
-arid\_2017||Alphanumeric
 respondent\_rssd||Numeric
 respondent\_name||Alphanumeric
 respondent\_state|2|Alphanumeric

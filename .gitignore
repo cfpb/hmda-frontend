@@ -85,6 +85,8 @@ cypress/videos/
 cypress/screenshots/
 cypress/downloads/
 package-lock.json
+## Documentation Markdown files served locally for testing during development 
+public/markdown
 
 # Editor Configs #
 .vscode/

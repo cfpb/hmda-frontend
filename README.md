@@ -22,6 +22,7 @@ The HDMA Frontend monorepo hosts the public facing applications for the collecti
         * [Create Institutions](#create-institutions)
         * [Bypass API Authentication](#bypass-api-authentication)
         * [Configure the UI](#configure-the-ui)
+      - [Updating or Previewing Documentation](#updating-or-previewing-documentation)
     + [Running via Docker](#running-via-docker)
   * [Testing](#testing)
     + [Unit Tests](#unit-tests)
@@ -153,6 +154,12 @@ REACT_APP_LEIS=INSTITUTION1,INSTITUTION2 yarn ci
 ```
 
 You can now visit the filing application at http://localhost:3000/filing.
+
+
+#### Updating or Previewing Documentation
+In production, Markdown files for documentation are served from Github and dynamically rendered in the application. This architecture makes it difficult to preview changes made locally. 
+
+The script `yarn run dev-docs` will copy `/src/documentation/markdown` to `/public/markdown` for local preview. Files copied into the `/public/markdown` folder are ignored by git to avoid duplication.
 
 ### Running via Docker
 
