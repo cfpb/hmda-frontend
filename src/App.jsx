@@ -30,12 +30,12 @@ const HmdaHelp = makeAsyncComponent(() => import('./hmda-help'),
 const App = () => {
   const isFiling = !!window.location.pathname.match(/^\/filing/)
   const isHelp = !!window.location.pathname.match(/^\/hmda-help/)
-  const hideHeaderFooter = isFiling || isHelp
+  const hideCommonHeader = isFiling || isHelp
   const config = useEnvironmentConfig(window.location.hostname)
 
   return (
     <AppContext.Provider value={{ config }}>
-      {hideHeaderFooter  ? null : <Route path="/" render={props => {
+      {hideCommonHeader  ? null : <Route path="/" render={props => {
         return (
           <Header
             links={isBeta() ? betaLinks : updateFilingLink(config, defaultLinks)}
@@ -54,7 +54,7 @@ const App = () => {
         <Route path = "/hmda-help" component={HmdaHelp} />
         <Route component={NotFound} />
       </Switch>
-      {hideHeaderFooter ? null : <Footer config={config} />}
+      {isHelp ? null : <Footer config={config} />}
     </AppContext.Provider>
   )
 }
