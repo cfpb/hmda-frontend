@@ -1,0 +1,120 @@
+.MailingListSignupForm {
+  border-top: 1px solid #0071bc;
+  background: rgb(241, 241, 241);
+  padding: 1.5em 0 1.5em 0;
+  width: 100%;
+}
+
+.MailingListSignupForm label {
+  margin: 1.5rem auto .5rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.MailingListSignupForm #email {
+  display: block;
+  height: 3.5rem;
+  font-size: 2rem;
+  width: 100%;
+  border: 1px solid grey;
+  padding: 0 10px;
+}
+
+.MailingListSignupForm .privacy-statement,
+.MailingListSignupForm .privacy-statement a,
+.MailingListSignupForm .privacy-statement a:visited {
+  margin-left: 1rem;
+  color: rgb(74, 74, 74);
+}
+
+.MailingListSignupForm .privacy-statement a:hover {
+  color: black;
+}
+
+.MailingListSignupForm .submit-container {
+  display: flex;
+  flex-flow: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.MailingListSignupForm .submit-container button,
+.MailingListSignupForm .title,
+.MailingListSignupForm label {
+  margin: 0 !important;
+}
+
+/* Body Version */
+.MailingListSignupForm.in-body  {
+  border-bottom: 1px solid #0071bc;
+}
+
+.MailingListSignupForm.in-body .submit-container button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  padding: 8px 20px;
+}
+
+.MailingListSignupForm.in-body .title {
+  min-width: 35%;
+}
+
+.MailingListSignupForm.in-body {
+  display: flex;
+  flex-flow: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+@media screen and (max-width: 800px) {
+  .MailingListSignupForm.in-body {
+    flex-flow: wrap;
+  }
+
+  .MailingListSignupForm.in-body .title {
+    width: 100%;
+  }
+
+  .MailingListSignupForm.in-body #email,
+  .MailingListSignupForm.in-body button {
+    margin-top: .5rem !important;
+  }
+}
+
+/* Footer Version */
+.MailingListSignupForm.in-footer {
+  border-top: 2px solid #0071bc;
+  margin-top: 10px;
+  width: 100%;
+  padding: 0px;
+  padding-top: 5px;
+  background: none;
+  border-radius: 0;
+}
+
+.MailingListSignupForm.in-footer h3.title label{
+  margin: 5px 0;
+  font-size: 1.7rem;
+}
+
+.MailingListSignupForm.in-footer #email {
+  margin: 1rem 0 .5rem;
+  font-size: 2rem;
+}
+
+.MailingListSignupForm.in-footer .submit-container {
+  margin: 10px 0 0;
+}
+
+@media screen and (max-width: 750px) {
+  .MailingListSignupForm.in-footer .submit-container {
+    flex-flow: wrap;
+  }
+
+  .MailingListSignupForm.in-footer .submit-container .privacy-statement {
+    margin: 1rem 0 0 0;
+    padding: 0;
+  }
+
+}
