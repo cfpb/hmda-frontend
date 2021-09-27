@@ -4,7 +4,6 @@ import { Redirect } from 'react-router'
 import ConfirmationModal from './modals/confirmationModal/container.jsx'
 import Beta, { isBeta } from '../common/Beta'
 import Header from './common/Header.jsx'
-import Footer from './common/Footer.jsx'
 import BrowserBlocker from './common/BrowserBlocker.jsx'
 import Loading from '../common/LoadingIcon.jsx'
 import * as AccessToken from '../common/api/AccessToken.js'
@@ -127,8 +126,6 @@ export class AppContainer extends Component {
         ) : (
           this._renderAppContents(this.props)
         )}
-
-        <Footer filingPeriod={params.filingPeriod} config={this.props.config} />
       </div>
     )
   }

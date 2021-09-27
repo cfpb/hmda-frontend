@@ -1,6 +1,7 @@
 import React from 'react'
 import { login, register } from '../utils/keycloak.js'
 import Alert from '../../common/Alert.jsx'
+import { MailingListSignup } from '../../common/MailingListSignup'
 
 import './Home.css'
 
@@ -58,6 +59,9 @@ const Home = props => {
             Every user is required to register online for login credentials and
             establish an account prior to accessing the HMDA Platform.
           </p>
+        </div>
+        <div className="full-width" style={{ marginTop: '3rem'}}>
+          <MailingListSignup />
         </div>
       </section>
       <div className="full-width">
