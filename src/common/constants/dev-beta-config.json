@@ -11,7 +11,7 @@
       }
     }
   ],
-  "defaultPeriod": "2021-Q1",
+  "defaultPeriod": "2021-Q3",
   "defaultDocsPeriod": "2021",
   "publicationReleaseYearDesc": [
     "Homepage -> Default year for Datasets, Reports, and mLAR Links",
@@ -21,6 +21,8 @@
   "maintenanceMode": false,
   "filingAnnouncement": null,
   "filingPeriods": [
+    "2021-Q3",
+    "2021-Q2",
     "2021-Q1",
     "2021",
     "2020-Q3",
@@ -36,7 +38,6 @@
     "Q3": "10/01 - 11/30",
     "ANNUAL": "01/01 - 03/01",
     "PREVIEW": [
-      "2021-Q1",
       "2021"
     ]
   },
