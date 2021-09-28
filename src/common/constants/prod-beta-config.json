@@ -2,11 +2,6 @@
   "name": "prod-beta",
   "announcement": [
     {
-      "message": "Our scheduled maintenance is complete. HMDA filers may resume submission and resubmission of HMDA files. Please contact hmdahelp@cfpb.gov if you are experiencing issues.",
-      "type": "success",
-      "heading": "HMDA Filing Platform is available"
-    },
-    {
       "message": "On June 17, 2021, the Disclosure Reports, MSA/MD Aggregate Reports, Snapshot National Loan-Level dataset, and Dynamic National Loan-Level dataset for 2020 were released. These files are accessible from the ",
       "type": "info",
       "heading": "Data Publication Release",
@@ -16,11 +11,12 @@
       }
     }
   ],
-  "defaultPeriod": "2021-Q2",
+  "defaultPeriod": "2021-Q3",
   "defaultDocsPeriod": "2021",
   "publicationReleaseYear": "2020",
   "filingPeriods": [
     "2021",
+    "2021-Q3",
     "2021-Q2",
     "2021-Q1",
     "2020",
@@ -36,7 +32,7 @@
     "Q3": "10/01 - 11/30",
     "ANNUAL": "01/01 - 03/01",
     "PREVIEW": [
-      "2021-Q1",
+      "2021-Q3",
       "2021"
     ]
   },
