@@ -33,16 +33,9 @@ RUN yum install -y unzip
 
 RUN npm install yarn -g
 
-RUN mkdir -p ~/.cache/Cypress/8.3.0/Cypress && \
-    wget --no-check-certificate http://download.cypress.io/desktop/8.3.0?platform=linux -O /tmp/z.$$ && \
-    unzip -d ~/.cache/Cypress/8.3.0/ /tmp/z.$$ && \
-    rm /tmp/z.$$ && \
-    chmod +x ~/.cache/Cypress/8.3.0/Cypress/Cypress && \
-    rm -rf /var/lib/apt/lists/*
-
 COPY / hmda-frontend/
 
-WORKDIR hmda-frontend/
+WORKDIR /hmda-frontend/
 
 RUN yarn
 
@@ -50,3 +43,5 @@ RUN useradd -ms /bin/bash hmda_cypress_user && \
   chown -R hmda_cypress_user:hmda_cypress_user /hmda-frontend/
 
 USER hmda_cypress_user
+
+RUN yarn cypress install
