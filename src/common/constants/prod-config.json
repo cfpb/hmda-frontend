@@ -11,11 +11,12 @@
       }
     }
   ],
-  "defaultPeriod": "2021-Q2",
+  "defaultPeriod": "2021-Q3",
   "defaultDocsPeriod": "2021",
   "publicationReleaseYear": "2020",
   "mlarReleaseYear": "2020",
   "filingPeriods": [
+    "2021-Q3",
     "2021-Q2",
     "2021-Q1",
     "2020",
