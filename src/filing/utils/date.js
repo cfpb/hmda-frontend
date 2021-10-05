@@ -26,9 +26,9 @@ export function padZero(n) {
 export function ordinal(d, options=({nthDate: true})) {
   const { nthDate } = options
   const month = months[d.getMonth()]
-  const day = d.getDate() + (nthDate ? nth(day) : '')
-
-  return `${month} ${day }, ${d.getFullYear()}`
+  const day = d.getDate() 
+  const dayStr = `${day}${nthDate ? nth(day) : ''}`
+  return `${month} ${dayStr}, ${d.getFullYear()}`
 }
 
 export function ordinalHour(d) {
