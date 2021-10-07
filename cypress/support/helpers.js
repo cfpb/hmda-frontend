@@ -4,7 +4,7 @@ export const isProd = (host) => !host.match(/beta|ops/)
 export const isBeta = (host) => !!host.match(/beta|ops/)
 export const isDev = (host) => !isProd(cleanHost(host))
 export const isDevBeta = (host) => isDev(host) && isBeta(host)
-export const isProdBeta = (host) => isProd(host) && isBeta(host)
+export const isProdBeta = (host) => isBeta(host) && host.match(/ffiec/)
 export const isDevDefault = (host) => isDev(host) && !isBeta(host)
 export const isProdDefault = (host) => isProd(host) && !isBeta(host)
 
