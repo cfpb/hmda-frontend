@@ -1,9 +1,10 @@
-import { dbClick2018, dbClick2017, dbURL, isProd, isBeta, isCI } from '../../support/helpers'
+import { dbClick2018, dbClick2017, dbURL, isProd, isBeta, isProdBeta, isCI } from '../../support/helpers'
 const { HOST, ENVIRONMENT } = Cypress.env()
 const dbUrl = dbURL.bind(null, HOST)
 
 describe('Data Browser 2017 <=> 2018', () => {
   if(isCI(ENVIRONMENT)) it("Does not run on CI")
+  else if(isProdBeta(HOST)) it("Does not run on Prod Beta")
   else if(!isProd(HOST) && isBeta(HOST)){
     it('Maps States Codes <=> State Abbreviations', () => {
       cy.get({ HOST, ENVIRONMENT }).logEnv()

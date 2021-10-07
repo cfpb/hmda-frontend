@@ -1,4 +1,4 @@
-import { withFormData, isProd, isCI, isBeta } from "../../support/helpers"
+import { withFormData, isProd, isCI, isProdBeta } from "../../support/helpers"
 
 const { HOST, TEST_DELAY, ENVIRONMENT } = Cypress.env()
 
@@ -7,48 +7,53 @@ describe("Rate Spread Tool", function() {
     cy.viewport(1680, 916)
     cy.visit(`${HOST}/tools/rate-spread`)
   })
+  if(isCI(ENVIRONMENT) || !isProdBeta(HOST)) {
 
-  it("Generates Fixed Rate", function() {
-    cy.get({ HOST, TEST_DELAY }).logEnv()
-    cy.get(".item > div > .Form > div > #rateSetDate").click()
-    cy.get(".item > div > .Form > div > #rateSetDate").type("12/16/2019")
-    cy.get(".item > div > .Form > div > #APR").type("3.2")
-    cy.get(".item > div > .Form > div > #loanTerm").click()
-    cy.get(".item > div > .Form > div > #loanTerm").type("45")
-    cy.get(".grid > .item > div > .Form > input").click()
+    it("Generates Fixed Rate", function() {
+      cy.get({ HOST, TEST_DELAY }).logEnv()
+      cy.get(".item > div > .Form > div > #rateSetDate").click()
+      cy.get(".item > div > .Form > div > #rateSetDate").type("12/16/2019")
+      cy.get(".item > div > .Form > div > #APR").type("3.2")
+      cy.get(".item > div > .Form > div > #loanTerm").click()
+      cy.get(".item > div > .Form > div > #loanTerm").type("45")
+      cy.get(".grid > .item > div > .Form > input").click()
 
-    // Validate
-    cy.get(".item  .alert").contains("-0.590")
+      // Validate
+      cy.get(".item  .alert").contains("-0.590")
 
-    cy.wait(TEST_DELAY)
-  })
+      cy.wait(TEST_DELAY)
+    })
 
-  it("Generates Variable Rate", function() {
-    cy.get({ HOST, TEST_DELAY }).logEnv()
-    cy.get(".Form > fieldset > .unstyled-list > li > #actionTaken1").click()
-    cy.get(
-      ".Form > fieldset > .unstyled-list > li > #amortizationVariable"
-    ).click()
-    cy.get(
-      ".Form > fieldset > .unstyled-list > li > #amortizationVariable"
-    ).type("Variable")
-    cy.get(".item > div > .Form > div > #rateSetDate").click()
-    cy.get(".item > div > .Form > div > #rateSetDate").type("01/22/2018")
-    cy.get(".item > div > .Form > div > #APR").type("2.5")
-    cy.get(".item > div > .Form > div > #loanTerm").click()
-    cy.get(".item > div > .Form > div > #loanTerm").type("30")
-    cy.get(".grid > .item > div > .Form > input").click()
+    it("Generates Variable Rate", function() {
+      cy.get({ HOST, TEST_DELAY }).logEnv()
+      cy.get(".Form > fieldset > .unstyled-list > li > #actionTaken1").click()
+      cy.get(
+        ".Form > fieldset > .unstyled-list > li > #amortizationVariable"
+      ).click()
+      cy.get(
+        ".Form > fieldset > .unstyled-list > li > #amortizationVariable"
+      ).type("Variable")
+      cy.get(".item > div > .Form > div > #rateSetDate").click()
+      cy.get(".item > div > .Form > div > #rateSetDate").type("01/22/2018")
+      cy.get(".item > div > .Form > div > #APR").type("2.5")
+      cy.get(".item > div > .Form > div > #loanTerm").click()
+      cy.get(".item > div > .Form > div > #loanTerm").type("30")
+      cy.get(".grid > .item > div > .Form > input").click()
 
-    // Validate
-    cy.get(".item  .alert").contains("-1.500")
+      // Validate
+      cy.get(".item  .alert").contains("-1.500")
 
-    // Todo: 
-    //   Determine why this trailing wait() causes a pageLoadTimeout error.
-    //   This only seems to be an issue when wait() is the final command of the final test 
-    //   in a large suite, as this error only manifests when running the entire 
-    //   Cypress collection, but not when running the RateSpread specs specificially.
-    // cy.wait(TEST_DELAY) 
-  })
+      // Todo: 
+      //   Determine why this trailing wait() causes a pageLoadTimeout error.
+      //   This only seems to be an issue when wait() is the final command of the final test 
+      //   in a large suite, as this error only manifests when running the entire 
+      //   Cypress collection, but not when running the RateSpread specs specificially.
+      // cy.wait(TEST_DELAY) 
+    })
+  } 
+  else {
+    it(`Does not run on ${HOST}`, () => cy.get({ HOST, TEST_DELAY, ENVIRONMENT }).logEnv())
+  }
 })
 
 describe("Rate Spread API", () => {
