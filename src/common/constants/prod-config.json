@@ -40,12 +40,8 @@
     "ANNUAL": "01/01 - 03/01"
   },
   "showMaps": true,
-  "maintenanceMode": false,
-  "filingAnnouncement": {
-    "message": "We will be performing scheduled system maintenance on October 12 from 6pm - 7pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-    "type": "warning",
-    "heading": "Scheduled Maintenance"
-  },
+  "maintenanceMode": true,
+  "filingAnnouncement": null,
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
