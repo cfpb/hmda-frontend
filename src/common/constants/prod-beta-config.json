@@ -2,6 +2,12 @@
   "name": "prod-beta",
   "announcement": [
     {
+      "message": "We will be performing scheduled system maintenance on October 12 from 6pm - 7pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+      "type": "warning",
+      "heading": "Scheduled Maintenance",
+      "link": null
+    },
+    {
       "message": "On June 17, 2021, the Disclosure Reports, MSA/MD Aggregate Reports, Snapshot National Loan-Level dataset, and Dynamic National Loan-Level dataset for 2020 were released. These files are accessible from the ",
       "type": "info",
       "heading": "Data Publication Release",
@@ -44,7 +50,11 @@
   },
   "showMaps": true,
   "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "filingAnnouncement": {
+    "message": "We will be performing scheduled system maintenance on October 12 from 6pm - 7pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance"
+  },
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
