@@ -99,6 +99,16 @@
   }
 }
 
+@media screen and (max-width: 675px) {
+  .MailingListSignupForm.large .inline {
+    flex-flow: wrap;
+  }
+  
+  .MailingListSignupForm.large .inline .title {
+    flex-basis: 100%;
+  }
+}
+
 /** 
 * Small (Footer) Version 
 */
