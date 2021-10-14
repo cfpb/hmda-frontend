@@ -31,6 +31,7 @@ const EmailInput = ({ emailAddress, onEmailChange }) => (
     type="email"
     id="email"
     placeholder="mail@example.com"
+    autoComplete="off"
     value={emailAddress}
     onChange={onEmailChange}
     required
