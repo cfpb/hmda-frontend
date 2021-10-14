@@ -6,7 +6,7 @@ import MaintenanceMessage from '../MaintenanceMessage'
 import ReleaseVersion from './ReleaseVersion'
 import { withRouter } from 'react-router-dom'
 import { hideHeaderFooter } from './Header'
-import MailingListSignup from './MailingListSignup'
+import { MailingSignupSmall } from "./MailingListSignup"
 
 const Footer = ({ config, location: {pathname} }) => {
   const [maintenance, setMaintenance] = React.useState(null)
@@ -34,7 +34,7 @@ const Footer = ({ config, location: {pathname} }) => {
               Home Mortgage Disclosure Act
             </a>
             <ReleaseVersion />
-            <MailingListSignup inFooter />
+            <MailingSignupSmall />
           </div>
 
           <div className="item">

@@ -1,76 +1,85 @@
-import React from 'react'
-import { useState } from 'react'
-import './MailingListSignupForm.css'
+import React from "react"
+import { useSubscriptionLogic } from "./mailingListServices"
+import { isProd } from "./configUtils"
+import "./MailingListSignupForm.css"
 
-function validateEmail(email) {
-  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(email).toLowerCase());
-}
+// CF.gov host for Production/Development environments
+const CFGOV_HOST = isProd(window.location.host)
+  ? "https://www.consumerfinance.gov"
+  : `${process.env.REACT_APP_CFGOV_DEV_DOMAIN}`
 
-const StatusMessage = ({ type, message }) => message && <div className={`status ${type}`}>{message}</div>
+// CF.gov endpoint for subscribing to a topic
+const SUBSCRIPTION_ENDPOINT = `${CFGOV_HOST}/subscriptions/new/`
 
-/* 
-  Provides a Sign Up form for the HMDA Mailing List
-*/
-export const MailingListSignup = ({ inFooter = false }) => {
-  const [emailAddress, setEmail] = useState("")
-  const [success, setSuccess] = useState(null)
-  const [error, setError] = useState(null)
+// HMDA topic for Production/Staging
+const HMDA_FILING_TOPIC_ID = isProd(window.location.host)
+  ? "USCFPB_139"
+  : "USCFPB_51"
 
-  const handleEmailChange = (e) => {
-    setError(null)
-    setSuccess(null)
-    e && setEmail(e.target.value)
-  }
+// Common form heading
+const Heading = () => (
+  <h3 className="title">
+    <label htmlFor="email" className="email-label">
+      Join the HMDA Mailing List
+    </label>
+  </h3>
+)
 
-  const submitSignup = (e) => {
-    e.preventDefault()
-    if (!validateEmail(emailAddress)) {
-      setError("Invalid email address")
-      setSuccess(null)
-      return
-    } else {
-      setError(null)
-      setSuccess("You have been subscribed!")
-    }
-  }
+// Common email input 
+const EmailInput = ({ emailAddress, onEmailChange }) => (
+  <input
+    type="email"
+    id="email"
+    placeholder="mail@example.com"
+    value={emailAddress}
+    onChange={onEmailChange}
+    required
+  />
+)
 
-  const placement = inFooter ? 'in-footer' : 'in-body'
+/** A compact HMDA Mailing List Subscription form */
+export const MailingSignupSmall = () => {
+  const { emailAddress, onEmailChange, onSubmit, currentStatus, submitButton } =
+    useSubscriptionLogic({
+      endpoint: SUBSCRIPTION_ENDPOINT,
+      topicId: HMDA_FILING_TOPIC_ID,
+    })
 
   return (
-    <form
-      className={`MailingListSignupForm ${placement}`}
-      onSubmit={submitSignup}
-    >
-      <h3 className="title">
-        <label htmlFor="email" className="email-label">
-          Join the HMDA Mailing List
-        </label>
-      </h3>
-      <input
-        type="email"
-        id="email"
-        placeholder="mail@example.com"
-        value={emailAddress}
-        onChange={handleEmailChange}
-        required
-      />
-      <StatusMessage type="error" message={error} />
-      <StatusMessage type="success" message={success} />
+    <form className={"MailingListSignupForm small"} onSubmit={onSubmit}>
+      <Heading />
+      <EmailInput {...{ emailAddress, onEmailChange }} />
+      {currentStatus}
       <div className="submit-container">
-        <button type="submit">Subscribe</button>
-        {inFooter && (
-          <a
-            href="https://content.consumerfinance.gov/privacy/email-campaign-privacy-act-statement/"
-            target="_blank"
-            className="privacy-statement"
-          >
-            See Privacy Act statement
-          </a>
-        )}
+        {submitButton}
+        <a
+          href="https://content.consumerfinance.gov/privacy/email-campaign-privacy-act-statement/"
+          target="_blank"
+          className="privacy-statement"
+        >
+          See Privacy Act statement
+        </a>
       </div>
     </form>
   )
 }
 
-export default MailingListSignup
+/** A more spacious HMDA Mailing List Subscription form */
+export const MailingSignupLarge = () => {
+  const { emailAddress, onEmailChange, onSubmit, currentStatus, submitButton } =
+    useSubscriptionLogic({
+      endpoint: SUBSCRIPTION_ENDPOINT,
+      topicId: HMDA_FILING_TOPIC_ID,
+    })
+
+  return (
+    <form className={"MailingListSignupForm large"} onSubmit={onSubmit}>
+      <div className="inline">
+        <Heading />
+        <EmailInput {...{ emailAddress, onEmailChange }} />
+        <div className="submit-container">{submitButton}</div>
+      </div>
+      {currentStatus}
+    </form>
+  )
+}

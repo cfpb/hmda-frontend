@@ -1,7 +1,7 @@
 import React from 'react'
 import { login, register } from '../utils/keycloak.js'
 import Alert from '../../common/Alert.jsx'
-import { MailingListSignup } from '../../common/MailingListSignup'
+import { MailingSignupLarge } from '../../common/MailingListSignup'
 
 import './Home.css'
 
@@ -61,7 +61,7 @@ const Home = props => {
           </p>
         </div>
         <div className="full-width" style={{ marginTop: '3rem'}}>
-          <MailingListSignup />
+          <MailingSignupLarge />
         </div>
       </section>
       <div className="full-width">
