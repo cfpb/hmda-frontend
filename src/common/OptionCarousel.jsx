@@ -1,84 +1,102 @@
-import React, { useState, useEffect } from 'react'
-import { ReactComponent as IconPlay } from '../common/images/play.svg'
-import { ReactComponent as IconPause } from '../common/images/pause.svg'
-import './OptionCarousel.css'
+import React, { useState } from "react"
+import { useAutoAdvance } from "./useAutoAdvance"
+import { useDynamicHeight } from "./useDynamicHeight"
+import { ReactComponent as IconPlay } from "../common/images/play.svg"
+import { ReactComponent as IconPause } from "../common/images/pause.svg"
+import "./OptionCarousel.css"
 
 /**
  * A component to enable testing of potential changes in a live site by clicking to cycle through available options
- * @param {Array} options Components/Elements to display as options
- * @param {Boolean} showControls Display the navigation controls
- * @param {Boolean} hideIcon Hide the icon marking these elements as part of the carousel
  * @param {String} className Optional classname to add to carousel elements
  * @param {Integer} cycleTime Number of seconds to wait before displaying the next option, if multiple options are passed. Setting this to 0 will turn off the auto advance behavior.
- * @returns 
+ * @param {String} fixedHeight Use a static container height
+ * @param {Boolean} hideIcon Hide the icon marking these elements as part of the carousel
+ * @param {Array} options Components/Elements to display as options
+ * @param {Boolean} showControls Display the navigation controls
  */
 export const OptionCarousel = ({
+  className = "",
+  cycleTime = 2,
+  fixedHeight = null,
+  hideIcon = false,
   options = [],
   showControls = true,
-  cycleTime = 2,
-  hideIcon = false,
-  className = '',
-  fixedHeight = 'auto'
 }) => {
-  const [idx, setIdx] = useState(0)
-  const [paused, setPaused] = useState(false)  // Auto-advance?
   if (!options || !options.length) return null
 
-  const hasMultiple = options.length > 1
-  const next = () => setIdx((idx + 1) % options.length)
-  const prev = () =>
-    setIdx(idx - 1 < 0 ? options.length - 1 : (idx - 1) % options.length)
+  const [currHeight, setCurrHeight] = useState(fixedHeight || "100px")
 
-  let autoAdvance
-  useEffect(() => {
-    if (paused) {
-      autoAdvance && clearTimeout(autoAdvance)
-    } else {
-      if (!options.length) return null
-      const secs = parseInt(cycleTime)
-      if (hasMultiple && secs) {
-        autoAdvance = setTimeout(next, secs * 1000)
-        return () => clearTimeout(autoAdvance)
-      }
-    }
-  }, [idx, paused])
+  const styles = { height: currHeight }
+  const totalCount = options.length
+  const hasMultiple = totalCount > 1
+  const showNavigator = showControls && hasMultiple
+  const hideIconClass = hideIcon ? "no-icon" : ""
+  const classname = [className, "oc-option", hideIconClass]
+    .filter((x) => x)
+    .join(" ")
 
-  const hideIconClass = hideIcon ? 'no-icon' : ''
-  const classname = [className, 'oc-option', hideIconClass].filter((x) => x).join(' ')
-  const styles = { height: fixedHeight }
+  /* Adjust carousel container height when window is resized */
+  const maxLength = Math.max(...options.map((o) => o.props.message.length))
+  useDynamicHeight({ setCurrHeight, maxLength, fixedHeight })
+
+  /* Navigation logic */
+  const navControls = useAutoAdvance({ cycleTime, totalCount })
 
   return (
-    <div className='oc' style={styles}>
-      {showControls && hasMultiple && (
-        <div className='progress-wrapper'>
-          <div className={'progress'}>
-            <button
-              className='previous clickable'
-              onClick={prev}
-              title='Previous'
-            >
-              &lt;
-            </button>
-            <button className='count' tabIndex='-1'>
-              {idx + 1}/{options.length}
-            </button>
-            <button className='next clickable' onClick={next} title='Next'>
-              &gt;
-            </button>
-            <button
-              className='pause clickable'
-              title={paused ? 'Resume auto-advance' : 'Pause auto-advance'}
-              onClick={() => setPaused(!paused)}
-            >
-              <span className='svg icon'>
-                {paused ? <IconPlay /> : <IconPause />}
-              </span>
-            </button>
-          </div>
-        </div>
-      )}
+    <div className="oc" style={styles}>
+      <span className={classname}>
+        {showNavigator && (
+          <OptionNavigator {...{ ...navControls, totalCount }} />
+        )}
+        {options[navControls.currentIdx]}
+      </span>
+    </div>
+  )
+}
 
-      <span className={classname}>{options[idx]}</span>
+/**
+ * Navigation controller that displays which option is currently being shown
+ * @param {Integer} currentIdx
+ * @param {Boolean} isPaused // Flag indicating if auto-advance is paused
+ * @param {Function} setPaused // Callback to set if auto-advance is paused
+ * @param {Function} showNext // Callback to display next option
+ * @param {Function} showPrevious // Callback to display previous option
+ * @param {Integer} totalCount // Number of options
+ */
+const OptionNavigator = ({
+  currentIdx,
+  isPaused,
+  setPaused,
+  showNext,
+  showPrevious,
+  totalCount,
+}) => {
+  return (
+    <div className="progress-wrapper">
+      <div className={"progress"}>
+        <button
+          className="previous clickable"
+          onClick={showPrevious}
+          title="Previous"
+        >
+          &lt;
+        </button>
+        <button className="count" tabIndex="-1">
+          {currentIdx + 1}/{totalCount}
+        </button>
+        <button className="next clickable" onClick={showNext} title="Next">
+          &gt;
+        </button>
+        <button
+          className="pause clickable"
+          title={isPaused ? "Resume auto-advance" : "Pause auto-advance"}
+          onClick={() => setPaused(!isPaused)}
+        >
+          <span className="svg icon">
+            {isPaused ? <IconPlay /> : <IconPause />}
+          </span>
+        </button>
+      </div>
     </div>
   )
 }

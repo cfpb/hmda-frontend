@@ -1,6 +1,15 @@
 .oc {
   position: relative;
   user-select: text;
+  margin-bottom: -1rem;
+  transition: height .5s ease;
+  display: flex;
+  align-items: center;
+}
+
+.oc .alert {
+  margin: 0;
+  padding-top: 3rem;
 }
 
 .oc .progress {
@@ -8,11 +17,12 @@
   flex-flow: row nowrap;
   position: absolute;
   user-select: none;
-  top: 5px;
-  right: 5px;
+  top: 0;
+  right: 0;
   z-index: 1;
-  border-radius: 5px;
   background: rgba(153, 153, 153, .8); 
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 .oc .progress button {
@@ -60,6 +70,7 @@
 .oc-option {
   position: relative;
   user-select: text;
+  flex-basis: 100%;
 }
 
 .oc-option.inline {
