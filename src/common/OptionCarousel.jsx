@@ -1,33 +1,30 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
+import { useAutoAdvance } from "./useAutoAdvance"
+import { useDynamicHeight } from "./useDynamicHeight"
 import { ReactComponent as IconPlay } from "../common/images/play.svg"
 import { ReactComponent as IconPause } from "../common/images/pause.svg"
 import "./OptionCarousel.css"
 
-let timeout = false
-
 /**
  * A component to enable testing of potential changes in a live site by clicking to cycle through available options
- * @param {Array} options Components/Elements to display as options
- * @param {Boolean} showControls Display the navigation controls
- * @param {Boolean} hideIcon Hide the icon marking these elements as part of the carousel
  * @param {String} className Optional classname to add to carousel elements
  * @param {Integer} cycleTime Number of seconds to wait before displaying the next option, if multiple options are passed. Setting this to 0 will turn off the auto advance behavior.
  * @param {String} fixedHeight Use a static container height
+ * @param {Boolean} hideIcon Hide the icon marking these elements as part of the carousel
+ * @param {Array} options Components/Elements to display as options
+ * @param {Boolean} showControls Display the navigation controls
  */
 export const OptionCarousel = ({
+  className = "",
+  cycleTime = 2,
+  fixedHeight = null,
+  hideIcon = false,
   options = [],
   showControls = true,
-  cycleTime = 2,
-  hideIcon = false,
-  className = "",
-  fixedHeight = null
 }) => {
   if (!options || !options.length) return null
 
-  const [idx, setIdx] = useState(0)
-  const [paused, setPaused] = useState(false) // Auto-advance?
   const [currHeight, setCurrHeight] = useState(fixedHeight || "100px")
-  const [winWidth, setWinWidth] = useState(window.innerWidth)
 
   const styles = { height: currHeight }
   const totalCount = options.length
@@ -38,55 +35,20 @@ export const OptionCarousel = ({
     .filter((x) => x)
     .join(" ")
 
-  /* Debounced window resize event listener used to track window width */
-  window.onresize = () => {
-    clearTimeout(timeout)
-    timeout = setTimeout(() => setWinWidth(window.innerWidth), 450)
-  }
-
   /* Adjust carousel container height when window is resized */
-  useEffect(() => {
-    if (fixedHeight) return () => null // Skip dynamic height adjustment
+  const maxLength = Math.max(...options.map((o) => o.props.message.length))
+  useDynamicHeight({ setCurrHeight, maxLength, fixedHeight })
 
-    // Minimum height in pixels
-    const baseHeight = () => {
-      if (winWidth > 675) return 50
-      if (winWidth > 500) return 70
-      if (winWidth > 300) return 85
-      return 100
-    }
-
-    // Values derived from observation
-    const multiplier = () => {
-      if (winWidth > 500) return 13
-      if (winWidth > 400) return 14
-      if (winWidth > 300) return 15
-      return 20
-    }
-
-    // Calculate container height based on the longest message
-    let tallest = Math.max(...options.map((o) => o.props.message.length))
-
-    // Estimate how many rows the text will occupy, adding a 2 row cushion
-    const estimatedRows =
-      Math.round((tallest / window.innerWidth) * multiplier()) + 2
-
-    // Calculate container height based on # rows * presumed px height of text
-    const estHeight = baseHeight() + estimatedRows * 17
-
-    // Set height in pixels
-    setCurrHeight(`${estHeight}px`)
-  }, [winWidth])
+  /* Navigation logic */
+  const navControls = useAutoAdvance({ cycleTime, totalCount })
 
   return (
     <div className="oc" style={styles}>
       <span className={classname}>
         {showNavigator && (
-          <OptionNavigator
-            {...{ idx, setIdx, paused, setPaused, totalCount, cycleTime }}
-          />
+          <OptionNavigator {...{ ...navControls, totalCount }} />
         )}
-        {options[idx]}
+        {options[navControls.currentIdx]}
       </span>
     </div>
   )
@@ -94,56 +56,44 @@ export const OptionCarousel = ({
 
 /**
  * Navigation controller that displays which option is currently being shown
- * @param {Integer} idx // Index of current option being displayed
- * @param {Boolean} paused // Flag indicating if auto-advance is paused
+ * @param {Integer} currentIdx
+ * @param {Boolean} isPaused // Flag indicating if auto-advance is paused
+ * @param {Function} setPaused // Callback to set if auto-advance is paused
+ * @param {Function} showNext // Callback to display next option
+ * @param {Function} showPrevious // Callback to display previous option
  * @param {Integer} totalCount // Number of options
- * @returns
  */
 const OptionNavigator = ({
-  idx,
-  setIdx,
-  paused,
-  totalCount,
+  currentIdx,
+  isPaused,
   setPaused,
-  cycleTime,
+  showNext,
+  showPrevious,
+  totalCount,
 }) => {
-  const next = () => setIdx((idx + 1) % totalCount)
-  const prev = () => setIdx(idx - 1 < 0 ? totalCount - 1 : (idx - 1) % totalCount)
-
-  /* Automatically cycle through available options */
-  let autoAdvance
-  useEffect(() => {
-    if (paused) {
-      autoAdvance && clearTimeout(autoAdvance)
-    } else {
-      if (totalCount < 1) return null
-      const secs = parseInt(cycleTime)
-      if (secs > 0) {
-        autoAdvance = setTimeout(next, secs * 1000)
-        return () => clearTimeout(autoAdvance)
-      }
-    }
-  }, [idx, paused])
-
   return (
     <div className="progress-wrapper">
       <div className={"progress"}>
-        <button className="previous clickable" onClick={prev} title="Previous">
+        <button
+          className="previous clickable"
+          onClick={showPrevious}
+          title="Previous"
+        >
           &lt;
         </button>
         <button className="count" tabIndex="-1">
-          {idx + 1}/{totalCount}
+          {currentIdx + 1}/{totalCount}
         </button>
-        <button className="next clickable" onClick={next} title="Next">
+        <button className="next clickable" onClick={showNext} title="Next">
           &gt;
         </button>
         <button
           className="pause clickable"
-          title={paused ? "Resume auto-advance" : "Pause auto-advance"}
-          onClick={() => setPaused(!paused)}
+          title={isPaused ? "Resume auto-advance" : "Pause auto-advance"}
+          onClick={() => setPaused(!isPaused)}
         >
           <span className="svg icon">
-            {paused ? <IconPlay /> : <IconPause />}
+            {isPaused ? <IconPlay /> : <IconPause />}
           </span>
         </button>
       </div>
