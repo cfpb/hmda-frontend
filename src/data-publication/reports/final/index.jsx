@@ -53,11 +53,11 @@ const Final = props => {
     <div className="Final" id="main-content">
       <Heading
         type={1}
-        headingText="Final National Loan Level Dataset"
+        headingText="One Year Loan Level Dataset"
         paragraphText={`The data includes the Loan Application Register (LAR) and Transmittal Sheet (TS) submitted to the Bureau, which are cutoff when revisions to the data filing period is complete. Transmittal sheets include information about the filing institution, reporting period, and contact information. LARs include all data fields relating to the reported loan or application. Each covered loan or application appears on its own line.`}>
         {year === '2017'
           ? <p className="text-small">
-              Final data has preserved some elements of historic LAR data files
+              One Year data has preserved some elements of historic LAR data files
               that are not present in the Dynamic Data. These columns are &quot;As of
               Date&quot;, &quot;Edit Status&quot;, &quot;Sequence Number&quot;, and &quot;Application Date
               Indicator&quot;. Be aware that data load procedures that handle both files

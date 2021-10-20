@@ -20,11 +20,11 @@ const ultDesc = "The data includes the Loan Application Register (LAR) and Trans
 const arTitle = "MSA/MD Aggregate Reports"
 const drTitle = "Disclosure Reports"
 const dynTitle = "Dynamic National Loan-Level Dataset"
-const finTitle = "Final National Loan-Level Dataset"
 const mlarTitle = "Modified Loan/Application Register (LAR)"
 const narTitle = "National Aggregate Reports"
 const snapTitle = "Snapshot National Loan-Level Dataset"
-const ultTitle = "Ultimate National Loan-Level Dataset"
+const oneYearTitle = "One Year National Loan-Level Dataset"
+const threeYearTitle = "Three Year National Loan-Level Dataset"
 
 
 const publications = {
@@ -73,7 +73,7 @@ const publications = {
     },
     {
       headingLink: finLink(2018),
-      headingText: finTitle,
+      headingText: oneYearTitle,
       paragraphText: finDesc,
     },
     {
@@ -110,12 +110,12 @@ const publications = {
     },
     {
       headingLink: ultLink(2017),
-      headingText: ultTitle,
+      headingText: threeYearTitle,
       paragraphText: ultDesc,
     },
     {
       headingLink: finLink(2017),
-      headingText: finTitle,
+      headingText: oneYearTitle,
       paragraphText: finDesc,
     },
     {

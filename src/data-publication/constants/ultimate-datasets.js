@@ -8,22 +8,22 @@ export const ULTIMATE_DATASET = {
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/2017/2017_public_lar_ultimate_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/2017/2017_public_lar_ultimate_txt.zip',
-        label: 'Ultimate Loan/Application Records (LAR)'
+        label: 'Three Year Loan/Application Records (LAR)'
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/2017/2017_public_ts_ultimate_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/2017/2017_public_ts_ultimate_txt.zip',
-        label: 'Ultimate Transmittal Sheet Records (TS)'
+        label: 'Three Year Transmittal Sheet Records (TS)'
       },
       {
         csv: 'in-progress',
         txt: 'in-progress',
-        label: '[In Progress] Ultimate Reporter Panel'
+        label: '[In Progress] Three Year Reporter Panel'
       },
       {
         csv: 'in-progress',
         txt: 'in-progress',
-        label: '[In Progress] Ultimate MSA/MD Description'
+        label: '[In Progress] Three Year MSA/MD Description'
       }
     ]
   },

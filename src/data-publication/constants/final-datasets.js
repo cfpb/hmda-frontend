@@ -8,22 +8,22 @@ export const FINAL_DATASET = {
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/final-data/2018_public_lar_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/final-data/2018_public_lar_txt.zip',
-        label: 'Final Loan/Application Records (LAR)'
+        label: 'One Year Loan/Application Records (LAR)'
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/final-data/2018_public_ts_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/final-data/2018_public_ts_txt.zip',
-        label: 'Final Transmittal Sheet Records (TS)'
+        label: 'One Year Transmittal Sheet Records (TS)'
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/final-data/2018_public_panel_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/final-data/2018_public_panel_txt.zip',
-        label: 'Final Reporter Panel'
+        label: 'One Year Reporter Panel'
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/final-data/2018_public_msamd_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/final-data/2018_public_msamd_txt.zip',
-        label: 'Final MSA/MD Description'
+        label: 'One Year MSA/MD Description'
       }
     ]
   },
@@ -35,22 +35,22 @@ export const FINAL_DATASET = {
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/final-data/2017_public_lar_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/final-data/2017_public_lar_txt.zip',
-        label: 'Final Loan/Application Records (LAR)'
+        label: 'One Year Loan/Application Records (LAR)'
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/final-data/2017_public_ts_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/final-data/2017_public_ts_txt.zip',
-        label: 'Final Transmittal Sheet Records (TS)'
+        label: 'One Year Transmittal Sheet Records (TS)'
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/final-data/2017_public_panel_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/final-data/2017_public_panel_txt.zip',
-        label: 'Final Reporter Panel'
+        label: 'One Year Reporter Panel'
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/final-data/2017_public_msamd_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/final-data/2017_public_msamd_txt.zip',
-        label: 'Final MSA/MD Description'
+        label: 'One Year MSA/MD Description'
       }
     ]
   },

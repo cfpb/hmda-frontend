@@ -53,7 +53,7 @@ const Ultimate = props => {
     <div className="Ultimate" id="main-content">
       <Heading
         type={1}
-        headingText="Ultimate National Loan Level Dataset"
+        headingText="Three Year National Loan Level Dataset"
         paragraphText={
           <>
             The data includes the Loan Application Register (LAR) and
@@ -68,7 +68,7 @@ const Ultimate = props => {
         }>
         {year === '2017'
           ? <p className="text-small">
-              Ultimate data has preserved some elements of historic LAR data files
+              Three Year data has preserved some elements of historic LAR data files
               that are not present in the Dynamic Data. These columns are &quot;As of
               Date&quot;, &quot;Edit Status&quot;, &quot;Sequence Number&quot;, and &quot;Application Date
               Indicator&quot;. Be aware that data load procedures that handle both files
