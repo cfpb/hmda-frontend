@@ -10,8 +10,8 @@ export function isProd() {
 }
 
 const figUpdates = {
-  2021: "11/20/2020",
-  2022: "10/20/2021"
+  2021: '11/20/2020',
+  2022: '10/20/2021'
 }
 
 const FigLastUpdated = ({ year }) => {
