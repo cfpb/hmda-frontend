@@ -224,7 +224,7 @@ class Disclosure extends React.Component {
                     ? ''
                     : ''
                 }
-                id={params.reportId && params.year === '2017' ? report.value : ''}
+                id={params.reportId ? report.value : ''}
                 link={
                   params.msaMdId
                     ? `/data-publication/disclosure-reports/${params.year}/${institutionId}/${
