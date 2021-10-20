@@ -28,6 +28,7 @@ const DataPublication = ({ config }) => {
     <div className="App DataPublication">
       <Switch>
         <Redirect exact from="/data-publication" to={`/data-publication/${shared[0]}`} />
+        <Route exact path = "/data-publication/updates" component={PublicationChanges} />
         <Redirect exact from="/data-publication/modified-lar" to="/data-publication/modified-lar/2019" />
         <Route path="/data-publication/documents" component={SupportingDocs} />
         <Route path="/data-publication/modified-lar/:year" component={ModifiedLar} />
