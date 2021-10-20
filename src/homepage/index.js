@@ -9,6 +9,16 @@ export function isProd() {
   return window.location.hostname.match('ffiec')
 }
 
+const figUpdates = {
+  2021: "11/20/2020",
+  2022: "10/20/2021"
+}
+
+const FigLastUpdated = ({ year }) => {
+  if(!figUpdates[year]) return null
+  return <span className='last-updated'>( Last updated: {figUpdates[year]})</span>
+}
+
 const Home = ({ config }) => {
   const isProdBeta = isProd() && isBeta()
   const { defaultPeriod, publicationReleaseYear, mlarReleaseYear } = config
@@ -84,18 +94,6 @@ const Home = ({ config }) => {
                     )
                   }
 
-                  if (year === 2021) {
-                    return <li key={year}>
-                    <a
-                      href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${year}-hmda-fig.pdf`}
-                      download={true}
-                    >
-                      For data collected in {year}
-                      <span className='last-updated'>( Last updated: 11/20/2020 )</span>
-                    </a>
-                  </li>
-                  }
-
                   return (
                     <li key={year}>
                       <a
@@ -103,6 +101,7 @@ const Home = ({ config }) => {
                         download={true}
                       >
                         For data collected in {year}
+                        <FigLastUpdated {...{ year }} />
                       </a>
                     </li>
                   )
