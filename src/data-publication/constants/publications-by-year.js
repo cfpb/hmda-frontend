@@ -28,6 +28,33 @@ const threeYearTitle = "Three Year National Loan-Level Dataset"
 
 
 const publications = {
+  2020: [
+    {
+      headingLink: mlarLink(2020),
+      headingText: mlarTitle,
+      paragraphText: mlarDesc,
+    },
+    {
+      headingLink: drLink(2020),
+      headingText: drTitle,
+      paragraphText: drDesc,
+    },
+    {
+      headingLink: arLink(2020),
+      headingText: arTitle,
+      paragraphText: arDesc,
+    },
+    {
+      headingLink: snapLink(2020),
+      headingText: snapTitle,
+      paragraphText: snapDesc,
+    },
+    {
+      headingLink: dynLink(2020),
+      headingText: dynTitle,
+      paragraphText: dynDesc,
+    },
+  ],
   2019: [
     {
       headingLink: mlarLink(2019),
