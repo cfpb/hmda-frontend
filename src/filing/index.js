@@ -24,11 +24,13 @@ if (process.env.NODE_ENV !== 'production') {
   // use redux dev tools, extension required
   // see https://github.com/zalmoxisus/redux-devtools-extension#installation
   const { composeWithDevTools } = require('redux-devtools-extension')
+  const composeEnhancers = composeWithDevTools({trace: true, traceLimit: 25 })
+
   store = createStore(
     combineReducers({
       app: appReducer
     }),
-    composeWithDevTools(applyMiddleware(...middleware))
+    composeEnhancers(applyMiddleware(...middleware))
   )
 } else {
   store = createStore(
