@@ -13,7 +13,13 @@ Answer: A comma-separated values (CSV) file derives its name from a file contain
 Answer: The columns of the Static and Dynamic dataset, including data available through the Data Browser, have been reordered to create logical groupings. This reordering was done to facilitate analysis in desktop spreadsheet software for files pulled from the Data Browser.
 
 ### Which dataset is used by the Data Browser? 
-Answer: The Data Browser uses the static dataset. The static data for the 2018 collection were frozen on August 7, 2019. The static data for the 2019 collection were frozen on April 27, 2020.
+Answer: The Data Browser uses the [Snapshot](https://ffiec.cfpb.gov/data-publication/snapshot-national-loan-level-dataset/) dataset.
+
+| Collection Year | Data Freeze Date |
+|---|---|
+|[2018](https://ffiec.cfpb.gov/data-publication/snapshot-national-loan-level-dataset/2018)|August 7, 2019|
+|[2019](https://ffiec.cfpb.gov/data-publication/snapshot-national-loan-level-dataset/2019)|April 27, 2020|
+|[2020](https://ffiec.cfpb.gov/data-publication/snapshot-national-loan-level-dataset/2020)|May 3, 2021|
 
 ### I have a suggestion/improvement, who can I contact?
 Answer: For questions/suggestions regarding the HMDA Data Browser, [contact hmdahelp@cfpb.gov](mailto:hmdahelp@cfpb.gov).
