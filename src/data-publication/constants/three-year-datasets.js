@@ -1,5 +1,5 @@
 // TODO: Plug in actual files
-export const ULTIMATE_DATASET = {
+export const THREE_YEAR_DATASET = {
   2017: {
     date: 'September 14, 2020',
     dataformat: 'in-progress',

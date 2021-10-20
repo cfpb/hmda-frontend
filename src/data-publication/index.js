@@ -8,8 +8,8 @@ import Disclosure from './reports/Disclosure'
 import Aggregate from './reports/Aggregate'
 import NationalAggregate from './reports/NationalAggregate'
 import Snapshot from './reports/snapshot/index'
-import UltimateDataset from './reports/ultimate/index'
-import FinalDataset from './reports/final/index'
+import ThreeYearDataset from './reports/three_year/index'
+import OneYearDataset from './reports/one_year/index'
 import DynamicDataset from './reports/DynamicDataset'
 import NotFound from '../common/NotFound'
 import { withAppContext } from '../common/appContextHOC.jsx'
@@ -18,11 +18,11 @@ import PublicationChanges from './ChangeLog/'
 import './index.css'
 
 const DataPublication = ({ config }) => {
-  const { dynamic, final, snapshot, shared, ultimate } = config.dataPublicationYears
+  const { dynamic, oneYear, snapshot, shared, threeYear } = config.dataPublicationYears
   const snapshotYears = snapshot || shared
   const dynamicYears = dynamic || shared
-  const ultimateYears = ultimate || shared
-  const finalYears = final || shared
+  const threeYearYears = threeYear || shared
+  const oneYearYears = oneYear || shared
 
   return (
     <div className="App DataPublication">
@@ -54,19 +54,19 @@ const DataPublication = ({ config }) => {
           }}
         />
         <Route
-          path="/data-publication/ultimate-national-loan-level-dataset/:year?"
+          path="/data-publication/three-year-national-loan-level-dataset/:year?"
           render={ props => {
             const { year } = props.match.params
-            if(year && ultimateYears.indexOf(year) === -1) return <NotFound/>
-            return <UltimateDataset {...props}/>
+            if(year && threeYearYears.indexOf(year) === -1) return <NotFound/>
+            return <ThreeYearDataset {...props}/>
           }}
         />
         <Route
-          path="/data-publication/final-national-loan-level-dataset/:year?"
+          path="/data-publication/one-year-national-loan-level-dataset/:year?"
           render={ props => {
             const { year } = props.match.params
-            if(year && finalYears.indexOf(year) === -1) return <NotFound/>
-            return <FinalDataset {...props}/>
+            if(year && oneYearYears.indexOf(year) === -1) return <NotFound/>
+            return <OneYearDataset {...props}/>
           }}
         />
         <Route

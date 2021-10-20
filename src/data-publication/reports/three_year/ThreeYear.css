@@ -1,48 +1,48 @@
-.Final {
+.ThreeYear {
   margin: 0 auto;
   max-width: 1040px;
   padding: 0 3rem;
 }
 
-.Final .source-date {
+.ThreeYear .source-date {
   display: block;
   font-size: 1.5rem;
   margin-bottom: 1rem;
   color: grey;
 }
 
-.Final .header {
+.ThreeYear .header {
   border-bottom: none;
 }
 
-.Final h1 {
+.ThreeYear h1 {
   font-size: 4rem;
   margin-top: 1.5em;
 }
 
-.Final .font-lead {
+.ThreeYear .font-lead {
   font-size: 2rem;
   max-width: 77rem;
 }
 
-.Final .grid {
+.ThreeYear .grid {
   align-items: stretch;
   display: flex;
   margin: 0 auto;
   max-width: 1040px;
   padding: 3rem 0;
 }
-.Final .item {
+.ThreeYear .item {
   flex: 1;
   margin: 0 20px;
 }
-.Final .item:first-child {
+.ThreeYear .item:first-child {
   margin-left: 0;
 }
-.Final .item:last-child {
+.ThreeYear .item:last-child {
   margin-right: 0;
 }
 
-.Final .item li > ul {
+.ThreeYear .item li > ul {
   margin-top: 0.5em;
 }

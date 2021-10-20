@@ -1,9 +1,9 @@
 import React from 'react'
 import Heading from '../../../common/Heading.jsx'
 import YearSelector from '../../../common/YearSelector.jsx'
-import { ULTIMATE_DATASET } from '../../constants/ultimate-datasets.js'
+import { THREE_YEAR_DATASET } from '../../constants/three-year-datasets.js'
 import { withAppContext } from '../../../common/appContextHOC.jsx'
-import './Ultimate.css'
+import './ThreeYear.css'
 
 function makeListLink(href, val) {
   return (
@@ -41,16 +41,16 @@ function renderDatasets(datasets){
   )
 }
 
-const Ultimate = props => {
+const ThreeYear = props => {
   const { params, url } = props.match
   const { year } = params
-  const { ultimate, shared  } = props.config.dataPublicationYears
-  const years =  ultimate || shared
-  const dataForYear = ULTIMATE_DATASET[year]
+  const { threeYear, shared  } = props.config.dataPublicationYears
+  const years =  threeYear || shared
+  const dataForYear = THREE_YEAR_DATASET[year]
   const sourceDate = year ? dataForYear.date : null
 
   return (
-    <div className="Ultimate" id="main-content">
+    <div className="ThreeYear" id="main-content">
       <Heading
         type={1}
         headingText="Three Year National Loan Level Dataset"
@@ -95,7 +95,7 @@ const Ultimate = props => {
             <Heading type={4} headingText={year + ' File Specifications'} />
             <ul>
               {year === '2017'
-                ? makeListLink(dataForYear.dataformat, 'Ultimate LAR, TS and Reporter Panel')
+                ? makeListLink(dataForYear.dataformat, 'Three Year LAR, TS and Reporter Panel')
                 : linkToDocs(year)
               }
             </ul>
@@ -106,4 +106,4 @@ const Ultimate = props => {
   )
 }
 
-export default withAppContext(Ultimate)
+export default withAppContext(ThreeYear)

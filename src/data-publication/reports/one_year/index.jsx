@@ -1,9 +1,9 @@
 import React from 'react'
 import Heading from '../../../common/Heading.jsx'
 import YearSelector from '../../../common/YearSelector.jsx'
-import { FINAL_DATASET } from '../../constants/final-datasets.js'
+import { ONE_YEAR_DATASET } from '../../constants/one-year-datasets.js'
 import { withAppContext } from '../../../common/appContextHOC.jsx'
-import './Final.css'
+import './OneYear.css'
 
 function makeListLink(href, val) {
   return (
@@ -41,16 +41,16 @@ function renderDatasets(datasets){
   )
 }
 
-const Final = props => {
+const OneYear = props => {
   const { params, url } = props.match
   const { year } = params
-  const { final, shared  } = props.config.dataPublicationYears
-  const years =  final || shared
-  const dataForYear = FINAL_DATASET[year]
+  const { oneYear, shared  } = props.config.dataPublicationYears
+  const years =  oneYear || shared
+  const dataForYear = ONE_YEAR_DATASET[year]
   const sourceDate = year ? dataForYear.date : null
 
   return (
-    <div className="Final" id="main-content">
+    <div className="OneYear" id="main-content">
       <Heading
         type={1}
         headingText="One Year Loan Level Dataset"
@@ -84,7 +84,7 @@ const Final = props => {
             <Heading type={4} headingText={year + ' File Specifications'} />
             <ul>
               {year === '2017'
-                ? makeListLink(dataForYear.dataformat, 'Final LAR, TS and Reporter Panel')
+                ? makeListLink(dataForYear.dataformat, 'One Year LAR, TS and Reporter Panel')
                 : linkToDocs(year)
               }
             </ul>
@@ -95,4 +95,4 @@ const Final = props => {
   )
 }
 
-export default withAppContext(Final)
+export default withAppContext(OneYear)

@@ -1,5 +1,5 @@
 // TODO: Plug in actual files
-export const FINAL_DATASET = {
+export const ONE_YEAR_DATASET = {
   2018: {
     date: 'Pending...',
     dataformat: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/final-data/2018_publicstatic_dataformat.pdf',
