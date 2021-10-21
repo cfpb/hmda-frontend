@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ExternalLink = ({ url, text, className, children }) => {
+export const ExternalLink = ({ url, text, className, children }) => {
   return <a
     target='_blank'
     rel='noopener noreferrer'
