@@ -2,12 +2,12 @@
   "name": "prod-beta",
   "announcement": [
     {
-      "message": "On June 17, 2021, the Disclosure Reports, MSA/MD Aggregate Reports, Snapshot National Loan-Level dataset, and Dynamic National Loan-Level dataset for 2020 were released. These files are accessible from the ",
+      "message": "On October 20, 2021 the Filing Instructions Guide (FIG) for data collected in 2022 was updated with new guidance for edits V720-2, V721-2, and Q657. ",
       "type": "info",
-      "heading": "Data Publication Release",
+      "heading": "2022 FIG Update",
       "link": {
-        "url": "https://ffiec.cfpb.gov/data-publication/",
-        "text": "HMDA Data Publications page."
+        "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2022-hmda-fig.pdf",
+        "text": "Download the Filers Instruction Guide (FIG) for 2022."
       }
     }
   ],

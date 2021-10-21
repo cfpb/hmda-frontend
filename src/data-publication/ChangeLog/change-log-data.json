@@ -1,13 +1,25 @@
 {
   "log": [
     {
-          "date": "10/11/21",
-          "type": "update",
-          "product": "documentation",
-          "description": "The HMDA API documentation has been updated to provide users more information about the Check Digit tool error response messaging for batch uploads during generate and validate processing.",
-          "links": [
-              {"text": "HMDA API Documentation", "url": "https://cfpb.github.io/hmda-platform/"}
-          ]
+      "date": "10/20/21",
+      "type": "update",
+      "product": "documentation",
+      "description": "The Filing Instructions Guide (FIG) for data collected in 2022 has been updated with guidance for edits V720-2, V721-2, and Q657.",
+      "links": [
+        {
+          "text": "2022 Filing Instructions Guide (FIG)",
+          "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2022-hmda-fig.pdf"
+        }
+      ]
+    },
+    {
+      "date": "10/11/21",
+      "type": "update",
+      "product": "documentation",
+      "description": "The HMDA API documentation has been updated to provide users more information about the Check Digit tool error response messaging for batch uploads during generate and validate processing.",
+      "links": [
+          {"text": "HMDA API Documentation", "url": "https://cfpb.github.io/hmda-platform/"}
+      ]
     },
     {
       "date": "09/10/21",

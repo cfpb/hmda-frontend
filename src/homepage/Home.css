@@ -2,7 +2,7 @@
   margin-right: 0;
 }
 
-.App.home .last-updated:hover {
+.App.home a:hover > .last-updated {
   color: inherit;
 }
 
