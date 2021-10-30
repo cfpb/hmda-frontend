@@ -28,7 +28,7 @@
     "file-saver": "2.0.5",
     "filereader-stream": "2.0.0",
     "keycloak-js": "11.0.3",
-    "mapbox-gl": "1.13.1",
+    "mapbox-gl": "1.13.2",
     "markdown-to-jsx": "6.11.4",
     "normalize.css": "8.0.1",
     "react": "16.13.1",
