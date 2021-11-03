@@ -31,6 +31,40 @@
   ],
   "publicationReleaseYear": "2020",
   "mlarReleaseYear": "2021",
+  "filingPeriods": [
+    "2022-Q3",
+    "2022-Q2",
+    "2022-Q1",
+    "2021-Q3",
+    "2021-Q2",
+    "2021-Q1",
+    "2021",
+    "2020",
+    "2020-Q3",
+    "2020-Q2",
+    "2020-Q1",
+    "2019",
+    "2018"
+  ],
+  "filingQuarters": {
+    "Q1": "04/01 - 06/01",
+    "Q2": "06/30 - 08/30",
+    "Q3": "10/01 - 11/30",
+    "ANNUAL": "01/01 - 03/01",
+    "PREVIEW": [
+      "2022-Q3",
+      "2022-Q2",
+      "2022-Q1",
+      "2021"
+    ]
+  },
+  "filingQuartersLate": {
+    "Q1": "06/02 - 06/30",
+    "Q2": "09/01 - 09/30",
+    "Q3": "12/01 - 12/31",
+    "ANNUAL": "01/01 - 03/01"
+  },
+  "showMaps": true,
   "maintenanceMode": false,
   "filingAnnouncement": {
     "heading": "Collection of 2018 HMDA Data Will End",
