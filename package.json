@@ -72,6 +72,7 @@
     "serialize-javascript": "5.0.1"
   },
   "resolutions": {
+    "browserslist": "4.17.6",
     "react-dev-utils/shell-quote": "1.7.3",
     "immer": "9.0.6",
     "set-value": "4.0.1",
