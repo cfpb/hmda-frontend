@@ -16,6 +16,7 @@
   "publicationReleaseYear": "2020",
   "mlarReleaseYear": "2020",
   "filingPeriods": [
+    "2021",
     "2021-Q3",
     "2021-Q2",
     "2021-Q1",
@@ -32,7 +33,6 @@
     "Q3": "10/01 - 11/30",
     "ANNUAL": "01/01 - 03/01",
     "PREVIEW": [
-      "2021-Q3",
       "2021"
     ]
   },
