@@ -73,7 +73,7 @@
   },
   "resolutions": {
     "adm-zip": "0.5.3",
-    "ansi-regex": "6.0.1",
+    "ansi-regex": "5.0.1",
     "browserslist": "4.17.6",
     "glob-parent": "5.1.2",
     "http-proxy": "1.18.1",
