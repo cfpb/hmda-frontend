@@ -136,13 +136,13 @@ describe("Filing", function() {
             cy.wait(ACTION_DELAY)
 
             /* Action: Verify Quality Edits */
-            cy.get("#qualityVerifier").check("on")
+            cy.get("#qualityVerifier").check()
             cy.get(".NavButtonContainer > .NavButton").click()
             cy.get(".Verifier li:first > label").click()
             cy.wait(ACTION_DELAY)
 
             /* Action: Verify Macro Edits */
-            cy.get("#macroVerifier").check("on")
+            cy.get("#macroVerifier").check()
             cy.get(".NavButtonContainer > .NavButton").click()
             cy.wait(ACTION_DELAY)
 
