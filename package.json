@@ -60,9 +60,9 @@
   "devDependencies": {
     "@cypress/skip-test": "2.6.0",
     "@testing-library/cypress": "8.0.1",
-    "cypress": "8.3.0",
-    "cypress-file-upload": "5.0.2",
-    "cypress-keycloak": "1.5.0",
+    "cypress": "8.7.0",
+    "cypress-file-upload": "5.0.8",
+    "cypress-keycloak": "1.7.0",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.2",
     "eslint-plugin-prettier": "3.1.1",
@@ -70,5 +70,22 @@
     "newman": "5.2.4",
     "redux-devtools-extension": "2.13.8",
     "serialize-javascript": "5.0.1"
+  },
+  "resolutions": {
+    "adm-zip": "0.5.3",
+    "ansi-regex": "5.0.1",
+    "browserslist": "4.17.6",
+    "glob-parent": "5.1.2",
+    "http-proxy": "1.18.1",
+    "immer": "9.0.6",
+    "js-yaml": "3.13.1",
+    "lodash": "4.17.21",
+    "normalize-url": "4.5.1",
+    "nth-check": "2.0.1",
+    "shell-quote": "1.7.3",
+    "set-value": "4.0.1",
+    "ssri": "6.0.2",
+    "tar": "4.4.18",
+    "underscore": "1.12.1"
   }
 }

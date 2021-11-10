@@ -105,7 +105,7 @@ describe('Data Browser 2018', function () {
       // Variables
       openSelector('#VariableSelector')
       cy.get('#VariableSelector').type('total units{enter}')
-      cy.get('#total_units25-49').check('on')
+      cy.get('#total_units25-49').check()
       cy.url().should('include', '&total_units=25-49')
 
       // View Summary Table
@@ -149,7 +149,7 @@ describe('Data Browser 2018', function () {
       // Variables
       openSelector('#VariableSelector')
       cy.get('.SelectWrapper #react-select-5-option-1').click()
-      cy.get('#loan_types1').check('on')
+      cy.get('#loan_types1').check()
       cy.url().should('include', '&loan_types=1')
 
       // View Summary Table

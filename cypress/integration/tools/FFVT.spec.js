@@ -1,10 +1,4 @@
-import { getOpenFilingYears } from '../../../src/common/constants/configHelpers'
-import { getDefaultConfig } from '../../../src/common/configUtils'
-
 const { HOST, TEST_DELAY, ENVIRONMENT } = Cypress.env()
-
-// Only test current year since they all use the same endpoint (/v2/public/hmda/parse)
-const year = getOpenFilingYears(getDefaultConfig(HOST))[0]
 
 // Test files
 const CLEAN_FILE = 'FFVT-2018-clean.txt'
@@ -44,24 +38,23 @@ describe('FFVT', function () {
     cy.viewport(1680, 916)
     cy.visit(`${HOST}/tools/file-format-verification`)
     cy.get({ HOST, TEST_DELAY, ENVIRONMENT }).logEnv()
-    cy.get('select').select(year)
     cy.get("div > .UploadForm > .container-upload > .dropzone > input")
       .click({ force: true })
   })
 
   afterEach(() => cy.wait(TEST_DELAY))
  
-  it(`Validates a clean file for ${year}`, function () {
+  it(`Validates a clean file`, function () {
     uploadFile(CLEAN_FILE)
     isValid()
   })
 
-  it(`Validates a clean file with BOM for ${year}`, function () {
+  it(`Validates a clean file with BOM`, function () {
     uploadFile(CLEAN_FILE_BOM)
     isValid()
   })
 
-  it(`Catches formatting errors in a file for ${year}`, function () {
+  it(`Catches formatting errors in a file`, function () {
     uploadFile(PARSE_ERROR_FILE)
     cy.get('#parseErrors .alert-heading').contains('2 Formatting Errors')
 
