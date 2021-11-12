@@ -2,6 +2,12 @@
   "name": "prod",
   "announcement": [
     {
+      "message": "We are experiencing a delay in processing the latest Fixed and Adjustable Rate Tables. We are working to resolve the issue and will update the 11/15 APOR tables as soon as possible.",
+      "type": "error",
+      "heading": "Rate Spread Issue",
+      "link": null
+    },
+    {
       "message": "We will be performing scheduled system maintenance on November 16 from 8pm - 9pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
       "type": "warning",
       "heading": "Scheduled Maintenance",
