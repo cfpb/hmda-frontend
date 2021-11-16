@@ -23,7 +23,8 @@ EditsTableCell.propTypes = {
   cell: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
-    PropTypes.bool
+    PropTypes.bool,
+    PropTypes.element
   ])
 }
 
