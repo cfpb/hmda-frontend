@@ -1,36 +1,24 @@
 import React from 'react'
 import * as types from '../constants'
 
-const PATTERN_1111 = /1111/
+const PATTERN_1111 = /^1111(\.0)?$/
 
 /**
- *  Restrict the displayed fields to those whose value matches a pattern 
+ *  Highlight fields whose value matches a pattern 
  */
-const filterEditFields = (rows = [], pattern = PATTERN_1111) => {
-  let fieldMatches = {}
-
-  // Identify field values that match this pattern
-  rows.forEach((r) => {
+const highlightEditFields = (rows = [], pattern = PATTERN_1111) =>
+  rows.map((r) => {
     if (!r.fields) return
-    r.fields.forEach((f) => {
-      if (!f.value.match(pattern)) return
-      fieldMatches[f.name] = true
-    })
-  })
+    let row = JSON.parse(JSON.stringify(r))
 
-  // Retain only those fields
-  rows.forEach((r) => {
-    if (!r.fields) return
-    r.fields = r.fields.filter((f) => {
-      if (!fieldMatches[f.name]) return null
-      if (f.value.match(pattern)) {
-        // Highlight the offending field
-        f.value = <span className='highlight'>{f.value}</span>
-      }
-      return f
+    row.fields = row.fields.map((field) => {
+      if (!field.value.match(pattern)) return field
+      field.value = <span className='highlight'>{field.value}</span>
+      return field
     })
+
+    return row
   })
-}
 
 /**
  * Configure transformations per Edit
@@ -38,29 +26,31 @@ const filterEditFields = (rows = [], pattern = PATTERN_1111) => {
 const TRANSFORMERS = {
   Q656: {
     type: 'regex',
-    filter: filterEditFields,
+    filter: highlightEditFields,
     pattern: PATTERN_1111,
   },
   Q657: {
     type: 'regex',
-    filter: filterEditFields,
+    filter: highlightEditFields,
     pattern: PATTERN_1111,
   },
 }
 
 export default function receiveEdit(data) {
-  const useSpecial = TRANSFORMERS[data.edit]
-  if (useSpecial && useSpecial.type === 'regex')
-    useSpecial.filter(data.rows, useSpecial.pattern)
+  const useTransform = TRANSFORMERS[data.edit]
+
+  const rows = useTransform && useTransform.type === 'regex'
+   ? useTransform.filter(data.rows, useTransform.pattern)
+   : data.rows
 
   return {
     type: types.RECEIVE_EDIT,
     edit: data.edit,
-    rows: data.rows,
+    rows,
     pagination: {
       count: data.count,
       total: data.total,
-      _links: data._links,
-    },
+      _links: data._links
+    }
   }
 }
