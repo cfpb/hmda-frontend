@@ -1,6 +1,7 @@
 import React from 'react'
 import { SUBSCRIPTION_ENDPOINT, HMDA_FILING_TOPIC_ID } from './constants/cfgov'
 import { useSubscriptionLogic } from './mailingListServices'
+import { EmailInput } from './EmailInput'
 import './MailingListSignupForm.css'
 
 // Common form heading
@@ -10,19 +11,6 @@ const Heading = () => (
       Join the HMDA Mailing List
     </label>
   </h3>
-)
-
-// Common email input
-const EmailInput = ({ emailAddress, onEmailChange }) => (
-  <input
-    type='email'
-    id='email'
-    placeholder='mail@example.com'
-    autoComplete='off'
-    value={emailAddress}
-    onChange={onEmailChange}
-    required
-  />
 )
 
 /** A compact HMDA Mailing List Subscription form */
