@@ -1,6 +1,5 @@
-import React from "react"
-import { useState } from "react"
-import Alert from "./Alert"
+import React, { useState } from 'react'
+import Alert from './Alert'
 
 /**
  * Test that an email address is in a valid format
@@ -15,9 +14,9 @@ function validateEmailFormat(email) {
 
 /**
  * Component used to display feedback about the outcome of a subscription request
- * @param {string} invalid 
- * @param {string} error 
- * @param {string} success 
+ * @param {string} invalid
+ * @param {string} error
+ * @param {string} success
  */
 const StatusMessage = ({ invalid, error, success }) => {
   /**
@@ -29,30 +28,30 @@ const StatusMessage = ({ invalid, error, success }) => {
     if (!message) return
     return (
       <Alert type={type}>
-        <>{message}</>
+        {message}
       </Alert>
     )
   }
 
-  if (invalid) return <Status type="error" message={invalid} />
+  if (invalid) return <Status type='error' message={invalid} />
   if (error)
     return (
       <Status
-        type="warning"
-        message="Subscription failed.  Please try again later."
+        type='warning'
+        message='Subscription failed.  Please try again later.'
       />
     )
-  if (success) return <Status type="info" message="You have been subscribed!" />
+  if (success) return <Status type='info' message='You have been subscribed!' />
   return null
 }
 
 /**
  * Submit button that displays processing status
- * @param {boolean} processing 
+ * @param {boolean} processing
  */
 const SubmitButton = ({ processing }) => (
-  <button className="submitButton" type="submit" disabled={processing}>
-    {processing ? "Processing..." : "Subscribe"}
+  <button className='submitButton' type='submit' disabled={processing}>
+    {processing ? 'Processing...' : 'Subscribe'}
   </button>
 )
 
@@ -64,7 +63,7 @@ const SubmitButton = ({ processing }) => (
  * @returns {Object} Page elements, setters, and event handlers
  */
 export const useSubscriptionLogic = ({ endpoint, topicId }) => {
-  const [emailAddress, setEmailAddress] = useState("")
+  const [emailAddress, setEmailAddress] = useState('')
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(null)
   const [invalid, setInvalid] = useState(false)
@@ -81,19 +80,19 @@ export const useSubscriptionLogic = ({ endpoint, topicId }) => {
     request.onreadystatechange = function () {
       if (request.readyState == XMLHttpRequest.DONE) {
         if (request.status == 200) setSuccess(request.responseText)
-        else if (request.status == 400) setError("Error (400): Bad Request")
+        else if (request.status == 400) setError('Error (400): Bad Request')
         else setError(`Error (${request.status}): ${request.responseText}`)
 
         setTimeout(() => setProcessing(false), 250)
       }
     }
 
-    request.open("POST", url)
+    request.open('POST', url)
     request.setRequestHeader(
-      "Content-Type",
-      "application/x-www-form-urlencoded"
+      'Content-Type',
+      'application/x-www-form-urlencoded'
     )
-    request.setRequestHeader("X-Requested-With", "XMLHttpRequest") // Required for cf.gov to send JSON response
+    request.setRequestHeader('X-Requested-With', 'XMLHttpRequest') // Required for cf.gov to send JSON response
     request.send(content)
   }
 
@@ -109,7 +108,7 @@ export const useSubscriptionLogic = ({ endpoint, topicId }) => {
   const onSubmit = (event) => {
     event.preventDefault()
     if (!validateEmailFormat(emailAddress)) {
-      setInvalid("Invalid email address")
+      setInvalid('Invalid email address')
       setError(null)
       setSuccess(null)
       return
