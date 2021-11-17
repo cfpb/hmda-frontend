@@ -127,15 +127,6 @@ export const useSubscriptionLogic = ({ endpoint, topicId }) => {
 
   return {
     emailAddress,
-    setEmailAddress,
-    success,
-    setSuccess,
-    error,
-    setError,
-    processing,
-    setProcessing,
-    invalid,
-    setInvalid,
     onEmailChange,
     onSubmit,
     currentStatus,
