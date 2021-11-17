@@ -1,11 +1,11 @@
-import React from "react"
-import { useSubscriptionLogic } from "./mailingListServices"
-import { isProd } from "./configUtils"
-import "./MailingListSignupForm.css"
+import React from 'react'
+import { useSubscriptionLogic } from './mailingListServices'
+import { isProd } from './configUtils'
+import './MailingListSignupForm.css'
 
 // CF.gov host for Production/Development environments
 const CFGOV_HOST = isProd(window.location.host)
-  ? "https://www.consumerfinance.gov"
+  ? 'https://www.consumerfinance.gov'
   : `${process.env.REACT_APP_CFGOV_DEV_DOMAIN}`
 
 // CF.gov endpoint for subscribing to a topic
@@ -13,25 +13,25 @@ const SUBSCRIPTION_ENDPOINT = `${CFGOV_HOST}/subscriptions/new/`
 
 // HMDA topic for Production/Staging
 const HMDA_FILING_TOPIC_ID = isProd(window.location.host)
-  ? "USCFPB_139"
-  : "USCFPB_51"
+  ? 'USCFPB_139'
+  : 'USCFPB_51'
 
 // Common form heading
 const Heading = () => (
-  <h3 className="title">
-    <label htmlFor="email" className="email-label">
+  <h3 className='title'>
+    <label htmlFor='email' className='email-label'>
       Join the HMDA Mailing List
     </label>
   </h3>
 )
 
-// Common email input 
+// Common email input
 const EmailInput = ({ emailAddress, onEmailChange }) => (
   <input
-    type="email"
-    id="email"
-    placeholder="mail@example.com"
-    autoComplete="off"
+    type='email'
+    id='email'
+    placeholder='mail@example.com'
+    autoComplete='off'
     value={emailAddress}
     onChange={onEmailChange}
     required
@@ -47,16 +47,16 @@ export const MailingSignupSmall = () => {
     })
 
   return (
-    <form className={"MailingListSignupForm small"} onSubmit={onSubmit}>
+    <form className={'MailingListSignupForm small'} onSubmit={onSubmit}>
       <Heading />
       <EmailInput {...{ emailAddress, onEmailChange }} />
       {currentStatus}
-      <div className="submit-container">
+      <div className='submit-container'>
         {submitButton}
         <a
-          href="https://content.consumerfinance.gov/privacy/email-campaign-privacy-act-statement/"
-          target="_blank"
-          className="privacy-statement"
+          href='https://content.consumerfinance.gov/privacy/email-campaign-privacy-act-statement/'
+          target='_blank'
+          className='privacy-statement'
         >
           See Privacy Act statement
         </a>
@@ -74,11 +74,11 @@ export const MailingSignupLarge = () => {
     })
 
   return (
-    <form className={"MailingListSignupForm large"} onSubmit={onSubmit}>
-      <div className="inline">
+    <form className={'MailingListSignupForm large'} onSubmit={onSubmit}>
+      <div className='inline'>
         <Heading />
         <EmailInput {...{ emailAddress, onEmailChange }} />
-        <div className="submit-container">{submitButton}</div>
+        <div className='submit-container'>{submitButton}</div>
       </div>
       {currentStatus}
     </form>
