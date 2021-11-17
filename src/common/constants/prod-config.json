@@ -2,18 +2,9 @@
   "name": "prod",
   "announcement": [
     {
-      "message": "The publication of Average Prime Offer Rates (APOR) for the week of November 15, 2021 was delayed. These data are now available on the Bureau’s Rate Spread Calculator",
-      "type": "info",
-      "heading": "Rate Spread Issue",
-      "link": {
-        "text": "here.",
-        "url": "https://ffiec.cfpb.gov/tools/rate-spread"
-      }
-    },
-    {
-      "message": "We will be performing scheduled system maintenance on November 16 from 8pm - 9pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-      "type": "warning",
-      "heading": "Scheduled Maintenance",
+      "message": "We are performing system maintenance from 8pm - 9pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+      "type": "error",
+      "heading": "System Temporarily Unavailable",
       "link": null
     },
     {
@@ -55,11 +46,11 @@
     "ANNUAL": "01/01 - 03/01"
   },
   "showMaps": true,
-  "maintenanceMode": false,
+  "maintenanceMode": true,
   "filingAnnouncement": {
-    "message": "We will be performing scheduled system maintenance on November 16 from 8pm - 9pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-    "type": "warning",
-    "heading": "Scheduled Maintenance"
+    "message": "We are performing system maintenance from 8pm - 9pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "error",
+    "heading": "System Temporarily Unavailable"
   },
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
