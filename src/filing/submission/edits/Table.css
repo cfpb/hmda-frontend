@@ -53,7 +53,8 @@
   margin-bottom: 0;
 }
 
-.EditsTable span.mismatch {
+.EditsTable span.mismatch,
+.EditsTable span.highlight {
   font-weight: bold;
   font-size: 1.75rem;
   color: #e31c3d;

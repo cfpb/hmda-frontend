@@ -18,6 +18,7 @@ const App = () => {
       </div>
 
       <div className="alert" style={{ marginTop: '3em' }}>
+        <p><b>11/15/2021:</b> The publication of Average Prime Offer Rates (APOR) for the week of November 15, 2021 was delayed. These data are now available on the Bureau’s Rate Spread Calculator above.</p>
         <p><b>2/23/2021:</b> Two sets of APORs were published for the week of 7/20/2020 for fixed rate loans with terms of 13 to 22 years. The first set was published on 7/16/2020 and was briefly incorporated into the Bureau’s rate spread calculator. The second set was published on 7/20/2020 and was substituted for the first in the Bureau’s rate spread calculator. Both sets of APORs are <a href="https://files.consumerfinance.gov/hmda/7_20_2020_APORs_table.csv">available here</a>.</p>
         <p><b>7/18/2019:</b> Two sets of APOR values were published for the week of 03/04/19 and 06/17/19. The APOR values published by the Bureau and incorporated into the Bureau’s rate spread calculator are available in the tables accessible from this page.</p>
         <p>
