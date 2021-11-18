@@ -1,0 +1,162 @@
+/** 
+* Shared Styles
+*/
+.MailingListSignupForm {
+  border-top: 1px solid #0071bc;
+  background: rgb(241, 241, 241);
+  padding: 1.5em 0 1.5em 0;
+  width: 100%;
+}
+
+.MailingListSignupForm label {
+  margin: 1.5rem auto .5rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.MailingListSignupForm #email {
+  display: block;
+  height: 3.5rem;
+  font-size: 2rem;
+  width: 100%;
+  border: 1px solid grey;
+  padding: 0 10px;
+  border-radius: 5px;
+}
+
+.MailingListSignupForm .privacy-statement,
+.MailingListSignupForm .privacy-statement a,
+.MailingListSignupForm .privacy-statement a:visited {
+  margin-left: 1rem;
+  color: rgb(74, 74, 74);
+}
+
+.MailingListSignupForm .privacy-statement a:hover {
+  color: black;
+}
+
+.MailingListSignupForm .submit-container {
+  display: flex;
+  flex-flow: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.MailingListSignupForm .submit-container button,
+.MailingListSignupForm .title,
+.MailingListSignupForm label {
+  margin: 0 !important;
+}
+
+.MailingListSignupForm .alert {
+  margin: .5em 0;
+  margin-bottom: .5em !important;
+}
+
+.MailingListSignupForm .submitButton:disabled {
+  background-color: rgb(253, 184, 30);
+}
+
+/** 
+* Large version
+*/
+.MailingListSignupForm.large  {
+  padding-bottom: 0;
+  max-width: 77rem;
+}
+
+.MailingListSignupForm.large .submit-container {
+  margin-left: -5px;
+}
+
+.MailingListSignupForm.large .submit-container button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  padding: 8px 20px;
+}
+
+.MailingListSignupForm.large .title {
+  min-width: 35%;
+}
+
+.MailingListSignupForm.large .inline {
+  display: flex;
+  flex-flow: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.MailingListSignupForm.large .status {
+  text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+  .MailingListSignupForm.large {
+    flex-flow: wrap;
+  }
+
+  .MailingListSignupForm.large .title {
+    width: 100%;
+  }
+
+  .MailingListSignupForm.large #email,
+  .MailingListSignupForm.large .submit-container button {
+    margin-top: .5rem !important;
+  }
+}
+
+@media screen and (max-width: 675px) {
+  .MailingListSignupForm.large .inline {
+    flex-flow: wrap;
+  }
+  
+  .MailingListSignupForm.large .inline .title {
+    flex-basis: 100%;
+  }
+
+  .MailingListSignupForm.large .submit-container {
+    margin-left: 0;
+  }
+
+  .MailingListSignupForm.large .submit-container button {
+    border-radius: 5px;
+  }
+}
+
+/** 
+* Small (Footer) Version 
+*/
+.MailingListSignupForm.small {
+  border-top: 2px solid #0071bc;
+  margin-top: 10px;
+  width: 100%;
+  padding: 0px;
+  padding-top: 5px;
+  background: none;
+  border-radius: 0;
+}
+
+.MailingListSignupForm.small h3.title label{
+  margin: 5px 0;
+  font-size: 1.7rem;
+}
+
+.MailingListSignupForm.small #email {
+  margin: 1rem 0;
+  font-size: 2rem;
+}
+
+.MailingListSignupForm.small .submit-container {
+  margin: 10px 0 0;
+}
+
+@media screen and (max-width: 750px) {
+  .MailingListSignupForm.small .submit-container {
+    flex-flow: wrap;
+  }
+
+  .MailingListSignupForm.small .submit-container .privacy-statement {
+    margin: 1rem 0 0 0;
+    padding: 0;
+  }
+}

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-
 import Header from './common/Header'
 import NotFound from './common/NotFound'
 import Footer from './common/Footer'
@@ -28,33 +27,38 @@ const HmdaHelp = makeAsyncComponent(() => import('./hmda-help'),
   'HMDA Help', 'Use HMDA Help to manage your HMDA Institutions and Publications')
 
 const App = () => {
+  const config = useEnvironmentConfig(window.location.hostname)
   const isFiling = !!window.location.pathname.match(/^\/filing/)
   const isHelp = !!window.location.pathname.match(/^\/hmda-help/)
-  const hideHeaderFooter = isFiling || isHelp
-  const config = useEnvironmentConfig(window.location.hostname)
+
+  const showCommonHeader = !(isFiling || isHelp)
+  const showFooter = !isHelp
+  const showBetaBanner = isBeta() && !isFiling 
+
+  const headerLinks = isBeta()
+    ? betaLinks
+    : updateFilingLink(config, defaultLinks)
 
   return (
     <AppContext.Provider value={{ config }}>
-      {hideHeaderFooter  ? null : <Route path="/" render={props => {
-        return (
-          <Header
-            links={isBeta() ? betaLinks : updateFilingLink(config, defaultLinks)}
-            {...props}
-          />
-        )
-      }}/>}
-      {isBeta() && !isFiling ? <Beta/> : null}
+      {showCommonHeader && (
+        <Route
+          path='/'
+          render={(props) => <Header links={headerLinks} {...props} />}
+        />
+      )}
+      {showBetaBanner && <Beta />}
       <Switch>
-        <Route exact path="/" component={Homepage} />
-        <Route path = "/data-browser" component={DataBrowser} />
-        <Route path = "/documentation" component={Documentation} />
-        <Route path = "/tools" component={Tools} />
-        <Route path = "/data-publication" component={DataPublication} />
-        <Route path = "/filing" component={Filing} />
-        <Route path = "/hmda-help" component={HmdaHelp} />
+        <Route exact path='/' component={Homepage} />
+        <Route path='/data-browser' component={DataBrowser} />
+        <Route path='/documentation' component={Documentation} />
+        <Route path='/tools' component={Tools} />
+        <Route path='/data-publication' component={DataPublication} />
+        <Route path='/filing' component={Filing} />
+        <Route path='/hmda-help' component={HmdaHelp} />
         <Route component={NotFound} />
       </Switch>
-      {hideHeaderFooter ? null : <Footer config={config} />}
+      {showFooter && <Footer config={config} />}
     </AppContext.Provider>
   )
 }
