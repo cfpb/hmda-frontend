@@ -28,7 +28,7 @@ const StatusMessage = ({ invalid, error, success }) => {
     if (!message) return
     return (
       <Alert type={type}>
-        {message}
+        <>{message}</>
       </Alert>
     )
   }
