@@ -47,7 +47,7 @@
 .meter.progress { background: #75afe9; }
 .meter.progress .fill { background: #308ae4; }
 
-/* Stripped Overlay */
+/* Striped Overlay */
 .meter.striped > .fill::after {
   content: '';
   position: absolute;

@@ -107,7 +107,7 @@ export default class Upload extends Component {
           filingPeriod={filingPeriod}
           lei={lei}
           uploading={uploading}
-        />        
+        />
       </section>
     )
   }

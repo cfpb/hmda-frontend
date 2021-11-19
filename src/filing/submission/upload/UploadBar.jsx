@@ -30,7 +30,6 @@ export class UploadBar extends Component {
   }
 
   saveWidth(filingPeriod, lei, width) {
-    // if (this.props.errorUpload || this.props.errorApp) width = 0
     localStorage.setItem(`HMDA_UPLOAD_PROGRESS/${filingPeriod}/${lei}`, JSON.stringify(width))
   }
 
@@ -86,73 +85,3 @@ export class UploadBar extends Component {
     )
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const UploadBar = props => {
-//   const [state, updateState] = useState({ fillWidth: '10', firstRender: true, scalingFactor: 1 })
-
-//   const setState = obj => updateState(state => ({ ...state, ...obj }))
-
-//   useEffect(() => {
-//     if(state.firstRender) setState({ firstRender: false })
-//   }, [state.firstRender])
-
-//   useEffect(() => {
-//     return function onUnmount() {
-//       console.log('UploadBar will unmount')
-//     }
-//   }, [])
-
-//   function getNextWidth() {
-//     const fillWidth = state.fillWidth
-//     setState({ timeout: setTimeout(
-//       setNextWidth(fillWidth),
-//       state.SCALING_FACTOR * 200 * Math.pow(2, 50 / (100 - fillWidth))
-//     )})
-//   }
-
-//   function setNextWidth(currWidth) {
-//     return () => {
-//       state.timeout = null
-//       let nextWidth = parseInt(currWidth) + 1
-//       if (nextWidth > 100) nextWidth = '100'
-//       setState({ fillWidth: nextWidth.toString() })
-//     }
-//   }
-
-//   function getFillWidth() {
-//     if(state.firstRender) return '0'
-//     if (parseInt(state.fillWidth) > 100) return '100'
-//     if (!props.uploading) return '100'
-//     else if (!state.timeout) getNextWidth()
-
-//     return state.fillWidth
-//   }
-
-
-//   console.log('First render: ', state.firstRender)
-//   console.log('fillWidth: ', state.fillWidth)
-
-//   return <ProgressBar percent={getFillWidth()} label='Upload' />
-// }
