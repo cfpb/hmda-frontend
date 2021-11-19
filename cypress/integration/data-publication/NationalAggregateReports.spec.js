@@ -9,7 +9,7 @@ describe('National Aggregate Report - Not Generated', () => {
       cy.get('#root > .App > #main-content > .YearSelector > a')
         .contains(year)
         .click()
-      cy.get('h3').last().should(
+      cy.get('#main-content h3').last().should(
         'have.text',
         `National Aggregate reports are not produced for data collected in or after 2018.`
       )
