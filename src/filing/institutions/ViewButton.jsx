@@ -30,7 +30,7 @@ const InstitutionViewButton = ({ submission, institution, filingPeriod, isClosed
     text = 'View upload progress'
   } else if (code === PARSED_WITH_ERRORS) {
     text = 'Review formatting errors'
-  } else if (code < NO_SYNTACTICAL_VALIDITY_EDITS) {
+  } else if (code < NO_MACRO_EDITS) {
     text = 'View progress'
   } else if (code > VALIDATING && code < VALIDATED && code !== NO_MACRO_EDITS) {
     text = 'Review edits'

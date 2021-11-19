@@ -35,13 +35,13 @@
 .meter.pending, .meter.skipped { background: #80807e; }
 .meter.pending .fill, .meter.skipped .fill { background: #555; }
 
-.meter.done { background: #bee2fa; }
+.meter.done,
 .meter.done .fill { background: #0071bc; }
 
 .meter.error { background: #f9c0c0; }
 .meter.error .fill { background: #e31c3d; }
 
-.meter.warn { background: #dc731c; }
+.meter.warn,
 .meter.warn .fill { background: #dc731c; }
 
 .meter.progress { background: #75afe9; }
