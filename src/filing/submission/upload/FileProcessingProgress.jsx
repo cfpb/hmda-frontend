@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { UPLOADING } from '../../constants/statusCodes'
 import { UploadBar } from './UploadBar'
 import ProgressBar from './ProgressBar/'
@@ -25,7 +25,7 @@ const getStatus = (str, prevErrors, isSV) => {
 const hasError = str => str.match(/Err/)
 
 const FileProcessingProgress = ({ progress, uploading, code, watchProgress, filingPeriod, lei }) => {
-  const { done, syntactical, macro, quality, fetched } = progress
+  const { syntactical, macro, quality, fetched } = progress
 
   useEffect(() => {
     if (!fetched) watchProgress()
