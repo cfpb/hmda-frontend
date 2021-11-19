@@ -38,8 +38,7 @@ export default function listenForProgress() {
         })
       })
       .then((json) => {
-        if (!json)
-          return
+        if (!json) return
 
         const { status, id } = json
         const { lei, period, sequenceNumber } = id
@@ -75,7 +74,7 @@ export default function listenForProgress() {
               macro: parseProgress(data.macro),
             }
 
-            // No Syntactical erros and all others Completed
+            // No Syntactical errors and all others Completed
             uploadStatus.done =
               !!uploadStatus.syntactical.match(/Error/) ||
               Object.keys(uploadStatus).every((key) => {
