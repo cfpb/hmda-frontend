@@ -26,6 +26,7 @@ const StatusMessage = ({ invalid, error, success }) => {
    */
   const Status = ({ type, message }) => {
     if (!message) return
+    // Note: Alert's child must be an element, hence the use of a Fragment below
     return (
       <Alert type={type}>
         <>{message}</>
