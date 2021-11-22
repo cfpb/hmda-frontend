@@ -2,9 +2,10 @@ import React from 'react'
 import * as types from '../constants'
 
 const PATTERN_1111 = /^1111(\.0)?$/
+const PATTERN_888_8888 = /^888(\.0)?$|^88888(\.0)?$/
 
 /**
- *  Highlight fields whose value matches a pattern 
+ *  Highlight fields whose value matches a pattern
  */
 const highlightEditFields = (rows = [], pattern = PATTERN_1111) =>
   rows.map((r) => {
@@ -34,14 +35,20 @@ const TRANSFORMERS = {
     filter: highlightEditFields,
     pattern: PATTERN_1111,
   },
+  'Q659-1': {
+    type: 'regex',
+    filter: highlightEditFields,
+    pattern: PATTERN_888_8888,
+  },
 }
 
 export default function receiveEdit(data) {
   const useTransform = TRANSFORMERS[data.edit]
 
-  const rows = useTransform && useTransform.type === 'regex'
-   ? useTransform.filter(data.rows, useTransform.pattern)
-   : data.rows
+  const rows =
+    useTransform && useTransform.type === 'regex'
+      ? useTransform.filter(data.rows, useTransform.pattern)
+      : data.rows
 
   return {
     type: types.RECEIVE_EDIT,
@@ -50,7 +57,7 @@ export default function receiveEdit(data) {
     pagination: {
       count: data.count,
       total: data.total,
-      _links: data._links
-    }
+      _links: data._links,
+    },
   }
 }
