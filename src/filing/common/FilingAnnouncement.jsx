@@ -1,14 +1,11 @@
 import React from 'react'
-import Alert from '../../common/Alert'
+import ConfiguredAlert from '../../common/ConfiguredAlert'
 
 export const FilingAnnouncement = ({ data }) => {
-  const { message, type, heading } = data
-  
+  // Announcement wrapper restricts Alert width
   return (
     <div className='Announcement'>
-      <Alert type={type} heading={heading}>
-        <p>{message}</p>
-      </Alert>
+      <ConfiguredAlert {...data} />
     </div>
   )
 }
