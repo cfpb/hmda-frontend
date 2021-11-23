@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { isBeta } from '../common/Beta.jsx'
 import { withAppContext } from '../common/appContextHOC'
 import { AnnouncementBanner } from './AnnouncementBanner'
+import ExternalLink from '../common/ExternalLink'
 import './Home.css'
 
 export function isProd() {
@@ -40,13 +41,9 @@ const Home = ({ config }) => {
           <div className="card">
             <header>
               <h3>
-                <a
-                  href={`/filing/${defaultPeriod}/`}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
+                <ExternalLink url={`/filing/${defaultPeriod}/`}>
                   Access the HMDA {isBeta() && 'Beta '} Filing Platform
-                </a>
+                </ExternalLink>
               </h3>
               <p>
                 Beginning with HMDA data collected in or after 2017, financial

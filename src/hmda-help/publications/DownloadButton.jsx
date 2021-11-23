@@ -1,7 +1,6 @@
 import React from 'react'
+import ExternalLink from '../../common/ExternalLink'
 
 export const DownloadButton = ({ url }) => (
-  <a href={url} target="_blank" rel="noopener noreferrer">
-    Download
-  </a>
+  <ExternalLink url={url}>Download</ExternalLink>
 )

@@ -10,6 +10,7 @@ import Report from './Report.jsx'
 import fetchMsas from './fetchMsas.js'
 import { DISCLOSURE_REPORTS } from '../constants/disclosure-reports.js'
 import { withAppContext } from '../../common/appContextHOC.jsx'
+import ExternalLink from '../../common/ExternalLink'
 
 const detailsCache = {
   2020: {
@@ -142,8 +143,8 @@ class Disclosure extends React.Component {
         paragraphText={'These reports summarize lending activity for individual institutions, both nationwide and by MSA/MD. They are based on the most recent data submission made in each filing period. To find an institution\'s IRS (Institution Register Summary), select "Nationwide" from the MSA/MD dropdown after choosing an institution.'}
       >
           <p>To learn about modifications to these reports over the years, visit the{' '}
-          <a target="_blank" rel="noopener noreferrer" href={`/documentation/${years[0]}/ad-changes/`}>A&amp;D Report Changes</a> page.<br/>
-          Looking for other HMDA data? Visit the new <a target="_blank" rel="noopener noreferrer" href="/data-browser/">HMDA Data Browser</a> to filter and download HMDA datasets.
+          <ExternalLink url={`/documentation/${years[0]}/ad-changes/`}>A&amp;D Report Changes</ExternalLink> page.<br/>
+          Looking for other HMDA data? Visit the new <ExternalLink url="/data-browser/">HMDA Data Browser</ExternalLink> to filter and download HMDA datasets.
           </p>
       </Heading>
     )

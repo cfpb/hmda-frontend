@@ -6,7 +6,7 @@ import Reports from './Reports.jsx'
 import Report from './Report.jsx'
 import { NATIONAL_AGGREGATE_REPORTS } from '../constants/national-aggregate-reports.js'
 import { withAppContext } from '../../common/appContextHOC.jsx'
-
+import ExternalLink from '../../common/ExternalLink'
 import './NationalAggregate.css'
 
 const detailsCache = {
@@ -52,8 +52,8 @@ class NationalAggregate extends React.Component {
           cross-tabulated by loan, borrower and geographic characteristics."
       >
           <p>To learn about modifications to these reports over the years, visit the{' '}
-          <a target="_blank" rel="noopener noreferrer" href={`/documentation/${years[0]}/ad-changes/`}>A&D Report Changes</a> page.<br/>
-          Looking for other HMDA data? Visit the new <a target="_blank" rel="noopener noreferrer" href="/data-browser/">HMDA Data Browser</a> to filter and download HMDA datasets.
+          <ExternalLink url={`/documentation/${years[0]}/ad-changes/`}>A&amp;D Report Changes</ExternalLink> page.<br/>
+          Looking for other HMDA data? Visit the new <ExternalLink url="/data-browser/">HMDA Data Browser</ExternalLink> to filter and download HMDA datasets.
           </p>
       </Heading>
     )

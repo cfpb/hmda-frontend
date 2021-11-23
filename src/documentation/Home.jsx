@@ -7,7 +7,7 @@ import FigLinks from './FigLinks.jsx'
 import Publications from './publications'
 import Tools from './tools'
 import { DOCS_YEARS } from '../common/constants/years.js'
-import { ExternalLink } from '../common/ExternalLink'
+import ExternalLink from '../common/ExternalLink.jsx'
 
 const Home = props => {
   const { year, url } = props
@@ -37,48 +37,15 @@ const Home = props => {
       </div>
       <div>
         <h2>HMDA APIs</h2>
-        <p>
-          Endpoints, schemas, and examples to help you access HMDA Data via the
-          HMDA APIs.
-        </p>
-        <ul>
-          <li>
-            <ExternalLink
-              url='https://cfpb.github.io/hmda-platform/'
-              text='HMDA APIs - Overview'
-            />
-          </li>
-          <li>
-            <ExternalLink
-              url='https://cfpb.github.io/hmda-platform/#data-browser-api'
-              text='HMDA Data Browser API'
-            />
-          </li>
-          <li>
-            <ExternalLink
-              url='https://cfpb.github.io/hmda-platform/#hmda-filing-api'
-              text='HMDA Filing API'
-            />
-          </li>
-          <li>
-            <ExternalLink
-              url='https://cfpb.github.io/hmda-platform/#hmda-public-verification-api'
-              text='HMDA Public Verification API'
-            />
-          </li>
-          <li>
-            <ExternalLink
-              url='https://cfpb.github.io/hmda-platform/#rate-spread-rate-spread-api'
-              text='HMDA Rate Spread API'
-            />
-          </li>
-          <li>
-            <ExternalLink
-              url='https://cfpb.github.io/hmda-platform/#check-digit'
-              text='HMDA Check Digit API'
-            />
-          </li>
-        </ul>
+          <p>Endpoints, schemas, and examples to help you access HMDA Data via the HMDA APIs.</p>
+          <ul>
+            <li><ExternalLink url="https://cfpb.github.io/hmda-platform/">HMDA APIs - Overview</ExternalLink></li>
+            <li><ExternalLink url="https://cfpb.github.io/hmda-platform/#data-browser-api">HMDA Data Browser API</ExternalLink></li>
+            <li><ExternalLink url="https://cfpb.github.io/hmda-platform/#hmda-filing-api">HMDA Filing API</ExternalLink></li>
+            <li><ExternalLink url="https://cfpb.github.io/hmda-platform/#hmda-public-verification-api">HMDA Public API</ExternalLink></li>
+            <li><ExternalLink url="https://cfpb.github.io/hmda-platform/#rate-spread">HMDA Rate Spread API</ExternalLink></li>
+            <li><ExternalLink url="https://cfpb.github.io/hmda-platform/#check-digit">HMDA Check Digit API</ExternalLink></li>
+          </ul>
       </div>
     </div>
   )

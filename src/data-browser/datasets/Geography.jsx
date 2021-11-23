@@ -30,6 +30,7 @@ import {
   before2018,
 } from './selectUtils.js'
 import { sanitizeArray } from '../query'
+import ExternalLink from '../../common/ExternalLink'
 
 import './Geography.css'
 
@@ -420,20 +421,14 @@ class Geography extends Component {
             <p className='lead'>
               You can use the HMDA Data Browser to filter and download CSV files
               of HMDA data. These files contain all{' '}
-              <a
-                target='_blank'
-                rel='noopener noreferrer'
-                href='/documentation/2018/lar-data-fields/'
-              >
+              <ExternalLink url='/documentation/2018/lar-data-fields/'>
                 data fields
-              </a>{' '}
+              </ExternalLink>{' '}
               available in the public data record and can be used for advanced
               analysis. You can also access the{' '}
-              <a
-                target='_blank'
-                rel='noopener noreferrer'
-                href="https://cfpb.github.io/hmda-platform/#data-browser">Data Browser API
-              </a>{' '}
+              <ExternalLink url='https://cfpb.github.io/hmda-platform/#data-browser'>
+                Data Browser API
+              </ExternalLink>{' '}
               directly. For questions/suggestions, contact hmdahelp@cfpb.gov.
             </p>
           </Heading>
@@ -473,7 +468,9 @@ class Geography extends Component {
           : null}
         <ActionsWarningsErrors
           downloadEnabled={enabled}
-          downloadCallback={checksExist ? this.requestSubsetCSV : this.requestItemCSV}
+          downloadCallback={
+            checksExist ? this.requestSubsetCSV : this.requestItemCSV
+          }
           downloadUrl={fileDownloadUrl}
           showSummaryButton={!details.aggregations}
           summaryEnabled={enabled && checksExist}

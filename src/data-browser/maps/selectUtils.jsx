@@ -1,5 +1,6 @@
 import React from 'react';
 import VARIABLES from '../constants/variables.js'
+import ExternalLink from '../../common/ExternalLink'
 
 const geographies = [
   {value: 'state', label: 'State'},
@@ -199,15 +200,13 @@ export const parseCombinedFilter = (selected) => {
 const formatGroupLabel = (data, year) => (
   <div className='menu-group'>
     <span className='menu-group-label'>{data.label}</span>
-    <a
-      target='_blank'
-      rel='noopener noreferrer'
+    <ExternalLink
       className='menu-group-badge'
       title={`Documentation for ${data.label} (${year})`}
-      href={`/documentation/${year}/data-browser-filters/#${data.definition}`}
+      url={`/documentation/${year}/data-browser-filters/#${data.definition}`}
     >
       Documentation
-    </a>
+    </ExternalLink>
   </div>
 )
 

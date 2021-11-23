@@ -2,6 +2,7 @@ import React from 'react'
 import Select from '../Select.jsx'
 import Pills from './Pills.jsx'
 import CheckboxContainer from './CheckboxContainer.jsx'
+import ExternalLink from '../../common/ExternalLink'
 import {
   setVariableSelect,
   removeSelected,
@@ -16,13 +17,9 @@ const VariableSelect = ({ options, variables, orderedVariables, year, checkFacto
       <h3>Step 3: Select a filter (optional)</h3>
       <p>
         Narrow down your selection by filtering on up to two{' '}
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="/documentation/2018/data-browser-filters/#action_taken"
-        >
+        <ExternalLink url="/documentation/2018/data-browser-filters/#action_taken">
           popular variables
-        </a>
+        </ExternalLink>
       </p>
       <Select id='VariableSelector'
         controlShouldRenderValue={false}

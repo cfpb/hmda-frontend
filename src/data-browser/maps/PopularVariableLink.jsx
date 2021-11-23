@@ -1,13 +1,12 @@
 import React from 'react'
+import ExternalLink from '../../common/ExternalLink'
 
 export const PopularVariableLink = ({ children = 'popular variables', year }) => (
-  <a
-    target='_blank'
-    rel='noopener noreferrer'
-    href={`/documentation/${year}/data-browser-filters/#action_taken`}
+  <ExternalLink
+    url={`/documentation/${year}/data-browser-filters/#action_taken`}
   >
     {children}
-  </a>
+  </ExternalLink>
 )
 
 export default PopularVariableLink

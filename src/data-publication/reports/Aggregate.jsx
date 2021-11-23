@@ -10,6 +10,7 @@ import STATES from '../constants/states.js'
 import stateToMsas from '../constants/stateToMsas.js'
 import { AGGREGATE_REPORTS } from '../constants/aggregate-reports.js'
 import { withAppContext } from '../../common/appContextHOC.jsx'
+import ExternalLink from '../../common/ExternalLink'
 
 import './Aggregate.css'
 
@@ -103,8 +104,8 @@ class Aggregate extends React.Component {
         paragraphText="These reports summarize lending activity by MSA/MD."
       >
           <p>To learn about modifications to these reports over the years, visit the{' '}
-          <a target="_blank" rel="noopener noreferrer" href={`/documentation/${years[0]}/ad-changes/`}>A&D Report Changes</a> page.<br/>
-          Looking for other HMDA data? Visit the new <a target="_blank" rel="noopener noreferrer" href="/data-browser/">HMDA Data Browser</a> to filter and download HMDA datasets.<br/>
+          <ExternalLink url={`/documentation/${years[0]}/ad-changes/`}>A&amp;D Report Changes</ExternalLink> page.<br/>
+          Looking for other HMDA data? Visit the new <ExternalLink url="/data-browser/">HMDA Data Browser</ExternalLink> to filter and download HMDA datasets.<br/>
           {year === '2018' ? 'The 2018 Aggregate Reports use the static dataset that was frozen on August 7, 2019.' : '\u00a0'}
           </p>
       </Heading>
