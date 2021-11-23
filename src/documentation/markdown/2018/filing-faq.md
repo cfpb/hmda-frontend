@@ -40,13 +40,16 @@ You can use the <a target="_blank" rel="noopener noreferrer" href="https://s3.am
 The <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/tools/lar-formatting">**LAR Formatting Tool**</a> assists institutions that are not using their own vendor software in formatting their LAR files correctly. In order to successfully use the tool, Excel macros need to be enabled; please work with your IT department if this is not the case. Additionally, institutions should take note of the annotations that appear when hovering over each cell. These annotations describe what values can be included in each cell. The first tab of the tool entitled “Resources” gives instructions on use.  
 
 The <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/tools/file-format-verification">**File Format Verification Tool**</a> is a resource for testing whether your file meets certain formatting requirements specified in the HMDA FIG, specifically that the file
-is pipe-delimited;
-has the proper number of data fields; and
-has data fields formatted as integers, where necessary.
+
+- is pipe-delimited;
+- has the proper number of data fields; and
+- has data fields formatted as integers, where necessary. 
+
 The FFVT does not allow you to submit HMDA data. Additionally, there is a unique File Format Verification Tool for each HMDA data collection year, so please select the relevant year before uploading a file.
 
 #### I’m having issues when I try to upload my file, what should I do?
 If you are having issues uploading a new file and are receiving errors from a previous upload, please: 
+
 - refresh the page
 - log out
 - clear your browser’s cache (clear your browser’s history)
@@ -54,6 +57,7 @@ If you are having issues uploading a new file and are receiving errors from a pr
 - upload your file again  
 
 Additionally, if you are using Internet Explorer, we have found that filers have fewer browser caching issues using Google Chrome. The time required to upload may vary depending on the size of your institution’s LAR(s).  In some cases, very large files can take a day to fully upload.  Be sure to allocate enough time for the upload process to complete prior to the filing deadline.  **Do not refresh or close the browser window while the file is uploading**. If you continue to experience timeouts or other upload errors, we recommend ensuring that the following URLs are whitelisted in your digital loss prevention software to allow for the transfer of HMDA files:
+
  - ffiec.cfpb.gov
  - ffiec.beta.cfpb.gov
 
@@ -100,6 +104,7 @@ Please note that the fields 'Ethnicity of Applicant or Borrower 1-5' and 'Race o
 
 #### I am receiving validity edits regarding my county codes & census tracts. Can you explain how these fields are derived?
 Your county code is a 5 digit number that combines state and county codes. Your census tract should be an 11 digit number. Your census tract combines the 2 digit state, 3 digit county, and 6 digit tract code (with no decimal). The FFIEC census tool and FFIEC geocoder can assist in providing the correct state, county and census tract combinations.  
+
 - <a target="_blank" rel="noopener noreferrer" href="https://www.ffiec.gov/%5C/census/default.aspx">Census Tool</a>  
 - <a target="_blank" rel="noopener noreferrer" href="https://geomap.ffiec.gov/FFIECGeocMap/GeocodeMap1.aspx">Geocoder</a>  
 
