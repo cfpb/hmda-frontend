@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import RefileWarningComponent from '../../refileWarning/index.jsx'
 import submissionProgressHOC from '../progressHOC.jsx'
 import Pagination from '../../pagination/container.jsx'
+import ExternalLink from '../../../common/ExternalLink'
 
 import './ParseErrors.css'
 
@@ -91,9 +92,9 @@ class ParseErrors extends Component {
 
     return (
       <section
-        ref={el => (this.rendered = el)}
-        className="ParseErrors"
-        id="parseErrors"
+        ref={(el) => (this.rendered = el)}
+        className='ParseErrors'
+        id='parseErrors'
       >
         <RefileWarning />
         <header>
@@ -102,28 +103,27 @@ class ParseErrors extends Component {
               {props.pagination.total} {errorText} with Formatting Errors
             </h2>
           )}
-          <p className="usa-font-lead">
+          <p className='usa-font-lead'>
             The uploaded file is not formatted according to the requirements
             specified in the{' '}
-            <a
-              rel="noopener noreferrer"
-              target="_blank"
-              href={filingPeriod === '2018'
-                ? 'https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2018-hmda-fig-2018-hmda-rule.pdf'
-                : `https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${filingPeriod}-hmda-fig.pdf`
+            <ExternalLink
+              url={
+                filingPeriod === '2018'
+                  ? 'https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2018-hmda-fig-2018-hmda-rule.pdf'
+                  : `https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${filingPeriod}-hmda-fig.pdf`
               }
             >
               Filing Instructions Guide
-            </a>{' '}
-            for data collected in {filingPeriod}{filingPeriod === '2018'
+            </ExternalLink>{' '}
+            for data collected in {filingPeriod}
+            {filingPeriod === '2018'
               ? ' incorporating the 2018 HMDA Rule.'
-              : '.'
-            }
+              : '.'}
           </p>
         </header>
         {renderTSErrors(props)}
         {renderLarErrors(props)}
-        <Pagination isFetching={props.isFetching} target="parseErrors" />
+        <Pagination isFetching={props.isFetching} target='parseErrors' />
         <RefileWarning />
       </section>
     )

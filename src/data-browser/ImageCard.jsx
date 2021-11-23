@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import ExternalLink from '../common/ExternalLink'
+
 import './ImageCard.css'
 
 const TileImage = ({ src }) => <img className='tile-image' src={src} />
@@ -30,7 +32,11 @@ const ImageCard = (props) => {
           </span>
         </div>
       </Link>
-      {props.faq && <Link to={props.faq.url} target="_blank" rel="noopener noreferrer" className='faq'>{props.faq.label || "FAQ"}</Link>}
+      {props.faq && (
+        <ExternalLink url={props.faq.url} className='faq'>
+          {props.faq.label || 'FAQ'}
+        </ExternalLink>
+      )}
     </div>
   )
 }

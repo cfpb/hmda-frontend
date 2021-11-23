@@ -1,57 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Product from '../Product.jsx'
-import ExternalLink from '../../common/ExternalLink.jsx'
-import { S3DocLink } from '../../common/S3Integrations'
+import ExternalLink from '../../common/ExternalLink'
 
 const links = {
   2017: [
-    <S3DocLink
-      key='2017-0'
-      url='https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_dataformat.pdf'
-      label='Snapshot File Specifications – LAR, TS, and Reporter Panel'
-    />,
-    <S3DocLink
-      key='2017-1'
-      url='https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_codesheet.pdf'
-      label='Snapshot File Specifications – LAR Code Sheet'
-    />,
-    <li key='2017-2'>
-      <ExternalLink
-        url={
-          'https://github.com/cfpb/hmda-platform/blob/v1.x/Documents/2017_Dynamic_LAR_Spec.csv'
-        }
-        text='Dynamic File Specifications – Loan/Application Records'
-      />
-    </li>,
-    <li key='2017-3'>
-      <ExternalLink
-        url={
-          'https://github.com/cfpb/hmda-platform/blob/v1.x/Documents/2017_Dynamic_TS_Spec.csv'
-        }
-        text='Dynamic File Specifications – Transmittal Sheet Records'
-      />
-    </li>,
-    <li key='2017-4'>
-      <Link to='/documentation/2017/lar-data-fields/'>
-        Public HMDA Data Fields with Values and Definitions
-      </Link>
-    </li>,
-    <li key='2017-5'>
-      <Link to='/documentation/2017/ts-data-fields/'>
-        Public Transmittal Sheet Data Fields with Values and Definitions
-      </Link>
-    </li>,
-    <li key='2017-6'>
-      <Link to='/documentation/2017/panel-data-fields/'>
-        Public Panel Data Fields with Values and Definitions
-      </Link>
-    </li>,
-    <li key='2017-7'>
-      <Link to='/documentation/2021/arid2017-to-lei-schema/'>
-        ARID2017 to LEI Reference Table Schema
-      </Link>
-    </li>,
+    <li key="2017-0"><ExternalLink url="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_dataformat.pdf">Snapshot File Specifications – LAR, TS, and Reporter Panel</ExternalLink></li>,
+    <li key="2017-1"><ExternalLink url="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_codesheet.pdf">Snapshot File Specifications – LAR Code Sheet</ExternalLink></li>,
+    <li key="2017-2"><ExternalLink url="https://github.com/cfpb/hmda-platform/blob/v1.x/Documents/2017_Dynamic_LAR_Spec.csv">Dynamic File Specifications – Loan/Application Records</ExternalLink></li>,
+    <li key="2017-3"><ExternalLink url="https://github.com/cfpb/hmda-platform/blob/v1.x/Documents/2017_Dynamic_TS_Spec.csv">Dynamic File Specifications – Transmittal Sheet Records</ExternalLink></li>,
+    <li key="2017-4"><Link to="/documentation/2017/lar-data-fields/">Public HMDA Data Fields with Values and Definitions</Link></li>,
+    <li key="2017-5"><Link to="/documentation/2017/ts-data-fields/">Public Transmittal Sheet Data Fields with Values and Definitions</Link></li>,
+    <li key="2017-6"><Link to="/documentation/2017/panel-data-fields/">Public Panel Data Fields with Values and Definitions</Link></li>,
+    <li key="2017-7"><Link to="/documentation/2021/arid2017-to-lei-schema/">ARID2017 to LEI Reference Table Schema</Link></li>
   ],
   2018: [
     <li key='2018-4'>

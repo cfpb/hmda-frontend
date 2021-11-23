@@ -1,20 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Product from '../Product.jsx'
-import ExternalLink from '../../common/ExternalLink.jsx'
+import ExternalLink from '../../common/ExternalLink'
 
 const links = {
   2017: [
-    <li key='0'>
-      The HMDA Data Browser currently allows users to filter and download HMDA
-      datasets for 2018 and beyond. Historic data from 2007-2017 is{' '}
-      <ExternalLink
-        url={
-          'https://www.consumerfinance.gov/data-research/hmda/historic-data/'
-        }
-        text='available for download here'
-      />
-    </li>,
+    <li key="0">The HMDA Data Browser currently allows users to filter and download HMDA datasets for 2018 and beyond. Historic data from 2007-2017 is <ExternalLink url="https://www.consumerfinance.gov/data-research/hmda/historic-data/">available for download here</ExternalLink>.</li>,
     // <li key="1"><Link to="/documentation/2017/data-browser-filters/">Available Filters</Link></li>, // TODO: Uncomment when 2017 DB is released.
   ],
   2018: [

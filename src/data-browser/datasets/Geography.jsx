@@ -29,10 +29,9 @@ import {
   isNationwide,
   someChecksExist,
   before2018,
-} from "./selectUtils.js";
-import { sanitizeArray } from "../query";
-import DatasetDocsLink from "./DatasetDocsLink.jsx";
-import { withYearValidation } from '../../common/withYearValidation.js'
+} from './selectUtils.js'
+import { sanitizeArray } from '../query'
+import ExternalLink from '../../common/ExternalLink'
 
 import "./Geography.css";
 
@@ -492,23 +491,15 @@ class Geography extends Component {
           <Heading type={1} headingText='HMDA Dataset Filtering'>
             <p className='lead'>
               You can use the HMDA Data Browser to filter and download CSV files
-              of HMDA data. These files contain all{" "}
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="/documentation/2018/lar-data-fields/"
-              >
+              of HMDA data. These files contain all{' '}
+              <ExternalLink url='/documentation/2018/lar-data-fields/'>
                 data fields
-              </a>{" "}
+              </ExternalLink>{' '}
               available in the public data record and can be used for advanced
-              analysis. You can also access the{" "}
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://cfpb.github.io/hmda-platform/#data-browser"
-              >
+              analysis. You can also access the{' '}
+              <ExternalLink url='https://cfpb.github.io/hmda-platform/#data-browser'>
                 Data Browser API
-              </a>{" "}
+              </ExternalLink>{' '}
               directly. For questions/suggestions, contact hmdahelp@cfpb.gov.
             </p>
           </Heading>

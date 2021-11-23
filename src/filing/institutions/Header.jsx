@@ -6,6 +6,8 @@ import { HeaderBeforeOpen } from './HeaderBeforeOpen.jsx'
 import { HeaderOpen } from './HeaderOpen'
 import { HeaderEnded } from './HeaderEnded'
 import { HeaderClosed } from './HeaderClosed'
+import { HeaderLate } from './HeaderLate'
+import ExternalLink from '../../common/ExternalLink'
 
 const InstitutionsHeader = ({ selectedPeriod }) => {
   if (!selectedPeriod.period || isBeta()) return null
@@ -37,14 +39,7 @@ export const HeaderDocsLink = ({ period }) => {
   return (
     <>
       {text}
-      <a
-        href={url}
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        Documentation
-      </a>{" "}
-      page.
+      <ExternalLink url={url}>Documentation</ExternalLink> page.
     </>
   )
 }

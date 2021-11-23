@@ -11,6 +11,7 @@ import {
   makeItemPlaceholder,
   itemStyleFn
 } from './selectUtils.js'
+import ExternalLink from '../../common/ExternalLink'
 
 
 const ItemSelect = ({
@@ -30,13 +31,9 @@ const ItemSelect = ({
       <p>
         Start by selecting a geography filter using the dropdown menu
         below.&nbsp;
-        <a
-          target='_blank'
-          rel='noopener noreferrer'
-          href='/documentation/2018/data-browser-filters/#Nationwide'
-        >
+        <ExternalLink url='/documentation/2018/data-browser-filters/#Nationwide'>
           View more information on the available filters.
-        </a>
+        </ExternalLink>
       </p>
       <div className='inline-selects'>
         <CategorySelect category={category} onChange={onCategoryChange} />

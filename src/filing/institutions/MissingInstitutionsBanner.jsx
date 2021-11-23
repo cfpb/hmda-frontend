@@ -1,5 +1,6 @@
 import React from "react"
 import Alert from "../../common/Alert.jsx"
+import ExternalLink from '../../common/ExternalLink'
 
 export const MissingInstitutionsBanner = ({ leis = [] }) => {
   const hasMissingLeis = leis.length > 0
@@ -33,7 +34,7 @@ export const MissingLeiList = ({ leis = [] }) => {
   if(leis.length < 1) return null
 
   return (
-    <div className="missing-leis">
+    <div className='missing-leis'>
       <p>
         The following institutions are associated with your profile, but not for
         the currently selected year:
@@ -44,15 +45,8 @@ export const MissingLeiList = ({ leis = [] }) => {
         ))}
       </ul>
       <p>
-        To associate one or more of these institutions, please contact{" "}
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="mailto:hmdahelp@cfpb.gov"
-        >
-          HMDA Help
-        </a>
-        .
+        To associate one or more of these institutions, please contact{' '}
+        <ExternalLink url='mailto:hmdahelp@cfpb.gov'>HMDA Help</ExternalLink>.
       </p>
     </div>
   )

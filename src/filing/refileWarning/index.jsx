@@ -10,6 +10,7 @@ import {
   MACRO_EDITS,
   VALIDATED
 } from '../constants/statusCodes.js'
+import ExternalLink from '../../common/ExternalLink'
 
 import './RefileWarning.css'
 
@@ -89,7 +90,19 @@ export const getText = props => {
       {text}
       {button}
       {periodAfter ? '.' : null}
-      <p style={{marginTop: '15px'}}>Need help? Visit our <a target="_blank" rel="noopener noreferrer" href={`/documentation/${props.match.params.filingPeriod}/`}>documentation page</a> or contact <a href="https://hmdahelp.consumerfinance.gov" target="_blank" rel="noopener noreferrer">HMDA Help</a>.</p>
+      <p style={{ marginTop: '15px' }}>
+        Need help? Visit our{' '}
+        <ExternalLink
+          url={`/documentation/${props.match.params.filingPeriod}/`}
+        >
+          documentation page
+        </ExternalLink>{' '}
+        or contact{' '}
+        <ExternalLink url='https://hmdahelp.consumerfinance.gov'>
+          HMDA Help
+        </ExternalLink>
+        .
+      </p>
     </div>
   )
 }
