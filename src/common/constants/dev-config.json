@@ -2,15 +2,6 @@
   "name": "dev",
   "announcement": [
     {
-      "message": "The publication of Average Prime Offer Rates (APOR) for the week of November 15, 2021 was delayed. These data are now available on the Bureau’s Rate Spread Calculator",
-      "type": "info",
-      "heading": "Rate Spread Issue",
-      "link": {
-        "text": "here.",
-        "url": "https://ffiec.cfpb.gov/tools/rate-spread"
-      }
-    },
-    {
       "message": "On October 20, 2021 the Filing Instructions Guide (FIG) for data collected in 2022 was updated with new guidance for edits V720-2, V721-2, and Q657. ",
       "type": "info",
       "heading": "2022 FIG Update",
@@ -25,10 +16,6 @@
   "publicationReleaseYear": "2020",
   "mlarReleaseYear": "2020",
   "filingPeriods": [
-    "2022-Q3",
-    "2022-Q2",
-    "2022-Q1",    
-    "2021",
     "2021-Q3",
     "2021-Q2",
     "2021-Q1",
@@ -45,9 +32,7 @@
     "Q3": "10/01 - 11/30",
     "ANNUAL": "01/01 - 03/01",
     "PREVIEW": [
-      "2022-Q3",
-      "2022-Q2",
-      "2022-Q1",
+      "2021-Q3",
       "2021"
     ]
   },
@@ -59,7 +44,15 @@
   },
   "showMaps": true,
   "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "filingAnnouncement": {
+    "heading": "Collection of 2018 HMDA Data Will End",
+    "type": "warning",
+    "message": "Resubmissions of 2018 HMDA data will not be accepted after December 31st, 2021.",
+    "link": {
+      "url": "https://ffiec.cfpb.gov/documentation/2021/data-collection-timelines",
+      "text": "View the HMDA data collection timelines."
+    }
+  },
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [

@@ -41,7 +41,15 @@
   },
   "showMaps": true,
   "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "filingAnnouncement": {
+    "heading": "Collection of 2018 HMDA Data Will End",
+    "type": "warning",
+    "message": "Resubmissions of 2018 HMDA data will not be accepted after December 31st, 2021.",
+    "link": {
+      "url": "https://ffiec.cfpb.gov/documentation/2021/data-collection-timelines",
+      "text": "View the HMDA data collection timelines."
+    }
+  },
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
