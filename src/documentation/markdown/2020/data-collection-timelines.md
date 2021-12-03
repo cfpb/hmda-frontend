@@ -2,7 +2,7 @@
 
 **PLEASE NOTE**: Collection of 2018 HMDA data ends on Dec 31, 2021.
 
-<img src='https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/data-submission-timeline.png' />
+<img src='https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/data_collection_timeline.png' />
 
 | Data Year | Collection Begins | Collection Ends   |
 | --------- | ----------------- | ----------------- |
