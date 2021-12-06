@@ -5,19 +5,19 @@ import { MailingSignupLarge } from '../../common/MailingListSignup'
 
 import './Home.css'
 
-const Home = props => {
-  const buttonTitle = props.maintenanceMode ? 'Unavailable during maintenance' : undefined
-  const buttonsDisabled = !!props.maintenanceMode
-  const cname = 'FilingHome' + (props.maintenanceMode ? ' maintenance' : '')
+const Home = ({ maintenanceMode, filingAnnouncement }) => {
+  const maintenanceTitle = maintenanceMode && 'Unavailable during maintenance'
+  const buttonsDisabled = !!maintenanceMode
+  const cname = 'FilingHome' + (maintenanceMode ? ' maintenance' : '')
   const sessionExpired = window.location.href.indexOf('session=expired') > -1
 
   return (
     <main className={cname} id="main-content">
       <section className="hero">
         <div className="full-width">
-          {!!props.maintenanceMode && !!props.filingAnnouncement && (
+          {!!maintenanceMode && !!filingAnnouncement && (
             <Alert type='error' heading='System Temporarily Unavailable'>
-              <p>{props.filingAnnouncement.message}</p>
+              <p>{filingAnnouncement.message}</p>
             </Alert>
           )}
           {sessionExpired && (
@@ -39,7 +39,7 @@ const Home = props => {
               login()
             }}
             disabled={buttonsDisabled}
-            title={buttonTitle}
+            title={maintenanceTitle || 'Login'}
           >
             Log in
           </button>
@@ -51,7 +51,7 @@ const Home = props => {
               register()
             }}
             disabled={buttonsDisabled}
-            title={buttonTitle}
+            title={maintenanceTitle || 'Create an account'}
           >
             Create an account
           </button>
