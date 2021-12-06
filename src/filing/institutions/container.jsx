@@ -28,10 +28,23 @@ export class InstitutionContainer extends Component {
       const leiString = getKeycloak().tokenParsed.lei
       const leis = leiString ? leiString.split(',') : []
 
-      // create the expected objects from the array, institutions = [{lei: lei}]
-      let instArr = leis.map(lei => ({ lei }))
-      dispatch(fetchEachInstitution(instArr, filingPeriod, filingQuartersLate))
-      dispatch(getFilingPeriodOptions(instArr, filingPeriods))
+      // Fetch Institutions associated with this Keycloak account
+      let associatedInstitutions = leis.map((lei) => ({ lei }))
+      dispatch(
+        fetchEachInstitution(
+          associatedInstitutions,
+          filingPeriod,
+          filingQuartersLate
+        )
+      )
+
+      // Determine which filing periods to make available to the user
+      dispatch(
+        getFilingPeriodOptions(
+          associatedInstitutions,
+          this.props.config.filingPeriodStatus
+        )
+      )
     }
   }
 
