@@ -24,12 +24,11 @@ export class AppContainer extends Component {
       return this.props.history.push('/filing')
 
     const filingPeriod = this.props.match.params.filingPeriod
-    if(this.isValidPeriod(filingPeriod)){
+    if(this.isValidPeriod(filingPeriod))
       this.props.dispatch(updateFilingPeriod(filingPeriod))
-    }else{
-      this.checkForValidQuarters(filingPeriod)
-    }
-
+    else 
+      this.redirectToDefaultPeriod(filingPeriod)
+    
     const keycloak = initKeycloak()
     keycloak.init().then(authenticated => {
       this.keycloakConfigured = true
@@ -50,11 +49,10 @@ export class AppContainer extends Component {
       return this.props.history.push('/filing')
 
     const filingPeriod = this.props.match.params.filingPeriod
-    if (!this.isValidPeriod(filingPeriod)) {
-      this.checkForValidQuarters(filingPeriod)
-    } else if (filingPeriod !== this.props.filingPeriod) {
+    if (!this.isValidPeriod(filingPeriod))
+      this.redirectToDefaultPeriod(filingPeriod)
+    else if (filingPeriod !== this.props.filingPeriod)
       this.props.dispatch(updateFilingPeriod(filingPeriod))
-    }
 
     const keycloak = getKeycloak()
     if (!keycloak.authenticated && !this._isHome(this.props)){
@@ -84,29 +82,33 @@ export class AppContainer extends Component {
     return !!props.location.pathname.match(/^\/filing\/\d{4}(-Q\d)?\/$/)
   }
 
-  checkForValidQuarters(period){
-    const quarters = ['-Q3', '-Q2', '-Q1']
-    for(let i=0; i< quarters.length; i++){
-      const fp = period + quarters[i]
-      if(this.isValidPeriod(fp)){
-        this.props.dispatch(updateFilingPeriod(fp))
-        this.props.history.replace(
-          this.props.location.pathname.replace(period, fp)
-        )
-        return
-      }
-    }
+  redirectToDefaultPeriod(previous) {
+    const defaultPeriod = this.props.config.defaultPeriod
+
+    this.props.dispatch(updateFilingPeriod(defaultPeriod))
+    this.props.history.replace(
+      this.props.location.pathname.replace(previous, defaultPeriod)
+    )
   }
 
   isValidPeriod(period) {
-    return this.props.config.filingPeriods.indexOf(period) > -1
+    if (period === '2017') return true // We display a special message for 2017
+
+    const guards = this.props.config.timedGuards
+    if (guards.preview.includes(period)) return true
+
+    let [year, quarter] = period.split('-').map(el => el.toUpperCase())
+    if (!quarter) quarter = 'annual'
+    return (
+      !!guards[year] &&
+      !!guards[year][quarter]
+    )
   }
 
   render() {
     const { match: { params }, location, config: { filingAnnouncement } } = this.props
-    const validFilingPeriod = this.isValidPeriod(params.filingPeriod)
-    if (!validFilingPeriod && params.filingPeriod !== '2017') 
-      return <Redirect to={`/filing/${this.props.config.filingPeriods[0]}/`} />
+    if (!this.isValidPeriod(params.filingPeriod)) 
+      return <Redirect to={`/filing/${this.props.config.defaultPeriod}/`} />
 
     return (
       <div className="AppContainer">
