@@ -39,7 +39,8 @@ const _whatToRender = ({
   latestSubmissions,
   hasQuarterlyFilers,
   isPassedQuarter,
-  isClosedQuarter
+  isClosedQuarter,
+  selectedPeriod
 }) => {
 
   // we don't have institutions yet
@@ -174,18 +175,22 @@ export default class Institutions extends Component {
     const {
       error,
       filingPeriod,
-      filingQuarters,
-      filingQuartersLate,
       hasQuarterlyFilers,
       history,
       location,
       dispatch,
-      filingPeriodOptions
+      filingPeriodOptions,
+      selectedPeriod
     } = this.props
     
+    const [filingYear, filingQtr] = splitYearQuarter(filingPeriod)
     const institutions = this.props.institutions.institutions
     let unregisteredInstitutions = []
     let leis = []
+
+    // Redirect non-quarterly users attempting to access an open quarterly period
+    if (filingQtr && !hasQuarterlyFilers)
+      return <Redirect to={`/filing/${filingYear}/`} />
 
     if (this.props.institutions.fetched) {
       leis = Object.keys(institutions)
@@ -193,17 +198,12 @@ export default class Institutions extends Component {
     }
     
     return (
-      <main id="main-content" className="Institutions full-width">
+      <main id='main-content' className='Institutions full-width'>
         {error ? <ErrorWarning error={error} /> : null}
-        <div className="usa-width-one-whole">
-          {filingPeriod ? (
-            <InstitutionsHeader 
-              filingPeriodOrig={filingPeriod} 
-              filingQuarters={filingQuarters} 
-              filingQuartersLate={filingQuartersLate} 
-              hasQuarterlyFilers={hasQuarterlyFilers}
-            />
-          ) : null}
+        <div className='usa-width-one-whole'>
+          {filingPeriod && (
+            <InstitutionsHeader selectedPeriod={selectedPeriod} />
+          )}
 
           <InstitutionPeriodSelector
             filingPeriod={filingPeriod}
@@ -216,10 +216,9 @@ export default class Institutions extends Component {
 
           {_whatToRender(this.props)}
 
-          {this.props.institutions.fetched && leis.length !== 0 
-            ? ( <MissingInstitutionsBanner leis={unregisteredInstitutions} /> ) 
-            : null
-          }
+          {this.props.institutions.fetched && leis.length !== 0 ? (
+            <MissingInstitutionsBanner leis={unregisteredInstitutions} />
+          ) : null}
         </div>
       </main>
     )

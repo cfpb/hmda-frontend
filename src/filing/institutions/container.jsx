@@ -63,6 +63,7 @@ export function mapStateToProps(state, ownProps) {
   const isPassedQuarter = isQuarterly && afterFilingPeriod(filingPeriod, filingQuartersLate)
   const isFutureQuarter = isQuarterly && beforeFilingPeriod(filingPeriod, filingQuarters)
   const isClosedQuarter = isQuarterly && (isPassedQuarter || isFutureQuarter)
+  const selectedPeriod = ownProps.config.filingPeriodStatus[filingPeriod] || {}
 
   return {
     submission,
@@ -78,7 +79,8 @@ export function mapStateToProps(state, ownProps) {
     isPassedQuarter,
     isClosedQuarter,
     hasQuarterlyFilers: hasQuarterlyFilers(institutions),
-    filingPeriodOptions
+    filingPeriodOptions,
+    selectedPeriod, // FilingPeriodStatus
   }
 }
 

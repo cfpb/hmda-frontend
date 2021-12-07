@@ -8,6 +8,7 @@ export function formatPeriod(period) {
 }
 
 export function splitYearQuarter(per) {
+  if (!per) return []
   return per.split('-')
 }
 

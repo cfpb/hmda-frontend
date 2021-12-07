@@ -1,73 +1,40 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { beforeFilingPeriod, afterFilingPeriod } from '../utils/date.js'
 import { splitYearQuarter } from '../api/utils.js'
 import { isBeta } from '../../common/Beta.jsx'
 import { HeaderBeforeOpen } from './HeaderBeforeOpen.jsx'
 import { HeaderOpen } from './HeaderOpen'
 import { HeaderClosed } from './HeaderClosed'
 import { HeaderLate } from './HeaderLate'
+import { Redirect } from 'react-router-dom'
 
-const InstitutionsHeader = ({ filingPeriodOrig, filingQuarters, filingQuartersLate, hasQuarterlyFilers }) => {
-  if (!filingPeriodOrig || isBeta()) return null
+const InstitutionsHeader = ({ selectedPeriod }) => {
+  if (!selectedPeriod.period || isBeta()) return null
 
-  // Adjust displayed filing period when a non-quarterly user accesses an open quarterly period
-  const [origYear, origQtr] = splitYearQuarter(filingPeriodOrig)
-  const filingPeriod = origQtr && !hasQuarterlyFilers ? origYear : filingPeriodOrig
+  let [filingYear, _] = splitYearQuarter(selectedPeriod.period)
+  if (!filingYear) return
 
-  const [filingYear, filingQtr] = splitYearQuarter(filingPeriod)
+  if (selectedPeriod.isClosed && selectedPeriod.isPassed)
+    return <HeaderClosed {...selectedPeriod} />
 
-  if (beforeFilingPeriod(filingPeriod, filingQuarters)) {
-    return (
-      <HeaderBeforeOpen
-        filingQtr={filingQtr}
-        filingPeriod={filingPeriod}
-        filingQuarters={filingQuarters}
-        filingYear={filingYear}
-      />
-    )
-  } else if (afterFilingPeriod(filingPeriod, filingQuarters)) {
-    // Quarterly - Late
-    if(filingQtr && !afterFilingPeriod(filingPeriod, filingQuartersLate))
-      return (
-        <HeaderLate
-          filingPeriod={filingPeriod}
-          filingQuarters={filingQuarters}
-          filingYear={filingYear}
-          filingQuartersLate={filingQuartersLate}
-          filingQtr={filingQtr}
-        />
-      )
+  if (selectedPeriod.isLate) return <HeaderLate {...selectedPeriod} />
 
-    return (
-      <HeaderClosed
-        filingPeriod={filingPeriod}
-        filingQtr={filingQtr}
-        filingQuartersLate={filingQuartersLate}
-        filingYear={filingYear}
-      />
-    )
-  }
+  if (selectedPeriod.isOpen) return <HeaderOpen {...selectedPeriod} />
 
-  return (
-    <HeaderOpen
-      filingQtr={filingQtr}
-      filingQuarters={filingQuarters}
-      filingYear={filingYear}
-      filingQuartersLate={filingQuartersLate}
-      filingPeriod={filingPeriod}
-    />
-  )
+  return <HeaderBeforeOpen {...selectedPeriod} />
 }
 
-export const HeaderDocsLink = ({ filingYear, isQuarter }) => {
-  const text = isQuarter
+export const HeaderDocsLink = ({ period }) => {
+  const [filingYear, isQuarterly] = period.split('-')
+
+  const text = isQuarterly
     ? "For more information on quarterly filing dates, visit the "
     : "For more information regarding filing, please visit the "
   
-  const url = isQuarter
+  const url = isQuarterly
     ? `/documentation/${filingYear}/quarterly-filing-dates/`
     : `/documentation/${filingYear}`
+  
   return (
     <>
       {text}
@@ -84,7 +51,8 @@ export const HeaderDocsLink = ({ filingYear, isQuarter }) => {
 }
 
 InstitutionsHeader.propTypes = {
-  filingPeriod: PropTypes.string
+  selectedPeriod: PropTypes.object,
+  hasQuarterlyFilers: PropTypes.bool
 }
 
 export default InstitutionsHeader
