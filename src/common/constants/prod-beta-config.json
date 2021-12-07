@@ -50,7 +50,7 @@
     "ANNUAL": "01/01 - 03/01"
   },
   "showMaps": true,
-  "maintenanceMode": true,
+  "maintenanceMode": false,
   "filingAnnouncement": {
     "heading": "System Temporarily Unavailable",
     "type": "error",
