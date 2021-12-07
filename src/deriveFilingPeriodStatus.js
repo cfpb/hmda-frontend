@@ -73,10 +73,11 @@ export function deriveFilingPeriodStatus(baseConfig) {
 
       // Collect all pertinant info about the filing period
       config.filingPeriodStatus[periodString] = {
+        period: periodString,
         startDate: formatLocalString(startOfCollection),
         lateDate: formatLocalString(startOfLateFiling),
         endDate: formatLocalString(collectionDeadline),
-        isVisible: true
+        isVisible: true,
       }
 
       if (period.includes('Q'))
