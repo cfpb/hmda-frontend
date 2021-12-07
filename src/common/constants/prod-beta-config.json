@@ -2,12 +2,6 @@
   "name": "prod-beta",
   "announcement": [
     {
-      "message": "We will be performing scheduled system maintenance on December 7 from 7pm - 9pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-      "type": "warning",
-      "heading": "Scheduled Maintenance",
-      "link": null
-    },
-    {
       "message": "On October 20, 2021 the Filing Instructions Guide (FIG) for data collected in 2022 was updated with new guidance for edits V720-2, V721-2, and Q657. ",
       "type": "info",
       "heading": "2022 FIG Update",
@@ -53,9 +47,9 @@
   "showMaps": true,
   "maintenanceMode": false,
   "filingAnnouncement": {
-    "heading": "Scheduled Maintenance",
+    "heading": "Collection of 2018 HMDA Data Will End",
     "type": "warning",
-    "message": "We will be performing scheduled system maintenance on December 7 from 7pm - 9pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "message": "Resubmissions of 2018 HMDA data will not be accepted after December 31st, 2021.",
     "link": {
       "url": "https://ffiec.cfpb.gov/documentation/2021/data-collection-timelines",
       "text": "View the HMDA data collection timelines."
