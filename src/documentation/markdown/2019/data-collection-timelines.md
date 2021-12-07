@@ -2,6 +2,9 @@
 
 **PLEASE NOTE**: Collection of 2018 HMDA data ends on Dec 31, 2021.
 
+## HMDA Data Resubmission Window
+The collection window of HMDA Data submission and resubmission is a three year period starting on January 1 and ending December 31.
+
 <img src='https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/data_collection_timeline.png' />
 
 | Data Year | Collection Begins | Collection Ends   |
