@@ -34,12 +34,8 @@ const _whatToRender = ({
   filings,
   institutions,
   submission,
-  filingPeriod,
-  filingQuartersLate,
   latestSubmissions,
   hasQuarterlyFilers,
-  isPassedQuarter,
-  isClosedQuarter,
   selectedPeriod
 }) => {
 
@@ -71,7 +67,7 @@ const _whatToRender = ({
     sortInstitutions
   )
 
-  const [filingYear, showingQuarterly] = splitYearQuarter(filingPeriod)
+  const [filingYear, showingQuarterly] = splitYearQuarter(selectedPeriod.period)
   const nonQuarterlyInstitutions = []
   const noFilingThisQ = []
 
@@ -110,10 +106,9 @@ const _whatToRender = ({
           institution={institution}
           submission={_setSubmission(submission, institutionSubmission, filingObj)}
           submissions={filingObj.submissions}
-          isPassedQuarter={isPassedQuarter}
-          isClosedQuarter={isClosedQuarter}
           links={institutionFilings.links}
           submissionPages={institutionFilings.submissionPages}
+          selectedPeriod={selectedPeriod}
         />
       )
     }
@@ -127,16 +122,9 @@ const _whatToRender = ({
         </Alert>
       )
     
-    if(isPassedQuarter)
+    if(selectedPeriod.isPassed)
       filteredInstitutions.unshift(
-        <div className='review-only' key='review-only-notice'>
-          <h4>For Review Only</h4>
-          The following information reflects your filing status as of{' '}
-          {formattedQtrBoundaryDate(showingQuarterly, filingQuartersLate, 1)},{' '}
-          {filingYear}
-          .<br />
-          No further modifications are possible at this time.
-        </div>
+        <ForReviewOnly endDate={selectedPeriod.endDate} key='review-only-banner'/>
       )
       
     noFilingThisQ.length &&
@@ -165,10 +153,24 @@ const _whatToRender = ({
           </p>
         </Alert>
       )
+  } else {
+    if(selectedPeriod.isPassed)
+      filteredInstitutions.unshift(
+        <ForReviewOnly endDate={selectedPeriod.endDate} key='review-only'/>
+      )
   }
 
   return filteredInstitutions
 }
+
+const ForReviewOnly = ({ endDate }) => (
+  <div className='review-only' key='review-only-notice'>
+    <h4>For Review Only</h4>
+    The following information reflects your filing status as of {endDate}
+    .<br />
+    No further modifications are possible at this time.
+  </div>
+)
 
 export default class Institutions extends Component {
   render() {

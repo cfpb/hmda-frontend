@@ -48,7 +48,19 @@ function formatLocalString(date) {
   })
 }
 
-// Determine 
+const FilingPeriodStatus = {
+  endDate: { type: Date, description: 'After this date, at midnight ET, users will no longer be able to submit new files to the HMDA Platform'},
+  isClosed: { type: Boolean, description: 'Are we past this filing period\'s {endDate}?'},
+  isLate: { type: Boolean, description: 'Are we past this filing period\'s {lateDate}?'},
+  isOpen: { type: Boolean, description: 'Are we past this filing period\'s {startDate}?'},
+  isQuarterly: { type: Boolean, description: 'Does the currently selected filing period have quarterly filing?'},
+  isVisible: { type: Boolean, description: 'Should this filing period be available to Platform users?'},
+  isPassed: { type: Boolean, description: 'Is this filing period closed'},
+  lateDate: { type: Date, description:  'After this date, at midnight ET, new submissions to the HMDA Platform will no longer be considered timely' },
+  period: { type: String, description: 'Currently selected year-period' },
+  startDate: { type: Date, description: 'Start filing submissions beginning at 12am' },
+}
+
 export function deriveFilingPeriodStatus(baseConfig) {
   const config = JSON.parse(JSON.stringify(baseConfig))
   const timedGuards = config.timedGuards
@@ -90,9 +102,10 @@ export function deriveFilingPeriodStatus(baseConfig) {
       }
 
       // Set the filing period status based on timed guards
-      if (now > collectionDeadline)
+      if (now > collectionDeadline) {
+        config.filingPeriodStatus[periodString].isPassed = true
         config.filingPeriodStatus[periodString].isClosed = true
-      else if (now > startOfLateFiling)
+      } else if (now > startOfLateFiling)
         config.filingPeriodStatus[periodString].isLate = true
       else if (now > startOfCollection)
         config.filingPeriodStatus[periodString].isOpen = true

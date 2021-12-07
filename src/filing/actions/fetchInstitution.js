@@ -9,10 +9,10 @@ import { error } from '../utils/log.js'
 import receiveNonQFiling from './receiveNonQFiling'
 import { splitYearQuarter } from '../api/utils'
 
-export default function fetchInstitution(institution, filingPeriod, filingQuarters, fetchFilings = true) {
+export default function fetchInstitution(institution, selectedPeriod, fetchFilings = true) {
   return dispatch => {
     dispatch(requestInstitution(institution.lei))
-    return getInstitution(institution.lei, filingPeriod)
+    return getInstitution(institution.lei, selectedPeriod.period)
       .then(json => {
         return hasHttpError(json).then(hasError => {
           if (hasError) {
@@ -20,7 +20,7 @@ export default function fetchInstitution(institution, filingPeriod, filingQuarte
               dispatch(receiveInstitutionNotFound({ lei: institution.lei }))
               throw new Error(
                 `${institution.lei} does not exist in ${
-                  filingPeriod.split("-")[0]
+                  splitYearQuarter(selectedPeriod.period)[0]
                 }.`
               )
             }
@@ -32,10 +32,9 @@ export default function fetchInstitution(institution, filingPeriod, filingQuarte
           dispatch(receiveInstitution(json))
 
           if(fetchFilings) {
-            const isQuarterly = splitYearQuarter(filingPeriod)[1]
-            return isQuarterly && !json.institution.quarterlyFiler
+            return selectedPeriod.isQuarterly && !json.institution.quarterlyFiler
               ? dispatch(receiveNonQFiling(json))
-              : dispatch(fetchCurrentFiling(json, filingQuarters))
+              : dispatch(fetchCurrentFiling(json, selectedPeriod))
           }
         })
       })

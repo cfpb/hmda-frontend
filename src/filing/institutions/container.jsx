@@ -6,8 +6,6 @@ import getFilingPeriodOptions from '../actions/getFilingPeriodOptions'
 import Institutions from './index.jsx'
 import InstitutionDetailsWrapper from './details/InstitutionDetailsWrapper'
 import { getKeycloak } from '../../common/api/Keycloak.js'
-import { afterFilingPeriod, beforeFilingPeriod } from "../utils/date"
-import { splitYearQuarter } from '../api/utils.js'
 
 export class InstitutionContainer extends Component {
   componentDidMount() {
@@ -19,9 +17,9 @@ export class InstitutionContainer extends Component {
   }
 
   fetchIfNeeded() {
-    const { dispatch, filingPeriod, institutions, filingPeriods, filingQuartersLate } = this.props
+    const { dispatch, institutions, selectedPeriod } = this.props
     // Fetching institition data without a filingPeriod results in an error that interferes with upload/filing
-    if(!filingPeriod) return 
+    if (!selectedPeriod || !selectedPeriod.period) return
 
     if(!institutions.fetched && !institutions.isFetching){
       dispatch(requestInstitutions())
@@ -33,8 +31,7 @@ export class InstitutionContainer extends Component {
       dispatch(
         fetchEachInstitution(
           associatedInstitutions,
-          filingPeriod,
-          filingQuartersLate
+          selectedPeriod
         )
       )
 
@@ -58,26 +55,16 @@ export class InstitutionContainer extends Component {
 
 export function mapStateToProps(state, ownProps) {
   const { institutions, filingPeriod, filings, submission, latestSubmissions, error, redirecting, filingPeriodOptions } = state.app
-  const { filingPeriods, filingQuarters, filingQuartersLate } = ownProps.config
-  const isQuarterly = Boolean(splitYearQuarter(filingPeriod)[1])
-  const isPassedQuarter = isQuarterly && afterFilingPeriod(filingPeriod, filingQuartersLate)
-  const isFutureQuarter = isQuarterly && beforeFilingPeriod(filingPeriod, filingQuarters)
-  const isClosedQuarter = isQuarterly && (isPassedQuarter || isFutureQuarter)
   const selectedPeriod = ownProps.config.filingPeriodStatus[filingPeriod] || {}
 
   return {
     submission,
     filingPeriod,
-    filingPeriods,
-    filingQuarters,
-    filingQuartersLate,
     institutions,
     filings,
     error,
     latestSubmissions: latestSubmissions.latestSubmissions,
     redirecting,
-    isPassedQuarter,
-    isClosedQuarter,
     hasQuarterlyFilers: hasQuarterlyFilers(institutions),
     filingPeriodOptions,
     selectedPeriod, // FilingPeriodStatus

@@ -16,10 +16,10 @@ import {
 
 import './ViewButton.css'
 
-const InstitutionViewButton = ({ status, institution, filingPeriod, isClosedQuarter }) => {
+const InstitutionViewButton = ({ status, institution, filingPeriod, isClosed }) => {
   const code = status ? status.code : CREATED
   let text
-  if (isClosedQuarter && code <= CREATED) return null
+  if (isClosed && code <= CREATED) return null
   if (code === FAILED) {
     return <RefileButton className="ViewButton" institution={institution} />
   } else if (code <= CREATED) {
@@ -51,7 +51,8 @@ const InstitutionViewButton = ({ status, institution, filingPeriod, isClosedQuar
 InstitutionViewButton.propTypes = {
   status: PropTypes.object,
   institution: PropTypes.object,
-  filingPeriod: PropTypes.string
+  filingPeriod: PropTypes.string,
+  isClosed: PropTypes.bool
 }
 
 export default InstitutionViewButton
