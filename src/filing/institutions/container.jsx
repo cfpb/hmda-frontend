@@ -53,9 +53,8 @@ export class InstitutionContainer extends Component {
   }
 }
 
-export function mapStateToProps(state, ownProps) {
+export function mapStateToProps(state, _ownProps) {
   const { institutions, filingPeriod, filings, submission, latestSubmissions, error, redirecting, filingPeriodOptions } = state.app
-  const selectedPeriod = ownProps.config.filingPeriodStatus[filingPeriod] || {}
 
   return {
     submission,
@@ -67,7 +66,6 @@ export function mapStateToProps(state, ownProps) {
     redirecting,
     hasQuarterlyFilers: hasQuarterlyFilers(institutions),
     filingPeriodOptions,
-    selectedPeriod, // FilingPeriodStatus
   }
 }
 

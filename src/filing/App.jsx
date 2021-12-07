@@ -71,7 +71,12 @@ export class AppContainer extends Component {
       (!getKeycloak().authenticated && !this._isHome(props))
     )
       return <Loading className="floatingIcon" />
-    return React.cloneElement(props.children, {match: this.props.match, location: this.props.location, config: this.props.config})
+    return React.cloneElement(props.children, {
+      match: this.props.match,
+      location: this.props.location,
+      config: this.props.config,
+      selectedPeriod: this.props.selectedPeriod
+    })
   }
 
   _isOldBrowser() {
@@ -136,6 +141,7 @@ export class AppContainer extends Component {
 export function mapStateToProps(state, ownProps) {
   const { filingPeriod, redirecting, statePathname, filingPeriodOptions } = state.app
   const { maintenanceMode, filingAnnouncement } = ownProps.config
+  const selectedPeriod = ownProps.config.filingPeriodStatus[filingPeriod] || {}
 
   return {
     redirecting,
@@ -143,7 +149,8 @@ export function mapStateToProps(state, ownProps) {
     maintenanceMode,
     filingAnnouncement,
     filingPeriod,
-    filingPeriodOptions
+    filingPeriodOptions,
+    selectedPeriod // FilingPeriodStatus
   }
 }
 
