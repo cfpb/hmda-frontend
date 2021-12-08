@@ -7,7 +7,7 @@ The collection window of HMDA Data submission and resubmission is a three year p
 
 <img src='https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/data_collection_timeline.png' />
 
-| Data Year | Collection Begins | Collection Ends   |
+| Data Year | Collection Begins | Resubmission Ends |
 | --------- | ----------------- | ----------------- |
 | 2018      | January 1, 2019   | December 31, 2021 |
 | 2019      | January 1, 2020   | December 31, 2022 |
