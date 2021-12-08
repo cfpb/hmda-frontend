@@ -4,12 +4,18 @@ const defaultOpts = {
   withAdmin: true // Include administrative years (PREVIEW) in the returned list
 }
 
-// Filing Periods open for Administrative tasks via the HMDA Help UI
+// Filing Periods accessible to HMDA Filers
 export const getFilingPeriods = config => {
   if (!config) return []
-  return [...config.filingPeriods, ...(config.filingQuarters.PREVIEW || [])]
-}
 
+  const periods = Object.values(config.filingPeriodStatus)
+    .filter(({ isVisible }) => isVisible)
+    .map(({ period }) => period)
+
+  const unique = Array.from(new Set(periods))
+
+  return unique
+}
 
 /**
  * Open Annual Filing Years
@@ -17,30 +23,36 @@ export const getFilingPeriods = config => {
  * @param {Object} options See defaultOps for all options
  */
 export const getFilingYears = (config, options = defaultOpts) => {
-  let filingYears = new Set()
   const { withAdmin } = options
+  const years = new Set()
+  const filingPeriodStatus = config.filingPeriodStatus || {}
 
-  const prevArry = withAdmin ? (config.filingQuarters.PREVIEW || []) : []
-  let tmpFilingYears = [...config.filingPeriods, ...prevArry]
-  
-  // Unique
-  tmpFilingYears.forEach(yr => filingYears.add(splitYearQuarter(yr)[0]))
-  tmpFilingYears = []
-  filingYears.forEach(yr => tmpFilingYears.push(yr))
-  
-  // As Ints, sorted descending
-  filingYears = tmpFilingYears
-    .filter((x) => x)
-    .map((x) => parseInt(x, 10))
+  // Collect all HMDA Filer accessible years
+  Object.values(filingPeriodStatus).forEach(status => {
+    const { period, isVisible } = status || {}
+    isVisible && years.add(splitYearQuarter(period)[0])
+  })
+
+  // Additional inclusions for HMDA Help users to enable administrative tasks
+  // for future/closed filing periods.
+  if (withAdmin) {
+    config.timedGuards.preview.forEach(adminPeriod =>
+      years.add(splitYearQuarter(adminPeriod)[0])
+    )
+
+    const nextYear = parseInt(splitYearQuarter(config.defaultPeriod)[0], 10) + 1
+    years.add(nextYear.toString())
+  }
+
+  return Array.from(years)
+    .map(x => parseInt(x, 10))
     .sort()
     .reverse()
-    .map((x) => x.toString())
-
-  return filingYears
+    .map(x => x.toString())
 }
 
 /**
  * Returns the years for which Filing is open
  * @param {Object} config Environment configuration
  */
-export const getOpenFilingYears = (config) => getFilingYears(config, ({ adminYears: false }))
+export const getOpenFilingYears = (config) => getFilingYears(config, ({ withAdmin: false }))

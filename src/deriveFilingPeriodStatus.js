@@ -109,7 +109,7 @@ export function deriveFilingPeriodStatus(baseConfig) {
         config.filingPeriodStatus[periodString].isLate = true
       else if (now > startOfCollection)
         config.filingPeriodStatus[periodString].isOpen = true
-      else {
+      else { // Future periods
         config.filingPeriodStatus[periodString].isClosed = true
         config.filingPeriodStatus[periodString].isVisible = false
       }
