@@ -9,7 +9,6 @@ import Alert from '../../common/Alert.jsx'
 import { MissingInstitutionsBanner } from './MissingInstitutionsBanner'
 import { FilteredOutList } from './FilteredOutList'
 import { splitYearQuarter } from '../api/utils.js'
-import { formattedQtrBoundaryDate } from '../utils/date.js'
 import { wrapLoading } from './wrapLoading'
 
 import './Institutions.css'
