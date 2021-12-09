@@ -26,7 +26,8 @@ const InstitutionStatus = ({ submission, filing, isClosed }) => {
   const { code, message, description } = currSubmission.status
   const qualityOverride = code > NO_QUALITY_EDITS && (currSubmission.qualityExists && !currSubmission.qualityVerified)
   const submitOverride = code === NO_MACRO_EDITS
-  const refileInProgress = filing.status.code === 3 && code !== SIGNED
+  const refileInProgress =
+    filing && filing.status && filing.status.code === 3 && code !== SIGNED
 
   return (
     <section className='status'>

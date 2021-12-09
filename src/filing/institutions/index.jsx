@@ -10,6 +10,7 @@ import { MissingInstitutionsBanner } from './MissingInstitutionsBanner'
 import { FilteredOutList } from './FilteredOutList'
 import { splitYearQuarter } from '../api/utils.js'
 import { wrapLoading } from './wrapLoading'
+import { Redirect } from 'react-router-dom'
 
 import './Institutions.css'
 
@@ -191,7 +192,7 @@ export default class Institutions extends Component {
 
     // Redirect non-quarterly users attempting to access an open quarterly period
     if (filingQtr && !hasQuarterlyFilers)
-      return <Redirect to={`/filing/${filingYear}/`} />
+      return <Redirect to={`/filing/${filingYear}/institutions`} />
 
     if (this.props.institutions.fetched) {
       leis = Object.keys(institutions)

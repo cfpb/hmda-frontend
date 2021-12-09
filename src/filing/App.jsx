@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router'
 import ConfirmationModal from './modals/confirmationModal/container.jsx'
 import Beta, { isBeta } from '../common/Beta'
 import Header from './common/Header.jsx'
@@ -13,6 +12,7 @@ import isRedirecting from './actions/isRedirecting.js'
 import updateFilingPeriod from './actions/updateFilingPeriod.js'
 import { detect } from 'detect-browser'
 import { FilingAnnouncement } from './common/FilingAnnouncement'
+import { splitYearQuarter } from './api/utils.js'
 import 'normalize.css'
 import './app.css'
 
@@ -24,10 +24,11 @@ export class AppContainer extends Component {
       return this.props.history.push('/filing')
 
     const filingPeriod = this.props.match.params.filingPeriod
-    if(this.isValidPeriod(filingPeriod))
+    
+    if(this.isPeriodReachable(filingPeriod))
       this.props.dispatch(updateFilingPeriod(filingPeriod))
     else 
-      this.redirectToDefaultPeriod(filingPeriod)
+      this.redirectToReachablePeriod(filingPeriod)
     
     const keycloak = initKeycloak()
     keycloak.init().then(authenticated => {
@@ -49,8 +50,8 @@ export class AppContainer extends Component {
       return this.props.history.push('/filing')
 
     const filingPeriod = this.props.match.params.filingPeriod
-    if (!this.isValidPeriod(filingPeriod))
-      this.redirectToDefaultPeriod(filingPeriod)
+    if (!this.isPeriodReachable(filingPeriod))
+      this.redirectToReachablePeriod(filingPeriod)
     else if (filingPeriod !== this.props.filingPeriod)
       this.props.dispatch(updateFilingPeriod(filingPeriod))
 
@@ -96,24 +97,37 @@ export class AppContainer extends Component {
     )
   }
 
-  isValidPeriod(period) {
+  redirectToReachablePeriod(period){
+    const quarters = ['-Q3', '-Q2', '-Q1']
+    const [year, _quarter] = splitYearQuarter(period)
+
+    // Try to redirect to the latest Quarterly period
+    for (let i = 0; i < quarters.length; i++) {
+      const fp = year + quarters[i]
+      if (this.isPeriodReachable(fp)) {
+        this.props.dispatch(updateFilingPeriod(fp))
+        this.props.history.replace(
+          this.props.location.pathname.replace(period, fp)
+        )
+        return
+      }
+    }
+
+    // If we can't find a reachable Quarter, fall back to the default filing period
+    this.redirectToDefaultPeriod(period)
+  }
+
+  isPeriodReachable(period) {
     if (period === '2017') return true // We display a special message for 2017
 
-    const guards = this.props.config.timedGuards
-    if (guards.preview.includes(period)) return true
+    const guards = this.props.config.filingPeriodStatus
+    const current = guards[period]
 
-    let [year, quarter] = period.split('-').map(el => el.toUpperCase())
-    if (!quarter) quarter = 'annual'
-    return (
-      !!guards[year] &&
-      !!guards[year][quarter]
-    )
+    return current && current.isVisible
   }
 
   render() {
     const { match: { params }, location, config: { filingAnnouncement } } = this.props
-    if (!this.isValidPeriod(params.filingPeriod)) 
-      return <Redirect to={`/filing/${this.props.config.defaultPeriod}/`} />
 
     return (
       <div className="AppContainer">
