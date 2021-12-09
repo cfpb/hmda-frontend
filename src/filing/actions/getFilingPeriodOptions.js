@@ -6,18 +6,18 @@ import fetchAllInstitutions from './fetchAllInstitutions'
 /**
  * Determine which filing periods are accessible by a user
  * @param {Array} institutions LEIs associated with this user account
- * @param {Object} timedGuards Status and meta data of each filing period
+ * @param {Object} filingPeriodStatus Status and meta data of each filing period
  * @returns Thunk
  */
-export default function getFilingPeriodOptions(institutions, timedGuards) {
+export default function getFilingPeriodOptions(institutions, filingPeriodStatus) {
   // Filter out future filing periods
-  const periodOptions = Object.keys(timedGuards).filter(
-    period => timedGuards[period].isVisible
+  const periodOptions = Object.keys(filingPeriodStatus).filter(
+    period => filingPeriodStatus[period].isVisible
   )
 
   let yearsWithQuarterly = new Set(
     periodOptions
-      .filter(period => timedGuards[period].isQuarterly)
+      .filter(period => filingPeriodStatus[period].isQuarterly)
       .map(period => splitYearQuarter(period)[0])
   )
 

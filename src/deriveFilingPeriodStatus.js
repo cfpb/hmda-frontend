@@ -50,9 +50,9 @@ function formatLocalString(date) {
 
 const FilingPeriodStatus = {
   endDate: { type: Date, description: 'After this date, at midnight ET, users will no longer be able to submit new files to the HMDA Platform'},
-  isClosed: { type: Boolean, description: 'Are we past this filing period\'s {endDate}?'},
-  isLate: { type: Boolean, description: 'Are we past this filing period\'s {lateDate}?'},
-  isOpen: { type: Boolean, description: 'Are we past this filing period\'s {startDate}?'},
+  isClosed: { type: Boolean, description: "Are we past this filing period's {endDate}?"},
+  isLate: { type: Boolean, description: "Are we past this filing period's {lateDate}?"},
+  isOpen: { type: Boolean, description: "Are we past this filing period's {startDate}?"},
   isQuarterly: { type: Boolean, description: 'Does the currently selected filing period have quarterly filing?'},
   isVisible: { type: Boolean, description: 'Should this filing period be available to Platform users?'},
   isPassed: { type: Boolean, description: 'Is this filing period closed'},
