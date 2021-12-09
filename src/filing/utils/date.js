@@ -1,5 +1,3 @@
-import { splitYearQuarter } from '../api/utils.js'
-
 export const months = 'January,February,March,April,May,June,July,August,September,October,November,December'.split(
   ','
 )
@@ -41,76 +39,8 @@ export function ordinalHour(d) {
   return `${ordinal(d)}, ${hour}:${min}:${sec} ${period}`
 }
 
-export function afterFilingPeriod(period, filingQuarters) {
-  if(openForPreview(period, filingQuarters)) return false
-  const timezoneOffsetHours = new Date().getTimezoneOffset() / 60 // Calculate UTC Hours Offset
-  let [year, quarter] = splitYearQuarter(period)
-  year = parseInt(year, 10)
-  const yearAdjusted = quarter ? year : year + 1
-  const endDate = quarter
-    ? qtrBoundaryDate(quarter, filingQuarters, 1)
-    : qtrBoundaryDate("ANNUAL", filingQuarters, 1)
-  const deadline = Date.UTC(
-    yearAdjusted,
-    endDate.month,
-    endDate.day,
-    23 + timezoneOffsetHours, // 1 second before Midnight, local time
-    59,
-    59
-  )
-  if (!deadline) throw new Error('Error calculating filing period deadline')
-  return Date.now() > deadline
-}
-
-export function beforeFilingPeriod(period, filingQuarters) {
-  if(openForPreview(period, filingQuarters)) return false
-  const timezoneOffsetHours = new Date().getTimezoneOffset() / 60 // Calculate UTC Hours Offset
-  let [year, quarter] = splitYearQuarter(period)
-  year = parseInt(year, 10)
-  const yearAdjusted = quarter ? year : year + 1
-  const startDate = quarter
-    ? qtrBoundaryDate(quarter, filingQuarters)
-    : qtrBoundaryDate("ANNUAL", filingQuarters)
-  const start = Date.UTC(
-    yearAdjusted,
-    startDate.month,
-    startDate.day,
-    timezoneOffsetHours, // Midnight, local time
-    0,
-    0
-  )
-  if (!start) throw new Error("Error calculating filing period starting date")
-  return Date.now() < start
-}
-
-export function withinFilingPeriod(year, filingQuarters) {
-  return !beforeFilingPeriod(year, filingQuarters) && !afterFilingPeriod(year, filingQuarters)
-}
-
-// MonthName DayNumber
-export const formattedQtrBoundaryDate = (qtr, filingQuarters, startOrEnd=1) => {
-  const date = qtrBoundaryDate(qtr, filingQuarters, startOrEnd)
-  return formattedBoundaryDate(date)
-}
-
-// Format quarterly end date for creation of Date object
-export const qtrBoundaryDate = (qtr, filingQuarters, startOrEnd=0) => {
-  const monthDay = filingQuarters[qtr].split(' - ')[startOrEnd]
-  const [month, day] = monthDay.split('/').map(s => parseInt(s, 10))
-  return { day, month: month - 1 }
-}
-
-export const formattedBoundaryDate = (obj) => `${months[obj.month]} ${obj.day}`
-
-// Allow for a period to be opened for pre-release without causing ripple effects
-const openForPreview = (period, filingQuarters) => {
-  const previewPeriods = filingQuarters && filingQuarters.PREVIEW
-  if(!previewPeriods) return false
-  return previewPeriods.indexOf(period) > -1
-}
-
 export const numDaysBetween = function(d1, d2) {
-  var diff = Math.abs(d1.getTime() - d2.getTime());
+  var diff = d1.getTime() - d2.getTime();
   const daysDiff = diff / (1000 * 60 * 60 * 24)
   return daysDiff
 };

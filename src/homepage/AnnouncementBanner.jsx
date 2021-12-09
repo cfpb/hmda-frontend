@@ -24,6 +24,7 @@ const SCHEDULED_EVENT_DURATIONS = {
  */
 const isEventWithinRange = (eventId, eventDate) => {
   const diff = numDaysBetween(new Date(), eventDate)
+  if (diff < 0) return false
   return diff < SCHEDULED_EVENT_DURATIONS[eventId]
 }
 
