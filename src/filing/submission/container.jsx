@@ -55,18 +55,17 @@ const renderByCode = (code, page, lei, selectedPeriod) => {
         toRender.push(<BetaAlertComplete filingPeriod={period} />)
       } else {
         // at the top of the page
-        if (code !== SIGNED) {
-          toRender.push(<ReadyToSign />)
-        }
+        if (code !== SIGNED) toRender.push(<ReadyToSign isPassed={isPassed} />)
+        
         toRender.push(<ReceiptContainer />)
         toRender.push(<IRSReport lei={lei} filingPeriod={period}/>)
         toRender.push(<Summary filingPeriod={period} />)
   
         // and just before the signature
         if (code !== SIGNED) {
-          toRender.push(<ReadyToSign />)
+          toRender.push(<ReadyToSign isPassed={isPassed} />)
         }
-        toRender.push(<Signature />)
+        toRender.push(<Signature isPassed={isPassed} />)
         toRender.push(<ReceiptContainer />)
       }
     }
