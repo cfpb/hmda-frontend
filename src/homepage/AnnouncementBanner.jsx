@@ -1,52 +1,29 @@
 import React from 'react'
 import ConfiguredAlert from '../common/ConfiguredAlert'
-import {
-  formattedQtrBoundaryDate,
-  numDaysBetween,
-  qtrBoundaryDate,
-} from '../filing/utils/date.js'
+import { numDaysBetween } from '../filing/utils/date.js'
 import { splitYearQuarter } from '../filing/api/utils.js'
 import { OptionCarousel } from '../common/OptionCarousel'
+import { getOpenFilingYears } from '../common/constants/configHelpers'
 
-const TIMEZONE_OFFSET_HOURS = new Date().getTimezoneOffset() / 60
-
-/* Length of time, in days, to display the announcement after the event has occurred. */
+/**
+ * Length of time, in days, to display the announcement 
+ * after the event has occurred. 
+*/
 const SCHEDULED_EVENT_DURATIONS = {
   annualOpen: 60,    // Annual Filing period is open.
-  annualClose: 30,   // Annual Filing Timely deadline is passed.  Resubmissions still accepted.
+  annualLate: 30,    // Annual resubmissions still accepted.
   quarterlyOpen: 60, // Quarterly Filing period is open.
   quarterlyClose: 0, // Quarterly Filing period is closed (no message)
 }
 
 /**
- * Create a UTC timestamp for the given day/month/year at 11:59:59pm
- * @param {Object} dayMonthObj
- * @param {Number} dayMonthObj.day // Day of month (1-31)
- * @param {Number} dayMonthObj.month // JS Month (0-11)
- * @returns Number
- */
-const getDeadline = (dayMonthObj) => {
-  return Date.UTC(
-    new Date().getFullYear(),
-    dayMonthObj.month,
-    dayMonthObj.day,
-    23 + TIMEZONE_OFFSET_HOURS,
-    59,
-    59
-  )
-}
-
-/**
  * Check if an event's occurrence was within SCHEDULED_EVENT_DURATIONS[evt] number of days
  * @param {String} eventId
- * @param {Object} dayMonth
- * @param {Number} dayMonth.day Day of month (1-31)
- * @param {Number} dayMonth.month Javascript Month (0-11)
+ * @param {Date} eventDate Deadline date of event
  * @returns Boolean
  */
-const isEventWithinRange = (eventId, dayMonth) => {
-  const deadline = getDeadline(dayMonth)
-  const diff = numDaysBetween(new Date(), new Date(deadline))
+const isEventWithinRange = (eventId, eventDate) => {
+  const diff = numDaysBetween(new Date(), eventDate)
   return diff < SCHEDULED_EVENT_DURATIONS[eventId]
 }
 
@@ -71,29 +48,24 @@ const availableAnnualRange = (filingPeriods) => {
  */
 const scheduledFilingAnnouncements = (
   defaultPeriod,
-  filingQuarters,
-  filingPeriods
+  filingPeriodStatus
 ) => {
   const [year, quarter] = splitYearQuarter(defaultPeriod)
   const annualFilingYear = parseInt(year) - 1
   const announcements = []
-  let startDate, endDate
 
+  let status = filingPeriodStatus[defaultPeriod]
+  
   /*** Quarterly Filing Announcements ***/
   
   // Only display Quarterly announcements during Quarterly Filing periods
   if (quarter) {
-    startDate = qtrBoundaryDate(quarter, filingQuarters, 0)
-    endDate = qtrBoundaryDate(quarter, filingQuarters, 1)
-
     // Quarterly Filing Open
-    if (isEventWithinRange('quarterlyOpen', startDate)) {
-      const quarterlyDeadline = formattedQtrBoundaryDate(quarter, filingQuarters, 1) + `, ${year}`
-
+    if (isEventWithinRange('quarterlyOpen', status.dates.start)) {
       announcements.push(
         <ConfiguredAlert
           heading={`${defaultPeriod} Quarterly filing period is open`}
-          message={`Submissions of ${defaultPeriod} HMDA data will be accepted through ${quarterlyDeadline}.`}
+          message={`Submissions of ${defaultPeriod} HMDA data will be accepted through ${status.lateDate}.`}
           type='success'
         />
       )
@@ -103,29 +75,29 @@ const scheduledFilingAnnouncements = (
   /*** Annual Filing Announcements ***/
   
   // Annual announcements may overlap with Quarterly announcements, so we will always check for these.
-  startDate = qtrBoundaryDate('ANNUAL', filingQuarters, 0)
-  endDate = qtrBoundaryDate('ANNUAL', filingQuarters, 1)
+  status = filingPeriodStatus[annualFilingYear]
 
   // Annual Filing Open
-  if (isEventWithinRange('annualOpen', startDate)) {
-    const annualDeadline = formattedQtrBoundaryDate('ANNUAL', filingQuarters, 1) + `, ${year}`
+  if (isEventWithinRange('annualOpen', status.dates.start)) {
     announcements.push(
       <ConfiguredAlert
         heading={`${annualFilingYear} Annual filing period is open`}
-        message={`Submissions of ${annualFilingYear} HMDA data will be considered timely if received on or before ${annualDeadline}. `}
+        message={`Submissions of ${annualFilingYear} HMDA data will be considered timely if received on or before ${status.endDate}. `}
         type='success'
       />
     )
   }
 
   // Annual Filing Resubmission period
-  if (isEventWithinRange('annualClose', endDate)) {
+  if (isEventWithinRange('annualLate', status.dates.late)) {
+    const openFilingRange = availableAnnualRange(
+      getOpenFilingYears({ filingPeriodStatus })
+    )
+
     announcements.push(
       <ConfiguredAlert
-        heading={`${annualFilingYear} Annual filing period is closed`}
-        message={`The HMDA Platform remains available outside of the filing period for late submissions and resubmissions of ${availableAnnualRange(
-          filingPeriods
-        )} HMDA data.`}
+        heading={`${annualFilingYear} Annual filing deadline has passed`}
+        message={`The HMDA Platform remains available outside of the filing period for late submissions and resubmissions of ${openFilingRange} HMDA data.`}
         type='info'
       />
     )
@@ -146,11 +118,10 @@ const scheduledFilingAnnouncements = (
 export const AnnouncementBanner = ({
   announcement,
   defaultPeriod,
-  filingQuarters,
-  filingPeriods,
+  filingPeriodStatus
 }) => {
   // Collect all scheduled announcements
-  const announcements = scheduledFilingAnnouncements(defaultPeriod, filingQuarters, filingPeriods)
+  const announcements = scheduledFilingAnnouncements(defaultPeriod, filingPeriodStatus)
 
   // Prioritize the message set in the external configuration
   if (announcement) {

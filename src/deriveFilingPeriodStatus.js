@@ -71,17 +71,20 @@ export function deriveFilingPeriodStatus(baseConfig) {
 
   potentialYears().forEach((year) => {
     PERIODS.forEach((period) => {
-      if (!timedGuards[year][period]) return
+      if (!timedGuards || !timedGuards[year] || !timedGuards[year][period])
+        return
 
       let periodString = `${year}`
       if (period.includes('Q'))
         periodString += `-${period}`
 
       // Parse timed guards
-      const [startOfCollection, startOfLateFiling, collectionDeadline] = timedGuards[year][period]
-        .split(' - ')
-        .map((dateString, idx) => parseTimedGuardDate(dateString, dateIsDeadline[idx])
-        )
+      const [startOfCollection, startOfLateFiling, collectionDeadline] =
+        timedGuards[year][period]
+          .split(' - ')
+          .map((dateString, idx) =>
+            parseTimedGuardDate(dateString, dateIsDeadline[idx])
+          )
 
       // Collect all pertinant info about the filing period
       config.filingPeriodStatus[periodString] = {
@@ -90,6 +93,11 @@ export function deriveFilingPeriodStatus(baseConfig) {
         lateDate: formatLocalString(startOfLateFiling),
         endDate: formatLocalString(collectionDeadline),
         isVisible: true,
+        dates: {
+          start: startOfCollection,
+          late: startOfLateFiling,
+          end: collectionDeadline,
+        }
       }
 
       if (period.includes('Q'))
