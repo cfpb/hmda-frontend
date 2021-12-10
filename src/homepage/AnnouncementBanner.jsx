@@ -54,7 +54,7 @@ const scheduledFilingAnnouncements = (
 ) => {
   const [year, quarter] = splitYearQuarter(defaultPeriod)
   const annualFilingYear = parseInt(year) - 1
-  const closingAnnualFiling = annualFilingYear - 2
+  const closingAnnualFiling = new Date().getFullYear() - 3
   const announcements = []
 
   let status = filingPeriodStatus[defaultPeriod]
