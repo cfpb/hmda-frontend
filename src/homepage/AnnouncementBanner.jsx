@@ -85,7 +85,7 @@ const scheduledFilingAnnouncements = (
     announcements.push(
       <ConfiguredAlert
         heading={`${annualFilingYear} Annual filing period is open`}
-        message={`Submissions of ${annualFilingYear} HMDA data will be considered timely if received on or before ${status.endDate}. `}
+        message={`Submissions of ${annualFilingYear} HMDA data will be considered timely if received on or before ${status.lateDate}. `}
         type='success'
       />
     )
