@@ -1,7 +1,7 @@
 import { getDefaultConfig } from '../../../common/configUtils'
 import { getOpenFilingYears } from '../../../common/constants/configHelpers'
 import * as types from '../constants'
-import { deriveFilingPeriodStatus } from '../../../deriveFilingPeriodStatus'
+import { deriveConfig } from '../../../deriveConfig'
 
 export function updateStatus(status) {
   return {
@@ -25,12 +25,7 @@ function checkErrors(file) {
         'The file you uploaded does not contain any data. Please check your file and re-upload.'
       )
     }
-    if (
-      file.name
-        .split('.')
-        .slice(-1)[0]
-        .toLowerCase() !== 'txt'
-    ) {
+    if (file.name.split('.').slice(-1)[0].toLowerCase() !== 'txt') {
       errors.push(
         'The file you uploaded is not a text file (.txt). Please check your file and re-upload.'
       )
@@ -39,7 +34,7 @@ function checkErrors(file) {
   return errors
 }
 
-export function selectFile(file, previousErrors=[]) {
+export function selectFile(file, previousErrors = []) {
   return {
     type: types.SELECT_FILE,
     file,
@@ -71,9 +66,7 @@ export function endParse(data) {
 export function triggerParse(file, filingPeriod) {
   return dispatch => {
     dispatch(beginParse())
-    const config = deriveFilingPeriodStatus(
-      getDefaultConfig(window.location.hostname)
-    )
+    const config = deriveConfig(getDefaultConfig(window.location.hostname))
     const openYears = getOpenFilingYears(config)
 
     if (openYears.indexOf(filingPeriod) > -1) {

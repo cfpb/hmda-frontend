@@ -13,6 +13,7 @@ import updateFilingPeriod from './actions/updateFilingPeriod.js'
 import { detect } from 'detect-browser'
 import { FilingAnnouncement } from './common/FilingAnnouncement'
 import { splitYearQuarter } from './api/utils.js'
+import { PERIODS } from '../deriveConfig'
 import 'normalize.css'
 import './app.css'
 
@@ -98,7 +99,10 @@ export class AppContainer extends Component {
   }
 
   redirectToReachablePeriod(period){
-    const quarters = ['-Q3', '-Q2', '-Q1']
+    const quarters = PERIODS
+      .filter(p => p.includes('Q'))
+      .map(period => '-' + period)
+    
     const [year, _quarter] = splitYearQuarter(period)
 
     // Try to redirect to the latest Quarterly period

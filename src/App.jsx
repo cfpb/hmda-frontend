@@ -8,7 +8,7 @@ import makeAsyncComponent from './common/makeAsyncComponent.js'
 import { useEnvironmentConfig } from './common/useEnvironmentConfig'
 import { betaLinks, defaultLinks, updateFilingLink } from './common/constants/links'
 import { AppContext } from './common/appContextHOC'
-import { deriveFilingPeriodStatus } from './deriveFilingPeriodStatus'
+import { deriveConfig } from './deriveConfig'
 
 import './app.css'
 
@@ -28,7 +28,7 @@ const HmdaHelp = makeAsyncComponent(() => import('./hmda-help'),
   'HMDA Help', 'Use HMDA Help to manage your HMDA Institutions and Publications')
 
 const App = () => {
-  const config = deriveFilingPeriodStatus(
+  const config = deriveConfig(
     useEnvironmentConfig(window.location.hostname)
   )
   const isFiling = !!window.location.pathname.match(/^\/filing/)

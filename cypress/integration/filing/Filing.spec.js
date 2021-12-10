@@ -1,6 +1,6 @@
 import { isBeta, isCI } from '../../support/helpers'
 import { getDefaultConfig } from '../../../src/common/configUtils'
-import { deriveFilingPeriodStatus } from '../../../src/deriveFilingPeriodStatus'
+import { deriveConfig } from '../../../src/deriveConfig'
 import { getFilingPeriods } from '../../../src/common/constants/configHelpers'
 
 const {
@@ -16,7 +16,7 @@ const {
   AUTH_CLIENT_ID,
   YEARS
 } = Cypress.env()
-const config = deriveFilingPeriodStatus(getDefaultConfig(HOST))
+const config = deriveConfig(getDefaultConfig(HOST))
 const getFilename = (filingPeriod, lei) => `${filingPeriod}-${lei}.txt`
 const years = (YEARS && YEARS.toString().split(',')) || getFilingPeriods(config)
 const { filingPeriodStatus } = config
