@@ -33,8 +33,8 @@ const SignatureClosed = ({ status }) => {
   )
 }
 
-const Signature = ({ isPassed }) => {
-  if(isPassed) return <SignatureClosed status={props.status} />
+const Signature = (props) => {
+  if(props.isPassed) return <SignatureClosed status={props.status} />
 
   let isButtonDisabled =
     (props.status.code === VALIDATED || props.status.code === NO_MACRO_EDITS) && props.checked ? false : true
