@@ -12,6 +12,7 @@ import { getOpenFilingYears } from '../common/constants/configHelpers'
 const SCHEDULED_EVENT_DURATIONS = {
   annualOpen: 60,    // Annual Filing period is open.
   annualLate: 30,    // Annual resubmissions still accepted.
+  annualClose: 7,    // Annual resubmissions no longer accepted.
   quarterlyOpen: 60, // Quarterly Filing period is open.
   quarterlyClose: 0, // Quarterly Filing period is closed (no message)
 }
@@ -53,6 +54,7 @@ const scheduledFilingAnnouncements = (
 ) => {
   const [year, quarter] = splitYearQuarter(defaultPeriod)
   const annualFilingYear = parseInt(year) - 1
+  const closingAnnualFiling = annualFilingYear - 2
   const announcements = []
 
   let status = filingPeriodStatus[defaultPeriod]
@@ -89,7 +91,7 @@ const scheduledFilingAnnouncements = (
     )
   }
 
-  // Annual Filing Resubmission period
+  // Annual Filing Resubmission period begins
   if (isEventWithinRange('annualLate', status.dates.late)) {
     const openFilingRange = availableAnnualRange(
       getOpenFilingYears({ filingPeriodStatus })
@@ -100,6 +102,19 @@ const scheduledFilingAnnouncements = (
         heading={`${annualFilingYear} Annual filing deadline has passed`}
         message={`The HMDA Platform remains available outside of the filing period for late submissions and resubmissions of ${openFilingRange} HMDA data.`}
         type='info'
+      />
+    )
+  }
+
+  // Annual Filing Resubmission period ends
+  status = filingPeriodStatus[closingAnnualFiling]
+  
+  if (isEventWithinRange('annualClose', status.dates.end)) {
+    announcements.push(
+      <ConfiguredAlert
+        heading={`${annualFilingYear} Annual filing is closed`}
+        message={`The HMDA Platform no longer accepts late submissions or resubmissions of ${annualFilingYear} HMDA data.`}
+        type='warning'
       />
     )
   }
