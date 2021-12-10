@@ -67,8 +67,8 @@ const scheduledFilingAnnouncements = (
     if (isEventWithinRange('quarterlyOpen', status.dates.start)) {
       announcements.push(
         <ConfiguredAlert
-          heading={`${defaultPeriod} Quarterly filing period is open`}
-          message={`Submissions of ${defaultPeriod} HMDA data will be accepted through ${status.lateDate}.`}
+          heading={`${status.period} Quarterly filing period is open`}
+          message={`Submissions of ${status.period} HMDA data will be accepted through ${status.lateDate}.`}
           type='success'
         />
       )
@@ -84,8 +84,8 @@ const scheduledFilingAnnouncements = (
   if (isEventWithinRange('annualOpen', status.dates.start)) {
     announcements.push(
       <ConfiguredAlert
-        heading={`${annualFilingYear} Annual filing period is open`}
-        message={`Submissions of ${annualFilingYear} HMDA data will be considered timely if received on or before ${status.lateDate}. `}
+        heading={`${status.period} Annual filing period is open`}
+        message={`Submissions of ${status.period} HMDA data will be considered timely if received on or before ${status.lateDate}. `}
         type='success'
       />
     )
@@ -112,8 +112,8 @@ const scheduledFilingAnnouncements = (
   if (isEventWithinRange('annualClose', status.dates.end)) {
     announcements.push(
       <ConfiguredAlert
-        heading={`${annualFilingYear} Annual filing is closed`}
-        message={`The HMDA Platform no longer accepts late submissions or resubmissions of ${annualFilingYear} HMDA data.`}
+        heading={`${status.period} Annual filing is closed`}
+        message={`The HMDA Platform no longer accepts late submissions or resubmissions of ${status.period} HMDA data.`}
         type='warning'
       />
     )
