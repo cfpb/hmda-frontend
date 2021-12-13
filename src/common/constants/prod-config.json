@@ -48,7 +48,8 @@
     "link": {
       "url": "https://ffiec.cfpb.gov/documentation/2021/data-collection-timelines",
       "text": "View the HMDA data collection timelines."
-    }
+    },
+    "endDate": "12/31/2021"
   },
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
