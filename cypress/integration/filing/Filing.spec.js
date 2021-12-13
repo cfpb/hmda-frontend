@@ -55,6 +55,8 @@ describe("Filing", function() {
     cy.viewport(1600, 900)
   })
   
+  const testVsOfficial = isBeta(HOST) ? 'test' : 'official'
+
   years.forEach((filingPeriod, index) => {
     it(`${filingPeriod}`, function() {
       // Action: List Institutions
@@ -66,19 +68,27 @@ describe("Filing", function() {
       // Before Open - Cannot file before a period is open
       if (status.isClosed && !status.isPassed) {
         if (!isBeta(HOST)) {
-          cy.contains(`The ${filingPeriod} filing period is not yet open.`).should('exist')
-          cy.contains(`The Platform will be open for timely submissions from ${status.startDate} until ${status.lateDate}`).should('exist')
+          cy.contains(
+            `The ${filingPeriod} filing period is not yet open.`
+          ).should('exist')
+          cy.contains(
+            `The Platform will be open for timely submissions from ${status.startDate} until ${status.lateDate}`
+          ).should('exist')
         }
-        cy.contains('Upload your file').should('not.exist')
+        cy.contains(`Upload your ${testVsOfficial} file`).should('not.exist')
         cy.contains('Upload a new file').should('not.exist')
         return
       }
 
       // After Close - Cannot file/refile after Filing period is passed
       if (status.isClosed && status.isPassed) {
-        cy.contains(`The ${filingPeriod} filing period is closed.`).should('exist')
-        cy.contains(`As of ${status.endDate}, submissions of ${filingPeriod} HMDA data are no longer accepted.`).should('exist')
-        cy.contains('Upload your file').should('not.exist')
+        cy.contains(`Collection of ${filingPeriod} HMDA data has ended`).should(
+          'exist'
+        )
+        cy.contains(
+          `Submissions of ${filingPeriod} HMDA data are no longer accepted as of ${status.endDate}.`
+        ).should('exist')
+        cy.contains(`Upload your ${testVsOfficial} file`).should('not.exist')
         cy.contains('Upload a new file').should('not.exist')
         cy.contains('For Review Only', { timout: 5000 }).should('exist')
         return
@@ -86,15 +96,25 @@ describe("Filing", function() {
 
       // Late filing - Can file after timely deadline but should see the message
       if (status.isLate && !isBeta(HOST)) {
-        cy.contains(`The ${filingPeriod} filing deadline has passed.`).should('exist')
-        cy.contains(`Submissions of ${filingPeriod} data are no longer considered timely as of ${status.lateDate}`).should('exist')
-        cy.contains(`The platform will continue to accept resubmissions and late submissions until ${status.endDate}.`).should('exist')
+        cy.contains(`The ${filingPeriod} filing period is closed.`).should(
+          'exist'
+        )
+        cy.contains(
+          `The HMDA Platform remains available outside of the filing period for late submissions and resubmissions of ${filingPeriod} HMDA data until ${status.endDate}.`
+        ).should('exist')
       }
 
       // Filing period is open
       if (status.isOpen) {
-        cy.contains(`HMDA data will be considered timely if completed on or before ${status.lateDate}`).should('exist')
-        cy.contains(`Late submissions will not be accepted after ${status.endDate}`).should('exist')
+        cy.contains(`The ${filingPeriod} filing period is open.`).should(
+          'exist'
+        )
+        cy.contains(
+          `Timely submissions of ${filingPeriod} HMDA data will be accepted until ${status.lateDate}`
+        ).should('exist')
+        cy.contains(
+          `Resubmissions and late submissions will be accepted until ${status.endDate}`
+        ).should('exist')
       }
 
       cy.get(`#main-content .institution`, { timeout: 20000 })
@@ -111,7 +131,11 @@ describe("Filing", function() {
             .find('.current-status > .ViewButton')
             .then($viewButton => {
               const first = $viewButton[0]
-              if (first && first.innerText.indexOf('Upload your file') > -1) {
+              if (
+                first &&
+                first.innerText.indexOf(`Upload your ${testVsOfficial} file`) >
+                  -1
+              ) {
                 /* Start a new Submission */
                 first.click()
                 clicked = true
@@ -146,14 +170,23 @@ describe("Filing", function() {
             cy.wait(ACTION_DELAY)
 
             /* Action: Verify Quality Edits */
-            cy.get('#qualityVerifier').check()
-            cy.get('.NavButtonContainer > .NavButton').click()
-            cy.get('.Verifier li:first > label').click()
+            cy.get('.EditsTableWrapper').then(wrapper => {
+              // Verify edits, if triggered
+              if (wrapper.find('.Verifier').length)
+                cy.get('#qualityVerifier').check()
+              // Move to next step in Submission process
+              cy.get('.NavButtonContainer > .NavButton').click()
+            })
             cy.wait(ACTION_DELAY)
 
             /* Action: Verify Macro Edits */
-            cy.get('#macroVerifier').check()
-            cy.get('.NavButtonContainer > .NavButton').click()
+            cy.get('.EditsTableWrapper').then(wrapper => {
+              // Verify edits, if triggered
+              if (wrapper.find('.Verifier').length)
+                cy.get('#macroVerifier').check()
+              // Move to next step in Submission process
+              cy.get('.NavButtonContainer > .NavButton').click()
+            })
             cy.wait(ACTION_DELAY)
 
             /* Action: Sign Submission */
