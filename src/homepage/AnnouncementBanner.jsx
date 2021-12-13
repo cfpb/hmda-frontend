@@ -4,6 +4,7 @@ import { numDaysBetween } from '../filing/utils/date.js'
 import { splitYearQuarter } from '../filing/api/utils.js'
 import { OptionCarousel } from '../common/OptionCarousel'
 import { getOpenFilingYears } from '../common/constants/configHelpers'
+import { parseTimedGuardDate } from '../deriveConfig'
 
 /**
  * Length of time, in days, to display the announcement 
@@ -143,11 +144,15 @@ export const AnnouncementBanner = ({
   if (announcement) {
     if (Array.isArray(announcement)) {
       // Support multiple unscheduled announcements
-      announcement.length && announcement
-        .reverse()
-        .forEach((item) =>
-          announcements.unshift(<ConfiguredAlert {...item} />)
-        )
+      announcement.length &&
+        announcement
+          .reverse()
+          .filter(
+            item =>
+              !item.endDate ||
+              Date.now() < parseTimedGuardDate(item.endDate, true)
+          )
+          .forEach(item => announcements.unshift(<ConfiguredAlert {...item} />))
     } else if (announcement) {
       // Single announcement object (maintenance script)
       announcements.unshift(<ConfiguredAlert {...announcement} />);

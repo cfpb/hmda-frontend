@@ -177,7 +177,13 @@ function potentialYears(start = 2018) {
   return output
 }
 
-function parseTimedGuardDate(str, isDeadline = false) {
+/**
+ * Converts a date string into a Date object for deadline calculations
+ * @param {String} str mm-dd-yyyy
+ * @param {Boolean} isDeadline Use end of day (11:59pm ET) for Date?
+ * @returns Date
+ */
+export function parseTimedGuardDate(str, isDeadline = false) {
   let [month, day, year] = str.split('/').map(s => parseInt(s, 10))
   month = month - 1 // JS months are 0 indexed
 
