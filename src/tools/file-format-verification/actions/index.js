@@ -1,7 +1,6 @@
 import { getDefaultConfig } from '../../../common/configUtils'
 import { getOpenFilingYears } from '../../../common/constants/configHelpers'
 import * as types from '../constants'
-import { deriveConfig } from '../../../deriveConfig'
 
 export function updateStatus(status) {
   return {
@@ -66,7 +65,7 @@ export function endParse(data) {
 export function triggerParse(file, filingPeriod) {
   return dispatch => {
     dispatch(beginParse())
-    const config = deriveConfig(getDefaultConfig(window.location.hostname))
+    const config = getDefaultConfig(window.location.hostname)
     const openYears = getOpenFilingYears(config)
 
     if (openYears.indexOf(filingPeriod) > -1) {
