@@ -13,7 +13,7 @@ import ExternalLink from '../common/ExternalLink'
 
 class Home extends Component {
   render() {
-    const { showMaps, publicationReleaseYear } = this.props.config
+    const { publicationReleaseYear } = this.props.config
     return (
       <div className='home'>
         <div className='intro'>
@@ -46,26 +46,14 @@ class Home extends Component {
             imageHover={filterColor}
             faq={{
               url: `/documentation/${publicationReleaseYear}/data-browser-faq`,
-              label: 'HMDA Dataset Filtering FAQ',
+              label: 'HMDA Dataset Filtering FAQ'
             }}
           />
           <ImageCard
             year={publicationReleaseYear}
-            caption={
-              <span>
-                Explore, Compare, Share
-                {showMaps ? (
-                  ''
-                ) : (
-                  <>
-                    <br />
-                    (coming soon)
-                  </>
-                )}
-              </span>
-            }
+            caption={'Explore, Compare, Share'}
             path='maps'
-            enabled={showMaps ? true : false}
+            enabled
             description='Explore HMDA datasets using an interactive map'
             image={mapBw}
             imageHover={mapColor}

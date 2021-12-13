@@ -17,26 +17,24 @@ const DataBrowser = props => {
           path="/data-browser/data/:year?"
           render={(r_props) => <Geography {...r_props} {...props} /> }
         />
-        {props.config.showMaps ? (
-          <Route
-            path={['/data-browser/maps/:year?', '/data-browser/maps']}
-            render={(r_props) => {
-              const year = r_props.match.params.year
-              let { pathname, search } = r_props.location
+        <Route
+          path={['/data-browser/maps/:year?', '/data-browser/maps']}
+          render={r_props => {
+            const year = r_props.match.params.year
+            let { pathname, search } = r_props.location
 
-              if (!year) {
-                if (pathname.substr(-1) !== "/") pathname = pathname + "/";
-                return (
-                  <Redirect
-                    to={`${pathname}${publicationReleaseYear}${search}`}
-                  />
-                )
-              }
-                
-              return <MapsGraphs {...r_props} {...props} />
-            }}
-          />
-        ) : null}
+            if (!year) {
+              if (pathname.substr(-1) !== '/') pathname = pathname + '/'
+              return (
+                <Redirect
+                  to={`${pathname}${publicationReleaseYear}${search}`}
+                />
+              )
+            }
+
+            return <MapsGraphs {...r_props} {...props} />
+          }}
+        />
         <Route component={NotFound} />
       </Switch>
     </div>
