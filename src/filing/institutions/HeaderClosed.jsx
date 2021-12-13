@@ -12,7 +12,7 @@ export const HeaderClosed = ({
       <>
         <p>
           The HMDA Platform remains available outside of the filing period for
-          late submissions and resubmissions of 2020 HMDA data until{' '}
+          late submissions and resubmissions of {period} HMDA data until{' '}
           <strong>{endDate}</strong>.
         </p>
         <p className='margin-0'>
