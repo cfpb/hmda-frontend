@@ -4,11 +4,14 @@ import { HeaderDocsLink } from './Header'
 
 export const HeaderClosed = ({ endDate, period }) => {
   return (
-    <Alert heading={`The ${period} filing period is closed.`} type='warning'>
+    <Alert
+      heading={`Collection of ${period} HMDA data has ended.`}
+      type='warning'
+    >
       <>
         <p>
-          As of <strong>{endDate}</strong>, submissions of {period} HMDA data
-          are no longer accepted.
+          Submissions of {period} HMDA data are no longer accepted as of{' '}
+          <strong>{endDate}</strong>.
         </p>
         <p className='margin-bottom-0'>
           <HeaderDocsLink period={period} />

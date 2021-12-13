@@ -27,9 +27,9 @@ export const HeaderOpen = ({
           The {period} filing period is open.
         </h2>
         <p className='font-lead'>
-          Submission of {period} HMDA data will be considered timely if
-          completed on or before <strong>{lateDate}</strong>. Late submissions
-          will not be accepted after <strong>{endDate}</strong>.
+          Timely submissions of {period} HMDA data will be accepted until <strong>{lateDate}</strong>.
+          <br />
+          Resubmissions and late submissions will be accepted until <strong>{endDate}</strong>.
         </p>
         <br />
         <p className='font-lead'>

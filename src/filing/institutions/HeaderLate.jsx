@@ -9,15 +9,12 @@ export const HeaderLate = ({
 }) => {
   
   return (
-    <Alert heading={`The ${period} filing deadline has passed.`} type='warning'>
+    <Alert heading={`The ${period} filing period is closed.`} type='warning'>
       <>
         <p>
-          Submissions of {period} data are no longer considered timely as of{' '}
-          <strong>{lateDate}</strong>
-          .
-          <br />
-          The platform will continue to accept resubmissions and late
-          submissions until <strong>{endDate}</strong>.
+          The HMDA Platform remains available outside of the filing period for
+          late submissions and resubmissions of 2020 HMDA data until{' '}
+          <strong>{endDate}</strong>.
         </p>
         <p className='margin-0'>
           <HeaderDocsLink period={period} />
