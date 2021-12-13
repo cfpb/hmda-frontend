@@ -4,9 +4,8 @@ import { splitYearQuarter } from '../api/utils.js'
 import { isBeta } from '../../common/Beta.jsx'
 import { HeaderBeforeOpen } from './HeaderBeforeOpen.jsx'
 import { HeaderOpen } from './HeaderOpen'
+import { HeaderEnded } from './HeaderEnded'
 import { HeaderClosed } from './HeaderClosed'
-import { HeaderLate } from './HeaderLate'
-import { Redirect } from 'react-router-dom'
 
 const InstitutionsHeader = ({ selectedPeriod }) => {
   if (!selectedPeriod.period || isBeta()) return null
@@ -15,9 +14,9 @@ const InstitutionsHeader = ({ selectedPeriod }) => {
   if (!filingYear) return
 
   if (selectedPeriod.isClosed && selectedPeriod.isPassed)
-    return <HeaderClosed {...selectedPeriod} />
+    return <HeaderEnded {...selectedPeriod} />
 
-  if (selectedPeriod.isLate) return <HeaderLate {...selectedPeriod} />
+  if (selectedPeriod.isLate) return <HeaderClosed {...selectedPeriod} />
 
   if (selectedPeriod.isOpen) return <HeaderOpen {...selectedPeriod} />
 

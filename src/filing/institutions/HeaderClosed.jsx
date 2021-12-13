@@ -2,22 +2,23 @@ import React from "react"
 import Alert from "../../common/Alert"
 import { HeaderDocsLink } from './Header'
 
-export const HeaderClosed = ({ endDate, period }) => {
+export const HeaderClosed = ({
+  endDate,
+  period,
+}) => {
+  
   return (
-    <Alert
-      heading={`Collection of ${period} HMDA data has ended.`}
-      type='warning'
-    >
+    <Alert heading={`The ${period} filing period is closed.`} type='warning'>
       <>
         <p>
-          Submissions of {period} HMDA data are no longer accepted as of{' '}
+          The HMDA Platform remains available outside of the filing period for
+          late submissions and resubmissions of 2020 HMDA data until{' '}
           <strong>{endDate}</strong>.
         </p>
-        <p className='margin-bottom-0'>
+        <p className='margin-0'>
           <HeaderDocsLink period={period} />
           <br />
-          If you require additional assistance, contact{' '}
-          <a href='mailto:hmdahelp@cfpb.gov'>HMDA Help</a>.
+          You may file HMDA data for your authorized institutions below.
         </p>
       </>
     </Alert>
