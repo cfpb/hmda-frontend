@@ -39,3 +39,8 @@
 .Snapshot .item li > ul {
   margin-top: 0.5em;
 }
+
+.Snapshot #datasetList .modified {
+  margin-left: 2px;
+  color: grey;
+}
