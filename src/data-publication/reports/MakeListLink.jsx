@@ -6,15 +6,16 @@ import { useS3LastUpdated } from '../../common/useS3LastUpdated'
  * @param {String} href S3 url
  * @param {Boolean} showLastUpdated Include last update date?
  * @param {Element} children Link text
+ * @param {String} label Link text
  * @returns Element
  */
-export const MakeListLink = ({ href, children, showLastUpdated }) => {
+export const MakeListLink = ({ href, children, label, showLastUpdated }) => {
   const lastUpdated = useS3LastUpdated(href, showLastUpdated)
 
   return (
     <li key={href}>
       <a download href={href}>
-        {children}
+        {children || label}
       </a>
       {lastUpdated && <span className='modified'>{lastUpdated}</span>}
     </li>

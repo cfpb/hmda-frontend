@@ -35,3 +35,8 @@
 .DynamicDataset .item:last-child {
   margin-right: 0;
 }
+
+.DynamicDataset #datasetList .modified {
+  margin-left: 2px;
+  color: grey;
+}
