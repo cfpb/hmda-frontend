@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { withAppContext } from '../../common/appContextHOC.jsx'
 import Heading from '../../common/Heading.jsx'
+import { MakeListLink } from '../../data-publication/reports/MakeListLink'
 
 const AppIntro = ({ config = {} }) => {
   const { defaultDocsPeriod } = config
@@ -28,14 +29,11 @@ const AppIntro = ({ config = {} }) => {
     <h4 key={2}>Downloads</h4>,
 
     <ul key={3}>
-      <li>
-        <a
-          href="https://s3.amazonaws.com/cfpb-hmda-public/prod/larft/HMDA_LAR_Formatting_Tool.xlsm"
-          download={true}
-        >
-          LAR Formatting Tool for data collected in or after 2018
-        </a>
-      </li>
+      <MakeListLink
+        href='https://s3.amazonaws.com/cfpb-hmda-public/prod/larft/HMDA_LAR_Formatting_Tool.xlsm'
+        label='LAR Formatting Tool for data collected in or after 2018'
+        showLastUpdated
+      />
     </ul>
   ]
 }
