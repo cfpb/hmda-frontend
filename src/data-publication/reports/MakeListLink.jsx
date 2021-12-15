@@ -1,5 +1,6 @@
 import React from 'react'
 import { useS3LastUpdated } from '../../common/useS3LastUpdated'
+import LoadingIcon from '../../common/LoadingIcon'
 
 /**
  * Display a downloadable list item with/without last updated date
@@ -17,7 +18,11 @@ export const MakeListLink = ({ href, children, label, showLastUpdated }) => {
       <a download href={href}>
         {children || label}
       </a>
-      {lastUpdated && <span className='modified'>{lastUpdated}</span>}
+      {lastUpdated ? (
+        <span className='modified'> - Updated: {lastUpdated}</span>
+      ) : showLastUpdated ? (
+        <LoadingIcon className='LoadingInline' />
+      ) : null}
     </li>
   )
 }

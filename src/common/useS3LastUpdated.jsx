@@ -1,9 +1,7 @@
-import React from 'react'
 import { useEffect, useState } from 'react'
-import LoadingIcon from './LoadingIcon'
 
 /**
- * Displays the last update date of an S3 file,
+ * Provides the last update date string of an S3 file,
  * displays a loading indicator while fetching.
  * @param {*} url S3 file
  * @param {*} shouldFetch Workaround to skip fetching of file headers
@@ -20,12 +18,11 @@ export const useS3LastUpdated = (url, shouldFetch) => {
       let date = new Date(lastMod)
       date.setHours(date.getHours() - 5) // Convert GMT to ET
 
-      setDateStr(` - Updated: ${date.toDateString()}`)
+      setDateStr(date.toDateString())
     })
   }, [url])
 
   if (!shouldFetch) return null
-  if (!dateStr) return <LoadingIcon className='LoadingInline' />
 
   return dateStr
 }

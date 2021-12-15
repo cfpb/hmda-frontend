@@ -71,7 +71,7 @@ const Snapshot = props => {
 
       <YearSelector year={year} url={url} years={years} />
 
-      {year ? (
+      {year && (
         <div className='grid'>
           <div className='item'>
             <Heading type={4} headingText={year + ' Datasets'} />
@@ -90,7 +90,7 @@ const Snapshot = props => {
             </ul>
           </div>
         </div>
-      ) : null}
+      )}
     </div>
   )
 }
