@@ -3,7 +3,7 @@ import Heading from '../../../common/Heading.jsx'
 import YearSelector from '../../../common/YearSelector.jsx'
 import { SNAPSHOT_DATASET } from '../../constants/snapshot-dataset.js'
 import { withAppContext } from '../../../common/appContextHOC.jsx'
-import { MakeListLink } from '../MakeListLink'
+import { S3DatasetLink } from '../../../common/S3Integrations'
 import './Snapshot.css'
 
 function linkToDocs(year = '2018'){
@@ -25,8 +25,12 @@ function renderDatasets(datasets){
           <li key={i}>
             {dataset.label}
             <ul>
-              <MakeListLink href={dataset.csv} showLastUpdated>CSV</MakeListLink>
-              <MakeListLink href={dataset.csv} showLastUpdated>Pipe Delimited</MakeListLink>
+              <S3DatasetLink url={dataset.csv} label='CSV' showLastUpdated />
+              <S3DatasetLink
+                url={dataset.csv}
+                label='Pipe Delimited'
+                showLastUpdated
+              />
             </ul>
           </li>
         )
@@ -81,8 +85,8 @@ const Snapshot = props => {
             <Heading type={4} headingText={year + ' File Specifications'} />
             <ul>
               {year === '2017' ? (
-                <MakeListLink
-                  href={dataForYear.dataformat}
+                <S3DatasetLink
+                  url={dataForYear.dataformat}
                   label='LAR, TS and Reporter Panel'
                 />
               ) : (
