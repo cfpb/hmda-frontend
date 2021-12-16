@@ -49,3 +49,7 @@
 .App.Documentation li {
   margin-bottom: 0.5em;
 }
+
+.Documentation .s3-modified {
+  color: grey;
+}
