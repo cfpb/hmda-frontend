@@ -15,10 +15,6 @@
   padding-right: 75px;
 }
 
-.Tools .modified {
-  color: grey
-}
-
 @media print {
   .Tools #main-content{
     width: 100%;
