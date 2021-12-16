@@ -214,8 +214,15 @@ export function parseTimedGuardDate(str, isDeadline = false) {
   )
 }
 
-function formatLocalString(date) {
-  return date.toLocaleString('en-US', {
+/**
+ * Date string in Eastern Time
+ * @param {Date} date 
+ * @returns String
+ */
+ function formatLocalString(date) {
+  const eastern = new Date(date.getTime())
+  eastern.setHours(date.getHours() + (new Date().getTimezoneOffset() / 60 - 5))
+  return eastern.toLocaleString('en-US', {
     year: 'numeric',
     day: 'numeric',
     month: 'long'
