@@ -126,6 +126,8 @@ const calcFilingPeriodStatus = config => {
         thisPeriod.isVisible = false
       }
 
+      if (periodString == '2017') thisPeriod.isVisible = false
+
       // Save this period
       filingPeriodStatus[periodString] = thisPeriod
     })
@@ -165,8 +167,8 @@ const calcDefaultDocsPeriod = config =>
  * Helpers
  **/
 
-function potentialYears(start = 2018) {
-  let current = start < 2018 ? 2018 : start
+function potentialYears(start = 2017) {
+  let current = start < 2017 ? 2017 : start
   const output = []
   const maxYear = new Date().getFullYear() + 1
 
