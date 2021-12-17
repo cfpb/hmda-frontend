@@ -8,9 +8,6 @@ export class HomeContainer extends Component {
   render() {
     if (this.props.user === null || this.props.maintenanceMode) return (
       <Home
-        pathname={this.props.location.pathname}
-        filingPeriod={this.props.match.params.filingPeriod}
-        filingYears={this.props.filingPeriods}
         maintenanceMode={this.props.maintenanceMode}
         filingAnnouncement={this.props.filingAnnouncement}
       />

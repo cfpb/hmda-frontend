@@ -13,10 +13,9 @@ const Institution = ({
   filing,
   submission,
   submissions,
-  isPassedQuarter,
-  isClosedQuarter,
   links,
-  submissionPages
+  submissionPages,
+  selectedPeriod
 }) => {
   const status = submission && submission.status
 
@@ -29,29 +28,33 @@ const Institution = ({
         otherwise render an alert
       */}
       {filing ? (
-        <section className="institution">
-          <div className="current-status">
-            <InstitutionNameAndId 
-              name={institution.name} 
-              lei={institution.lei} 
-              filingPeriod={filing.period} 
+        <section className='institution'>
+          <div className='current-status'>
+            <InstitutionNameAndId
+              name={institution.name}
+              lei={institution.lei}
+              filingPeriod={filing.period}
             />
 
             <SubmissionNav submission={submission} />
 
-            <InstitutionStatus filing={filing} submission={submission} isPassedQuarter={isPassedQuarter} />
+            <InstitutionStatus
+              filing={filing}
+              submission={submission}
+              isClosed={selectedPeriod.isClosed}
+            />
 
             <InstitutionViewButton
               status={status}
               institution={institution}
               filingPeriod={filing.period}
-              isClosedQuarter={isClosedQuarter}
+              isClosed={selectedPeriod.isClosed}
             />
 
-            <InstitutionRefile 
-              institution={institution} 
-              status={status} 
-              isClosedQuarter={isClosedQuarter}
+            <InstitutionRefile
+              institution={institution}
+              status={status}
+              isClosed={selectedPeriod.isClosed}
             />
           </div>
           <InstitutionSubmissionHistory
@@ -64,13 +67,16 @@ const Institution = ({
       ) : (
         // this error is rendered here so we can
         // give the user the FI name and lei
-        <section className="institution">
-          <div className="current-status">
-            <InstitutionNameAndId name={institution.name} lei={institution.lei} />
-            <Alert type="error" heading="Sorry, there was a problem.">
+        <section className='institution'>
+          <div className='current-status'>
+            <InstitutionNameAndId
+              name={institution.name}
+              lei={institution.lei}
+            />
+            <Alert type='error' heading='Sorry, there was a problem.'>
               <p>
                 There was a problem initializing your filing. Please contact{' '}
-                <a href="mailto:hmdahelp@cfpb.gov">HMDA Help</a>.
+                <a href='mailto:hmdahelp@cfpb.gov'>HMDA Help</a>.
               </p>
             </Alert>
           </div>
@@ -85,6 +91,7 @@ Institution.propTypes = {
   filing: PropTypes.object,
   submission: PropTypes.object,
   submissions: PropTypes.array,
+  selectedPeriod: PropTypes.object
 }
 
 export default Institution

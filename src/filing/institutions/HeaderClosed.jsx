@@ -1,35 +1,24 @@
 import React from "react"
 import Alert from "../../common/Alert"
 import { HeaderDocsLink } from './Header'
-import { formattedQtrBoundaryDate } from "../utils/date"
 
-export const HeaderClosed = ({ filingPeriod, filingQtr, filingYear, filingQuartersLate }) => {
+export const HeaderClosed = ({
+  endDate,
+  period,
+}) => {
+  
   return (
-    <Alert
-      heading={`The ${filingPeriod} filing period is closed.`}
-      type="warning"
-    >
+    <Alert heading={`The ${period} filing period is closed.`} type='warning'>
       <>
-        {!filingQtr ? (
-          <p>
-            The HMDA Platform remains available outside of the filing period for
-            late submissions and resubmissions of {filingPeriod} HMDA data.
-          </p>
-        ) : (
-          <p>
-            As of{" "}
-            <strong>
-              {formattedQtrBoundaryDate(filingQtr, filingQuartersLate)},{" "}
-              {filingYear}
-            </strong>
-            , submissions of {filingPeriod} HMDA data are no longer accepted.
-          </p>
-        )}
-        <p className="margin-bottom-0">
-          <HeaderDocsLink filingYear={filingYear} />
+        <p>
+          The HMDA Platform remains available outside of the filing period for
+          late submissions and resubmissions of {period} HMDA data until{' '}
+          <strong>{endDate}</strong>.
+        </p>
+        <p className='margin-0'>
+          <HeaderDocsLink period={period} />
           <br />
-          If you require additional assistance, contact{" "}
-          <a href="mailto:hmdahelp@cfpb.gov">HMDA Help</a>.
+          You may file HMDA data for your authorized institutions below.
         </p>
       </>
     </Alert>

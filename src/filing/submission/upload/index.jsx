@@ -72,7 +72,7 @@ export default class Upload extends Component {
           disablePreview={true}
           onDrop={this.onDrop}
           multiple={false}
-          disabled={this.props.isPassedQuarter}
+          disabled={this.props.isPassed}
         >
           {({getRootProps, getInputProps}) => {
             return (
@@ -82,7 +82,7 @@ export default class Upload extends Component {
                 code={code}
                 errorFile={errorFile}
                 filename={filename}
-                isDisabled={this.props.isPassedQuarter}
+                isDisabled={this.props.isPassed}
               />
             )
           }}

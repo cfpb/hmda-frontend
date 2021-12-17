@@ -51,7 +51,7 @@ class Verifier extends Component {
     const props = this.props
     const disabled = props.code === SIGNED ? true : false
 
-    if(props.isPassedQuarter) return <VerificationClosed type={props.type} verified={props.verified} />
+    if(props.isPassed) return <VerificationClosed type={props.type} verified={props.verified} />
 
     return props.noEditsExist ? null : (
       <section className="Verifier">

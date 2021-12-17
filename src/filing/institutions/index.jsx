@@ -9,8 +9,8 @@ import Alert from '../../common/Alert.jsx'
 import { MissingInstitutionsBanner } from './MissingInstitutionsBanner'
 import { FilteredOutList } from './FilteredOutList'
 import { splitYearQuarter } from '../api/utils.js'
-import { formattedQtrBoundaryDate } from '../utils/date.js'
 import { wrapLoading } from './wrapLoading'
+import { Redirect } from 'react-router-dom'
 
 import './Institutions.css'
 
@@ -34,12 +34,9 @@ const _whatToRender = ({
   filings,
   institutions,
   submission,
-  filingPeriod,
-  filingQuartersLate,
   latestSubmissions,
   hasQuarterlyFilers,
-  isPassedQuarter,
-  isClosedQuarter
+  selectedPeriod
 }) => {
 
   // we don't have institutions yet
@@ -70,7 +67,7 @@ const _whatToRender = ({
     sortInstitutions
   )
 
-  const [filingYear, showingQuarterly] = splitYearQuarter(filingPeriod)
+  const [filingYear, showingQuarterly] = splitYearQuarter(selectedPeriod.period)
   const nonQuarterlyInstitutions = []
   const noFilingThisQ = []
 
@@ -109,10 +106,9 @@ const _whatToRender = ({
           institution={institution}
           submission={_setSubmission(submission, institutionSubmission, filingObj)}
           submissions={filingObj.submissions}
-          isPassedQuarter={isPassedQuarter}
-          isClosedQuarter={isClosedQuarter}
           links={institutionFilings.links}
           submissionPages={institutionFilings.submissionPages}
+          selectedPeriod={selectedPeriod}
         />
       )
     }
@@ -126,16 +122,9 @@ const _whatToRender = ({
         </Alert>
       )
     
-    if(isPassedQuarter)
+    if(selectedPeriod.isPassed)
       filteredInstitutions.unshift(
-        <div className='review-only' key='review-only-notice'>
-          <h4>For Review Only</h4>
-          The following information reflects your filing status as of{' '}
-          {formattedQtrBoundaryDate(showingQuarterly, filingQuartersLate, 1)},{' '}
-          {filingYear}
-          .<br />
-          No further modifications are possible at this time.
-        </div>
+        <ForReviewOnly endDate={selectedPeriod.endDate} key='review-only-banner'/>
       )
       
     noFilingThisQ.length &&
@@ -164,28 +153,46 @@ const _whatToRender = ({
           </p>
         </Alert>
       )
+  } else {
+    if(selectedPeriod.isPassed)
+      filteredInstitutions.unshift(
+        <ForReviewOnly endDate={selectedPeriod.endDate} key='review-only'/>
+      )
   }
 
   return filteredInstitutions
 }
+
+const ForReviewOnly = ({ endDate }) => (
+  <div className='review-only' key='review-only-notice'>
+    <h4>For Review Only</h4>
+    The following information reflects your filing status as of {endDate}
+    .<br />
+    No further modifications are possible at this time.
+  </div>
+)
 
 export default class Institutions extends Component {
   render() {
     const {
       error,
       filingPeriod,
-      filingQuarters,
-      filingQuartersLate,
       hasQuarterlyFilers,
       history,
       location,
       dispatch,
-      filingPeriodOptions
+      filingPeriodOptions,
+      selectedPeriod
     } = this.props
     
+    const [filingYear, filingQtr] = splitYearQuarter(filingPeriod)
     const institutions = this.props.institutions.institutions
     let unregisteredInstitutions = []
     let leis = []
+
+    // Redirect non-quarterly users attempting to access an open quarterly period
+    if (filingQtr && !hasQuarterlyFilers)
+      return <Redirect to={`/filing/${filingYear}/institutions`} />
 
     if (this.props.institutions.fetched) {
       leis = Object.keys(institutions)
@@ -193,17 +200,12 @@ export default class Institutions extends Component {
     }
     
     return (
-      <main id="main-content" className="Institutions full-width">
+      <main id='main-content' className='Institutions full-width'>
         {error ? <ErrorWarning error={error} /> : null}
-        <div className="usa-width-one-whole">
-          {filingPeriod ? (
-            <InstitutionsHeader 
-              filingPeriodOrig={filingPeriod} 
-              filingQuarters={filingQuarters} 
-              filingQuartersLate={filingQuartersLate} 
-              hasQuarterlyFilers={hasQuarterlyFilers}
-            />
-          ) : null}
+        <div className='usa-width-one-whole'>
+          {filingPeriod && (
+            <InstitutionsHeader selectedPeriod={selectedPeriod} />
+          )}
 
           <InstitutionPeriodSelector
             filingPeriod={filingPeriod}
@@ -216,10 +218,9 @@ export default class Institutions extends Component {
 
           {_whatToRender(this.props)}
 
-          {this.props.institutions.fetched && leis.length !== 0 
-            ? ( <MissingInstitutionsBanner leis={unregisteredInstitutions} /> ) 
-            : null
-          }
+          {this.props.institutions.fetched && leis.length !== 0 ? (
+            <MissingInstitutionsBanner leis={unregisteredInstitutions} />
+          ) : null}
         </div>
       </main>
     )

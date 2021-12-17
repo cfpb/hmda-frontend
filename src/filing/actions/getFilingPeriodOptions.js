@@ -3,32 +3,42 @@ import receivePeriodOptions from "./receivePeriodOptions"
 import requestPeriodOptions from "./requestPeriodOptions"
 import fetchAllInstitutions from './fetchAllInstitutions'
 
-export default function getFilingPeriodOptions(institutions, filingPeriods) {
-  // Only need to check years with quarterly options
-  const yearFilterCandidates = new Set()
+/**
+ * Determine which filing periods are accessible by a user
+ * @param {Array} institutions LEIs associated with this user account
+ * @param {Object} filingPeriodStatus Status and meta data of each filing period
+ * @returns Thunk
+ */
+export default function getFilingPeriodOptions(institutions, filingPeriodStatus) {
+  // Filter out future filing periods
+  const periodOptions = Object.keys(filingPeriodStatus).filter(
+    period => filingPeriodStatus[period].isVisible
+  )
 
-  filingPeriods
-    .filter((po) => po.indexOf("-Q") > -1)
-    .map((po) => splitYearQuarter(po)[0])
-    .forEach(po => yearFilterCandidates.add(po))
+  let yearsWithQuarterly = new Set(
+    periodOptions
+      .filter(period => filingPeriodStatus[period].isQuarterly)
+      .map(period => splitYearQuarter(period)[0])
+  )
 
-  return (dispatch) => {
+  return dispatch => {
     const optionDisplayMap = {}
 
     dispatch(requestPeriodOptions)
 
-    fetchAllInstitutions(yearFilterCandidates, institutions).then((jsons) => {
-      jsons.forEach((json) => {
-        if(!json || json.status) return // An error has occurred
+    fetchAllInstitutions(yearsWithQuarterly, institutions).then(jsons => {
+      jsons.forEach(json => {
+        if (!json || json.status) return // An error has occurred
         const { activityYear, quarterlyFiler } = json.institution
-        if(!activityYear) return
+        if (!activityYear) return
 
-        // Display filing year if it has any quarterly filers
-        optionDisplayMap[activityYear] = quarterlyFiler || optionDisplayMap[activityYear]
+        // Display filing year if account has any quarterly filers
+        optionDisplayMap[activityYear] =
+          quarterlyFiler || optionDisplayMap[activityYear]
       })
 
       dispatch(
-        receivePeriodOptions(filterOptions(filingPeriods, optionDisplayMap))
+        receivePeriodOptions(filterOptions(periodOptions, optionDisplayMap))
       )
     })
   }

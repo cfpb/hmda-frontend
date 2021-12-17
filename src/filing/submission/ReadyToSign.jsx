@@ -1,10 +1,10 @@
 import React from 'react'
 import Alert from '../../common/Alert.jsx'
 
-const SubmissionPageInfo = ({ isPassedQuarter }) => {
+const SubmissionPageInfo = ({ isPassed }) => {
   let type, heading, content
 
-  if(isPassedQuarter){
+  if(isPassed){
     type = 'warning'
     heading = 'Filing period is closed'
     content = <div>The filing deadline has passed. New signings are no longer accepted.</div>

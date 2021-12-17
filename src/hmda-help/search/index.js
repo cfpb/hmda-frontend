@@ -217,7 +217,6 @@ class Form extends Component {
               <tbody>
                 {leis.map((lei, idx) =>
                   getFilingPeriods(config)
-                    .filter(onlyUnique)
                     .sort()
                     .reverse()
                     .map((fPeriod) => (

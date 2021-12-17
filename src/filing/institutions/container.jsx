@@ -6,8 +6,6 @@ import getFilingPeriodOptions from '../actions/getFilingPeriodOptions'
 import Institutions from './index.jsx'
 import InstitutionDetailsWrapper from './details/InstitutionDetailsWrapper'
 import { getKeycloak } from '../../common/api/Keycloak.js'
-import { afterFilingPeriod, beforeFilingPeriod } from "../utils/date"
-import { splitYearQuarter } from '../api/utils.js'
 
 export class InstitutionContainer extends Component {
   componentDidMount() {
@@ -19,19 +17,31 @@ export class InstitutionContainer extends Component {
   }
 
   fetchIfNeeded() {
-    const { dispatch, filingPeriod, institutions, filingPeriods, filingQuartersLate } = this.props
+    const { dispatch, institutions, selectedPeriod } = this.props
     // Fetching institition data without a filingPeriod results in an error that interferes with upload/filing
-    if(!filingPeriod) return 
+    if (!selectedPeriod || !selectedPeriod.period) return
 
     if(!institutions.fetched && !institutions.isFetching){
       dispatch(requestInstitutions())
       const leiString = getKeycloak().tokenParsed.lei
       const leis = leiString ? leiString.split(',') : []
 
-      // create the expected objects from the array, institutions = [{lei: lei}]
-      let instArr = leis.map(lei => ({ lei }))
-      dispatch(fetchEachInstitution(instArr, filingPeriod, filingQuartersLate))
-      dispatch(getFilingPeriodOptions(instArr, filingPeriods))
+      // Fetch Institutions associated with this Keycloak account
+      let associatedInstitutions = leis.map((lei) => ({ lei }))
+      dispatch(
+        fetchEachInstitution(
+          associatedInstitutions,
+          selectedPeriod
+        )
+      )
+
+      // Determine which filing periods to make available to the user
+      dispatch(
+        getFilingPeriodOptions(
+          associatedInstitutions,
+          this.props.config.filingPeriodStatus
+        )
+      )
     }
   }
 
@@ -43,29 +53,19 @@ export class InstitutionContainer extends Component {
   }
 }
 
-export function mapStateToProps(state, ownProps) {
+export function mapStateToProps(state, _ownProps) {
   const { institutions, filingPeriod, filings, submission, latestSubmissions, error, redirecting, filingPeriodOptions } = state.app
-  const { filingPeriods, filingQuarters, filingQuartersLate } = ownProps.config
-  const isQuarterly = Boolean(splitYearQuarter(filingPeriod)[1])
-  const isPassedQuarter = isQuarterly && afterFilingPeriod(filingPeriod, filingQuartersLate)
-  const isFutureQuarter = isQuarterly && beforeFilingPeriod(filingPeriod, filingQuarters)
-  const isClosedQuarter = isQuarterly && (isPassedQuarter || isFutureQuarter)
 
   return {
     submission,
     filingPeriod,
-    filingPeriods,
-    filingQuarters,
-    filingQuartersLate,
     institutions,
     filings,
     error,
     latestSubmissions: latestSubmissions.latestSubmissions,
     redirecting,
-    isPassedQuarter,
-    isClosedQuarter,
     hasQuarterlyFilers: hasQuarterlyFilers(institutions),
-    filingPeriodOptions
+    filingPeriodOptions,
   }
 }
 

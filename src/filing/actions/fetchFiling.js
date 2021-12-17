@@ -6,11 +6,9 @@ import requestFiling from './requestFiling.js'
 import { getFiling } from '../api/api.js'
 import { error } from '../utils/log.js'
 import fetchLatestSubmission from './fetchLatestSubmission'
-import { splitYearQuarter } from '../api/utils.js'
 import receiveNonQFiling from './receiveNonQFiling'
-import { afterFilingPeriod } from '../utils/date'
 
-export default function fetchFiling(filing, filingQuarters) {
+export default function fetchFiling(filing, selectedPeriod) {
   return dispatch => {
     dispatch(requestFiling(filing))
     return getFiling(filing.lei, filing.period)
@@ -22,9 +20,8 @@ export default function fetchFiling(filing, filingQuarters) {
           }
 
           if (json && json.status === 404) {
-            // Avoid creating Filings for passed Quarters
-            const isQuarterly = splitYearQuarter(filing.period)[1]
-            return isQuarterly && afterFilingPeriod(filing.period, filingQuarters)
+            // Avoid creating Filings for closed filing periods
+            return selectedPeriod.isClosed
               ? dispatch(receiveNonQFiling({ institution: { lei: filing.lei } }))
               : dispatch(fetchNewFiling(filing))
           }

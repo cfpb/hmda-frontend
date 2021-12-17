@@ -155,8 +155,7 @@ export class SubmissionRouter extends Component {
 
 export function mapStateToProps(state, ownProps) {
   const { submission, lei, edits, refiling } = state.app
-
-  const { match: {params}, config: {filingQuarters} } = ownProps
+  const { match: {params} } = ownProps
 
   return {
     submission,
@@ -164,7 +163,6 @@ export function mapStateToProps(state, ownProps) {
     lei,
     edits,
     refiling,
-    filingQuarters
   }
 }
 

@@ -14,9 +14,9 @@ import {
 import './RefileWarning.css'
 
 export const getText = props => {
-  const periodIsClosed = props.isPassedQuarter
+  const periodIsClosed = props.isPassed
   let text = null
-  let button = periodIsClosed ? null : <RefileButton />
+  let button = !periodIsClosed && <RefileButton />
   let periodAfter = false
   let reviewAndDownload = (
     <div>

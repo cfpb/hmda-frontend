@@ -28,12 +28,13 @@ const HmdaHelp = makeAsyncComponent(() => import('./hmda-help'),
 
 const App = () => {
   const config = useEnvironmentConfig(window.location.hostname)
+
   const isFiling = !!window.location.pathname.match(/^\/filing/)
   const isHelp = !!window.location.pathname.match(/^\/hmda-help/)
 
   const showCommonHeader = !(isFiling || isHelp)
   const showFooter = !isHelp
-  const showBetaBanner = isBeta() && !isFiling 
+  const showBetaBanner = isBeta() && !isFiling
 
   const headerLinks = isBeta()
     ? betaLinks
@@ -44,7 +45,7 @@ const App = () => {
       {showCommonHeader && (
         <Route
           path='/'
-          render={(props) => <Header links={headerLinks} {...props} />}
+          render={props => <Header links={headerLinks} {...props} />}
         />
       )}
       {showBetaBanner && <Beta />}
