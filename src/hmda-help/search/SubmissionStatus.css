@@ -47,14 +47,16 @@
   width: 25%;
   display: flex;
   align-items: center;
+  white-space: nowrap;
 }
 
 #submissions #SubmissionResults .submission-row .link:hover {
-  color: #0071bc;
+  text-decoration: underline;
 }
 
 #submissions #SubmissionResults .submission-row .link {
   cursor: pointer;
+  color: #0071bc;
 }
 
 #submissions #SubmissionResults .submission-row .status,
