@@ -49,8 +49,6 @@ const DynamicDataset = props => {
   const { dynamic, shared } = dataPublicationYears
   const years = dynamic || shared
   const dataForYear = DYNAMIC_DATASET[year]
-  console.log('dataForYear: ', dataForYear)
-  
 
   const status = filingPeriodStatus[year]
 
