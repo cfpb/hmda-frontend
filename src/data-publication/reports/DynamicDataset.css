@@ -36,6 +36,10 @@
   margin-right: 0;
 }
 
+.DynamicDataset #UpdateSchedule {
+  margin: 2em 0;
+}
+
 .DynamicDataset #UpdateSchedule tr * {
   margin: 0;
   padding: 0;
@@ -53,10 +57,14 @@
   margin-right: 15px;
 }
 
-.DynamicDataset .icon.updated svg {
-  fill: rgb(76, 213, 251);
+.DynamicDataset .updated svg {
+  fill:#0093bc;
 }
 
-.DynamicDataset .icon.notUpdated svg {
-  fill: rgba(255, 126, 126, 0.749);
+.DynamicDataset .notUpdated + .message {
+  font-weight: bold;
+}
+
+.DynamicDataset .notUpdated svg {
+  fill: rgb(255, 126, 126);
 }

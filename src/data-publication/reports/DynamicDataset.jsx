@@ -4,15 +4,23 @@ import YearSelector from '../../common/YearSelector.jsx'
 import { DYNAMIC_DATASET } from '../constants/dynamic-dataset.js'
 import { withAppContext } from '../../common/appContextHOC.jsx'
 import { S3DatasetLink } from '../../common/S3Integrations'
-import { ReactComponent as PlayButton } from '../../common/images/iconPlayButton.svg';
-import { ReactComponent as StopButton } from '../../common/images/iconStopButton.svg';
-
+import { ReactComponent as CfpbClock } from '../../common/images/cfpb-clock.svg'
+import { ReactComponent as CfpbLock } from '../../common/images/cfpb-lock.svg'
 import './DynamicDataset.css'
 
-const linkToDocs2017 = ({ lar_spec, ts_spec }) => [
-  <S3DatasetLink href={lar_spec} label='Loan/Application Records (LAR)' />,
-  <S3DatasetLink href={ts_spec} label='Transmittal Sheet Records (TS)' />
-]
+const BaseIconStyles = {
+  className: 'icon',
+  width: '1.2em',
+  height: '1.2em',
+}
+
+function makeListLink(href, val) {
+  return (
+    <li>
+      <a href={href}>{val}</a>
+    </li>
+  )
+}
 
 function linkToDocs(year = '2018') {
   return [
@@ -104,23 +112,17 @@ const DynamicDataset = props => {
   )
 }
 
-const BaseIconStyles = {
-  className: 'icon',
-  width: '1.2em',
-  height: '1.2em',
-}
-
 const PublicationUpdateSettings = {
   dynamic: {
     updated: {
-      icon: <PlayButton {...BaseIconStyles} />,
+      icon: <CfpbClock {...BaseIconStyles} />,
       cname: 'updated',
       message: ({ endDate }) => (
         <>This dataset is open for filer resubmissions through {endDate}.</>
       )
     },
     notUpdated: {
-      icon: <StopButton {...BaseIconStyles} />,
+      icon: <CfpbLock {...BaseIconStyles} />,
       cname: 'notUpdated',
       message: ({ endDate }) => (
         <>This dataset is no longer updated as of {endDate}.</>
