@@ -49,6 +49,8 @@ const DynamicDataset = props => {
   const { dynamic, shared } = dataPublicationYears
   const years = dynamic || shared
   const dataForYear = DYNAMIC_DATASET[year]
+  console.log('dataForYear: ', dataForYear)
+  
 
   const status = filingPeriodStatus[year]
 
@@ -74,12 +76,12 @@ const DynamicDataset = props => {
             <Heading type={4} headingText={year + ' Dynamic Datasets'} />
             <ul id='datasetList'>
               <S3DatasetLink
-                href={dataForYear.lar}
+                url={dataForYear.lar}
                 label='Loan/Application Records (LAR)'
                 showLastUpdated
               />
               <S3DatasetLink
-                href={dataForYear.ts}
+                url={dataForYear.ts}
                 label='Transmittal Sheet Records (TS)'
                 showLastUpdated
               />
