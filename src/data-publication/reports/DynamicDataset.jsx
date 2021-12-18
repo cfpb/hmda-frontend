@@ -8,6 +8,11 @@ import { ReactComponent as CfpbClock } from '../../common/images/cfpb-clock.svg'
 import { ReactComponent as CfpbLock } from '../../common/images/cfpb-lock.svg'
 import './DynamicDataset.css'
 
+const linkToDocs2017 = ({ lar_spec, ts_spec }) => [
+  <S3DatasetLink url={lar_spec} label='Loan/Application Records (LAR)' />,
+  <S3DatasetLink url={ts_spec} label='Transmittal Sheet Records (TS)' />
+]
+
 const BaseIconStyles = {
   className: 'icon',
   width: '1.2em',
@@ -57,11 +62,11 @@ const DynamicDataset = props => {
       <Heading
         type={1}
         headingText='Dynamic National Loan-Level Dataset'
-        paragraphText={`The dynamic files contain the national HMDA datasets for
+        paragraphText='The dynamic files contain the national HMDA datasets for
           all HMDA reporters, modified by the Bureau to protect applicant and
           borrower privacy, updated to include late submissions and
           resubmissions. The dynamic files are available to download in a pipe
-          delimited text file format. The dynamic datasets are updated on Mondays with HMDA submissions received through the previous Sunday night.`}
+          delimited text file format. The dynamic datasets are updated on Mondays with HMDA submissions received through the previous Sunday night.'
       >
         <UpdateSchedule {...{ status, publication: 'dynamic' }} />
       </Heading>
@@ -91,19 +96,7 @@ const DynamicDataset = props => {
               headingText={year + ' Dynamic File Specifications'}
             />
             <ul>
-              {year === '2017'
-                ? makeListLink(
-                    dataForYear.lar_spec,
-                    'Loan/Application Records (LAR)'
-                  )
-                : null}
-              {year === '2017'
-                ? makeListLink(
-                    dataForYear.ts_spec,
-                    'Transmittal Sheet Records (TS)'
-                  )
-                : null}
-              {year !== '2017' ? linkToDocs(year) : null}
+              {year === '2017' ? linkToDocs2017(dataForYear) : linkToDocs(year)}
             </ul>
           </div>
         </div>
