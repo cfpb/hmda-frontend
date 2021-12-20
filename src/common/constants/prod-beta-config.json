@@ -2,12 +2,6 @@
   "name": "prod-beta",
   "announcement": [
     {
-      "message": "We are performing system maintenance from 7pm - 9pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-      "type": "error",
-      "heading": "System Temporarily Unavailable",
-      "link": null
-    },
-    {
       "message": "On October 20, 2021 the Filing Instructions Guide (FIG) for data collected in 2022 was updated with new guidance for edits V720-2, V721-2, and Q657. ",
       "type": "info",
       "heading": "2022 FIG Update",
@@ -53,9 +47,9 @@
   "showMaps": true,
   "maintenanceMode": false,
   "filingAnnouncement": {
-    "heading": "System Temporarily Unavailable",
-    "type": "error",
-    "message": "We are performing system maintenance from 7pm - 9pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "heading": "Collection of 2018 HMDA Data Will End",
+    "type": "warning",
+    "message": "Resubmissions of 2018 HMDA data will not be accepted after December 31st, 2021.",
     "link": {
       "url": "https://ffiec.cfpb.gov/documentation/2021/data-collection-timelines",
       "text": "View the HMDA data collection timelines."
@@ -77,17 +71,11 @@
     "2018"
   ],
   "timedGuards": {
-    "2018": {
-      "annual": "01/01/2019 - 03/01/2019 - 12/31/2021"
-    },
-    "2019": {
-      "annual": "01/01/2020 - 03/01/2020 - 12/31/2022"
-    },
-    "2020": {
-      "Q1": "04/01/2020 - 06/01/2020 - 06/30/2020",
-      "Q2": "06/30/2020 - 08/30/2020 - 09/30/2020",
-      "Q3": "10/01/2020 - 11/30/2020 - 12/31/2020",
-      "annual": "01/01/2021 - 03/01/2021 - 12/31/2023"
+    "2022": {
+      "Q1": "04/01/2022 - 05/31/2022 - 06/30/2022",
+      "Q2": "07/01/2022 - 08/30/2022 - 09/30/2022",
+      "Q3": "10/01/2022 - 11/29/2022 - 12/31/2022",
+      "annual": "01/01/2023 - 03/01/2023 - 12/31/2025"
     },
     "2021": {
       "Q1": "04/01/2021 - 06/01/2021 - 06/30/2021",
@@ -95,11 +83,17 @@
       "Q3": "10/01/2021 - 11/30/2021 - 12/31/2021",
       "annual": "01/01/2022 - 03/01/2022 - 12/31/2024"
     },
-    "2022": {
-      "Q1": "04/01/2022 - 05/31/2022 - 06/30/2022",
-      "Q2": "07/01/2022 - 08/30/2022 - 09/30/2022",
-      "Q3": "10/01/2022 - 11/29/2022 - 12/31/2022",
-      "annual": "01/01/2023 - 03/01/2023 - 12/31/2025"
+    "2020": {
+      "Q1": "04/01/2020 - 06/01/2020 - 06/30/2020",
+      "Q2": "06/30/2020 - 08/30/2020 - 09/30/2020",
+      "Q3": "10/01/2020 - 11/30/2020 - 12/31/2020",
+      "annual": "01/01/2021 - 03/01/2021 - 12/31/2023"
+    },
+    "2019": {
+      "annual": "01/01/2020 - 03/01/2020 - 12/31/2022"
+    },
+    "2018": {
+      "annual": "01/01/2019 - 03/01/2019 - 12/31/2021"
     },
     "preview": [
       "2021",
