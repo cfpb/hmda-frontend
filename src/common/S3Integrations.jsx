@@ -1,7 +1,10 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
+import { useDispatch, useSelector, Provider } from 'react-redux'
 import ExternalLink from './ExternalLink'
 import LoadingIcon from './LoadingIcon'
+import { saveDate } from './s3/UpdatedOnSlice'
+import s3Store from './s3/store'
 
 /**
  * Provides the last update date string of an S3 file
@@ -11,16 +14,24 @@ import LoadingIcon from './LoadingIcon'
  */
 export const useS3LastUpdated = (url, shouldFetch) => {
   const [dateStr, setDateStr] = useState()
+  const s3Cache = useSelector(state => state.updatedOn)
+  const dispatch = useDispatch()
 
   useEffect(() => {
+    const cachedDate = (s3Cache || {})[url]
+    if (cachedDate) {
+      setDateStr(cachedDate)
+      return 
+    }
     setDateStr(null)
     if (!shouldFetch) return
     fetch(url, { method: 'HEAD' }).then(response => {
       const lastMod = response.headers.get('last-modified')
       let date = new Date(lastMod)
       date.setHours(date.getHours() - 5) // Convert GMT to ET
-
-      setDateStr(date.toDateString())
+      const result = date.toDateString()
+      dispatch(saveDate({ url, date: result }))
+      setDateStr(result)
     })
   }, [url])
 
@@ -42,7 +53,11 @@ export const S3DocLink = ({ url, label, children, showLastUpdated = true }) => {
   return (
     <li key={url}>
       <ExternalLink url={url}>{children || label}</ExternalLink>
-      {showLastUpdated && <LastUpdated url={url} />}
+      {showLastUpdated && (
+        <Provider store={s3Store}>
+          <LastUpdated url={url} />
+        </Provider>
+      )}
     </li>
   )
 }
@@ -62,7 +77,11 @@ export const S3DocLink = ({ url, label, children, showLastUpdated = true }) => {
       <a download href={url}>
         {children || label}
       </a>
-      {showLastUpdated && <LastUpdated url={url} />}
+      {showLastUpdated && (
+        <Provider store={s3Store}>
+          <LastUpdated url={url} />
+        </Provider>
+      )}
     </li>
   )
 }
