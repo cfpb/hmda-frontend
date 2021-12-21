@@ -35,3 +35,36 @@
 .DynamicDataset .item:last-child {
   margin-right: 0;
 }
+
+.DynamicDataset #UpdateSchedule {
+  margin: 2em 0;
+}
+
+.DynamicDataset #UpdateSchedule tr * {
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+}
+
+.DynamicDataset #UpdateSchedule tr .icon {
+  margin-right: 15px;
+  font-size: 1.2em;
+  vertical-align: middle;
+
+}
+
+.DynamicDataset #UpdateSchedule tr .message {
+  margin-right: 15px;
+}
+
+.DynamicDataset .updated svg {
+  fill:#0093bc;
+}
+
+.DynamicDataset .notUpdated + .message {
+  font-weight: bold;
+}
+
+.DynamicDataset .notUpdated svg {
+  fill: rgb(255, 126, 126);
+}

@@ -36,7 +36,7 @@ export const OptionCarousel = ({
     .join(" ")
 
   /* Adjust carousel container height when window is resized */
-  const maxLength = Math.max(...options.map((o) => o.props.message.length))
+  const maxLength = Math.max(...options.map((o) => o.props?.message?.length || 0))
   useDynamicHeight({ setCurrHeight, maxLength, fixedHeight })
 
   /* Navigation logic */
