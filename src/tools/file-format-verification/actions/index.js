@@ -1,5 +1,3 @@
-import { getDefaultConfig } from '../../../common/configUtils'
-import { getOpenFilingYears } from '../../../common/constants/configHelpers'
 import * as types from '../constants'
 
 export function updateStatus(status) {
@@ -62,51 +60,46 @@ export function endParse(data) {
   }
 }
 
-export function triggerParse(file, filingPeriod) {
+export function triggerParse(file) {
   return dispatch => {
     dispatch(beginParse())
-    const config = getDefaultConfig(window.location.hostname)
-    const openYears = getOpenFilingYears(config)
+    var formData = new FormData()
+    formData.append('file', file)
 
-    if (openYears.indexOf(filingPeriod) > -1) {
-      var formData = new FormData()
-      formData.append('file', file)
-
-      fetch('/v2/public/hmda/parse', {
-        method: 'POST',
-        body: formData,
-        headers: { Accept: 'application/json' }
+    fetch('/v2/public/hmda/parse', {
+      method: 'POST',
+      body: formData,
+      headers: { Accept: 'application/json' }
+    })
+      .then(response => {
+        if (response.status >= 400) {
+          dispatch(
+            uploadError([
+              'Sorry, something went wrong with the upload. Please try again.'
+            ])
+          )
+          throw new Error('Bad response from server.')
+        }
+        return response.json()
       })
-        .then(response => {
-          if (response.status >= 400) {
-            dispatch(
-              uploadError([
-                'Sorry, something went wrong with the upload. Please try again.'
-              ])
-            )
-            throw new Error('Bad response from server.')
-          }
-          return response.json()
-        })
-        .then(success => {
-          let data = { transmittalSheetErrors: [], larErrors: [] }
-          success.forEach(error => {
-            if (error.rowNumber === 1) {
-              data.transmittalSheetErrors.push(...error.errorMessages)
-            } else {
-              const messages = error.errorMessages.map(emsg => ({
-                ...emsg,
-                uli: error.estimatedULI,
-                row: error.rowNumber
-              }))
+      .then(success => {
+        let data = { transmittalSheetErrors: [], larErrors: [] }
+        success.forEach(error => {
+          if (error.rowNumber === 1) {
+            data.transmittalSheetErrors.push(...error.errorMessages)
+          } else {
+            const messages = error.errorMessages.map(emsg => ({
+              ...emsg,
+              uli: error.estimatedULI,
+              row: error.rowNumber
+            }))
 
-              data.larErrors.push(...messages)
-            }
-          })
-          dispatch(endParse(data))
+            data.larErrors.push(...messages)
+          }
         })
-        .catch(error => console.log('ERROR', error))
-    }
+        dispatch(endParse(data))
+      })
+      .catch(error => console.log('ERROR', error))
   }
 }
 

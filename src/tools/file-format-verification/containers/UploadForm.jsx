@@ -43,7 +43,7 @@ function setAndParseFile(file) {
 
       // Submit file for backend parsing only if all client-side validations pass
       if (getState().app.upload.errors.length === 0) {
-        dispatch(triggerParse(file, getState().app.filingPeriod))
+        dispatch(triggerParse(file))
       }
     }).catch(err => {
       // Save client-side validation errors
