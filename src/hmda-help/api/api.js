@@ -30,3 +30,11 @@ export const fetchAuthenticated = (url, { type, headers = {} }) => {
     response,
   }))
 }
+
+const formatPeriodPath = id =>
+  id?.period?.quarter ? `${id.period.year}/quarter/${id.period.quarter}` : `${id.period.year}`
+
+export const getSummaryEndpoint = (id) => {
+  const periodPath = formatPeriodPath(id)
+  return  `/v2/filing/institutions/${id.lei}/filings/${periodPath}/submissions/${id.sequenceNumber}/summary`
+}

@@ -7,6 +7,17 @@ import { useRemoteJSON } from '../../common/useRemoteJSON'
 
 let lastTimeout = null
 
+const CI_INSTITUTIONS = {
+  FRONTENDTESTBANK9999: {
+    lei: 'FRONTENDTESTBANK9999',
+    name: 'Frontend Test Bank'
+  },
+  B90YWS6AFX2LGWOXJ1LD: {
+    lei: 'B90YWS6AFX2LGWOXJ1LD',
+    name: 'Bank 0'
+  },
+}
+
 /** Construct the placeholder text for the Select box based on loading status and availability of options  */
 function itemPlaceholder(loading, hasItems, category, selectedValue) {
   if(loading) return 'Loading...'
@@ -17,7 +28,7 @@ function itemPlaceholder(loading, hasItems, category, selectedValue) {
 
 /** Create a map of Filers (Institution Name, LEI) by LEI for efficient access */
 function createLeiMap(json) {
-  if (!json) return {}
+  if (!json || !json.institutions.filter(x => x.lei).length) return null
 
   return json.institutions.reduce((memo, curr) => {
     memo[curr.lei.toUpperCase()] = { ...curr, name: curr.name.toUpperCase() }
@@ -51,7 +62,11 @@ export const FilersSearchBox = ({ endpoint, onChange, year, ...rest }) => {
 
   const [data, isFetching, error] = useRemoteJSON(
     endpoint || `/v2/reporting/filers/${year}`,
-    { transformReceive: createLeiMap, forceFetch: true }
+    {
+      transformReceive: createLeiMap,
+      forceFetch: true,
+      defaultData: CI_INSTITUTIONS
+    }
   )
 
   // Enable type-to-search on pageload by focusing the LEI input element
@@ -100,6 +115,14 @@ export const FilersSearchBox = ({ endpoint, onChange, year, ...rest }) => {
     return cleanUpperCased
   }
 
+  const nextYear = parseInt(year) - 1
+  if (!isFetching && !data && nextYear >= 2018) {
+    return (
+      <FilersSearchBox
+        {...{ endpoint, onChange, year: parseInt(year) - 1, ...rest }}
+      />
+    )
+  }
 
   return (
     <>
