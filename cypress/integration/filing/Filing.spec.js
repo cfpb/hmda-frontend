@@ -64,21 +64,6 @@ describe("Filing", function() {
 
       const status = filingPeriodStatus[filingPeriod]
 
-      // Before Open - Cannot file before a period is open
-      if (status.isClosed && !status.isPassed) {
-        if (!isBeta(HOST)) {
-          cy.contains(
-            `The ${filingPeriod} filing period is not yet open.`
-          ).should('exist')
-          cy.contains(
-            `The Platform will be open for timely submissions from ${status.startDate} until ${status.lateDate}`
-          ).should('exist')
-        }
-        cy.contains(`Upload your ${testVsOfficial} file`).should('not.exist')
-        cy.contains('Upload a new file').should('not.exist')
-        return
-      }
-
       // After Close - Cannot file/refile after Filing period is passed
       if (status.isClosed && status.isPassed) {
         cy.contains(`Collection of ${filingPeriod} HMDA data has ended`).should(
