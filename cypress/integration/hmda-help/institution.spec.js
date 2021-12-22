@@ -52,9 +52,10 @@ describe('HMDA Help - Institutions', () => {
     cy.viewport(1600, 900)
     cy.visit(`${HOST}/hmda-help/`)
     cy.wait(LOCAL_ACTION_DELAY)
-
-
+    
+    
     // Search for existing Instititution
+    cy.wait(5000) // HACK TO ALLOW CASCADING FILER LIST SEARCHES
     cy.get('#lei-select').click().type(INSTITUTION + "{enter}")
     cy.wait(LOCAL_ACTION_DELAY)
     cy.findAllByText('Update')
@@ -213,6 +214,7 @@ describe('HMDA Help - Institutions', () => {
     const year = years[0].toString()
 
     // Delete
+    cy.wait(5000) // HACK TO ALLOW CASCADING FILER LIST SEARCHES
     cy.get('#lei-select').click().type(`${institution}{enter}`)
     cy.wait(LOCAL_ACTION_DELAY)
     cy.get('table.institutions tbody tr')
@@ -231,6 +233,7 @@ describe('HMDA Help - Institutions', () => {
     // Create
     cy.wait(LOCAL_ACTION_DELAY)
     cy.visit(`${HOST}/hmda-help/`)
+    cy.wait(5000) // HACK TO ALLOW CASCADING FILER LIST SEARCHES
     cy.get('#lei-select').click().type('MEISSADIATESTBANK001{enter}')
     cy.wait(LOCAL_ACTION_DELAY)
     cy.findByText(`Add ${institution} for ${year}`).click()

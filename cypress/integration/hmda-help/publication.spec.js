@@ -50,6 +50,7 @@ describe('HMDA Help - Publications', () => {
     cy.wait(ACTION_DELAY)
 
     // Search for existing Instititution
+    cy.wait(5000) // HACK TO ALLOW CASCADING FILER LIST SEARCHES
     cy.get('#lei-select').click().type(INSTITUTION + "{enter}")
     cy.wait(2*ACTION_DELAY)
     cy.findByText('Search Publications').click()
