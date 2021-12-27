@@ -54,7 +54,8 @@ describe("Filing", function() {
     cy.viewport(1600, 900)
   })
   
-  const testVsOfficial = isBeta(HOST) ? 'test' : 'official'
+  const THIS_IS_BETA = isBeta(HOST)
+  const testVsOfficial = THIS_IS_BETA ? 'test' : 'official'
 
   years.forEach((filingPeriod, index) => {
     it(`${filingPeriod}`, function() {
@@ -64,29 +65,16 @@ describe("Filing", function() {
 
       const status = filingPeriodStatus[filingPeriod]
 
-      // Before Open - Cannot file before a period is open
-      if (status.isClosed && !status.isPassed) {
-        if (!isBeta(HOST)) {
-          cy.contains(
-            `The ${filingPeriod} filing period is not yet open.`
-          ).should('exist')
-          cy.contains(
-            `The Platform will be open for timely submissions from ${status.startDate} until ${status.lateDate}`
-          ).should('exist')
-        }
-        cy.contains(`Upload your ${testVsOfficial} file`).should('not.exist')
-        cy.contains('Upload a new file').should('not.exist')
-        return
-      }
-
       // After Close - Cannot file/refile after Filing period is passed
       if (status.isClosed && status.isPassed) {
-        cy.contains(`Collection of ${filingPeriod} HMDA data has ended`).should(
-          'exist'
-        )
-        cy.contains(
-          `Submissions of ${filingPeriod} HMDA data are no longer accepted as of ${status.endDate}.`
-        ).should('exist')
+        if (!THIS_IS_BETA) {
+          cy.contains(
+            `Collection of ${filingPeriod} HMDA data has ended`
+          ).should('exist')
+          cy.contains(
+            `Submissions of ${filingPeriod} HMDA data are no longer accepted as of ${status.endDate}.`
+          ).should('exist')
+        }
         cy.contains(`Upload your ${testVsOfficial} file`).should('not.exist')
         cy.contains('Upload a new file').should('not.exist')
         cy.contains('For Review Only', { timout: 5000 }).should('exist')
@@ -94,7 +82,7 @@ describe("Filing", function() {
       }
 
       // Late filing - Can file after timely deadline but should see the message
-      if (status.isLate && !isBeta(HOST)) {
+      if (status.isLate && !THIS_IS_BETA) {
         cy.contains(`The ${filingPeriod} filing period is closed.`).should(
           'exist'
         )
@@ -104,7 +92,7 @@ describe("Filing", function() {
       }
 
       // Filing period is open
-      if (status.isOpen) {
+      if (status.isOpen && !THIS_IS_BETA) {
         cy.contains(`The ${filingPeriod} filing period is open.`).should(
           'exist'
         )
@@ -189,7 +177,7 @@ describe("Filing", function() {
             cy.wait(ACTION_DELAY)
 
             /* Action: Sign Submission */
-            if (isBeta(HOST)) {
+            if (THIS_IS_BETA) {
               cy.get('.alert.alert-warning:last').should(
                 'contain.text',
                 '[Beta Platform] Filing Simulation Complete!'
