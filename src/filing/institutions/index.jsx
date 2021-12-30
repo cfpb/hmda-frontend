@@ -190,9 +190,19 @@ export default class Institutions extends Component {
     let unregisteredInstitutions = []
     let leis = []
 
-    // Redirect non-quarterly users attempting to access an open quarterly period
-    if (filingQtr && !hasQuarterlyFilers)
-      return <Redirect to={`/filing/${filingYear}/institutions`} />
+    // Redirect users without quarterly Institutions,
+    // to the next available Annual filing period.
+    if (filingQtr && !hasQuarterlyFilers) {
+      const annualPeriods = filingPeriodOptions.options
+        .filter(period => period.indexOf('Q') === -1)
+        .filter(
+          period => parseInt(splitYearQuarter(period)[0], 10)
+        )
+        .sort()
+
+      const nextAnnual = annualPeriods.at(-1) || 2018
+      return <Redirect to={`/filing/${nextAnnual}/institutions`} />
+    }
 
     if (this.props.institutions.fetched) {
       leis = Object.keys(institutions)
