@@ -46,7 +46,7 @@ const availableAnnualRange = (filingPeriods) => {
 /**
  * Create Alerts for all current Filing period events
  * @param {String} defaultPeriod Current Filing period
- * @param {Object} filingQuarters Date ranges for which Filing periods are accessible
+ * @param {Object} filingPeriodStatus Status and meta data of each filing period
  * @returns Array[ConfiguredAlert]
  */
 const scheduledFilingAnnouncements = (
@@ -129,7 +129,7 @@ const scheduledFilingAnnouncements = (
  * Configured announcements are injected from the external environment config.
  * @param {Object} announcement
  * @param {String} defaultPeriod
- * @param {Object} filingQuarters
+ * @param {Object} filingPeriodStatus Status and meta data of each filing period
  * @returns
  */
 export const AnnouncementBanner = ({
