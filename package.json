@@ -12,7 +12,8 @@
     "test": "yarn run cypress run",
     "ci": "REACT_APP_ENVIRONMENT=CI yarn start -p 3000",
     "ci-data": "yarn newman run cypress/ci/tests/CREATE_INSTITUTIONS.postman_collection.json -e cypress/ci/config/PLATFORM_ENV.postman_environment.json -d cypress/ci/config/institutions.json",
-    "dev-docs": "cp -R ./src/documentation/markdown ./public/"
+    "dev-docs": "cp -R ./src/documentation/markdown ./public/",
+    "unit-test": "jest"
   },
   "keywords": [
     "HMDA"
@@ -68,6 +69,7 @@
     "enzyme-adapter-react-16": "1.15.2",
     "eslint-plugin-prettier": "3.1.1",
     "http-proxy-middleware": "1.0.6",
+    "jest": "^27.4.5",
     "newman": "5.2.4",
     "redux-devtools-extension": "2.13.8",
     "serialize-javascript": "5.0.1"
