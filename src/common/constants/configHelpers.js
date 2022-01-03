@@ -33,15 +33,16 @@ export const getFilingYears = (config, options = defaultOpts) => {
     isVisible && years.add(splitYearQuarter(period)[0])
   })
 
-  // Additional inclusions for HMDA Help users to enable administrative tasks
-  // for future/closed filing periods.
+  // Additions for HMDA Help users
   if (withAdmin) {
     config.timedGuards.preview.forEach(adminPeriod =>
       years.add(splitYearQuarter(adminPeriod)[0])
     )
 
-    const nextYear = parseInt(splitYearQuarter(config.defaultPeriod)[0], 10) + 1
-    years.add(nextYear.toString())
+    // Starting in Q3, automatically enable institution management for the upcoming year
+    const [year, quarter] = splitYearQuarter(config.defaultPeriod)
+    const upcomingYear = quarter !== 'Q3' ? year : parseInt(year, 10) + 1
+    years.add(upcomingYear.toString())
   }
 
   return Array.from(years)
