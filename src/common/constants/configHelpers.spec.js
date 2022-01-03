@@ -6,7 +6,7 @@ const baseConfig = {
   }
 }
 
-test('No defaultPeriod adds no Administrative years', () => {
+test('No defaultPeriod produces no additional Administrative years', () => {
   expect(
     getFilingYears({ ...baseConfig })
   ).toStrictEqual([])
