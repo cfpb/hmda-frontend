@@ -16,7 +16,7 @@ const Heading = () => (
 
 const PrivacyStatement = () => (
   <ExternalLink
-    url='https://content.consumerfinance.gov/privacy/email-campaign-privacy-act-statement/'
+    url='https://www.consumerfinance.gov/privacy/email-campaign-privacy-act-statement/'
     className='privacy-statement'
   >
     See Privacy Act statement
