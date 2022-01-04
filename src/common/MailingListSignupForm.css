@@ -81,6 +81,7 @@
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   padding: 8px 20px;
+  height: 3.5rem;
 }
 
 .MailingListSignupForm.large .title {
