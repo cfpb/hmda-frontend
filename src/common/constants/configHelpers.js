@@ -43,7 +43,7 @@ export const getFilingYears = (config, options = defaultOpts) => {
     const [year, quarter] = splitYearQuarter(config.defaultPeriod)
     if (year) {
       const upcomingYear = quarter !== 'Q3' ? year : parseInt(year, 10) + 1
-      years.add(upcomingYear)
+      years.add(upcomingYear.toString())
     }
   }
 
