@@ -41,8 +41,10 @@ export const getFilingYears = (config, options = defaultOpts) => {
 
     // Starting in Q3, automatically enable institution management for the upcoming year
     const [year, quarter] = splitYearQuarter(config.defaultPeriod)
-    const upcomingYear = quarter !== 'Q3' ? year : parseInt(year, 10) + 1
-    if (upcomingYear) years.add(upcomingYear.toString())
+    if (year) {
+      const upcomingYear = quarter !== 'Q3' ? year : parseInt(year, 10) + 1
+      years.add(upcomingYear)
+    }
   }
 
   return Array.from(years)
