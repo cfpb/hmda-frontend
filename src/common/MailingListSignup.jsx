@@ -13,6 +13,16 @@ const Heading = () => (
   </h3>
 )
 
+const PrivacyStatement = () => (
+  <a
+    href='https://content.consumerfinance.gov/privacy/email-campaign-privacy-act-statement/'
+    target='_blank'
+    className='privacy-statement'
+  >
+    See Privacy Act statement
+  </a>
+)
+
 /** A compact HMDA Mailing List Subscription form */
 export const MailingSignupSmall = () => {
   const { emailAddress, onEmailChange, onSubmit, currentStatus, submitButton } =
@@ -28,13 +38,7 @@ export const MailingSignupSmall = () => {
       {currentStatus}
       <div className='submit-container'>
         {submitButton}
-        <a
-          href='https://content.consumerfinance.gov/privacy/email-campaign-privacy-act-statement/'
-          target='_blank'
-          className='privacy-statement'
-        >
-          See Privacy Act statement
-        </a>
+        <PrivacyStatement />
       </div>
     </form>
   )
@@ -56,6 +60,7 @@ export const MailingSignupLarge = () => {
         <div className='submit-container'>{submitButton}</div>
       </div>
       {currentStatus}
+      <PrivacyStatement />
     </form>
   )
 }

@@ -69,6 +69,14 @@
   margin-left: -5px;
 }
 
+.MailingListSignupForm.large .privacy-statement {
+  display: inline-block;
+  width: 100%;
+  margin-top: 1em;
+  padding-right: .5em;
+  text-align: right;
+}
+
 .MailingListSignupForm.large .submit-container button {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -101,7 +109,7 @@
 
   .MailingListSignupForm.large #email,
   .MailingListSignupForm.large .submit-container button {
-    margin-top: .5rem !important;
+    margin-top: 1rem !important;
   }
 }
 
@@ -120,6 +128,11 @@
 
   .MailingListSignupForm.large .submit-container button {
     border-radius: 5px;
+  }
+
+  .MailingListSignupForm.large .privacy-statement {
+    text-align: left;
+    margin: .5em 0 0 0;
   }
 }
 
@@ -155,7 +168,7 @@
     flex-flow: wrap;
   }
 
-  .MailingListSignupForm.small .submit-container .privacy-statement {
+  .MailingListSignupForm.small .privacy-statement {
     margin: 1rem 0 0 0;
     padding: 0;
   }
