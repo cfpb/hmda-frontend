@@ -2,6 +2,7 @@ import React from 'react'
 import { SUBSCRIPTION_ENDPOINT, HMDA_FILING_TOPIC_ID } from './constants/cfgov'
 import { useSubscriptionLogic } from './mailingListServices'
 import { EmailInput } from './EmailInput'
+import { ExternalLink } from './ExternalLink'
 import './MailingListSignupForm.css'
 
 // Common form heading
@@ -11,6 +12,15 @@ const Heading = () => (
       Join the HMDA Mailing List
     </label>
   </h3>
+)
+
+const PrivacyStatement = () => (
+  <ExternalLink
+    url='https://content.consumerfinance.gov/privacy/email-campaign-privacy-act-statement/'
+    className='privacy-statement'
+  >
+    See Privacy Act statement
+  </ExternalLink>
 )
 
 /** A compact HMDA Mailing List Subscription form */
@@ -28,13 +38,7 @@ export const MailingSignupSmall = () => {
       {currentStatus}
       <div className='submit-container'>
         {submitButton}
-        <a
-          href='https://content.consumerfinance.gov/privacy/email-campaign-privacy-act-statement/'
-          target='_blank'
-          className='privacy-statement'
-        >
-          See Privacy Act statement
-        </a>
+        <PrivacyStatement />
       </div>
     </form>
   )
@@ -56,6 +60,7 @@ export const MailingSignupLarge = () => {
         <div className='submit-container'>{submitButton}</div>
       </div>
       {currentStatus}
+      <PrivacyStatement />
     </form>
   )
 }
