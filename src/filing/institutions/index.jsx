@@ -11,7 +11,7 @@ import { FilteredOutList } from './FilteredOutList'
 import { splitYearQuarter } from '../api/utils.js'
 import { wrapLoading } from './wrapLoading'
 import { Redirect } from 'react-router-dom'
-
+import { getNextAnnualPeriod } from './helpers'
 import './Institutions.css'
 
 const _setSubmission = (submission, latest, filingObj) => {
@@ -190,9 +190,12 @@ export default class Institutions extends Component {
     let unregisteredInstitutions = []
     let leis = []
 
-    // Redirect non-quarterly users attempting to access an open quarterly period
-    if (filingQtr && !hasQuarterlyFilers)
-      return <Redirect to={`/filing/${filingYear}/institutions`} />
+    // Redirect users without quarterly Institutions,
+    // to the next available Annual filing period.
+    if (filingQtr && !hasQuarterlyFilers) {
+      const nextAnnual = getNextAnnualPeriod(filingPeriodOptions)
+      return <Redirect to={`/filing/${nextAnnual}/institutions`} />
+    }
 
     if (this.props.institutions.fetched) {
       leis = Object.keys(institutions)
