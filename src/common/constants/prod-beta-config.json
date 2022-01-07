@@ -2,6 +2,15 @@
   "name": "prod-beta",
   "announcement": [
     {
+      "message": "11:30AM EDT: We are experiencing a delay in processing the latest Fixed and Adjustable Rate Tables. We are working to resolve the issue and will update the 01/10/2022 APOR tables as soon as possible.",
+      "type": "error",
+      "heading": "Rate Spread Issue",
+      "link": {
+        "text": "here.",
+        "url": "https://ffiec.cfpb.gov/tools/rate-spread"
+      }
+    },
+    {
       "message": "On October 20, 2021 the Filing Instructions Guide (FIG) for data collected in 2022 was updated with new guidance for edits V720-2, V721-2, and Q657. ",
       "type": "info",
       "heading": "2022 FIG Update",
