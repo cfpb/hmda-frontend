@@ -2,11 +2,11 @@
   "name": "dev",
   "announcement": [
     {
-      "message": "11:30AM EDT: We are experiencing a delay in processing the latest Fixed and Adjustable Rate Tables. We are working to resolve the issue and will update the 01/10/2022 APOR tables as soon as possible.",
-      "type": "error",
+      "message": "01/07/2022 4:50PM EDT: Fixed and Adjustable Rate Tables for the week beginning 1/10/2022 are now available via the ",
+      "type": "info",
       "heading": "Rate Spread Issue",
       "link": {
-        "text": "here.",
+        "text": "rate spread calculator.",
         "url": "https://ffiec.cfpb.gov/tools/rate-spread"
       }
     },
