@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import CSVDownload from '../common/CSVContainer.jsx'
 import { CREATED, NO_QUALITY_EDITS, NO_MACRO_EDITS, SIGNED, VALIDATING } from '../constants/statusCodes.js'
+import { isStalledUpload } from './helpers.js'
 
 import './Status.css'
 
@@ -17,28 +18,32 @@ const defaultSubmission = closed => ({
   }
 })
 
-const qualityMessage = 'Your data has quality edits that need to be reviewed.'
-const submitMessage = 'Your data is ready for submission.'
-const submitDesc = 'Your financial institution has certified that the data is correct, but it has not been submitted yet.'
-
 const InstitutionStatus = ({ submission, filing, isClosed }) => {
   const currSubmission = submission || defaultSubmission(isClosed)
+  const { start } = currSubmission
   const { code, message, description } = currSubmission.status
   const qualityOverride = code > NO_QUALITY_EDITS && (currSubmission.qualityExists && !currSubmission.qualityVerified)
   const submitOverride = code === NO_MACRO_EDITS
   const refileInProgress =
     filing && filing.status && filing.status.code === 3 && code !== SIGNED
+  
+  let heading = message 
+  let body = description 
+
+  if (isStalledUpload(code, start)) {
+    heading = 'Your previous upload attempt failed.'
+    body = 'Please upload a new file.'
+  } else if (qualityOverride) {
+    heading = 'Your data has quality edits that need to be reviewed.'
+  } else if (submitOverride) {
+    heading = 'Your data is ready for submission.'
+    body = 'Your financial institution has certified that the data is correct, but it has not been submitted yet.'
+  }
 
   return (
     <section className='status'>
-      <h4>
-        {qualityOverride
-          ? qualityMessage
-          : submitOverride
-          ? submitMessage
-          : message}
-      </h4>
-      <p>{submitOverride ? submitDesc : description}</p>
+      <h4>{heading}</h4>
+      <p>{body}</p>
       {refileInProgress ? (
         <p className='text-small'>
           You have previously submitted a HMDA file and are in the process of

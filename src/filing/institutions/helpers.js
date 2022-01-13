@@ -14,4 +14,4 @@ export const getNextAnnualPeriod = (periodOptions = { options: [] }) => {
 }
 
 export const isStalledUpload = (code, start) =>
-  code === UPLOADED && daysSince(start) > 2
+  code === UPLOADED && daysSince(start) >= 1
