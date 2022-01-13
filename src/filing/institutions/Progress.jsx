@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { isStalledUpload } from './helpers.js'
 import {
   PARSED_WITH_ERRORS,
   SYNTACTICAL_VALIDITY_EDITS,
@@ -15,9 +16,11 @@ import './Progress.css'
 
 const navMap = {
   upload: {
-    isErrored: submission => submission.status.code === PARSED_WITH_ERRORS,
+    isErrored: submission =>
+      submission.status.code === PARSED_WITH_ERRORS ||
+      isStalledUpload(submission.status.code, submission.start),
     isCompleted: submission => submission.status.code > UPLOADED,
-    errorText: 'uploaded with formatting errors',
+    errorText: 'upload error',
     completedText: 'uploaded'
   },
   'syntactical & validity edits': {
