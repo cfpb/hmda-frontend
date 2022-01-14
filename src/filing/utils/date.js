@@ -41,12 +41,14 @@ export function ordinalHour(d) {
 
 const msToDays = ms => ms / (1000 * 60 * 60 * 24)
 
+const msToHours = ms => ms / (1000 * 60 * 60)
+
 export const numDaysBetween = function(d1, d2) {
   var diff = d1.getTime() - d2.getTime();
   return msToDays(diff)
 }
 
-export const daysSince = timestamp => {
+export const hoursSince = timestamp => {
   const diffTime = Date.now() - timestamp
-  return msToDays(diffTime)
+  return msToHours(diffTime)
 }

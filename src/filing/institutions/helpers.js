@@ -1,6 +1,8 @@
 import { splitYearQuarter } from '../api/utils'
 import { UPLOADED } from '../constants/statusCodes'
-import { daysSince } from '../utils/date'
+import { hoursSince } from '../utils/date'
+
+const MAX_UPLOAD_HOURS = 5
 
 export const getNextAnnualPeriod = (periodOptions = { options: [] }) => {
   let annual = periodOptions.options
@@ -14,4 +16,4 @@ export const getNextAnnualPeriod = (periodOptions = { options: [] }) => {
 }
 
 export const isStalledUpload = (code, start) =>
-  code === UPLOADED && daysSince(start) >= 1
+  code === UPLOADED && hoursSince(start) > MAX_UPLOAD_HOURS
