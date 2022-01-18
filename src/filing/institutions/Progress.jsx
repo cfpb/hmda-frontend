@@ -2,22 +2,23 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {
   PARSED_WITH_ERRORS,
-  PARSED,
   SYNTACTICAL_VALIDITY_EDITS,
   NO_QUALITY_EDITS,
   NO_MACRO_EDITS,
   MACRO_EDITS,
   VALIDATED,
-  SIGNED
+  SIGNED,
+  UPLOADED,
 } from '../constants/statusCodes.js'
 
 import './Progress.css'
 
 const navMap = {
   upload: {
-    isErrored: submission => submission.status.code === PARSED_WITH_ERRORS,
-    isCompleted: submission => submission.status.code >= PARSED,
-    errorText: 'uploaded with formatting errors',
+    isErrored: submission =>
+      submission.status.code === PARSED_WITH_ERRORS || submission.isStalled,
+    isCompleted: submission => submission.status.code > UPLOADED,
+    errorText: 'upload error',
     completedText: 'uploaded'
   },
   'syntactical & validity edits': {

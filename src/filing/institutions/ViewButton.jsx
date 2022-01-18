@@ -11,16 +11,18 @@ import {
   NO_SYNTACTICAL_VALIDITY_EDITS,
   VALIDATING,
   NO_MACRO_EDITS,
-  VALIDATED
+  VALIDATED,
 } from '../constants/statusCodes.js'
 
 import './ViewButton.css'
 
-const InstitutionViewButton = ({ status, institution, filingPeriod, isClosed }) => {
+const InstitutionViewButton = ({ submission, institution, filingPeriod, isClosed }) => {
+  const { status, isStalled } = submission
   const code = status ? status.code : CREATED
   let text
+  
   if (isClosed && code <= CREATED) return null
-  if (code === FAILED) {
+  if (code === FAILED || isStalled) {
     return <RefileButton className="ViewButton" institution={institution} />
   } else if (code <= CREATED) {
     text = "Upload your " + (isBeta() ? 'test file' : 'official file')

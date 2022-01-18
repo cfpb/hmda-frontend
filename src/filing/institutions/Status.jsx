@@ -17,28 +17,32 @@ const defaultSubmission = closed => ({
   }
 })
 
-const qualityMessage = 'Your data has quality edits that need to be reviewed.'
-const submitMessage = 'Your data is ready for submission.'
-const submitDesc = 'Your financial institution has certified that the data is correct, but it has not been submitted yet.'
-
 const InstitutionStatus = ({ submission, filing, isClosed }) => {
   const currSubmission = submission || defaultSubmission(isClosed)
+  const { isStalled } = currSubmission
   const { code, message, description } = currSubmission.status
   const qualityOverride = code > NO_QUALITY_EDITS && (currSubmission.qualityExists && !currSubmission.qualityVerified)
   const submitOverride = code === NO_MACRO_EDITS
   const refileInProgress =
     filing && filing.status && filing.status.code === 3 && code !== SIGNED
+  
+  let heading = message 
+  let body = description 
+
+  if (isStalled) {
+    heading = 'Your previous upload attempt failed.'
+    body = 'Please upload a new file.'
+  } else if (qualityOverride) {
+    heading = 'Your data has quality edits that need to be reviewed.'
+  } else if (submitOverride) {
+    heading = 'Your data is ready for submission.'
+    body = 'Your financial institution has certified that the data is correct, but it has not been submitted yet.'
+  }
 
   return (
     <section className='status'>
-      <h4>
-        {qualityOverride
-          ? qualityMessage
-          : submitOverride
-          ? submitMessage
-          : message}
-      </h4>
-      <p>{submitOverride ? submitDesc : description}</p>
+      <h4>{heading}</h4>
+      <p>{body}</p>
       {refileInProgress ? (
         <p className='text-small'>
           You have previously submitted a HMDA file and are in the process of

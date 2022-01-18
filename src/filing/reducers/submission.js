@@ -20,7 +20,8 @@ export const defaultSubmission = {
   qualityVerified: false,
   macroExists: false,
   macroVerified: false,
-  isFetching: false
+  isFetching: false,
+  isStalled: false,
 }
 
 /*
@@ -41,7 +42,8 @@ export default (state = defaultSubmission, action) => {
           qualityExists: action.qualityExists || false,
           qualityVerified: action.qualityVerified || false,
           macroExists: action.macroExists || false,
-          macroVerified: action.macroVerified || false
+          macroVerified: action.macroVerified || false,
+          isStalled: action.isStalled,
         }
       return state
     case SELECT_FILE:

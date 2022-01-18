@@ -42,7 +42,8 @@ export default (state = defaultLatestSubmissions, action) => {
             qualityExists: action.qualityExists || defaultSubmission.qualityExists,
             qualityVerified: action.qualityVerified || defaultSubmission.qualityVerified,
             macroExists: action.macroExists || defaultSubmission.macroExists,
-            macroVerified: action.macroVerified || defaultSubmission.macroVerified
+            macroVerified: action.macroVerified || defaultSubmission.macroVerified,
+            isStalled: action.isStalled,
           }
         }
       }

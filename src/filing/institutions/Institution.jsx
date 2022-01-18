@@ -45,7 +45,7 @@ const Institution = ({
             />
 
             <InstitutionViewButton
-              status={status}
+              submission={submission}
               institution={institution}
               filingPeriod={filing.period}
               isClosed={selectedPeriod.isClosed}
