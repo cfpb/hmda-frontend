@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import CSVDownload from '../common/CSVContainer.jsx'
 import { CREATED, NO_QUALITY_EDITS, NO_MACRO_EDITS, SIGNED, VALIDATING } from '../constants/statusCodes.js'
-import { isStalledUpload } from './helpers.js'
 
 import './Status.css'
 
@@ -20,7 +19,7 @@ const defaultSubmission = closed => ({
 
 const InstitutionStatus = ({ submission, filing, isClosed }) => {
   const currSubmission = submission || defaultSubmission(isClosed)
-  const { start } = currSubmission
+  const { isStalled } = currSubmission
   const { code, message, description } = currSubmission.status
   const qualityOverride = code > NO_QUALITY_EDITS && (currSubmission.qualityExists && !currSubmission.qualityVerified)
   const submitOverride = code === NO_MACRO_EDITS
@@ -30,7 +29,7 @@ const InstitutionStatus = ({ submission, filing, isClosed }) => {
   let heading = message 
   let body = description 
 
-  if (isStalledUpload(code, start)) {
+  if (isStalled) {
     heading = 'Your previous upload attempt failed.'
     body = 'Please upload a new file.'
   } else if (qualityOverride) {

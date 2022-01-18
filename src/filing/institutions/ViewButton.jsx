@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { isStalledUpload } from './helpers.js'
 import RefileButton from '../refileButton/container.jsx'
 import { isBeta } from '../../common/Beta';
 
@@ -18,12 +17,12 @@ import {
 import './ViewButton.css'
 
 const InstitutionViewButton = ({ submission, institution, filingPeriod, isClosed }) => {
-  const { status, start } = submission
+  const { status, isStalled } = submission
   const code = status ? status.code : CREATED
   let text
   
   if (isClosed && code <= CREATED) return null
-  if (code === FAILED || isStalledUpload(code, start)) {
+  if (code === FAILED || isStalled) {
     return <RefileButton className="ViewButton" institution={institution} />
   } else if (code <= CREATED) {
     text = "Upload your " + (isBeta() ? 'test file' : 'official file')
