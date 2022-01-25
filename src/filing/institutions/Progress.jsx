@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {
   PARSED_WITH_ERRORS,
   SYNTACTICAL_VALIDITY_EDITS,
+  NO_SYNTACTICAL_VALIDITY_EDITS,
   NO_QUALITY_EDITS,
   NO_MACRO_EDITS,
   MACRO_EDITS,
@@ -23,7 +24,7 @@ const navMap = {
   },
   'syntactical & validity edits': {
     isErrored: submission => submission.status.code === SYNTACTICAL_VALIDITY_EDITS,
-    isCompleted: submission => submission.status.code > SYNTACTICAL_VALIDITY_EDITS,
+    isCompleted: submission => submission.status.code >= NO_SYNTACTICAL_VALIDITY_EDITS,
     errorText: 'syntactical & validity edits',
     completedText: 'no syntactical & validity edits'
   },

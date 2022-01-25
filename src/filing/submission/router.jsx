@@ -16,7 +16,8 @@ import {
   QUALITY_EDITS,
   NO_MACRO_EDITS,
   MACRO_EDITS,
-  VALIDATED
+  VALIDATED,
+  NO_SYNTACTICAL_VALIDITY_EDITS
 } from '../constants/statusCodes.js'
 
 const editTypes = ['syntacticalvalidity', 'quality', 'macro']
@@ -96,7 +97,12 @@ export class SubmissionRouter extends Component {
     if (code <= VALIDATING || code === NO_QUALITY_EDITS) return 'upload'
     if (code >= VALIDATED || code === NO_MACRO_EDITS) return 'submission'
     if (code === SYNTACTICAL_VALIDITY_EDITS) return 'syntacticalvalidity'
-    if (code >= QUALITY_EDITS && qualityExists && !qualityVerified) return 'quality'
+    if (
+      (code >= QUALITY_EDITS || code === NO_SYNTACTICAL_VALIDITY_EDITS) &&
+      qualityExists &&
+      !qualityVerified
+    )
+      return 'quality'
     return 'macro'
   }
 
