@@ -4,7 +4,7 @@ import { isStalledUpload } from '../institutions/helpers'
 
 export default function receiveFiling(data) {
   // Check for stalled uploads
-  data.submissions = data.submissions.map((sub) => {
+  data.submissions = data.submissions?.map((sub) => {
     const { status: { code }, start } = sub
     
     return {
