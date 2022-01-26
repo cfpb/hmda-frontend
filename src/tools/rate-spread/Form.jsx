@@ -11,7 +11,7 @@ const defaultState = {
   actionTaken: '1',
   amortization: 'Fixed',
   reverse: '2',
-  rateSetDate: '',
+  rateSetDate: (new Date()).toLocaleDateString(),
   APR: '',
   loanTerm: '',
   validationErrors: {},
