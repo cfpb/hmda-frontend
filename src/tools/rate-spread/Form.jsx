@@ -13,7 +13,7 @@ const defaultState = {
   reverse: '2',
   rateSetDate: (new Date()).toLocaleDateString(),
   APR: '',
-  loanTerm: '30',
+  loanTerm: '',
   validationErrors: {},
   isFetching: false,
   error: false,
