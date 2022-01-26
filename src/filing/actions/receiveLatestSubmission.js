@@ -1,9 +1,10 @@
 import { RECEIVE_LATEST_SUBMISSION } from '../constants/index'
+import { UNINITIALIZED } from '../constants/statusCodes'
 import { isStalledUpload } from '../institutions/helpers'
 
 export default function receiveLatestSubmission(action) {
   const { start } = action
-  let code = action.status?.code || -1
+  const code = action.status?.code || UNINITIALIZED
   
   // Check for stalled uploads
   action.isStalled = isStalledUpload(code, start)
