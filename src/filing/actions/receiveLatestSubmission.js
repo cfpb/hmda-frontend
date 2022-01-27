@@ -6,7 +6,6 @@ export default function receiveLatestSubmission(action) {
   const { start } = action
   const code = action.status?.code || UNINITIALIZED
   
-  // Check for stalled uploads
   action.isStalled = isStalledUpload(code, start)
   
   return {
