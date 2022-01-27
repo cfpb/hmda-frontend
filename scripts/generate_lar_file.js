@@ -11,7 +11,7 @@ lei = lei || 'FRONTENDTESTBANK9999'
 year = (parseInt(year) && year) || parseInt(new Date().getFullYear()) - 1
 rows = rows || 10
 
-const OUTPUT_FILE = `${__dirname}/${lei}_${year}_${rows}.txt`
+const OUTPUT_FILE = `${process.cwd()}/cypress/fixtures/large-filer-${year}-${lei}-${rows}.txt`
 
 // utils.timestamp
 const timestamp = (txt) => console.log(txt, '\t\t', (new Date()).toLocaleString('en-US'))
