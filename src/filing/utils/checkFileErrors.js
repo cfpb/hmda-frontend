@@ -6,41 +6,54 @@ export default function checkFileErrors(file, cb) {
 
   reader.addEventListener('load', () => {
     const firstBytes = reader.result
-    const errors = []
-    
-    if (file && file.size !== undefined && file.name !== undefined) {
-      detectFileEncoding(file).then(fileInfo => {
-        if (fileInfo.encoding !== 'UTF-8'){
-          errors.push(
-            'The file you selected is not UTF-8 encoded. Please check your file and re-upload.'
-          )
-          
-          // Skip additional checks to avoid false-positives
-          return cb(errors)
-        }
 
-        const notTxt = file.name.split('.').slice(-1)[0].toLowerCase() !== 'txt'
-        if (file.size === 0) {
-          errors.push(
-            'The file you uploaded does not contain any data. Please check your file and re-upload.'
-          )
-        }
-        if (notTxt) {
-          errors.push(
-            'The file you uploaded is not a text file (.txt). Please check your file and re-upload.'
-          )
-        }
-        if(firstBytes !== ('1|') && !notTxt){
-          errors.push('Your file appears to be a text file (.txt) but has invalid content. Please ensure you are uploading a pipe-delimited text file and that your transmittal sheet begins with 1.');
-        }
+    const notAFile = isNotAFile(file)
+    if (notAFile) return cb([notAFile])
 
-        cb(errors)
-      })
-    } else {
-      errors.push('Your file was not uploaded. Please try again.')
-      cb(errors)
-    }
+    detectFileEncoding(file).then(fileInfo => {
+      const notUtf8 = encodingIsNotUtf8(fileInfo)
+      if (notUtf8) return cb([notUtf8])
+
+      const errors = [
+        fileIsEmpty(file),
+        extensionIsNotTxt(file),
+        missingTransmittalSheet(file, firstBytes),
+      ].filter(x => x)
+
+      return cb(errors)
+    })
   })
 
   reader.readAsText(fileSlice)
+}
+
+/**
+ * Error checking functions return error string, if any
+ * @returns String || undefined
+ */
+
+function isNotAFile(file) {
+  if (file && file.size !== undefined && file.name !== undefined) return
+  return 'Your file was not uploaded. Please try again.'
+}
+
+function encodingIsNotUtf8(info) {
+  if (info?.encoding !== 'UTF-8')
+    return 'The file you selected is not UTF-8 encoded. Please check your file and re-upload.'
+}
+
+function fileIsEmpty(file) {
+  if (file?.size === 0)
+    return 'The file you uploaded does not contain any data. Please check your file and re-upload.'
+}
+
+function extensionIsNotTxt(file) {
+  let extension = file?.name?.split('.').slice(-1)[0]?.toLowerCase()
+  if (extension !== 'txt')
+    return 'The file you uploaded is not a text file (.txt). Please check your file and re-upload.'
+}
+
+function missingTransmittalSheet(file, sample) {
+  if (!extensionIsNotTxt(file) && sample !== '1|')
+    return 'Your file appears to be a text file (.txt) but has invalid content. Please ensure you are uploading a pipe-delimited text file and that your transmittal sheet begins with 1.'
 }
