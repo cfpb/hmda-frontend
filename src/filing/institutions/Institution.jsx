@@ -33,7 +33,7 @@ const Institution = ({
             <InstitutionNameAndId
               name={institution.name}
               lei={institution.lei}
-              filingPeriod={filing.period}
+              filingPeriod={filing.period || selectedPeriod.period}
             />
 
             <SubmissionNav submission={submission} />
@@ -72,6 +72,7 @@ const Institution = ({
             <InstitutionNameAndId
               name={institution.name}
               lei={institution.lei}
+              filingPeriod={selectedPeriod.period}
             />
             <Alert type='error' heading='Sorry, there was a problem.'>
               <p>
