@@ -48,7 +48,7 @@ function fileIsEmpty(file) {
 }
 
 function extensionIsNotTxt(file) {
-  let extension = file?.name?.split('.').slice(-1)[0]?.toLowerCase()
+  const extension = file?.name?.split('.').slice(-1)[0]?.toLowerCase()
   if (extension !== 'txt')
     return 'The file you uploaded is not a text file (.txt). Please check your file and re-upload.'
 }
