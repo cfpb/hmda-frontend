@@ -23,6 +23,11 @@ const DropzoneContent = ({ getRootProps, getInputProps, code, filename, errorFil
         }
         break
       case STATUS.UPLOADING:
+        messageObj = {
+          pre: 'Upload of',
+          post: 'is currently in progress'
+        }
+        break
       case STATUS.UPLOADED:
       case STATUS.PARSING:
       case STATUS.PARSED:
@@ -30,7 +35,7 @@ const DropzoneContent = ({ getRootProps, getInputProps, code, filename, errorFil
       case STATUS.NO_SYNTACTICAL_VALIDITY_EDITS:
       case STATUS.NO_QUALITY_EDITS:
         messageObj = {
-          pre: 'Upload of',
+          pre: 'Analysis of',
           post: 'is currently in progress'
         }
         break
