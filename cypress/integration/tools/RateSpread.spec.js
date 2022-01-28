@@ -11,11 +11,9 @@ describe("Rate Spread Tool", function() {
 
     it("Generates Fixed Rate", function() {
       cy.get({ HOST, TEST_DELAY }).logEnv()
-      cy.get(".item > div > .Form > div > #rateSetDate").click()
-      cy.get(".item > div > .Form > div > #rateSetDate").type("12/16/2019")
+      cy.get(".item > div > .Form > div > #rateSetDate").clear().click().type("12/16/2019")
       cy.get(".item > div > .Form > div > #APR").type("3.2")
-      cy.get(".item > div > .Form > div > #loanTerm").click()
-      cy.get(".item > div > .Form > div > #loanTerm").type("45")
+      cy.get(".item > div > .Form > div > #loanTerm").click().type("45")
       cy.get(".grid > .item > div > .Form > input").click()
 
       // Validate
@@ -33,11 +31,9 @@ describe("Rate Spread Tool", function() {
       cy.get(
         ".Form > fieldset > .unstyled-list > li > #amortizationVariable"
       ).type("Variable")
-      cy.get(".item > div > .Form > div > #rateSetDate").click()
-      cy.get(".item > div > .Form > div > #rateSetDate").type("01/22/2018")
+      cy.get(".item > div > .Form > div > #rateSetDate").clear().click().type("01/22/2018")
       cy.get(".item > div > .Form > div > #APR").type("2.5")
-      cy.get(".item > div > .Form > div > #loanTerm").click()
-      cy.get(".item > div > .Form > div > #loanTerm").type("30")
+      cy.get(".item > div > .Form > div > #loanTerm").click().type("30")
       cy.get(".grid > .item > div > .Form > input").click()
 
       // Validate
