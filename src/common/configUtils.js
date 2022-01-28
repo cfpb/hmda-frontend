@@ -22,8 +22,15 @@ export function getDefaultConfig(str) {
     : isBeta(host)
       ? devBeta
       : dev
+
+  const derivedConfig = deriveConfig(baseConfig)
+
+  if (isBeta(host)) {
+    const prodConfig = getDefaultConfig('ffiec')
+    derivedConfig.defaultPeriod = prodConfig?.defaultPeriod
+  }
   
-  return deriveConfig(baseConfig)
+  return derivedConfig
 }
 
 export function isProd(host) {
