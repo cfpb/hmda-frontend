@@ -1,5 +1,5 @@
-import { isBeta, isCI } from '../../support/helpers'
-import { getDefaultConfig } from '../../../src/common/configUtils'
+import { isBeta, isCI } from '../support/helpers'
+import { getDefaultConfig } from '../../src/common/configUtils'
 
 const {
   HOST,
@@ -16,9 +16,10 @@ const {
 } = Cypress.env()
 
 const years = [2020]
+const timeout3hours = 10800000
 
 const config = getDefaultConfig(HOST)
-const getFilename = (filingPeriod, lei) => `large-filer-${filingPeriod}-${lei}-1000000.txt`
+const getFilename = (filingPeriod, lei) => `${filingPeriod}-${lei}-MAX.txt`
 const { filingPeriodStatus } = config
 
 describe('Large Filer', function () {
@@ -115,9 +116,9 @@ describe('Large Filer', function () {
                 mimeType: 'text/plain',
               })
 
-              // Wait up to 3 minutes for upload to complete, then start reviewing edits
+              // Wait up to 3 hours for upload and processing to complete, then start reviewing edits
               cy.get('.NavButtonContainer > .NavButton').click({
-                timeout: 180000,
+                timeout: timeout3hours,
               })
 
               // Action: Review Quality Edits
