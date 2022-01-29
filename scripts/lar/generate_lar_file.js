@@ -10,11 +10,18 @@ let [lei, year, rows, ...others] = process.argv.slice(2)
 lei = lei || 'FRONTENDTESTBANK9999'
 year = (parseInt(year) && year) || parseInt(new Date().getFullYear()) - 1
 rows = rows || 10
+// This should really driven by file size
+let max
+if (rows >= 494100) {
+  max = 'MAX'
+  rows = 494100
+}
 
-const OUTPUT_FILE = `${process.cwd()}/cypress/fixtures/large-filer-${year}-${lei}-${rows}.txt`
+
+const OUTPUT_FILE = `${process.cwd()}/cypress/fixtures/${year}-${lei}-${max||rows}.txt`
 
 // utils.timestamp
-const timestamp = (txt) => console.log(txt, '\t\t', (new Date()).toLocaleString('en-US'))
+const timestamp = (txt) => null //console.log(txt, '\t\t', (new Date()).toLocaleString('en-US'))
 
 
 const CONTENT = {
@@ -48,7 +55,7 @@ const generateLarRows = async () => {
     fs.appendFileSync(OUTPUT_FILE, CONTENT.makeLar(response.data.uli))
   }
   timestamp(`  - ${rows} rows generated.`)
-  console.log('\n')
+  // console.log('\n')
 }
 
 generateLarRows()

@@ -1,5 +1,5 @@
-import { isBeta, isCI } from '../support/helpers'
-import { getDefaultConfig } from '../../src/common/configUtils'
+import { isBeta, isCI } from '../../support/helpers'
+import { getDefaultConfig } from '../../../src/common/configUtils'
 
 const {
   HOST,
