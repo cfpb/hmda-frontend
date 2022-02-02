@@ -12,7 +12,6 @@ post_success()
 
 	curl -i -X POST -H 'Content-Type: application/json' -d "{\"text\": \"${msg}\"}" $CYPRESS_WEB_HOOK
 
-	rm ${2}
 }
 
 # Args
@@ -25,7 +24,7 @@ post_failure()
 	curl -i -X POST -H 'Content-Type: application/json' -d "{\"text\": \"${msg}\" }"  $CYPRESS_WEB_HOOK
 
 	echo "\n\n--- ${1} output ---"
-	cat {$2}
+	cat $2
 }
 
 cleanup()
@@ -45,8 +44,8 @@ else
 fi
 
 # Integration tests
-yarn cypress run --spec "cypress/integration/data-browser/**,cypress/integration/data-publication/**,cypress/integration/filing/**,cypress/integration/hmda-help/**,cypress/integration/tools/**"> output.txt
-if  grep -q "All specs passed!" "output.txt" ; then
+yarn cypress run --spec "cypress/integration/data-browser/**,cypress/integration/data-publication/**,cypress/integration/filing/**,cypress/integration/hmda-help/**,cypress/integration/tools/**" > output_integration.txt
+if  grep -q "All specs passed!" "output_integration.txt" ; then
 	post_success 'Integration testing :handshake:' "output_integration.txt"
 else
 	post_failure 'Integration testing :handshake:' "output_integration.txt"
@@ -54,7 +53,7 @@ fi
 
 # Load tests
 # TODO: Host load test file on S3, download here
-yarn cypress run --spec "cypress/integration/load/**" > output.txt
+yarn cypress run --spec "cypress/integration/load/**" > output_load.txt
 if  grep -q "All specs passed!" "output_load.txt" ; then
 	post_success 'Load testing :tractor:' "output_load.txt"
 else
