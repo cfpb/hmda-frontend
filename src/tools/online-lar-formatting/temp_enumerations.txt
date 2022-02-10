@@ -1,0 +1,63 @@
+1 - Office of the Comptroller of the Currency (OCC), 2 - Federal Reserve System (FRS), 3 - Federal Deposit Insurance Corporation (FDIC), 5 - National Credit Union Administration 9 (NCUA), 7 - United States Department of Housing and Urban Development (HUD), 9 - ConsumerFinancialProtectionBureau (Bureau), 
+
+1 - Conventional (not insured or guaranteed by FHA{comma} VA{comma} RHS{comma} or FSA), 2 - Federal Housing Administration insured (FHA), 3 - Veterans Affairs guaranteed (VA) , 4 - USDA Rural Housing Service or Farm Service Agency guaranteed (RHS or FSA), 
+
+1 - Home purchase, 2 - Home improvement, 31 - Refinancing, 32 - Cash-out refinancing , 4 - Other purpose, 5 - Not applicable, 
+
+1 - Preapproval requested, 2 - Preapproval not requested, | self
+
+1 - Site-built, 2 - Manufactured Home, | self
+
+1 - Principal residence, 2 - Second residence, 3 - Investment property, | self
+
+1 - Loan originated, 2 - Application approved but not accepted, 3 - Application denied, 4 - Application withdrawn by applicant, 5 - File closed for incompleteness, 6 - Purchased loan, 7 - Preapproval request denied, 8 - Preapproval request approved but not accepted, | self
+
+1 - Hispanic or Latino, 11 - Mexican, 12 - Puerto Rican, 13 - Cuban, 14 - Other Hispanic or Latino , 2 - Not Hispanic or Latino , 3 - Information not provided by applicant in mail{comma} internet{comma} or telephone application , 4 - Not applicable,  | Ethnicity
+
+1 - Collected on the basis of visual observation or surname, 2 - Not collected on the basis of visual observation or surname , 3 - Not applicable, | Ethnicity
+
+1 - American Indian or Alaska Native, 2 - Asian, 21 - Asian Indian , 22 - Chinese, 23 - Filipino, 24 - Japanese , 25 - Korean, 26 - Vietnamese, 27 - Other Asian, 3 - Black or African American Native Hawaiian or Other Pacific Islander, 4 - Native Hawaiian or Other Pacific Islander, 41 - Native Hawaiian, 42 - Guamanian or Chamorro, 43 - Samoan, 44 - Other Pacific Islander Race, 5 - White, 6 - Information not provided by applicant in mail{comma} internet{comma} or telephone application, 7 - Not applicable, | Race
+
+Specify in text the Co-Applicant’s or Co-Borrower’s American Indian or Alask a Native Enrolled or Principal Tribe if provided by the Co-Applicant or Co-Borrower. Otherwise, leave this data field blank. | Race
+
+Specify in text the Co-Applicant’s or Co-Borrower’s Other Asian race(s) provided by the Co-Applicant or Co-Borrower. Otherwise, leave this data field blank. | Race
+
+Specify in text the Co-Applicant’s or Co-Borrower’s Other Pacific Islander race(s) provided by the Co-Applicant or Co-Borrower. Otherwise, leave this data field blank. | Race
+
+1 - Male, 2 - Female, 3 - Information not provided by applicant in mail{comma} internet{comma} or Sex 4 telephone application, 4 - Not applicable, 6 - Applicant selected both male and female, | Sex
+
+1 - Collected on the basis of visual observation or surname, 2 - Not collected on the basis of visual observation or surname, 3 - Not applicable, 4 - No coapplicant, | Sex
+
+0 - Not applicable, 1 - Fannie Mae, 2 - Ginnie Mae, 3 - Freddie Mac, 4 - Farmer Mac, 5 - Private securitizer, 6 - Commercial bank{comma} savings bank{comma} 6 or savings association, 71 - Credit union{comma} mortgage company{comma} 72 or finance company, 72 - Life insurance company, 8 - Affiliate institution, 9 - Other type of purchaser, 
+
+1 - High-cost mortgage, 2 - Not a high-cost mortgage , 3 - Not applicable, 
+
+1 - Equifax Beacon 5.0, 2 - Experian Fair Isaac Risk Model v2 3 , 3 - TransUnion FICO Risk Score Classic 04, 4 - TransUnion FICO Risk Score Classic 98, 5 - VantageScore 2.0, 6 - VantageScore 3.0, 7 - More than one credit scoring model, 8 - Other credit scoring model, 9 - Not applicable , 1111 - Exempt, | Credit Score
+
+1 - Debt{hyphen}to{hyphen}income ratio, 2 - Employment history, 3 - Credit history, 4 - Collateral, 5 - Insufficient cash (downpayment{comma} closing costs), 6 - Unverifiable information , 7 - Credit application incomplete , 8 - Mortgage insurance denied, 9 - Other, 10 - Not applicable, 1111 - Exempt, | Reason for Denial
+
+1 - Balloon payment, 2 - No balloon payment , 1111 - Exempt, | Non- Amortizing Features
+
+1 - Interest{hyphen}only payments, 2 - No interest{hyphen}only payments , 1111 - Exempt, | Non- Amortizing Features
+
+1 - Negative amortization, 2 - No negative amortization , 1111 - Exempt, | Non{hyphen}Amortizing Features
+
+1 - Other non{hypen}fully amortizing features , 2 - No other non{hypen}fully amortizing features , 1111 - Exempt, |  Non{hyphen}Amortizing Features
+
+1 - Manufactured home and land, 2 - Manufactured home and not land , 3 - Not applicable, 1111 - Exempt, | 
+
+1 - Direct ownership, 2 - Indirect ownership, 3 - Paid leasehold, 4 - Unpaid leasehold, 5 - Not applicable , 1111 - Exempt, | 
+
+1 - Submitted directly to your institution, 2 - Not submitted directly to your institution, 3 - Not applicable, 1111 - Exempt, 
+
+1 -  Desktop Underwriter (DU), 2 -  Loan Prospector (LP) or Loan Product Advisor, 3 -  Technology Open to Approved Lenders (TOTAL) Scorecard, 4 -  Guaranteed Underwriting System 6 (GUS), 5 -  Other, 6 -  Not applicable, 7 -  Internal Proprietary System, 1111 -  Exempt, | Automated Underwriting System
+
+1 -  Desktop Underwriter (DU), 2 -  Loan Prospector (LP) or Loan Product Advisor, 3 -  Technology Open to Approved Lenders (TOTAL) Scorecard, 4 -  Guaranteed Underwriting System 6 (GUS), 5 -  Other, 7 -  Internal Proprietary System | Automated Underwriting System
+
+1 -  Approve/Eligible, 2 -  Approve/Ineligible , 3 -  Refer/Eligible, 4 -  Refer/Ineligible, 5 -  Refer with Caution , 6 -  Out of Scope, 7 -  Error, 8 -  Accept, 9 -  Caution , 10 -  Ineligible, 11 -  Incomplete, 12 -  Invalid, 13 -  Refer, 14 -  Eligible, 15 -  Unable to Determine or Unknown, 16 -  Other, 17 -  Not Applicable, 18 -  Accept/Eligible, 19 -  Accept/Ineligible, 20 -  Accept/Unable to Determine, 21 -  Refer with Caution/Eligible, 22 -  Refer with Caution/Ineligible, 23 -  Refer/Unable to Determine, 24 -  Refer with Caution/Unable to Determine, 1111 -  Exempt, |  Automated Underwriting System
+
+1 - Reverse mortgage ,  2 - Not a reverse mortgage, 1111 - Exempt, | 
+
+1 - Open{hyphen}end line of credit, 2 - Not an open{hyphen}end line of credit, 1111 - Exempt, | 
+
+1 - Primarily for a business or commercial purpose, 2 - Not primarily for a business or commercial purpose , 1111 - Exempt, |

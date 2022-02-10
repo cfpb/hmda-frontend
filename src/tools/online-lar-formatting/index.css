@@ -1,0 +1,124 @@
+/* App */
+.error {
+  margin-bottom: 1em;
+  padding: 1em;
+  border: 1px solid rgb(106, 8, 128);
+  border-left-width: 10px;
+  color: rgb(106, 8, 128);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.error .close {
+  margin-left: auto;
+}
+
+.file-actions > button:not(:first-of-type) {
+  margin-left: 1em;
+}
+.file-actions > button {
+  margin-top: 0;
+}
+
+/* RawRow */
+.raw-row button {
+  margin-top: .5em;
+}
+.raw-row #rawArea {
+  width: 100%;
+  min-height: 150px;
+}
+.raw-row .editing {
+  margin-bottom: 10px;
+  color: rgb(35, 123, 152);
+}
+.raw-row .editing .highlight {
+  font-weight: bold;
+  font-style: italic;
+  color: black;
+}
+.raw-row .save-row {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+.raw-row label > button:not(:first-of-type) {
+  margin-left: 1em;
+}
+
+/* ParsedRow */
+.parsed-row .section-heading {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 1.3em 0;
+}
+.parsed-row .section-heading > * {
+  margin: 0;
+  padding: 0;
+  height: 2em;
+  line-height: 2em;
+}
+.parsed-row .section-heading button.clear,
+.parsed-row .section-heading input {
+  margin-left: 2em;
+}
+.parsed-row .section-heading button.clear {
+  line-height: normal;
+  padding: 5px 1em;
+  vertical-align: middle;
+}
+.parsed-row .section-heading input {
+  padding: 0 0.3em;
+}
+.parsed-row .table-wrapper,
+.parsed-row table,
+.parsed-row tbody {
+  overflow: scroll;
+}
+.parsed-row table {
+  position: relative;
+}
+.parsed-row thead {
+  position: sticky;
+  top: 0;
+}
+.parsed-row tbody {
+  margin-top: 0;
+}
+.parsed-row tr {
+  scroll-margin-top: 4em;
+}
+.parsed-row .fieldIndex {
+  width: 6em;
+}
+.parsed-row .fieldName {
+  width: 40%;
+}
+.parsed-row .highlight {
+  background: lightblue;
+}
+
+/* SavedRows */
+.saved-rows,
+.saved-rows > table {
+  white-space: nowrap;
+  width: 100%;
+}
+.saved-rows .react-fluid-table-row:hover {
+  cursor: pointer;
+  background-color: lightgrey;
+}
+.saved-rows th:first-child, 
+.saved-rows td:first-child {
+  width: 10%;
+}
+.saved-rows .highlight > * {
+  background-color: lightblue;
+}
+.saved-rows .no-records {
+  width: 100%;
+  padding: 5px;
+  padding-left: 0px;
+}
