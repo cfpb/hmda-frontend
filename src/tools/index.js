@@ -8,6 +8,7 @@ import RateSpreadRequirements from './rate-spread/Requirements'
 import RateSpreadMethodology from './rate-spread/Methodology'
 import FFVT from './file-format-verification/index'
 import LARFormatting from './lar-formatting/index'
+import { OnlineLARFT } from './online-lar-formatting'
 
 import './index.css'
 
@@ -28,6 +29,7 @@ const Tools = () => {
         <Route path="/tools/rate-spread" component={RateSpread} />
         <Route path="/tools/file-format-verification" component={FFVT} />
         <Route path="/tools/lar-formatting" component={LARFormatting} />
+        <Route path="/tools/online-lar-formatting" component={OnlineLARFT} />
       </Switch>
     </div>
   )

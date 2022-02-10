@@ -10642,6 +10642,13 @@ react-fast-compare@^2.0.2:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
 
+react-fluid-table@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/react-fluid-table/-/react-fluid-table-0.4.2.tgz#3ff9f29a1bf00ae2a4c03bc16f985b2bfef9282a"
+  integrity sha512-f+Mw4ZH3RWM0POk9q9x8iaudLzW2qW7p5cl6eCfJPbbhV3cxSKSIFnzMij4U4fmed4gTfTvZ+bv3m7JbxBN19A==
+  dependencies:
+    react-window "^1.8.5"
+
 react-helmet@5.2.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/react-helmet/-/react-helmet-5.2.1.tgz#16a7192fdd09951f8e0fe22ffccbf9bb3e591ffa"
@@ -10850,7 +10857,7 @@ react-transition-group@^4.3.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react-window@1.8.6:
+react-window@1.8.6, react-window@^1.8.5:
   version "1.8.6"
   resolved "https://registry.yarnpkg.com/react-window/-/react-window-1.8.6.tgz#d011950ac643a994118632665aad0c6382e2a112"
   integrity sha512-8VwEEYyjz6DCnGBsd+MgkD0KJ2/OXFULyDtorIiTz+QzwoP94tBoA7CnbtyXMm+cCeAUER5KJcPtWl9cpKbOBg==
