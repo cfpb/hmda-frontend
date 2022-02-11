@@ -25,9 +25,9 @@ import './index.css'
 // √ - Each imported row needs an `id
 // √ - Do everything by ID
 // √ - Bug: Update the `Update` button for the currently selected object on Clear Saved
+// √ - On Upload, Clear Saved
+//  √ - If TS/LAR, confirm overwrite
 // - Provide search for LAR/TS
-// - On Upload, Clear Saved
-//  - If TS/LAR, confirm overwrite
 // - On Download
 //  - Provide file dialog?
 // - Provide date selector for Date fields
@@ -113,6 +113,8 @@ export const OnlineLARFT = () => {
   }
 
   const deleteRow = _row => {
+    const confirm = window.confirm('Are you sure you want to delete this row?')
+    if (!confirm) return
     log('Deleting ', _row)
     if (isTS(_row)) setTS([])
     else {
@@ -164,7 +166,15 @@ export const OnlineLARFT = () => {
         <FileUpload onContentReady={saveUpload} />
         <button
           className='import'
-          onClick={() => document.getElementById('file-upload')?.click()}
+          onClick={() => {
+            if (ts.length || lars.length) {
+              const confirm = window.confirm(
+                'Uploading a file will overwrite your current filing data.  Are you sure?'
+              )
+              if (!confirm) return
+            }
+            document.getElementById('file-upload')?.click()
+          }}
         >
           Upload File
         </button>
@@ -197,6 +207,12 @@ export const OnlineLARFT = () => {
         <button
           className='clear-saved'
           onClick={() => {
+            if (ts.length || lars.length) {
+              const confirm = window.confirm(
+                'This will delete all current filing data. Are you sure?'
+              )
+              if (!confirm) return
+            }
             setTS([])
             setLARs([])
             newRow()
