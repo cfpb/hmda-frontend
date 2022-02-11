@@ -1,5 +1,5 @@
-import React from 'react'
-import { getSchema } from './utils'
+import React, { useMemo } from 'react'
+import { getSchema, log } from './utils'
 import { Table } from 'react-fluid-table'
 
 const tableHeight = rows => {
@@ -23,10 +23,14 @@ const Section = ({ title, rows, highlightSelected, setSelected }) => {
   else {
     columns.unshift({ key: 'rowId', header: 'Row #', width: 100 })
 
-    const injectedRows = rows.map((x, idx) => ({
-      ...x,
-      rowId: (idx + 1).toString(),
-    }))
+    // This memoization seems to fix the major performance bottle n
+    const injectedRows = useMemo(() => {
+      log(`Calculating row IDs: ${title}`)
+      return rows.map((x, idx) => ({
+        ...x,
+        rowId: (idx + 1).toString(),
+      }))}, [rows]
+    )
 
     body = (
       <Table
