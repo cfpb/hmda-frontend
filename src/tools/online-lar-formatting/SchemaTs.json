@@ -33,9 +33,7 @@
       "fieldName": "Calendar Year",
       "fieldLength": 255,
       "fieldType": "Alphanumeric",
-      "examples": [
-        "2021"
-      ],
+      "examples": [],
       "values": [
         {
           "value": "2019",

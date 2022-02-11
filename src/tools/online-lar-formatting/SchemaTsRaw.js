@@ -3,7 +3,7 @@
 const TS_SCHEMA_RAW = `
 "Record Identifier"                               | ts.id.toString | 1 - TS, 2 - LAR
 "Financial Institution Name"                      | ts.institutionName | Ficus Bank
-"Calendar Year"                                   | ts.year.toString | Numeric-2021,2019 - 2019,2020 - 2020,2021 - 2021,2022 - 2022 
+"Calendar Year"                                   | ts.year.toString | 2019 - 2019,2020 - 2020,2021 - 2021,2022 - 2022 
 "Calendar Quarter"                                | ts.quarter.toString | 1 - Q1, 2 - Q2, 3 - Q3, 4 - Annual
 "Contact Person's Name"                           | ts.contact.name | Erika Otis
 "Contact Person's Phone Number"                   | ts.contact.phone | 999{hyphen}999{hyphen}9999
