@@ -32,12 +32,20 @@ export const RawRow = ({
   setCurrCol,
   saveRow,
   newRow,
-  deleteRow
+  deleteRow,
+  id='raw-row'
 }) => {
   return (
-    <div className='raw-row'>
+    <div className='raw-row' id={id}>
+      <h3
+        className='clickable'
+        onClick={() =>
+          document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+        }
+      >
+        Submission File Row
+      </h3>
       <label htmlFor='rawArea'>
-        <h3>Submission File Row</h3>
         <div>
           {row.rowId ? 'Editing' : 'Creating'}{' '}
           {row['Record Identifier'] === '1'

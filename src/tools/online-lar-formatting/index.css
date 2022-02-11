@@ -1,4 +1,7 @@
 /* App */
+.clickable:hover {
+  cursor: pointer;
+}
 .error {
   margin-bottom: 1em;
   padding: 1em;
