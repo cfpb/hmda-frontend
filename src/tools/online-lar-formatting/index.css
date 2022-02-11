@@ -42,8 +42,14 @@
   margin-top: 0px;
   margin-bottom: 10px;
 }
-.raw-row label > button:not(:first-of-type) {
-  margin-left: 1em;
+.raw-row .action-wrapper button:not(:first-of-type) {
+  margin-left: .5em;
+}
+
+.raw-row .action-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 }
 
 /* ParsedRow */

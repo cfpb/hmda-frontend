@@ -46,23 +46,64 @@ export const RawRow = ({
             ? `LAR row ${row.rowId}`
             : 'new LAR row'}
         </div>
-        <button
-          className='save-row'
-          onClick={() => {
-            saveRow(row)
-            newRow()
-          }}
-        >
-          {row?.rowId ? `Update Row ${row.rowId}` : 'Save Row'}
-        </button>
-        {row.rowId > -1 && (
-          <button className='delete-row' onClick={() => deleteRow(row)}>
-            {`Delete Row ${row.rowId}`}
-          </button>
-        )}
-        <button className='new-row' onClick={newRow}>
-          New Row
-        </button>
+        <div className='action-wrapper'>
+          <div className='row-actions'>
+            <button
+              className='save-row'
+              onClick={() => {
+                saveRow(row)
+                newRow()
+              }}
+            >
+              {row?.rowId ? `Update Row ${row.rowId}` : 'Save Row'}
+            </button>
+            {row.rowId > -1 && (
+              <button className='delete-row' onClick={() => deleteRow(row)}>
+                {`Delete Row ${row.rowId}`}
+              </button>
+            )}
+            <button className='new-row' onClick={newRow}>
+              New Row
+            </button>
+          </div>
+          <div className='textarea-actions'>
+            <button
+              className='copy'
+              onClick={() => {
+                const el = grabRawArea()
+                if (navigator?.clipboard?.writeText) {
+                  navigator.clipboard.writeText(el?.value).then(
+                    _success => console.log('Success'),
+                    _failed => console.error('Failed')
+                  )
+                } else {
+                  el.select()
+                  document.execCommand('copy')
+                }
+              }}
+            >
+              Copy to Clipboard
+            </button>
+            <button
+              className='paste'
+              onClick={() => {
+                if (navigator?.clipboard?.readText) {
+                  navigator.clipboard
+                    .readText()
+                    .then(clipText => setRow(parseRow(clipText)))
+                } else {
+                  document.getElementById('paste-button-input')
+                  el.select()
+                  document.execCommand('paste')
+                  var event = new Event('change')
+                  el.dispatchEvent(event)
+                }
+              }}
+            >
+              Paste from Clipboard
+            </button>
+          </div>
+        </div>
       </label>
       {!!currCol?.toString() && (
         <div className='editing'>
@@ -75,11 +116,20 @@ export const RawRow = ({
         id='rawArea'
         value={stringifyRow(row)}
         onChange={e =>
-          setRow({ ...parseRow(e.target.value.trim()), id: row?.id, rowId: row.rowId })
+          setRow({
+            ...parseRow(e.target.value.trim()),
+            id: row?.id,
+            rowId: row.rowId,
+          })
         }
         onClick={() => updateCurrentColumn(setCurrCol, row)}
         onKeyUp={() => updateCurrentColumn(setCurrCol, row)}
       />
+      <textarea
+        id='paste-button-input'
+        hidden
+        onChange={e => setRow(parseRow(e.target.value))}
+      ></textarea>
     </div>
   )
 }
