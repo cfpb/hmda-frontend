@@ -19,7 +19,7 @@ const buildOptions = column => {
   return vals
 }
 
-export const ParsedRow = ({ row, setRow, currCol }) => {
+export const ParsedRow = ({ id='parsed-row', row, setRow, currCol }) => {
   const [filter, setFilter] = useState('')
 
   // Smoothly bring the focused field into view
@@ -123,9 +123,16 @@ export const ParsedRow = ({ row, setRow, currCol }) => {
     })
 
   return (
-    <div className='parsed-row'>
+    <div className='parsed-row' id={id}>
       <div className='section-heading'>
-        <h3 className='title'>Parsed Field Values</h3>
+        <h3
+          className='title clickable'
+          onClick={() =>
+            document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+          }
+        >
+          Parsed Field Values
+        </h3>
         <input
           type='text'
           name='filter'
@@ -152,7 +159,10 @@ export const ParsedRow = ({ row, setRow, currCol }) => {
       >
         <table
           onSubmit={e => e.preventDefault()}
-          style={{ height: window.innerHeight * 0.1, borderCollapse: 'separate' }}
+          style={{
+            height: window.innerHeight * 0.1,
+            borderCollapse: 'separate',
+          }}
         >
           <thead>
             <tr>

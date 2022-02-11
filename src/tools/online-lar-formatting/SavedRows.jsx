@@ -7,7 +7,7 @@ const tableHeight = rows => {
   return Math.min(rows.length * 2, 10)
 }
 
-const Section = ({ title, rows, highlightSelected, setSelected }) => {
+const Section = ({ id, title, rows, highlightSelected, setSelected }) => {
   let body
 
   const columns = rows.length
@@ -45,8 +45,16 @@ const Section = ({ title, rows, highlightSelected, setSelected }) => {
   }
 
   return (
-    <div className='section'>
-      {title && <h3>{title}</h3>}
+    <div className='section' id={id}>
+      {title && (
+        <h3 className='clickable'
+          onClick={() =>
+            document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+          }
+        >
+          {title}
+        </h3>
+      )}
       {body || null}
     </div>
   )
