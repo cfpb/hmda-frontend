@@ -11,7 +11,7 @@ const getType = ({ fieldType }) => {
 const buildOptions = column => {
   const vals = column.values.map(({ value, description }) => (
     <option value={value} key={value}>
-      {value} - {description}
+      {value === description ? value : `${value} - ${description}`}
     </option>
   ))
 
