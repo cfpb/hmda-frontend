@@ -17,6 +17,10 @@
   margin-left: auto;
 }
 
+.file-actions {
+  padding-top: 5px;
+}
+
 .file-actions > button:not(:first-of-type) {
   margin-left: 1em;
 }
@@ -25,6 +29,9 @@
 }
 
 /* RawRow */
+.action-wrapper.raw {
+  margin-top: 1em;
+}
 .raw-row button {
   margin-top: .5em;
 }
@@ -61,7 +68,7 @@
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: center;
-  margin: 1.3em 0;
+  margin: 1.3em 0 5px 0;
 }
 .parsed-row .section-heading > * {
   margin: 0;
@@ -130,4 +137,18 @@
   width: 100%;
   padding: 5px;
   padding-left: 0px;
+}
+.saved-rows .search-box input {
+  margin-left: 1em;
+  border-radius: 8px;
+  text-align: center;
+  padding: .1em;
+}
+.saved-rows .search-box button {
+  margin: 0 0 0 .5em;
+  padding: .4em .75em;
+  border-radius: 8px;
+}
+.saved-rows .highlight-match {
+  background: lightcoral;
 }
