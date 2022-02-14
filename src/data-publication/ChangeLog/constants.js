@@ -4,6 +4,7 @@ export const PRODUCT_NAMES = {
   reports: 'Reports',
   documentation: 'Documentation',
   tools: 'HMDA Tools',
+  filing: 'HMDA Filing',
 }
 
 
