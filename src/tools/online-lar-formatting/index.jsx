@@ -17,6 +17,7 @@ import { SavedRows } from './SavedRows'
 import { FileUpload } from './FileUpload'
 import { Header } from './Header'
 import { Error } from './Error'
+import { useRestyledButtonLinks } from './useRestyledButtonLinks'
 
 import './index.css'
 
@@ -24,23 +25,22 @@ import './index.css'
 // TODO:
 // √ - Each imported row needs an `id
 // √ - Do everything by ID
-// √ - Bug: Update the `Update` button for the currently selected object on Clear Saved
+// √ - Bug: `Update` button incorrect on `Clear Saved`
 // √ - On Upload, Clear Saved
 //  √ - If TS/LAR, confirm overwrite
-// - Provide search for LAR/TS
+// √ - Provide search for LAR
+// √- Provide date selector for Date fields
+// - Provide search for TS?
 // - On Download
 //  - Provide file dialog?
-// - Provide date selector for Date fields
-//  - fieldName.toLowerCase().includes('date')
-//  - format: yyyymmdd
 // - Example/Enumerations in `info` button/column
 
-const focusAtZero = () =>
-  setTimeout(() => {
-    const el = document.getElementById('rawArea')
-    el.focus()
-    el.selectionEnd = 0
-  }, 0)
+const focusAtZero = () => null
+  // setTimeout(() => {
+  //   const el = document.getElementById('rawArea')
+  //   el.focus()
+  //   el.selectionEnd = 0
+  // }, 0)
 
 export const OnlineLARFT = () => {
   const [ts, setTS] = useState([])
@@ -48,6 +48,7 @@ export const OnlineLARFT = () => {
   const [selected, setSelected] = useState(parseRow(ts.length ? '2|' : '1|'))
   const [currCol, setCurrCol] = useState()
   const [fileError, setFileError] = useState()
+  useRestyledButtonLinks()
 
   const newRow = () => {
     const nextRow = parseRow(ts.length ? '2|' : '1|')
@@ -162,7 +163,7 @@ export const OnlineLARFT = () => {
       {fileError && (
         <Error text={fileError} onClick={() => setFileError(null)} />
       )}
-      <div className='file-actions'>
+      <div className='file-actions' id='file-actions'>
         <FileUpload onContentReady={saveUpload} />
         <button
           className='import'
@@ -237,7 +238,6 @@ export const OnlineLARFT = () => {
         saveRow={saveRow}
         deleteRow={deleteRow}
       />
-      <ParsedRow currCol={currCol} row={selected} setRow={setSelected} />
     </div>
   )
 }
