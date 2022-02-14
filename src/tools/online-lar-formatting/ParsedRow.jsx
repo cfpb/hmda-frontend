@@ -19,6 +19,14 @@ const buildOptions = column => {
   return vals
 }
 
+const toJsDateString = str => {
+  if (!str) return ''
+  console.log('Date string: ', `${str.slice(0,4)}-${str.slice(4,6)}-${str.slice(6)}`)
+  
+  return `${str.slice(0,4)}-${str.slice(4,6)}-${str.slice(6)}`
+  
+}
+
 export const ParsedRow = ({ id='parsed-row', row, setRow, currCol }) => {
   const [filter, setFilter] = useState('')
 
@@ -27,7 +35,7 @@ export const ParsedRow = ({ id='parsed-row', row, setRow, currCol }) => {
     const el = document.getElementById(`${currCol?.fieldName}`)
     el?.parentElement?.parentElement?.scrollIntoView({
       block: 'nearest',
-      behavior: 'smooth',
+      behavior: 'auto',
     })
     if (el) el.parentElement.parentElement.style = {}//.transform = `translateY(0px)`
   }, [currCol])
@@ -53,8 +61,29 @@ export const ParsedRow = ({ id='parsed-row', row, setRow, currCol }) => {
       const { examples, values } = column
       let userInput
 
-      // Field allows freeform text but also has enumerated values
-      if (examples.length && values.length) {
+      // Date field
+      if (column.fieldName?.includes('Date')){
+        userInput = (
+          <input
+            type='date'
+            name={column.fieldName}
+            id={column.fieldName}
+            onChange={e => {
+              _onChange({
+                target: {
+                  id: e.target.id,
+                  value: e.target.value?.replaceAll('-', ''),
+                },
+              })
+            }}
+            value={toJsDateString(
+              rowValues[column.fieldName]?.toString() || ''
+            )}
+          />
+        )  
+        }
+        // Field allows freeform text but also has enumerated values
+      else if (examples.length && values.length) {
         userInput = (
           <input
             type={getType(column)}
@@ -72,6 +101,7 @@ export const ParsedRow = ({ id='parsed-row', row, setRow, currCol }) => {
           />
         )
       } else if (values.length) {
+        // Enumerations only
         userInput = (
           <select
             name={column.fieldName}
@@ -87,6 +117,7 @@ export const ParsedRow = ({ id='parsed-row', row, setRow, currCol }) => {
           </select>
         )
       } else {
+        // Examples only
         userInput = (
           <input
             type={getType(column)}
@@ -128,10 +159,10 @@ export const ParsedRow = ({ id='parsed-row', row, setRow, currCol }) => {
         <h3
           className='title clickable'
           onClick={() =>
-            document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+            document.getElementById('raw-row')?.scrollIntoView({ behavior: 'smooth' })
           }
         >
-          Parsed Field Values
+          Parsed Values
         </h3>
         <input
           type='text'
