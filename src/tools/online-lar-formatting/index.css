@@ -29,6 +29,11 @@
 }
 
 /* RawRow */
+.raw-row { 
+  margin-top: 2em;
+  border-top: 3px solid #0071bc;
+}
+
 .action-wrapper.raw {
   margin-top: 1em;
 }
