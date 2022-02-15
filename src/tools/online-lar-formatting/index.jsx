@@ -222,6 +222,7 @@ export const OnlineLARFT = () => {
           Clear Saved
         </button>
       </div>
+      <h2 className="saved">Saved Records</h2>
       <SavedRows
         ts={ts}
         lars={lars}

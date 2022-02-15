@@ -49,7 +49,7 @@ export const RawRow = ({
 }) => {
   return (
     <div className='raw-row' id={id}>
-      <h3
+      <h2
         className='clickable'
         onClick={() =>
           document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -59,9 +59,9 @@ export const RawRow = ({
         {row['Record Identifier'] === '1'
           ? 'Transmittal Sheet'
           : row.rowId
-          ? `LAR row ${row.rowId}`
-          : 'a new LAR row'}
-      </h3>
+          ? `LAR Row ${row.rowId}`
+          : 'a new LAR Row'}
+      </h2>
       <div className='action-wrapper parsed'>
         <div className='row-actions'>
           <button
