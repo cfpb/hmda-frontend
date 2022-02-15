@@ -1,6 +1,12 @@
 {
   "log": [
     {
+      "date": "02/10/22",
+      "type": "correction",
+      "product": "filing",
+      "description": "Edit V719 has been added to check the format of the financial institution name in the transmittal sheet. It should be alphanumeric, and not just numeric. Additionally, a new Automated Underwriting System (AUS) value (Internal Proprietary System) has been added based on previous HMDA year inputs in the AUS free form text field. The edit V696 has been updated to include this new value. As well, a parser check has been added that explains when dates are in an invalid format."
+    },
+    {
       "date": "10/20/21",
       "type": "update",
       "product": "documentation",
