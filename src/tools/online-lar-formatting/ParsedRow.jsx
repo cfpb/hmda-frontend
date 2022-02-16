@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { getSchema, parseRow } from './utils'
+import { cloneObjectArray, getSchema, parseRow } from './utils'
 import { useEffect } from 'react'
+import { Accordion } from './Accordion'
 
 const getType = ({ fieldType }) => {
   if (fieldType == 'Alphanumeric') return 'text'
@@ -25,6 +26,73 @@ const toJsDateString = str => {
   
   return `${str.slice(0,4)}-${str.slice(4,6)}-${str.slice(6)}`
   
+}
+
+const MoreInfo = ({ field }) => {
+  if (!field) return null
+  const { examples = [], values = [] } = field
+  const _examples = []
+  let _values = cloneObjectArray(values)
+  let _descriptions = []
+  
+  examples.forEach(curr => {
+    if (typeof curr === 'string') {
+      const [ex, ...enums] = curr.split(' (or) ')
+      if (ex.match(/^Specify/)) _descriptions.push(<li>{ex}</li>)
+      else if (ex) _examples.push(<li>{ex}</li>)
+
+      // Fields that have both enums and free text
+      if (enums?.length) {
+        if (_values?.append)
+          _values.append(enums.map(e => ({ value: e, description: e })))
+        else
+          _values = enums.map(e => ({ value: e, description: e }))
+      }
+    }
+  })
+
+ 
+
+  const Examples = _examples.length ? (
+    <div className='examples'>
+      <h3>Examples</h3>
+      <ul>{_examples}</ul>
+    </div>
+  ) : null
+
+  const Description = _descriptions.length ? (
+    <div className='descriptions'>
+      <h3>Field Description</h3>
+      <ul>{_descriptions}</ul>
+    </div>
+  ) : null
+
+  const valueRows = _values.map(v => {
+    return <tr><td>{v.value}</td><td>{v.description}</td></tr>
+  })
+
+  const Values = _values.length ? (
+    <div className='values'>
+      <h3>Enumerations</h3>
+      <table className='values'>
+        <thead>
+          <tr>
+            <th>Value</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>{valueRows}</tbody>
+      </table>
+    </div>
+  ) : null
+
+  return (
+    <div className='more-info'>
+      {Examples}
+      {Description}
+      {Values}
+    </div>
+  )
 }
 
 export const ParsedRow = ({ id='parsed-row', row, setRow, currCol }) => {
@@ -144,11 +212,16 @@ export const ParsedRow = ({ id='parsed-row', row, setRow, currCol }) => {
             <label htmlFor={column.fieldName}>{column.fieldIndex + 1}</label>
           </td>
           <td className={'fieldName ' + highlightClass}>
-            <label htmlFor={column.fieldName}>{column.fieldName}</label>
+            <label htmlFor={column.fieldName}>
+              <Accordion
+                heading={column.fieldName}
+                content={<MoreInfo field={column} />}
+                id={`${column.fieldIndex}`}
+                width='100%'
+              />
+            </label>
           </td>
-          <td className={'fieldValue ' + highlightClass}>
-            {userInput}
-          </td>
+          <td className={'fieldValue ' + highlightClass}>{userInput}</td>
         </tr>
       )
     })
