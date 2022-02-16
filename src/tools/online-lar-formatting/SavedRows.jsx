@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react'
-import { getSchema, log, LAR_SCHEMA } from './utils'
+import { getSchema, log, LAR_SCHEMA, goToFileActions } from './utils'
 import { Table } from 'react-fluid-table'
 
 const tableHeight = rows => {
@@ -70,9 +70,7 @@ const Section = ({ id, title, rows, highlightSelected, setSelected }) => {
       {title && (
         <h3
           className='clickable'
-          onClick={() =>
-            document.getElementById('file-actions')?.scrollIntoView({ behavior: 'smooth' })
-          }
+          onClick={goToFileActions}
         >
           {title} {rowCount}
           <span className='search-box'>

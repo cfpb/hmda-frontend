@@ -1,5 +1,5 @@
 import React from 'react'
-import { getSchema, parseRow, stringifyRow } from './utils'
+import { getSchema, goTo, goToFileActions, parseRow, stringifyRow } from './utils'
 import { ParsedRow } from './ParsedRow'
 
 const CurrentColumn = ({ column }) => {
@@ -37,6 +37,7 @@ const updateCurrentColumn = (setFn, row) => {
   setFn(getSchema(row)[colNum])
 }
 
+// TODO: Rename => EditingRow
 export const RawRow = ({
   row,
   setRow,
@@ -49,12 +50,7 @@ export const RawRow = ({
 }) => {
   return (
     <div className='raw-row' id={id}>
-      <h2
-        className='clickable'
-        onClick={() =>
-          document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-        }
-      >
+      <h2 className='clickable' onClick={() => goTo('raw-row')}>
         {row.rowId ? 'Editing' : 'Creating'}{' '}
         {row['Record Identifier'] === '1'
           ? 'Transmittal Sheet'
@@ -85,14 +81,7 @@ export const RawRow = ({
       </div>
 
       <ParsedRow currCol={currCol} row={row} setRow={setRow} />
-      <h3
-        className='title clickable'
-        onClick={() =>
-          document
-            .getElementById('raw-row')
-            ?.scrollIntoView({ behavior: 'smooth' })
-        }
-      >
+      <h3 className='title clickable' onClick={() => goTo('raw-row')}>
         Pipe-Delimited Values
       </h3>
       <div className='action-wrapper raw'>

@@ -61,3 +61,6 @@ export const parseRow = (row = {}) => {
     return prev
   }, {})
 }
+
+export const goTo = id => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+export const goToFileActions = () => goTo('file-actions')

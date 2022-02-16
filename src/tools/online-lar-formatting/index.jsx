@@ -11,7 +11,8 @@ import {
   createID,
   isTS,
   isLAR,
-  log
+  log,
+  goToFileActions
 } from './utils'
 import { SavedRows } from './SavedRows'
 import { FileUpload } from './FileUpload'
@@ -224,7 +225,7 @@ export const OnlineLARFT = () => {
           Clear Saved
         </button>
       </div>
-      <h2 className="saved">Saved Records</h2>
+      <h2 className="saved clickable" onClick={goToFileActions}>Saved Records</h2>
       <SavedRows
         ts={ts}
         lars={lars}
