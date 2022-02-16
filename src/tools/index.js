@@ -28,8 +28,8 @@ const Tools = () => {
         />
         <Route path="/tools/rate-spread" component={RateSpread} />
         <Route path="/tools/file-format-verification" component={FFVT} />
-        <Route path="/tools/lar-formatting" component={LARFormatting} />
-        <Route path="/tools/online-lar-formatting" component={OnlineLARFT} />
+        {/* <Route path="/tools/lar-formatting" component={LARFormatting} /> */}
+        <Route path="/tools/lar-formatting" component={OnlineLARFT} />
       </Switch>
     </div>
   )
