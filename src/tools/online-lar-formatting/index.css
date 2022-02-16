@@ -115,10 +115,48 @@
   width: 6em;
 }
 .parsed-row .fieldName {
-  width: 40%;
+  width: 50%;
+}
+.parsed-row .accordion-bordered > li{
+  background-color: inherit;
+}
+.parsed-row .accordion-bordered .accordion-button {
+  background-color: white !important;
+  border-left: 5px solid white;
+}
+.parsed-row .accordion-bordered .accordion-button:hover {
+  color: black;
+  border-left: 5px dotted  darkolivegreen;
+  background-color: lightgoldenrodyellow !important;
 }
 .parsed-row .highlight {
-  background: lightblue;
+  background: rgb(145, 206, 226);
+}
+
+.parsed-row .table-wrapper > table > thead {
+  z-index: 1;
+}
+.more-info h3 {
+  border-top: 1px dotted lightblue;
+  padding-top: 8px;
+
+}
+.more-info h3::before {
+  content: "» ";
+}
+.more-info h3 , .more-info th {
+  font-size: 1.7rem;
+}
+.more-info h3, .more-info table {
+  margin-top: 1em;
+}
+.more-info .values {
+  margin-top: 1.5em;
+  width: 100%;
+}
+.more-info .values, .more-info .values td {
+  border-color: grey;
+
 }
 
 /* SavedRows */
