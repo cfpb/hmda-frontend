@@ -133,6 +133,9 @@
   background: rgb(145, 206, 226);
 }
 
+.parsed-row .table-wrapper > table {
+  width: 100%;
+}
 .parsed-row .table-wrapper > table > thead {
   z-index: 1;
 }
