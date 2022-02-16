@@ -18,6 +18,7 @@ import { FileUpload } from './FileUpload'
 import { Header } from './Header'
 import { Error } from './Error'
 import { useRestyledButtonLinks } from './useRestyledButtonLinks'
+import { collapseAll } from './Accordion'
 
 import './index.css'
 
@@ -30,10 +31,10 @@ import './index.css'
 //  √ - If TS/LAR, confirm overwrite
 // √ - Provide search for LAR
 // √- Provide date selector for Date fields
+// √ - Example/Enumerations in `info` button/column
 // - Provide search for TS?
 // - On Download
 //  - Provide file dialog?
-// - Example/Enumerations in `info` button/column
 
 const focusAtZero = () => null
   // setTimeout(() => {
@@ -56,6 +57,7 @@ export const OnlineLARFT = () => {
 
     setSelected(nextRow)
     setCurrCol(getSchema(nextRow)[0])
+    collapseAll()
   }
 
   const saveRow = _row => {
