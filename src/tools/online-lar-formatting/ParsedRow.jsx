@@ -95,7 +95,7 @@ const MoreInfo = ({ field }) => {
   )
 }
 
-export const ParsedRow = ({ id='parsed-row', row, setRow, currCol }) => {
+export const ParsedRow = ({ id='parsed-row', row, setRow, currCol, setCurrCol }) => {
   const [filter, setFilter] = useState('')
 
   // Smoothly bring the focused field into view
@@ -105,13 +105,17 @@ export const ParsedRow = ({ id='parsed-row', row, setRow, currCol }) => {
       block: 'nearest',
       behavior: 'auto',
     })
-    if (el) el.parentElement.parentElement.style = {}//.transform = `translateY(0px)`
+    if (el) el.parentElement.parentElement.style = {}
   }, [currCol])
 
   const _onChange = e => {
     const newRow = { ...row }
     newRow[e.target.id] = e.target.value
     setRow(newRow)
+  }
+
+  const focusOnColumn = (col) => {
+    if (currCol?.fieldIndex !== col?.fieldIndex) setCurrCol(col)
   }
 
   const rowValues = parseRow(row)
@@ -207,6 +211,7 @@ export const ParsedRow = ({ id='parsed-row', row, setRow, currCol }) => {
           key={column.fieldName}
           className={highlightClass}
           key={column.fieldName}
+          onClick={() => focusOnColumn(column)}
         >
           <td className={'fieldIndex ' + highlightClass}>
             <label htmlFor={column.fieldName}>{column.fieldIndex + 1}</label>
@@ -217,7 +222,6 @@ export const ParsedRow = ({ id='parsed-row', row, setRow, currCol }) => {
                 heading={column.fieldName}
                 content={<MoreInfo field={column} />}
                 id={`${column.fieldIndex}`}
-                width='100%'
               />
             </label>
           </td>

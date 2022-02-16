@@ -80,7 +80,12 @@ export const RawRow = ({
         </div>
       </div>
 
-      <ParsedRow currCol={currCol} row={row} setRow={setRow} />
+      <ParsedRow
+        currCol={currCol}
+        row={row}
+        setRow={setRow}
+        setCurrCol={setCurrCol}
+      />
       <h3 className='title clickable' onClick={() => goTo('raw-row')}>
         Pipe-Delimited Values
       </h3>
