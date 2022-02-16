@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { cloneObjectArray, getSchema, parseRow } from './utils'
 import { useEffect } from 'react'
-import { Accordion } from './Accordion'
+import { Accordion, collapseAll } from './Accordion'
 
 const getType = ({ fieldType }) => {
   if (fieldType == 'Alphanumeric') return 'text'
@@ -232,7 +232,9 @@ export const ParsedRow = ({ id='parsed-row', row, setRow, currCol }) => {
         <h3
           className='title clickable'
           onClick={() =>
-            document.getElementById('raw-row')?.scrollIntoView({ behavior: 'smooth' })
+            document
+              .getElementById('raw-row')
+              ?.scrollIntoView({ behavior: 'smooth' })
           }
         >
           Parsed Values
@@ -270,8 +272,15 @@ export const ParsedRow = ({ id='parsed-row', row, setRow, currCol }) => {
         >
           <thead>
             <tr>
-              <th>Column #</th>
-              <th>Label</th>
+              <th>Column</th>
+              <th className='space-between'>
+                <span>Label</span>
+                <span>
+                  <button className='collapse-all' onClick={collapseAll}>
+                    Collapse
+                  </button>
+                </span>
+              </th>
               <th>Value</th>
             </tr>
           </thead>

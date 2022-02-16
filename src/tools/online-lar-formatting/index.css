@@ -136,6 +136,11 @@
 .parsed-row .table-wrapper > table > thead {
   z-index: 1;
 }
+.parsed-row .collapse-all {
+margin: 0;
+padding: .3em;
+}
+
 .more-info h3 {
   border-top: 1px dotted lightblue;
   padding-top: 8px;
@@ -194,4 +199,13 @@
 }
 .saved-rows .highlight-match {
   background: lightcoral;
+}
+
+
+/* Utility classes */
+.space-between {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
 }
