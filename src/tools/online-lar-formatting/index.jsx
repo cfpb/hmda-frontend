@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ParsedRow } from './ParsedRow'
+import { Parsed } from './Parsed'
 import { RawRow } from './RawRow'
 import {
   parseRow,

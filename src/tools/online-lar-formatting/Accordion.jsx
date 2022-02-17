@@ -23,7 +23,7 @@ export const collapseAll = () => {
     .forEach(e => e.setAttribute('aria-hidden', true))
 }
 
-export const Accordion = ({ heading, content, id }) => {
+export const Accordion = ({ heading, content, children, id }) => {
   return (
     <ul className='accordion-bordered'>
       <li>
@@ -41,7 +41,7 @@ export const Accordion = ({ heading, content, id }) => {
           className='accordion-content'
           aria-hidden='true'
         >
-          {content || null}
+          {content || children || null}
         </div>
       </li>
     </ul>
