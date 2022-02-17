@@ -3,15 +3,17 @@
   cursor: pointer;
 }
 .error {
+  scroll-margin-top: 1em;
   margin-bottom: 1em;
   padding: 1em;
-  border: 1px solid rgb(106, 8, 128);
+  border: 1px solid darkred;
   border-left-width: 10px;
-  color: rgb(106, 8, 128);
+  color: darkred;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   cursor: pointer;
+  font-size: 2rem;
 }
 .error .close {
   margin-left: auto;

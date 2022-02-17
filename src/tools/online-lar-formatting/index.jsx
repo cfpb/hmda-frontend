@@ -1,79 +1,71 @@
 import React, { useState } from 'react'
-import { Parsed } from './Parsed'
-import { RawRow } from './RawRow'
+import { Header } from './Header'
+import { FileActions } from './FileActions'
+import { Editing } from './Editing'
+import { SavedRows } from './SavedRows'
+import { useRestyledButtonLinks } from './useRestyledButtonLinks'
+import { collapseAll } from './Accordion'
 import {
   parseRow,
-  stringifyRow,
   cloneObject,
   cloneObjectArray,
-  unity,
   getSchema,
   createID,
   isTS,
   isLAR,
   log,
-  goToFileActions
 } from './utils'
-import { SavedRows } from './SavedRows'
-import { FileUpload } from './FileUpload'
-import { Header } from './Header'
-import { Error } from './Error'
-import { useRestyledButtonLinks } from './useRestyledButtonLinks'
-import { collapseAll } from './Accordion'
-
 import './index.css'
 
-
 // TODO:
-// √ - Each imported row needs an `id
-// √ - Do everything by ID
-// √ - Bug: `Update` button incorrect on `Clear Saved`
-// √ - On Upload, Clear Saved
-//  √ - If TS/LAR, confirm overwrite
-// √ - Provide search for LAR
-// √- Provide date selector for Date fields
-// √ - Example/Enumerations in `info` button/column
-// - Provide search for TS?
-// - On Download
-//  - Provide file dialog?
+// - LAR/TS Column filter
+// - TS text search
+// - File download dialog?
+
+/* Thoughts
+ * I think we might want to invert control by managing creation of the Saved section's table's content
+ * higher-up the component tree, where it'll be easier to memoize since it's widely-used
+ * yet expensive to create. // MOVE-UP
+ */
 
 const focusAtZero = () => null
-  // setTimeout(() => {
-  //   const el = document.getElementById('rawArea')
-  //   el.focus()
-  //   el.selectionEnd = 0
-  // }, 0)
+// setTimeout(() => {
+//   const el = document.getElementById('rawArea')
+//   el.focus()
+//   el.selectionEnd = 0
+// }, 0)
 
 export const OnlineLARFT = () => {
   const [ts, setTS] = useState([])
   const [lars, setLARs] = useState([])
   const [selected, setSelected] = useState(parseRow(ts.length ? '2|' : '1|'))
   const [currCol, setCurrCol] = useState()
-  const [fileError, setFileError] = useState()
+  const hasSavedRecords = !!ts.length || !!lars.length
+
   useRestyledButtonLinks()
 
   const newRow = () => {
     const nextRow = parseRow(ts.length ? '2|' : '1|')
     nextRow.id = createID()
 
-    setSelected(nextRow)
     setCurrCol(getSchema(nextRow)[0])
     collapseAll()
+    setSelected(nextRow)
   }
 
-  const saveRow = _row => {
-    if (!_row) return
+  const saveRow = () => {
+    if (!selected) return
 
     let vals
     let updateFn
 
-    if (isTS(_row)) {
-      log('Processing a TS row', _row)
+    if (isTS(selected)) {
+      log('Processing a TS row', selected)
 
       vals = ts
       updateFn = setTS
-    } else if (isLAR(_row)) {
-      log('Processing a LAR row', _row)
+    } else if (isLAR(selected)) {
+      log('Processing a LAR row', selected)
 
       vals = lars
       updateFn = setLARs
@@ -83,21 +75,22 @@ export const OnlineLARFT = () => {
     if (vals === ts) {
       log('Saving TS row')
 
-      const nextTS = cloneObject(_row)
+      const nextTS = cloneObject(selected)
       nextTS.id = createID()
       updateFn([nextTS])
+      newRow() // Clear Pipe-delimited area
     } else {
       const cloned = cloneObjectArray(vals)
       log('Saving LAR row')
 
       // Update existing item
-      if (!!_row?.id) {
-        const updateIndex = cloned.findIndex(el => el?.id === _row.id)
+      if (!!selected?.id) {
+        const updateIndex = cloned.findIndex(el => el?.id === selected.id)
         if (updateIndex > -1) {
           log('Updating index: ', updateIndex)
           log('previous Row at index: ', cloned[updateIndex])
-          log('Updated Row: ', _row)
-          cloned[updateIndex] = cloneObject(_row)
+          log('Updated Row: ', selected)
+          cloned[updateIndex] = cloneObject(selected)
           updateFn(cloned) // Save rows
           newRow() // Clear Pipe-delimited area
           focusAtZero()
@@ -107,7 +100,7 @@ export const OnlineLARFT = () => {
 
       // Append new item
       log('Adding new item')
-      const obj = cloneObject(_row)
+      const obj = cloneObject(selected)
       obj.id = createID()
       cloned.push(obj)
       updateFn(cloned) // Save rows
@@ -116,13 +109,13 @@ export const OnlineLARFT = () => {
     }
   }
 
-  const deleteRow = _row => {
+  const deleteRow = () => {
     const confirm = window.confirm('Are you sure you want to delete this row?')
     if (!confirm) return
-    log('Deleting ', _row)
-    if (isTS(_row)) setTS([])
+    log('Deleting ', selected)
+    if (isTS(selected)) setTS([])
     else {
-      let cloned = cloneObjectArray(lars).filter(r => r.id !== _row.id)
+      let cloned = cloneObjectArray(lars).filter(r => r.id !== selected.id)
       setLARs(cloned)
     }
     newRow()
@@ -141,7 +134,7 @@ export const OnlineLARFT = () => {
       _lar = [],
       _unknown = {}
 
-    up_rows.forEach((r, idx) => {
+    up_rows.forEach(r => {
       const parsed = parseRow(r)
       parsed.id = createID()
       if (isTS(parsed)) return _ts.push(parsed)
@@ -160,80 +153,32 @@ export const OnlineLARFT = () => {
     )
   }
 
+  const clearSaved = () => {
+    setTS([])
+    setLARs([])
+    newRow()
+  }
+
   return (
     <div className='online-larft'>
       <Header />
-      {fileError && (
-        <Error text={fileError} onClick={() => setFileError(null)} />
-      )}
-      <div className='file-actions' id='file-actions'>
-        <FileUpload onContentReady={saveUpload} />
-        <button
-          className='import'
-          onClick={() => {
-            if (ts.length || lars.length) {
-              const confirm = window.confirm(
-                'Uploading a file will overwrite your current filing data.  Are you sure?'
-              )
-              if (!confirm) return
-            }
-            document.getElementById('file-upload')?.click()
-          }}
-        >
-          Upload File
-        </button>
-        <button
-          className='export'
-          onClick={() => {
-            setFileError('')
-            if (!ts.length)
-              return setFileError(
-                'Please create a Transmittal Sheet before saving!'
-              )
-            if (!lars.length)
-              return setFileError(
-                'Please create at least one Loan/Application Row before saving!'
-              )
-
-            const content = ts
-              .concat(lars)
-              .map(stringifyRow)
-              .filter(unity)
-              .map(s => s.trim())
-              .join('\n')
-            log('Saving: ', content)
-
-            download('LarFile.txt', content)
-          }}
-        >
-          Download File
-        </button>
-        <button
-          className='clear-saved'
-          onClick={() => {
-            if (ts.length || lars.length) {
-              const confirm = window.confirm(
-                'This will delete all current filing data. Are you sure?'
-              )
-              if (!confirm) return
-            }
-            setTS([])
-            setLARs([])
-            newRow()
-          }}
-        >
-          Clear Saved
-        </button>
-      </div>
-      <h2 className="saved clickable" onClick={goToFileActions}>Saved Records</h2>
+      <FileActions
+        {...{
+          saveUpload,
+          hasSavedRecords,
+          clearSaved,
+          ts,
+          lars,
+        }}
+      />
       <SavedRows
         ts={ts}
         lars={lars}
         selected={selected}
         setSelected={setSelected}
         deleteRow={deleteRow}
-      />
-      <RawRow
+        />
+      <Editing
         currCol={currCol}
         setCurrCol={setCurrCol}
         row={selected}
@@ -244,20 +189,4 @@ export const OnlineLARFT = () => {
       />
     </div>
   )
-}
-
-function download(filename, text) {
-  var element = document.createElement('a')
-  element.setAttribute(
-    'href',
-    'data:text/plain;charset=utf-8,' + encodeURIComponent(text)
-  )
-  element.setAttribute('download', filename)
-
-  element.style.display = 'none'
-  document.body.appendChild(element)
-
-  element.click()
-
-  document.body.removeChild(element)
 }

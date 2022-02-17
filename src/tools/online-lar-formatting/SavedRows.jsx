@@ -20,7 +20,6 @@ const Section = ({ id, title, rows, highlightSelected, setSelected }) => {
     }))
   }, [rows])
   
-
   const filteredRows =
     searchFilter.length && id === 'saved-lars'
       ? injectedRows.filter(ir =>
@@ -64,21 +63,16 @@ const Section = ({ id, title, rows, highlightSelected, setSelected }) => {
     filteredRows.length !== rows.length
       ? `(${filteredRows.length}/${rows.length})`
       : `(${rows.length})`
-  
+
   return (
     <div className='section' id={id}>
       {title && (
-        <h3
-          className='clickable'
-          onClick={goToFileActions}
-        >
+        <h3 className='clickable' onClick={goToFileActions}>
           {title} {rowCount}
           <span className='search-box'>
             <input
               type='text'
-              onChange={e =>
-                setSearchFilter(e.target.value.trim())
-              }
+              onChange={e => setSearchFilter(e.target.value.trim())}
               placeholder='Search LAR'
               value={searchFilter}
               hidden={id.match(/ts/) || !rows.length}
@@ -107,7 +101,7 @@ const LARs = ({ rows, ...props }) => (
   />
 )
 
-export const SavedRows = ({ ts, lars, selected, setSelected, deleteRow }) => {
+export const SavedRows = ({ selected, ts, lars, setSelected, deleteRow }) => {
   const highlightSelected = r => {
     if (!selected || !r) return {}
     const highlighted =
@@ -118,17 +112,22 @@ export const SavedRows = ({ ts, lars, selected, setSelected, deleteRow }) => {
 
   return (
     <div className='saved-rows'>
+      <h2 className='saved clickable' onClick={goToFileActions}>
+        Saved Records
+      </h2>
       <TSheet
         rows={ts}
         highlightSelected={highlightSelected}
         setSelected={setSelected}
         deleteRow={deleteRow}
+        selected={selected}
       />
       <LARs
         rows={lars}
         highlightSelected={highlightSelected}
         setSelected={setSelected}
         deleteRow={deleteRow}
+        selected={selected}
       />
     </div>
   )
