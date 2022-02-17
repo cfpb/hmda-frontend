@@ -1,6 +1,6 @@
 import React from 'react'
 import { getSchema, goTo, goToFileActions, parseRow, stringifyRow } from './utils'
-import { ParsedRow } from './ParsedRow'
+import { Parsed } from './Parsed'
 
 const CurrentColumn = ({ column }) => {
   if (!column?.toString()) return null
@@ -80,7 +80,7 @@ export const RawRow = ({
         </div>
       </div>
 
-      <ParsedRow
+      <Parsed
         currCol={currCol}
         row={row}
         setRow={setRow}
