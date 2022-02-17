@@ -1,6 +1,6 @@
 # HMDA Frontend Projects
 
-The HDMA Frontend monorepo hosts the public facing applications for the collection, publication, and navigation of millions of HMDA records per year.  This repository combines six, previously separate, React application repos in order to simplify component sharing, synchronize versioning of common dependencies, and improve rendering efficiency when navigating between apps. 
+The HMDA Frontend monorepo hosts the public facing applications for the collection, publication, and navigation of millions of HMDA records per year.  This repository combines six, previously separate, React application repos in order to simplify component sharing, synchronize versioning of common dependencies, and improve rendering efficiency when navigating between apps. 
 
 ## Contents
 - [HMDA Frontend Projects](#hmda-frontend-projects)
