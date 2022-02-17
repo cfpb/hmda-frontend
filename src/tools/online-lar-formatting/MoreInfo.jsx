@@ -18,10 +18,10 @@ const List = (title, list, className) => {
   )
 }
 
-const buildRows = list =>
+const buildRows = (list, idx) =>
   list.map(v => {
     return (
-      <tr>
+      <tr key={`${idx}-${v.value}-${v.description}`}>
         <td>{v.value}</td>
         <td>{v.description}</td>
       </tr>
@@ -56,12 +56,12 @@ export const MoreInfo = memo(({ field }) => {
   const _descriptions = []
   let _values = cloneObjectArray(values)
 
-  examples.forEach(curr => {
+  examples.forEach((curr, idx) => {
     if (isString(curr)) {
       const [ex, ...enums] = curr.split(DELIMITER)
 
-      if (isDescription(ex)) _descriptions.push(<li>{ex}</li>)
-      else if (ex) _examples.push(<li>{ex}</li>)
+      if (isDescription(ex)) _descriptions.push(<li key={`${ex}-${idx}`}>{ex}</li>)
+      else if (ex) _examples.push(<li key={`${ex}-${idx}`}>{ex}</li>)
 
       // Fields that have both enums and free text
       if (enums?.length) {

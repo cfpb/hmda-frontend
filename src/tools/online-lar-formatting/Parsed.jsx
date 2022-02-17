@@ -45,6 +45,7 @@ export const Parsed = ({
     .filter(x => applyFilter(x, filter))
     .map(column => (
       <ParsedRow
+        key={column.fieldName}
         column={column}
         onFocus={setFocus}
         onChange={_onChange}

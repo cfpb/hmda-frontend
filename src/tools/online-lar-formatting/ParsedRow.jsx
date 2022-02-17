@@ -48,6 +48,7 @@ function buildInput(_col, _row, _changeFn) {
   if (_col.fieldName?.includes('Date')) {
     return (
       <input
+        key={_col.fieldName}
         type='date'
         name={_col.fieldName}
         id={_col.fieldName}
@@ -68,6 +69,7 @@ function buildInput(_col, _row, _changeFn) {
   else if (examples.length && values.length) {
     return (
       <input
+        key={_col.fieldName}
         type={getType(_col)}
         name={_col.fieldName}
         id={_col.fieldName}
@@ -86,6 +88,7 @@ function buildInput(_col, _row, _changeFn) {
     // Enumerations only
     return (
       <select
+        key={_col.fieldName}
         name={_col.fieldName}
         id={_col.fieldName}
         onChange={_changeFn}
@@ -102,6 +105,7 @@ function buildInput(_col, _row, _changeFn) {
     // Examples only
     return (
       <input
+        key={_col.fieldName}
         type={getType(_col)}
         name={_col.fieldName}
         id={_col.fieldName}
