@@ -43,7 +43,7 @@ const parse = (raw, name) => {
 
   return raw
     .split('\n')
-    .slice(2)
+    .slice(1)
     .filter(s => s && !s.match(/^"All data fields in the LAR/))
     .map((line, idx) => {
       const [
@@ -58,7 +58,7 @@ const parse = (raw, name) => {
       const fieldName = cleanupFieldName(field_name)
 
       const examples = _examples?.split(',').map(cleanString).filter(unity)
-      const descriptions = [_descriptions].map(cleanString).filter(unity)
+      const descriptions = _descriptions?.split(',').map(cleanString).filter(unity)
       const enumerations = _enumerations
         ?.split(',')
         .map(cleanString)

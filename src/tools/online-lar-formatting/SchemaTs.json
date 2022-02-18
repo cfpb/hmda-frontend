@@ -3,6 +3,22 @@
   "schema": [
     {
       "fieldIndex": 0,
+      "fieldName": "Record Identifier",
+      "examples": [],
+      "enumerations": [
+        {
+          "value": "1",
+          "description": "TS"
+        },
+        {
+          "value": "2",
+          "description": "LAR"
+        }
+      ],
+      "descriptions": []
+    },
+    {
+      "fieldIndex": 1,
       "fieldName": "Financial Institution Name",
       "examples": [
         "Ficus Bank"
@@ -11,7 +27,7 @@
       "descriptions": []
     },
     {
-      "fieldIndex": 1,
+      "fieldIndex": 2,
       "fieldName": "Calendar Year",
       "examples": [
         "2021"
@@ -37,7 +53,7 @@
       "descriptions": []
     },
     {
-      "fieldIndex": 2,
+      "fieldIndex": 3,
       "fieldName": "Calendar Quarter",
       "examples": [
         "4"
@@ -63,7 +79,7 @@
       "descriptions": []
     },
     {
-      "fieldIndex": 3,
+      "fieldIndex": 4,
       "fieldName": "Contact Person's Name",
       "examples": [
         "Erika Otis"
@@ -72,7 +88,7 @@
       "descriptions": []
     },
     {
-      "fieldIndex": 4,
+      "fieldIndex": 5,
       "fieldName": "Contact Person's Phone Number",
       "examples": [
         "999-999-9999"
@@ -81,7 +97,7 @@
       "descriptions": []
     },
     {
-      "fieldIndex": 5,
+      "fieldIndex": 6,
       "fieldName": "Contact Person's E-mail Address",
       "examples": [
         "erikaotis@bank.com"
@@ -90,7 +106,7 @@
       "descriptions": []
     },
     {
-      "fieldIndex": 6,
+      "fieldIndex": 7,
       "fieldName": "Contact Person's Office Street Address",
       "examples": [
         "4321 W Random Blvd Ste 201"
@@ -99,7 +115,7 @@
       "descriptions": []
     },
     {
-      "fieldIndex": 7,
+      "fieldIndex": 8,
       "fieldName": "Contact Person's Office City",
       "examples": [
         "Somecity"
@@ -108,7 +124,7 @@
       "descriptions": []
     },
     {
-      "fieldIndex": 8,
+      "fieldIndex": 9,
       "fieldName": "Contact Person's Office State",
       "examples": [
         "CA"
@@ -117,7 +133,7 @@
       "descriptions": []
     },
     {
-      "fieldIndex": 9,
+      "fieldIndex": 10,
       "fieldName": "Contact Person's Office Zip Code",
       "examples": [
         "90049-9998"
@@ -126,7 +142,7 @@
       "descriptions": []
     },
     {
-      "fieldIndex": 10,
+      "fieldIndex": 11,
       "fieldName": "Federal Agency",
       "examples": [],
       "enumerations": [
@@ -158,7 +174,7 @@
       "descriptions": []
     },
     {
-      "fieldIndex": 11,
+      "fieldIndex": 12,
       "fieldName": "Total Number of Entries Contained in Submission",
       "examples": [
         "5000"
@@ -167,7 +183,7 @@
       "descriptions": []
     },
     {
-      "fieldIndex": 12,
+      "fieldIndex": 13,
       "fieldName": "Federal Taxpayer Identification Number",
       "examples": [
         "99-9999999"
@@ -176,7 +192,7 @@
       "descriptions": []
     },
     {
-      "fieldIndex": 13,
+      "fieldIndex": 14,
       "fieldName": "Legal Entity Identifier (LEI)",
       "examples": [
         "10BX939C5543TQA1144M"

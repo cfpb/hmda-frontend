@@ -1,5 +1,11 @@
 import React, { useMemo, useState } from 'react'
-import { getSchema, log, LAR_SCHEMA, goToFileActions } from './utils'
+import {
+  getSchema,
+  log,
+  LAR_SCHEMA,
+  goToFileActions,
+  RECORD_IDENTIFIER,
+} from './utils'
 import { Table } from 'react-fluid-table'
 
 const tableHeight = rows => {
@@ -19,7 +25,7 @@ const Section = ({ id, title, rows, highlightSelected, setSelected }) => {
       rowId: (idx + 1).toString(),
     }))
   }, [rows])
-  
+
   const filteredRows =
     searchFilter.length && id === 'saved-lars'
       ? injectedRows.filter(ir =>

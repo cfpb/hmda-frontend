@@ -74,8 +74,8 @@ export const OnlineLARFT = () => {
       updateFn([nextTS])
       newRow() // Clear Pipe-delimited area
     } else {
-      const cloned = cloneObjectArray(vals)
       log('Saving LAR row')
+      const cloned = cloneObjectArray(vals)
 
       // Update existing item
       if (!!selected?.id) {
@@ -114,12 +114,12 @@ export const OnlineLARFT = () => {
   }
 
   const saveUpload = content => {
-    log('Parsing upload: ', content)
+    log(`Parsing upload: \n${content}`)
 
     if (!content) return
     const up_rows = content.split('\n')
     if (!up_rows.length) return
-    log('Rows: ', up_rows)
+    console.log('Rows: ', up_rows)
 
     let _ts = [],
       _lar = [],
@@ -154,13 +154,11 @@ export const OnlineLARFT = () => {
     <div className='online-larft'>
       <Header />
       <FileActions
-        {...{
-          saveUpload,
-          hasSavedRecords,
-          clearSaved,
-          ts,
-          lars,
-        }}
+        ts={ts}
+        lars={lars}
+        hasSavedRecords={hasSavedRecords}
+        saveUpload={saveUpload}
+        clearSaved={clearSaved}
       />
       <SavedRows
         ts={ts}
@@ -168,11 +166,11 @@ export const OnlineLARFT = () => {
         selected={selected}
         setSelected={setSelected}
         deleteRow={deleteRow}
-        />
+      />
       <Editing
+        row={selected}
         currCol={currCol}
         setCurrCol={setCurrCol}
-        row={selected}
         setRow={setSelected}
         newRow={newRow}
         saveRow={saveRow}
