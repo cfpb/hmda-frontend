@@ -1,13 +1,10 @@
 const fs = require('fs')
 
-const readFile = (name) => fs.readFileSync(name, 'utf8')
+const readFile = name => fs.readFileSync(name, 'utf8')
 // const dir = dirname(__FILE__)
 
 let TS_SCHEMA_RAW = readFile(`${__dirname}/schema_ts.psv`)
 let LAR_SCHEMA_RAW = readFile(`${__dirname}/schema_lar.psv`)
-
-
-
 
 const unity = x => x
 const prettyJSON = json => JSON.stringify(JSON.parse(json), null, 2)
@@ -20,14 +17,14 @@ const cleanupFieldName = str =>
     .replace(/{hyphen}/g, '-')
     .trim()
 
-const cleanString = str =>{
+const cleanString = str => {
   const cleaned = str
     ?.replace(/\\|#|\[",/g, '')
     .replace(/"/g, '')
     .replace(/{hyphen}/g, '-')
     .replace(/{comma}/g, ',')
     .trim()
-  
+
   return cleaned?.length ? cleaned : null
 }
 
@@ -58,25 +55,28 @@ const parse = (raw, name) => {
       const fieldName = cleanupFieldName(field_name)
 
       const examples = _examples?.split(',').map(cleanString).filter(unity)
-      const descriptions = _descriptions?.split(',').map(cleanString).filter(unity)
+      const descriptions = _descriptions
+        ?.split(',')
+        .map(cleanString)
+        .filter(unity)
       const enumerations = _enumerations
         ?.split(',')
         .map(cleanString)
         .map(opt => {
-          const [val, desc] = opt
-            ?.split('-')
-            .filter(x => x)
-            .map(x => {
-              x = x.replace(/{hyphen}/g, '-')
-              x = x.replace(/{comma}/g, ',')
-              return x.trim()
-            }) || []
+          const [val, desc] =
+            opt
+              ?.split('-')
+              .filter(x => x)
+              .map(x => {
+                x = x.replace(/{hyphen}/g, '-')
+                x = x.replace(/{comma}/g, ',')
+                return x.trim()
+              }) || []
 
           if (!val) return
           return { value: val, description: desc || val }
         })
         .filter(unity)
-      
 
       // const fieldLength = maxLength?.split('_')[1] || 255
       // const fieldType = convertType(_field_type)

@@ -6,7 +6,7 @@ import { SavedRows } from './SavedRows'
 import { useRestyledButtonLinks } from './useRestyledButtonLinks'
 import { parseRow } from './utils'
 import './index.css'
-import { useFileInteractions } from './useFileInteractions'
+import { createFileInteractions } from './createFileInteractions'
 
 // TODO:
 // - [LAR] Application Date can be NA
@@ -20,13 +20,16 @@ import { useFileInteractions } from './useFileInteractions'
 //    label that will set focus on the adjacent input field, to help
 //    user start editing the field's value.
 
-export const OnlineLARFT = () => {
+export const LARFT = () => {
   const [ts, setTS] = useState([])
   const [lars, setLARs] = useState([])
   const [selected, setSelected] = useState(parseRow(ts.length ? '2|' : '1|'))
   const [currCol, setCurrCol] = useState()
-
-  const [newRow, saveRow, deleteRow, saveUpload] = useFileInteractions({
+  
+  useRestyledButtonLinks()
+  
+  const [newRow, saveRow, deleteRow, saveUpload] = createFileInteractions({
+    ts,
     selected,
     setSelected,
     setCurrCol,
@@ -34,14 +37,13 @@ export const OnlineLARFT = () => {
     setTS,
   })
 
-  useRestyledButtonLinks()
-  const hasSavedRecords = !!ts.length || !!lars.length
-
   const clearSaved = () => {
     setTS([])
     setLARs([])
     newRow()
   }
+  
+  const hasSavedRecords = !!ts.length || !!lars.length
 
   return (
     <div className='online-larft'>
