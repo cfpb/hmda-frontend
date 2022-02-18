@@ -62,6 +62,8 @@ export const LARFT = () => {
         selected={selected}
         setSelected={setSelected}
         deleteRow={deleteRow}
+        setCurrCol={setCurrCol}
+        currCol={currCol}
       />
       <Editing
         row={selected}
