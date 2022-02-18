@@ -2,7 +2,7 @@ import React from 'react'
 import { Accordion } from './Accordion'
 import { MoreInfo } from './MoreInfo'
 import { buildOptions, getType, toJsDateString } from './parsedHelpers'
-import { log } from './utils'
+import { log, OR_DELIMITER } from './utils'
 
 export const ParsedRow = ({
   column,
@@ -40,8 +40,7 @@ export const ParsedRow = ({
 }
 
 const buildPlaceholder = (exs, descs) => {
-  const DELIM = ' (or) '
-  return (exs.length ? exs : descs).join(DELIM)
+  return (exs.length ? exs : descs).join(OR_DELIMITER)
 }
 
 function buildInput(_col, _row, _changeFn) {
