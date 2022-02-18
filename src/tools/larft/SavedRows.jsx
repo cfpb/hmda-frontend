@@ -5,6 +5,7 @@ import {
   LAR_SCHEMA,
   goToFileActions,
   RECORD_IDENTIFIER,
+  goTo,
 } from './utils'
 import { Table } from 'react-fluid-table'
 import { applyFilter } from './parsedHelpers'
@@ -14,7 +15,7 @@ const tableHeight = rows => {
   return Math.min(rows.length * 2, 10)
 }
 
-const Section = ({ id, title, rows, highlightSelected, setSelected }) => {
+const Section = ({ id, title, rows, highlightSelected, setSelected, setCurrCol, currCol }) => {
   let body
   const [searchFilter, setSearchFilter] = useState('')
   const [columnFilter, setColumnFilter] = useState('')
@@ -41,19 +42,41 @@ const Section = ({ id, title, rows, highlightSelected, setSelected }) => {
     ? getSchema(rows[0][RECORD_IDENTIFIER])
         .filter(x => applyFilter(x, columnFilter))
         .map(f => ({
+          self: f,
           key: f.fieldName,
           header: f.fieldName,
           width: Math.max(f.fieldName.length * 10, 200),
+          header: (props) => {
+            const columnSelected = currCol?.fieldName === f.fieldName ? ' selected' : ''
+            const fieldId = 'header-' + f.fieldName.toLowerCase().replaceAll(' ', '-')
+            return (
+              <div
+                className='header-cell'
+                className={'clickable header-cell custom' + columnSelected}
+                {...props}
+                onClick={() => {
+                  setCurrCol(f)
+                  document.getElementById(fieldId).scrollIntoView()
+                }}
+                id={fieldId}
+              >
+                <div className={'header-cell-text'}>{f.fieldName}</div>
+              </div>
+            )},
           content: ({ row }) => {
             const plainValue = row[f.fieldName] || null
-            if (id.match(/^ts/)) return plainValue
+            const colSelected = currCol?.fieldName == f.fieldName ? ' col-selected' : ''
+            if (id.match(/^ts/)) return <div className={colSelected} >
+
+              {plainValue}
+            </div>
             if (
               !!searchFilter.length &&
               row[f.fieldName]?.toLowerCase().includes(searchFilter)
             ) {
-              return <span className='highlight-match'>{row[f.fieldName]}</span>
+              return <span className={'highlight-match' + colSelected}>{row[f.fieldName]}</span>
             }
-            return plainValue
+            return <span className={colSelected}>{plainValue}</span>
           },
         }))
     : null
@@ -136,7 +159,7 @@ const LARs = ({ rows, ...props }) => (
   />
 )
 
-export const SavedRows = ({ selected, ts, lars, setSelected, deleteRow }) => {
+export const SavedRows = ({ selected, ts, lars, setSelected, deleteRow, setCurrCol,currCol }) => {
   const highlightSelected = r => {
     if (!selected || !r) return {}
     const highlighted =
@@ -156,6 +179,8 @@ export const SavedRows = ({ selected, ts, lars, setSelected, deleteRow }) => {
         setSelected={setSelected}
         deleteRow={deleteRow}
         selected={selected}
+        setCurrCol={setCurrCol}
+        currCol={currCol}
       />
       <LARs
         rows={lars}
@@ -163,6 +188,8 @@ export const SavedRows = ({ selected, ts, lars, setSelected, deleteRow }) => {
         setSelected={setSelected}
         deleteRow={deleteRow}
         selected={selected}
+        setCurrCol={setCurrCol}
+        currCol={currCol}
       />
     </div>
   )
