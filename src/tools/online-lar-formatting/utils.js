@@ -20,8 +20,8 @@ export const unity = x => x
 
 export const isString = x => typeof x === 'string'
 
-export const log = data =>
-  process.env.NODE_ENV !== 'production' ? console.log(data) : null
+export const log = (...data) =>
+  process.env.NODE_ENV !== 'production' ? console.log('new log') && console.log(...data) : null
 
 export const getSchema = row => {
   if (!row) return LAR_SCHEMA
