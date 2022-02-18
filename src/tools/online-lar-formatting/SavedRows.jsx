@@ -28,7 +28,7 @@ const Section = ({ id, title, rows, highlightSelected, setSelected }) => {
       : injectedRows
 
   const columns = rows.length
-    ? getSchema(rows[0]['Record Identifier']).map(f => ({
+    ? getSchema(rows[0][RECORD_IDENTIFIER]).map(f => ({
         key: f.fieldName,
         header: f.fieldName,
         width: Math.max(f.fieldName.length * 10, 200),
@@ -106,7 +106,7 @@ export const SavedRows = ({ selected, ts, lars, setSelected, deleteRow }) => {
     if (!selected || !r) return {}
     const highlighted =
       selected.id === r.id &&
-      selected['Record Identifier'] === r['Record Identifier']
+      selected[RECORD_IDENTIFIER] === r[RECORD_IDENTIFIER]
     return highlighted ? { background: 'lightblue' } : {}
   }
 

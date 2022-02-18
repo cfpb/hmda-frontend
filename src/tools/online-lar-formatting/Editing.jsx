@@ -1,5 +1,5 @@
 import React from 'react'
-import { goTo } from './utils'
+import { goTo, RECORD_IDENTIFIER } from './utils'
 import { Parsed } from './Parsed'
 import { Piped } from './Piped'
 import { EditingActions } from './EditingActions'
@@ -28,7 +28,7 @@ export const Editing = ({
     <div className={id} id={id}>
       <h2 className='clickable' onClick={() => goTo(id)}>
         {row.rowId ? 'Editing' : 'Creating'}{' '}
-        {row['Record Identifier'] === '1'
+        {row[RECORD_IDENTIFIER] === '1'
           ? 'Transmittal Sheet'
           : row.rowId
           ? `LAR Row ${row.rowId}`
