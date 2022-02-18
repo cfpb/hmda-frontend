@@ -46,9 +46,15 @@ export const MoreInfo = memo(({ field }) => {
   if (!field) return null
   const { examples = [], enumerations = [], descriptions = [] } = field
 
-  const _descriptions = descriptions[0]
-    ?.split('<br/><br/>')
-    .map((ex, idx) => <li key={`${ex}-${idx}`}>{ex}</li>)
+  let _descriptions = []
+  descriptions.forEach((d, d_idx) => {
+    const lines = d?.split('<br/><br/>')
+    lines.forEach((ex, idx) =>
+      _descriptions.push(<li key={`${ex}-${d_idx}-${idx}`}>{ex}</li>)
+    )
+  })
+    
+    
 
   const _examples = examples
     .filter(unity)
