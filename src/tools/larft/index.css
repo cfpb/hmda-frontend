@@ -23,11 +23,17 @@
   padding-top: 5px;
 }
 
-.file-actions > button:not(:first-of-type) {
+.file-actions .wrapper button:not(:first-of-type) {
   margin-left: 1em;
 }
-.file-actions > button {
+.file-actions .wrapper button {
   margin-top: 0;
+}
+
+.file-actions .wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 }
 
 /* RawRow */
@@ -37,7 +43,7 @@
 }
 
 .action-wrapper.raw {
-  margin-top: 1em;
+  margin-top: 0em;
 }
 .raw-row button {
   margin-top: .5em;
@@ -73,7 +79,7 @@
 .parsed .section-heading {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   margin: 1.3em 0 5px 0;
 }
@@ -191,13 +197,13 @@ padding: .3em;
   padding: 5px;
   padding-left: 0px;
 }
-.saved-rows .search-box input {
+.search-box input {
   margin-left: 1em;
   border-radius: 8px;
   text-align: center;
   padding: .1em;
 }
-.saved-rows .search-box button {
+.search-box button {
   margin: 0 0 0 .5em;
   padding: .4em .75em;
   border-radius: 8px;
@@ -206,6 +212,12 @@ padding: .3em;
   background: lightcoral;
 }
 
+/* Saved Section */
+.section h3 {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
 
 /* Utility classes */
 .space-between {

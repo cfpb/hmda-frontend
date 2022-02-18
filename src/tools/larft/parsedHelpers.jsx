@@ -1,7 +1,7 @@
 import React from 'react'
 
 export const applyFilter = (column, filter) =>
-  !filter.length || column.fieldName.toLowerCase().includes(filter)
+  !filter.length || column.fieldName.toLowerCase().includes(filter?.toLowerCase())
 
 export const checkHighlighted = (a, b) =>
   a && b && a.fieldIndex === b.fieldIndex ? 'highlight' : ''

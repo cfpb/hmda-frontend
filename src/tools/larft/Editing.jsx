@@ -24,6 +24,17 @@ export const Editing = ({
       showTextActions={true}
     />
   )
+
+  const ParsedActions = (
+    <EditingActions
+      row={row}
+      deleteRow={deleteRow}
+      newRow={newRow}
+      setRow={setRow}
+      saveRow={saveRow}
+      showTextActions={false}
+    />
+  )
   return (
     <div className={id} id={id}>
       <h2 className='clickable' onClick={() => goTo(id)}>
@@ -34,19 +45,13 @@ export const Editing = ({
           ? `LAR Row ${row.rowId}`
           : 'a new LAR Row'}
       </h2>
-      <EditingActions
-        row={row}
-        deleteRow={deleteRow}
-        newRow={newRow}
-        setRow={setRow}
-        saveRow={saveRow}
-        showTextActions={false}
-      />
+  
       <Parsed
         currCol={currCol}
         row={row}
         setRow={setRow}
         setCurrCol={setCurrCol}
+        textActions={ParsedActions}
       />
       <Piped
         currCol={currCol}

@@ -74,9 +74,15 @@ export const FileActions = ({
         <Error text={fileError} onClick={() => setFileError(null)} />
       )}
       <FileUpload onContentReady={saveUpload} />
-      <UploadButton {...{ hasSavedRecords }} />
-      <DownloadButton {...{ ts, lars, setFileError }} />
-      <ClearButton {...{ hasSavedRecords, clearSaved }} />
+      <div className='wrapper'>
+        <div className='left'>
+          <UploadButton {...{ hasSavedRecords }} />
+          <DownloadButton {...{ ts, lars, setFileError }} />
+        </div>
+        <div className='right'>
+          <ClearButton {...{ hasSavedRecords, clearSaved }} />
+        </div>
+      </div>
     </div>
   )
 }
