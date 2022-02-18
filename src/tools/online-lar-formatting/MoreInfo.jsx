@@ -1,11 +1,5 @@
 import React, { memo } from 'react'
-import { cloneObjectArray } from './utils'
-
-const DELIMITER = ' (or) '
-
-const isDescription = str => str.match(/^Specify/)
-
-const isString = str => typeof str === 'string'
+import { unity } from './utils'
 
 const List = (title, list, className) => {
   if (!list?.length) return null
@@ -48,39 +42,27 @@ const Table = (title, list, className) => {
   )
 }
 
-
 export const MoreInfo = memo(({ field }) => {
   if (!field) return null
-  const { examples = [], values = [] } = field
-  const _examples = []
-  const _descriptions = []
-  let _values = cloneObjectArray(values)
+  const { examples = [], enumerations = [], descriptions = [] } = field
 
-  examples.forEach((curr, idx) => {
-    if (isString(curr)) {
-      const [ex, ...enums] = curr.split(DELIMITER)
+  const _descriptions = descriptions[0]
+    ?.split('<br/><br/>')
+    .map((ex, idx) => <li key={`${ex}-${idx}`}>{ex}</li>)
 
-      if (isDescription(ex)) _descriptions.push(<li key={`${ex}-${idx}`}>{ex}</li>)
-      else if (ex) _examples.push(<li key={`${ex}-${idx}`}>{ex}</li>)
-
-      // Fields that have both enums and free text
-      if (enums?.length) {
-        if (_values?.append)
-          _values.append(enums.map(e => ({ value: e, description: e })))
-        else _values = enums.map(e => ({ value: e, description: e }))
-      }
-    }
-  })
+  const _examples = examples
+    .filter(unity)
+    .map((ex, idx) => <li key={`${ex}-${idx}`}>{ex}</li>)
 
   const Examples = List('Examples', _examples, 'examples')
-  const Description = List('Field Description', _descriptions, 'descriptions')
-  const Values = Table('Enumerations', _values, 'values')
+  const Descriptions = List('Description(s)', _descriptions, 'descriptions')
+  const Enumerations = Table('Enumerations', enumerations, 'values')
 
   return (
     <div className='more-info'>
       {Examples}
-      {Description}
-      {Values}
+      {Descriptions}
+      {Enumerations}
     </div>
   )
 })
