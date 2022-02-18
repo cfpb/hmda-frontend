@@ -3,38 +3,20 @@
   "schema": [
     {
       "fieldIndex": 0,
-      "fieldName": "Record Identifier",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
-      "examples": [],
-      "values": [
-        {
-          "value": "1",
-          "description": "TS"
-        },
-        {
-          "value": "2",
-          "description": "LAR"
-        }
-      ]
-    },
-    {
-      "fieldIndex": 1,
       "fieldName": "Financial Institution Name",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
         "Ficus Bank"
       ],
-      "values": []
+      "enumerations": [],
+      "descriptions": []
     },
     {
-      "fieldIndex": 2,
+      "fieldIndex": 1,
       "fieldName": "Calendar Year",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
-      "examples": [],
-      "values": [
+      "examples": [
+        "2021"
+      ],
+      "enumerations": [
         {
           "value": "2019",
           "description": "2019"
@@ -51,15 +33,16 @@
           "value": "2022",
           "description": "2022"
         }
-      ]
+      ],
+      "descriptions": []
     },
     {
-      "fieldIndex": 3,
+      "fieldIndex": 2,
       "fieldName": "Calendar Quarter",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
-      "examples": [],
-      "values": [
+      "examples": [
+        "4"
+      ],
+      "enumerations": [
         {
           "value": "1",
           "description": "Q1"
@@ -76,85 +59,77 @@
           "value": "4",
           "description": "Annual"
         }
-      ]
+      ],
+      "descriptions": []
     },
     {
-      "fieldIndex": 4,
+      "fieldIndex": 3,
       "fieldName": "Contact Person's Name",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
         "Erika Otis"
       ],
-      "values": []
+      "enumerations": [],
+      "descriptions": []
     },
     {
-      "fieldIndex": 5,
+      "fieldIndex": 4,
       "fieldName": "Contact Person's Phone Number",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
         "999-999-9999"
       ],
-      "values": []
+      "enumerations": [],
+      "descriptions": []
     },
     {
-      "fieldIndex": 6,
+      "fieldIndex": 5,
       "fieldName": "Contact Person's E-mail Address",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
         "erikaotis@bank.com"
       ],
-      "values": []
+      "enumerations": [],
+      "descriptions": []
     },
     {
-      "fieldIndex": 7,
+      "fieldIndex": 6,
       "fieldName": "Contact Person's Office Street Address",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
         "4321 W Random Blvd Ste 201"
       ],
-      "values": []
+      "enumerations": [],
+      "descriptions": []
     },
     {
-      "fieldIndex": 8,
+      "fieldIndex": 7,
       "fieldName": "Contact Person's Office City",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
         "Somecity"
       ],
-      "values": []
+      "enumerations": [],
+      "descriptions": []
     },
     {
-      "fieldIndex": 9,
+      "fieldIndex": 8,
       "fieldName": "Contact Person's Office State",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
         "CA"
       ],
-      "values": []
+      "enumerations": [],
+      "descriptions": []
     },
     {
-      "fieldIndex": 10,
+      "fieldIndex": 9,
       "fieldName": "Contact Person's Office Zip Code",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
         "90049-9998"
       ],
-      "values": []
+      "enumerations": [],
+      "descriptions": []
     },
     {
-      "fieldIndex": 11,
+      "fieldIndex": 10,
       "fieldName": "Federal Agency",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Office of the Comptroller of the Currency (OCC)"
@@ -179,37 +154,35 @@
           "value": "9",
           "description": "Consumer Financial Protection Bureau (Bureau)"
         }
-      ]
+      ],
+      "descriptions": []
     },
     {
-      "fieldIndex": 12,
+      "fieldIndex": 11,
       "fieldName": "Total Number of Entries Contained in Submission",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
         "5000"
       ],
-      "values": []
+      "enumerations": [],
+      "descriptions": []
     },
     {
-      "fieldIndex": 13,
+      "fieldIndex": 12,
       "fieldName": "Federal Taxpayer Identification Number",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
         "99-9999999"
       ],
-      "values": []
+      "enumerations": [],
+      "descriptions": []
     },
     {
-      "fieldIndex": 14,
+      "fieldIndex": 13,
       "fieldName": "Legal Entity Identifier (LEI)",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
         "10BX939C5543TQA1144M"
       ],
-      "values": []
+      "enumerations": [],
+      "descriptions": []
     }
   ]
 }

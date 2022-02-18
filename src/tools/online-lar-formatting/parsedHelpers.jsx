@@ -13,7 +13,7 @@ export const getType = ({ fieldType }) => {
 }
 
 export const buildOptions = column => {
-  const vals = column.values.map(({ value, description }) => (
+  const vals = column.enumerations.map(({ value, description }) => (
     <option value={value} key={value}>
       {value === description ? value : `${value} - ${description}`}
     </option>

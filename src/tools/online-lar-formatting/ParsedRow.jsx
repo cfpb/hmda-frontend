@@ -39,20 +39,37 @@ export const ParsedRow = ({
   )
 }
 
+const buildPlaceholder = (exs, descs) => {
+  const DELIM = ' (or) '
+  return (exs.length ? exs : descs).join(DELIM)
+}
+
 function buildInput(_col, _row, _changeFn) {
   log('Building input...')
 
   if (!_col) return null
-  const { examples = [], values = [] } = _col
+  const { examples = [], enumerations = [], descriptions = [] } = _col
+  const placeholder = buildPlaceholder(examples, descriptions)
+  const common = {
+    id: _col.fieldName,
+    key: _col.fieldName,
+    name: _col.fieldName,
+    onChange: _changeFn,
+    style: {
+      border: '1px dotted grey',
+      width: '100%',
+      height: '100%',
+      maxHeight: '3em',
+      paddingLeft: '5px',
+    },
+  }
 
   // Date field
   if (_col.fieldName?.includes('Date')) {
     return (
       <input
-        key={_col.fieldName}
+        {...common}
         type='date'
-        name={_col.fieldName}
-        id={_col.fieldName}
         onChange={e => {
           _changeFn({
             target: {
@@ -67,37 +84,21 @@ function buildInput(_col, _row, _changeFn) {
   }
 
   // Field allows freeform text but also has enumerated values
-  else if (examples.length && values.length) {
+  else if (examples.length && enumerations.length) {
     return (
       <input
-        key={_col.fieldName}
+        {...common}
         type={getType(_col)}
-        name={_col.fieldName}
-        id={_col.fieldName}
         value={_row[_col.fieldName]?.toString() || ''}
-        onChange={_changeFn}
-        placeholder={`${_col.examples[0]} (or) ${values
-          .map(({ value, description }) => `${value} - ${description}`)
-          .join(' (or) ')}`}
-        style={{
-          border: '1px dotted grey',
-          width: '100%',
-        }}
+        placeholder={placeholder}
       />
     )
-  } else if (values.length) {
+  } else if (enumerations.length) {
     // Enumerations only
     return (
       <select
-        key={_col.fieldName}
-        name={_col.fieldName}
-        id={_col.fieldName}
-        onChange={_changeFn}
+        {...common}
         value={_row[_col.fieldName] || ''}
-        style={{
-          border: '1px dotted grey',
-          width: '100%',
-        }}
       >
         {buildOptions(_col)}
       </select>
@@ -106,17 +107,10 @@ function buildInput(_col, _row, _changeFn) {
     // Examples only
     return (
       <input
-        key={_col.fieldName}
+        {...common}
         type={getType(_col)}
-        name={_col.fieldName}
-        id={_col.fieldName}
         value={_row[_col.fieldName] || ''}
-        onChange={_changeFn}
-        placeholder={_col.examples.join(', ')}
-        style={{
-          border: '1px dotted grey',
-          width: '100%',
-        }}
+        placeholder={placeholder}
       />
     )
   }

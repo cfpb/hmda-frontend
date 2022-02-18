@@ -3,63 +3,45 @@
   "schema": [
     {
       "fieldIndex": 0,
-      "fieldName": "Record Identifier",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
-      "examples": [],
-      "values": [
-        {
-          "value": "1",
-          "description": "TS"
-        },
-        {
-          "value": "2",
-          "description": "LAR"
-        }
-      ],
-      "dataPoint": "Record Identifier"
-    },
-    {
-      "fieldIndex": 1,
       "fieldName": "Legal Entity Identifier (LEI)",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
         "10BX939C5543TQA1144M"
       ],
-      "values": [],
+      "enumerations": [],
+      "descriptions": [],
       "dataPoint": "Legal Entity Identifier (LEI)"
     },
     {
-      "fieldIndex": 2,
+      "fieldIndex": 1,
       "fieldName": "Universal Loan Identifier (ULI) or Non-Universal Loan Identifier (NULI)",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
         "ULI Example - 10BX939C5543TQA1144M999143X38",
         "NULI Example - 999143X"
       ],
-      "values": [],
+      "enumerations": [],
+      "descriptions": [],
       "dataPoint": "Universal Loan Identifier (ULI) or Non-Universal Loan Identifier (NULI)"
     },
     {
-      "fieldIndex": 3,
+      "fieldIndex": 2,
       "fieldName": "Application Date",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
-        "20210721 (or) NA"
+        "20210721"
       ],
-      "values": [],
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Application Date"
     },
     {
-      "fieldIndex": 4,
+      "fieldIndex": 3,
       "fieldName": "Loan Type",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Conventional (not insured or guaranteed by FHA, VA, RHS, or FSA)"
@@ -77,15 +59,14 @@
           "description": "USDA Rural Housing Service or Farm Service Agency guaranteed (RHS or FSA)"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Loan Type"
     },
     {
-      "fieldIndex": 5,
+      "fieldIndex": 4,
       "fieldName": "Loan Purpose",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Home purchase"
@@ -111,15 +92,14 @@
           "description": "Not applicable"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Loan Purpose"
     },
     {
-      "fieldIndex": 6,
+      "fieldIndex": 5,
       "fieldName": "Preapproval",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Preapproval requested"
@@ -129,33 +109,31 @@
           "description": "Preapproval not requested"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Preapproval"
     },
     {
-      "fieldIndex": 7,
+      "fieldIndex": 6,
       "fieldName": "Construction Method",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
-          "description": "Site-built"
+          "description": "Site"
         },
         {
           "value": "2",
           "description": "Manufactured Home"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Construction Method"
     },
     {
-      "fieldIndex": 8,
+      "fieldIndex": 7,
       "fieldName": "Occupancy Type",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Principal residence"
@@ -169,26 +147,27 @@
           "description": "Investment property"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Occupancy Type"
     },
     {
-      "fieldIndex": 9,
+      "fieldIndex": 8,
       "fieldName": "Loan Amount",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
-        "110500 (or) 110500.00"
+        "110500",
+        "110500.00"
       ],
-      "values": [],
+      "enumerations": [],
+      "descriptions": [
+        "Dollar ammount of loan, without commas, with cents (decimal required) or without cents."
+      ],
       "dataPoint": "Loan Amount"
     },
     {
-      "fieldIndex": 10,
+      "fieldIndex": 9,
       "fieldName": "Action Taken",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Loan originated"
@@ -222,92 +201,128 @@
           "description": "Preapproval request approved but not accepted"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Action Taken"
     },
     {
-      "fieldIndex": 11,
+      "fieldIndex": 10,
       "fieldName": "Action Taken Date",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
         "20210721"
       ],
-      "values": [],
+      "enumerations": [],
+      "descriptions": [
+        "Values in the downloaded LAR file are automatically converted to the valid format."
+      ],
       "dataPoint": "Action Taken Date"
     },
     {
-      "fieldIndex": 12,
+      "fieldIndex": 11,
       "fieldName": "Street Address",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
-        "456 W Somewhere Ave Apt 201 (or) NA (or) Exempt"
+        "456 W Somewhere Ave Apt 201"
       ],
-      "values": [],
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        },
+        {
+          "value": "Exempt",
+          "description": "Exempt"
+        }
+      ],
+      "descriptions": [],
+      "dataPoint": "Property Address"
+    },
+    {
+      "fieldIndex": 12,
+      "fieldName": "City",
+      "examples": [
+        "Anytown"
+      ],
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        },
+        {
+          "value": "Exempt",
+          "description": "Exempt"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Property Address"
     },
     {
       "fieldIndex": 13,
-      "fieldName": "City",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
-      "examples": [
-        "Anytown (or) NA (or) Exempt"
-      ],
-      "values": [],
-      "dataPoint": "Property Address"
-    },
-    {
-      "fieldIndex": 14,
       "fieldName": "State",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
-        "CA (or) NA"
+        "CA"
       ],
-      "values": [],
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Property Location & Property Address"
     },
     {
-      "fieldIndex": 15,
+      "fieldIndex": 14,
       "fieldName": "Zip Code",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
-        "90049-9998 (or) NA (or) Exempt"
+        "90049-9998"
       ],
-      "values": [],
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        },
+        {
+          "value": "Exempt",
+          "description": "Exempt"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Property Address"
     },
     {
-      "fieldIndex": 16,
+      "fieldIndex": 15,
       "fieldName": "County",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
-        "06037 (or) NA"
+        "06037"
       ],
-      "values": [],
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        }
+      ],
+      "descriptions": [],
+      "dataPoint": "Property Location"
+    },
+    {
+      "fieldIndex": 16,
+      "fieldName": "Census Tract",
+      "examples": [
+        "06037264000"
+      ],
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Property Location"
     },
     {
       "fieldIndex": 17,
-      "fieldName": "Census Tract",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
-      "examples": [
-        "06037264000 (or) NA"
-      ],
-      "values": [],
-      "dataPoint": "Property Location"
-    },
-    {
-      "fieldIndex": 18,
       "fieldName": "Ethnicity of Applicant or Borrower: 1",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Hispanic or Latino"
@@ -340,16 +355,60 @@
           "value": "4",
           "description": "Not applicable"
         }
+      ],
+      "descriptions": [
+        "If the Applicant or Borrower did not select any ethnicity(ies), but only provided ethnicity(ies) in the Ethnicity of Applicant or Borrower: Free Form Text Field for Other Hispanic or Latino, either leave this data field blank or enter Code 14."
+      ],
+      "dataPoint": "Ethnicity"
+    },
+    {
+      "fieldIndex": 18,
+      "fieldName": "Ethnicity of Applicant or Borrower: 2",
+      "examples": [],
+      "enumerations": [
+        {
+          "value": "1",
+          "description": "Hispanic or Latino"
+        },
+        {
+          "value": "11",
+          "description": "Mexican"
+        },
+        {
+          "value": "12",
+          "description": "Puerto Rican"
+        },
+        {
+          "value": "13",
+          "description": "Cuban"
+        },
+        {
+          "value": "14",
+          "description": "Other Hispanic or Latino"
+        },
+        {
+          "value": "2",
+          "description": "Not Hispanic or Latino"
+        },
+        {
+          "value": "3",
+          "description": "Information not provided by applicant in mail, internet, or telephone application"
+        },
+        {
+          "value": "4",
+          "description": "Not applicable"
+        }
+      ],
+      "descriptions": [
+        "If this data field does not contain an entry, leave it blank.<br/><br/>  If the Applicant or Borrower did not select any ethnicity(ies), but only provided ethnicity(ies) in the Ethnicity of Applicant or Borrower: Free Form Text Field for Other Hispanic or Latino, either leave this data field blank or enter Code 14."
       ],
       "dataPoint": "Ethnicity"
     },
     {
       "fieldIndex": 19,
-      "fieldName": "Ethnicity of Applicant or Borrower: 2",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Ethnicity of Applicant or Borrower: 3",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Hispanic or Latino"
@@ -382,16 +441,17 @@
           "value": "4",
           "description": "Not applicable"
         }
+      ],
+      "descriptions": [
+        "If this data field does not contain an entry, leave it blank.<br/><br/>  If the Applicant or Borrower did not select any ethnicity(ies), but only provided ethnicity(ies) in the Ethnicity of Applicant or Borrower: Free Form Text Field for Other Hispanic or Latino, either leave this data field blank or enter Code 14."
       ],
       "dataPoint": "Ethnicity"
     },
     {
       "fieldIndex": 20,
-      "fieldName": "Ethnicity of Applicant or Borrower: 3",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Ethnicity of Applicant or Borrower: 4",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Hispanic or Latino"
@@ -424,16 +484,17 @@
           "value": "4",
           "description": "Not applicable"
         }
+      ],
+      "descriptions": [
+        "If this data field does not contain an entry, leave it blank.<br/><br/>  If the Applicant or Borrower did not select any ethnicity(ies), but only provided ethnicity(ies) in the Ethnicity of Applicant or Borrower: Free Form Text Field for Other Hispanic or Latino, either leave this data field blank or enter Code 14."
       ],
       "dataPoint": "Ethnicity"
     },
     {
       "fieldIndex": 21,
-      "fieldName": "Ethnicity of Applicant or Borrower: 4",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Ethnicity of Applicant or Borrower: 5",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Hispanic or Latino"
@@ -466,69 +527,27 @@
           "value": "4",
           "description": "Not applicable"
         }
+      ],
+      "descriptions": [
+        "If this data field does not contain an entry, leave it blank.<br/><br/>  If the Applicant or Borrower did not select any ethnicity(ies), but only provided ethnicity(ies) in the Ethnicity of Applicant or Borrower: Free Form Text Field for Other Hispanic or Latino, either leave this data field blank or enter Code 14."
       ],
       "dataPoint": "Ethnicity"
     },
     {
       "fieldIndex": 22,
-      "fieldName": "Ethnicity of Applicant or Borrower: 5",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Ethnicity of Applicant or Borrower: Free Form Text Field for Other Hispanic or Latino",
       "examples": [],
-      "values": [
-        {
-          "value": "1",
-          "description": "Hispanic or Latino"
-        },
-        {
-          "value": "11",
-          "description": "Mexican"
-        },
-        {
-          "value": "12",
-          "description": "Puerto Rican"
-        },
-        {
-          "value": "13",
-          "description": "Cuban"
-        },
-        {
-          "value": "14",
-          "description": "Other Hispanic or Latino"
-        },
-        {
-          "value": "2",
-          "description": "Not Hispanic or Latino"
-        },
-        {
-          "value": "3",
-          "description": "Information not provided by applicant in mail, internet, or telephone application"
-        },
-        {
-          "value": "4",
-          "description": "Not applicable"
-        }
+      "enumerations": [],
+      "descriptions": [
+        "Specify in text the Applicant’s or Borrower’s Other Hispanic or Latino ethnicity(ies) provided by the Applicant or Borrower. Otherwise, leave this data field blank."
       ],
       "dataPoint": "Ethnicity"
     },
     {
       "fieldIndex": 23,
-      "fieldName": "Ethnicity of Applicant or Borrower: Free Form Text Field for Other Hispanic or Latino",
-      "fieldLength": "100",
-      "fieldType": "Alphanumeric",
-      "examples": [
-        "Specify in text the Applicant’s or Borrower’s Other Hispanic or Latino ethnicity(ies) provided by the Applicant or Borrower. Otherwise, leave this data field blank."
-      ],
-      "values": [],
-      "dataPoint": "Ethnicity"
-    },
-    {
-      "fieldIndex": 24,
       "fieldName": "Ethnicity of Co-Applicant or Co-Borrower: 1",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Hispanic or Latino"
@@ -561,16 +580,60 @@
           "value": "4",
           "description": "Not applicable"
         }
+      ],
+      "descriptions": [
+        "If the Co-Applicant or Co-Borrower did not select any ethnicity(ies), but only provided ethnicity(ies) in the Ethnicity of Co-Applicant or Co-Borrower: Free Form Text Field for Other Hispanic or Latino, either leave this this data field blank or enter Code 14."
+      ],
+      "dataPoint": "Ethnicity"
+    },
+    {
+      "fieldIndex": 24,
+      "fieldName": "Ethnicity of Co-Applicant or Co-Borrower: 2",
+      "examples": [],
+      "enumerations": [
+        {
+          "value": "1",
+          "description": "Hispanic or Latino"
+        },
+        {
+          "value": "11",
+          "description": "Mexican"
+        },
+        {
+          "value": "12",
+          "description": "Puerto Rican"
+        },
+        {
+          "value": "13",
+          "description": "Cuban"
+        },
+        {
+          "value": "14",
+          "description": "Other Hispanic or Latino"
+        },
+        {
+          "value": "2",
+          "description": "Not Hispanic or Latino"
+        },
+        {
+          "value": "3",
+          "description": "Information not provided by applicant in mail, internet, or telephone application"
+        },
+        {
+          "value": "4",
+          "description": "Not applicable"
+        }
+      ],
+      "descriptions": [
+        "If this data field does not contain an entry, leave it blank.<br/><br/>  If the Co-Applicant or Co-Borrower did not select any ethnicity(ies), but only provided ethnicity(ies) in the Ethnicity of Co-Applicant or Co-Borrower: Free Form Text Field for Other Hispanic or Latino, either leave this this data field blank or enter Code 14."
       ],
       "dataPoint": "Ethnicity"
     },
     {
       "fieldIndex": 25,
-      "fieldName": "Ethnicity of Co-Applicant or Co-Borrower: 2",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Ethnicity of Co-Applicant or Co-Borrower: 3",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Hispanic or Latino"
@@ -603,16 +666,17 @@
           "value": "4",
           "description": "Not applicable"
         }
+      ],
+      "descriptions": [
+        "If this data field does not contain an entry, leave it blank.<br/><br/>  If the Co-Applicant or Co-Borrower did not select any ethnicity(ies), but only provided ethnicity(ies) in the Ethnicity of Co-Applicant or Co-Borrower: Free Form Text Field for Other Hispanic or Latino, either leave this this data field blank or enter Code 14."
       ],
       "dataPoint": "Ethnicity"
     },
     {
       "fieldIndex": 26,
-      "fieldName": "Ethnicity of Co-Applicant or Co-Borrower: 3",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Ethnicity of Co-Applicant or Co-Borrower: 4",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Hispanic or Latino"
@@ -645,16 +709,17 @@
           "value": "4",
           "description": "Not applicable"
         }
+      ],
+      "descriptions": [
+        "If this data field does not contain an entry, leave it blank.<br/><br/>  If the Co-Applicant or Co-Borrower did not select any ethnicity(ies), but only provided ethnicity(ies) in the Ethnicity of Co-Applicant or Co-Borrower: Free Form Text Field for Other Hispanic or Latino, either leave this this data field blank or enter Code 14."
       ],
       "dataPoint": "Ethnicity"
     },
     {
       "fieldIndex": 27,
-      "fieldName": "Ethnicity of Co-Applicant or Co-Borrower: 4",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Ethnicity of Co-Applicant or Co-Borrower: 5",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Hispanic or Latino"
@@ -687,69 +752,27 @@
           "value": "4",
           "description": "Not applicable"
         }
+      ],
+      "descriptions": [
+        "If this data field does not contain an entry, leave it blank.<br/><br/>  If the Co-Applicant or Co-Borrower did not select any ethnicity(ies), but only provided ethnicity(ies) in the Ethnicity of Co-Applicant or Co-Borrower: Free Form Text Field for Other Hispanic or Latino, either leave this this data field blank or enter Code 14."
       ],
       "dataPoint": "Ethnicity"
     },
     {
       "fieldIndex": 28,
-      "fieldName": "Ethnicity of Co-Applicant or Co-Borrower: 5",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Ethnicity of Co-Applicant or Co-Borrower: Free Form Text Field for Other Hispanic or Latino",
       "examples": [],
-      "values": [
-        {
-          "value": "1",
-          "description": "Hispanic or Latino"
-        },
-        {
-          "value": "11",
-          "description": "Mexican"
-        },
-        {
-          "value": "12",
-          "description": "Puerto Rican"
-        },
-        {
-          "value": "13",
-          "description": "Cuban"
-        },
-        {
-          "value": "14",
-          "description": "Other Hispanic or Latino"
-        },
-        {
-          "value": "2",
-          "description": "Not Hispanic or Latino"
-        },
-        {
-          "value": "3",
-          "description": "Information not provided by applicant in mail, internet, or telephone application"
-        },
-        {
-          "value": "4",
-          "description": "Not applicable"
-        }
+      "enumerations": [],
+      "descriptions": [
+        "Specify in text the Co-Applicant’s or Co-Borrower’s Other Hispanic or Latino ethnicity(ies) provided by the Co-Applicant or Co-Borrower. Otherwise, leave this data field blank."
       ],
       "dataPoint": "Ethnicity"
     },
     {
       "fieldIndex": 29,
-      "fieldName": "Ethnicity of Co-Applicant or Co-Borrower: Free Form Text Field for Other Hispanic or Latino",
-      "fieldLength": "100",
-      "fieldType": "Alphanumeric",
-      "examples": [
-        "Specify in text the Applicant’s or Borrower’s Other Hispanic or Latino ethnicity(ies) provided by the Applicant or Borrower. Otherwise, leave this data field blank."
-      ],
-      "values": [],
-      "dataPoint": "Ethnicity"
-    },
-    {
-      "fieldIndex": 30,
       "fieldName": "Ethnicity of Applicant or Borrower Collected on the Basis of Visual Observation or Surname",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Collected on the basis of visual observation or surname"
@@ -763,15 +786,14 @@
           "description": "Not applicable"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Ethnicity"
     },
     {
-      "fieldIndex": 31,
+      "fieldIndex": 30,
       "fieldName": "Ethnicity of Co-Applicant or Co-Borrower Collected on the Basis of Visual Observation or Surname",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Collected on the basis of visual observation or surname"
@@ -786,18 +808,17 @@
         },
         {
           "value": "4",
-          "description": "No co-applicant"
+          "description": "No co"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Ethnicity"
     },
     {
-      "fieldIndex": 32,
+      "fieldIndex": 31,
       "fieldName": "Race of Applicant or Borrower: 1",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "American Indian or Alaska Native"
@@ -871,15 +892,16 @@
           "description": "Not applicable"
         }
       ],
+      "descriptions": [
+        "If the Applicant or Borrower did not select any race(s) and only provided race(s) in the Race of Applicant or Borrower: Free Form Text Field for American Indian or Alaska Native Enrolled or Principal Tribe, Race of Applicant or Borrower: Free Form Text Field for Other Asian, and/or Race of Applicant or Borrower: Free Form Text Field for Other Pacific Islander, either leave this data field blank or enter, as appropriate, Code 1, 27, or 44."
+      ],
       "dataPoint": "Race"
     },
     {
-      "fieldIndex": 33,
+      "fieldIndex": 32,
       "fieldName": "Race of Applicant or Borrower: 2",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "American Indian or Alaska Native"
@@ -944,16 +966,92 @@
           "value": "5",
           "description": "White"
         }
+      ],
+      "descriptions": [
+        "If this data field does not contain an entry, leave it blank.<br/><br/> If the Applicant or Borrower did not select any race(s) and only provided race(s) in the Race of Applicant or Borrower: Free Form Text Field for American Indian or Alaska Native Enrolled or Principal Tribe, Race of Applicant or Borrower: Free Form Text Field for Other Asian, and/or Race of Applicant or Borrower: Free Form Text Field for Other Pacific Islander, either leave this data field blank or enter, as appropriate, Code 1, 27, or 44."
+      ],
+      "dataPoint": "Race"
+    },
+    {
+      "fieldIndex": 33,
+      "fieldName": "Race of Applicant or Borrower: 3",
+      "examples": [],
+      "enumerations": [
+        {
+          "value": "1",
+          "description": "American Indian or Alaska Native"
+        },
+        {
+          "value": "2",
+          "description": "Asian"
+        },
+        {
+          "value": "21",
+          "description": "Asian Indian"
+        },
+        {
+          "value": "22",
+          "description": "Chinese"
+        },
+        {
+          "value": "23",
+          "description": "Filipino"
+        },
+        {
+          "value": "24",
+          "description": "Japanese"
+        },
+        {
+          "value": "25",
+          "description": "Korean"
+        },
+        {
+          "value": "26",
+          "description": "Vietnamese"
+        },
+        {
+          "value": "27",
+          "description": "Other Asian"
+        },
+        {
+          "value": "3",
+          "description": "Black or African American Native Hawaiian or Other Pacific Islander"
+        },
+        {
+          "value": "4",
+          "description": "Native Hawaiian or Other Pacific Islander"
+        },
+        {
+          "value": "41",
+          "description": "Native Hawaiian"
+        },
+        {
+          "value": "42",
+          "description": "Guamanian or Chamorro"
+        },
+        {
+          "value": "43",
+          "description": "Samoan"
+        },
+        {
+          "value": "44",
+          "description": "Other Pacific Islander Race"
+        },
+        {
+          "value": "5",
+          "description": "White"
+        }
+      ],
+      "descriptions": [
+        "If this data field does not contain an entry, leave it blank.<br/><br/> If the Applicant or Borrower did not select any race(s) and only provided race(s) in the Race of Applicant or Borrower: Free Form Text Field for American Indian or Alaska Native Enrolled or Principal Tribe, Race of Applicant or Borrower: Free Form Text Field for Other Asian, and/or Race of Applicant or Borrower: Free Form Text Field for Other Pacific Islander, either leave this data field blank or enter, as appropriate, Code 1, 27, or 44."
       ],
       "dataPoint": "Race"
     },
     {
       "fieldIndex": 34,
-      "fieldName": "Race of Applicant or Borrower: 3",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Race of Applicant or Borrower: 4",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "American Indian or Alaska Native"
@@ -1018,16 +1116,17 @@
           "value": "5",
           "description": "White"
         }
+      ],
+      "descriptions": [
+        "If this data field does not contain an entry, leave it blank.<br/><br/> If the Applicant or Borrower did not select any race(s) and only provided race(s) in the Race of Applicant or Borrower: Free Form Text Field for American Indian or Alaska Native Enrolled or Principal Tribe, Race of Applicant or Borrower: Free Form Text Field for Other Asian, and/or Race of Applicant or Borrower: Free Form Text Field for Other Pacific Islander, either leave this data field blank or enter, as appropriate, Code 1, 27, or 44."
       ],
       "dataPoint": "Race"
     },
     {
       "fieldIndex": 35,
-      "fieldName": "Race of Applicant or Borrower: 4",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Race of Applicant or Borrower: 5",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "American Indian or Alaska Native"
@@ -1092,123 +1191,47 @@
           "value": "5",
           "description": "White"
         }
+      ],
+      "descriptions": [
+        "If this data field does not contain an entry, leave it blank.<br/><br/> If the Applicant or Borrower did not select any race(s) and only provided race(s) in the Race of Applicant or Borrower: Free Form Text Field for American Indian or Alaska Native Enrolled or Principal Tribe, Race of Applicant or Borrower: Free Form Text Field for Other Asian, and/or Race of Applicant or Borrower: Free Form Text Field for Other Pacific Islander, either leave this data field blank or enter, as appropriate, Code 1, 27, or 44."
       ],
       "dataPoint": "Race"
     },
     {
       "fieldIndex": 36,
-      "fieldName": "Race of Applicant or Borrower: 5",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Race of Applicant or Borrower: Free Form Text Field for American Indian or Alaska Native Enrolled or Principal Tribe",
       "examples": [],
-      "values": [
-        {
-          "value": "1",
-          "description": "American Indian or Alaska Native"
-        },
-        {
-          "value": "2",
-          "description": "Asian"
-        },
-        {
-          "value": "21",
-          "description": "Asian Indian"
-        },
-        {
-          "value": "22",
-          "description": "Chinese"
-        },
-        {
-          "value": "23",
-          "description": "Filipino"
-        },
-        {
-          "value": "24",
-          "description": "Japanese"
-        },
-        {
-          "value": "25",
-          "description": "Korean"
-        },
-        {
-          "value": "26",
-          "description": "Vietnamese"
-        },
-        {
-          "value": "27",
-          "description": "Other Asian"
-        },
-        {
-          "value": "3",
-          "description": "Black or African American Native Hawaiian or Other Pacific Islander"
-        },
-        {
-          "value": "4",
-          "description": "Native Hawaiian or Other Pacific Islander"
-        },
-        {
-          "value": "41",
-          "description": "Native Hawaiian"
-        },
-        {
-          "value": "42",
-          "description": "Guamanian or Chamorro"
-        },
-        {
-          "value": "43",
-          "description": "Samoan"
-        },
-        {
-          "value": "44",
-          "description": "Other Pacific Islander Race"
-        },
-        {
-          "value": "5",
-          "description": "White"
-        }
+      "enumerations": [],
+      "descriptions": [
+        "Specify in text the Applicant’s or Borrower’s American Indian or Alaska Native Enrolled or Principal Tribe if Race provided by the Applicant or Borrower. Otherwise, leave this data field blank."
       ],
       "dataPoint": "Race"
     },
     {
       "fieldIndex": 37,
-      "fieldName": "Race of Applicant or Borrower: Free Form Text Field for American Indian or Alaska Native Enrolled or Principal Tribe",
-      "fieldLength": "100",
-      "fieldType": "Alphanumeric",
-      "examples": [
-        "Specify in text the Applicant’s or Borrower’s American Indian or Alaska Native Enrolled or Principal Tribe if Race provided by the Applicant or Borrower. Otherwise, leave this data field blank."
+      "fieldName": "Race of Applicant or Borrower: Free Form Text Field for Other Asian",
+      "examples": [],
+      "enumerations": [],
+      "descriptions": [
+        "Specify in text the Applicant’s or Borrower’s Other Asian race(s) provided by the Applicant or Borrower. Otherwise, leave this data field blank."
       ],
-      "values": [],
       "dataPoint": "Race"
     },
     {
       "fieldIndex": 38,
-      "fieldName": "Race of Applicant or Borrower: Free Form Text Field for Other Asian",
-      "fieldLength": "100",
-      "fieldType": "Alphanumeric",
-      "examples": [
-        "Specify in text the Applicant’s or Borrower’s Other Asian race(s) provided by the Applicant or Borrower. Otherwise, leave this data field blank."
+      "fieldName": "Race of Applicant or Borrower: Free Form Text Field for Other Pacific Islander",
+      "examples": [],
+      "enumerations": [],
+      "descriptions": [
+        "Specify in text the Applicant’s or Borrower’s Other Pacific Islander race(s) provided by the Applicant or Borrower. Otherwise, leave this data field blank."
       ],
-      "values": [],
       "dataPoint": "Race"
     },
     {
       "fieldIndex": 39,
-      "fieldName": "Race of Applicant or Borrower: Free Form Text Field for Other Pacific Islander",
-      "fieldLength": "100",
-      "fieldType": "Alphanumeric",
-      "examples": [
-        "Specify in text the Applicant’s or Borrower’s Other Pacific Islander race(s) provided by the Applicant or Borrower. Otherwise, leave this data field blank."
-      ],
-      "values": [],
-      "dataPoint": "Race"
-    },
-    {
-      "fieldIndex": 40,
       "fieldName": "Race of Co-Applicant or Co-Borrower: 1",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "American Indian or Alaska Native"
@@ -1283,18 +1306,94 @@
         },
         {
           "value": "8",
-          "description": "No co-applicant"
+          "description": "No co"
         }
+      ],
+      "descriptions": [
+        "If the Co-Applicant or Co-Borrower did not select any race(s) and only provided race(s) in the Race of CoApplicant or Co-Borrower: Free Form Text Field for American Indian or Alaska Native Enrolled or Principal Tribe, Race of Co-Applicant or CoBorrower: Free Form Text Field for Other Asian, and/or Race of CoApplicant or Co-Borrower: Free Form Text Field for Other Pacific Islander, either leave this data field blank or enter, as appropriate, Code 1, 27, or 44."
+      ],
+      "dataPoint": "Race"
+    },
+    {
+      "fieldIndex": 40,
+      "fieldName": "Race of Co-Applicant or Co-Borrower: 2",
+      "examples": [],
+      "enumerations": [
+        {
+          "value": "1",
+          "description": "American Indian or Alaska Native"
+        },
+        {
+          "value": "2",
+          "description": "Asian"
+        },
+        {
+          "value": "21",
+          "description": "Asian Indian"
+        },
+        {
+          "value": "22",
+          "description": "Chinese"
+        },
+        {
+          "value": "23",
+          "description": "Filipino"
+        },
+        {
+          "value": "24",
+          "description": "Japanese"
+        },
+        {
+          "value": "25",
+          "description": "Korean"
+        },
+        {
+          "value": "26",
+          "description": "Vietnamese"
+        },
+        {
+          "value": "27",
+          "description": "Other Asian"
+        },
+        {
+          "value": "3",
+          "description": "Black or African American Native Hawaiian or Other Pacific Islander"
+        },
+        {
+          "value": "4",
+          "description": "Native Hawaiian or Other Pacific Islander"
+        },
+        {
+          "value": "41",
+          "description": "Native Hawaiian"
+        },
+        {
+          "value": "42",
+          "description": "Guamanian or Chamorro"
+        },
+        {
+          "value": "43",
+          "description": "Samoan"
+        },
+        {
+          "value": "44",
+          "description": "Other Pacific Islander Race"
+        },
+        {
+          "value": "5",
+          "description": "White"
+        }
+      ],
+      "descriptions": [
+        "If this data field does not contain an entry, leave it blank.<br/><br/> If the Co-Applicant or Co-Borrower did not select any race(s) and only provided race(s) in the Race of CoApplicant or Co-Borrower: Free Form Text Field for American Indian or Alaska Native Enrolled or Principal Tribe, Race of Co-Applicant or CoBorrower: Free Form Text Field for Other Asian, and/or Race of CoApplicant or Co-Borrower: Free Form Text Field for Other Pacific Islander, either leave this data field blank or enter, as appropriate, Code 1, 27, or 44."
       ],
       "dataPoint": "Race"
     },
     {
       "fieldIndex": 41,
-      "fieldName": "Race of Co-Applicant or Co-Borrower: 2",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Race of Co-Applicant or Co-Borrower: 3",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "American Indian or Alaska Native"
@@ -1359,16 +1458,17 @@
           "value": "5",
           "description": "White"
         }
+      ],
+      "descriptions": [
+        "If this data field does not contain an entry, leave it blank.<br/><br/> If the Co-Applicant or Co-Borrower did not select any race(s) and only provided race(s) in the Race of CoApplicant or Co-Borrower: Free Form Text Field for American Indian or Alaska Native Enrolled or Principal Tribe, Race of Co-Applicant or CoBorrower: Free Form Text Field for Other Asian, and/or Race of CoApplicant or Co-Borrower: Free Form Text Field for Other Pacific Islander, either leave this data field blank or enter, as appropriate, Code 1, 27, or 44."
       ],
       "dataPoint": "Race"
     },
     {
       "fieldIndex": 42,
-      "fieldName": "Race of Co-Applicant or Co-Borrower: 3",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Race of Co-Applicant or Co-Borrower: 4",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "American Indian or Alaska Native"
@@ -1433,16 +1533,17 @@
           "value": "5",
           "description": "White"
         }
+      ],
+      "descriptions": [
+        "If this data field does not contain an entry, leave it blank.<br/><br/> If the Co-Applicant or Co-Borrower did not select any race(s) and only provided race(s) in the Race of CoApplicant or Co-Borrower: Free Form Text Field for American Indian or Alaska Native Enrolled or Principal Tribe, Race of Co-Applicant or CoBorrower: Free Form Text Field for Other Asian, and/or Race of CoApplicant or Co-Borrower: Free Form Text Field for Other Pacific Islander, either leave this data field blank or enter, as appropriate, Code 1, 27, or 44."
       ],
       "dataPoint": "Race"
     },
     {
       "fieldIndex": 43,
-      "fieldName": "Race of Co-Applicant or Co-Borrower: 4",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Race of Co-Applicant or Co-Borrower: 5",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "American Indian or Alaska Native"
@@ -1507,145 +1608,68 @@
           "value": "5",
           "description": "White"
         }
+      ],
+      "descriptions": [
+        "If this data field does not contain an entry, leave it blank.<br/><br/> If the Co-Applicant or Co-Borrower did not select any race(s) and only provided race(s) in the Race of CoApplicant or Co-Borrower: Free Form Text Field for American Indian or Alaska Native Enrolled or Principal Tribe, Race of Co-Applicant or CoBorrower: Free Form Text Field for Other Asian, and/or Race of CoApplicant or Co-Borrower: Free Form Text Field for Other Pacific Islander, either leave this data field blank or enter, as appropriate, Code 1, 27, or 44."
       ],
       "dataPoint": "Race"
     },
     {
       "fieldIndex": 44,
-      "fieldName": "Race of Co-Applicant or Co-Borrower: 5",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Race of Co-Applicant or Co-Borrower: Free Form Text Field for American Indian or Alaska Native Enrolled or Principal Tribe",
       "examples": [],
-      "values": [
-        {
-          "value": "1",
-          "description": "American Indian or Alaska Native"
-        },
-        {
-          "value": "2",
-          "description": "Asian"
-        },
-        {
-          "value": "21",
-          "description": "Asian Indian"
-        },
-        {
-          "value": "22",
-          "description": "Chinese"
-        },
-        {
-          "value": "23",
-          "description": "Filipino"
-        },
-        {
-          "value": "24",
-          "description": "Japanese"
-        },
-        {
-          "value": "25",
-          "description": "Korean"
-        },
-        {
-          "value": "26",
-          "description": "Vietnamese"
-        },
-        {
-          "value": "27",
-          "description": "Other Asian"
-        },
-        {
-          "value": "3",
-          "description": "Black or African American Native Hawaiian or Other Pacific Islander"
-        },
-        {
-          "value": "4",
-          "description": "Native Hawaiian or Other Pacific Islander"
-        },
-        {
-          "value": "41",
-          "description": "Native Hawaiian"
-        },
-        {
-          "value": "42",
-          "description": "Guamanian or Chamorro"
-        },
-        {
-          "value": "43",
-          "description": "Samoan"
-        },
-        {
-          "value": "44",
-          "description": "Other Pacific Islander Race"
-        },
-        {
-          "value": "5",
-          "description": "White"
-        }
+      "enumerations": [],
+      "descriptions": [
+        "Specify in text the Co-Applicant’s or Co-Borrower’s American Indian or Alask a Native Enrolled or Principal Tribe if provided by the Co-Applicant or Co-Borrower. Otherwise, leave this data field blank."
       ],
       "dataPoint": "Race"
     },
     {
       "fieldIndex": 45,
-      "fieldName": "Race of Co-Applicant or Co-Borrower: Free Form Text Field for American Indian or Alaska Native Enrolled or Principal Tribe",
-      "fieldLength": "100",
-      "fieldType": "Alphanumeric",
-      "examples": [
-        "Specify in text the Co-Applicant’s or Co-Borrower’s American Indian or Alask a Native Enrolled or Principal Tribe if provided by the Co-Applicant or Co-Borrower. Otherwise, leave this data field blank."
+      "fieldName": "Race of Co-Applicant or Co-Borrower: Free Form Text Field for Other Asian",
+      "examples": [],
+      "enumerations": [],
+      "descriptions": [
+        "Specify in text the Co-Applicant’s or Co-Borrower’s Other Asian race(s) provided by the Co-Applicant or Co-Borrower. Otherwise, leave this data field blank."
       ],
-      "values": [],
       "dataPoint": "Race"
     },
     {
       "fieldIndex": 46,
-      "fieldName": "Race of Co-Applicant or Co-Borrower: Free Form Text Field for Other Asian",
-      "fieldLength": "100",
-      "fieldType": "Alphanumeric",
-      "examples": [
-        "Specify in text the Co-Applicant’s or Co-Borrower’s Other Asian race(s) provided by the Co-Applicant or Co-Borrower. Otherwise, leave this data field blank."
+      "fieldName": "Race of Co-Applicant or Co-Borrower: Free Form Text Field for Other Pacific Islander",
+      "examples": [],
+      "enumerations": [],
+      "descriptions": [
+        "Specify in text the Co-Applicant’s or Co-Borrower’s Other Pacific Islander race(s) provided by the Co-Applicant or Co-Borrower. Otherwise, leave this data field blank."
       ],
-      "values": [],
       "dataPoint": "Race"
     },
     {
       "fieldIndex": 47,
-      "fieldName": "Race of Co-Applicant or Co-Borrower: Free Form Text Field for Other Pacific Islander",
-      "fieldLength": "100",
-      "fieldType": "Alphanumeric",
-      "examples": [
-        "Specify in text the Co-Applicant’s or Co-Borrower’s Other Pacific Islander race(s) provided by the Co-Applicant or Co-Borrower. Otherwise, leave this data field blank."
+      "fieldName": "Race of Applicant or Borrower Collected on the Basis of Visual Observation or Surname",
+      "examples": [],
+      "enumerations": [
+        {
+          "value": "1",
+          "description": "Collected on the basis of visual observation or surname"
+        },
+        {
+          "value": "2",
+          "description": "Not collected on the basis of visual observation or surname"
+        },
+        {
+          "value": "3",
+          "description": "Not applicable"
+        }
       ],
-      "values": [],
+      "descriptions": [],
       "dataPoint": "Race"
     },
     {
       "fieldIndex": 48,
-      "fieldName": "Race of Applicant or Borrower Collected on the Basis of Visual Observation or Surname",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
-      "examples": [],
-      "values": [
-        {
-          "value": "1",
-          "description": "Collected on the basis of visual observation or surname"
-        },
-        {
-          "value": "2",
-          "description": "Not collected on the basis of visual observation or surname"
-        },
-        {
-          "value": "3",
-          "description": "Not applicable"
-        }
-      ],
-      "dataPoint": "Race"
-    },
-    {
-      "fieldIndex": 49,
       "fieldName": "Race of Co-Applicant or Co-Borrower Collected on the Basis of Visual Observation or Surname",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Collected on the basis of visual observation or surname"
@@ -1660,18 +1684,17 @@
         },
         {
           "value": "4",
-          "description": "No co-applicant"
+          "description": "No co"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Ethnicity"
     },
     {
-      "fieldIndex": 50,
+      "fieldIndex": 49,
       "fieldName": "Sex of Applicant or Borrower",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Male"
@@ -1693,67 +1716,64 @@
           "description": "Applicant selected both male and female"
         }
       ],
+      "descriptions": [],
+      "dataPoint": "Sex"
+    },
+    {
+      "fieldIndex": 50,
+      "fieldName": "Sex of Co-Applicant or Co-Borrower",
+      "examples": [],
+      "enumerations": [
+        {
+          "value": "1",
+          "description": "Male"
+        },
+        {
+          "value": "2",
+          "description": "Female"
+        },
+        {
+          "value": "3",
+          "description": "Information not provided by applicant in mail, internet, or Sex 4 telephone application"
+        },
+        {
+          "value": "4",
+          "description": "Not applicable"
+        },
+        {
+          "value": "6",
+          "description": "Applicant selected both male and female"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Sex"
     },
     {
       "fieldIndex": 51,
-      "fieldName": "Sex of Co-Applicant or Co-Borrower",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Sex of Applicant or Borrower Collected on the Basis of Visual Observation or Surname",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
-          "description": "Male"
+          "description": "Collected on the basis of visual observation or surname"
         },
         {
           "value": "2",
-          "description": "Female"
+          "description": "Not collected on the basis of visual observation or surname"
         },
         {
           "value": "3",
-          "description": "Information not provided by applicant in mail, internet, or Sex 4 telephone application"
-        },
-        {
-          "value": "4",
           "description": "Not applicable"
-        },
-        {
-          "value": "6",
-          "description": "Applicant selected both male and female"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Sex"
     },
     {
       "fieldIndex": 52,
-      "fieldName": "Sex of Applicant or Borrower Collected on the Basis of Visual Observation or Surname",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
-      "examples": [],
-      "values": [
-        {
-          "value": "1",
-          "description": "Collected on the basis of visual observation or surname"
-        },
-        {
-          "value": "2",
-          "description": "Not collected on the basis of visual observation or surname"
-        },
-        {
-          "value": "3",
-          "description": "Not applicable"
-        }
-      ],
-      "dataPoint": "Sex"
-    },
-    {
-      "fieldIndex": 53,
       "fieldName": "Sex of Co-Applicant or Co-Borrower Collected on the Basis of Visual Observation or Surname",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Collected on the basis of visual observation or surname"
@@ -1768,65 +1788,67 @@
         },
         {
           "value": "4",
-          "description": "No co-applicant"
+          "description": "No co"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Sex"
     },
     {
-      "fieldIndex": 54,
+      "fieldIndex": 53,
       "fieldName": "Age of Applicant or Borrower",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
         "24"
       ],
-      "values": [
+      "enumerations": [
         {
           "value": "8888",
           "description": "NA"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Sex"
     },
     {
-      "fieldIndex": 55,
+      "fieldIndex": 54,
       "fieldName": "Age of Co-Applicant or Co-Borrower",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
         "24"
       ],
-      "values": [
+      "enumerations": [
         {
           "value": "8888",
           "description": "NA"
         },
         {
           "value": "9999",
-          "description": "No co-applicant"
+          "description": "No co"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Age"
     },
     {
-      "fieldIndex": 56,
+      "fieldIndex": 55,
       "fieldName": "Income",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
-        "36 (or) -36 (or) NA"
+        "36",
+        "-36"
       ],
-      "values": [],
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Income"
     },
     {
-      "fieldIndex": 57,
+      "fieldIndex": 56,
       "fieldName": "Type of Purchaser",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "0",
           "description": "Not applicable"
@@ -1872,26 +1894,34 @@
           "description": "Other type of purchaser"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Type of Purchaser"
     },
     {
-      "fieldIndex": 58,
+      "fieldIndex": 57,
       "fieldName": "Rate Spread",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
-        "0.428 (or) -0.428 (or) NA (or) Exempt"
+        "0.428",
+        "-0.428"
       ],
-      "values": [],
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        },
+        {
+          "value": "Exempt",
+          "description": "Exempt"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Rate Spread"
     },
     {
-      "fieldIndex": 59,
+      "fieldIndex": 58,
       "fieldName": "HOEPA Status",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "High"
@@ -1905,15 +1935,14 @@
           "description": "Not applicable"
         }
       ],
+      "descriptions": [],
       "dataPoint": "HOEPA Status"
     },
     {
-      "fieldIndex": 60,
+      "fieldIndex": 59,
       "fieldName": "Lien Status",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Secured by a first lien"
@@ -1923,17 +1952,16 @@
           "description": "Secured by a subordinate lien"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Lien Status"
     },
     {
-      "fieldIndex": 61,
+      "fieldIndex": 60,
       "fieldName": "Credit Score of Applicant or Borrower",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
         "650"
       ],
-      "values": [
+      "enumerations": [
         {
           "value": "7777",
           "description": "Credit score is not a number"
@@ -1947,17 +1975,16 @@
           "description": "Exempt"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Credit Score"
     },
     {
-      "fieldIndex": 62,
+      "fieldIndex": 61,
       "fieldName": "Credit Score of Co-Applicant or Co-Borrower",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
         "650"
       ],
-      "values": [
+      "enumerations": [
         {
           "value": "7777",
           "description": "Credit score is not a number"
@@ -1968,22 +1995,21 @@
         },
         {
           "value": "9999",
-          "description": "No co-applicant"
+          "description": "No co"
         },
         {
           "value": "1111",
           "description": "Exempt"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Credit Score"
     },
     {
-      "fieldIndex": 63,
+      "fieldIndex": 62,
       "fieldName": "Applicant or Borrower, Name and Version of Credit Scoring Model",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Equifax Beacon 5.0"
@@ -2024,27 +2050,27 @@
           "value": "1111",
           "description": "Exempt"
         }
+      ],
+      "descriptions": [],
+      "dataPoint": "Credit Score"
+    },
+    {
+      "fieldIndex": 63,
+      "fieldName": "Applicant or Borrower, Name and Version of Credit Scoring Model: Conditional Free Form Text Field for Code 8",
+      "examples": [],
+      "enumerations": [],
+      "descriptions": [
+        "Specify in text the applicant’s or borrower’s Other credit scoring model if 8 is entered. Otherwise, leave this data field blank."
       ],
       "dataPoint": "Credit Score"
     },
     {
       "fieldIndex": 64,
-      "fieldName": "Applicant or Borrower, Name and Version of Credit Scoring Model: Conditional Free Form Text Field for Code 8",
-      "fieldLength": "100",
-      "fieldType": "Alphanumeric",
-      "examples": [
-        "Specify in text the applicant’s or borrower’s Other credit scoring model if 8 is entered. Otherwise, leave this data field blank."
-      ],
-      "values": [],
-      "dataPoint": "Credit Score"
-    },
-    {
-      "fieldIndex": 65,
       "fieldName": "Co-Applicant or Co-Borrower, Name and Version of Credit Scoring Model",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
-      "examples": [],
-      "values": [
+      "examples": [
+        "Credit Score"
+      ],
+      "enumerations": [
         {
           "value": "1",
           "description": "Equifax Beacon 5.0"
@@ -2083,36 +2109,34 @@
         },
         {
           "value": "10",
-          "description": "No co-applicant"
+          "description": "No co"
         },
         {
           "value": "1111",
           "description": "Exempt"
         }
       ],
+      "descriptions": [],
+      "dataPoint": "Co-Applicant or Co-Borrower, Name and Version of Credit Scoring Model"
+    },
+    {
+      "fieldIndex": 65,
+      "fieldName": "Co-Applicant or Co-Borrower, Name and Version of Credit Scoring Model: Conditional Free Form Text Field for Code 8",
+      "examples": [],
+      "enumerations": [],
+      "descriptions": [
+        "Specify in text the co-applicant’s or coborrower’s Other credit scoring model if 8 is entered. Otherwise, leave this data field blank."
+      ],
       "dataPoint": "Credit Score"
     },
     {
       "fieldIndex": 66,
-      "fieldName": "Co-Applicant or Co-Borrower, Name and Version of Credit Scoring Model: Conditional Free Form Text Field for Code 8",
-      "fieldLength": "100",
-      "fieldType": "Alphanumeric",
-      "examples": [
-        "Specify in text the co-applicant’s or coborrower’s Other credit scoring model if 8 is entered. Otherwise, leave this data field blank."
-      ],
-      "values": [],
-      "dataPoint": "Credit Score"
-    },
-    {
-      "fieldIndex": 67,
       "fieldName": "Reason for Denial: 1",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
-          "description": "Debt-to-income ratio"
+          "description": "Debt"
         },
         {
           "value": "2",
@@ -2155,18 +2179,62 @@
           "description": "Exempt"
         }
       ],
+      "descriptions": [],
+      "dataPoint": "Reason for Denial"
+    },
+    {
+      "fieldIndex": 67,
+      "fieldName": "Reason for Denial: 2",
+      "examples": [],
+      "enumerations": [
+        {
+          "value": "1",
+          "description": "Debt"
+        },
+        {
+          "value": "2",
+          "description": "Employment history"
+        },
+        {
+          "value": "3",
+          "description": "Credit history"
+        },
+        {
+          "value": "4",
+          "description": "Collateral"
+        },
+        {
+          "value": "5",
+          "description": "Insufficient cash (downpayment, closing costs)"
+        },
+        {
+          "value": "6",
+          "description": "Unverifiable information"
+        },
+        {
+          "value": "7",
+          "description": "Credit application incomplete"
+        },
+        {
+          "value": "8",
+          "description": "Mortgage insurance denied"
+        },
+        {
+          "value": "9",
+          "description": "Other"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Reason for Denial"
     },
     {
       "fieldIndex": 68,
-      "fieldName": "Reason for Denial: 2",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Reason for Denial: 3",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
-          "description": "Debt-to-income ratio"
+          "description": "Debt"
         },
         {
           "value": "2",
@@ -2201,18 +2269,17 @@
           "description": "Other"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Reason for Denial"
     },
     {
       "fieldIndex": 69,
-      "fieldName": "Reason for Denial: 3",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Reason for Denial: 4",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
-          "description": "Debt-to-income ratio"
+          "description": "Debt"
         },
         {
           "value": "2",
@@ -2247,193 +2314,234 @@
           "description": "Other"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Reason for Denial"
     },
     {
       "fieldIndex": 70,
-      "fieldName": "Reason for Denial: 4",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Reason for Denial: Conditional Free Form Text Field for Code 9",
       "examples": [],
-      "values": [
-        {
-          "value": "1",
-          "description": "Debt-to-income ratio"
-        },
-        {
-          "value": "2",
-          "description": "Employment history"
-        },
-        {
-          "value": "3",
-          "description": "Credit history"
-        },
-        {
-          "value": "4",
-          "description": "Collateral"
-        },
-        {
-          "value": "5",
-          "description": "Insufficient cash (downpayment, closing costs)"
-        },
-        {
-          "value": "6",
-          "description": "Unverifiable information"
-        },
-        {
-          "value": "7",
-          "description": "Credit application incomplete"
-        },
-        {
-          "value": "8",
-          "description": "Mortgage insurance denied"
-        },
-        {
-          "value": "9",
-          "description": "Other"
-        }
+      "enumerations": [],
+      "descriptions": [
+        "Specify in text the Other Denial Reason(s) if Code 9 is entered. Otherwise, leave this data field blank."
       ],
       "dataPoint": "Reason for Denial"
     },
     {
       "fieldIndex": 71,
-      "fieldName": "Reason for Denial: Conditional Free Form Text Field for Code 9",
-      "fieldLength": "255",
-      "fieldType": "Alphanumeric",
+      "fieldName": "Total Loan Costs",
       "examples": [
-        "Specify in text the Other Denial Reason(s) if Code 9 is entered. Otherwise, leave this data field blank."
+        "2399.04"
       ],
-      "values": [],
-      "dataPoint": "Reason for Denial"
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        },
+        {
+          "value": "Exempt",
+          "description": "Exempt"
+        }
+      ],
+      "descriptions": [],
+      "dataPoint": "Total Loan Costs or Total Points and Fees"
     },
     {
       "fieldIndex": 72,
-      "fieldName": "Total Loan Costs",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Total Points and Fees",
       "examples": [
-        "2399.04 (or) NA (or) Exempt"
+        "2399.04"
       ],
-      "values": [],
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        },
+        {
+          "value": "Exempt",
+          "description": "Exempt"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Total Loan Costs or Total Points and Fees"
     },
     {
       "fieldIndex": 73,
-      "fieldName": "Total Points and Fees",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
-      "examples": [
-        "2399.04 (or) NA (or) Exempt"
-      ],
-      "values": [],
-      "dataPoint": "Total Loan Costs or Total Points and Fees"
-    },
-    {
-      "fieldIndex": 74,
       "fieldName": "Origination Charges",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
-        "2399.04 (or) NA (or) Exempt"
+        "2399.04"
       ],
-      "values": [],
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        },
+        {
+          "value": "Exempt",
+          "description": "Exempt"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Origination Charges"
     },
     {
-      "fieldIndex": 75,
+      "fieldIndex": 74,
       "fieldName": "Discount Points",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
-        "2399.04 (or) NA (or) Exempt"
+        "2399.04"
       ],
-      "values": [],
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        },
+        {
+          "value": "Exempt",
+          "description": "Exempt"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Discount Points"
     },
     {
-      "fieldIndex": 76,
+      "fieldIndex": 75,
       "fieldName": "Lender Credits",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
-        "1500.24 (or) NA (or) Exempt"
+        "1500.24"
       ],
-      "values": [],
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        },
+        {
+          "value": "Exempt",
+          "description": "Exempt"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Lender Credits"
     },
     {
-      "fieldIndex": 77,
+      "fieldIndex": 76,
       "fieldName": "Interest Rate",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
-        "4.125 (or) NA (or) Exempt"
+        "4.125"
       ],
-      "values": [],
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        },
+        {
+          "value": "Exempt",
+          "description": "Exempt"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Interest Rate"
     },
     {
-      "fieldIndex": 78,
+      "fieldIndex": 77,
       "fieldName": "Prepayment Penalty Term",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
-        "24 (or) NA (or) Exempt"
+        "24"
       ],
-      "values": [],
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        },
+        {
+          "value": "Exempt",
+          "description": "Exempt"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Prepayment Penalty Term"
     },
     {
-      "fieldIndex": 79,
+      "fieldIndex": 78,
       "fieldName": "Debt-to-Income Ratio",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
-        "42.95 (or) -42.95 (or) NA (or) Exempt"
+        "42.95",
+        "-42.95"
       ],
-      "values": [],
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        },
+        {
+          "value": "Exempt",
+          "description": "Exempt"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Debt-to-Income Ratio"
     },
     {
-      "fieldIndex": 80,
+      "fieldIndex": 79,
       "fieldName": "Combined Loan-to-Value Ratio",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
-        "80.05 (or) NA (or) Exempt"
+        "80.05"
       ],
-      "values": [],
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        },
+        {
+          "value": "Exempt",
+          "description": "Exempt"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Combined Loan-to-Value Ratio"
     },
     {
-      "fieldIndex": 81,
+      "fieldIndex": 80,
       "fieldName": "Loan Term",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
-        "360 (or) NA (or) Exempt"
+        "360"
       ],
-      "values": [],
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        },
+        {
+          "value": "Exempt",
+          "description": "Exempt"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Loan Term"
     },
     {
-      "fieldIndex": 82,
+      "fieldIndex": 81,
       "fieldName": "Introductory Rate Period",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
-        "24 (or) NA (or) Exempt"
+        "24"
       ],
-      "values": [],
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        },
+        {
+          "value": "Exempt",
+          "description": "Exempt"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Introductory Rate Period"
     },
     {
-      "fieldIndex": 83,
+      "fieldIndex": 82,
       "fieldName": "Balloon Payment",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Balloon payment"
@@ -2447,37 +2555,35 @@
           "description": "Exempt"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Non-Amortizing Features"
     },
     {
-      "fieldIndex": 84,
+      "fieldIndex": 83,
       "fieldName": "Interest-Only Payments",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
-          "description": "Interest-only payments"
+          "description": "Interest"
         },
         {
           "value": "2",
-          "description": "No interest-only payments"
+          "description": "No interest"
         },
         {
           "value": "1111",
           "description": "Exempt"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Non-Amortizing Features"
     },
     {
-      "fieldIndex": 85,
+      "fieldIndex": 84,
       "fieldName": "Negative Amortization",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Negative amortization"
@@ -2491,48 +2597,54 @@
           "description": "Exempt"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Non-Amortizing Features"
     },
     {
-      "fieldIndex": 86,
+      "fieldIndex": 85,
       "fieldName": "Other Non-amortizing Features",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
-          "description": "Other non-fully amortizing features"
+          "description": "Other non"
         },
         {
           "value": "2",
-          "description": "No other non-fully amortizing features"
+          "description": "No other non"
         },
         {
           "value": "1111",
           "description": "Exempt"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Non-Amortizing Features"
     },
     {
-      "fieldIndex": 87,
+      "fieldIndex": 86,
       "fieldName": "Property Value",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
-        "350500 (or) NA (or) Exempt"
+        "350500"
       ],
-      "values": [],
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        },
+        {
+          "value": "Exempt",
+          "description": "Exempt"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Property Value"
     },
     {
-      "fieldIndex": 88,
+      "fieldIndex": 87,
       "fieldName": "Manufactured Home Secured Property Type",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Manufactured home and land"
@@ -2550,15 +2662,14 @@
           "description": "Exempt"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Manufactured Home Secured Property Type"
     },
     {
-      "fieldIndex": 89,
+      "fieldIndex": 88,
       "fieldName": "Manufactured Home Land Property Interest",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Direct ownership"
@@ -2584,37 +2695,43 @@
           "description": "Exempt"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Manufactured Home Land Property Interest"
     },
     {
-      "fieldIndex": 90,
+      "fieldIndex": 89,
       "fieldName": "Total Units",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
         "5"
       ],
-      "values": [],
+      "enumerations": [],
+      "descriptions": [],
       "dataPoint": "Total Units"
     },
     {
-      "fieldIndex": 91,
+      "fieldIndex": 90,
       "fieldName": "Multifamily Affordable Units",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
-        "5 (or) NA (or) Exempt"
+        "5"
       ],
-      "values": [],
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        },
+        {
+          "value": "Exempt",
+          "description": "Exempt"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Multifamily Affordable Units"
     },
     {
-      "fieldIndex": 92,
+      "fieldIndex": 91,
       "fieldName": "Submission of Application",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Submitted directly to your institution"
@@ -2632,15 +2749,14 @@
           "description": "Exempt"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Application Channel"
     },
     {
-      "fieldIndex": 93,
+      "fieldIndex": 92,
       "fieldName": "Initially Payable to Your Institution",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Initially payable to your institution"
@@ -2658,26 +2774,33 @@
           "description": "Exempt"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Application Channel"
     },
     {
-      "fieldIndex": 94,
+      "fieldIndex": 93,
       "fieldName": "NMLSR ID",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [
-        "123450 (or) NA (or) Exempt"
+        "123450"
       ],
-      "values": [],
+      "enumerations": [
+        {
+          "value": "NA",
+          "description": "NA"
+        },
+        {
+          "value": "Exempt",
+          "description": "Exempt"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Mortgage Loan Originator NMLSR Identifier"
     },
     {
-      "fieldIndex": 95,
+      "fieldIndex": 94,
       "fieldName": "Automated Underwriting System: 1",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Desktop Underwriter (DU)"
@@ -2711,15 +2834,47 @@
           "description": "Exempt"
         }
       ],
+      "descriptions": [],
+      "dataPoint": "Automated Underwriting System"
+    },
+    {
+      "fieldIndex": 95,
+      "fieldName": "Automated Underwriting System: 2",
+      "examples": [],
+      "enumerations": [
+        {
+          "value": "1",
+          "description": "Desktop Underwriter (DU)"
+        },
+        {
+          "value": "2",
+          "description": "Loan Prospector (LP) or Loan Product Advisor"
+        },
+        {
+          "value": "3",
+          "description": "Technology Open to Approved Lenders (TOTAL) Scorecard"
+        },
+        {
+          "value": "4",
+          "description": "Guaranteed Underwriting System 6 (GUS)"
+        },
+        {
+          "value": "5",
+          "description": "Other"
+        },
+        {
+          "value": "7",
+          "description": "Internal Proprietary System"
+        }
+      ],
+      "descriptions": [],
       "dataPoint": "Automated Underwriting System"
     },
     {
       "fieldIndex": 96,
-      "fieldName": "Automated Underwriting System: 2",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Automated Underwriting System: 3",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Desktop Underwriter (DU)"
@@ -2745,15 +2900,14 @@
           "description": "Internal Proprietary System"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Automated Underwriting System"
     },
     {
       "fieldIndex": 97,
-      "fieldName": "Automated Underwriting System: 3",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Automated Underwriting System: 4",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Desktop Underwriter (DU)"
@@ -2779,15 +2933,14 @@
           "description": "Internal Proprietary System"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Automated Underwriting System"
     },
     {
       "fieldIndex": 98,
-      "fieldName": "Automated Underwriting System: 4",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Automated Underwriting System: 5",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Desktop Underwriter (DU)"
@@ -2813,60 +2966,24 @@
           "description": "Internal Proprietary System"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Automated Underwriting System"
     },
     {
       "fieldIndex": 99,
-      "fieldName": "Automated Underwriting System: 5",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Automated Underwriting System: Conditional Free Form Text Field for Code 5",
       "examples": [],
-      "values": [
-        {
-          "value": "1",
-          "description": "Desktop Underwriter (DU)"
-        },
-        {
-          "value": "2",
-          "description": "Loan Prospector (LP) or Loan Product Advisor"
-        },
-        {
-          "value": "3",
-          "description": "Technology Open to Approved Lenders (TOTAL) Scorecard"
-        },
-        {
-          "value": "4",
-          "description": "Guaranteed Underwriting System 6 (GUS)"
-        },
-        {
-          "value": "5",
-          "description": "Other"
-        },
-        {
-          "value": "7",
-          "description": "Internal Proprietary System"
-        }
+      "enumerations": [],
+      "descriptions": [
+        "Specify in text the Other Automated Underwriting System(s) if 5 is entered. Otherwise, leave this data field blank."
       ],
       "dataPoint": "Automated Underwriting System"
     },
     {
       "fieldIndex": 100,
-      "fieldName": "Automated Underwriting System: Conditional Free Form Text Field for Code 5",
-      "fieldLength": "255",
-      "fieldType": "Alphanumeric",
-      "examples": [
-        "Specify in text the Other Automated Underwriting System(s) if 5 is entered. Otherwise, leave this data field blank."
-      ],
-      "values": [],
-      "dataPoint": "Automated Underwriting System"
-    },
-    {
-      "fieldIndex": 101,
       "fieldName": "Automated Underwriting System Result: 1",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Approve/Eligible"
@@ -2968,15 +3085,14 @@
           "description": "Exempt"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Automated Underwriting System"
     },
     {
-      "fieldIndex": 102,
+      "fieldIndex": 101,
       "fieldName": "Automated Underwriting System Result: 2",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Approve/Eligible"
@@ -3073,16 +3189,124 @@
           "value": "24",
           "description": "Refer with Caution/Unable to Determine"
         }
+      ],
+      "descriptions": [
+        "If this data field does not contain an entry, leave it blank"
+      ],
+      "dataPoint": "Automated Underwriting System"
+    },
+    {
+      "fieldIndex": 102,
+      "fieldName": "Automated Underwriting System Result: 3",
+      "examples": [],
+      "enumerations": [
+        {
+          "value": "1",
+          "description": "Approve/Eligible"
+        },
+        {
+          "value": "2",
+          "description": "Approve/Ineligible"
+        },
+        {
+          "value": "3",
+          "description": "Refer/Eligible"
+        },
+        {
+          "value": "4",
+          "description": "Refer/Ineligible"
+        },
+        {
+          "value": "5",
+          "description": "Refer with Caution"
+        },
+        {
+          "value": "6",
+          "description": "Out of Scope"
+        },
+        {
+          "value": "7",
+          "description": "Error"
+        },
+        {
+          "value": "8",
+          "description": "Accept"
+        },
+        {
+          "value": "9",
+          "description": "Caution"
+        },
+        {
+          "value": "10",
+          "description": "Ineligible"
+        },
+        {
+          "value": "11",
+          "description": "Incomplete"
+        },
+        {
+          "value": "12",
+          "description": "Invalid"
+        },
+        {
+          "value": "13",
+          "description": "Refer"
+        },
+        {
+          "value": "14",
+          "description": "Eligible"
+        },
+        {
+          "value": "15",
+          "description": "Unable to Determine or Unknown"
+        },
+        {
+          "value": "16",
+          "description": "Other"
+        },
+        {
+          "value": "17",
+          "description": "Not Applicable"
+        },
+        {
+          "value": "18",
+          "description": "Accept/Eligible"
+        },
+        {
+          "value": "19",
+          "description": "Accept/Ineligible"
+        },
+        {
+          "value": "20",
+          "description": "Accept/Unable to Determine"
+        },
+        {
+          "value": "21",
+          "description": "Refer with Caution/Eligible"
+        },
+        {
+          "value": "22",
+          "description": "Refer with Caution/Ineligible"
+        },
+        {
+          "value": "23",
+          "description": "Refer/Unable to Determine"
+        },
+        {
+          "value": "24",
+          "description": "Refer with Caution/Unable to Determine"
+        }
+      ],
+      "descriptions": [
+        "If this data field does not contain an entry, leave it blank"
       ],
       "dataPoint": "Automated Underwriting System"
     },
     {
       "fieldIndex": 103,
-      "fieldName": "Automated Underwriting System Result: 3",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Automated Underwriting System Result: 4",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Approve/Eligible"
@@ -3179,16 +3403,17 @@
           "value": "24",
           "description": "Refer with Caution/Unable to Determine"
         }
+      ],
+      "descriptions": [
+        "If this data field does not contain an entry, leave it blank"
       ],
       "dataPoint": "Automated Underwriting System"
     },
     {
       "fieldIndex": 104,
-      "fieldName": "Automated Underwriting System Result: 4",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Automated Underwriting System Result: 5",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Approve/Eligible"
@@ -3285,133 +3510,27 @@
           "value": "24",
           "description": "Refer with Caution/Unable to Determine"
         }
+      ],
+      "descriptions": [
+        "If this data field does not contain an entry, leave it blank"
       ],
       "dataPoint": "Automated Underwriting System"
     },
     {
       "fieldIndex": 105,
-      "fieldName": "Automated Underwriting System Result: 5",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
+      "fieldName": "Automated Underwriting System Result: Conditional Free Form Text Field for Code 16",
       "examples": [],
-      "values": [
-        {
-          "value": "1",
-          "description": "Approve/Eligible"
-        },
-        {
-          "value": "2",
-          "description": "Approve/Ineligible"
-        },
-        {
-          "value": "3",
-          "description": "Refer/Eligible"
-        },
-        {
-          "value": "4",
-          "description": "Refer/Ineligible"
-        },
-        {
-          "value": "5",
-          "description": "Refer with Caution"
-        },
-        {
-          "value": "6",
-          "description": "Out of Scope"
-        },
-        {
-          "value": "7",
-          "description": "Error"
-        },
-        {
-          "value": "8",
-          "description": "Accept"
-        },
-        {
-          "value": "9",
-          "description": "Caution"
-        },
-        {
-          "value": "10",
-          "description": "Ineligible"
-        },
-        {
-          "value": "11",
-          "description": "Incomplete"
-        },
-        {
-          "value": "12",
-          "description": "Invalid"
-        },
-        {
-          "value": "13",
-          "description": "Refer"
-        },
-        {
-          "value": "14",
-          "description": "Eligible"
-        },
-        {
-          "value": "15",
-          "description": "Unable to Determine or Unknown"
-        },
-        {
-          "value": "16",
-          "description": "Other"
-        },
-        {
-          "value": "17",
-          "description": "Not Applicable"
-        },
-        {
-          "value": "18",
-          "description": "Accept/Eligible"
-        },
-        {
-          "value": "19",
-          "description": "Accept/Ineligible"
-        },
-        {
-          "value": "20",
-          "description": "Accept/Unable to Determine"
-        },
-        {
-          "value": "21",
-          "description": "Refer with Caution/Eligible"
-        },
-        {
-          "value": "22",
-          "description": "Refer with Caution/Ineligible"
-        },
-        {
-          "value": "23",
-          "description": "Refer/Unable to Determine"
-        },
-        {
-          "value": "24",
-          "description": "Refer with Caution/Unable to Determine"
-        }
+      "enumerations": [],
+      "descriptions": [
+        "Specify in text the Other Automated Underwriting System Result(s) if 16 is entered. Otherwise, leave this data field blank."
       ],
       "dataPoint": "Automated Underwriting System"
     },
     {
       "fieldIndex": 106,
-      "fieldName": "Automated Underwriting System Result: Conditional Free Form Text Field for Code 16",
-      "fieldLength": "255",
-      "fieldType": "Alphanumeric",
-      "examples": [
-        "Specify in text the Other Automated Underwriting System Result(s) if 16 is entered. Otherwise, leave this data field blank."
-      ],
-      "values": [],
-      "dataPoint": "Automated Underwriting System"
-    },
-    {
-      "fieldIndex": 107,
       "fieldName": "Reverse Mortgage",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Reverse mortgage"
@@ -3425,37 +3544,35 @@
           "description": "Exempt"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Reverse Mortgage"
     },
     {
-      "fieldIndex": 108,
+      "fieldIndex": 107,
       "fieldName": "Open-End Line of Credit",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
-          "description": "Open-end line of credit"
+          "description": "Open"
         },
         {
           "value": "2",
-          "description": "Not an open-end line of credit"
+          "description": "Not an open"
         },
         {
           "value": "1111",
           "description": "Exempt"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Open-End Line of Credit"
     },
     {
-      "fieldIndex": 109,
+      "fieldIndex": 108,
       "fieldName": "Business or Commercial Purpose",
-      "fieldLength": 255,
-      "fieldType": "Alphanumeric",
       "examples": [],
-      "values": [
+      "enumerations": [
         {
           "value": "1",
           "description": "Primarily for a business or commercial purpose"
@@ -3469,6 +3586,7 @@
           "description": "Exempt"
         }
       ],
+      "descriptions": [],
       "dataPoint": "Business or Commercial Purpose"
     }
   ]
