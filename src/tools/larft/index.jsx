@@ -9,12 +9,12 @@ import './index.css'
 import { createFileInteractions } from './createFileInteractions'
 
 // TODO:
-// - [LAR] Application Date can be NA
+// √ LAR/TS Column filter
+// √ [TS]text search
 // √ [Schemas] Separate Examples, Descriptions, Enumerations (currently highly muddled strings)
-//  - [Script] Add generation of static versions. These should be dynamic lookups not a dynamic builds.
-// - LAR/TS Column filter
+// - [Schemas] Script: Add generation of static versions (Examples, Descriptions, Enumerations). These should be dynamic lookups not a dynamic builds.
+// - [LAR] Application Date can be NA
 // - [FileActions] File download dialog?
-// - [TS]text search
 // - [TS] Add State (UT) code enumeration
 // - [Parsed] UX - Clicking on MoreInfo collapses? Currently it's a
 //    label that will set focus on the adjacent input field, to help
@@ -30,6 +30,7 @@ export const LARFT = () => {
   
   const [newRow, saveRow, deleteRow, saveUpload] = createFileInteractions({
     ts,
+    lars,
     selected,
     setSelected,
     setCurrCol,

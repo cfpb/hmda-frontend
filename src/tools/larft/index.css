@@ -85,21 +85,8 @@
 }
 .parsed .section-heading > * {
   margin: 0;
-  padding: 0;
   height: 2em;
   line-height: 2em;
-}
-.parsed .section-heading button.clear,
-.parsed .section-heading input {
-  margin-left: 2em;
-}
-.parsed .section-heading button.clear {
-  line-height: normal;
-  padding: 5px 1em;
-  vertical-align: middle;
-}
-.parsed .section-heading input {
-  padding: 0 0.3em;
 }
 .parsed .table-wrapper,
 .parsed table,
@@ -197,14 +184,30 @@ padding: .3em;
   padding: 5px;
   padding-left: 0px;
 }
+.search-box {
+  border: 1px solid lightblue;
+  padding: 2px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  border-radius: 8px;
+  background-color: lightblue;
+}
+.search-box .clear {
+  margin-left: .3em;
+}
 .search-box input {
-  margin-left: 1em;
+  margin-left: 0em;
   border-radius: 8px;
   text-align: center;
   padding: .1em;
+  border: none;
+}
+.search-box:not(:first-of-type) {
+  margin-left: .5em;
 }
 .search-box button {
-  margin: 0 0 0 .5em;
+  margin: 0 0 0 .1em;
   padding: .4em .75em;
   border-radius: 8px;
 }
@@ -214,6 +217,12 @@ padding: .3em;
 
 /* Saved Section */
 .section h3 {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.section .filters {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
