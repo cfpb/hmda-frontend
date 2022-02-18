@@ -7,6 +7,7 @@ import {
   RECORD_IDENTIFIER,
 } from './utils'
 import { Table } from 'react-fluid-table'
+import { applyFilter } from './parsedHelpers'
 
 const tableHeight = rows => {
   if (rows.length === 1) return 3
@@ -16,6 +17,7 @@ const tableHeight = rows => {
 const Section = ({ id, title, rows, highlightSelected, setSelected }) => {
   let body
   const [searchFilter, setSearchFilter] = useState('')
+  const [columnFilter, setColumnFilter] = useState('')
 
   // This memoization seems to fix the major performance bottleneck
   const injectedRows = useMemo(() => {
@@ -34,24 +36,29 @@ const Section = ({ id, title, rows, highlightSelected, setSelected }) => {
       : injectedRows
 
   const columns = rows.length
-    ? getSchema(rows[0][RECORD_IDENTIFIER]).map(f => ({
-        key: f.fieldName,
-        header: f.fieldName,
-        width: Math.max(f.fieldName.length * 10, 200),
-        content: ({ row }) => {
-          const plainValue = row[f.fieldName] || null
-          if (id.match(/^ts/)) return plainValue
-          if (!!searchFilter.length && row[f.fieldName]?.includes(searchFilter))
-            return <span className='highlight-match'>{row[f.fieldName]}</span>
-
-          return plainValue
-        },
-      }))
+    ? getSchema(rows[0][RECORD_IDENTIFIER])
+        .filter(x => applyFilter(x, columnFilter))
+        .map(f => ({
+          key: f.fieldName,
+          header: f.fieldName,
+          width: Math.max(f.fieldName.length * 10, 200),
+          content: ({ row }) => {
+            const plainValue = row[f.fieldName] || null
+            if (id.match(/^ts/)) return plainValue
+            if (
+              !!searchFilter.length &&
+              row[f.fieldName]?.toLowerCase().includes(searchFilter)
+            ) {
+              return <span className='highlight-match'>{row[f.fieldName]}</span>
+            }
+            return plainValue
+          },
+        }))
     : null
 
   if (!columns) body = <div className='no-records'>No Records Saved</div>
   else {
-    columns.unshift({ key: 'rowId', header: 'Row #', width: 100 })
+    columns.unshift({ key: 'rowId', header: 'Row #', width: 75 })
 
     body = (
       <Table
@@ -74,19 +81,39 @@ const Section = ({ id, title, rows, highlightSelected, setSelected }) => {
     <div className='section' id={id}>
       {title && (
         <h3 className='clickable' onClick={goToFileActions}>
-          {title} {rowCount}
-          <span className='search-box'>
-            <input
-              type='text'
-              onChange={e => setSearchFilter(e.target.value.trim())}
-              placeholder='Search LAR'
-              value={searchFilter}
-              hidden={id.match(/ts/) || !rows.length}
-            />
-            {!!searchFilter.length && (
-              <button onClick={() => setSearchFilter('')}>Clear Search</button>
-            )}
-          </span>
+          <div className='count'>
+            {title} {rowCount}
+          </div>
+          <div className='filters'>
+            <span className='search-box'>
+              <input
+                type='text'
+                onChange={e => setSearchFilter(e.target.value.trim())}
+                placeholder={'Search ' + (id.match(/ts/) ? 'TS' : 'LAR')}
+                value={searchFilter}
+                hidden={!rows.length}
+              />
+              {!!searchFilter.length && (
+                <button onClick={() => setSearchFilter('')}>
+                  Clear Search
+                </button>
+              )}
+            </span>
+            <span className='search-box'>
+              <input
+                type='text'
+                onChange={e => setColumnFilter(e.target.value.trim())}
+                placeholder='Filter columns'
+                value={columnFilter}
+                hidden={!rows.length}
+              />
+              {!!columnFilter.length && (
+                <button onClick={() => setColumnFilter('')}>
+                  Clear Search
+                </button>
+              )}
+            </span>
+          </div>
         </h3>
       )}
       {body || null}

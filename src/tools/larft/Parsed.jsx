@@ -30,7 +30,8 @@ export const Parsed = ({
   row,
   setRow,
   currCol,
-  setCurrCol
+  setCurrCol,
+  textActions,
 }) => {
   const [filter, setFilter] = useState('')
   const setFocus = useFocusOnSelectedColumn(currCol, setCurrCol)
@@ -57,6 +58,7 @@ export const Parsed = ({
   return (
     <div className='parsed' id={id}>
       <ParsedHeader filter={filter} setFilter={setFilter} id={id} />
+      {textActions}
       <ParsedTable rows={tableRows} />
     </div>
   )
