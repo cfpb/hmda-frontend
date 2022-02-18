@@ -1,5 +1,5 @@
 import { grabRawArea } from './Piped'
-import { parseRow } from './utils'
+import { parseRow, log } from './utils'
 
 export const pastePiped = (setRow) => {
   return () => {
@@ -24,8 +24,8 @@ export const pastePiped = (setRow) => {
   const el = grabRawArea()
   if (navigator?.clipboard?.writeText) {
     navigator.clipboard.writeText(el?.value).then(
-      _success => console.log('Success'),
-      _failed => console.error('Failed')
+      _success => log('[Piped] Copied to clipboard!'),
+      _failed => log('[Piped] Error - Failed to copy!')
     )
   } else {
     el.select()

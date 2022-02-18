@@ -52,10 +52,7 @@ export const parseRow = (row = {}) => {
 
   return row.split(DELIMITER).reduce((prev, currVal, currIdx) => {
     const columnSchema = schema[currIdx]
-    if (!columnSchema) {
-      console.error('Unknown column at ', currIdx, currVal)
-      return prev
-    }
+    if (!columnSchema) return prev
 
     prev[columnSchema.fieldName] = currVal
     return prev

@@ -1,5 +1,5 @@
 import React from 'react'
-import { getSchema, goTo, parseRow, stringifyRow } from './utils'
+import { getSchema, goTo, parseRow, stringifyRow, log } from './utils'
 
 export const grabRawArea = () => document.getElementById('rawArea')
 
@@ -11,7 +11,7 @@ const highlight = text => <span className='highlight'> {text}</span>
 // the column delimiters to determine which LAR field is
 // currently being edited/focused
 const updateCurrentColumn = (setFn, row) => {
-  console.log('Updating column')
+  log('Updating column')
 
   const cursorPos = getCursorPos(grabRawArea()).start
   const pipes = findPipes(row)
@@ -38,14 +38,14 @@ const CurrentColumn = ({ column }) => {
   )
 }
 
-const PasteableTextArea = ({ setRow, setCurrCol, row}) => {
+const PasteableTextArea = ({ setRow, setCurrCol, row }) => {
   const updateSelectedRow = e =>
     setRow({
       ...parseRow(e.target.value.trim()),
       id: row?.id,
       rowId: row.rowId,
     })
-  
+
   const handleChange = () => updateCurrentColumn(setCurrCol, row)
   const handlePaste = e => setRow(parseRow(e.target.value))
 
@@ -58,11 +58,7 @@ const PasteableTextArea = ({ setRow, setCurrCol, row}) => {
         onClick={handleChange}
         onKeyUp={handleChange}
       />
-      <textarea
-        id='paste-button-input'
-        onChange={handlePaste}
-        hidden
-      />
+      <textarea id='paste-button-input' onChange={handlePaste} hidden />
     </>
   )
 }
@@ -81,7 +77,7 @@ export const Piped = ({
         Pipe-Delimited Values
       </h3>
       {textActions}
-      <PasteableTextArea setRow={setRow} setCurrCol={setCurrCol} row={row}/>
+      <PasteableTextArea setRow={setRow} setCurrCol={setCurrCol} row={row} />
       <CurrentColumn column={currCol} row={row} />
     </div>
   )

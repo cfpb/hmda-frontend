@@ -2,6 +2,7 @@ import React from 'react'
 import { Accordion } from './Accordion'
 import { MoreInfo } from './MoreInfo'
 import { buildOptions, getType, toJsDateString } from './parsedHelpers'
+import { log } from './utils'
 
 export const ParsedRow = ({
   column,
@@ -39,7 +40,7 @@ export const ParsedRow = ({
 }
 
 function buildInput(_col, _row, _changeFn) {
-  console.log('Building input...')
+  log('Building input...')
 
   if (!_col) return null
   const { examples = [], values = [] } = _col

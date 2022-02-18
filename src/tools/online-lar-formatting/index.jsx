@@ -19,21 +19,15 @@ import './index.css'
 
 // TODO:
 // - LAR/TS Column filter
-// - TS text search
-// - File download dialog?
-
-/* Thoughts
- * I think we might want to invert control by managing creation of the Saved section's table's content
- * higher-up the component tree, where it'll be easier to memoize since it's widely-used
- * yet expensive to create. // MOVE-UP
- */
-
-const focusAtZero = () => null
-// setTimeout(() => {
-//   const el = document.getElementById('rawArea')
-//   el.focus()
-//   el.selectionEnd = 0
-// }, 0)
+// - [FileActions] File download dialog?
+// - [TS]text search
+// - [TS] Add State (UT) code enumeration
+// - [LAR] Application Date can be NA
+// - [Parsed] UX - Clicking on MoreInfo collapses? Currently it's a 
+//    label that will set focus on the adjacent input field, to help 
+//    user start editing the field's value.
+// - [Schemas] Separate Examples, Descriptions, Enumerations (currently highly muddled strings)
+//  - [Script] Add generation of static versions. These should be dynamic lookups not a dynamic builds.  
 
 export const OnlineLARFT = () => {
   const [ts, setTS] = useState([])
@@ -48,7 +42,7 @@ export const OnlineLARFT = () => {
     const nextRow = parseRow(ts.length ? '2|' : '1|')
     nextRow.id = createID()
 
-    setCurrCol(getSchema(nextRow)[0])
+    setCurrCol(null)
     collapseAll()
     setSelected(nextRow)
   }
@@ -93,7 +87,6 @@ export const OnlineLARFT = () => {
           cloned[updateIndex] = cloneObject(selected)
           updateFn(cloned) // Save rows
           newRow() // Clear Pipe-delimited area
-          focusAtZero()
           return
         }
       }
@@ -105,21 +98,19 @@ export const OnlineLARFT = () => {
       cloned.push(obj)
       updateFn(cloned) // Save rows
       newRow() // Clear Pipe-delimited area
-      focusAtZero()
     }
   }
 
   const deleteRow = () => {
     const confirm = window.confirm('Are you sure you want to delete this row?')
     if (!confirm) return
-    log('Deleting ', selected)
+    log('Deleting row', selected)
     if (isTS(selected)) setTS([])
     else {
       let cloned = cloneObjectArray(lars).filter(r => r.id !== selected.id)
       setLARs(cloned)
     }
     newRow()
-    focusAtZero()
   }
 
   const saveUpload = content => {
