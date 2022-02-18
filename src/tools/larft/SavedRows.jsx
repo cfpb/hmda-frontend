@@ -31,7 +31,9 @@ const Section = ({ id, title, rows, highlightSelected, setSelected }) => {
   const filteredRows =
     searchFilter.length && id === 'saved-lars'
       ? injectedRows.filter(ir =>
-          LAR_SCHEMA.some(col => ir[col.fieldName]?.includes(searchFilter))
+          LAR_SCHEMA.some(col =>
+            ir[col.fieldName]?.toLowerCase().includes(searchFilter)
+          )
         )
       : injectedRows
 
@@ -94,7 +96,7 @@ const Section = ({ id, title, rows, highlightSelected, setSelected }) => {
                 hidden={!rows.length}
               />
               {!!searchFilter.length && (
-                <button onClick={() => setSearchFilter('')}>
+                <button className='clear' onClick={() => setSearchFilter('')}>
                   Clear Search
                 </button>
               )}
@@ -108,8 +110,8 @@ const Section = ({ id, title, rows, highlightSelected, setSelected }) => {
                 hidden={!rows.length}
               />
               {!!columnFilter.length && (
-                <button onClick={() => setColumnFilter('')}>
-                  Clear Search
+                <button className='clear' onClick={() => setColumnFilter('')}>
+                  Clear Filter
                 </button>
               )}
             </span>

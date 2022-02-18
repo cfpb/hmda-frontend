@@ -23,7 +23,7 @@ export const ParsedHeader = ({ filter, setFilter, id }) => (
             document.getElementById('filter').focus()
           }}
         >
-          clear
+          Clear Filter
         </button>
       )}
     </div>

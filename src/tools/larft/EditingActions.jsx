@@ -31,7 +31,7 @@ export const EditingActions = ({
         </button>
         {deleteButton}
         <button className='new-row' onClick={newRow}>
-          New Row
+          Clear
         </button>
       </div>
       {!showTextActions ? null : (

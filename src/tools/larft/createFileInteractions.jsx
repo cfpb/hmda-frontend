@@ -11,6 +11,7 @@ import {
 
 export function createFileInteractions({
   ts,
+  lars,
   selected,
   setSelected,
   setCurrCol,
