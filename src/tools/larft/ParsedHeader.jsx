@@ -13,7 +13,7 @@ export const ParsedHeader = ({ filter, setFilter, id }) => (
         id='filter'
         value={filter}
         placeholder={'Filter by label'}
-        onChange={e => setFilter(e.target.value.toLowerCase())}
+        onChange={e => setFilter(e.target.value)}
       />
       {!!filter.length && (
         <button

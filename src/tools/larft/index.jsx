@@ -5,10 +5,12 @@ import { Editing } from './Editing'
 import { SavedRows } from './SavedRows'
 import { useRestyledButtonLinks } from './useRestyledButtonLinks'
 import { parseRow } from './utils'
-import './index.css'
 import { createFileInteractions } from './createFileInteractions'
+import './index.css'
 
 // TODO:
+// ** Convert click-header-to-select to click-header-to-highlight column
+//   - The jumpiness of the current implementation is not a pleasant experience. 
 // √ LAR/TS Column filter
 // √ [TS]text search
 // √ [Schemas] Separate Examples, Descriptions, Enumerations (currently highly muddled strings)
