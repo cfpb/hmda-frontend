@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Prompt } from 'react-router-dom'
 import { Header } from './Header'
 import { FileActions } from './FileActions'
 import { Editing } from './Editing'
@@ -10,7 +11,7 @@ import './index.css'
 
 // TODO:
 // ** Convert click-header-to-select to click-header-to-highlight column
-//   - The jumpiness of the current implementation is not a pleasant experience. 
+//   - The jumpiness of the current implementation is not a pleasant experience.
 // √ LAR/TS Column filter
 // √ [TS]text search
 // √ [Schemas] Separate Examples, Descriptions, Enumerations (currently highly muddled strings)
@@ -22,14 +23,18 @@ import './index.css'
 //    label that will set focus on the adjacent input field, to help
 //    user start editing the field's value.
 
+const MESSAGES = {
+  loseUnsaved: 'You will lose any un-downloaded data! Are you sure you want to leave?'
+}
+
 export const LARFT = () => {
   const [ts, setTS] = useState([])
   const [lars, setLARs] = useState([])
   const [selected, setSelected] = useState(parseRow(ts.length ? '2|' : '1|'))
   const [currCol, setCurrCol] = useState()
-  
+
   useRestyledButtonLinks()
-  
+
   const [newRow, saveRow, deleteRow, saveUpload] = createFileInteractions({
     ts,
     lars,
@@ -45,11 +50,16 @@ export const LARFT = () => {
     setLARs([])
     newRow()
   }
-  
+
   const hasSavedRecords = !!ts.length || !!lars.length
 
   return (
     <div className='online-larft'>
+      <Prompt
+        when={ts.length || lars.length}
+        message={MESSAGES.loseUnsaved}
+      />
+
       <Header />
       <FileActions
         ts={ts}
