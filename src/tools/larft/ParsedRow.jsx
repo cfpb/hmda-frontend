@@ -3,6 +3,7 @@ import { Accordion } from './Accordion'
 import { MoreInfo } from './MoreInfo'
 import { buildOptions, getType, toJsDateString } from './parsedHelpers'
 import { log, OR_DELIMITER } from './utils'
+import STATES from '../../data-browser/constants/states'
 
 export const ParsedRow = ({
   column,
@@ -79,6 +80,20 @@ function buildInput(_col, _row, _changeFn) {
         }}
         value={toJsDateString(_row[_col.fieldName]?.toString() || '')}
       />
+    )
+  }
+
+  // State selector
+  if (_col.fieldName?.includes('State')) {
+    return (
+      <select {...common} value={_row[_col.fieldName] || ''}>
+        {buildOptions({
+          enumerations: STATES.filter(state => !['NW'].includes(state.id)).map(obj => ({
+            value: obj.id,
+            description: obj.name,
+          })),
+        })}
+      </select>
     )
   }
 
