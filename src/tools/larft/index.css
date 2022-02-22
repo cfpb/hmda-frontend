@@ -45,7 +45,7 @@
 .action-wrapper.raw {
   margin-top: 0em;
 }
-.raw-row button {
+.action-wrapper button {
   margin-top: 0.5em;
 }
 .raw-row #rawArea {
@@ -136,7 +136,7 @@
 }
 .parsed .collapse-all {
   margin: 0;
-  padding: 0.3em;
+  padding: 5px 15px;
 }
 
 .more-info h3 {
@@ -271,4 +271,38 @@
 .header-cell.selected .header-cell-text,
 .header-cell:hover .header-cell-text {
   color: black !important;
+}
+
+
+.enum {
+  background: grey;
+  padding: 5px 15px;
+  margin: 0;
+}
+.enum:not(:first-of-type) {
+  margin-left: .25em
+}
+.enums {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 1.5rem;
+
+}
+.enum.selected {
+  background: #0071bc;
+}
+.enum-entry {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+#parsed-fields input,
+#parsed-fields select {
+  min-width: 50%;
+  width:100%;
 }
