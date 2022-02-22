@@ -139,7 +139,7 @@
       "enumerations": [
         {
           "value": "1",
-          "description": "Site"
+          "description": "Site-built"
         },
         {
           "value": "2",
@@ -830,7 +830,7 @@
         },
         {
           "value": "4",
-          "description": "No co"
+          "description": "No co-applicant"
         }
       ],
       "descriptions": [],
@@ -1328,7 +1328,7 @@
         },
         {
           "value": "8",
-          "description": "No co"
+          "description": "No co-applicant"
         }
       ],
       "descriptions": [
@@ -1710,7 +1710,7 @@
         },
         {
           "value": "4",
-          "description": "No co"
+          "description": "No co-applicant"
         }
       ],
       "descriptions": [],
@@ -1814,7 +1814,7 @@
         },
         {
           "value": "4",
-          "description": "No co"
+          "description": "No co-applicant"
         }
       ],
       "descriptions": [],
@@ -1848,7 +1848,7 @@
         },
         {
           "value": "9999",
-          "description": "No co"
+          "description": "No co-applicant"
         }
       ],
       "descriptions": [],
@@ -2021,7 +2021,7 @@
         },
         {
           "value": "9999",
-          "description": "No co"
+          "description": "No co-applicant"
         },
         {
           "value": "1111",
@@ -2135,7 +2135,7 @@
         },
         {
           "value": "10",
-          "description": "No co"
+          "description": "No co-applicant"
         },
         {
           "value": "1111",
@@ -2161,7 +2161,7 @@
       "enumerations": [
         {
           "value": "1",
-          "description": "Debt"
+          "description": "Debt-to-income ratio"
         },
         {
           "value": "2",
@@ -2214,7 +2214,7 @@
       "enumerations": [
         {
           "value": "1",
-          "description": "Debt"
+          "description": "Debt-to-income ratio"
         },
         {
           "value": "2",
@@ -2259,7 +2259,7 @@
       "enumerations": [
         {
           "value": "1",
-          "description": "Debt"
+          "description": "Debt-to-income ratio"
         },
         {
           "value": "2",
@@ -2304,7 +2304,7 @@
       "enumerations": [
         {
           "value": "1",
-          "description": "Debt"
+          "description": "Debt-to-income ratio"
         },
         {
           "value": "2",
@@ -2590,11 +2590,11 @@
       "enumerations": [
         {
           "value": "1",
-          "description": "Interest"
+          "description": "Interest-only payments"
         },
         {
           "value": "2",
-          "description": "No interest"
+          "description": "No interest-only payments"
         },
         {
           "value": "1111",
@@ -2632,11 +2632,11 @@
       "enumerations": [
         {
           "value": "1",
-          "description": "Other non"
+          "description": "Other non-fully amortizing features"
         },
         {
           "value": "2",
-          "description": "No other non"
+          "description": "No other non-fully amortizing features"
         },
         {
           "value": "1111",
@@ -3579,11 +3579,11 @@
       "enumerations": [
         {
           "value": "1",
-          "description": "Open"
+          "description": "Open-end line of credit"
         },
         {
           "value": "2",
-          "description": "Not an open"
+          "description": "Not an open-end line of credit"
         },
         {
           "value": "1111",

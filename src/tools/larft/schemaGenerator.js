@@ -15,13 +15,13 @@ const cleanupFieldName = str =>
     .replace(/\\|#|\[",/g, '')
     .replace(/"/g, '')
     .replace(/{hyphen}/g, '-')
+    .replace(/{comma}/g, ',')
     .trim()
 
 const cleanString = str => {
   const cleaned = str
     ?.replace(/\\|#|\[",/g, '')
     .replace(/"/g, '')
-    .replace(/{hyphen}/g, '-')
     .replace(/{comma}/g, ',')
     .trim()
 
@@ -54,24 +54,22 @@ const parse = (raw, name) => {
 
       const fieldName = cleanupFieldName(field_name)
 
-      const examples = _examples?.split(',').map(cleanString).filter(unity)
+      const examples = _examples?.split(',').map(cleanupFieldName).filter(unity)
       const descriptions = _descriptions
         ?.split(',')
-        .map(cleanString)
+        .map(cleanupFieldName)
         .filter(unity)
       const enumerations = _enumerations
         ?.split(',')
         .map(cleanString)
         .map(opt => {
+          console.log(opt)
+          
           const [val, desc] =
             opt
               ?.split('-')
               .filter(x => x)
-              .map(x => {
-                x = x.replace(/{hyphen}/g, '-')
-                x = x.replace(/{comma}/g, ',')
-                return x.trim()
-              }) || []
+              .map(x => cleanupFieldName(x)) || []
 
           if (!val) return
           return { value: val, description: desc || val }
