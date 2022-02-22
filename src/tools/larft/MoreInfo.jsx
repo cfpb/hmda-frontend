@@ -12,20 +12,30 @@ const List = (title, list, className) => {
   )
 }
 
-const buildRows = (list, idx) =>
-  list.map(v => {
-    return (
-      <tr key={`${idx}-${v.value}-${v.description}`}>
-        <td>{v.value}</td>
-        <td>{v.description}</td>
-      </tr>
-    )
+/**
+ * 
+ * @param {Array[Object]} list values & descriptions of enumerations/examples  
+ * @param {Int} idx Index in schema
+ * @returns 
+ */
+const buildRows = (list) => {
+  let hasDescription = false
+  const rows = list.map((v, idx) => {
+    const columns = [<td key={v.value}>{v.value}</td>]
+    if (v.value !== v.description) {
+      hasDescription = true
+      columns.push(<td key={v.description}>{v.description}</td>)
+    }
+    return <tr key={`${idx}-${v.value}-${v.description}`}>{columns}</tr>
   })
+  return [hasDescription, rows]
+}
 
 const Table = (title, list, className) => {
   if (!list.length) return null
-  const rows = buildRows(list)
-
+  const [hasDescription, rows] = buildRows(list)
+  const descriptionColumn = hasDescription ? <th>Description</th> : null
+  
   return (
     <div className={className}>
       <h3>{title}</h3>
@@ -33,7 +43,7 @@ const Table = (title, list, className) => {
         <thead>
           <tr>
             <th>Value</th>
-            <th>Description</th>
+            {descriptionColumn}
           </tr>
         </thead>
         <tbody>{rows}</tbody>
@@ -53,8 +63,6 @@ export const MoreInfo = memo(({ field }) => {
       _descriptions.push(<li key={`${ex}-${d_idx}-${idx}`}>{ex}</li>)
     )
   })
-    
-    
 
   const _examples = examples
     .filter(unity)
