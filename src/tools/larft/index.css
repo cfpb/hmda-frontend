@@ -122,10 +122,10 @@
 .parsed .accordion-bordered .accordion-button:hover {
   color: black;
   border-left: 5px dotted darkolivegreen;
-  background-color: lightgoldenrodyellow !important;
+  background-color: rgb(200, 200, 200) !important;
 }
 .parsed .highlight {
-  background: rgb(145, 206, 226);
+  background: rgb(248, 210, 112);
 }
 
 .parsed .table-wrapper > table {
@@ -258,13 +258,16 @@
 }
 .header-cell.selected,
 .col-selected {
-  background: lightyellow;
+  background: rgb(248, 210, 112);
   width: 100%;
   height: 100%;
 }
-.header-cell.selected {
-  border-bottom: 2px solid lightblue;
-}
+
 .header-cell:hover {
   background: lightblue;
+}
+
+.header-cell.selected .header-cell-text,
+.header-cell:hover .header-cell-text {
+  color: black !important;
 }
