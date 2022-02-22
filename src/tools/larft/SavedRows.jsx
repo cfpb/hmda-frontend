@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import {
   getSchema,
   log,
@@ -13,7 +13,7 @@ import { applyFilter } from './parsedHelpers'
 
 const tableHeight = rows => {
   if (rows.length < 3) return 3
-  return Math.min(rows.length * 2, 10)
+  return Math.min(rows.length * 2, 8)
 }
 
 const Section = ({
@@ -38,11 +38,13 @@ const Section = ({
     }))
   }, [rows])
 
-  const matchedColumns = []
+  let matchedColumns = []
   const targetSchema = id === 'saved-lars' ? LAR_SCHEMA : TS_SCHEMA
+
   const filteredRows = searchFilter.length
     ? injectedRows.filter(iRow => {
-        return targetSchema.some(col => {
+        let hasMatches = false
+        targetSchema.forEach(col => {
           // Only search targeted columns
           if (!applyFilter(col, columnFilter)) return
 
@@ -50,10 +52,12 @@ const Section = ({
             ?.toLowerCase()
             .includes(searchFilter.toLowerCase())
 
-          if (matches) matchedColumns.push(col.fieldName)
-
-          return matches
+          if (matches) {
+            matchedColumns.push(col.fieldName)
+            hasMatches = true
+          }
         })
+        return hasMatches
       })
     : injectedRows
 
@@ -136,7 +140,8 @@ const Section = ({
   if (!columns) body = <div className='no-records'>No Records Saved</div>
   else {
     columns.unshift({ key: 'rowId', header: 'Row #', width: 75 })
-    if (!filteredRows.length)
+
+    if (!filteredRows.length || columns.length === 1)
       body = (
         <div className='no-matches'>
           {' '}
