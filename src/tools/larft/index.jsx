@@ -46,7 +46,7 @@ export const LARFT = () => {
   return (
     <div className='online-larft'>
       <Prompt
-        when={ts.length || lars.length}
+        when={!!ts.length || !!lars.length}
         message={MESSAGES.loseUnsaved}
       />
 
