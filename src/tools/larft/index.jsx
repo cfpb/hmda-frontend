@@ -10,18 +10,8 @@ import { createFileInteractions } from './createFileInteractions'
 import './index.css'
 
 // TODO:
-// ** Convert click-header-to-select to click-header-to-highlight column
-//   - The jumpiness of the current implementation is not a pleasant experience.
-// √ LAR/TS Column filter
-// √ [TS]text search
-// √ [Schemas] Separate Examples, Descriptions, Enumerations (currently highly muddled strings)
 // - [Schemas] Script: Add generation of static versions (Examples, Descriptions, Enumerations). These should be dynamic lookups not a dynamic builds.
-// - [LAR] Application Date can be NA
 // - [FileActions] File download dialog?
-// - [TS] Add State (UT) code enumeration
-// - [Parsed] UX - Clicking on MoreInfo collapses? Currently it's a
-//    label that will set focus on the adjacent input field, to help
-//    user start editing the field's value.
 
 const MESSAGES = {
   loseUnsaved: 'You will lose any un-downloaded data! Are you sure you want to leave?'

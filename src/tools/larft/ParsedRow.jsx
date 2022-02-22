@@ -64,10 +64,31 @@ function buildInput(_col, _row, _changeFn) {
     },
   }
 
-  // Date field
-  if (_col.fieldName?.includes('Date')) {
+  // State selector
+  if (_col.fieldName?.includes('State')) {
     return (
+      <select {...common} value={_row[_col.fieldName] || ''}>
+        {buildOptions({
+          enumerations: STATES.filter(state => !['NW'].includes(state.id)).map(
+            obj => ({
+              value: obj.id,
+              description: obj.name,
+            })
+          ),
+        })}
+      </select>
+    )
+  }
+
+  // Field allows freeform text but also has enumerated values
+  else if (
+    examples.length &&
+    enumerations.length &&
+    enumerations.some(e => ['NA', 'Exempt'].includes(e.value))
+  ) {
+    const derivedInputField = _col.fieldName.includes('Date') ? (
       <input
+        className='date-input'
         {...common}
         type='date'
         onChange={e => {
@@ -80,40 +101,38 @@ function buildInput(_col, _row, _changeFn) {
         }}
         value={toJsDateString(_row[_col.fieldName]?.toString() || '')}
       />
-    )
-  }
-
-  // State selector
-  if (_col.fieldName?.includes('State')) {
-    return (
-      <select {...common} value={_row[_col.fieldName] || ''}>
-        {buildOptions({
-          enumerations: STATES.filter(state => !['NW'].includes(state.id)).map(obj => ({
-            value: obj.id,
-            description: obj.name,
-          })),
-        })}
-      </select>
-    )
-  }
-
-  // Field allows freeform text but also has enumerated values
-  else if (examples.length && enumerations.length) {
-    return (
+    ) : (
       <input
+        className='text-input'
         {...common}
         type={getType(_col)}
         value={_row[_col.fieldName]?.toString() || ''}
         placeholder={placeholder}
       />
     )
+    return (
+      <div className='enum-entry'>
+        {derivedInputField}
+        <span className='enums'>
+          {enumerations.map(e => (
+            <button
+              className={
+                e.value === _row[_col.fieldName] ? 'enum selected' : 'enum'
+              }
+              onClick={() =>
+                _changeFn({ target: { id: _col.fieldName, value: e.value } })
+              }
+            >
+              {e.value}
+            </button>
+          ))}
+        </span>
+      </div>
+    )
   } else if (enumerations.length) {
     // Enumerations only
     return (
-      <select
-        {...common}
-        value={_row[_col.fieldName] || ''}
-      >
+      <select {...common} value={_row[_col.fieldName] || ''}>
         {buildOptions(_col)}
       </select>
     )
