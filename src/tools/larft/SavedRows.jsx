@@ -43,6 +43,9 @@ const Section = ({
   const filteredRows = searchFilter.length
     ? injectedRows.filter(iRow => {
         return targetSchema.some(col => {
+          // Only search targeted columns
+          if (!applyFilter(col, columnFilter)) return
+
           const matches = iRow[col.fieldName]
             ?.toLowerCase()
             .includes(searchFilter.toLowerCase())
@@ -76,7 +79,9 @@ const Section = ({
                 {...props}
                 onClick={() => {
                   setCurrCol(f)
-                  document.getElementById(fieldId).scrollIntoView()
+                  document
+                    .getElementById(fieldId)
+                    .scrollIntoView({ inline: 'center', block: 'start' })
                 }}
                 id={fieldId}
               >
@@ -92,7 +97,10 @@ const Section = ({
               currCol?.fieldName == f.fieldName ? ' col-selected' : ''
             if (id.match(/^ts/))
               return (
-                <div className={'custom-cell-content ' + colSelected}>
+                <div
+                  className={'custom-cell-content ' + colSelected}
+                  onClick={() => setCurrCol(f)}
+                >
                   {plainValue}
                 </div>
               )
@@ -103,19 +111,23 @@ const Section = ({
                 .includes(searchFilter.toLowerCase())
             ) {
               return (
-                <span
+                <div
                   className={
                     'custom-cell-content highlight-match' + colSelected
                   }
+                  onClick={() => setCurrCol(f)}
                 >
                   {row[f.fieldName]}
-                </span>
+                </div>
               )
             }
             return (
-              <span className={'custom-cell-content ' + colSelected}>
+              <div
+                className={'custom-cell-content ' + colSelected}
+                onClick={() => setCurrCol(f)}
+              >
                 {plainValue}
-              </span>
+              </div>
             )
           },
         }))
