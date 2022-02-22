@@ -26,13 +26,12 @@ export const collapseAll = () => {
 export const Accordion = ({ heading, content, children, id }) => {
   return (
     <ul className='accordion-bordered'>
-      <li>
+      <li onClick={event => handleToggleClick(id)}>
         <button
           className='accordion-button'
           aria-expanded='false'
           id={`accordion-button-${id}`}
           aria-controls={`accordion-${id}`}
-          onClick={event => handleToggleClick(id)}
         >
           {heading}
         </button>
