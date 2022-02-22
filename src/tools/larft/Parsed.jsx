@@ -10,11 +10,17 @@ function useFocusOnSelectedColumn(col, setCurrCol) {
   // Bring the focused column into view
   useEffect(() => {
     const el = document.getElementById(`${col?.fieldName}`)
-    el?.parentElement?.parentElement?.scrollIntoView({
-      block: 'nearest',
-      behavior: 'auto',
-    })
-    if (el) el.parentElement.parentElement.style = {}
+    const grandparent = el?.parentElement?.parentElement
+    if (!!grandparent) {
+      grandparent.scrollIntoView({
+        block: 'nearest',
+        inline: 'nearest',
+        behavior: 'auto',
+      })
+      grandparent.scrollTop = 0;
+      grandparent.style = {}
+    }
+
   }, [col])
   
   // Provide a function that will set focus to this column
