@@ -79,7 +79,6 @@ function buildInput(_col, _row, _changeFn) {
       </select>
     )
   }
-
   // Field allows freeform text but also has enumerated values
   else if (
     examples.length &&
@@ -114,8 +113,9 @@ function buildInput(_col, _row, _changeFn) {
       <div className='enum-entry'>
         {derivedInputField}
         <span className='enums'>
-          {enumerations.map(e => (
+          {enumerations.map((e, idx) => (
             <button
+              key={`${e.value}-${idx}`}
               className={
                 e.value === _row[_col.fieldName] ? 'enum selected' : 'enum'
               }

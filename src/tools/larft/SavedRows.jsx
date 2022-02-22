@@ -72,6 +72,11 @@ const Section = ({
           header: f.fieldName,
           width: Math.max(f.fieldName.length * 10, 200),
           header: props => {
+            const usableProps = {}
+            Object.keys(props)
+              .filter(p_key => !['sortDirection'].includes(p_key))
+              .forEach(p_key => usableProps[props[p_key]])
+            
             const columnSelected =
               currCol?.fieldName === f.fieldName ? ' selected' : ''
             const fieldId =
@@ -80,7 +85,7 @@ const Section = ({
               <div
                 className='header-cell'
                 className={'clickable header-cell custom' + columnSelected}
-                {...props}
+                {...usableProps}
                 onClick={() => {
                   setCurrCol(f)
                   document
