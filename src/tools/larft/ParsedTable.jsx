@@ -2,11 +2,11 @@ import React from 'react'
 import { collapseAll } from './Accordion'
 
 export const ParsedTable = ({ rows }) => (
-  <div className='table-wrapper' style={{ height: window.innerHeight * 0.5 }}>
+  <div className='table-wrapper' style={{ height: window.innerHeight * 0.4 }}>
     <table
       onSubmit={e => e.preventDefault()}
       style={{
-        height: window.innerHeight * 0.1,
+        height: window.innerHeight * 0.4,
         borderCollapse: 'separate',
       }}
     >

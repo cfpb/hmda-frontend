@@ -125,7 +125,7 @@
   background-color: rgb(200, 200, 200) !important;
 }
 .parsed .highlight {
-  background: rgb(248, 210, 112);
+  background: blanchedalmond;
 }
 
 .parsed .table-wrapper > table {
@@ -253,12 +253,13 @@
   width: 100%;
   height: 100%;
 }
+.header-cell,
 .header-cell.custom {
-  background: rgb(222, 222, 222);
+  border-bottom: 2px solid black;
 }
 .header-cell.selected,
 .col-selected {
-  background: rgb(248, 210, 112);
+  background: blanchedalmond;
   width: 100%;
   height: 100%;
 }
