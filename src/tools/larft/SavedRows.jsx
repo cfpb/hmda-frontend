@@ -75,7 +75,7 @@ const Section = ({
             const usableProps = {}
             Object.keys(props)
               .filter(p_key => !['sortDirection'].includes(p_key))
-              .forEach(p_key => usableProps[props[p_key]])
+              .forEach(p_key => (usableProps[p_key] = props[p_key]))
             
             const columnSelected =
               currCol?.fieldName === f.fieldName ? ' selected' : ''
