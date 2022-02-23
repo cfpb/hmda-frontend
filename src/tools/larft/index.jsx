@@ -12,6 +12,22 @@ import './index.css'
 // TODO:
 // - [Schemas] Script: Add generation of static versions (Examples, Descriptions, Enumerations). These should be dynamic lookups not a dynamic builds.
 // - [FileActions] File download dialog?
+// - [SavedRows/Parsed] Highlight enumeration-only fields that have invalid entries.
+// - [SavedRows] - Show rows that are filtered out
+// - [Documentation] 
+//   - Task based documentation
+//     - How do I format my data?
+//     - How do I trouble shoot an Edit?
+//     - Why can't the LARFT import/parse these rows?
+//     - Starting from scratch
+//       - CRUD TS
+//       - CRUD LAR
+//     - Working from an existing LAR file
+//       - Must be pipe-delimited
+//       - Rows that we can't parse are clearly shown somewhere.
+//     - Known Issues
+//       - Corruption of Saved column widths after using the `column filter`
+
 
 const MESSAGES = {
   loseUnsaved: 'You will lose any un-downloaded data! Are you sure you want to leave?'
