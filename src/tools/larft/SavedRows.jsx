@@ -12,7 +12,7 @@ import { Table } from 'react-fluid-table'
 import { applyFilter } from './parsedHelpers'
 
 const tableHeight = rows => {
-  if (rows.length < 3) return 3
+  if (rows.length < 2) return 3
   return Math.min(rows.length * 2, 8)
 }
 

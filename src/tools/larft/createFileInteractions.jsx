@@ -17,6 +17,7 @@ export function createFileInteractions({
   setCurrCol,
   setLARs,
   setTS,
+  setUnparsable,
 }) {
   const newRow = () => {
     const nextRow = parseRow(ts.length ? '2|' : '1|')
@@ -45,30 +46,25 @@ export function createFileInteractions({
     if (!content) return
     const up_rows = content.split('\n')
     if (!up_rows.length) return
-    log('[Uploaded] Parsed rows: ', up_rows)
+    log('[Uploaded] Raw rows: ', up_rows)
 
     let _ts = [],
       _lar = [],
-      _unknown = {}
+      _unparsable = {}
 
-    up_rows.forEach(r => {
+    up_rows.forEach((r,idx) => {
       const parsed = parseRow(r)
       parsed.id = createID()
       if (isTS(parsed)) return _ts.push(parsed)
       if (isLAR(parsed)) return _lar.push(parsed)
-      _unknown[parsed.id] = r
+      if(!r?.trim().length) return
+      _unparsable[idx+1] = r
     })
 
     setTS(_ts)
     setLARs(_lar)
+    setUnparsable(_unparsable)
     newRow()
-    Object.keys(_unknown).length &&
-      log(
-        '[Upload] The following rows were excluded due to unrecognized formatting: ',
-        Object.keys(_unknown)
-          .map(k => `  Row #${k}: ${_unknown[k]}`)
-          .join('\n')
-      )
   }
 
   const saveRow = () => {

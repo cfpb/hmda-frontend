@@ -8,13 +8,13 @@ import { useRestyledButtonLinks } from './useRestyledButtonLinks'
 import { parseRow } from './utils'
 import { createFileInteractions } from './createFileInteractions'
 import './index.css'
+import { Unparsable } from './Unparsable'
 
 // TODO:
 // - [Schemas] Script: Add generation of static versions (Examples, Descriptions, Enumerations). These should be dynamic lookups not a dynamic builds.
 // - [FileActions] File download dialog?
 // - [SavedRows/Parsed] Highlight enumeration-only fields that have invalid entries.
-// - [SavedRows] - Show rows that are filtered out
-// - [Documentation] 
+// - [Documentation]
 //   - Task based documentation
 //     - How do I format my data?
 //     - How do I trouble shoot an Edit?
@@ -28,14 +28,15 @@ import './index.css'
 //     - Known Issues
 //       - Corruption of Saved column widths after using the `column filter`
 
-
 const MESSAGES = {
-  loseUnsaved: 'You will lose any un-downloaded data! Are you sure you want to leave?'
+  loseUnsaved:
+    'You will lose any un-downloaded data! Are you sure you want to leave?',
 }
 
 export const LARFT = () => {
   const [ts, setTS] = useState([])
   const [lars, setLARs] = useState([])
+  const [unparsable, setUnparsable] = useState({})
   const [selected, setSelected] = useState(parseRow(ts.length ? '2|' : '1|'))
   const [currCol, setCurrCol] = useState()
 
@@ -49,12 +50,14 @@ export const LARFT = () => {
     setCurrCol,
     setLARs,
     setTS,
+    setUnparsable,
   })
 
   const clearSaved = () => {
     setTS([])
     setLARs([])
     newRow()
+    setUnparsable({})
   }
 
   const hasSavedRecords = !!ts.length || !!lars.length
@@ -74,6 +77,7 @@ export const LARFT = () => {
         saveUpload={saveUpload}
         clearSaved={clearSaved}
       />
+      <Unparsable items={unparsable} />
       <SavedRows
         ts={ts}
         lars={lars}
