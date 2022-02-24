@@ -22,15 +22,15 @@ const _Header = ({ config: { defaultDocsPeriod = '2018' } }) => (
         for financial institutions to file their loan/application register (LAR)
         using the HMDA Platform.
       </p>
-      <p>
+      {/* <p>
         Follow the{' '}
         <Link
-          to={`/documentation/${defaultDocsPeriod}/tools/lar-formatting/`}
+          to={`/documentation/${defaultDocsPeriod}/tools/new-lar-formatting/`}
         >
           LAR Formatting Tool instructions
         </Link>{' '}
         to format your data into a pipe delimited text file.
-      </p>
+      </p> */}
     </React.Fragment>
   </Heading>
 )
