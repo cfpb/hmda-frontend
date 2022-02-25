@@ -74,40 +74,49 @@
 - **Upload**: Work with an existing pipe-delimited LAR file.
 - **Download**: Create a LAR file based on the currently saved LAR data.
 - **Clear Saved**: Start fresh by erasing all LAR data.
-
 ### Row Actions
 ![Row Actions](../images/larft/row_actions_update.png)
 - **Save/Update**: Create/Modify the currently selected row.
 - **Delete**: Remove the selected row from [`Saved Records`](#saved-records)
+- **Clear**: Clears the currently selected record. Any unsaved data is removed from the [Editing](#editing-a-record) section. Highlights associated with the previously selected row/column are removed.
+- **Clipboard Copy/Paste**: Quickly import/update/export single-row data between applications.
+
 
 ### Saved Records
 Search your existing records' text or filter to view a single LAR field, helping to focus your LAR data reviews.
-![Saved Records](../images/larft/saved_records_populated.png)
 - **Transmittal Sheet**: Institution information
 - **Loan/Application Records**: Application records
+
+![Saved Records](../images/larft/saved_records_populated.png)
+
 #### Please Review
- ![Please review](../images/larft/saved_records_unparsable.png)
 If there are records in an uploaded LAR file that we could reliably parse, you will see the following.
+ - ![Please review](../images/larft/saved_records_unparsable.png)
 
 #### Search text/Filter fields
-![Search Results](../images/larft/saved_records_searching.png)
+  - ![Search Results](../images/larft/saved_records_searching.png)
   - Use the `Search` box to find rows that contain the entered text. 
   - Use the `Filter` box to restrict which LAR fields are displayed.
 
 ### Editing a Record
 #### Editor status
-The header of the row editor will remind you whether you are Creating or Updating the current Editor row.
-  ![Editor Status](../images/larft/editing_header.png)
+The header of the row editor will remind you whether you are:
+- Creating or Updating the current Editor row 
+  - ex. `Creating a new LAR Row`
+  - ex. `Updating LAR Row 1`
+- Working with TS or LAR
+  - ex. `Creating a new LAR Row`
+  - ex. `Creating Transmittal Sheet`
 
 #### Parsed Values
 Edit the selected row with guided enumerations, examples, and field decriptions. Changes are not persisted until you click [`Update/Save`](#row-actions).
 ![Parsed Values](../images/larft/parsed_multi_select.png)
 
-  - Enumerations
-  - Dates + NA
-  - Free-text + NA/Exempt
-  - Field details
-  ![Field Details](../images/larft/parsed_field_details.png)
+- **Enumerations**: Drop-down menus for enumerated values (i.e. Loan Type).
+- **NA/Exempt**: Buttons for easy exception inputs.
+- **Dates**: Date-picker with easily readable date format.  Values are automatically converted between the display-format and the lar-format (yyyymmdd).
+- **Field details**: View description, enumerations, and examples.
+![Field Details](../images/larft/parsed_field_details.png)
 
 #### Pipe-Delimited Values
 Edit the selected row as if you were directly in the LAR file. Changes are not persisted until you click [`Update/Save`](#row-actions).
