@@ -49,8 +49,7 @@
 - Downloading the LAR file
   - Use the [`Download File`](#file-actions) button to download a pipe-delimited, UTF-8 encoded, `.txt` file containing the TS and LAR data shown in the [`Saved Records`](#saved-records) section.  Unsaved data entered in the [`Editing`](#editing-a-record) section is not included in the downloaded LAR file. 
   - The file is saved to your browser's default download directory as `LarFile.txt` or `LarFile(#).txt`.
-  - The data is now formatted into a pipe-delimited text file (as shown below) and ready to be submitted to the HMDA Platform. Prior to submission, the file format can be verified by the **File Format Verification Tool**.  
-![](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/larft/Text_file_sample.png)
+  - The data is now formatted into a pipe-delimited text file ([as shown below](#lar-file-output)) and ready to be submitted to the HMDA Platform.
   
 ## Editing an existing LAR file
  
@@ -64,15 +63,13 @@
   - [`Pipe-Delimited Values`](#pipe-delimited-values) provides the row's raw text, as it will appear in your downloaded LAR file.
     - Clicking in a field will highlight that value in the [`Parsed Values`](#parsed-values) section for quick editing.
 - After making your changes, use the [`Download File`](#file-actions) button to create and download your LAR file.
-- The data is now formatted into a pipe-delimited text file (as shown below) and ready to be submitted to the HMDA Platform. Prior to submission, the file format can be verified by the **File Format Verification Tool**.  
-![](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/larft/Text_file_sample.png)
-  
+- The data is now formatted into a pipe-delimited text file ([as shown below](#lar-file-output)) and ready to be submitted to the HMDA Platform.
 ## Interaction Guide
 
 ### File Actions
 Import or export your LAR data.
 - **Upload**: Work with an existing pipe-delimited LAR file.
-- **Download**: Create a LAR file based on the currently saved LAR data.
+- **Download**: Create a [LAR file](#lar-file) based on the currently saved LAR data.
 - **Clear Saved**: Start fresh by erasing all LAR data.
 
 ![File Actions](../images/larft/file_actions.png)
@@ -132,6 +129,14 @@ Edit the selected row as if you were directly in the LAR file. Changes are not p
 
 ![Pipe-Delimited Values](../images/larft/piped.png)
 
+## LAR File Output
+The LARFT produces pipe-delimited, UTF-8 encoded LAR files. Files contain at least 1 TS and 1 LAR row. 
+ 
+**Note**: Data not entered using the LARFT (i.e. uploaded data), aside from the `Record Identifier`, is **not** checked for validity. You can submit the file on the [HMDA Beta Platform](https://ffiec.beta.cfpb.gov) to check for Edits.
+
+Example output:
+
+![LAR file content](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/larft/Text_file_sample.png)
 ## Frequently Asked Questions
 The Frequently Asked Questions are available at https://ffiec.cfpb.gov/documentation/2021/faqs/
 
