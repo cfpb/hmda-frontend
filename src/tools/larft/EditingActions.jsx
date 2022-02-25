@@ -23,12 +23,19 @@ export const EditingActions = ({
     )
   }
 
+  let saveButton = (
+    <button className='save-row' onClick={saveRow || undefined} disabled={!saveRow}>
+      {saveButtonText}
+    </button>
+  )
+  
+
+
+
   return (
     <div className='action-wrapper raw'>
       <div className='row-actions'>
-        <button className='save-row' onClick={saveRow}>
-          {saveButtonText}
-        </button>
+        {saveButton}
         {deleteButton}
         <button className='new-row' onClick={newRow}>
           Clear

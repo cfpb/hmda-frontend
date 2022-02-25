@@ -1,4 +1,3 @@
-import { collapseAll } from './Accordion'
 import {
   parseRow,
   cloneObject,
@@ -13,21 +12,11 @@ export function createFileInteractions({
   ts,
   lars,
   selected,
-  setSelected,
-  setCurrCol,
+  newRow,
   setLARs,
   setTS,
   setUnparsable,
 }) {
-  const newRow = () => {
-    const nextRow = parseRow(ts.length ? '2|' : '1|')
-    nextRow.id = createID()
-
-    setCurrCol(null)
-    collapseAll()
-    setSelected(nextRow)
-  }
-
   const deleteRow = () => {
     const confirm = window.confirm('Are you sure you want to delete this row?')
     if (!confirm) return
@@ -52,19 +41,19 @@ export function createFileInteractions({
       _lar = [],
       _unparsable = {}
 
-    up_rows.forEach((r,idx) => {
+    up_rows.forEach((r, idx) => {
       const parsed = parseRow(r)
       parsed.id = createID()
       if (isTS(parsed)) return _ts.push(parsed)
       if (isLAR(parsed)) return _lar.push(parsed)
-      if(!r?.trim().length) return
-      _unparsable[idx+1] = r
+      if (!r?.trim().length) return // Ignore blank lines
+      _unparsable[idx + 1] = r // Track unparsable rows
     })
 
     setTS(_ts)
     setLARs(_lar)
     setUnparsable(_unparsable)
-    newRow()
+    newRow(_ts)
   }
 
   const saveRow = () => {
@@ -93,6 +82,7 @@ export function createFileInteractions({
       nextTS.id = createID()
       updateFn([nextTS])
       newRow() // Clear Pipe-delimited area
+      return
     } else {
       log('[Save] Saving LAR row...')
       const cloned = cloneObjectArray(vals)
@@ -118,8 +108,9 @@ export function createFileInteractions({
       cloned.push(obj)
       updateFn(cloned) // Save rows
       newRow() // Clear Pipe-delimited area
+      // Focus on newly added item?
     }
   }
 
-  return [newRow, saveRow, deleteRow, saveUpload]
+  return [saveRow, deleteRow, saveUpload]
 }

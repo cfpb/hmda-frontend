@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useLayoutEffect } from 'react'
 import { goTo, RECORD_IDENTIFIER } from './utils'
 import { Parsed } from './Parsed'
 import { Piped } from './Piped'
 import { EditingActions } from './EditingActions'
+import { useState } from 'react'
 
 export const Editing = ({
   row,
@@ -14,13 +15,37 @@ export const Editing = ({
   deleteRow,
   id = 'raw-row',
 }) => {
+  const [isChanged, setChanged] = useState(false)
+
+  useEffect(() => setChanged(false), [row.id])
+
+  const changeInterceptor = e => {
+    setChanged(true)
+    setRow(e)
+  }
+
+  const saveInterceptor = e => {
+    setChanged(false)
+    saveRow(e)
+  }
+
+  const newInterceptor = e => {
+    setChanged(false)
+    newRow()
+  }
+
+  const deleteInterceptor = e => {
+    setChanged(false)
+    deleteRow(e)
+  }
+
   const PipedActions = (
     <EditingActions
       row={row}
-      deleteRow={deleteRow}
-      newRow={newRow}
-      setRow={setRow}
-      saveRow={saveRow}
+      deleteRow={deleteInterceptor}
+      newRow={newInterceptor}
+      setRow={changeInterceptor}
+      saveRow={isChanged && saveInterceptor}
       showTextActions={true}
     />
   )
@@ -28,10 +53,10 @@ export const Editing = ({
   const ParsedActions = (
     <EditingActions
       row={row}
-      deleteRow={deleteRow}
-      newRow={newRow}
-      setRow={setRow}
-      saveRow={saveRow}
+      deleteRow={deleteInterceptor}
+      newRow={newInterceptor}
+      setRow={changeInterceptor}
+      saveRow={isChanged && saveInterceptor}
       showTextActions={false}
     />
   )
@@ -49,15 +74,14 @@ export const Editing = ({
       <Parsed
         currCol={currCol}
         row={row}
-        setRow={setRow}
+        setRow={changeInterceptor}
         setCurrCol={setCurrCol}
         textActions={ParsedActions}
       />
       <Piped
         currCol={currCol}
         row={row}
-        setRow={setRow}
-        saveRow={saveRow}
+        setRow={changeInterceptor}
         setCurrCol={setCurrCol}
         textActions={PipedActions}
       />
