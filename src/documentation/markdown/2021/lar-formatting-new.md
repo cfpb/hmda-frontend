@@ -10,7 +10,7 @@
     - [Please Review](#please-review)
     - [Search text/Filter fields](#search-text-filter-fields)
   + [Editing a Record](#editing-a-record)
-    - [Editor status](#editor-status)
+    - [Editing status](#editing-status)
     - [Parsed Values](#parsed-values)
     - [Pipe-Delimited Values](#pipe-delimited-values)
 * [Frequently Asked Questions](#frequently-asked-questions)
@@ -70,17 +70,21 @@
 ## Interaction Guide
 
 ### File Actions
-![File Actions](../images/larft/file_actions.png)
+Import or export your LAR data.
 - **Upload**: Work with an existing pipe-delimited LAR file.
 - **Download**: Create a LAR file based on the currently saved LAR data.
 - **Clear Saved**: Start fresh by erasing all LAR data.
+
+![File Actions](../images/larft/file_actions.png)
+
 ### Row Actions
-![Row Actions](../images/larft/row_actions_update.png)
+Manage the persistence of the row currently being edited.
 - **Save/Update**: Create/Modify the currently selected row.
 - **Delete**: Remove the selected row from [`Saved Records`](#saved-records)
 - **Clear**: Clears the currently selected record. Any unsaved data is removed from the [Editing](#editing-a-record) section. Highlights associated with the previously selected row/column are removed.
 - **Clipboard Copy/Paste**: Quickly import/update/export single-row data between applications.
 
+![Row Actions](../images/larft/row_actions_update.png)
 
 ### Saved Records
 Search your existing records' text or filter to view a single LAR field, helping to focus your LAR data reviews.
@@ -91,16 +95,17 @@ Search your existing records' text or filter to view a single LAR field, helping
 
 #### Please Review
 If there are records in an uploaded LAR file that we could reliably parse, you will see the following.
- - ![Please review](../images/larft/saved_records_unparsable.png)
+![Please review](../images/larft/saved_records_unparsable.png)
 
 #### Search text/Filter fields
-  - ![Search Results](../images/larft/saved_records_searching.png)
   - Use the `Search` box to find rows that contain the entered text. 
   - Use the `Filter` box to restrict which LAR fields are displayed.
 
+![Search Results](../images/larft/saved_records_searching.png)
+
 ### Editing a Record
-#### Editor status
-The header of the row editor will remind you whether you are:
+#### Editing status
+The heading of the Editor will remind you whether you are:
 - Creating or Updating the current Editor row 
   - ex. `Creating a new LAR Row`
   - ex. `Updating LAR Row 1`
@@ -110,19 +115,22 @@ The header of the row editor will remind you whether you are:
 
 #### Parsed Values
 Edit the selected row with guided enumerations, examples, and field decriptions. Changes are not persisted until you click [`Update/Save`](#row-actions).
-![Parsed Values](../images/larft/parsed_multi_select.png)
 
 - **Enumerations**: Drop-down menus for enumerated values (i.e. Loan Type).
 - **NA/Exempt**: Buttons for easy exception inputs.
 - **Dates**: Date-picker with easily readable date format.  Values are automatically converted between the display-format and the lar-format (yyyymmdd).
 - **Field details**: View description, enumerations, and examples.
+
+![Parsed Values](../images/larft/parsed_multi_select.png)
+
 ![Field Details](../images/larft/parsed_field_details.png)
 
 #### Pipe-Delimited Values
 Edit the selected row as if you were directly in the LAR file. Changes are not persisted until you click [`Update/Save`](#row-actions).
-![Pipe-Delimited Values](../images/larft/piped.png)
   - **Clipboard Copy/Paste**: Easily import/export date between applications.
   - **Linking with Parsed Values**: Selecting a field in the textarea will highlight the same field in [`Parsed Values`](#parsed-values) to make editing data easier with the guided enumerations, examples, and field decriptions.
+
+![Pipe-Delimited Values](../images/larft/piped.png)
 
 ## Frequently Asked Questions
 The Frequently Asked Questions are available at https://ffiec.cfpb.gov/documentation/2021/faqs/
