@@ -21,6 +21,8 @@ const createFileContent = (ts, lars) =>
     .join('\n')
 
 const DownloadButton = ({ ts, lars, setFileError }) => {
+  const hasSavedRecords = !!ts.length || !!lars.length
+
   const handleDownload = () => {
     if (!ts.length) return setFileError(MESSAGES.needTS)
     if (!lars.length) return setFileError(MESSAGES.needLAR)
@@ -29,7 +31,11 @@ const DownloadButton = ({ ts, lars, setFileError }) => {
   }
 
   return (
-    <button className='export' onClick={handleDownload}>
+    <button
+      className='export'
+      onClick={handleDownload}
+      disabled={!hasSavedRecords}
+    >
       Download File
     </button>
   )

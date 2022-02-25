@@ -5,10 +5,11 @@ import { FileActions } from './FileActions'
 import { Editing } from './Editing'
 import { SavedRows } from './SavedRows'
 import { useRestyledButtonLinks } from './useRestyledButtonLinks'
-import { parseRow } from './utils'
+import { createID, parseRow } from './utils'
 import { createFileInteractions } from './createFileInteractions'
-import './index.css'
 import { Unparsable } from './Unparsable'
+import { collapseAll } from './Accordion'
+import './index.css'
 
 // TODO:
 // - [Schemas] Script: Add generation of static versions (Examples, Descriptions, Enumerations). These should be dynamic lookups not a dynamic builds.
@@ -42,7 +43,16 @@ export const LARFT = () => {
 
   useRestyledButtonLinks()
 
-  const [newRow, saveRow, deleteRow, saveUpload] = createFileInteractions({
+  const newRow = (_ts) => {
+    const nextRow = parseRow((_ts || ts).length ? '2|' : '1|')
+    nextRow.id = createID()
+
+    setCurrCol(null)
+    collapseAll()
+    setSelected(nextRow)
+  }
+
+  const [saveRow, deleteRow, saveUpload] = createFileInteractions({
     ts,
     lars,
     selected,
@@ -51,7 +61,9 @@ export const LARFT = () => {
     setLARs,
     setTS,
     setUnparsable,
+    newRow,
   })
+  
 
   const clearSaved = () => {
     setTS([])
