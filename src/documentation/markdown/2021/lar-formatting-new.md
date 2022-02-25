@@ -111,7 +111,7 @@ The heading of the Editor will remind you whether you are:
   - ex. `Creating Transmittal Sheet`
 
 #### Parsed Values
-Edit the selected row with guided enumerations, examples, and field decriptions. Changes are not persisted until you click [`Update/Save`](#row-actions).
+Edit the selected row with guided enumerations, examples, and field descriptions. Changes are not persisted until you click [`Save/Update`](#row-actions).
 
 - **Enumerations**: Drop-down menus for enumerated values (i.e. Loan Type).
 - **NA/Exempt**: Buttons for easy exception inputs.
@@ -123,9 +123,9 @@ Edit the selected row with guided enumerations, examples, and field decriptions.
 ![Field Details](../images/larft/parsed_field_details.png)
 
 #### Pipe-Delimited Values
-Edit the selected row as if you were directly in the LAR file. Changes are not persisted until you click [`Update/Save`](#row-actions).
+Edit the selected row as if you were directly in the LAR file. Changes are not persisted until you click [`Save/Update`](#row-actions).
   - **Clipboard Copy/Paste**: Easily import/export date between applications.
-  - **Linking with Parsed Values**: Selecting a field in the textarea will highlight the same field in [`Parsed Values`](#parsed-values) to make editing data easier with the guided enumerations, examples, and field decriptions.
+  - **Linking with Parsed Values**: Selecting a field in the textarea will highlight the same field in [`Parsed Values`](#parsed-values) to make editing data easier with the guided enumerations, examples, and field descriptions.
 
 ![Pipe-Delimited Values](../images/larft/piped.png)
 
