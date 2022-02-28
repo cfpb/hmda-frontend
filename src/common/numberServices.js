@@ -44,3 +44,9 @@ export const calcPct = (numer, denom, precision = 2) => {
   if (!numer || !denom) return 0
   return (Math.round((numer / denom) * 10000) / 100).toFixed(precision)
 }
+
+// Human readable file sizes from bytes
+export function humanFileSize(size) {
+  var i = Math.floor( Math.log(size) / Math.log(1024) );
+  return ( size / Math.pow(1024, i) ).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
+};
