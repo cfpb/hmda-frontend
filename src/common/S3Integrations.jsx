@@ -24,22 +24,28 @@ export const useS3FileHeaders = (url, shouldFetch) => {
       setCurrHeaders(cached)
       return
     }
+
     setCurrHeaders(null)
     if (!shouldFetch) return
+
     fetch(url, { method: 'HEAD' }).then(response => {
       const hdrs = ['last-modified', 'Content-Length']
-      const [changeDate, size] = hdrs.map(h => response.headers.get(h))
-
-      let date = new Date(changeDate)
-      date.setHours(date.getHours() - 5) // Convert GMT to ET
-      const headers = { changeDate: date.toDateString(), size }
+      const [lastMod, size] = hdrs.map(h => response.headers.get(h))
+      let changeDate
+      
+      if (lastMod) {
+        const newDate = new Date(lastMod)
+        newDate.setHours(newDate.getHours() - 5) // Convert GMT to ET
+        changeDate = newDate.toDateString()
+      }
+      
+      const headers = { changeDate, size }
       dispatch(saveHeaders({ url, headers }))
       setCurrHeaders(headers)
     })
   }, [url])
 
   if (!shouldFetch) return null
-
   return currHeaders
 }
 
@@ -74,20 +80,22 @@ export const S3DocLink = ({ url, label, children, showLastUpdated = true }) => {
  * @param {String} label Anchor body
  * @returns Element
  */
-export const S3DatasetLink = ({ url, children, label, showLastUpdated }) => {
+export const S3DatasetLink = ({
+  url,
+  children,
+  label,
+  showLastUpdated,
+  isDocs,
+}) => {
   return (
-    <li key={url}>
+    <li key={url} className='dataset'>
       <a download href={url}>
         {children || label}
       </a>
       {showLastUpdated && (
-        <ul>
-          <li>
-            <Provider store={s3Store}>
-              <LastUpdated url={url} />
-            </Provider>
-          </li>
-        </ul>
+        <Provider store={s3Store}>
+          <LastUpdated url={url} isDocs={isDocs} />
+        </Provider>
       )}
     </li>
   )
@@ -98,19 +106,25 @@ export const S3DatasetLink = ({ url, children, label, showLastUpdated }) => {
  * @param {String} url S3 file url
  * @returns Element
  */
-const LastUpdated = ({ url }) => {
+const LastUpdated = ({ url, isDocs }) => {
   const headers = useS3FileHeaders(url, true)
+  let cname = ['s3-modified']
+  if (isDocs) cname.push('docs')
+  
   if (!headers) return <LoadingIcon className='LoadingInline' />
-  // return (
-  //   <table className='s3-modified'>
-  //     <tr><td className='label'>Size:</td> <td>{humanFileSize(headers.size)}</td></tr>
-  //     <tr><td className='label'>Updated:</td> <td>{headers.changeDate}</td></tr>
-  //   </table>
-  // )
+  if (!headers.size && !headers.changeDate) {
+    cname.push('not-found')
+    return <div className={cname.join(' ')}>- File not found -</div>
+  }
+
   return (
-    <div className='s3-modified'>
-      <div><span className='label'>Size:</span> {humanFileSize(headers.size)}</div>
-      <div><span className='label'>Updated:</span> {headers.changeDate}</div>
+    <div className={cname.join(' ')}>
+      <div>
+        <span className='label'>Size:</span> {humanFileSize(headers.size)}
+      </div>
+      <div>
+        <span className='label'>Updated:</span> {headers.changeDate}
+      </div>
     </div>
   )
 }

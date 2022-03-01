@@ -1,4 +1,15 @@
+.s3-modified {
+  margin-left: 10px;
+  color: #333;
+}
+
 .s3-modified .label {
   padding-bottom: 1px;
   margin-right: 3px;
+  color: grey;
+}
+
+.s3-modified.not-found {
+  padding: .25em 0 0 .5em;
+  margin: 0;
 }
