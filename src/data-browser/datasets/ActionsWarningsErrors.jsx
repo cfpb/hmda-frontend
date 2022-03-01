@@ -2,6 +2,7 @@ import React from 'react'
 import Error from '../../common/Error.jsx'
 import LoadingButton from './LoadingButton.jsx'
 import Alert from '../../common/Alert.jsx'
+import { LargeFileWarning } from '../../common/LargeFileWarning.jsx'
 
 export const ActionsWarningsErrors = ({
   downloadCallback,
@@ -30,12 +31,7 @@ export const ActionsWarningsErrors = ({
           View Summary Table
         </LoadingButton>
       )}
-      {isLargeFile ? (
-        <div className='LargeFileWarning'>
-          <h4>Warning:</h4> This dataset may be too large to be opened in
-          standard spreadsheet applications
-        </div>
-      ) : null}
+      {isLargeFile ? <LargeFileWarning /> : null}
       {!error && longRunningQuery ? <LongRunningMessage /> : null}
       {error ? <Error error={error} /> : null}
     </>
