@@ -2,12 +2,12 @@
   "name": "prod-beta",
   "announcement": [
     {
-      "message": "The LAR Formatting tool, previously Excel-based, is being redeveloped as a web application. You can now easily import/input your LAR data, search to filter, make edits, and create a HMDA Platform compatible file right from your browser. Though still a work in progress, the new LARFT is available now on ",
+      "message": "The LAR Formatting tool, previously Excel-based, is being redeveloped as a web application. You can now easily import/input your LAR data, search to filter, make edits, and create a HMDA Platform compatible file right from your browser. Updates will be made to this tool iteratively, with the latest version now available on the ",
       "type": "warning",
       "heading": "[Preview] Create and edit LAR files online",
       "link": {
         "url": "https://ffiec.beta.cfpb.gov/tools/lar-formatting",
-        "text": "HMDA Beta."
+        "text": "HMDA Beta Platform."
       }
     },
     {
