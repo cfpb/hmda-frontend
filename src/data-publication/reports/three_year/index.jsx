@@ -3,6 +3,7 @@ import Heading from '../../../common/Heading.jsx'
 import YearSelector from '../../../common/YearSelector.jsx'
 import { THREE_YEAR_DATASET } from '../../constants/three-year-datasets.js'
 import { withAppContext } from '../../../common/appContextHOC.jsx'
+import { S3DatasetLink } from '../../../common/S3Integrations'
 import './ThreeYear.css'
 
 function makeListLink(href, val) {
@@ -31,8 +32,16 @@ function renderDatasets(datasets){
           <li key={i}>
             {dataset.label}
             <ul>
-              {makeListLink(dataset.csv, 'CSV')}
-              {makeListLink(dataset.txt, 'Pipe Delimited')}
+              <S3DatasetLink
+                url={dataset.csv}
+                label={'CSV'}
+                showLastUpdated={true}
+              />
+              <S3DatasetLink
+                url={dataset.txt}
+                label={'Pipe Delimited'}
+                showLastUpdated={true}
+              />
             </ul>
           </li>
         )
@@ -46,8 +55,7 @@ const ThreeYear = props => {
   const { year } = params
   const { threeYear, shared  } = props.config.dataPublicationYears
   const years =  threeYear || shared
-  const dataForYear = THREE_YEAR_DATASET[year]
-  const sourceDate = year ? dataForYear.date : null
+  const currYearsData = THREE_YEAR_DATASET[year]
 
   return (
     <div className="ThreeYear" id="main-content">
@@ -88,14 +96,13 @@ const ThreeYear = props => {
         <div className="grid">
           <div className="item">
             <Heading type={4} headingText={year + ' Datasets'} />
-            {sourceDate && <span className='source-date'>Last updated: {sourceDate}</span>}
-            {renderDatasets(dataForYear.datasets)}
+            {renderDatasets(currYearsData.datasets)}
           </div>
           <div className="item">
             <Heading type={4} headingText={year + ' File Specifications'} />
             <ul>
               {year === '2017'
-                ? makeListLink(dataForYear.dataformat, 'Three Year LAR, TS and Reporter Panel')
+                ? makeListLink(currYearsData.dataformat, 'Three Year LAR, TS and Reporter Panel')
                 : linkToDocs(year)
               }
             </ul>

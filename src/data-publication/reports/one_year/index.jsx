@@ -3,46 +3,40 @@ import Heading from '../../../common/Heading.jsx'
 import YearSelector from '../../../common/YearSelector.jsx'
 import { ONE_YEAR_DATASET } from '../../constants/one-year-datasets.js'
 import { withAppContext } from '../../../common/appContextHOC.jsx'
+import { S3DatasetLink, S3DocLink } from '../../../common/S3Integrations'
 import './OneYear.css'
 
-function makeListLink(href, val) {
-  return (
-    <li key={href}>
-      <a download={true} href={href}>
-        {val}
-      </a>
-    </li>
-  )
-}
+const makeListLink = ({ url, label }, idx) => (
+  <li key={idx}>
+    <a href={url}>{label}</a>
+  </li>
+)
 
 function linkToDocs(year = '2018') {
-  return [
-    <li key='0'>
-      <a href={`/documentation/${year}/public-lar-schema/`}>
-        Public LAR Schema
-      </a>
-    </li>,
-    <li key='1'>
-      <a href={`/documentation/${year}/public-ts-schema/`}>
-        Public Transmittal Sheet Schema
-      </a>
-    </li>,
-    <li key='2'>
-      <a href={`/documentation/${year}/public-panel-schema/`}>
-        Public Panel Schema
-      </a>
-    </li>,
-    <li key='3'>
-      <a href={`/documentation/${year}/lar-data-fields/`}>
-        Public HMDA Data Fields with Values and Definitions
-      </a>
-    </li>,
-    <li key='4'>
-      <a href={`/documentation/${year}/panel-data-fields/`}>
-        Public Panel Values and Definitions
-      </a>
-    </li>,
+  const entries = [
+    {
+      url: `/documentation/${year}/public-lar-schema/`,
+      label: 'Public LAR Schema',
+    },
+    {
+      url: `/documentation/${year}/public-ts-schema/`,
+      label: 'Public Transmittal Sheet Schema',
+    },
+    {
+      url: `/documentation/${year}/public-panel-schema/`,
+      label: 'Public Panel Schema',
+    },
+    {
+      url: `/documentation/${year}/lar-data-fields/`,
+      label: 'Public HMDA Data Fields with Values and Definitions',
+    },
+    {
+      url: `/documentation/${year}/panel-data-fields/`,
+      label: 'Public Panel Values and Definitions',
+    },
   ]
+  
+  return entries.map(makeListLink)
 }
 
 function renderDatasets(datasets) {
@@ -52,9 +46,17 @@ function renderDatasets(datasets) {
         return (
           <li key={i}>
             {dataset.label}
-            <ul>
-              {makeListLink(dataset.csv, 'CSV')}
-              {makeListLink(dataset.txt, 'Pipe Delimited')}
+            <ul className='dataset-items'>
+              <S3DatasetLink
+                url={dataset.csv}
+                label='CSV'
+                showLastUpdated={true}
+              />
+              <S3DatasetLink
+                url={dataset.txt}
+                label='Pipe Delimited'
+                showLastUpdated={true}
+              />
             </ul>
           </li>
         )
@@ -63,13 +65,12 @@ function renderDatasets(datasets) {
   )
 }
 
-const OneYear = (props) => {
+const OneYear = props => {
   const { params, url } = props.match
   const { year } = params
   const { oneYear, shared } = props.config.dataPublicationYears
   const years = oneYear || shared
-  const dataForYear = ONE_YEAR_DATASET[year]
-  const sourceDate = year ? dataForYear.date : null
+  const currYearsData = ONE_YEAR_DATASET[year]
 
   return (
     <div className='OneYear' id='main-content'>
@@ -110,20 +111,21 @@ const OneYear = (props) => {
         <div className='grid'>
           <div className='item'>
             <Heading type={4} headingText={year + ' Datasets'} />
-            {sourceDate && (
-              <span className='source-date'>Last updated: {sourceDate}</span>
-            )}
-            {renderDatasets(dataForYear.datasets)}
+            {renderDatasets(currYearsData.datasets)}
           </div>
           <div className='item'>
             <Heading type={4} headingText={year + ' File Specifications'} />
             <ul>
-              {year === '2017'
-                ? makeListLink(
-                    dataForYear.dataformat,
-                    'One Year LAR, TS and Reporter Panel'
-                  )
-                : linkToDocs(year)}
+              {year === '2017' ? (
+                <S3DocLink
+                  key={currYearsData.dataformat}
+                  url={currYearsData.dataformat}
+                  label={'One Year LAR, TS and Reporter Panel'}
+                  showLastUpdated={true}
+                />
+              ) : (
+                linkToDocs(year)
+              )}
             </ul>
           </div>
         </div>
