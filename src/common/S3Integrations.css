@@ -13,3 +13,33 @@
   padding: .25em 0 0 .5em;
   margin: 0;
 }
+
+.s3-modified .warning  {
+  border-left: 3px solid transparent;
+  padding-left: .5em;
+  margin-left: calc(-1em - 3px);
+  color: black;
+}
+.s3-modified .warning .marker {
+  color: goldenrod;
+  font-size: 1.1em;
+}
+.s3-modified .warning .content {
+  display: none;
+  border-top: 1px dotted goldenrod;
+  width: 90%;
+  min-width: 100px;
+  padding-top: 4px;
+  padding-left: 1rem;
+}
+
+.s3-modified .warning:hover,
+.s3-modified .warning:focus,
+.s3-modified:hover .warning {
+  cursor: pointer;
+  border-left: 3px solid goldenrod;
+}
+.s3-modified:hover .warning > *:not(.marker),
+.s3-modified .warning:focus > *:not(.marker) {
+  display: inline-block;
+}

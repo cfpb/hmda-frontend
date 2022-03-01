@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector, Provider } from 'react-redux'
 import ExternalLink from './ExternalLink'
 import LoadingIcon from './LoadingIcon'
-import { humanFileSize } from './numberServices'
+import { humanFileSize, isBigFile } from './numberServices'
 import { saveHeaders } from './s3/S3Headers'
 import s3Store from './s3/store'
 import './S3Integrations.css'
@@ -32,13 +32,13 @@ export const useS3FileHeaders = (url, shouldFetch) => {
       const hdrs = ['last-modified', 'Content-Length']
       const [lastMod, size] = hdrs.map(h => response.headers.get(h))
       let changeDate
-      
+
       if (lastMod) {
         const newDate = new Date(lastMod)
         newDate.setHours(newDate.getHours() - 5) // Convert GMT to ET
         changeDate = newDate.toDateString()
       }
-      
+
       const headers = { changeDate, size }
       dispatch(saveHeaders({ url, headers }))
       setCurrHeaders(headers)
@@ -101,6 +101,19 @@ export const S3DatasetLink = ({
   )
 }
 
+const S3LargeFileWarning = ({ show = false }) => {
+  if (!show) return null
+  return (
+    <div className='warning' tabIndex={0}>
+      <span className='marker'>!</span> <span className='label'>Warning:</span>{' '}
+      Large File{' '}
+      <div className='content'>
+        This dataset may be too large to be opened in standard spreadsheet
+        applications.
+      </div>
+    </div>
+  )
+}
 /**
  * Fetches and displays the last updated date of an S3 file
  * @param {String} url S3 file url
@@ -110,21 +123,23 @@ const LastUpdated = ({ url, isDocs }) => {
   const headers = useS3FileHeaders(url, true)
   let cname = ['s3-modified']
   if (isDocs) cname.push('docs')
-  
+
   if (!headers) return <LoadingIcon className='LoadingInline' />
   if (!headers.size && !headers.changeDate) {
     cname.push('not-found')
     return <div className={cname.join(' ')}>- File not found -</div>
   }
+  const readableSize = humanFileSize(headers.size)
 
   return (
     <div className={cname.join(' ')}>
       <div>
-        <span className='label'>Size:</span> {humanFileSize(headers.size)}
+        <span className='label'>Size:</span> {readableSize}
       </div>
       <div>
         <span className='label'>Updated:</span> {headers.changeDate}
       </div>
+      <S3LargeFileWarning show={isBigFile(readableSize)} />
     </div>
   )
 }
