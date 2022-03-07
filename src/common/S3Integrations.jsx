@@ -104,7 +104,7 @@ export const S3DatasetLink = ({
 const S3LargeFileWarning = ({ show = false }) => {
   if (!show) return null
   return (
-    <div className='warning' tabIndex={0}>
+    <div className='warning'>
       <span className='marker'>!</span> <span className='label'>Warning:</span>{' '}
       Large File{' '}
       <div className='content'>
@@ -133,13 +133,13 @@ const LastUpdated = ({ url, isDocs }) => {
 
   return (
     <div className={cname.join(' ')}>
+      <S3LargeFileWarning show={isBigFile(readableSize)} />
       <div>
         <span className='label'>Size:</span> {readableSize}
       </div>
       <div>
         <span className='label'>Updated:</span> {headers.changeDate}
       </div>
-      <S3LargeFileWarning show={isBigFile(readableSize)} />
     </div>
   )
 }
