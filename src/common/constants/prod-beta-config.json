@@ -2,6 +2,12 @@
   "name": "prod-beta",
   "announcement": [
     {
+      "message": "We will be performing scheduled system maintenance on March 8 from 7PM - 9PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+      "type": "warning",
+      "heading": "Scheduled Maintenance",
+      "link": null
+    },
+    {
       "message": "The LAR Formatting tool, previously Excel-based, is being redeveloped as a web application. You can now easily import/input your LAR data, search to filter, make edits, and create a HMDA Platform compatible file right from your browser. Updates will be made to this tool iteratively, with the latest version now available on the ",
       "type": "warning",
       "heading": "[Preview] Create and edit LAR files online",
@@ -23,9 +29,9 @@
   "publicationReleaseYear": "2020",
   "maintenanceMode": false,
   "filingAnnouncement": {
-    "heading": "Collection of 2018 HMDA Data Will End",
+    "heading": "Scheduled Maintenance",
     "type": "warning",
-    "message": "Resubmissions of 2018 HMDA data will not be accepted after December 31st, 2021.",
+    "message": "We will be performing scheduled system maintenance on March 8 from 7PM - 9PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
     "link": {
       "url": "https://ffiec.cfpb.gov/documentation/2021/data-collection-timelines",
       "text": "View the HMDA data collection timelines."
@@ -47,17 +53,14 @@
     "2018"
   ],
   "timedGuards": {
-    "2022": {
-      "Q1": "04/01/2022 - 05/31/2022 - 06/30/2022",
-      "Q2": "07/01/2022 - 08/30/2022 - 09/30/2022",
-      "Q3": "10/01/2022 - 11/29/2022 - 12/31/2022",
-      "annual": "01/01/2023 - 03/01/2023 - 12/31/2025"
+    "2017": {
+      "annual": "01/01/2018 - 03/01/2018 - 12/31/2019"
     },
-    "2021": {
-      "Q1": "04/01/2021 - 06/01/2021 - 06/30/2021",
-      "Q2": "06/30/2021 - 08/30/2021 - 09/30/2021",
-      "Q3": "10/01/2021 - 11/30/2021 - 12/31/2021",
-      "annual": "01/01/2022 - 03/01/2022 - 12/31/2024"
+    "2018": {
+      "annual": "01/01/2019 - 03/01/2019 - 12/31/2021"
+    },
+    "2019": {
+      "annual": "01/01/2020 - 03/01/2020 - 12/31/2022"
     },
     "2020": {
       "Q1": "04/01/2020 - 06/01/2020 - 06/30/2020",
@@ -65,14 +68,17 @@
       "Q3": "10/01/2020 - 11/30/2020 - 12/31/2020",
       "annual": "01/01/2021 - 03/01/2021 - 12/31/2023"
     },
-    "2019": {
-      "annual": "01/01/2020 - 03/01/2020 - 12/31/2022"
+    "2021": {
+      "Q1": "04/01/2021 - 06/01/2021 - 06/30/2021",
+      "Q2": "06/30/2021 - 08/30/2021 - 09/30/2021",
+      "Q3": "10/01/2021 - 11/30/2021 - 12/31/2021",
+      "annual": "01/01/2022 - 03/01/2022 - 12/31/2024"
     },
-    "2018": {
-      "annual": "01/01/2019 - 03/01/2019 - 12/31/2021"
-    },
-    "2017": {
-      "annual": "01/01/2018 - 03/01/2018 - 12/31/2019"
+    "2022": {
+      "Q1": "04/01/2022 - 05/31/2022 - 06/30/2022",
+      "Q2": "07/01/2022 - 08/30/2022 - 09/30/2022",
+      "Q3": "10/01/2022 - 11/29/2022 - 12/31/2022",
+      "annual": "01/01/2023 - 03/01/2023 - 12/31/2025"
     },
     "preview": [
       "2021",
