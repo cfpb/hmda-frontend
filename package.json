@@ -21,6 +21,7 @@
   "license": "CC0-1.0",
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",
+    "ansi-html": "0.0.8",
     "csv-parse": "4.15.4",
     "detect-browser": "4.8.0",
     "detect-file-encoding-and-language": "^2.1.0",
@@ -32,10 +33,10 @@
     "mapbox-gl": "1.13.1",
     "markdown-to-jsx": "6.11.4",
     "normalize.css": "8.0.1",
-    "react": "16.13.1",
+    "react": "17.0.2",
     "react-app-polyfill": "2.0.0",
     "react-dev-utils": "11.0.4",
-    "react-dom": "16.13.1",
+    "react-dom": "17.0.2",
     "react-dropzone": "10.2.2",
     "react-helmet": "5.2.1",
     "react-highlight-words": "0.17.0",
@@ -61,7 +62,7 @@
   "devDependencies": {
     "@cypress/skip-test": "2.6.0",
     "@testing-library/cypress": "8.0.1",
-    "cypress": "9.2.0",
+    "cypress": "9.5.1",
     "cypress-file-upload": "5.0.8",
     "cypress-keycloak": "1.7.0",
     "enzyme": "3.11.0",
@@ -73,6 +74,7 @@
     "serialize-javascript": "5.0.1"
   },
   "resolutions": {
+    "ansi-html": "0.0.8",
     "adm-zip": "0.5.3",
     "ansi-regex": "5.0.1",
     "browserslist": "4.17.6",
