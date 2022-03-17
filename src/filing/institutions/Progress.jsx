@@ -20,31 +20,31 @@ const navMap = {
       submission.status.code === PARSED_WITH_ERRORS || submission.isStalled,
     isCompleted: submission => submission.status.code > UPLOADED,
     errorText: 'upload error',
-    completedText: 'uploaded'
+    completedText: () => 'uploaded'
   },
   'syntactical & validity edits': {
     isErrored: submission => submission.status.code === SYNTACTICAL_VALIDITY_EDITS,
     isCompleted: submission => submission.status.code >= NO_SYNTACTICAL_VALIDITY_EDITS,
     errorText: 'syntactical & validity edits',
-    completedText: 'no syntactical & validity edits'
+    completedText: () => 'no syntactical & validity edits'
   },
   'quality edits': {
     isErrored: submission => submission.qualityExists && !submission.qualityVerified,
     isCompleted: submission => submission.status.code >= NO_QUALITY_EDITS && (!submission.qualityExists || submission.qualityVerified),
     errorText: 'quality edits'  ,
-    completedText: 'quality edits verified'
+    completedText: (submission) => submission.qualityExists ? 'quality edits verified' : 'no quality edits'
   },
   'macro quality edits': {
     isErrored: submission => submission.macroExists && !submission.macroVerified,
     isCompleted: submission => (submission.status.code > MACRO_EDITS || submission.status.code === NO_MACRO_EDITS) && (!submission.macroExists || submission.macroVerified),
     errorText: 'macro quality edits',
-    completedText: 'macro quality edits verified'
+    completedText: (submission) => submission.macroExists ? 'macro quality edits verified' : 'no macro edits'
   },
   submission: {
     isReachable: submission => submission.status.code >= VALIDATED || submission.status.code === NO_MACRO_EDITS ,
     isErrored: () => false,
     isCompleted: submission => submission.status.code === SIGNED,
-    completedText: 'submitted'
+    completedText: () => 'submitted'
   }
 }
 
@@ -58,7 +58,7 @@ const renderNavItem = (submission, name, i) => {
     renderedName = navItem.errorText
     navClass = 'error'
   } else if (completed) {
-    renderedName = navItem.completedText
+    renderedName = navItem.completedText(submission)
     navClass = 'complete'
   }
 
