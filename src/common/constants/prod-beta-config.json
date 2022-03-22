@@ -2,6 +2,15 @@
   "name": "prod-beta",
   "announcement": [
     {
+      "heading": "2021 Modified LAR Release",
+      "message": "On March XX, 2022, the 2021 Modified LAR data was released and can be accessed via the ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/data-publication/modified-lar/",
+        "text": "Modified LAR page."
+      }
+    },
+    {
       "message": "The LAR Formatting tool, previously Excel-based, is being redeveloped as a web application. You can now easily import/input your LAR data, search to filter, make edits, and create a HMDA Platform compatible file right from your browser. Updates will be made to this tool iteratively, with the latest version now available on the ",
       "type": "warning",
       "heading": "[Preview] Create and edit LAR files online",
