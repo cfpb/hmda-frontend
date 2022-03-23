@@ -2,6 +2,15 @@
   "name": "prod",
   "announcement": [
     {
+      "heading": "2021 Modified LAR Release",
+      "message": "On March 23, 2022, the 2021 Modified LAR data was released and can be accessed via the ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/data-publication/modified-lar/",
+        "text": "Modified LAR page."
+      }
+    },
+    {
       "message": "The FFIEC has announced a tentative release schedule for the 2022 Census products, which is available ",
       "type": "info",
       "heading": "2022 FFIEC Census Product Release Schedule",
@@ -35,6 +44,13 @@
   },
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
+    "mlar": [
+      "2021",
+      "2020",
+      "2019",
+      "2018",
+      "2017"
+    ],
     "shared": [
       "2020",
       "2019",
