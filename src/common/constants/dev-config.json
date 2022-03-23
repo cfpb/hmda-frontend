@@ -10,6 +10,7 @@
         "text": "Modified LAR page."
       }
     },
+    {
       "message": "The FFIEC has announced a tentative release schedule for the 2022 Census products, which is available ",
       "type": "info",
       "heading": "2022 FFIEC Census Product Release Schedule",
@@ -29,7 +30,7 @@
     }
   ],
   "publicationReleaseYear": "2020",
-  "mlarReleaseYear": "2020",
+  "mlarReleaseYear": "2021",
   "maintenanceMode": false,
   "filingAnnouncement": {
     "heading": "Collection of 2018 HMDA Data Will End",
