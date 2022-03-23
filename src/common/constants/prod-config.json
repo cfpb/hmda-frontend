@@ -2,7 +2,7 @@
   "name": "prod",
   "announcement": [
     {
-      "message": "The FFIEC has announced a tentative release schedule for the 2022 Census products, which is available",
+      "message": "The FFIEC has announced a tentative release schedule for the 2022 Census products, which is available ",
       "type": "info",
       "heading": "2022 FFIEC Census Product Release Schedule",
       "link": {
