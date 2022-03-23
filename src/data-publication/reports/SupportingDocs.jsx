@@ -19,9 +19,9 @@ const ModifiedLarDocs = () => {
               Complete documentation for the dataset including field number, data type, valid values, and examples
               <ul>
               <li><a
-                title="Modified LAR 2018, 2019, and 2020 file specification"
+                title="Modified LAR 2018, 2019, 2020, and 2021 file specification"
                 href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/spec/Modified%20LAR%20Schema.csv"
-              >2018, 2019, and 2020</a></li>
+              >2018, 2019, 2020, and 2021</a></li>
               <li><a
                 title="Modified LAR 2017 file specification"
                 href="https://github.com/cfpb/hmda-platform/blob/master/docs/v1/2017_Modified_LAR_Spec.csv"
@@ -34,6 +34,12 @@ const ModifiedLarDocs = () => {
             <div>
               A list of column names for use with the Modified LAR text files
               <ul>
+                <li>
+                  <Link
+                    title="Modified LAR header for 2021 csv file"
+                    to="/documentation/2021/modified-lar-header/"
+                  >2021</Link>
+                </li>
                 <li>
                   <Link
                     title="Modified LAR header for 2020 csv file"
@@ -66,6 +72,12 @@ const ModifiedLarDocs = () => {
             <div>
               A simplified version of the file specification intended for easy conversion to SQL statements
               <ul>
+                <li>
+                  <a
+                    title="Modified LAR 2021 data dictionary"
+                    href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/spec/markdown/modified_lar/2021_Modified_LAR_Data_Dictionary.md"
+                  >2021</a>
+                </li>
                 <li>
                   <a
                     title="Modified LAR 2020 data dictionary"
