@@ -93,3 +93,6 @@ public/markdown
 .eslintcache
 
 dev-notes.*
+
+# Load-test fixtures
+cypress/fixtures/*-MAX.txt

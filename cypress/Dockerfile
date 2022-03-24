@@ -45,3 +45,6 @@ RUN useradd -ms /bin/bash hmda_cypress_user && \
 USER hmda_cypress_user
 
 RUN yarn cypress install
+
+# Copy load-test file from S3 if not already present
+RUN [ ! -f ./cypress/fixtures/2020-FRONTENDTESTBANK9999-MAX.txt ] && aws s3 cp s3://cfpb-hmda-public/cypress/2020-FRONTENDTESTBANK9999-MAX.txt ./cypress/fixtures/ --profile svc_hmda
