@@ -62,5 +62,3 @@ fi
 
 
 cleanup
-
-# TODO: Generate and push MAX file to S3

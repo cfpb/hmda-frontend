@@ -94,5 +94,5 @@ public/markdown
 
 dev-notes.*
 
-# Load-test fixtures
+# Load-test fixtures are too large for Github
 cypress/fixtures/*-MAX.txt
