@@ -37,7 +37,7 @@
   ],
   "publicationReleaseYear": "2020",
   "mlarReleaseYear": "2021",
-  "maintenanceMode": true,
+  "maintenanceMode": false,
   "filingAnnouncement": {
     "heading": "System Temporarily Unavailable",
     "type": "error",
