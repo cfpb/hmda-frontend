@@ -16,7 +16,7 @@ const {
 } = Cypress.env()
 
 const years = [2020]
-const timeout3hours = 10800000
+const uploadTimeout = 3 * 60 * 60 * 1000 // 3 hours
 
 const config = getDefaultConfig(HOST)
 const getFilename = (filingPeriod, lei) => `${filingPeriod}-${lei}-MAX.txt`
@@ -116,9 +116,9 @@ describe('Large Filer', function () {
                 mimeType: 'text/plain',
               })
 
-              // Wait up to 3 hours for upload and processing to complete, then start reviewing edits
+              // Wait for upload and processing to complete, then start reviewing edits
               cy.get('.NavButtonContainer > .NavButton').click({
-                timeout: timeout3hours,
+                timeout: uploadTimeout,
               })
 
               // Action: Review Quality Edits
