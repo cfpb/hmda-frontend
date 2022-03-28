@@ -8,10 +8,6 @@ import {
   NO_MACRO_EDITS,
   UPLOADING
 } from '../../constants/statusCodes.js'
-/* TODO
-we may need to update this
-we'll have to see what a clean file upload does
-*/
 
 import './ValidationProgress.css'
 
