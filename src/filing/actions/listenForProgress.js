@@ -50,12 +50,14 @@ export default function listenForProgress() {
           const wsBaseUrl = process.env.REACT_APP_ENVIRONMENT === 'CI'
             ? `${window.location.hostname}:8080`
             : `${window.location.host}/v2/filing`
+          
+          const socketType = window.location.protocol == 'https:' ? 'wss' : 'ws'
 
           const wsProgressUrl = quarter
             ? `/institutions/${lei}/filings/${year}/quarter/${quarter}/submissions/${sequenceNumber}/progress`
             : `/institutions/${lei}/filings/${year}/submissions/${sequenceNumber}/progress`
 
-          let socket = new WebSocket(`ws://${wsBaseUrl}${wsProgressUrl}`)
+          let socket = new WebSocket(`${socketType}://${wsBaseUrl}${wsProgressUrl}`)
 
           socket.onopen = (event) => {
             console.log('>>> Socket open! Listening for Progress...')
