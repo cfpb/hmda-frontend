@@ -89,27 +89,31 @@
   border-color: #2e8540;
 }
 
-/*
-.Filing .UploadForm .usa-alert {
-  margin-bottom: 1em;
-  margin-top: 0;
+.Filing .encoding-error ul.show-markers li::before {
+  color: rgb(227 28 61);
+  content: '\2022';
+  display: inline-block;
+  font-weight: bold;
+  font-size: 1.5em;
+  width: 1em;
 }
-.Filing .UploadForm .usa-alert ul.usa-alert-text {
-  margin-top: 0;
-  padding-left: 1em;
+.Filing .encoding-error ul.show-markers li {
+  margin-left: 0.5em;
+}
+.Filing .encoding-error .guidance {
+  background: white;
+  padding: 1.25em;
+  width: 100%;
+  border-radius: .2em;
+  border: 1px solid lightpink;
+}
+.Filing .encoding-error .guidance .title {
+  padding: 0;
+  margin: 0;
+  border-bottom: 1px dotted rgb(227 28 61);
+}
+.Filing .encoding-error .guidance .screenshot {
+  margin: 10px auto 0;
+  max-width: 100%
 }
 
-.Filing .UploadForm .usa-form {
-  max-width: 100%;
-}
-.Filing .UploadForm .usa-button.usa-button-gray {
-  border: 1px solid #5b616b;
-  border-radius: 0.3rem 0 0 0.3rem;
-  margin-right: -1px;
-}
-.Filing .UploadForm .usa-button.usa-button-gray.usa-button-disabled {
-  background-color: #d6d7d9;
-  border-color: #d6d7d9;
-  color: #323a45;
-}
-*/

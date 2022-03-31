@@ -1,4 +1,6 @@
+import React from 'react'
 import detectFileEncoding from 'detect-file-encoding-and-language'
+import imgSaveUtf8 from '../../common/images/export-utf8.png'
 
 export default function checkFileErrors(file, cb) {
   const fileSlice = file.slice(0, 2)
@@ -39,7 +41,32 @@ function isNotAFile(file) {
 
 function encodingIsNotUtf8(info) {
   if (info?.encoding !== 'UTF-8')
-    return 'The file you selected is not UTF-8 encoded. Please check your file and re-upload.'
+    return (
+      <div className='encoding-error'>
+        The file you selected is not UTF-8 encoded. Please check your file and
+        re-upload.
+        <br />
+        <br />
+        <div className='guidance'>
+          <div className='title'>Guidance:</div>
+          <ul className='show-markers'>
+            <li>
+              You will need to re-save your file with the encoding set to UTF-8.
+            </li>
+            <li>Check your software's documentation for further guidance.</li>
+            <li>
+              If using the HMDA LAR Formatting tool, please refer to the
+              screenshot below.
+              <img
+                className='screenshot'
+                src={imgSaveUtf8}
+                alt='Set file encoding to UTF-8'
+              />
+            </li>
+          </ul>
+        </div>
+      </div>
+    )
 }
 
 function fileIsEmpty(file) {
