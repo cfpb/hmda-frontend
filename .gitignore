@@ -93,3 +93,6 @@ public/markdown
 .eslintcache
 
 dev-notes.*
+
+# Load-test fixtures are too large for Github
+cypress/fixtures/*-MAX.txt

@@ -1,12 +1,64 @@
 #!/bin/bash
-
 # Script that will post a message to a predefined webhook when cypress is done
 
-yarn cypress run > output.txt
-if  grep -q "All specs passed!" "output.txt" ; then
-	curl -i -X POST -H 'Content-Type: application/json' -d "{\"text\": \"CYPRESS_HOST: ${CYPRESS_HOST} Complete. :thumbs-up-bb8: No Failing specs.\"}" $CYPRESS_WEB_HOOK
+# Args
+# 1 - Test collection label (Integration/Load)
+# 2 - Filename
+post_success() 
+{
+	runtime=$(tail -n 1 ${2} | xargs echo)
+	
+	msg="- [ [${environment}](${CYPRESS_HOST}) ] ${1}\n  - ${runtime} :1up:"
+
+	curl -i -X POST -H 'Content-Type: application/json' -d "{\"text\": \"${msg}\"}" $CYPRESS_WEB_HOOK
+
+}
+
+# Args
+# 1 - Test collection label (Integration/Load)
+# 2 - Filename
+post_failure() 
+{
+	msg="- [ [${environment}](${CYPRESS_HOST}) ] ${1}\n  - Failed. :old-man-yells-at-cloud-simpsons:\n  - Check the logs\n    \`\`\`\n    kubectl logs \$(kubectl get pods -n monitoring --sort-by=.status.startTime | grep 'hmda-cypress-' | tail -n 1 | awk 'NR==1{print \$1}') -n monitoring\n    \`\`\`"
+
+	curl -i -X POST -H 'Content-Type: application/json' -d "{\"text\": \"${msg}\" }"  $CYPRESS_WEB_HOOK
+
+	echo "\n\n--- ${1} output ---"
+	cat $2
+}
+
+cleanup()
+{
+	rm output_load.txt
+	rm output_integration.txt
+}
+
+if [[ "$CYPRESS_HOST" == *"ffiec.cfpb"* ]]; then
+  environment="PROD"
+elif [[ "$CYPRESS_HOST" == *"ffiec.beta"* ]]; then
+  environment="BETA"
+elif [[ "$CYPRESS_HOST" == *"hmda4.demo"* ]]; then
+  environment="DEV"
 else
-	curl -i -X POST -H 'Content-Type: application/json' -d "{\"text\": \"CYPRESS_HOST: ${CYPRESS_HOST} Complete.\n:starwars-darth: Cypress Has Failed!\nrun \`kubectl logs \$(kubectl get pods -n monitoring --sort-by=.status.startTime | grep 'hmda-cypress-${CYPRESS_ENV}' | tail -n 1 | awk 'NR==1{print \$1}') -n monitoring\` to see the logs for the last run\" }"  $CYPRESS_WEB_HOOK
-	cat output.txt
+  environment="DEV-BETA"
 fi
-rm output.txt
+
+# Integration tests
+yarn cypress run --spec "cypress/integration/data-browser/**,cypress/integration/data-publication/**,cypress/integration/filing/**,cypress/integration/hmda-help/**,cypress/integration/tools/**" > output_integration.txt
+if  grep -q "All specs passed!" "output_integration.txt" ; then
+	post_success 'Integration testing :handshake:' "output_integration.txt"
+else
+	post_failure 'Integration testing :handshake:' "output_integration.txt"
+fi
+
+# Load tests
+# TODO: Host load test file on S3, download here
+yarn cypress run --spec "cypress/integration/load/**" > output_load.txt
+if  grep -q "All specs passed!" "output_load.txt" ; then
+	post_success 'Load testing :tractor:' "output_load.txt"
+else
+	post_failure 'Load testing :tractor:' "output_load.txt"
+fi
+
+
+cleanup
