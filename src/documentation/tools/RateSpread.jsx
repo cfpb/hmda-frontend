@@ -18,6 +18,10 @@ const links = {
   2021: [
     <li key="2021-0"><a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/tools/rate-spread/requirements">Data Requirements</a></li>,
     <li key="2021-1"><a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/tools/rate-spread/methodology">Methodology for Determining Average Prime Offer Rates</a></li>
+  ],
+  2022: [
+    <li key="2022-0"><a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/tools/rate-spread/requirements">Data Requirements</a></li>,
+    <li key="2022-1"><a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/tools/rate-spread/methodology">Methodology for Determining Average Prime Offer Rates</a></li>
   ]
 }
 

@@ -62,6 +62,16 @@ const links = {
     <li key="2021-7"><Link to="/documentation/2021/panel-data-fields/">Public Panel Data Fields with Values and Definitions</Link></li>,
     <li key="2021-8"><Link to="/documentation/2021/arid2017-to-lei-schema/">ARID2017 to LEI Reference Table Schema</Link></li>
   ],
+  2022: [
+    <li key="2022-1"><Link to="/documentation/2022/lar-data-fields/">Public HMDA Data Fields with Values and Definitions</Link></li>,
+    <li key="2022-2"><Link to="/documentation/2022/derived-data-fields/">Derived Data Fields</Link></li>,
+    <li key="2022-3"><Link to="/documentation/2022/public-lar-schema/">Public LAR Schema</Link></li>,
+    <li key="2022-4"><Link to="/documentation/2022/public-ts-schema/">Public Transmittal Sheet Schema</Link></li>,
+    <li key="2022-5"><Link to="/documentation/2022/ts-data-fields/">Public Transmittal Sheet Data Fields with Values and Definitions</Link></li>,
+    <li key="2022-6"><Link to="/documentation/2022/public-panel-schema/">Public Panel Schema</Link></li>,
+    <li key="2022-7"><Link to="/documentation/2022/panel-data-fields/">Public Panel Data Fields with Values and Definitions</Link></li>,
+    <li key="2022-8"><Link to="/documentation/2022/arid2017-to-lei-schema/">ARID2017 to LEI Reference Table Schema</Link></li>
+  ],
 }
 
 const SnapshotDynamic = props => {
