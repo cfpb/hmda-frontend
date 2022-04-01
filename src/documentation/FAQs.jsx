@@ -32,6 +32,13 @@ const links = {
     <li key="2021-3"><Link to="/documentation/2021/filing-faq/">HMDA Filing FAQ</Link></li>,
     <li key="2021-4"><Link to="/documentation/2021/data-browser-maps-faq/">Maps FAQ</Link></li>,
     <li key="2021-5"><Link to="/documentation/2021/data-collection-timelines/">HMDA Data Collection Timelines</Link></li>,
+  ],
+  2022: [
+    <li key="2022-1"><Link to="/documentation/2022/identifiers-faq/">Institution Identifiers FAQ</Link></li>,
+    <li key="2022-2"><Link to="/documentation/2022/data-browser-faq/">Data Browser FAQ</Link></li>,
+    <li key="2022-3"><Link to="/documentation/2022/filing-faq/">HMDA Filing FAQ</Link></li>,
+    <li key="2022-4"><Link to="/documentation/2022/data-browser-maps-faq/">Maps FAQ</Link></li>,
+    <li key="2022-5"><Link to="/documentation/2022/data-collection-timelines/">HMDA Data Collection Timelines</Link></li>,
   ]
 }
 

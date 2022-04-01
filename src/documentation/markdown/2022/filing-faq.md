@@ -26,13 +26,13 @@ Institutions should provide one of the following agency codes:
 ### Filing Preparation
 
 #### How can I test my file before submitting it to HMDA?
-The Bureau hosts the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.beta.cfpb.gov/">HMDA Beta Filing Platform</a> (https://ffiec.beta.cfpb.gov/) where you can submit HMDA data in a sandboxed environment (a non-production system designed for application testing) prior to the official filing period. This gives you an early opportunity to <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/documentation/2021/filing-faq#what-tools-can-i-use-to-help-prepare-my-file-for-submission">prepare your data</a>, review and resolve edits, as well as identify and correct formatting errors. **Data submitted to the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.beta.cfpb.gov/">HMDA Beta Filing Platform</a> is not retained by the Bureau, or any other regulatory agency.**
+The Bureau hosts the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.beta.cfpb.gov/">HMDA Beta Filing Platform</a> (https://ffiec.beta.cfpb.gov/) where you can submit HMDA data in a sandboxed environment (a non-production system designed for application testing) prior to the official filing period. This gives you an early opportunity to <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/documentation/2022/filing-faq#what-tools-can-i-use-to-help-prepare-my-file-for-submission">prepare your data</a>, review and resolve edits, as well as identify and correct formatting errors. **Data submitted to the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.beta.cfpb.gov/">HMDA Beta Filing Platform</a> is not retained by the Bureau, or any other regulatory agency.**
 
 
 #### What tools can I use to help prepare my file for submission?
 You can use the <a target="_blank" rel="noopener noreferrer" href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2021-hmda-fig.pdf">**Filing Instructions Guide (FIG)**</a> applicable to the year you are filing data for. Filing Instructions Guides for each year can be found on the home page of https://ffiec.cfpb.gov/, under the “Help For Filers” section. 
 
-+ LAR File Format: **Section 3.3 of the FIG** provides filers with the proper steps to format your LAR File. An example of a correctly formatted file can be found here: https://github.com/cfpb/hmda-platform/blob/master/data/2019/clean_test_files/bank_1/clean_file_100_rows_Bank1.txt.
++ LAR File Format: **Section 3.3 of the FIG** provides filers with the proper steps to format your LAR File. An example of a correctly formatted file can be found here: https://github.com/cfpb/hmda-platform/blob/master/data/2022/yearly/clear_test_files/bank1/Bank1_clean_100_rows.txt.
 
 + Data Fields: **Section 3.4 of the FIG** includes all acceptable values and exemption codes for the various data fields. **Sections 4.2.1 and 4.2.2 of the FIG** detail data specifications for each field.
 
@@ -84,7 +84,7 @@ The <a target="_blank" rel="noopener noreferrer" href="https://ffiec.beta.cfpb.g
 _Annual HMDA data submissions_ for the 2019 filing year are accepted January 1 - March 1, 2020.  
 <br/>
 
-![2020 annual filing dates](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/annual_filing.png)  
+![2021 annual filing dates](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/annual_filing.png)  
 
 _Quarterly HMDA data submissions_ are separated into three quarters. 
 

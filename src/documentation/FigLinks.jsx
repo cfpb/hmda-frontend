@@ -77,6 +77,28 @@ const links = {
         Quarterly HMDA Filing Period Dates
       </Link>
     </li>
+  ],
+  2022: [
+    <S3DocLink
+      key='9'
+      url='https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2022-hmda-fig.pdf'
+      label='For data collected in 2022'
+    />,
+    <S3DocLink
+      key='10'
+      url='https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers.pdf'
+      label='Supplemental Guide for Quarterly Filers'
+    />,
+    <li key='11'>
+      <Link to='/documentation/2022/annual-filing-dates/'>
+        Annual HMDA Filing Period Dates
+      </Link>
+    </li>,
+    <li key='12'>
+      <Link to='/documentation/2022/quarterly-filing-dates/'>
+        Quarterly HMDA Filing Period Dates
+      </Link>
+    </li>
   ]
 }
 
