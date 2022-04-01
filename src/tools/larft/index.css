@@ -1,0 +1,353 @@
+/* App */
+.clickable:hover {
+  cursor: pointer;
+}
+.error {
+  scroll-margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 1em;
+  border: 1px solid darkred;
+  border-left-width: 10px;
+  color: darkred;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 2rem;
+}
+.error .close {
+  margin-left: auto;
+}
+
+.file-actions {
+  padding-top: 5px;
+}
+
+.file-actions .wrapper button:not(:first-of-type) {
+  margin-left: 1em;
+}
+.file-actions .wrapper button {
+  margin-top: 0;
+}
+
+.file-actions .wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+/* RawRow */
+.raw-row {
+  margin-top: 2em;
+  border-top: 3px solid #0071bc;
+}
+
+.action-wrapper.raw {
+  margin-top: 0em;
+}
+.action-wrapper button {
+  margin-top: 0.5em;
+}
+.raw-row #rawArea {
+  width: 100%;
+  min-height: 150px;
+}
+.raw-row .editing {
+  margin-bottom: 10px;
+  color: rgb(35, 123, 152);
+}
+.raw-row .editing .highlight {
+  font-weight: bold;
+  font-style: italic;
+  color: black;
+}
+.raw-row .save-row {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+.raw-row .action-wrapper button:not(:first-of-type) {
+  margin-left: 0.5em;
+}
+
+.raw-row .action-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+/* ParsedRow */
+.parsed .section-heading {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.3em 0 5px 0;
+}
+.parsed .section-heading > * {
+  margin: 0;
+  height: 2em;
+  line-height: 2em;
+}
+.parsed .table-wrapper,
+.parsed table,
+.parsed tbody {
+  overflow: scroll;
+}
+.parsed table {
+  position: relative;
+}
+.parsed thead {
+  position: sticky;
+  top: 0;
+}
+.parsed tbody {
+  margin-top: 0;
+}
+.parsed tr {
+  scroll-margin-top: 4em;
+}
+.parsed .fieldIndex {
+  width: 6em;
+}
+.parsed .fieldName {
+  width: 50%;
+}
+.parsed .accordion-bordered > li {
+  background-color: inherit;
+}
+.parsed .accordion-bordered .accordion-button {
+  background-color: white !important;
+  border-left: 5px solid white;
+}
+.parsed .accordion-bordered .accordion-button:hover {
+  color: black;
+  border-left: 5px dotted darkolivegreen;
+  background-color: rgb(200, 200, 200) !important;
+}
+.parsed .highlight {
+  background: blanchedalmond;
+}
+
+.parsed .table-wrapper > table {
+  width: 100%;
+}
+.parsed .table-wrapper > table > thead {
+  z-index: 1;
+}
+.parsed .collapse-all {
+  margin: 0;
+  padding: 5px 15px;
+}
+
+.more-info h3 {
+  border-top: 1px dotted lightblue;
+  padding-top: 8px;
+}
+.more-info h3::before {
+  content: '» ';
+}
+.more-info h3,
+.more-info th {
+  font-size: 1.7rem;
+}
+.more-info h3,
+.more-info table {
+  margin-top: 1em;
+}
+.more-info .values {
+  margin-top: 1.5em;
+  width: 100%;
+}
+.more-info .values,
+.more-info .values td {
+  border-color: grey;
+}
+
+/* SavedRows */
+.saved-rows,
+.saved-rows > table {
+  white-space: nowrap;
+  width: 100%;
+}
+.saved-rows .react-fluid-table-row:hover {
+  cursor: pointer;
+  background-color: lightgrey;
+}
+.saved-rows th:first-child,
+.saved-rows td:first-child {
+  width: 10%;
+}
+.saved-rows .highlight > * {
+  background-color: lightblue;
+}
+.saved-rows .no-records {
+  width: 100%;
+  padding: 5px;
+  padding-left: 0px;
+}
+.search-box {
+  border: 1px solid lightblue;
+  padding: 2px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  border-radius: 8px;
+  background-color: lightblue;
+}
+.search-box .clear {
+  margin-left: 0.3em;
+}
+.search-box input {
+  margin-left: 0em;
+  border-radius: 8px;
+  text-align: center;
+  padding: 0.1em;
+  border: none;
+}
+.search-box:not(:first-of-type) {
+  margin-left: 0.5em;
+}
+.search-box button {
+  margin: 0 0 0 0.1em;
+  padding: 0.4em 0.75em;
+  border-radius: 8px;
+}
+.saved-rows .highlight-match {
+  background: rgb(77, 116, 12);
+  color: white;
+}
+
+/* Saved Section */
+.section h3 {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.section .filters {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+/* Utility classes */
+.space-between {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* react-fluid-table */
+.no-matches {
+  height: 100px;
+  width: 100%;
+  text-align: center;
+  border: 1px dotted #0071bc;
+  color: #0071bc;
+  margin: 1em 0em 0 0;
+  line-height: 100px;
+}
+.custom-cell-content {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+.header-cell,
+.header-cell.custom {
+  border-bottom: 2px solid black;
+}
+.header-cell.selected,
+.col-selected {
+  background: blanchedalmond;
+  width: 100%;
+  height: 100%;
+}
+
+.header-cell:hover {
+  background: lightblue;
+}
+
+.header-cell.selected .header-cell-text,
+.header-cell:hover .header-cell-text {
+  color: black !important;
+}
+
+.enum {
+  background: grey;
+  padding: 5px 15px;
+  margin: 0;
+}
+.enum:not(:first-of-type) {
+  margin-left: 0.25em;
+}
+.enums {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 1.5rem;
+}
+.enum.selected {
+  background: #0071bc;
+}
+.enum-entry {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+#parsed-fields input,
+#parsed-fields select {
+  min-width: 50%;
+  width: 100%;
+}
+
+.unparsable {
+  padding: 1em;
+  background: blanchedalmond;
+  margin: 1em 0;
+}
+.unparsable .dismiss {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border-radius: 50%;
+}
+.unparsable .dismiss:hover {
+  background-color:brown;
+  color: white;
+}
+
+.flex-spaced {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.unparsable h2 {
+  padding: 0;
+  margin: 0;
+}
+.unparsable table {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.unparsable td:is(:first-child),
+.unparsable th:is(:first-child) {
+  text-align: center;
+  width: 120px;
+  overflow: auto;
+}
+.unparsable th { text-align: center;}
+.unparsable tbody td {
+  overflow: auto;
+  white-space: nowrap;
+}
+.unparsable tbody .scroll-wrapper {
+  max-width: 500px;
+}
