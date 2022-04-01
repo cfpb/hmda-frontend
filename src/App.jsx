@@ -60,6 +60,8 @@ const App = () => {
         <Route component={NotFound} />
       </Switch>
       {showFooter && <Footer config={config} />}
+      {console.log(window.location)
+      }
     </AppContext.Provider>
   )
 }

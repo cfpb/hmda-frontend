@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Alert from '../../../common/Alert.jsx'
 import ValidationProgress from './ValidationProgress.jsx'
+import FileProcessingProgress from './FileProcessingProgress'
 import Dropzone from 'react-dropzone'
 import DropzoneContent from './DropzoneContent.jsx'
 import {
@@ -50,7 +51,9 @@ export default class Upload extends Component {
       filename,
       filingPeriod,
       lei,
-      uploading
+      uploading,
+      processProgress,
+      watchProgress
     } = this.props
 
     return (
@@ -87,6 +90,15 @@ export default class Upload extends Component {
             )
           }}
         </Dropzone>
+        <FileProcessingProgress 
+          code={code}
+          progress={processProgress}
+          uploading={uploading}
+          watchProgress={watchProgress}
+          file={file}
+          filingPeriod={filingPeriod}
+          lei={lei}
+        />
         <ValidationProgress
           code={code}
           errorApp={errorApp}

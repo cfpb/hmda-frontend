@@ -1,0 +1,35 @@
+/* Stacked */
+.stacked-progress-bars {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.stacked-progress-bars .meter {
+  width: 100%;
+  margin: 0;
+  margin-top: 2rem;
+}
+
+.stacked-progress-bars .meter, 
+.stacked-progress-bars .fill,
+.stacked-progress-bars .meter > .fill::after {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.stacked-progress-bars .meter:first-child,
+.stacked-progress-bars .meter:first-child .fill,
+.stacked-progress-bars .meter:first-child > .fill::after {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+.stacked-progress-bars .meter:last-child,
+.stacked-progress-bars .meter:last-child .fill,
+.stacked-progress-bars .meter:last-child > .fill::after {
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
