@@ -3,7 +3,7 @@
 ### [activity\_year](#activity_year)
 - **Description:** The collection year of the HMDA data to which the Panel file relates
 - **Values:**
-  - 2021
+  - 2022
 
 ### [lei](#lei)
 - **Description:** A financial institution’s Legal Entity Identifier
