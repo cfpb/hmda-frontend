@@ -5,6 +5,7 @@ import requestFiling from './requestFiling.js'
 import { createFiling } from '../api/api.js'
 import { error } from '../utils/log.js'
 import receiveLatestSubmission from './receiveLatestSubmission'
+import receiveNonQFiling from './receiveNonQFiling'
 
 export default function fetchNewFiling(filing) {
   return dispatch => {
@@ -13,6 +14,21 @@ export default function fetchNewFiling(filing) {
       .then(json => {
         return hasHttpError(json).then(hasError => {
           if (hasError) {
+            const ignoreMessage =
+              /^The provided year or quarter is no longer available|^Bad/
+            
+            if (json.status == '400' && json.statusText.match(ignoreMessage)) {
+              console.log(
+                'Ignoring that we are unable to create a Filing for this period...',
+                filing.period,
+                filing.lei
+              )
+
+              return dispatch(
+                receiveNonQFiling({ institution: { lei: filing.lei } })
+              )
+            }
+            
             dispatch(receiveError(json))
             throw new Error(json && `${json.status}: ${json.statusText}`)
           }
