@@ -5,7 +5,7 @@ import { MailingSignupLarge } from '../../common/MailingListSignup'
 
 import './Home.css'
 
-const Home = ({ maintenanceMode, filingAnnouncement }) => {
+const Home = ({ maintenanceMode }) => {
   const maintenanceTitle = maintenanceMode && 'Unavailable during maintenance'
   const buttonsDisabled = !!maintenanceMode
   const cname = 'FilingHome' + (maintenanceMode ? ' maintenance' : '')
@@ -15,11 +15,6 @@ const Home = ({ maintenanceMode, filingAnnouncement }) => {
     <main className={cname} id="main-content">
       <section className="hero">
         <div className="full-width">
-          {!!maintenanceMode && !!filingAnnouncement && (
-            <Alert type='error' heading='System Temporarily Unavailable'>
-              <p>{filingAnnouncement.message}</p>
-            </Alert>
-          )}
           {sessionExpired && (
             <Alert type="success" heading="Session Expired">
               <p>Please log in. If you are having trouble accessing the Filing application please contact <a href="mailto:hmdahelp@cfpb.gov">HMDA Help</a>.</p>
