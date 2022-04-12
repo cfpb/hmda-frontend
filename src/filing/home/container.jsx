@@ -9,7 +9,6 @@ export class HomeContainer extends Component {
     if (this.props.user === null || this.props.maintenanceMode) return (
       <Home
         maintenanceMode={this.props.maintenanceMode}
-        filingAnnouncement={this.props.filingAnnouncement}
       />
     )
     return <InstitutionsContainer />
