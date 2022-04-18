@@ -54,7 +54,7 @@ fi
 # Download Submission file for load testing 
 [ ! -f ./cypress/fixtures/2020-FRONTENDTESTBANK9999-MAX.txt ] \
 	&& curl https://s3.amazonaws.com/cfpb-hmda-public/prod/cypress/2020-LargeFiler.zip > ./cypress/fixtures/2020-LargeFiler.zip \
-	&& tar -xvf cypress/fixtures/2020-LargeFiler.zip -C cypress/fixtures/
+	&& unzip -o cypress/fixtures/2020-LargeFiler.zip -d cypress/fixtures
 
 # Load test
 yarn cypress run --spec "cypress/integration/load/**" > output_load.txt
