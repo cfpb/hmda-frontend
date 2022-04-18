@@ -5,6 +5,9 @@ import {
   padZero,
   ordinal,
   ordinalHour,
+  stdTimezoneOffset,
+  isDstObserved,
+  easternOffsetHours,
 } from './date.js'
 
 describe('nth', () => {
@@ -47,5 +50,35 @@ describe('ordinal hour', () => {
     expect(ordinalHour(new Date('2017-07-18T14:14:14'))).toBe(
       'July 18th, 2017, 2:14:14 PM'
     )
+  })
+})
+
+describe('stdTimezoneOffset', () => {
+  it('identifies standard time offset', () => {
+    expect(stdTimezoneOffset(new Date()) === 5)
+  })
+})
+
+describe('isDstObserved', () => {
+  it('recognizes when DST applies', () => {
+    expect(isDstObserved(new Date(2022, 0, 1)) === false)
+    expect(isDstObserved(new Date(2022, 2, 1)) === false)
+    expect(isDstObserved(new Date(2022, 2, 13)) === true)
+    expect(isDstObserved(new Date(2022, 5, 13)) === true)
+    expect(isDstObserved(new Date(2022, 7, 13)) === true)
+    expect(isDstObserved(new Date(2022, 9, 13)) === true)
+    expect(isDstObserved(new Date(2022, 10, 1)) === true)
+    expect(isDstObserved(new Date(2022, 10, 13)) === false)
+    expect(isDstObserved(new Date(2022, 11, 13)) === false)
+  })
+})
+
+describe('easternOffsetHours', () => {
+  it.skip('calculates correct hour adjustment accounting for DST', () => {
+    /* 
+    / This function's output depends on the end user's system settings. 
+    / Users in ET will get a different offset than users in PT.
+    / Needs more thought into how to get consistent test results. 
+    */
   })
 })

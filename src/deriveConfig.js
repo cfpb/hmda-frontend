@@ -1,5 +1,6 @@
 import { getFilingPeriods } from './common/constants/configHelpers'
 import { splitYearQuarter } from './filing/api/utils'
+import { easternOffsetHours } from './filing/utils/date'
 
 export const PERIODS = ['Q3', 'Q2', 'Q1', 'annual']
 
@@ -183,14 +184,13 @@ function potentialYears(start = 2017) {
  * Converts a date string into a Date object for deadline calculations
  * @param {String} str mm-dd-yyyy
  * @param {Boolean} isDeadline Use end of day (11:59pm ET) for Date?
- * @returns Date
+ * @returns Date (Eastern time)
  */
 export function parseTimedGuardDate(str, isDeadline = false) {
   let [month, day, year] = str.split('/').map(s => parseInt(s, 10))
   month = month - 1 // JS months are 0 indexed
 
-  // Determine time distance from Eastern Time zone
-  let offset = new Date().getTimezoneOffset() / 60 - 5
+  const offset = easternOffsetHours()
 
   if (isDeadline)
     // End of day
@@ -219,12 +219,11 @@ export function parseTimedGuardDate(str, isDeadline = false) {
  * @param {Date} date 
  * @returns String
  */
- function formatLocalString(date) {
-  const eastern = new Date(date.getTime())
-  eastern.setHours(date.getHours() + (new Date().getTimezoneOffset() / 60 - 5))
-  return eastern.toLocaleString('en-US', {
+ export function formatLocalString(date) {
+  return date.toLocaleString('en-US', {
     year: 'numeric',
     day: 'numeric',
-    month: 'long'
+    month: 'long',
+    timeZone: 'America/New_York'
   })
 }
