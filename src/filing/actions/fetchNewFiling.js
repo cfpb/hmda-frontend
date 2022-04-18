@@ -6,6 +6,7 @@ import { createFiling } from '../api/api.js'
 import { error } from '../utils/log.js'
 import receiveLatestSubmission from './receiveLatestSubmission'
 import receiveNonQFiling from './receiveNonQFiling'
+import { FilingNotAllowed } from '../../common/constants/platform-messages.js'
 
 export default function fetchNewFiling(filing) {
   return dispatch => {
@@ -14,10 +15,7 @@ export default function fetchNewFiling(filing) {
       .then(json => {
         return hasHttpError(json).then(hasError => {
           if (hasError) {
-            const ignoreMessage =
-              /^The provided year or quarter is no longer available|^Bad/
-            
-            if (json.status == '400' && json.statusText.match(ignoreMessage)) {
+            if (json.status == '400' && json.statusText.match(FilingNotAllowed)) {
               console.log(
                 'Ignoring that we are unable to create a Filing for this period...',
                 filing.period,
