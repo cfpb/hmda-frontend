@@ -1,4 +1,3 @@
-jest.unmock('../constants/dates.js')
 jest.unmock('./date.js')
 
 import {
@@ -6,12 +5,7 @@ import {
   padZero,
   ordinal,
   ordinalHour,
-  withinAWeekOfDeadline,
-  withinFilingPeriod,
-  beforeFilingPeriod,
-  afterFilingPeriod
 } from './date.js'
-import * as dates from '../constants/dates.js'
 
 describe('nth', () => {
   it('calculates date ends correctly', () => {
@@ -53,85 +47,5 @@ describe('ordinal hour', () => {
     expect(ordinalHour(new Date('2017-07-18T14:14:14'))).toBe(
       'July 18th, 2017, 2:14:14 PM'
     )
-  })
-})
-
-describe('withinAWeekOfDeadline', () => {
-  it('returns true if within a week', () => {
-    Date.now = () => 1487721600000
-    expect(withinAWeekOfDeadline('2017')).toBe(true)
-  })
-
-  it('returns false if not within a week', () => {
-    Date.now = () => 1387721600000
-    expect(withinAWeekOfDeadline('2017')).toBe(false)
-  })
-
-  it('throws on bad input', () => {
-    try {
-      withinAWeekOfDeadline('qwe')
-    } catch (e) {
-      expect(e).toBeDefined()
-    }
-  })
-})
-
-describe('withinFilingPeriod', () => {
-  it('returns true if within filing period', () => {
-    Date.now = () => 1487721600000
-    expect(withinFilingPeriod('2016')).toBe(true)
-  })
-
-  it('returns false if not within filing period', () => {
-    Date.now = () => 1387721600000
-    expect(withinFilingPeriod('2016')).toBe(false)
-  })
-
-  it('throws on bad input', () => {
-    try {
-      withinFilingPeriod('qwe')
-    } catch (e) {
-      expect(e).toBeDefined()
-    }
-  })
-})
-
-describe('afterFilingPeriod', () => {
-  it('returns true if after filing period', () => {
-    Date.now = () => 1587721600000
-    expect(afterFilingPeriod('2016')).toBe(true)
-  })
-
-  it('returns false if not after filing period', () => {
-    Date.now = () => 1387721600000
-    expect(afterFilingPeriod('2016')).toBe(false)
-  })
-
-  it('throws on bad input', () => {
-    try {
-      afterFilingPeriod('qwe')
-    } catch (e) {
-      expect(e).toBeDefined()
-    }
-  })
-})
-
-describe('beforeFilingPeriod', () => {
-  it('returns true if before filing period', () => {
-    Date.now = () => 1387721600000
-    expect(beforeFilingPeriod('2016')).toBe(true)
-  })
-
-  it('returns false if not before filing period', () => {
-    Date.now = () => 1587721600000
-    expect(beforeFilingPeriod('2016')).toBe(false)
-  })
-
-  it('throws on bad input', () => {
-    try {
-      beforeFilingPeriod('qwe')
-    } catch (e) {
-      expect(e).toBeDefined()
-    }
   })
 })
