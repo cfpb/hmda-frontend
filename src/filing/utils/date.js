@@ -52,3 +52,20 @@ export const hoursSince = timestamp => {
   const diffTime = Date.now() - timestamp
   return msToHours(diffTime)
 }
+
+export const stdTimezoneOffset = date => {
+  var jan = new Date(date.getFullYear(), 0, 1)
+  var jul = new Date(date.getFullYear(), 6, 1)
+  return Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset())
+}
+
+export const isDstObserved = (date = new Date()) => {
+  return date.getTimezoneOffset() < stdTimezoneOffset(date)
+}
+
+// Calculate hour adjustment needed to convert to Eastern timezone
+// Standard = GMT-5, Daylight Savings = GMT-4
+export const easternOffsetHours = (date = new Date()) => {
+  const eastOffset = isDstObserved() ? 4 : 5
+  return date.getTimezoneOffset() / 60 - eastOffset
+}

@@ -1,4 +1,3 @@
-jest.unmock('../constants/dates.js')
 jest.unmock('./date.js')
 
 import {
@@ -6,12 +5,10 @@ import {
   padZero,
   ordinal,
   ordinalHour,
-  withinAWeekOfDeadline,
-  withinFilingPeriod,
-  beforeFilingPeriod,
-  afterFilingPeriod
+  stdTimezoneOffset,
+  isDstObserved,
+  easternOffsetHours,
 } from './date.js'
-import * as dates from '../constants/dates.js'
 
 describe('nth', () => {
   it('calculates date ends correctly', () => {
@@ -56,82 +53,32 @@ describe('ordinal hour', () => {
   })
 })
 
-describe('withinAWeekOfDeadline', () => {
-  it('returns true if within a week', () => {
-    Date.now = () => 1487721600000
-    expect(withinAWeekOfDeadline('2017')).toBe(true)
-  })
-
-  it('returns false if not within a week', () => {
-    Date.now = () => 1387721600000
-    expect(withinAWeekOfDeadline('2017')).toBe(false)
-  })
-
-  it('throws on bad input', () => {
-    try {
-      withinAWeekOfDeadline('qwe')
-    } catch (e) {
-      expect(e).toBeDefined()
-    }
+describe('stdTimezoneOffset', () => {
+  it('identifies standard time offset', () => {
+    expect(stdTimezoneOffset(new Date()) === 5)
   })
 })
 
-describe('withinFilingPeriod', () => {
-  it('returns true if within filing period', () => {
-    Date.now = () => 1487721600000
-    expect(withinFilingPeriod('2016')).toBe(true)
-  })
-
-  it('returns false if not within filing period', () => {
-    Date.now = () => 1387721600000
-    expect(withinFilingPeriod('2016')).toBe(false)
-  })
-
-  it('throws on bad input', () => {
-    try {
-      withinFilingPeriod('qwe')
-    } catch (e) {
-      expect(e).toBeDefined()
-    }
+describe('isDstObserved', () => {
+  it('recognizes when DST applies', () => {
+    expect(isDstObserved(new Date(2022, 0, 1)) === false)
+    expect(isDstObserved(new Date(2022, 2, 1)) === false)
+    expect(isDstObserved(new Date(2022, 2, 13)) === true)
+    expect(isDstObserved(new Date(2022, 5, 13)) === true)
+    expect(isDstObserved(new Date(2022, 7, 13)) === true)
+    expect(isDstObserved(new Date(2022, 9, 13)) === true)
+    expect(isDstObserved(new Date(2022, 10, 1)) === true)
+    expect(isDstObserved(new Date(2022, 10, 13)) === false)
+    expect(isDstObserved(new Date(2022, 11, 13)) === false)
   })
 })
 
-describe('afterFilingPeriod', () => {
-  it('returns true if after filing period', () => {
-    Date.now = () => 1587721600000
-    expect(afterFilingPeriod('2016')).toBe(true)
-  })
-
-  it('returns false if not after filing period', () => {
-    Date.now = () => 1387721600000
-    expect(afterFilingPeriod('2016')).toBe(false)
-  })
-
-  it('throws on bad input', () => {
-    try {
-      afterFilingPeriod('qwe')
-    } catch (e) {
-      expect(e).toBeDefined()
-    }
-  })
-})
-
-describe('beforeFilingPeriod', () => {
-  it('returns true if before filing period', () => {
-    Date.now = () => 1387721600000
-    expect(beforeFilingPeriod('2016')).toBe(true)
-  })
-
-  it('returns false if not before filing period', () => {
-    Date.now = () => 1587721600000
-    expect(beforeFilingPeriod('2016')).toBe(false)
-  })
-
-  it('throws on bad input', () => {
-    try {
-      beforeFilingPeriod('qwe')
-    } catch (e) {
-      expect(e).toBeDefined()
-    }
+describe('easternOffsetHours', () => {
+  it.skip('calculates correct hour adjustment accounting for DST', () => {
+    /* 
+    / This function's output depends on the end user's system settings. 
+    / Users in ET will get a different offset than users in PT.
+    / Needs more thought into how to get consistent test results. 
+    */
   })
 })
