@@ -4,6 +4,7 @@ import STATE_CODES from './constants/stateCodesObj.js'
 import COUNTIES from './constants/counties.js'
 import { getVariables } from './constants/variables.js'
 import { before2018, getInstitutionIdKey } from './datasets/selectUtils.js'
+import { datasets } from './datasets/DatasetSelector'
 
 const stateKeys = Object.keys(STATES)
 const stateCodes = Object.keys(STATE_CODES)
@@ -82,8 +83,10 @@ export function makeStateFromSearch(search, s, detailsCb, updateSearch){
       return
     }
 
-    if(key === 'category') {
+    if (key === 'category') {
       s[key] = val[0]
+    } else if(key === 'dataset') {
+      if (datasets.includes(val[0])) s[key] = val[0]
     } else if(key === 'items' && s.category){
       const sanitized = sanitizeArray(s.category, val, s.year)
       if(sanitized.length !== val.length) regenerateSearch = true
@@ -119,7 +122,8 @@ export function makeSearchFromState(s){
     makeParam(s, 'items'),
     makeParam(s, getInstitutionIdKey(s.year)),
     makeParam(s, 'variables'),
-    makeParam(s, 'details')
+    makeParam(s, 'details'),
+    makeParam(s, 'dataset'),
   ]
 
   params = params.filter(v => v)

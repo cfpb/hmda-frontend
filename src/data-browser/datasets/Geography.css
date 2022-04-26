@@ -84,7 +84,6 @@ svg {
 .QueryButton {
   background-color: #0071bc;
   color: #fff;
-  border: 0;
   cursor: pointer;
   margin: 2em 0.5em 2em 0;
   padding: 1em;
@@ -94,7 +93,6 @@ svg {
 }
 
 .QueryButton.secondary {
-  color:#254b87;
   color:#002d72;
   background:#d6e8fa;
   border-color:#254b87;
@@ -227,4 +225,31 @@ svg {
 .PillClose:hover {
   background-color: #ffbdad;
   color: #de350b;
+}
+
+.inline-selectors {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+.Geography .YearSelector {
+  margin-top: 0;
+}
+
+.Geography .YearSelector .option, 
+.Geography .YearSelector a {
+  font-family: SourceSansPro;
+}
+
+.Geography .YearSelector .option.active,
+.Geography .YearSelector a.active {
+  font-family: SourceSansProBold;
+}
+
+@media screen and (max-width: 800px) {
+  .inline-selectors {
+    flex-flow: column;
+    margin-bottom: 1em;;
+  }
 }

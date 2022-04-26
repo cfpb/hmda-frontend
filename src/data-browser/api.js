@@ -41,7 +41,7 @@ export function createQueryString(category, items, first=false){
   return `${qs}${category}=${items.join(',')}`
 }
 
-
+/* TODO: Add dataset param once we know the API schema */
 export function makeUrl(obj, isCSV, includeVariables=true) {
   if(!obj) return ''
   let url = API_BASE_URL

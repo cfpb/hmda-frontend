@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { isEqual } from 'lodash'
 import Heading from '../../common/Heading.jsx'
 import DBYearSelector from './DBYearSelector'
+import { DatasetSelector, datasetOptions } from './DatasetSelector.jsx'
 import InstitutionSelect from './InstitutionSelect'
 import ItemSelect from './ItemSelect.jsx'
 import { fetchLeis, filterLeis } from './leiUtils'
@@ -78,7 +79,8 @@ class Geography extends Component {
         counts: {},
         leis: {}
       },
-      year: this.props.match.params.year
+      year: this.props.match.params.year,
+      dataset: datasetOptions(this.props.match.params.year)[0]
     }
 
     const newState = makeStateFromSearch(this.props.location.search, defaultState, this.requestSubset, this.updateSearch)
@@ -452,11 +454,19 @@ class Geography extends Component {
             </p>
           </Heading>
         </div>
-        <DBYearSelector
-          year={this.state.year}
-          onChange={this.onYearChange}
-          years={this.props.config.dataBrowserYears}
-        />
+        <div className='inline-selectors'>
+          <DBYearSelector
+            year={this.state.year}
+            onChange={this.onYearChange}
+            years={this.props.config.dataBrowserYears}
+            label={"Data Year"}
+          />
+          <DatasetSelector
+            year={this.state.year}
+            value={this.state.dataset}
+            onChange={dataset => this.setStateAndRoute({ dataset })}
+          />
+        </div>
         <ItemSelect
           options={this.itemOptions}
           category={category}
