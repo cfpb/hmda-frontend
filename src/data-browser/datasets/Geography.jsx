@@ -454,19 +454,12 @@ class Geography extends Component {
             </p>
           </Heading>
         </div>
-        <div className='inline-selectors'>
-          <DBYearSelector
-            year={this.state.year}
-            onChange={this.onYearChange}
-            years={this.props.config.dataBrowserYears}
-            label={"Data Year"}
-          />
-          <DatasetSelector
-            year={this.state.year}
-            value={this.state.dataset}
-            onChange={dataset => this.setStateAndRoute({ dataset })}
-          />
-        </div>
+        <DBYearSelector
+          year={this.state.year}
+          onChange={this.onYearChange}
+          years={this.props.config.dataBrowserYears}
+          label={"Data Year"}
+        />
         <ItemSelect
           options={this.itemOptions}
           category={category}

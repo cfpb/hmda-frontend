@@ -1,3 +1,22 @@
+/**
+ * The DatasetSelector component was built with the intention of allowing
+ * users to select which dataset is used as the source for their queries. 
+ *  
+ * For now, we have decided to automatically provide users with the 
+ * latest-available dataset.  
+ *  
+ * Keeping this component around to make it easy to enable this functionality
+ * in the future.
+ * 
+ * 
+  <DatasetSelector
+    setDataset={setDataset}
+    dataset={dataset}
+    year={year}
+    menuStyle={menuStyle}
+  />
+ */
+
 export const datasets = [
   '3-Year',
   '1-Year',
@@ -15,7 +34,6 @@ export const datasetOptions = year => {
     options.push('Dynamic')
   }
   return options
-
 }
 
 /**
