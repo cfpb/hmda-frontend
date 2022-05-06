@@ -39,9 +39,20 @@ WORKDIR /hmda-frontend/
 
 RUN yarn
 
-RUN useradd -ms /bin/bash hmda_cypress_user && \
+RUN rm -rf /usr/local/share/.cache/yarn/v6/npm-public-encrypt-*/node_modules/public-encrypt/test/*
+RUN rm -rf /root/.cache/Cypress/9.5.1/Cypress/resources/app/node_modules/public-encrypt/test/*
+RUN rm -rf /root/.cache/Cypress/9.5.1/Cypress/resources/app/node_modules/http-proxy/test/*
+RUN rm -rf /root/.cache/Cypress/9.5.1/Cypress/resources/app/node_modules/lazystream/secret
+
+RUN useradd -M -d /hmda-frontend -s /bin/bash hmda_cypress_user && \
   chown -R hmda_cypress_user:hmda_cypress_user /hmda-frontend/
 
 USER hmda_cypress_user
+RUN yarn --cache-folder /hmda-frontend cypress install
 
-RUN yarn cypress install
+
+RUN rm -rf /hmda-frontend/node_modules/public-encrypt/test/*
+RUN rm -rf /hmda-frontend/.cache/Cypress/9.5.1/Cypress/resources/app/node_modules/public-encrypt/test/*
+RUN rm -rf /hmda-frontend/.cache/Cypress/9.5.1/Cypress/resources/app/node_modules/http-proxy/test/*
+
+RUN rm -rf /hmda-frontend/.cache/Cypress/9.5.1/Cypress/resources/app/node_modules/lazystream/secret
