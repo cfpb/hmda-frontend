@@ -1,12 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef, createContext }  from 'react'
-import LoadingButton from '../datasets/LoadingButton.jsx'
-import LoadingIcon from '../../common/LoadingIcon.jsx'
 import Alert from '../../common/Alert.jsx'
-import ExternalLink from '../../common/ExternalLink.jsx'
 import {
   geographies,
   variables,
-  valsForVar,
   getValuesForVariable,
   getSelectData,
   makeCombinedDefaultValue,
@@ -14,18 +10,17 @@ import {
   varNameMapping,
 } from './selectUtils.jsx'
 import { setOutline, getOrigPer1000, makeLegend, makeStops, addLayers, useBias } from './layerUtils.jsx'
-import { getFeatureName, popup, buildPopupHTML } from './popupUtils.jsx'
+import { popup, buildPopupHTML } from './popupUtils.jsx'
 import { fetchFilterData } from './filterUtils.jsx'
 import { runFetch, getCSV } from '../api.js'
 import fips2Shortcode from '../constants/fipsToShortcode.js'
 import mapbox from 'mapbox-gl'
 import { useReportData } from './useReportData.jsx'
 import { FilterReports } from './FilterReports'
-import { calcPct } from '../../common/numberServices.js'
-import './mapbox.css'
 import { MapsNavBar } from './MapsNavBar'
 import { MapsController } from './MapsController'
 import { ReportSummary } from './ReportSummary'
+import './mapbox.css'
 
 mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlvaQw'
 
@@ -48,7 +43,7 @@ function getDefaultsFromSearch(props) {
     filter: null,
     value: null,
     filtervalue: null,
-    feature: null
+    feature: null,
   }
   qsParts.forEach(part => {
     if(!part) return
@@ -57,7 +52,8 @@ function getDefaultsFromSearch(props) {
     else if(key === 'variable' || key === 'filter') val = getSelectData(variables, val)
     else if(key === 'value') val = getSelectData(getValuesForVariable(defaults.variable), val)
     else if(key === 'filtervalue') val = getSelectData(getValuesForVariable(defaults.filter), val)
-    else if(key === 'mapCenter') null // No processing needed
+    else if (key === 'mapCenter') null // No processing needed
+    
     defaults[key] = val || null
   })
 
@@ -154,6 +150,8 @@ const MapContainer = props => {
   const [state2019Data, setState2019Data] = useState(null)
   const [county2020Data, setCounty2020Data] = useState(null)
   const [state2020Data, setState2020Data] = useState(null)
+  const [county2021Data, setCounty2021Data] = useState(null)
+  const [state2021Data, setState2021Data] = useState(null)
 
   const [filterData, setFilterData] = useState(null)
   const [tableFilterData, setTableFilterData] = useState(null)
@@ -169,7 +167,7 @@ const MapContainer = props => {
  
   const [feature, setFeature] = useState(defaults.feature)
   const [mapCenter, setMapCenter] = useState(defaults.mapCenter)
-
+  
   const getBaseData = useCallback((year, geography) => {
     if(!year || !geography) return null
     popup.remove()
@@ -180,10 +178,12 @@ const MapContainer = props => {
         return geography.value === 'state' ? state2019Data : county2019Data
       case '2020':
         return geography.value === 'state' ? state2020Data : county2020Data
+      case '2021':
+        return geography.value === 'state' ? state2021Data : county2021Data
       default:
         return null
     }
-  }, [county2018Data, county2019Data, state2018Data, state2019Data, state2020Data, county2020Data])
+  }, [county2018Data, county2019Data, state2018Data, state2019Data, state2020Data, county2020Data, state2021Data, county2021Data])
 
   const resolveData = useCallback(() => {
     if(selectedFilterValue) return [filterData, selectedFilter, selectedFilterValue]
@@ -210,10 +210,10 @@ const MapContainer = props => {
     getCSV(makeCsvUrl(), feature + '.csv')
   }
 
-  const onYearChange = selected=> {
+  const onYearChange = selected => {
     scrollToMap()
     const basePath = '/data-browser/maps/'
-    const search = makeSearch()
+    const search = makeSearch(selected.year)
     props.history.push(`${basePath}${selected.year}${search}`)
   }
 
@@ -259,7 +259,7 @@ const MapContainer = props => {
     setFilterValue(parsed.value)
   }
 
-  const makeSearch = () => {
+  const makeSearch = (yr = '2018') => {
     const searchArr = []
     if(selectedGeography) searchArr.push(`geography=${selectedGeography.value}`)
     if(selectedVariable) searchArr.push(`variable=${selectedVariable.value}`)
@@ -268,7 +268,6 @@ const MapContainer = props => {
     if(selectedFilterValue) searchArr.push(`filtervalue=${selectedFilterValue.value}`)
     if(feature) searchArr.push(`feature=${feature}`)
     if(mapCenter) searchArr.push(`mapCenter=${mapCenter}`)
-
     if(searchArr.length) return `?${searchArr.join('&')}`
     return ''
   }
@@ -309,6 +308,16 @@ const MapContainer = props => {
     }
   }, [county2020Data, selectedGeography, year])
 
+  useEffect(() => {
+    if(!county2021Data && selectedGeography.value === 'county' && year === '2021'){
+      fetchQ.push(1)
+      runFetch('/2021/county.json').then(jsonData => {
+        setCounty2021Data(jsonData)
+        fetchQ.pop()
+      })
+    }
+  }, [county2021Data, selectedGeography, year])
+
 
   useEffect(() => {
     if(!state2018Data && selectedGeography.value === 'state' && year === '2018'){
@@ -340,6 +349,16 @@ const MapContainer = props => {
       })
     }
   }, [selectedGeography, state2020Data, year])
+
+  useEffect(() => {
+    if(!state2021Data && selectedGeography.value === 'state' && year === '2021'){
+      fetchQ.push(1)
+      runFetch('/2021/state.json').then(jsonData => {
+        setState2021Data(jsonData)
+        fetchQ.pop()
+      })
+    }
+  }, [selectedGeography, state2021Data, year])
 
 
   useEffect(() => {
@@ -431,9 +450,7 @@ const MapContainer = props => {
   useEffect(() => {
     if(!data || !map) return
 
-    // let lastFeat
     let lastTimeout
-
 
     function mouseIsLeavingMap(e) {
       const EDGE_LIMIT_PX = 35
@@ -451,16 +468,6 @@ const MapContainer = props => {
       const features = map.queryRenderedFeatures(e.point, {layers: [selectedGeography.value]})
       if(!features.length || mouseIsLeavingMap(e)) return popup.remove()
       const feat = features[0].properties['GEOID']
-
-      /* 
-       * Commented this out to allow the popup to follow the cursor position.
-       * Having it stationary (at the geography border where the mouse entered)
-       * felt like it was causing usability issues when combined with the zoom-to-geography.
-       * 
-       * Uncomment declaration of lastFeat when re-enabling.
-       */
-      // if(feat === lastFeat) return
-      // else lastFeat = feat
 
       const d = tableFilterData ? tableFilterData : data
       const origPer1000 = getOrigPer1000(d, feat, year, selectedGeography, selectedVariable, selectedValue)
