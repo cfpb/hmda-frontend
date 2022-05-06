@@ -25,6 +25,7 @@ import HighchartsExportData from 'highcharts/modules/export-data'
 import HighchartsReact from 'highcharts-react-official'
 import { hmda_charts } from './config'
 import { GraphA } from './Quarterly/GraphA'
+import { GraphB } from './Quarterly/GraphB'
 import './graphs.css'
 
 HighchartsExport(Highcharts)     // Enable export to image
@@ -57,6 +58,7 @@ export const Graphs = ({ }) => {
     <div className='Graphs'>
       <h1>HMDA Graphs</h1>
       <p>A page that shows graphs.</p>
+      <GraphB />
       <GraphA />
     </div>
   )
