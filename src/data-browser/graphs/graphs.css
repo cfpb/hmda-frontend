@@ -1,0 +1,10 @@
+.Graphs svg {
+  fill: inherit;
+  stroke: inherit;
+}
+
+.Graphs .shared-border {
+  margin: 0.5em 0;
+  padding: 0;
+  border-top: 1px solid #aaa;
+}
