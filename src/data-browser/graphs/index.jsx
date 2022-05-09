@@ -19,47 +19,85 @@
  *   - We need to link the Dual charts' export functionality so users can get everything in one export
  */
 
-import Highcharts from 'highcharts'
-import HighchartsExport from 'highcharts/modules/exporting'
-import HighchartsExportData from 'highcharts/modules/export-data'
-import HighchartsReact from 'highcharts-react-official'
-import { hmda_charts } from './config'
-import { GraphA } from './Quarterly/GraphA'
-import { GraphB } from './Quarterly/GraphB'
-import './graphs.css'
+import Highcharts from "highcharts";
+import HighchartsExport from "highcharts/modules/exporting";
+import HighchartsExportData from "highcharts/modules/export-data";
+import HighchartsReact from "highcharts-react-official";
+import { hmda_charts } from "./config";
+import { GraphA } from "./Quarterly/GraphA";
+import { GraphB } from "./Quarterly/GraphB";
+import { exportMultipleChartsToPdf } from "./utils/exportMultiplePDFs";
+import "./graphs.css";
 
-HighchartsExport(Highcharts)     // Enable export to image
-HighchartsExportData(Highcharts) // Enable export of underlying data
+HighchartsExport(Highcharts); // Enable export to image
+HighchartsExportData(Highcharts); // Enable export of underlying data
 
 // Use square symbols in the Legend
 Highcharts.seriesTypes.line.prototype.drawLegendSymbol =
-  Highcharts.seriesTypes.area.prototype.drawLegendSymbol
+  Highcharts.seriesTypes.area.prototype.drawLegendSymbol;
 
 // OPTIONS based adjustments
 hmda_charts.config.alignLegendRight = hmda_charts.config.alignLegendRight
   ? hmda_charts.styles.alignRight
-  : {}  
+  : {};
 
-
-export const Graph = ({ options, footerText, callback }) => (
-  <div className='graph-wrapper'>
-    <HighchartsReact
-      highcharts={Highcharts}
-      options={options}
-      callback={callback}
-    />
-    {footerText && <p>{footerText}</p>}
-  </div>
-)
-
-
-export const Graphs = ({ }) => {
+export const Graph = ({ options, footerText, callback }) => {
   return (
-    <div className='Graphs'>
+    <div className="graph-wrapper">
+      <div className="export-charts">
+        <HighchartsReact
+          highcharts={Highcharts}
+          options={options}
+          callback={callback}
+        />
+        {footerText && <p>{footerText}</p>}
+      </div>
+    </div>
+  );
+};
+
+export const Graphs = () => {
+  // Fake Data
+  let graphOptions = [
+    {
+      id: "graphA",
+      name: "Volume of Closed-end Mortages and Open-end LOCs by Quarter",
+      type: "Line",
+    },
+    {
+      id: "graphB",
+      name: "Information about HMDA",
+      type: "Line",
+    },
+  ];
+
+  // Dropdown select function that extacts data to be sent to backend or filter data on frontend (WIP)
+  const getGraphData = (e) => {
+    // Holds name of chosen graph
+    let value = e.target.value;
+
+    // Grab the id being passed to the option from data-key
+    const selectedIndex = e.target.options.selectedIndex;
+    let id = e.target.options[selectedIndex].getAttribute("data-key");
+  };
+
+  return (
+    <div className="Graphs">
       <h1>HMDA Graphs</h1>
       <p>A page that shows graphs.</p>
+      <button className="button" onClick={exportMultipleChartsToPdf}>
+        Export to PDF
+      </button>
+      {/* <select onChange={getGraphData}>
+        <option value="">Choose a Graph</option>
+        {graphOptions.map((graph) => (
+          <option key={graph.id} data-key={graph.id}>
+            {graph.name}
+          </option>
+        ))}
+      </select> */}
       <GraphB />
       <GraphA />
     </div>
-  )
-}
+  );
+};
