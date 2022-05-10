@@ -54,7 +54,7 @@ describe("Rate Spread Tool", function() {
 
 describe("Rate Spread API", () => {
   
-  if(isProd(HOST) || isCI(ENVIRONMENT)) {
+  if(isCI(ENVIRONMENT) || !isProdBeta(HOST)) {
     it("Generates rates from file", () => {
       cy.get({ HOST, TEST_DELAY, ENVIRONMENT }).logEnv()
       let response
