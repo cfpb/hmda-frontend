@@ -24,7 +24,7 @@ import HighchartsExport from "highcharts/modules/exporting";
 import HighchartsExportData from "highcharts/modules/export-data";
 import HighchartsReact from "highcharts-react-official";
 import { hmda_charts } from "./config";
-import { GraphA } from "./Quarterly/GraphA";
+import GraphA from "./Quarterly/GraphA";
 import { GraphB } from "./Quarterly/GraphB";
 import { exportMultipleChartsToPdf } from "./utils/exportMultiplePDFs";
 import "./graphs.css";
@@ -85,9 +85,9 @@ export const Graphs = () => {
     <div className="Graphs">
       <h1>HMDA Graphs</h1>
       <p>A page that shows graphs.</p>
-      <button className="button" onClick={exportMultipleChartsToPdf}>
+      {/* <button className="button" onClick={exportMultipleChartsToPdf}>
         Export to PDF
-      </button>
+      </button> */}
       {/* <select onChange={getGraphData}>
         <option value="">Choose a Graph</option>
         {graphOptions.map((graph) => (
@@ -96,7 +96,7 @@ export const Graphs = () => {
           </option>
         ))}
       </select> */}
-      <GraphB />
+      {/* <GraphB /> */}
       <GraphA />
     </div>
   );
