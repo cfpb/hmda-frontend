@@ -48,6 +48,7 @@ export const LineGraph = ({
   config.subtitle.text = subtitle;
   config.series = series;
   config.xAxis = xAxis || [defaultAxisX];
+  config.caption.text = footerText;
 
   config.yAxis = yAxis.map((yTitle, yIdx) => ({
     title: { text: yTitle, x: isEven(yIdx) ? 10 : -10 },
@@ -68,7 +69,7 @@ export const LineGraph = ({
       }
     : config.legend;
 
-  return <Graph options={config} footerText={footerText} callback={callback} />;
+  return <Graph options={config} callback={callback} />;
 };
 
 export default LineGraph;
