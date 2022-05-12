@@ -41,7 +41,7 @@ hmda_charts.config.alignLegendRight = hmda_charts.config.alignLegendRight
   ? hmda_charts.styles.alignRight
   : {};
 
-export const Graph = ({ options, footerText, callback }) => {
+export const Graph = ({ options, callback }) => {
   return (
     <div className="graph-wrapper">
       <div className="export-charts">
@@ -50,7 +50,6 @@ export const Graph = ({ options, footerText, callback }) => {
           options={options}
           callback={callback}
         />
-        {footerText && <p>{footerText}</p>}
       </div>
     </div>
   );
