@@ -190,7 +190,8 @@ export function parseTimedGuardDate(str, isDeadline = false) {
   let [month, day, year] = str.split('/').map(s => parseInt(s, 10))
   month = month - 1 // JS months are 0 indexed
 
-  const offset = easternOffsetHours()
+  // The addition of abs() is a workaround for our Cypress testing pods, which seem to run in UTC
+  const offset = Math.abs(easternOffsetHours())
 
   if (isDeadline)
     // End of day
