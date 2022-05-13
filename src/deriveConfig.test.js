@@ -11,7 +11,7 @@ describe('parseTimedGuardDate', () => {
     expect(date === `${timedGuard}, 12:00:00 AM`)
   })
 
-  it('calculates start dates', () => {
+  it('calculates end dates', () => {
     const date = new Date(
       parseTimedGuardDate(timedGuard, true).toLocaleString('en-US', {
         timeZone: 'America/New_York',
