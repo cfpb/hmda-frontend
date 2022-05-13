@@ -19,32 +19,34 @@
  *   - We need to link the Dual charts' export functionality so users can get everything in one export
  */
 
-import Highcharts from "highcharts";
-import HighchartsExport from "highcharts/modules/exporting";
-import HighchartsExportData from "highcharts/modules/export-data";
-import HighchartsReact from "highcharts-react-official";
-import { hmda_charts } from "./config";
-import GraphA from "./Quarterly/GraphA";
-import { GraphB } from "./Quarterly/GraphB";
-import { exportMultipleChartsToPdf } from "./utils/exportMultiplePDFs";
-import "./graphs.css";
+import { useState, useEffect } from 'react'
+import Highcharts from 'highcharts'
+import HighchartsExport from 'highcharts/modules/exporting'
+import HighchartsExportData from 'highcharts/modules/export-data'
+import HighchartsReact from 'highcharts-react-official'
+import produce from 'immer'
+import LineGraph from './LineGraph/index'
+import Select from '../Select.jsx'
+import { hmda_charts } from './config'
+import { graphOptions } from './graphOptions'
+import './graphs.css'
 
-HighchartsExport(Highcharts); // Enable export to image
-HighchartsExportData(Highcharts); // Enable export of underlying data
+HighchartsExport(Highcharts) // Enable export to image
+HighchartsExportData(Highcharts) // Enable export of underlying data
 
 // Use square symbols in the Legend
 Highcharts.seriesTypes.line.prototype.drawLegendSymbol =
-  Highcharts.seriesTypes.area.prototype.drawLegendSymbol;
+  Highcharts.seriesTypes.area.prototype.drawLegendSymbol
 
 // OPTIONS based adjustments
 hmda_charts.config.alignLegendRight = hmda_charts.config.alignLegendRight
   ? hmda_charts.styles.alignRight
-  : {};
+  : {}
 
 export const Graph = ({ options, callback }) => {
   return (
-    <div className="graph-wrapper">
-      <div className="export-charts">
+    <div className='graph-wrapper'>
+      <div className='export-charts'>
         <HighchartsReact
           highcharts={Highcharts}
           options={options}
@@ -52,51 +54,83 @@ export const Graph = ({ options, callback }) => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
+
+// Drop-down options
+const availableGraphs = graphOptions.map(g => ({
+  value: g.id,
+  label: g.title,
+}))
+
+// Mock data
+const graphA_data1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+const randomize = num => Math.round(num * Math.random() * 10)
 
 export const Graphs = () => {
-  // Fake Data
-  let graphOptions = [
-    {
-      id: "graphA",
-      name: "Volume of Closed-end Mortages and Open-end LOCs by Quarter",
-      type: "Line",
-    },
-    {
-      id: "graphB",
-      name: "Information about HMDA",
-      type: "Line",
-    },
-  ];
+  const [selected, setSelected] = useState(graphOptions[0]) // Selected graph
+  const [data, saveData] = useState({}) // Cache API data
 
-  // Dropdown select function that extacts data to be sent to backend or filter data on frontend (WIP)
-  const getGraphData = (e) => {
-    // Holds name of chosen graph
-    let value = e.target.value;
+  // Fetch API data on graph selection, if necessary
+  useEffect(() => {
+    if (!selected) return // Nothing to do until a graph is selected
+    if (data[selected.id]) return // Graph's data is already cached
 
-    // Grab the id being passed to the option from data-key
-    const selectedIndex = e.target.options.selectedIndex;
-    let id = e.target.options[selectedIndex].getAttribute("data-key");
-  };
+    // fetch(selected.endpoint)
+    // .then(success => success.json)
+    // .then(json => {
+    //     const nextState = produce(data, draft => { draft[selected.id] = json })
+    //     saveData(nextState)
+    //   }
+    // )
+    // .catch(reject => {
+    //   // Notify user of error
+    // })
+  }, [selected])
 
   return (
-    <div className="Graphs">
+    <div className='Graphs'>
       <h1>HMDA Graphs</h1>
-      <p>A page that shows graphs.</p>
-      {/* <button className="button" onClick={exportMultipleChartsToPdf}>
-        Export to PDF
-      </button> */}
-      {/* <select onChange={getGraphData}>
-        <option value="">Choose a Graph</option>
-        {graphOptions.map((graph) => (
-          <option key={graph.id} data-key={graph.id}>
-            {graph.name}
-          </option>
-        ))}
-      </select> */}
-      {/* <GraphB /> */}
-      <GraphA />
+      <p>
+        The following graphs present data for the 19 financial institutions
+        reporting HMDA quarterly data throughout 2020 and displays data for each
+        of those institutions for 2019 and 2018 as well.
+      </p>
+      <p>
+        Though the graphs provide some insight into trends for these
+        institutions, they should not be taken to represent the behavior of all
+        mortgage lenders during the relevant period.
+      </p>
+      <p>Use the menu below to select a graph.</p>
+      <Select
+        options={availableGraphs}
+        placeholder='Select a Graph'
+        onChange={x => setSelected(graphOptions.find(opt => opt.id == x.value))}
+        value={{ value: selected.id, label: selected.title }}
+      />
+      <br />
+      <br />
+      {selected && (
+        <LineGraph
+          title={selected.title}
+          footerText={selected.footer}
+          yAxis={[selected.yAxisLabel]}
+          series={[
+            {
+              name: 'Closed-End',
+              data: graphA_data1.map(randomize),
+              yAxis: 0,
+            },
+            {
+              name: 'Open-End',
+              data: graphA_data1.map(randomize),
+              yAxis: 0,
+            },
+          ]}
+        />
+      )}
+      <p>Currently selected graph:</p>
+      <pre>{JSON.stringify(selected, null, 2)}</pre>
     </div>
-  );
-};
+  )
+}
