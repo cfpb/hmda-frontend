@@ -2,9 +2,9 @@ import { cloneObject, isEven } from "../utils";
 import lineGraphBaseConfig from "./baseConfiguration";
 import { LineGraphDual } from "../LineGraphDual/index";
 import { hmda_charts, yearQuarters } from "../config";
-import { Graph } from "../index";
+import { Graph } from "../Graph"
 import { syncExtremes } from "../LineGraphDual/linkGraphEvents";
-
+  
 export const defaultAxisX = {
   title: { text: "Year Quarter", y: 10 },
   categories: yearQuarters,
