@@ -19,77 +19,97 @@
  *   - We need to link the Dual charts' export functionality so users can get everything in one export
  */
 
-import { useState, useEffect } from 'react'
-import Highcharts from 'highcharts'
-import HighchartsExport from 'highcharts/modules/exporting'
-import HighchartsExportData from 'highcharts/modules/export-data'
-import HighchartsReact from 'highcharts-react-official'
-import produce from 'immer'
-import LineGraph from './LineGraph/index'
-import Select from '../Select.jsx'
-import { hmda_charts } from './config'
-import { graphOptions } from './graphOptions'
-import './graphs.css'
+import { useState, useEffect, useRef } from "react";
+import Highcharts from "highcharts";
+import HighchartsExport from "highcharts/modules/exporting";
+import HighchartsExportData from "highcharts/modules/export-data";
+import HighchartsReact from "highcharts-react-official";
+import produce from "immer";
+import LineGraph from "./LineGraph/index";
+import Select from "../Select.jsx";
+import { hmda_charts } from "./config";
+import { graphOptions } from "./graphOptions";
+import "./graphs.css";
 
-HighchartsExport(Highcharts) // Enable export to image
-HighchartsExportData(Highcharts) // Enable export of underlying data
+HighchartsExport(Highcharts); // Enable export to image
+HighchartsExportData(Highcharts); // Enable export of underlying data
 
 // Use square symbols in the Legend
 Highcharts.seriesTypes.line.prototype.drawLegendSymbol =
-  Highcharts.seriesTypes.area.prototype.drawLegendSymbol
+  Highcharts.seriesTypes.area.prototype.drawLegendSymbol;
 
 // OPTIONS based adjustments
 hmda_charts.config.alignLegendRight = hmda_charts.config.alignLegendRight
   ? hmda_charts.styles.alignRight
-  : {}
+  : {};
 
-export const Graph = ({ options, callback }) => {
+export const Graph = ({ options, callback, loading }) => {
+  let chartRef = useRef();
+
+  useEffect(() => {
+    let chart = chartRef.current.chart;
+
+    // loading comes from LineGraph and is set in Graphs down below
+    if (loading === false) {
+      chart.showLoading();
+    } else {
+      chart.hideLoading();
+    }
+  }, [loading]);
+
   return (
-    <div className='graph-wrapper'>
-      <div className='export-charts'>
+    <div className="graph-wrapper">
+      <div className="export-charts">
         <HighchartsReact
           highcharts={Highcharts}
           options={options}
           callback={callback}
+          ref={chartRef}
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
 // Drop-down options
-const availableGraphs = graphOptions.map(g => ({
+const availableGraphs = graphOptions.map((g) => ({
   value: g.id,
   label: g.title,
-}))
+}));
 
 // Mock data
-const graphA_data1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-const randomize = num => Math.round(num * Math.random() * 10)
+const graphA_data1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+const randomize = (num) => Math.round(num * Math.random() * 10);
 
 export const Graphs = () => {
-  const [selected, setSelected] = useState(graphOptions[0]) // Selected graph
-  const [data, saveData] = useState({}) // Cache API data
+  const [selected, setSelected] = useState(graphOptions[0]); // Selected graph
+  const [data, setData] = useState({}); // Cache API data
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleGraphSelection = (e) => {
+    setSelected(graphOptions.find((opt) => opt.id == e.value));
+  };
 
   // Fetch API data on graph selection, if necessary
   useEffect(() => {
-    if (!selected) return // Nothing to do until a graph is selected
-    if (data[selected.id]) return // Graph's data is already cached
+    if (!selected) return; // Nothing to do until a graph is selected
+    if (data[selected.id]) return; // Graph's data is already cached
 
     // fetch(selected.endpoint)
     // .then(success => success.json)
     // .then(json => {
     //     const nextState = produce(data, draft => { draft[selected.id] = json })
     //     saveData(nextState)
+    //     setIsLoading(true) // Loader gets removed once data shows in chart
     //   }
     // )
     // .catch(reject => {
     //   // Notify user of error
     // })
-  }, [selected])
+  }, [selected]);
 
   return (
-    <div className='Graphs'>
+    <div className="Graphs">
       <h1>HMDA Graphs</h1>
       <p>
         The following graphs present data for the 19 financial institutions
@@ -104,25 +124,26 @@ export const Graphs = () => {
       <p>Use the menu below to select a graph.</p>
       <Select
         options={availableGraphs}
-        placeholder='Select a Graph'
-        onChange={x => setSelected(graphOptions.find(opt => opt.id == x.value))}
+        placeholder="Select a Graph"
+        onChange={(e) => handleGraphSelection(e)}
         value={{ value: selected.id, label: selected.title }}
       />
       <br />
       <br />
       {selected && (
         <LineGraph
+          loading={isLoading}
           title={selected.title}
           footerText={selected.footer}
           yAxis={[selected.yAxisLabel]}
           series={[
             {
-              name: 'Closed-End',
+              name: "Closed-End",
               data: graphA_data1.map(randomize),
               yAxis: 0,
             },
             {
-              name: 'Open-End',
+              name: "Open-End",
               data: graphA_data1.map(randomize),
               yAxis: 0,
             },
@@ -132,5 +153,5 @@ export const Graphs = () => {
       <p>Currently selected graph:</p>
       <pre>{JSON.stringify(selected, null, 2)}</pre>
     </div>
-  )
-}
+  );
+};

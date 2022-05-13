@@ -24,6 +24,7 @@ export const LineGraph = ({
   footerText,
   legendRight = false,
   callback,
+  loading,
 }) => {
   if (!yAxis || yAxis.length < 1) return <p>Missing required param: yAxis</p>;
 
@@ -69,7 +70,7 @@ export const LineGraph = ({
       }
     : config.legend;
 
-  return <Graph options={config} callback={callback} />;
+  return <Graph options={config} callback={callback} loading={loading} />;
 };
 
 export default LineGraph;
