@@ -69,6 +69,14 @@ export const LineGraph = ({
         },
       }
     : config.legend;
+  
+  if (loading) {
+    config.legend.title = ''
+    config.xAxis[0].title.text = ''
+    config.yAxis[0].title.text = ''
+  } else {
+    config.xAxis[0].title.text = "Year Quarter"
+  }
 
   return <Graph options={config} callback={callback} loading={loading} />;
 };
