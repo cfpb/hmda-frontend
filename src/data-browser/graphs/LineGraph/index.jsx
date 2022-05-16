@@ -1,9 +1,9 @@
 import { cloneObject, isEven } from "../utils";
-import lineGraphBaseConfig from "./baseConfiguration";
-import { LineGraphDual } from "../LineGraphDual/index";
 import { hmda_charts, yearQuarters } from "../config";
 import { Graph } from "../Graph"
 import { syncExtremes } from "../LineGraphDual/linkGraphEvents";
+import lineGraphBaseConfig from "./baseConfiguration";
+import './LineGraph.css'
   
 export const defaultAxisX = {
   title: { text: "Year Quarter", y: 10 },
@@ -58,7 +58,6 @@ export const LineGraph = ({
     config.legend.title = ''
     config.xAxis[0].title.text = ''
     config.yAxis[0].title.text = ''
-    config.exporting.showTable = false
   } else {
     config.xAxis[0].title.text = "Year Quarter"
   }
