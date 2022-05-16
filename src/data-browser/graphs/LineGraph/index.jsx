@@ -28,22 +28,6 @@ export const LineGraph = ({
 }) => {
   if (!yAxis || yAxis.length < 1) return <p>Missing required param: yAxis</p>;
 
-  if (yAxis.length > 2)
-    return (
-      <LineGraphDual
-        {...{
-          title,
-          subtitle,
-          yAxis,
-          xAxis,
-          series,
-          footerText,
-          legendRight,
-          callback,
-        }}
-      />
-    );
-
   const config = cloneObject(lineGraphBaseConfig);
   config.title.text = title;
   config.subtitle.text = subtitle;
@@ -74,6 +58,7 @@ export const LineGraph = ({
     config.legend.title = ''
     config.xAxis[0].title.text = ''
     config.yAxis[0].title.text = ''
+    config.exporting.showTable = false
   } else {
     config.xAxis[0].title.text = "Year Quarter"
   }
