@@ -1,15 +1,15 @@
-import { useEffect, useRef } from "react"
-import Highcharts from "highcharts"
-import HighchartsReact from "highcharts-react-official"
-import HighchartsExport from "highcharts/modules/exporting";
-import HighchartsExportData from "highcharts/modules/export-data";
+import { useEffect, useRef } from 'react'
+import Highcharts from 'highcharts'
+import HighchartsReact from 'highcharts-react-official'
+import HighchartsExport from 'highcharts/modules/exporting'
+import HighchartsExportData from 'highcharts/modules/export-data'
 
 HighchartsExport(Highcharts) // Enable export to image
-HighchartsExportData(Highcharts); // Enable export of underlying data
+HighchartsExportData(Highcharts) // Enable export of underlying data
 
 // Use square symbols in the Legend
 Highcharts.seriesTypes.line.prototype.drawLegendSymbol =
-  Highcharts.seriesTypes.area.prototype.drawLegendSymbol;
+  Highcharts.seriesTypes.area.prototype.drawLegendSymbol
 
 export const Graph = ({ options, callback, loading }) => {
   let chartRef = useRef()
@@ -17,11 +17,15 @@ export const Graph = ({ options, callback, loading }) => {
   useEffect(() => {
     let chart = chartRef.current.chart
 
-    // Force tooltip to hide when changing graph selection
-    chart.tooltip.hide()
-
-    // loading comes from LineGraph and is set in Graphs down below
-    loading ? chart.showLoading() : chart.hideLoading()
+    // Parent component is fetching data
+    if (loading) {
+      chart.tooltip.hide() // Force tooltip to hide when changing graph selection
+      chart.showLoading() // Display Loading screen
+      // Hide the data table, which is likely showing previous selection's data
+      if (chart.dataTableDiv) chart.dataTableDiv.style.display = 'none'
+    } else {
+      chart.hideLoading()
+    }
   }, [loading, options])
 
   return (

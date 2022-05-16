@@ -87,7 +87,7 @@ export const Graphs = () => {
         <LineGraph
           loading={!data[selected.id]}
           title={selected.title}
-          footerText={selected.footer}
+          subtitle={selected.footer}
           yAxis={[selected.yAxisLabel]}
           series={data[selected.id]}
         />

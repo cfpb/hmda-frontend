@@ -7,6 +7,7 @@ const baseConfig = {
   },
   subtitle: {
     text: "Subtitle",
+    style: { fontSize: '14px'}
   },
   caption: {
     text: "Footer",
@@ -18,15 +19,9 @@ const baseConfig = {
     showTable: hmda_charts.config.showDataTable, // OPTION: Show/hide underlying data (already available in export menu)
   },
   colors: seriesColors,
-  // Zoom configuration - planning to change how zoom is handled
-  // chart: {
-  //   height: "50%",
-  //   type: "spline",
-  //   zoomType: "x",
-  //   style: {
-  //     fontSize: 14,
-  //   },
-  // },
+  chart: {
+    type: "spline",
+  },
   plotOptions: {
     spline: {
       marker: { enabled: true }, // OPTION: Show/Hide point markers

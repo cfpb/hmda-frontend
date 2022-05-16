@@ -3,7 +3,7 @@ export const hmda_charts = {
   config: {
     showGroupedTooltip: true,
     alignLegendRight: false,
-    showDataTable: false,
+    showDataTable: true,
   },
   // Styles: Reusable UI settings
   styles: {
