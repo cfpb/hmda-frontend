@@ -1,142 +1,76 @@
-import { useState, useEffect } from "react";
-import produce from "immer";
-import LineGraph from "./LineGraph/index";
-import Select from "../Select.jsx";
-import { yearQuarters } from "./config";
-import { graphOptions } from "./graphOptions";
-import "./graphs.css";
-
-// Drop-down options
-const availableGraphs = graphOptions.map((g) => ({
-  value: g.id,
-  label: g.title,
-}));
-
-const periodOpts = yearQuarters.map((yq) => ({ value: yq, label: yq }));
-
-// Mock data
-const graphA_data1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-const randomize = (num) => Math.round(num * Math.random() * 10);
+import { useEffect, useState } from 'react'
+import Select from '../Select.jsx'
+import { Graph } from './Graph'
+import { graphOptions } from './graphOptions'
+import './graphs.css'
+import { GraphsHeader } from './GraphsHeader'
+import { deriveHighchartsConfig } from './highchartsConfig'
+import { PeriodSelectors } from './PeriodSelectors'
+import { availableGraphs, mockFetchedData, periodOpts } from './utils/mockData'
 
 export const Graphs = (props) => {
-  const [selected, setSelected] = useState(graphOptions[0]); // Selected graph
-  const [data, setData] = useState({}); // Cache API data
-  // Period range filters
-  const [periodLow, setPeriodLow] = useState(periodOpts[0]);
-  const [periodHigh, setPeriodHigh] = useState(
-    periodOpts[periodOpts.length - 1]
-  );
+  const [selected, setSelected] = useState(graphOptions[0]) // Selected graph
+  const [data, setData] = useState({}) // API data cache
+  const [periodLow, setPeriodLow] = useState(periodOpts[0]) // Period filters
+  const [periodHigh, setPeriodHigh] = useState(periodOpts[periodOpts.length-1])
 
-  const handleGraphSelection = (e) => {
-    setSelected(graphOptions.find((opt) => opt.id == e.value));
-    props.history.push(`/data-browser/graphs/${e.value}`); // Push graph-id to url when one has been selected
-  };
+  const handleGraphSelection = e => {
+    setSelected(graphOptions.find(opt => opt.id == e.value))
+    props.history.push(`/data-browser/graphs/${e.value}`) // Push graph-id to url when one has been selected
+  }
 
-  // Fetch API data on graph selection, if necessary
+  // Fetch API data on graph selection
   useEffect(() => {
-    if (!selected) return; // Nothing to do until a graph is selected
-    if (data[selected.id]) return; // Graph's data is already cached
+    if (!selected) return
+    if (data[selected.id]) return // Already cached
 
     let splitURL = window.location.href.split("/"); // Splits the URL to allow easier access to graph-id
 
     // adding graph-id to the url makes it's length 6
     if (splitURL.length === 6) {
-      setSelected(graphOptions.find((opt) => opt.id == splitURL[5])); // Find match from graphOptions based off graph-id from URL
+      setSelected(graphOptions.find(opt => opt.id == splitURL[5])) // Find match from graphOptions based off graph-id from URL
     }
 
     // Update URL to hold the initial graph-id when page loads
     if (selected && splitURL.length !== 6) {
-      props.history.push(`/data-browser/graphs/${selected.id}`);
+      props.history.push(`/data-browser/graphs/${selected.id}`)
     }
 
     // Mock data fetching
-    setTimeout(() => {
-      const nextState = produce(data, (draft) => {
-        draft[selected.id] = [
-          {
-            name: "Closed-End",
-            data: graphA_data1.map(randomize),
-            yAxis: 0,
-          },
-          {
-            name: "Open-End",
-            data: graphA_data1.map(randomize),
-            yAxis: 0,
-          },
-        ];
-      });
+    mockFetchedData(selected, data, setData)
+  }, [selected])
 
-      setData(nextState);
-    }, 1000);
-
-    // fetch(selected.endpoint)
-    // .then(success => success.json)
-    // .then(json => {
-    //     const nextState = produce(data, draft => { draft[selected.id] = json })
-    //     saveData(nextState)
-    //     setIsLoading(true) // Loader gets removed once data shows in chart
-    //   }
-    // )
-    // .catch(reject => {
-    //   // Notify user of error
-    // })
-  }, [selected]);
+  // The indexes to which we will filter the data before passing to Highcharts, based on the selected Filing Period range
+  let lowerLimit = periodOpts.indexOf(periodLow)
+  let upperLimit = periodOpts.indexOf(periodHigh) + 1
 
   return (
-    <div className="Graphs">
-      <h1>HMDA Graphs</h1>
-      <p>
-        The following graphs present data for the 19 financial institutions
-        reporting HMDA quarterly data throughout 2020 and displays data for each
-        of those institutions for 2019 and 2018 as well.
-      </p>
-      <p>
-        Though the graphs provide some insight into trends for these
-        institutions, they should not be taken to represent the behavior of all
-        mortgage lenders during the relevant period.
-      </p>
-      <p>Use the menu below to select a graph.</p>
+    <div className='Graphs'>
+      <GraphsHeader />
       <Select
         options={availableGraphs}
-        placeholder="Select a Graph"
-        onChange={(e) => handleGraphSelection(e)}
-        value={selected ? { value: selected.id, label: selected.title } : ""}
+        placeholder='Select a Graph'
+        onChange={e => handleGraphSelection(e)}
+        value={{ value: selected.id, label: selected.title }}
+      />
+      <PeriodSelectors
+        {...{ periodOpts, periodLow, setPeriodLow, periodHigh, setPeriodHigh }}
       />
       {selected && (
-        <div className="period-wrapper">
-          Period Range
-          <div className="period-range">
-            <Select
-              options={periodOpts}
-              onChange={(e) => setPeriodLow(e)}
-              value={periodLow}
-            />{" "}
-            to{" "}
-            <Select
-              options={periodOpts.filter((yq) =>
-                periodLow ? yq.value >= periodLow.value : yq
-              )}
-              onChange={(e) => setPeriodHigh(e)}
-              value={periodHigh}
-            />{" "}
-          </div>
-        </div>
-      )}
-      <br />
-      <br />
-      {selected && (
-        <LineGraph
+        <Graph
+          options={deriveHighchartsConfig({
+            loading: !data[selected.id],
+            title: selected.title,
+            subtitle: selected.footer,
+            periodRange: [lowerLimit, upperLimit],
+            series: data[selected.id],
+            yAxis: [selected.yAxisLabel],
+            // xAxis: will come from the xAxis values of the fetched data,
+            // categories: will come from the xAxis values of the fetched data
+          })}
           loading={!data[selected.id]}
-          title={selected.title}
-          subtitle={selected.footer}
-          yAxis={[selected.yAxisLabel]}
-          series={data[selected.id]}
-          xRange={[
-            periodOpts.indexOf(periodLow),
-            periodOpts.indexOf(periodHigh),
-          ]}
         />
       )}
     </div>
-  );
-};
+  )
+}
