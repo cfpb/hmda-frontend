@@ -7,7 +7,7 @@ const baseConfig = {
   },
   subtitle: {
     text: "Subtitle",
-    style: { fontSize: '14px'}
+    style: { fontSize: "14px" },
   },
   caption: {
     text: "Footer",
@@ -22,7 +22,7 @@ const baseConfig = {
   chart: {
     type: "spline",
     spacingLeft: 0,
-    spacingRight: 0,  
+    spacingRight: 0,
   },
   plotOptions: {
     spline: {
