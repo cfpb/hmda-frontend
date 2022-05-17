@@ -11,11 +11,12 @@ HighchartsExportData(Highcharts); // Enable export of underlying data
 Highcharts.seriesTypes.line.prototype.drawLegendSymbol =
   Highcharts.seriesTypes.area.prototype.drawLegendSymbol;
 
-export const Graph = ({ options, callback, loading, xRange }) => {
+export const Graph = ({ options, loading }) => {
   let chartRef = useRef();
 
   useEffect(() => {
     let chart = chartRef.current.chart;
+    if (!chart) return
 
     // Parent component is fetching data
     if (loading) {
@@ -28,22 +29,12 @@ export const Graph = ({ options, callback, loading, xRange }) => {
     }
   }, [loading, options]);
 
-  useEffect(() => {
-    let chart = chartRef.current.chart;
-    if (xRange) {
-      console.log("Setting extremes", ...xRange);
-      console.log(chart.xAxis[0].series);
-      chart.xAxis[0].setExtremes(...xRange);
-    }
-  }, [xRange]);
-
   return (
     <div className="graph-wrapper">
       <div className="export-charts">
         <HighchartsReact
           highcharts={Highcharts}
           options={options}
-          callback={callback}
           ref={chartRef}
         />
       </div>
