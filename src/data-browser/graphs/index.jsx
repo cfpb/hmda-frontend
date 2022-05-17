@@ -38,13 +38,13 @@ export const Graphs = (props) => {
     if (data[selected.id]) return; // Graph's data is already cached
 
     let splitURL = window.location.href.split("/"); // Splits the URL to allow easier access to graph-id
-    if (splitURL.length === 6) {
-      setSelected(graphOptions.find((opt) => opt.id == splitURL[5])); // Find match from graphOptions based off graph-id from URL
-    }
 
-    // Update URL to hold the initial graph-id when page loads
-    if (selected && splitURL.length !== 6) {
+    // Edge case: trailing slash after graphs and custom graph id in URL
+    if (splitURL[5] == "" || splitURL[5] != selected.id) {
+      // Redirect the URL to hold the initial graph-id when page loads
       props.history.push(`/data-browser/graphs/${selected.id}`);
+    } else if (splitURL.length === 6) {
+      setSelected(graphOptions.find((opt) => opt.id == splitURL[5])); // Find match from graphOptions based off graph-id from URL
     }
 
     // Mock data fetching
