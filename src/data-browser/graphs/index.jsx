@@ -39,12 +39,14 @@ export const Graphs = (props) => {
 
     let splitURL = window.location.href.split("/"); // Splits the URL to allow easier access to graph-id
 
-    // Edge case: trailing slash after graphs and custom graph id in URL
-    if (splitURL[5] == "" || splitURL[5] != selected.id) {
-      // Redirect the URL to hold the initial graph-id when page loads
-      props.history.push(`/data-browser/graphs/${selected.id}`);
-    } else if (splitURL.length === 6) {
+    // adding graph-id to the url makes it's length 6
+    if (splitURL.length === 6) {
       setSelected(graphOptions.find((opt) => opt.id == splitURL[5])); // Find match from graphOptions based off graph-id from URL
+    }
+
+    // Update URL to hold the initial graph-id when page loads
+    if (selected && splitURL.length !== 6) {
+      props.history.push(`/data-browser/graphs/${selected.id}`);
     }
 
     // Mock data fetching
@@ -98,26 +100,28 @@ export const Graphs = (props) => {
         options={availableGraphs}
         placeholder="Select a Graph"
         onChange={(e) => handleGraphSelection(e)}
-        value={{ value: selected.id, label: selected.title }}
+        value={selected ? { value: selected.id, label: selected.title } : ""}
       />
-      <div className="period-wrapper">
-        Period Range
-        <div className="period-range">
-          <Select
-            options={periodOpts}
-            onChange={(e) => setPeriodLow(e)}
-            value={periodLow}
-          />{" "}
-          to{" "}
-          <Select
-            options={periodOpts.filter((yq) =>
-              periodLow ? yq.value >= periodLow.value : yq
-            )}
-            onChange={(e) => setPeriodHigh(e)}
-            value={periodHigh}
-          />{" "}
+      {selected && (
+        <div className="period-wrapper">
+          Period Range
+          <div className="period-range">
+            <Select
+              options={periodOpts}
+              onChange={(e) => setPeriodLow(e)}
+              value={periodLow}
+            />{" "}
+            to{" "}
+            <Select
+              options={periodOpts.filter((yq) =>
+                periodLow ? yq.value >= periodLow.value : yq
+              )}
+              onChange={(e) => setPeriodHigh(e)}
+              value={periodHigh}
+            />{" "}
+          </div>
         </div>
-      </div>
+      )}
       <br />
       <br />
       {selected && (
