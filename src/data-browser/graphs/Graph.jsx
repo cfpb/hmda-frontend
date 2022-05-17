@@ -11,7 +11,7 @@ HighchartsExportData(Highcharts) // Enable export of underlying data
 Highcharts.seriesTypes.line.prototype.drawLegendSymbol =
   Highcharts.seriesTypes.area.prototype.drawLegendSymbol
 
-export const Graph = ({ options, callback, loading }) => {
+export const Graph = ({ options, callback, loading, xRange }) => {
   let chartRef = useRef()
 
   useEffect(() => {
@@ -27,6 +27,15 @@ export const Graph = ({ options, callback, loading }) => {
       chart.hideLoading()
     }
   }, [loading, options])
+
+  useEffect(() => {
+    let chart = chartRef.current.chart
+    if (xRange) {
+      console.log('Setting extremes', ...xRange)
+      console.log(chart.xAxis[0].series)
+      chart.xAxis[0].setExtremes(...xRange)
+    }
+  }, [xRange])
 
   return (
     <div className='graph-wrapper'>
