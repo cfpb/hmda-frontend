@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import produce from "immer";
 import LineGraph from "./LineGraph/index";
 import Select from "../Select.jsx";
-import { yearQuarters } from './config'
+import { yearQuarters } from "./config";
 import { graphOptions } from "./graphOptions";
 import "./graphs.css";
 
@@ -12,47 +12,60 @@ const availableGraphs = graphOptions.map((g) => ({
   label: g.title,
 }));
 
-const periodOpts = yearQuarters.map(yq => ({ value: yq, label: yq }))
+const periodOpts = yearQuarters.map((yq) => ({ value: yq, label: yq }));
 
 // Mock data
 const graphA_data1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 const randomize = (num) => Math.round(num * Math.random() * 10);
 
-export const Graphs = () => {
+export const Graphs = (props) => {
   const [selected, setSelected] = useState(graphOptions[0]); // Selected graph
   const [data, setData] = useState({}); // Cache API data
   // Period range filters
   const [periodLow, setPeriodLow] = useState(periodOpts[0]);
-  const [periodHigh, setPeriodHigh] = useState(periodOpts[periodOpts.length - 1]);
+  const [periodHigh, setPeriodHigh] = useState(
+    periodOpts[periodOpts.length - 1]
+  );
 
   const handleGraphSelection = (e) => {
     setSelected(graphOptions.find((opt) => opt.id == e.value));
+    props.history.push(`/data-browser/graphs/${e.value}`); // Push graph-id to url when one has been selected
   };
 
   // Fetch API data on graph selection, if necessary
   useEffect(() => {
     if (!selected) return; // Nothing to do until a graph is selected
-    if (data[selected.id]) return // Graph's data is already cached
-    
+    if (data[selected.id]) return; // Graph's data is already cached
+
+    let splitURL = window.location.href.split("/"); // Splits the URL to allow easier access to graph-id
+    if (splitURL.length === 6) {
+      setSelected(graphOptions.find((opt) => opt.id == splitURL[5])); // Find match from graphOptions based off graph-id from URL
+    }
+
+    // Update URL to hold the initial graph-id when page loads
+    if (selected && splitURL.length !== 6) {
+      props.history.push(`/data-browser/graphs/${selected.id}`);
+    }
+
     // Mock data fetching
     setTimeout(() => {
-      const nextState = produce(data, draft => {
+      const nextState = produce(data, (draft) => {
         draft[selected.id] = [
           {
-            name: 'Closed-End',
+            name: "Closed-End",
             data: graphA_data1.map(randomize),
             yAxis: 0,
           },
           {
-            name: 'Open-End',
+            name: "Open-End",
             data: graphA_data1.map(randomize),
             yAxis: 0,
           },
-        ]
-      })
+        ];
+      });
 
-      setData(nextState)
-    }, 1000)
+      setData(nextState);
+    }, 1000);
 
     // fetch(selected.endpoint)
     // .then(success => success.json)
@@ -68,7 +81,7 @@ export const Graphs = () => {
   }, [selected]);
 
   return (
-    <div className='Graphs'>
+    <div className="Graphs">
       <h1>HMDA Graphs</h1>
       <p>
         The following graphs present data for the 19 financial institutions
@@ -83,26 +96,26 @@ export const Graphs = () => {
       <p>Use the menu below to select a graph.</p>
       <Select
         options={availableGraphs}
-        placeholder='Select a Graph'
-        onChange={e => handleGraphSelection(e)}
+        placeholder="Select a Graph"
+        onChange={(e) => handleGraphSelection(e)}
         value={{ value: selected.id, label: selected.title }}
       />
-      <div className='period-wrapper'>
+      <div className="period-wrapper">
         Period Range
-        <div className='period-range'>
+        <div className="period-range">
           <Select
             options={periodOpts}
-            onChange={e => setPeriodLow(e)}
+            onChange={(e) => setPeriodLow(e)}
             value={periodLow}
-          />{' '}
-          to{' '}
+          />{" "}
+          to{" "}
           <Select
-            options={periodOpts.filter(yq =>
+            options={periodOpts.filter((yq) =>
               periodLow ? yq.value >= periodLow.value : yq
             )}
-            onChange={e => setPeriodHigh(e)}
+            onChange={(e) => setPeriodHigh(e)}
             value={periodHigh}
-          />{' '}
+          />{" "}
         </div>
       </div>
       <br />
@@ -121,5 +134,5 @@ export const Graphs = () => {
         />
       )}
     </div>
-  )
+  );
 };
