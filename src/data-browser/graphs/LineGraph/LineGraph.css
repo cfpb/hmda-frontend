@@ -1,3 +1,13 @@
 .graph-wrapper table {
   margin: 15px auto;
 }
+
+.Graphs .period-range { 
+  display: flex;
+  flex-flow: nowrap;
+  align-items: stretch;
+}
+
+.Graphs .period-range > * { 
+  flex: 1;
+}

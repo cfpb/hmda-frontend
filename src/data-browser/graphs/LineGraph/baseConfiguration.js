@@ -21,6 +21,8 @@ const baseConfig = {
   colors: seriesColors,
   chart: {
     type: "spline",
+    spacingLeft: 0,
+    spacingRight: 0,  
   },
   plotOptions: {
     spline: {

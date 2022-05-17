@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import produce from "immer";
 import LineGraph from "./LineGraph/index";
 import Select from "../Select.jsx";
+import { yearQuarters } from './config'
 import { graphOptions } from "./graphOptions";
 import "./graphs.css";
 
@@ -11,13 +12,18 @@ const availableGraphs = graphOptions.map((g) => ({
   label: g.title,
 }));
 
+const periodOpts = yearQuarters.map(yq => ({ value: yq, label: yq }))
+
 // Mock data
-const graphA_data1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+const graphA_data1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 const randomize = (num) => Math.round(num * Math.random() * 10);
 
 export const Graphs = () => {
   const [selected, setSelected] = useState(graphOptions[0]); // Selected graph
   const [data, setData] = useState({}); // Cache API data
+  // Period range filters
+  const [periodLow, setPeriodLow] = useState(periodOpts[0]);
+  const [periodHigh, setPeriodHigh] = useState(periodOpts[periodOpts.length - 1]);
 
   const handleGraphSelection = (e) => {
     setSelected(graphOptions.find((opt) => opt.id == e.value));
@@ -81,6 +87,24 @@ export const Graphs = () => {
         onChange={e => handleGraphSelection(e)}
         value={{ value: selected.id, label: selected.title }}
       />
+      <div className='period-wrapper'>
+        Period Range
+        <div className='period-range'>
+          <Select
+            options={periodOpts}
+            onChange={e => setPeriodLow(e)}
+            value={periodLow}
+          />{' '}
+          to{' '}
+          <Select
+            options={periodOpts.filter(yq =>
+              periodLow ? yq.value >= periodLow.value : yq
+            )}
+            onChange={e => setPeriodHigh(e)}
+            value={periodHigh}
+          />{' '}
+        </div>
+      </div>
       <br />
       <br />
       {selected && (
@@ -90,6 +114,10 @@ export const Graphs = () => {
           subtitle={selected.footer}
           yAxis={[selected.yAxisLabel]}
           series={data[selected.id]}
+          xRange={[
+            periodOpts.indexOf(periodLow),
+            periodOpts.indexOf(periodHigh),
+          ]}
         />
       )}
     </div>
