@@ -13,12 +13,26 @@
   margin: 15px auto;
 }
 
-.Graphs .period-range { 
+.Graphs .period-range {
+  margin-top: 0.5em;
   display: flex;
   flex-flow: nowrap;
   align-items: stretch;
 }
 
-.Graphs .period-range > * { 
+.Graphs .period-range > * {
   flex: 1;
+}
+
+.Graphs .period-range .to {
+  text-align: center;
+  flex: 0;
+  margin: 0 15px;
+  vertical-align: center;
+}
+
+.Graphs .reset {
+  margin-top: 0;
+  margin-left: 10px;
+  padding: 3px 10px;
 }
