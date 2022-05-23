@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "../Select.jsx";
 import { Graph } from "./Graph";
 import { graphOptions } from "./graphOptions";
@@ -8,6 +8,7 @@ import { GraphsHeader } from "./GraphsHeader";
 import { deriveHighchartsConfig } from "./highchartsConfig";
 import { PeriodSelectors } from "./PeriodSelectors";
 import { availableGraphs, mockFetchedData, periodOpts } from "./utils/mockData";
+import LoadingIcon from "../../common/LoadingIcon";
 
 export const Graphs = (props) => {
   const [options, setOptions] = useState([]);
@@ -83,33 +84,51 @@ export const Graphs = (props) => {
   let lowerLimit = periodOpts.indexOf(periodLow);
   let upperLimit = periodOpts.indexOf(periodHigh) + 1;
 
+  console.log(options.length, "options");
+
   return (
     <div className="Graphs">
-      <GraphsHeader />
-      <Select
-        options={options}
-        placeholder="Select a Graph"
-        onChange={(e) => handleGraphSelection(e)}
-        value={selected ? { value: selected.id, label: selected.title } : ""}
-        formatGroupLabel={(data) => formatGroupLabel(data)}
-      />
-      <PeriodSelectors
-        {...{ periodOpts, periodLow, setPeriodLow, periodHigh, setPeriodHigh }}
-      />
-      {selected && (
-        <Graph
-          options={deriveHighchartsConfig({
-            loading: !data[selected.id],
-            title: selected.title,
-            subtitle: selected.footer,
-            periodRange: [lowerLimit, upperLimit],
-            series: data[selected.id],
-            yAxis: [selected.yAxisLabel],
-            // xAxis: will come from the xAxis values of the fetched data,
-            // categories: will come from the xAxis values of the fetched data
-          })}
-          loading={!data[selected.id]}
-        />
+      <GraphsHeader loading={options.length} />
+
+      {options.length ? (
+        <React.Fragment>
+          <Select
+            options={options}
+            placeholder="Select a Graph"
+            onChange={(e) => handleGraphSelection(e)}
+            value={
+              selected ? { value: selected.id, label: selected.title } : ""
+            }
+            formatGroupLabel={(data) => formatGroupLabel(data)}
+          />
+          <PeriodSelectors
+            {...{
+              periodOpts,
+              periodLow,
+              setPeriodLow,
+              periodHigh,
+              setPeriodHigh,
+            }}
+          />
+
+          {selected && (
+            <Graph
+              options={deriveHighchartsConfig({
+                loading: !data[selected.id],
+                title: selected.title,
+                subtitle: selected.footer,
+                periodRange: [lowerLimit, upperLimit],
+                series: data[selected.id],
+                yAxis: [selected.yAxisLabel],
+                // xAxis: will come from the xAxis values of the fetched data,
+                // categories: will come from the xAxis values of the fetched data
+              })}
+              loading={!data[selected.id]}
+            />
+          )}
+        </React.Fragment>
+      ) : (
+        <LoadingIcon />
       )}
     </div>
   );
