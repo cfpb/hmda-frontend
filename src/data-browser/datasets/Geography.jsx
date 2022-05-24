@@ -99,8 +99,15 @@ class Geography extends Component {
 
     if(geographyChanged) this.fetchLeis()
     if(geographyChanged || leisReloaded) this.filterLeis()
-    if(leisReloaded)
-      this.setState({ isLargeFile: this.checkIfLargeFile(this.state.category, this.state.items) })
+    
+    if(leisReloaded || geographyChanged) // Update large file warning
+      this.setState({
+        isLargeFile: this.checkIfLargeFile(
+          this.state.category,
+          this.state.items
+        ),
+      })
+    
     if(this.pendingRetry) {
       clearTimeout(this.pendingRetry)
       this.pendingRetry = null
@@ -209,7 +216,14 @@ class Geography extends Component {
 
   checkIfLargeCount(selected = [], countMap) {
     const MAX = 1048576
-    if(!selected) return countMap > MAX
+    
+    if (!selected || !selected.length) {
+      return (
+        Object.keys(countMap).reduce((acc, curr) => acc + countMap[curr], 0) >
+        MAX
+      )
+    }
+
     return selected.reduce((acc, curr) => acc + countMap[curr], 0) > MAX
   }
 
