@@ -72,6 +72,11 @@ const publications = {
       paragraphText: arDesc,
     },
     {
+      headingLink: oneYearLink(2019),
+      headingText: oneYearTitle,
+      paragraphText: oneYearDesc,
+    },
+    {
       headingLink: snapLink(2019),
       headingText: snapTitle,
       paragraphText: snapDesc,
@@ -97,6 +102,11 @@ const publications = {
       headingLink: arLink(2018),
       headingText: arTitle,
       paragraphText: arDesc,
+    },
+    {
+      headingLink: threeYearLink(2018),
+      headingText: threeYearTitle,
+      paragraphText: threeYearDesc,
     },
     {
       headingLink: oneYearLink(2018),
