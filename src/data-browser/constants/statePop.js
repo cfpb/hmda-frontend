@@ -1,5 +1,4 @@
 // Note: 03,07,14,43,52 are not FIPS codes
-// TODO: Add Puerto Rico (72) populations to each year
 import populations2017 from './populationByGeography/statePop2017.json'
 import populations2018 from './populationByGeography/statePop2018.json'
 import populations2019 from './populationByGeography/statePop2019.json'

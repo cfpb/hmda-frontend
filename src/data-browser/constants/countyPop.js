@@ -1,4 +1,3 @@
-// TODO: Add PR (72) Pops from separate file
 import populations2017 from './populationByGeography/countyPop2017.json'
 import populations2018 from './populationByGeography/countyPop2018.json'
 import populations2019 from './populationByGeography/countyPop2019.json'
