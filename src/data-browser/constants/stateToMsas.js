@@ -32,4 +32,5 @@ export default {
   2018: data2018,
   2019: data2019,
   2020: data2020,
+  2021: data2020,
 }
