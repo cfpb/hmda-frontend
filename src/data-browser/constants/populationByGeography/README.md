@@ -1,1 +1,3 @@
 These population values are used by `/data-browser/maps` to calculate the bias (color variation) for each state/county.
+ 
+Source: HMDA Platform Census file
