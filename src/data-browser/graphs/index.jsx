@@ -22,6 +22,13 @@ export const Graphs = (props) => {
     periodOpts[periodOpts.length - 1]
   );
 
+  /* 
+  * This will become/replace the mocked periodOpts.  
+  * Since the period selector will now need to wait for this array to become available on each graph selections,
+  * we'll need to add a Loading state to the PeriodSelectors component.
+  */
+  const [categories, setCategories] = useState()
+
   const formatGroupLabel = (data) => (
     <div style={groupStyles}>
       <span>{data.label}</span>
@@ -35,7 +42,14 @@ export const Graphs = (props) => {
     const response = await fetch(`/quarterly-data/graphs/${endpoint}`)
       .then((res) => res.json())
       .then((data) => data);
-    console.log(response, "fetchSingleGraph"); // Testing
+    console.log(response, "fetchSingleGraph") // Testing
+
+    // Loop over coordinates the first time to extract all xAxis labels for the current graph
+    let filingPeriods = new Set()
+    response.series.forEach(s => s.coordinates.map(point => filingPeriods.add(point.x)))
+    filingPeriods = Array.from(filingPeriods).sort()
+    setCategories(filingPeriods)
+    
     setSingleGraph(response);
   };
 
@@ -90,13 +104,23 @@ export const Graphs = (props) => {
         let graphLines = [];
 
         // Generating each line for the graph
-        singleGraph.series.map((graph) =>
+        singleGraph.series.map((graph) => {
+          // Create an Array of zeros, matching the length of the xAxis labels array
+          const currentSeries = Array.apply(null, Array(categories.length)).map(_ => 0)
+          
+          // Match each point in the series to its xAxis index by referencing categories
+          graph.coordinates.forEach((point) => {
+            const idx = categories.indexOf(point.x)
+            if (idx < 0) return // Skip unknown filing periods
+            currentSeries[idx] = parseInt(point.y) || 0
+          })
+          
           graphLines.push({
             name: graph.name,
-            data: graph.coordinates.map((line) => line.y),
+            data: currentSeries,
             yAxis: 0,
           })
-        );
+        });
 
         draft[selected.value] = graphLines;
       });
@@ -104,7 +128,7 @@ export const Graphs = (props) => {
       console.log(nextState, "generate lines?");
       setData(nextState);
     }
-  }, [selected, singleGraph]);
+  }, [selected, singleGraph, categories]);
 
   // The indexes to which we will filter the data before passing to Highcharts, based on the selected Filing Period range
   let lowerLimit = periodOpts.indexOf(periodLow);
@@ -117,7 +141,7 @@ export const Graphs = (props) => {
     if (graphData) {
       let optionsWithCategories = [
         {
-          label: "Quanity",
+          label: "Quantity",
           options: graphData.filter((g) => g.category == "quantity"),
         },
         {
@@ -169,7 +193,7 @@ export const Graphs = (props) => {
                 series: data[selected.value],
                 yAxis: [singleGraph.yLabel],
                 // xAxis: will come from the xAxis values of the fetched data,
-                // categories: will come from the xAxis values of the fetched data
+                categories// will come from the xAxis values of the fetched data
               })}
               loading={!data[selected.value]}
             />
