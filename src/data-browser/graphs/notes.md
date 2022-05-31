@@ -18,3 +18,14 @@
 - Printing/Exporting
   - We need to reset the font sizes to make generated output usable, otherwise things overflow
   - We need to link the Dual charts' export functionality so users can get everything in one export
+
+# Next steps
+
+**May 31st, 2022**
+
+- Enable direct linking to a specific graph/pre-load first graph when user visits page
+- "Share this graph" that provides the url/copies the link to the user's clipboard
+- ~~Integration of the live data~~
+  - Populate xAxis/categories with dynamic labels from selected graph response
+- Update data table in conjunction with graph when period range changes
+  - Currently you need to hide then re-show the table to get it to update

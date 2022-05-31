@@ -34,5 +34,6 @@ export const mockFetchedData = (selected, data, setData) =>
       ];
     });
 
+    console.log(nextState, "mock data state");
     setData(nextState);
   }, 1000);
