@@ -6,6 +6,33 @@ const ARID2017_XREF = {
 }
 
 export const SNAPSHOT_DATASET = {
+  2021: { // TODO: Update with 2021 
+    snapshot_date: 'in-progress',
+    codesheet: 'in-progress',
+    datasets: [
+      {
+        csv: 'in-progress',
+        txt: 'in-progress',
+        label: 'Loan/Application Records (LAR)'
+      },
+      {
+        csv: 'in-progress',
+        txt: 'in-progress',
+        label: 'Transmittal Sheet Records (TS)'
+      },
+      {
+        csv: 'in-progress',
+        txt: 'in-progress',
+        label: 'Reporter Panel'
+      },
+      {
+        csv: 'in-progress',
+        txt: 'in-progress',
+        label: 'MSA/MD Description'
+      },
+      ARID2017_XREF
+    ]
+  },
   2020: {
     snapshot_date: 'May 3, 2021',
     codesheet: 'https://github.com/cfpb/hmda-platform/raw/master/docs/v2/spec/2020_Public_LAR_Code_Sheet_PDF.pdf',

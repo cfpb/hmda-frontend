@@ -1,4 +1,8 @@
 export const DYNAMIC_DATASET = {
+  2021: { // TODO: Update with 2021 urls
+    lar : 'in-progress',
+    ts : 'in-progress',
+  },
   2020: {
     lar : 'https://s3.amazonaws.com/cfpb-hmda-public/prod/dynamic-data/2020/2020_lar.zip',
     ts : 'https://s3.amazonaws.com/cfpb-hmda-public/prod/dynamic-data/2020/2020_ts.zip',
