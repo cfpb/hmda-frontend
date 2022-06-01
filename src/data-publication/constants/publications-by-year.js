@@ -28,6 +28,33 @@ const threeYearTitle = "Three Year National Loan-Level Dataset"
 
 
 const publications = {
+  2021: [
+    {
+      headingLink: mlarLink(2021),
+      headingText: mlarTitle,
+      paragraphText: mlarDesc,
+    },
+    {
+      headingLink: drLink(2021),
+      headingText: drTitle,
+      paragraphText: drDesc,
+    },
+    {
+      headingLink: arLink(2021),
+      headingText: arTitle,
+      paragraphText: arDesc,
+    },
+    {
+      headingLink: snapLink(2021),
+      headingText: snapTitle,
+      paragraphText: snapDesc,
+    },
+    {
+      headingLink: dynLink(2021),
+      headingText: dynTitle,
+      paragraphText: dynDesc,
+    },
+  ],
   2020: [
     {
       headingLink: mlarLink(2020),
@@ -43,6 +70,11 @@ const publications = {
       headingLink: arLink(2020),
       headingText: arTitle,
       paragraphText: arDesc,
+    },
+    {
+      headingLink: oneYearLink(2020),
+      headingText: oneYearTitle,
+      paragraphText: oneYearDesc,
     },
     {
       headingLink: snapLink(2020),
@@ -109,11 +141,6 @@ const publications = {
       paragraphText: threeYearDesc,
     },
     {
-      headingLink: oneYearLink(2018),
-      headingText: oneYearTitle,
-      paragraphText: oneYearDesc,
-    },
-    {
       headingLink: snapLink(2018),
       headingText: snapTitle,
       paragraphText: snapDesc,
@@ -144,16 +171,6 @@ const publications = {
       headingLink: narLink(2017),
       headingText: narTitle,
       paragraphText: narDesc,
-    },
-    {
-      headingLink: threeYearLink(2017),
-      headingText: threeYearTitle,
-      paragraphText: threeYearDesc,
-    },
-    {
-      headingLink: oneYearLink(2017),
-      headingText: oneYearTitle,
-      paragraphText: oneYearDesc,
     },
     {
       headingLink: snapLink(2017),
