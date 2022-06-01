@@ -6,28 +6,28 @@ const ARID2017_XREF = {
 }
 
 export const SNAPSHOT_DATASET = {
-  2021: { // TODO: Update with 2021 
-    snapshot_date: 'in-progress',
-    codesheet: 'in-progress',
+  2021: {
+    snapshot_date: 'May 4, 2022',
+    codesheet: 'https://github.com/cfpb/hmda-platform/raw/master/docs/v2/spec/2020_Public_LAR_Code_Sheet_PDF.pdf',
     datasets: [
       {
-        csv: 'in-progress',
-        txt: 'in-progress',
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_lar_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_lar_pipe.zip',
         label: 'Loan/Application Records (LAR)'
       },
       {
-        csv: 'in-progress',
-        txt: 'in-progress',
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_ts_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_ts_pipe.zip',
         label: 'Transmittal Sheet Records (TS)'
       },
       {
-        csv: 'in-progress',
-        txt: 'in-progress',
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_panel_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_panel_pipe.zip',
         label: 'Reporter Panel'
       },
       {
-        csv: 'in-progress',
-        txt: 'in-progress',
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_msamd_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_msamd_pipe.zip',
         label: 'MSA/MD Description'
       },
       ARID2017_XREF
