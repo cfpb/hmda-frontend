@@ -3,7 +3,7 @@ svg {
   stroke: currentColor;
 }
 
-.lead .PDFIcon{
+.lead .PDFIcon {
   height: 16px;
   margin: 0 1px -3px 2px;
 }
@@ -15,7 +15,7 @@ svg {
 .SelectWrapper > p {
   color: #5b616b;
   font-size: 15px;
-  margin:2px 0 4px 0;
+  margin: 2px 0 4px 0;
 }
 
 .LargeFileWarning > h4 {
@@ -40,7 +40,7 @@ svg {
   font-size: 24px;
 }
 
-.CheckboxContainer{
+.CheckboxContainer {
   width: 33%;
   padding: 1.5em 0.5em 0.5em 0.5em;
 }
@@ -66,7 +66,8 @@ svg {
   padding-left: 2px;
 }
 
-.CheckboxWrapper > input, .CheckboxWrapper > label {
+.CheckboxWrapper > input,
+.CheckboxWrapper > label {
   cursor: pointer;
 }
 
@@ -93,9 +94,9 @@ svg {
 }
 
 .QueryButton.secondary {
-  color:#002d72;
-  background:#d6e8fa;
-  border-color:#254b87;
+  color: #002d72;
+  background: #d6e8fa;
+  border-color: #254b87;
 }
 
 .QueryButton:hover {
@@ -103,7 +104,7 @@ svg {
 }
 
 .QueryButton.secondary:hover {
-  background-color: #afd2f2
+  background-color: #afd2f2;
 }
 
 .QueryButton:active {
@@ -138,7 +139,8 @@ svg {
   font-weight: bold;
 }
 
-.Aggregations th, .Aggregations td {
+.Aggregations th,
+.Aggregations td {
   border: 1px solid #5b616b;
   padding: 1rem 1.5rem;
   text-align: center;
@@ -199,7 +201,8 @@ svg {
   border-radius: 2px;
 }
 
-.PillValue, .PillClose {
+.PillValue,
+.PillClose {
   display: inline-block;
   background-color: #e6e6e6;
   border-radius: 2px;
@@ -237,7 +240,7 @@ svg {
   margin-top: 0;
 }
 
-.Geography .YearSelector .option, 
+.Geography .YearSelector .option,
 .Geography .YearSelector a {
   font-family: SourceSansPro;
 }
@@ -250,6 +253,6 @@ svg {
 @media screen and (max-width: 800px) {
   .inline-selectors {
     flex-flow: column;
-    margin-bottom: 1em;;
+    margin-bottom: 1em;
   }
 }
