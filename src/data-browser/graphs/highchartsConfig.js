@@ -24,6 +24,7 @@ export const baseConfig = {
     type: 'spline',
     spacingLeft: 0,
     spacingRight: 0,
+    height: "60%"
   },
   plotOptions: {
     spline: {

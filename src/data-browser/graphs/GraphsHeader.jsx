@@ -16,7 +16,7 @@ export const GraphsHeader = ({ loading }) => (
           institutions, they should not be taken to represent the behavior of
           all mortgage lenders during the relevant period.
         </p>
-        <p>Use the menu below to select a graph.</p>
+        <p><b>Use the menu below to select a graph.</b></p>
       </div>
     ) : (
       <p>

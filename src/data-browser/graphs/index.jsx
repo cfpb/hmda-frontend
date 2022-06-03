@@ -37,7 +37,7 @@ export const Graphs = (props) => {
     // Used to populate drop-down with different options and categories
     let optionsWithCategories = [
       {
-        label: "Quanity",
+        label: "Quantity",
         options: availableGraphs.filter((g) => g.category == "quantity"),
       },
       {
