@@ -13,12 +13,16 @@ Answer: A comma-separated values (CSV) file derives its name from a file contain
 Answer: The columns of the Static and Dynamic dataset, including data available through the Data Browser, have been reordered to create logical groupings. This reordering was done to facilitate analysis in desktop spreadsheet software for files pulled from the Data Browser.
 
 ### Which dataset is used by the Data Browser? 
-Answer: The Data Browser uses the [Snapshot](https://ffiec.cfpb.gov/data-publication/snapshot-national-loan-level-dataset/) dataset.
+The HMDA Data Browser tools ([Dataset Filtering](https://ffiec.cfpb.gov/data-browser/data/), [Maps](https://ffiec.cfpb.gov/data-browser/maps/)) use the latest available [static dataset](https://ffiec.cfpb.gov/data-publication/) (Three Year, One Year, Snapshot) for the selected year.  This ensures that the information being accessed is up-to-date, based on the latest data submitted by financial institutions. When new datasets are published each year, the HMDA Data Browser is also updated.
 
-| Collection Year | Data Freeze Date |
-|---|---|
-|[2018](https://ffiec.cfpb.gov/data-publication/snapshot-national-loan-level-dataset/2018)|August 7, 2019|
-|[2019](https://ffiec.cfpb.gov/data-publication/snapshot-national-loan-level-dataset/2019)|April 27, 2020|
-|[2020](https://ffiec.cfpb.gov/data-publication/snapshot-national-loan-level-dataset/2020)|May 3, 2021|
+If you are looking for a particular year's data, or additional documentation about the datasets, please visit the [HMDA Data Publication page](https://ffiec.cfpb.gov/data-publication/).
+
+| Year | Data Browser Source Dataset | Data Freeze Date |
+|---|---|---|
+|2018|[Three Year National Loan-Level Dataset](https://ffiec.cfpb.gov/data-publication/three-year-national-loan-level-dataset/)|May 4, 2022|
+|2019|[One Year National Loan-Level Dataset](https://ffiec.cfpb.gov/data-publication/one-year-national-loan-level-dataset/)|May 4, 2022|
+|2020|[One Year National Loan-Level Dataset](https://ffiec.cfpb.gov/data-publication/one-year-national-loan-level-dataset/)|May 4, 2022|
+|2021|[Snapshot National Loan-Level Dataset](https://ffiec.cfpb.gov/data-publication/snapshot-national-loan-level-dataset/)|May 4, 2022|
+
 ### I have a suggestion/improvement, who can I contact?
 Answer: For questions/suggestions regarding the HMDA Data Browser, contact [hmdahelp@cfpb.gov](mailto:hmdahelp@cfpb.gov).
