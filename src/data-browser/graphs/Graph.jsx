@@ -16,7 +16,9 @@ export const Graph = ({ options, loading }) => {
 
   useEffect(() => {
     let chart = chartRef.current.chart;
-    if (!chart) return
+    if (!chart) return;
+
+    chart.viewData(); // Update data table when data changes/period selector is used
 
     // Parent component is fetching data
     if (loading) {

@@ -1,41 +1,31 @@
 import React, { useEffect, useState } from "react";
 import Select from "../Select.jsx";
 import { Graph } from "./Graph";
-import { graphOptions } from "./graphOptions";
 import { groupStyles, groupBadgeStyles } from "./utils/inlineStyling";
 import "./graphs.css";
 import { GraphsHeader } from "./GraphsHeader";
 import { deriveHighchartsConfig } from "./highchartsConfig";
 import { PeriodSelectors } from "./PeriodSelectors";
-import { availableGraphs, mockFetchedData, periodOpts } from "./utils/mockData";
 import { produce } from "immer";
 import LoadingIcon from "../../common/LoadingIcon";
 
 export const Graphs = (props) => {
-  const [options, setOptions] = useState([]);
+  const [options, setOptions] = useState([]); // All the graph options with categories
   const [graphHeaderOverview, setGraphHeaderOverview] = useState(); // Overview text which comes from graphs API - State is sent to GraphsHeader Component
-  const [quarters, setQuarters] = useState();
+  const [quarters, setQuarters] = useState(); // Contains all the quarters from a selected graph and is used for period filtering
   const [selected, setSelected] = useState(); // Selected graph
-  const [graphData, setGraphData] = useState();
+  const [graphData, setGraphData] = useState(); // Contains all the graphs from the API
   const [singleGraph, setSingleGraph] = useState();
   const [data, setData] = useState({}); // API data cache
-  const [periodLow, setPeriodLow] = useState(periodOpts[0]); // Period filters
-  const [periodHigh, setPeriodHigh] = useState(
-    periodOpts[periodOpts.length - 1]
-  );
-
-  /*
-   * This will become/replace the mocked periodOpts.
-   * Since the period selector will now need to wait for this array to become available on each graph selections,
-   * we'll need to add a Loading state to the PeriodSelectors component.
-   */
-  const [categories, setCategories] = useState();
+  const [periodLow, setPeriodLow] = useState(); // Period filters
+  const [periodHigh, setPeriodHigh] = useState();
+  const [categories, setCategories] = useState(); // Holds the xAxis values/labels
 
   const formatGroupLabel = (data) => (
     <div style={groupStyles}>
       <span>{data.label}</span>
       {/* Adds length of graphs in that category */}
-      {/* <span style={groupBadgeStyles}>{data.options.length}</span> */}
+      <span style={groupBadgeStyles}>{data.options.length}</span>
     </div>
   );
 
@@ -45,7 +35,6 @@ export const Graphs = (props) => {
       .then((res) => res.json())
       .then((data) => data)
       .catch((error) => console.error(`Error: ${error}.`));
-    console.log(response, "fetchSingleGraph"); // Testing
 
     // Loop over coordinates the first time to extract all xAxis labels for the current graph
     let filingPeriods = new Set();
@@ -131,12 +120,16 @@ export const Graphs = (props) => {
         draft[selected.value] = graphLines;
       });
       setData(nextState);
+
+      // Dynamically generate period selector options
+      if (categories) {
+        let periodOptions = categories.map((yq) => ({ value: yq, label: yq }));
+        setQuarters(periodOptions);
+        setPeriodLow(periodOptions[0]);
+        setPeriodHigh(periodOptions[periodOptions.length - 1]);
+      }
     }
   }, [selected, singleGraph, categories]);
-
-  // The indexes to which we will filter the data before passing to Highcharts, based on the selected Filing Period range
-  let lowerLimit = periodOpts.indexOf(periodLow);
-  let upperLimit = periodOpts.indexOf(periodHigh) + 1;
 
   useEffect(() => {
     // Used to populate drop-down with different options and categories
@@ -158,8 +151,6 @@ export const Graphs = (props) => {
     }
   }, [graphData]);
 
-  // console.log(selected, "selected from dropdown");
-
   return (
     <div className="Graphs">
       <GraphsHeader loading={options.length} overview={graphHeaderOverview} />
@@ -175,10 +166,10 @@ export const Graphs = (props) => {
             }
             formatGroupLabel={(data) => formatGroupLabel(data)}
           />
-          {singleGraph && (
+          {singleGraph && quarters && (
             <PeriodSelectors
               {...{
-                periodOpts,
+                periodOpts: quarters,
                 periodLow,
                 setPeriodLow,
                 periodHigh,
@@ -187,13 +178,16 @@ export const Graphs = (props) => {
             />
           )}
 
-          {selected && singleGraph && (
+          {selected && singleGraph && quarters && (
             <Graph
               options={deriveHighchartsConfig({
                 loading: !data[selected.value],
                 title: singleGraph.title,
                 subtitle: singleGraph.subtitle,
-                periodRange: [lowerLimit, upperLimit],
+                periodRange: [
+                  quarters.indexOf(periodLow),
+                  quarters.indexOf(periodHigh) + 1,
+                ],
                 series: data[selected.value],
                 yAxis: [singleGraph.yLabel],
                 categories, // will come from the xAxis values of the fetched data

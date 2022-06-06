@@ -21,11 +21,12 @@
 
 # Next steps
 
-**May 31st, 2022**
+**June 6th, 2022**
 
 - Enable direct linking to a specific graph/pre-load first graph when user visits page
 - "Share this graph" that provides the url/copies the link to the user's clipboard
 - ~~Integration of the live data~~
-  - Populate xAxis/categories with dynamic labels from selected graph response
-- Update data table in conjunction with graph when period range changes
-  - Currently you need to hide then re-show the table to get it to update
+  - ~~Populate xAxis/categories with dynamic labels from selected graph response~~
+- ~~Update data table in conjunction with graph when period range changes~~
+  - ~~Currently you need to hide then re-show the table to get it to update~~
+- Data table does not update when a line is checked off via the legend
