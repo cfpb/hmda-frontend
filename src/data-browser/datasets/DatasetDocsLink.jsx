@@ -4,23 +4,21 @@ const determineDataset = (year) => {
   let ThreeYear = [2018, 2017];
   let OneYear = [2019];
 
-  // Link will be created after 'Three Year' doc is created
   if (ThreeYear.includes(year))
     return {
       name: "Three Year",
-      link: `https://ffiec.cfpb.gov/data-publication/three-year-national-loan-level-dataset/${year}`,
+      link: `/data-publication/three-year-national-loan-level-dataset/${year}`,
     };
   
-  // Link will be created after 'One Year' doc is created
   if (OneYear.includes(year))
     return {
       name: "One Year",
-      link: `https://ffiec.cfpb.gov/data-publication/one-year-national-loan-level-dataset/${year}`,
+      link: `/data-publication/one-year-national-loan-level-dataset/${year}`,
     };
   
   return {
     name: 'Snapshot',
-    link: `https://ffiec.cfpb.gov/data-publication/snapshot-national-loan-level-dataset/${year}`,
+    link: `/data-publication/snapshot-national-loan-level-dataset/${year}`,
   }
 };
 
@@ -42,9 +40,9 @@ const DatasetDocsLink = ({ year }) => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href={`/documentation/${year}/static-dataset-faq`} // Link will be created after FAQ page has been created
+          href={`/documentation/${year}/static-dataset-faq`}
         >
-          Dataset - FAQ.
+          Dataset FAQ.
         </a>
       </p>
     </div>
