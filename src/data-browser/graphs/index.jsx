@@ -13,6 +13,8 @@ import LoadingIcon from "../../common/LoadingIcon";
 
 export const Graphs = (props) => {
   const [options, setOptions] = useState([]);
+  const [graphHeaderOverview, setGraphHeaderOverview] = useState(); // Overview text which comes from graphs API - State is sent to GraphsHeader Component
+  const [quarters, setQuarters] = useState();
   const [selected, setSelected] = useState(); // Selected graph
   const [graphData, setGraphData] = useState();
   const [singleGraph, setSingleGraph] = useState();
@@ -22,12 +24,12 @@ export const Graphs = (props) => {
     periodOpts[periodOpts.length - 1]
   );
 
-  /* 
-  * This will become/replace the mocked periodOpts.  
-  * Since the period selector will now need to wait for this array to become available on each graph selections,
-  * we'll need to add a Loading state to the PeriodSelectors component.
-  */
-  const [categories, setCategories] = useState()
+  /*
+   * This will become/replace the mocked periodOpts.
+   * Since the period selector will now need to wait for this array to become available on each graph selections,
+   * we'll need to add a Loading state to the PeriodSelectors component.
+   */
+  const [categories, setCategories] = useState();
 
   const formatGroupLabel = (data) => (
     <div style={groupStyles}>
@@ -41,15 +43,18 @@ export const Graphs = (props) => {
   const fetchSingleGraph = async (endpoint) => {
     const response = await fetch(`/quarterly-data/graphs/${endpoint}`)
       .then((res) => res.json())
-      .then((data) => data);
-    console.log(response, "fetchSingleGraph") // Testing
+      .then((data) => data)
+      .catch((error) => console.error(`Error: ${error}.`));
+    console.log(response, "fetchSingleGraph"); // Testing
 
     // Loop over coordinates the first time to extract all xAxis labels for the current graph
-    let filingPeriods = new Set()
-    response.series.forEach(s => s.coordinates.map(point => filingPeriods.add(point.x)))
-    filingPeriods = Array.from(filingPeriods).sort()
-    setCategories(filingPeriods)
-    
+    let filingPeriods = new Set();
+    response.series.forEach((s) =>
+      s.coordinates.map((point) => filingPeriods.add(point.x))
+    );
+    filingPeriods = Array.from(filingPeriods).sort();
+    setCategories(filingPeriods);
+
     setSingleGraph(response);
   };
 
@@ -64,6 +69,8 @@ export const Graphs = (props) => {
       .then((res) => res.json())
       .then((data) => data)
       .catch((error) => console.error(`Error: ${error}.`));
+
+    setGraphHeaderOverview(response.overview);
 
     setGraphData(
       response.graphs.map((g) => ({
@@ -96,9 +103,6 @@ export const Graphs = (props) => {
       props.history.push(`/data-browser/graphs/${selected.value}`);
     }
 
-    // Mock data fetching - not the real API data
-    // mockFetchedData(selected, data, setData);
-
     if (singleGraph) {
       const nextState = produce(data, (draft) => {
         let graphLines = [];
@@ -106,26 +110,26 @@ export const Graphs = (props) => {
         // Generating each line for the graph
         singleGraph.series.map((graph) => {
           // Create an Array of zeros, matching the length of the xAxis labels array
-          const currentSeries = Array.apply(null, Array(categories.length)).map(_ => 0)
-          
+          const currentSeries = Array.apply(null, Array(categories.length)).map(
+            (_) => null
+          );
+
           // Match each point in the series to its xAxis index by referencing categories
           graph.coordinates.forEach((point) => {
-            const idx = categories.indexOf(point.x)
-            if (idx < 0) return // Skip unknown filing periods
-            currentSeries[idx] = parseInt(point.y) || 0
-          })
-          
+            const idx = categories.indexOf(point.x);
+            if (idx < 0) return; // Skip unknown filing periods
+            currentSeries[idx] = parseInt(point.y) || 0;
+          });
+
           graphLines.push({
             name: graph.name,
             data: currentSeries,
             yAxis: 0,
-          })
+          });
         });
 
         draft[selected.value] = graphLines;
       });
-
-      console.log(nextState, "generate lines?");
       setData(nextState);
     }
   }, [selected, singleGraph, categories]);
@@ -133,8 +137,6 @@ export const Graphs = (props) => {
   // The indexes to which we will filter the data before passing to Highcharts, based on the selected Filing Period range
   let lowerLimit = periodOpts.indexOf(periodLow);
   let upperLimit = periodOpts.indexOf(periodHigh) + 1;
-
-  // console.log(graphData, "Graph Data - Endpoint");
 
   useEffect(() => {
     // Used to populate drop-down with different options and categories
@@ -156,11 +158,11 @@ export const Graphs = (props) => {
     }
   }, [graphData]);
 
-  console.log(selected, "selected from dropdown");
+  // console.log(selected, "selected from dropdown");
 
   return (
     <div className="Graphs">
-      <GraphsHeader loading={options.length} />
+      <GraphsHeader loading={options.length} overview={graphHeaderOverview} />
 
       {options.length ? (
         <React.Fragment>
@@ -173,15 +175,17 @@ export const Graphs = (props) => {
             }
             formatGroupLabel={(data) => formatGroupLabel(data)}
           />
-          <PeriodSelectors
-            {...{
-              periodOpts,
-              periodLow,
-              setPeriodLow,
-              periodHigh,
-              setPeriodHigh,
-            }}
-          />
+          {singleGraph && (
+            <PeriodSelectors
+              {...{
+                periodOpts,
+                periodLow,
+                setPeriodLow,
+                periodHigh,
+                setPeriodHigh,
+              }}
+            />
+          )}
 
           {selected && singleGraph && (
             <Graph
@@ -192,8 +196,7 @@ export const Graphs = (props) => {
                 periodRange: [lowerLimit, upperLimit],
                 series: data[selected.value],
                 yAxis: [singleGraph.yLabel],
-                // xAxis: will come from the xAxis values of the fetched data,
-                categories// will come from the xAxis values of the fetched data
+                categories, // will come from the xAxis values of the fetched data
               })}
               loading={!data[selected.value]}
             />
