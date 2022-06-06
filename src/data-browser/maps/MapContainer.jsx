@@ -21,6 +21,7 @@ import { MapsNavBar } from './MapsNavBar'
 import { MapsController } from './MapsController'
 import { ReportSummary } from './ReportSummary'
 import './mapbox.css'
+import DatasetDocsLink from '../datasets/DatasetDocsLink.jsx'
 
 mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlvaQw'
 
@@ -594,6 +595,7 @@ const MapContainer = props => {
   return (
     <MapContext.Provider value={ctxValues}>
       <div className={'SelectWrapper ' + biasLabel} ref={mapRef}>
+        <DatasetDocsLink year={year} />
         <div id='maps-overlay-container' className='page'>
           <LoadingOverlay isLoading={isLoading} />
           <MapsController {...mapsControllerProps} />
