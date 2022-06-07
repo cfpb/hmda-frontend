@@ -6,6 +6,7 @@ import MapsGraphs from "./maps/MapsGraphs.jsx";
 import NotFound from "../common/NotFound";
 import { withAppContext } from "../common/appContextHOC";
 import { Graphs } from "./graphs";
+import { fetchGraphs } from "./graphs/utils/utils";
 
 const DataBrowser = (props) => {
   const { publicationReleaseYear } = props.config;
@@ -15,7 +16,7 @@ const DataBrowser = (props) => {
       <Switch>
         <Route exact path="/data-browser" component={Home} />
         <Route
-          path="/data-browser/graphs"
+          path="/data-browser/graphs/:graph?"
           render={(r_props) => <Graphs {...r_props} {...props} />}
         />
         <Route
