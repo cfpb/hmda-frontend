@@ -59,8 +59,44 @@ export const Graphs = (props) => {
       .then((data) => data)
       .catch((error) => console.error(`Error: ${error}.`));
 
+    /*
+
+    Code to handle specfiic linking of a graph, visiting '/graphs' and redirects due to incorrect graph parameter
+
+    [IF] Parameter doesn't exist in response.graphs then redirect to '/graphs/{first-graph-from-response}' 
+    [OR] URL ends in 'graphs' it will render the page with the first graph found
+    [ELSE IF] URL contains parameter for a specific graph then it will render the page with that graph
+    */
+
+    if (
+      !response.graphs.some((g) => g.endpoint == props.match.params.graph) ||
+      props.location.pathname.match(/graph$"/)
+    ) {
+      let firstGraph = response.graphs[0];
+
+      fetchSingleGraph(firstGraph.endpoint);
+      setSelected({
+        value: firstGraph.endpoint,
+        label: firstGraph.title,
+        category: firstGraph.category,
+      });
+      props.history.push(`/data-browser/graphs/${firstGraph.endpoint}`);
+    } else if (props.match.params.graph) {
+      let initialGraphToLoad = response.graphs.find(
+        (graph) => graph.endpoint == props.match.params.graph
+      );
+      fetchSingleGraph(initialGraphToLoad.endpoint);
+      setSelected({
+        value: initialGraphToLoad.endpoint,
+        label: initialGraphToLoad.title,
+        category: initialGraphToLoad.category,
+      });
+    }
+
+    // Delegate overview text from API
     setGraphHeaderOverview(response.overview);
 
+    // Generate new array with graph objects
     setGraphData(
       response.graphs.map((g) => ({
         value: g.endpoint,
@@ -77,20 +113,7 @@ export const Graphs = (props) => {
   // Fetch API data on graph selection
   useEffect(() => {
     if (!selected) return;
-    if (graphData[selected.endpoint]) return; // Already cached
-
-    let splitURL = window.location.href.split("/"); // Splits the URL to allow easier access to graph endpoint
-
-    // adding graph endpoint to the url makes it's length 6
-    if (splitURL.length === 6) {
-      setSelected(graphData.find((opt) => opt.value == splitURL[5])); // Find match from graphData based off graph endpoint from URL
-      // fetchSingleGraph(splitURL[5]);
-    }
-
-    // Update URL to hold the initial graph endpoint when page loads
-    if (selected && splitURL.length !== 6) {
-      props.history.push(`/data-browser/graphs/${selected.value}`);
-    }
+    // if (graphData[selected.value]) return; // Already cached
 
     if (singleGraph) {
       const nextState = produce(data, (draft) => {
@@ -155,7 +178,7 @@ export const Graphs = (props) => {
     <div className="Graphs">
       <GraphsHeader loading={options.length} overview={graphHeaderOverview} />
 
-      {options.length ? (
+      {options.length && singleGraph ? (
         <React.Fragment>
           <Select
             options={options}
