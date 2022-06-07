@@ -1,8 +1,8 @@
 import React from "react";
 
 const determineDataset = (year) => {
-  let ThreeYear = [2018, 2017];
-  let OneYear = [2019];
+  let ThreeYear = [2018];
+  let OneYear = [2020, 2019];
 
   if (ThreeYear.includes(year))
     return {
@@ -42,7 +42,7 @@ const DatasetDocsLink = ({ year }) => {
           rel="noopener noreferrer"
           href={`/documentation/${year}/static-dataset-faq`}
         >
-          Dataset FAQ.
+          Static Dataset FAQ.
         </a>
       </p>
     </div>
