@@ -33,4 +33,4 @@
 
 # Stretch Features
 
-- Add Period Queries in the URL to allow people to send specific graph data periods
+- ~~Add Period Queries in the URL to allow people to send specific graph data periods~~

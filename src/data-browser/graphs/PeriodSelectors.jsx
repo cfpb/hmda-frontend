@@ -1,15 +1,31 @@
+import { useEffect } from "react";
 import Select from "../Select";
 
 export const PeriodSelectors = ({
+  props,
   periodOpts,
   periodLow,
   setPeriodLow,
   periodHigh,
   setPeriodHigh,
+  endpoint,
 }) => {
   const showRangeReset =
-    periodLow !== periodOpts[0] ||
-    periodHigh !== periodOpts[periodOpts.length - 1];
+    periodLow.value !== periodOpts[0].value ||
+    periodHigh.value !== periodOpts[periodOpts.length - 1].value;
+
+  let baseURL = "/data-browser/graphs";
+
+  /* 
+  Listens for period selections changes. Updates URL with period options if changed
+  Allows people to directly link a graph with specfic periods 
+  */
+  useEffect(() => {
+    props.history.push({
+      pathname: `${baseURL}/${endpoint}`,
+      search: `?periodLow=${periodLow.value}&periodHigh=${periodHigh.value}`,
+    });
+  }, [periodLow, periodHigh]);
 
   return (
     <div className="period-wrapper">
