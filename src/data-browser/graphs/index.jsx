@@ -8,6 +8,7 @@ import { deriveHighchartsConfig } from "./highchartsConfig";
 import { PeriodSelectors } from "./PeriodSelectors";
 import { produce } from "immer";
 import LoadingIcon from "../../common/LoadingIcon";
+import { useQuery } from "./utils/utils.js";
 
 export const Graphs = (props) => {
   const [options, setOptions] = useState([]); // All the graph options with categories
@@ -20,6 +21,8 @@ export const Graphs = (props) => {
   const [periodLow, setPeriodLow] = useState(); // Period filters
   const [periodHigh, setPeriodHigh] = useState();
   const [categories, setCategories] = useState(); // Holds the xAxis values/labels
+
+  let query = useQuery();
 
   const formatGroupLabel = (data) => (
     <div style={groupStyles}>
@@ -144,10 +147,26 @@ export const Graphs = (props) => {
       });
       setData(nextState);
 
+      let lowPeriod = query.get("periodLow");
+      let highPeriod = query.get("periodHigh");
+
       // Dynamically generate period selector options
-      if (categories) {
-        let periodOptions = categories.map((yq) => ({ value: yq, label: yq }));
-        setQuarters(periodOptions);
+      let periodOptions = categories.map((yq) => ({
+        value: yq,
+        label: yq,
+      }));
+      setQuarters(periodOptions);
+
+      // Set periods based off URL parameters otherwise set periods based off categories which contains quarters
+      if (
+        props.location.search.match(/periodLow/) &&
+        props.location.search.match(/periodHigh/) &&
+        periodOptions.some((q) => q.value == lowPeriod) &&
+        periodOptions.some((q) => q.value == highPeriod)
+      ) {
+        setPeriodLow({ value: lowPeriod, label: lowPeriod });
+        setPeriodHigh({ value: highPeriod, label: highPeriod });
+      } else {
         setPeriodLow(periodOptions[0]);
         setPeriodHigh(periodOptions[periodOptions.length - 1]);
       }
@@ -208,8 +227,8 @@ export const Graphs = (props) => {
                 title: singleGraph.title,
                 subtitle: singleGraph.subtitle,
                 periodRange: [
-                  quarters.indexOf(periodLow),
-                  quarters.indexOf(periodHigh) + 1,
+                  quarters.findIndex((q) => q.value == periodLow.value),
+                  quarters.findIndex((q) => q.value == periodHigh.value) + 1,
                 ],
                 series: data[selected.value],
                 yAxis: [singleGraph.yLabel],
