@@ -6,7 +6,6 @@ import MapsGraphs from "./maps/MapsGraphs.jsx";
 import NotFound from "../common/NotFound";
 import { withAppContext } from "../common/appContextHOC";
 import { Graphs } from "./graphs";
-import { fetchGraphs } from "./graphs/utils/utils";
 
 const DataBrowser = (props) => {
   const { publicationReleaseYear } = props.config;
