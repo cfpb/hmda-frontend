@@ -208,14 +208,16 @@ export const Graphs = (props) => {
             }
             formatGroupLabel={(data) => formatGroupLabel(data)}
           />
-          {singleGraph && quarters && (
+          {selected && singleGraph && quarters && (
             <PeriodSelectors
               {...{
+                props,
                 periodOpts: quarters,
                 periodLow,
                 setPeriodLow,
                 periodHigh,
                 setPeriodHigh,
+                endpoint: selected.value,
               }}
             />
           )}
