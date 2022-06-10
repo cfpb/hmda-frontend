@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Select from "../Select.jsx";
 import { Graph } from "./Graph";
 import { groupStyles, groupBadgeStyles } from "./utils/inlineStyling";
@@ -23,6 +23,24 @@ export const Graphs = (props) => {
   const [categories, setCategories] = useState(); // Holds the xAxis values/labels
 
   let query = useQuery();
+
+  // This will only be called once, upon loading of the Highcharts graph
+  const onGraphLoad = useCallback((chartRef) => {
+    console.log('Graph loaded!')
+    console.log(chartRef)
+
+    // 1. Get a the list of visible series names from the query string
+    const visible = query.get('visibleSeries')?.split(',') || []
+
+    // 2. Hide any lines not listed in the URL
+    chartRef.series.forEach(s => {
+      if (!visible.includes(s.name)) {
+        console.log(`Automatically hiding ${s.name}`)
+        s.hide()
+      }
+    })
+
+  }, [query])
 
   const formatGroupLabel = (data) => (
     <div style={groupStyles}>
@@ -224,6 +242,7 @@ export const Graphs = (props) => {
 
           {selected && singleGraph && quarters && (
             <Graph
+              onLoad={onGraphLoad}
               options={deriveHighchartsConfig({
                 loading: !data[selected.value],
                 title: singleGraph.title,
