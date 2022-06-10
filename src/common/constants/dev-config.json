@@ -29,7 +29,7 @@
       }
     }
   ],
-  "publicationReleaseYear": "2020",
+  "publicationReleaseYear": "2021",
   "mlarReleaseYear": "2021",
   "maintenanceMode": false,
   "filingAnnouncement": {
@@ -52,10 +52,18 @@
       "2017"
     ],
     "shared": [
+      "2021",
       "2020",
       "2019",
       "2018",
       "2017"
+    ],
+    "threeYear": [
+      "2018"
+    ],
+    "oneYear": [
+      "2020",
+      "2019"
     ]
   },
   "dataBrowserYears": [
