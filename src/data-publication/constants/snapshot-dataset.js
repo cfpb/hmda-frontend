@@ -10,23 +10,23 @@ export const SNAPSHOT_DATASET = {
     snapshot_date: 'Apr 30, 2022',
     datasets: [
       {
-        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2020/2020_public_lar_csv.zip',
-        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2020/2020_public_lar_pipe.zip',
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_lar_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_lar_pipe.zip',
         label: 'Loan/Application Records (LAR)'
       },
       {
-        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2020/2020_public_ts_csv.zip',
-        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2020/2020_public_ts_pipe.zip',
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_ts_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_ts_pipe.zip',
         label: 'Transmittal Sheet Records (TS)'
       },
       {
-        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2020/2020_public_panel_csv.zip',
-        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2020/2020_public_panel_pipe.zip',
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_panel_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_panel_pipe.zip',
         label: 'Reporter Panel'
       },
       {
-        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2020/2020_public_msamd_csv.zip',
-        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2020/2020_public_msamd_pipe.zip',
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_msamd_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_msamd_pipe.zip',
         label: 'MSA/MD Description'
       },
       ARID2017_XREF

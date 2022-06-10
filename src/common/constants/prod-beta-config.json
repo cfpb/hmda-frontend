@@ -38,7 +38,7 @@
       }
     }
   ],
-  "publicationReleaseYear": "2020",
+  "publicationReleaseYear": "2021",
   "maintenanceMode": false,
   "filingAnnouncement": {
     "heading": "Collection of 2018 HMDA Data Will End",
@@ -53,6 +53,7 @@
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
+      "2021",
       "2020",
       "2019",
       "2018",
@@ -67,6 +68,7 @@
     ]
   },
   "dataBrowserYears": [
+    "2021",
     "2020",
     "2019",
     "2018"

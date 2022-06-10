@@ -1,7 +1,7 @@
 .TextSelector {
   display: flex;
-  border: 1px solid #aaa;
-  border-radius: 10px;
+  /* border-bottom: 1px solid #555; */
+  /* border-radius: 10px; */
   padding: 0em 1em;
   align-items: center;
   line-height: 1.25em;
@@ -12,23 +12,39 @@
 
 .TextSelector .label {
   color: #555;
+  /* border-bottom: 1px solid #555; */
   text-transform: uppercase;
   margin-right: 0.5em;
-  width: 6em;
+  width: 20%;
 }
 
 .TextSelector .label,
 .TextSelector .option {
-  margin: 0;
+  margin: 0 5px 0 0;
   white-space: nowrap;
 }
+
+.TextSelector .options {
+  /* margin: .5em 0 0; */
+  padding: 0.2em 0;
+  display: flex;
+  /* justify-content: space-evenly; */
+  /* align-items: flex-end; */
+  flex-grow: 1;
+  /* overflow: scroll; */
+  width: 100%;
+  background: transparent;
+}
+
+/* .TextSelector .options  */
 
 .TextSelector .option {
   padding: .25em;
   cursor: pointer;
   text-decoration: none;
   color: #555;
-  width: 85px;
+  /* min-width: 85px; */
+  width: 10em;
   border: 2px solid #eee;
   border-radius: 10px;
   text-align: center;
@@ -48,12 +64,6 @@
 .TextSelector .option:not(.active):hover {
   text-decoration-color: #666;
   border-color: #666;
-}
-
-.TextSelector .options {
-  padding: 0.25em 0;
-  display: flex;
-  flex-grow: 1;
 }
 
 .TextSelector .option.QueryButton {  margin: 0; }

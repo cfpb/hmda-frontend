@@ -491,4 +491,5 @@ export default {
   2018: msaToName,
   2019: msaToName2019,
   2020: msaToName2020,
+  2021: msaToName2020,
 }

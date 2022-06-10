@@ -41,7 +41,6 @@ export function createQueryString(category, items, first=false){
   return `${qs}${category}=${items.join(',')}`
 }
 
-
 export function makeUrl(obj, isCSV, includeVariables=true) {
   if(!obj) return ''
   let url = API_BASE_URL
