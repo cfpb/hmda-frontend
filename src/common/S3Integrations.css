@@ -1,0 +1,47 @@
+.s3-modified {
+  margin-left: 10px;
+  color: grey;
+}
+
+.s3-modified .label {
+  padding-bottom: 1px;
+  margin-right: 3px;
+  color: black;
+}
+.s3-modified.not-found {
+  padding: 0.25em 0 0 0.5em;
+  margin: 0;
+}
+.s3-modified .warning {
+  max-height: 30px;
+  overflow: hidden;
+  border-left: 3px solid transparent;
+  padding-left: 0.5em;
+  margin-left: calc(-1em - 3px);
+  transition: max-height .3s;
+}
+.s3-modified .warning .marker {
+  color: goldenrod;
+  font-size: 1.1em;
+}
+.s3-modified .warning .content {
+  color: #555;
+  display: none;
+  width: 90%;
+  min-width: 100px;
+  padding: 4px 0 5px 1rem;
+}
+
+/* Interactions */
+.dataset:hover .s3-modified .warning,
+.dataset:focus-within .s3-modified .warning {
+  max-height: 120px;
+  transition: max-height .3s;
+  border: 1px dashed goldenrod;
+  border-left: 3px solid goldenrod;
+}
+
+.dataset:focus-within .s3-modified .warning > *:not(.marker),
+.dataset:hover .s3-modified .warning > *:not(.marker){
+  display: inline-block;
+}

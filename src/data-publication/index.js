@@ -8,6 +8,8 @@ import Disclosure from './reports/Disclosure'
 import Aggregate from './reports/Aggregate'
 import NationalAggregate from './reports/NationalAggregate'
 import Snapshot from './reports/snapshot/index'
+import ThreeYearDataset from './reports/three_year/index'
+import OneYearDataset from './reports/one_year/index'
 import DynamicDataset from './reports/DynamicDataset'
 import NotFound from '../common/NotFound'
 import { withAppContext } from '../common/appContextHOC.jsx'
@@ -16,17 +18,18 @@ import PublicationChanges from './ChangeLog/'
 import './index.css'
 
 const DataPublication = ({ config }) => {
-  const { dynamic, snapshot, shared, mlar } = config.dataPublicationYears
+  const { dynamic, oneYear, snapshot, shared, threeYear } = config.dataPublicationYears
   const snapshotYears = snapshot || shared
   const dynamicYears = dynamic || shared
-  const mlarYear = (mlar || shared)[0]
+  const threeYearYears = threeYear || shared
+  const oneYearYears = oneYear || shared
 
   return (
     <div className="App DataPublication">
       <Switch>
-        <Route exact path="/data-publication" component={Home} />
+        <Redirect exact from="/data-publication" to={`/data-publication/${shared[0]}`} />
         <Route exact path = "/data-publication/updates" component={PublicationChanges} />
-        <Redirect exact from="/data-publication/modified-lar" to={`/data-publication/modified-lar/${mlarYear}`} />
+        <Redirect exact from="/data-publication/modified-lar" to="/data-publication/modified-lar/2019" />
         <Route path="/data-publication/documents" component={SupportingDocs} />
         <Route path="/data-publication/modified-lar/:year" component={ModifiedLar} />
         <Route
@@ -52,6 +55,22 @@ const DataPublication = ({ config }) => {
           }}
         />
         <Route
+          path="/data-publication/three-year-national-loan-level-dataset/:year?"
+          render={ props => {
+            const { year } = props.match.params
+            if(year && threeYearYears.indexOf(year) === -1) return <NotFound/>
+            return <ThreeYearDataset {...props}/>
+          }}
+        />
+        <Route
+          path="/data-publication/one-year-national-loan-level-dataset/:year?"
+          render={ props => {
+            const { year } = props.match.params
+            if(year && oneYearYears.indexOf(year) === -1) return <NotFound/>
+            return <OneYearDataset {...props}/>
+          }}
+        />
+        <Route
           path="/data-publication/dynamic-national-loan-level-dataset/:year?"
           render={ props => {
             const { year } = props.match.params
@@ -59,6 +78,7 @@ const DataPublication = ({ config }) => {
             return <DynamicDataset {...props}/>
           }}
         />
+        <Route path="/data-publication/:year" component={Home} />
         <Route component={NotFound} />
       </Switch>
     </div>

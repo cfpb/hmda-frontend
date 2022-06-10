@@ -27,7 +27,7 @@ function renderDatasets(datasets){
             <ul>
               <S3DatasetLink url={dataset.csv} label='CSV' showLastUpdated />
               <S3DatasetLink
-                url={dataset.csv}
+                url={dataset.txt}
                 label='Pipe Delimited'
                 showLastUpdated
               />

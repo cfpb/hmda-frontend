@@ -7,8 +7,7 @@ const ARID2017_XREF = {
 
 export const SNAPSHOT_DATASET = {
   2021: {
-    snapshot_date: 'May 4, 2022',
-    codesheet: 'https://github.com/cfpb/hmda-platform/raw/master/docs/v2/spec/2020_Public_LAR_Code_Sheet_PDF.pdf',
+    snapshot_date: 'Apr 30, 2022',
     datasets: [
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_lar_csv.zip',
@@ -35,7 +34,6 @@ export const SNAPSHOT_DATASET = {
   },
   2020: {
     snapshot_date: 'May 3, 2021',
-    codesheet: 'https://github.com/cfpb/hmda-platform/raw/master/docs/v2/spec/2020_Public_LAR_Code_Sheet_PDF.pdf',
     datasets: [
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2020/2020_public_lar_csv.zip',
@@ -62,7 +60,6 @@ export const SNAPSHOT_DATASET = {
   },
   2019: {
     snapshot_date: 'April 27, 2020',
-    codesheet: 'https://github.com/cfpb/hmda-platform/raw/master/docs/v2/spec/2019_Public_LAR_Code_Sheet_PDF.pdf',
     datasets: [
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2019/2019_public_lar_csv.zip',
@@ -89,7 +86,6 @@ export const SNAPSHOT_DATASET = {
   },
   2018: {
     snapshot_date: 'August 7th, 2019',
-    codesheet: 'https://github.com/cfpb/hmda-platform/raw/master/docs/v2/spec/2018_Public_LAR_Code_Sheet_PDF.pdf',
     datasets: [
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2018/2018_public_lar_csv.zip',
