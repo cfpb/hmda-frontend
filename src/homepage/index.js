@@ -21,7 +21,7 @@ const FigLastUpdated = ({ year }) => {
 
 const Home = ({ config }) => {
   const isProdBeta = isProd() && isBeta()
-  const { defaultPeriod, publicationReleaseYear, mlarReleaseYear } = config
+  const { defaultPeriod, publicationReleaseYear, mlarReleaseYear, dataPublicationYears } = config
 
   return (
     <main className="App home" id="main-content">
@@ -248,6 +248,16 @@ const Home = ({ config }) => {
                 <li>
                   <a href={`/data-publication/snapshot-national-loan-level-dataset/${publicationReleaseYear}`}>
                     Snapshot National Loan-Level Dataset
+                  </a>
+                </li>
+                <li>
+                  <a href={`/data-publication/one-year-national-loan-level-dataset/${dataPublicationYears.oneYear[0]}`}>
+                    One Year National Loan-Level Dataset
+                  </a>
+                </li>
+                <li>
+                  <a href={`/data-publication/three-year-national-loan-level-dataset/${dataPublicationYears.threeYear[0]}`}>
+                    Three Year National Loan-Level Dataset
                   </a>
                 </li>
                 <li>
