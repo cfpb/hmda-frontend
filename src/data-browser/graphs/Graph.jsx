@@ -11,7 +11,7 @@ HighchartsExportData(Highcharts); // Enable export of underlying data
 Highcharts.seriesTypes.line.prototype.drawLegendSymbol =
   Highcharts.seriesTypes.area.prototype.drawLegendSymbol;
 
-export const Graph = ({ options, loading }) => {
+export const Graph = ({ options, loading, onLoad }) => {
   let chartRef = useRef();
 
   useEffect(() => {
@@ -38,6 +38,7 @@ export const Graph = ({ options, loading }) => {
           highcharts={Highcharts}
           options={options}
           ref={chartRef}
+          callback={onLoad}
         />
       </div>
     </div>

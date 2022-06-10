@@ -30,6 +30,9 @@ export const baseConfig = {
     spline: {
       marker: { enabled: true }, // OPTION: Show/Hide point markers
     },
+    series: {
+      events: {}
+    }
   },
   legend: {
     padding: 15,
@@ -105,6 +108,16 @@ export const deriveHighchartsConfig = ({
   config.subtitle.text = subtitle;
   config.xAxis = xAxis;
 
+  config.plotOptions.series.events.hide = (event) => {
+    // TODO: Remove from list of visible series lines
+    console.log('[Event] hide: ', event.target.userOptions.name)
+  }
+  
+  config.plotOptions.series.events.show = (event) => {
+    // TODO: Add to list of visible series lines
+    console.log('[Event] show: ', event.target.userOptions.name)
+  }
+  
   // Filter to focus on selected Filing Period range
   config.series = loading ? [] : filterByPeriods(series, ...periodRange);
 
