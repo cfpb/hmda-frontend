@@ -7,7 +7,7 @@ const ARID2017_XREF = {
 
 export const SNAPSHOT_DATASET = {
   2021: {
-    snapshot_date: 'May 4, 2022',
+    snapshot_date: 'Apr 30, 2022',
     datasets: [
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2020/2020_public_lar_csv.zip',
