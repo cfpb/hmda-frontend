@@ -1,5 +1,5 @@
 import { hmda_charts, seriesColors, yearQuarters } from "./config";
-import { cloneObject, filterByPeriods } from "./utils/utils";
+import { cloneObject, filterByPeriods, useQuery } from "./utils/utils";
 
 // Highcharts configuration for a line graph
 export const baseConfig = {
@@ -24,15 +24,15 @@ export const baseConfig = {
     type: "spline",
     spacingLeft: 0,
     spacingRight: 0,
-    height: "60%"
+    height: "60%",
   },
   plotOptions: {
     spline: {
       marker: { enabled: true }, // OPTION: Show/Hide point markers
     },
     series: {
-      events: {}
-    }
+      events: {},
+    },
   },
   legend: {
     padding: 15,
@@ -102,22 +102,65 @@ export const deriveHighchartsConfig = ({
   xAxis = [defaultAxisX],
   yAxis,
   categories = [...yearQuarters],
+  seriesForURL,
+  setSeriesForURL,
+  periodLow,
+  periodHigh,
+  endpoint,
+  props,
 }) => {
   const config = cloneObject(baseConfig);
   config.title.text = title;
   config.subtitle.text = subtitle;
   config.xAxis = xAxis;
 
+  // Listener used to track when a user de-selects a series
   config.plotOptions.series.events.hide = (event) => {
-    // TODO: Remove from list of visible series lines
-    console.log('[Event] hide: ', event.target.userOptions.name)
-  }
-  
+    let baseURL = "/data-browser/graphs";
+
+    // Remove specific series when de-selected from HighCharts
+    // BUG: Deletes all series in URL when going to /graphs otherwise if series is in URL then it works as intended
+    const index = seriesForURL.indexOf(event.target.userOptions.name);
+    if (index > -1) {
+      seriesForURL.splice(index, 1);
+    }
+
+    // Replacing spaces in the series with "%20" that way the series can properly be added to the URL
+    seriesForURL.forEach((s) => {
+      if (/\s/.test(s)) {
+        s.replace(" ", "%20");
+      }
+    });
+
+    console.log(seriesForURL.length, "HIGHCHARTS CONFIG DE-SELECT SERIES");
+    setSeriesForURL(seriesForURL);
+
+    // Rebuild URL when a series has been deselected
+    props.history.push({
+      pathname: `${baseURL}/${endpoint}`,
+      search: `?periodLow=${periodLow.value}&periodHigh=${periodHigh.value}&visibleSeries=${seriesForURL}`,
+    });
+  };
+
+  // Listener used to track when a user selects a series
   config.plotOptions.series.events.show = (event) => {
-    // TODO: Add to list of visible series lines
-    console.log('[Event] show: ', event.target.userOptions.name)
-  }
-  
+    let baseURL = "/data-browser/graphs";
+
+    console.log(seriesForURL, "HIGHCHARTS CONFIG SELECT SERIES");
+
+    if (!seriesForURL.includes(event.target.userOptions.name)) {
+      seriesForURL.push(event.target.userOptions.name);
+    }
+
+    // Rebuild URL when a series has been selected
+    props.history.push({
+      pathname: `${baseURL}/${endpoint}`,
+      search: `?periodLow=${periodLow.value}&periodHigh=${periodHigh.value}&visibleSeries=${seriesForURL}`,
+    });
+
+    setSeriesForURL(seriesForURL);
+  };
+
   // Filter to focus on selected Filing Period range
   config.series = loading ? [] : filterByPeriods(series, ...periodRange);
 

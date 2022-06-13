@@ -9,6 +9,7 @@ export const PeriodSelectors = ({
   periodHigh,
   setPeriodHigh,
   endpoint,
+  seriesForURL,
 }) => {
   const showRangeReset =
     periodLow.value !== periodOpts[0].value ||
@@ -18,14 +19,15 @@ export const PeriodSelectors = ({
 
   /* 
   Listens for period selections changes. Updates URL with period options if changed
-  Allows people to directly link a graph with specfic periods 
+  Allows people to directly link a graph with specfic periods and series
   */
   useEffect(() => {
+    console.log(seriesForURL, "PERIOD SELECTOR");
     props.history.push({
       pathname: `${baseURL}/${endpoint}`,
-      search: `?periodLow=${periodLow.value}&periodHigh=${periodHigh.value}`,
+      search: `?periodLow=${periodLow.value}&periodHigh=${periodHigh.value}&visibleSeries=${seriesForURL}`,
     });
-  }, [periodLow, periodHigh]);
+  }, [periodLow, periodHigh, seriesForURL]);
 
   return (
     <div className="period-wrapper">
