@@ -6,6 +6,16 @@ import publicationsByYear from './constants/publications-by-year'
 import NotFound from '../common/NotFound.jsx'
 import { Link } from 'react-router-dom'
 
+const MoreInfo = ({ label, value }) => {
+  if (!value) return null
+  return (
+    <div className='MoreInfo'>
+      <span className='marker'>→</span> <span className='label'>{label}</span>:
+      <span className='value'>{value}</span>
+    </div>
+  )
+}
+
 class Home extends Component {
   render() {
     const { year } = this.props.match.params
@@ -37,21 +47,41 @@ class Home extends Component {
           </Heading>
         </div>
 
-        <YearSelector 
-          year={year}
-          years={shared}
-          url='/data-publication'
-        />
+        <YearSelector year={year} years={shared} url='/data-publication' />
 
-        <div className="card-container">
-          {publicationsByYear[year].map((pub, idx) => (
-            <div className="card" key={`${year}-${idx}`}>
-              <Heading
-                type={4}
-                {...pub}
-              />
+        <div className='dataset-container'>
+          <div className='dynamic'>
+            <Heading type={3} headingText='Dynamic Datasets' />
+            <div className='card-container'>
+              {publicationsByYear[year]
+                .filter(p => p.group == 'dynamic')
+                .map((pub, idx) => (
+                  <div className='card' key={`${year}-${pub.headingText}`}>
+                    <Heading type={4} {...pub} />
+                    <MoreInfo
+                      label='Update Frequency'
+                      value={pub.updateFrequency}
+                    />
+                  </div>
+                ))}
             </div>
-          ))}
+          </div>
+          <div className='static'>
+            <Heading type={3} headingText='Static Datasets' />
+            <div className='card-container'>
+              {publicationsByYear[year]
+                .filter(p => p.group !== 'dynamic')
+                .map((pub, idx) => (
+                  <div className='card' key={`${year}-${pub.headingText}`}>
+                    <Heading type={4} {...pub} />
+                    <MoreInfo
+                      label='Update Frequency'
+                      value={pub.updateFrequency}
+                    />
+                  </div>
+                ))}
+            </div>
+          </div>
         </div>
       </div>
     )
