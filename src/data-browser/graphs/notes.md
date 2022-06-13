@@ -34,4 +34,3 @@
 # Stretch Features
 
 - ~~Add Period Queries in the URL to allow people to send specific graph data periods~~
-  - BUG: When visiting /graphs the event to hide the series will auto delete the series from URL otherwise if the URL contains the series to display it works as intended
