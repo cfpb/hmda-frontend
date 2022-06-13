@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Select from "../Select.jsx";
 import { Graph } from "./Graph";
 import { groupStyles, groupBadgeStyles } from "./utils/inlineStyling";
@@ -24,7 +24,6 @@ export const Graphs = (props) => {
   const [seriesForURL, setSeriesForURL] = useState();
 
   let query = useQuery();
-  let baseURL = "/data-browser/graphs";
 
   // This will only be called once, upon loading of the Highcharts graph
   const onGraphLoad = useCallback(
@@ -32,15 +31,14 @@ export const Graphs = (props) => {
       // 1. Get a the list of visible series names from the query string
       const visible = query.get("visibleSeries")?.split(",") || [];
 
-      console.log(visible, "visible from url");
-
-      // 2. Hide any lines not listed in the URL
-      chartRef.series.forEach((s) => {
-        if (!visible.includes(s.name)) {
-          console.log(s.name, "HIDE SERIES");
-          s.hide();
-        }
-      });
+      if (visible.length > 0) {
+        // 2. Hide any lines not listed in the URL
+        chartRef.series.forEach((s) => {
+          if (!visible.includes(s.name)) {
+            s.hide();
+          }
+        });
+      }
     },
     [query]
   );

@@ -119,7 +119,6 @@ export const deriveHighchartsConfig = ({
     let baseURL = "/data-browser/graphs";
 
     // Remove specific series when de-selected from HighCharts
-    // BUG: Deletes all series in URL when going to /graphs otherwise if series is in URL then it works as intended
     const index = seriesForURL.indexOf(event.target.userOptions.name);
     if (index > -1) {
       seriesForURL.splice(index, 1);
@@ -132,21 +131,18 @@ export const deriveHighchartsConfig = ({
       }
     });
 
-    console.log(seriesForURL.length, "HIGHCHARTS CONFIG DE-SELECT SERIES");
-    setSeriesForURL(seriesForURL);
-
     // Rebuild URL when a series has been deselected
     props.history.push({
       pathname: `${baseURL}/${endpoint}`,
       search: `?periodLow=${periodLow.value}&periodHigh=${periodHigh.value}&visibleSeries=${seriesForURL}`,
     });
+
+    setSeriesForURL(seriesForURL);
   };
 
   // Listener used to track when a user selects a series
   config.plotOptions.series.events.show = (event) => {
     let baseURL = "/data-browser/graphs";
-
-    console.log(seriesForURL, "HIGHCHARTS CONFIG SELECT SERIES");
 
     if (!seriesForURL.includes(event.target.userOptions.name)) {
       seriesForURL.push(event.target.userOptions.name);

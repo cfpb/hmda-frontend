@@ -18,11 +18,10 @@ export const PeriodSelectors = ({
   let baseURL = "/data-browser/graphs";
 
   /* 
-  Listens for period selections changes. Updates URL with period options if changed
-  Allows people to directly link a graph with specfic periods and series
+  useEffect: Listens for period selections changes and series changes in the URL, if found then re-builds the URL
   */
+
   useEffect(() => {
-    console.log(seriesForURL, "PERIOD SELECTOR");
     props.history.push({
       pathname: `${baseURL}/${endpoint}`,
       search: `?periodLow=${periodLow.value}&periodHigh=${periodHigh.value}&visibleSeries=${seriesForURL}`,
