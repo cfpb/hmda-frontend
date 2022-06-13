@@ -3,6 +3,7 @@ const ARID2017_XREF = {
   csv: "https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/arid2017tolei/arid2017_to_lei_xref_csv.zip",
   txt: "https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/arid2017tolei/arid2017_to_lei_xref_psv.zip",
   label: "ARID2017 to LEI Reference Table",
+  dataKey: 'arid'
 }
 
 export const SNAPSHOT_DATASET = {
@@ -12,22 +13,26 @@ export const SNAPSHOT_DATASET = {
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_lar_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_lar_pipe.zip',
-        label: 'Loan/Application Records (LAR)'
+        label: 'Loan/Application Records (LAR)',
+        dataKey: 'lar',
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_ts_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_ts_pipe.zip',
-        label: 'Transmittal Sheet Records (TS)'
+        label: 'Transmittal Sheet Records (TS)',
+        dataKey: 'ts',
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_panel_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_panel_pipe.zip',
-        label: 'Reporter Panel'
+        label: 'Reporter Panel',
+        dataKey: 'panel',
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_msamd_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_msamd_pipe.zip',
-        label: 'MSA/MD Description'
+        label: 'MSA/MD Description',
+        dataKey: 'msamd',
       },
       ARID2017_XREF
     ]
@@ -38,22 +43,26 @@ export const SNAPSHOT_DATASET = {
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2020/2020_public_lar_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2020/2020_public_lar_pipe.zip',
-        label: 'Loan/Application Records (LAR)'
+        label: 'Loan/Application Records (LAR)',
+        dataKey: 'lar',
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2020/2020_public_ts_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2020/2020_public_ts_pipe.zip',
-        label: 'Transmittal Sheet Records (TS)'
+        label: 'Transmittal Sheet Records (TS)',
+        dataKey: 'ts',
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2020/2020_public_panel_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2020/2020_public_panel_pipe.zip',
-        label: 'Reporter Panel'
+        label: 'Reporter Panel',
+        dataKey: 'panel',
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2020/2020_public_msamd_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2020/2020_public_msamd_pipe.zip',
-        label: 'MSA/MD Description'
+        label: 'MSA/MD Description',
+        dataKey: 'msamd',
       },
       ARID2017_XREF
     ]
@@ -64,22 +73,26 @@ export const SNAPSHOT_DATASET = {
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2019/2019_public_lar_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2019/2019_public_lar_pipe.zip',
-        label: 'Loan/Application Records (LAR)'
+        label: 'Loan/Application Records (LAR)',
+        dataKey: 'lar',
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2019/2019_public_ts_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2019/2019_public_ts_pipe.zip',
-        label: 'Transmittal Sheet Records (TS)'
+        label: 'Transmittal Sheet Records (TS)',
+        dataKey: 'ts',
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2019/2019_public_panel_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2019/2019_public_panel_pipe.zip',
-        label: 'Reporter Panel'
+        label: 'Reporter Panel',
+        dataKey: 'panel',
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2019/2019_public_msamd_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2019/2019_public_msamd_pipe.zip',
-        label: 'MSA/MD Description'
+        label: 'MSA/MD Description',
+        dataKey: 'msamd',
       },
       ARID2017_XREF
     ]
@@ -90,22 +103,26 @@ export const SNAPSHOT_DATASET = {
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2018/2018_public_lar_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2018/2018_public_lar_pipe.zip',
-        label: 'Loan/Application Records (LAR)'
+        label: 'Loan/Application Records (LAR)',
+        dataKey: 'lar',
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2018/2018_public_ts_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2018/2018_public_ts_pipe.zip',
-        label: 'Transmittal Sheet Records (TS)'
+        label: 'Transmittal Sheet Records (TS)',
+        dataKey: 'ts',
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2018/2018_public_panel_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2018/2018_public_panel_pipe.zip',
-        label: 'Reporter Panel'
+        label: 'Reporter Panel',
+        dataKey: 'panel',
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2018/2018_public_msamd_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2018/2018_public_msamd_pipe.zip',
-        label: 'MSA/MD Description'
+        label: 'MSA/MD Description',
+        dataKey: 'msamd',
       },
       ARID2017_XREF
     ]
@@ -118,22 +135,26 @@ export const SNAPSHOT_DATASET = {
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_lar_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_lar_txt.zip',
-        label: 'Loan/Application Records (LAR)'
+        label: 'Loan/Application Records (LAR)',
+        dataKey: 'lar',
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_ts_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_ts_txt.zip',
-        label: 'Transmittal Sheet Records (TS)'
+        label: 'Transmittal Sheet Records (TS)',
+        dataKey: 'ts',
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_panel_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_panel_txt.zip',
-        label: 'Reporter Panel'
+        label: 'Reporter Panel',
+        dataKey: 'panel',
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_msamd_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_msamd_txt.zip',
-        label: 'MSA/MD Description'
+        label: 'MSA/MD Description',
+        dataKey: 'msamd',
       },
       ARID2017_XREF
     ]

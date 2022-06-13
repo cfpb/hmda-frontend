@@ -4,6 +4,7 @@ import YearSelector from '../../../common/YearSelector.jsx'
 import { SNAPSHOT_DATASET } from '../../constants/snapshot-dataset.js'
 import { withAppContext } from '../../../common/appContextHOC.jsx'
 import { S3DatasetLink } from '../../../common/S3Integrations'
+import { LabelWithTooltip } from '../LabelWithTooltip'
 import './Snapshot.css'
 
 function linkToDocs(year = '2018'){
@@ -23,7 +24,7 @@ function renderDatasets(datasets){
       {datasets.map((dataset, i) => {
         return (
           <li key={i}>
-            {dataset.label}
+            <LabelWithTooltip {...dataset} />
             <ul>
               <S3DatasetLink url={dataset.csv} label='CSV' showLastUpdated />
               <S3DatasetLink
