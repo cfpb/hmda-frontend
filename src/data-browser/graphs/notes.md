@@ -29,8 +29,9 @@
   - ~~Populate xAxis/categories with dynamic labels from selected graph response~~
 - ~~Update data table in conjunction with graph when period range changes~~
   - ~~Currently you need to hide then re-show the table to get it to update~~
-- Data table does not update when a line is checked off via the legend
+- ~~Data table does not update when a line is checked off via the legend~~
 
 # Stretch Features
 
 - ~~Add Period Queries in the URL to allow people to send specific graph data periods~~
+  - BUG: When visiting /graphs the event to hide the series will auto delete the series from URL otherwise if the URL contains the series to display it works as intended

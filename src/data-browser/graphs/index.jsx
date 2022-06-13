@@ -21,26 +21,29 @@ export const Graphs = (props) => {
   const [periodLow, setPeriodLow] = useState(); // Period filters
   const [periodHigh, setPeriodHigh] = useState();
   const [categories, setCategories] = useState(); // Holds the xAxis values/labels
+  const [seriesForURL, setSeriesForURL] = useState();
 
   let query = useQuery();
+  let baseURL = "/data-browser/graphs";
 
   // This will only be called once, upon loading of the Highcharts graph
-  const onGraphLoad = useCallback((chartRef) => {
-    console.log('Graph loaded!')
-    console.log(chartRef)
+  const onGraphLoad = useCallback(
+    (chartRef) => {
+      // 1. Get a the list of visible series names from the query string
+      const visible = query.get("visibleSeries")?.split(",") || [];
 
-    // 1. Get a the list of visible series names from the query string
-    const visible = query.get('visibleSeries')?.split(',') || []
+      console.log(visible, "visible from url");
 
-    // 2. Hide any lines not listed in the URL
-    chartRef.series.forEach(s => {
-      if (!visible.includes(s.name)) {
-        console.log(`Automatically hiding ${s.name}`)
-        s.hide()
-      }
-    })
-
-  }, [query])
+      // 2. Hide any lines not listed in the URL
+      chartRef.series.forEach((s) => {
+        if (!visible.includes(s.name)) {
+          console.log(s.name, "HIDE SERIES");
+          s.hide();
+        }
+      });
+    },
+    [query]
+  );
 
   const formatGroupLabel = (data) => (
     <div style={groupStyles}>
@@ -64,6 +67,15 @@ export const Graphs = (props) => {
     );
     filingPeriods = Array.from(filingPeriods).sort();
     setCategories(filingPeriods);
+
+    // Generating a list of series to insert into the URL
+    let availableSeries = [];
+
+    response.series.forEach((s) => {
+      availableSeries.push(s.name);
+    });
+
+    setSeriesForURL(availableSeries);
 
     setSingleGraph(response);
   };
@@ -226,7 +238,7 @@ export const Graphs = (props) => {
             }
             formatGroupLabel={(data) => formatGroupLabel(data)}
           />
-          {selected && singleGraph && quarters && (
+          {selected && singleGraph && quarters && seriesForURL && (
             <PeriodSelectors
               {...{
                 props,
@@ -236,11 +248,12 @@ export const Graphs = (props) => {
                 periodHigh,
                 setPeriodHigh,
                 endpoint: selected.value,
+                seriesForURL,
               }}
             />
           )}
 
-          {selected && singleGraph && quarters && (
+          {selected && singleGraph && quarters && seriesForURL && (
             <Graph
               onLoad={onGraphLoad}
               options={deriveHighchartsConfig({
@@ -254,6 +267,12 @@ export const Graphs = (props) => {
                 series: data[selected.value],
                 yAxis: [singleGraph.yLabel],
                 categories, // will come from the xAxis values of the fetched data
+                props,
+                periodLow,
+                periodHigh,
+                endpoint: selected.value,
+                seriesForURL,
+                setSeriesForURL,
               })}
               loading={!data[selected.value]}
             />
