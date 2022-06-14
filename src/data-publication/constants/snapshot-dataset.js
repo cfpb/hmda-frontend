@@ -8,7 +8,7 @@ const ARID2017_XREF = {
 
 export const SNAPSHOT_DATASET = {
   2021: {
-    snapshot_date: 'Apr 30, 2022',
+    freezeDate: 'April 30, 2022',
     datasets: [
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2021/2021_public_lar_csv.zip',
@@ -38,7 +38,7 @@ export const SNAPSHOT_DATASET = {
     ]
   },
   2020: {
-    snapshot_date: 'May 3, 2021',
+    freezeDate: 'May 3, 2021',
     datasets: [
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2020/2020_public_lar_csv.zip',
@@ -68,7 +68,7 @@ export const SNAPSHOT_DATASET = {
     ]
   },
   2019: {
-    snapshot_date: 'April 27, 2020',
+    freezeDate: 'April 27, 2020',
     datasets: [
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2019/2019_public_lar_csv.zip',
@@ -98,7 +98,7 @@ export const SNAPSHOT_DATASET = {
     ]
   },
   2018: {
-    snapshot_date: 'August 7th, 2019',
+    freezeDate: 'August 7th, 2019',
     datasets: [
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2018/2018_public_lar_csv.zip',
@@ -128,7 +128,7 @@ export const SNAPSHOT_DATASET = {
     ]
   },
   2017: {
-    snapshot_date: 'April 18th, 2018',
+    freezeDate: 'April 18th, 2018',
     dataformat: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_dataformat.pdf',
     codesheet: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_codesheet.pdf',
     datasets: [

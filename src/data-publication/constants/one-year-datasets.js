@@ -1,5 +1,6 @@
 export const ONE_YEAR_DATASET = {
   2020: {
+    freezeDate: 'April 30, 2022',
     datasets: [
       {
         dataKey: 'lar',
@@ -28,6 +29,7 @@ export const ONE_YEAR_DATASET = {
     ],
   },
   2019: {
+    freezeDate: 'April 5, 2022',
     datasets: [
       {
         dataKey: 'lar',

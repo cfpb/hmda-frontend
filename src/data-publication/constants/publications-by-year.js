@@ -1,3 +1,7 @@
+import { ONE_YEAR_DATASET } from './one-year-datasets'
+import { SNAPSHOT_DATASET } from './snapshot-dataset'
+import { THREE_YEAR_DATASET } from './three-year-datasets'
+
 const base = '/data-publication/'
 const arLink = year => `${base}aggregate-reports/${year}`
 const drLink = year => `${base}disclosure-reports/${year}`
@@ -35,6 +39,7 @@ const publications = {
       headingLink: snapLink(2021),
       headingText: snapTitle,
       paragraphText: snapDesc,
+      freezeDate: SNAPSHOT_DATASET[2021].freezeDate
     },
     {
       updateFrequency: 'Does not update. Generated a few months after filing deadline',
@@ -74,6 +79,7 @@ const publications = {
       headingLink: oneYearLink(2020),
       headingText: oneYearTitle,
       paragraphText: oneYearDesc,
+      freezeDate: ONE_YEAR_DATASET[2020].freezeDate,
     },
     {
       updateFrequency: 'Does not update. Generated a few months after filing deadline',
@@ -81,6 +87,7 @@ const publications = {
       headingLink: snapLink(2020),
       headingText: snapTitle,
       paragraphText: snapDesc,
+      freezeDate: SNAPSHOT_DATASET[2020].freezeDate
     },
     {
       updateFrequency: 'Does not update. Generated a few months after filing deadline',
@@ -120,6 +127,7 @@ const publications = {
       headingLink: oneYearLink(2019),
       headingText: oneYearTitle,
       paragraphText: oneYearDesc,
+      freezeDate: ONE_YEAR_DATASET[2019].freezeDate,
     },
     {
       updateFrequency: 'Does not update. Generated a few months after filing deadline',
@@ -127,6 +135,7 @@ const publications = {
       headingLink: snapLink(2019),
       headingText: snapTitle,
       paragraphText: snapDesc,
+      freezeDate: SNAPSHOT_DATASET[2019].freezeDate
     },
     {
       updateFrequency: 'Does not update. Generated a few months after filing deadline',
@@ -166,6 +175,7 @@ const publications = {
       headingLink: threeYearLink(2018),
       headingText: threeYearTitle,
       paragraphText: threeYearDesc,
+      freezeDate: THREE_YEAR_DATASET[2018].freezeDate
     },
     {
       updateFrequency: 'Does not update. Generated a few months after filing deadline',
@@ -173,6 +183,7 @@ const publications = {
       headingLink: snapLink(2018),
       headingText: snapTitle,
       paragraphText: snapDesc,
+      freezeDate: SNAPSHOT_DATASET[2018].freezeDate
     },
     {
       updateFrequency: 'Does not update. Generated a few months after filing deadline',
@@ -212,6 +223,7 @@ const publications = {
       headingLink: snapLink(2017),
       headingText: snapTitle,
       paragraphText: snapDesc,
+      freezeDate: SNAPSHOT_DATASET[2017].freezeDate
     },
     {
       updateFrequency: 'Does not update. Generated a few months after filing deadline',

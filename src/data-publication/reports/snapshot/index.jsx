@@ -46,7 +46,7 @@ const Snapshot = props => {
   const { snapshot, shared  } = props.config.dataPublicationYears
   const years = snapshot || shared
   const dataForYear = SNAPSHOT_DATASET[year]
-  const snapshotDate = year ? dataForYear.snapshot_date : 'a fixed date per year'
+  const snapshotDate = year ? dataForYear.freezeDate : 'a fixed date per year'
 
   return (
     <div className='Snapshot' id='main-content'>

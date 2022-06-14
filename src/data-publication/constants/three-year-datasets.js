@@ -1,5 +1,6 @@
 export const THREE_YEAR_DATASET = {
   2018: {
+    freezeDate: 'December 31, 2021',
     datasets: [
       {
         label: 'Loan/Application Records (LAR)',
