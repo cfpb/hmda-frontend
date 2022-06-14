@@ -4,6 +4,7 @@ import YearSelector from '../../../common/YearSelector.jsx'
 import { THREE_YEAR_DATASET } from '../../constants/three-year-datasets.js'
 import { withAppContext } from '../../../common/appContextHOC.jsx'
 import { S3DatasetLink } from '../../../common/S3Integrations'
+import { LabelWithTooltip } from '../LabelWithTooltip.jsx'
 import './ThreeYear.css'
 
 function makeListLink(href, val) {
@@ -30,7 +31,7 @@ function renderDatasets(datasets){
       {datasets.map((dataset, i) => {
         return (
           <li key={i}>
-            {dataset.label}
+            <LabelWithTooltip {...dataset} />
             <ul>
               <S3DatasetLink
                 url={dataset.csv}
