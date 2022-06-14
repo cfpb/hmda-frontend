@@ -7,7 +7,12 @@ import { deriveConfig } from '../deriveConfig'
 const CONFIG_URL_PREFIX = 'https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/common/constants/'
 
 export function fetchEnvConfig(setFn, host) {
-  return fetch(`${CONFIG_URL_PREFIX}${getDefaultConfig(host).name}-config.json`)
+  const url = `${CONFIG_URL_PREFIX}${getDefaultConfig(host).name}-config.json`
+  const options = {
+    cache: 'reload', // Bypass the cache, always fetching the latest config on app load
+  }
+
+  return fetch(url, options)
     .then(data => data.json())
     .then(config => setFn(deriveConfig(config)))
 }
