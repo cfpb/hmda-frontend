@@ -14,7 +14,10 @@ export const filterByPeriods = (data, low, high) => {
   });
 };
 
-// Used to parse the URL and return the query parameter
+/**
+ * Function used to parse the URL - (i.e) periodLow -> "2018-Q4"
+ * @returns query parameter content
+ */
 export const useQuery = () => {
   const { search } = useLocation();
 

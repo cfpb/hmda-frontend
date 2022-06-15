@@ -9,6 +9,7 @@ import { PeriodSelectors } from "./PeriodSelectors";
 import { produce } from "immer";
 import LoadingIcon from "../../common/LoadingIcon";
 import { useQuery } from "./utils/utils.js";
+import CopyURLButton from "../../common/CopyURLButton.jsx";
 
 export const Graphs = (props) => {
   const [options, setOptions] = useState([]); // All the graph options with categories
@@ -43,6 +44,7 @@ export const Graphs = (props) => {
     [query]
   );
 
+  // Method passed to <Select /> to create categories in drop-down
   const formatGroupLabel = (data) => (
     <div style={groupStyles}>
       <span>{data.label}</span>
@@ -67,13 +69,7 @@ export const Graphs = (props) => {
     setCategories(filingPeriods);
 
     // Generating a list of series to insert into the URL
-    let availableSeries = [];
-
-    response.series.forEach((s) => {
-      availableSeries.push(s.name);
-    });
-
-    setSeriesForURL(availableSeries);
+    setSeriesForURL(response.series.map((s) => s.name));
 
     setSingleGraph(response);
   };
@@ -81,7 +77,6 @@ export const Graphs = (props) => {
   const handleGraphSelection = (e) => {
     setSelected(graphData.find((opt) => opt.value == e.value));
     fetchSingleGraph(e.value); // e.value = endpoint for single graph (i.e) -> /applications
-    props.history.push(`/data-browser/graphs/${e.value}`); // Push graph endpoint to url when one has been selected
   };
 
   const fetchAllGraphs = async () => {
@@ -144,7 +139,6 @@ export const Graphs = (props) => {
   // Fetch API data on graph selection
   useEffect(() => {
     if (!selected) return;
-    // if (graphData[selected.value]) return; // Already cached
 
     if (singleGraph) {
       const nextState = produce(data, (draft) => {
@@ -202,7 +196,10 @@ export const Graphs = (props) => {
   }, [selected, singleGraph, categories]);
 
   useEffect(() => {
-    // Used to populate drop-down with different options and categories
+    /* 
+    Used to populate drop-down with different options and categories
+    Adding new category to drop-down: a new object will need to be created with the label and the category to be filtered
+    */
     if (graphData) {
       let optionsWithCategories = [
         {
@@ -212,6 +209,10 @@ export const Graphs = (props) => {
         {
           label: "Interest Rates",
           options: graphData.filter((g) => g.category == "rate"),
+        },
+        {
+          label: "Percentage",
+          options: graphData.filter((g) => g.category == "percentage"),
         },
       ];
 
@@ -228,6 +229,7 @@ export const Graphs = (props) => {
       {options.length && singleGraph ? (
         <React.Fragment>
           <Select
+            classNamePrefix="react-select__graph" // Used for cypress testing
             options={options}
             placeholder="Select a Graph"
             onChange={(e) => handleGraphSelection(e)}
@@ -249,6 +251,21 @@ export const Graphs = (props) => {
                 seriesForURL,
               }}
             />
+          )}
+
+          {seriesForURL && (
+            <div
+              style={{
+                display: "block",
+                marginBottom: "20px",
+                marginTop: "20px",
+                textAlign: "right",
+              }}
+            >
+              <CopyURLButton
+                urlToWatch={[periodLow, periodHigh, seriesForURL]}
+              />
+            </div>
           )}
 
           {selected && singleGraph && quarters && seriesForURL && (
