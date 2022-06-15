@@ -17,10 +17,7 @@ export const PeriodSelectors = ({
 
   let baseURL = "/data-browser/graphs";
 
-  /* 
-  useEffect: Listens for period selections changes and series changes in the URL, if found then re-builds the URL
-  */
-
+  // Listens for period changes and series changes in the URL, if found then re-builds the URL
   useEffect(() => {
     props.history.push({
       pathname: `${baseURL}/${endpoint}`,
@@ -45,12 +42,14 @@ export const PeriodSelectors = ({
       )}
       <div className="period-range">
         <Select
+          classNamePrefix="react-select__period_start" // Used for cypress testing
           options={periodOpts.slice(0, -1)}
           onChange={(e) => setPeriodLow(e)}
           value={periodLow}
         />
         <div className="to">to</div>
         <Select
+          classNamePrefix="react-select__period_end" // Used for cypress testing
           options={periodOpts.filter((yq) =>
             periodLow ? yq.value > periodLow.value : yq
           )}
