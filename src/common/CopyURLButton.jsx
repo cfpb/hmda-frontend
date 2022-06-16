@@ -45,7 +45,7 @@ const CopyURLButton = ({ className, text, urlToWatch }) => {
             style={{ marginRight: "4px", fill: "white" }}
             fontWeight={"bold"}
           />
-          {text ? text : "Link"}
+          {text}
           {showTooltip ? (
             <span
               className="tooltiptext"
