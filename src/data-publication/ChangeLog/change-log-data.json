@@ -1,6 +1,25 @@
 {
   "log": [
     {
+      "date": "06/16/22",
+      "type": "release",
+      "product": "datasets",
+      "description": "One Year National Loan-Level (2019, 2020) and Three Year National Loan-Level (2018) datasets were released.",
+      "links": [
+        {"text": "One Year National Loan-Level Dataset", "url": "https://ffiec.cfpb.gov/data-publication/one-year-national-loan-level-dataset/2020"},
+        {"text": "Three Year National Loan-Level Dataset", "url": "https://ffiec.cfpb.gov/data-publication/three-year-national-loan-level-dataset/2018"}
+      ]
+    },
+    {
+      "date": "06/16/22",
+      "type": "release",
+      "product": "datasets",
+      "description": "Disclosure Reports, MSA/MD Aggregate Reports, Snapshot National Loan-Level dataset, and Dynamic National Loan-Level dataset for 2021 were released.",
+      "links": [
+        {"text": "HMDA Data Publications", "url": "https://ffiec.cfpb.gov/data-publication/"}
+      ]
+    },
+    {
       "date": "03/31/22",
       "type": "release",
       "product": "mlar",

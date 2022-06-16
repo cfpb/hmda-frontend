@@ -2,6 +2,15 @@
   "name": "prod",
   "announcement": [
     {
+      "heading": "2021 Data Publication Release",
+      "message": "On June 16, 2022, the 2021 static datasets, Disclosure Reports, and MSA/MD Aggregate reports were released and can be accessed via the ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/data-publication/",
+        "text": "Data Publications page."
+      }
+    },
+    {
       "heading": "2021 Modified LAR Release",
       "message": "On March 23, 2022, the 2021 Modified LAR data was released and can be accessed via the ",
       "type": "info",
@@ -29,7 +38,7 @@
       }
     }
   ],
-  "publicationReleaseYear": "2020",
+  "publicationReleaseYear": "2021",
   "mlarReleaseYear": "2021",
   "maintenanceMode": false,
   "filingAnnouncement": {
@@ -52,6 +61,7 @@
       "2017"
     ],
     "shared": [
+      "2021",
       "2020",
       "2019",
       "2018",
@@ -66,6 +76,7 @@
     ]
   },
   "dataBrowserYears": [
+    "2021",
     "2020",
     "2019",
     "2018"
