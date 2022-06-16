@@ -16,6 +16,7 @@ import { withAppContext } from '../common/appContextHOC.jsx'
 import PublicationChanges from './ChangeLog/'
 
 import './index.css'
+import { redirectIfNoYearProvided } from '../common/redirectIfNoYearProvided'
 
 const DataPublication = ({ config }) => {
   const { dynamic, oneYear, snapshot, shared, threeYear } = config.dataPublicationYears
@@ -34,15 +35,21 @@ const DataPublication = ({ config }) => {
         <Route path="/data-publication/modified-lar/:year" component={ModifiedLar} />
         <Route
           path="/data-publication/disclosure-reports/:year?/:institutionId?/:msaMdId?/:reportId?"
-          component={Disclosure}
+          render={props => {
+            return redirectIfNoYearProvided(props, shared[0]) || <Disclosure {...props} />
+          }}
         />
         <Route
           path="/data-publication/aggregate-reports/:year?/:stateId?/:msaMdId?/:reportId?"
-          component={Aggregate}
+          render={props => {
+            return redirectIfNoYearProvided(props, shared[0]) || <Aggregate {...props} />
+          }}
         />
         <Route
           path="/data-publication/national-aggregate-reports/:year?/:reportId?"
-          component={NationalAggregate}
+          render={props => {
+            return redirectIfNoYearProvided(props, 2017) || <NationalAggregate {...props} />
+          }}
         />
         <Route
           path="/data-publication/snapshot-national-loan-level-dataset/:year?"
@@ -51,7 +58,8 @@ const DataPublication = ({ config }) => {
             if(year && snapshotYears.indexOf(year) === -1){
               return <NotFound/>
             }
-            return <Snapshot {...props}/>
+            
+            return redirectIfNoYearProvided(props, snapshotYears[0]) || <Snapshot {...props}/>
           }}
         />
         <Route
@@ -59,7 +67,7 @@ const DataPublication = ({ config }) => {
           render={ props => {
             const { year } = props.match.params
             if(year && threeYearYears.indexOf(year) === -1) return <NotFound/>
-            return <ThreeYearDataset {...props}/>
+            return redirectIfNoYearProvided(props, threeYearYears[0]) || <ThreeYearDataset {...props}/>
           }}
         />
         <Route
@@ -67,7 +75,7 @@ const DataPublication = ({ config }) => {
           render={ props => {
             const { year } = props.match.params
             if(year && oneYearYears.indexOf(year) === -1) return <NotFound/>
-            return <OneYearDataset {...props}/>
+            return redirectIfNoYearProvided(props, oneYearYears[0]) || <OneYearDataset {...props}/>
           }}
         />
         <Route
@@ -75,7 +83,7 @@ const DataPublication = ({ config }) => {
           render={ props => {
             const { year } = props.match.params
             if(year && dynamicYears.indexOf(year) === -1) return <NotFound/>
-            return <DynamicDataset {...props}/>
+            return redirectIfNoYearProvided(props, dynamicYears[0]) || <DynamicDataset {...props}/>
           }}
         />
         <Route path="/data-publication/:year" component={Home} />
