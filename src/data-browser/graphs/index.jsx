@@ -263,6 +263,7 @@ export const Graphs = (props) => {
               }}
             >
               <CopyURLButton
+                text={"Share Graph"}
                 urlToWatch={[periodLow, periodHigh, seriesForURL]}
               />
             </div>
