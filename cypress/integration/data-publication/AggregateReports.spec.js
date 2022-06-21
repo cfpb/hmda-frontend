@@ -6,9 +6,9 @@ describe("Aggregate Reports", function () {
   it("2021", () => {
     cy.get({ HOST }).logEnv()
     cy.viewport(1680, 867)
-    cy.visit(`${HOST}/data-publication/aggregate-reports`)
-    cy.get(".YearSelector").contains("2021").click()
+    cy.visit(`${HOST}/data-publication/aggregate-reports/2021`)
 
+    // Select geography and report
     cy.findByText("Select a state...").type("Arizona{enter}")
     cy.findByText("Select MSA/MD...").type("Phoenix{enter}")
     cy.findByText("Select report...").type(
@@ -52,11 +52,9 @@ describe("Aggregate Reports", function () {
     cy.get({ HOST }).logEnv()
     // Report: Applications by Ethnicity and Sex
     cy.viewport(1680, 867)
-    cy.visit(`${HOST}/data-publication/aggregate-reports`)
-    cy.get("#root > .App > #main-content > .YearSelector > a")
-      .contains("2020")
-      .click()
-
+    cy.visit(`${HOST}/data-publication/aggregate-reports/2020`)
+    
+    // Select geography and report
     cy.findByText("Select a state...").type("Arizona{enter}")
     cy.findByText("Select MSA/MD...").type("Phoenix{enter}")
     cy.findByText("Select report...").type(
@@ -100,11 +98,9 @@ describe("Aggregate Reports", function () {
     cy.get({ HOST }).logEnv()
     // Report: Applications by Ethnicity and Sex
     cy.viewport(1680, 867)
-    cy.visit(`${HOST}/data-publication/aggregate-reports`)
-    cy.get("#root > .App > #main-content > .YearSelector > a")
-      .contains("2019")
-      .click()
+    cy.visit(`${HOST}/data-publication/aggregate-reports/2019`)
 
+    // Select geography and report
     cy.findByText("Select a state...").type("Arizona{enter}")
     cy.findByText("Select MSA/MD...").type("Phoenix{enter}")
     cy.findByText("Select report...").type(
@@ -150,12 +146,9 @@ describe("Aggregate Reports", function () {
 
     cy.viewport(1680, 867)
 
-    cy.visit(`${HOST}/data-publication/aggregate-reports`)
+    cy.visit(`${HOST}/data-publication/aggregate-reports/2018`)
 
-    cy.get("#root > .App > #main-content > .YearSelector > a")
-      .contains("2018")
-      .click()
-
+    // Select geography and report
     openSelector("#StateSelector")
     cy.get("#react-select-2-option-4").click()
     cy.get("#react-select-3-option-14").click()
@@ -235,12 +228,9 @@ describe("Aggregate Reports", function () {
 
     cy.viewport(1680, 867)
 
-    cy.visit(`${HOST}/data-publication/aggregate-reports`)
+    cy.visit(`${HOST}/data-publication/aggregate-reports/2017`)
 
-    cy.get("#root > .App > #main-content > .YearSelector > a")
-      .contains("2017")
-      .click()
-
+    // Select geography and report
     openSelector("#StateSelector")
     cy.get("#react-select-2-option-5").click()
     cy.get("#react-select-3-option-0").click()
