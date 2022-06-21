@@ -7,8 +7,7 @@ describe("Disclosure Reports", function () {
     it("Fetches a 2021 Applications by Tract Report", () => {
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 916)
-      cy.visit(`${HOST}/data-publication/disclosure-reports`)
-      cy.get(".YearSelector").contains("2021").click()
+      cy.visit(`${HOST}/data-publication/disclosure-reports/2021`)
 
       cy.get("#institution-name").click()
       cy.get("#institution-name").type("cypress")
@@ -59,10 +58,7 @@ describe("Disclosure Reports", function () {
     it("Fetches a 2020 Applications by Tract Report", function () {
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 916)
-      cy.visit(`${HOST}/data-publication/disclosure-reports`)
-      cy.get("#root > .App > #main-content > .YearSelector > a")
-        .contains("2020")
-        .click()
+      cy.visit(`${HOST}/data-publication/disclosure-reports/2020`)
 
       cy.get("#institution-name").click()
       cy.get("#institution-name").type("cypress")
@@ -116,10 +112,7 @@ describe("Disclosure Reports", function () {
     it("Fetches a 2019 Applications by Tract Report", function () {
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 916)
-      cy.visit(`${HOST}/data-publication/disclosure-reports`)
-      cy.get("#root > .App > #main-content > .YearSelector > a")
-        .contains("2019")
-        .click()
+      cy.visit(`${HOST}/data-publication/disclosure-reports/2019`)
 
       cy.get("#institution-name").click()
       cy.get("#institution-name").type("cypress")
@@ -173,10 +166,7 @@ describe("Disclosure Reports", function () {
     it("Fetches a 2018 Applications by Tract Report", function () {
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 867)
-      cy.visit(`${HOST}/data-publication/disclosure-reports/`)
-      cy.get("#root > .App > #main-content > .YearSelector > a")
-        .contains("2018")
-        .click()
+      cy.visit(`${HOST}/data-publication/disclosure-reports/2018`)
 
       cy.get("#institution-name").click()
       cy.get("#institution-name").type("cypress")
@@ -257,11 +247,7 @@ describe("Disclosure Reports", function () {
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 916)
 
-      cy.visit(`${HOST}/data-publication/disclosure-reports`)
-
-      cy.get("#root > .App > #main-content > .YearSelector > a")
-        .contains("2017")
-        .click()
+      cy.visit(`${HOST}/data-publication/disclosure-reports/2017`)
 
       cy.get("#institution-name").click()
       cy.get("#institution-name").type("cypress")
