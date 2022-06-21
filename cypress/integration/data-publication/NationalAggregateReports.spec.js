@@ -5,10 +5,7 @@ describe("National Aggregate Report - Not Generated", () => {
     it(`${year} does not have Reports`, () => {
       cy.get({ HOST }).logEnv()
       cy.viewport(1000, 867)
-      cy.visit(`${HOST}/data-publication/national-aggregate-reports`)
-      cy.get("#root > .App > #main-content > .YearSelector > a")
-        .contains(year)
-        .click()
+      cy.visit(`${HOST}/data-publication/national-aggregate-reports/${year}`)
       cy.get("#main-content h3")
         .last()
         .should(
@@ -23,10 +20,9 @@ describe("National Aggregate Report 2017", function () {
   it("Loans Sold by Purchaser Type", function () {
     cy.get({ HOST }).logEnv()
     cy.viewport(1680, 867)
-    cy.visit(`${HOST}/data-publication/national-aggregate-reports`)
-    cy.get("#root > .App > #main-content > .YearSelector > a")
-      .contains("2017")
-      .click()
+    cy.visit(`${HOST}/data-publication/national-aggregate-reports/2017`)
+
+    // Select Report
     cy.get("#react-select-2-option-0-1").click()
 
     // Confirm Report Selections
