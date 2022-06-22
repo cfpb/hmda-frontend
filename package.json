@@ -79,6 +79,7 @@
     "serialize-javascript": "5.0.1"
   },
   "resolutions": {
+    "async": ">=2.6.4",
     "ansi-html": "0.0.8",
     "adm-zip": "0.5.3",
     "ansi-regex": "5.0.1",
