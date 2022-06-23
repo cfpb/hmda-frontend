@@ -10,6 +10,7 @@ import Report from './Report.jsx'
 import fetchMsas from './fetchMsas.js'
 import { DISCLOSURE_REPORTS } from '../constants/disclosure-reports.js'
 import { withAppContext } from '../../common/appContextHOC.jsx'
+import { withRedirect } from '../../common/withRedirectToTargetYear.js'
 
 const detailsCache = {
   2021: {
@@ -271,4 +272,4 @@ class Disclosure extends React.Component {
   }
 }
 
-export default withAppContext(Disclosure)
+export default withRedirect(withAppContext(Disclosure))

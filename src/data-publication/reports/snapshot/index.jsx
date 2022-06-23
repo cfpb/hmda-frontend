@@ -6,6 +6,7 @@ import { withAppContext } from '../../../common/appContextHOC.jsx'
 import { S3DatasetLink } from '../../../common/S3Integrations'
 import { LabelWithTooltip } from '../LabelWithTooltip'
 import './Snapshot.css'
+import { withRedirect } from '../../../common/withRedirectToTargetYear.js'
 
 function linkToDocs(year = '2018'){
   return [
@@ -101,4 +102,4 @@ const Snapshot = props => {
   )
 }
 
-export default withAppContext(Snapshot)
+export default withRedirect(withAppContext(Snapshot))

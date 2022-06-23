@@ -6,6 +6,7 @@ import { withAppContext } from '../../../common/appContextHOC.jsx'
 import { S3DatasetLink, S3DocLink } from '../../../common/S3Integrations'
 import { LabelWithTooltip } from '../LabelWithTooltip'
 import './OneYear.css'
+import { withRedirect } from '../../../common/withRedirectToTargetYear.js'
 
 const makeListLink = ({ url, label }, idx) => (
   <li key={idx}>
@@ -135,4 +136,4 @@ const OneYear = props => {
   )
 }
 
-export default withAppContext(OneYear)
+export default withRedirect(withAppContext(OneYear))

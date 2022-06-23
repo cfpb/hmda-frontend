@@ -41,6 +41,7 @@ import { sanitizeArray } from "../query";
 
 import "./Geography.css";
 import DatasetDocsLink from "./DatasetDocsLink.jsx";
+import { withRedirect } from '../../common/withRedirectToTargetYear.js'
 
 class Geography extends Component {
   constructor(props) {
@@ -576,4 +577,4 @@ class Geography extends Component {
   }
 }
 
-export default Geography;
+export default withRedirect(Geography);

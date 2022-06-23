@@ -7,6 +7,7 @@ import { S3DatasetLink } from '../../common/S3Integrations'
 import { ReactComponent as CfpbClock } from '../../common/images/cfpb-clock.svg'
 import { ReactComponent as CfpbLock } from '../../common/images/cfpb-lock.svg'
 import './DynamicDataset.css'
+import { withRedirect } from '../../common/withRedirectToTargetYear.js'
 
 const linkToDocs2017 = ({ lar_spec, ts_spec }) => [
   <S3DatasetLink url={lar_spec} label='Loan/Application Records (LAR)' />,
@@ -150,4 +151,4 @@ const UpdateSchedule = ({ status, publication }) => {
   )
 }
 
-export default withAppContext(DynamicDataset)
+export default withRedirect(withAppContext(DynamicDataset))

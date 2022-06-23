@@ -12,6 +12,7 @@ import { AGGREGATE_REPORTS } from '../constants/aggregate-reports.js'
 import { withAppContext } from '../../common/appContextHOC.jsx'
 
 import './Aggregate.css'
+import { withRedirect } from '../../common/withRedirectToTargetYear.js'
 
 const detailsCache = {
   2021: {
@@ -219,4 +220,4 @@ class Aggregate extends React.Component {
   }
 }
 
-export default withAppContext(Aggregate)
+export default withRedirect(withAppContext(Aggregate))

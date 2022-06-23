@@ -8,6 +8,7 @@ import { NATIONAL_AGGREGATE_REPORTS } from '../constants/national-aggregate-repo
 import { withAppContext } from '../../common/appContextHOC.jsx'
 
 import './NationalAggregate.css'
+import { withRedirect } from '../../common/withRedirectToTargetYear.js'
 
 const detailsCache = {
   reports: {}
@@ -110,4 +111,4 @@ class NationalAggregate extends React.Component {
   }
 }
 
-export default withAppContext(NationalAggregate)
+export default withRedirect(withAppContext(NationalAggregate))
