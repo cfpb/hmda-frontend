@@ -2,7 +2,7 @@ import { openSelector } from "../../support/helpers"
 const { HOST } = Cypress.env()
 
 // TODO: Test CSV Download
-describe("Aggregate Reports", function () {
+describe("Aggregate Reports", () => {
   it("2021", () => {
     cy.get({ HOST }).logEnv()
     cy.viewport(1680, 867)
@@ -48,7 +48,7 @@ describe("Aggregate Reports", function () {
     )
   })
 
-  it("2020", function () {
+  it("2020", () => {
     cy.get({ HOST }).logEnv()
     // Report: Applications by Ethnicity and Sex
     cy.viewport(1680, 867)
@@ -94,7 +94,7 @@ describe("Aggregate Reports", function () {
     )
   })
 
-  it("2019", function () {
+  it("2019", () => {
     cy.get({ HOST }).logEnv()
     // Report: Applications by Ethnicity and Sex
     cy.viewport(1680, 867)
@@ -140,7 +140,7 @@ describe("Aggregate Reports", function () {
     )
   })
 
-  it("2018", function () {
+  it("2018", () => {
     cy.get({ HOST }).logEnv()
     // Report: Applications by Income, Race, and Ethnicity
 
@@ -222,7 +222,7 @@ describe("Aggregate Reports", function () {
     )
   })
 
-  it("2017", function () {
+  it("2017", () => {
     cy.get({ HOST }).logEnv()
     // Report: Disposition of loan applications, by location of property and type of loan, 2017
 

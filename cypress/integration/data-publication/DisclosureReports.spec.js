@@ -1,7 +1,7 @@
 const { HOST } = Cypress.env()
 import { isProdBeta } from "../../support/helpers"
 
-describe("Disclosure Reports", function () {
+describe("Disclosure Reports", () => {
   if (isProdBeta(HOST)) it("Does not run on Prod Beta")
   else {
     it("Fetches a 2021 Applications by Tract Report", () => {
@@ -55,7 +55,7 @@ describe("Disclosure Reports", function () {
       cy.get("tbody > :nth-child(4) > :nth-child(15)").should("have.text", "0")
     })
 
-    it("Fetches a 2020 Applications by Tract Report", function () {
+    it("Fetches a 2020 Applications by Tract Report", () => {
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 916)
       cy.visit(`${HOST}/data-publication/disclosure-reports/2020`)
@@ -109,7 +109,7 @@ describe("Disclosure Reports", function () {
       cy.get("tbody > :nth-child(4) > :nth-child(15)").should("have.text", "0")
     })
 
-    it("Fetches a 2019 Applications by Tract Report", function () {
+    it("Fetches a 2019 Applications by Tract Report", () => {
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 916)
       cy.visit(`${HOST}/data-publication/disclosure-reports/2019`)
@@ -163,7 +163,7 @@ describe("Disclosure Reports", function () {
       cy.get("tbody > :nth-child(4) > :nth-child(15)").should("have.text", "0")
     })
 
-    it("Fetches a 2018 Applications by Tract Report", function () {
+    it("Fetches a 2018 Applications by Tract Report", () => {
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 867)
       cy.visit(`${HOST}/data-publication/disclosure-reports/2018`)

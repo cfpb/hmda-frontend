@@ -3,11 +3,11 @@ import { openSelector, MAX_WAIT_SUMMARY, dbURL, isBeta, isProd, isCI, isProdBeta
 const { HOST, ENVIRONMENT } = Cypress.env()
 const dbUrl = dbURL.bind(null, HOST)
 
-describe('Data Browser 2017', function () {
+describe('Data Browser 2017', () => {
   if(isCI(ENVIRONMENT)) it("Does not run on CI")
   else if(isProdBeta(HOST)) it("Does not run on Prod Beta")
   else if(!isProd(HOST) && isBeta(HOST)){
-    it('State/Institution/PropertyType', function () {
+    it('State/Institution/PropertyType', () => {
       cy.get({ HOST, ENVIRONMENT }).logEnv()
       cy.viewport(1000, 940)
       cy.visit(dbUrl('2017?category=states'))
@@ -51,7 +51,7 @@ describe('Data Browser 2017', function () {
       // }
     })
 
-    it('Nationwide/Institution/LienStatus', function () {
+    it('Nationwide/Institution/LienStatus', () => {
       cy.viewport(1000, 940)
       cy.visit(dbUrl('2017?category=nationwide'))
 
@@ -85,7 +85,7 @@ describe('Data Browser 2017', function () {
       // }
     })
 
-    it('County/Institution/Action&Purpose', function () {
+    it('County/Institution/Action&Purpose', () => {
       cy.viewport(1000, 940)
       cy.visit(dbUrl('2017?category=counties'))
 
@@ -126,7 +126,7 @@ describe('Data Browser 2017', function () {
       // }
     })
 
-    it('MSA/Institution/PropertyType', function () {
+    it('MSA/Institution/PropertyType', () => {
       cy.viewport(1000, 940)
       cy.visit(dbUrl('2017?category=msamds'))
 

@@ -3,8 +3,8 @@ import { openSelector, mapsURL, isBeta, isProd, isCI } from '../../support/helpe
 const { HOST, ENVIRONMENT } = Cypress.env()
 const ACTION_DELAY = 4000 // milliseconds
 
-describe('Maps', function () {
-  it('State 2021', function () {
+describe('Maps', () => {
+  it('State 2021', () => {
     cy.get({ HOST, ENVIRONMENT }).logEnv()
     cy.viewport(1000, 940)
     cy.visit(mapsURL(HOST, '2021?geography=state'))
@@ -35,7 +35,7 @@ describe('Maps', function () {
     cy.get('.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)').should('contain', '18.24%')
   })
 
-  it('County 2020', function () {
+  it('County 2020', () => {
     cy.get({ HOST, ENVIRONMENT }).logEnv()
     cy.viewport(1000, 940)
     cy.visit(mapsURL(HOST, '2020?geography=county'))
@@ -66,7 +66,7 @@ describe('Maps', function () {
     cy.get('.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)').should('contain', '32.26%')
   })
   
-  it('State 2019', function () {
+  it('State 2019', () => {
     cy.get({ HOST, ENVIRONMENT }).logEnv()
     cy.viewport(1000, 940)
     cy.visit(mapsURL(HOST, '2019?geography=state'))
@@ -97,7 +97,7 @@ describe('Maps', function () {
     cy.get('.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)').should('contain', '18.43%')
   })
 
-  it('County 2018', function () {
+  it('County 2018', () => {
     cy.get({ HOST, ENVIRONMENT }).logEnv()
     cy.viewport(1000, 940)
     cy.visit(mapsURL(HOST, '2018?geography=county'))

@@ -16,8 +16,8 @@ describe("National Aggregate Report - Not Generated", () => {
   })
 })
 
-describe("National Aggregate Report 2017", function () {
-  it("Loans Sold by Purchaser Type", function () {
+describe("National Aggregate Report 2017", () => {
+  it("Loans Sold by Purchaser Type", () => {
     cy.get({ HOST }).logEnv()
     cy.viewport(1680, 867)
     cy.visit(`${HOST}/data-publication/national-aggregate-reports/2017`)
