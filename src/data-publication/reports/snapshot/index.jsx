@@ -5,6 +5,7 @@ import { SNAPSHOT_DATASET } from '../../constants/snapshot-dataset.js'
 import { withAppContext } from '../../../common/appContextHOC.jsx'
 import { S3DatasetLink } from '../../../common/S3Integrations'
 import { LabelWithTooltip } from '../LabelWithTooltip'
+import { withYearValidation } from '../../../common/withYearValidation.js'
 import './Snapshot.css'
 
 function linkToDocs(year = '2018'){
@@ -101,4 +102,4 @@ const Snapshot = props => {
   )
 }
 
-export default withAppContext(Snapshot)
+export default withAppContext(withYearValidation(Snapshot))

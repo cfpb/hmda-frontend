@@ -5,6 +5,7 @@ import { ONE_YEAR_DATASET } from '../../constants/one-year-datasets.js'
 import { withAppContext } from '../../../common/appContextHOC.jsx'
 import { S3DatasetLink, S3DocLink } from '../../../common/S3Integrations'
 import { LabelWithTooltip } from '../LabelWithTooltip'
+import { withYearValidation } from '../../../common/withYearValidation.js'
 import './OneYear.css'
 
 const makeListLink = ({ url, label }, idx) => (
@@ -135,4 +136,4 @@ const OneYear = props => {
   )
 }
 
-export default withAppContext(OneYear)
+export default withAppContext(withYearValidation(OneYear))

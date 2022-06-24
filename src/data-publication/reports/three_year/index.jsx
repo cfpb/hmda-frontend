@@ -5,6 +5,7 @@ import { THREE_YEAR_DATASET } from '../../constants/three-year-datasets.js'
 import { withAppContext } from '../../../common/appContextHOC.jsx'
 import { S3DatasetLink } from '../../../common/S3Integrations'
 import { LabelWithTooltip } from '../LabelWithTooltip.jsx'
+import { withYearValidation } from '../../../common/withYearValidation.js'
 import './ThreeYear.css'
 
 function makeListLink(href, val) {
@@ -114,4 +115,4 @@ const ThreeYear = props => {
   )
 }
 
-export default withAppContext(ThreeYear)
+export default withAppContext(withYearValidation(ThreeYear))

@@ -6,6 +6,7 @@ import { withAppContext } from '../../common/appContextHOC.jsx'
 import { S3DatasetLink } from '../../common/S3Integrations'
 import { ReactComponent as CfpbClock } from '../../common/images/cfpb-clock.svg'
 import { ReactComponent as CfpbLock } from '../../common/images/cfpb-lock.svg'
+import { withYearValidation } from '../../common/withYearValidation.js'
 import './DynamicDataset.css'
 
 const linkToDocs2017 = ({ lar_spec, ts_spec }) => [
@@ -150,4 +151,4 @@ const UpdateSchedule = ({ status, publication }) => {
   )
 }
 
-export default withAppContext(DynamicDataset)
+export default withAppContext(withYearValidation(DynamicDataset))
