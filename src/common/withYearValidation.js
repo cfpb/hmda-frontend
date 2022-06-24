@@ -7,7 +7,7 @@ import { Redirect } from 'react-router-dom'
  * @param {String} targetYear Latest available year for Publication/product
  * @returns
  */
-export const formatPath = (props, targetYear) => {
+const formatPath = (props, targetYear) => {
   const year = props.match.params.year
   let { pathname, search } = props.location
 
