@@ -5,7 +5,7 @@ import ExternalLink from '../../common/ExternalLink'
 import MapContainer from './MapContainer.jsx'
 import { PopularVariableLink } from './PopularVariableLink'
 import './MapsGraphs.css'
-import { withRedirect } from '../../common/withRedirectToTargetYear.js'
+import { withYearValidation } from '../../common/withYearValidation.js'
 
 const MapsGraphs = props => {
   const year = props.match.params.year
@@ -43,4 +43,4 @@ const MapsGraphs = props => {
   )
 }
 
-export default withRedirect(MapsGraphs)
+export default withYearValidation(MapsGraphs)

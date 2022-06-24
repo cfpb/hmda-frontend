@@ -5,8 +5,8 @@ import { SNAPSHOT_DATASET } from '../../constants/snapshot-dataset.js'
 import { withAppContext } from '../../../common/appContextHOC.jsx'
 import { S3DatasetLink } from '../../../common/S3Integrations'
 import { LabelWithTooltip } from '../LabelWithTooltip'
+import { withYearValidation } from '../../../common/withYearValidation.js'
 import './Snapshot.css'
-import { withRedirect } from '../../../common/withRedirectToTargetYear.js'
 
 function linkToDocs(year = '2018'){
   return [
@@ -102,4 +102,4 @@ const Snapshot = props => {
   )
 }
 
-export default withRedirect(withAppContext(Snapshot))
+export default withAppContext(withYearValidation(Snapshot))

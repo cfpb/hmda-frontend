@@ -10,9 +10,9 @@ import STATES from '../constants/states.js'
 import stateToMsas from '../constants/stateToMsas.js'
 import { AGGREGATE_REPORTS } from '../constants/aggregate-reports.js'
 import { withAppContext } from '../../common/appContextHOC.jsx'
+import { withYearValidation } from '../../common/withYearValidation.js'
 
 import './Aggregate.css'
-import { withRedirect } from '../../common/withRedirectToTargetYear.js'
 
 const detailsCache = {
   2021: {
@@ -220,4 +220,4 @@ class Aggregate extends React.Component {
   }
 }
 
-export default withRedirect(withAppContext(Aggregate))
+export default withAppContext(withYearValidation(Aggregate))

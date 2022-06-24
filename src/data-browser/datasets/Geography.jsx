@@ -38,10 +38,10 @@ import {
   before2018,
 } from "./selectUtils.js";
 import { sanitizeArray } from "../query";
+import DatasetDocsLink from "./DatasetDocsLink.jsx";
+import { withYearValidation } from '../../common/withYearValidation.js'
 
 import "./Geography.css";
-import DatasetDocsLink from "./DatasetDocsLink.jsx";
-import { withRedirect } from '../../common/withRedirectToTargetYear.js'
 
 class Geography extends Component {
   constructor(props) {
@@ -577,4 +577,4 @@ class Geography extends Component {
   }
 }
 
-export default withRedirect(Geography);
+export default withYearValidation(Geography);

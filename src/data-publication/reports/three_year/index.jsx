@@ -5,8 +5,8 @@ import { THREE_YEAR_DATASET } from '../../constants/three-year-datasets.js'
 import { withAppContext } from '../../../common/appContextHOC.jsx'
 import { S3DatasetLink } from '../../../common/S3Integrations'
 import { LabelWithTooltip } from '../LabelWithTooltip.jsx'
+import { withYearValidation } from '../../../common/withYearValidation.js'
 import './ThreeYear.css'
-import { withRedirect } from '../../../common/withRedirectToTargetYear.js'
 
 function makeListLink(href, val) {
   return (
@@ -115,4 +115,4 @@ const ThreeYear = props => {
   )
 }
 
-export default withRedirect(withAppContext(ThreeYear))
+export default withAppContext(withYearValidation(ThreeYear))
