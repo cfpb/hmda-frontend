@@ -40,11 +40,11 @@ const DataPublication = ({ config }) => {
         />
         <Route
           path='/data-publication/disclosure-reports/:year?/:institutionId?/:msaMdId?/:reportId?'
-          render={props => <Disclosure {...props} />}
+          render={props => <Disclosure {...props} targetYearKey='disclosure'/>}
         />
         <Route
           path='/data-publication/aggregate-reports/:year?/:stateId?/:msaMdId?/:reportId?'
-          render={props => <Aggregate {...props} />}
+          render={props => <Aggregate {...props} targetYearKey='aggregate'/>}
         />
         <Route
           path='/data-publication/national-aggregate-reports/:year?/:reportId?'

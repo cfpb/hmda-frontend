@@ -1,6 +1,11 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 
+// Automatically redirecting from the base URL to /baseURL/:year breaks
+// the user's ability to change the selected year in these reports. We will
+// skip automatic redirection from these cases.
+const SKIP_BASE_REDIRECT = ['aggregate', 'disclosure', ]
+
 /**
  * Reconstructs the URL to point to the targetYear
  * @param {Object} props Includes props from React Router
@@ -37,33 +42,30 @@ const formatPath = (props, targetYear) => {
  */
 export const withYearValidation = WrappedComponent => props => {
   const {
-    config: { dataPublicationYears, publicationReleaseYear },
+    config: { dataPublicationYears },
     match: { params },
     targetYearKey,
   } = props
   const { shared } = dataPublicationYears
   const { year } = params
+  let shouldRedirect = false
+
+  // Use Publication-specific availability list, if it exists
+  const validYears = dataPublicationYears[targetYearKey] || shared
 
   // Default target year to the current Publication year
-  let targetYear = publicationReleaseYear
+  let targetYear = validYears[0]
 
-  // Use Publication-specific availability list, if exists
-  const availableYears = dataPublicationYears[targetYearKey] || shared
+  // NationalAggregate only available for 2017
+  if (targetYearKey === 'NationalAggregate') targetYear = 2017
 
-  // When a targetYearKey is provided, use the configurable year availability list
-  if (targetYearKey) {
-    if (targetYearKey === 'NationalAggregate') {
-      // NationalAggregate only available for 2017
-      targetYear = 2017
-    } else {
-      targetYear = availableYears[0]
-    }
+  // Validate the URL year, when provided
+  if (year && !validYears.includes(year)) shouldRedirect = true
+  else if (!year && !SKIP_BASE_REDIRECT.includes(targetYearKey)) {
+    // Redirect from the base URL, if safe to do so
+    shouldRedirect = true
   }
-
-  // Validate the URL provided year
-  const yearIsValid = availableYears.includes(year)
-  if (!yearIsValid) return <Redirect to={formatPath(props, targetYear)} />
-
-  // Render Component
+  
+  if (shouldRedirect) return <Redirect to={formatPath(props, targetYear)} />
   return <WrappedComponent {...props} />
 }
