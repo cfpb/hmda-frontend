@@ -7,9 +7,11 @@ import SupportingDocs from './reports/SupportingDocs.jsx'
 import Disclosure from './reports/Disclosure'
 import Aggregate from './reports/Aggregate'
 import NationalAggregate from './reports/NationalAggregate'
-import Snapshot from './reports/snapshot/index'
-import ThreeYearDataset from './reports/three_year/index'
-import OneYearDataset from './reports/one_year/index'
+import {
+  Snapshot,
+  OneYearDataset,
+  ThreeYearDataset,
+} from './reports/snapshot/index'
 import DynamicDataset from './reports/DynamicDataset'
 import NotFound from '../common/NotFound'
 import { withAppContext } from '../common/appContextHOC.jsx'
