@@ -195,32 +195,32 @@ export const Graphs = (props) => {
     }
   }, [selected, singleGraph, categories]);
 
+  /**
+   * Dynamically populate graph selection drop-down with category-grouped options
+   */
   useEffect(() => {
-    /* 
-    Used to populate drop-down with different options and categories
-    Adding new category to drop-down: a new object will need to be created with the label and the category to be filtered
-    */
     if (graphData) {
-      let optionsWithCategories = [
-        {
-          label: "Quantity",
-          options: graphData.filter((g) => g.category == "quantity"),
-        },
-        {
-          label: "Interest Rates",
-          options: graphData.filter((g) => g.category == "rate"),
-        },
-        {
-          label: "Percentage",
-          options: graphData.filter((g) => g.category == "percentage"),
-        },
-      ];
+      const categorizedOptions = {}
+
+      // Dynamially group graphs by Category
+      graphData.forEach(opt => {
+        if (!categorizedOptions[opt.category]) categorizedOptions[opt.category] = []
+        categorizedOptions[opt.category].push(opt)
+      })
+
+      // Create drop-down menu entries
+      const optionsWithCategories = Object.keys(categorizedOptions)
+        .sort()
+        .map(category => ({
+          label: category,
+          options: categorizedOptions[category],
+        }))
 
       if (optionsWithCategories.length) {
-        setOptions(optionsWithCategories);
+        setOptions(optionsWithCategories)
       }
     }
-  }, [graphData]);
+  }, [graphData])
 
   return (
     <div className="Graphs">
