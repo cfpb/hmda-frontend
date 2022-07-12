@@ -14,6 +14,11 @@ The Snapshot dataset is taken at a fixed date after the timely filing deadline h
 
 #### One Year Dataset
 The One Year dataset is taken at least 12 months after the [timely filing deadline](/documentation/2022/annual-filing-dates/) has passed for a given filing year and incorporates any resubmissions or late submissions that have been completed in that timeframe.   
+ 
+Please note that due to the timing of the One Year data product's creation:
+
+- The 2019 One Year datasets contain more than 12 months worth of updates.
+- There are no 2018 One Year datasets.
 
 #### Three Year Dataset
 The Three Year dataset is taken at least 36 months after the [timely filing deadline](/documentation/2022/annual-filing-dates/) has passed for a given filing year and incorporates any resubmissions or late submissions that have been completed in that timeframe. The Three Year dataset is the final dataset published for any given collection year.
