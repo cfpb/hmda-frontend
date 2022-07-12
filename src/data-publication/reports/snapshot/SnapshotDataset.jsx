@@ -4,37 +4,28 @@ import { S3DatasetLink } from '../../../common/S3Integrations'
 import { ONE_YEAR_DATASET } from '../../constants/one-year-datasets.js'
 import { SNAPSHOT_DATASET } from '../../constants/snapshot-dataset.js'
 import { THREE_YEAR_DATASET } from '../../constants/three-year-datasets.js'
-import { linkToDocs, renderDatasets } from './snapshotHelpers'
+import { linkToDocs, renderDatasets, renderDocumentation } from './snapshotHelpers'
 import './Snapshot.css'
 
 const Paragraphs = {
-  snapshot: freezeDate => `
-  The Snapshot files contain the national HMDA datasets as of 
-  ${freezeDate} for all HMDA reporters, as modified by the Bureau to
-  protect applicant and borrower privacy. The snapshot files are
-  available to download in both .csv and pipe delimited text file
-  formats.
-`,
-  oneYear: (freezeDate, year) => `
-  The One Year files incorporate adjustments to the ${year} national
-  HMDA datasets, submitted as of ${freezeDate}. They
-  include all updates to the Loan Application Register (LAR) and
-  Transmittal Sheet (TS) made in the 12 months following the ${year}
-  reporting deadline of March 1, ${
-    +year + 1
-  }. Files are available to download in both .csv and
-  pipe delimited text file formats.
-`,
-  threeYear: (freezeDate, year) => `
-  The Three Year files incorporate adjustments to the ${year} national
-  HMDA datasets, submitted as of ${freezeDate}. They
-  include all updates to the Loan Application Register (LAR) and
-  Transmittal Sheet (TS) made in the 24 months following the ${year}
-  reporting deadline of March 1, ${
-    +year + 1
-  }. Files are available to download in both .csv and
-  pipe delimited text file formats.
-`,
+  snapshot: freezeDate =>
+    `The Snapshot files contain the national HMDA datasets as of ${freezeDate} for all HMDA reporters, as modified by the Bureau to protect applicant and borrower privacy. The snapshot files are  available to download in both .csv and pipe delimited text file formats.`,
+  oneYear: (freezeDate, year) => {
+    if (!freezeDate)
+      return `The One Year files incorporate adjustments to the national HMDA datasets, including the Loan Application Register (LAR) and Transmittal Sheet (TS), made in the 12 months following the reporting deadline.`
+
+    return `The One Year files incorporate adjustments to the ${year} national HMDA datasets, submitted as of ${freezeDate}. They include all updates to the Loan Application Register (LAR) and Transmittal Sheet (TS) made in the 12 months following the ${year} reporting deadline of March 1, ${
+      +year + 1
+    }. Files are available to download in both .csv and pipe delimited text file formats.`
+  },
+  threeYear: (freezeDate, year) => {
+    if (!freezeDate)
+      return `The Three Year files incorporate adjustments to the national HMDA datasets, including the Loan Application Register (LAR) and Transmittal Sheet (TS), made in the 36 months following the reporting deadline.`
+
+    return `The Three Year files incorporate adjustments to the ${year} national HMDA datasets, submitted as of ${freezeDate}. They include all updates to the Loan Application Register (LAR) and Transmittal Sheet (TS) made in the 36 months following the ${year} reporting deadline of March 1, ${
+      +year + 1
+    }. Files are available to download in both .csv and pipe delimited text file formats.`
+  },
 }
 
 const Datasets = {
@@ -70,10 +61,15 @@ export const SnapshotDataset = ({ label, match, config, dataKey }) => {
             files will need to recognize this difference.
           </p>
         )}
-        <p className='text-small'>
-          Use caution when analyzing loan amount and income, which do not have
-          an upper limit and may contain outliers.
-        </p>
+        {dataForYear.specialNote && (
+          <p className='text-small'>{dataForYear.specialNote}</p>
+        )}
+        {!dataForYear.exception && (
+          <p className='text-small'>
+            Use caution when analyzing loan amount and income, which do not have
+            an upper limit and may contain outliers.
+          </p>
+        )}
       </Heading>
 
       <YearSelector year={year} url={url} years={years} />
@@ -82,21 +78,9 @@ export const SnapshotDataset = ({ label, match, config, dataKey }) => {
         <div className='grid'>
           <div className='item'>
             <Heading type={4} headingText={year + ' Datasets'} />
-            {renderDatasets(dataForYear.datasets)}
+            {renderDatasets(dataForYear, year)}
           </div>
-          <div className='item'>
-            <Heading type={4} headingText={year + ' File Specifications'} />
-            <ul>
-              {year === '2017' ? (
-                <S3DatasetLink
-                  url={dataForYear.dataformat}
-                  label='LAR, TS and Reporter Panel'
-                />
-              ) : (
-                linkToDocs(year)
-              )}
-            </ul>
-          </div>
+          <div className='item'>{renderDocumentation(dataForYear, year)}</div>
         </div>
       )}
     </div>

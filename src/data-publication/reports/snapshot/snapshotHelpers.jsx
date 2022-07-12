@@ -1,4 +1,5 @@
 import React from 'react'
+import Heading from '../../../common/Heading'
 import { S3DatasetLink } from '../../../common/S3Integrations'
 import { LabelWithTooltip } from '../LabelWithTooltip'
 
@@ -16,7 +17,7 @@ const makeListLink = ({ url, label }, _idx) => (
  * @param {String} year 
  * @returns Array
  */
-export function linkToDocs(year = '2018') {
+export function linkToSpecs(year = '2018') {
   const entries = [
     {
       url: `/documentation/${year}/public-lar-schema/`,
@@ -46,7 +47,9 @@ export function linkToDocs(year = '2018') {
 /**
  * Renders a formatted list of Datasets
  */
-export function renderDatasets(datasets) {
+export function renderDatasets({ datasets, exception }) {
+  if (!datasets) return <p>{exception}</p>
+
   return (
     <ul id='datasetList'>
       {datasets.map((dataset, i) => {
@@ -57,15 +60,47 @@ export function renderDatasets(datasets) {
               <S3DatasetLink
                 url={dataset.csv}
                 label='CSV'
-                showLastUpdated={true} />
+                showLastUpdated={true}
+              />
               <S3DatasetLink
                 url={dataset.txt}
                 label='Pipe Delimited'
-                showLastUpdated={true} />
+                showLastUpdated={true}
+              />
             </ul>
           </li>
         )
       })}
     </ul>
+  )
+}
+
+/**
+ * Render documentation links
+ */
+export const renderDocumentation = (data, year) => {
+  if (!data.datasets) return null
+
+  const specContent =
+    year === '2017' ? (
+      <S3DatasetLink url={data.dataformat} label='LAR, TS and Reporter Panel' />
+    ) : (
+      linkToSpecs(year)
+    )
+
+  return (
+    <>
+      <Heading type={4} headingText={year + ' Documentation'} />
+      <ul>
+        {[
+          {
+            url: `/documentation/${year}/static-dataset-faq/`,
+            label: 'Static Dataset FAQ',
+          },
+        ].map(makeListLink)}
+      </ul>
+      <Heading type={4} headingText={year + ' File Specifications'} />
+      <ul>{specContent}</ul>
+    </>
   )
 }
