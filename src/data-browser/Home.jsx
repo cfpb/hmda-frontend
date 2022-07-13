@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import ImageCard from './ImageCard.jsx'
 import Heading from '../common/Heading.jsx'
 import { withAppContext } from '../common/appContextHOC'
@@ -62,6 +61,22 @@ class Home extends Component {
               label: 'HMDA Maps FAQ',
             }}
           />
+        </div>
+        <div className='card-container'>
+          <ImageCard
+            year=''
+            caption='Visualize Mortgage Trends'
+            description='Interactive graphs of summarized HMDA data'
+            path='graphs/quarterly'
+            enabled
+            image={filterBw}
+            imageHover={filterColor}
+            faq={{
+              url: `/documentation/${publicationReleaseYear}/data-browser-graphs-faq`,
+              label: 'HMDA Graphs FAQ',
+            }}
+          />
+          <ImageCard placeholder />
         </div>
       </div>
     )

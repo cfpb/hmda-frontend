@@ -5,6 +5,8 @@ import './ImageCard.css'
 const TileImage = ({ src }) => <img className='tile-image' src={src} />
 
 const ImageCard = (props) => {
+  if (props.placeholder) return <div className='card-wrapper placeholder' />
+
   const [isHovered, setIsHovered] = useState(false)
   
   const enabled = props.enabled ? ' enabled' : ''
