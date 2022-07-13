@@ -41,39 +41,9 @@
   padding: 3px 10px;
 }
 
-.Graphs .CopyURLButton {
-  position: relative;
-  display: inline-block;
-  margin: auto;
-  padding: 0;
-  display: table-cell;
-  vertical-align: middle;
-  padding: 3px 8px;
-}
-
-.Graphs .CopyURLButton .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  height: 23px;
-  font-size: 16px;
-  background-color: #0071bc;
-  color: #fff;
-  text-align: center;
-  border-radius: 4px;
-  padding: 3px 0;
-  position: absolute;
-  z-index: 1;
-  top: 0px;
-  left: 108%;
-}
-
-.Graphs .CopyURLButton .tooltiptext::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: 100%;
-  margin-top: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: transparent #0071bc transparent transparent;
+.Graphs .toolbar {
+  display: block;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  text-align: right;
 }
