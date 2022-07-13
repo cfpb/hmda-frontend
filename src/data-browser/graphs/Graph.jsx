@@ -11,12 +11,14 @@ HighchartsExportData(Highcharts); // Enable export of underlying data
 Highcharts.seriesTypes.line.prototype.drawLegendSymbol =
   Highcharts.seriesTypes.area.prototype.drawLegendSymbol;
 
-export const Graph = ({ options, loading }) => {
+export const Graph = ({ options, loading, onLoad }) => {
   let chartRef = useRef();
 
   useEffect(() => {
     let chart = chartRef.current.chart;
-    if (!chart) return
+    if (!chart) return;
+
+    chart.viewData(); // Update data table when data changes/period selector is used
 
     // Parent component is fetching data
     if (loading) {
@@ -36,6 +38,7 @@ export const Graph = ({ options, loading }) => {
           highcharts={Highcharts}
           options={options}
           ref={chartRef}
+          callback={onLoad}
         />
       </div>
     </div>

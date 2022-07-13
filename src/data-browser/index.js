@@ -15,7 +15,7 @@ const DataBrowser = (props) => {
       <Switch>
         <Route exact path="/data-browser" component={Home} />
         <Route
-          path="/data-browser/graphs"
+          path="/data-browser/graphs/:graph?"
           render={(r_props) => <Graphs {...r_props} {...props} />}
         />
         <Route
