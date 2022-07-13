@@ -2,7 +2,7 @@
 // If loading length is less then 0 it will display a placeholder message until data has been fetched
 export const GraphsHeader = ({ loading, overview }) => (
   <>
-    <h1>HMDA Graphs</h1>
+    <h1>HMDA Quarterly Graphs</h1>
     {loading > 0 ? (
       <div>
         <p>{overview}</p>

@@ -1,5 +1,6 @@
 import { hmda_charts, seriesColors, yearQuarters } from "./config";
-import { cloneObject, filterByPeriods, useQuery } from "./utils/utils";
+import { BaseURLQuarterly } from './constants'
+import { cloneObject, filterByPeriods } from './utils/utils'
 
 // Highcharts configuration for a line graph
 export const baseConfig = {
@@ -116,7 +117,6 @@ export const deriveHighchartsConfig = ({
 
   // Listener used to track when a user de-selects a series
   config.plotOptions.series.events.hide = (event) => {
-    let baseURL = "/data-browser/graphs";
 
     // Remove specific series when de-selected from HighCharts
     const index = seriesForURL.indexOf(event.target.userOptions.name);
@@ -133,7 +133,7 @@ export const deriveHighchartsConfig = ({
 
     // Rebuild URL when a series has been deselected
     props.history.push({
-      pathname: `${baseURL}/${endpoint}`,
+      pathname: `${BaseURLQuarterly}/${endpoint}`,
       search: `?periodLow=${periodLow.value}&periodHigh=${periodHigh.value}&visibleSeries=${seriesForURL}`,
     });
 
@@ -142,15 +142,13 @@ export const deriveHighchartsConfig = ({
 
   // Listener used to track when a user selects a series
   config.plotOptions.series.events.show = (event) => {
-    let baseURL = "/data-browser/graphs";
-
     if (!seriesForURL.includes(event.target.userOptions.name)) {
       seriesForURL.push(event.target.userOptions.name);
     }
 
     // Rebuild URL when a series has been selected
     props.history.push({
-      pathname: `${baseURL}/${endpoint}`,
+      pathname: `${BaseURLQuarterly}/${endpoint}`,
       search: `?periodLow=${periodLow.value}&periodHigh=${periodHigh.value}&visibleSeries=${seriesForURL}`,
     });
 

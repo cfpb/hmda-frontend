@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Select from "../Select";
+import { BaseURLQuarterly } from './constants'
 
 export const PeriodSelectors = ({
   props,
@@ -15,12 +16,10 @@ export const PeriodSelectors = ({
     periodLow.value !== periodOpts[0].value ||
     periodHigh.value !== periodOpts[periodOpts.length - 1].value;
 
-  let baseURL = "/data-browser/graphs";
-
   // Listens for period changes and series changes in the URL, if found then re-builds the URL
   useEffect(() => {
     props.history.push({
-      pathname: `${baseURL}/${endpoint}`,
+      pathname: `${BaseURLQuarterly}/${endpoint}`,
       search: `?periodLow=${periodLow.value}&periodHigh=${periodHigh.value}&visibleSeries=${seriesForURL}`,
     });
   }, [periodLow, periodHigh, seriesForURL]);
