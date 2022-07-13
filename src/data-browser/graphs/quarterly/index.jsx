@@ -9,7 +9,7 @@ import { produce } from "immer";
 import LoadingIcon from "../../../common/LoadingIcon";
 import { useQuery } from "../utils/utils.js";
 import CopyURLButton from "../../../common/CopyURLButton.jsx";
-import { BaseURLQuarterly } from '../constants.js'
+import { BaseURLQuarterly, QuarterlyApiUrl } from '../constants.js'
 import "../graphs.css";
 
 export const QuarterlyGraphs = (props) => {
@@ -56,7 +56,7 @@ export const QuarterlyGraphs = (props) => {
 
   // Function to fetch single graph data when a graph from the dropdown has been selected
   const fetchSingleGraph = async (endpoint) => {
-    const response = await fetch(`/quarterly-data/graphs/${endpoint}`)
+    const response = await fetch(`${QuarterlyApiUrl}/${endpoint}`)
       .then((res) => res.json())
       .then((data) => data)
       .catch((error) => console.error(`Error: ${error}.`));
@@ -81,7 +81,7 @@ export const QuarterlyGraphs = (props) => {
   };
 
   const fetchAllGraphs = async () => {
-    const response = await fetch("/quarterly-data/graphs")
+    const response = await fetch(QuarterlyApiUrl)
       .then((res) => res.json())
       .then((data) => data)
       .catch((error) => console.error(`Error: ${error}.`));
@@ -260,7 +260,6 @@ export const QuarterlyGraphs = (props) => {
                 display: "block",
                 marginBottom: "20px",
                 marginTop: "20px",
-                textAlign: "right",
               }}
             >
               <CopyURLButton
