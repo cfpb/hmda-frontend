@@ -255,17 +255,8 @@ export const QuarterlyGraphs = (props) => {
           )}
 
           {seriesForURL && (
-            <div
-              style={{
-                display: "block",
-                marginBottom: "20px",
-                marginTop: "20px",
-              }}
-            >
-              <CopyURLButton
-                text={"Share Graph"}
-                urlToWatch={[periodLow, periodHigh, seriesForURL]}
-              />
+            <div className='toolbar'>
+              <CopyURLButton text={'Share Graph'} />
             </div>
           )}
 
@@ -298,5 +289,5 @@ export const QuarterlyGraphs = (props) => {
         <LoadingIcon />
       )}
     </div>
-  );
+  )
 };

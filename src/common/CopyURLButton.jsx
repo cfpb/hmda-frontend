@@ -1,65 +1,51 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BiLinkAlt } from "react-icons/bi";
+import './CopyURLButton.css'
 
 /**
- *
- * @param {string} className - Allows styling of the button otherwise use default class for button
+ * Button to copy page URL
+ * @param {string} cname - Allows styling of the button otherwise use default class for button
  * @param {string} text - Has a default text of "Share" otherwise use text passed into component
- * @param {string|Array} urlToWatch - State or States to watch for. When an update is triggered the correct url will be linked to the button.
- *
- * CSS is located at /src/data-browser/graphs/graphs.css
  */
 
-const CopyURLButton = ({ className, text, urlToWatch }) => {
-  const [copied, setCopied] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(false);
+let debounceCopyConfirmation = null
 
-  useEffect(() => {
-    setCopied(false);
+const CopyURLButton = ({ cname, text = 'Share URL' }) => {
+  const [showTooltip, setShowTooltip] = useState(false)
+ 
+  const copy = () => {
+    const el = document.createElement('input')
+    el.value = window.location.href
+    document.body.appendChild(el)
+    el.select()
+    document.execCommand('copy')
+    document.body.removeChild(el)
 
-    // Hide tooltip after 2.5 seconds
+    // Avoid hiding tooltip prematurely when button is clicked multiple times
+    if (debounceCopyConfirmation) return
+
+    setShowTooltip(true)
+    debounceCopyConfirmation = true
+
+    // Hide tooltip after 2 seconds
     setTimeout(() => {
-      setShowTooltip(false);
-    }, 2500);
-  }, [urlToWatch, showTooltip]);
-
-  function copy() {
-    const el = document.createElement("input");
-    el.value = window.location.href;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand("copy");
-    document.body.removeChild(el);
-    setCopied(true);
-    setShowTooltip(true);
+      debounceCopyConfirmation = false
+      setShowTooltip(false)
+    }, 2000)
   }
 
   return (
-    <>
-      <button
-        className={className ? className : "CopyURLButton"}
-        onClick={copy}
-      >
-        <div style={{ display: "flex" }}>
-          <BiLinkAlt
-            style={{ marginRight: "4px", fill: "white" }}
-            fontWeight={"bold"}
-          />
-          {text}
-          {showTooltip ? (
-            <span
-              className="tooltiptext"
-              style={showTooltip ? { visibility: "visible" } : ""}
-            >
-              Link Copied
-            </span>
-          ) : (
-            ""
-          )}
-        </div>
-      </button>
-    </>
-  );
-};
+    <button className={cname || 'CopyURLButton'} onClick={copy}>
+      <div style={{ display: 'flex' }}>
+        <BiLinkAlt
+          style={{ marginRight: '4px', fill: 'white' }}
+          fontWeight={'bold'}
+        />
+        {text}
+        {showTooltip && <span className='tooltiptext'>Link Copied!</span>}
+      </div>
+    </button>
+  )
+}
 
 export default CopyURLButton;
