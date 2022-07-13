@@ -1,0 +1,1 @@
+export const BaseURLQuarterly = '/data-browser/graphs/quarterly'

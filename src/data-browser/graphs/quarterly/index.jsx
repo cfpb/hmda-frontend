@@ -1,17 +1,18 @@
 import React, { useCallback, useEffect, useState } from "react";
-import Select from "../Select.jsx";
-import { Graph } from "./Graph";
-import { groupStyles, groupBadgeStyles } from "./utils/inlineStyling";
-import "./graphs.css";
+import Select from "../../Select.jsx";
+import { Graph } from "../Graph";
+import { groupStyles, groupBadgeStyles } from "../utils/inlineStyling";
 import { GraphsHeader } from "./GraphsHeader";
-import { deriveHighchartsConfig } from "./highchartsConfig";
-import { PeriodSelectors } from "./PeriodSelectors";
+import { deriveHighchartsConfig } from "../highchartsConfig";
+import { PeriodSelectors } from "../PeriodSelectors";
 import { produce } from "immer";
-import LoadingIcon from "../../common/LoadingIcon";
-import { useQuery } from "./utils/utils.js";
-import CopyURLButton from "../../common/CopyURLButton.jsx";
+import LoadingIcon from "../../../common/LoadingIcon";
+import { useQuery } from "../utils/utils.js";
+import CopyURLButton from "../../../common/CopyURLButton.jsx";
+import { BaseURLQuarterly } from '../constants.js'
+import "../graphs.css";
 
-export const Graphs = (props) => {
+export const QuarterlyGraphs = (props) => {
   const [options, setOptions] = useState([]); // All the graph options with categories
   const [graphHeaderOverview, setGraphHeaderOverview] = useState(); // Overview text which comes from graphs API - State is sent to GraphsHeader Component
   const [quarters, setQuarters] = useState(); // Contains all the quarters from a selected graph and is used for period filtering
@@ -96,7 +97,7 @@ export const Graphs = (props) => {
 
     if (
       !response.graphs.some((g) => g.endpoint == props.match.params.graph) ||
-      props.location.pathname.match(/graph$"/)
+      props.location.pathname.match(/graphs\/quarterly$"/)
     ) {
       let firstGraph = response.graphs[0];
 
@@ -106,7 +107,7 @@ export const Graphs = (props) => {
         label: firstGraph.title,
         category: firstGraph.category,
       });
-      props.history.push(`/data-browser/graphs/${firstGraph.endpoint}`);
+      props.history.push(`${BaseURLQuarterly}/${firstGraph.endpoint}`);
     } else if (props.match.params.graph) {
       let initialGraphToLoad = response.graphs.find(
         (graph) => graph.endpoint == props.match.params.graph
