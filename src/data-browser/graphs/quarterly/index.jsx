@@ -10,6 +10,7 @@ import LoadingIcon from "../../../common/LoadingIcon";
 import { useQuery } from "../utils/utils.js";
 import CopyURLButton from "../../../common/CopyURLButton.jsx";
 import { BaseURLQuarterly, QuarterlyApiUrl } from '../constants.js'
+import { HomeLink } from '../../HomeLink'
 import "../graphs.css";
 
 export const QuarterlyGraphs = (props) => {
@@ -224,20 +225,22 @@ export const QuarterlyGraphs = (props) => {
   }, [graphData])
 
   return (
-    <div className="Graphs">
-      <GraphsHeader loading={options.length} overview={graphHeaderOverview} />
+    <div className='Graphs'>
+      <HomeLink />
+      <GraphsHeader loading={!options.length} overview={graphHeaderOverview} />
 
       {options.length && singleGraph ? (
-        <React.Fragment>
+        <div className='graph-wrapper'>
+          <p className='instructions'>Select a graph from the menu below</p>
           <Select
-            classNamePrefix="react-select__graph" // Used for cypress testing
+            classNamePrefix='react-select__graph' // Used for cypress testing
             options={options}
-            placeholder="Select a Graph"
-            onChange={(e) => handleGraphSelection(e)}
+            placeholder='Select a Graph'
+            onChange={e => handleGraphSelection(e)}
             value={
-              selected ? { value: selected.value, label: selected.label } : ""
+              selected ? { value: selected.value, label: selected.label } : ''
             }
-            formatGroupLabel={(data) => formatGroupLabel(data)}
+            formatGroupLabel={data => formatGroupLabel(data)}
           />
           {selected && singleGraph && quarters && seriesForURL && (
             <PeriodSelectors
@@ -268,8 +271,8 @@ export const QuarterlyGraphs = (props) => {
                 title: singleGraph.title,
                 subtitle: singleGraph.subtitle,
                 periodRange: [
-                  quarters.findIndex((q) => q.value == periodLow.value),
-                  quarters.findIndex((q) => q.value == periodHigh.value) + 1,
+                  quarters.findIndex(q => q.value == periodLow.value),
+                  quarters.findIndex(q => q.value == periodHigh.value) + 1,
                 ],
                 series: data[selected.value],
                 yAxis: [singleGraph.yLabel],
@@ -284,7 +287,7 @@ export const QuarterlyGraphs = (props) => {
               loading={!data[selected.value]}
             />
           )}
-        </React.Fragment>
+        </div>
       ) : (
         <LoadingIcon />
       )}
