@@ -1,3 +1,11 @@
+.Graphs .graph-wrapper {
+  margin-top: 2em;
+}
+
+.Graphs .instructions {
+  font-size: 1.25em;
+}
+
 .Graphs svg {
   fill: inherit;
   stroke: inherit;
