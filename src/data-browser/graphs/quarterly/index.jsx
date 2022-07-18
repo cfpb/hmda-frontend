@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "../../Select.jsx";
 import { Graph } from "../Graph";
-import { groupStyles, groupBadgeStyles } from "../utils/inlineStyling";
 import { GraphsHeader } from "./GraphsHeader";
 import { deriveHighchartsConfig } from "../highchartsConfig";
 import { PeriodSelectors } from "../PeriodSelectors";
@@ -11,6 +10,7 @@ import { useQuery } from "../utils/utils.js";
 import CopyURLButton from "../../../common/CopyURLButton.jsx";
 import { BaseURLQuarterly, QuarterlyApiUrl } from '../constants.js'
 import { HomeLink } from '../../HomeLink'
+import { formatGroupLabel } from '../utils/menuHelpers.js'
 import "../graphs.css";
 
 export const QuarterlyGraphs = (props) => {
@@ -27,33 +27,6 @@ export const QuarterlyGraphs = (props) => {
   const [seriesForURL, setSeriesForURL] = useState();
 
   let query = useQuery();
-
-  // This will only be called once, upon loading of the Highcharts graph
-  const onGraphLoad = useCallback(
-    (chartRef) => {
-      // 1. Get a the list of visible series names from the query string
-      const visible = query.get("visibleSeries")?.split(",") || [];
-
-      if (visible.length > 0) {
-        // 2. Hide any lines not listed in the URL
-        chartRef.series.forEach((s) => {
-          if (!visible.includes(s.name)) {
-            s.hide();
-          }
-        });
-      }
-    },
-    [query]
-  );
-
-  // Method passed to <Select /> to create categories in drop-down
-  const formatGroupLabel = (data) => (
-    <div style={groupStyles}>
-      <span>{data.label}</span>
-      {/* Adds length of graphs in that category */}
-      <span style={groupBadgeStyles}>{data.options.length}</span>
-    </div>
-  );
 
   // Function to fetch single graph data when a graph from the dropdown has been selected
   const fetchSingleGraph = async (endpoint) => {
@@ -240,7 +213,7 @@ export const QuarterlyGraphs = (props) => {
             value={
               selected ? { value: selected.value, label: selected.label } : ''
             }
-            formatGroupLabel={data => formatGroupLabel(data)}
+            formatGroupLabel={formatGroupLabel}
           />
           {selected && singleGraph && quarters && seriesForURL && (
             <PeriodSelectors
@@ -265,7 +238,6 @@ export const QuarterlyGraphs = (props) => {
 
           {selected && singleGraph && quarters && seriesForURL && (
             <Graph
-              onLoad={onGraphLoad}
               options={deriveHighchartsConfig({
                 loading: !data[selected.value],
                 title: singleGraph.title,
