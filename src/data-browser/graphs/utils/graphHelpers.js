@@ -1,15 +1,45 @@
 /**
  * Hide graph lines based on the URL parameter `visibleSeries`
- * @param {Ref} ref Reference to Highcharts graph
- * @param {Object} query URL Parameters
+ * @param {Ref} chartRef Reference to Highcharts graph
+ * @param {Object} urlQueryParams URL Parameters
  * @returns 
  */
-export const hideUnselectedLines = (ref, query) => {
-  const visibleSeries = query.get('visibleSeries')?.split(',') || []
+export const hideUnselectedLines = (chartRef, urlQueryParams) => {
+  const visibleSeries = urlQueryParams.get('visibleSeries')?.split(',') || []
 
   if (!visibleSeries.length) return
 
-  ref?.series?.forEach(s => {
+  chartRef?.series?.forEach(s => {
     if (!visibleSeries.includes(s.name)) s.hide()
   })
+}
+
+/**
+ * Construct the category-grouped options for the Graph selection drop-down menu
+ * @param {Object} graphData 
+ * @param {Function} saveOptions 
+ * @returns null
+ */
+ export const buildGraphListOptions = (graphData, saveOptions) => {
+  if (!graphData) return
+
+  const categorizedOptions = {}
+
+  // Dynamially group graphs by Category
+  graphData.forEach(opt => {
+    if (!categorizedOptions[opt.category]) categorizedOptions[opt.category] = []
+    categorizedOptions[opt.category].push(opt)
+  })
+
+  // Create drop-down menu entries
+  const optionsWithCategories = Object.keys(categorizedOptions)
+    .sort()
+    .map(category => ({
+      label: category,
+      options: categorizedOptions[category],
+    }))
+
+  if (optionsWithCategories.length) {
+    saveOptions(optionsWithCategories)
+  }
 }
