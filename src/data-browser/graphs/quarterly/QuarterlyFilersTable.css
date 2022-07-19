@@ -1,0 +1,9 @@
+.quarterly-filers-table .table-container {
+  max-height: 600px;
+  transition: max-height .3s;
+  overflow-y: auto;
+}
+
+.quarterly-filers-table .expander {
+  cursor: pointer;
+}
