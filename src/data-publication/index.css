@@ -1,7 +1,10 @@
 .DataPublication .home .card {
-  flex: 1 1 286px;
-  margin: 3rem 40px 3rem 0;
-  max-width: 286px;
+  flex: 1 0 90%;
+  margin-bottom: 3rem;
+}
+
+.DataPublication .home .card h4 {
+  margin-top: 2rem;
 }
 
 .DataPublication.App {
@@ -49,4 +52,37 @@
 
 .DataPublication .heading h4 {
   margin-top: 1.78em;
+}
+
+.DataPublication .home .card-container .card:first-child {
+  margin-top: 0rem;
+}
+
+.DataPublication .dataset-container header h3 {
+  border-bottom: 1px solid #aaa;
+  color: #5b616b;
+  padding-bottom: 5px;
+}
+
+.DataPublication .dataset-container {
+  margin-top: 2em;
+  display: flex;
+  flex-flow: row;
+}
+
+.DataPublication .dataset-container > div:first-child {
+  margin-right: 25px;
+}
+
+.DataPublication .MoreInfo .label {
+  font-weight: bold;
+}
+
+.DataPublication .MoreInfo .value {
+  color: #5b616b;
+  margin-left: 5px;
+}
+
+.DataPublication .MoreInfo .marker {
+  color: #5b616b;
 }

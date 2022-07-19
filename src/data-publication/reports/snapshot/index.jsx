@@ -4,6 +4,8 @@ import YearSelector from '../../../common/YearSelector.jsx'
 import { SNAPSHOT_DATASET } from '../../constants/snapshot-dataset.js'
 import { withAppContext } from '../../../common/appContextHOC.jsx'
 import { S3DatasetLink } from '../../../common/S3Integrations'
+import { LabelWithTooltip } from '../LabelWithTooltip'
+import { withYearValidation } from '../../../common/withYearValidation.js'
 import './Snapshot.css'
 
 function linkToDocs(year = '2018'){
@@ -23,11 +25,11 @@ function renderDatasets(datasets){
       {datasets.map((dataset, i) => {
         return (
           <li key={i}>
-            {dataset.label}
+            <LabelWithTooltip {...dataset} />
             <ul>
               <S3DatasetLink url={dataset.csv} label='CSV' showLastUpdated />
               <S3DatasetLink
-                url={dataset.csv}
+                url={dataset.txt}
                 label='Pipe Delimited'
                 showLastUpdated
               />
@@ -45,7 +47,7 @@ const Snapshot = props => {
   const { snapshot, shared  } = props.config.dataPublicationYears
   const years = snapshot || shared
   const dataForYear = SNAPSHOT_DATASET[year]
-  const snapshotDate = year ? dataForYear.snapshot_date : 'a fixed date per year'
+  const snapshotDate = year ? dataForYear.freezeDate : 'a fixed date per year'
 
   return (
     <div className='Snapshot' id='main-content'>
@@ -100,4 +102,4 @@ const Snapshot = props => {
   )
 }
 
-export default withAppContext(Snapshot)
+export default withAppContext(withYearValidation(Snapshot))

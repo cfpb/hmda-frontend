@@ -1,13 +1,13 @@
 const { HOST, TEST_DELAY, ACTION_DELAY } = Cypress.env()
 
-describe('Dynamic National Loan-Level Dataset', function () {
+describe('Dynamic National Loan-Level Dataset', () => {
   const years = ['2020', '2019', '2018', '2017']
   const datasetUrl = '/data-publication/dynamic-national-loan-level-dataset/'
   const linksPath = '#main-content > .grid > :nth-child(1) > ul > li > a'
 
   years.forEach((year) => {
-    describe(year + ' Dynamic Datasets', function () {
-      it('has valid Dataset links', function () {
+    describe(year + ' Dynamic Datasets', () => {
+      it('has valid Dataset links', () => {
         cy.get({ HOST, TEST_DELAY, ACTION_DELAY }).logEnv()
         cy.viewport(1440, 798)
         cy.visit(`${HOST}${datasetUrl}${year}`)

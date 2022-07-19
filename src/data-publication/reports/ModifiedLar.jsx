@@ -4,6 +4,7 @@ import Heading from '../../common/Heading.jsx'
 import SearchList from './SearchList.jsx'
 import YearSelector from '../../common/YearSelector.jsx'
 import { withAppContext } from '../../common/appContextHOC.jsx'
+import { withYearValidation } from '../../common/withYearValidation.js'
 
 import './ModifiedLar.css'
 
@@ -39,4 +40,4 @@ const ModifiedLar = props => {
   )
 }
 
-export default withAppContext(ModifiedLar)
+export default withAppContext(withYearValidation(ModifiedLar))

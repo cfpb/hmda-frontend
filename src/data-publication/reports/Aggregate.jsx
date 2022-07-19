@@ -10,10 +10,16 @@ import STATES from '../constants/states.js'
 import stateToMsas from '../constants/stateToMsas.js'
 import { AGGREGATE_REPORTS } from '../constants/aggregate-reports.js'
 import { withAppContext } from '../../common/appContextHOC.jsx'
+import { withYearValidation } from '../../common/withYearValidation.js'
 
 import './Aggregate.css'
 
 const detailsCache = {
+  2021: {
+    states: {},
+    msaMds: {},
+    reports: {}
+  },
   2020: {
     states: {},
     msaMds: {},
@@ -214,4 +220,4 @@ class Aggregate extends React.Component {
   }
 }
 
-export default withAppContext(Aggregate)
+export default withAppContext(withYearValidation(Aggregate))

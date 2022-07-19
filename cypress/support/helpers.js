@@ -13,22 +13,22 @@ export const isProdDefault = (host) => isProd(host) && !isBeta(host);
 export const waitUpto2Mins = { timeout: 120000 };
 
 export function withFormData(method, url, formData, done) {
-  const xhr = new XMLHttpRequest();
-  xhr.open(method, url);
-  xhr.onload = function () {
-    done(xhr);
-  };
-  xhr.onerror = function () {
-    done(xhr);
-  };
-  xhr.send(formData);
+  const xhr = new XMLHttpRequest()
+  xhr.open(method, url)
+  xhr.onload = () => {
+    done(xhr)
+  }
+  xhr.onerror = () => {
+    done(xhr)
+  }
+  xhr.send(formData)
 }
 
 export function urlExists(url) {
   return new Promise((resolve) => {
     const xhr = new XMLHttpRequest();
 
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = () => {
       if (xhr.readyState === 4)
         resolve({ url, status: xhr.status < 400, statusCode: xhr.status });
     };

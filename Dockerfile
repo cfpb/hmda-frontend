@@ -1,4 +1,4 @@
-FROM node:14.17.6-alpine3.11 as build-stage
+FROM node:14.18.3-alpine3.15 as build-stage
 WORKDIR /usr/src/app
 ARG DOCKER_TAG="latest"
 
@@ -16,7 +16,7 @@ RUN echo "{ \"version\": \"${DOCKER_TAG}\" }" > ./src/common/constants/release.j
 
 RUN yarn build
 
-FROM nginx:1.20.1-alpine
+FROM nginx:1.22-alpine
 ENV NGINX_USER=svc_nginx_hmda
 RUN apk update; apk upgrade
 RUN rm -rf /etc/nginx/conf.d

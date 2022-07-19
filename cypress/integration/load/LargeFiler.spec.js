@@ -22,7 +22,7 @@ const config = getDefaultConfig(HOST)
 const getFilename = (filingPeriod, lei) => `${filingPeriod}-${lei}-MAX.txt`
 const { filingPeriodStatus } = config
 
-describe('Large Filer', function () {
+describe('Large Filer', () => {
   // Only need to provide an Auth URL when running locally
   const authUrl = HOST.indexOf('localhost') > -1 ? AUTH_BASE_URL : HOST
 
@@ -60,7 +60,7 @@ describe('Large Filer', function () {
   const testVsOfficial = THIS_IS_BETA ? 'test' : 'official'
 
   years.forEach((filingPeriod, index) => {
-    it(`${filingPeriod}`, function () {
+    it(`${filingPeriod}`, () => {
       // Action: List Institutions
       cy.visit(`${HOST}/filing/${filingPeriod}/institutions`)
       cy.wait(ACTION_DELAY)

@@ -7,14 +7,14 @@ const sectionMap = {
   "MSA/MD Description": 4,
 }
 
-describe('Snapshot National Loan-Level Dataset', function () {
+describe('Snapshot National Loan-Level Dataset', () => {
   const years = ['2020', '2019', '2018', '2017']
   const datasetUrl = '/data-publication/snapshot-national-loan-level-dataset/'
   const basePath = '.grid > :nth-child(1) > :nth-child(2)'
   
   years.forEach((year) => {
-    describe(year + ' Datasets', function () {
-      it('has valid Dataset links', function () {
+    describe(year + ' Datasets', () => {
+      it('has valid Dataset links', () => {
         cy.get({ HOST, ACTION_DELAY, TEST_DELAY }).logEnv()
         cy.viewport(1440, 798)
         cy.visit(`${HOST}${datasetUrl}${year}`)

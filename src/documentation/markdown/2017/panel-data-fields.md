@@ -76,6 +76,7 @@
   - 2: MBS of bank holding company
   - 3: Independent mortgage banking subsidiary
   - 5: Affiliate of a depository institution
+  - -1: NULL/blank
 
 ### [parent\_rssd](#parent_rssd)
 - **Description:** The National Information Center's RSSD for the parent of the institution
