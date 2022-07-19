@@ -1,0 +1,45 @@
+.flex-table {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.flex-table .flex-item {
+  flex: 0 1 33%;
+  padding: .55em;
+}
+
+.flex-table .infoIcon {
+  width: 1em;
+  height: 1em;
+  margin-left: .55em;
+  /* margin-bottom: 5px; */
+  display: inline-block;
+}
+
+.flex-table .infoIcon svg {
+  width: 100% !important;
+  height: 100% !important;
+  fill: #555;
+}
+
+.flex-table .infoIcon:hover svg,
+.flex-table .infoIcon:focus svg {
+  fill: #0071bc;
+}
+
+.flex-table .mytooltip {
+  max-width: 400px !important;
+  overflow-wrap: break-word;
+  font-size: 1em;
+}
+
+.flex-table .context-table th,
+.flex-table .context-table td {
+  background-color: inherit;
+}
+
+.flex-table .context-table th.capitalize,
+.flex-table .context-table td.capitalize {
+  text-transform: capitalize;
+}
