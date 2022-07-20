@@ -8,7 +8,7 @@ import { getMarkdownUrl } from './markdownUtils'
 const DynamicRenderer = props => {
   const [data, setData] = useState(null)
   const [error, setError] = useState(null)
-  const { year, slug } = props
+  const { year, slug, showBackLink = true } = props
 
 
   useEffect(function (){
@@ -38,12 +38,13 @@ const DynamicRenderer = props => {
   if(error) return <NotFound />
 
   return (
-    <div className="Markdown-Wrapper">
-    <Link className="BackLink" to={`/documentation/${year}`}>{'\u2b05'} {year} DOCUMENTATION</Link>
-    {data
-      ? <Markdown>{data}</Markdown>
-      : <LoadingIcon/>
-    }
+    <div className='Markdown-Wrapper'>
+      {showBackLink && (
+        <Link className='BackLink' to={`/documentation/${year}`}>
+          {'\u2b05'} {year} DOCUMENTATION
+        </Link>
+      )}
+      {data ? <Markdown>{data}</Markdown> : <LoadingIcon />}
     </div>
   )
 }

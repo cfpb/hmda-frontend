@@ -1,32 +1,32 @@
 import React, { useCallback, useState } from 'react'
-import Select from '../../Select.jsx'
-import { Graph } from '../Graph'
 import { GraphsHeader } from './GraphsHeader'
-import { deriveHighchartsConfig } from '../highchartsConfig'
-import { PeriodSelectors } from '../PeriodSelectors'
-import LoadingIcon from '../../../common/LoadingIcon'
-import CopyURLButton from '../../../common/CopyURLButton.jsx'
 import { HomeLink } from '../../HomeLink'
-import { formatGroupLabel } from '../utils/menuHelpers.js'
-import { useFetchSingleGraph } from './useFetchSingleGraphs.jsx'
+import { SectionFAQ } from './SectionFAQ.jsx'
+import { SectionFilerInfo } from './SectionFilerInfo'
+import { SectionGraphs } from './SectionGraphs'
+import { SectionSelector } from '../SectionSelector'
 import { useFetchGraphList } from './useFetchGraphList.jsx'
+import { useFetchSingleGraph } from './useFetchSingleGraphs.jsx'
 import { useManageGraphSelection } from './useManageGraphSelection.jsx'
 import Error from '../../../common/Error'
 import '../graphs.css'
 
+const SectionOptions = ['Graphs', 'Filer Info', 'FAQ']
+
 export const QuarterlyGraphs = props => {
-  const [options, setOptions] = useState([]) // All the graph options with categories
-  const [graphHeaderOverview, setGraphHeaderOverview] = useState() // Overview text which comes from graphs API - State is sent to GraphsHeader Component
-  const [quarters, setQuarters] = useState() // Contains all the quarters from a selected graph and is used for period filtering
-  const [selected, setSelected] = useState() // Selected graph
-  const [graphList, setGraphList] = useState() // List of available graphs from API
-  const [singleGraph, setSingleGraph] = useState()
-  const [data, setData] = useState({}) // API data cache
-  const [periodLow, setPeriodLow] = useState() // Period filters
-  const [periodHigh, setPeriodHigh] = useState()
   const [categories, setCategories] = useState() // Holds the xAxis values/labels
-  const [seriesForURL, setSeriesForURL] = useState()
+  const [data, setData] = useState({}) // API data cache
   const [error, setError] = useState()
+  const [graphHeaderOverview, setGraphHeaderOverview] = useState() // Overview text which comes from graphs API - State is sent to GraphsHeader Component
+  const [graphList, setGraphList] = useState() // List of available graphs from API
+  const [options, setOptions] = useState([]) // All the graph options with categories
+  const [periodHigh, setPeriodHigh] = useState()
+  const [periodLow, setPeriodLow] = useState() // Period filters
+  const [quarters, setQuarters] = useState() // Contains all the quarters from a selected graph and is used for period filtering
+  const [section, setSection] = useState(SectionOptions[0])
+  const [selected, setSelected] = useState() // Selected graph
+  const [seriesForURL, setSeriesForURL] = useState()
+  const [singleGraph, setSingleGraph] = useState()
 
   // Display a message when API calls go awry
   const onGraphFetchError = useCallback(
@@ -93,69 +93,36 @@ export const QuarterlyGraphs = props => {
       <HomeLink />
       <GraphsHeader loading={!options.length} overview={graphHeaderOverview} />
       <Error error={error} />
-
-      {options.length ? (
-        <div className='graph-wrapper'>
-          <p className='instructions'>Select a graph from the menu below</p>
-          <Select
-            classNamePrefix='react-select__graph' // Used for cypress testing
-            options={options}
-            placeholder='Select a Graph'
-            onChange={e => handleGraphSelection(e)}
-            value={
-              selected ? { value: selected.value, label: selected.label } : ''
-            }
-            formatGroupLabel={formatGroupLabel}
-          />
-          <PeriodSelectors
-            {...{
-              props,
-              isLoading: loadingGraphDetails,
-              periodOpts: quarters,
-              periodLow,
-              setPeriodLow,
-              periodHigh,
-              setPeriodHigh,
-              endpoint: selected.value,
-              seriesForURL,
-            }}
-          />
-
-          {!error && seriesForURL && (
-            <div className='toolbar'>
-              <CopyURLButton text={'Share Graph'} />
-            </div>
-          )}
-
-          {loadingGraphDetails ? (
-            <LoadingIcon />
-          ) : (
-            <Graph
-              options={deriveHighchartsConfig({
-                loading: !data[selected.value],
-                title: singleGraph.title,
-                subtitle: singleGraph.subtitle,
-                periodRange: [
-                  quarters.findIndex(q => q.value == periodLow.value),
-                  quarters.findIndex(q => q.value == periodHigh.value) + 1,
-                ],
-                series: data[selected.value],
-                yAxis: [singleGraph.yLabel],
-                categories, // will come from the xAxis values of the fetched data
-                props,
-                periodLow,
-                periodHigh,
-                endpoint: selected.value,
-                seriesForURL,
-                setSeriesForURL,
-              })}
-              loading={!data[selected.value]}
-            />
-          )}
-        </div>
-      ) : (
-        <LoadingIcon />
-      )}
+      <SectionSelector
+        options={SectionOptions}
+        selected={section}
+        onChange={setSection}
+      />
+      <div className='section-wrapper'>
+        <SectionGraphs
+          show={section === 'Graphs'}
+          {...{
+            categories,
+            data,
+            error,
+            handleGraphSelection,
+            loadingGraphDetails,
+            options,
+            periodHigh,
+            periodLow,
+            props,
+            quarters,
+            selected,
+            seriesForURL,
+            setPeriodHigh,
+            setPeriodLow,
+            setSeriesForURL,
+            singleGraph,
+          }}
+        />
+        <SectionFilerInfo show={section === 'Filer Info'} />
+        <SectionFAQ show={section === 'FAQ'} />
+      </div>
     </div>
   )
 }

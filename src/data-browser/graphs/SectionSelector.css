@@ -1,0 +1,25 @@
+.sections {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.section {
+  flex: 0;
+}
+
+.section button {
+  white-space: nowrap;
+  border-radius: 0;
+  border: 1px solid grey;
+  margin-top: 1em;
+}
+
+.section.selected button {
+  border-color: #0071bc;
+}
+
+.section:not(.selected) button {
+  background: white;
+  color: black;
+}
