@@ -10,6 +10,7 @@ Loans are grouped by quarter based on their Final Action Taken date.
 [comment]: https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/quarterly-filing-by-action-taken.png
 
 Quarterly Filing - Action Taken Dates
+
 - Quarter 1: January 1 - March 31
 - Quarter 2: April 1 - June 31
 - Quarter 3: July 1 - September 31
