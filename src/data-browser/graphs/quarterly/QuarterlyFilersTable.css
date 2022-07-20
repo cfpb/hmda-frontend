@@ -1,9 +1,22 @@
 .quarterly-filers-table .table-container {
-  max-height: 600px;
+  padding-top: 1em;
+  max-height: 9999px;
   transition: max-height .3s;
   overflow-y: auto;
 }
 
-.quarterly-filers-table .expander {
+.quarterly-filers-table .table-container.collapsed {
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.quarterly-filers-table .table-heading {
   cursor: pointer;
+  user-select: none;
+}
+
+.quarterly-filers-table .table-heading > .expand-collapse {
+  font-size: 0.5em;
+  vertical-align: middle;
 }

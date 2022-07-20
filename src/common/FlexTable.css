@@ -5,33 +5,21 @@
 }
 
 .flex-table .flex-item {
-  flex: 0 1 33%;
-  padding: .55em;
+  padding: .5em .5em 0 0;
 }
 
-.flex-table .infoIcon {
-  width: 1em;
-  height: 1em;
-  margin-left: .55em;
-  /* margin-bottom: 5px; */
-  display: inline-block;
+.flex-table .flex-item .has-context {
+  font-weight: bold;
+  cursor: default;
 }
 
-.flex-table .infoIcon svg {
-  width: 100% !important;
-  height: 100% !important;
-  fill: #555;
+.flex-table .flex-item .has-context:hover {
+  color: #0071bc;
 }
 
-.flex-table .infoIcon:hover svg,
-.flex-table .infoIcon:focus svg {
-  fill: #0071bc;
-}
-
-.flex-table .mytooltip {
-  max-width: 400px !important;
-  overflow-wrap: break-word;
-  font-size: 1em;
+.flex-table .flex-item .no-context {
+  color: #5b616b;
+  cursor: default;
 }
 
 .flex-table .context-table th,
