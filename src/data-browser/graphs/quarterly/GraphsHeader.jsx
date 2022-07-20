@@ -1,6 +1,4 @@
-import { DocumentationLink } from '../../../common/DocumentationLink'
 import { ContactHmdaHelp } from '../../ContactHmdaHelp'
-import QuarterlyFilersTable from './QuarterlyFilersTable'
 
 const DefaultOverview =
   'The following graphs present data for the financial institutions reporting HMDA quarterly data.'
@@ -17,6 +15,5 @@ export const GraphsHeader = ({ overview }) => (
     <p className='lead'>
       <ContactHmdaHelp subject='Quarterly Graphs' />
     </p>
-    <QuarterlyFilersTable />
   </header>
 )
