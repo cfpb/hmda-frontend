@@ -14,11 +14,7 @@ export const GraphsHeader = ({ overview }) => (
       {overview || DefaultOverview} {ExtrapolationWarning}
     </p>
     <p className='lead'>
-      For more information please review the{' '}
-      <DocumentationLink id='quarterly-graphs-faq'>
-        HMDA Quarterly Graphs FAQ
-      </DocumentationLink>
-      . <ContactHmdaHelp subject='Quarterly Graphs' />
+      <ContactHmdaHelp subject='Quarterly Graphs' />
     </p>
   </header>
 )

@@ -1,4 +1,4 @@
-.Graphs .graph-wrapper {
+.Graphs .section-wrapper {
   margin-top: 2em;
 }
 
@@ -17,8 +17,8 @@
   border-top: 1px solid #aaa;
 }
 
-.graph-wrapper table {
-  margin: 15px auto;
+.Graphs .section-wrapper table {
+  margin: 1.25em auto;
 }
 
 .period-wrapper {
@@ -74,4 +74,13 @@
   min-width: 1;
   padding: 0.16666666666667em 0.5em;
   text-align: center;
+}
+
+/* Section - FAQ */
+.Graphs .Markdown-Wrapper img {
+  max-width: 100%;
+}
+
+.Graphs .Markdown-Wrapper h1 {
+  font-size: 1.75em;
 }
