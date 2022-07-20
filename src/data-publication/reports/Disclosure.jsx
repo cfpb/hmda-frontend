@@ -10,8 +10,14 @@ import Report from './Report.jsx'
 import fetchMsas from './fetchMsas.js'
 import { DISCLOSURE_REPORTS } from '../constants/disclosure-reports.js'
 import { withAppContext } from '../../common/appContextHOC.jsx'
+import { withYearValidation } from '../../common/withYearValidation.js'
 
 const detailsCache = {
+  2021: {
+    institutions: {},
+    msaMds: {},
+    reports: {}
+  },
   2020: {
     institutions: {},
     msaMds: {},
@@ -266,4 +272,4 @@ class Disclosure extends React.Component {
   }
 }
 
-export default withAppContext(Disclosure)
+export default withAppContext(withYearValidation(Disclosure))

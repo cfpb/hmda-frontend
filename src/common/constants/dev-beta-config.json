@@ -15,20 +15,29 @@
     "Homepage -> Default year for Datasets, Reports, and mLAR Links",
     "Data Browser -> Default year for Browser and Maps features"
   ],
-  "publicationReleaseYear": "2020",
+  "publicationReleaseYear": "2021",
   "maintenanceMode": false,
   "filingAnnouncement": null,
   "dataBrowserYears": [
+    "2021",
     "2020",
     "2019",
     "2018"
   ],
   "dataPublicationYears": {
     "shared": [
+      "2021",
       "2020",
       "2019",
       "2018",
       "2017"
+    ],
+    "threeYear": [
+      "2018"
+    ],
+    "oneYear": [
+      "2020",
+      "2019"
     ]
   },
   "timedGuards": {

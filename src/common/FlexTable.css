@@ -1,0 +1,33 @@
+.flex-table {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.flex-table .flex-item {
+  padding: .5em .5em 0 0;
+}
+
+.flex-table .flex-item .has-context {
+  font-weight: bold;
+  cursor: default;
+}
+
+.flex-table .flex-item .has-context:hover {
+  color: #0071bc;
+}
+
+.flex-table .flex-item .no-context {
+  color: #5b616b;
+  cursor: default;
+}
+
+.flex-table .context-table th,
+.flex-table .context-table td {
+  background-color: inherit;
+}
+
+.flex-table .context-table th.capitalize,
+.flex-table .context-table td.capitalize {
+  text-transform: capitalize;
+}

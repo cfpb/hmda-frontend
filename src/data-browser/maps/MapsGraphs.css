@@ -1,3 +1,18 @@
+.flex { display: flex; }
+.flex-inline { flex-flow: row; }
+.flex-column { flex: 1 }
+.flex-column h4 {
+  display: none;
+  text-align: center;
+  font-size: 1.2em;
+  padding-bottom: .5em;
+}
+
+.filter-selectors>div:first-child {
+   flex: 0 0;
+  min-width: 35%;
+}
+
 .mapContainer {
   height: calc(100vh - 200px);
   box-shadow: 0px 0px 1px #555;
@@ -133,21 +148,16 @@
 }
 
 .maps-control-box {
-  display: flex;
   justify-content: space-around;
-  padding: .5em;
   border-radius: 10px;
   font-size: .75em;
 }
 
-.maps-control-box > div:not(:first-child){
-  margin-left: 1em;
-}
-
 .maps-control-box .text-selectors {
+  margin-bottom: 1em;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -158,14 +168,13 @@
 
 .maps-control-box .filter-selectors {
   width: 100%;
-  display: flex;
-  flex-flow: column wrap;
   justify-content: space-evenly;
-  line-height: 1.25em;
   font-size: 1.1em;
+  padding: 0 1em .5em;
 }
 
 .maps-control-box .filter-selectors .filter {
+
   width: 100%;
   display: flex;
   align-items: center;
@@ -173,13 +182,15 @@
 
 .maps-control-box .filter-selectors .filter > div { /* react-select container */
   width: 100%;
-  margin-left: .5em;
+  margin: .5em;
 }
 
 .maps-control-wrapper .filter-clause {
   color: #555;
   font-weight: bold;
   font-size: 16px;
+  white-space: nowrap;
+  font-family: 'SourceSansProBold';
 }
 
 
@@ -191,11 +202,7 @@
   margin-top: .25em;
 }
 
-.maps-header .filter-clause {
-  font-family: 'SourceSansProBold'
-}
-
-.maps-control-wrapper .filter-selectors .filter-clause {
+.maps-control-wrapper .filter-clause {
   min-width: 60px;
   text-align: right;
   margin-left: .5em;
@@ -203,15 +210,15 @@
   padding: .75em 0;
 }
 
-.maps-control-wrapper .TextSelector,
+/* .maps-control-wrapper .TextSelector, */
 .maps-control-wrapper .filter {
   background-color: rgba(255, 255, 255, 1);
   border-radius: 10px;
 }
 
-.maps-control-wrapper .TextSelector {
+/* .maps-control-wrapper .TextSelector {
   border: 1px solid #ddd;
-}
+} */
 
 .SelectWrapper {
   display: flex;
@@ -332,10 +339,11 @@
 
 .filter-clause {
   display: inline-block;
-  text-align: right;
+  /* text-align: right; */
   margin-right: 10px;
   font-weight: bold;
   font-family: 'SourceSansProBold';
+  width: 7em;
 }
 
 
@@ -513,6 +521,16 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
   }
 }
 
+@media only screen and (max-width: 950px) {
+  .flex-inline { flex-flow: column; }
+  .filter-selectors>div:first-child {
+    width: 100%;
+  }
+  .maps-control-wrapper .filter-clause {
+    text-align: left;
+  }
+}
+
 /* Mobile Views */
 @media only screen and (max-width: 830px) {
   .mapContainer { height: 60vh; }
@@ -530,7 +548,7 @@ tr.highlight.colorBgWithBias .highlight { box-shadow: inset 0 0 100px rgba(255,2
 
   .maps-control-box .filter { justify-content: space-between; padding-right: 1em; }
   .maps-control-box .filter-selectors { margin: 1em 1em 0 1em; }
-  .maps-control-box .filter-selectors .filter-clause { 
+  .maps-control-box  .filter-clause { 
     margin: 0 .5em 0 0; 
     padding: 0; 
     text-align: left; 

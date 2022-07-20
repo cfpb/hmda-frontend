@@ -82,7 +82,7 @@ export function makeStateFromSearch(search, s, detailsCb, updateSearch){
       return
     }
 
-    if(key === 'category') {
+    if (key === 'category') {
       s[key] = val[0]
     } else if(key === 'items' && s.category){
       const sanitized = sanitizeArray(s.category, val, s.year)
@@ -119,7 +119,7 @@ export function makeSearchFromState(s){
     makeParam(s, 'items'),
     makeParam(s, getInstitutionIdKey(s.year)),
     makeParam(s, 'variables'),
-    makeParam(s, 'details')
+    makeParam(s, 'details'),
   ]
 
   params = params.filter(v => v)

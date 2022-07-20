@@ -1,0 +1,32 @@
+.LabelWithTooltip #infoIcon {
+  width: 1em;
+  height: 1em;
+  margin-left: .55em;
+  margin-bottom: 5px;
+}
+
+.LabelWithTooltip #infoIcon svg {
+  width: 100% !important;
+  height: 100% !important;
+  fill: #555;
+}
+
+.LabelWithTooltip #infoIcon:hover svg,
+.LabelWithTooltip #infoIcon:focus svg {
+  width: 100% !important;
+  height: 100% !important;
+  fill: #0071bc;
+}
+
+.LabelWithTooltip .nowrap {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.LabelWithTooltip .mytooltip {
+  max-width: 400px !important;
+  overflow-wrap: break-word;
+  font-size: 1em;
+}

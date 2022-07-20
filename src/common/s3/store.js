@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import UpdatedOnReducer from './UpdatedOnSlice'
+import S3HeadersReducer from './S3Headers'
 
 export const s3Store = configureStore({
   reducer: {
-    updatedOn: UpdatedOnReducer
+    s3Headers: S3HeadersReducer
   }
 })
 

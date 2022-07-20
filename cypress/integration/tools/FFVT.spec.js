@@ -33,7 +33,7 @@ const uploadFile = filename => {
 }
 
 // Spec
-describe('FFVT', function () {
+describe('FFVT', () => {
   beforeEach(() => {
     cy.viewport(1680, 916)
     cy.visit(`${HOST}/tools/file-format-verification`)
@@ -44,17 +44,17 @@ describe('FFVT', function () {
 
   afterEach(() => cy.wait(TEST_DELAY))
  
-  it(`Validates a clean file`, function () {
+  it(`Validates a clean file`, () => {
     uploadFile(CLEAN_FILE)
     isValid()
   })
 
-  it(`Validates a clean file with BOM`, function () {
+  it(`Validates a clean file with BOM`, () => {
     uploadFile(CLEAN_FILE_BOM)
     isValid()
   })
 
-  it(`Catches formatting errors in a file`, function () {
+  it(`Catches formatting errors in a file`, () => {
     uploadFile(PARSE_ERROR_FILE)
     cy.get('#parseErrors .alert-heading').contains('2 Formatting Errors')
 
