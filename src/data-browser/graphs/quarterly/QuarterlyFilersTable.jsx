@@ -17,7 +17,7 @@ const QuarterlyFilersTable = props => {
   }, [dispatch, data]);
 
   let content = <LoadingIcon />;
-  
+
   const columns = useMemo(() => {
     const countsColumns = [...Array(past).keys()].map(i => {
       const accessorKey = `${year - i - 1}`
@@ -47,8 +47,6 @@ const QuarterlyFilersTable = props => {
     });
     content = <SimpleSortTable columns={columns} data={formattedData} />;
   }
-
-  // const content = loading === 'succeeded' ? <SimpleSortTable columns={columns} data={formattedData} /> : <LoadingIcon />;
 
   return (
     <div className="quarterly-filers-table">
