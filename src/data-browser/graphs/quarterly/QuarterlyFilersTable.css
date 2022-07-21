@@ -1,22 +1,20 @@
 .quarterly-filers-table .table-container {
   padding-top: 1em;
-  max-height: 9999px;
-  transition: max-height .3s;
-  overflow-y: auto;
 }
 
-.quarterly-filers-table .table-container.collapsed {
-  padding: 0;
-  max-height: 0;
-  overflow: hidden;
-}
-
-.quarterly-filers-table .table-heading {
+.quarterly-filers-table .table-container .cursor-pointer {
   cursor: pointer;
+}
+
+.quarterly-filers-table .table-container .select-none {
   user-select: none;
 }
 
-.quarterly-filers-table .table-heading > .expand-collapse {
-  font-size: 0.5em;
+.quarterly-filers-table .table-container .sort-icon {
+  font-size: .5em;
+  width: .5em;
+  text-align: right;
+  padding-left: .5em;
   vertical-align: middle;
+  display: inline-block;
 }

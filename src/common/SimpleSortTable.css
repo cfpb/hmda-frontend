@@ -1,0 +1,16 @@
+.simple-sort-table .cursor-pointer {
+  cursor: pointer;
+}
+
+.simple-sort-table .select-none {
+  user-select: none;
+}
+
+.simple-sort-table .sort-icon {
+  font-size: .5em;
+  width: .5em;
+  text-align: right;
+  padding-left: .5em;
+  vertical-align: middle;
+  display: inline-block;
+}
