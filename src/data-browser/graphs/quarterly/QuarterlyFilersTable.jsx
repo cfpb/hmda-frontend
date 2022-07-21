@@ -17,25 +17,25 @@ const QuarterlyFilersTable = props => {
   }, [dispatch, data]);
 
   let content = <LoadingIcon />;
+  
+  const columns = useMemo(() => {
+    const countsColumns = [...Array(past).keys()].map(i => {
+      const accessorKey = `${year - i - 1}`
+      return {
+        header: `${accessorKey} Count`,
+        accessorKey,
+        sortingFn: 'alphanumeric',
+      };
+    })
+    return [{
+      header: 'Institution',
+      accessorKey: 'name',
+      sortingFn: 'text',
+    }, ...countsColumns];
+  });
 
   if (loading === 'succeeded') {
-    const columns = useMemo(() => {
-      const countsColumns = [...Array(past).keys()].map(i => {
-        const accessorKey = `${year - i - 1}`
-        return {
-          header: `${accessorKey} Count`,
-          accessorKey,
-          sortingFn: 'alphanumeric',
-        };
-      })
-      return [{
-        header: 'Institution',
-        accessorKey: 'name',
-        sortingFn: 'text',
-      }, ...countsColumns];
-    });
-
-    const formattedData = data.map(({ value: name, context: { data: larCounts } }) => {
+    const formattedData = data.map(({ value: name, context: {data: larCounts} }) => {
       let counts = {};
       larCounts.forEach(lar => {
         counts[lar.year] = lar.count;
@@ -47,6 +47,8 @@ const QuarterlyFilersTable = props => {
     });
     content = <SimpleSortTable columns={columns} data={formattedData} />;
   }
+
+  // const content = loading === 'succeeded' ? <SimpleSortTable columns={columns} data={formattedData} /> : <LoadingIcon />;
 
   return (
     <div className="quarterly-filers-table">
