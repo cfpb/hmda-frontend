@@ -1,2 +1,2 @@
-export * as charts from './chartsSlice';
 export * as institutions from './institutionsSlice';
+export * as graphs from './graphsSlice';
