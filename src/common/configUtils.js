@@ -33,10 +33,10 @@ export function getDefaultConfig(str) {
   return derivedConfig
 }
 
-export function isProd(host) {
+export function isProd(host = window.location.hostname) {
   return !!host.match('^ffiec')
 }
 
-export function isBeta(host) {
+export function isBeta(host = window.location.hostname) {
   return !!host.match('beta')
 }

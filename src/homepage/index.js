@@ -1,286 +1,56 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { isBeta } from '../common/Beta.jsx'
-import { withAppContext } from '../common/appContextHOC'
-import { AnnouncementBanner } from './AnnouncementBanner'
+import './ColumnLayout.css'
 import './Home.css'
-
-export function isProd() {
-  return window.location.hostname.match('ffiec')
-}
-
-const figUpdates = {
-  2021: '11/20/2020',
-  2022: '10/20/2021'
-}
-
-const FigLastUpdated = ({ year }) => {
-  if(!figUpdates[year]) return null
-  return <span className='last-updated'>( Last updated: {figUpdates[year]})</span>
-}
+import { AnnouncementBanner } from './AnnouncementBanner'
+import { Column } from './Column'
+import { ColumnLayout } from './ColumnLayout.jsx'
+import { DataBrowser } from './ForDataUsers/DataBrowser'
+import { DataPublication } from './ForDataUsers/DataPublication'
+import { Documentation } from './ForFilers/Documentation'
+import { Filing } from './ForFilers/Filing'
+import { HelpForFilers } from './ForFilers/HelpForFilers'
+import { isBeta } from '../common/Beta.jsx'
+import { isProd } from '../common/configUtils'
+import { ResearchAndReports } from './ForDataUsers/ResearchAndReports'
+import { Tools } from './ForFilers/Tools'
+import { withAppContext } from '../common/appContextHOC'
+import { FilersFAQs } from './ForFilers/FilersFAQs'
+import { FilingGuides } from './ForFilers/FilingGuides'
+import { DataUsersFAQs } from './ForDataUsers/DataUsersFAQs'
+import { ChangeLog } from './ForDataUsers/ChangeLog'
 
 const Home = ({ config }) => {
   const isProdBeta = isProd() && isBeta()
-  const { defaultPeriod, publicationReleaseYear, mlarReleaseYear, dataPublicationYears } = config
 
   return (
-    <main className="App home" id="main-content">
+    <main className='App home' id='main-content'>
       <div>
         <header>
           <h1>The Home Mortgage Disclosure Act</h1>
-          <p className="lead">
+          <p className='lead'>
             HMDA requires many financial institutions to maintain, report, and
             publicly disclose information about mortgages.
           </p>
         </header>
         <AnnouncementBanner {...config} />
       </div>
-      <div style={{marginTop: '3em'}} className="usa-grid-full">
-        <div className="card-container">
-          <div className="card">
-            <header>
-              <h3>
-                <a
-                  href={`/filing/${defaultPeriod}/`}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  Access the HMDA {isBeta() && 'Beta '} Filing Platform
-                </a>
-              </h3>
-              <p>
-                Beginning with HMDA data collected in or after 2017, financial
-                institutions will use the HMDA Platform to upload their
-                loan/application registers (LARs), review edits, certify the
-                accuracy and completeness of the data, and submit data for the
-                filing year.
-              </p>
-            </header>
-
-            <header>
-              <h3>Help for Filers</h3>
-              <p>
-                Published resources for financial institutions required to file
-                Home Mortgage Disclosure Act (HMDA) data.
-              </p>
-            </header>
-            <ul>
-              <li>Filing Instructions Guide</li>
-              <ul>
-                {[2022, 2021, 2020, 2019, 2018, 2017].map(year => {
-                  if (year === 2018) {
-                    return (
-                      <li key={`${year}`}>
-                        For data collected in {year}
-                        <ul>
-                          <li key={year + '-hmda-rule'}>
-                            <a
-                              href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2018-hmda-fig-2018-hmda-rule.pdf`}
-                              download={true}
-                            >
-                              Incorporating the 2018 HMDA rule
-                            </a>
-                          </li>
-                          <li key={year}>
-                            <a
-                              href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${year}-hmda-fig.pdf`}
-                              download={true}
-                            >
-                              Prior to the 2018 HMDA rule
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                    )
-                  }
-
-                  return (
-                    <li key={year}>
-                      <a
-                        href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${year}-hmda-fig.pdf`}
-                        download={true}
-                      >
-                        For data collected in {year}
-                        <FigLastUpdated {...{ year }} />
-                      </a>
-                    </li>
-                  )
-                })}                             
-                <li>
-                  For data collected in or before 2016, please visit the{' '}
-                  <a
-                    href="https://www.ffiec.gov/hmda/fileformats.htm"
-                  >
-                    FFIEC Website
-                  </a>{' '}
-                  for data submission resources.
-                </li>
-              </ul>
-              <li>
-                <a
-                  href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-2022.pdf"
-                  download={true}
-                >
-                  Supplemental Guide for Quarterly Filers for 2022
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-2021.pdf"
-                  download={true}
-                >
-                  Supplemental Guide for Quarterly Filers for 2021
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers.pdf"
-                  download={true}
-                >
-                  Supplemental Guide for Quarterly Filers for 2020
-                </a>
-              </li>
-              <li>
-                <a href="https://www.ffiec.gov/hmda/guide.htm">
-                  Getting It Right Guide
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/HMDA-Loan-Scenarios.pdf"
-                  download={true}
-                >
-                  Loan Scenarios
-                </a>
-              </li>
-              <li>
-                <a href="https://hmdahelp.consumerfinance.gov/knowledgebase/s/">
-                  Self Service Knowledge Portal
-                </a>: Contains answers to frequently asked HMDA Operations questions.
-              </li>
-              <li>
-                For answers to frequently asked HMDA regulatory questions, please visit the{' '}
-                <a href="https://www.consumerfinance.gov/compliance/compliance-resources/mortgage-resources/hmda-reporting-requirements/">
-                  CFPB&apos;s Regulatory Implementation Website
-                </a>.
-              </li>
-            </ul>
-            {isProdBeta ? null :
-            <header>
-              <h3>
-                <Link to="/documentation/">Documentation</Link>
-              </h3>
-              <p>
-                A collection of documentation resources for HMDA data publication products.
-              </p>
-            </header>
-            }
-          </div>
-
-          <div className="card">
-            { isProdBeta ? null :
-            <header>
-              <h3>
-                <Link to="/data-browser/">HMDA Data Browser</Link>
-              </h3>
-              <p>
-                 The HMDA Data Browser is a tool that allows users to filter and download HMDA datasets.
-              </p>
-            </header>
-            }
-           {isProdBeta ? null :
-            <header>
-              <h3>
-                <Link to="/tools/">Tools</Link>
-              </h3>
-              <p>
-                Here you can find various tools to assist you in getting your
-                HMDA LAR ready for filing.
-              </p>
-              <ul>
-                <li>
-                  <a href="/tools/rate-spread">Rate Spread</a>
-                </li>
-                <li>
-                  <a href="/tools/check-digit">Check Digit</a>
-                </li>
-                <li>
-                  <a href="/tools/file-format-verification">
-                    File Format Verification
-                  </a>
-                </li>
-                <li>
-                  <a href="/tools/lar-formatting">LAR Formatting</a>
-                </li>
-              </ul>
-            </header>
-            }
-            {isProdBeta ? null :
-            <header>
-              <h3>
-                <Link to="/data-publication/">Data Publication</Link>
-              </h3>
-              <p>
-                The HMDA data and reports are the most comprehensive publicly
-                available information on mortgage market activity.
-              </p>
-              <ul>
-                <li>
-                  <a href={`/data-publication/modified-lar/${mlarReleaseYear || publicationReleaseYear}`}>
-                    Modified LAR
-                  </a>
-                </li>
-                <li>
-                  <a href={`/data-publication/disclosure-reports/${publicationReleaseYear}`}>
-                    Disclosure Reports
-                  </a>
-                </li>
-                <li>
-                  <a href={`/data-publication/aggregate-reports/${publicationReleaseYear}`}>
-                    MSA/MD Aggregate Reports
-                  </a>
-                </li>
-                <li>
-                  <a href={`/data-publication/national-aggregate-reports/${publicationReleaseYear}`}>
-                    National Aggregate Reports
-                  </a>
-                </li>
-                <li>
-                  <a href={`/data-publication/snapshot-national-loan-level-dataset/${publicationReleaseYear}`}>
-                    Snapshot National Loan-Level Dataset
-                  </a>
-                </li>
-                <li>
-                  <a href={`/data-publication/one-year-national-loan-level-dataset/${dataPublicationYears.oneYear[0]}`}>
-                    One Year National Loan-Level Dataset
-                  </a>
-                </li>
-                <li>
-                  <a href={`/data-publication/three-year-national-loan-level-dataset/${dataPublicationYears.threeYear[0]}`}>
-                    Three Year National Loan-Level Dataset
-                  </a>
-                </li>
-                <li>
-                  <a href={`/data-publication/dynamic-national-loan-level-dataset/${publicationReleaseYear}`}>
-                    Dynamic National Loan-Level Dataset
-                  </a>
-                </li>
-              </ul>
-            </header>
-           }
-           {isProdBeta ? null :
-            <header>
-              <h3>
-                <a href="https://www.consumerfinance.gov/data-research/hmda/">Research and Reports</a>
-              </h3>
-              <p>
-                Research and reports on mortgage market activity
-              </p>
-            </header>
-           }
-          </div>
-        </div>
-      </div>
+      <ColumnLayout>
+        <Column title='Info for Filers'>
+          <Filing defaultPeriod={config.defaultPeriod} />
+          {/* <Tools isProdBeta={isProdBeta} /> */}
+          <FilersFAQs />
+          <FilingGuides />
+          {/* <HelpForFilers /> */}
+          <Documentation />
+        </Column>
+        <Column title='Info for Data Users'>
+          <DataBrowser isProdBeta={isProdBeta} />
+          <DataUsersFAQs />
+          <DataPublication {...config} />
+          <ResearchAndReports />
+          <ChangeLog />
+        </Column>
+      </ColumnLayout>
     </main>
   )
 }
