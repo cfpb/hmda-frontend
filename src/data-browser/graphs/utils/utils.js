@@ -23,3 +23,17 @@ export const useQuery = () => {
 
   return useMemo(() => new URLSearchParams(search), [search]);
 };
+
+export const processSingleGraph = graph => {
+  const rawFilingPeriods = new Set()
+  graph.series.forEach(s =>
+    s.coordinates.forEach(point => rawFilingPeriods.add(point.x))
+  )
+  const filingPeriods = Array.from(rawFilingPeriods).sort()
+  
+  return {
+    filingPeriods,
+    seriesForUrl: graph.series.map(s => s.name),
+    graph
+  }
+}

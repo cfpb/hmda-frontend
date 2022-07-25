@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
-import { BaseURLQuarterly, QuarterlyApiUrl } from '../constants'
+import { useDispatch, useSelector } from 'react-redux'
+import { BaseURLQuarterly } from '../constants'
+import { graphs } from '../slice'
 import { buildGraphListOptions } from '../utils/graphHelpers'
 
 export const useFetchGraphList = ({
@@ -14,6 +16,9 @@ export const useFetchGraphList = ({
   match,
   history,
 }) => {
+  const dispatch = useDispatch()
+  const graphList = useSelector(state => state.graphs.list)
+
   const onSuccess = response => {
     setError(null)
 
@@ -66,9 +71,12 @@ export const useFetchGraphList = ({
 
   /* Fetch list of available graphs once, on page load */
   useEffect(() => {
-    fetch(QuarterlyApiUrl)
-      .then(res => res.json())
-      .then(data => onSuccess(data))
-      .catch(err => onGraphFetchError(err))
-  }, [])
+    if (graphList.loading === 'idle') {
+      dispatch(graphs.fetchGraphsInfo())
+    } else if (graphList.loading === 'succeeded') {
+      onSuccess(graphList.data)
+    } else if (graphList.loading === 'rejected') {
+      onGraphFetchError(graphList.data)
+    }
+  }, [graphList, dispatch])
 }
