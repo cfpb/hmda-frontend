@@ -3,9 +3,9 @@ import { useReactTable, flexRender, getCoreRowModel, getSortedRowModel } from '@
 import './SimpleSortTable.css';
 
 const SimpleSortTable = props => {
-  const [sorting, setSorting] = useState([]);
+  const { data, columns, customFooter, initialSort } = props;
 
-  const {data, columns} = props;
+  const [sorting, setSorting] = useState(initialSort || []);
 
   const table = useReactTable({
     data,
@@ -52,16 +52,16 @@ const SimpleSortTable = props => {
           {row.getVisibleCells().map(cell => {
             return (
               <td key={cell.id}>
-                {flexRender(
-                  cell.column.columnDef.cell,
-                  cell.getContext()
-                )}
+                {cell.getContext().getValue()?.toLocaleString()}
               </td>
             )
           })}
         </tr>;
       })}
     </tbody>
+    <tfoot>
+      {customFooter}
+    </tfoot>
   </table>;
 };
 
