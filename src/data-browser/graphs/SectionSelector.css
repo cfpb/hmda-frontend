@@ -23,3 +23,8 @@
   background: white;
   color: black;
 }
+
+.section:not(.selected):hover button {
+  background: #b0dcf9;
+  color: black;
+}
