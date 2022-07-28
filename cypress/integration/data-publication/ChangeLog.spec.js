@@ -40,7 +40,7 @@ describe('Change Log', () => {
       cy.get('#filter-bar').findByText('update').click()
       cy.get('#filter-bar').findByText('HMDA Tools').click()
       cy.url().should('contain', '?type=correction,update&product=tools')
-      cy.get('.change-row:not(.header)').should('have.length', 5)
+      cy.get('.change-row:not(.header)').should('have.length.gte', 5)
     })
 
     it('Filters by keyword', () => {
