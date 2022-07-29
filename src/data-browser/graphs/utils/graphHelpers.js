@@ -1,11 +1,18 @@
 /**
  * Hide graph lines based on the URL parameter `visibleSeries`
  * @param {Ref} chartRef Reference to Highcharts graph
- * @param {Object} urlQueryParams URL Parameters
- * @returns 
+ * @param {Array} seriesForURL List of visible series names
+ * @returns null
  */
-export const hideUnselectedLines = (chartRef, urlQueryParams) => {
-  const visibleSeries = urlQueryParams.get('visibleSeries')?.split(',') || []
+export const hideUnselectedLines = (chartRef, seriesForURL) => {
+  const isExport = chartRef.options.chart.forExport
+  
+  // During export, derive visibleSeries from the URL instead of using React state
+  const visibleSeries = isExport
+    ? new URLSearchParams(window.location.search)
+        .get('visibleSeries')
+        ?.split(',') || []
+    : seriesForURL
 
   if (!visibleSeries.length) return
 

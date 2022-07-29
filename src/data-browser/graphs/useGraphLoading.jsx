@@ -6,6 +6,8 @@ import { useEffect } from 'react'
  * When loading, we display the loading overlay and hide the graph's data.
  * When loaded, we clear the loading overlay and update the Highchart generated elements
  * 
+ * @param {Object} options All of Highcharts configuration
+ * @param {Boolean} loading Are we waiting for API data to load?
  * @param {Ref} ref 
  */
 export const useGraphLoading = (ref, loading, options) => {
@@ -24,7 +26,7 @@ export const useGraphLoading = (ref, loading, options) => {
       chart.hideLoading() // Clear overlay
       chart.viewData() // Update the data table
     }
-  }, [loading, options])
+  }, [loading, options, ref])
 }
 
 export default useGraphLoading

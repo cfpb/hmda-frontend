@@ -5,16 +5,16 @@ import { graphs } from '../slice'
 import { buildGraphListOptions } from '../utils/graphHelpers'
 
 export const useFetchGraphList = ({
-  onGraphFetchError,
   fetchSingleGraph,
-  setSelected,
-  setGraphHeaderOverview,
-  setGraphList,
-  setError,
-  setOptions,
+  history,
   location,
   match,
-  history,
+  onGraphFetchError,
+  setError,
+  setGraphHeaderOverview,
+  setRawGraphList,
+  setGraphMenuOptions,
+  setSelectedGraph,
 }) => {
   const dispatch = useDispatch()
   const graphList = useSelector(state => state.graphs.list)
@@ -22,9 +22,10 @@ export const useFetchGraphList = ({
   const onSuccess = response => {
     setError(null)
 
-    /* Redirect user to a valid graph when either 
-     * a) an invalid graph ID is entered in the URL or
-     * b) no graph ID is provided
+    /**
+     * Redirect user to a valid graph when either 
+     *  a) an invalid graph ID is entered in the URL or
+     *  b) no graph ID is provided in the URL
     */
     const needsRedirect =
       !response.graphs.some(g => g.endpoint == match.params.graph) ||
@@ -34,7 +35,7 @@ export const useFetchGraphList = ({
       let firstGraph = response.graphs[0]
 
       fetchSingleGraph(firstGraph.endpoint)
-      setSelected({
+      setSelectedGraph({
         value: firstGraph.endpoint,
         label: firstGraph.title,
         category: firstGraph.category,
@@ -46,7 +47,7 @@ export const useFetchGraphList = ({
         graph => graph.endpoint == match.params.graph
       )
       fetchSingleGraph(initialGraphToLoad.endpoint)
-      setSelected({
+      setSelectedGraph({
         value: initialGraphToLoad.endpoint,
         label: initialGraphToLoad.title,
         category: initialGraphToLoad.category,
@@ -63,10 +64,10 @@ export const useFetchGraphList = ({
       category: g.category,
     }))
 
-    setGraphList(graphData)
+    setRawGraphList(graphData)
 
     // Dynamically populate graph selection drop-down with category-grouped options
-    buildGraphListOptions(graphData, setOptions)
+    buildGraphListOptions(graphData, setGraphMenuOptions)
   }
 
   /* Fetch list of available graphs once, on page load */
