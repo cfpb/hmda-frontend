@@ -11,42 +11,42 @@ export const useManageGraphSelection = ({
   setPeriodLow,
   setPeriodHigh,
   data,
-  selected,
-  singleGraph,
+  selectedGraph,
+  selectedGraphData,
   location,
   categories,
 }) => {
   const query = useQuery()
 
   useEffect(() => {
-    if (!selected) return
+    if (!selectedGraph) return
 
-    if (singleGraph) {
+    if (selectedGraphData) {
       const nextState = produce(data, draft => {
         let graphLines = []
 
         // Generating each line for the graph
-        singleGraph.series.map(graph => {
+        selectedGraphData.series.map(line => {
           // Create an Array of zeros, matching the length of the xAxis labels array
           const currentSeries = Array.apply(null, Array(categories.length)).map(
             _ => null
           )
 
           // Match each point in the series to its xAxis index by referencing categories
-          graph.coordinates.forEach(point => {
+          line.coordinates.forEach(point => {
             const idx = categories.indexOf(point.x)
             if (idx < 0) return // Skip unknown filing periods
             currentSeries[idx] = parseInt(point.y) || 0
           })
 
           graphLines.push({
-            name: graph.name,
+            name: line.name,
             data: currentSeries,
             yAxis: 0,
           })
         })
 
-        draft[selected.value] = graphLines
+        draft[selectedGraph.value] = graphLines
       })
       setData(nextState)
 
@@ -60,7 +60,8 @@ export const useManageGraphSelection = ({
       }))
       setQuarters(periodOptions)
 
-      // Set periods based off URL parameters otherwise set periods based off categories which contains quarters
+      // Set periods from URL parameters, if valid
+      // Otherwise use periodOptions which are derived from the API data
       if (
         location.search.match(/periodLow/) &&
         location.search.match(/periodHigh/) &&
@@ -74,5 +75,5 @@ export const useManageGraphSelection = ({
         setPeriodHigh(periodOptions[periodOptions.length - 1])
       }
     }
-  }, [selected, singleGraph, categories])
+  }, [selectedGraph, selectedGraphData, categories])
 }

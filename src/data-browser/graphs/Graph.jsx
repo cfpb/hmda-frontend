@@ -1,25 +1,35 @@
+import { hideUnselectedLines } from './utils/graphHelpers'
 import { useCallback, useRef } from 'react'
 import Highcharts from 'highcharts'
-import HighchartsReact from 'highcharts-react-official'
 import HighchartsExport from 'highcharts/modules/exporting'
 import HighchartsExportData from 'highcharts/modules/export-data'
+import HighchartsReact from 'highcharts-react-official'
 import useGraphLoading from './useGraphLoading'
-import { useQuery } from './utils/utils'
-import { hideUnselectedLines } from './utils/graphHelpers'
 
 HighchartsExport(Highcharts) // Enable export to image
 HighchartsExportData(Highcharts) // Enable export of underlying data
 
-export const Graph = ({ options, loading }) => {
+export const Graph = ({ options, loading, seriesForURL }) => {
   const chartRef = useRef()
-  const query = useQuery()
 
+  /**
+   * Note about onLoad: 
+   * 
+   * Highcharts also calls this function when exporting to image.
+   * Be warned that the way in which it generates these images can lead to 
+   * synchronization issues with our custom hooks (particularly useQuery).
+   * 
+   * You can check if exporting via `ref.options.chart.forExport`
+   * 
+   * See the following link for context on how these images are generated.
+   * https://github.com/highcharts/highcharts-react/issues/315
+   */
   const onLoad = useCallback(
-    chartRef => {
+    ref => {
       // Hide series based on URL query parameters
-      hideUnselectedLines(chartRef, query)
+      hideUnselectedLines(ref, seriesForURL)
     },
-    [query]
+    [seriesForURL]
   )
 
   useGraphLoading(chartRef, loading, options)

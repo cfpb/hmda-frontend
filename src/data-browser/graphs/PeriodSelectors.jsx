@@ -1,32 +1,19 @@
-import { useEffect } from "react";
 import LoadingIcon from '../../common/LoadingIcon'
-import Select from "../Select";
-import { BaseURLQuarterly } from './constants'
+import Select from '../Select'
 
 export const PeriodSelectors = ({
-  props,
   isLoading,
-  periodOpts,
-  periodLow,
-  setPeriodLow,
   periodHigh,
+  periodLow,
+  periodOpts,
   setPeriodHigh,
-  endpoint,
-  seriesForURL,
+  setPeriodLow,
 }) => {
   if (isLoading) return <LoadingIcon />
 
   const showRangeReset =
     periodLow.value !== periodOpts[0].value ||
     periodHigh.value !== periodOpts[periodOpts.length - 1].value
-
-  // Listens for period changes and series changes in the URL, if found then re-builds the URL
-  useEffect(() => {
-    props.history.push({
-      pathname: `${BaseURLQuarterly}/${endpoint}`,
-      search: `?periodLow=${periodLow.value}&periodHigh=${periodHigh.value}&visibleSeries=${seriesForURL}`,
-    })
-  }, [periodLow, periodHigh, seriesForURL])
 
   return (
     <div className='period-wrapper'>
