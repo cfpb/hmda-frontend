@@ -7,10 +7,16 @@
 }
 
 .simple-sort-table .sort-icon {
-  font-size: .5em;
-  width: .5em;
-  text-align: right;
+  width: 1em;
   padding-left: .5em;
-  vertical-align: middle;
-  display: inline-block;
+}
+
+.simple-sort-table .cell-data {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.simple-sort-table .cell-data > span {
+  flex: 0 1 0;
 }

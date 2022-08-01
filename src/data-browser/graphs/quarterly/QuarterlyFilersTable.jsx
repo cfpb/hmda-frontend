@@ -1,21 +1,24 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import LoadingIcon from '../../../common/LoadingIcon';
+import SimpleSortTable from '../../../common/SimpleSortTable';
 import { institutions } from '../slice';
 import './QuarterlyFilersTable.css';
-import SimpleSortTable from '../../../common/SimpleSortTable';
 
 const QuarterlyFilersTable = props => {
   const dispatch = useDispatch();
   const [year, past] = [new Date().getFullYear(), 3];
-  const { data, loading } = useSelector(state => state.institutions);
+  const { data, loading, sort } = useSelector(state => state.institutions);
   const pastYears = [...Array(past).keys()].map(i => `${year - i - 1}`);
 
   useEffect(() => {
     if (!data) {
       dispatch(institutions.fetchInstitutionLars({ year, past }));
+      dispatch(institutions.updateSort([{ id: 'agency', desc: false }, { id: 'name', desc: false }]));
     }
   }, [dispatch, data]);
+
+  const setSort = sortUpdateFn => dispatch(institutions.updateSort(sortUpdateFn(sort)));
 
   let content = <LoadingIcon />;
 
@@ -35,7 +38,7 @@ const QuarterlyFilersTable = props => {
     }, {
       header: 'LEI',
       accessorKey: 'lei',
-      enableSorting: false,
+      sortingFn: 'text',
     }, {
       header: 'Agency',
       accessorKey: 'agency',
@@ -50,7 +53,7 @@ const QuarterlyFilersTable = props => {
         counts[ts.year] = ts.count;
       });
       return {
-        name,
+        name: name.toUpperCase(),
         lei,
         agency,
         ...counts
@@ -79,12 +82,12 @@ const QuarterlyFilersTable = props => {
         })}
       </tr>
     </>;
-    content = <SimpleSortTable columns={tableColumns} data={tableData} customFooter={customFooter} initialSort={[{id: 'name', desc: false,}]} />;
+    content = <SimpleSortTable columns={tableColumns} data={tableData} customFooter={customFooter} initialSort={{ sort, setSort }} />;
   }
 
   return (
     <div className="quarterly-filers-table">
-      <h2 className="table-heading">{year} Quarterly Filers</h2>
+      <h2 className="table-heading">{year} Quarterly Filer Loan Application Totals</h2>
       <div className="table-container">
         {content}
       </div>
