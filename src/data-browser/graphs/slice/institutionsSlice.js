@@ -6,11 +6,17 @@ const initialState = {
   loading: IDLE,
   currentRequestId: null,
   data: null,
+  sort: [],
 };
 
 export const institutionsSlice = createSlice({
   name: 'institutions',
   initialState,
+  reducers: {
+    updateSort: (state, action) => {
+      state.sort = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchInstitutionLars.pending, (state, action) => {
@@ -43,5 +49,7 @@ export const fetchInstitutionLars = createAsyncThunk(
     return response;
   }
 );
+
+export const { updateSort } = institutionsSlice.actions;
 
 export default institutionsSlice.reducer;
