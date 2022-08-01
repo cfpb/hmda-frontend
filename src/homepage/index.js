@@ -160,7 +160,7 @@ const Home = ({ config }) => {
               </li>
               <li>
                 For answers to frequently asked HMDA regulatory questions, please visit the{' '}
-                <a href="https://www.consumerfinance.gov/policy-compliance/guidance/hmda-implementation/">
+                <a href="https://www.consumerfinance.gov/compliance/compliance-resources/mortgage-resources/hmda-reporting-requirements/">
                   CFPB&apos;s Regulatory Implementation Website
                 </a>.
               </li>
