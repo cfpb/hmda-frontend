@@ -1,6 +1,5 @@
 .calendar {
   margin: 0 0 1em;
-  /* max-width: 77rem; */
 }
 
 .calendar .quarters {
@@ -13,10 +12,8 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  background-color: grey;
   text-align: center;
-  border: 1px solid black;
-  padding: .5em;
+  padding: .5em 0;
 }
 
 .calendar .quarter .label {
@@ -26,8 +23,14 @@
 }
 
 .calendar .quarter .dates {
-  -webkit-text-stroke: .5px grey;
   color: white;
   font-size: 1.2em;  
-  font-family: 'SourceSansProBold';
+  font-family: 'SourceSansPro';
+  border: 1px solid black;
+  padding: 5px;
 }
+
+.calendar .q1 .dates { background-color: #2783f4 }
+.calendar .q2 .dates { background-color: #239a41 }
+.calendar .q3 .dates { background-color: #ce7d0c }
+.calendar .q4 .dates { background-color: #934ae0 }
