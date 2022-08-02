@@ -6,7 +6,7 @@ A financial institution is required to report quarterly data if it reported a co
 ## How is the grouping of loans determined?
 Loans are grouped by quarter based on their Final Action Taken date.
 
-![Quarterly Filing - Action Taken Dates](http://localhost:3000/markdown/images/quarterly-filing-by-action-taken.png)
+![Quarterly Filing - Action Taken Dates](https://raw.githubusercontent.com/cfpb/hmda-frontend/1353-quarterly-charts/src/documentation/markdown/images/quarterly-filing-by-action-taken.png)
 [comment]: https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/quarterly-filing-by-action-taken.png
 
 Quarterly Filing - Action Taken Dates
