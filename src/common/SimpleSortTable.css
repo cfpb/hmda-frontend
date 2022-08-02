@@ -1,22 +1,21 @@
-.simple-sort-table .cursor-pointer {
+.simple-sort-table-container .cursor-pointer {
   cursor: pointer;
 }
 
-.simple-sort-table .select-none {
+.simple-sort-table-container .select-none {
   user-select: none;
 }
 
+.simple-sort-table-container .Pills {
+  display: inline-block;
+}
+
+.simple-sort-table-container .PillClose {
+  cursor: pointer;
+}
+
 .simple-sort-table .sort-icon {
-  width: 1em;
   padding-left: .5em;
-}
-
-.simple-sort-table .cell-data {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.simple-sort-table .cell-data > span {
-  flex: 0 1 0;
+  vertical-align: middle;
+  font-size: 1em;
 }
