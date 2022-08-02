@@ -25,7 +25,7 @@ const QuarterlyFilersTable = props => {
   const tableColumns = useMemo(() => {
     const countsColumns = pastYears.map(accessorKey => {
       return {
-        header: `${accessorKey} Count`,
+        header: accessorKey,
         accessorKey,
         sortingFn: 'alphanumeric',
       };
@@ -87,7 +87,7 @@ const QuarterlyFilersTable = props => {
 
   return (
     <div className="quarterly-filers-table">
-      <h2 className="table-heading">{year} Quarterly Filer Loan Application Totals</h2>
+      <h2 className="table-heading">{year} Quarterly Filer Loan and Application Counts</h2>
       <div className="table-container">
         {content}
       </div>

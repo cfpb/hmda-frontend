@@ -33,19 +33,16 @@ const SimpleSortTable = props => {
     return '\u2195';
   };
 
-  const cellDataClasses = ['cell-data'];
-
   const pills = sort.map(s => {
-    const label = columns.find(({ accessorKey }) => accessorKey === s.id)?.header.concat(s.desc ? '\u2193' : '\u2191');
+    const label = columns.find(({ accessorKey }) => accessorKey === s.id)?.header.concat(s.desc ? ' \u2193' : ' \u2191');
     return { ...s, label }
   });
 
   return <div className="simple-sort-table-container">
-    <div>Sort Options</div>
-    <div className="sort-options">
+    <div>
       <ul>
-        <li>Click on Column Header to sort the column.</li>
-        <li>Hold Shift and click to sort by multiple columns.</li>
+        <li>Table is sortable by selecting the column headers.</li>
+        <li>Hold Shift and select multiple column headers to sort by multiple fields.</li>
       </ul>
       <div>
         <Pills values={pills} onChange={updateSortSelection} />
@@ -57,11 +54,11 @@ const SimpleSortTable = props => {
           table.getHeaderGroups().map(headerGroup => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map(header => {
-                const dataClasses = header.column.getCanSort() ? [...cellDataClasses, 'cursor-pointer', 'select-none'] : cellDataClasses;
+                const clickableHeader = header.column.getCanSort() ? 'cursor-pointer select-none' : null;
                 return (
                   <th key={header.id} colSpan={header.colSpan}>
                     {header.isPlaceholder ? null : (
-                      <div className={dataClasses.join(' ')}
+                      <div className={clickableHeader}
                         onClick={header.column.getToggleSortingHandler()}>
                         <span>
                           {flexRender(header.column.columnDef.header, header.getContext())}
