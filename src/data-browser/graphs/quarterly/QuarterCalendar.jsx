@@ -23,8 +23,8 @@ export const QuarterCalendar = () => {
       <div className='calendar'>
         <div className='quarters'>
           <Quarter number={1} dates='Jan 1 - Mar 31' />
-          <Quarter number={2} dates='Apr 1 - Jun 31' />
-          <Quarter number={3} dates='Jul 1 - Sep 31' />
+          <Quarter number={2} dates='Apr 1 - Jun 30' />
+          <Quarter number={3} dates='Jul 1 - Sep 30' />
           <Quarter number={4} dates='Oct 1 - Dec 31' />
         </div>
       </div>
