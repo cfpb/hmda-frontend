@@ -60,8 +60,13 @@ export const FilingGuides = () => {
             href='https://s3.amazonaws.com/cfpb-hmda-public/prod/help/HMDA-Loan-Scenarios.pdf'
             download={true}
           >
-            HMDA Loan Scenarios: Hypothetical Transactions for HMDA Reporting
+            HMDA Loan Scenarios
           </a>
+        </li>
+        <li>
+          <ExternalLink url='https://www.consumerfinance.gov/compliance/compliance-resources/mortgage-resources/hmda-reporting-requirements/'>
+            HMDA Reporting Requirements
+          </ExternalLink>
         </li>
       </ul>
     </header>
