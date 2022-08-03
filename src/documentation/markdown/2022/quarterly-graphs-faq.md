@@ -12,8 +12,8 @@ Loans are grouped by quarter based on their Final Action Taken date.
 Quarterly Filing - Action Taken Dates
 
 - Quarter 1: January 1 - March 31
-- Quarter 2: April 1 - June 31
-- Quarter 3: July 1 - September 31
+- Quarter 2: April 1 - June 30
+- Quarter 3: July 1 - September 30
 - Quarter 4: October 1 - December 31
 
 
