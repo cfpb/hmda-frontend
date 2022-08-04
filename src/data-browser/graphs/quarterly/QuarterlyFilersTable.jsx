@@ -60,7 +60,7 @@ const QuarterlyFilersTable = props => {
       }
     });
 
-    let quarterlySums = {};
+    const quarterlySums = {};
     pastYears.forEach(yr => {
       quarterlySums[yr] = data.quarterly.reduce((prev, curr) => {
         const tsLar = curr.larCounts.find(ts => ts.year === yr);

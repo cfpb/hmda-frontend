@@ -2,25 +2,38 @@ import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/too
 import * as graphsApi from './api/graphs';
 import { IDLE, PENDING, REJECTED, SUCCEEDED } from './api/status';
 
-const initState = {
+const idleState = {
   loading: IDLE,
   currentRequestId: null,
-  data: null
+  data: null,
 };
 
 const detailsAdapter = createEntityAdapter({
-  selectId: graph => graph.endpoint
+  selectId: graph => graph.endpoint,
 });
 
+const detailSelectors = detailsAdapter.getSelectors(state => state.details);
+
+const configsAdapter = createEntityAdapter({
+  selectId: config => config.id,
+});
+
+const configSelectors = configsAdapter.getSelectors(state => state.configs);
+
 const initialState = {
-  list: initState,
-  details: detailsAdapter.getInitialState()
+  list: idleState,
+  details: detailsAdapter.getInitialState(),
+  configs: configsAdapter.getInitialState(),
 };
 
 export const graphsSlice = createSlice({
   name: 'graphs',
   initialState,
-  reducers: {},
+  reducers: {
+    setConfig: (state, action) => {
+      configsAdapter.upsertOne(state.configs, action);
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchGraphsInfo.pending, (state, action) => {
@@ -41,10 +54,10 @@ export const graphsSlice = createSlice({
       })
       .addCase(fetchGraph.pending, (state, action) => {
         const { arg: endpoint, requestId } = action.meta;
-        const { loading } = state.details.entities[endpoint] || initState;
+        const { loading } = detailSelectors.selectById(state, endpoint) || idleState;
         if (loading === IDLE || loading === REJECTED) {
           detailsAdapter.upsertOne(state.details, {
-            ...initState,
+            ...idleState,
             currentRequestId: requestId,
             endpoint,
             loading: PENDING,
@@ -98,8 +111,7 @@ export const fetchGraphsInfo = createAsyncThunk(
 export const fetchGraph = createAsyncThunk(
   'graphs/fetchGraph',
   async (endpoint, { getState, requestId, rejectWithValue }) => {
-    const graphSelectors = detailsAdapter.getSelectors(state => state.graphs.details);
-    const  { data, currentRequestId, loading } = graphSelectors.selectById(getState(), endpoint) || {};
+    const  { data, currentRequestId, loading } = detailSelectors.selectById(getState().graphs, endpoint) || {};
     if (loading === SUCCEEDED) {
       return data;
     }
@@ -114,5 +126,9 @@ export const fetchGraph = createAsyncThunk(
     }
   }
 );
+
+export const { setConfig, test } = graphsSlice.actions;
+
+export const getConfig = (state, id) => configSelectors.selectById(state, id)?.value;
 
 export default graphsSlice.reducer;

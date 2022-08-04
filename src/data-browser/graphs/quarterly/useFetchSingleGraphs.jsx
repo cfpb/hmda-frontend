@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { graphs } from '../slice'
+import { CATEGORIES, FIRST_LOAD, SELECTED_GRAPH_DATA, SERIES_FOR_URL } from '../slice/graphConfigs'
 import { processSingleGraph } from '../utils/utils'
 
 /**
@@ -12,11 +13,7 @@ export const useFetchSingleGraph = ({
   onGraphFetchError, // Function - Error handler for API calls
   query,             // Object - URL search parameters
   seriesForURL,      // Array - List of series names to be included in the URL's `visibleSeries` query parameter
-  setCategories,
   setError,
-  setFirstPageLoad,
-  setSeriesForURL,
-  setSelectedGraphData,
 }) => {
   const dispatch = useDispatch()
 
@@ -38,14 +35,16 @@ export const useFetchSingleGraph = ({
       let visibleSeries = query.get('visibleSeries')?.split(',') || []
       // Remove series names that are invalid for the selectedGraph
       visibleSeries = visibleSeries.filter(v => seriesForUrl.includes(v))
-      
-      if (isFirstLoad && visibleSeries.length) setSeriesForURL(visibleSeries)
-      else setSeriesForURL(seriesForUrl)
+      if (isFirstLoad && visibleSeries.length) {
+        dispatch(graphs.setConfig({ id: SERIES_FOR_URL, value: visibleSeries }))
+      } else {
+        dispatch(graphs.setConfig({ id: SERIES_FOR_URL, value: seriesForUrl }))
+      }
 
       setError(null)
-      setCategories(filingPeriods)
-      setFirstPageLoad(false)
-      setSelectedGraphData(graph)
+      dispatch(graphs.setConfig({ id: CATEGORIES, value: filingPeriods }))
+      dispatch(graphs.setConfig({ id: FIRST_LOAD, value: false }))
+      dispatch(graphs.setConfig({ id: SELECTED_GRAPH_DATA, value: graph }))
     },
     [
       dispatch,
@@ -53,10 +52,7 @@ export const useFetchSingleGraph = ({
       onGraphFetchError,
       query,
       seriesForURL,
-      setCategories,
       setError,
-      setSeriesForURL,
-      setSelectedGraphData,
     ]
   )
 

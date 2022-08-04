@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { BaseURLQuarterly } from '../constants'
 import { graphs } from '../slice'
+import { GRAPH_MENU_OPTIONS, RAW_GRAPH_LIST, SELECTED_GRAPH } from '../slice/graphConfigs'
 import { buildGraphListOptions } from '../utils/graphHelpers'
 
 export const useFetchGraphList = ({
@@ -12,9 +13,6 @@ export const useFetchGraphList = ({
   onGraphFetchError,
   setError,
   setGraphHeaderOverview,
-  setRawGraphList,
-  setGraphMenuOptions,
-  setSelectedGraph,
 }) => {
   const dispatch = useDispatch()
   const graphList = useSelector(state => state.graphs.list)
@@ -35,11 +33,13 @@ export const useFetchGraphList = ({
       let firstGraph = response.graphs[0]
 
       fetchSingleGraph(firstGraph.endpoint)
-      setSelectedGraph({
-        value: firstGraph.endpoint,
-        label: firstGraph.title,
-        category: firstGraph.category,
-      })
+      dispatch(graphs.setConfig({
+        id: SELECTED_GRAPH, value: {
+          value: firstGraph.endpoint,
+          label: firstGraph.title,
+          category: firstGraph.category,
+        }
+      }))
 
       history.push(`${BaseURLQuarterly}/${firstGraph.endpoint}`)
     } else if (match.params.graph) {
@@ -47,11 +47,13 @@ export const useFetchGraphList = ({
         graph => graph.endpoint == match.params.graph
       )
       fetchSingleGraph(initialGraphToLoad.endpoint)
-      setSelectedGraph({
-        value: initialGraphToLoad.endpoint,
-        label: initialGraphToLoad.title,
-        category: initialGraphToLoad.category,
-      })
+      dispatch(graphs.setConfig({
+        id: SELECTED_GRAPH, value: {
+          value: initialGraphToLoad.endpoint,
+          label: initialGraphToLoad.title,
+          category: initialGraphToLoad.category,
+        }
+      }))
     }
 
     // Delegate overview text from API
@@ -64,10 +66,11 @@ export const useFetchGraphList = ({
       category: g.category,
     }))
 
-    setRawGraphList(graphData)
+    dispatch(graphs.setConfig({ id: RAW_GRAPH_LIST, value: graphData }))
 
     // Dynamically populate graph selection drop-down with category-grouped options
-    buildGraphListOptions(graphData, setGraphMenuOptions)
+    const graphOptions = buildGraphListOptions(graphData)
+    if (graphOptions.length) dispatch(graphs.setConfig({ id: GRAPH_MENU_OPTIONS, value: graphOptions }))
   }
 
   /* Fetch list of available graphs once, on page load */
