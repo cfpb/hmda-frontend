@@ -1,17 +1,10 @@
-import { Link } from 'react-router-dom'
+import { ExpandableCard } from '../ExpandableCard'
 
-export const ChangeLog = ({ isProdBeta }) => {
-  if (isProdBeta) return null
-
-  return (
-    <header>
-      <h3>
-        <Link to='/data-publication/updates'>HMDA Updates and Notes</Link>
-      </h3>
-      <p>
-        Tracking releases, updates, and corrections to HMDA's publications, data
-        products, documentation, and tools.
-      </p>
-    </header>
-  )
-}
+export const ChangeLog = () => (
+  <ExpandableCard
+    title='HMDA Updates and Notes'
+    destination='/data-publication/updates'
+    description="Tracking releases, updates, and corrections to HMDA's publications, data products, documentation, and tools."
+    disableExpansion={true}
+  />
+)

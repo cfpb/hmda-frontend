@@ -1,15 +1,14 @@
 import { Link } from 'react-router-dom'
-import { ExternalLink } from '../../common/ExternalLink'
 import NewIndicator from '../NewIndicator'
+import { ExpandableCard } from '../ExpandableCard'
 
-export const DataUsersFAQs = () => {
+export const DataDocs = () => {
   return (
-    <header>
-      <h3>Frequently Asked Questions</h3>
-      <p>
-        Quick answers to common questions about working with HMDA datasets and
-        Data Browser tools.
-      </p>
+    <ExpandableCard
+      title='Data Documentation'
+      description='Answers to common questions about working with HMDA datasets and Data Browser tools.'
+      destination='/documentation/'
+    >
       <ul>
         <li>
           <a
@@ -36,6 +35,6 @@ export const DataUsersFAQs = () => {
           </Link>
         </li>
       </ul>
-    </header>
+    </ExpandableCard>
   )
 }
