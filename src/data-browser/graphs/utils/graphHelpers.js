@@ -24,11 +24,10 @@ export const hideUnselectedLines = (chartRef, seriesForURL) => {
 /**
  * Construct the category-grouped options for the Graph selection drop-down menu
  * @param {Object} graphData 
- * @param {Function} saveOptions 
- * @returns null
+ * @returns {Array} list of options
  */
- export const buildGraphListOptions = (graphData, saveOptions) => {
-  if (!graphData) return
+ export const buildGraphListOptions = graphData => {
+  if (!graphData) return []
 
   const categorizedOptions = {}
 
@@ -46,7 +45,5 @@ export const hideUnselectedLines = (chartRef, seriesForURL) => {
       options: categorizedOptions[category],
     }))
 
-  if (optionsWithCategories.length) {
-    saveOptions(optionsWithCategories)
-  }
+  return optionsWithCategories
 }
