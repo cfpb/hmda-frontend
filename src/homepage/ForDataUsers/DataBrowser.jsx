@@ -13,7 +13,7 @@ export const DataBrowser = ({ isProdBeta }) => {
         <Link to='/data-browser/'>HMDA Data Browser</Link>
       </h3>
       <p>
-        A suite of tools allowing you to filter, aggregate, download, and
+        A suite of tools allowing you to filter, summarize, download, and
         visualize HMDA datasets.
       </p>
       <ul>
@@ -28,7 +28,7 @@ export const DataBrowser = ({ isProdBeta }) => {
         </li>
         <li>
           <DBLink id='data'>
-            Dataset Filtration, Summarization, and Download
+            Dataset Filtering and Summary Tables
           </DBLink>
         </li>
       </ul>
