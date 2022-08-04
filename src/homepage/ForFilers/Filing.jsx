@@ -1,21 +1,14 @@
 import { isBeta } from '../../common/Beta'
+import { ExpandableCard } from '../ExpandableCard'
 
 export const Filing = ({ defaultPeriod }) => (
-  <header>
-    <h3>
-      <a
-        href={`/filing/${defaultPeriod}/`}
-        rel='noopener noreferrer'
-        target='_blank'
-      >
-        Access the HMDA {isBeta() && 'Beta '} Filing Platform
-      </a>
-    </h3>
-    <p>
-      The HMDA Filing Platform allows financial instiutions to upload, review,
-      certify, and submit HMDA data collected in or after 2017.
-    </p>
-
+  <ExpandableCard
+    title={'Access the HMDA ' + (isBeta() ? 'Beta ' : '') + 'Filing Platform'}
+    description='The HMDA Filing Platform allows financial instiutions to upload, review, certify, and submit HMDA data collected in or after 2017.'
+    destination={`/filing/${defaultPeriod}/`}
+    expandedByDefault={true}
+    disableExpansion={isBeta()}
+  >
     <ul>
       <li>
         <a href='/tools/rate-spread'>Rate Spread Calculator</a>
@@ -32,5 +25,5 @@ export const Filing = ({ defaultPeriod }) => (
         <a href='/tools/lar-formatting'>LAR Formatting Tool</a>
       </li>
     </ul>
-  </header>
+  </ExpandableCard>
 )
