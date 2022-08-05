@@ -122,7 +122,7 @@ export const fetchGraph = createAsyncThunk(
     try {
       return await graphsApi.getGraph(endpoint);
     } catch (err) {
-      rejectWithValue(err);
+      return rejectWithValue(err);
     }
   }
 );
