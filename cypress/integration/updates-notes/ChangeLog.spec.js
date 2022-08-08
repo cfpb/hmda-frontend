@@ -1,4 +1,4 @@
-import log from '../../../src/data-publication/ChangeLog/change-log-data.json'
+import log from '../../../src/updates-notes/change-log-data.json'
 const { HOST } = Cypress.env()
 const EXPECTED_SELECTED_PILLS = ['release', 'documentation', 'tools']
 const entries = log.log
@@ -7,7 +7,7 @@ describe('Change Log', () => {
   describe('Filter Bar', () => {
     it('Sets Type and Product filters from URL query string', () => {
       cy.visit(
-        `${HOST}/data-publication/updates?type=release&product=documentation,tools`
+        `${HOST}/updates-notes/updates?type=release&product=documentation,tools`
       )
       EXPECTED_SELECTED_PILLS.forEach((pillClass) => {
         cy.get(`#filter-bar .pill.selected.${pillClass}`)
@@ -15,7 +15,7 @@ describe('Change Log', () => {
     })
 
     it('Applies keyword filter from URL query string', () => {
-      cy.visit(`${HOST}/data-publication/updates?keywords=2020,tool`)
+      cy.visit(`${HOST}/updates-notes/updates?keywords=2020,tool`)
       cy.get('.change-row').should('have.length', 2)
       cy.get('.result-count .body').should(
         'contain',
@@ -32,7 +32,7 @@ describe('Change Log', () => {
     })
 
     it('Adds filters to URL', () => {
-      cy.visit(`${HOST}/data-publication/updates`)
+      cy.visit(`${HOST}/updates-notes/updates`)
       cy.get('#filter-bar').findByText('correction').click()
       cy.url().should('contain', '?type=correction')
       cy.get('.change-row:not(.header)').should('exist')
@@ -44,7 +44,7 @@ describe('Change Log', () => {
     })
 
     it('Filters by keyword', () => {
-      cy.visit(`${HOST}/data-publication/updates?product=tools`)
+      cy.visit(`${HOST}/updates-notes/updates?product=tools`)
       cy.findByLabelText('by Change Description').type(
         'The 2017 File Format Verification Tool'
       )
