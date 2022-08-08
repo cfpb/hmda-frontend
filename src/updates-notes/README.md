@@ -1,13 +1,13 @@
 # FAQ - Updates and Notes
 
 ## What is it?
-The [Updates and Notes app](https://ffiec.cfpb.gov/data-publication/updates) provides a searchable change log of updates, releases, and corrections to published HMDA Data. 
+The [Updates and Notes app](https://ffiec.cfpb.gov/updates-notes) provides a searchable change log of updates, releases, and corrections to published HMDA Data. 
 
 ## Do content changes require redeployment?
-No, just a PR. We fetch [change-log-data.json](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/data-publication/ChangeLog/change-log-data.json) from Github.
+No, just a PR. We fetch [change-log-data.json](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/updates-notes/change-log-data.json) from Github.
 
 ## How do I create a new entries?
-Add your update to the [change-log-data.json](./src/data-publication/ChangeLog/change-log-data.json) file. 
+Add your update to the [change-log-data.json](./src/updates-notes/change-log-data.json) file. 
 
 ### Example
 ```

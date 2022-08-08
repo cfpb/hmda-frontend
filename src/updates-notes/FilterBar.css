@@ -142,9 +142,20 @@
   animation-fill-mode: forwards;
 }
 
-#ChangeLog #filter-bar h3,
-#ChangeLog #filter-bar h4,
-#ChangeLog #filter-bar label {
+#UpdatesNotes input {
+  border: 0.1rem solid #5b616b;
+  color: #212121;
+  font-family: SourceSansPro;
+  font-size: 1.6rem;
+  margin: 0.2em 0;
+  max-width: 46rem;
+  padding: 1rem 0.7em;
+  width: 100%;
+}
+
+#UpdatesNotes #filter-bar h3,
+#UpdatesNotes #filter-bar h4,
+#UpdatesNotes #filter-bar label {
   margin-top: 0;
   margin-bottom: 0;
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { PRODUCT_NAMES } from './constants'
 import { FilterResetButton } from './FilterResetButton'
-import spyGlass from '../../common/images/cf-gov-search.svg'
+import spyGlass from '../common/images/cf-gov-search.svg'
 import './FilterBar.css'
 
 /**

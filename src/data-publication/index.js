@@ -13,7 +13,6 @@ import OneYearDataset from './reports/one_year/index'
 import DynamicDataset from './reports/DynamicDataset'
 import NotFound from '../common/NotFound'
 import { withAppContext } from '../common/appContextHOC.jsx'
-import PublicationChanges from './ChangeLog/'
 
 import './index.css'
 
@@ -27,11 +26,6 @@ const DataPublication = ({ config }) => {
           exact
           from='/data-publication'
           to={`/data-publication/${shared[0]}`}
-        />
-        <Route
-          exact
-          path='/data-publication/updates'
-          component={PublicationChanges}
         />
         <Route path='/data-publication/documents' component={SupportingDocs} />
         <Route
