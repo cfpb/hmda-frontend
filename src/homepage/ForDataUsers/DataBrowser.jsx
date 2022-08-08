@@ -7,6 +7,7 @@ const DBLink = ({ id, children }) => (
 
 export const DataBrowser = () => (
   <ExpandableCard
+    id='home-expand-data-browser'
     title='HMDA Data Browser'
     description='A suite of tools allowing you to filter, summarize, download, and visualize HMDA datasets.'
     destination='/data-browser/'

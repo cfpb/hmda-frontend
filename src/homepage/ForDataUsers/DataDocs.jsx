@@ -5,6 +5,7 @@ import { ExpandableCard } from '../ExpandableCard'
 export const DataDocs = () => {
   return (
     <ExpandableCard
+      id='home-expand-data-docs'
       title='Data Documentation'
       description='Answers to common questions about working with HMDA datasets and Data Browser tools.'
       destination='/documentation/'

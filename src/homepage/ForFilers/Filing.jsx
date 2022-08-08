@@ -3,6 +3,7 @@ import { ExpandableCard } from '../ExpandableCard'
 
 export const Filing = ({ defaultPeriod }) => (
   <ExpandableCard
+    id='home-expand-filing'
     title={'Access the HMDA ' + (isBeta() ? 'Beta ' : '') + 'Filing Platform'}
     description='The HMDA Filing Platform allows financial instiutions to upload, review, certify, and submit HMDA data collected in or after 2017.'
     destination={`/filing/${defaultPeriod}/`}
