@@ -17,6 +17,7 @@ export const FigLastUpdated = ({ year }) => {
 
 export const FilingGuides = () => (
   <ExpandableCard
+    id='home-expand-filing-guides'
     title='Guides for HMDA Filers'
     description='Published resources to help guide financial institutions through the processes of submitting HMDA data.'
   >

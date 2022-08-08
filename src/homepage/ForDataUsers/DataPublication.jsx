@@ -11,6 +11,7 @@ export const DataPublication = ({
   dataPublicationYears,
 }) => (
   <ExpandableCard
+    id='home-expand-data-publication'
     title='Data Publication'
     description='The HMDA datasets and reports are the most comprehensive, publicly available information on mortgage market activity.'
     destination='/data-publication/'
