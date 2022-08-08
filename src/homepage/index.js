@@ -39,9 +39,9 @@ const Home = ({ config }) => {
         <Column title='Info for Data Users' hideContent={isProdBeta}>
           <DataBrowser  />
           <DataDocs />
+          <ChangeLog />
           <DataPublication {...config}  />
           <ResearchAndReports />
-          <ChangeLog />
         </Column>
       </ColumnLayout>
     </main>

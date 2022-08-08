@@ -1,20 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import LoadingIcon from '../../common/LoadingIcon'
+import { Route, Switch } from 'react-router-dom'
+import LoadingIcon from '../common/LoadingIcon'
 import { DEFAULT_FILTERS, PUB_CHANGELOG_URL, FILTER_OPTIONS } from './constants'
 import defaultData from './change-log-data.json'
 import ChangeLogTable from './ChangeLogTable'
 import FilterBar from './FilterBar'
 import { useChangeLogFilter } from './useChangeLogFilter'
-import { useRemoteJSON } from '../../common/useRemoteJSON'
+import { useRemoteJSON } from '../common/useRemoteJSON'
 import { organizeChangeData } from './sortFunctions'
 import './ChangeLog.css'
 
-/** 
- * Publications: Updates and Notes
- * (default export)
- * */
-const ChangeLog = () => {
+/* Updates and Notes */
+const UpdatesNotes = () => {
   const filter = useChangeLogFilter(DEFAULT_FILTERS)
 
   const [changeLog, loading] = useRemoteJSON(PUB_CHANGELOG_URL, {
@@ -22,17 +19,12 @@ const ChangeLog = () => {
     defaultData: organizeChangeData(defaultData),
   })
   
-  const heading = 'Data Publication: Updates and Notes'
+  const heading = 'HMDA Updates and Notes'
 
   if (loading) return <LoadingState heading={heading} />
 
   return (
     <PageWrapper>
-      <div className='BackLink'>
-        <Link to='/data-publication/'>
-          {'\u2b05'} Back to HMDA Data Publications
-        </Link>
-      </div>
       <header className="heading">
       <div className='intro'>
         <h1>{heading}</h1>
@@ -80,9 +72,15 @@ const LoadingState = ({ heading }) => (
 )
 
 const PageWrapper = ({ children }) => (
-  <div id='ChangeLog' className='full-width'>
+  <div id='UpdatesNotes' className='full-width'>
     {children}
   </div>
 )
 
-export default ChangeLog
+const PageRouter = () => {
+  return <Switch>
+    <Route path='/updates-notes' component={UpdatesNotes} />
+  </Switch>
+}
+
+export default PageRouter

@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import Highlighter from "react-highlight-words";
 import { PRODUCT_NAMES } from './constants'
 import { FilterResetButton } from './FilterResetButton'
-import filterImg from '../../common/images/filters.svg'
+import filterImg from '../common/images/filters.svg'
 import './ChangeLogTable.css'
 /** 
  * Display Publication Change Log Entries
