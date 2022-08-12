@@ -36,15 +36,15 @@ export const useFetchSingleGraph = ({
       // Remove series names that are invalid for the selectedGraph
       visibleSeries = visibleSeries.filter(v => seriesForUrl.includes(v))
       if (isFirstLoad && visibleSeries.length) {
-        dispatch(graphs.setConfig({ id: SERIES_FOR_URL, value: visibleSeries }))
+        dispatch(graphs.setConfig(SERIES_FOR_URL, visibleSeries))
       } else {
-        dispatch(graphs.setConfig({ id: SERIES_FOR_URL, value: seriesForUrl }))
+        dispatch(graphs.setConfig(SERIES_FOR_URL, seriesForUrl))
       }
 
       setError(null)
-      dispatch(graphs.setConfig({ id: CATEGORIES, value: filingPeriods }))
-      dispatch(graphs.setConfig({ id: FIRST_LOAD, value: false }))
-      dispatch(graphs.setConfig({ id: SELECTED_GRAPH_DATA, value: graph }))
+      dispatch(graphs.setConfig(CATEGORIES, filingPeriods))
+      dispatch(graphs.setConfig(FIRST_LOAD, false))
+      dispatch(graphs.setConfig(SELECTED_GRAPH_DATA, graph))
     },
     [
       dispatch,

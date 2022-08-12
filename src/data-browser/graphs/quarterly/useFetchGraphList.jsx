@@ -1,21 +1,23 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory, useLocation, useRouteMatch } from 'react-router-dom'
 import { BaseURLQuarterly } from '../constants'
 import { graphs } from '../slice'
+import { IDLE, REJECTED, SUCCEEDED } from '../slice/api/status'
 import { GRAPH_MENU_OPTIONS, RAW_GRAPH_LIST, SELECTED_GRAPH } from '../slice/graphConfigs'
 import { buildGraphListOptions } from '../utils/graphHelpers'
 
 export const useFetchGraphList = ({
   fetchSingleGraph,
-  history,
-  location,
-  match,
   onGraphFetchError,
   setError,
   setGraphHeaderOverview,
 }) => {
   const dispatch = useDispatch()
   const graphList = useSelector(state => state.graphs.list)
+  const history = useHistory()
+  const location = useLocation()
+  const match = useRouteMatch()
 
   const onSuccess = response => {
     setError(null)
@@ -33,12 +35,10 @@ export const useFetchGraphList = ({
       let firstGraph = response.graphs[0]
 
       fetchSingleGraph(firstGraph.endpoint)
-      dispatch(graphs.setConfig({
-        id: SELECTED_GRAPH, value: {
-          value: firstGraph.endpoint,
-          label: firstGraph.title,
-          category: firstGraph.category,
-        }
+      dispatch(graphs.setConfig(SELECTED_GRAPH, {
+        value: firstGraph.endpoint,
+        label: firstGraph.title,
+        category: firstGraph.category,
       }))
 
       history.push(`${BaseURLQuarterly}/${firstGraph.endpoint}`)
@@ -47,12 +47,10 @@ export const useFetchGraphList = ({
         graph => graph.endpoint == match.params.graph
       )
       fetchSingleGraph(initialGraphToLoad.endpoint)
-      dispatch(graphs.setConfig({
-        id: SELECTED_GRAPH, value: {
-          value: initialGraphToLoad.endpoint,
-          label: initialGraphToLoad.title,
-          category: initialGraphToLoad.category,
-        }
+      dispatch(graphs.setConfig(SELECTED_GRAPH, {
+        value: initialGraphToLoad.endpoint,
+        label: initialGraphToLoad.title,
+        category: initialGraphToLoad.category,
       }))
     }
 
@@ -66,20 +64,20 @@ export const useFetchGraphList = ({
       category: g.category,
     }))
 
-    dispatch(graphs.setConfig({ id: RAW_GRAPH_LIST, value: graphData }))
+    dispatch(graphs.setConfig(RAW_GRAPH_LIST, graphData))
 
     // Dynamically populate graph selection drop-down with category-grouped options
     const graphOptions = buildGraphListOptions(graphData)
-    if (graphOptions.length) dispatch(graphs.setConfig({ id: GRAPH_MENU_OPTIONS, value: graphOptions }))
+    if (graphOptions.length) dispatch(graphs.setConfig(GRAPH_MENU_OPTIONS, graphOptions))
   }
 
   /* Fetch list of available graphs once, on page load */
   useEffect(() => {
-    if (graphList.loading === 'idle') {
+    if (graphList.loading === IDLE) {
       dispatch(graphs.fetchGraphsInfo())
-    } else if (graphList.loading === 'succeeded') {
+    } else if (graphList.loading === SUCCEEDED) {
       onSuccess(graphList.data)
-    } else if (graphList.loading === 'rejected') {
+    } else if (graphList.loading === REJECTED) {
       onGraphFetchError(graphList.data)
     }
   }, [graphList, dispatch])

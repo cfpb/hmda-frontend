@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { useQuery } from '../utils/utils'
 import { graphs } from '../slice'
 import { DATA, PERIOD_HI, PERIOD_LO, QUARTERS } from '../slice/graphConfigs'
+import { useLocation } from 'react-router-dom'
 
 /**
  * On graph selection,
@@ -12,11 +13,11 @@ export const useManageGraphSelection = ({
   data,
   selectedGraph,
   selectedGraphData,
-  location,
   categories,
 }) => {
   const query = useQuery()
   const dispatch = useDispatch()
+  const location = useLocation()
 
   useEffect(() => {
     if (!selectedGraph) return
@@ -48,7 +49,7 @@ export const useManageGraphSelection = ({
 
         draft[selectedGraph.value] = graphLines
       })
-      dispatch(graphs.setConfig({ id: DATA, value: nextState }))
+      dispatch(graphs.setConfig(DATA, nextState))
 
       let lowPeriod = query.get('periodLow')
       let highPeriod = query.get('periodHigh')
@@ -58,7 +59,7 @@ export const useManageGraphSelection = ({
         value: yq,
         label: yq,
       }))
-      dispatch(graphs.setConfig({ id: QUARTERS, value: periodOptions }))
+      dispatch(graphs.setConfig(QUARTERS, periodOptions))
 
       // Set periods from URL parameters, if valid
       // Otherwise use periodOptions which are derived from the API data
@@ -68,11 +69,11 @@ export const useManageGraphSelection = ({
         periodOptions.some(q => q.value == lowPeriod) &&
         periodOptions.some(q => q.value == highPeriod)
       ) {
-        dispatch(graphs.setConfig({ id: PERIOD_LO, value: { value: lowPeriod, label: lowPeriod } }))
-        dispatch(graphs.setConfig({ id: PERIOD_HI, value: { value: highPeriod, label: highPeriod } }))
+        dispatch(graphs.setConfig(PERIOD_LO, { value: lowPeriod, label: lowPeriod }))
+        dispatch(graphs.setConfig(PERIOD_HI, { value: highPeriod, label: highPeriod }))
       } else {
-        dispatch(graphs.setConfig({ id: PERIOD_LO, value: periodOptions[0] }))
-        dispatch(graphs.setConfig({ id: PERIOD_HI, value: periodOptions[periodOptions.length - 1] }))
+        dispatch(graphs.setConfig(PERIOD_LO, periodOptions[0]))
+        dispatch(graphs.setConfig(PERIOD_HI, periodOptions[periodOptions.length - 1]))
       }
     }
   }, [selectedGraph, selectedGraphData, categories])
