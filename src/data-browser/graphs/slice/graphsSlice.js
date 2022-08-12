@@ -111,7 +111,7 @@ export const fetchGraphsInfo = createAsyncThunk(
 export const fetchGraph = createAsyncThunk(
   'graphs/fetchGraph',
   async (endpoint, { getState, requestId, rejectWithValue }) => {
-    const  { data, currentRequestId, loading } = detailSelectors.selectById(getState().graphs, endpoint) || {};
+    const { data, currentRequestId, loading } = detailSelectors.selectById(getState().graphs, endpoint) || {};
     if (loading === SUCCEEDED) {
       return data;
     }
@@ -127,7 +127,9 @@ export const fetchGraph = createAsyncThunk(
   }
 );
 
-export const { setConfig, test } = graphsSlice.actions;
+const { setConfig: setConfigAction } = graphsSlice.actions;
+
+export const setConfig = (id, value) => setConfigAction({ id, value });
 
 export const getConfig = (state, id) => configSelectors.selectById(state, id)?.value;
 

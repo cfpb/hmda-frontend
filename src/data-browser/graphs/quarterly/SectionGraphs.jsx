@@ -32,9 +32,9 @@ export const SectionGraphs = ({
   const isFirstLoad = firstLoadState === undefined ? true : firstLoadState
 
   const periodHigh = graphs.getConfig(graphStore, PERIOD_HI)  // Period filters
-  const setPeriodHigh = value => dispatch(graphs.setConfig({ id: PERIOD_HI, value }))
+  const setPeriodHigh = value => dispatch(graphs.setConfig(PERIOD_HI, value))
   const periodLow = graphs.getConfig(graphStore, PERIOD_LO)  // Period filters
-  const setPeriodLow = value => dispatch(graphs.setConfig({ id: PERIOD_LO, value }))
+  const setPeriodLow = value => dispatch(graphs.setConfig(PERIOD_LO, value))
 
   const quarters = graphs.getConfig(graphStore, QUARTERS) // Contains all the quarters from a selected graph and is used for period filtering
   const rawGraphList = graphs.getConfig(graphStore, RAW_GRAPH_LIST) // List of available graphs from API
@@ -42,14 +42,14 @@ export const SectionGraphs = ({
   const selectedGraph = graphs.getConfig(graphStore, SELECTED_GRAPH) // Configuration for the currently selected graph
   const selectedGraphData = graphs.getConfig(graphStore, SELECTED_GRAPH_DATA) // API data of currently selected graph
   const seriesForURL = graphs.getConfig(graphStore, SERIES_FOR_URL) // List of series names to be included in the URL's `visibleSeries` query parameter
-  const setSeriesForURL = value => dispatch(graphs.setConfig({ id: SERIES_FOR_URL, value }))
+  const setSeriesForURL = value => dispatch(graphs.setConfig(SERIES_FOR_URL, value))
 
 
   const query = useQuery()
 
   const onGraphFetchError = useCallback(
     err => {
-      dispatch(graphs.setConfig({ id: SELECTED_GRAPH_DATA, value: null }))
+      dispatch(graphs.setConfig(SELECTED_GRAPH_DATA, value))
       setError(err)
     },
     [setError, dispatch]
@@ -67,9 +67,6 @@ export const SectionGraphs = ({
   // Fetch list of all available graphs
   useFetchGraphList({
     fetchSingleGraph,
-    history: props.history,
-    location: props.location,
-    match: props.match,
     onGraphFetchError,
     setError,
     setGraphHeaderOverview,
@@ -79,14 +76,13 @@ export const SectionGraphs = ({
   useManageGraphSelection({
     categories,
     data,
-    location: props.location,
     selectedGraph,
     selectedGraphData,
   })
 
   const handleGraphSelection = useCallback(
     event => {
-      dispatch(graphs.setConfig({ id: SELECTED_GRAPH, value: rawGraphList.find(opt => opt.value == event.value) }))
+      dispatch(graphs.setConfig(SELECTED_GRAPH, rawGraphList.find(opt => opt.value == event.value)))
       fetchSingleGraph(event.value) // value = endpoint for single graph (i.e) -> /applications
     },
     [rawGraphList, fetchSingleGraph, dispatch]
@@ -106,7 +102,7 @@ export const SectionGraphs = ({
 
   // A workaround to force Highcharts to reset series visibility when a new graph is selected
   useEffect(() => {
-    const setResetSeriesVisability = value => dispatch(graphs.setConfig({ id: RESET_SERIES_VIS, value }))
+    const setResetSeriesVisability = value => dispatch(graphs.setConfig(RESET_SERIES_VIS, value))
     setResetSeriesVisability(true)
     setTimeout(() => setResetSeriesVisability(false), 100)
   }, [selectedGraph, dispatch])
