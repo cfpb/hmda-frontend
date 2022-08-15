@@ -3,11 +3,15 @@ import { useCallback, useRef } from 'react'
 import Highcharts from 'highcharts'
 import HighchartsExport from 'highcharts/modules/exporting'
 import HighchartsExportData from 'highcharts/modules/export-data'
+import HighchartsAccessibility from "highcharts/modules/accessibility";
 import HighchartsReact from 'highcharts-react-official'
 import useGraphLoading from './useGraphLoading'
+import { AvoidJumpToDataTable } from './highchartsCustomModules'
 
 HighchartsExport(Highcharts) // Enable export to image
 HighchartsExportData(Highcharts) // Enable export of underlying data
+HighchartsAccessibility(Highcharts) // Accessibility enhancements
+AvoidJumpToDataTable(Highcharts) // Workaround for Accessibility module bug
 
 export const Graph = ({ options, loading, seriesForURL }) => {
   const chartRef = useRef()

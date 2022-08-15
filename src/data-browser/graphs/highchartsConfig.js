@@ -88,7 +88,7 @@ export const baseConfig = {
 
 export const defaultAxisX = {
   title: { text: "Year Quarter", y: 10 }, // TODO: Replace with data from API
-  categories: yearQuarters, // TODO: Replace with data from API
+  categories: yearQuarters,
   crosshair: true, // Highlight xAxis hovered category ie. 2020-Q3
   labels: hmda_charts.styles.axisLabel,
 };
@@ -108,6 +108,7 @@ export const deriveHighchartsConfig = ({
   const config = cloneObject(baseConfig)
   config.title.text = title
   config.subtitle.text = subtitle
+  config.accessibility = { description: subtitle }
   config.xAxis = xAxis
 
   // Listener used to remove a series from URL when user de-selects
@@ -135,19 +136,34 @@ export const deriveHighchartsConfig = ({
   // Apply filtering based on the selected Filing Period Range
   config.series = loading ? [] : filterByPeriods(series, ...periodRange)
   config.xAxis[0].categories = categories?.slice(...periodRange)
-
+  const xAxisDescription = formatXdescription(loading, xAxis)
+  config.xAxis[0].accessibility = { description: xAxisDescription }
+  
   config.yAxis = yAxis.map((yTitle, _yIdx) => ({
     title: { text: yTitle },
     labels: hmda_charts.styles.axisLabel,
+    accessibility: { description: `${yTitle} value` },
   }))
 
   if (loading) {
     config.legend.title = ''
     config.xAxis[0].title.text = ''
     config.yAxis[0].title.text = ''
+    config.yAxis[0].accessibility.description = ''
   } else {
     config.xAxis[0].title.text = 'Year Quarter'
   }
 
   return config
+}
+
+// Construct the axis description for screen readers
+const formatXdescription = (loading, axes) => {
+  if (loading) return ''
+
+  const title = axes[0]?.title?.text
+  const from = axes[0]?.categories[0]
+  const to = axes[0]?.categories[axes[0]?.categories?.length - 1]
+
+  return `${title} from ${from} to ${to}`
 }
