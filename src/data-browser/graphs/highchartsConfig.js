@@ -94,6 +94,7 @@ export const defaultAxisX = {
 };
 
 export const deriveHighchartsConfig = ({
+  endpoint,
   title,
   subtitle,
   series,
@@ -110,6 +111,7 @@ export const deriveHighchartsConfig = ({
   config.subtitle.text = subtitle
   config.accessibility = { description: subtitle }
   config.xAxis = xAxis
+  config.legend.title.text = deriveLegendTitle(endpoint)
 
   // Listener used to remove a series from URL when user de-selects
   config.plotOptions.series.events.hide = event => {
@@ -136,8 +138,7 @@ export const deriveHighchartsConfig = ({
   // Apply filtering based on the selected Filing Period Range
   config.series = loading ? [] : filterByPeriods(series, ...periodRange)
   config.xAxis[0].categories = categories?.slice(...periodRange)
-  const xAxisDescription = formatXdescription(loading, xAxis)
-  config.xAxis[0].accessibility = { description: xAxisDescription }
+  config.xAxis[0].accessibility = { description: formatXdescription(loading, xAxis) }
   
   config.yAxis = yAxis.map((yTitle, _yIdx) => ({
     title: { text: yTitle },
@@ -146,7 +147,7 @@ export const deriveHighchartsConfig = ({
   }))
 
   if (loading) {
-    config.legend.title = ''
+    config.legend.title.text = ''
     config.xAxis[0].title.text = ''
     config.yAxis[0].title.text = ''
     config.yAxis[0].accessibility.description = ''
@@ -166,4 +167,10 @@ const formatXdescription = (loading, axes) => {
   const to = axes[0]?.categories[axes[0]?.categories?.length - 1]
 
   return `${title} from ${from} to ${to}`
+}
+
+const deriveLegendTitle = (endpoint) => {
+  if (endpoint.match('-re$')) return 'Race / Ethnicity'
+  if (endpoint === 'all-applications') return 'Filer Types'
+  return 'Loan Types'
 }
