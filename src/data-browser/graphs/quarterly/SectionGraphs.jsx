@@ -49,7 +49,7 @@ export const SectionGraphs = ({
 
   const onGraphFetchError = useCallback(
     err => {
-      dispatch(graphs.setConfig(SELECTED_GRAPH_DATA, value))
+      dispatch(graphs.setConfig(SELECTED_GRAPH_DATA, null))
       setError(err)
     },
     [setError, dispatch]
