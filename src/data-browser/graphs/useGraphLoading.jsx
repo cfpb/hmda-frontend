@@ -20,8 +20,8 @@ export const useGraphLoading = (ref, loading, options) => {
       chart.tooltip.hide() // Clear tooltip
       chart.showLoading() // Display overlay
       
-      if (chart.dataTableDiv) // Hide the data table
-      chart.dataTableDiv.style.display = 'none'
+      // Hide the data table
+      if (chart.dataTableDiv) chart.dataTableDiv.style.display = 'none'
     } else {
       chart.hideLoading() // Clear overlay
       chart.viewData() // Update the data table
