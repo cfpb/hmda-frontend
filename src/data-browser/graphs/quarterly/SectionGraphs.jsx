@@ -10,7 +10,6 @@ import { PeriodSelectors } from '../PeriodSelectors'
 import { CATEGORIES, DATA, FIRST_LOAD, GRAPH_MENU_OPTIONS, PERIOD_HI, PERIOD_LO, QUARTERS, RAW_GRAPH_LIST, RESET_SERIES_VIS, SELECTED_GRAPH, SELECTED_GRAPH_DATA, SERIES_FOR_URL } from '../slice/graphConfigs.js'
 import { graphs } from '../slice/index.js'
 import { formatGroupLabel } from '../utils/menuHelpers.js'
-import { useQuery } from '../utils/utils'
 import { useFetchGraphList } from './useFetchGraphList'
 import { useFetchSingleGraph } from './useFetchSingleGraphs'
 import { useManageGraphSelection } from './useManageGraphSelection'
@@ -44,9 +43,6 @@ export const SectionGraphs = ({
   const seriesForURL = graphs.getConfig(graphStore, SERIES_FOR_URL) // List of series names to be included in the URL's `visibleSeries` query parameter
   const setSeriesForURL = value => dispatch(graphs.setConfig(SERIES_FOR_URL, value))
 
-
-  const query = useQuery()
-
   const onGraphFetchError = useCallback(
     err => {
       dispatch(graphs.setConfig(SELECTED_GRAPH_DATA, null))
@@ -59,7 +55,6 @@ export const SectionGraphs = ({
   const fetchSingleGraph = useFetchSingleGraph({
     isFirstLoad,
     onGraphFetchError,
-    query,
     seriesForURL,
     setError,
   })
@@ -126,7 +121,7 @@ export const SectionGraphs = ({
         classNamePrefix='react-select__graph' // Used for cypress testing
         options={graphMenuOptions}
         placeholder='Select a Graph'
-        onChange={e => handleGraphSelection(e)}
+        onChange={handleGraphSelection}
         value={
           selectedGraph
             ? { value: selectedGraph.value, label: selectedGraph.label }

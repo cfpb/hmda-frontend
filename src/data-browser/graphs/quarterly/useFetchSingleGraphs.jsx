@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { graphs } from '../slice'
 import { CATEGORIES, FIRST_LOAD, SELECTED_GRAPH_DATA, SERIES_FOR_URL } from '../slice/graphConfigs'
-import { processSingleGraph } from '../utils/utils'
+import { processSingleGraph, useQuery } from '../utils/utils'
 
 /**
  * Constructs an event handler to update all related React state when graph details are fetched from the API
@@ -11,11 +11,11 @@ import { processSingleGraph } from '../utils/utils'
 export const useFetchSingleGraph = ({
   isFirstLoad,       // Boolean - Is this the first graph to be fetched?
   onGraphFetchError, // Function - Error handler for API calls
-  query,             // Object - URL search parameters
   seriesForURL,      // Array - List of series names to be included in the URL's `visibleSeries` query parameter
   setError,
 }) => {
   const dispatch = useDispatch()
+  const query = useQuery()
 
   const fetchSingleGraph = useCallback(
     async endpoint => {
