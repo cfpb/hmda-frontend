@@ -1,0 +1,13 @@
+.expandable-section .text-button {
+  background: none;
+  color: #555;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.expandable-section .text-button:hover {
+  background: none;
+  color: #0071bc;
+}
