@@ -1,4 +1,5 @@
 import { ContactHmdaHelp } from '../../ContactHmdaHelp'
+import { QuarterlyFilingCalendar } from './QuarterlyFilingCalendar'
 
 const DefaultOverview =
   'The following graphs present data for the financial institutions reporting HMDA quarterly data.'
@@ -12,6 +13,7 @@ export const GraphsHeader = ({ overview }) => (
     <p className='lead'>
       {overview || DefaultOverview} {ExtrapolationWarning}
     </p>
+    <QuarterlyFilingCalendar />
     <p className='lead'>
       <ContactHmdaHelp subject='Quarterly Graphs' />
     </p>
