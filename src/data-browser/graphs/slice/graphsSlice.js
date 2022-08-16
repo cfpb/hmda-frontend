@@ -95,7 +95,7 @@ export const fetchGraphsInfo = createAsyncThunk(
     try {
       return await graphsApi.getGraphsInfo();
     } catch (err) {
-      return rejectWithValue(err);
+      return rejectWithValue(err.message);
     }
   },
   {
@@ -122,7 +122,7 @@ export const fetchGraph = createAsyncThunk(
     try {
       return await graphsApi.getGraph(endpoint);
     } catch (err) {
-      return rejectWithValue(err);
+      return rejectWithValue(err.message);
     }
   }
 );
