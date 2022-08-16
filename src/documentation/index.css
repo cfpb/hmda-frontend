@@ -27,6 +27,10 @@
   width: 100%;
 }
 
+.Markdown-Wrapper img.widthOriginal{
+  width: auto;
+}
+
 .Product h4 a {
   color: #000;
   text-decoration: none;
