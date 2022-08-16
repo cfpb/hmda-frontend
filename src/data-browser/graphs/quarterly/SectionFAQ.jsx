@@ -9,7 +9,7 @@ export const SectionFAQ = ({ show }) => {
   return (
     <DynamicRenderer
       year={CurrentYear}
-      slug={'quarterly-graphs-faq'}
+      slug={'data-browser-graphs-faq'}
       showBackLink={false}
     />
   )
