@@ -1,4 +1,4 @@
-import './QuarterCalendar.css'
+import './LoanGroupingCalendar.css'
 
 // One block of the Quarterly calendar
 const Quarter = ({ number, dates }) => {
@@ -13,14 +13,14 @@ const Quarter = ({ number, dates }) => {
 }
 
 
-export const QuarterCalendar = () => {
+export const LoanGroupingCalendar = () => {
   return (
     <>
       <p className='lead'>
         Loans are grouped by quarter based on their Final Action Taken date,
         shown below:
       </p>
-      <div className='calendar'>
+      <div className='loan-grouping-calendar'>
         <div className='quarters'>
           <Quarter number={1} dates='Jan 1 - Mar 31' />
           <Quarter number={2} dates='Apr 1 - Jun 30' />
