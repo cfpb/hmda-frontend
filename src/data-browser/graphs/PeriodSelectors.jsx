@@ -32,13 +32,15 @@ export const PeriodSelectors = ({
       )}
       <div className='period-range'>
         <Select
+          aria-label='Set lower limit of Filing Period range'
           classNamePrefix='react-select__period_start' // Used for cypress testing
           options={periodOpts.slice(0, -1)}
           onChange={e => setPeriodLow(e)}
           value={periodLow}
-        />
+          />
         <div className='to'>to</div>
         <Select
+          aria-label='Set upper limit of Filing Period range'
           classNamePrefix='react-select__period_end' // Used for cypress testing
           options={periodOpts.filter(yq =>
             periodLow ? yq.value > periodLow.value : yq

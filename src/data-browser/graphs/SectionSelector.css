@@ -8,23 +8,33 @@
   flex: 0;
 }
 
-.section button {
+.section {
   white-space: nowrap;
   border-radius: 0;
   border: 1px solid grey;
   margin-top: 1em;
 }
 
-.section.selected button {
+.sections :first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.sections :last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.section.selected {
   border-color: #0071bc;
 }
 
-.section:not(.selected) button {
+.section:not(.selected) {
   background: white;
   color: black;
 }
 
-.section:not(.selected):hover button {
+.section:not(.selected):hover,
+.section:not(.selected):focus {
   background: #b0dcf9;
   color: black;
 }

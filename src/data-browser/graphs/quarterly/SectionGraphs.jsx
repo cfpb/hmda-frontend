@@ -121,6 +121,7 @@ export const SectionGraphs = ({
         classNamePrefix='react-select__graph' // Used for cypress testing
         options={graphMenuOptions}
         placeholder='Select a Graph'
+        aria-label='Select a Graph.'
         onChange={handleGraphSelection}
         value={
           selectedGraph
