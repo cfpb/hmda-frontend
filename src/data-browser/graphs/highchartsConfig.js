@@ -109,7 +109,7 @@ export const deriveHighchartsConfig = ({
   const config = cloneObject(baseConfig)
   config.title.text = title
   config.subtitle.text = subtitle
-  config.accessibility = { description: subtitle }
+  config.accessibility = { description: 'Graph summary: ' + subtitle }
   config.xAxis = xAxis
   config.legend.title.text = deriveLegendTitle(endpoint)
 
