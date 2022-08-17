@@ -20,7 +20,7 @@ Users can view the filer name, LEI, regulatory agency, and LAR counts for the pr
  
 ## How can I sort the quarterly filer list?  
 
-By default the quarterly filer list is sorted primarily by Agency (descending) with a secondary sort by Institution (descending).  The sort order is reflected in the order of the field labels shown above the table. The sort direction of each field is indicated by the associated arrow icon, with an up arrow meaning an `ascending` sort and a down arrow meaning a `descending` sort.
+By default, the quarterly filer list is sorted alphabetically by Agency and Institution, respectively. The sort order is reflected in the direction of the arrow adjacent to the field name. An up arrow indicates an ascending sort (e.g. A to Z, least to highest) and a down arrow indicates the opposite (e.g. Z to A, highest to least).
 <br/>
 <img alt='Sort Order' className='widthOriginal' src='https://raw.githubusercontent.com/cfpb/hmda-frontend/1485-homepage-redesign/src/documentation/markdown/images/graphs/sort-1-order.png'>
 
@@ -29,26 +29,26 @@ You can remove any of the applied sort criteria by clicking the `x` icon within 
 <br/>
 <img alt='Sort Remove' className='widthOriginal' src='https://raw.githubusercontent.com/cfpb/hmda-frontend/1485-homepage-redesign/src/documentation/markdown/images/graphs/sort-2-remove.png'>
 
-Sort direction is controlled by clicking the column header of a field.  The double arrow indicates that this column is not part of the currently configured sort criteria. 
+Sort direction is controlled by selecting the column header of a field. A double-sided arrow indicates that a column is not currently sorted.
 <br/>
 <img alt='Sort Direction' src='https://raw.githubusercontent.com/cfpb/hmda-frontend/1485-homepage-redesign/src/documentation/markdown/images/graphs/sort-3-direction.png'>
 
 To change the primary sort criteria:
 
-- Remove any secondary sort criteria by clicking the associated `x`s of the sort labels
-- In the quarterly filer table, click on the column header of the field you wish to sort by
-- Click the column's header again to change the sort direction
+- Remove any secondary sort criteria by selecting the associated `x` of the sort labels
+- In the quarterly filer table, select the column header of the field you wish to sort by
+- Click the column header again to change the sort direction
 
 To change the sort direction of an already applied sort criteria:
 
-- Click on the column header of the field 
-- Observe that the arrow icon adjusts to reflect the newly applied sort direction
+- Select on the column header of the field 
+- Observe that the arrow icon adjusts to reflect the newly reversed sort direction
 
 To add additional sort criteria:
 
-- Hold the shift key and click on desired column headers
-- Observe that the sort criteria labels shown above the data table reflect the order in which sort criteria are applied
-
+- Hold the shift key and select the desired column headers
+- Observe that the sort criteria shown above the data table reflect the order in which sort criteria are applied
+ 
 
 ## How are loans sorted into quarters? 
 
@@ -87,7 +87,7 @@ To return to viewing all the available quarters, select “Show All Quarters”.
  
 ## How do I remove or add specific lines on the graph? 
 
-You can customize what lines are shown on the graph by selecting within the legend.
+You can customize which lines are shown on the graph by selecting within the legend.
 
 ![Graph Key](https://raw.githubusercontent.com/cfpb/hmda-frontend/1485-homepage-redesign/src/documentation/markdown/images/graphs/series-selector-1.png)
 
