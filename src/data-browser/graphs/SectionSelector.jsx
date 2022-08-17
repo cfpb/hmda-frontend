@@ -2,20 +2,26 @@ import './SectionSelector.css'
 import { useCallback } from 'react'
 
 
-const Section = ({ isSelected, title, onChange }) => {
+const SectionOption = ({ isSelected, title, onChange }) => {
   const sectionClasses = `section ${isSelected && 'selected'}`
   const handleClick = useCallback(_event => onChange(title), [onChange])
+  let ariaLabel = `Navigate to the ${title} tab.`
+  if (isSelected) ariaLabel += ' This section is currently selected.'
 
   return (
-    <div className={sectionClasses}>
-      <button onClick={handleClick}>{title}</button>
-    </div>
+    <button
+      className={sectionClasses}
+      aria-label={ariaLabel}
+      onClick={handleClick}
+    >
+      {title}
+    </button>
   )
 }
 
 export const SectionSelector = ({ selected, options, onChange }) => {
   const sections = options.map(opt => (
-    <Section
+    <SectionOption
       key={opt}
       title={opt}
       onChange={onChange}
@@ -24,8 +30,8 @@ export const SectionSelector = ({ selected, options, onChange }) => {
   ))
 
   return (
-    <div className='SectionSelector'>
-      <div className='sections'>{sections}</div>
-    </div>
+    <nav className='SectionSelector sections'>
+      {sections}
+    </nav>
   )
 }
