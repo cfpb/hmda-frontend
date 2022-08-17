@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
-import ImageCard from './ImageCard.jsx'
-import Heading from '../common/Heading.jsx'
 import { withAppContext } from '../common/appContextHOC'
-import filterColor from '../common/images/db-filter-color.png'
+import { CURRENT_YEAR } from '../common/constants/years.js'
+import ExternalLink from '../common/ExternalLink'
+import Heading from '../common/Heading.jsx'
 import filterBw from '../common/images/db-filter-bw.png'
-import mapColor from '../common/images/db-map-color.png'
-import mapBw from '../common/images/db-map-bw.png'
+import filterColor from '../common/images/db-filter-color.png'
 import graphBw from '../common/images/db-graph-bw.png'
 import graphColor from '../common/images/db-graph-color.png'
+import mapBw from '../common/images/db-map-bw.png'
+import mapColor from '../common/images/db-map-color.png'
+import ImageCard from './ImageCard.jsx'
 
 import './Home.css'
-import ExternalLink from '../common/ExternalLink'
 
 class Home extends Component {
   render() {
@@ -74,7 +75,7 @@ class Home extends Component {
             image={graphBw}
             imageHover={graphColor}
             faq={{
-              url: `/documentation/${publicationReleaseYear}/data-browser-graphs-faq`,
+              url: `/documentation/${CURRENT_YEAR}/data-browser-graphs-faq`,
               label: 'HMDA Graphs FAQ',
             }}
           />
