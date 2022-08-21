@@ -171,7 +171,7 @@ const publications = {
   2018: [
     {
       updateFrequency: 'Does not update. Generated three years after filing deadline',
-      availableFor: '2018',      
+      availableFor: '2017-2018',     
       headingLink: threeYearLink(2018),
       headingText: threeYearTitle,
       paragraphText: threeYearDesc,
@@ -217,6 +217,14 @@ const publications = {
     },
   ],
   2017: [
+    {
+      updateFrequency: 'Does not update. Generated three years after filing deadline',
+      availableFor: '2017-2018',      
+      headingLink: threeYearLink(2017),
+      headingText: threeYearTitle,
+      paragraphText: threeYearDesc,
+      freezeDate: THREE_YEAR_DATASET[2017].freezeDate
+    },
     {
       updateFrequency: 'Does not update. Generated a few months after filing deadline',
       availableFor: '2017-2021',      

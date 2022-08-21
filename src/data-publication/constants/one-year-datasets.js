@@ -75,4 +75,15 @@ export const ONE_YEAR_DATASET = {
       </>
     ),
   },
+  2017: {
+    exception: (
+      <>
+        There are no One Year National Loan Level datasets for 2017.
+        <br />
+        <br />
+        This data product was created after the close of 2017 submission
+        acceptance, which was on 12/31/2020.
+      </>
+    ),
+  },
 }

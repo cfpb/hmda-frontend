@@ -1,10 +1,9 @@
 import Heading from '../../../common/Heading.jsx'
 import YearSelector from '../../../common/YearSelector.jsx'
-import { S3DatasetLink } from '../../../common/S3Integrations'
 import { ONE_YEAR_DATASET } from '../../constants/one-year-datasets.js'
 import { SNAPSHOT_DATASET } from '../../constants/snapshot-dataset.js'
 import { THREE_YEAR_DATASET } from '../../constants/three-year-datasets.js'
-import { linkToDocs, renderDatasets, renderDocumentation } from './snapshotHelpers'
+import { renderDatasets, renderDocumentation } from './snapshotHelpers'
 import './Snapshot.css'
 
 const Paragraphs = {
@@ -78,7 +77,7 @@ export const SnapshotDataset = ({ label, match, config, dataKey }) => {
         <div className='grid'>
           <div className='item'>
             <Heading type={4} headingText={year + ' Datasets'} />
-            {renderDatasets(dataForYear, year)}
+            {renderDatasets(dataForYear)}
           </div>
           <div className='item'>{renderDocumentation(dataForYear, year)}</div>
         </div>
