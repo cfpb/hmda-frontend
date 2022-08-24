@@ -35,7 +35,7 @@ export const FilingDocs = () => (
       </li>
       <li>
         <ExternalLink url="https://cfpb.github.io/hmda-platform">
-          HMDA Platform API
+          HMDA API Documentation
         </ExternalLink>
       </li>
     </ul>
