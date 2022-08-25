@@ -1,0 +1,29 @@
+.column-container {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.column-container .column {
+  flex: 1;
+}
+
+.column-container .column:not(:last-of-type) {
+  margin-right: 2.5em;
+  padding-right: 2.5em;
+}
+
+.column-container .column-header {
+  border-bottom: 1px solid #555;
+  color: #555;
+  padding-bottom: 5px;
+  margin-bottom: 2em;
+}
+
+.column-container .column-header > h3 {
+  font-family: SourceSansPro;
+  font-size: 1.25em;
+}
+
+.column-container .card-container header:not(:first-child) {
+  margin-top: 2.5em;
+}

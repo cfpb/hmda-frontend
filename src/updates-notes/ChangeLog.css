@@ -1,34 +1,34 @@
-#ChangeLog * {
+#UpdatesNotes * {
   font-family: 'Arial', "Segoe UI", 'Roboto', -apple-system;
 }
 
-#ChangeLog h2 {
+#UpdatesNotes h2 {
   margin-bottom: 2rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid #4675c2;
 }
 
-#ChangeLog h3 {
+#UpdatesNotes h3 {
   margin-bottom: 2rem;
   margin-top: 0;
   font-size: 1.7rem;
 }
 
-#ChangeLog .intro {
+#UpdatesNotes .intro {
   font-size: 1.8rem;
 }
 
-#ChangeLog .split {
+#UpdatesNotes .split {
   display: flex;
   flex-flow: row nowrap;
 }
 
-#ChangeLog .split.columns {
+#UpdatesNotes .split.columns {
   flex-flow: column nowrap;
 }
 
 
-#ChangeLog .highlighted {
+#UpdatesNotes .highlighted {
   background: yellow;
 }
 

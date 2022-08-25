@@ -9,7 +9,8 @@ export const defaultLinks = [
   { name: 'Data Browser', href: '/data-browser/' },
   { name: 'Data Publication', href: '/data-publication/' },
   { name: 'Tools', href: '/tools/' },
-  { name: 'Documentation', href: '/documentation/' }
+  { name: 'Documentation', href: '/documentation/' },
+  { name: 'Updates', href: '/updates-notes' },
 ]
 
 export const updateFilingLink = (config, links) => {

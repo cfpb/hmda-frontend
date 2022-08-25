@@ -1,0 +1,14 @@
+.new-indicator,
+a:visited:hover .new-indicator {
+  background: #0071bc;
+  border-radius: 10px;
+  color: white;
+  font-size: 0.75em;
+  margin-left: 5px;
+  padding: 0px 15px;
+  text-transform: uppercase;
+}
+
+a:visited .new-indicator {
+  background: #4c2c92;
+}

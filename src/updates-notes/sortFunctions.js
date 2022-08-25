@@ -1,4 +1,4 @@
-import { ordinal } from '../../filing/utils/date'
+import { ordinal } from '../filing/utils/date'
 import { CATEGORIES } from './constants'
 
 /** Sort by Type */

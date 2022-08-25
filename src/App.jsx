@@ -25,6 +25,12 @@ const Filing = makeAsyncComponent(() => import('./filing'),
   'HMDA Filing Platform', 'Use the HMDA Filing Platform to upload loan/application registers, review edits, and certify the accuracy and completeness of your HMDA data')
 const HmdaHelp = makeAsyncComponent(() => import('./hmda-help'),
   'HMDA Help', 'Use HMDA Help to manage your HMDA Institutions and Publications')
+const UpdatesNotes = makeAsyncComponent(
+  () => import('./updates-notes'),
+  'HMDA Updates and Notes',
+  "Tracking releases, updates, and corrections to HMDA's publications, data products, documentation, and tools."
+)
+  
 
 const App = () => {
   const config = useEnvironmentConfig(window.location.hostname)
@@ -57,6 +63,7 @@ const App = () => {
         <Route path='/data-publication' component={DataPublication} />
         <Route path='/filing' component={Filing} />
         <Route path='/hmda-help' component={HmdaHelp} />
+        <Route path='/updates-notes' component={UpdatesNotes} />
         <Route component={NotFound} />
       </Switch>
       {showFooter && <Footer config={config} />}
