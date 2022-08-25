@@ -21,13 +21,19 @@ export const DataDocs = () => {
           </a>
         </li>
         <li>
-          <Link to='/documentation/2022/data-browser-faq/'>
-            Data Browser - Dataset Filtering FAQ
+          <Link to='/documentation/2022/data-browser-graphs-faq/'>
+            Data Browser - Graphs FAQ
+            <NewIndicator />
           </Link>
         </li>
         <li>
           <Link to='/documentation/2022/maps-faq/'>
             Data Browser - Maps FAQ
+          </Link>
+        </li>
+        <li>
+          <Link to='/documentation/2022/data-browser-faq/'>
+            Data Browser - Dataset Filtering FAQ
           </Link>
         </li>
         <li>
