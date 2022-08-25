@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import ImageCard from './ImageCard.jsx'
-import Heading from '../common/Heading.jsx'
 import { withAppContext } from '../common/appContextHOC'
-import filterColor from '../common/images/db-filter-color.png'
+import { CURRENT_YEAR } from '../common/constants/years.js'
+import ExternalLink from '../common/ExternalLink'
+import Heading from '../common/Heading.jsx'
 import filterBw from '../common/images/db-filter-bw.png'
-import mapColor from '../common/images/db-map-color.png'
+import filterColor from '../common/images/db-filter-color.png'
+import graphBw from '../common/images/db-graph-bw.png'
+import graphColor from '../common/images/db-graph-color.png'
 import mapBw from '../common/images/db-map-bw.png'
+import mapColor from '../common/images/db-map-color.png'
+import ImageCard from './ImageCard.jsx'
 
 import './Home.css'
-import ExternalLink from '../common/ExternalLink'
 
 class Home extends Component {
   render() {
@@ -62,6 +64,22 @@ class Home extends Component {
               label: 'HMDA Maps FAQ',
             }}
           />
+        </div>
+        <div className='card-container'>
+          <ImageCard
+            year=''
+            caption='Visualize Mortgage Trends'
+            description='Interactive graphs of summarized HMDA data'
+            path='graphs/quarterly'
+            enabled
+            image={graphBw}
+            imageHover={graphColor}
+            faq={{
+              url: `/documentation/${CURRENT_YEAR}/data-browser-graphs-faq`,
+              label: 'HMDA Graphs FAQ',
+            }}
+          />
+          <ImageCard placeholder />
         </div>
       </div>
     )

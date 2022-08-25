@@ -1,28 +1,20 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { isEqual } from "lodash";
-import Heading from "../../common/Heading.jsx";
-import DBYearSelector from "./DBYearSelector";
-import { DatasetSelector, datasetOptions } from "./DatasetSelector.jsx";
-import InstitutionSelect from "./InstitutionSelect";
-import ItemSelect from "./ItemSelect.jsx";
-import { fetchLeis, filterLeis } from "./leiUtils";
-import VariableSelect from "./VariableSelect.jsx";
-import Aggregations from "./Aggregations.jsx";
-import {
-  getItemCSV,
-  getSubsetDetails,
-  getSubsetCSV,
-  isRetryable,
-  makeUrl,
-  RETRY_DELAY,
-} from "../api.js";
-import { makeSearchFromState, makeStateFromSearch } from "../query.js";
-import { ActionsWarningsErrors } from "./ActionsWarningsErrors";
-import MSAMD_COUNTS from "../constants/msamdCounts.js";
-import STATE_COUNTS from "../constants/stateCounts.js";
-import COUNTY_COUNTS from "../constants/countyCounts.js";
-import { abbrToCode, codeToAbbr } from "../constants/stateCodesObj.js";
+import React, { Component } from 'react'
+import { HomeLink } from '../HomeLink.jsx'
+import { isEqual } from 'lodash'
+import Heading from '../../common/Heading.jsx'
+import DBYearSelector from './DBYearSelector'
+import InstitutionSelect from './InstitutionSelect'
+import ItemSelect from './ItemSelect.jsx'
+import { fetchLeis, filterLeis } from './leiUtils'
+import VariableSelect from './VariableSelect.jsx'
+import Aggregations from './Aggregations.jsx'
+import { getItemCSV, getSubsetDetails, getSubsetCSV, isRetryable, makeUrl, RETRY_DELAY } from '../api.js'
+import { makeSearchFromState, makeStateFromSearch } from '../query.js'
+import { ActionsWarningsErrors } from './ActionsWarningsErrors'
+import MSAMD_COUNTS from '../constants/msamdCounts.js'
+import STATE_COUNTS from '../constants/stateCounts.js'
+import COUNTY_COUNTS from '../constants/countyCounts.js'
+import { abbrToCode, codeToAbbr } from '../constants/stateCodesObj.js'
 import {
   variableNameMap,
   variableOptionMap,
@@ -493,13 +485,11 @@ class Geography extends Component {
         : makeUrl(this.state, true, false));
 
     return (
-      <div className="Geography">
-        <Link className="BackLink" to="/data-browser/">
-          {"\u2b05"} DATA BROWSER HOME
-        </Link>
-        <div className="intro">
-          <Heading type={1} headingText="HMDA Dataset Filtering">
-            <p className="lead">
+      <div className='Geography'>
+        <HomeLink />
+        <div className='intro'>
+          <Heading type={1} headingText='HMDA Dataset Filtering'>
+            <p className='lead'>
               You can use the HMDA Data Browser to filter and download CSV files
               of HMDA data. These files contain all{" "}
               <a

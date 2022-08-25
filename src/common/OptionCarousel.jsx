@@ -40,7 +40,7 @@ export const OptionCarousel = ({
   useDynamicHeight({ setCurrHeight, maxLength, fixedHeight })
 
   /* Navigation logic */
-  const navControls = useAutoAdvance({ cycleTime, totalCount })
+  const navControls = useAutoAdvance({ cycleTime, totalCount, autoAdvance: false })
 
   return (
     <div className="oc" style={styles}>

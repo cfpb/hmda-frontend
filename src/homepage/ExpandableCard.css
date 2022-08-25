@@ -1,0 +1,12 @@
+.expandable-card .show-more {
+  background: none;
+  color: #555;
+  padding: 0;
+  padding-top: 10px;
+  margin: 0;
+  display: block;
+}
+
+.expandable-card .show-more:hover {
+  color: #0071bc;
+}
