@@ -1,6 +1,18 @@
 {
   "log": [
     {
+      "date": "08/25/22",
+      "type": "release",
+      "product": "datasets",
+      "description": "Three Year National Loan-Level datasets (2017) were released.",
+      "links": [
+        {
+          "text": "Three Year National Loan-Level Dataset",
+          "url": "https://ffiec.cfpb.gov/data-publication/three-year-national-loan-level-dataset/2017"
+        }
+      ]
+    },
+    {
       "date": "07/22/22",
       "type": "correction",
       "product": "tools",
