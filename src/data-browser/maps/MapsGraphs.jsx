@@ -6,6 +6,7 @@ import MapContainer from './MapContainer.jsx'
 import { PopularVariableLink } from './PopularVariableLink'
 import './MapsGraphs.css'
 import { withYearValidation } from '../../common/withYearValidation.js'
+import { Link } from 'react-router-dom'
 
 const MapsGraphs = props => {
   const year = props.match.params.year
@@ -23,14 +24,14 @@ const MapsGraphs = props => {
               popular variables
             </PopularVariableLink>
             . For help getting started, visit the{' '}
-            <ExternalLink url={docsUrl('data-browser-maps-faq')}>
+            <Link to={docsUrl('data-browser-maps-faq')}>
               HMDA Maps FAQ
-            </ExternalLink>
+            </Link>
             . For advanced analysis, use the <code>Download Data</code> button
             to access all{' '}
-            <ExternalLink url={docsUrl('lar-data-fields')}>
+            <Link url={docsUrl('lar-data-fields')}>
               publicly available data fields
-            </ExternalLink>
+            </Link>
             . Additional questions/suggestions can be sent to{' '}
             <a href='mailto:hmdahelp@cfpb.gov'>hmdahelp@cfpb.gov</a>.
           </p>
