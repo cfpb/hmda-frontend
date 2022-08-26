@@ -29,7 +29,7 @@ const MapsGraphs = props => {
             </Link>
             . For advanced analysis, use the <code>Download Data</code> button
             to access all{' '}
-            <Link url={docsUrl('lar-data-fields')}>
+            <Link to={docsUrl('lar-data-fields')}>
               publicly available data fields
             </Link>
             . Additional questions/suggestions can be sent to{' '}
