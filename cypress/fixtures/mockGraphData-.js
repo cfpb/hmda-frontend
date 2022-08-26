@@ -1,8 +1,8 @@
 export const firstGraphURLQuery =
-  "/applications?periodLow=2018-Q1&periodHigh=2021-Q4&visibleSeries=Conventional%20Conforming,Conventional%20Non-Conforming,FHA,HELOC,RHS/FSA,VA";
+  "/applications?periodLow=2019-Q1&periodHigh=2022-Q1&visibleSeries=Conventional%20Conforming,Conventional%20Non-Conforming,FHA,HELOC,RHS/FSA,VA";
 
 export const firstGraphURL =
-  "/data-browser/graphs/applications?periodLow=2018-Q1&periodHigh=2021-Q4&visibleSeries=Conventional%20Conforming,Conventional%20Non-Conforming,FHA,HELOC,RHS/FSA,VA";
+  "/data-browser/graphs/quarterly/applications?periodLow=2019-Q1&periodHigh=2022-Q1&visibleSeries=Conventional%20Conforming,Conventional%20Non-Conforming,FHA,HELOC,RHS/FSA,VA";
 
 export const buildURL = (baseURL, endpoint, periodStart, periodEnd, series) => {
   let finalURL = ``;

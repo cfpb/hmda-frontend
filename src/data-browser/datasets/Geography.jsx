@@ -20,6 +20,7 @@ import {
   variableOptionMap,
   getVariables,
 } from "../constants/variables.js";
+import { datasetOptions } from './DatasetSelector.jsx'
 
 import {
   createItemOptions,
