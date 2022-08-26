@@ -1,6 +1,18 @@
 {
   "log": [
     {
+      "date": "08/29/22",
+      "type": "release",
+      "product": "tools",
+      "description": "HMDA Quarterly Graphs, a tool to visualize quarterly lending trends, was released.",
+      "links": [
+        {
+          "text": "HMDA Quarterly Graphs",
+          "url": "https://ffiec.cfpb.gov/data-browser/graphs/quarterly"
+        }
+      ]
+    },
+    {
       "date": "08/25/22",
       "type": "release",
       "product": "datasets",
