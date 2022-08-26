@@ -41,6 +41,6 @@ This depends on the year for which you are accessing data.  For Annual filing pe
 
 | Dataset | Available Years |
 |---|---|
-| [Three Year National Loan-Level Dataset](/data-publication/three-year-national-loan-level-dataset/)|  2018|
+| [Three Year National Loan-Level Dataset](/data-publication/three-year-national-loan-level-dataset/)|  2017, 2018|
 | [One Year National Loan-Level Dataset](/data-publication/one-year-national-loan-level-dataset/)| 2019, 2020|
 | [Snapshot National Loan-Level Dataset](/data-publication/snapshot-national-loan-level-dataset/)| 2018, 2019, 2020, 2021|
