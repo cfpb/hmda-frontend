@@ -100,8 +100,8 @@ class Home extends Component {
               .
             </p>
             <p className='lead'>
-              For information about changes to HMDA Publications visit{' '}
-              <Link to='updates'>Publication Updates &amp; Notes</Link>.
+              For information about changes to HMDA Publications visit the{' '}
+              <Link to='/updates-notes'>Updates and Notes</Link> page.
             </p>
           </Heading>
         </div>

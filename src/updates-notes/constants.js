@@ -19,7 +19,7 @@ export const CATEGORIES = {
 
 
 export const PUB_CHANGELOG_URL =
-  'https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/data-publication/ChangeLog/change-log-data.json'
+  'https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/updates-notes/change-log-data.json'
 
 
 export const DEFAULT_FILTERS = {
