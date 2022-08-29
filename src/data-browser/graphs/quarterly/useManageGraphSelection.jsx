@@ -37,7 +37,7 @@ export const useManageGraphSelection = ({
           line.coordinates.forEach(point => {
             const idx = categories.indexOf(point.x)
             if (idx < 0) return // Skip unknown filing periods
-            currentSeries[idx] = parseInt(point.y) || 0
+            currentSeries[idx] = parseFloat(parseFloat(`${point.y}`).toFixed(2)) || 0
           })
 
           graphLines.push({
