@@ -2,6 +2,15 @@
   "name": "prod-beta",
   "announcement": [
     {
+      "heading": "HMDA Quarterly Graphs Tool Released",
+      "message": "On August 30, 2022, the CFPB released a new FFIEC HMDA Data Browser feature - the Quarterly Graphs tool, which is available ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/data-browser/graphs/quarterly",
+        "text": "here."
+      }
+    },
+    {
       "heading": "2021 Data Publication Release",
       "message": "On June 16, 2022, the 2021 static datasets, Disclosure Reports, and MSA/MD Aggregate reports were released and can be accessed via the ",
       "type": "info",
