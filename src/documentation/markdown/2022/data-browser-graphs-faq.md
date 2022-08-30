@@ -1,14 +1,15 @@
 # HMDA Quarterly Graphs - Frequently Asked Questions 
 
+## What do the Quarterly Graphs display? 
 The Quarterly Graphs display an aggregated view of quarterly filers for the current filing year.  
 
-## What are the qualifications of a quarterly filer? 
+## What are the requirements to become a quarterly filer? 
 
 A financial institution is required to report quarterly HMDA data if it reported a combined total of at least 60,000 applications and covered loans, excluding purchased covered loans, for the preceding calendar year. Institutions file quarterly data three times a year, with quarter four data being reported in the following year’s annual submission. 
 
 ## How were institutions chosen to be displayed in the quarterly filing graphs? 
 
-The institutions displayed are eligible for quarterly filing for the current year. Only the current year’s eligibility is considered when determining the list of institutions displayed in these quarterly graphs, meaning a previously eligible quarterly filer would be excluded if they do not qualify for the current year. In addition to the current year’s quarterly data, users can view three years of data for the institutions. The data in each graph is based on the same set of institutions.   
+The institutions displayed are required to file quarterly data in the current year. Only the current year’s submission is considered when determining the list of institutions displayed in these quarterly graphs, meaning a previous quarterly filer would be excluded if they do not qualify for the current year. In addition to the current year’s quarterly data, users can view three years of data for the institutions that submitted quarterly data in the current year. The data in each graph is based on the same set of institutions.   
 
 ## How do I view a list of quarterly filers? 
 
@@ -16,7 +17,7 @@ View a list of quarterly filers by navigating to the “Filer Info” tab.
 
 <img alt='Graphs Section Selector' className='widthOriginal' src='https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/graphs/section-selector.png'>
  
-Users can view the filer name, LEI, regulatory agency, and LAR counts for the previous three years. 
+Users can view the filer name, legal entity identifier (LEI), regulatory agency, and loan/application register (LAR) counts for the previous three years. 
  
 ## How can I sort the quarterly filer list?  
 
@@ -65,7 +66,7 @@ Quarterly Filing - Action Taken Dates
 
 ## What categories of graphs can I choose from? 
 
-You can select from 21 graphs from the following categories: 
+You can select from 21 graphs that cover the following categories: 
 
 - Combined loan-to-value ratio 
 - Credit score 
@@ -75,7 +76,7 @@ You can select from 21 graphs from the following categories:
 - Loan & application counts 
 - Total loan costs
 
-## How do I view a specific time period of quarterly filing? 
+## How do I view data from a specific quarter(s)? 
 
 Select your desired range from the “Filing Period Range” drop down. You can choose from any quarter in the past three years up until the latest quarter of data published. 
 
@@ -108,6 +109,7 @@ Selecting “Share Graph” on the top right of the graph will copy a link to th
 <img alt='Share Graph' className='widthOriginal' src='https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/graphs/share-graph-1.png'>
 <br/>
 <img alt='Share Graph Clicked' className='widthOriginal' src='https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/graphs/share-graph-2.png'>
+
 ## How can I download a screenshot of the graph I am viewing? 
 
 Select the three horizontal lines on the top right of the graph to display a list of options. You can download an image of the graph by using any of the four options indicated below. You can choose between a PNG, JPEG, PDF, or SVG file formats. 
@@ -129,7 +131,7 @@ The data that will be in the CSV or XLS is the same data that is displayed in th
  
 ## Can I review the underlying loan level quarterly data? 
 
-To protect borrow privacy, the underlying loan and institution level data is not displayed. When the annual data for the institutions is released the following year, it will be in accordance with the [Data Disclosure Policy](https://files.consumerfinance.gov/f/documents/HMDA_Data_Disclosure_Policy_Guidance.Executive_Summary.FINAL.12212018.pdf). 
+To protect borrow privacy, the underlying loan and institution level data is not displayed. When the annual data for the institutions are released the following year, the data will be disclosed in accordance with the [Data Disclosure Policy](https://files.consumerfinance.gov/f/documents/HMDA_Data_Disclosure_Policy_Guidance.Executive_Summary.FINAL.12212018.pdf). 
 
 ## How often will the quarterly graphs be updated? 
 
