@@ -1,0 +1,50 @@
+/* FAQ Table of Contents */
+.toc-container {
+  position: sticky !important;
+  position: -webkit-sticky; /* For Safari */
+  margin-top: 10px;
+  max-height: calc(100vh - 40px);
+  /* overflow: auto; */
+  top: 0;
+  width: 250px;
+  cursor: pointer;
+  margin-right: 5px;
+  margin-left: 0px;
+}
+
+.initial-header {
+  margin-top: 40px;
+}
+
+.initial-header li {
+  list-style-type: none;
+}
+
+.initial-header li a {
+  text-decoration: none;
+  color: black;
+}
+
+.initial-header li a:hover {
+  text-decoration: none;
+  background-color: #0071bc;
+  color: white;
+  padding: 4px;
+}
+
+.header {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.subheader {
+  font-size: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-weight: normal;
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+}

@@ -1,6 +1,6 @@
 .Markdown-Wrapper {
   max-width: 1040px;
-  margin: 0 auto;
+  margin: 10px auto;
   padding: 0 3rem;
 }
 
@@ -53,49 +53,4 @@
 
 .App.Documentation li {
   margin-bottom: 0.5em;
-}
-
-/* FAQ Table of Contents */
-
-.FAQ-Nav {
-  position: sticky !important;
-  position: -webkit-sticky; /* For Safari */
-  margin-top: 10px;
-  max-height: calc(100vh - 40px);
-  /* overflow: auto; */
-  top: 0;
-}
-
-.initial-header {
-  margin-top: 62px;
-  width: 250px;
-  cursor: pointer;
-  margin-right: 25px;
-  margin-left: 25px;
-}
-
-.initial-header li {
-  list-style-type: none;
-}
-
-.initial-header li a {
-  text-decoration: none;
-  color: black;
-}
-
-.header {
-  font-size: 18px;
-  font-weight: 800;
-}
-
-.subheader {
-  font-size: 16px;
-  padding-left: 20px;
-  padding-right: 20px;
-  font-weight: normal;
-  text-overflow: ellipsis;
-
-  /* Required for text-overflow to do anything */
-  white-space: nowrap;
-  overflow: hidden;
 }
