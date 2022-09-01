@@ -29,10 +29,7 @@ export function mapStateToProps(state) {
 
 function setAndParseFile(file) {
   return (dispatch, getState) => {
-    // Clear any errors from previously processed file
-    dispatch(selectFile(file, []))
-
-    checkFileErrors(file, fileErrors => {
+    const handleErrors = fileErrors => {
       // Save client-side validation errors, whose presence will halt backend processing
       dispatch(selectFile(file, fileErrors))
 
@@ -40,7 +37,9 @@ function setAndParseFile(file) {
       if (getState().app.upload.errors.length === 0) {
         dispatch(triggerParse(file))
       }
-    })
+    }
+
+    checkFileErrors(file, handleErrors, 'ffvt')
   }
 }
 
