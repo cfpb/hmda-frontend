@@ -1,22 +1,23 @@
-import React, { useState } from 'react'
-import { GraphsHeader } from './GraphsHeader'
-import { HomeLink } from '../../HomeLink'
-import { SectionFAQ } from './SectionFAQ.jsx'
-import { SectionFilerInfo } from './SectionFilerInfo'
-import { SectionGraphs } from './SectionGraphs'
-import { SectionSelector } from '../SectionSelector'
-import Error from '../../../common/Error'
-import '../graphs.css'
+import React, { useEffect, useState } from "react"
+import { GraphsHeader } from "./GraphsHeader"
+import { HomeLink } from "../../HomeLink"
+import { SectionFAQ } from "./SectionFAQ.jsx"
+import { SectionFilerInfo } from "./SectionFilerInfo"
+import { SectionGraphs } from "./SectionGraphs"
+import { SectionSelector } from "../SectionSelector"
+import { Switch, Route, Link } from "react-router-dom"
+import Error from "../../../common/Error"
+import "../graphs.css"
 
-const SectionOptions = ['Graphs', 'Filer Info', 'FAQ']
+const SectionOptions = ["Graphs", "Filer Info", "FAQ"]
 
-export const QuarterlyGraphs = props => {
+export const QuarterlyGraphs = (props) => {
   const [error, setError] = useState()
   const [graphHeaderOverview, setGraphHeaderOverview] = useState() // Populated from API
   const [section, setSection] = useState(SectionOptions[0])
 
   return (
-    <div className='Graphs'>
+    <div className="Graphs">
       <HomeLink />
       <GraphsHeader overview={graphHeaderOverview} />
       <Error error={error} />
@@ -25,9 +26,9 @@ export const QuarterlyGraphs = props => {
         selected={section}
         onChange={setSection}
       />
-      <div className='section-wrapper'>
+      <div className="section-wrapper">
         <SectionGraphs
-          show={section === 'Graphs'}
+          show={section === "Graphs"}
           {...{
             error,
             setError,
@@ -37,8 +38,18 @@ export const QuarterlyGraphs = props => {
             history: props.history,
           }}
         />
-        <SectionFilerInfo show={section === 'Filer Info'} />
-        <SectionFAQ show={section === 'FAQ'} />
+
+        <Switch>
+          {/* Setting direct paths to access other tabs */}
+          <Route
+            path={"/data-browser/graphs/quarterly/filer-info"}
+            render={() => <SectionFilerInfo show={section === "Filer Info"} />}
+          />
+          <Route
+            path={"/data-browser/graphs/quarterly/faq"}
+            render={() => <SectionFAQ show={section === "FAQ"} />}
+          />
+        </Switch>
       </div>
     </div>
   )
