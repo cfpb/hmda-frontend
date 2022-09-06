@@ -18,6 +18,9 @@ const links = {
   ],
   2022: [    
     <li key="2022-0"><Link to="/documentation/2022/lar-formatting/">LAR Formatting Tool Instructions</Link></li>,
+  ],
+  2023: [    
+    <li key="2023-0"><Link to="/documentation/2023/lar-formatting/">LAR Formatting Tool Instructions</Link></li>,
   ]
 }
 
