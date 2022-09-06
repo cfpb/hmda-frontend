@@ -18,6 +18,9 @@ const links = {
   ],
   2022: [
     <li key="2022-0"><Link to="/documentation/2022/file-format-verification/">File Format Verification Tool Instructions</Link></li>,
+  ],
+  2023: [
+    <li key="2023-0"><Link to="/documentation/2023/file-format-verification/">File Format Verification Tool Instructions</Link></li>,
   ]
 }
 
