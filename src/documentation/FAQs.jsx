@@ -49,6 +49,15 @@ const links = {
     <li key="2022-4"><Link to="/documentation/2022/data-browser-maps-faq/">Maps FAQ</Link></li>,
     <li key="2022-5"><Link to="/documentation/2022/static-dataset-faq/">Static Dataset FAQ</Link></li>,
     <li key="2022-6"><Link to="/documentation/2022/data-collection-timelines/">HMDA Data Collection Timelines</Link></li>,
+  ],
+  2023: [
+    <li key="2023-0"><Link to="/documentation/2023/data-browser-graphs-faq/">Graphs FAQ <NewIndicator/></Link></li>,
+    <li key="2023-1"><Link to="/documentation/2023/identifiers-faq/">Institution Identifiers FAQ</Link></li>,
+    <li key="2023-2"><Link to="/documentation/2023/data-browser-faq/">Data Browser FAQ</Link></li>,
+    <li key="2023-3"><Link to="/documentation/2023/filing-faq/">HMDA Filing FAQ</Link></li>,
+    <li key="2023-4"><Link to="/documentation/2023/data-browser-maps-faq/">Maps FAQ</Link></li>,
+    <li key="2023-5"><Link to="/documentation/2023/static-dataset-faq/">Static Dataset FAQ</Link></li>,
+    <li key="2023-6"><Link to="/documentation/2023/data-collection-timelines/">HMDA Data Collection Timelines</Link></li>,
   ]
 }
 
