@@ -1,6 +1,16 @@
 {
   "log": [
     {
+      "date": "09/06/23",
+      "type": "release",
+      "product": "documentation",
+      "description": "The 2023 Filing Instructions Guide (FIG) and 2023 Supplemental Guide for Quarterly Filers have been released.",
+      "links": [
+        {"text": "2023 Filing Instructions Guide (FIG)", "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2023-hmda-fig.pdf"},
+        {"text": "2023 Supplemental Guide for Quarterly Filers", "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-2023.pdf"}
+      ]
+    },
+    {
       "date": "08/29/22",
       "type": "release",
       "product": "tools",
