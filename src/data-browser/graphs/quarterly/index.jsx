@@ -16,6 +16,15 @@ export const QuarterlyGraphs = (props) => {
   const [graphHeaderOverview, setGraphHeaderOverview] = useState() // Populated from API
   const [section, setSection] = useState(SectionOptions[0])
 
+  useEffect(() => {
+    // Handling which tab is active via url
+    if (props.history.location.pathname.includes("filer-info")) {
+      setSection(SectionOptions[1])
+    } else if (props.history.location.pathname.includes("faq")) {
+      setSection(SectionOptions[2])
+    }
+  }, [props.history.location.pathname])
+
   return (
     <div className="Graphs">
       <HomeLink />

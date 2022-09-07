@@ -34,10 +34,47 @@ export const useFetchGraphList = ({
     const needsRedirect =
       !response.graphs.some((g) => g.endpoint == match.params.graph) ||
       location.pathname.match(/graphs\/quarterly$"/)
-    if (location.pathname.match(/filer-info/)) {
-      console.log("filer-info")
+    if (location.pathname.match(/quarterly\/filer-info/)) {
+      /* 
+      Need to pre-load first graph data that way when users navigate to 
+      Graphs tab it will load with first graph from API
+
+      Currently it re-renders URL to first graph selected.
+      This is being done in SectionGraph line 108 in the useEffect
+      */
+      let firstGraph = response.graphs[0]
+
+      fetchSingleGraph(firstGraph.endpoint)
+      dispatch(
+        graphs.setConfig(SELECTED_GRAPH, {
+          value: firstGraph.endpoint,
+          label: firstGraph.title,
+          category: firstGraph.category,
+        })
+      )
+
+      history.push(`${BaseURLQuarterly}/filer-info`)
     } else if (location.pathname.match(/faq/)) {
-      console.log("faq")
+      /* 
+      Need to pre-load first graph data that way when users navigate to 
+      Graphs tab it will load with first graph from API
+
+      Currently it re-renders URL to first graph selected.
+      This is being done in SectionGraph line 108 in the useEffect
+      */
+
+      let firstGraph = response.graphs[0]
+
+      fetchSingleGraph(firstGraph.endpoint)
+      dispatch(
+        graphs.setConfig(SELECTED_GRAPH, {
+          value: firstGraph.endpoint,
+          label: firstGraph.title,
+          category: firstGraph.category,
+        })
+      )
+
+      history.push(`${BaseURLQuarterly}/faq`)
     } else if (needsRedirect) {
       let firstGraph = response.graphs[0]
 
