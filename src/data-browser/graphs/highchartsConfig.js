@@ -118,22 +118,7 @@ export const deriveHighchartsConfig = ({
   Tooltip configuration: forces whole numbers and data points that don't have 3 decimals to include 3 decimals points. (i.e 3 -> 3.00 & 3.5 -> 3.500).
   Only reflected in the tooltip and NOT the data table.
   */
-  // config.tooltip.valueDecimals = decimalPlace
-
-  console.log(config)
-
-  // Code does not do anything feel free to delete.
-  // series.map((v) => v.data.forEach((p) => console.log(p)))
-
-  // Code does not do anything feel free to delete.
-  // config.chart.numberFormat = function () {
-  //   return Highcharts.numberFormat(
-  //     series.map((v) => {
-  //       v.data.map((p) => p)
-  //     }),
-  //     title.includes("interest rates") ? 3 : 0
-  //   )
-  // }
+  config.tooltip.valueDecimals = decimalPlace
 
   // Listener used to remove a series from URL when user de-selects
   config.plotOptions.series.events.hide = event => {
