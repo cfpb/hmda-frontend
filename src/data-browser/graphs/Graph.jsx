@@ -13,6 +13,12 @@ HighchartsExportData(Highcharts) // Enable export of underlying data
 HighchartsAccessibility(Highcharts) // Accessibility enhancements
 AvoidJumpToDataTable(Highcharts) // Workaround for Accessibility module bug
 
+Highcharts.setOptions({
+  lang: {
+    thousandsSep: ','
+  }
+})
+
 export const Graph = ({ options, loading, seriesForURL }) => {
   const chartRef = useRef()
 
