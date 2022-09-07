@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import CopyURLButton from '../../../common/CopyURLButton.jsx'
 import LoadingIcon from '../../../common/LoadingIcon'
@@ -154,6 +154,23 @@ export const SectionGraphs = ({
     setResetSeriesVisability(true)
     setTimeout(() => setResetSeriesVisability(false), 100)
   }, [selectedGraph, dispatch])
+
+  // Reformat data table values to match graph's decimal precision
+  // https://jsfiddle.net/BlackLabel/5kj9pnfm/
+  useEffect(() => {
+    Highcharts.addEvent(Highcharts.Chart, 'aftergetTableAST', function (e) {
+      e.tree.children[2].children.forEach(function (row) {
+        row.children.forEach(function (cell, i) {
+          if (i !== 0) {
+            row.children[i].textContent = Highcharts.numberFormat(
+              cell.textContent.replaceAll(',', ''),
+              selectedGraphData?.decimalPrecision || 0
+            )
+          }
+        })
+      })
+    })
+  }, [selectedGraphData])
 
   const loadingGraphDetails =
     !selectedGraph ||
