@@ -49,7 +49,7 @@ function missingTransmittalSheet(file, app, sample) {
   const invalidContentText =
     'Your file appears to be a text file (.txt) but has invalid content. '
   const detailText =
-    'Please ensure you are uploading a pipe-delimited, UTF-8 encoded text file and that your transmittal sheet begins with 1.'
+    'Please ensure you are uploading a pipe-delimited text file and that your transmittal sheet begins with 1. Verify that your file is UTF-8 encoded.'
 
   // In the FFVT we want to allow users to see multiple errors,
   // so always provide some message when we don't recognize the Transmittal Sheet.
