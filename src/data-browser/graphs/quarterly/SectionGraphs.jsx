@@ -108,16 +108,55 @@ export const SectionGraphs = ({
   useEffect(() => {
     if (!periodLow || !periodHigh || !selectedGraph || !seriesForURL) return
 
-    props.history.push({
-      pathname: `${BaseURLQuarterly}/${selectedGraph.value}`,
-      search: `?periodLow=${periodLow.value}&periodHigh=${periodHigh.value}&visibleSeries=${seriesForURL}`,
-    })
-    dispatch(
-      graphs.setConfig(
-        GRAPH_URL,
-        `${BaseURLQuarterly}/${selectedGraph.value}/?periodLow=${periodLow.value}&periodHigh=${periodHigh.value}&visibleSeries=${seriesForURL}`
+    // Function used to reduce re-writing same dispatch method to redux store
+    const dispatchGraphURL = (
+      selectedGraph,
+      periodLow,
+      periodHigh,
+      seriesForURL
+    ) => {
+      dispatch(
+        graphs.setConfig(
+          GRAPH_URL,
+          `${BaseURLQuarterly}/${selectedGraph}/?periodLow=${periodLow}&periodHigh=${periodHigh}&visibleSeries=${seriesForURL}`
+        )
       )
-    )
+    }
+
+    // Allows direct linking to /filer-info or /faq and doesn't trigger a url update
+    // Additonally it stores the graph url and is used when user clicks the Graphs tab
+    if (props.history.location.pathname.includes("filer-info")) {
+      props.history.push({
+        pathname: `${BaseURLQuarterly}/filer-info`,
+      })
+      dispatchGraphURL(
+        selectedGraph.value,
+        periodLow.value,
+        periodHigh.value,
+        seriesForURL
+      )
+    } else if (props.history.location.pathname.includes("faq")) {
+      props.history.push({
+        pathname: `${BaseURLQuarterly}/faq`,
+      })
+      dispatchGraphURL(
+        selectedGraph.value,
+        periodLow.value,
+        periodHigh.value,
+        seriesForURL
+      )
+    } else {
+      props.history.push({
+        pathname: `${BaseURLQuarterly}/${selectedGraph.value}`,
+        search: `?periodLow=${periodLow.value}&periodHigh=${periodHigh.value}&visibleSeries=${seriesForURL}`,
+      })
+      dispatchGraphURL(
+        selectedGraph.value,
+        periodLow.value,
+        periodHigh.value,
+        seriesForURL
+      )
+    }
   }, [periodLow, periodHigh, seriesForURL, selectedGraph])
 
   // A workaround to force Highcharts to reset series visibility when a new graph is selected

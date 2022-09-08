@@ -28,8 +28,10 @@ export const useFetchGraphList = ({
 
     /**
      * Redirect user to a valid graph when either
-     *  a) an invalid graph ID is entered in the URL or
-     *  b) no graph ID is provided in the URL
+     *  a) user now directly links to filer-info tab and fetches first graph from API
+     *  b) user now directly links to faq tab and fetches first graph from API
+     *  c) an invalid graph ID is entered in the URL or
+     *  d) no graph ID is provided in the URL
      */
     const needsRedirect =
       !response.graphs.some((g) => g.endpoint == match.params.graph) ||
@@ -38,9 +40,6 @@ export const useFetchGraphList = ({
       /* 
       Need to pre-load first graph data that way when users navigate to 
       Graphs tab it will load with first graph from API
-
-      Currently it re-renders URL to first graph selected.
-      This is being done in SectionGraph line 108 in the useEffect
       */
       let firstGraph = response.graphs[0]
 
@@ -58,11 +57,7 @@ export const useFetchGraphList = ({
       /* 
       Need to pre-load first graph data that way when users navigate to 
       Graphs tab it will load with first graph from API
-
-      Currently it re-renders URL to first graph selected.
-      This is being done in SectionGraph line 108 in the useEffect
       */
-
       let firstGraph = response.graphs[0]
 
       fetchSingleGraph(firstGraph.endpoint)
