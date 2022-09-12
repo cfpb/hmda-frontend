@@ -14,6 +14,7 @@ export const ExpandableCard = ({
   expandedByDefault = true, // true = child content is displayed on load
   disableExpansion = false, // true = Allow the Card to be used without expandable content
   addNewFeatureIndicator = false, // false = Doesn't show NewIndicator component around header
+  openNewWindow = false, // false = Open link in same browser window/tab
   children,
 }) => {
   const [showMore, setShowMore] = useState(expandedByDefault)
@@ -33,8 +34,11 @@ export const ExpandableCard = ({
   if (isHidden) return null
 
   /* Make the Card's header a link, if we have a destination */
-  const cardHeading = destination ? (
-    <Link to={destination}>
+  const newWindowParams = openNewWindow
+    ? { target: '_blank', rel: 'noopener noreferror' }
+    : {}
+  const cardHeading = destination ?
+   ( <Link to={destination}  { ...newWindowParams } >
       {title}
       {addNewFeatureIndicator ? <NewIndicator /> : ""}
     </Link>
