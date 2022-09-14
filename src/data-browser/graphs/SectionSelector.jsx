@@ -15,12 +15,12 @@ const SectionOption = ({ isSelected, title, onChange }) => {
   if (isSelected) ariaLabel += " This section is currently selected."
 
   return (
-    // Generating links to direct user to '/graphs' (original graph they were viewing), '/filer-info' and '/faq'
+    // Generating links to direct user to '/graphs' (original graph they were viewing), '/filer' and '/faq'
     <Link
       to={
         title === "Graphs"
           ? graphURL
-          : `/data-browser/graphs/quarterly/${title
+          : `/data-browser/graphs/quarterly/info/${title
               .replace(" ", "-")
               .toLowerCase()}`
       }

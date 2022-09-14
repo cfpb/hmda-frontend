@@ -123,11 +123,11 @@ export const SectionGraphs = ({
       )
     }
 
-    // Allows direct linking to /filer-info or /faq and doesn't trigger a url update
+    // Allows direct linking to /info/filer or /info/faq and doesn't trigger a url update
     // Additonally it stores the graph url and is used when user clicks the Graphs tab
-    if (props.history.location.pathname.includes("filer-info")) {
+    if (props.history.location.pathname.includes("/info/filer")) {
       props.history.push({
-        pathname: `${BaseURLQuarterly}/filer-info`,
+        pathname: `${BaseURLQuarterly}/info/filer`,
       })
       dispatchGraphURL(
         selectedGraph.value,
@@ -135,9 +135,9 @@ export const SectionGraphs = ({
         periodHigh.value,
         seriesForURL
       )
-    } else if (props.history.location.pathname.includes("faq")) {
+    } else if (props.history.location.pathname.includes("/info/faq")) {
       props.history.push({
-        pathname: `${BaseURLQuarterly}/faq`,
+        pathname: `${BaseURLQuarterly}/info/faq`,
       })
       dispatchGraphURL(
         selectedGraph.value,

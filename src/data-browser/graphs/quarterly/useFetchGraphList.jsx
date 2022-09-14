@@ -28,7 +28,7 @@ export const useFetchGraphList = ({
 
     /**
      * Redirect user to a valid graph when either
-     *  a) user now directly links to filer-info tab and fetches first graph from API
+     *  a) user now directly links to filer tab and fetches first graph from API
      *  b) user now directly links to faq tab and fetches first graph from API
      *  c) an invalid graph ID is entered in the URL or
      *  d) no graph ID is provided in the URL
@@ -36,7 +36,7 @@ export const useFetchGraphList = ({
     const needsRedirect =
       !response.graphs.some((g) => g.endpoint == match.params.graph) ||
       location.pathname.match(/graphs\/quarterly$"/)
-    if (location.pathname.match(/quarterly\/filer-info/)) {
+    if (location.pathname.match(/quarterly\/info\/filer/)) {
       /* 
       Need to pre-load first graph data that way when users navigate to 
       Graphs tab it will load with first graph from API
@@ -52,8 +52,8 @@ export const useFetchGraphList = ({
         })
       )
 
-      history.push(`${BaseURLQuarterly}/filer-info`)
-    } else if (location.pathname.match(/faq/)) {
+      history.push(`${BaseURLQuarterly}/info/filer`)
+    } else if (location.pathname.match(/quarterly\/info\/faq/)) {
       /* 
       Need to pre-load first graph data that way when users navigate to 
       Graphs tab it will load with first graph from API
@@ -69,7 +69,7 @@ export const useFetchGraphList = ({
         })
       )
 
-      history.push(`${BaseURLQuarterly}/faq`)
+      history.push(`${BaseURLQuarterly}/info/faq`)
     } else if (needsRedirect) {
       let firstGraph = response.graphs[0]
 
