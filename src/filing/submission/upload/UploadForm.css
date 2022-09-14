@@ -88,32 +88,3 @@
   background-color: #f1f1f1;
   border-color: #2e8540;
 }
-
-.Filing .encoding-error ul.show-markers li::before {
-  color: rgb(227 28 61);
-  content: '\2022';
-  display: inline-block;
-  font-weight: bold;
-  font-size: 1.5em;
-  width: 1em;
-}
-.Filing .encoding-error ul.show-markers li {
-  margin-left: 0.5em;
-}
-.Filing .encoding-error .guidance {
-  background: white;
-  padding: 1.25em;
-  width: 100%;
-  border-radius: .2em;
-  border: 1px solid lightpink;
-}
-.Filing .encoding-error .guidance .title {
-  padding: 0;
-  margin: 0;
-  border-bottom: 1px dotted rgb(227 28 61);
-}
-.Filing .encoding-error .guidance .screenshot {
-  margin: 10px auto 0;
-  max-width: 100%
-}
-
