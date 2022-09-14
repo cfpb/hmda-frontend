@@ -1,0 +1,90 @@
+.Graphs .section-wrapper {
+  margin-top: 2em;
+}
+
+.Graphs .instructions {
+  font-size: 1.25em;
+}
+
+.Graphs svg {
+  fill: inherit;
+  stroke: inherit;
+}
+
+.Graphs .shared-border {
+  margin: 0.5em 0;
+  padding: 0;
+  border-top: 1px solid #aaa;
+}
+
+.Graphs .section-wrapper table {
+  margin: 1.25em auto;
+}
+
+.period-wrapper {
+  height: 90px;
+}
+
+.Graphs .period-range {
+  margin-top: 0.5em;
+  display: flex;
+  flex-flow: nowrap;
+  align-items: stretch;
+}
+
+.Graphs .period-range > * {
+  flex: 1;
+}
+
+.Graphs .period-range .to {
+  text-align: center;
+  flex: 0;
+  margin: 0 15px;
+  vertical-align: center;
+}
+
+.Graphs .reset {
+  margin-top: 0;
+  margin-left: 10px;
+  padding: 3px 10px;
+}
+
+.Graphs .toolbar {
+  display: block;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  text-align: right;
+}
+
+/* Styling for drop-down categories */
+.Graphs .menu-group-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Graphs .menu-group-label .badge {
+  background-color: #ebecf0;
+  border-radius: 2em;
+  color: #172b4d;
+  display: inline-block;
+  font-size: 12;
+  font-weight: normal;
+  line-height: 1;
+  min-width: 1;
+  padding: 0.16666666666667em 0.5em;
+  text-align: center;
+}
+
+/* Section - FAQ */
+.Graphs .Markdown-Wrapper img {
+  max-width: 100%;
+}
+
+.Graphs .Markdown-Wrapper h1 {
+  font-size: 1.5em;
+}
+
+.Graphs .Markdown-Wrapper h2 {
+  font-size: 1.25em;
+}

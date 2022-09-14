@@ -3,6 +3,7 @@
   position: sticky !important;
   position: -webkit-sticky; /* For Safari */
   margin-top: 10px;
+  padding-top: 5px;
   max-height: calc(100vh - 40px);
   /* overflow: auto; */
   top: 0;
@@ -10,6 +11,7 @@
   cursor: pointer;
   margin-right: 5px;
   margin-left: 0px;
+  overflow: scroll;
 }
 
 .initial-header {
@@ -25,20 +27,24 @@
   color: black;
 }
 
-.initial-header li a:hover {
-  text-decoration: none;
-  background-color: #0071bc;
-  color: white;
-  padding: 4px;
+.highlight {
+  border-style: solid;
+  border-left-color:#0071bc;
+  border-left-width: 4px;
+  border-bottom: none;
+  border-top: none;
+  border-right: none;
+  padding-left: 4px;
+  transition: all 1s ease-in;
 }
 
 .header {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 800;
 }
 
 .subheader {
-  font-size: 16px;
+  font-size: 14px;
   padding-left: 20px;
   padding-right: 20px;
   font-weight: normal;
@@ -47,4 +53,13 @@
   /* Required for text-overflow to do anything */
   white-space: nowrap;
   overflow: hidden;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

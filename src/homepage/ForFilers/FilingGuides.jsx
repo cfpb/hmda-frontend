@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
-import { CURRENT_YEAR } from '../../common/constants/years'
+import { LATEST_FIG_YEAR } from '../../common/constants/years'
 import { ExternalLink } from '../../common/ExternalLink'
 import { ExpandableCard } from '../ExpandableCard'
+import NewIndicator from '../NewIndicator'
 
 const figUpdates = {
   2021: '11/20/2020',
@@ -23,24 +24,26 @@ export const FilingGuides = () => (
   >
     <ul>
       <li>
-        <Link to='/documentation/2022/fig/'>Filing Instructions Guides</Link>
+        <Link to={`/documentation/${LATEST_FIG_YEAR}/fig/`}>Filing Instructions Guides</Link>
       </li>
       <ul>
         <li>
           <a
-            href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${CURRENT_YEAR}-hmda-fig.pdf`}
+            href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${LATEST_FIG_YEAR}-hmda-fig.pdf`}
             download={true}
           >
-            For data collected in {CURRENT_YEAR}
-            <FigLastUpdated year={CURRENT_YEAR} />
+            For data collected in {LATEST_FIG_YEAR}
+            <NewIndicator/>
+            <FigLastUpdated year={LATEST_FIG_YEAR} />
           </a>
         </li>
         <li>
           <a
-            href='https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-2022.pdf'
+            href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-${LATEST_FIG_YEAR}.pdf`}
             download={true}
           >
-            Supplemental Guide for Quarterly Filers for {CURRENT_YEAR}
+            Supplemental Guide for Quarterly Filers for {LATEST_FIG_YEAR}
+            <NewIndicator/>
           </a>
         </li>
         <li>

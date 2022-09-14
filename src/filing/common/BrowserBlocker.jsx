@@ -25,11 +25,14 @@ const BrowserBlocker = () => {
                   Edge
                 </a>
               </li>
+              {/*
+               Fixes need to be made to support IE11. Removing this recommendation until we can address.
               <li>
                 <a href="https://support.microsoft.com/en-us/help/17621/internet-explorer-downloads">
                   Internet Explorer 11
                 </a>
-              </li>
+              </li> 
+              */}
               <li>
                 <a href="https://support.apple.com/downloads/safari">Safari</a>
               </li>

@@ -10,7 +10,8 @@ import TableOfContents from "../common/TableOfContents.jsx"
 const DynamicRenderer = (props) => {
   const [data, setData] = useState(null)
   const [error, setError] = useState(null)
-  const { year, slug } = props
+  const [idToScrollTo, setIdToScrollTo] = useState()
+  const { year, slug, showBackLink = true } = props
 
   useEffect(
     function () {
@@ -26,14 +27,16 @@ const DynamicRenderer = (props) => {
     [year, slug]
   )
 
+  // Effect used to find '#' in the route which allows the ability to directly link to a part of the page and scroll to it.
   useEffect(function () {
     if (!data) return
     const { hash } = window.location
     if (hash) {
       setTimeout(() => {
-        const stripped = hash.replace(/[#_]/g, "")
-        const id = stripped + stripped
-        const element = document.getElementById(id)
+        let removeHash = hash.replace(/#/, "")
+        let removeUnderscore = removeHash.replaceAll("_", "-")
+        setIdToScrollTo(removeUnderscore.toLowerCase())
+        const element = document.getElementById(removeUnderscore.toLowerCase())
         if (element) setTimeout(() => element.scrollIntoView(), 0)
       }, 0)
     }
@@ -43,11 +46,15 @@ const DynamicRenderer = (props) => {
 
   return (
     <div style={{ display: "flex" }}>
-      <TableOfContents markdown={data} year={year} />
+      <TableOfContents markdown={data} year={year} id={idToScrollTo} />
       <div className="Markdown-Wrapper">
-        <Link className="BackLink" to={`/documentation/${year}`}>
-          {"\u2b05"} {year} DOCUMENTATION
-        </Link>
+        {year == 2023 ? (
+          ""
+        ) : (
+          <Link className="BackLink" to={`/documentation/${year}`}>
+            {"\u2b05"} {year} DOCUMENTATION
+          </Link>
+        )}
         {data ? <Markdown>{data}</Markdown> : <LoadingIcon />}
       </div>
     </div>

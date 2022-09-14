@@ -10,27 +10,34 @@ import "./TableOfContents.css"
  *
  * @param {markdown} String Markdown data
  * @param {year} String Tells the backlink what year the documentation comes from
+ * @param {id} String id comes from DynamicRenderer and is specifically used on developer documentation. It is a continuation of direct linking to a specific developer Field.
  */
 
-const TableOfContents = ({ markdown, year }) => {
+const TableOfContents = ({ markdown, year, id }) => {
   const [markdownHeaders, setMarkdownHeaders] = useState()
+  const [activeContent, setActiveContent] = useState()
 
   useEffect(() => {
-    if (markdown && markdown.includes("###")) {
-      const headersRegex = markdown.match(/#{3}.+(?=\n)/g) // Finds all the headers with 3 or 4 #'s and generates an array.
-      let removeThreeHashes = headersRegex.map((h) =>
-        h.includes("###") ? h.replace("###", "").trim() : ""
+    if (id) {
+      setActiveContent(id)
+    }
+
+    if (markdown && markdown.includes("##")) {
+      const headersRegex = markdown.match(/#{2}.+(?=\n)/g) // Finds all the headers with 2 or 3 #'s and generates an array.
+      let removeTwoHashes = headersRegex.map((h) =>
+        h.includes("##") ? h.replace("##", "").trim() : ""
       )
 
       // Remove and replace last # from sub-header markdown
       const removeHashAndReplace = (id) => {
         let removeHash = id.replace("#", "").trim()
-        let removeSpecialCharts = removeHash.replace(/[/\'">(),.?]/g, "")
-        return removeSpecialCharts.replaceAll(" ", "-").toLowerCase()
+        let removeSpecialChars = removeHash.replace(/[/\'">(),.?]/g, "")
+        let finalString = removeSpecialChars.replaceAll(" ", "-").toLowerCase()
+        return finalString
       }
 
       // Generating a new objects list which is calculating the depth of the headers and sub-headers
-      const parsedHeadings = removeThreeHashes.map((heading) => {
+      const parsedHeadings = removeTwoHashes.map((heading) => {
         return {
           title: heading.includes("#")
             ? heading.replace("#", "").trim()
@@ -42,28 +49,36 @@ const TableOfContents = ({ markdown, year }) => {
 
       setMarkdownHeaders(parsedHeadings)
     }
-  }, [markdown])
+  }, [markdown, id])
 
   return (
     <div>
-      {markdownHeaders ? (
+      {markdownHeaders && year == 2023 ? (
         <div className="toc-container">
           <LinkRR className="BackLink" to={`/documentation/${year}`}>
             {"\u2b05"} {year} DOCUMENTATION
           </LinkRR>
-          <p className="initial-header">
+          <div className="initial-header">
             {markdownHeaders &&
               markdownHeaders.map((header, index) => (
                 <li
                   className={header.depth > 1 ? "subheader" : "header"}
                   key={index}
+                  onClick={() => setActiveContent(header.id)}
                 >
-                  <Link to={`${header.id}`} spy={true} smooth={true}>
-                    {header.title}
-                  </Link>
+                  <a
+                    href={`#${header.id}`}
+                    onClick={() => setActiveContent(header.id)}
+                  >
+                    {activeContent == header.id ? (
+                      <div className="highlight">{header.title}</div>
+                    ) : (
+                      header.title
+                    )}
+                  </a>
                 </li>
               ))}
-          </p>
+          </div>
         </div>
       ) : (
         ""

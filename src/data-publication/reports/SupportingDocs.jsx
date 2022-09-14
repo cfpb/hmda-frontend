@@ -1,6 +1,7 @@
 import React from 'react'
 import Heading from '../../common/Heading.jsx'
 import { Link } from 'react-router-dom'
+import { CURRENT_YEAR } from '../../common/constants/years.js'
 
 import './SupportingDocs.css'
 
@@ -20,7 +21,7 @@ const ModifiedLarDocs = () => {
               <ul>
               <li><a
                 title="Modified LAR 2018, 2019, 2020, and 2021 file specification"
-                href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/spec/Modified%20LAR%20Schema.csv"
+                href="/documentation/2021/modified-lar-schema/"
               >2018, 2019, 2020, and 2021</a></li>
               <li><a
                 title="Modified LAR 2017 file specification"
@@ -75,25 +76,25 @@ const ModifiedLarDocs = () => {
                 <li>
                   <a
                     title="Modified LAR 2021 data dictionary"
-                    href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/spec/markdown/modified_lar/2021_Modified_LAR_Data_Dictionary.md"
+                    href="https://github.com/cfpb/hmda-platform/blob/master/docs/spec/markdown/modified_lar/2021_Modified_LAR_Data_Dictionary.md"
                   >2021</a>
                 </li>
                 <li>
                   <a
                     title="Modified LAR 2020 data dictionary"
-                    href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/spec/markdown/modified_lar/2020_Modified_LAR_Data_Dictionary.md"
+                    href="https://github.com/cfpb/hmda-platform/blob/master/docs/spec/markdown/modified_lar/2020_Modified_LAR_Data_Dictionary.md"
                   >2020</a>
                 </li>
                 <li>
                   <a
                     title="Modified LAR 2019 data dictionary"
-                    href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/spec/markdown/modified_lar/2019_Modified_LAR_Data_Dictionary.md"
+                    href="https://github.com/cfpb/hmda-platform/blob/master/docs/spec/markdown/modified_lar/2019_Modified_LAR_Data_Dictionary.md"
                   >2019</a>
                 </li>
                 <li>
                   <a
                     title="Modified LAR 2018 data dictionary"
-                    href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/spec/markdown/modified_lar/2018_Modified_LAR_Data_Dictionary.md"
+                    href="https://github.com/cfpb/hmda-platform/blob/master/docs/spec/markdown/modified_lar/2018_Modified_LAR_Data_Dictionary.md"
                   >2018</a>
                 </li>
                 <li>
@@ -113,7 +114,7 @@ const ModifiedLarDocs = () => {
                 <li>
                 <a
                   title="Modified LAR Field information"
-                  href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/UsingModifiedLar.md"
+                  href="https://github.com/cfpb/hmda-platform/blob/master/docs/UsingModifiedLar.md"
                 >Field Information</a>
                 </li>
               </ul>
@@ -141,7 +142,7 @@ const ModifiedLarDocs = () => {
                 <li>
                   <a
                     title="Opening Modified LAR Text Files With Excel"
-                    href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/ModifiedLarWithExcel.md"
+                    href="https://github.com/cfpb/hmda-platform/blob/master/docs/ModifiedLarWithExcel.md"
                   >Opening Text Files With Excel</a>
                 </li>
               </ul>

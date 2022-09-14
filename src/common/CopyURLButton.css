@@ -1,0 +1,33 @@
+.CopyURLButton {
+  position: relative;
+  margin: auto;
+  display: table-cell;
+  vertical-align: middle;
+  padding: 3px 8px;
+}
+
+.CopyURLButton .tooltiptext {
+  width: 120px;
+  height: 23px;
+  font-size: 16px;
+  background-color: #009dbc;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  padding: 3px 0;
+  position: absolute;
+  z-index: 1;
+  top: 0px;
+  right: 108%;
+}
+
+.CopyURLButton .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent #009dbc;
+}

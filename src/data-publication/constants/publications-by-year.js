@@ -19,7 +19,7 @@ const mlarDesc = "The modified LAR provides loan-level data for an individual fi
 const narDesc = "These reports summarize nationwide lending activity. They indicate the number and dollar amounts of loan applications, cross-tabulated by loan, borrower and geographic characteristics."
 const snapDesc = "The snapshot files contain the national HMDA datasets as of a fixed date for all HMDA reporters, as modified by the Bureau to protect applicant and borrower privacy."
 const oneYearDesc = "The data includes the Loan Application Register (LAR) and Transmittal Sheet (TS) submitted to the Bureau, which are made available to the public and include adjustments to the data incorporated in the 12 months following the reporting deadline."
-const threeYearDesc = "The data includes the Loan Application Register (LAR) and Transmittal Sheet (TS) submitted to the Bureau, which are made available to the public and include adjustments to the data incorporated in the 24 months following the reporting deadline."
+const threeYearDesc = "The data includes the Loan Application Register (LAR) and Transmittal Sheet (TS) submitted to the Bureau, which are made available to the public and include adjustments to the data incorporated in the 34 months following the reporting deadline."
 
 const arTitle = "MSA/MD Aggregate Reports"
 const drTitle = "Disclosure Reports"
@@ -171,7 +171,7 @@ const publications = {
   2018: [
     {
       updateFrequency: 'Does not update. Generated three years after filing deadline',
-      availableFor: '2018',      
+      availableFor: '2017-2018',     
       headingLink: threeYearLink(2018),
       headingText: threeYearTitle,
       paragraphText: threeYearDesc,
@@ -217,6 +217,14 @@ const publications = {
     },
   ],
   2017: [
+    {
+      updateFrequency: 'Does not update. Generated three years after filing deadline',
+      availableFor: '2017-2018',      
+      headingLink: threeYearLink(2017),
+      headingText: threeYearTitle,
+      paragraphText: threeYearDesc,
+      freezeDate: THREE_YEAR_DATASET[2017].freezeDate
+    },
     {
       updateFrequency: 'Does not update. Generated a few months after filing deadline',
       availableFor: '2017-2021',      

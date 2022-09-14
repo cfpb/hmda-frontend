@@ -99,6 +99,28 @@ const links = {
         Quarterly HMDA Filing Period Dates
       </Link>
     </li>
+  ],
+  2023: [
+    <S3DocLink
+      key='2023-fig'
+      url='https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2023-hmda-fig.pdf'
+      label='For data collected in 2023'
+    />,
+    <S3DocLink
+      key='2023-supplemental'
+      url='https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-2023.pdf'
+      label='Supplemental Guide for Quarterly Filers'
+    />,
+    <li key='2023-annual-dates'>
+      <Link to='/documentation/2023/annual-filing-dates/'>
+        2023 Annual HMDA Filing Period Dates
+      </Link>
+    </li>,
+    <li key='2023-quarterly-dates'>
+      <Link to='/documentation/2023/quarterly-filing-dates/'>
+        2023 Quarterly HMDA Filing Period Dates
+      </Link>
+    </li>
   ]
 }
 
