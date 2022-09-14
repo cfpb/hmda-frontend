@@ -8,12 +8,12 @@
 ### [lei](#lei)
 - **Description:** A financial institution’s Legal Entity Identifier
 - **Values:**
-- Varying values
+  - Varying values
 
 ### [tax\_id](#tax_id)
 - **Description:** The federal tax ID of the institution
 - **Values:**
-- Varying values
+  - Varying values
 
 ### [agency\_code](#agency_code)
 - **Description:** The integer code corresponding to an institution's regulatory agency
@@ -55,7 +55,7 @@
   - Varying values
 
 ### [assets](#assets)
-- **Description:** The assets of the institution in the 4th quarter of the HMDA collection year
+- **Description:** The count of assets of the institution in the 4th quarter of the HMDA collection year
 - **Values:**
   - -1: NULL/blank
   - Varying values
