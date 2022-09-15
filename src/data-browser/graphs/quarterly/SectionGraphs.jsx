@@ -108,7 +108,7 @@ export const SectionGraphs = ({
   useEffect(() => {
     if (!periodLow || !periodHigh || !selectedGraph || !seriesForURL) return
 
-    // Function used to reduce re-writing same dispatch method to redux store
+    // Function used to dispatch to redux store
     const dispatchGraphURL = (
       selectedGraph,
       periodLow,
@@ -129,34 +129,22 @@ export const SectionGraphs = ({
       props.history.push({
         pathname: `${BaseURLQuarterly}/info/filer`,
       })
-      dispatchGraphURL(
-        selectedGraph.value,
-        periodLow.value,
-        periodHigh.value,
-        seriesForURL
-      )
     } else if (props.history.location.pathname.includes("/info/faq")) {
       props.history.push({
         pathname: `${BaseURLQuarterly}/info/faq`,
       })
-      dispatchGraphURL(
-        selectedGraph.value,
-        periodLow.value,
-        periodHigh.value,
-        seriesForURL
-      )
     } else {
       props.history.push({
         pathname: `${BaseURLQuarterly}/${selectedGraph.value}`,
         search: `?periodLow=${periodLow.value}&periodHigh=${periodHigh.value}&visibleSeries=${seriesForURL}`,
       })
-      dispatchGraphURL(
-        selectedGraph.value,
-        periodLow.value,
-        periodHigh.value,
-        seriesForURL
-      )
     }
+    dispatchGraphURL(
+      selectedGraph.value,
+      periodLow.value,
+      periodHigh.value,
+      seriesForURL
+    )
   }, [periodLow, periodHigh, seriesForURL, selectedGraph])
 
   // A workaround to force Highcharts to reset series visibility when a new graph is selected
