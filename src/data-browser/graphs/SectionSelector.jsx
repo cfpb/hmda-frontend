@@ -6,7 +6,7 @@ import { GRAPH_URL } from "./slice/graphConfigs"
 import { graphs } from "../graphs/slice"
 
 const SectionOption = ({ isSelected, title, url }) => {
-  const sectionClasses = `section ${isSelected && "selected"}`
+  const sectionClasses = `button section ${isSelected && "selected"}`
 
   const graphStore = useSelector(({ graphs }) => graphs)
   const graphURL = graphs.getConfig(graphStore, GRAPH_URL) // Getting graph url string from redux store
