@@ -31,13 +31,13 @@ describe("Tests user interaction with tabs", () => {
   it("Starts on Graph tab and then switches to filer tab", () => {
     cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`)
     cy.get(
-      '[href="/data-browser/graphs/quarterly/info/filer"] > .section'
+      '[href="/data-browser/graphs/quarterly/info/filers"] > .section'
     ).click(0, 0, {
       force: true,
     })
     cy.url().should(
       "eq",
-      `${baseURLToVisit}/data-browser/graphs/quarterly/info/filer`
+      `${baseURLToVisit}/data-browser/graphs/quarterly/info/filers`
     )
   })
 
