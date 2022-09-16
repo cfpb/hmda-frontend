@@ -46,7 +46,7 @@ const QuarterlyFilersTable = props => {
     }, ...countsColumns];
   });
 
-  if (loading === 'succeeded') {
+  if (loading === 'succeeded' && data) {
     const tableData = data.quarterly.map(({ name, lei, agency, larCounts }) => {
       let counts = {};
       larCounts.forEach(ts => {
