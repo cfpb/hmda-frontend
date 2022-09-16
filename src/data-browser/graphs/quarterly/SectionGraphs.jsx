@@ -118,16 +118,15 @@ export const SectionGraphs = ({
       dispatch(
         graphs.setConfig(
           GRAPH_URL,
-          `${BaseURLQuarterly}/${selectedGraph}/?periodLow=${periodLow}&periodHigh=${periodHigh}&visibleSeries=${seriesForURL}`
+          `${BaseURLQuarterly}/${selectedGraph}?periodLow=${periodLow}&periodHigh=${periodHigh}&visibleSeries=${seriesForURL}`
         )
       )
     }
 
-    // Allows direct linking to /info/filer or /info/faq and doesn't trigger a url update
-    // Additonally it stores the graph url and is used when user clicks the Graphs tab
-    if (props.history.location.pathname.includes("/info/filer")) {
+    // Allows direct linking to the different tabs
+    if (props.history.location.pathname.includes("/info/filers")) {
       props.history.push({
-        pathname: `${BaseURLQuarterly}/info/filer`,
+        pathname: `${BaseURLQuarterly}/info/filers`,
       })
     } else if (props.history.location.pathname.includes("/info/faq")) {
       props.history.push({
@@ -139,6 +138,7 @@ export const SectionGraphs = ({
         search: `?periodLow=${periodLow.value}&periodHigh=${periodHigh.value}&visibleSeries=${seriesForURL}`,
       })
     }
+    // Stores the graph url and is used when user clicks the Graphs tab
     dispatchGraphURL(
       selectedGraph.value,
       periodLow.value,

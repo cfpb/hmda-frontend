@@ -36,7 +36,7 @@ export const useFetchGraphList = ({
     const needsRedirect =
       !response.graphs.some((g) => g.endpoint == match.params.graph) ||
       location.pathname.match(/graphs\/quarterly$"/)
-    if (location.pathname.match(/quarterly\/info\/filer/)) {
+    if (location.pathname.match(/quarterly\/info\/filers/)) {
       /* 
       Need to pre-load first graph data that way when users navigate to 
       Graphs tab it will load with first graph from API
@@ -52,7 +52,7 @@ export const useFetchGraphList = ({
         })
       )
 
-      history.push(`${BaseURLQuarterly}/info/filer`)
+      history.push(`${BaseURLQuarterly}/info/filers`)
     } else if (location.pathname.match(/quarterly\/info\/faq/)) {
       /* 
       Need to pre-load first graph data that way when users navigate to 
