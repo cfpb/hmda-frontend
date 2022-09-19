@@ -1,15 +1,13 @@
-import React from 'react'
-import DynamicRenderer from '../../../documentation/DynamicRenderer'
+import React from "react"
+import DynamicRenderer from "../../../documentation/DynamicRenderer"
 
 const CurrentYear = new Date().getFullYear()
 
-export const SectionFAQ = ({ show }) => {
-  if (!show) return null
-
+export const SectionFAQ = () => {
   return (
     <DynamicRenderer
       year={CurrentYear}
-      slug={'data-browser-graphs-faq'}
+      slug={"data-browser-graphs-faq"}
       showBackLink={false}
     />
   )
