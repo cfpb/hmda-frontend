@@ -32,7 +32,7 @@ export const SectionGraphs = ({
   error,
   setError,
   setGraphHeaderOverview,
-
+  show,
   ...props
 }) => {
   const dispatch = useDispatch()
@@ -162,6 +162,7 @@ export const SectionGraphs = ({
     !seriesForURL ||
     !graphMenuOptions?.length
 
+  if (!show) return null
   if (loadingGraphDetails) return <LoadingIcon />
 
   return (
