@@ -5,47 +5,27 @@ const { HOST, ENVIRONMENT } = Cypress.env()
 let baseURLToVisit = isCI(ENVIRONMENT) ? "http://localhost:3000" : HOST
 
 describe("General Tests", () => {
-  it.skip("Checks <GraphsHeader/> component if overview props was not sent to the component", () => {
+  it("Checks <GraphsHeader/> component if overview props was not sent to the component", () => {
     cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`).contains(
       "The following graphs present data for the financial institutions reporting HMDA quarterly data."
     )
   })
 
-  it.skip("Checks <GraphsHeader/> component if data from API succeedes then it checks if numbered financial institutions show in the header", () => {
+  it("Checks <GraphsHeader/> component if data from API succeedes then it checks if numbered financial institutions show in the header", () => {
     cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`)
     cy.wait(1000)
     cy.get(".heading > :nth-child(2)").contains(/[0-9]{1,2}/)
   })
 
-  it("Link button copies URL", () => {
+  it("Share Graph button tooltip displays after clicking the button", () => {
     cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`)
     cy.wait(2000)
-    cy.get(".CopyURLButton > div").click(0, 0, { force: true })
-
-    // Accept Google chrome or other browsers clipboard permissions
-    cy.wrap(
-      Cypress.automation("remote:debugger:protocol", {
-        command: "Browser.grantPermissions",
-        params: {
-          permissions: ["clipboardReadWrite", "clipboardSanitizedWrite"],
-          origin: window.location.origin,
-        },
-      })
-    )
-
-    cy.url().then((url) => {
-      cy.log(url, "url copied")
-      cy.window().then((win) => {
-        win.navigator.clipboard.readText().then((text) => {
-          // expect(text).to.eq(url)
-          cy.log(text, "clipboard text")
-        })
-      })
-    })
+    cy.get(".CopyURLButton").click({ force: true })
+    cy.get(".CopyURLButton .tooltiptext")
   })
 })
 
-describe.skip("Tests user interaction with tabs", () => {
+describe("Tests user interaction with tabs", () => {
   it("Starts on Graph tab and then switches to filer tab", () => {
     cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`)
     cy.wait(1000)
@@ -70,20 +50,15 @@ describe.skip("Tests user interaction with tabs", () => {
   })
 })
 
-describe.skip("Graph Specific tests", () => {
+describe("Graph Specific tests", () => {
   it("Visits graph page and checks that the url contains correct query parameters", () => {
     cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`)
     cy.wait(2000)
     // Regex check graphName, periodLow, periodHigh and visibleSeries in the url
-    cy.url().then((url) => {
-      cy.url().should("match", /quarterly\/([a-z]{2,}-?)+/)
-      cy.url().should("match", /periodLow=20\d{2}-Q\d/)
-      cy.url().should("match", /periodHigh=20\d{2}-Q\d/)
-      cy.url().should(
-        "match",
-        /visibleSeries=([a-zA-Z-\/]+(%20)?[a-zA-Z-]*,?)+/
-      )
-    })
+    cy.url().should("match", /quarterly\/([a-z]{2,}-?)+/)
+    cy.url().should("match", /periodLow=20\d{2}-Q\d/)
+    cy.url().should("match", /periodHigh=20\d{2}-Q\d/)
+    cy.url().should("match", /visibleSeries=([a-zA-Z-\/]+(%20)?[a-zA-Z-]*,?)+/)
   })
 
   it("Visit graph page then selects a graph from the dropdown menu", () => {
