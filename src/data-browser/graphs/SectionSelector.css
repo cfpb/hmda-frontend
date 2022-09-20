@@ -6,13 +6,11 @@
 
 .section {
   flex: 0;
-}
-
-.section {
   white-space: nowrap;
   border-radius: 0;
-  border: 1px solid grey;
+  border: 1px solid grey !important;
   margin-top: 1em;
+  text-decoration: none;
 }
 
 .sections :first-child {
