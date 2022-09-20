@@ -10,8 +10,6 @@ const SectionOption = ({ isSelected, title, url }) => {
 
   const graphStore = useSelector(({ graphs }) => graphs)
   const graphURL = graphs.getConfig(graphStore, GRAPH_URL) // Getting graph url string from redux store
-
-  console.log("comes from redux", graphURL)
   let ariaLabel = `Navigate to the ${title} tab.`
   if (isSelected) ariaLabel += " This section is currently selected."
 
