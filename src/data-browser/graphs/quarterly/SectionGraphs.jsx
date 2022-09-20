@@ -1,5 +1,6 @@
+import Highcharts from 'highcharts'
 import React, { useCallback, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import CopyURLButton from '../../../common/CopyURLButton.jsx'
 import LoadingIcon from '../../../common/LoadingIcon'
 import Select from '../../Select.jsx'
@@ -20,7 +21,7 @@ import {
   RESET_SERIES_VIS,
   SELECTED_GRAPH,
   SELECTED_GRAPH_DATA,
-  SERIES_FOR_URL,
+  SERIES_FOR_URL
 } from '../slice/graphConfigs.js'
 import { graphs } from '../slice/index.js'
 import { formatGroupLabel } from '../utils/menuHelpers.js'
