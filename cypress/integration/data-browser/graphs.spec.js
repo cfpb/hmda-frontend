@@ -1,4 +1,4 @@
-import { isCI } from "../../support/helpers"
+import { isCI, isProd } from "../../support/helpers"
 
 const { HOST, ENVIRONMENT } = Cypress.env()
 
@@ -12,9 +12,14 @@ describe("General Tests", () => {
   })
 
   it("Checks <GraphsHeader/> component if data from API succeedes then it checks if numbered financial institutions show in the header", () => {
+    // In Dev only an alphanumeric approximation is provided (ex. 5x).  
+    // In Prod we want to ensure that the count is numeric.
+    let institutionCountRx = isProd(HOST) ? '[0-9]{1,3}' : '[0-9x]{1,3}'
+    const financialInstitutionsRx = new RegExp(` ${institutionCountRx} financial institutions`)
+    
     cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`)
     cy.wait(1000)
-    cy.get(".heading > :nth-child(2)").contains(/[0-9]{1,2}/)
+    cy.get('.heading > :nth-child(2)').contains(financialInstitutionsRx)
   })
 
   it("Share Graph button tooltip displays after clicking the button", () => {
