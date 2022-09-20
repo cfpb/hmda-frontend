@@ -159,14 +159,31 @@ export const SectionGraphs = ({
   // https://jsfiddle.net/BlackLabel/5kj9pnfm/
   useEffect(() => {
     Highcharts.addEvent(Highcharts.Chart, "aftergetTableAST", function (e) {
-      e.tree.children[2].children.forEach(function (row) {
+      if (!selectedGraphData?.series?.length) return
+
+      // Determine which column === which Series
+      const columnLabels = [...e.tree.children[1].children[0].children].slice(1).map(x => x.textContent)
+ 
+      e.tree.children[2].children.forEach(function (row,r) {
+        const rowYearQuarter = row.children[0].textContent
         row.children.forEach(function (cell, i) {
           if (i !== 0) {
-            row.children[i].textContent = Highcharts.numberFormat(
-              cell.textContent.replaceAll(",", ""),
-              selectedGraphData?.decimalPrecision
+            // Find the corresponding raw data for this Series + YearQuarter
+            const columnName = columnLabels[i - 1]
+            const columnData = selectedGraphData.series.find(
+              column => column.name === columnName
             )
-          }
+            const cellData = columnData?.coordinates?.find(
+              item => item.x === rowYearQuarter
+            )
+            if (!cellData) return
+
+            // Update the cell with value formatted to the API configured precision
+            cell.textContent = Highcharts.numberFormat(
+              cellData.y,
+              selectedGraphData.decimalPrecision
+            )
+          } 
         })
       })
     })
