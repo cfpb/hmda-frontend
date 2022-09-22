@@ -1,4 +1,4 @@
-import { hmda_charts, seriesColors, yearQuarters } from "./config";
+import { hmda_charts, seriesColors, yearQuarters } from './config'
 import { cloneObject, filterByPeriods } from './utils/utils'
 
 // Highcharts configuration for a line graph
@@ -87,13 +87,14 @@ export const baseConfig = {
 }
 
 export const defaultAxisX = {
-  title: { text: "Year Quarter", y: 10 }, // TODO: Replace with data from API
+  title: { text: 'Year Quarter', y: 10 }, // TODO: Replace with data from API
   categories: yearQuarters,
   crosshair: true, // Highlight xAxis hovered category ie. 2020-Q3
   labels: hmda_charts.styles.axisLabel,
-};
+}
 
 export const deriveHighchartsConfig = ({
+  decimalPlace,
   endpoint,
   title,
   subtitle,
@@ -112,6 +113,12 @@ export const deriveHighchartsConfig = ({
   config.accessibility = { description: 'Graph summary: ' + subtitle }
   config.xAxis = xAxis
   config.legend.title.text = deriveLegendTitle(endpoint)
+
+  /* 
+  Tooltip configuration: forces whole numbers and data points that don't have 3 decimals to include 3 decimals points. (i.e 3 -> 3.00 & 3.5 -> 3.500).
+  Only reflected in the tooltip and NOT the data table.
+  */
+  config.tooltip.valueDecimals = decimalPlace
 
   // Listener used to remove a series from URL when user de-selects
   config.plotOptions.series.events.hide = event => {
@@ -138,8 +145,10 @@ export const deriveHighchartsConfig = ({
   // Apply filtering based on the selected Filing Period Range
   config.series = loading ? [] : filterByPeriods(series, ...periodRange)
   config.xAxis[0].categories = categories?.slice(...periodRange)
-  config.xAxis[0].accessibility = { description: formatXdescription(loading, xAxis) }
-  
+  config.xAxis[0].accessibility = {
+    description: formatXdescription(loading, xAxis),
+  }
+
   config.yAxis = yAxis.map((yTitle, _yIdx) => ({
     title: { text: yTitle },
     labels: hmda_charts.styles.axisLabel,
@@ -169,7 +178,7 @@ const formatXdescription = (loading, axes) => {
   return `${title} from ${from} to ${to}`
 }
 
-const deriveLegendTitle = (endpoint) => {
+const deriveLegendTitle = endpoint => {
   if (endpoint.match('-re$')) return 'Race / Ethnicity'
   if (endpoint === 'all-applications') return 'Filer Types'
   return 'Loan Types'

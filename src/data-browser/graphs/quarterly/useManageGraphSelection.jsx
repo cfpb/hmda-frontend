@@ -1,10 +1,10 @@
-import { produce } from 'immer'
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { useQuery } from '../utils/utils'
-import { graphs } from '../slice'
-import { DATA, PERIOD_HI, PERIOD_LO, QUARTERS } from '../slice/graphConfigs'
-import { useLocation } from 'react-router-dom'
+import { produce } from "immer"
+import { useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { useQuery } from "../utils/utils"
+import { graphs } from "../slice"
+import { DATA, PERIOD_HI, PERIOD_LO, QUARTERS } from "../slice/graphConfigs"
+import { useLocation } from "react-router-dom"
 
 /**
  * On graph selection,
@@ -23,21 +23,24 @@ export const useManageGraphSelection = ({
     if (!selectedGraph) return
 
     if (selectedGraphData) {
-      const nextState = produce(data, draft => {
+      const nextState = produce(data, (draft) => {
         let graphLines = []
 
+        let decimalPlace = selectedGraphData.decimalPrecision
+
         // Generating each line for the graph
-        selectedGraphData.series.map(line => {
+        selectedGraphData.series.map((line) => {
           // Create an Array of zeros, matching the length of the xAxis labels array
           const currentSeries = Array.apply(null, Array(categories.length)).map(
-            _ => null
+            (_) => null
           )
 
           // Match each point in the series to its xAxis index by referencing categories
-          line.coordinates.forEach(point => {
+          line.coordinates.forEach((point) => {
             const idx = categories.indexOf(point.x)
             if (idx < 0) return // Skip unknown filing periods
-            currentSeries[idx] = parseFloat(parseFloat(`${point.y}`).toFixed(2)) || 0
+            currentSeries[idx] =
+              parseFloat(parseFloat(`${point.y}`).toFixed(decimalPlace)) || 0
           })
 
           graphLines.push({
@@ -51,11 +54,11 @@ export const useManageGraphSelection = ({
       })
       dispatch(graphs.setConfig(DATA, nextState))
 
-      let lowPeriod = query.get('periodLow')
-      let highPeriod = query.get('periodHigh')
+      let lowPeriod = query.get("periodLow")
+      let highPeriod = query.get("periodHigh")
 
       // Dynamically generate period selector options
-      let periodOptions = categories.map(yq => ({
+      let periodOptions = categories.map((yq) => ({
         value: yq,
         label: yq,
       }))
@@ -66,14 +69,20 @@ export const useManageGraphSelection = ({
       if (
         location.search.match(/periodLow/) &&
         location.search.match(/periodHigh/) &&
-        periodOptions.some(q => q.value == lowPeriod) &&
-        periodOptions.some(q => q.value == highPeriod)
+        periodOptions.some((q) => q.value == lowPeriod) &&
+        periodOptions.some((q) => q.value == highPeriod)
       ) {
-        dispatch(graphs.setConfig(PERIOD_LO, { value: lowPeriod, label: lowPeriod }))
-        dispatch(graphs.setConfig(PERIOD_HI, { value: highPeriod, label: highPeriod }))
+        dispatch(
+          graphs.setConfig(PERIOD_LO, { value: lowPeriod, label: lowPeriod })
+        )
+        dispatch(
+          graphs.setConfig(PERIOD_HI, { value: highPeriod, label: highPeriod })
+        )
       } else {
         dispatch(graphs.setConfig(PERIOD_LO, periodOptions[0]))
-        dispatch(graphs.setConfig(PERIOD_HI, periodOptions[periodOptions.length - 1]))
+        dispatch(
+          graphs.setConfig(PERIOD_HI, periodOptions[periodOptions.length - 1])
+        )
       }
     }
   }, [selectedGraph, selectedGraphData, categories])
