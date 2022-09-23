@@ -72,18 +72,22 @@ const Aggregate2 = React.forwardRef((props, ref) => {
 
   return (
     <>
-      <ReactPaginate
-        className="react-paginate"
-        activeClassName="react-paginate-active"
-        breakLabel="..."
-        nextLabel="next"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        pageCount={pageCount}
-        initialPage={0}
-        previousLabel="previous"
-        renderOnZeroPageCount={null}
-      />
+      {pageCount > 1 ? (
+        <ReactPaginate
+          className="react-paginate"
+          activeClassName="react-paginate-active"
+          breakLabel="..."
+          nextLabel="next"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          pageCount={pageCount}
+          initialPage={0}
+          previousLabel="previous"
+          renderOnZeroPageCount={null}
+        />
+      ) : (
+        ""
+      )}
       <table ref={ref} style={{ fontSize: ".75em" }}>
         <thead>
           <tr>
