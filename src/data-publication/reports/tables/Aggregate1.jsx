@@ -46,7 +46,28 @@ const renderDispositionValues = (values, key, key2) => {
 const Aggregate1 = React.forwardRef((props, ref) => {
   if (!props.report) return null
 
-  console.log(props.report)
+  // Using react-paginate to increase performance for reports that have more then 1000 tracts
+  // https://www.npmjs.com/package/react-paginate
+
+  const TABLES_PER_PAGE = 1000
+
+  const [currentItems, setCurrentItems] = useState(null)
+  const [pageCount, setPageCount] = useState(0)
+  const [itemOffset, setItemOffset] = useState(0)
+
+  useEffect(() => {
+    // Calculations for react-paginate package
+    const endOffset = itemOffset + TABLES_PER_PAGE
+    setCurrentItems(sortedTracts.slice(itemOffset, endOffset))
+    setPageCount(Math.ceil(sortedTracts.length / TABLES_PER_PAGE))
+  }, [props.report, itemOffset])
+
+  // Invoke when user click to request another page.
+  const handlePageClick = (event) => {
+    const newOffset =
+      (event.selected * TABLES_PER_PAGE) % props.report.tracts.length
+    setItemOffset(newOffset)
+  }
 
   const sortedTracts = props.report.tracts.sort(function (tractA, tractB) {
     const idA = tractA.tract.toUpperCase()
@@ -66,7 +87,18 @@ const Aggregate1 = React.forwardRef((props, ref) => {
 
   return (
     <>
-      {/* Pagination Tool goes here */}
+      <ReactPaginate
+        className="react-paginate"
+        activeClassName="react-paginate-active"
+        breakLabel="..."
+        nextLabel="next"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={pageCount}
+        initialPage={0}
+        previousLabel="previous"
+        renderOnZeroPageCount={null}
+      />
       <table ref={ref} style={{ fontSize: ".75em" }}>
         <thead>
           <tr>
@@ -148,7 +180,7 @@ const Aggregate1 = React.forwardRef((props, ref) => {
               </td>
             </tr>
           ) : (
-            renderData(sortedTracts)
+            currentItems && renderData(currentItems)
           )}
         </tbody>
       </table>
