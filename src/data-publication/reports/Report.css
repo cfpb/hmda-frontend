@@ -77,7 +77,6 @@
 
 .react-paginate li {
   list-style: none;
-  padding: 2px 8px;
   background-color: #0071bc;
 }
 
@@ -94,8 +93,14 @@
 }
 
 .react-paginate li a {
+  display: inline-block;
   text-decoration: none;
   color: white;
+  padding: 4px 8px;
+}
+
+.react-paginate li a:hover {
+  text-decoration: underline;
 }
 
 /* activeClassName */
