@@ -69,6 +69,7 @@
   padding: 0 30px;
   max-width: 1040px;
   display: flex;
+  justify-content: center;
 }
 
 .react-paginate li:hover {

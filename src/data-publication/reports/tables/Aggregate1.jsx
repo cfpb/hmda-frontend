@@ -1,6 +1,7 @@
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useState } from "react"
 import ReactPaginate from "react-paginate"
 import PropTypes from "prop-types"
+import LoadingIcon from '../../../common/LoadingIcon'
 
 const renderData = (tracts) => {
   return tracts.map((tract, index) => {
@@ -70,11 +71,14 @@ const Aggregate1 = React.forwardRef((props, ref) => {
   // Using react-paginate to increase performance for reports that have more then 1000 tracts
   // https://www.npmjs.com/package/react-paginate
 
-  const TABLES_PER_PAGE = 500
+  const TABLES_PER_PAGE = 1000
 
+  const [pageLoading, setPageLoading] = useState(false)
+  const [currentItems, setCurrentItems] = useState()
   const [currentPage, setCurrentPage] = useState(0)
   const [pageCount, setPageCount] = useState(0)
   const [itemOffset, setItemOffset] = useState(0)
+
   const sortedTracts = useMemo(() => {
     const _sortedTractData = props.report.tracts.sort(function (tractA, tractB) {
       const idA = tractA.tract.toUpperCase()
@@ -107,6 +111,8 @@ const Aggregate1 = React.forwardRef((props, ref) => {
       })
     })
     
+    // Save initial data tables
+    setCurrentItems(renderData(_sortedTractData.slice(itemOffset, itemOffset + TABLES_PER_PAGE)))
     return _sortedTractData
     
   }, [props.report])
@@ -121,40 +127,45 @@ const Aggregate1 = React.forwardRef((props, ref) => {
   }, [props.report, sortedTracts])
 
   // Invoke when user click to request another page.
-  const handlePageClick = (event) => {
+  const handlePageClick = useCallback((event) => {
     const newOffset =
       (event.selected * TABLES_PER_PAGE) % props.report.tracts.length
     setItemOffset(newOffset)
     setCurrentPage(parseInt(event.selected))
-  }
+    setPageLoading(true)
+    
+    // Defer rendering of data tables to allow us to display the loading indicator
+    setTimeout(() => {
+      setCurrentItems(
+        renderData(sortedTracts?.slice(newOffset, newOffset + TABLES_PER_PAGE))
+      )
+      setPageLoading(false)
+    }, 0)
+  }, [sortedTracts, setItemOffset, setCurrentPage, setPageLoading])
+  
 
   let colWidth = "5.7%"
-  let PaginationController
-
-  if (pageCount > 1) {
-    PaginationController = (
-      <ReactPaginate
-        className='react-paginate'
-        activeClassName='react-paginate-active'
-        breakLabel='...'
-        nextLabel='next >'
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        pageCount={pageCount}
-        previousLabel='< previous'
-        renderOnZeroPageCount={null}
-        forcePage={currentPage}
-      />
-    )
-  }
+  const showPagination = pageCount > 1
   
   return (
     <>
-      {PaginationController}
-      <table ref={ref} style={{ fontSize: ".75em" }}>
+      {showPagination && (
+        <ReactPaginate
+          className='react-paginate'
+          activeClassName='react-paginate-active'
+          nextLabel='Next > '
+          previousLabel='< Prev'
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          pageCount={pageCount}
+          renderOnZeroPageCount={null}
+          forcePage={currentPage}
+        />
+      )}
+      <table ref={ref} style={{ fontSize: '.75em' }}>
         <thead>
           <tr>
-            <th width="20%" rowSpan={5}>
+            <th width='20%' rowSpan={5}>
               CENSUS TRACT OR COUNTY NAME AND DISPOSITION OF APPLICATION
               (COUNTY/STATE/TRACT NUMBER)
             </th>
@@ -220,24 +231,45 @@ const Aggregate1 = React.forwardRef((props, ref) => {
         <tbody>
           {props.report.tracts.length === 0 ? (
             <tr>
-              <td style={{ textAlign: "center" }} colSpan={15}>
-                <p style={{ fontSize: "1.7rem" }}>
-                  There were no loans purchased by{" "}
-                  <strong>{props.report.institutionName}</strong> in{" "}
+              <td style={{ textAlign: 'center' }} colSpan={15}>
+                <p style={{ fontSize: '1.7rem' }}>
+                  There were no loans purchased by{' '}
+                  <strong>{props.report.institutionName}</strong> in{' '}
                   <strong>
                     MSA/MD {props.report.msa.id} - {props.report.msa.name}
-                  </strong>{" "}
+                  </strong>{' '}
                   for <strong>{props.report.year}</strong>.
                 </p>
               </td>
             </tr>
+          ) : pageLoading ? (
+            <tr>
+              <th colSpan={15}>
+                <LoadingIcon />
+              </th>
+            </tr>
           ) : (
-            renderData(sortedTracts.slice(itemOffset, itemOffset + TABLES_PER_PAGE))
+            currentItems
           )}
         </tbody>
       </table>
-      {PaginationController && [<br/>, <br/>]}
-      {PaginationController}
+      {showPagination && (
+        <>
+          <br /> <br />{' '}
+          <ReactPaginate
+            className='react-paginate'
+            activeClassName='react-paginate-active'
+            breakLabel='...'
+            nextLabel='Next > '
+            previousLabel='< Prev'
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={5}
+            pageCount={pageCount}
+            renderOnZeroPageCount={null}
+            forcePage={currentPage}
+          />
+        </>
+      )}
     </>
   )
 })
