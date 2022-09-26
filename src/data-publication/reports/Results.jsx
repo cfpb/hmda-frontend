@@ -1,4 +1,5 @@
 import React from 'react'
+import { MLAR } from '../../common/s3/fileProxy'
 
 import './Results.css'
 
@@ -97,11 +98,12 @@ class Results extends React.Component {
           }
         : { title: 'LEI', id: institution.lei }
 
-    const headeredFile = this.state.withHeader
-      ? { dir: 'header/', fname: '_header' }
-      : { dir: '', fname: '' }
+    const href = MLAR.buildURL(
+      this.props.year,
+      normalizedInstitution.id,
+      this.state.withHeader
+    )
 
-    const href = `https://s3.amazonaws.com/cfpb-hmda-public/prod/modified-lar/${this.props.year}/${headeredFile.dir}${normalizedInstitution.id}${headeredFile.fname}.txt`
     return (
       <li key={index}>
         <h4>{institution.name}</h4>
