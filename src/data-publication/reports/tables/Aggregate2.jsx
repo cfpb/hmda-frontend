@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react"
-import ReactPaginate from "react-paginate"
 import PropTypes from "prop-types"
+import React, { useMemo } from 'react'
+import { ReportPagination, usePagination } from '../ReportPagination'
 
 const renderData = (tracts) => {
   return tracts.map((tract, index) => {
@@ -30,64 +30,87 @@ const renderValues = (values, key) => {
   })
 }
 
+/**
+ * Reducer function to aggregate Disposition data by dispositionName
+ * @param {Object} prev
+ * @param {Object} curr
+ * @returns Array[Object]
+ */
+ const valueReducer = (prev, curr) => {
+  // Initialize tracker object for this dispositionName if necessary
+  if (!prev[curr.dispositionName])
+    prev[curr.dispositionName] = {
+      dispositionName: curr.dispositionName,
+      value: 0,
+      count: 0,
+    }
+
+  // Summarize content
+  prev[curr.dispositionName].count += curr.count
+  prev[curr.dispositionName].value += curr.value
+  return prev
+}
+
+/**
+ * Temporary Fix: Identifies unaggregated Disposition entries and aggregates them
+ * @param {Array} data
+ */
+const fixUnaggregatedValue = data => {
+  const idxsNeedAggregation = []
+
+  data.forEach((x, idx) => x.values.length > 7 && idxsNeedAggregation.push(idx))
+
+  // Aggregate un-aggregated value data
+  idxsNeedAggregation.forEach(i => {
+    const obj = data[i].values.reduce(valueReducer, {})
+    data[i].values = Object.keys(obj).map(k => obj[k])
+  })
+
+  return data
+}
+
 const Aggregate2 = React.forwardRef((props, ref) => {
-  if (!props.report) return null
+  const sortedTracts = useMemo(() => {
+    const _sortedTractData = props.report.tracts.sort(function (tractA, tractB) {
+      const idA = tractA.tract.toUpperCase()
+      const idB = tractB.tract.toUpperCase()
+      
+      if (idA < idB) {
+        return -1
+      }
+      if (idA > idB) {
+        return 1
+      }
+      
+      return 0
+    })
+    
+    return fixUnaggregatedValue(_sortedTractData)
+  }, [props.report])
 
-  // Using react-paginate to increase performance for reports that have more then 1000 tracts
-  // https://www.npmjs.com/package/react-paginate
-
-  const TABLES_PER_PAGE = 1000
-
-  const [currentItems, setCurrentItems] = useState(null)
-  const [pageCount, setPageCount] = useState(0)
-  const [itemOffset, setItemOffset] = useState(0)
-
-  useEffect(() => {
-    // Calculations for react-paginate package
-    const endOffset = itemOffset + TABLES_PER_PAGE
-    setCurrentItems(sortedTracts.slice(itemOffset, endOffset))
-    setPageCount(Math.ceil(sortedTracts.length / TABLES_PER_PAGE))
-  }, [props.report, itemOffset])
-
-  // Invoke when user click to request another page.
-  const handlePageClick = (event) => {
-    const newOffset =
-      (event.selected * TABLES_PER_PAGE) % props.report.tracts.length
-    setItemOffset(newOffset)
-  }
-
-  const sortedTracts = props.report.tracts.sort(function (tractA, tractB) {
-    const idA = tractA.tract.toUpperCase()
-    const idB = tractB.tract.toUpperCase()
-
-    if (idA < idB) {
-      return -1
-    }
-    if (idA > idB) {
-      return 1
-    }
-
-    return 0
+  const {
+    currentItems,
+    currentPage,
+    handlePageChange,
+    isPageLoading,
+    isVisible,
+    pageCount,
+  } = usePagination({
+    data: sortedTracts,
+    renderFn: renderData,
+    itemsPerPage: 12000,
   })
 
   return (
     <>
-      {pageCount > 1 ? (
-        <ReactPaginate
-          className="react-paginate"
-          activeClassName="react-paginate-active"
-          breakLabel="..."
-          nextLabel="next"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
-          pageCount={pageCount}
-          initialPage={0}
-          previousLabel="previous"
-          renderOnZeroPageCount={null}
-        />
-      ) : (
-        ""
-      )}
+      <ReportPagination
+        currentPage={currentPage}
+        isPageLoading={isPageLoading}
+        isVisible={isVisible}
+        onPageChange={handlePageChange}
+        pageCount={pageCount}
+      />
+
       <table ref={ref} style={{ fontSize: ".75em" }}>
         <thead>
           <tr>
@@ -167,10 +190,19 @@ const Aggregate2 = React.forwardRef((props, ref) => {
               </td>
             </tr>
           ) : (
-            currentItems && renderData(currentItems)
+            currentItems
           )}
         </tbody>
       </table>
+
+      <ReportPagination
+        currentPage={currentPage}
+        isBottom={true}
+        isPageLoading={isPageLoading}
+        isVisible={isVisible}
+        onPageChange={handlePageChange}
+        pageCount={pageCount}
+      />
     </>
   )
 })

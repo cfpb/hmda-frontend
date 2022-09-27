@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react"
-import ReactPaginate from "react-paginate"
-import PropTypes from "prop-types"
-import LoadingIcon from '../../../common/LoadingIcon'
+import PropTypes from 'prop-types'
+import React, { useMemo } from 'react'
+import { ReportPagination, usePagination } from '../ReportPagination'
+
+const COL_WIDTH = '5.7%'
 
 const renderData = (tracts) => {
   return tracts.map((tract, index) => {
@@ -46,12 +47,12 @@ const renderDispositionValues = (values, key, key2) => {
 
 /**
  * Reducer function to aggregate Disposition data by dispositionName
- * @param {Object} prev 
- * @param {Object} curr 
+ * @param {Object} prev
+ * @param {Object} curr
  * @returns Array[Object]
  */
 const dispositionReducer = (prev, curr) => {
-  // Initialize tracker object if necessary
+  // Initialize tracker object for this dispositionName if necessary
   if (!prev[curr.dispositionName])
     prev[curr.dispositionName] = {
       dispositionName: curr.dispositionName,
@@ -65,20 +66,31 @@ const dispositionReducer = (prev, curr) => {
   return prev
 }
 
+/**
+ * Temporary Fix: Identifies unaggregated Disposition entries and aggregates them
+ * @param {Array} data
+ */
+const fixUnaggregatedDispositions = data => {
+  const idxsNeedAggregation = []
+
+  data.forEach(
+    (x, idx) =>
+      x.dispositions.some(dispo => dispo.values.length > 7) &&
+      idxsNeedAggregation.push(idx)
+  )
+
+  // Aggregate un-aggregated disposition data
+  idxsNeedAggregation.forEach(i => {
+    data[i].dispositions.forEach(d => {
+      const obj = d.values.reduce(dispositionReducer, {})
+      d.values = Object.keys(obj).map(k => obj[k])
+    })
+  })
+
+  return data
+}
+
 const Aggregate1 = React.forwardRef((props, ref) => {
-  if (!props.report) return null
-
-  // Using react-paginate to increase performance for reports that have more then 1000 tracts
-  // https://www.npmjs.com/package/react-paginate
-
-  const TABLES_PER_PAGE = 1000
-
-  const [pageLoading, setPageLoading] = useState(false)
-  const [currentItems, setCurrentItems] = useState()
-  const [currentPage, setCurrentPage] = useState(0)
-  const [pageCount, setPageCount] = useState(0)
-  const [itemOffset, setItemOffset] = useState(0)
-
   const sortedTracts = useMemo(() => {
     const _sortedTractData = props.report.tracts.sort(function (tractA, tractB) {
       const idA = tractA.tract.toUpperCase()
@@ -94,74 +106,28 @@ const Aggregate1 = React.forwardRef((props, ref) => {
       return 0
     })
 
-    // Identify un-aggregated disposition data
-    const idxsNeedAggregation = []
-    _sortedTractData.forEach(
-      (x, idx) =>
-        x.dispositions.some(dispo => dispo.values.length > 7) &&
-        idxsNeedAggregation.push(idx)
-    )
-    
-    // Aggregate un-aggregated disposition data
-    idxsNeedAggregation.forEach(i => {
-      console.log('-- Fixing unaggregated disposition data: ', _sortedTractData[i])
-      _sortedTractData[i].dispositions.forEach(d => {
-        const obj = d.values.reduce(dispositionReducer, {})
-        d.values = Object.keys(obj).map(k => obj[k])
-      })
-    })
-    
-    // Save initial data tables
-    setCurrentItems(renderData(_sortedTractData.slice(itemOffset, itemOffset + TABLES_PER_PAGE)))
-    return _sortedTractData
-    
+    return fixUnaggregatedDispositions(_sortedTractData)
   }, [props.report])
-  
 
-  // Calculations for react-paginate package
-  useEffect(() => {
-    setPageCount(
-      sortedTracts.length > 2000 && // Only show pagination for very large reports.
-        Math.ceil(sortedTracts.length / TABLES_PER_PAGE)
-    )
-  }, [props.report, sortedTracts])
+  const {
+    currentItems,
+    currentPage,
+    handlePageChange,
+    isPageLoading,
+    isVisible,
+    pageCount,
+  } = usePagination({ data: sortedTracts, renderFn: renderData })
 
-  // Invoke when user click to request another page.
-  const handlePageClick = useCallback((event) => {
-    const newOffset =
-      (event.selected * TABLES_PER_PAGE) % props.report.tracts.length
-    setItemOffset(newOffset)
-    setCurrentPage(parseInt(event.selected))
-    setPageLoading(true)
-    
-    // Defer rendering of data tables to allow us to display the loading indicator
-    setTimeout(() => {
-      setCurrentItems(
-        renderData(sortedTracts?.slice(newOffset, newOffset + TABLES_PER_PAGE))
-      )
-      setPageLoading(false)
-    }, 0)
-  }, [sortedTracts, setItemOffset, setCurrentPage, setPageLoading])
-  
-
-  let colWidth = "5.7%"
-  const showPagination = pageCount > 1
-  
   return (
     <>
-      {showPagination && (
-        <ReactPaginate
-          className='react-paginate'
-          activeClassName='react-paginate-active'
-          nextLabel='Next > '
-          previousLabel='< Prev'
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
-          pageCount={pageCount}
-          renderOnZeroPageCount={null}
-          forcePage={currentPage}
-        />
-      )}
+      <ReportPagination
+        currentPage={currentPage}
+        isPageLoading={isPageLoading}
+        isVisible={isVisible}
+        onPageChange={handlePageChange}
+        pageCount={pageCount}
+      />
+
       <table ref={ref} style={{ fontSize: '.75em' }}>
         <thead>
           <tr>
@@ -188,25 +154,25 @@ const Aggregate1 = React.forwardRef((props, ref) => {
             <th colSpan={2}>G</th>
           </tr>
           <tr>
-            <th width={colWidth} colSpan={2}>
+            <th width={COL_WIDTH} colSpan={2}>
               FHA, FSA/RHS & VA
             </th>
-            <th width={colWidth} colSpan={2}>
+            <th width={COL_WIDTH} colSpan={2}>
               Conventional
             </th>
-            <th width={colWidth} colSpan={2}>
+            <th width={COL_WIDTH} colSpan={2}>
               Refinancings
             </th>
-            <th width={colWidth} colSpan={2}>
+            <th width={COL_WIDTH} colSpan={2}>
               Home Improvement Loans
             </th>
-            <th width={colWidth} colSpan={2}>
+            <th width={COL_WIDTH} colSpan={2}>
               Loans on Dwellings For 5 or More Families
             </th>
-            <th width={colWidth} colSpan={2}>
+            <th width={COL_WIDTH} colSpan={2}>
               Nonoccupant Loans From Columns A, B, C, and D
             </th>
-            <th width={colWidth} colSpan={2}>
+            <th width={COL_WIDTH} colSpan={2}>
               Loans On Manufactured Home Dwellings From Columns A, B, C, & D
             </th>
           </tr>
@@ -242,34 +208,20 @@ const Aggregate1 = React.forwardRef((props, ref) => {
                 </p>
               </td>
             </tr>
-          ) : pageLoading ? (
-            <tr>
-              <th colSpan={15}>
-                <LoadingIcon />
-              </th>
-            </tr>
           ) : (
             currentItems
           )}
         </tbody>
       </table>
-      {showPagination && (
-        <>
-          <br /> <br />{' '}
-          <ReactPaginate
-            className='react-paginate'
-            activeClassName='react-paginate-active'
-            breakLabel='...'
-            nextLabel='Next > '
-            previousLabel='< Prev'
-            onPageChange={handlePageClick}
-            pageRangeDisplayed={5}
-            pageCount={pageCount}
-            renderOnZeroPageCount={null}
-            forcePage={currentPage}
-          />
-        </>
-      )}
+
+      <ReportPagination
+        currentPage={currentPage}
+        isBottom={true}
+        isPageLoading={isPageLoading}
+        isVisible={isVisible}
+        onPageChange={handlePageChange}
+        pageCount={pageCount}
+      />
     </>
   )
 })
