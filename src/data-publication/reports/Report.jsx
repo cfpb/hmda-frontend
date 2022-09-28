@@ -5,6 +5,7 @@ import Tables from './tables/index.jsx'
 import parse from 'csv-parse'
 import fileSaver from 'file-saver'
 import { isProd } from '../../common/configUtils'
+import { buildCSVRowsAggregate1 } from './tables/Aggregate1.jsx'
 
 import './Report.css'
 
@@ -39,6 +40,11 @@ class Report extends React.Component {
     if(report.table === 'IRSCSV') {
       theCSV += `Institution: ${this.props.match.params.institutionId}\n`
       theCSV += report.csv
+    } else if (report.table === '1' && report.msa.id == '99999' && report.type=='Aggregate') {
+      // Large reports that use pagination need to generate the CSV body from the raw JSON
+      const tHeadRows = this.tableRef.current.tHead.rows
+      theCSV += this.buildCSVRows(tHeadRows, 'head')
+      theCSV += buildCSVRowsAggregate1(this.state.report)
     }else{
       const tHeadRows = this.tableRef.current.tHead.rows
       theCSV = theCSV + this.buildCSVRows(tHeadRows, 'head')
