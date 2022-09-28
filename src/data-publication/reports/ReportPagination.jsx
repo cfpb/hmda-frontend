@@ -43,7 +43,7 @@ export const ReportPagination = ({
 export const usePagination = ({ data, renderFn, itemsPerPage = TABLES_PER_PAGE }) => {
   const [currentItems, setCurrentItems] = useState(null)
   const [currentPage, setCurrentPage] = useState(0)
-  const [isPageLoading, setPageLoading] = useState(false)
+  const [isPageLoading, setPageLoading] = useState(true)
   const timeout = useRef(null)
 
   const pageCount = Math.ceil(data.length / itemsPerPage)
@@ -57,6 +57,7 @@ export const usePagination = ({ data, renderFn, itemsPerPage = TABLES_PER_PAGE }
   useEffect(() => {
     if (!data) return null
     setCurrentItems(renderFn(data.slice(0, itemsPerPage)))
+    setPageLoading(false)
   }, [data])
 
   // Event handler that will display a loading icon near the PaginationController
