@@ -69,24 +69,47 @@ const fixUnaggregatedValue = data => {
   return data
 }
 
+export const sortAndFix = (report) => {
+  const sorted = report.tracts.sort(function (tractA, tractB) {
+    const idA = tractA.tract.toUpperCase()
+    const idB = tractB.tract.toUpperCase()
+
+    if (idA < idB) {
+      return -1
+    }
+    if (idA > idB) {
+      return 1
+    }
+
+    return 0
+  })
+
+  return fixUnaggregatedValue(sorted)
+}
+
+export const buildCSVRowsAggregate2 = (report) => {
+  let theCSVRows = ''
+
+  const _data = sortAndFix(report)
+  
+  _data.forEach(tract => {
+    const _columns = tract.values.sort(function(x,y){
+      var xp = x.dispositionName.substring(x.dispositionName.length-3);
+      var yp = y.dispositionName.substring(y.dispositionName.length-3);
+      return xp == yp ? 0 : xp < yp ? -1 : 1;
+    }).map(val => [val.count, val.value]).flat().join(',')
+
+    theCSVRows += tract.tract + ',' + _columns + '\n'
+  })
+
+  return theCSVRows
+}
+
 const Aggregate2 = React.forwardRef((props, ref) => {
-  const sortedTracts = useMemo(() => {
-    const _sortedTractData = props.report.tracts.sort(function (tractA, tractB) {
-      const idA = tractA.tract.toUpperCase()
-      const idB = tractB.tract.toUpperCase()
-      
-      if (idA < idB) {
-        return -1
-      }
-      if (idA > idB) {
-        return 1
-      }
-      
-      return 0
-    })
-    
-    return fixUnaggregatedValue(_sortedTractData)
-  }, [props.report])
+  const sortedTracts = useMemo(
+    () => sortAndFix(props.report),
+    [props.report]
+  )
 
   const {
     currentItems,
@@ -98,7 +121,7 @@ const Aggregate2 = React.forwardRef((props, ref) => {
   } = usePagination({
     data: sortedTracts,
     renderFn: renderData,
-    itemsPerPage: 12000,
+    itemsPerPage: 5000,
   })
 
   return (
