@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { isBeta } from '../../../common/Beta.jsx'
+import DownloadIRS from './DownloadIRS.jsx'
 
 import './IRSReport.css'
 
-const IRSReport = props => {
-  const filingPeriod=props.filingPeriod
+const IRSReport = ({ filingPeriod, lei }) => {
   if(isBeta()) return null
   return (
     <section className="IRSReport">
@@ -17,18 +17,7 @@ const IRSReport = props => {
           will not be available immediately. Please check back shortly after
           submitting your data to access your IRS.
         </p>
-        <p>
-          When ready, the IRS will be available for{' '}
-          <a
-            href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/reports/disclosure/${filingPeriod}/${
-              props.lei
-            }/nationwide/IRS.csv`}
-            download={true}
-          >
-            download here
-          </a>
-          .
-        </p>
+        <DownloadIRS period={filingPeriod} lei={lei} />
         <p className="text-small">
           Loan amounts in the IRS are binned and disclosed in accordance
           with the 2018 HMDA data publication policy guidance. An overview
@@ -42,6 +31,7 @@ const IRSReport = props => {
 }
 
 IRSReport.propTypes = {
+  filingPeriod: PropTypes.string,
   lei: PropTypes.string
 }
 
