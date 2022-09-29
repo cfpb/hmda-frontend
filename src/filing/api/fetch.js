@@ -27,7 +27,8 @@ export function fetchData(options = { method: 'GET' }) {
     options.querystring = createQueryString(options.params)
   }
 
-  const url = makeUrl(options)
+  const url = options.url || makeUrl(options)
+  
   if (typeof options.body === 'object' && !isFormData)
     options.body = JSON.stringify(options.body)
 
@@ -60,10 +61,12 @@ export function fetchData(options = { method: 'GET' }) {
   }
 
   return fetch(url, fetchOptions)
-    .then(response => {
-      return new Promise(resolve => {
-        log('got res', response, response.status)
+  .then(response => {
+    return new Promise(resolve => {
         if (response.status === 401 || response.status === 403) login()
+        if (fetchOptions.method === 'HEAD') {
+          return resolve(response.status === 200) // 304?
+        }
         if (response.status > 399) return resolve(response)
         if (options.params && options.params.format === 'csv') {
           return resolve(response.text())

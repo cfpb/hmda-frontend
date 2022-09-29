@@ -1,11 +1,34 @@
-import React from 'react'
 import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
 import { isBeta } from '../../../common/Beta.jsx'
+import { IRS } from '../../../common/s3/fileProxy.js'
+import DownloadIRS from './DownloadIRS.jsx'
+import { fetchData } from '../../api/fetch.js'
 
 import './IRSReport.css'
 
+// Check if IRS file exists
+// TODO: Needs Proxy service to support HEAD
+const checkStatusIRS = (period, lei, handleResponse) => {
+  const options = {
+    method: 'HEAD',
+    url: IRS.buildURL(period, lei),
+  }
+
+  fetchData(options).then(data => {
+    console.log('checkStatusIRS Response: ', data)
+    handleResponse(data)
+  })
+}
+
 const IRSReport = props => {
-  const filingPeriod=props.filingPeriod
+  const filingPeriod = props.filingPeriod
+  const [irsReady, setIrsReady] = useState(false)
+
+  useEffect(() => {
+    checkStatusIRS(filingPeriod, props.lei, setIrsReady)
+  }, [])
+
   if(isBeta()) return null
   return (
     <section className="IRSReport">
@@ -17,18 +40,12 @@ const IRSReport = props => {
           will not be available immediately. Please check back shortly after
           submitting your data to access your IRS.
         </p>
-        <p>
-          When ready, the IRS will be available for{' '}
-          <a
-            href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/reports/disclosure/${filingPeriod}/${
-              props.lei
-            }/nationwide/IRS.csv`}
-            download={true}
-          >
-            download here
-          </a>
-          .
-        </p>
+        <DownloadIRS
+          period={filingPeriod}
+          lei={props.lei}
+          isReady={irsReady}
+          setIrsReady={setIrsReady}
+        />
         <p className="text-small">
           Loan amounts in the IRS are binned and disclosed in accordance
           with the 2018 HMDA data publication policy guidance. An overview

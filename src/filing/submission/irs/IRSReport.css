@@ -50,3 +50,13 @@
 .IRSReport button:hover {
   color: #205493;
 }
+
+.IRSReport .download-irs {
+  display: flex;
+  align-items: center;
+}
+
+.IRSReport .flex-inline {
+  display:flex;
+  flex-direction: row;
+}
