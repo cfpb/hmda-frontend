@@ -353,7 +353,7 @@
   - 50-99
   - 100-149
   - \>149  
- 
+
 ### [ageapplicant](#ageapplicant)
 
 - **Description:** The age of the applicant
@@ -901,6 +901,7 @@
   - 4 - Guaranteed Underwriting System (GUS)
   - 5 - Other
   - 6 - Not applicable
+  - 7 - Internal Proprietary System
   - 1111 - Exempt
 
 ### [aus-2](#aus-2)
@@ -912,6 +913,7 @@
   - 3 - Technology Open to Approved Lenders (TOTAL) Scorecard
   - 4 - Guaranteed Underwriting System (GUS)
   - 5 - Other
+  - 7 - Internal Proprietary System
 
 ### [aus-3](#aus-3)
 
@@ -921,7 +923,7 @@
   - 2 - Loan Prospector (LP) or Loan Product Advisor
   - 3 - Technology Open to Approved Lenders (TOTAL) Scorecard
   - 4 - Guaranteed Underwriting System (GUS)
-  - 5 - Other
+  - 7 - Internal Proprietary System
 
 ### [aus-4](#aus-4)
 
@@ -931,7 +933,7 @@
   - 2 - Loan Prospector (LP) or Loan Product Advisor
   - 3 - Technology Open to Approved Lenders (TOTAL) Scorecard
   - 4 - Guaranteed Underwriting System (GUS)
-  - 5 - Other
+  - 7 - Internal Proprietary System
 
 ### [aus-5](#aus-5)
 
@@ -941,7 +943,7 @@
   - 2 - Loan Prospector (LP) or Loan Product Advisor
   - 3 - Technology Open to Approved Lenders (TOTAL) Scorecard
   - 4 - Guaranteed Underwriting System (GUS)
-  - 5 - Other
+  - 7 - Internal Proprietary System
 
 ### [denial\_reason-1](#denial_reason-1)
 
