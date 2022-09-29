@@ -1,6 +1,8 @@
 .ReportPagination {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .ReportPagination.bottom {
@@ -8,10 +10,14 @@
 }
 
 .ReportPagination .LoadingIconWrapper {
-  position: absolute;
+  margin: 0;
   margin-right: 48%;
-  padding-top: 5px;
 }
+
+.ReportPagination .display-label {
+  padding-top: 10px;
+  height: 1em;
+} 
 
 /* react-paginate package CSS */
 .react-paginate {

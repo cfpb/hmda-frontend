@@ -14,7 +14,8 @@ export const ReportPagination = ({
   isPageLoading, // Display loading indicator?
   isVisible,     // Display Pagination?
   onPageChange,
-  pageCount=0,
+  pageCount = 0,
+  displayLabel=null
 }) => {
   if (!isVisible) return null
 
@@ -34,16 +35,17 @@ export const ReportPagination = ({
         renderOnZeroPageCount={null}
         forcePage={currentPage}
       />
-      {isPageLoading && <LoadingIcon />}
+      <span className='display-label'>{isPageLoading ? <LoadingIcon /> : displayLabel}</span>
     </div>
   )
 }
 
 
-export const usePagination = ({ data, renderFn, itemsPerPage = TABLES_PER_PAGE }) => {
+export const usePagination = ({ data, renderFn, itemsPerPage = TABLES_PER_PAGE, formatDisplayLabel = () => null }) => {
   const [currentItems, setCurrentItems] = useState(null)
   const [currentPage, setCurrentPage] = useState(0)
   const [isPageLoading, setPageLoading] = useState(true)
+  const [displayLabel, setDisplayLabel] = useState(null)
   const timeout = useRef(null)
 
   const pageCount = Math.ceil(data.length / itemsPerPage)
@@ -56,7 +58,9 @@ export const usePagination = ({ data, renderFn, itemsPerPage = TABLES_PER_PAGE }
   // Initial page items
   useEffect(() => {
     if (!data) return null
-    setCurrentItems(renderFn(data.slice(0, itemsPerPage)))
+    const initItems = data.slice(0, itemsPerPage)
+    setCurrentItems(renderFn(initItems))
+    setDisplayLabel(formatDisplayLabel(initItems))
     setPageLoading(false)
   }, [data])
 
@@ -71,9 +75,9 @@ export const usePagination = ({ data, renderFn, itemsPerPage = TABLES_PER_PAGE }
       // Defer rendering of data tables to allow us to display the loading indicator
       if (timeout.current) clearInterval(timeout.current)
       timeout.current = setTimeout(() => {
-        setCurrentItems(
-          renderFn(data?.slice(newOffset, newOffset + itemsPerPage))
-        )
+        const nextItems = data?.slice(newOffset, newOffset + itemsPerPage)
+        setCurrentItems(renderFn(nextItems))
+        setDisplayLabel(formatDisplayLabel(nextItems))
         setPageLoading(false)
       }, 0)
     },
@@ -91,8 +95,9 @@ export const usePagination = ({ data, renderFn, itemsPerPage = TABLES_PER_PAGE }
     currentItems,
     currentPage,
     handlePageChange,
-    isVisible,
-    pageCount,
     isPageLoading,
+    isVisible,
+    displayLabel,
+    pageCount,
   }
 }

@@ -137,6 +137,11 @@ export const buildCSVRowsAggregate1 = (report) => {
   return theCSVRows
 }
 
+const formatDisplayLabel = (items) => {
+  if (!items || !items.length) return null
+  return items[0].tract + ' - ' + items[items.length-1].tract
+}
+
 const Aggregate1 = React.forwardRef((props, ref) => {
   const sortedTracts = useMemo(
     () => sortAndFix(props.report),
@@ -150,7 +155,9 @@ const Aggregate1 = React.forwardRef((props, ref) => {
     isPageLoading,
     isVisible,
     pageCount,
-  } = usePagination({ data: sortedTracts, renderFn: renderData })
+    displayLabel,
+  } = usePagination({ data: sortedTracts, renderFn: renderData, formatDisplayLabel })
+
 
   return (
     <>
@@ -160,6 +167,7 @@ const Aggregate1 = React.forwardRef((props, ref) => {
         isVisible={isVisible}
         onPageChange={handlePageChange}
         pageCount={pageCount}
+        displayLabel={displayLabel}
       />
 
       <table ref={ref} style={{ fontSize: '.75em' }}>
@@ -255,6 +263,7 @@ const Aggregate1 = React.forwardRef((props, ref) => {
         isVisible={isVisible}
         onPageChange={handlePageChange}
         pageCount={pageCount}
+        displayLabel={displayLabel}
       />
     </>
   )
