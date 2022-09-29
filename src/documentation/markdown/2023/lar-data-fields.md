@@ -1,16 +1,14 @@
 # Public HMDA - Data Fields with Values and Definitions
 
-### Activity Year
+### [activity\_year](#activity_year)
 
 - **Description:** The calendar year the data submission covers
-- **Field:** [activity\_year](#activity_year)
 - **Values:**
   - 2023
 
-### lei
+### [lei](#lei)
 
 - **Description:** A financial institution’s Legal Entity Identifier
-- **Field:** [lei](#lei)
 - **Values:**
   - Varying values
 

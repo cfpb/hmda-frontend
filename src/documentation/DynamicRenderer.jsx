@@ -33,10 +33,10 @@ const DynamicRenderer = (props) => {
     const { hash } = window.location
     if (hash) {
       setTimeout(() => {
-        let removeHash = hash.replace(/#/, "")
-        let removeUnderscore = removeHash.replaceAll("_", "-")
-        setIdToScrollTo(removeUnderscore.toLowerCase())
-        const element = document.getElementById(removeUnderscore.toLowerCase())
+        const stripped = hash.replace(/[#_/]/g, "").toLowerCase()
+        const id = stripped + stripped
+        const element = document.getElementById(id)
+        setIdToScrollTo(id)
         if (element) setTimeout(() => element.scrollIntoView(), 0)
       }, 0)
     }
@@ -46,7 +46,12 @@ const DynamicRenderer = (props) => {
 
   return (
     <div style={{ display: "flex" }}>
-      <TableOfContents markdown={data} year={year} id={idToScrollTo} />
+      <TableOfContents
+        markdown={data}
+        year={year}
+        id={idToScrollTo}
+        props={props}
+      />
       <div className="Markdown-Wrapper">
         {year == 2023 ? (
           ""
