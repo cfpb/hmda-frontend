@@ -5,8 +5,10 @@ import Tables from './tables/index.jsx'
 import parse from 'csv-parse'
 import fileSaver from 'file-saver'
 import { isProd } from '../../common/configUtils'
-import { buildCSVRowsAggregate1 } from './tables/Aggregate1.jsx'
-import { buildCSVRowsAggregate2 } from './tables/Aggregate2.jsx'
+import {
+  buildCSVRowsAggregate1,
+  buildCSVRowsAggregate2,
+} from './tables/AggregateUtils.js'
 
 import './Report.css'
 

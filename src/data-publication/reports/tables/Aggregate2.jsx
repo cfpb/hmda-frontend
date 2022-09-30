@@ -1,6 +1,7 @@
 import PropTypes from "prop-types"
 import React, { useMemo } from 'react'
 import { ReportPagination, usePagination } from '../ReportPagination'
+import { fixAgg2, pageLabelTracts, sortAndFix } from './AggregateUtils'
 
 const renderData = (tracts) => {
   return tracts.map((tract, index) => {
@@ -30,89 +31,9 @@ const renderValues = (values, key) => {
   })
 }
 
-/**
- * Reducer function to aggregate Disposition data by dispositionName
- * @param {Object} prev
- * @param {Object} curr
- * @returns Array[Object]
- */
- const valueReducer = (prev, curr) => {
-  // Initialize tracker object for this dispositionName if necessary
-  if (!prev[curr.dispositionName])
-    prev[curr.dispositionName] = {
-      dispositionName: curr.dispositionName,
-      value: 0,
-      count: 0,
-    }
-
-  // Summarize content
-  prev[curr.dispositionName].count += curr.count
-  prev[curr.dispositionName].value += curr.value
-  return prev
-}
-
-/**
- * Temporary Fix: Identifies unaggregated Disposition entries and aggregates them
- * @param {Array} data
- */
-const fixUnaggregatedValue = data => {
-  const idxsNeedAggregation = []
-
-  data.forEach((x, idx) => x.values.length > 7 && idxsNeedAggregation.push(idx))
-
-  // Aggregate un-aggregated value data
-  idxsNeedAggregation.forEach(i => {
-    const obj = data[i].values.reduce(valueReducer, {})
-    data[i].values = Object.keys(obj).map(k => obj[k])
-  })
-
-  return data
-}
-
-export const sortAndFix = (report) => {
-  const sorted = report.tracts.sort(function (tractA, tractB) {
-    const idA = tractA.tract.toUpperCase()
-    const idB = tractB.tract.toUpperCase()
-
-    if (idA < idB) {
-      return -1
-    }
-    if (idA > idB) {
-      return 1
-    }
-
-    return 0
-  })
-
-  return fixUnaggregatedValue(sorted)
-}
-
-export const buildCSVRowsAggregate2 = (report) => {
-  let theCSVRows = ''
-
-  const _data = sortAndFix(report)
-  
-  _data.forEach(tract => {
-    const _columns = tract.values.sort(function(x,y){
-      var xp = x.dispositionName.substring(x.dispositionName.length-3);
-      var yp = y.dispositionName.substring(y.dispositionName.length-3);
-      return xp == yp ? 0 : xp < yp ? -1 : 1;
-    }).map(val => [val.count, val.value]).flat().join(',')
-
-    theCSVRows += tract.tract + ',' + _columns + '\n'
-  })
-
-  return theCSVRows
-}
-
-const formatDisplayLabel = (items) => {
-  if (!items || !items.length) return null
-  return items[0].tract + ' - ' + items[items.length-1].tract
-}
-
 const Aggregate2 = React.forwardRef((props, ref) => {
   const sortedTracts = useMemo(
-    () => sortAndFix(props.report),
+    () => sortAndFix(props.report, fixAgg2),
     [props.report]
   )
 
@@ -127,7 +48,7 @@ const Aggregate2 = React.forwardRef((props, ref) => {
   } = usePagination({
     data: sortedTracts,
     renderFn: renderData,
-    formatDisplayLabel,
+    formatDisplayLabel: pageLabelTracts,
     itemsPerPage: 5000,
   })
 
