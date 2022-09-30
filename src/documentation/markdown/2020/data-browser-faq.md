@@ -6,7 +6,7 @@ Answer: The HMDA Data Browser allows users to filter and download HMDA datasets.
 ### What years of HMDA data are available?  
 Answer: The HMDA Data Browser contains HMDA data from the years 2018-2021. To access HMDA data from 2007-2017, visit the <a target="_blank" rel="noopener noreferrer" href="https://www.consumerfinance.gov/data-research/hmda/historic-data/">HMDA historic data page</a>.
 
-### What is a CSV  
+### What is a CSV?
 Answer: A comma-separated values (CSV) file derives its name from a file containing multiple data fields separated by commas to distinguish where each field starts and ends. Files are stored in plain text as numbers and letters with one record per line. As long as the CSV file meets row/column limits, it can be opened in Microsoft Excel.
 
 ### Why has the column order in the CSV file changed?
