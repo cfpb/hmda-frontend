@@ -2,6 +2,14 @@
 .clickable:hover {
   cursor: pointer;
 }
+
+.warning {
+  border: 1px solid #fdb81e;
+  border-left-width: 5px;
+  padding: .5em;
+  padding-left: 1em;
+}
+
 .error {
   scroll-margin-top: 1em;
   margin-bottom: 1em;

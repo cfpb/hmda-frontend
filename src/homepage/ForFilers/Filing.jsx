@@ -1,5 +1,33 @@
 import { isBeta } from '../../common/Beta'
 import { ExpandableCard } from '../ExpandableCard'
+import NewIndicator from '../NewIndicator'
+
+const ToolsProd = () => (
+  <ul>
+    <li>
+      <a href='/tools/rate-spread'>Rate Spread Calculator</a>
+    </li>
+    <li>
+      <a href='/tools/check-digit'>Check Digit Generation/Validation</a>
+    </li>
+    <li>
+      <a href='/tools/file-format-verification'>
+        File Format Verification Tool
+      </a>
+    </li>
+    <li>
+      <a href='/tools/lar-formatting'>LAR Formatting Tool</a>
+    </li>
+  </ul>
+)
+
+const ToolsBeta = () => (
+  <ul>
+    <li>
+      <a href='/tools/lar-formatting'>LAR Formatting Tool <NewIndicator text={'Preview'}/></a>
+    </li>
+  </ul>
+)
 
 export const Filing = ({ defaultPeriod }) => (
   <ExpandableCard
@@ -8,24 +36,8 @@ export const Filing = ({ defaultPeriod }) => (
     description='The HMDA Filing Platform allows financial institutions to upload, review, certify, and submit HMDA data collected in or after 2017.'
     destination={`/filing/${defaultPeriod}/`}
     expandedByDefault={true}
-    disableExpansion={isBeta()}
     openNewWindow={true}
   >
-    <ul>
-      <li>
-        <a href='/tools/rate-spread'>Rate Spread Calculator</a>
-      </li>
-      <li>
-        <a href='/tools/check-digit'>Check Digit Generation/Validation</a>
-      </li>
-      <li>
-        <a href='/tools/file-format-verification'>
-          File Format Verification Tool
-        </a>
-      </li>
-      <li>
-        <a href='/tools/lar-formatting'>LAR Formatting Tool</a>
-      </li>
-    </ul>
+    {isBeta() ? <ToolsBeta /> : <ToolsProd />}
   </ExpandableCard>
 )
