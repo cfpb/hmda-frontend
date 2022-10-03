@@ -2,6 +2,15 @@
   "name": "dev",
   "announcement": [
     {
+      "heading": "HMDA Quarterly Graphs updated",
+      "message": "HMDA Quarterly Graphs have been updated to include data for the recently completed 2022-Q2 filing period and can be found ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/data-browser/graphs/quarterly",
+        "text": "here."
+      }
+    },
+    {
       "heading": "2023 Filing Guides Released",
       "message": "On September 6, 2022, the Bureau released the 2023 FIG and the Supplemental Guide for Quarterly Filers for 2023, which are available",
       "type": "info",
