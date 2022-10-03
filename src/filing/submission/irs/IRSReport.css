@@ -50,3 +50,32 @@
 .IRSReport button:hover {
   color: #205493;
 }
+
+.IRSReport .download-irs {
+  display: inline;
+  margin-left: 5px;
+}
+
+.IRSReport .status {
+  display: inline;
+  margin-left: .5em;
+  /* border: 1px solid #e48a34; */
+  border-radius: 5px;
+  padding: 0 5px;
+}
+.IRSReport .status svg {
+  margin-right: .3em;
+  fill: #e48a34;
+}
+
+.IRSReport .status.success,
+.IRSReport .status.success svg {
+  border-color: #0071bc;
+  fill: #0071bc;
+}
+
+.IRSReport .flex-inline {
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
