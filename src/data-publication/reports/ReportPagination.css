@@ -1,0 +1,78 @@
+.ReportPagination {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ReportPagination.bottom {
+  margin-top: 2em;
+}
+
+.ReportPagination .LoadingIconWrapper {
+  margin: 0;
+  margin-right: 48%;
+}
+
+.ReportPagination .display-label {
+  padding-top: 10px;
+  height: 1em;
+} 
+
+/* react-paginate package CSS */
+.react-paginate {
+  margin: 0 auto;
+  padding: 0 30px;
+  max-width: 1040px;
+  display: flex;
+  justify-content: center;
+}
+
+.react-paginate li:hover {
+  cursor: pointer;
+}
+
+.react-paginate li {
+  list-style: none;
+  background-color: white;
+}
+
+.react-paginate li:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border: none;
+}
+
+.react-paginate li:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: none;
+}
+
+.react-paginate li a {
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  padding: 4px 14px;
+}
+
+.react-paginate li a:hover {
+  text-decoration: none;
+  background-color: #ddd;
+  border-radius: 4px;
+}
+
+/* activeClassName */
+.react-paginate-active {
+  background-color: #0071bc !important;
+  color: white;
+  border-radius: 4px;
+}
+
+.react-paginate-active a:hover {
+  background-color: #0071bc !important;
+}
+
+.react-paginate-active a {
+  color: white !important;
+}
