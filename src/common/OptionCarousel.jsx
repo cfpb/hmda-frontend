@@ -15,10 +15,12 @@ import "./OptionCarousel.css"
  * @param {Boolean} showControls Display the navigation controls
  */
 export const OptionCarousel = ({
+  autoAdvance = true,
   className = "",
   cycleTime = 2,
   fixedHeight = null,
   hideIcon = false,
+  id,
   options = [],
   showControls = true,
 }) => {
@@ -40,10 +42,10 @@ export const OptionCarousel = ({
   useDynamicHeight({ setCurrHeight, maxLength, fixedHeight })
 
   /* Navigation logic */
-  const navControls = useAutoAdvance({ cycleTime, totalCount, autoAdvance: false })
+  const navControls = useAutoAdvance({ cycleTime, totalCount, autoAdvance })
 
   return (
-    <div className="oc" style={styles}>
+    <div id={id} className="oc" style={styles}>
       <span className={classname}>
         {showNavigator && (
           <OptionNavigator {...{ ...navControls, totalCount }} />
