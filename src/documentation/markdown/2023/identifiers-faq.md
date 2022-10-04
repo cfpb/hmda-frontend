@@ -42,3 +42,16 @@ An institution’s Agency Code can change from year to year. These changes are d
 ### Do respondent IDs change with agency code changes?
 
 Changes to an institution's Agency Code may result in changes to that institution's Respondent ID, especially in the case of depository institutions. Please see the <a target="_blank" rel="noopener noreferrer" href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2017-hmda-fig.pdf#page=14">2017 HMDA FIG Table 1</a> for a breakout of how Respondent ID is derived based on Agency Code.
+
+### How do I distinguish between a depository and a non-depository institution?
+In order to distinguish between depository and non-depository institutions in the HMDA data, refer to the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/documentation/2020/panel-data-fields/">HMDA Panel</a> data field <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/documentation/2020/panel-data-fields/#other_lender_code">Other Lender Code</a>. Depository institutions all have Code 0 as their Other Lender Code. The remaining codes are all for non-depository institutions.
+
+The use of Other Lender Code to distinguish between institution types is more accurate than using Agency Code. 
+
+Agency Code is the field that shows which financial regulator has ownership of the data. HMDA data collection is an interagency program that includes the FFIEC and HUD. Agency Code allows quick analysis of data of institutions supervised by their regulator.
+
+Agency Code is not intended to differentiate between depository and non-depository status. In the assignment of Agency Code, relationship data are considered. 
+
+For example, if a non-depository has a parent entity that has Agency Code 1 for OCC, the non-depository will also have Agency Code 1. 
+
+Additionally, all institutions that shares an ownership chain with an institution that has a CFPB <a target="_blank" rel="noopener noreferrer" href="https://www.consumerfinance.gov/compliance/supervision-examinations/institutions/">large depository</a> institution will have a CFPB Agency Code.

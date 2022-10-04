@@ -1,4 +1,4 @@
-## HMDA Filing - Annual Filing Period Dates
+# HMDA Filing - Annual Filing Period Dates
 
 The HMDA Platform is open for annual filing from January 1 – March 1. The Platform remains available outside of the filing period for late submissions and resubmissions.
 

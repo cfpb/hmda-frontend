@@ -1,4 +1,4 @@
-## HMDA File Format Verification Tool - Instructions 
+# HMDA File Format Verification Tool - Instructions 
 
 1. **Select** the applicable collection year that you are verifying HMDA data for from the File Format Verification Tool at https://ffiec.cfpb.gov/tools/file-format-verification.
 ![](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/ffvt/Applicable_Year.png)
@@ -17,7 +17,6 @@
 
 ## Frequently Asked Questions
 The Frequently Asked Questions are available at https://ffiec.cfpb.gov/documentation/2019/faqs/
-
 
 ##	HMDA Help
 Technical questions about reporting HMDA data collected in or after 2017 should be directed to hmdahelp@cfpb.gov.

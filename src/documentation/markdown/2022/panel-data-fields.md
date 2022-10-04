@@ -1,4 +1,4 @@
-## Public Panel - Data Fields with Values and Definitions
+# Public Panel - Data Fields with Values and Definitions
 
 ### [activity\_year](#activity_year)
 - **Description:** The collection year of the HMDA data to which the Panel file relates

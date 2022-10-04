@@ -1,6 +1,7 @@
-## HMDA Data Browser - List of filters
+# HMDA Data Browser - List of filters
 
-### Geography Filters
+## Geography Filters
+
 ### [Nationwide](#Nationwide)
 
 - **Description:** Select this option to download the national loan-level dataset. This is a large dataset (5.8 GB) and will take time to download. It will not be able to be opened in standard applications.
@@ -17,13 +18,11 @@
 
 - **Description:** Select this option to download datasets by county.
 
-
-### Financial Institution Filter
+## Financial Institution Filter
 
 - **Description:** Select one or more financial institution by entering the financial institutions LEI or name
 
-
-### Pre-Selected Filters
+## Pre-Selected Filters
 
 ### [action\_taken](#action_taken)
 

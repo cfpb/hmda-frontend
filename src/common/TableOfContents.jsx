@@ -75,7 +75,7 @@ const TableOfContents = ({ markdown, year, id, props }) => {
 
   return (
     <div>
-      {markdownHeaders && year == 2023 ? (
+      {markdownHeaders ? (
         <div className="toc-container">
           <LinkRR className="BackLink" to={`/documentation/${year}`}>
             {"\u2b05"} {year} DOCUMENTATION

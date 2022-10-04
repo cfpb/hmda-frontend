@@ -1,4 +1,4 @@
-## Public Panel - Schema
+# Public Panel - Schema
 
 |Field|Max Length|Type|
 |-----|----------|----|

@@ -1,4 +1,4 @@
-## ARID2017 to LEI Reference Table - Schema  
+# ARID2017 to LEI Reference Table - Schema  
 
 |Field|Max Length|Type|
 |-----|----------|----|

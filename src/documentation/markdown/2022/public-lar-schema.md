@@ -1,4 +1,4 @@
-## Public LAR - Schema
+# Public LAR - Schema
 
 |Field|Max Length|Type|
 |-----|----------|----|

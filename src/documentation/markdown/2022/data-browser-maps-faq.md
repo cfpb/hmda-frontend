@@ -34,12 +34,12 @@ The data tables show the aggregated data for the selected filter variables.
 
 
 ## How can I save and share my map?
-### » Share the URL
+### Share the URL
 The URL will take the visitor directly to the map, and zoom to the selected geography. Users can then print the report, or continue to explore HMDA Data using your selections as a starting point.  
 
 ![Map Zoom](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/maps/maps-zoom-share.gif)  
 
-### » Save as PDF
+### Save as PDF
 ![Maps Save PDF](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/maps/maps-save-pdf.png)
 
 ## How can I download the raw data used to generate my report?
