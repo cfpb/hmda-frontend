@@ -53,13 +53,6 @@ const DynamicRenderer = (props) => {
         props={props}
       />
       <div className="Markdown-Wrapper">
-        {year == 2023 ? (
-          ""
-        ) : (
-          <Link className="BackLink" to={`/documentation/${year}`}>
-            {"\u2b05"} {year} DOCUMENTATION
-          </Link>
-        )}
         {data ? <Markdown>{data}</Markdown> : <LoadingIcon />}
       </div>
     </div>
