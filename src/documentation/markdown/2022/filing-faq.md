@@ -5,7 +5,7 @@
 ### What information do I need to provide to register my financial institution?
 To register your financial institution on the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/filing">HMDA Filing Platform</a> you will need to provide your institution name, <a target="_blank" rel="noopener noreferrer" href="http://ffiec.cfpb.gov/documentation/2021/filing-faq#what-is-a-legal-entity-identifier-lei">LEI (Legal Entity Identifier)</a>, tax ID number, email domain (example: cfpb.gov), and agency code. Registration is a two-step process. You must create a filer account **and** register your institution in the system. You can register your financial institution here: https://hmdahelp.consumerfinance.gov/accounthelp/. Do not use a personal email address to register for an account. The <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/filing">HMDA Filing Platform</a> is designed to authenticate users based upon a financial institution’s registered email domain. If you do not have an email address within your financial institution's email domain, [contact HMDA Help](mailto:hmdahelp@cfpb.gov).
 
-#### What is a Legal Entity Identifier (LEI)?
+### What is a Legal Entity Identifier (LEI)?
 Every institution that files a HMDA submission will be required to obtain a LEI for their submission whether they are exempt or not. The website for the <a target="_blank" rel="noopener noreferrer" href="https://www.gleif.org/">Global LEI Foundation (GLEIF)</a> provides a list of LEI issuing organizations at https://www.gleif.org/en/about-lei/get-an-lei-find-lei-issuing-organizations. A financial institution may obtain an LEI, for HMDA reporting purposes, from any one of the issuing organizations listed on the website. For general information on the “LEI,” see section 5.2 of the <a target="_blank" rel="noopener noreferrer" href="https://files.consumerfinance.gov/f/documents/cfpb_hmda_small-entity-compliance-guide.pdf">HMDA Small Entity Compliance Guide</a>, and <a target="_blank" rel="noopener noreferrer" href="https://www.consumerfinance.gov/rules-policy/regulations/1003/4/#a-1-i-A">Regulation C, 12 CFR §§ 1003.4(a)(1)(i)(A)</a>, effective January 1, 2018, and <a target="_blank" rel="noopener noreferrer" href="https://www.consumerfinance.gov/rules-policy/regulations/1003/5/#a-3-vii">1003.5(a)(3)(vii)</a>, effective January 1, 2019.
 
 ### What is my agency code?
@@ -69,7 +69,7 @@ Additionally, if you are using Internet Explorer, we have found that filers have
 
 ## Submission
 
-#### When is the filing period?
+### When is the filing period?
 The **Annual filing** period is between <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/documentation/2021/annual-filing-dates/">January 1 and March 1</a> of each year.  The <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/filing">HMDA Filing Platform</a> for each filing period opens January 1st.  The submission deadline is March 1st.  
 
 ### How do I know my file was submitted?
