@@ -167,6 +167,7 @@ export const AnnouncementBanner = ({
       cycleTime={5}
       hideIcon
       showControls
+      fixedHeight='7em'
     />
   )
 }
