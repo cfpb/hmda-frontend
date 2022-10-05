@@ -33,7 +33,7 @@ const TableOfContents = ({ markdown, year, id, props }) => {
       // Replace last # from sub-header, remove certain special characters and replace spaces with dashes
       const removeHashAndReplace = (id) => {
         let parsedString = id
-          .replace(/[#/\'">(),.?]/g, "")
+          .replace(/[#\/'’">(),.?]/g, "")
           .trim()
           .replace(/[\s]/g, "-")
           .toLowerCase()
