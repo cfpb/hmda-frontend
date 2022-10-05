@@ -11,33 +11,6 @@
       }
     },
     {
-      "heading": "2023 Filing Guides Released",
-      "message": "On September 6, 2022, the Bureau released the 2023 FIG and the Supplemental Guide for Quarterly Filers for 2023, which are available",
-      "type": "info",
-      "link": {
-        "url": "https://ffiec.cfpb.gov/documentation/2023/fig",
-        "text": "here."
-      }
-    },
-    {
-      "heading": "HMDA Quarterly Graphs Tool Released",
-      "message": "On August 30, 2022, the CFPB released a new FFIEC HMDA Data Browser feature - the Quarterly Graphs tool, which is available ",
-      "type": "info",
-      "link": {
-        "url": "https://ffiec.cfpb.gov/data-browser/graphs/quarterly",
-        "text": "here."
-      }
-    },
-    {
-      "heading": "2021 Data Publication Release",
-      "message": "On June 16, 2022, the 2021 static datasets, Disclosure Reports, and MSA/MD Aggregate reports were released and can be accessed via the ",
-      "type": "info",
-      "link": {
-        "url": "https://ffiec.cfpb.gov/data-publication/",
-        "text": "Data Publications page."
-      }
-    },
-    {
       "message": "The FFIEC has announced a tentative release schedule for the 2022 Census products, which is available ",
       "type": "info",
       "heading": "2022 FFIEC Census Product Release Schedule",
