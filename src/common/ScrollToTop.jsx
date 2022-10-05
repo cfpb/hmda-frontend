@@ -11,6 +11,8 @@ import { useLocation } from "react-router"
 const ScrollToTop = (props) => {
   const location = useLocation()
   useEffect(() => {
+    const { hash } = window.location
+    if (hash) return
     window.scrollTo(0, 0)
   }, [location])
 
