@@ -23,6 +23,10 @@ const links = {
   2022: [
     <li key="2022-0"><Link to="/documentation/2022/ad-changes/">A&amp;D Report Changes Between 2017 and 2018</Link></li>,
     <li key="2022-1"><Link to="/documentation/2022/derived-data-fields/">Derived Data Fields</Link></li>
+  ],
+  2023: [
+    <li key="2023-0"><Link to="/documentation/2023/ad-changes/">A&amp;D Report Changes Between 2017 and 2018</Link></li>,
+    <li key="2023-1"><Link to="/documentation/2023/derived-data-fields/">Derived Data Fields</Link></li>
   ]
 }
 
