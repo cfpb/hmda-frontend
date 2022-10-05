@@ -108,7 +108,7 @@ Selecting “Share Graph” on the top right of the graph will copy a link to th
 <img alt='Share Graph' className='widthOriginal' src='https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/graphs/share-graph-1.png'>
 <br/>
 <img alt='Share Graph Clicked' className='widthOriginal' src='https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/graphs/share-graph-2.png'>
-## How can I download a screenshot of the graph I am viewing? 
+## How can I download a screenshot of the graph I am viewing?
 
 Select the three horizontal lines on the top right of the graph to display a list of options. You can download an image of the graph by using any of the four options indicated below. You can choose between a PNG, JPEG, PDF, or SVG file formats. 
 

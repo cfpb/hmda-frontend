@@ -1,17 +1,17 @@
 # HMDA Quarterly Graphs - Frequently Asked Questions 
 
-## What do the Quarterly Graphs display? 
+## What do the Quarterly Graphs display?
 The Quarterly Graphs display an aggregated view of quarterly filers for the current filing year.  
 
-## What are the requirements to become a quarterly filer? 
+## What are the requirements to become a quarterly filer?
 
 A financial institution is required to report quarterly HMDA data if it reported a combined total of at least 60,000 applications and covered loans, excluding purchased covered loans, for the preceding calendar year. Institutions file quarterly data three times a year, with quarter four data being reported in the following year’s annual submission. 
 
-## How were institutions chosen to be displayed in the quarterly filing graphs? 
+## How were institutions chosen to be displayed in the quarterly filing graphs?
 
 The institutions displayed are required to file quarterly data in the current year. Only the current year’s submission is considered when determining the list of institutions displayed in these quarterly graphs, meaning a previous quarterly filer would be excluded if they do not qualify for the current year. In addition to the current year’s quarterly data, users can view three years of data for the institutions that submitted quarterly data in the current year. The data in each graph is based on the same set of institutions.   
 
-## How do I view a list of quarterly filers? 
+## How do I view a list of quarterly filers?
 
 View a list of quarterly filers by navigating to the “Filer Info” tab.  
 
@@ -19,7 +19,7 @@ View a list of quarterly filers by navigating to the “Filer Info” tab.
  
 Users can view the filer name, legal entity identifier (LEI), regulatory agency, and loan/application register (LAR) counts for the previous three years. 
  
-## How can I sort the quarterly filer list?  
+## How can I sort the quarterly filer list?
 
 By default, the quarterly filer list is sorted alphabetically by Agency and Institution, respectively. The sort order is reflected in the direction of the arrow adjacent to the field name. An up arrow indicates an ascending sort (e.g. A to Z, least to highest) and a down arrow indicates the opposite (e.g. Z to A, highest to least).
 <br/>
@@ -51,7 +51,7 @@ To add additional sort criteria:
 - Observe that the sort criteria shown above the data table reflect the order in which sort criteria are applied
  
 
-## How are loans sorted into quarters? 
+## How are loans sorted into quarters?
 
 Loans are grouped by quarter based on their Final Action Taken date. 
 
@@ -64,7 +64,7 @@ Quarterly Filing - Action Taken Dates
 - Quarter 3: July 1 - September 30 
 - Quarter 4: October 1 - December 31
 
-## What categories of graphs can I choose from? 
+## What categories of graphs can I choose from?
 
 You can select from 21 graphs that cover the following categories: 
 
@@ -76,7 +76,7 @@ You can select from 21 graphs that cover the following categories:
 - Loan & application counts 
 - Total loan costs
 
-## How do I view data from a specific quarter(s)? 
+## How do I view data from a specific quarter(s)?
 
 Select your desired range from the “Filing Period Range” drop down. You can choose from any quarter in the past three years up until the latest quarter of data published. 
 
@@ -86,7 +86,7 @@ To return to viewing all the available quarters, select “Show All Quarters”.
 
 ![Clear Filing Period Filter](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/graphs/period-filter-2.png)
  
-## How do I remove or add specific lines on the graph? 
+## How do I remove or add specific lines on the graph?
 
 You can customize which lines are shown on the graph by selecting within the legend.
 
@@ -102,7 +102,7 @@ To reactivate the deactivated lines, select them and they will be re-displayed o
 
 Removing series lines will also update the columns in the table that is displayed below the graph. 
 
-## How can I share a specific graph? 
+## How can I share a specific graph?
 
 Selecting “Share Graph” on the top right of the graph will copy a link to the graph you are currently viewing. The link will preserve your selections for the Filing Period Range filters and the series lines that are currently displayed. You can then paste the link to your desired location.  
 
@@ -110,7 +110,7 @@ Selecting “Share Graph” on the top right of the graph will copy a link to th
 <br/>
 <img alt='Share Graph Clicked' className='widthOriginal' src='https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/graphs/share-graph-2.png'>
 
-## How can I download a screenshot of the graph I am viewing? 
+## How can I download a screenshot of the graph I am viewing?
 
 Select the three horizontal lines on the top right of the graph to display a list of options. You can download an image of the graph by using any of the four options indicated below. You can choose between a PNG, JPEG, PDF, or SVG file formats. 
 
@@ -119,7 +119,7 @@ Selecting one of the options will download the file to your computer.
 
 <img alt='Download Graph Image' className='widthOriginal' src='https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/graphs/export-image-2.png'>
 
-## How can I download the data that the graph is displaying? 
+## How can I download the data that the graph is displaying?
 
 Select the three horizontal lines on the top right of the graph to display a list of options. You can download the data displayed in either a CSV or XLS format.  
 
@@ -129,11 +129,11 @@ The data that will be in the CSV or XLS is the same data that is displayed in th
 
 <img alt='Graph Data Table' className='widthOriginal' src='https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/graphs/export-data-2.png'>
  
-## Can I review the underlying loan level quarterly data? 
+## Can I review the underlying loan level quarterly data?
 
 To protect borrow privacy, the underlying loan and institution level data is not displayed. When the annual data for the institutions are released the following year, the data will be disclosed in accordance with the [Data Disclosure Policy](https://files.consumerfinance.gov/f/documents/HMDA_Data_Disclosure_Policy_Guidance.Executive_Summary.FINAL.12212018.pdf). 
 
-## How often will the quarterly graphs be updated? 
+## How often will the quarterly graphs be updated?
 
 The graphs are updated with the latest data at the conclusion of each quarterly filing period, including the late submission period. A calendar of quarterly filing periods can be found in the [Quarterly Filing documentation](https://ffiec.cfpb.gov/documentation/2022/quarterly-filing-dates/). 
 <br/>

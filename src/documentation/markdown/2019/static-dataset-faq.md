@@ -23,7 +23,7 @@ Please note that due to the timing of the One Year data product's creation:
 ### Three Year Dataset
 The Three Year dataset is taken at least 34 months after the [timely filing deadline](/documentation/2022/annual-filing-dates/) has passed for a given filing year and incorporates any resubmissions or late submissions that have been completed in that timeframe. The Three Year dataset is the final dataset published for any given collection year.
 
-## Which dataset is used by the Data Browser? 
+## Which dataset is used by the Data Browser?
 The HMDA Data Browser tools ([Dataset Filtering](/data-browser/data/), [Maps](/data-browser/maps/)) use the latest available [static dataset](/data-publication/) (Three Year, One Year, Snapshot) for the selected year.  This ensures that the information being accessed is up-to-date, based on the latest data submitted by financial institutions. When new datasets are published each year, the HMDA Data Browser is also updated.
 
 If you are looking for a particular year's data, or additional documentation about the datasets, please visit the [HMDA Data Publication page](/data-publication/).
