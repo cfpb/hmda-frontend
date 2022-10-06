@@ -837,16 +837,6 @@
   - 3 - Not applicable
   - 4 - No co-applicant
 
-### [applicant\_age](#applicant_age)
-
-- **Description:** The age, in years, of the applicant or borrower
-- **Varying values; Ages binned are:**
-  - 25-34
-  - 35-44
-  - 45-54
-  - 55-64
-  - 65-74
-
 ### [co-applicant\_age](#co-applicant_age)
 
 - **Description:** The age, in years, of the first co-applicant or co-borrower
