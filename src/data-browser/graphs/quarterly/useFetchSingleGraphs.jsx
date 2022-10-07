@@ -19,7 +19,7 @@ export const useFetchSingleGraph = ({
 
   const fetchSingleGraph = useCallback(
     async endpoint => {
-      const response = await dispatch(graphs.fetchGraph(endpoint))
+      const response = await dispatch(graphs.getSingleGraph.initiate(endpoint))
         .unwrap()
         .then(data => data)
         .catch(err => onGraphFetchError(err))

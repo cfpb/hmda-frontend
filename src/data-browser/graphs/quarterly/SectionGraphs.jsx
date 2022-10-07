@@ -23,7 +23,7 @@ import {
   SELECTED_GRAPH_DATA,
   SERIES_FOR_URL
 } from '../slice/graphConfigs.js'
-import { graphs } from '../slice/index.js'
+import { graphs } from '../slice'
 import { formatGroupLabel } from '../utils/menuHelpers.js'
 import { useFetchGraphList } from './useFetchGraphList'
 import { useFetchSingleGraph } from './useFetchSingleGraphs'
@@ -38,25 +38,25 @@ export const SectionGraphs = ({
 }) => {
   const dispatch = useDispatch()
 
-  const graphStore = useSelector(({ graphs }) => graphs)
-  const categories = graphs.getConfig(graphStore, CATEGORIES) // Holds the xAxis values/labels
-  const data = graphs.getConfig(graphStore, DATA) || {} // API data cache (transformed data)
+  const graphConfigStore = useSelector(({ graphsConfig }) => graphsConfig)
+  const categories = graphs.getConfig(graphConfigStore, CATEGORIES) // Holds the xAxis values/labels
+  const data = graphs.getConfig(graphConfigStore, DATA) || {} // API data cache (transformed data)
   const graphMenuOptions =
-    graphs.getConfig(graphStore, GRAPH_MENU_OPTIONS) || [] // All the graph options with categories
-  const firstLoadState = graphs.getConfig(graphStore, FIRST_LOAD)
+    graphs.getConfig(graphConfigStore, GRAPH_MENU_OPTIONS) || [] // All the graph options with categories
+  const firstLoadState = graphs.getConfig(graphConfigStore, FIRST_LOAD)
   const isFirstLoad = firstLoadState === undefined ? true : firstLoadState
 
-  const periodHigh = graphs.getConfig(graphStore, PERIOD_HI) // Period filters
+  const periodHigh = graphs.getConfig(graphConfigStore, PERIOD_HI) // Period filters
   const setPeriodHigh = value => dispatch(graphs.setConfig(PERIOD_HI, value))
-  const periodLow = graphs.getConfig(graphStore, PERIOD_LO) // Period filters
+  const periodLow = graphs.getConfig(graphConfigStore, PERIOD_LO) // Period filters
   const setPeriodLow = value => dispatch(graphs.setConfig(PERIOD_LO, value))
 
-  const quarters = graphs.getConfig(graphStore, QUARTERS) // Contains all the quarters from a selected graph and is used for period filtering
-  const rawGraphList = graphs.getConfig(graphStore, RAW_GRAPH_LIST) // List of available graphs from API
-  const resetSeriesVisability = graphs.getConfig(graphStore, RESET_SERIES_VIS) // Force Highcharts to reset series visibility
-  const selectedGraph = graphs.getConfig(graphStore, SELECTED_GRAPH) // Configuration for the currently selected graph
-  const selectedGraphData = graphs.getConfig(graphStore, SELECTED_GRAPH_DATA) // API data of currently selected graph
-  const seriesForURL = graphs.getConfig(graphStore, SERIES_FOR_URL) // List of series names to be included in the URL's `visibleSeries` query parameter
+  const quarters = graphs.getConfig(graphConfigStore, QUARTERS) // Contains all the quarters from a selected graph and is used for period filtering
+  const rawGraphList = graphs.getConfig(graphConfigStore, RAW_GRAPH_LIST) // List of available graphs from API
+  const resetSeriesVisability = graphs.getConfig(graphConfigStore, RESET_SERIES_VIS) // Force Highcharts to reset series visibility
+  const selectedGraph = graphs.getConfig(graphConfigStore, SELECTED_GRAPH) // Configuration for the currently selected graph
+  const selectedGraphData = graphs.getConfig(graphConfigStore, SELECTED_GRAPH_DATA) // API data of currently selected graph
+  const seriesForURL = graphs.getConfig(graphConfigStore, SERIES_FOR_URL) // List of series names to be included in the URL's `visibleSeries` query parameter
   const setSeriesForURL = value =>
     dispatch(graphs.setConfig(SERIES_FOR_URL, value))
 

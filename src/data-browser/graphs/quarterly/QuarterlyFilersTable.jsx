@@ -1,22 +1,18 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import LoadingIcon from '../../../common/LoadingIcon';
 import SimpleSortTable from '../../../common/SimpleSortTable';
 import { institutions } from '../slice';
+import { useGetQuarterliesWithLarsQuery } from '../slice/institutionsSlice';
 import './QuarterlyFilersTable.css';
 
 const QuarterlyFilersTable = props => {
   const dispatch = useDispatch();
   const [year, past] = [new Date().getFullYear(), 3];
-  const { data, loading, sort } = useSelector(state => state.institutions);
+  const { sort } = useSelector(state => state.institutionsConfig);
   const pastYears = [...Array(past).keys()].map(i => `${year - i - 1}`);
 
-  useEffect(() => {
-    if (!data) {
-      dispatch(institutions.fetchInstitutionLars({ year, past }));
-      dispatch(institutions.updateSort([{ id: 'agency', desc: false }, { id: 'name', desc: false }]));
-    }
-  }, [dispatch, data]);
+  const { data, isSuccess } = useGetQuarterliesWithLarsQuery({ year, past });
 
   const setSort = sortUpdateFn => dispatch(institutions.updateSort(sortUpdateFn(sort)));
 
@@ -46,7 +42,7 @@ const QuarterlyFilersTable = props => {
     }, ...countsColumns];
   });
 
-  if (loading === 'succeeded' && data) {
+  if (isSuccess && data) {
     const tableData = data.quarterly.map(({ name, lei, agency, larCounts }) => {
       let counts = {};
       larCounts.forEach(ts => {

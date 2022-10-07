@@ -8,8 +8,8 @@ import { useEffect, useState } from "react"
 const SectionOption = ({ isSelected, title, url }) => {
   const sectionClasses = `button section ${isSelected && "selected"}`
 
-  const graphStore = useSelector(({ graphs }) => graphs)
-  const graphURL = graphs.getConfig(graphStore, GRAPH_URL) // Getting graph url string from redux store
+  const graphsConfigStore = useSelector(({ graphsConfig }) => graphsConfig)
+  const graphURL = graphs.getConfig(graphsConfigStore, GRAPH_URL) // Getting graph url string from redux store
   let ariaLabel = `Navigate to the ${title} tab.`
   if (isSelected) ariaLabel += " This section is currently selected."
 
