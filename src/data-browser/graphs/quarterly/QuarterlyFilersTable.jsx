@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoadingIcon from '../../../common/LoadingIcon';
 import SimpleSortTable from '../../../common/SimpleSortTable';
 import { institutions } from '../slice';
-import { useGetQuarterliesWithLarsQuery } from '../slice/institutionsSlice';
 import './QuarterlyFilersTable.css';
 
 const QuarterlyFilersTable = props => {
@@ -12,7 +11,7 @@ const QuarterlyFilersTable = props => {
   const { sort } = useSelector(state => state.institutionsConfig);
   const pastYears = [...Array(past).keys()].map(i => `${year - i - 1}`);
 
-  const { data, isSuccess } = useGetQuarterliesWithLarsQuery({ year, past });
+  const { data, isSuccess } = institutions.useGetQuarterliesWithLarsQuery({ year, past });
 
   const setSort = sortUpdateFn => dispatch(institutions.updateSort(sortUpdateFn(sort)));
 
