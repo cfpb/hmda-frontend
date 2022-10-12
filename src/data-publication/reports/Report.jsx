@@ -149,6 +149,9 @@ class Report extends React.Component {
     } else {
       url += `national/${year}/${reportId}${ext}`
     }
+    if (['1', '2', '9'].includes(reportId)) {
+      url = `/output/${year}/${msaMdId}/${reportId}.json`
+    }
     fetch(url)
       .then(response => {
         if (!response.ok) throw new Error('Network response was not ok.')
