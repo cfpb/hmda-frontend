@@ -122,7 +122,7 @@ export const deriveHighchartsConfig = ({
   config.tooltip.valueDecimals = decimalPlace
 
   // Listener used to remove a series from URL when user de-selects
-  config.plotOptions.series.events.hide = (event) => {
+  config.plotOptions.series.events.hide = event => {
     const index = seriesForURL.indexOf(event.target.userOptions.name)
     if (index > -1) {
       const nextSeries = [...seriesForURL]
@@ -133,7 +133,7 @@ export const deriveHighchartsConfig = ({
   }
 
   // Listener used to add a series to URL when user de-selects
-  config.plotOptions.series.events.show = (event) => {
+  config.plotOptions.series.events.show = event => {
     const seriesName = event.target.userOptions.name
     if (!seriesForURL.includes(seriesName)) {
       const nextSeries = [...seriesForURL]
@@ -155,14 +155,14 @@ export const deriveHighchartsConfig = ({
     labels: {
       ...hmda_charts.styles.axisLabel,
       // Formatter used to add "K" and "M"
-      formatter: (tick) => {
+      formatter: tick => {
         if (!tick) return
 
         if (tick.value > 999 && tick.value < 1000000) {
           return (tick.value / 1000).toFixed(0) + "K" // convert to K for number from > 1000 < 1 million
         } else if (tick.value >= 1000000) {
           return (tick.value / 1000000).toFixed(1) + "M" // convert to M for number from > 1 million
-        } else if (tick.value < 900) {
+        } else {
           return tick.value // if value < 1000, nothing to do
         }
       },
@@ -193,7 +193,7 @@ const formatXdescription = (loading, axes) => {
   return `${title} from ${from} to ${to}`
 }
 
-const deriveLegendTitle = (endpoint) => {
+const deriveLegendTitle = endpoint => {
   if (endpoint.match("-re$")) return "Race / Ethnicity"
   if (endpoint === "all-applications") return "Filer Types"
   return "Loan Types"
