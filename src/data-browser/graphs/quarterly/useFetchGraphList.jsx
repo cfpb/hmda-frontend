@@ -1,13 +1,12 @@
 import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { useHistory, useLocation, useRouteMatch } from "react-router-dom"
 import { BaseURLQuarterly } from "../constants"
 import { graphs } from "../slice"
-import { IDLE, REJECTED, SUCCEEDED } from "../slice/api/status"
 import {
   GRAPH_MENU_OPTIONS,
   RAW_GRAPH_LIST,
-  SELECTED_GRAPH,
+  SELECTED_GRAPH
 } from "../slice/graphConfigs"
 import { buildGraphListOptions } from "../utils/graphHelpers"
 
@@ -18,7 +17,7 @@ export const useFetchGraphList = ({
   setGraphHeaderOverview,
 }) => {
   const dispatch = useDispatch()
-  const graphList = useSelector((state) => state.graphs.list)
+  const graphList = graphs.useGetAllGraphsQuery()
   const history = useHistory()
   const location = useLocation()
   const match = useRouteMatch()
@@ -117,12 +116,10 @@ export const useFetchGraphList = ({
 
   /* Fetch list of available graphs once, on page load */
   useEffect(() => {
-    if (graphList.loading === IDLE) {
-      dispatch(graphs.fetchGraphsInfo())
-    } else if (graphList.loading === SUCCEEDED) {
+    if (graphList.isSuccess) {
       onSuccess(graphList.data)
-    } else if (graphList.loading === REJECTED) {
-      onGraphFetchError(graphList.data)
+    } else if (graphList.isError) {
+      onGraphFetchError(graphList.error)
     }
-  }, [graphList, dispatch])
+  }, [graphList])
 }
