@@ -130,3 +130,15 @@
   margin-left: 1rem;
   line-height: inherit;
 }
+
+@media screen and (max-width: 600px) {
+  #oc-homepage-banner .alert {
+    height: 150px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  #oc-homepage-banner .alert {
+    height: 175px;
+  }
+}
