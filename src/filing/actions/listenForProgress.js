@@ -12,6 +12,7 @@ import {
   MACRO_EDITS,
   UPLOADED
 } from '../constants/statusCodes.js'
+import * as AccessToken from '../../common/api/AccessToken.js'
 
 // Extract completion percentage
 export const parseProgress = string => {
@@ -34,11 +35,16 @@ export default function listenForProgress() {
             dispatch(receiveError(json))
             throw new Error(json && `${json.status}: ${json.statusText}`)
           }
+          console.log('- Getting latest submission JSON')
           return dispatch(receiveSubmission(json))
         })
       })
       .then((json) => {
-        if (!json) return
+        if (!json) {
+          console.warn('-- No submission JSON found, skipping WS connection')
+          
+          return
+        }
 
         const { status, id } = json
         const { lei, period, sequenceNumber } = id
@@ -46,9 +52,11 @@ export default function listenForProgress() {
         const { code } = status
 
         if (code >= UPLOADED) {
+          console.log('- Opening websocket to listen for progress...')
+          
           // Open a websocket and listen for updates
           const wsBaseUrl = process.env.REACT_APP_ENVIRONMENT === 'CI'
-            ? `${window.location.hostname}:8080`
+            ? `${window.location.hostname}:8080` // `IP-ADDRESS:8080`
             : `${window.location.host}/v2/filing`
           
           const socketType = window.location.protocol == 'https:' ? 'wss' : 'ws'
@@ -57,11 +65,27 @@ export default function listenForProgress() {
             ? `/institutions/${lei}/filings/${year}/quarter/${quarter}/submissions/${sequenceNumber}/progress`
             : `/institutions/${lei}/filings/${year}/submissions/${sequenceNumber}/progress`
 
-          let socket = new WebSocket(`${socketType}://${wsBaseUrl}${wsProgressUrl}`)
+          let socket
+
+          try {
+            console.log(`-- Attempting connection to ${socketType}://${wsBaseUrl}${wsProgressUrl}`)
+            socket = new WebSocket(`${socketType}://${wsBaseUrl}${wsProgressUrl}`)
+          } catch (e) {
+            console.log(`--- Connection to ${socketType}://${wsBaseUrl}${wsProgressUrl} failed!`)
+            error(e)
+            console.log('---')
+          }
 
           socket.onopen = (event) => {
-            console.log('>>> Socket open! Listening for Progress...')
+            console.log('-- Socket open! Sending Bearer token and then listening for Progress...')
             dispatch(requestProcessingProgress())
+            socket.send(
+              JSON.stringify({
+                headers: {
+                  Authorization: 'Bearer ' + AccessToken.get(),
+                },
+              })
+            )
           }
 
           // Listen for messages
@@ -126,13 +150,13 @@ export default function listenForProgress() {
             else {
               // e.g. server process killed or network down
               // event.code is usually 1006 in this case
-              console.log('[close] Connection died')
+              console.log('[socket onclose] Connection died', event)
             }
           }
 
           // TODO: What to do on websocket error?
           socket.onerror = function (error) {
-            console.log(`[error] ${error.message}`)
+            console.log(`[socket onerror] ${error.message}`, error)
           }
         }
         else if (
