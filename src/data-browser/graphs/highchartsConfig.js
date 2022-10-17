@@ -8,7 +8,7 @@ export const baseConfig = {
   },
   subtitle: {
     text: "Subtitle",
-    style: { fontSize: "15px" },
+    style: { fontSize: "14px" },
   },
   caption: {
     text: "",
@@ -82,6 +82,16 @@ export const baseConfig = {
           },
         },
       },
+      {
+        condition: {
+          maxWidth: 800
+        },
+        chartOptions: {
+          chart: {
+            height: 600,
+          }
+        }
+      }
     ],
   },
 }
