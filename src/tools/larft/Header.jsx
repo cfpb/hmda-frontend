@@ -22,10 +22,6 @@ const _Header = ({ config: { defaultDocsPeriod = '2018' } }) => (
         for financial institutions to file their loan/application register (LAR)
         using the HMDA Platform.
       </p>
-      <p className='warning'>
-        <b>Please note</b>: This tool is still in development and is available
-        on HMDA Beta for testing purposes only
-      </p>
       {/* <p>
         Follow the{' '}
         <Link
