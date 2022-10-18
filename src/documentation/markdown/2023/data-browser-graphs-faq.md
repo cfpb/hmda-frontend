@@ -129,7 +129,30 @@ The data that will be in the CSV or XLS is the same data that is displayed in th
  
 ## Can I review the underlying loan level quarterly data?
 
-To protect borrow privacy, the underlying loan and institution level data is not displayed. When the annual data for the institutions is released the following year, it will be in accordance with the [Data Disclosure Policy](https://files.consumerfinance.gov/f/documents/HMDA_Data_Disclosure_Policy_Guidance.Executive_Summary.FINAL.12212018.pdf). 
+To protect borrow privacy, the underlying loan and institution level data is not displayed. When the annual data for the institutions is released the following year, it will be in accordance with the [Data Disclosure Policy](https://files.consumerfinance.gov/f/documents/HMDA_Data_Disclosure_Policy_Guidance.Executive_Summary.FINAL.12212018.pdf).
+
+## Learn more about the different loan types
+
+<a href="https://www.consumerfinance.gov/owning-a-home/loan-options/conventional-loans/" target="_blank">Conventional Conforming</a>
+Conforming loans have maximum loan amounts that are set by the government.
+
+<a href="https://www.consumerfinance.gov/owning-a-home/loan-options/conventional-loans/" target="_blank">Conventional Non-Conforming</a>
+Non-conforming loans are less standardized. Eligibility, pricing, and features can vary widely by lender, so it’s particularly important to shop around and compare several offers.
+
+<a href="https://www.consumerfinance.gov/owning-a-home/loan-options/fha-loans/" target="_blank">Federal Housing Administration (FHA)</a>
+FHA are loans from private lenders that are regulated. The FHA doesn’t lend the money directly–private lenders do.
+
+<a href="https://www.consumerfinance.gov/ask-cfpb/my-lender-offered-me-a-home-equity-line-of-credit-heloc-what-is-a-heloc-en-107/?_gl=1*922b9v*_ga*MTQ3Njg0MzQyOS4xNjY2MDE5NDc5*_ga_DBYJL30CHS*MTY2NjAyMjE2My4yLjEuMTY2NjAyMjg0OC4wLjAuMA.." target="_blank">Home Equity Line of Credit (HELOC)</a>
+A home equity line of credit (HELOC) is an “open-end” line of credit that allows you to borrow repeatedly against your home equity.
+
+<a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-usda-rural-housing-service-loan-en-114/" target="_blank">Rural Housing Service (RHS)</a>
+RHS offers mortgage programs that can help low- to moderate-income rural residents purchase, construct, and repair homes.
+
+<a href="https://www.fsa.usda.gov/programs-and-services/farm-loan-programs/index" target="_blank">Farm Service Agency (FSA)</a>
+FSA are loans to help farmers and ranchers get the financing they need to start, expand or maintain a family farm.
+
+<a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-va-loan-en-113/" target="_blank">Veterans Affairs (VA)</a>
+VA offers loan programs to help servicemembers, veterans, and their families buy homes.
 
 ## How often will the quarterly graphs be updated?
 
