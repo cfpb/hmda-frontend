@@ -16,6 +16,7 @@ export const ParsedRow = ({
   const moreInfo = <MoreInfo field={column} />;
   const { fieldName, fieldIndex } = column;
 
+
   return (
     <tr
       key={fieldName}
@@ -62,6 +63,11 @@ function buildInput(_col, _row, _changeFn) {
       paddingLeft: "5px",
     },
   };
+
+  // Disables input field if schema has "disable" property
+  if (_col.disable == true) {
+    common["disabled"] = "disabled"
+  }
 
   // State selector
   if (_col.fieldName?.includes("State")) {

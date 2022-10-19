@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react'
+import React, { useMemo, useRef, useState, useEffect } from 'react'
 import {
   getSchema,
   log,
@@ -20,14 +20,15 @@ const Section = ({
   id,
   title,
   rows,
+  larRowCount,
   highlightSelected,
   setSelected,
   setCurrCol,
   currCol,
 }) => {
   let body
-  const [searchFilter, setSearchFilter] = useState('')
-  const [columnFilter, setColumnFilter] = useState('')
+  const [searchFilter, setSearchFilter] = useState("")
+  const [columnFilter, setColumnFilter] = useState("")
 
   // This memoization seems to fix the major performance bottleneck
   const injectedRows = useMemo(() => {
@@ -39,7 +40,7 @@ const Section = ({
   }, [rows])
 
   let matchedColumns = []
-  const targetSchema = id === 'saved-lars' ? LAR_SCHEMA : TS_SCHEMA
+  const targetSchema = id === "saved-lars" ? LAR_SCHEMA : TS_SCHEMA
 
   const filteredRows = searchFilter.length
     ? injectedRows.filter(iRow => {
@@ -74,40 +75,39 @@ const Section = ({
           header: props => {
             const usableProps = {}
             Object.keys(props)
-              .filter(p_key => !['sortDirection'].includes(p_key))
+              .filter(p_key => !["sortDirection"].includes(p_key))
               .forEach(p_key => (usableProps[p_key] = props[p_key]))
-            
+
             const columnSelected =
-              currCol?.fieldName === f.fieldName ? ' selected' : ''
+              currCol?.fieldName === f.fieldName ? " selected" : ""
             const fieldId =
-              'header-' + f.fieldName.toLowerCase().replaceAll(' ', '-')
+              "header-" + f.fieldName.toLowerCase().replaceAll(" ", "-")
             return (
               <div
-                className='header-cell'
-                className={'clickable header-cell custom' + columnSelected}
+                className={"clickable header-cell custom" + columnSelected}
                 {...usableProps}
                 onClick={() => {
                   setCurrCol(f)
                   document
                     .getElementById(fieldId)
-                    .scrollIntoView({ inline: 'center', block: 'start' })
+                    .scrollIntoView({ inline: "center", block: "start" })
                 }}
                 id={fieldId}
               >
-                <div className={'custom-cell-content header-cell-text'}>
+                <div className={"custom-cell-content header-cell-text"}>
                   {f.fieldName}
                 </div>
               </div>
             )
           },
           content: ({ row }) => {
-            const plainValue = row[f.fieldName] || '-'
+            const plainValue = row[f.fieldName] || "-"
             const colSelected =
-              currCol?.fieldName == f.fieldName ? ' col-selected' : ''
+              currCol?.fieldName == f.fieldName ? " col-selected" : ""
             if (id.match(/^ts/))
               return (
                 <div
-                  className={'custom-cell-content ' + colSelected}
+                  className={"custom-cell-content " + colSelected}
                   onClick={() => setCurrCol(f)}
                 >
                   {plainValue}
@@ -122,7 +122,7 @@ const Section = ({
               return (
                 <div
                   className={
-                    'custom-cell-content highlight-match' + colSelected
+                    "custom-cell-content highlight-match" + colSelected
                   }
                   onClick={() => setCurrCol(f)}
                 >
@@ -132,7 +132,7 @@ const Section = ({
             }
             return (
               <div
-                className={'custom-cell-content ' + colSelected}
+                className={"custom-cell-content " + colSelected}
                 onClick={() => setCurrCol(f)}
               >
                 {plainValue}
@@ -142,28 +142,34 @@ const Section = ({
         }))
     : null
 
+  // Adds LAR row count key/value pair to fileredRows if Transmittal Sheet has been generated
+  if (larRowCount && filteredRows.length) {
+    filteredRows[0]["Total Number of Entries Contained in Submission"] =
+      larRowCount
+  }
+
   if (!columns) body = <div className='no-records'>No Records Saved</div>
   else {
-    columns.unshift({ key: 'rowId', header: 'Row #', width: 75 })
+    columns.unshift({ key: "rowId", header: "Row #", width: 75 })
 
     if (!filteredRows.length || columns.length === 1)
       body = (
         <div className='no-matches'>
-          {' '}
+          {" "}
           No records match your search/filter criteria
         </div>
       )
     else
-      body = (
-        <Table
-          data={filteredRows}
-          columns={columns}
-          tableHeight={tableHeight(filteredRows) * 32}
-          minColumnWidth={200}
-          onRowClick={(e, { index }) => setSelected(filteredRows[index])}
-          rowStyle={i => highlightSelected(filteredRows[i])}
-        />
-      )
+    body = (
+      <Table
+        data={filteredRows}
+        columns={columns}
+        tableHeight={tableHeight(filteredRows) * 32}
+        minColumnWidth={200}
+        onRowClick={(e, { index }) => setSelected(filteredRows[index])}
+        rowStyle={i => highlightSelected(filteredRows[i])}
+      />
+    )
   }
 
   const rowCountLabel =
@@ -184,12 +190,12 @@ const Section = ({
                 <input
                   type='text'
                   onChange={e => setSearchFilter(e.target.value)}
-                  placeholder={'Search ' + (id.match(/ts/) ? 'TS' : 'LAR')}
+                  placeholder={"Search " + (id.match(/ts/) ? "TS" : "LAR")}
                   value={searchFilter}
                   hidden={!rows.length}
                 />
                 {!!searchFilter.length && (
-                  <button className='clear' onClick={() => setSearchFilter('')}>
+                  <button className='clear' onClick={() => setSearchFilter("")}>
                     Clear Search
                   </button>
                 )}
@@ -203,7 +209,7 @@ const Section = ({
                   hidden={!rows.length}
                 />
                 {!!columnFilter.length && (
-                  <button className='clear' onClick={() => setColumnFilter('')}>
+                  <button className='clear' onClick={() => setColumnFilter("")}>
                     Clear Filter
                   </button>
                 )}
@@ -217,8 +223,8 @@ const Section = ({
   )
 }
 
-const TSheet = ({ rows, ...props }) => (
-  <Section {...props} title='Transmittal Sheet' rows={rows} id='saved-ts' />
+const TSheet = ({ rows, larRowCount, ...props }) => (
+  <Section {...props} title='Transmittal Sheet' rows={rows} larRowCount={larRowCount} id='saved-ts' />
 )
 
 const LARs = ({ rows, ...props }) => (
@@ -254,6 +260,7 @@ export const SavedRows = ({
       </h2>
       <TSheet
         rows={ts}
+        larRowCount={lars.length > 0 ? lars.length : ""}
         highlightSelected={highlightSelected}
         setSelected={setSelected}
         deleteRow={deleteRow}
