@@ -15,8 +15,3 @@ node ./generate_lar_file.js <LEI> <YEAR> <NUM_ROWS>
 
 ## Output
 Produces a syntactically correct LAR file at `/cypress/fixtures/<YEAR>-<LEI>-<NUM_ROWS>.txt`
-
-## Stats
-rows|time|size
----|---|---
-1,000,000|34mins|1.04GB
