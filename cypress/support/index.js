@@ -32,3 +32,16 @@ Cypress.Commands.add("dataUrl", { prevSubject: true }, target => {
 Cypress.Commands.add("logEnv", { prevSubject: true }, vars => {
   logEnv(vars[0])
 })
+
+// Login via UI
+Cypress.Commands.add('hmdaLogin', (app, authUrl) => {
+  const { USERNAME, PASSWORD, AUTH_BASE_URL, AUTH_REALM } = Cypress.env()
+  cy.logout({ root: authUrl, realm: AUTH_REALM })
+  cy.visit(`${AUTH_BASE_URL}${app}/`)
+
+  if (app.match('filing')) cy.get('button[title="Login"').click()
+
+  cy.get('#username').type(USERNAME)
+  cy.get('#password').type(PASSWORD)
+  cy.get('#kc-login').click()
+})
