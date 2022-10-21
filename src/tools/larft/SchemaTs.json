@@ -5,6 +5,7 @@
       "fieldIndex": 0,
       "fieldName": "Record Identifier",
       "examples": [],
+      "disable": true,
       "enumerations": [
         {
           "value": "1",
@@ -177,9 +178,10 @@
       "fieldIndex": 12,
       "fieldName": "Total Number of Entries Contained in Submission",
       "examples": [
-        "Field is automatically populated with the count of LAR Rows"
+        "1"
       ],
       "disable": true,
+      "tooltip": "Field is automatically populated with the count of LAR Rows",
       "enumerations": [],
       "descriptions": []
     },

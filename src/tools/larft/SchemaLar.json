@@ -5,6 +5,7 @@
       "fieldIndex": 0,
       "fieldName": "Record Identifier",
       "examples": [],
+      "disable": true,
       "enumerations": [
         {
           "value": "1",
@@ -1999,6 +2000,10 @@
         {
           "value": "1111",
           "description": "Exempt"
+        },
+        {
+          "value": "",
+          "description": "Other"
         }
       ],
       "descriptions": [],
@@ -2026,6 +2031,10 @@
         {
           "value": "1111",
           "description": "Exempt"
+        },
+        {
+          "value": "",
+          "description": "Other"
         }
       ],
       "descriptions": [],

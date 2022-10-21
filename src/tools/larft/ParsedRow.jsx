@@ -1,9 +1,11 @@
 import React from "react";
 import { Accordion } from "./Accordion";
+import { ReactComponent as InfoIcon } from "../../filing/images/info.svg"
 import { MoreInfo } from "./MoreInfo";
 import { buildOptions, getType, toJsDateString } from "./parsedHelpers";
 import { log, OR_DELIMITER } from "./utils";
 import STATES from "../../data-browser/constants/states";
+import tooltip, { Tooltip } from "../../common/Tooltip"
 
 export const ParsedRow = ({
   column,
@@ -40,6 +42,18 @@ export const ParsedRow = ({
   );
 };
 
+// Helps Credit Score fields from schema to allow an "Other" option
+const creditScoreInputHandler = (_row, _col) => {
+  // When user input value matches an option from field enumerations then display that option
+  if (_col.enumerations.some(e => e.value == _row[_col.fieldName])) {
+    return _row[_col.fieldName]
+  }
+  // Handle "Other" option return value
+  else {
+    return ""
+  }
+}
+
 const buildPlaceholder = (exs, descs) => {
   return (exs.length ? exs : descs).join(OR_DELIMITER);
 };
@@ -74,15 +88,15 @@ function buildInput(_col, _row, _changeFn) {
     return (
       <select {...common} value={_row[_col.fieldName] || ""}>
         {buildOptions({
-          enumerations: STATES.filter(
-            (state) => !["NW"].includes(state.id)
-          ).map((obj) => ({
-            value: obj.id,
-            description: obj.name,
-          })),
+          enumerations: STATES.filter(state => !["NW"].includes(state.id)).map(
+            obj => ({
+              value: obj.id,
+              description: obj.name,
+            })
+          ),
         })}
       </select>
-    );
+    )
   }
   // Field allows freeform text but also has enumerated values
   else if (
@@ -90,7 +104,7 @@ function buildInput(_col, _row, _changeFn) {
     enumerations.length &&
     // Accepted Enumerations - List will need to be updated with new entries.
     // Buttons or dropdowns are generated from enumerations
-    enumerations.some((e) =>
+    enumerations.some(e =>
       ["NA", "Exempt", "7777", "8888", "9999", "No co-applicant"].includes(
         e.value
       )
@@ -98,41 +112,44 @@ function buildInput(_col, _row, _changeFn) {
   ) {
     const derivedInputField = _col.fieldName.includes("Date") ? (
       <input
-        className="date-input"
+        className='date-input'
         {...common}
-        type="date"
-        onChange={(e) => {
+        type='date'
+        onChange={e => {
           _changeFn({
             target: {
               id: e.target.id,
               value: e.target.value?.replaceAll("-", ""),
             },
-          });
+          })
         }}
         value={toJsDateString(_row[_col.fieldName]?.toString() || "")}
       />
     ) : (
       <input
-        className="text-input"
+        className='text-input'
         {...common}
         type={getType(_col)}
         value={_row[_col.fieldName]?.toString() || ""}
         placeholder={placeholder}
       />
-    );
+    )
     return (
-      <div className="enum-entry">
+      <div className='enum-entry'>
         {derivedInputField}
-        <span className="enums">
+        <span className='enums'>
           {/* Generate a dropdown with enumeration options if enumerations length is 3 or larger */}
           {enumerations.length >= 3 ? (
-            <select {...common} value={_row[_col.fieldName] || ""}>
+            <select
+              {...common}
+              value={creditScoreInputHandler(_row, _col)}
+            >
               {enumerations.map((e, idx) => {
                 return (
                   <option key={`${e.value}-${idx}`} value={e.value}>
                     {e.description}
                   </option>
-                );
+                )
               })}
             </select>
           ) : (
@@ -151,19 +168,53 @@ function buildInput(_col, _row, _changeFn) {
                 >
                   {e.description !== e.value ? e.description : e.value}
                 </button>
-              );
+              )
             })
           )}
         </span>
       </div>
-    );
+    )
   } else if (enumerations.length) {
     // Enumerations only
     return (
       <select {...common} value={_row[_col.fieldName] || ""}>
         {buildOptions(_col)}
       </select>
-    );
+    )
+  }
+  // Displays Icon to the right of input field with a tooltip that has the tooltip text from json schemas
+  else if (_col.tooltip) {
+    return (
+      <>
+        <Tooltip id={_col.fieldName.toString()} place={"top"} effect={"solid"}>
+          {_col.tooltip}
+        </Tooltip>
+        <div style={{ display: "flex" }}>
+          <input
+            className='text-input'
+            {...common}
+            type={getType(_col)}
+            value={_row[_col.fieldName]?.toString() || ""}
+            placeholder={placeholder}
+            style={{ marginRight: "5px" }}
+          />
+
+          <div
+            data-tip
+            data-for={_col.fieldName.toString()}
+            style={{ marginTop: "5px" }}
+          >
+            <InfoIcon
+              style={{
+                cursor: "pointer",
+                height: "18px",
+                width: "18px",
+              }}
+            />
+          </div>
+        </div>
+      </>
+    )
   } else {
     // Examples only
     return (
@@ -173,6 +224,6 @@ function buildInput(_col, _row, _changeFn) {
         value={_row[_col.fieldName] || ""}
         placeholder={placeholder}
       />
-    );
+    )
   }
 }
