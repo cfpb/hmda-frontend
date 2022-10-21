@@ -13,7 +13,8 @@ export const Editing = ({
   saveRow,
   newRow,
   deleteRow,
-  id = 'raw-row',
+  id = "raw-row",
+  setHasNewChanges,
 }) => {
   const [isChanged, setChanged] = useState(false)
 
@@ -22,21 +23,25 @@ export const Editing = ({
   const changeInterceptor = e => {
     setChanged(true)
     setRow(e)
+    setHasNewChanges(true)
   }
 
   const saveInterceptor = e => {
     setChanged(false)
     saveRow(e)
+    setHasNewChanges(true)
   }
 
   const newInterceptor = e => {
     setChanged(false)
     newRow()
+    setHasNewChanges(true)
   }
 
   const deleteInterceptor = e => {
     setChanged(false)
     deleteRow(e)
+    setHasNewChanges(true)
   }
 
   const PipedActions = (
@@ -63,14 +68,14 @@ export const Editing = ({
   return (
     <div className={id} id={id}>
       <h2 className='clickable' onClick={() => goTo(id)}>
-        {row.rowId ? 'Editing' : 'Creating'}{' '}
-        {row[RECORD_IDENTIFIER] === '1'
-          ? 'Transmittal Sheet'
+        {row.rowId ? "Editing" : "Creating"}{" "}
+        {row[RECORD_IDENTIFIER] === "1"
+          ? "Transmittal Sheet"
           : row.rowId
           ? `LAR Row ${row.rowId}`
-          : 'a new LAR Row'}
+          : "a new LAR Row"}
       </h2>
-  
+
       <Parsed
         currCol={currCol}
         row={row}

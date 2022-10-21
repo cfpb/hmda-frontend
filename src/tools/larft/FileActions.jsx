@@ -20,14 +20,28 @@ const createFileContent = (ts, lars) =>
     .map(s => s.trim())
     .join('\n')
 
-const DownloadButton = ({ ts, lars, setFileError }) => {
+const DownloadButton = ({ ts, lars, setFileError, setHasNewChanges }) => {
   const hasSavedRecords = !!ts.length || !!lars.length
 
   const handleDownload = () => {
     if (!ts.length) return setFileError(MESSAGES.needTS)
     if (!lars.length) return setFileError(MESSAGES.needLAR)
-    setFileError('')
-    download('LarFile.txt', createFileContent(ts, lars))
+    setFileError("")
+    // File download name changes if calendar year, quarter and LEI is present in the TS file.
+    if (
+      ts[0]["Calendar Year"] &&
+      ts[0]["Calendar Quarter"] &&
+      ts[0]["Legal Entity Identifier (LEI)"]
+    ) {
+      download(
+        `${ts[0]["Calendar Year"]}-${ts[0]["Calendar Quarter"]}-${ts[0]["Legal Entity Identifier (LEI)"]}.txt`,
+        createFileContent(ts, lars)
+      )
+      setHasNewChanges(false)
+    } else {
+      download("LarFile.txt", createFileContent(ts, lars))
+      setHasNewChanges(false)
+    }
   }
 
   return (
@@ -71,6 +85,7 @@ export const FileActions = ({
   clearSaved,
   ts,
   lars,
+  setHasNewChanges,
 }) => {
   const [fileError, setFileError] = useState()
 
@@ -83,7 +98,14 @@ export const FileActions = ({
       <div className='wrapper'>
         <div className='left'>
           <UploadButton {...{ hasSavedRecords }} />
-          <DownloadButton {...{ ts, lars, setFileError }} />
+          <DownloadButton
+            {...{
+              ts,
+              lars,
+              setFileError,
+              setHasNewChanges,
+            }}
+          />
         </div>
         <div className='right'>
           <ClearButton {...{ hasSavedRecords, clearSaved }} />

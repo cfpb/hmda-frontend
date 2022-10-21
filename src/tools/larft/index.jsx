@@ -38,18 +38,27 @@ export const LARFT = () => {
   const [ts, setTS] = useState([])
   const [lars, setLARs] = useState([])
   const [unparsable, setUnparsable] = useState({})
-  const [selected, setSelected] = useState(parseRow(ts.length ? '2|' : '1|'))
+  const [selected, setSelected] = useState(parseRow(ts.length ? "2|" : "1|"))
   const [currCol, setCurrCol] = useState()
+
+  /* 
+  hasNewChanges: Tracks NEW changes to TS or LAR Records.
+  State is used to prompt user when navigating away from page
+  false = when the user creates/saves/updates/deletes a row
+  true = when the user a downloads file or clears saved records
+  */
+  const [hasNewChanges, setHasNewChanges] = useState(false)
 
   useRestyledButtonLinks()
 
-  const newRow = (_ts) => {
-    const nextRow = parseRow((_ts || ts).length ? '2|' : '1|')
+  const newRow = _ts => {
+    const nextRow = parseRow((_ts || ts).length ? "2|" : "1|")
     nextRow.id = createID()
 
     setCurrCol(null)
     collapseAll()
     setSelected(nextRow)
+    setHasNewChanges(true)
   }
 
   const [saveRow, deleteRow, saveUpload] = createFileInteractions({
@@ -63,23 +72,20 @@ export const LARFT = () => {
     setUnparsable,
     newRow,
   })
-  
 
   const clearSaved = () => {
     setTS([])
     setLARs([])
     newRow()
     setUnparsable({})
+    setHasNewChanges(false)
   }
 
   const hasSavedRecords = !!ts.length || !!lars.length
 
   return (
     <div className='online-larft'>
-      <Prompt
-        when={!!ts.length || !!lars.length}
-        message={MESSAGES.loseUnsaved}
-      />
+      <Prompt when={hasNewChanges === true} message={MESSAGES.loseUnsaved} />
 
       <Header />
       <FileActions
@@ -88,6 +94,7 @@ export const LARFT = () => {
         hasSavedRecords={hasSavedRecords}
         saveUpload={saveUpload}
         clearSaved={clearSaved}
+        setHasNewChanges={setHasNewChanges}
       />
       <Unparsable items={unparsable} />
       <SavedRows
@@ -107,6 +114,7 @@ export const LARFT = () => {
         newRow={newRow}
         saveRow={saveRow}
         deleteRow={deleteRow}
+        setHasNewChanges={setHasNewChanges}
       />
     </div>
   )
