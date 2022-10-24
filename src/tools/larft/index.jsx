@@ -51,14 +51,19 @@ export const LARFT = () => {
 
   useRestyledButtonLinks()
 
-  const newRow = _ts => {
-    const nextRow = parseRow((_ts || ts).length ? "2|" : "1|")
-    nextRow.id = createID()
+  const newRow = () => {
+    // Using setTS only to access the most up-to-date list of TS
+    setTS(latestTS => {
+      const nextRow = parseRow(latestTS.length ? "2|" : "1|")
+      nextRow.id = createID()
+  
+      setCurrCol(null)
+      collapseAll()
+      setSelected(nextRow)
+      setHasNewChanges(true)
 
-    setCurrCol(null)
-    collapseAll()
-    setSelected(nextRow)
-    setHasNewChanges(true)
+      return latestTS // No changes made
+    })
   }
 
   const [saveRow, deleteRow, saveUpload] = createFileInteractions({

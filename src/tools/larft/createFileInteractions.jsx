@@ -53,7 +53,7 @@ export function createFileInteractions({
     setTS(_ts)
     setLARs(_lar)
     setUnparsable(_unparsable)
-    newRow(_ts)
+    newRow()
   }
 
   const saveRow = () => {
