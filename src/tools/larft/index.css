@@ -232,6 +232,10 @@
   justify-content: space-between;
 }
 
+.online-larft h2 {
+  text-align: center;
+}
+
 .section .filters {
   display: flex;
   flex-flow: row nowrap;
