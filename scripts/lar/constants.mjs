@@ -1,11 +1,13 @@
+export const ACTION_TAKEN_MMDD = {
+  1: '0202',
+  2: '0404',
+  3: '0808',
+  4: '1010'
+}
+
 export const COUNTY = '11001'
 
-/* 
-  Due to Node filesize limits, we max out around 500K records (512MB)
-  https://stackoverflow.com/questions/68230031/cannot-create-a-string-longer-than-0x1fffffe8-characters-in-json-parse
-*/
-export const MAX_ROWS = 494100
-
+export const MAX_ROWS = 1000000
 
 export const TRACTS = {
   '2022+': '980000',
