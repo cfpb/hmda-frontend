@@ -6,7 +6,8 @@ import {
   isTS,
   isLAR,
   log,
-} from './utils'
+  filenameSetter,
+} from "./utils"
 
 export function createFileInteractions({
   ts,
@@ -16,11 +17,12 @@ export function createFileInteractions({
   setLARs,
   setTS,
   setUnparsable,
+  setFilename,
 }) {
   const deleteRow = () => {
-    const confirm = window.confirm('Are you sure you want to delete this row?')
+    const confirm = window.confirm("Are you sure you want to delete this row?")
     if (!confirm) return
-    log('[Delete] Deleting row...', selected)
+    log("[Delete] Deleting row...", selected)
     if (isTS(selected)) setTS([])
     else {
       let cloned = cloneObjectArray(lars).filter(r => r.id !== selected.id)
@@ -33,9 +35,9 @@ export function createFileInteractions({
     log(`[Upload] Parsing...: \n${content}`)
 
     if (!content) return
-    const up_rows = content.split('\n')
+    const up_rows = content.split("\n")
     if (!up_rows.length) return
-    log('[Uploaded] Raw rows: ', up_rows)
+    log("[Uploaded] Raw rows: ", up_rows)
 
     let _ts = [],
       _lar = [],
@@ -50,6 +52,9 @@ export function createFileInteractions({
       _unparsable[idx + 1] = r // Track unparsable rows
     })
 
+    // File name will remain the original uploaded file name - without this check the file name would default to "LarFile.txt"
+    filenameSetter(_ts[0], setFilename)
+
     setTS(_ts)
     setLARs(_lar)
     setUnparsable(_unparsable)
@@ -63,12 +68,15 @@ export function createFileInteractions({
     let updateFn
 
     if (isTS(selected)) {
-      log('[Save] Processing a TS row...', selected)
+      log("[Save] Processing a TS row...", selected)
+
+      // Save Filename when TS updates
+      filenameSetter(selected, setFilename)
 
       vals = ts
       updateFn = setTS
     } else if (isLAR(selected)) {
-      log('[Save] Processing a LAR row...', selected)
+      log("[Save] Processing a LAR row...", selected)
 
       vals = lars
       updateFn = setLARs
@@ -76,7 +84,7 @@ export function createFileInteractions({
 
     // Only allow single TS row
     if (vals === ts) {
-      log('[Save] Saving TS row...')
+      log("[Save] Saving TS row...")
 
       const nextTS = cloneObject(selected)
       nextTS.id = createID()
@@ -84,16 +92,16 @@ export function createFileInteractions({
       newRow() // Clear Pipe-delimited area
       return
     } else {
-      log('[Save] Saving LAR row...')
+      log("[Save] Saving LAR row...")
       const cloned = cloneObjectArray(vals)
 
       // Update existing item
       if (!!selected?.id) {
         const updateIndex = cloned.findIndex(el => el?.id === selected.id)
         if (updateIndex > -1) {
-          log('[Save]Updating index: ', updateIndex)
-          log('[Save]-- previous Row at index: ', cloned[updateIndex])
-          log('[Save]-- Updated Row: ', selected)
+          log("[Save]Updating index: ", updateIndex)
+          log("[Save]-- previous Row at index: ", cloned[updateIndex])
+          log("[Save]-- Updated Row: ", selected)
           cloned[updateIndex] = cloneObject(selected)
           updateFn(cloned) // Save rows
           newRow() // Clear Pipe-delimited area
@@ -102,7 +110,7 @@ export function createFileInteractions({
       }
 
       // Append new item
-      log('[Save] Adding new item.')
+      log("[Save] Adding new item.")
       const obj = cloneObject(selected)
       obj.id = createID()
       cloned.push(obj)

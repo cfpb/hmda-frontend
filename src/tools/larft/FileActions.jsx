@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
-import { stringifyRow, unity } from './utils'
-import { FileUpload } from './FileUpload'
-import { Error } from './Error'
-import { download } from './download'
+import React, { useState, useEffect } from "react"
+import { stringifyRow, unity } from "./utils"
+import { FileUpload } from "./FileUpload"
+import { Error } from "./Error"
+import { download } from "./download"
 
 const MESSAGES = {
   upload:
-    'Uploading a file will overwrite your current filing data.  Are you sure?',
-  clear: 'This will delete all current filing data. Are you sure?',
-  needTS: 'Please create a Transmittal Sheet before saving!',
-  needLAR: 'Please create at least one Loan/Application Row before saving!',
+    "Uploading a file will overwrite your current filing data.  Are you sure?",
+  clear: "This will delete all current filing data. Are you sure?",
+  needTS: "Please create a Transmittal Sheet before saving!",
+  needLAR: "Please create at least one Loan/Application Row before saving!",
 }
 
 const createFileContent = (ts, lars) =>
@@ -18,30 +18,24 @@ const createFileContent = (ts, lars) =>
     .map(stringifyRow)
     .filter(unity)
     .map(s => s.trim())
-    .join('\n')
+    .join("\n")
 
-const DownloadButton = ({ ts, lars, setFileError, setHasNewChanges }) => {
+const DownloadButton = ({
+  ts,
+  lars,
+  setFileError,
+  setHasNewChanges,
+  filename,
+}) => {
   const hasSavedRecords = !!ts.length || !!lars.length
 
   const handleDownload = () => {
     if (!ts.length) return setFileError(MESSAGES.needTS)
     if (!lars.length) return setFileError(MESSAGES.needLAR)
     setFileError("")
-    // File download name changes if calendar year, quarter and LEI is present in the TS file.
-    if (
-      ts[0]["Calendar Year"] &&
-      ts[0]["Calendar Quarter"] &&
-      ts[0]["Legal Entity Identifier (LEI)"]
-    ) {
-      download(
-        `${ts[0]["Calendar Year"]}-${ts[0]["Calendar Quarter"]}-${ts[0]["Legal Entity Identifier (LEI)"]}.txt`,
-        createFileContent(ts, lars)
-      )
-      setHasNewChanges(false)
-    } else {
-      download("LarFile.txt", createFileContent(ts, lars))
-      setHasNewChanges(false)
-    }
+    // Filename parameter defauls to LarFile unless Calendar Year, Quarter and LEI has been added to the TS
+    download(`${filename}.txt`, createFileContent(ts, lars))
+    setHasNewChanges(false)
   }
 
   return (
@@ -49,6 +43,7 @@ const DownloadButton = ({ ts, lars, setFileError, setHasNewChanges }) => {
       className='export'
       onClick={handleDownload}
       disabled={!hasSavedRecords}
+      data-filename={filename}
     >
       Download File
     </button>
@@ -60,7 +55,7 @@ const UploadButton = ({ hasSavedRecords }) => (
     className='upload'
     onClick={() => {
       if (hasSavedRecords && !window.confirm(MESSAGES.upload)) return
-      document.getElementById('file-upload')?.click()
+      document.getElementById("file-upload")?.click()
     }}
   >
     Upload File
@@ -86,6 +81,7 @@ export const FileActions = ({
   ts,
   lars,
   setHasNewChanges,
+  filename,
 }) => {
   const [fileError, setFileError] = useState()
 
@@ -104,6 +100,7 @@ export const FileActions = ({
               lars,
               setFileError,
               setHasNewChanges,
+              filename,
             }}
           />
         </div>

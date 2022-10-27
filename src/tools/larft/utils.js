@@ -1,27 +1,27 @@
-import larSchema from './SchemaLar.json'
-import tsSchema from './SchemaTs.json'
+import larSchema from "./SchemaLar.json"
+import tsSchema from "./SchemaTs.json"
 
 export const LAR_SCHEMA = larSchema.schema
 export const TS_SCHEMA = tsSchema.schema
-export const PIPE_DELIMITER = '|'
-export const OR_DELIMITER = ' (or) '
-export const RECORD_IDENTIFIER = 'Record Identifier'
+export const PIPE_DELIMITER = "|"
+export const OR_DELIMITER = " (or) "
+export const RECORD_IDENTIFIER = "Record Identifier"
 
 let NEXT_ID = 0
 export const createID = () => (NEXT_ID++).toString()
 
-export const isTS = r => r && r[RECORD_IDENTIFIER] === '1'
-export const isLAR = r => r && r[RECORD_IDENTIFIER] === '2'
+export const isTS = r => r && r[RECORD_IDENTIFIER] === "1"
+export const isLAR = r => r && r[RECORD_IDENTIFIER] === "2"
 
 export const cloneObject = item => JSON.parse(JSON.stringify(item))
 export const cloneObjectArray = array => array.map(cloneObject)
 
 export const unity = x => x
 
-export const isString = x => typeof x === 'string'
+export const isString = x => typeof x === "string"
 
 export const log = (...data) =>
-  process.env.NODE_ENV !== 'production' ? console.log(...data) : null
+  process.env.NODE_ENV !== "production" ? console.log(...data) : null
 
 export const getSchema = row => {
   if (!row) return LAR_SCHEMA
@@ -29,7 +29,7 @@ export const getSchema = row => {
   if (isString(row) && row.match(/^1/)) return TS_SCHEMA
   // Row object
   else if (isTS(row)) return TS_SCHEMA
-  
+
   return LAR_SCHEMA
 }
 
@@ -64,5 +64,20 @@ export const parseRow = (row = {}) => {
 }
 
 export const goTo = id =>
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-export const goToFileActions = () => goTo('file-actions')
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
+export const goToFileActions = () => goTo("file-actions")
+
+// Function used to set filename state from Index.jsx - filename is used to determine downloaded filename
+export const filenameSetter = (ts, setFilenameState) => {
+  if (
+    ts["Calendar Year"] &&
+    ts["Calendar Quarter"] &&
+    ts["Legal Entity Identifier (LEI)"]
+  ) {
+    setFilenameState(
+      `${ts["Calendar Year"]}-${ts["Calendar Quarter"]}-${ts["Legal Entity Identifier (LEI)"]}`
+    )
+  } else {
+    setFilenameState("LarFile")
+  }
+}
