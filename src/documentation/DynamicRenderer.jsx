@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useLayoutEffect } from "react"
 import Markdown from "markdown-to-jsx"
 import LoadingIcon from "../common/LoadingIcon.jsx"
 import NotFound from "../common/NotFound.jsx"
-import { getMarkdownUrl } from "./markdownUtils"
+import { getMarkdownUrl, slugify } from "./markdownUtils"
 import "./index.css"
 import TableOfContents from "../common/TableOfContents.jsx"
 
@@ -25,6 +25,25 @@ const DynamicRenderer = (props) => {
     },
     [year, slug]
   )
+
+  /**
+   * Dynamically generate self-links for <h3> that link to (self)
+   */
+  useLayoutEffect(() => {
+    // Gather the DOM elements
+    const headingLinks = Array.from(document.querySelectorAll('h3 > a'))
+
+    headingLinks
+      .filter(x => x.href.match(/self$/)) // Find all <a> that need a self-link generated
+      .forEach(a => {
+        // Generate self-link
+        a.href = a.href.replace('self', '#' + slugify(a.innerText))
+        
+        // Clean up the parent ID of the <h3> so TOC linking works
+        const parentId = a.parentElement.id
+        a.parentElement.id = parentId.replace('self', '')
+      })
+  })
 
   // Effect used to find '#' in the route which allows the ability to directly link to a part of the page and scroll to it.
   useEffect(function () {

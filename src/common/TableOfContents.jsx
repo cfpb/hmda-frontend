@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Link as LinkRR } from 'react-router-dom'
+import { slugify } from '../documentation/markdownUtils'
 import './TableOfContents.css'
+
+const HEADING_WITH_LINK = /\[(.*?)\]/
 
 /**
  * Reusable table of contents component that takes markdown data, gets parsed and displays
@@ -43,25 +46,21 @@ const TableOfContents = ({ markdown, year, id, props }) => {
       // Generating a new array of objects which contains title, depth and id
       const parsedHeadings = removeTwoHashes.map(heading => {
         // Regex used on developer markdown headers to correctly parse out the right content
-        if (heading.match(/\[(.*?)\]/)) {
-          let devHeader = heading.match(/\[(.*?)\]/)[1]
+        if (heading.match(HEADING_WITH_LINK)) {
+          let devHeader = heading.match(HEADING_WITH_LINK)[1]
 
-          // if (devHeader.includes(" ")) {
-          //   console.log(devHeader)
-          // }
+          // Same `title` derivation logic, just consolidated for reuse
+          const title = devHeader.includes('\\')
+            ? devHeader.replace(/\\/g, '') // removes backslash
+            : devHeader.toLowerCase()
+          
+          // If the title has spaces it needs to be slugified for use as ID
+          const id = title.includes(' ') ? slugify(title) : title
 
-          let devHeaderAdjusted
-          if (devHeader.includes('\\')) {
-            devHeaderAdjusted = devHeader.replace(/\\/g, '') // removes backslash
-          }
-          // devHeader is used when the `heading` contains one word or `/`
-          // devHeaderAdjusted is used when `heading` contains backslashes
-          return {
-            title:
-              devHeaderAdjusted != undefined ? devHeaderAdjusted : devHeader.toLowerCase(),
-            depth: !heading.includes('#') ? 1 : 2,
-            id: devHeaderAdjusted != undefined ? devHeaderAdjusted : devHeader.toLowerCase(),
-          }
+          const depth = !heading.includes('#') ? 1 : 2
+          
+          return { title, id, depth }
+
         } else if (heading.match(/\[.*\]/g)) {
           console.log(heading)
 

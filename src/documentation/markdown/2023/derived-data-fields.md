@@ -4,7 +4,7 @@ This guide explains fields that are included in public HMDA data collected in 20
 
 ## Derived HMDA Data Fields
 
-### [derived\_ethnicity](#derived_ethnicity)
+### [Derived Ethnicity (derived\_ethnicity)](self)
 
 - **Description:** Single aggregated ethnicity categorization  derived from applicant/borrower and co-applicant/co-borrower ethnicity fields
 - **Field Data Type:** Alphanumeric
@@ -15,7 +15,7 @@ This guide explains fields that are included in public HMDA data collected in 20
   - Ethnicity Not Available
   - Free Form Text Only
 
-### [derived\_race](#derived_race)
+### [Derived Race (derived\_race)](self)
 
 - **Description:** Single aggregated race categorization derived from applicant/borrower and co-applicant/co-borrower race fields
 - **Field Data Type:** Alphanumeric
@@ -30,7 +30,7 @@ This guide explains fields that are included in public HMDA data collected in 20
   - Free Form Text Only
   - Race Not Available
 
-### [derived\_sex](#derived_sex)
+### [Derived Sex (derived\_sex)](self)
 
 - **Description:** Single aggregated sex categorization derived from applicant/borrower and co-applicant/co-borrower sex fields
 - **Field Data Type:** Alphanumeric
@@ -40,7 +40,7 @@ This guide explains fields that are included in public HMDA data collected in 20
   - Joint
   - Sex Not Available
 
-### [derived\_loan\_product\_type](#derived_loan_product_type)
+### [Derived Loan Product Type (derived\_loan\_product\_type)](self)
 
 - **Description:** Derived loan product type from Loan Type and Lien Status fields for easier querying of specific records
 - **Field Data Type:** Alphanumeric
@@ -54,7 +54,7 @@ This guide explains fields that are included in public HMDA data collected in 20
   - VA: Subordinate Lien
   - FSA/RHS: Subordinate Lien
 
-### [derived\_dwelling\_category](#derived_dwelling_category)
+### [Derived Dwelling Category (derived\_dwelling\_category)](self)
 
 - **Description:** Derived dwelling type from Construction Method and Total Units fields for easier querying of specific records
 - **Field Data Type:** Alphanumeric
@@ -64,7 +64,7 @@ This guide explains fields that are included in public HMDA data collected in 20
   - Single Family (1-4 Units): Manufactured
   - Multifamily: Manufactured
 
-### [conforming\_loan\_limit](#conforming_loan_limit)
+### [Conforming Loan Limit (conforming\_loan\_limit)](self)
 
 - **Description:** Indicates whether the reported loan amount exceeds the GSE (government sponsored enterprise) conforming loan limit
 - **Field Data Type:** Alphanumeric
@@ -74,14 +74,14 @@ This guide explains fields that are included in public HMDA data collected in 20
   - U (Undetermined)
   - NA (Not Applicable)
 
-### [derived\_msa-md](#derived_msa-md)
+### [Derived MSA/MD (derived\_msa-md)](self)
 
 - **Description:** Derived MSA/MD from the property location reported for the record
 - **Field Data Type:** Alphanumeric
 - **Values:**
   - Varying values
 
-### [applicant\_age\_above\_62](#applicant_age_above_62)
+### [Applicant Age Above 62 (applicant\_age\_above\_62)](self)
 
 - **Description:** Whether the applicant or borrower age is above 62
 - **Field Data Type:** Alphanumeric
@@ -90,7 +90,7 @@ This guide explains fields that are included in public HMDA data collected in 20
   - No
   - NA
 
-### [co-applicant\_age\_above\_62](#co-applicant_age_above_62)
+### [Co-Applicant Age Above 62 (co-applicant\_age\_above\_62)](self)
 
 - **Description:** Whether the first co-applicant or co-borrower age is above 62
 - **Field Data Type:** Alphanumeric
@@ -101,43 +101,43 @@ This guide explains fields that are included in public HMDA data collected in 20
 
 ## Census fields produced by the U.S. Census Bureau and appended to public HMDA Data
 
-### [tract\_population](#tract_population)
+### [Tract Population (tract\_population)](self)
 
 - **Description:** Total population in tract
 - **Values:**
   - Varying values
 
-### [tract\_minority\_population\_percent](#tract_minority_population_percent)
+### [Tract Minority Population Percent (tract\_minority\_population\_percent)](self)
 
 - **Description:** Percentage of minority population to total population for tract, rounded to two decimal places
 - **Values:**
   - Varying values
 
-### [ffiec\_msa\_md\_median\_family\_income](#ffiec_msa_md_median_family_income)
+### [FFIEC MSA/MD Medium Family Income (ffiec\_msa\_md\_median\_family\_income)](self)
 
 - **Description:** FFIEC Median family income in dollars for the MSA/MD in which the tract is located (adjusted annually by FFIEC)
 - **Values:**
   - Varying values
 
-### [tract\_to\_msa\_income\_percentage](#tract_to_msa_income_percentage)
+### [Tract to MSA Income Percentage (tract\_to\_msa\_income\_percentage)](self)
 
 - **Description:** Percentage of tract median family income compared to MSA/MD median family income
 - **Values:**
   - Varying values
 
-### [tract\_owner\_occupied\_units](#tract\_owner\_occupied\_units)
+### [Tract Ownser Occupied Units (tract\_owner\_occupied\_units)](self)
 
 - **Description:** Number of dwellings, including individual condominiums, that are lived in by the owner
 - **Values:**
   - Varying values
 
-### [tract\_one\_to\_four\_family\_homes](#tract_one_to_four_family_homes)
+### [Tract One to Four Family Homes (tract\_one\_to\_four\_family\_homes)](self)
 
 - **Description:** Dwellings that are built to houses with fewer than 5 families
 - **Values:**
   - Varying values
 
-### [tract\_median\_age\_of\_housing\_units](#tract_median_age_of_housing_units)
+### [Tract Median Age of Housing Units (tract\_median\_age\_of\_housing\_units)](self)
 
 - **Description:** Tract median age of homes
 - **Values:**
