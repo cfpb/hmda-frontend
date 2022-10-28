@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import Markdown from "markdown-to-jsx"
-import { Link } from "react-router-dom"
 import LoadingIcon from "../common/LoadingIcon.jsx"
 import NotFound from "../common/NotFound.jsx"
 import { getMarkdownUrl } from "./markdownUtils"

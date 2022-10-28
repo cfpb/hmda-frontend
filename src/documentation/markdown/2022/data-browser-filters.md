@@ -1,10 +1,10 @@
-# HMDA Data Browser - List of filters
+# HMDA Dataset Filtering Tool - List of filters
 
 ## Geography Filters
 
 ### [Nationwide](#Nationwide)
 
-- **Description:** Select this option to download the national loan-level dataset. This is a large dataset (5.8 GB) and will take time to download. It will not be able to be opened in standard applications.
+- **Description:** Select this option to download the national loan-level dataset. This is a large dataset (5.8 GB) and will take time to download. It will not be able to be opened in standard applications. If using a standard application, adding pre-selected filters will narrow down the dataset with your preferred parameters and minimize the file size.
 
 ### [State](#State)
 

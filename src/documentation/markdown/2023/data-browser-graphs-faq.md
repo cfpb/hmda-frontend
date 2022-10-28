@@ -6,7 +6,7 @@ The Quarterly Graphs display an aggregated view of quarterly filers for the curr
 
 A financial institution is required to report quarterly HMDA data if it reported a combined total of at least 60,000 applications and covered loans, excluding purchased covered loans, for the preceding calendar year. Institutions file quarterly data three times a year, with quarter four data being reported in the following year’s annual submission. 
 
-## How were institutions chosen to be displayed in the quarterly filing graphs?
+## What institutions are displayed in the Quarterly Graphs?
 
 The institutions displayed are eligible for quarterly filing for the current year. Only the current year’s eligibility is considered when determining the list of institutions displayed in these quarterly graphs, meaning a previously eligible quarterly filer would be excluded if they do not qualify for the current year. In addition to the current year’s quarterly data, users can view three years of data for the institutions. The data in each graph is based on the same set of institutions.   
 

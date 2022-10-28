@@ -2,7 +2,7 @@
 
 ## Account Registration
 
-### What information do I need to provide to register my financial institution?
+### How do I register my financial institution?
 To register your financial institution on the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/filing">HMDA Filing Platform</a> you will need to provide your institution name, <a target="_blank" rel="noopener noreferrer" href="http://ffiec.cfpb.gov/documentation/2021/filing-faq#what-is-a-legal-entity-identifier-lei">LEI (Legal Entity Identifier)</a>, tax ID number, email domain (example: cfpb.gov), and agency code. Registration is a two-step process. You must create a filer account **and** register your institution in the system. You can register your financial institution here: https://hmdahelp.consumerfinance.gov/accounthelp/. Do not use a personal email address to register for an account. The <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/filing">HMDA Filing Platform</a> is designed to authenticate users based upon a financial institution’s registered email domain. If you do not have an email address within your financial institution's email domain, [contact HMDA Help](mailto:hmdahelp@cfpb.gov).
 
 ### What is a Legal Entity Identifier (LEI)?
@@ -29,7 +29,7 @@ Institutions should provide one of the following agency codes:
 The Bureau hosts the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.beta.cfpb.gov/">HMDA Beta Filing Platform</a> (https://ffiec.beta.cfpb.gov/) where you can submit HMDA data in a sandboxed environment (a non-production system designed for application testing) prior to the official filing period. This gives you an early opportunity to <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/documentation/markdown/2021/filing-faq.md#what-tools-can-i-use-to-help-prepare-my-file-for-submission">prepare your data</a>, review and resolve edits, as well as identify and correct formatting errors. **Data submitted to the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.beta.cfpb.gov/">HMDA Beta Filing Platform</a> is not retained by the Bureau, or any other regulatory agency.**
 
 ### What tools can I use to help prepare my file for submission?
-You can use the <a target="_blank" rel="noopener noreferrer" href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2018-hmda-fig.pdf">**Filing Instructions Guide (FIG)**</a> applicable to the year you are filing data for. Filing Instructions Guides for each year can be found on the home page of https://ffiec.cfpb.gov/, under the “Help For Filers” section. 
+You can use the <a target="_blank" rel="noopener noreferrer" href="https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2018-hmda-fig.pdf">**Filing Instructions Guide (FIG)**</a> applicable to the year you are filing data for. Filing Instructions Guides for each year can be found on the home page of https://ffiec.cfpb.gov/, **under the “Help For Filers” section.**
 
 - LAR File Format: **Section 3.3 of the FIG** provides filers with the proper steps to format your LAR File. An example of a correctly formatted file can be found here: https://github.com/cfpb/hmda-platform/blob/master/data/2019/clean_test_files/bank_1/clean_file_100_rows_Bank1.txt.  
 
@@ -45,7 +45,7 @@ The <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/to
 - has the proper number of data fields; and
 - has data fields formatted as integers, where necessary. 
 
-The FFVT does not allow you to submit HMDA data. Additionally, there is a unique File Format Verification Tool for each HMDA data collection year, so please select the relevant year before uploading a file.
+The FFVT does not allow you to submit HMDA data.
 
 ### I’m having issues when I try to upload my file, what should I do?
 If you are having issues uploading a new file and are receiving errors from a previous upload, please: 
@@ -74,7 +74,7 @@ Below that message is a button that says 'View Completed Filing'. Select that an
 ### When can I submit my file?
 The <a target="_blank" rel="noopener noreferrer" href="https://ffiec.beta.cfpb.gov/">HMDA Beta Filing Platform</a> is open throughout the year to test your HMDA data.
 
-_Annual HMDA data submissions_ for the 2018 filing year are accepted January 1 - March 1, 2019.  
+_Annual HMDA data submissions_ for the filing year are accepted between January 1 – March to be considered timely. 
 <br/>
 
 ![2018 annual filing dates](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/annual_filing.png)  
@@ -92,7 +92,7 @@ If you wish to explain the circumstances surrounding a late submission, contact 
 
 ## Miscellaneous
 
-### What steps should I take on the Co-Applicant Credit Score and Co-Applicant Credit Scoring Model when there is no co-applicant?
+### What should I record in the Co-Applicant Credit Score and Co-Applicant Credit Scoring Model fields when there is no co-applicant?
 If the Action Taken is 4, 5, or 6, an institution should report 8888 in the Credit Score of Co-Applicant or Co-Borrower data field and 9 in the Co-Applicant or Co-Borrower, Name and Version of Credit Scoring Model data field, regardless of whether there is a Co-Applicant for the record(s). 
 
 ### I am receiving formatting errors/edits regarding ethnicity and/or race of applicant fields.

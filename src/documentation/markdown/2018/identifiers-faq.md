@@ -11,7 +11,7 @@ For 2017 and prior, an institution's unique identifier is the concatenation of A
 
 Respondent ID is for 2017 and prior is one of the following: OCC charter number, FDIC certificate number, NCUA charter number, National Information Center (NIC) RSSD, or federal tax ID. The OCC, FDIC, NCUA, and RSSD identifiers all use a sequential integer system. Meaning that identifiers start at 1 and progress in increments of 1 when new institutions are registered. This creates the potential for duplicate IDs for HMDA filers. Joining an institution's Agency Code to its Respondent ID ensures that the resulting identifier is unique.
 
-### How can I map 2017 institution identifiers to 2018 institution identifiers?
+### How can I map 2017 to 2018 institution identifiers?
 The _ARID2017 to LEI Reference Table_ provides a mapping of 2017 Agency Code and Respondent IDs (ARID2017) to their current institution identifiers (LEI). This table is available on the <a href="https://ffiec.cfpb.gov/data-publication/snapshot-national-loan-level-dataset/">Snapshot National Loan Level Dataset</a> page, with direct links to each available table format provided below.
 
 - <a download href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/arid2017tolei/arid2017_to_lei_xref_csv.zip">ARID2017 to LEI Reference Table (CSV)</a>  
@@ -19,10 +19,10 @@ The _ARID2017 to LEI Reference Table_ provides a mapping of 2017 Agency Code and
 
 ## Institution Name Changes
 
-### What happens with institution name changes for 2018 and beyond?
+### What if institution's change their names for 2018 or later
 In 2018 and subsequent years, an institution's name in the HMDA Panel dataset is pulled from <a target="_blank" rel="noopener noreferrer" href="https://www.gleif.org/">GLEIF</a> using the <a target="_blank" rel="noopener noreferrer" href="http://ffiec.cfpb.gov/documentation/2021/filing-faq#what-is-a-legal-entity-identifier-lei">LEI</a> provided by that institution. If the institution changes their legal name with <a target="_blank" rel="noopener noreferrer" href="https://www.gleif.org/">GLEIF</a> after the publication of the HMDA Panel, that change will populate in the subsequent HMDA Panel.
 
-### What happens with institution name changes for 2017 and prior?
+### What if institution's change their names for 2017 or prior
 In 2017 an institution's name in the HMDA Panel is pulled from the National Information Center (NIC) dataset. If an institution changed its legal name in NIC after the publication of the HMDA Panel, this change was not back populated.
 
 ## Institution Agency Code Changes
