@@ -39,16 +39,10 @@ describe("Filing", function() {
     }).logEnv()
     
     // Skip authentication on CI
-    if(!isCI(ENVIRONMENT)) {
-      cy.logout({ root: authUrl, realm: AUTH_REALM })
-      cy.login({
-        root: authUrl,
-        realm: AUTH_REALM,
-        client_id: AUTH_CLIENT_ID,
-        redirect_uri: HOST,
-        username: USERNAME,
-        password: PASSWORD
-      })
+    if (!isCI(ENVIRONMENT)) {
+      cy.hmdaLogin('filing', authUrl)
+      cy.url().should('contains', `${AUTH_BASE_URL}filing/`)
+      cy.url().should('contains', `/institutions`)
     }
     
     cy.viewport(1600, 900)

@@ -47,7 +47,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    keycloak.init().then(authenticated => {
+    keycloak.init({ pkceMethod: 'S256' }).then(authenticated => {
       if (authenticated) {
         AccessToken.set(keycloak.token)
         refreshToken(this)
