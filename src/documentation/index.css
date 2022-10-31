@@ -29,7 +29,7 @@ html {
 }
 
 .Markdown-Wrapper img {
-  width: 100%;
+  max-width: 100%;
 }
 
 .Markdown-Wrapper img.widthOriginal {
