@@ -23,7 +23,8 @@ const TableOfContents = ({ markdown, year, id, props }) => {
   let idFromURL = props.props.location.hash
 
   useEffect(() => {
-    setActiveContent(idFromURL.replace('#', ''))
+    const nextContent = idFromURL.replace(/[#_]/g, '').toLowerCase()
+    setActiveContent(slugify(nextContent))
   }, [idFromURL])
 
   useEffect(() => {
@@ -54,8 +55,7 @@ const TableOfContents = ({ markdown, year, id, props }) => {
             ? devHeader.replace(/\\/g, '') // removes backslash
             : devHeader.toLowerCase()
           
-          // If the title has spaces it needs to be slugified for use as ID
-          const id = title.includes(' ') ? slugify(title) : title
+          const id = slugify(title)
 
           const depth = !heading.includes('#') ? 1 : 2
           
@@ -76,7 +76,7 @@ const TableOfContents = ({ markdown, year, id, props }) => {
           return {
             title: heading.replace(/[#\\]/g, '').trim(),
             depth: !heading.includes('#') ? 1 : 2,
-            id: adjustedID,
+            id: slugify(adjustedID),
           }
         } else {
           return {

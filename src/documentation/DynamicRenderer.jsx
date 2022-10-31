@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from "react"
+import React, { useState, useEffect, useLayoutEffect, useCallback } from "react"
 import Markdown from "markdown-to-jsx"
 import LoadingIcon from "../common/LoadingIcon.jsx"
 import NotFound from "../common/NotFound.jsx"
@@ -11,6 +11,15 @@ const DynamicRenderer = (props) => {
   const [error, setError] = useState(null)
   const [idToScrollTo, setIdToScrollTo] = useState()
   const { year, slug, showBackLink = true } = props
+
+  const scrollToElement = useCallback(
+    id => {
+      const element = document.getElementById(id)
+      setIdToScrollTo(id)
+      if (element) setTimeout(() => element.scrollIntoView(), 0)
+    },
+    [setIdToScrollTo]
+  )
 
   useEffect(
     function () {
@@ -30,6 +39,8 @@ const DynamicRenderer = (props) => {
    * Dynamically generate self-links for <h3> that link to (self)
    */
   useLayoutEffect(() => {
+    if (!data) return
+    
     // Gather the DOM elements
     const headingLinks = Array.from(document.querySelectorAll('h3 > a'))
 
@@ -43,19 +54,26 @@ const DynamicRenderer = (props) => {
         const parentId = a.parentElement.id
         a.parentElement.id = parentId.replace('self', '')
       })
+
+    // Trigger scrollTo now that elements have the appropriate IDs assigned
+    const { hash } = window.location
+    if (hash) {
+      setTimeout(() => {
+        const stripped = hash.replace(/[#_/]/g, '').toLowerCase()
+        scrollToElement(stripped)
+      }, 0)
+    }
   })
 
-  // Effect used to find '#' in the route which allows the ability to directly link to a part of the page and scroll to it.
-  useEffect(function () {
+  useEffect(() => {
     if (!data) return
     const { hash } = window.location
     if (hash) {
       setTimeout(() => {
         const stripped = hash.replace(/[#_/]/g, "").toLowerCase()
+        if (idToScrollTo?.includes(stripped)) return // Already has the adjusted ID
         const id = stripped + stripped
-        const element = document.getElementById(id)
-        setIdToScrollTo(id)
-        if (element) setTimeout(() => element.scrollIntoView(), 0)
+        scrollToElement(id)
       }, 0)
     }
   })
