@@ -1,15 +1,17 @@
-import React, { useState, useEffect, useLayoutEffect, useCallback } from "react"
-import Markdown from "markdown-to-jsx"
-import LoadingIcon from "../common/LoadingIcon.jsx"
-import NotFound from "../common/NotFound.jsx"
-import { getMarkdownUrl, slugify } from "./markdownUtils"
-import "./index.css"
-import TableOfContents from "../common/TableOfContents.jsx"
+import React, { useState, useEffect, useLayoutEffect, useCallback } from 'react'
+import Markdown from 'markdown-to-jsx'
+import LoadingIcon from '../common/LoadingIcon.jsx'
+import NotFound from '../common/NotFound.jsx'
+import { Link as LinkRR } from 'react-router-dom'
+import { getMarkdownUrl, slugify } from './markdownUtils'
+import './index.css'
+import TableOfContents from '../common/TableOfContents.jsx'
 
-const DynamicRenderer = (props) => {
+const DynamicRenderer = props => {
   const [data, setData] = useState(null)
   const [error, setError] = useState(null)
   const [idToScrollTo, setIdToScrollTo] = useState()
+  const [TOCSideBarDisplay, setTOCSideBarDisplay] = useState(false)
   const { year, slug, showBackLink = true } = props
 
   const scrollToElement = useCallback(
@@ -24,11 +26,11 @@ const DynamicRenderer = (props) => {
   useEffect(
     function () {
       fetch(getMarkdownUrl(year, slug))
-        .then((res) => {
-          if (res.status === 404) throw new Error("404")
+        .then(res => {
+          if (res.status === 404) throw new Error('404')
           res.text().then(setData)
         })
-        .catch((e) => {
+        .catch(e => {
           setError(e)
         })
     },
@@ -40,7 +42,7 @@ const DynamicRenderer = (props) => {
    */
   useLayoutEffect(() => {
     if (!data) return
-    
+
     // Gather the DOM elements
     const headingLinks = Array.from(document.querySelectorAll('h3 > a'))
 
@@ -49,7 +51,7 @@ const DynamicRenderer = (props) => {
       .forEach(a => {
         // Generate self-link
         a.href = a.href.replace('self', '#' + slugify(a.innerText))
-        
+
         // Clean up the parent ID of the <h3> so TOC linking works
         const parentId = a.parentElement.id
         a.parentElement.id = parentId.replace('self', '')
@@ -70,7 +72,7 @@ const DynamicRenderer = (props) => {
     const { hash } = window.location
     if (hash) {
       setTimeout(() => {
-        const stripped = hash.replace(/[#_/]/g, "").toLowerCase()
+        const stripped = hash.replace(/[#_/]/g, '').toLowerCase()
         if (idToScrollTo?.includes(stripped)) return // Already has the adjusted ID
         const id = stripped + stripped
         scrollToElement(id)
@@ -81,14 +83,23 @@ const DynamicRenderer = (props) => {
   if (error) return <NotFound />
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: 'flex' }}>
       <TableOfContents
         markdown={data}
         year={year}
         id={idToScrollTo}
         props={props}
+        setTOCSideBarDisplay={setTOCSideBarDisplay}
       />
-      <div className="Markdown-Wrapper">
+      <div className='Markdown-Wrapper'>
+        {/* Show `documentation` link if TOC sidebar doesn't show up on that page */}
+        {TOCSideBarDisplay === false ? (
+          <LinkRR className='BackLink' to={`/documentation/${year}`}>
+            {'\u2b05'} {year} DOCUMENTATION
+          </LinkRR>
+        ) : (
+          ''
+        )}
         {data ? <Markdown>{data}</Markdown> : <LoadingIcon />}
       </div>
     </div>

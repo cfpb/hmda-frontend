@@ -14,9 +14,16 @@ const HEADING_WITH_LINK = /\[(.*?)\]/
  * @param {year} String Tells the backlink what year the documentation comes from
  * @param {id} String id comes from DynamicRenderer and is specifically used on developer documentation. It is a continuation of direct linking to a specific developer Field.
  * @param {props} Object Required to get access to location.hash string
+ * @param {setTOCSideBarDisplay} Boolean Helps trigger `back to documentation` link appear if table of contents sidebar isn't present
  */
 
-const TableOfContents = ({ markdown, year, id, props }) => {
+const TableOfContents = ({
+  markdown,
+  year,
+  id,
+  props,
+  setTOCSideBarDisplay,
+}) => {
   const [markdownHeaders, setMarkdownHeaders] = useState()
   const [activeContent, setActiveContent] = useState()
 
@@ -53,18 +60,13 @@ const TableOfContents = ({ markdown, year, id, props }) => {
           // Same `title` derivation logic, just consolidated for reuse
           const title = devHeader.includes('\\')
             ? devHeader.replace(/\\/g, '') // removes backslash
-            : devHeader.toLowerCase()
-          
+            : devHeader
+
           const id = slugify(title)
 
           const depth = !heading.includes('#') ? 1 : 2
-          
+
           return { title, id, depth }
-
-        } else if (heading.match(/\[.*\]/g)) {
-          console.log(heading)
-
-          return {}
         } else if (heading.match(/^(.+)$/)) {
           // Regex matching and replace specfically for titles that have parenthesis  -> Action Taken (action_taken)
           // Does not support direct linking
@@ -89,8 +91,8 @@ const TableOfContents = ({ markdown, year, id, props }) => {
         }
       })
 
-      console.log(parsedHeadings)
       setMarkdownHeaders(parsedHeadings)
+      setTOCSideBarDisplay(true)
     }
   }, [markdown, id])
 
