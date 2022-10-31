@@ -7,6 +7,15 @@
   align-items: center;
 }
 
+/* Prevent shifting height on homepage banner  */
+#oc-homepage-banner .alert-text {
+  max-height: 3em;
+}
+
+#oc-homepage-banner .alert {
+  height: 120px;
+}
+
 .oc .alert {
   margin: 0;
   padding-top: 3rem;
@@ -120,4 +129,16 @@
   padding: .75rem;
   margin-left: 1rem;
   line-height: inherit;
+}
+
+@media screen and (max-width: 600px) {
+  #oc-homepage-banner .alert {
+    height: 150px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  #oc-homepage-banner .alert {
+    height: 175px;
+  }
 }

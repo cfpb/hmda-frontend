@@ -1,6 +1,7 @@
 .column-container {
   display: flex;
   flex-flow: row nowrap;
+  justify-content: space-between;
 }
 
 .column-container .column {
@@ -9,7 +10,6 @@
 
 .column-container .column:not(:last-of-type) {
   margin-right: 2.5em;
-  padding-right: 2.5em;
 }
 
 .column-container .column-header {
@@ -26,4 +26,14 @@
 
 .column-container .card-container header:not(:first-child) {
   margin-top: 2.5em;
+}
+
+@media screen and (max-width: 768px) {
+  .column-container {
+    flex-flow: column nowrap;
+  }
+
+  .column-container .column:not(:last-of-type) {
+    margin-right: 0;
+  }
 }

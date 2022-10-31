@@ -55,7 +55,7 @@
   - Varying values
 
 ### [assets](#assets)
-- **Description:** The assets of the institution in the 4th quarter of the HMDA collection year
+- **Description:** The count of assets of the institution in the 4th quarter of the HMDA collection year
 - **Values:**
   - -1: NULL/blank
   - Varying values

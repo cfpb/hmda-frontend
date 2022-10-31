@@ -1,33 +1,33 @@
-import React, { useState } from 'react'
-import { GraphsHeader } from './GraphsHeader'
-import { HomeLink } from '../../HomeLink'
-import { SectionFAQ } from './SectionFAQ.jsx'
-import { SectionFilerInfo } from './SectionFilerInfo'
-import { SectionGraphs } from './SectionGraphs'
-import { SectionSelector } from '../SectionSelector'
-import Error from '../../../common/Error'
-import '../graphs.css'
+import React, { useState } from "react"
+import { Route, Switch, useLocation } from "react-router-dom"
+import { CURRENT_YEAR } from "../../../common/constants/years"
+import Error from "../../../common/Error"
+import DynamicRenderer from "../../../documentation/DynamicRenderer"
+import { HomeLink } from "../../HomeLink"
+import "../graphs.css"
+import { SectionSelector } from "../SectionSelector"
+import { GraphsHeader } from "./GraphsHeader"
+import QuarterlyFilersTable from "./QuarterlyFilersTable"
+import { SectionGraphs } from "./SectionGraphs"
 
-const SectionOptions = ['Graphs', 'Filer Info', 'FAQ']
+const PATH_FILERS_INFO = "/data-browser/graphs/quarterly/info/filers"
+const PATH_FAQ = "/data-browser/graphs/quarterly/info/faq"
 
-export const QuarterlyGraphs = props => {
+export const QuarterlyGraphs = (props) => {
   const [error, setError] = useState()
   const [graphHeaderOverview, setGraphHeaderOverview] = useState() // Populated from API
-  const [section, setSection] = useState(SectionOptions[0])
+  const location = useLocation()
+
+  const showGraphs = ![PATH_FILERS_INFO, PATH_FAQ].includes(location.pathname)
 
   return (
-    <div className='Graphs'>
+    <div className="Graphs">
       <HomeLink />
       <GraphsHeader overview={graphHeaderOverview} />
       <Error error={error} />
-      <SectionSelector
-        options={SectionOptions}
-        selected={section}
-        onChange={setSection}
-      />
-      <div className='section-wrapper'>
+      <SectionSelector props={props} />
+      <div className="section-wrapper">
         <SectionGraphs
-          show={section === 'Graphs'}
           {...{
             error,
             setError,
@@ -35,10 +35,26 @@ export const QuarterlyGraphs = props => {
             location: props.location,
             match: props.match,
             history: props.history,
+            show: showGraphs,
           }}
         />
-        <SectionFilerInfo show={section === 'Filer Info'} />
-        <SectionFAQ show={section === 'FAQ'} />
+        <Switch>
+          {/* Setting direct paths to access other tabs */}
+          <Route
+            path={PATH_FILERS_INFO}
+            render={() => <QuarterlyFilersTable />}
+          />
+          <Route
+            path={PATH_FAQ}
+            render={() => (
+              <DynamicRenderer
+                year={CURRENT_YEAR}
+                slug={"data-browser-graphs-faq"}
+                showBackLink={false}
+              />
+            )}
+          />
+        </Switch>
       </div>
     </div>
   )

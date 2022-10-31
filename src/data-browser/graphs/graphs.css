@@ -88,3 +88,7 @@
 .Graphs .Markdown-Wrapper h2 {
   font-size: 1.25em;
 }
+
+.Graphs .highcharts-data-table {
+  overflow: auto;
+}

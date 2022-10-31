@@ -1,4 +1,5 @@
 import { splitYearQuarter } from '../../filing/api/utils'
+import { isBeta } from '../configUtils'
 
 const defaultOpts = {
   withAdmin: true // Include administrative years (PREVIEW) in the returned list
@@ -39,9 +40,14 @@ export const getFilingYears = (config, options = defaultOpts) => {
       years.add(splitYearQuarter(adminPeriod)[0])
     )
 
-    // Starting in Q3, automatically enable institution management for the upcoming year
     const [year, quarter] = splitYearQuarter(config.defaultPeriod)
-    if (year) {
+
+    if (isBeta()) {
+      // Always allow access to *next* year in Beta environments
+      const upcomingYear = new Date().getFullYear() + 1
+      years.add(upcomingYear.toString())
+    } else if (year) {
+      // Starting in Q3, automatically enable institution management for the upcoming year
       const upcomingYear = quarter !== 'Q3' ? year : parseInt(year, 10) + 1
       years.add(upcomingYear.toString())
     }

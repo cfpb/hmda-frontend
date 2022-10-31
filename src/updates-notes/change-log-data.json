@@ -1,6 +1,30 @@
 {
   "log": [
     {
+      "date": "10/04/22",
+      "type": "correction",
+      "product": "tools",
+      "description": "The addition of 2022-Q2 data on the evening of October 3rd resulted in a data error in the 2022-Q1 data displayed in the graphs. The data for HMDA Quarterly Graphs for 2022-Q1 have now been corrected.",
+      "links": [
+        {
+          "text": "HMDA Quarterly Graphs",
+          "url": "https://ffiec.cfpb.gov/data-browser/graphs/quarterly"
+        }
+      ]
+    },
+    {
+      "date": "10/03/22",
+      "type": "update",
+      "product": "tools",
+      "description": "HMDA Quarterly Graphs have been updated to include data for 2022-Q2",
+      "links": [
+        {
+          "text": "HMDA Quarterly Graphs",
+          "url": "https://ffiec.cfpb.gov/data-browser/graphs/quarterly"
+        }
+      ]
+    },
+    {
       "date": "09/06/22",
       "type": "release",
       "product": "documentation",

@@ -9,6 +9,7 @@ export const Filing = ({ defaultPeriod }) => (
     destination={`/filing/${defaultPeriod}/`}
     expandedByDefault={true}
     disableExpansion={isBeta()}
+    openNewWindow={true}
   >
     <ul>
       <li>

@@ -27,7 +27,7 @@ export function fetchData(options = { method: 'GET' }) {
     options.querystring = createQueryString(options.params)
   }
 
-  const url = makeUrl(options)
+  const url = options.url || makeUrl(options)
   if (typeof options.body === 'object' && !isFormData)
     options.body = JSON.stringify(options.body)
 

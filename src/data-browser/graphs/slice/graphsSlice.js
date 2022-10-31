@@ -1,18 +1,6 @@
-import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/toolkit';
-import * as graphsApi from './api/graphs';
-import { IDLE, PENDING, REJECTED, SUCCEEDED } from './api/status';
-
-const idleState = {
-  loading: IDLE,
-  currentRequestId: null,
-  data: null,
-};
-
-const detailsAdapter = createEntityAdapter({
-  selectId: graph => graph.endpoint,
-});
-
-const detailSelectors = detailsAdapter.getSelectors(state => state.details);
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { QuarterlyApiUrl } from '../constants';
 
 const configsAdapter = createEntityAdapter({
   selectId: config => config.id,
@@ -21,116 +9,41 @@ const configsAdapter = createEntityAdapter({
 const configSelectors = configsAdapter.getSelectors(state => state.configs);
 
 const initialState = {
-  list: idleState,
-  details: detailsAdapter.getInitialState(),
   configs: configsAdapter.getInitialState(),
 };
 
-export const graphsSlice = createSlice({
-  name: 'graphs',
+const graphsConfig = createSlice({
+  name: 'graphsConfig',
   initialState,
   reducers: {
     setConfig: (state, action) => {
       configsAdapter.upsertOne(state.configs, action);
     },
   },
-  extraReducers: builder => {
-    builder
-      .addCase(fetchGraphsInfo.pending, (state, action) => {
-        if (state.list.loading === IDLE) {
-          state.list.loading = PENDING;
-          state.list.currentRequestId = action.meta.requestId;
-        }
-      })
-      .addCase(fetchGraphsInfo.fulfilled, (state, action) => {
-        state.list.loading = SUCCEEDED;
-        state.list.currentRequestId = null;
-        state.list.data = action.payload;
-      })
-      .addCase(fetchGraphsInfo.rejected, (state, action) => {
-        state.list.loading = REJECTED;
-        state.list.currentRequestId = null;
-        state.list.data = action.payload;
-      })
-      .addCase(fetchGraph.pending, (state, action) => {
-        const { arg: endpoint, requestId } = action.meta;
-        const { loading } = detailSelectors.selectById(state, endpoint) || idleState;
-        if (loading === IDLE || loading === REJECTED) {
-          detailsAdapter.upsertOne(state.details, {
-            ...idleState,
-            currentRequestId: requestId,
-            endpoint,
-            loading: PENDING,
-          });
-        }
-      })
-      .addCase(fetchGraph.fulfilled, (state, action) => {
-        const { arg: endpoint } = action.meta;
-        detailsAdapter.upsertOne(state.details, {
-          endpoint,
-          loading: SUCCEEDED,
-          currentRequestId: null,
-          data: action.payload
-        });
-      })
-      .addCase(fetchGraph.rejected, (state, action) => {
-        const { arg: endpoint } = action.meta;
-        detailsAdapter.upsertOne(state.details, {
-          endpoint,
-          loading: REJECTED,
-          currentRequestId: null,
-          data: action.payload
-        });
-      });
-  }
 });
 
-export const fetchGraphsInfo = createAsyncThunk(
-  'graphs/fetchGraphsInfo',
-  async (_, { getState, requestId, rejectWithValue }) => {
-    const { currentRequestId, loading } = getState().graphs.list;
-    if (loading !== PENDING || requestId !== currentRequestId) {
-      return;
-    }
-    try {
-      return await graphsApi.getGraphsInfo();
-    } catch (err) {
-      return rejectWithValue(err.message);
-    }
-  },
-  {
-    condition: (_, { getState }) => {
-      const { loading } = getState().graphs.list;
-      if (loading === SUCCEEDED || loading === PENDING) {
-        return false;
-      }
-    },
-  }
-);
+const graphsApi = createApi({
+  reducerPath: 'graphsApi',
+  baseQuery: fetchBaseQuery({ baseUrl: QuarterlyApiUrl }),
+  endpoints: builder => ({
+    getAllGraphs: builder.query({
+      query: () => '',
+    }),
+    getSingleGraph: builder.query({
+      query: endpoint => endpoint,
+    }),
+  }),
+});
 
-export const fetchGraph = createAsyncThunk(
-  'graphs/fetchGraph',
-  async (endpoint, { getState, requestId, rejectWithValue }) => {
-    const { data, currentRequestId, loading } = detailSelectors.selectById(getState().graphs, endpoint) || {};
-    if (loading === SUCCEEDED) {
-      return data;
-    }
-    if (loading !== PENDING || requestId !== currentRequestId) {
-      return;
-    }
-
-    try {
-      return await graphsApi.getGraph(endpoint);
-    } catch (err) {
-      return rejectWithValue(err.message);
-    }
-  }
-);
-
-const { setConfig: setConfigAction } = graphsSlice.actions;
+const { setConfig: setConfigAction } = graphsConfig.actions;
 
 export const setConfig = (id, value) => setConfigAction({ id, value });
 
 export const getConfig = (state, id) => configSelectors.selectById(state, id)?.value;
 
-export default graphsSlice.reducer;
+export const configReducer = graphsConfig.reducer;
+
+export const {
+  useGetAllGraphsQuery, useGetSingleGraphQuery, endpoints: { getSingleGraph },
+  reducerPath: apiReducerPath, reducer: apiReducer, middleware: apiMiddleware,
+} = graphsApi;

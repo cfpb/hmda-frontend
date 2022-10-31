@@ -14,28 +14,11 @@ export function setFilingPeriod(filingPeriod) {
   }
 }
 
-function checkErrors(file) {
-  const errors = []
-  if (file) {
-    if (file.size === 0) {
-      errors.push(
-        'The file you uploaded does not contain any data. Please check your file and re-upload.'
-      )
-    }
-    if (file.name.split('.').slice(-1)[0].toLowerCase() !== 'txt') {
-      errors.push(
-        'The file you uploaded is not a text file (.txt). Please check your file and re-upload.'
-      )
-    }
-  }
-  return errors
-}
-
 export function selectFile(file, previousErrors = []) {
   return {
     type: types.SELECT_FILE,
     file,
-    errors: checkErrors(file).concat(previousErrors)
+    errors: previousErrors
   }
 }
 

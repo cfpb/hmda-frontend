@@ -1,22 +1,41 @@
-# Generate Annual LAR file for Large Filer
- 
-## Requirements
-- Node
-- Locally running check-digit service. 
+# Submission test-file (LAR) generator
 
-## Restrictions
-Due to [Node filesize limits](https://stackoverflow.com/questions/68230031/cannot-create-a-string-longer-than-0x1fffffe8-characters-in-json-parse), we max out around 500K records (512MB).
-  
+## Overview
+
+These tools are used to generate the submission files for our Cypress integration tests of the HMDA Platform's Filing process.
+
+## Requirements
+1. Install dependencies: `./scripts/lar/setup.sh`
+2. Verify the HMDA Platform + Check Digit service are running locally
+3. Run commands from `hmda-frontend` root dir
 
 ## Running
-```
-node ./generate_lar_file.js <LEI> <YEAR> <NUM_ROWS>
-```
+
+### Single Year/Quarter
+| Description | Command |
+|---|---|
+|Usage|`yarn make-lar <LEI> <YEAR-QUARTER> <NUM_ROWS>`|
+|ex. Annual |`yarn make-lar frontendtestbank9999 2023 10`|
+|ex. Quarterly |`yarn make-lar frontendtestbank9999 2023-Q1 10`|
+ 
+### All Filing Periods
+To generate all annual/quarterly files for given year: 
+| Description | Command |
+|---|---|
+|Usage|`./scripts/lar/generateAll.sh <LEI> <YEAR> <NUM_ROWS>` |
+|Example| `./scripts/lar/generateAll.sh frontendtestbank9999 2023 10`|
 
 ## Output
-Produces a syntactically correct LAR file at `/cypress/fixtures/<YEAR>-<LEI>-<NUM_ROWS>.txt`
 
-## Stats
-rows|time|size
----|---|---
-1,000,000|34mins|1.04GB
+Produces a syntactically correct LAR file at `/cypress/fixtures/YEAR(-QUARTER?)-LEI-NUM_ROWS.txt`
+
+## FAQ
+
+### How do I get Platform + Check Digit running?
+
+1. If you don't already have OpenJDK v11: `brew install openjdk@11`
+
+2. In your HMDA Platform directory:
+   - Terminal 1 (Platform): `env JAVA_OPTS="-Xss256m -Xmx4096m" sbt --java-home ~/homebrew/opt/openjdk@11 "project hmda-platform" "run"`
+     - Once the Platform is running you can start CheckDigit
+   - Terminal 2 (CheckDigit): `env JAVA_OPTS="-Xss256m -Xmx4096m" sbt --java-home ~/homebrew/opt/openjdk@11 "project check-digit" "run"`

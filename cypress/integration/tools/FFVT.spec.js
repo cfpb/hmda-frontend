@@ -18,7 +18,7 @@ const isNotTxt = () => cy.get('.alert-error .alert-text')
   .should('have.length', 1)
 
 const isNotUTF8 = () => cy.get('.alert-error .alert-text')
-  .contains('The file you uploaded is not UTF-8 encoded. Please check your file and re-upload.')
+  .contains('Verify that your file is UTF-8 encoded.')
   .should('have.length', 1)
 
 const uploadFile = filename => {

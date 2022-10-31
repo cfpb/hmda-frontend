@@ -33,8 +33,8 @@ onlyOn(!isBeta(HOST), () => {
           $el => {
             expect($el).to.have.text("Download Modified LAR ")
             expect($el).to.have.attr(
-              "href",
-              `https://s3.amazonaws.com/cfpb-hmda-public/prod/modified-lar/${year}/${institution}.txt`
+              'href',
+              `/file/modifiedLar/year/${year}/institution/${institution}/txt`
             )          
           }
         )
@@ -47,8 +47,8 @@ onlyOn(!isBeta(HOST), () => {
           $el => {
             expect($el).to.have.text("Download Modified LAR with Header")
             expect($el).to.have.attr(
-              "href",
-              `https://s3.amazonaws.com/cfpb-hmda-public/prod/modified-lar/${year}/header/${institution}_header.txt`
+              'href',
+              `/file/modifiedLar/year/${year}/institution/${institution}/txt/header`
             )
           }
         )

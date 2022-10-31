@@ -837,6 +837,14 @@
   - 3 - Not applicable
   - 4 - No co-applicant
 
+### [applicant\_age\_above\_62](#applicant_age_above_62)
+
+- **Description:** Whether the applicant or borrower age is above 62
+- **Values:**
+  - Yes
+  - No
+  - NA
+
 ### [co-applicant\_age](#co-applicant_age)
 
 - **Description:** The age, in years, of the first co-applicant or co-borrower
@@ -850,14 +858,6 @@
   - &gt; 74
   - 8888
   - 9999
-
-### [applicant\_age\_above\_62](#applicant_age_above_62)
-
-- **Description:** Whether the applicant or borrower age is above 62
-- **Values:**
-  - Yes
-  - No
-  - NA
 
 ### [co-applicant\_age\_above\_62](#co-applicant_age_above_62)
 
@@ -895,6 +895,7 @@
   - 4 - Guaranteed Underwriting System (GUS)
   - 5 - Other
   - 6 - Not applicable
+  - 7 - Internal Proprietary System
   - 1111 - Exempt
 
 ### [aus-2](#aus-2)
@@ -906,6 +907,7 @@
   - 3 - Technology Open to Approved Lenders (TOTAL) Scorecard
   - 4 - Guaranteed Underwriting System (GUS)
   - 5 - Other
+  - 7 - Internal Proprietary System
 
 ### [aus-3](#aus-3)
 
@@ -915,7 +917,7 @@
   - 2 - Loan Prospector (LP) or Loan Product Advisor
   - 3 - Technology Open to Approved Lenders (TOTAL) Scorecard
   - 4 - Guaranteed Underwriting System (GUS)
-  - 5 - Other
+  - 7 - Internal Proprietary System
 
 ### [aus-4](#aus-4)
 
@@ -925,7 +927,7 @@
   - 2 - Loan Prospector (LP) or Loan Product Advisor
   - 3 - Technology Open to Approved Lenders (TOTAL) Scorecard
   - 4 - Guaranteed Underwriting System (GUS)
-  - 5 - Other
+  - 7 - Internal Proprietary System
 
 ### [aus-5](#aus-5)
 
@@ -935,7 +937,7 @@
   - 2 - Loan Prospector (LP) or Loan Product Advisor
   - 3 - Technology Open to Approved Lenders (TOTAL) Scorecard
   - 4 - Guaranteed Underwriting System (GUS)
-  - 5 - Other
+  - 7 - Internal Proprietary System
 
 ### [denial\_reason-1](#denial_reason-1)
 

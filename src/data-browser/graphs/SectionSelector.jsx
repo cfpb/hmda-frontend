@@ -1,37 +1,62 @@
-import './SectionSelector.css'
-import { useCallback } from 'react'
+import "./SectionSelector.css"
+import { NavLink } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { GRAPH_URL } from "./slice/graphConfigs"
+import { graphs } from "../graphs/slice"
+import { useEffect, useState } from "react"
 
+const SectionOption = ({ isSelected, title, url }) => {
+  const sectionClasses = `button section ${isSelected && "selected"}`
 
-const SectionOption = ({ isSelected, title, onChange }) => {
-  const sectionClasses = `section ${isSelected && 'selected'}`
-  const handleClick = useCallback(_event => onChange(title), [onChange])
+  const graphsConfigStore = useSelector(({ graphsConfig }) => graphsConfig)
+  const graphURL = graphs.getConfig(graphsConfigStore, GRAPH_URL) // Getting graph url string from redux store
   let ariaLabel = `Navigate to the ${title} tab.`
-  if (isSelected) ariaLabel += ' This section is currently selected.'
+  if (isSelected) ariaLabel += " This section is currently selected."
 
   return (
-    <button
+    // Generating links to direct user to '/graphs' (original graph they were viewing), '/filers' and '/faq'
+    <NavLink
       className={sectionClasses}
       aria-label={ariaLabel}
-      onClick={handleClick}
+      to={
+        title === "Graphs"
+          ? `${graphURL}`
+          : `/data-browser/graphs/quarterly/info${url}`
+      }
     >
       {title}
-    </button>
+    </NavLink>
   )
 }
 
-export const SectionSelector = ({ selected, options, onChange }) => {
-  const sections = options.map(opt => (
+export const SectionSelector = ({ props }) => {
+  const SectionOptions = [
+    { label: "Graphs" }, // url for graphs comes from redux
+    { label: "Filer Info", url: "/filers" },
+    { label: "FAQ", url: "/faq" },
+  ]
+
+  const [section, setSection] = useState(SectionOptions[0])
+
+  useEffect(() => {
+    // Handling which tab is active via url
+    if (props.history.location.pathname.includes("/info/filers")) {
+      setSection(SectionOptions[1])
+    } else if (props.history.location.pathname.includes("/info/faq")) {
+      setSection(SectionOptions[2])
+    } else {
+      setSection(SectionOptions[0])
+    }
+  }, [props.history.location.pathname])
+
+  const sections = SectionOptions.map((opt) => (
     <SectionOption
-      key={opt}
-      title={opt}
-      onChange={onChange}
-      isSelected={opt === selected}
+      key={opt.label}
+      title={opt.label}
+      url={opt.url}
+      isSelected={opt.label === section.label}
     />
   ))
 
-  return (
-    <nav className='SectionSelector sections'>
-      {sections}
-    </nav>
-  )
+  return <nav className="SectionSelector sections">{sections}</nav>
 }

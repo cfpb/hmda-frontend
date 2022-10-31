@@ -154,7 +154,7 @@ FSA are loans to help farmers and ranchers get the financing they need to start,
 <a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-va-loan-en-113/" target="_blank">Veterans Affairs (VA)</a>
 VA offers loan programs to help servicemembers, veterans, and their families buy homes.
 
-## How often will the quarterly graphs be updated?
+## How often will the quarterly graphs be updated? 
 
 The graphs are updated with the latest data at the conclusion of each quarterly filing period, including the late submission period. A calendar of quarterly filing periods can be found in the [Quarterly Filing documentation](https://ffiec.cfpb.gov/documentation/2022/quarterly-filing-dates/). 
 <br/>

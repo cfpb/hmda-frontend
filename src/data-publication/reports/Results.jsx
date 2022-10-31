@@ -1,4 +1,5 @@
 import React from 'react'
+import { MLAR } from '../../common/s3/fileProxy'
 
 import './Results.css'
 
@@ -97,18 +98,24 @@ class Results extends React.Component {
           }
         : { title: 'LEI', id: institution.lei }
 
-    const headeredFile = this.state.withHeader
-      ? { dir: 'header/', fname: '_header' }
-      : { dir: '', fname: '' }
+    const href = MLAR.buildURL(
+      this.props.year,
+      normalizedInstitution.id,
+      this.state.withHeader
+    )
 
-    const href = `https://s3.amazonaws.com/cfpb-hmda-public/prod/modified-lar/${this.props.year}/${headeredFile.dir}${normalizedInstitution.id}${headeredFile.fname}.txt`
+    // Need to set filename since the File Proxy url no longer directly references the file name
+    let filename = institution.lei
+    if (this.state.withHeader) filename += '_header'
+    filename += '.csv'
+    
     return (
       <li key={index}>
         <h4>{institution.name}</h4>
         <p>
           {normalizedInstitution.title}: {normalizedInstitution.id}
         </p>
-        <a className="font-small" href={href} download>
+        <a className="font-small" href={href} download={filename}>
           {`Download Modified LAR ${this.state.withHeader ? 'with Header' : ''}`}
         </a>
       </li>
