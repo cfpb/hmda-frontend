@@ -32,7 +32,7 @@ export class AppContainer extends Component {
       this.redirectToReachablePeriod(filingPeriod)
     
     const keycloak = initKeycloak()
-    keycloak.init().then(authenticated => {
+    keycloak.init({pkceMethod: 'S256'}).then(authenticated => {
       this.keycloakConfigured = true
       if (authenticated) {
         AccessToken.set(keycloak.token)
