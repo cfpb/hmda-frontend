@@ -54,13 +54,20 @@ export const useS3FileHeaders = (url, shouldFetch) => {
  * and opens in a new window.
  * @param {String} url S3 file url
  * @param {Boolean} showLastUpdated Include last update date?
+ * @param {String} title appears on HTML element
  * @param {Element} children Anchor body
  * @param {String} label Anchor body
  * @returns Element
  */
-export const S3DocLink = ({ url, label, children, showLastUpdated = true }) => {
+export const S3DocLink = ({
+  url,
+  label,
+  title,
+  children,
+  showLastUpdated = true,
+}) => {
   return (
-    <li key={url}>
+    <li key={url} title={title}>
       <ExternalLink url={url}>{children || label}</ExternalLink>
       {showLastUpdated && (
         <Provider store={s3Store}>
