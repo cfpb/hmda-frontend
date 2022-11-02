@@ -48,11 +48,6 @@
 - **Values:**  
   - Various values
 
-### [respondent\_city](#respondent_city)
-- **Description:** The city name for the office of the filing institution.
-- **Values:**  
-  - Various values
-
 ### [respondent\_zip\_code](#respondent_zip_code)
 - **Description:** The ZIP code for the office of the filing institution.
 - **Values:**  
