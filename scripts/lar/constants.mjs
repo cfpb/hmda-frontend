@@ -7,7 +7,7 @@ export const ACTION_TAKEN_MMDD = {
 
 export const COUNTY = '11001'
 
-export const MAX_ROWS = 1000000
+export const MAX_ROWS = 494100 // Limition of Cypress
 
 export const TRACTS = {
   '2022+': '980000',

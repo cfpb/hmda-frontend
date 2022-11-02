@@ -9,7 +9,10 @@ import {
 
 /**
  * Usage: 
- *   node./ generate_lar_file.mjs <LEI> <YEAR> <NUM_ROWS>
+ *   node ./generate_lar_file.mjs <LEI> <YEAR> <NUM_ROWS>
+ *
+ *  Generate load test file
+ *   yarn make-lar frontendtestbank9999 2020 MAX
  **/
 
 const _logError = msg => console.error(`\n[Error] ${msg}\n`)
@@ -34,7 +37,7 @@ let [year, quarter] = yearQuarter.replace(/Q/gi, '').split('-').map(val => parse
 year = year || parseInt(new Date().getFullYear()) - 1
 quarter = quarter > 0 && quarter < 4 ? quarter : 4
 
-if (rows == 'MAX') rows = MAX_ROWS
+if (['MAX', 'max'].includes(rows)) rows = MAX_ROWS
 else rows = parseInt(rows) || 10
 
 const filePath = getFilePath({ lei, rows, yearQuarter })
