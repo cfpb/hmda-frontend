@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ConfiguredAlert from '../common/ConfiguredAlert'
 import { numDaysBetween } from '../filing/utils/date.js'
 import { splitYearQuarter } from '../filing/api/utils.js'
@@ -139,6 +139,21 @@ export const AnnouncementBanner = ({
 }) => {
   // Collect all scheduled announcements
   const announcements = scheduledFilingAnnouncements(defaultPeriod, filingPeriodStatus)
+
+  // Removes announcement when endDate property on an announcement is greater or equal to the currentDate
+  useEffect(() => {
+    let currentDate = new Date()
+
+    if (announcements.length >= 1) {
+      announcements.filter((item) => {
+        if (!item.props.endDate) {
+          return true
+        } else {
+          item.props.endDate >= currentDate.toLocaleDateString()
+        }
+      })
+    }
+  }, [announcements])
 
   // Prioritize the message set in the external configuration
   if (announcement) {
