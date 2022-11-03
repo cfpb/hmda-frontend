@@ -30,6 +30,16 @@ function slugify(str) {
     .toLowerCase();
 }
 
+// Directly updates DOM elements href
+export const generateSelfLink = a => {
+  // Generate self-link
+  a.href = a.href.replace('self', '#' + slugify(a.innerText))
+
+  // Clean up the parent ID of the <h3> so TOC linking works
+  const parentId = a.parentElement.id
+  a.parentElement.id = parentId.replace('self', '')
+}
+
 export {
   getMarkdownUrl,
   isBadYear,
