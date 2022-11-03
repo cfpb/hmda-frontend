@@ -8,7 +8,7 @@ export const buildCensusTract = year => {
 }
 
 export const getFilePath = ({ lei, rows, yearQuarter }) => {
-  const rowCount = parseInt(rows) >= MAX_ROWS ? 'MAX' : rows
+  const rowCount = parseInt(rows) == MAX_ROWS ? 'MAX' : rows
   return `${process.cwd()}/cypress/fixtures/${yearQuarter}-${lei}-${rowCount}.txt`
 }
 
