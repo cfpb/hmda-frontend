@@ -5,27 +5,38 @@ import PrintPageButton from './PrintPageButton'
 import { isBeta } from '../../common/Beta.jsx'
 import { ordinalHour } from '../utils/date.js'
 import { SIGNED } from '../constants/statusCodes.js'
+import { parseTimedGuardDate } from '../../deriveConfig.js'
 
-const Receipt = ({
-  status,
-  timestamp,
-  receipt,
-  filingPeriod,
-  email
-}) => {
+const Receipt = ({ status, timestamp, receipt, filingPeriod, email }) => {
+  const options = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timezone: 'America/New_York',
+  }
+
+  let daySubmitted = new Date(timestamp).toLocaleDateString('en-US', options)
+
+  let easternTime = new Date(timestamp).toLocaleString('en-US', {
+    timeZone: 'America/New_York',
+  })
+
+  let timeOfReceipt = daySubmitted + ',' + easternTime.split(',')[1] + " ET"
+
   const code = status.code
   if (code !== SIGNED || receipt === null) return null
   if (isBeta()) {
     return (
-      <section className="RefileWarning">
-        <Alert type="warning" heading="Beta filing complete">
+      <section className='RefileWarning'>
+        <Alert type='warning' heading='Beta filing complete'>
           <div>
-            You have successfully completed your <strong>beta</strong> HMDA filing for{' '}
-            {filingPeriod}.
+            You have successfully completed your <strong>beta</strong> HMDA
+            filing for {filingPeriod}.
             <br />
-            <strong>You will still need to file your final HMDA data to the{' '}
-               <a href="https://ffiec.cfpb.gov/filing">live system</a>{' '}
-               when the filing period is open.
+            <strong>
+              You will still need to file your final HMDA data to the{' '}
+              <a href='https://ffiec.cfpb.gov/filing'>live system</a> when the
+              filing period is open.
             </strong>
           </div>
         </Alert>
@@ -33,19 +44,19 @@ const Receipt = ({
     )
   }
   return (
-    <section className="RefileWarning">
-      <Alert type="success" heading="HMDA filing accepted!">
+    <section className='RefileWarning'>
+      <Alert type='success' heading='HMDA filing accepted!'>
         <div>
           Congratulations, you have successfully completed your HMDA filing for{' '}
           {filingPeriod}!
           <br />
           Your data and signature were received and recorded on{' '}
-          <strong>{ordinalHour(new Date(timestamp))}</strong>.
+          <strong>{timeOfReceipt}</strong>.
           <br />
           Your receipt number for this submission is <strong>{receipt}</strong>.
           <br />
-          <br />
-          A copy of this receipt has been sent to <strong>{email}</strong>.
+          <br />A copy of this receipt has been sent to <strong>{email}</strong>
+          .
           <PrintPageButton />
         </div>
       </Alert>
@@ -59,7 +70,7 @@ Receipt.propTypes = {
   receipt: PropTypes.string,
   timestamp: PropTypes.number,
   status: PropTypes.object,
-  isFetching: PropTypes.bool
+  isFetching: PropTypes.bool,
 }
 
 export default Receipt
