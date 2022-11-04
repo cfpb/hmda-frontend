@@ -3,26 +3,10 @@ import PropTypes from 'prop-types'
 import Alert from '../../common/Alert.jsx'
 import PrintPageButton from './PrintPageButton'
 import { isBeta } from '../../common/Beta.jsx'
-import { ordinalHour } from '../utils/date.js'
+import { formatReceiptTime } from '../utils/date.js'
 import { SIGNED } from '../constants/statusCodes.js'
-import { parseTimedGuardDate } from '../../deriveConfig.js'
 
 const Receipt = ({ status, timestamp, receipt, filingPeriod, email }) => {
-  const options = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    timezone: 'America/New_York',
-  }
-
-  let daySubmitted = new Date(timestamp).toLocaleDateString('en-US', options)
-
-  let easternTime = new Date(timestamp).toLocaleString('en-US', {
-    timeZone: 'America/New_York',
-  })
-
-  let timeOfReceipt = daySubmitted + ',' + easternTime.split(',')[1] + " ET"
-
   const code = status.code
   if (code !== SIGNED || receipt === null) return null
   if (isBeta()) {
@@ -51,7 +35,7 @@ const Receipt = ({ status, timestamp, receipt, filingPeriod, email }) => {
           {filingPeriod}!
           <br />
           Your data and signature were received and recorded on{' '}
-          <strong>{timeOfReceipt}</strong>.
+          <strong>{formatReceiptTime(timestamp)}</strong>.
           <br />
           Your receipt number for this submission is <strong>{receipt}</strong>.
           <br />
