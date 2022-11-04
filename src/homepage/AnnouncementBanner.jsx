@@ -140,21 +140,6 @@ export const AnnouncementBanner = ({
   // Collect all scheduled announcements
   const announcements = scheduledFilingAnnouncements(defaultPeriod, filingPeriodStatus)
 
-  // Removes announcement when endDate property on an announcement is greater or equal to the currentDate
-  useEffect(() => {
-    let currentDate = new Date()
-
-    if (announcements.length >= 1) {
-      announcements.filter((item) => {
-        if (!item.props.endDate) {
-          return true
-        } else {
-          item.props.endDate >= currentDate.toLocaleDateString()
-        }
-      })
-    }
-  }, [announcements])
-
   // Prioritize the message set in the external configuration
   if (announcement) {
     if (Array.isArray(announcement)) {
