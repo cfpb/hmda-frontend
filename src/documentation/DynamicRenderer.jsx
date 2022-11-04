@@ -2,17 +2,19 @@ import React, { useState, useEffect, useLayoutEffect, useCallback } from 'react'
 import Markdown from 'markdown-to-jsx'
 import LoadingIcon from '../common/LoadingIcon.jsx'
 import NotFound from '../common/NotFound.jsx'
-import { Link as LinkRR } from 'react-router-dom'
-import { getMarkdownUrl, slugify } from './markdownUtils'
-import './index.css'
+import { Link } from 'react-router-dom'
+import { generateSelfLink, getMarkdownUrl, slugify } from './markdownUtils'
 import TableOfContents from '../common/TableOfContents.jsx'
+import './index.css'
+
+const cleanHash = hash => hash.replace(/[#_/]/g, '').toLowerCase()
 
 const DynamicRenderer = props => {
   const [data, setData] = useState(null)
   const [error, setError] = useState(null)
   const [idToScrollTo, setIdToScrollTo] = useState()
   const [TOCSideBarDisplay, setTOCSideBarDisplay] = useState(false)
-  const { year, slug, showBackLink = true } = props
+  const { year, slug } = props
 
   const scrollToElement = useCallback(
     id => {
@@ -30,9 +32,7 @@ const DynamicRenderer = props => {
           if (res.status === 404) throw new Error('404')
           res.text().then(setData)
         })
-        .catch(e => {
-          setError(e)
-        })
+        .catch(e => setError(e))
     },
     [year, slug]
   )
@@ -46,38 +46,22 @@ const DynamicRenderer = props => {
     // Gather the DOM elements
     const headingLinks = Array.from(document.querySelectorAll('h3 > a'))
 
-    headingLinks
-      .filter(x => x.href.match(/self$/)) // Find all <a> that need a self-link generated
-      .forEach(a => {
-        // Generate self-link
-        a.href = a.href.replace('self', '#' + slugify(a.innerText))
-
-        // Clean up the parent ID of the <h3> so TOC linking works
-        const parentId = a.parentElement.id
-        a.parentElement.id = parentId.replace('self', '')
-      })
+    // Update, in place, all <a> that need a self-link generated
+    headingLinks.filter(x => x.href.match(/self$/)).forEach(generateSelfLink)
 
     // Trigger scrollTo now that elements have the appropriate IDs assigned
     const { hash } = window.location
-    if (hash) {
-      setTimeout(() => {
-        const stripped = hash.replace(/[#_/]/g, '').toLowerCase()
-        scrollToElement(stripped)
-      }, 0)
-    }
+    if (hash) scrollToElement(cleanHash(hash))
   })
 
   useEffect(() => {
-    if (!data) return
     const { hash } = window.location
-    if (hash) {
-      setTimeout(() => {
-        const stripped = hash.replace(/[#_/]/g, '').toLowerCase()
-        if (idToScrollTo?.includes(stripped)) return // Already has the adjusted ID
-        const id = stripped + stripped
-        scrollToElement(id)
-      }, 0)
-    }
+    if (!data || !hash) return
+
+    const stripped = cleanHash(hash)
+    if (idToScrollTo?.includes(stripped)) return // Already has the adjusted ID
+    const id = stripped + stripped
+    scrollToElement(id)
   })
 
   if (error) return <NotFound />
@@ -92,18 +76,23 @@ const DynamicRenderer = props => {
         setTOCSideBarDisplay={setTOCSideBarDisplay}
       />
       <div className='Markdown-Wrapper'>
-        {/* Show `documentation` link if TOC sidebar doesn't show up on that page */}
-        {TOCSideBarDisplay === false ? (
-          <LinkRR className='BackLink' to={`/documentation/${year}`}>
-            {'\u2b05'} {year} DOCUMENTATION
-          </LinkRR>
-        ) : (
-          ''
-        )}
+        <BackLink year={year} hide={TOCSideBarDisplay} />
         {data ? <Markdown>{data}</Markdown> : <LoadingIcon />}
       </div>
     </div>
   )
 }
+
+// Show `documentation` link if TOC sidebar doesn't show up on that page 
+const BackLink = ({ year, hide }) => {
+  if (hide) return null
+
+  return (
+    <Link className='BackLink' to={`/documentation/${year}`}>
+      {'\u2b05'} {year} DOCUMENTATION
+    </Link>
+  )
+}
+
 
 export default DynamicRenderer
