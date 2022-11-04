@@ -1,9 +1,5 @@
 # FAQ - Updates and Notes
 
-Direct access to the IRS reports and Modified LAR is being depreciated as of Dec 23. These files may instead be accessed through the HMDA File Service.
-
-- [HMDA File Service Documentation](https://cfpb.github.io/hmda-platform/#hmda-file-serving)
-
 ## What is it?
 The [Updates and Notes app](https://ffiec.cfpb.gov/updates-notes) provides a searchable change log of updates, releases, and corrections to published HMDA Data. 
 
