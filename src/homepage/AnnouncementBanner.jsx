@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import ConfiguredAlert from '../common/ConfiguredAlert'
 import { numDaysBetween } from '../filing/utils/date.js'
 import { splitYearQuarter } from '../filing/api/utils.js'
