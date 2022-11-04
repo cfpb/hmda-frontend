@@ -3,7 +3,7 @@ import Markdown from 'markdown-to-jsx'
 import LoadingIcon from '../common/LoadingIcon.jsx'
 import NotFound from '../common/NotFound.jsx'
 import { Link } from 'react-router-dom'
-import { generateSelfLink, getMarkdownUrl, slugify } from './markdownUtils'
+import { updateSelfLinks, getMarkdownUrl } from './markdownUtils'
 import TableOfContents from '../common/TableOfContents.jsx'
 import './index.css'
 
@@ -47,7 +47,7 @@ const DynamicRenderer = props => {
     const headingLinks = Array.from(document.querySelectorAll('h3 > a'))
 
     // Update, in place, all <a> that need a self-link generated
-    headingLinks.filter(x => x.href.match(/self$/)).forEach(generateSelfLink)
+    headingLinks.filter(x => x.href.match(/self$/)).forEach(updateSelfLinks)
 
     // Trigger scrollTo now that elements have the appropriate IDs assigned
     const { hash } = window.location
@@ -83,7 +83,7 @@ const DynamicRenderer = props => {
   )
 }
 
-// Show `documentation` link if TOC sidebar doesn't show up on that page 
+// Show `documentation` link if TOC sidebar doesn't show up on that page
 const BackLink = ({ year, hide }) => {
   if (hide) return null
 
@@ -93,6 +93,5 @@ const BackLink = ({ year, hide }) => {
     </Link>
   )
 }
-
 
 export default DynamicRenderer

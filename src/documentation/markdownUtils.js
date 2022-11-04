@@ -65,7 +65,7 @@ const removeTwoHashes = ArrayOfHeaders => {
  * @param {String} orginalHeading used to create the correct depth
  * @returns {Object} {title: String, id: String, depth: Number}
  */
-const updateDeveloperHeader = (devHeader, orginalHeading) => {
+const parseDeveloperHeader = (devHeader, orginalHeading) => {
   const title = devHeader.includes('\\')
     ? devHeader.replace(/\\/g, '') // removes backslash
     : devHeader
@@ -82,10 +82,8 @@ const updateDeveloperHeader = (devHeader, orginalHeading) => {
  * @param {String} heading h2 or h3 from markdown
  * @returns {Object} {title: String, id: String, depth: Number}
  */
-const standardHeader = heading => {
-  let title = heading.includes('#')
-    ? heading.replace('#', '').trim()
-    : heading.trim()
+const parseStandardHeader = heading => {
+  let title = heading.replace('#', '').trim()
 
   let depth = !heading.includes('#') ? 1 : 2
 
@@ -95,7 +93,7 @@ const standardHeader = heading => {
 }
 
 // Directly updates DOM elements href
-export const generateSelfLink = a => {
+const updateSelfLinks = a => {
   // Generate self-link
   a.href = a.href.replace('self', '#' + slugify(a.innerText))
 
@@ -110,6 +108,7 @@ export {
   slugify,
   removeHashAndReplace,
   removeTwoHashes,
-  updateDeveloperHeader,
-  standardHeader,
+  parseDeveloperHeader,
+  parseStandardHeader,
+  updateSelfLinks,
 }

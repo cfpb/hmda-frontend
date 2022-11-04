@@ -3,8 +3,8 @@ import { Link as LinkRR } from 'react-router-dom'
 import {
   slugify,
   removeTwoHashes,
-  updateDeveloperHeader,
-  standardHeader,
+  parseDeveloperHeader,
+  parseStandardHeader,
 } from '../documentation/markdownUtils'
 import './TableOfContents.css'
 
@@ -48,12 +48,12 @@ const TableOfContents = ({
       const parsedHeadings = headingsForTOC.map(heading => {
         // Regex used on developer headers
         if (heading.match(HEADING_WITH_LINK)) {
-          return updateDeveloperHeader(
+          return parseDeveloperHeader(
             heading.match(HEADING_WITH_LINK)[1],
             heading
           )
         } else {
-          return standardHeader(heading)
+          return parseStandardHeader(heading)
         }
       })
 

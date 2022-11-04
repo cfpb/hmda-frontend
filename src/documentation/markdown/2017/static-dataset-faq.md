@@ -3,9 +3,9 @@
 ## What is the difference between the static datasets?
 The primary difference between the datasets is the time period when the data is captured. Each time period contains the most up-to-date data _at the moment in time when the dataset was created_.
 
-|Dataset|Time Period|
+|Dataset|Time of Capture|
 |---|---|
-|Snapshot | Typically 1 month |
+|Snapshot | Typically 1 month after the timely filing deadline |
 |One Year | 12 months after the timely filing deadline |
 |Three Year | 34 months after the timely filing deadline |
 
