@@ -24,6 +24,8 @@ The HMDA Frontend monorepo hosts the public facing applications for the collecti
         * [Configure the UI](#configure-the-ui)
       - [Updating or Previewing Documentation](#updating-or-previewing-documentation)
     + [Running via Docker](#running-via-docker)
+    + Creating and editing Markdown
+      - In order to correctly display a Table of Contents, headings in Markdown files need to conform to certain standards. Please see [standarized documentation process](https://github.com/cfpb/hmda-frontend/wiki/Standardized-process-for-generating-or-updating-markdown-files) for details.
   * [Testing](#testing)
     + [Unit Tests](#unit-tests)
     + [End-to-End Testing](#end-to-end-testing)
