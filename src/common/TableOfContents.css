@@ -12,15 +12,16 @@
   overflow: auto;
 }
 
-.initial-header {
+.toc-container ul {
   margin-top: 40px;
+  padding: 0;
 }
 
-.initial-header li {
+.toc-container ul li {
   list-style-type: none;
 }
 
-.initial-header li a {
+.toc-container li a {
   text-decoration: none;
   color: black;
 }

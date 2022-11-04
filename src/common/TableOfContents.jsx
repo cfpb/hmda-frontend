@@ -62,34 +62,31 @@ const TableOfContents = ({
     }
   }, [markdown, id])
 
+  if (!markdownHeaders) return null
+
   return (
     <div>
-      {markdownHeaders ? (
-        <div className='toc-container'>
-          <LinkRR className='BackLink' to={`/documentation/${year}`}>
-            {'\u2b05'} {year} DOCUMENTATION
-          </LinkRR>
-          <div className='initial-header'>
-            {markdownHeaders &&
-              markdownHeaders.map((header, index) => (
-                <li
-                  className={header.depth > 1 ? 'subheader' : 'header'}
-                  key={index}
-                >
-                  <a href={`#${header.id}`}>
-                    {activeContent == header.id ? (
-                      <div className='highlight'>{header.title}</div>
-                    ) : (
-                      header.title
-                    )}
-                  </a>
-                </li>
-              ))}
-          </div>
-        </div>
-      ) : (
-        ''
-      )}
+      <div className='toc-container'>
+        <LinkRR className='BackLink' to={`/documentation/${year}`}>
+          {'\u2b05'} {year} DOCUMENTATION
+        </LinkRR>
+        <ul>
+          {markdownHeaders.map((header, index) => (
+            <li
+              className={header.depth > 1 ? 'subheader' : 'header'}
+              key={index}
+            >
+              <a href={`#${header.id}`}>
+                {activeContent == header.id ? (
+                  <div className='highlight'>{header.title}</div>
+                ) : (
+                  header.title
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }
