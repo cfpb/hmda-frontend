@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import { Link as LinkRR } from 'react-router-dom'
-import { slugify } from '../documentation/markdownUtils'
+import {
+  slugify,
+  removeTwoHashes,
+  updateDeveloperHeader,
+  standardHeader,
+} from '../documentation/markdownUtils'
 import './TableOfContents.css'
 
-const HEADING_WITH_LINK = /\[(.*?)\]/
+const HEADING_WITH_LINK = /\[(.*?)\]/ // Captures headers that include brackets and parenthesis
+const REGEX_H2s_H3s = /#{2}.+(?=\n)/g
 
 /**
  * Reusable table of contents component that takes markdown data, gets parsed and displays
- * a table of contents with two layers. Headers and sub-headers will be displayed. Componnet
- * leverages react-scroll to enable smooth scrolling.
+ * a table of contents with two layers. Headers and sub-headers will be displayed.
  *
  * @param {markdown} String Markdown data
  * @param {year} String Tells the backlink what year the documentation comes from
@@ -36,58 +41,19 @@ const TableOfContents = ({
 
   useEffect(() => {
     if (markdown && markdown.includes('##')) {
-      const headersRegex = markdown.match(/#{2}.+(?=\n)/g) // Finds all the headers with 2 or 3 #'s and generates an array.
-      let removeTwoHashes = headersRegex.map(h =>
-        h.includes('##') ? h.replace('##', '').trim() : ''
-      )
-
-      // Replace last # from sub-header, remove certain special characters and replace spaces with dashes
-      const removeHashAndReplace = id => {
-        let parsedString = id
-          .replace(/[#\/'’">(),.?&]/g, '')
-          .trim()
-          .replace(/[\s]/g, '-')
-          .toLowerCase()
-        return parsedString
-      }
+      // Array is made up of h2s and h3s from markdown
+      const headingsForTOC = removeTwoHashes(markdown.match(REGEX_H2s_H3s))
 
       // Generating a new array of objects which contains title, depth and id
-      const parsedHeadings = removeTwoHashes.map(heading => {
-        // Regex used on developer markdown headers to correctly parse out the right content
+      const parsedHeadings = headingsForTOC.map(heading => {
+        // Regex used on developer headers
         if (heading.match(HEADING_WITH_LINK)) {
-          let devHeader = heading.match(HEADING_WITH_LINK)[1]
-
-          // Same `title` derivation logic, just consolidated for reuse
-          const title = devHeader.includes('\\')
-            ? devHeader.replace(/\\/g, '') // removes backslash
-            : devHeader
-
-          const id = slugify(title)
-
-          const depth = !heading.includes('#') ? 1 : 2
-
-          return { title, id, depth }
-        } else if (heading.match(/^(.+)$/)) {
-          // Regex matching and replace specfically for titles that have parenthesis  -> Action Taken (action_taken)
-          // Does not support direct linking
-          let adjustedID = heading
-            .replace(/[#()_\\]/g, '')
-            .trim()
-            .replaceAll(' ', '-')
-            .toLowerCase()
-          return {
-            title: heading.replace(/[#\\]/g, '').trim(),
-            depth: !heading.includes('#') ? 1 : 2,
-            id: slugify(adjustedID),
-          }
+          return updateDeveloperHeader(
+            heading.match(HEADING_WITH_LINK)[1],
+            heading
+          )
         } else {
-          return {
-            title: heading.includes('#')
-              ? heading.replace('#', '').trim()
-              : heading.trim(),
-            depth: !heading.includes('#') ? 1 : 2,
-            id: removeHashAndReplace(heading),
-          }
+          return standardHeader(heading)
         }
       })
 

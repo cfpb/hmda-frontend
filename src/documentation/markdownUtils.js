@@ -1,15 +1,15 @@
 import { DOCS_YEARS } from '../common/constants/years'
 
-function isBadYear(year){
+function isBadYear(year) {
   return DOCS_YEARS.indexOf(year) === -1
 }
 
 function getMarkdownUrl(year, slug) {
   const localOrRemoteUrl =
-    window.location.hostname.indexOf("localhost") > -1
+    window.location.hostname.indexOf('localhost') > -1
       ? window.location.origin
-      : "https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation"
-      
+      : 'https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation'
+
   return `${localOrRemoteUrl}/markdown/${year}/${slug}.md`
 }
 
@@ -27,11 +27,79 @@ function slugify(str) {
     .replace(/[ŸÿÝý]/g, 'y')
     .replace(/[^a-z0-9- ]/gi, '')
     .replace(/ /gi, '-')
-    .toLowerCase();
+    .toLowerCase()
+}
+
+/**
+ * Function used in tableOfContents component - removes last #, removes certain special characters and replaces spaces with dashes
+ * @param {String} id header/sub-header from markdown files - specifically h2/h3
+ * @returns string which is used for HTML ID mapping
+ */
+const removeHashAndReplace = id => {
+  let parsedString = id
+    .replace(/[#\/'’">(),.?&]/g, '')
+    .trim()
+    .replace(/[\s]/g, '-')
+    .toLowerCase()
+  return parsedString
+}
+
+/**
+ * Function used to parse array of H2s from markdown and remove the two hashes
+ * @param {Array} ArrayOfHeaders
+ * @returns
+ */
+const removeTwoHashes = ArrayOfHeaders => {
+  return ArrayOfHeaders.map(h =>
+    h.includes('##') ? h.replace('##', '').trim() : ''
+  )
+}
+
+/**
+ * Function used to update developer headers and make them readable for table of content sidebar
+ *
+ * Developer header example: [derived\_msa-md] (#derived_msa-md)
+ *
+ * Output from example: derived_msa-md
+ * @param {String} devHeader captures the developer header
+ * @param {String} orginalHeading used to create the correct depth
+ * @returns {Object} {title: String, id: String, depth: Number}
+ */
+const updateDeveloperHeader = (devHeader, orginalHeading) => {
+  const title = devHeader.includes('\\')
+    ? devHeader.replace(/\\/g, '') // removes backslash
+    : devHeader
+
+  const id = slugify(title)
+
+  const depth = !orginalHeading.includes('#') ? 1 : 2
+
+  return { title, id, depth }
+}
+
+/**
+ * Function used to update headers by keeping original header or removing one #
+ * @param {String} heading h2 or h3 from markdown
+ * @returns {Object} {title: String, id: String, depth: Number}
+ */
+const standardHeader = heading => {
+  let title = heading.includes('#')
+    ? heading.replace('#', '').trim()
+    : heading.trim()
+
+  let depth = !heading.includes('#') ? 1 : 2
+
+  let id = removeHashAndReplace(heading)
+
+  return { title, id, depth }
 }
 
 export {
   getMarkdownUrl,
   isBadYear,
-  slugify
+  slugify,
+  removeHashAndReplace,
+  removeTwoHashes,
+  updateDeveloperHeader,
+  standardHeader,
 }

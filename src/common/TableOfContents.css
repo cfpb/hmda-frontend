@@ -27,7 +27,7 @@
 
 .highlight {
   border-style: solid;
-  border-left-color:#0071bc;
+  border-left-color: #0071bc;
   border-left-width: 4px;
   border-bottom: none;
   border-top: none;
@@ -46,11 +46,7 @@
   padding-left: 20px;
   padding-right: 20px;
   font-weight: normal;
-  text-overflow: ellipsis;
-
-  /* Required for text-overflow to do anything */
-  /* white-space: nowrap; */
-  /* overflow: hidden; */
+  cursor: pointer;
 }
 
 @keyframes fadeIn {

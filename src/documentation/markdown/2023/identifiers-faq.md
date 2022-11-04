@@ -23,7 +23,7 @@ The _ARID2017 to LEI Reference Table_ provides a mapping of 2017 Agency Code and
 
 ## Institution Name Changes
 
-### What if institution's change their names for 2018 or later
+### What if institutions change their names for 2018 or later
 
 In 2018 and subsequent years, an institution's name in the HMDA Panel dataset is pulled from <a target="_blank" rel="noopener noreferrer" href="https://www.gleif.org/">GLEIF</a> using the <a target="_blank" rel="noopener noreferrer" href="http://ffiec.cfpb.gov/documentation/2021/filing-faq#what-is-a-legal-entity-identifier-lei">LEI</a> provided by that institution. If the institution changes their legal name with <a target="_blank" rel="noopener noreferrer" href="https://www.gleif.org/">GLEIF</a> after the publication of the HMDA Panel, that change will populate in the subsequent HMDA Panel.
 
