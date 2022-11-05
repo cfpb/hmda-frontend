@@ -1,6 +1,18 @@
 {
   "log": [
     {
+      "date": "11/04/2022",
+      "type": "update",
+      "product": "documentation",
+      "description": "Direct access to the IRS reports and Modified LAR is being depreciated as of Dec 23. These files may instead be accessed through the HMDA File Service.",
+      "links": [
+        {
+          "text": "HMDA File Service Documentation",
+          "url": "https://cfpb.github.io/hmda-platform/#hmda-file-serving"
+        }
+      ]
+    },
+    {
       "date": "10/04/22",
       "type": "correction",
       "product": "tools",
