@@ -85,13 +85,15 @@ export const formatReceiptTime = timeToFormat => {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
-    timezone,
+    ...timezone,
   }
 
+  const date = new Date(timeToFormat)
+
   return (
-    new Date(timeToFormat).toLocaleDateString('en-US', options) +
+    date.toLocaleDateString('en-US', options) +
     ',' +
-    new Date(timeToFormat).toLocaleString('en-US', timezone).split(',')[1] +
+    date.toLocaleString('en-US', timezone).split(',')[1] +
     ' ET'
   )
 }
