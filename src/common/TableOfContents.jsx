@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link as LinkRR } from 'react-router-dom'
+import { BackLink } from '../documentation/BackLink'
 import {
   slugify,
   removeTwoHashes,
@@ -8,7 +8,7 @@ import {
 } from '../documentation/markdownUtils'
 import './TableOfContents.css'
 
-const HEADING_WITH_LINK = /\[(.*?)\]/ // Captures headers that include brackets and parenthesis
+const REGEX_HEADING_LINK = /\[(.*?)\]/ // Captures headers that include brackets and parenthesis
 const REGEX_H2s_H3s = /#{2}.+(?=\n)/g
 
 /**
@@ -47,14 +47,14 @@ const TableOfContents = ({
       // Generating a new array of objects which contains title, depth and id
       const parsedHeadings = headingsForTOC.map(heading => {
         // Regex used on developer headers
-        if (heading.match(HEADING_WITH_LINK)) {
+        if (heading.match(REGEX_HEADING_LINK)) {
           return parseDeveloperHeader(
-            heading.match(HEADING_WITH_LINK)[1],
+            heading.match(REGEX_HEADING_LINK)[1],
             heading
           )
-        } else {
-          return parseStandardHeader(heading)
         }
+
+        return parseStandardHeader(heading)
       })
 
       setMarkdownHeaders(parsedHeadings)
@@ -67,27 +67,28 @@ const TableOfContents = ({
   return (
     <div>
       <div className='toc-container'>
-        <LinkRR className='BackLink' to={`/documentation/${year}`}>
-          {'\u2b05'} {year} DOCUMENTATION
-        </LinkRR>
+        <BackLink year={year} />
         <ul>
           {markdownHeaders.map((header, index) => (
-            <li
-              className={header.depth > 1 ? 'subheader' : 'header'}
-              key={index}
-            >
-              <a href={`#${header.id}`}>
-                {activeContent == header.id ? (
-                  <div className='highlight'>{header.title}</div>
-                ) : (
-                  header.title
-                )}
-              </a>
-            </li>
+            <TOCHeader {...{ header, index, active: activeContent }} />
           ))}
         </ul>
       </div>
     </div>
+  )
+}
+
+const TOCHeader = ({ header, index, active }) => {
+  const liClass = header.depth > 1 ? 'subheader' : 'header'
+
+  let content = header.title
+  if (active == header.id)
+    content = <div className='highlight'>{header.title}</div>
+
+  return (
+    <li className={liClass} key={index}>
+      <a href={`#${header.id}`}>{content}</a>
+    </li>
   )
 }
 

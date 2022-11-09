@@ -2,9 +2,9 @@ import React, { useState, useEffect, useLayoutEffect, useCallback } from 'react'
 import Markdown from 'markdown-to-jsx'
 import LoadingIcon from '../common/LoadingIcon.jsx'
 import NotFound from '../common/NotFound.jsx'
-import { Link } from 'react-router-dom'
 import { updateSelfLinks, getMarkdownUrl } from './markdownUtils'
 import TableOfContents from '../common/TableOfContents.jsx'
+import { BackLink } from './BackLink'
 import './index.css'
 
 const cleanHash = hash => hash.replace(/[#_/]/g, '').toLowerCase()
@@ -80,17 +80,6 @@ const DynamicRenderer = props => {
         {data ? <Markdown>{data}</Markdown> : <LoadingIcon />}
       </div>
     </div>
-  )
-}
-
-// Show `documentation` link if TOC sidebar doesn't show up on that page
-const BackLink = ({ year, hide }) => {
-  if (hide) return null
-
-  return (
-    <Link className='BackLink' to={`/documentation/${year}`}>
-      {'\u2b05'} {year} DOCUMENTATION
-    </Link>
   )
 }
 
