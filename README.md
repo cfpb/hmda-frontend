@@ -24,7 +24,7 @@ The HMDA Frontend monorepo hosts the public facing applications for the collecti
         * [Configure the UI](#configure-the-ui)
       - [Updating or Previewing Documentation](#updating-or-previewing-documentation)
     + [Running via Docker](#running-via-docker)
-    + [Creating and editing Markdown](https://github.com/cfpb/hmda-frontend/wiki/Creating-and-updating-Markdown-files)
+  + [Creating and editing Markdown](https://github.com/cfpb/hmda-frontend/wiki/Creating-and-updating-Markdown-files)
   * [Testing](#testing)
     + [Unit Tests](#unit-tests)
     + [End-to-End Testing](#end-to-end-testing)
