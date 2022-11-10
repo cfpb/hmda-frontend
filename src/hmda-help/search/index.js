@@ -196,6 +196,8 @@ class Form extends Component {
 
     const { config } = this.props
 
+    // console.log(this.state, "State")
+
     let leis = institutions && institutions.map(i => i.lei).filter(onlyUnique)
     const year = getFilingYears(this.props.config).filter(
       x => !x.includes('Q')

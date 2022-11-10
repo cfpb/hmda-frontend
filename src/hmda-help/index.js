@@ -88,6 +88,12 @@ class App extends Component {
               />
               <ProtectedRoute
                 exact
+                path='/search/lei/:id'
+                component={Search}
+                config={config}
+              />
+              <ProtectedRoute
+                exact
                 path='/add'
                 component={Institution}
                 config={config}
@@ -102,12 +108,6 @@ class App extends Component {
                 exact
                 path='/update/lei/:year/:id'
                 component={Institution}
-                config={config}
-              />
-              <ProtectedRoute
-                exact
-                path='/search/lei/:id'
-                component={Search}
                 config={config}
               />
             </React.Fragment>

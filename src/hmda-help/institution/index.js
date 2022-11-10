@@ -21,6 +21,7 @@ import { getFilingYears } from '../../common/constants/configHelpers'
 import * as AccessToken from '../../common/api/AccessToken' 
 
 import './Form.css'
+import { fetchInstitution } from '../search/fetchInstitution'
 
 let defaultInstitutionState = {}
 searchInputs
@@ -42,6 +43,7 @@ class Institution extends Component {
       disabledSubmit: true,
       requiresNewNotes: false,
       fetchNotesHistory: true,
+      institutions: [],
       ...defaultInstitutionState
     }
 
@@ -51,6 +53,7 @@ class Institution extends Component {
     this.onInputChange = this.onInputChange.bind(this)
     this.onInputBlur = this.onInputBlur.bind(this)
     this.toggleShowOtherFields = this.toggleShowOtherFields.bind(this)
+    this.setState = this.setState.bind(this)
   }
 
   componentDidMount() {
@@ -64,6 +67,26 @@ class Institution extends Component {
 
     if (state && state.wasAddition) {
       this.setState({ wasAddition: state.wasAddition })
+    }
+
+    // Feature: Direct linking
+    // Update URL with /update/lei/:year/:id
+    if (this.props.match.params.year && this.props.match.params.id && state) {
+      let splitURL = this.props.history.location.pathname.split('/')
+      // Contains year that needs to be updated
+      splitURL[3] = state.institution.activityYear.toString()
+      // Contains lei that needs to be updated
+      splitURL[4] = state.institution.lei
+      this.props.history.push({
+        pathname: splitURL.join('/'),
+        state: { institution: state.institution }
+      })
+    } else if (!state) {
+      let year = this.props.match.params.year
+      let lei = this.props.match.params.id
+      Promise.all(fetchInstitution(lei, this.setState, [year])).then(() => {
+        this.setState({...this.state.institutions[0]})
+      })
     }
   }
 
@@ -89,7 +112,7 @@ class Institution extends Component {
   onInputChange(event) {
     let additionalKeys = { isSubmitted: false, error: null }
 
-    if(this.props.location.pathname === '/update'){
+    if(this.props.location.pathname.includes('/update')){
       // Update to Notes field required on Institution data change
       additionalKeys.requiresNewNotes = true
       if(event.target.id !== 'notes' && this.state.notes === this.state.prevNotes){
@@ -161,11 +184,11 @@ class Institution extends Component {
       })
       .then(() => {
         this.props.history.push({
-          pathname: '/update',
+          pathname: `/update/lei/${this.state.institution.activityYear}/${this.state.institution.lei}`,
           state: {
             institution: this.state,
-            wasAddition: this.props.location.pathname === '/add'
-          }
+            wasAddition: this.props.location.pathname === '/add',
+          },
         })
       })
       .catch(error => {
@@ -285,7 +308,7 @@ class Institution extends Component {
                 {...searchInput}
                 value={this.state[searchInput.id] || searchInput.value}
                 disabled={
-                  pathname === '/update' && searchInput.id === 'lei'
+                  pathname.includes('/update') && searchInput.id === 'lei'
                     ? true
                     : false
                 }
@@ -301,10 +324,10 @@ class Institution extends Component {
             required={this.state.requiresNewNotes}
             notes={this.state.notes}
             prevNotes={this.state.prevNotes}
-            hide={pathname !== '/update'}
+            hide={!pathname.includes('/update')}
           />
 
-          {pathname === '/update' && (
+          {pathname.includes('/update') && (
             <NoteHistory
               lei={this.state.lei}
               year={this.state.activityYear}

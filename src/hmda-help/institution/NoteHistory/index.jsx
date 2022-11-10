@@ -34,19 +34,25 @@ const fetchNotesHistory = ({ lei, year, setFetched, setError, setNotes }) => {
     'Content-Type': 'application/json',
   }
 
-  return fetchData(`/v2/public/institutions/${lei}/year/${year}/history`, { headers })
-  .then((res) => {
-    if (res.error) {
-      if(res.status === 404) return setError('No recorded History')
-      return setError(typeof res.error === 'object' ? res.error.message : res.message)
-    }
-    setError(null)
-    return res.response.json()
+  return fetchData(`/v2/public/institutions/${lei}/year/${year}/history`, {
+    headers,
   })
-  .then((json) =>{
-      json && setNotes(addDiff(sortNotes(json.institutionNoteHistoryItems)))
+    .then(res => {
+      if (res.error) {
+        if (res.status === 404) return setError('No recorded History')
+        return setError(
+          typeof res.error === 'object' ? res.error.message : res.message
+        )
+      }
+      setError(null)
+      return res.response.json()
+    })
+    .then(json => {
+      let fetchedData =
+        json && setNotes(addDiff(sortNotes(json.institutionNoteHistoryItems)))
+      setNotes(fetchedData)
       setFetched()
-  })
+    })
 }
 
 

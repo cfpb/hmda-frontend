@@ -59,7 +59,6 @@ export const FilersSearchBox = ({ endpoint, onChange, year, lei, ...rest }) => {
   const [selectedValue, setSelectedValue] = useState(null)
   const [isInitial, setIsInitial] = useState(true)
   const [validationMsgs, setValidationMsgs] = useState([])
-  const [leiToDisplay, setLeiToDisplay ] = useState()
   const [data, isFetching, error] = useRemoteJSON(
     endpoint || `/v2/reporting/filers/${year}`,
     {
@@ -69,9 +68,16 @@ export const FilersSearchBox = ({ endpoint, onChange, year, lei, ...rest }) => {
     }
   )
 
-  // TODO: Needs to be updated from non-failing instituitions data
+  // TODO: Needs to use production data - WIP
   // Updates selectedValue to be from the URL
   useEffect(() => {
+      // if (!isFetching && data) {
+      //   // console.log(data, "hello")
+      //   // console.log(lei)
+      //   setSelectedValue(createLEIOption(lei, data))
+      // }
+      
+      // Use below code to test local data
       for (const [key, value] of Object.entries(CI_INSTITUTIONS)) {
         if (value.lei == lei) {
           setSelectedValue({
@@ -80,7 +86,6 @@ export const FilersSearchBox = ({ endpoint, onChange, year, lei, ...rest }) => {
           })
         }
       }
-    
       
     setIsInitial(false)
   }, [lei, data])
