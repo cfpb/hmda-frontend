@@ -34,7 +34,14 @@ export class UploadBar extends Component {
   }
 
   getSavedWidth(filingPeriod, lei) {
-    return lei ? JSON.parse(localStorage.getItem(`HMDA_UPLOAD_PROGRESS/${filingPeriod}/${lei}`)) : MIN_PCT
+    let storedValue = 0
+
+    if (lei) {
+      const itemKey = `HMDA_UPLOAD_PROGRESS/${filingPeriod}/${lei}`
+      storedValue = JSON.parse(localStorage.getItem(itemKey))
+    }
+
+    return storedValue || MIN_PCT
   }
 
   getNextWidth() {
