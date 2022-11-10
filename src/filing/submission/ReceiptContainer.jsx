@@ -13,7 +13,7 @@ export function mapStateToProps(state) {
     receipt,
     status,
     filingPeriod,
-    email
+    email,
   }
 }
 

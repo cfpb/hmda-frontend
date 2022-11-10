@@ -1,6 +1,7 @@
-export const months = 'January,February,March,April,May,June,July,August,September,October,November,December'.split(
-  ','
-)
+export const months =
+  'January,February,March,April,May,June,July,August,September,October,November,December'.split(
+    ','
+  )
 
 export function nth(d) {
   if (d > 3 && d < 21) return 'th'
@@ -21,10 +22,10 @@ export function padZero(n) {
   return n < 0 ? '-0' + -n : '0' + n
 }
 
-export function ordinal(d, options=({nthDate: true})) {
+export function ordinal(d, options = { nthDate: true }) {
   const { nthDate } = options
   const month = months[d.getMonth()]
-  const day = d.getDate() 
+  const day = d.getDate()
   const dayStr = `${day}${nthDate ? nth(day) : ''}`
   return `${month} ${dayStr}, ${d.getFullYear()}`
 }
@@ -43,8 +44,8 @@ const msToDays = ms => ms / (1000 * 60 * 60 * 24)
 
 const msToHours = ms => ms / (1000 * 60 * 60)
 
-export const numDaysBetween = function(d1, d2) {
-  var diff = d1.getTime() - d2.getTime();
+export const numDaysBetween = function (d1, d2) {
+  var diff = d1.getTime() - d2.getTime()
   return msToDays(diff)
 }
 
@@ -68,4 +69,31 @@ export const isDstObserved = (date = new Date()) => {
 export const easternOffsetHours = (date = new Date()) => {
   const eastOffset = isDstObserved() ? 4 : 5
   return date.getTimezoneOffset() / 60 - eastOffset
+}
+
+/**
+ * Function to format timestamp and return a string with eastern timezone
+ * @param {Number} timeToFormat timestamp of when receipt was submitted
+ * @returns formatted string that includes month, day, year and time from ET
+ */
+export const formatReceiptTime = timeToFormat => {
+  let timezone = {
+    timeZone: 'America/New_York',
+  }
+
+  const options = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    ...timezone,
+  }
+
+  const date = new Date(timeToFormat)
+
+  return (
+    date.toLocaleDateString('en-US', options) +
+    ',' +
+    date.toLocaleString('en-US', timezone).split(',')[1] +
+    ' ET'
+  )
 }
