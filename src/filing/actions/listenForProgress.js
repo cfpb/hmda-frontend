@@ -14,6 +14,8 @@ import {
 } from '../constants/statusCodes.js'
 import * as AccessToken from '../../common/api/AccessToken.js'
 
+let keepSocketAlive
+
 // Extract completion percentage
 export const parseProgress = string => {
   if (!string.match(/^InProgress/)) return string
@@ -86,6 +88,14 @@ export default function listenForProgress() {
                 },
               })
             )
+
+            // Keep connection alive by pinging server every 60s
+            keepSocketAlive = setInterval(() => {
+              const timestamp = new Date().toLocaleString('en-US', {
+                timeZone: 'America/New_York',
+              })
+              socket.send(JSON.stringify({ keepAlive: `${timestamp} ET` }))
+            }, 60000)
           }
 
           // Listen for messages
@@ -152,6 +162,8 @@ export default function listenForProgress() {
               // event.code is usually 1006 in this case
               console.log('[socket onclose] Connection died', event)
             }
+
+            clearInterval(keepSocketAlive)
           }
 
           // TODO: What to do on websocket error?
