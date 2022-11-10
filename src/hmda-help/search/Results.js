@@ -16,7 +16,6 @@ class SearchResults extends Component {
   render() {
     if (!this.props.institutions) return null
     if (!this.props.institutions.length) return null
-
     const { institutions, handleDeleteClick, error } = this.props
     institutions.sort((a, b) => (b.activityYear > a.activityYear ? 1 : -1))
     const colCount = 7

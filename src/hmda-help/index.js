@@ -77,25 +77,37 @@ class App extends Component {
         const config = this.props.config
 
         return (
-          <Switch basename="/hmda-help">
+          <Switch basename='/hmda-help'>
             <React.Fragment>
               <Header logout={keycloak.logout} />
               <ProtectedRoute
                 exact
-                path="/"
+                path='/'
                 component={Search}
                 config={config}
               />
               <ProtectedRoute
                 exact
-                path="/add"
+                path='/add'
                 component={Institution}
                 config={config}
               />
               <ProtectedRoute
                 exact
-                path="/update"
+                path='/update'
                 component={Institution}
+                config={config}
+              />
+              <ProtectedRoute
+                exact
+                path='/update/lei/:year/:id'
+                component={Institution}
+                config={config}
+              />
+              <ProtectedRoute
+                exact
+                path='/search/lei/:id'
+                component={Search}
                 config={config}
               />
             </React.Fragment>

@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { createFilter } from 'react-select'
 import CreatableSelect from 'react-select/creatable'
 import { MenuList } from '../../data-browser/datasets/MenuList'
@@ -20,7 +20,7 @@ const CI_INSTITUTIONS = {
 
 /** Construct the placeholder text for the Select box based on loading status and availability of options  */
 function itemPlaceholder(loading, hasItems, category, selectedValue) {
-  if(loading) return 'Loading...'
+  if (loading) return 'Loading...'
   if (!hasItems || category === 'leis') return `Type to select an Institution`
   const placeholder = makeItemPlaceholder(category, [selectedValue])
   return placeholder
@@ -55,11 +55,11 @@ const ValidationStatus = ({ items }) => {
 }
 
 /** Search box for easier selection of Institutions using the /filers/{year} endpoint to generate options */
-export const FilersSearchBox = ({ endpoint, onChange, year, ...rest }) => {
+export const FilersSearchBox = ({ endpoint, onChange, year, lei, ...rest }) => {
   const [selectedValue, setSelectedValue] = useState(null)
   const [isInitial, setIsInitial] = useState(true)
   const [validationMsgs, setValidationMsgs] = useState([])
-
+  const [leiToDisplay, setLeiToDisplay ] = useState()
   const [data, isFetching, error] = useRemoteJSON(
     endpoint || `/v2/reporting/filers/${year}`,
     {
@@ -68,6 +68,22 @@ export const FilersSearchBox = ({ endpoint, onChange, year, ...rest }) => {
       defaultData: CI_INSTITUTIONS
     }
   )
+
+  // TODO: Needs to be updated from non-failing instituitions data
+  // Updates selectedValue to be from the URL
+  useEffect(() => {
+      for (const [key, value] of Object.entries(CI_INSTITUTIONS)) {
+        if (value.lei == lei) {
+          setSelectedValue({
+            label: value.name + ' - ' + value.lei,
+            value: value.lei,
+          })
+        }
+      }
+    
+      
+    setIsInitial(false)
+  }, [lei, data])
 
   // Enable type-to-search on pageload by focusing the LEI input element
   useLayoutEffect(() => {
@@ -106,7 +122,7 @@ export const FilersSearchBox = ({ endpoint, onChange, year, ...rest }) => {
       setValidationMsgs([{ type: 'error', text: 'LEI must be 20 characters' }])
     else if (lengthCheck === 20) { // If you're trying to enter an LEI, this is a correctly formatted LEI
       setValidationMsgs([{ type: 'success', text: 'LEI (20 characters)' }])
-      handleSelection({ value: text, label: text }) // Automatically perform an Institution search
+      handleSelection({value: text, label: text }) // Automatically perform an Institution search
     }
     else if (lengthCheck > 20)  // You're probably searching for an Institution name, but if you were trying to enter an LEI...
       setValidationMsgs([{ type: 'status', text: `Not an LEI: ${lengthCheck} characters` }])
@@ -138,7 +154,7 @@ export const FilersSearchBox = ({ endpoint, onChange, year, ...rest }) => {
         options={options}
         onChange={handleSelection}
         onInputChange={onInputChange}
-        placeholder={itemPlaceholder( isFetching, options.length, 'leis', selectedValue )}
+        placeholder={itemPlaceholder( isFetching, options.length, 'leis', selectedValue)}
         components={{ MenuList }}
         filterOption={createFilter({ ignoreAccents: false })}
         styles={styleFn}
