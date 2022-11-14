@@ -14,7 +14,7 @@ curl https://s3.amazonaws.com/cfpb-hmda-public/prod/cypress/integration.zip > ./
 
 # Run configured Integration tests
 # Example: "cypress/integration/data-browser/**,cypress/integration/data-publication/**"
-if [ $CYPRESS_TEST_LIST ]; 
+if [[ -n "$CYPRESS_TEST_LIST" ]]; 
 then
 	yarn cypress run --spec ${CYPRESS_TEST_LIST} > output_integration.txt
 	if  grep -q "All specs passed!" "output_integration.txt" ; then
