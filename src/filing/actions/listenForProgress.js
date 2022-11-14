@@ -71,6 +71,7 @@ export default function listenForProgress() {
 
           try {
             console.log(`-- Attempting connection to ${socketType}://${wsBaseUrl}${wsProgressUrl}`)
+            document.cookie = 'X-Authorization-Token=' + AccessToken.get() + '; path=/';
             socket = new WebSocket(`${socketType}://${wsBaseUrl}${wsProgressUrl}`)
           } catch (e) {
             console.log(`--- Connection to ${socketType}://${wsBaseUrl}${wsProgressUrl} failed!`)
@@ -78,16 +79,9 @@ export default function listenForProgress() {
             console.log('---')
           }
 
-          socket.onopen = (event) => {
+          socket.onopen = () => {
             console.log('-- Socket open! Sending Bearer token and then listening for Progress...')
             dispatch(requestProcessingProgress())
-            socket.send(
-              JSON.stringify({
-                headers: {
-                  Authorization: 'Bearer ' + AccessToken.get(),
-                },
-              })
-            )
 
             // Keep connection alive by pinging server every 60s
             keepSocketAlive = setInterval(() => {
