@@ -81,7 +81,7 @@ Below that message is a button that says 'View Completed Filing'. Select that an
 ### When can I submit my file?
 The <a target="_blank" rel="noopener noreferrer" href="https://ffiec.beta.cfpb.gov/">HMDA Beta Filing Platform</a> is open throughout the year to test your HMDA data.
 
-_Annual HMDA data submissions_ for the filing year are accepted between January 1 – March to be considered timely.
+_Annual HMDA data submissions_ for the filing year are considered timely when completed between January 1st and March 1st.
 <br/>
 
 ![2023 annual filing dates](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/annual_filing.png)  
