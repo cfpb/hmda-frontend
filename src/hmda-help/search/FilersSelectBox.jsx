@@ -2,6 +2,7 @@ import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { createFilter } from 'react-select'
 import CreatableSelect from 'react-select/creatable'
 import { MenuList } from '../../data-browser/datasets/MenuList'
+import { useParams } from 'react-router-dom'
 import { createLEIOption, itemStyleFn, makeItemPlaceholder, sortByLabel } from '../../data-browser/datasets/selectUtils'
 import { useRemoteJSON } from '../../common/useRemoteJSON'
 
@@ -55,7 +56,7 @@ const ValidationStatus = ({ items }) => {
 }
 
 /** Search box for easier selection of Institutions using the /filers/{year} endpoint to generate options */
-export const FilersSearchBox = ({ endpoint, onChange, year, lei, ...rest }) => {
+export const FilersSearchBox = ({ endpoint, onChange, year, ...rest }) => {
   const [selectedValue, setSelectedValue] = useState(null)
   const [isInitial, setIsInitial] = useState(true)
   const [validationMsgs, setValidationMsgs] = useState([])
@@ -64,39 +65,47 @@ export const FilersSearchBox = ({ endpoint, onChange, year, lei, ...rest }) => {
     {
       transformReceive: createLeiMap,
       forceFetch: true,
-      defaultData: CI_INSTITUTIONS
+      defaultData: CI_INSTITUTIONS,
     }
   )
 
-  // TODO: Needs to use production data - WIP
-  // Updates selectedValue to be from the URL
+  // Institution ID from URL
+  let { id } = useParams()
+
+  // Updates selectedValue to include institution from URL
   useEffect(() => {
-      // if (!isFetching && data) {
-      //   // console.log(data, "hello")
-      //   // console.log(lei)
-      //   setSelectedValue(createLEIOption(lei, data))
-      // }
-      
-      // Use below code to test local data
+    // tests local institution data
+    if (process.env.REACT_APP_ENVIRONMENT == 'CI') {
       for (const [key, value] of Object.entries(CI_INSTITUTIONS)) {
-        if (value.lei == lei) {
+        if (value.lei == id) {
           setSelectedValue({
             label: value.name + ' - ' + value.lei,
             value: value.lei,
           })
         }
       }
-      
+    }
+    // Handles institution data from endpoint
+    else if (!isFetching && data) {
+      let selected = createLEIOption(id, data)
+
+      if (!selected.label.includes("undefined")) {
+        setSelectedValue(selected)
+      }
+    }
+
     setIsInitial(false)
-  }, [lei, data])
+  }, [id, data, isFetching])
 
   // Enable type-to-search on pageload by focusing the LEI input element
   useLayoutEffect(() => {
     if (!isFetching && data)
-      lastTimeout = setTimeout(() => document.querySelector('#lei-select input').focus(), 100)
+      lastTimeout = setTimeout(
+        () => document.querySelector('#lei-select input').focus(),
+        100
+      )
     return () => lastTimeout && clearTimeout(lastTimeout)
   }, [data, isFetching])
-
 
   // Trigger callback with a faux Event containing the Institution info for the selected LEI
   const handleSelection = args => {
@@ -113,26 +122,29 @@ export const FilersSearchBox = ({ endpoint, onChange, year, lei, ...rest }) => {
   // Generate and sort options, asc by Institution name
   const options = data
     ? Object.keys(data)
-        .map((d) => createLEIOption(d, data))
+        .map(d => createLEIOption(d, data))
         .sort(sortByLabel)
     : []
 
   // Validation and sanitization of user input
-  const onInputChange = (text) => {
+  const onInputChange = text => {
     if (!text) return setValidationMsgs(null)
     const cleanUpperCased = text.toUpperCase().replace(/[^\sA-Z0-9+]+/gi, '')
     const cleanNoSpace = cleanUpperCased.replace(/\s/gi, '')
     const lengthCheck = cleanNoSpace.length
-    if (lengthCheck < 20 && cleanNoSpace.match(/[0-9]$/)) // Could be an LEI but it's too short
+    if (lengthCheck < 20 && cleanNoSpace.match(/[0-9]$/))
+      // Could be an LEI but it's too short
       setValidationMsgs([{ type: 'error', text: 'LEI must be 20 characters' }])
-    else if (lengthCheck === 20) { // If you're trying to enter an LEI, this is a correctly formatted LEI
+    else if (lengthCheck === 20) {
+      // If you're trying to enter an LEI, this is a correctly formatted LEI
       setValidationMsgs([{ type: 'success', text: 'LEI (20 characters)' }])
-      handleSelection({value: text, label: text }) // Automatically perform an Institution search
-    }
-    else if (lengthCheck > 20)  // You're probably searching for an Institution name, but if you were trying to enter an LEI...
-      setValidationMsgs([{ type: 'status', text: `Not an LEI: ${lengthCheck} characters` }])
-    else
-      setValidationMsgs(null)
+      handleSelection({ value: text, label: text }) // Automatically perform an Institution search
+    } else if (lengthCheck > 20)
+      // You're probably searching for an Institution name, but if you were trying to enter an LEI...
+      setValidationMsgs([
+        { type: 'status', text: `Not an LEI: ${lengthCheck} characters` },
+      ])
+    else setValidationMsgs(null)
     return cleanUpperCased
   }
 
@@ -159,7 +171,12 @@ export const FilersSearchBox = ({ endpoint, onChange, year, lei, ...rest }) => {
         options={options}
         onChange={handleSelection}
         onInputChange={onInputChange}
-        placeholder={itemPlaceholder( isFetching, options.length, 'leis', selectedValue)}
+        placeholder={itemPlaceholder(
+          isFetching,
+          options.length,
+          'leis',
+          selectedValue
+        )}
         components={{ MenuList }}
         filterOption={createFilter({ ignoreAccents: false })}
         styles={styleFn}
