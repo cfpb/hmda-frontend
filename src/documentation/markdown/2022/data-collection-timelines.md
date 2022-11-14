@@ -1,6 +1,6 @@
 # HMDA Data Collection Timelines
 
-**PLEASE NOTE**: Collection of 2018 HMDA data ended on Dec 31, 2021.
+**PLEASE NOTE**: Collection of 2019 HMDA data ends on Dec 31, 2022.
 
 ## HMDA Data Resubmission Window
 The collection window of HMDA Data submission and resubmission is a three year period starting on January 1 and ending December 31.

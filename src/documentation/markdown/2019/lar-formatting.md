@@ -89,10 +89,10 @@
 The Frequently Asked Questions are available at https://ffiec.cfpb.gov/documentation/2019/faqs/
 
 
-#	HMDA Help
+## HMDA Help
 Technical questions about reporting HMDA data collected in or after 2017 should be directed to hmdahelp@cfpb.gov.
 
-### *Enabling macros for Microsoft® Excel® 2002 and 2003*
+### Enabling macros for Microsoft® Excel® 2002 and 2003
 
 If the message “The macro may not be available in this workbook or all macros may be disabled” appears, then the macro settings must be updated.
 
@@ -119,7 +119,7 @@ To enable the HMDA LAR Formatting Tool macro:
 9.	Return to step 4 in the instructions for the HMDA LAR Formatting Tool.
  
 
-### *Transferring existing data from another workbook or Google Sheets™ web-based spreadsheet program*
+### Transferring existing data from another workbook or Google Sheets™ web-based spreadsheet program
 
 Data that is saved in another workbook or in Google Sheets™ web-based spreadsheet program may be copied into the LAR Formatting Tool so that the data can be formatted into a pipe delimited text file.
 To copy data from external sources into the HMDA LAR Formatting Tool:

@@ -3,7 +3,6 @@
 ## Overview
 HMDA Maps provides a way to visually analyze population-density adjusted, geographic distributions for subsets of HMDA Data. It enables side-by-side comparison of aggregated statistics for up to two popular variables. Once you have found your desired data, you can download the raw data as CSV, copy and share the page url, or save the summary report as a PDF. 
 
-
 ## What does each option mean?
 | Definition | Screenshot |  
 |---|---|
@@ -12,7 +11,7 @@ HMDA Maps provides a way to visually analyze population-density adjusted, geogra
 |**WHERE & AND**: These filters allow you to narrow the selected data based on <a target="_blank" rel="noopener noreferrer" href="/documentation/2019/data-browser-filters/#action_taken">popular variables</a>. | ![Filters Selector](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/maps/maps-filters.png)  |
 
 
-## What does the map show?  
+## What does the map show?
 The map displays the concentration of loans that match your selected filters, adjusted for population density, across the selected Geography (State or County). Darker colors indicate a higher occurrence rate in that region, while lighter colors indicate a lower occurrence rate.  
 
 ![Map](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/maps/maps-map.png)  
@@ -22,7 +21,7 @@ The various color palettes (orange, red, purple, green, blue) are used to highli
 ![Maps Buckets](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/maps/maps-buckets.png)  
   
   
-## What do the data tables show? 
+## What do the data tables show?
 The data tables show the aggregated data for the selected filter variables.  
 
 - When only one filter is selected, you will be presented with a single table that includes a row for each option of the filter.  
@@ -34,12 +33,12 @@ The data tables show the aggregated data for the selected filter variables.
 
 
 ## How can I save and share my map?
-### » Share the URL
+### Share the URL
 The URL will take the visitor directly to the map, and zoom to the selected geography. Users can then print the report, or continue to explore HMDA Data using your selections as a starting point.  
 
 ![Map Zoom](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/maps/maps-zoom-share.gif)  
 
-### » Save as PDF
+### Save as PDF
 ![Maps Save PDF](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/maps/maps-save-pdf.png)
 <!-- <div style="border: 0px dotted #ddd; padding: 1em .5em">
   <div style="padding: 0em .25em; padding-bottom: .5em; display: flex; justify-content: space-between; align-items: flex-start;">
@@ -59,7 +58,6 @@ The URL will take the visitor directly to the map, and zoom to the selected geog
     <div style="text-align: center"><img style="margin: 0 auto; max-width: 250px;" src="../images/maps/maps-data-controls.png" alt="Data Controls"></div>
   </div> -->
 
-
 ## How do I interact with the map?
 | Function | Mouse | Keyboard | Touchpad |
 |---|---|---|---|
@@ -69,10 +67,8 @@ The URL will take the visitor directly to the map, and zoom to the selected geog
 | <div>- Pan the map</div> | Left-click and drag | Arrow keys | Left-click and drag  |
 | <div style='width: 14ch'>- Reset the view</div> | Reload the page | Reload the page | Reload the page |
 
-
 ## Report a bug
   - Please [open an Issue](https://github.com/cfpb/hmda-frontend/issues) that includes a detailed description of the issue you're experiencing, along with the URL.
-
 
 ## Still need help?
   - Please reach out to [HMDA Help](mailto:hmdahelp@cfpb.gov) via email with additional inquiries.

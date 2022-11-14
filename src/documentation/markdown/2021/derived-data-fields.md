@@ -1,7 +1,8 @@
-## Derived HMDA Data Fields 
+# Appended HMDA Data Fields
 
-This guide explains fields that are included in public HMDA data collected in 2018 and beyond, that have been modified from the original loan record to protect privacy, or added to enhance the usefulness of the data. Derived fields used in HMDA data and publication products, such as Race, Sex, and Ethnicity, were aggregated from the source data, following a methodology developed by the CFPB for analysis and privacy protection, but are not an official and sole government definition. Researchers and technical professionals interested in the methodology can refer to the [Derived Fields Categorization wiki](https://github.com/cfpb/hmda-platform/wiki/Derived-Fields-Categorization-2018-Onward) or <a target="_blank" rel="noopener noreferrer" href="https://files.consumerfinance.gov/f/documents/HMDA\_Data\_Disclosure\_Policy\_Guidance.Executive\_Summary.FINAL.12212018.pdf">the Data Disclosure Policy</a>.
+This guide explains fields that are included in public HMDA data collected in 2018 and beyond, that have been modified from the original loan record to protect privacy, or added to enhance the usefulness of the data. Derived fields used in HMDA data and publication products, such as Race, Sex, and Ethnicity, were aggregated from the source data, following a methodology developed by the CFPB for analysis and privacy protection, but are not an official and sole government definition. Researchers and technical professionals interested in the methodology can refer to the wiki for <a target="_blank" rel="noopener noreferrer" href="https://github.com/cfpb/hmda-platform/wiki/Derived-Fields-Categorization-2018-Onward">Derived Fields Categorization</a> or the <a target="_blank" rel="noopener noreferrer" href="https://files.consumerfinance.gov/f/documents/HMDA_Data_Disclosure_Policy_Guidance.Executive_Summary.FINAL.12212018.pdf">Data Disclosure Policy</a>.
 
+## Derived HMDA Data Fields
 
 ### [derived\_ethnicity](#derived_ethnicity)
 

@@ -1,4 +1,4 @@
-## Public HMDA - Data Fields with Values and Definitions
+# Public HMDA - Data Fields with Values and Definitions
 
 ### [activity\_year](#activity_year)
 
@@ -16,6 +16,7 @@
 
 - **Description:** A financial institution's associated Agency Code
 - **Values:**
+
   |Value|Abbreviation|Name|
   |--|--|--|
   |**1**|_OCC_|Office of the Comptroller of the Currency|
@@ -147,7 +148,6 @@
   - 3 - Black or African American
   - 4 - Native Hawaiian or Other Pacific Islander
   - 5 - White
-
 
 ### [applicant\_race\_3](#applicant_race_3)
 

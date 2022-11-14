@@ -85,11 +85,11 @@
 
 ![](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/larft/Document_Inspector.png)
 
-# Frequently Asked Questions
+## Frequently Asked Questions
 The Frequently Asked Questions are available at https://ffiec.cfpb.gov/documentation/2023/faqs/
 
 
-#	HMDA Help
+## HMDA Help
 Technical questions about reporting HMDA data collected in or after 2017 should be directed to hmdahelp@cfpb.gov.
 
 ### *Enabling macros for Microsoft® Excel® 2002 and 2003*

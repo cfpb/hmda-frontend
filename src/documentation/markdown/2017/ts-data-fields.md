@@ -1,4 +1,4 @@
-## Public Transmittal Sheet - Data Fields with Values and Definitions
+# Public Transmittal Sheet - Data Fields with Values and Definitions
 
 ### [activity\_year](#activity_year)
 - **Description:** The calendar year of data collection.
@@ -37,11 +37,6 @@
 - **Description:** The 2 letter state code for the office of the filing institution.
 - **Values:**
 - Valid state codes
-
-### [respondent\_city](#respondent_city)
-- **Description:** The city name for the office of the filing institution.
-- **Values:**
-  - Various values
 
 ### [respondent\_city](#respondent_city)
 - **Description:** The city name for the office of the filing institution.

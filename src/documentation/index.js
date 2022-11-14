@@ -23,14 +23,17 @@ import { withAppContext } from '../common/appContextHOC'
 import { DOCS_YEARS } from '../common/constants/years'
 
 import './index.css'
+import ScrollToTop from '../common/ScrollToTop.jsx'
 
 function makeCollectionPage(Component, heading, year, url) {
   return (
-    <div className="App Documentation">
-      <Link className="BackLink" to="/documentation/">{'\u2b05'} DOCUMENTATION HOME</Link>
+    <div className='App Documentation'>
+      <Link className='BackLink' to='/documentation/'>
+        {'\u2b05'} DOCUMENTATION HOME
+      </Link>
       <Heading type={1} headingText={heading}></Heading>
       <YearSelector year={year} url={url} years={DOCS_YEARS} />
-      <Component year={year}/>
+      <Component year={year} />
     </div>
   )
 }
@@ -43,68 +46,122 @@ const pageSlugs = {
   'rate-spread': RateSpread,
   'check-digit': CheckDigit,
   'lar-formatting': LARFT,
-  'file-format-verification': FFVT
+  'file-format-verification': FFVT,
 }
 
 const Documentation = ({ config }) => {
   return (
-    <Switch>
-      <Redirect exact from="/documentation" to={`/documentation/${config.defaultDocsPeriod}/`} />
+    <ScrollToTop>
+      <Switch>
+        <Redirect
+          exact
+          from='/documentation'
+          to={`/documentation/${config.defaultDocsPeriod}/`}
+        />
 
-      <Route exact path="/documentation/:year/" render={props => {
-        const { url, params: { year } } = props.match
+        <Route
+          exact
+          path='/documentation/:year/'
+          render={props => {
+            const {
+              url,
+              params: { year },
+            } = props.match
 
-        if(isBadYear(year)) return <NotFound/>
+            if (isBadYear(year)) return <NotFound />
 
-        return (
-          <div className="App Documentation">
-            <Home year={year} url={url}/>
-          </div>
-        )
-      }}/>
+            return (
+              <div className='App Documentation'>
+                <Home year={year} url={url} />
+              </div>
+            )
+          }}
+        />
 
-      <Route exact path="/documentation/:year/:collection/" render={props => {
-        const { url, params: { year, collection } } = props.match
+        <Route
+          exact
+          path='/documentation/:year/:collection/'
+          render={props => {
+            const {
+              url,
+              params: { year, collection },
+            } = props.match
 
-        if(isBadYear(year)) return <NotFound/>
+            if (isBadYear(year)) return <NotFound />
 
-        if(collection === 'faqs')
-          return makeCollectionPage(FAQs, 'Frequently Asked Questions', year, url)
-        if(collection === 'fig')
-          return makeCollectionPage(FigLinks, 'Filing Instructions Guide (FIG)', year, url)
-        if(collection === 'publications')
-          return makeCollectionPage(Publications, 'HMDA Publications', year, url)
-        if(collection === 'tools')
-          return makeCollectionPage(Tools, 'HMDA Tools', year, url)
+            if (collection === 'faqs')
+              return makeCollectionPage(
+                FAQs,
+                'Frequently Asked Questions',
+                year,
+                url
+              )
+            if (collection === 'fig')
+              return makeCollectionPage(
+                FigLinks,
+                'Filing Instructions Guide (FIG)',
+                year,
+                url
+              )
+            if (collection === 'publications')
+              return makeCollectionPage(
+                Publications,
+                'HMDA Publications',
+                year,
+                url
+              )
+            if (collection === 'tools')
+              return makeCollectionPage(Tools, 'HMDA Tools', year, url)
 
-        return (
-          <div className="App Documentation">
-            <DynamicRenderer year={year} slug={collection}/>
-          </div>
-        )
-      }}/>
+            return (
+              <div className='App Documentation'>
+                <DynamicRenderer year={year} slug={collection} props={props} />
+              </div>
+            )
+          }}
+        />
 
-      <Route exact path="/documentation/:year/:collection/:slug/" render={props => {
-        const { url, params: { year, collection, slug } } = props.match
-        const Component = pageSlugs[slug]
+        <Route
+          exact
+          path='/documentation/:year/:collection/:slug/'
+          render={props => {
+            const {
+              url,
+              params: { year, collection, slug },
+            } = props.match
+            const Component = pageSlugs[slug]
 
-        if(isBadYear(year) ||
-          (collection !== 'publications' && collection !== 'tools') ||
-          !Component
-        ){
-          return <NotFound/>
-        }
+            if (
+              isBadYear(year) ||
+              (collection !== 'publications' && collection !== 'tools') ||
+              !Component
+            ) {
+              return <NotFound />
+            }
 
-        return (
-          <div className="App Documentation">
-            <Link className="BackLink" to={`/documentation/${year}/${collection}/`}>{'\u2b05'} HMDA {collection}</Link>
-            <Component year={year} inList={false} url={url} collection={collection} slug={slug}/>
-          </div>
-        )
-      }}/>
+            return (
+              <div className='App Documentation'>
+                <Link
+                  className='BackLink'
+                  to={`/documentation/${year}/${collection}/`}
+                >
+                  {'\u2b05'} HMDA {collection}
+                </Link>
+                <Component
+                  year={year}
+                  inList={false}
+                  url={url}
+                  collection={collection}
+                  slug={slug}
+                />
+              </div>
+            )
+          }}
+        />
 
-      <Route component={NotFound} />
-    </Switch>
+        <Route component={NotFound} />
+      </Switch>
+    </ScrollToTop>
   )
 }
 

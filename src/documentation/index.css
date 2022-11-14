@@ -1,6 +1,10 @@
+html {
+  scroll-behavior: smooth !important;
+}
+
 .Markdown-Wrapper {
   max-width: 1040px;
-  margin: 0 auto;
+  margin: 10px auto;
   padding: 0 3rem;
 }
 
@@ -18,16 +22,17 @@
   background-color: #ddd;
 }
 
-.Markdown-Wrapper td, .Markdown-Wrapper th {
+.Markdown-Wrapper td,
+.Markdown-Wrapper th {
   border: 1px solid #222;
   padding: 0.5em;
 }
 
 .Markdown-Wrapper img {
-  width: 100%;
+  max-width: 100%;
 }
 
-.Markdown-Wrapper img.widthOriginal{
+.Markdown-Wrapper img.widthOriginal {
   width: auto;
 }
 

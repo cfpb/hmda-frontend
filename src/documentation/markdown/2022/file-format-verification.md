@@ -1,7 +1,7 @@
-## HMDA File Format Verification Tool - Instructions 
+# HMDA File Format Verification Tool - Instructions 
 
-1. **Select** the applicable collection year that you are verifying HMDA data for from the File Format Verification Tool at https://ffiec.cfpb.gov/tools/file-format-verification.
-![](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/ffvt/Applicable_Year.png)
+1. Navigate to the File Format Verification Tool at https://ffiec.cfpb.gov/tools/file-format-verification.
+![](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/ffvt/File_Format_Verification_Tool.png)
 
 2. **Upload** or **drag and drop** your pipe delimited .txt file to the section of the File Format Verification Tool.
 
