@@ -184,7 +184,7 @@ class Institution extends Component {
       })
       .then(() => {
         this.props.history.push({
-          pathname: `/update/lei/${this.state.institution.activityYear}/${this.state.institution.lei}`,
+          pathname: `/update/lei/${this.state.activityYear.toString()}/${this.state.lei}`,
           state: {
             institution: this.state,
             wasAddition: this.props.location.pathname === '/add',
@@ -229,6 +229,7 @@ class Institution extends Component {
   render() {
     const filingYears = getFilingYears(this.props.config)
     const { pathname } = this.props.location
+    console.log(this.state, "state")
     const successAlert = this.state.isSubmitted ? (
       <Alert
         type="success"
