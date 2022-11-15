@@ -45,6 +45,8 @@ export CYPRESS_PASSWORD=<password>
 export CYPRESS_INSTITUTION=<target-institution-lei>
 export CYPRESS_TEST_DELAY=1000 # No delay (milliseconds)
 export CYPRESS_ACTION_DELAY=1000 # No delay (milliseconds)
+export CYPRESS_SHOULD_LOAD_TEST=true
+export CYPRESS_TEST_LIST='cypress/integration/data-browser/**,cypress/integration/data-publication/**,cypress/integration/filing/**,cypress/integration/hmda-help/**,cypress/integration/tools/**'
 ```
 
 ## Running Tests
@@ -76,15 +78,23 @@ Note: No videos or snapshots are created when running tests via the Cypress UI, 
 yarn cypress open
 ```
 
-## Building & Cronjob integration
+## Cronjob integration
+Integration testing automatically runs once daily via cronjob. 
 
-### Updating Specs
-Integration testing automatically runs twice daily via cronjob. To update the testing pod with the latest specs we need only update the image `hmda-cypress:latest`.  From the root directory `/hmda-frontend/` run:
+### Updating the test image
 ```
 docker build . -t hmda-cypress -f cypress/Dockerfile &&
 docker tag hmda-cypress <image_repo>/hmda/hmda-cypress &&
 docker push  <image_repo>/hmda/hmda-cypress
 ```
+
+### Updating Specs/Fixtures
+Cronjob specs and fixtures are pulled from AWS S3 on each job run. To update the testing data used, from the root directory `/hmda-frontend/`, run 
+```
+yarn cy-update-s3
+```
+ 
+You will be prompted for an AWS user profile that has `write` access to the S3 bucket.
 
 ### Updating Credentials
 In order to update the login credentials used by the testing pod, please see the `Quick Start` section in `/hmda-devops/kubernetes/cypress/README.md`.

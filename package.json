@@ -14,7 +14,8 @@
     "ci": "REACT_APP_ENVIRONMENT=CI yarn start -p 3000",
     "ci-data": "yarn newman run cypress/ci/tests/CREATE_INSTITUTIONS.postman_collection.json -e cypress/ci/config/PLATFORM_ENV.postman_environment.json -d cypress/ci/config/institutions.json",
     "dev-docs": "cp -R ./src/documentation/markdown ./public/",
-    "make-lar": "node ./scripts/lar/generate_lar_file.mjs"
+    "make-lar": "node ./scripts/lar/generate_lar_file.mjs",
+    "cy-update-s3": "./cypress/update-s3-files.sh"
   },
   "keywords": [
     "HMDA"
