@@ -1,7 +1,6 @@
 import React from 'react'
 import Heading from '../../common/Heading.jsx'
 import { Link } from 'react-router-dom'
-import { CURRENT_YEAR } from '../../common/constants/years.js'
 import ExternalLink from '../../common/ExternalLink'
 import { S3DocLink } from '../../common/S3Integrations.jsx'
 
@@ -167,15 +166,13 @@ const ModifiedLarDocs = () => {
             A quick reference guide containing the valid codes by field,
             intended for use during analysis
             <ul>
-              <li>
-                <S3DocLink
-                  url={
-                    'https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2018-public-LAR-code-sheet.pdf'
-                  }
-                  title='Modified LAR Code Sheet'
-                  label='Code Sheet'
-                />
-              </li>
+              <S3DocLink
+                url={
+                  'https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2018-public-LAR-code-sheet.pdf'
+                }
+                title='Modified LAR Code Sheet'
+                label='Code Sheet'
+              />
             </ul>
           </div>
         </div>

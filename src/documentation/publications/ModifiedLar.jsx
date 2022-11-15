@@ -34,14 +34,13 @@ const links = {
         text='Using Modified LAR Data'
       />
     </li>,
-    <li key='18-2'>
-      <S3DocLink
-        url={
-          'https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2018-public-LAR-code-sheet.pdf'
-        }
-        label='2018 Public LAR Code Sheet PDF'
-      />
-    </li>,
+    <S3DocLink
+      url={
+        'https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2018-public-LAR-code-sheet.pdf'
+      }
+      key={'18-2'}
+      label='2018 Public LAR Code Sheet PDF'
+    />,
     <li key='18-3'>
       <Link to='/documentation/2018/modified-lar-header/'>
         Modified LAR Header

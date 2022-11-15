@@ -67,8 +67,10 @@ export const S3DocLink = ({
   showLastUpdated = true,
 }) => {
   return (
-    <li key={url} title={title}>
-      <ExternalLink url={url}>{children || label}</ExternalLink>
+    <li key={url}>
+      <ExternalLink url={url} title={title}>
+        {children || label}
+      </ExternalLink>
       {showLastUpdated && (
         <Provider store={s3Store}>
           <LastUpdated url={url} />
