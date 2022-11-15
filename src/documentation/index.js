@@ -115,7 +115,12 @@ const Documentation = ({ config }) => {
 
             return (
               <div className='App Documentation'>
-                <DynamicRenderer year={year} slug={collection} props={props} />
+                <DynamicRenderer
+                  year={year}
+                  slug={collection}
+                  props={props}
+                  displayTOCBackLink={true}
+                />
               </div>
             )
           }}

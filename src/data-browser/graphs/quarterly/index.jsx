@@ -21,12 +21,15 @@ export const QuarterlyGraphs = (props) => {
   const showGraphs = ![PATH_FILERS_INFO, PATH_FAQ].includes(location.pathname)
 
   return (
-    <div className="Graphs">
+    <div className='Graphs'>
       <HomeLink />
       <GraphsHeader overview={graphHeaderOverview} />
       <Error error={error} />
       <SectionSelector props={props} />
-      <div className="section-wrapper">
+      <div
+        className='section-wrapper'
+        style={location.pathname.includes('/faq') ? { marginTop: '-.6em' } : {}}
+      >
         <SectionGraphs
           {...{
             error,
@@ -49,8 +52,9 @@ export const QuarterlyGraphs = (props) => {
             render={() => (
               <DynamicRenderer
                 year={CURRENT_YEAR}
-                slug={"data-browser-graphs-faq"}
-                showBackLink={false}
+                slug={'data-browser-graphs-faq'}
+                props={props}
+                displayTOCBackLink={false}
               />
             )}
           />

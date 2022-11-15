@@ -14,7 +14,7 @@ const DynamicRenderer = props => {
   const [error, setError] = useState(null)
   const [idToScrollTo, setIdToScrollTo] = useState()
   const [TOCSideBarDisplay, setTOCSideBarDisplay] = useState(false)
-  const { year, slug } = props
+  const { year, slug, displayTOCBackLink } = props
 
   const scrollToElement = useCallback(
     id => {
@@ -74,6 +74,7 @@ const DynamicRenderer = props => {
         id={idToScrollTo}
         props={props}
         setTOCSideBarDisplay={setTOCSideBarDisplay}
+        displayTOCBackLink={displayTOCBackLink}
       />
       <div className='Markdown-Wrapper'>
         <BackLink year={year} hide={TOCSideBarDisplay} />
