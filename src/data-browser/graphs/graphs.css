@@ -77,6 +77,10 @@
 }
 
 /* Section - FAQ */
+.Graphs .dynamic-renderer {
+  margin-top: -2em;
+}
+
 .Graphs .Markdown-Wrapper img {
   max-width: 100%;
 }

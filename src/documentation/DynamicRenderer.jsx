@@ -67,7 +67,7 @@ const DynamicRenderer = props => {
   if (error) return <NotFound />
 
   return (
-    <div style={{ display: 'flex' }}>
+    <div className='dynamic-renderer'>
       <TableOfContents
         markdown={data}
         year={year}

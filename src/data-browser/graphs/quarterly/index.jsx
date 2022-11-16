@@ -26,10 +26,7 @@ export const QuarterlyGraphs = (props) => {
       <GraphsHeader overview={graphHeaderOverview} />
       <Error error={error} />
       <SectionSelector props={props} />
-      <div
-        className='section-wrapper'
-        style={location.pathname.includes('/faq') ? { marginTop: '-.6em' } : {}}
-      >
+      <div className='section-wrapper'>
         <SectionGraphs
           {...{
             error,
