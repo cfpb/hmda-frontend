@@ -47,7 +47,7 @@ class ResultsActions extends Component {
             <div className="initialActions" id={`initialActions${index}`}>
               <Link
                 to={{
-                  pathname: `/update/lei/${institution.activityYear}/${institution.lei}`,
+                  pathname: `/update/institution/${institution.lei}/${institution.activityYear}`,
                   state: { institution: institution }
                 }}
               >

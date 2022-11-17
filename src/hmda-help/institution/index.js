@@ -70,21 +70,21 @@ class Institution extends Component {
     }
 
     // Feature: Direct linking
-    // Update URL with /update/lei/:year/:id
+    // Update URL with /update/institution/:id/:year
     if (this.props.match.params.year && this.props.match.params.id && state) {
       let splitURL = this.props.history.location.pathname.split('/')
-      // Contains year that needs to be updated
-      splitURL[3] = state.institution.activityYear.toString()
       // Contains lei that needs to be updated
-      splitURL[4] = state.institution.lei
+      splitURL[3] = state.institution.lei.toUpperCase()
       this.props.history.push({
         pathname: splitURL.join('/'),
         state: { institution: state.institution }
       })
+      // Contains year that needs to be updated
+      splitURL[4] = state.institution.activityYear.toString()
     } else if (!state) {
       let year = this.props.match.params.year
       let lei = this.props.match.params.id
-      Promise.all(fetchInstitution(lei, this.setState, [year])).then(() => {
+      Promise.all(fetchInstitution(lei.toUpperCase(), this.setState, [year])).then(() => {
         this.setState({...this.state.institutions[0]})
       })
     }
@@ -184,7 +184,7 @@ class Institution extends Component {
       })
       .then(() => {
         this.props.history.push({
-          pathname: `/update/lei/${this.state.activityYear.toString()}/${this.state.lei}`,
+          pathname: `/update/institution/${this.state.lei}/${this.state.activityYear.toString()}`,
           state: {
             institution: this.state,
             wasAddition: this.props.location.pathname === '/add',

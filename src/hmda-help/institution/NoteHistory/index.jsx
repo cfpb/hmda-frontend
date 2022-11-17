@@ -48,8 +48,7 @@ const fetchNotesHistory = ({ lei, year, setFetched, setError, setNotes }) => {
       return res.response.json()
     })
     .then(json => {
-      let fetchedData =
-        json && setNotes(addDiff(sortNotes(json.institutionNoteHistoryItems)))
+      let fetchedData = json && addDiff(sortNotes(json.institutionNoteHistoryItems))
       setNotes(fetchedData)
       setFetched()
     })

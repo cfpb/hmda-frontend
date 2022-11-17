@@ -88,7 +88,19 @@ class App extends Component {
               />
               <ProtectedRoute
                 exact
-                path='/search/lei/:id'
+                path='/search/institution/:id'
+                component={Search}
+                config={config}
+              />
+              <ProtectedRoute
+                exact
+                path='/search/publications/:id'
+                component={Search}
+                config={config}
+              />
+              <ProtectedRoute
+                exact
+                path='/search/submissions/:id'
                 component={Search}
                 config={config}
               />
@@ -106,7 +118,7 @@ class App extends Component {
               />
               <ProtectedRoute
                 exact
-                path='/update/lei/:year/:id'
+                path='/update/institution/:id/:year'
                 component={Institution}
                 config={config}
               />

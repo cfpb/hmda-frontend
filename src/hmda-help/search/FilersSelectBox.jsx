@@ -30,9 +30,9 @@ export const FilersSearchBox = ({ endpoint, onChange, year, ...rest }) => {
     const hasData = !isFetching && data
     
     if (isCI())
-      saveSelected(id, CI_INSTITUTIONS, setSelectedValue)
+      saveSelected(id.toUpperCase(), CI_INSTITUTIONS, setSelectedValue)
     else if (hasData)
-      saveSelected(id, data, setSelectedValue)
+      saveSelected(id.toUpperCase(), data, setSelectedValue)
 
     setIsInitial(false)
   }, [id, data, isFetching])

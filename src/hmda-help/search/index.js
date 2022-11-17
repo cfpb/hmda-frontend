@@ -98,41 +98,56 @@ class Form extends Component {
       errors: [],
     })
 
-      Promise.all(
-        fetchInstitution(
-          this.state.lei,
-          this.setState,
-          getFilingYears(this.props.config)
-        )
+    Promise.all(
+      fetchInstitution(
+        this.state.lei,
+        this.setState,
+        getFilingYears(this.props.config)
       )
-        .then(() => this.setState({ fetching: false }))
-        .catch(error =>
-          this.setState(state => ({
-            errors: [...state.errors, error.message],
-            fetching: false,
-          }))
-        )
-    
+    )
+      .then(() => this.setState({ fetching: false }))
+      .catch(error =>
+        this.setState(state => ({
+          errors: [...state.errors, error.message],
+          fetching: false,
+        }))
+      )
+
     // Feature: Direct linking
-    // Update URL with /search/lei/:id
+    // Update URL with /search/institution/:id
     if (this.props.match.params.id) {
-      let splitURL = this.props.history.location.pathname.split("/")
+      let splitURL = this.props.history.location.pathname.split('/')
       // Contains LEI that needs to be updated
       splitURL[3] = this.state.lei
       this.props.history.push({
-        pathname: splitURL.join("/"),
+        pathname: splitURL.join('/'),
       })
     } else {
       this.props.history.push({
-        pathname: `search/lei/${this.state.lei}`
+        pathname: `search/institution/${this.state.lei}`,
       })
     }
   }
 
   handleSubmitButton = (event, searchType) => {
     this.setState({ searchType })
-    if (searchType === 'submissions') return
     this.handleSubmit(event)
+
+    // Generates new URL when search, publication or submission buttons are clicked.
+    if (searchType === 'search')
+      this.props.history.push({
+        pathname: `/search/institution/${this.state.lei}`,
+      })
+    else if (searchType === 'publications') {
+      this.props.history.push({
+        pathname: `/search/publications/${this.state.lei}`,
+      })
+    } 
+    else if (searchType === 'submissions') {
+      this.props.history.push({
+        pathname: `/search/submissions/${this.state.lei}`,
+      })
+    }
   }
 
   isBtnDisabled = type =>
@@ -157,6 +172,7 @@ class Form extends Component {
   // Finds institutions LEI via URL and stores results in state after component loads
   componentDidMount() {
     let leiFromURL = this.props.match.params.id
+    let pathname = this.props.location.pathname
 
     if (!leiFromURL) return null
 
@@ -165,12 +181,24 @@ class Form extends Component {
       institutions: [],
       notFound: [],
       errors: [],
-      lei: leiFromURL,
+      lei: leiFromURL.toUpperCase(),
     })
+
+    // 'searchType' helps determine which results should be displayed
+    // 'searchType' is set to `search` by default
+    if (pathname.includes('/publications')) {
+      this.setState({
+        searchType: 'publications',
+      })
+    } else if (pathname.includes('/submissions')) {
+      this.setState({
+        searchType: 'submissions',
+      })
+    }
 
     Promise.all(
       fetchInstitution(
-        leiFromURL,
+        leiFromURL.toUpperCase(),
         this.setState,
         getFilingYears(this.props.config)
       )
