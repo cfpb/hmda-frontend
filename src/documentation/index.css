@@ -2,6 +2,10 @@ html {
   scroll-behavior: smooth !important;
 }
 
+.dynamic-renderer {
+  display: flex;
+}
+
 .Markdown-Wrapper {
   max-width: 1040px;
   margin: 10px auto;

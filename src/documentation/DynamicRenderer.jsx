@@ -14,7 +14,7 @@ const DynamicRenderer = props => {
   const [error, setError] = useState(null)
   const [idToScrollTo, setIdToScrollTo] = useState()
   const [TOCSideBarDisplay, setTOCSideBarDisplay] = useState(false)
-  const { year, slug } = props
+  const { year, slug, displayTOCBackLink } = props
 
   const scrollToElement = useCallback(
     id => {
@@ -67,13 +67,14 @@ const DynamicRenderer = props => {
   if (error) return <NotFound />
 
   return (
-    <div style={{ display: 'flex' }}>
+    <div className='dynamic-renderer'>
       <TableOfContents
         markdown={data}
         year={year}
         id={idToScrollTo}
         props={props}
         setTOCSideBarDisplay={setTOCSideBarDisplay}
+        displayTOCBackLink={displayTOCBackLink}
       />
       <div className='Markdown-Wrapper'>
         <BackLink year={year} hide={TOCSideBarDisplay} />

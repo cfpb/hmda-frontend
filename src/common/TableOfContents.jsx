@@ -19,7 +19,8 @@ const REGEX_H2s_H3s = /#{2}.+(?=\n)/g
  * @param {year} String Tells the backlink what year the documentation comes from
  * @param {id} String id comes from DynamicRenderer and is specifically used on developer documentation. It is a continuation of direct linking to a specific developer Field.
  * @param {props} Object Required to get access to location.hash string
- * @param {setTOCSideBarDisplay} Boolean Helps trigger `back to documentation` link appear if table of contents sidebar isn't present
+ * @param {setTOCSideBarDisplay} Boolean Helps hide `back to documentation` link that appears when there is no table of contents sidebar to display
+ * @param {displayTOCBackLink} Boolean Shows/Hides backlink that is at the top of the TOC sidebar
  */
 
 const TableOfContents = ({
@@ -28,6 +29,7 @@ const TableOfContents = ({
   id,
   props,
   setTOCSideBarDisplay,
+  displayTOCBackLink,
 }) => {
   const [markdownHeaders, setMarkdownHeaders] = useState()
   const [activeContent, setActiveContent] = useState()
@@ -67,7 +69,7 @@ const TableOfContents = ({
   return (
     <div>
       <div className='toc-container'>
-        <BackLink year={year} />
+        <BackLink year={year} hide={!displayTOCBackLink} />
         <ul>
           {markdownHeaders.map((header, index) => (
             <TOCHeader {...{ header, index, active: activeContent }} />
