@@ -69,7 +69,7 @@ const TableOfContents = ({
   return (
     <div>
       <div className='toc-container'>
-        {displayTOCBackLink == true ? <BackLink year={year} /> : ''}
+        <BackLink year={year} hide={!displayTOCBackLink} />
         <ul>
           {markdownHeaders.map((header, index) => (
             <TOCHeader {...{ header, index, active: activeContent }} />
