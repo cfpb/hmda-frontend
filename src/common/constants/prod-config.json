@@ -8,7 +8,8 @@
       "link": {
         "url": "https://ffiec.cfpb.gov/data-browser/graphs/quarterly",
         "text": "here."
-      }
+      },
+      "endDate": "12/3/2022"
     },
     {
       "message": "The FFIEC has announced a tentative release schedule for the 2022 Census products, which is available ",
@@ -17,7 +18,8 @@
       "link": {
         "url": "https://www.ffiec.gov/cra/pdf/Census_Timeline_Announcements.pdf",
         "text": "here."
-      }
+      },
+      "endDate": "12/31/2022"
     }
   ],
   "publicationReleaseYear": "2021",
