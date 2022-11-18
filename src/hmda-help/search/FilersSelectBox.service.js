@@ -29,7 +29,8 @@ export const styleFn = {
 /** Conditionally save the selected Institution */
 export const saveSelected = (id, data, setFn) => {
   let selected = createLEIOption(id, data)
-  if (selected.label.includes('undefined')) return
+  // Line below helps hide dropdown menu when an LEI ID from the URL is not found in data
+  selected.label = selected.label.replace("undefined - ", "")
   setFn(selected)
 }
 

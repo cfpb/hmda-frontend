@@ -174,6 +174,8 @@ class Form extends Component {
     let leiFromURL = this.props.match.params.id
     let pathname = this.props.location.pathname
 
+    let processedLEI = leiFromURL.toUpperCase()
+
     if (!leiFromURL) return null
 
     this.setState({
@@ -181,7 +183,7 @@ class Form extends Component {
       institutions: [],
       notFound: [],
       errors: [],
-      lei: leiFromURL.toUpperCase(),
+      lei: processedLEI,
     })
 
     // 'searchType' helps determine which results should be displayed
@@ -198,7 +200,7 @@ class Form extends Component {
 
     Promise.all(
       fetchInstitution(
-        leiFromURL.toUpperCase(),
+        processedLEI,
         this.setState,
         getFilingYears(this.props.config)
       )

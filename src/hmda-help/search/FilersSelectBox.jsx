@@ -28,11 +28,13 @@ export const FilersSearchBox = ({ endpoint, onChange, year, ...rest }) => {
   // Updates selectedValue to include institution from URL
   useEffect(() => {
     const hasData = !isFetching && data
+
+    let processedID = id.toUpperCase()
     
-    if (isCI())
-      saveSelected(id.toUpperCase(), CI_INSTITUTIONS, setSelectedValue)
-    else if (hasData)
-      saveSelected(id.toUpperCase(), data, setSelectedValue)
+    if (isCI() && id)
+      saveSelected(processedID, CI_INSTITUTIONS, setSelectedValue)
+    else if (hasData && id)
+      saveSelected(processedID, data, setSelectedValue)
 
     setIsInitial(false)
   }, [id, data, isFetching])
