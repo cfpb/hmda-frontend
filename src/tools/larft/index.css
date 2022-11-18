@@ -290,6 +290,7 @@
   background: grey;
   padding: 5px 15px;
   margin: 0;
+  white-space: nowrap;
 }
 .enum:not(:first-of-type) {
   margin-left: 0.25em;
@@ -300,6 +301,7 @@
   justify-content: flex-start;
   align-items: center;
   margin-left: 1.5rem;
+  height: 100%;
 }
 .enum.selected {
   background: #0071bc;
@@ -314,7 +316,6 @@
 }
 #parsed-fields input,
 #parsed-fields select {
-  min-width: 50%;
   width: 100%;
 }
 
