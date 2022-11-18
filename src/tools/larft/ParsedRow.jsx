@@ -209,6 +209,7 @@ function buildInput(_col, _row, _changeFn) {
                 cursor: "pointer",
                 height: "18px",
                 width: "18px",
+                fill: '#0071bc',
               }}
             />
           </div>
