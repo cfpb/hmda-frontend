@@ -1,15 +1,9 @@
-import React, { useMemo, useRef, useState, useEffect } from 'react'
-import {
-  getSchema,
-  log,
-  LAR_SCHEMA,
-  TS_SCHEMA,
-  goToFileActions,
-  RECORD_IDENTIFIER,
-  goTo,
-} from './utils'
+import React, { useMemo, useState } from 'react'
 import { Table } from 'react-fluid-table'
 import { applyFilter } from './parsedHelpers'
+import {
+  getSchema, goToFileActions, LAR_SCHEMA, log, RECORD_IDENTIFIER, TS_SCHEMA
+} from './utils'
 
 const tableHeight = rows => {
   if (rows.length < 2) return 3
@@ -49,8 +43,12 @@ const Section = ({
           // Only search targeted columns
           if (!applyFilter(col, columnFilter)) return
 
-          const matches = iRow[col.fieldName]
-            ?.toLowerCase()
+          const fieldValue = iRow[col.fieldName]
+          if (!fieldValue) return
+          
+          const matches = fieldValue
+            .toString()
+            .toLowerCase()
             .includes(searchFilter.toLowerCase())
 
           if (matches) {
