@@ -29,16 +29,13 @@ export const EditingActions = ({
     </button>
   )
   
-
-
-
   return (
     <div className='action-wrapper raw'>
       <div className='row-actions'>
         {saveButton}
         {deleteButton}
         <button className='new-row' onClick={newRow}>
-          Clear
+          New Row
         </button>
       </div>
       {!showTextActions ? null : (

@@ -70,7 +70,7 @@ const ClearButton = ({ hasSavedRecords, clearSaved }) => (
       clearSaved()
     }}
   >
-    Clear Saved
+    Reset
   </button>
 )
 
