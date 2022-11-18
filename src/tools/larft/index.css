@@ -202,13 +202,10 @@
   padding-left: 0px;
 }
 .search-box {
-  border: 1px solid lightblue;
-  padding: 2px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   border-radius: 8px;
-  background-color: lightblue;
 }
 .search-box .clear {
   margin-left: 0.3em;
@@ -218,7 +215,7 @@
   border-radius: 8px;
   text-align: center;
   padding: 0.1em;
-  border: none;
+  border: 2px solid lightgrey;
 }
 .search-box:not(:first-of-type) {
   margin-left: 0.5em;
