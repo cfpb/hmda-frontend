@@ -44,8 +44,20 @@
   justify-content: space-between;
 }
 
+/* Header */
+.online-larft h1 {
+  margin-bottom: 0.5em;
+}
+
+.online-larft h2 {
+  text-align: center;
+  margin-top: 1em;
+  font-weight: normal;
+  font-family: 'SourceSansPro' !important;
+}
+
 /* RawRow */
-.raw-row {
+.raw-row, .saved-rows {
   margin-top: 2em;
   border-top: 3px solid #0071bc;
 }
@@ -230,10 +242,6 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-}
-
-.online-larft h2 {
-  text-align: center;
 }
 
 .section .filters {
