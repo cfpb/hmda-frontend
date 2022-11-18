@@ -141,8 +141,8 @@
 }
 .parsed .accordion-bordered .accordion-button:hover {
   color: black;
-  border-left: 5px dotted darkolivegreen;
-  background-color: rgb(200, 200, 200) !important;
+  border-left: 5px solid grey;
+  background-color: rgb(235, 235, 235) !important;
 }
 .parsed .highlight {
   background: blanchedalmond;
@@ -160,11 +160,7 @@
 }
 
 .more-info h3 {
-  border-top: 1px dotted lightblue;
   padding-top: 8px;
-}
-.more-info h3::before {
-  content: '» ';
 }
 .more-info h3,
 .more-info th {
@@ -174,13 +170,13 @@
 .more-info table {
   margin-top: 1em;
 }
-.more-info .values {
-  margin-top: 1.5em;
-  width: 100%;
-}
 .more-info .values,
 .more-info .values td {
   border-color: grey;
+}
+.more-info .values, 
+.more-info .examples {
+  width: 100%;
 }
 
 /* SavedRows */

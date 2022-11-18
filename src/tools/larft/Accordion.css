@@ -41,7 +41,7 @@
 
 .accordion-content {
   background-color: #ffffff;
-  border-top: none;
+  border-top: 1px solid lightgrey;
   overflow: auto;
   padding: 0em 1em 1em;
 }
