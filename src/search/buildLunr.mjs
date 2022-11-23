@@ -26,15 +26,14 @@ const docSlugs = [
   'ts-data-fields',
 ]
 
-let url =
-  'https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation'
+let url = 'http://localhost:3000/markdown'
 
 let data = []
 let LUNR_INDEX
 
 export default Promise.all(
   docSlugs.map(slug =>
-    fetch(url + `/markdown/2022/${slug}.md`)
+    fetch(url + `/2022/${slug}.md`)
       .then(res => res.text())
       .then(markdown => {
         let title
@@ -71,7 +70,7 @@ export default Promise.all(
   LUNR_INDEX = lunr(function () {
     this.ref('title')
     this.field('content')
-    // this.metadataWhitelist = ['position']
+    this.metadataWhitelist = ['position']
 
     data.forEach(function (doc) {
       this.add(doc)

@@ -42,8 +42,8 @@ const Search = () => {
         <div
           className={searchResults.length > 0 ? 'search-results-container' : ''}
         >
-          {searchResults.map(result => (
-            <p>
+          {searchResults.map((result, index) => (
+            <p key={index}>
               <a href='#slug-to-document'>{result.ref}</a>
             </p>
           ))}
