@@ -1,0 +1,24 @@
+.search-input {
+  height: 25px;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+
+.search-results-container {
+  margin-top: 10px;
+  width: 400px;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.search-results-container p {
+  margin: 5px 0 5px 0;
+}
+
+.search-results-container p a {
+  font-size: 18px;
+  margin: 10px 0 10px 0;
+  padding: 0px;
+  cursor: pointer;
+}

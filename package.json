@@ -37,6 +37,7 @@
     "html-to-image": "^1.9.0",
     "jspdf": "^2.5.1",
     "keycloak-js": "11.0.3",
+    "lunr": "^2.3.9",
     "mapbox-gl": "1.13.1",
     "markdown-to-jsx": "6.11.4",
     "normalize.css": "8.0.1",
