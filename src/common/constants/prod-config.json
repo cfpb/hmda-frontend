@@ -3,7 +3,7 @@
   "announcement": [
     {
       "message": "File access issues on the HMDA platform have been resolved.",
-      "type": "warn",
+      "type": "warning",
       "heading": "File Access Restored",
       "link": null
     },
