@@ -2,9 +2,9 @@
   "name": "prod",
   "announcement": [
     {
-      "message": "Some files are currently unavailable. We will resolve shortly.",
-      "type": "error",
-      "heading": "Limited File Access",
+      "message": "File access issues on the HMDA platform have been resolved.",
+      "type": "warn",
+      "heading": "File Access Restored",
       "link": null
     },
     {
