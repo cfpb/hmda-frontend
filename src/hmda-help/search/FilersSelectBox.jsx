@@ -29,11 +29,11 @@ export const FilersSearchBox = ({ endpoint, onChange, year, ...rest }) => {
   useEffect(() => {
     const hasData = !isFetching && data
 
-    let processedID = id.toUpperCase()
+    let processedID = id?.toUpperCase()
     
-    if (isCI() && id)
+    if (isCI() && processedID)
       saveSelected(processedID, CI_INSTITUTIONS, setSelectedValue)
-    else if (hasData && id)
+    else if (hasData && processedID)
       saveSelected(processedID, data, setSelectedValue)
 
     setIsInitial(false)

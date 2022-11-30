@@ -174,9 +174,9 @@ class Form extends Component {
     let leiFromURL = this.props.match.params.id
     let pathname = this.props.location.pathname
 
-    let processedLEI = leiFromURL.toUpperCase()
-
     if (!leiFromURL) return null
+
+    let processedLEI = leiFromURL.toUpperCase()
 
     this.setState({
       fetching: true,
