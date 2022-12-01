@@ -167,15 +167,9 @@ class Form extends Component {
     */
     if (pathname) {
         if (pathname.includes('publications')) {
-        this.setState({ [id]: value }, () => {
-          if (this.state.lei.length !== 20) return
-          this.handleSubmitButton(event, 'publications')
-        })
+        this.handleSubmitButton(event, 'publications')
       } else if (pathname.includes('submissions')) {
-        this.setState({ [id]: value }, () => {
-          if (this.state.lei.length !== 20) return
-          this.handleSubmitButton(event, 'submissions')
-        })
+        this.handleSubmitButton(event, 'submissions')
       } else {
         this.setState({ [id]: value }, () => {
           if (this.state.lei.length !== 20) return

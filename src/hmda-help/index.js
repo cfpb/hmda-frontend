@@ -80,11 +80,6 @@ class App extends Component {
           <Switch basename='/hmda-help'>
             <React.Fragment>
               <Header logout={keycloak.logout} />
-              <Redirect
-                exact
-                from='/update/institution'
-                to={`/search/institution`}
-              />
               <ProtectedRoute
                 exact
                 path='/'
@@ -133,6 +128,9 @@ class App extends Component {
                 component={Institution}
                 config={config}
               />
+              <Route exact path='/update/institution'>
+                <Redirect to={'/search/institution'} />
+              </Route>
             </React.Fragment>
           </Switch>
         )
