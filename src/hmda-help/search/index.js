@@ -29,7 +29,7 @@ const defaultState = {
   notFound: [],
   searchType: "search",
   submitted: false,
-  lei: '',
+  lei: ''
 }
 
 class Form extends Component {
@@ -142,8 +142,7 @@ class Form extends Component {
       this.props.history.push({
         pathname: `/search/publications/${this.state.lei}`,
       })
-    } 
-    else if (searchType === 'submissions') {
+    } else if (searchType === 'submissions') {
       this.props.history.push({
         pathname: `/search/submissions/${this.state.lei}`,
       })
@@ -155,18 +154,35 @@ class Form extends Component {
     this.state.lei.length !== 20 ||
     (this.state.searchType === type && this.state.fetching)
 
-  onInputTextChange = event => {
+  onInputTextChange = (event, pathname) => {
     let { id, value } = event.target
 
     if (id === 'lei')
       // Sanitize LEI input
       value = value.toUpperCase().replace(/[\s]/g, '')
 
-    // Automatically retrieve Institution listings after storing selection
-    this.setState({ [id]: value }, () => {
-      if (this.state.lei.length !== 20) return
-      this.handleSubmitButton(event, 'search')
-    })
+    /*
+      Automatically retrieve institution listings, publications and submissions based off url and stores selection
+      Allows user to be able to search for a new institution listing, publication and submission from respective pages
+    */
+    if (pathname) {
+        if (pathname.includes('publications')) {
+        this.setState({ [id]: value }, () => {
+          if (this.state.lei.length !== 20) return
+          this.handleSubmitButton(event, 'publications')
+        })
+      } else if (pathname.includes('submissions')) {
+        this.setState({ [id]: value }, () => {
+          if (this.state.lei.length !== 20) return
+          this.handleSubmitButton(event, 'submissions')
+        })
+      } else {
+        this.setState({ [id]: value }, () => {
+          if (this.state.lei.length !== 20) return
+          this.handleSubmitButton(event, 'search')
+        })
+      }
+    }
   }
 
   // Finds institutions LEI via URL and stores results in state after component loads
@@ -244,10 +260,12 @@ class Form extends Component {
               return (
                 <FilersSearchBox
                   key={textInput.id}
-                  onChange={this.onInputTextChange}
+                  onChange={event => this.onInputTextChange(event, this.props.location.pathname)}
                   value={this.state[textInput.id]}
                   year={year}
                   {...textInput}
+                  setState={this.setState}
+                  location={this.props.location.pathname}
                 />
               )
             })}

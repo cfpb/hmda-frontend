@@ -2,7 +2,7 @@ import 'react-app-polyfill/ie11' // For IE 11 support
 import 'react-app-polyfill/stable' // For fancy JS
 
 import React, { Component } from 'react'
-import { BrowserRouter as Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Switch, Route, Redirect } from 'react-router-dom'
 import NotAuthorized from './NotAuthorized'
 import Header from './Header'
 import Search from './search'
@@ -80,9 +80,20 @@ class App extends Component {
           <Switch basename='/hmda-help'>
             <React.Fragment>
               <Header logout={keycloak.logout} />
+              <Redirect
+                exact
+                from='/update/institution'
+                to={`/search/institution`}
+              />
               <ProtectedRoute
                 exact
                 path='/'
+                component={Search}
+                config={config}
+              />
+              <ProtectedRoute
+                exact
+                path='/search/institution'
                 component={Search}
                 config={config}
               />
