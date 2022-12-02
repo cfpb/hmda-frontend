@@ -9,8 +9,8 @@ import { createID, parseRow } from "./utils"
 import { createFileInteractions } from "./createFileInteractions"
 import { Unparsable } from "./Unparsable"
 import { collapseAll } from "./Accordion"
-import "./index.css"
 import { MESSAGES } from './MESSAGES.js'
+import "./index.css"
 
 export const LARFT = () => {
   const [ts, setTS] = useState([])
@@ -20,12 +20,7 @@ export const LARFT = () => {
   const [currCol, setCurrCol] = useState()
   const [filename, setFilename] = useState()
 
-  /* 
-  hasNewChanges: Tracks NEW changes to TS or LAR Records.
-  State is used to prompt user when navigating away from page
-  false = when the user creates/saves/updates/deletes a row
-  true = when the user a downloads file or clears saved records
-  */
+  /* Warn users that there are changes that they have not yet downloaded */
   const [hasNewChanges, setHasNewChanges] = useState(false)
 
   useRestyledButtonLinks()
@@ -70,7 +65,7 @@ export const LARFT = () => {
 
   return (
     <div className='online-larft'>
-      <Prompt when={hasNewChanges === true} message={MESSAGES.loseUnsaved} />
+      <Prompt when={hasNewChanges} message={MESSAGES.loseUnsaved} />
 
       <PageHeader />
       <FileActions

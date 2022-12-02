@@ -64,7 +64,8 @@ export const parseRow = (row = {}) => {
 }
 
 export const goTo = id =>
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
+  document.getElementById(id)?.scrollIntoView({ block: 'start' })
+  
 export const goToFileActions = () => goTo("file-actions")
 
 // Function used to set filename state from Index.jsx - filename is used to determine downloaded filename
