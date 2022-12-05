@@ -166,10 +166,16 @@ class Form extends Component {
       Allows user to be able to search for a new institution listing, publication and submission from respective pages
     */
     if (pathname) {
-        if (pathname.includes('publications')) {
-        this.handleSubmitButton(event, 'publications')
+      if (pathname.includes('publications')) {
+        this.setState({ [id]: value }, () => {
+          if (this.state.lei.length !== 20) return
+          this.handleSubmitButton(event, 'publications')
+        })
       } else if (pathname.includes('submissions')) {
-        this.handleSubmitButton(event, 'submissions')
+        this.setState({ [id]: value }, () => {
+          if (this.state.lei.length !== 20) return
+          this.handleSubmitButton(event, 'submissions')
+        })
       } else {
         this.setState({ [id]: value }, () => {
           if (this.state.lei.length !== 20) return
