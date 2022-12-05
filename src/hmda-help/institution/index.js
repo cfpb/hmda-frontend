@@ -229,7 +229,7 @@ class Institution extends Component {
   render() {
     const filingYears = getFilingYears(this.props.config)
     const { pathname } = this.props.location
-    console.log(this.state, "state")
+    
     const successAlert = this.state.isSubmitted ? (
       <Alert
         type="success"
