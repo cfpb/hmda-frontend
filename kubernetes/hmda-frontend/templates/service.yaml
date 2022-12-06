@@ -27,7 +27,7 @@ metadata:
   name: {{ include "hmda-frontend.fullname" . }}-ambassador
   annotations:
     getambassador.io/config: |
-      apiVersion: ambassador/v1
+      apiVersion: ambassador/v2
       kind: Mapping
       name: hmda_frontend_mapping
       ambassador_id: ambassador-default-1
