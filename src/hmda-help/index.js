@@ -2,7 +2,7 @@ import 'react-app-polyfill/ie11' // For IE 11 support
 import 'react-app-polyfill/stable' // For fancy JS
 
 import React, { Component } from 'react'
-import { BrowserRouter as Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Switch, Route, Redirect } from 'react-router-dom'
 import NotAuthorized from './NotAuthorized'
 import Header from './Header'
 import Search from './search'
@@ -77,27 +77,60 @@ class App extends Component {
         const config = this.props.config
 
         return (
-          <Switch basename="/hmda-help">
+          <Switch basename='/hmda-help'>
             <React.Fragment>
               <Header logout={keycloak.logout} />
               <ProtectedRoute
                 exact
-                path="/"
+                path='/'
                 component={Search}
                 config={config}
               />
               <ProtectedRoute
                 exact
-                path="/add"
+                path='/search/institution'
+                component={Search}
+                config={config}
+              />
+              <ProtectedRoute
+                exact
+                path='/search/institution/:id'
+                component={Search}
+                config={config}
+              />
+              <ProtectedRoute
+                exact
+                path='/search/publications/:id'
+                component={Search}
+                config={config}
+              />
+              <ProtectedRoute
+                exact
+                path='/search/submissions/:id'
+                component={Search}
+                config={config}
+              />
+              <ProtectedRoute
+                exact
+                path='/add'
                 component={Institution}
                 config={config}
               />
               <ProtectedRoute
                 exact
-                path="/update"
+                path='/update'
                 component={Institution}
                 config={config}
               />
+              <ProtectedRoute
+                exact
+                path='/update/institution/:id/:year'
+                component={Institution}
+                config={config}
+              />
+              <Route exact path='/update/institution'>
+                <Redirect to={'/search/institution'} />
+              </Route>
             </React.Fragment>
           </Switch>
         )
