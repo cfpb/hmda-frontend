@@ -182,7 +182,7 @@
       "fieldIndex": 12,
       "fieldName": "Total Number of Entries Contained in Submission",
       "examples": [
-        "1"
+        "100"
       ],
       "disable": true,
       "tooltip": "Field is automatically populated with the count of LAR Rows",

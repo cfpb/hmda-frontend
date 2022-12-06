@@ -14,6 +14,7 @@ export const calcTableHeight = rows => {
 export const formatColWidth = (f, adjustment = 0) => {
   let width = Math.max(f.fieldName.length * 10, 200)
   width += adjustment
+  
   return `${width}px`
 }
 
@@ -33,11 +34,18 @@ export const getUsableProps = props => {
 }
 
 // Should highlight the current column?
-export const columnIsSelected = (curr, field) =>
-  curr?.fieldName === field.fieldName
+export const columnIsSelected = (curr, field) => curr === field.fieldName
 
 // Inject a row identifier
-export const addRowId = (x, idx) => ({
-  ...x,
+export const addRowId = (row, idx) => ({
+  ...row,
   rowId: (idx + 1).toString(),
 })
+
+// Update TS row with number of LAR entries
+export const tsUpdateLarCount = state => {
+  if (state.ts?.length) {
+    state.ts[0]['Total Number of Entries Contained in Submission'] =
+      state.lars.length
+  }
+}

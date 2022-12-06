@@ -1,5 +1,5 @@
 import React from 'react'
-import CloseIcon from '../../common/images/maps-close-x.png'
+import { useSelector } from 'react-redux'
 
 const Table = ({ rows = [], headers = [] }) => {
   const Headers = !headers.length
@@ -29,7 +29,9 @@ const Table = ({ rows = [], headers = [] }) => {
 const dismiss = () =>
   document.getElementById('unparsable').setAttribute('hidden', true)
 
-export const Unparsable = ({ items }) => {
+export const Unparsable = () => {
+  const items = useSelector(({ larft }) => larft.unparsable)
+
   if (!Object.keys(items).length) return null
   return (
     <div className='unparsable' id='unparsable'>

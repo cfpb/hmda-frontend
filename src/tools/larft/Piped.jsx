@@ -1,5 +1,8 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { selectCol } from './redux/store'
 import { getSchema, goTo, parseRow, stringifyRow, log } from './utils'
+import { useDispatch } from 'react-redux'
 
 export const grabRawArea = () => document.getElementById('rawArea')
 
@@ -8,11 +11,9 @@ const findPipes = row => stringifyRow(row).matchAll(new RegExp(/\|/, 'gi'))
 const highlight = text => <span className='highlight'> {text}</span>
 
 // Compare the current cursor position to the positions of
-// the column delimiters to determine which LAR field is
-// currently being edited/focused
-const updateCurrentColumn = (setFn, row) => {
-  log('Updating column')
-
+//   the column delimiters to determine which LAR field is
+//   currently being edited/focused.
+const updateCurrentColumn = (setFn, row, dispatch) => {
   const cursorPos = getCursorPos(grabRawArea()).start
   const pipes = findPipes(row)
 
@@ -24,7 +25,7 @@ const updateCurrentColumn = (setFn, row) => {
     colNum++
   }
 
-  setFn(getSchema(row)[colNum])
+  dispatch(setFn(getSchema(row)[colNum]))
 }
 
 const CurrentColumn = ({ column }) => {
@@ -38,15 +39,19 @@ const CurrentColumn = ({ column }) => {
   )
 }
 
-const PasteableTextArea = ({ setRow, setCurrCol, row }) => {
+const PasteableTextArea = ({ onChange }) => {
+  const row = useSelector(({ larft }) => larft.editingRow)
+  const dispatch = useDispatch()
+  
+
   const updateSelectedRow = e =>
-    setRow({
+    onChange({
       ...parseRow(e.target.value.trim()),
       id: row?.id,
       rowId: row.rowId,
     })
-
-  const handleChange = () => updateCurrentColumn(setCurrCol, row)
+    
+  const handleChange = () => updateCurrentColumn(selectCol, row, dispatch)
   const handlePaste = e => setRow(parseRow(e.target.value))
 
   return (
@@ -67,9 +72,8 @@ export const Piped = ({
   id = 'piped',
   currCol,
   row,
-  setRow,
-  setCurrCol,
   textActions, // reduces callback passing
+  onChange,
 }) => {
   return (
     <div className={id} id={id}>
@@ -77,7 +81,7 @@ export const Piped = ({
         Pipe-Delimited Values
       </h3>
       {textActions}
-      <PasteableTextArea setRow={setRow} setCurrCol={setCurrCol} row={row} />
+      <PasteableTextArea onChange={onChange} />
       <CurrentColumn column={currCol} row={row} />
     </div>
   )

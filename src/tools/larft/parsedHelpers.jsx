@@ -3,9 +3,13 @@ import React from 'react'
 export const applyFilter = (column, filter) =>
   !filter.length || column.fieldName.toLowerCase().includes(filter?.toLowerCase())
 
-export const checkHighlighted = (a, b) => {
-  const match = a && b && a.fieldName === b.fieldName ? 'highlight' : ''
-  return match
+export const checkHighlighted = (currentField, selectedColumnName) => {
+  const isMatch =
+    selectedColumnName &&
+    currentField &&
+    selectedColumnName === currentField.fieldName
+
+  return isMatch ? 'highlight' : ''
 }
 
 export const getType = ({ fieldType }) => {

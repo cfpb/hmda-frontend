@@ -3,9 +3,9 @@ import { Accordion } from "./Accordion";
 import { ReactComponent as InfoIcon } from "../../filing/images/info.svg"
 import { MoreInfo } from "./MoreInfo";
 import { buildOptions, getType, toJsDateString } from "./parsedHelpers";
-import { log, OR_DELIMITER } from "./utils";
+import { OR_DELIMITER } from "./utils";
 import STATES from "../../data-browser/constants/states";
-import tooltip, { Tooltip } from "../../common/Tooltip"
+import { Tooltip } from "../../common/Tooltip"
 
 export const ParsedRow = ({
   column,
@@ -59,9 +59,8 @@ const buildPlaceholder = (exs, descs) => {
 };
 
 function buildInput(_col, _row, _changeFn) {
-  log("Building input...");
-
   if (!_col) return null;
+  
   const { examples = [], enumerations = [], descriptions = [] } = _col;
   const placeholder = buildPlaceholder(examples, descriptions);
   const common = {

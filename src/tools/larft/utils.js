@@ -82,3 +82,15 @@ export const filenameSetter = (ts, setFilenameState) => {
     setFilenameState("LarFile")
   }
 }
+
+export const formatFileName = ts => {
+  if (
+    ts['Calendar Year'] &&
+    ts['Calendar Quarter'] &&
+    ts['Legal Entity Identifier (LEI)']
+  ){
+    return `${ts['Calendar Year']}-${ts['Calendar Quarter']}-${ts['Legal Entity Identifier (LEI)']}`
+  }
+
+  return 'LarFile'
+}

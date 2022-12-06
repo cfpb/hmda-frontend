@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react"
 import { stringifyRow, unity } from "./utils"
 import { FileUpload } from "./FileUpload"
 import { Error } from "./Error"
-import { download } from "./download"
+import { useDispatch, useSelector } from 'react-redux'
+import { fileDownload, rowsReset } from './redux/store'
 
 const MESSAGES = {
   upload:
@@ -12,7 +13,7 @@ const MESSAGES = {
   needLAR: "Please create at least one Loan/Application Row before saving!",
 }
 
-const createFileContent = (ts, lars) =>
+export const createFileContent = (ts, lars) =>
   ts
     .concat(lars)
     .map(stringifyRow)
@@ -20,22 +21,17 @@ const createFileContent = (ts, lars) =>
     .map(s => s.trim())
     .join("\n")
 
-const DownloadButton = ({
-  ts,
-  lars,
-  setFileError,
-  setHasNewChanges,
-  filename,
-}) => {
-  const hasSavedRecords = !!ts.length || !!lars.length
+const DownloadButton = ({ hasSavedRecords, setFileError }) => {
+  const dispatch = useDispatch()
+  const ts = useSelector(({ larft }) => larft.ts)
+  const lars = useSelector(({ larft }) => larft.lars)
+  const filename = useSelector(({ larft }) => larft.filename)
 
   const handleDownload = () => {
     if (!ts.length) return setFileError(MESSAGES.needTS)
     if (!lars.length) return setFileError(MESSAGES.needLAR)
-    setFileError("")
-    // Filename parameter defauls to LarFile unless Calendar Year, Quarter and LEI has been added to the TS
-    download(`${filename}.txt`, createFileContent(ts, lars))
-    setHasNewChanges(false)
+    setFileError(null)
+    dispatch(fileDownload())
   }
 
   return (
@@ -62,50 +58,42 @@ const UploadButton = ({ hasSavedRecords }) => (
   </button>
 )
 
-const ClearButton = ({ hasSavedRecords, clearSaved }) => (
-  <button
-    className='clear'
-    onClick={() => {
-      if (hasSavedRecords && !window.confirm(MESSAGES.clear)) return
-      clearSaved()
-    }}
-  >
-    Reset
-  </button>
-)
+const ClearButton = ({ hasSavedRecords }) => {
+  const dispatch = useDispatch()
 
-export const FileActions = ({
-  saveUpload,
-  hasSavedRecords,
-  clearSaved,
-  ts,
-  lars,
-  setHasNewChanges,
-  filename,
-}) => {
+  return (
+    <button
+      className='clear'
+      onClick={() => {
+        if (hasSavedRecords && !window.confirm(MESSAGES.clear)) return
+        dispatch(rowsReset())
+      }}
+    >
+      Reset
+    </button>
+  )
+}
+
+export const FileActions = () => {
   const [fileError, setFileError] = useState()
+  const ts = useSelector(({ larft }) => larft.ts)
+  const lars = useSelector(({ larft }) => larft.lars)
+
+  const hasSavedRecords = !!ts.length || !!lars.length
 
   return (
     <div className='file-actions' id='file-actions'>
       {fileError && (
         <Error text={fileError} onClick={() => setFileError(null)} />
       )}
-      <FileUpload onContentReady={saveUpload} />
+      <FileUpload />
       <div className='wrapper'>
         <div className='left'>
           <UploadButton {...{ hasSavedRecords }} />
-          <DownloadButton
-            {...{
-              ts,
-              lars,
-              setFileError,
-              setHasNewChanges,
-              filename,
-            }}
-          />
+          <DownloadButton {...{ hasSavedRecords, setFileError }} />
         </div>
         <div className='right'>
-          <ClearButton {...{ hasSavedRecords, clearSaved }} />
+          <ClearButton {...{ hasSavedRecords }} />
         </div>
       </div>
     </div>

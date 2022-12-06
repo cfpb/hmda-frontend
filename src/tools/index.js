@@ -1,5 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import larftStore from './larft/redux/store'
 
 import Home from './Home'
 import CheckDigit from './check-digit/index'
@@ -27,7 +29,11 @@ const Tools = () => {
         />
         <Route path="/tools/rate-spread" component={RateSpread} />
         <Route path="/tools/file-format-verification" component={FFVT} />
-        <Route path="/tools/lar-formatting" component={LARFT} />
+        <Route path='/tools/lar-formatting'>
+          <Provider store={larftStore}>
+            <LARFT />
+          </Provider>
+        </Route>
       </Switch>
     </div>
   )

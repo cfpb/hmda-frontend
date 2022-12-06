@@ -5,11 +5,15 @@ import { getSchema, parseRow } from "./utils";
 import { ParsedHeader } from "./ParsedHeader";
 import { ParsedTable } from "./ParsedTable";
 import { applyFilter, checkHighlighted } from "./parsedHelpers";
+import { useDispatch } from 'react-redux'
+import { selectCol } from './redux/store'
 
-function useFocusOnSelectedColumn(col, setCurrCol) {
+function useFocusOnSelectedColumn(colName) {
+  const dispatch = useDispatch()
+
   // Bring the focused column into view
   useEffect(() => {
-    const el = document.getElementById(`${col?.fieldName}`);
+    const el = document.getElementById(`${colName}`);
     const grandparent = el?.parentElement?.parentElement;
     if (!!grandparent) {
       grandparent.scrollIntoView({
@@ -20,36 +24,29 @@ function useFocusOnSelectedColumn(col, setCurrCol) {
       grandparent.scrollTop = 0;
       grandparent.style = {};
     }
-  }, [col]);
+  }, [colName]);
 
   // Provide a function that will set focus to this column
-  const focus = (target) => {
-    if (col?.fieldIndex !== target?.fieldIndex) setCurrCol(target);
-  };
+  const focus = target => {
+    if (colName !== target?.fieldName) dispatch(selectCol(target.fieldName))
+  }
 
   return focus;
 }
 
-export const Parsed = ({
-  id = "parsed-row",
-  row,
-  setRow,
-  currCol,
-  setCurrCol,
-  textActions,
-}) => {
-  const [filter, setFilter] = useState("");
-  const setFocus = useFocusOnSelectedColumn(currCol, setCurrCol);
+export const Parsed = ({ id = 'parsed-row', row, currCol, textActions, onChange }) => {
+  const [filter, setFilter] = useState('')
+  const setFocus = useFocusOnSelectedColumn(currCol)
 
-  const _onChange = (e) => {
-    const newRow = { ...row };
-    newRow[e.target.id] = e.target.value;
-    setRow(newRow);
-  };
+  const _onChange = e => {
+    const newRow = { ...row }
+    newRow[e.target.id] = e.target.value
+    onChange(newRow)
+  }
 
   const tableRows = getSchema(row)
-    .filter((x) => applyFilter(x, filter))
-    .map((column) => (
+    .filter(x => applyFilter(x, filter))
+    .map(column => (
       <ParsedRow
         key={column.fieldName}
         column={column}
@@ -58,13 +55,13 @@ export const Parsed = ({
         highlightClass={checkHighlighted(column, currCol)}
         row={parseRow(row)}
       />
-    ));
+    ))
 
   return (
-    <div className="parsed" id={id}>
+    <div className='parsed' id={id}>
       <ParsedHeader filter={filter} setFilter={setFilter} id={id} />
       {textActions}
       <ParsedTable rows={tableRows} />
     </div>
-  );
-};
+  )
+}

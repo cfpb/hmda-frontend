@@ -1,52 +1,45 @@
-import React, { useEffect, useLayoutEffect } from 'react'
+import React, { useEffect } from 'react'
 import { goTo, RECORD_IDENTIFIER } from './utils'
 import { Parsed } from './Parsed'
 import { Piped } from './Piped'
 import { EditingActions } from './EditingActions'
 import { useState } from 'react'
+import { editingRowSet, rowCreate, rowDelete, rowSave } from './redux/store'
+import { useDispatch, useSelector } from 'react-redux'
 
-export const Editing = ({
-  row,
-  setRow,
-  currCol,
-  setCurrCol,
-  saveRow,
-  newRow,
-  deleteRow,
-  id = "raw-row",
-  setHasNewChanges,
-}) => {
+
+export const Editing = ({ id = 'raw-row' }) => {
   const [isChanged, setChanged] = useState(false)
+  const selectedRowID = useSelector(({ larft }) => larft.selectedRowID)
+  const selectedColName = useSelector(({ larft }) => larft.selectedColName)
+  const editingRow = useSelector(({ larft }) => larft.editingRow)
+  const dispatch = useDispatch()
 
-  useEffect(() => setChanged(false), [row.id])
+  useEffect(() => setChanged(false), [selectedRowID])
 
   const changeInterceptor = e => {
     setChanged(true)
-    setRow(e)
-    setHasNewChanges(true)
+    dispatch(editingRowSet(e))
   }
 
-  const saveInterceptor = e => {
+  const saveInterceptor = () => {
     setChanged(false)
-    saveRow(e)
-    setHasNewChanges(true)
+    dispatch(rowSave())
   }
 
-  const newInterceptor = e => {
+  const newInterceptor = () => {
     setChanged(false)
-    newRow()
-    setHasNewChanges(true)
+    dispatch(rowCreate())
   }
 
-  const deleteInterceptor = e => {
+  const deleteInterceptor = () => {
     setChanged(false)
-    deleteRow(e)
-    setHasNewChanges(true)
+    dispatch(rowDelete())
   }
 
   const PipedActions = (
     <EditingActions
-      row={row}
+      row={editingRow}
       deleteRow={deleteInterceptor}
       newRow={newInterceptor}
       setRow={changeInterceptor}
@@ -57,7 +50,7 @@ export const Editing = ({
 
   const ParsedActions = (
     <EditingActions
-      row={row}
+      row={editingRow}
       deleteRow={deleteInterceptor}
       newRow={newInterceptor}
       setRow={changeInterceptor}
@@ -68,26 +61,24 @@ export const Editing = ({
   return (
     <div className={id} id={id}>
       <h2 className='clickable' onClick={() => goTo(id)}>
-        {row.rowId ? "Editing" : "Creating"}{" "}
-        {row[RECORD_IDENTIFIER] === "1"
-          ? "Transmittal Sheet"
-          : row.rowId
-          ? `LAR Row ${row.rowId}`
-          : "a new LAR Row"}
+        {editingRow.rowId ? 'Editing' : 'Creating'}{' '}
+        {editingRow[RECORD_IDENTIFIER] === '1'
+          ? 'Transmittal Sheet'
+          : editingRow.rowId
+          ? `LAR Row ${editingRow.rowId}`
+          : 'a new LAR Row'}
       </h2>
 
       <Parsed
-        currCol={currCol}
-        row={row}
-        setRow={changeInterceptor}
-        setCurrCol={setCurrCol}
+        currCol={selectedColName}
+        row={editingRow}
+        onChange={changeInterceptor}
         textActions={ParsedActions}
       />
       <Piped
-        currCol={currCol}
-        row={row}
-        setRow={changeInterceptor}
-        setCurrCol={setCurrCol}
+        currCol={selectedColName}
+        row={editingRow}
+        onChange={changeInterceptor}
         textActions={PipedActions}
       />
     </div>

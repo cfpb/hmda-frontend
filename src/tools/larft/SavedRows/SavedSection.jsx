@@ -1,11 +1,10 @@
-import React, { useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import { Table } from 'react-fluid-table'
 import { applyFilter } from '../parsedHelpers'
 import {
   getSchema,
   goToFileActions,
   LAR_SCHEMA,
-  log,
   RECORD_IDENTIFIER,
   TS_SCHEMA,
 } from '../utils'
@@ -13,7 +12,6 @@ import { NoMatches, NoRecords } from './EmptyStates'
 import { ContentRowID, HeaderRowID } from './RowID'
 import { Filters, SearchBox } from './Filters'
 import {
-  addRowId,
   calcTableHeight,
   columnIsSelected,
   formatColWidth,
@@ -21,33 +19,30 @@ import {
   getUsableProps,
 } from './service'
 
+import { selectCol, selectRow } from '../redux/store'
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+
+
 export const SavedSection = ({
   id,
   title = 'Section Title',
   rows,
-  larRowCount,
   highlightSelected,
-  setSelected,
-  setCurrCol,
-  currCol,
 }) => {
   let body = null
+  const dispatch = useDispatch()
+  const selectedColName = useSelector(({ larft }) => larft.selectedColName)
 
   const [searchFilter, setSearchFilter] = useState('')
   const [columnFilter, setColumnFilter] = useState('')
-
-  // This memoization seems to fix a major performance bottleneck
-  const rowsWithIds = useMemo(() => {
-    log(`Calculating row IDs: ${title}`)
-    return rows.map(addRowId)
-  }, [rows])
 
   let matchedColumns = []
   const targetSchema = id === 'saved-lars' ? LAR_SCHEMA : TS_SCHEMA
 
   const filteredRows = !searchFilter.length
-    ? rowsWithIds
-    : rowsWithIds.filter(iRow => {
+    ? rows
+    : rows.filter(iRow => {
         let hasMatches = false
         targetSchema.forEach(col => {
           // Only search targeted columns
@@ -69,9 +64,9 @@ export const SavedSection = ({
         return hasMatches
       })
 
-  const columns = !rowsWithIds.length
+  const columns = !rows.length
     ? null
-    : getSchema(rowsWithIds[0][RECORD_IDENTIFIER])
+    : getSchema(rows[0][RECORD_IDENTIFIER])
         .filter(x =>
           !matchedColumns.length ? true : matchedColumns.includes(x.fieldName)
         )
@@ -85,10 +80,11 @@ export const SavedSection = ({
             const usableProps = getUsableProps(props)
             const wrapperClasses = ['clickable', 'header-cell', 'custom']
 
-            if (columnIsSelected(currCol, f)) wrapperClasses.push('selected')
+            if (columnIsSelected(selectedColName, f))
+              wrapperClasses.push('selected')
 
             const clickHandler = () => {
-              setCurrCol(f)
+              dispatch(selectCol(f?.fieldName))
               document
                 .getElementById(fieldID)
                 .scrollIntoView({ inline: 'center', block: 'start' })
@@ -112,9 +108,9 @@ export const SavedSection = ({
             let fieldValue = row[f.fieldName] || '-'
             const styles = { width: formatColWidth(f, -16) }
             const wrapperClasses = ['custom-cell-content']
-            const clickHandler = () => setCurrCol(f)
+            const clickHandler = () => dispatch(selectCol(f?.fieldName))
 
-            if (columnIsSelected(currCol, f))
+            if (columnIsSelected(selectedColName, f))
               wrapperClasses.push('col-selected')
 
             const isMatchForSearch =
@@ -141,14 +137,6 @@ export const SavedSection = ({
           },
         }))
 
-  // Adds LAR row count key/value pair to fileredRows if Transmittal Sheet has been generated
-  if (larRowCount && filteredRows.length) {
-    console.log('Adding Row count to row', filteredRows[0])
-    
-    filteredRows[0]['Total Number of Entries Contained in Submission'] =
-      larRowCount
-  }
-
   if (!columns) body = <NoRecords />
   else {
     columns.unshift({
@@ -167,17 +155,21 @@ export const SavedSection = ({
           columns={columns}
           tableHeight={calcTableHeight(filteredRows)}
           minColumnWidth={200}
-          onRowClick={(e, { index }) => setSelected(filteredRows[index])}
+          onRowClick={(_, { index }) =>
+            dispatch(selectRow(filteredRows[index].id))
+          }
           rowStyle={i => highlightSelected(filteredRows[i])}
+          searchFilter={searchFilter}
+          columnFilter={columnFilter}
         />
       )
     }
   }
 
   const rowCountLabel =
-    filteredRows.length !== rowsWithIds.length
-      ? `(${filteredRows.length}/${rowsWithIds.length})`
-      : `(${rowsWithIds.length})`
+    filteredRows.length !== rows.length
+      ? `(${filteredRows.length}/${rows.length})`
+      : `(${rows.length})`
 
   return (
     <div className='section' id={id}>
@@ -185,7 +177,7 @@ export const SavedSection = ({
         <div className='count'>
           {title} {rowCountLabel}
         </div>
-        <Filters show={!!rowsWithIds.length}>
+        <Filters show={!!rows.length}>
           <SearchBox
             onChange={e => setSearchFilter(e.target.value)}
             placeholder={'Search ' + (id.match(/ts/) ? 'TS' : 'LAR')}

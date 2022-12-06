@@ -1,7 +1,6 @@
 const fs = require('fs')
 
 const readFile = name => fs.readFileSync(name, 'utf8')
-// const dir = dirname(__FILE__)
 
 let TS_SCHEMA_RAW = readFile(`${__dirname}/schema_ts.psv`)
 let LAR_SCHEMA_RAW = readFile(`${__dirname}/schema_lar.psv`)
@@ -63,8 +62,6 @@ const parse = (raw, name) => {
         ?.split(',')
         .map(cleanString)
         .map(opt => {
-          console.log(opt)
-          
           const [val, desc] =
             opt
               ?.split('-')
@@ -76,14 +73,9 @@ const parse = (raw, name) => {
         })
         .filter(unity)
 
-      // const fieldLength = maxLength?.split('_')[1] || 255
-      // const fieldType = convertType(_field_type)
-
       const obj = {
         fieldIndex: idx,
         fieldName,
-        // fieldLength,
-        // fieldType,
         examples,
         enumerations,
         descriptions,

@@ -1,19 +1,18 @@
 import React from 'react'
-import {
-  goToFileActions,
-  RECORD_IDENTIFIER
-} from '../utils'
+import { goToFileActions } from '../utils'
 import { SavedSection } from './SavedSection'
+import { useSelector } from 'react-redux'
+import { rowDelete, selectCol, selectRow } from '../redux/store'
 
-const TSheet = ({ rows, larRowCount, ...props }) => (
-  <SavedSection
-    {...props}
-    title='Transmittal Sheet'
-    rows={rows}
-    larRowCount={larRowCount}
-    id='saved-ts'
-  />
-)
+const TSheet = ({ rows, ...props }) => {
+  return (
+    <SavedSection
+      {...props}
+      title='Transmittal Sheet'
+      rows={rows}
+      id='saved-ts'
+    />
+  )}
 
 const LARs = ({ rows, ...props }) => (
   <SavedSection
@@ -24,20 +23,15 @@ const LARs = ({ rows, ...props }) => (
   />
 )
 
-export const SavedRows = ({
-  selected,
-  ts,
-  lars,
-  setSelected,
-  deleteRow,
-  setCurrCol,
-  currCol,
-}) => {
+export const SavedRows = () => {
+  const ts = useSelector(({ larft }) => larft.ts)
+  const lars = useSelector(({ larft }) => larft.lars)
+  const selectedColName = useSelector(({ larft }) => larft.selectedColName)
+  const selectedRowID = useSelector(({ larft }) => larft.selectedRowID)
+
   const highlightSelected = r => {
-    if (!selected || !r) return {}
-    const highlighted =
-      selected.id === r.id &&
-      selected[RECORD_IDENTIFIER] === r[RECORD_IDENTIFIER]
+    if (!selectedRowID || !r) return {}
+    const highlighted = selectedRowID === r.id 
     return highlighted ? { background: 'lightblue' } : {}
   }
 
@@ -48,22 +42,19 @@ export const SavedRows = ({
       </h2>
       <TSheet
         rows={ts}
-        larRowCount={lars.length > 0 ? lars.length : ''}
         highlightSelected={highlightSelected}
-        setSelected={setSelected}
-        deleteRow={deleteRow}
-        selected={selected}
-        setCurrCol={setCurrCol}
-        currCol={currCol}
+        setSelected={selectRow}
+        deleteRow={rowDelete}
+        setCurrCol={selectCol}
+        selectedColName={selectedColName}
       />
       <LARs
         rows={lars}
         highlightSelected={highlightSelected}
-        setSelected={setSelected}
-        deleteRow={deleteRow}
-        selected={selected}
-        setCurrCol={setCurrCol}
-        currCol={currCol}
+        setSelected={selectRow}
+        deleteRow={rowDelete}
+        setCurrCol={selectCol}
+        selectedColName={selectedColName}
       />
     </div>
   )

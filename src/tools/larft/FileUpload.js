@@ -1,23 +1,21 @@
 import React from 'react';
+import { useDispatch } from 'react-redux'
+import { fileUpload } from './redux/store'
 
 /**
  * Read user-selected file contents. 
  * https://gist.github.com/ilonacodes/5159f439c801004ff6505179756fac9f#file-index-jsx
- * @param {function} onContentReady Callback the gets the file content when ready
- * @param {boolean} isHidden Hide the default UI
  * @param {String} inputId ID of the input field
+ * @param {boolean} isHidden Hide the default UI
  * @returns 
  */
-export const FileUpload = ({
-  onContentReady,
-  isHidden = true,
-  inputId='file-upload'
-}) => {
+export const FileUpload = ({ inputId = 'file-upload', isHidden = true }) => {
+  const dispatch = useDispatch()
   let fileReader
 
   const handleFileRead = e => {
     const content = fileReader.result
-    onContentReady(content)
+    dispatch(fileUpload(content))
   }
 
   const handleFileChosen = file => {
@@ -36,7 +34,7 @@ export const FileUpload = ({
         className='input-file'
         accept='.txt'
         onChange={e => handleFileChosen(e.target.files[0])}
-        onClick={e => e.target.value = ''}
+        onClick={e => (e.target.value = '')}
       />
     </div>
   )
