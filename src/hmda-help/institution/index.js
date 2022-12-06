@@ -75,12 +75,12 @@ class Institution extends Component {
       let splitURL = this.props.history.location.pathname.split('/')
       // Contains lei that needs to be updated
       splitURL[3] = state.institution.lei.toUpperCase()
+      // Contains year that needs to be updated
+      splitURL[4] = state.institution.activityYear.toString()
       this.props.history.push({
         pathname: splitURL.join('/'),
         state: { institution: state.institution }
       })
-      // Contains year that needs to be updated
-      splitURL[4] = state.institution.activityYear.toString()
     } else if (!state) {
       let year = this.props.match.params.year
       let lei = this.props.match.params.id
