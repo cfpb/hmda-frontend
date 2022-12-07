@@ -8,7 +8,7 @@ export const grabRawArea = () => document.getElementById('rawArea')
 
 const findPipes = row => stringifyRow(row).matchAll(new RegExp(/\|/, 'gi'))
 
-const highlight = text => <span className='highlight'> {text}</span>
+const highlight = text => <span className='highlight'> {text || '-'}</span>
 
 // Compare the current cursor position to the positions of
 //   the column delimiters to determine which LAR field is
@@ -25,16 +25,20 @@ const updateCurrentColumn = (setFn, row, dispatch) => {
     colNum++
   }
 
-  dispatch(setFn(getSchema(row)[colNum]))
+  dispatch(setFn(getSchema(row)[colNum]?.fieldName))
 }
 
-const CurrentColumn = ({ column }) => {
+const CurrentColumn = ({ column, row }) => {
+  const schema = getSchema(row)
+  const index = schema.findIndex(obj => obj.fieldName == column)
+  
   if (!column?.toString()) return null
+  
   return (
     <div className='editing'>
-      Field name: {highlight(column.fieldName)}
+      Field name: {highlight(column)}
       <br />
-      Column: {highlight(column.fieldIndex + 1)}{' '}
+      Column: {highlight(index + 1)}{' '}
     </div>
   )
 }
