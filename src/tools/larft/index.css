@@ -125,6 +125,10 @@
 }
 .parsed tr {
   scroll-margin-top: 4em;
+  cursor: pointer;
+}
+.parsed tr:not(.highlight):hover > td {
+  background-color: rgb(236, 225, 207);
 }
 .parsed .fieldIndex {
   width: 6em;

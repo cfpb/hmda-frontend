@@ -84,7 +84,6 @@ export const rowCreateReducer = (state) => {
   state.selectedColName = null // Clear selected column
   collapseAll() // Collapse all field enumerations
   state.editingRow = nextRow // Display this row in the Editor
-  state.hasNewChanges = true // Warn of potential lost data
   state.selectedRowID = null
 
 }

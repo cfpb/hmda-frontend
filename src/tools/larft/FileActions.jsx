@@ -4,14 +4,7 @@ import { FileUpload } from "./FileUpload"
 import { Error } from "./Error"
 import { useDispatch, useSelector } from 'react-redux'
 import { fileDownload, rowsReset } from './redux/store'
-
-const MESSAGES = {
-  upload:
-    "Uploading a file will overwrite your current filing data.  Are you sure?",
-  clear: "This will delete all current filing data. Are you sure?",
-  needTS: "Please create a Transmittal Sheet before saving!",
-  needLAR: "Please create at least one Loan/Application Row before saving!",
-}
+import { MESSAGES } from './MESSAGES'
 
 export const createFileContent = (ts, lars) =>
   ts
