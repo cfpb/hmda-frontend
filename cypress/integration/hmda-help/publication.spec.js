@@ -35,7 +35,7 @@ describe('HMDA Help - Publications', () => {
       cy.logout({ root: authUrl, realm: AUTH_REALM })
       cy.wait(ACTION_DELAY)
       cy.hmdaLogin('hmda-help', authUrl)
-      cy.url().should('contains', `${AUTH_BASE_URL}hmda-help/`)
+      cy.url().should('contains', `${AUTH_BASE_URL}/hmda-help/`)
     }
     
     // Load site
