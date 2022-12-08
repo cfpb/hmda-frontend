@@ -2,7 +2,7 @@ import React from 'react'
 import { goToFileActions } from '../utils'
 import { SavedSection } from './SavedSection'
 import { useSelector } from 'react-redux'
-import { rowDelete, selectCol, selectRow } from '../redux/store'
+import { rowDelete, selectCol, selectRow } from '../data-store/store'
 
 const TSheet = ({ rows, ...props }) => {
   return (

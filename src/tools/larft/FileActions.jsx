@@ -3,7 +3,7 @@ import { stringifyRow, unity } from "./utils"
 import { FileUpload } from "./FileUpload"
 import { Error } from "./Error"
 import { useDispatch, useSelector } from 'react-redux'
-import { fileDownload, rowsReset } from './redux/store'
+import { fileDownload, rowsReset } from './data-store/store'
 import { MESSAGES } from './MESSAGES'
 
 export const createFileContent = (ts, lars) =>

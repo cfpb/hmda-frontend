@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import larftStore from './larft/redux/store'
+import larftStore from './larft/data-store/store'
 
 import Home from './Home'
 import CheckDigit from './check-digit/index'

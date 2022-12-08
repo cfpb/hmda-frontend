@@ -1,13 +1,13 @@
-import React, { useLayoutEffect, useRef } from 'react'
+import React from 'react'
+import { useDispatch } from 'react-redux'
 import { applyFilter } from '../parsedHelpers'
+import { selectCol } from '../data-store/store'
 import {
   columnIsSelected,
   formatColWidth,
   formatFieldID,
-  getUsableProps,
+  getUsableProps
 } from './service'
-import { selectCol } from '../redux/store'
-import { useDispatch } from 'react-redux'
 
 export const buildColumns = ({
   rows,

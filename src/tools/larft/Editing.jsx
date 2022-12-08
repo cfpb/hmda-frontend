@@ -4,7 +4,7 @@ import { Parsed } from './Parsed'
 import { Piped } from './Piped'
 import { EditingActions } from './EditingActions'
 import { useState } from 'react'
-import { editingRowSet, rowCreate, rowDelete, rowSave } from './redux/store'
+import { editingRowSet, rowCreate, rowDelete, rowSave } from './data-store/store'
 import { useDispatch, useSelector } from 'react-redux'
 
 

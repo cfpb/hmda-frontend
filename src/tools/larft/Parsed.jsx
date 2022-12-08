@@ -6,7 +6,7 @@ import { ParsedHeader } from "./ParsedHeader";
 import { ParsedTable } from "./ParsedTable";
 import { applyFilter, checkHighlighted } from "./parsedHelpers";
 import { useDispatch } from 'react-redux'
-import { selectCol } from './redux/store'
+import { selectCol } from './data-store/store'
 
 function useFocusOnSelectedColumn(colName) {
   const dispatch = useDispatch()
@@ -15,7 +15,7 @@ function useFocusOnSelectedColumn(colName) {
   useEffect(() => {
     const el = document.getElementById(`${colName}`);
     const grandparent = el?.parentElement?.parentElement;
-    if (!!grandparent) {
+    if (grandparent) {
       grandparent.scrollIntoView({
         block: "nearest",
         inline: "nearest",

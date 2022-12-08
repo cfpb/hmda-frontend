@@ -12,7 +12,7 @@ export const SectionTitle = ({ title, filteredRows, rows }) => {
 
 
 const rowCountLabel = (filteredRows, rows) => {
-  const countsAreEqual = filteredRows.length !== rows.length
+  const countsAreEqual = filteredRows.length == rows.length
   if (countsAreEqual) return `(${rows.length})`
   return `(${filteredRows.length}/${rows.length})`
 }

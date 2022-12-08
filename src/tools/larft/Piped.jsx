@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { selectCol } from './redux/store'
+import { selectCol } from './data-store/store'
 import { getSchema, goTo, parseRow, stringifyRow, log } from './utils'
 import { useDispatch } from 'react-redux'
 

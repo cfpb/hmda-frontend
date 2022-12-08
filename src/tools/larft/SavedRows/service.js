@@ -20,7 +20,12 @@ export const formatColWidth = (f, adjustment = 0) => {
 
 // Build element ID from field name
 export const formatFieldID = f => {
-  return 'header-' + f.fieldName.toLowerCase().replaceAll(' ', '-')
+  const replaceCharacters = [':', ' ', "'", ',', '(', ')']
+  let adjusted = f.fieldName.toLowerCase()
+  replaceCharacters.forEach(replaceable => {
+    adjusted = adjusted.replaceAll(replaceable, '-')
+  })
+  return 'header-' + adjusted
 }
 
 // Collect props that can be passed down to our custom component

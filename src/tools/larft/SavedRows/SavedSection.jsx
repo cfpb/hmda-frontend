@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { Table } from 'react-fluid-table'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectRow } from '../redux/store'
+import { selectRow } from '../data-store/store'
 import { goToFileActions, LAR_SCHEMA, TS_SCHEMA } from '../utils'
 import { applyRowFilter } from './applyRowFilter'
 import { buildColumns } from './buildColumns'

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux'
-import { fileUpload } from './redux/store'
+import { fileUpload } from './data-store/store'
 
 /**
  * Read user-selected file contents. 
