@@ -1,7 +1,9 @@
-import { cloneObject, createID, formatFileName, isLAR, isTS, log, parseRow } from '../utils'
-import { collapseAll } from '../Accordion'
+import { cloneObject, log } from '../utils/common'
 import { initialState } from './store'
-import { addRowId, tsUpdateLarCount } from '../SavedRows/service'
+import { addRowId, tsUpdateLarCount } from '../components/SavedRows/service'
+import { formatFileName } from '../utils/file'
+import { createRowID, isRowLAR, isRowTS, parseRow } from '../utils/row'
+import { collapseAll } from '../components/Accordion'
 
 export const rowSaveReducer = (state) => {
   const selected = state.editingRow
@@ -10,13 +12,13 @@ export const rowSaveReducer = (state) => {
   let vals
   let updateKey
 
-  if (isTS(selected)) {
+  if (isRowTS(selected)) {
     // Save Filename when TS updates
     state.filename = formatFileName(selected)
 
     vals = state.ts
     updateKey = 'ts'
-  } else if (isLAR(selected)) {
+  } else if (isRowLAR(selected)) {
     vals = state.lars
     updateKey = 'lars'
   }
@@ -26,7 +28,7 @@ export const rowSaveReducer = (state) => {
     log('[Save] Saving TS row...')
 
     const nextTS = cloneObject(selected)
-    nextTS.id = createID()
+    nextTS.id = createRowID()
     nextTS.rowId = 1
     state[updateKey] = [nextTS] // Save TS
     rowCreateReducer(state) // Clear Pipe-delimited area
@@ -48,7 +50,7 @@ export const rowSaveReducer = (state) => {
     // Append new item
     log('[Save] Adding new item.')
     const obj = cloneObject(selected)
-    obj.id = createID()
+    obj.id = createRowID()
     obj.rowId = vals.length + 1
     vals.push(obj)
     state[updateKey] = vals  // Save rows
@@ -66,7 +68,7 @@ export const rowDeleteReducer = (state) => {
   const _currentRow = state.editingRow
   log('[Delete] Deleting row...', _currentRow)
 
-  if (isTS(_currentRow)) state.ts = initialState.ts
+  if (isRowTS(_currentRow)) state.ts = initialState.ts
   else
     state.lars = state.lars
       .filter(row => row.id !== _currentRow.id)
@@ -78,7 +80,7 @@ export const rowDeleteReducer = (state) => {
 
 export const rowCreateReducer = (state) => {
   const nextRow = parseRow(state.ts.length ? "2|" : "1|")
-  nextRow.id = createID()
+  nextRow.id = createRowID()
 
   state.selectedColName = null // Clear selected column
   collapseAll() // Collapse all field enumerations

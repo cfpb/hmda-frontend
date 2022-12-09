@@ -1,7 +1,6 @@
-import { download } from '../download'
-import { createFileContent } from '../FileActions'
-import { addRowId } from '../SavedRows/service'
-import { createID, formatFileName, isLAR, isTS, log, parseRow } from '../utils'
+import { addRowId } from '../components/SavedRows/service'
+import { createFileContent, downloadFile, formatFileName } from '../utils/file'
+import { createRowID, isRowLAR, isRowTS, parseRow } from '../utils/row'
 import { rowCreateReducer } from './rowReducers'
 
 export const fileUploadReducer = (state, { payload }) => {
@@ -17,11 +16,11 @@ export const fileUploadReducer = (state, { payload }) => {
 
   up_rows.forEach((_row, idx) => {
     const parsed = parseRow(_row)
-    parsed.id = createID()
+    parsed.id = createRowID()
 
     if (!_row?.trim().length) return // Ignore blank lines
-    if (isTS(parsed)) return _ts.push(parsed)
-    if (isLAR(parsed)) return _lar.push(parsed)
+    if (isRowTS(parsed)) return _ts.push(parsed)
+    if (isRowLAR(parsed)) return _lar.push(parsed)
 
     _unparsable[idx + 1] = _row // Track unparsable rows
   })
@@ -37,7 +36,7 @@ export const fileUploadReducer = (state, { payload }) => {
 export const fileDownloadReducer = (state) => {
   const { filename, ts, lars } = state
 
-  download(`${filename}.txt`, createFileContent(ts, lars))
+  downloadFile(`${filename}.txt`, createFileContent(ts, lars))
   
   state.hasNewChanges = false
 }

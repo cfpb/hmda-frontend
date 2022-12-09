@@ -1,14 +1,14 @@
 import React from "react"
 import { useSelector } from 'react-redux'
 import { Prompt } from "react-router-dom"
-import { Editing } from "./Editing"
-import { FileActions } from "./FileActions"
-import { MESSAGES } from './MESSAGES.js'
-import PageHeader from "./PageHeader"
-import { SavedRows } from "./SavedRows"
-import { Unparsable } from "./Unparsable"
-import { useRestyledButtonLinks } from "./useRestyledButtonLinks"
-import { useWarningWhenLeaving } from './useWarningWhenLeaving'
+import { FileActions } from './components/FileActions'
+import { PageHeader } from './components/PageHeader'
+import { Editing } from './components/RowEditor/Editing'
+import { SavedRows } from './components/SavedRows'
+import { UnparsableRows } from './components/UnparsableRows'
+import { WARN_LOST_UNSAVED } from './config/messages.js'
+import { useRestyledButtonLinks } from "./hooks/useRestyledButtonLinks"
+import { useWarningWhenLeaving } from './hooks/useWarningWhenLeaving'
 import "./index.css"
 
 export const LARFT = () => {
@@ -19,10 +19,10 @@ export const LARFT = () => {
 
   return (
     <div className='online-larft'>
-      <Prompt when={hasNewChanges} message={MESSAGES.loseUnsaved} />
+      <Prompt when={hasNewChanges} message={WARN_LOST_UNSAVED} />
       <PageHeader />
       <FileActions />
-      <Unparsable />
+      <UnparsableRows />
       <SavedRows />
       <Editing />
     </div>

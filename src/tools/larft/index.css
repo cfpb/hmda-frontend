@@ -57,7 +57,7 @@
 }
 
 /* RawRow */
-.raw-row, .saved-rows {
+.row-editor, .saved-rows {
   margin-top: 2em;
   border-top: 3px solid #0071bc;
 }
@@ -68,28 +68,28 @@
 .action-wrapper button {
   margin-top: 0.5em;
 }
-.raw-row #rawArea {
+.row-editor #rawArea {
   width: 100%;
   min-height: 150px;
 }
-.raw-row .editing {
+.row-editor .editing {
   margin-bottom: 10px;
   color: rgb(35, 123, 152);
 }
-.raw-row .editing .highlight {
+.row-editor .editing .highlight {
   font-weight: bold;
   font-style: italic;
   color: black;
 }
-.raw-row .save-row {
+.row-editor .save-row {
   margin-top: 0px;
   margin-bottom: 10px;
 }
-.raw-row .action-wrapper button:not(:first-of-type) {
+.row-editor .action-wrapper button:not(:first-of-type) {
   margin-left: 0.5em;
 }
 
-.raw-row .action-wrapper {
+.row-editor .action-wrapper {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -211,7 +211,7 @@
   justify-content: space-between;
   border-radius: 8px;
 }
-.search-box .clear {
+.search-box .reset {
   margin-left: 0.3em;
 }
 .search-box input {
@@ -335,7 +335,7 @@
   border-radius: 50%;
 }
 .unparsable .dismiss:hover {
-  background-color:brown;
+  background-color:grey;
   color: white;
 }
 
@@ -346,7 +346,6 @@
 }
 
 .unparsable h2 {
-  padding: 0;
   margin: 0;
 }
 .unparsable table {

@@ -1,5 +1,5 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
-import { parseRow } from '../utils'
+import { parseRow } from '../utils/row'
 import { editingRowSetReducer } from './editorReducers'
 import { fileDownloadReducer, fileUploadReducer } from './fileReducers'
 import {
