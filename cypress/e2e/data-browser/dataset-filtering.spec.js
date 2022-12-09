@@ -84,7 +84,7 @@ describe(`Data Browser - Dataset Filtering`, () => {
           cy.url().should('include', '&lien_statuses=1')
 
           // View Summary Table
-          cy.findByText('View Summary Table').click()
+          cy.findByText('View Summary Table').click({ force: true })
           cy.get('.Aggregations', waitUpto2Mins).should('exist')
           cy.get('.Aggregations :nth-child(1) > .sublist > li').then($li => {
             let text = $li.text().toLowerCase()
@@ -168,7 +168,7 @@ describe(`Data Browser - Dataset Filtering`, () => {
 
           // Variables
           cy.get('#VariableSelector').type('loan type{enter}')
-          cy.findByText('Conventional').click()
+          cy.findByText('Conventional').click({ force: true })
           cy.url().should('include', '&loan_types=1')
 
           // View Summary Table

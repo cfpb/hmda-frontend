@@ -25,7 +25,7 @@ import '../hmda-help/institution.spec'
 import '../hmda-help/publication.spec'
 
 // Load
-import '../load/LargeFiler.spec'
+// import '../load/LargeFiler.spec'
 
 // Tools
 import '../tools/CheckDigitTool.spec'
