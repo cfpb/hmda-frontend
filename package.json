@@ -71,9 +71,9 @@
   "devDependencies": {
     "@cypress/skip-test": "2.6.0",
     "@testing-library/cypress": "8.0.1",
-    "cypress": "9.5.1",
+    "cypress": "10",
     "cypress-file-upload": "5.0.8",
-    "cypress-keycloak": "1.7.0",
+    "cypress-keycloak": "2.0.0",
     "ejs": "^3.1.8",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.2",
