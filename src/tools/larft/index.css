@@ -148,7 +148,8 @@
   border-left: 5px solid grey;
   background-color: rgb(235, 235, 235) !important;
 }
-.parsed .highlight {
+.parsed .highlight,
+.parsed .highlight > * {
   background: blanchedalmond;
 }
 

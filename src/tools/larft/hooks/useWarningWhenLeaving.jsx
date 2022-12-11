@@ -8,8 +8,6 @@ import { useSelector } from 'react-redux'
 export const useWarningWhenLeaving = () => {
   const hasNewChanges = useSelector(({ larft }) => larft.hasNewChanges)
 
-  console.log('hasNewChanges: ', hasNewChanges)
-  
   useEffect(() => {
     if (hasNewChanges) window.onbeforeunload = () => true
     else window.onbeforeunload = null

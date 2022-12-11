@@ -1,4 +1,5 @@
 import { isCI, isProd, isBeta } from '../../support/helpers'
+import { ERROR_MISSING_LAR, WARN_LOST_UNSAVED } from '../../../src/tools/larft/config/messages'
 
 const { HOST, ENVIRONMENT } = Cypress.env()
 
@@ -37,7 +38,7 @@ describe('General OLART Tests', () => {
     // Now testing "Search TS" functionality
     cy.get('.filters > :nth-child(1) > input').click().type('2019')
     cy.get(
-      ".row-container > [style='width: 200px; min-width: 200px;'] > .custom-cell-content"
+      ".row-container > :nth-child(2) > .custom-cell-content"
     ).should('have.text', '2019')
   })
 
@@ -58,7 +59,7 @@ describe('General OLART Tests', () => {
       .click()
       .type('1')
     cy.get(
-      "#saved-lars > :nth-child(2) > .react-fluid-table > .react-fluid-table-container > :nth-child(2) > .react-fluid-table-row > .row-container > [style='width: 200px; min-width: 200px;'] > .custom-cell-content"
+      "#saved-lars .row-container #row-1"
     ).should('have.text', '1')
     // Clear "Search LAR" input
     cy.get(':nth-child(1) > .clear').click()
@@ -85,7 +86,7 @@ describe('General OLART Tests', () => {
     )
     cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
     // Clear Records
-    cy.get('.clear').click()
+    cy.get('.reset').click()
     // Ensuring TS and LAR records have no saved records
     cy.get('#saved-ts > .no-records').should('have.text', 'No Records Saved')
     cy.get('#saved-lars > .no-records').should('have.text', 'No Records Saved')
@@ -101,9 +102,7 @@ describe('General OLART Tests', () => {
     cy.get(':nth-child(4) > .nav-link').click()
     // Checks Cypress confirm message
     cy.on('window:confirm', text => {
-      expect(text).to.contains(
-        'You will lose any un-downloaded data! Are you sure you want to leave?'
-      )
+      expect(text).to.contains(WARN_LOST_UNSAVED)
     })
   })
 
@@ -115,7 +114,7 @@ describe('General OLART Tests', () => {
     // Filename attribute check - defaults to "LarFile" if calendar year, quarter and LEI isn't in the TS record
     cy.get('.export').invoke('attr', 'data-filename').should('eq', 'LarFile')
 
-    cy.get('.clear').click()
+    cy.get('.reset').click()
 
     cy.id('Calendar Year').select('2019')
     cy.id('Calendar Quarter').select('1 - Q1')
@@ -193,23 +192,17 @@ describe('Record specific tests', () => {
     cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
     // Drop-down check
     cy.get('.filters > :nth-child(1) > input').click().type('2019')
-    cy.get(
-      ".row-container > [style='width: 200px; min-width: 200px;'] > .custom-cell-content"
-    ).should('have.text', '2019')
+    cy.get('#saved-ts #row-1').should('have.text', '2019')
     // Clear "Search TS" filter
     cy.get(':nth-child(1) > .clear').click()
     // Input field check
     cy.get('.filters > :nth-child(1) > input').click().type('fake')
-    cy.get(
-      ".row-container > [style='width: 200px; min-width: 200px;'] > .custom-cell-content"
-    ).should('have.text', '1071FAKELEI')
+    cy.get('#saved-ts #row-1').should('have.text', '1071FAKELEI')
     // Clear "Search TS" filter
     cy.get(':nth-child(1) > .clear').click()
     // Update "Calendar Year" drop-down and "LEI" input field and check they were updated
     cy.get('.filters > :nth-child(2) > input').click().type('Calendar Year')
-    cy.get(
-      ".row-container > [style='width: 200px; min-width: 200px;'] > .custom-cell-content"
-    ).click()
+    cy.get('#saved-ts #row-1').click()
     // Clear "Search column" filter
     cy.get('.filters > :nth-child(2) > .clear').click()
     // Update "Calendar Year drop-down menu and "LEI" input field
@@ -219,22 +212,16 @@ describe('Record specific tests', () => {
     cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
     // Check "Calendar Year" drop-down was updated
     cy.get('.filters > :nth-child(1) > input').click().type('2020')
-    cy.get(
-      ".row-container > [style='width: 200px; min-width: 200px;'] > .custom-cell-content"
-    ).should('have.text', '2020')
+    cy.get('#saved-ts #row-1').should('have.text', '2020')
     // Clear "Search TS" filter
     cy.get(':nth-child(1) > .clear').click()
     // Check "LEI" input field was updated
     cy.get('.filters > :nth-child(1) > input')
       .click()
       .type('1071FAKELEIUPDATED')
-    cy.get(
-      ".row-container > [style='width: 200px; min-width: 200px;'] > .custom-cell-content"
-    ).should('have.text', '1071FAKELEIUPDATED')
+    cy.get('#saved-ts #row-1').should('have.text', '1071FAKELEIUPDATED')
     // Click a row to have "Delete Row" button appear
-    cy.get(
-      ".row-container > [style='width: 200px; min-width: 200px;'] > .custom-cell-content"
-    ).click()
+    cy.get('#saved-ts #row-1').click()
     // Delete TS Record
     cy.get('#parsed-row > .action-wrapper > .row-actions > .delete-row').click()
     // Checks Cypress confirm message on "Delete Row" button
@@ -266,9 +253,7 @@ describe('Record specific tests', () => {
     cy.get('#saved-lars > h3.clickable > .filters > :nth-child(2) > input')
       .click()
       .type('Loan Amount')
-    cy.get(
-      "#saved-lars > :nth-child(2) > .react-fluid-table > .react-fluid-table-container > :nth-child(2) > .react-fluid-table-row > .row-container > [style='width: 200px; min-width: 200px;'] > .custom-cell-content"
-    ).should('have.text', '110500')
+    cy.get('#saved-lars #row-1').should('have.text', '110500')
     // Clear "Filter column" functionality
     cy.get('.filters > :nth-child(2) > .clear').click()
     // Search for "State" column
@@ -276,9 +261,7 @@ describe('Record specific tests', () => {
       .click()
       .type('State')
     // Check "State" column contains "WA"
-    cy.get(
-      "#saved-lars > :nth-child(2) > .react-fluid-table > .react-fluid-table-container > :nth-child(2) > .react-fluid-table-row > .row-container > [style='width: 200px; min-width: 200px;'] > .custom-cell-content"
-    ).should('have.text', 'WA')
+    cy.get('#saved-lars #row-1').should('have.text', 'WA')
     // Clear "Filter column" functionality
     cy.get('.filters > :nth-child(2) > .clear').click()
     // Search for "Zip Code" column
@@ -286,13 +269,9 @@ describe('Record specific tests', () => {
       .click()
       .type('Zip Code')
     // Check "Zip Code" column contains "NA"
-    cy.get(
-      "#saved-lars > :nth-child(2) > .react-fluid-table > .react-fluid-table-container > :nth-child(2) > .react-fluid-table-row > .row-container > [style='width: 200px; min-width: 200px;'] > .custom-cell-content"
-    ).should('have.text', 'NA')
+    cy.get('#saved-lars #row-1').should('have.text', 'NA')
     // click LAR record - allow cypress to work on updating record
-    cy.get(
-      "#saved-lars > :nth-child(2) > .react-fluid-table > .react-fluid-table-container > :nth-child(2) > .react-fluid-table-row > .row-container > [style='width: 200px; min-width: 200px;'] > .custom-cell-content"
-    ).click()
+    cy.get('#saved-lars #row-1').click()
     // Update "Zip Code" to "Exempt" by clicking second button
     cy.get(
       'tr.highlight > .fieldValue > .enum-entry > .enums > :nth-child(2)'
@@ -309,9 +288,7 @@ describe('Record specific tests', () => {
     cy.get('#saved-lars > h3.clickable > .filters > :nth-child(2) > input')
       .click()
       .type('Loan Amount')
-    cy.get(
-      "#saved-lars > :nth-child(2) > .react-fluid-table > .react-fluid-table-container > :nth-child(2) > .react-fluid-table-row > .row-container > [style='width: 200px; min-width: 200px;'] > .custom-cell-content"
-    ).should('have.text', '110501')
+    cy.get('#saved-lars #row-1').should('have.text', '110501')
     // Clear "Filter column" functionality
     cy.get('.filters > :nth-child(2) > .clear').click()
     // Search for "State" column
@@ -319,9 +296,7 @@ describe('Record specific tests', () => {
       .click()
       .type('State')
     // Check "State" column contains "NY"
-    cy.get(
-      "#saved-lars > :nth-child(2) > .react-fluid-table > .react-fluid-table-container > :nth-child(2) > .react-fluid-table-row > .row-container > [style='width: 200px; min-width: 200px;'] > .custom-cell-content"
-    ).should('have.text', 'NY')
+    cy.get('#saved-lars #row-1').should('have.text', 'NY')
     // Clear "Filter column" functionality
     cy.get('.filters > :nth-child(2) > .clear').click()
     // Search for "Zip Code" column
@@ -329,13 +304,9 @@ describe('Record specific tests', () => {
       .click()
       .type('Zip Code')
     // Check "Zip Code" column contains "Exempt"
-    cy.get(
-      "#saved-lars > :nth-child(2) > .react-fluid-table > .react-fluid-table-container > :nth-child(2) > .react-fluid-table-row > .row-container > [style='width: 200px; min-width: 200px;'] > .custom-cell-content"
-    ).should('have.text', 'Exempt')
+    cy.get('#saved-lars #row-1').should('have.text', 'Exempt')
     // Click on LAR Record to have "Delete Row" button appear
-    cy.get(
-      "#saved-lars > :nth-child(2) > .react-fluid-table > .react-fluid-table-container > :nth-child(2) > .react-fluid-table-row > .row-container > [style='width: 200px; min-width: 200px;'] > .custom-cell-content"
-    ).click()
+    cy.get('#saved-lars #row-1').click()
     // Delete LAR Record
     cy.get('#parsed-row > .action-wrapper > .row-actions > .delete-row').click()
     // LAR should have no records

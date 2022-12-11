@@ -1,10 +1,47 @@
 import React from 'react'
 import './Accordion.css'
 
-function handleToggleClick(id) {
+export const Accordion = ({ heading, content, children, id }) => {
+  const contentBody = content || children || null
+
+  return (
+    <ul className='accordion-bordered'>
+      <li onClick={() => handleToggle(id)}>
+        <AccordionHeading id={id} text={heading} />
+        <AccordionContent id={id} content={contentBody} />
+      </li>
+    </ul>
+  )
+}
+
+const AccordionHeading = ({ id, text }) => {
+  return (
+    <button
+      className='accordion-button'
+      aria-expanded='false'
+      id={`accordion-button-${id}`}
+      aria-controls={`accordion-${id}`}
+    >
+      {text}
+    </button>
+  )
+}
+
+const AccordionContent = ({ id, content }) => {
+  return (
+    <div
+      id={`accordion-${id}`}
+      className='accordion-content'
+      aria-hidden='true'
+    >
+      {content}
+    </div>
+  )
+}
+
+const handleToggle = id => {
   let accordionButton = document.getElementById(`accordion-button-${id}`)
-  let expanded =
-    accordionButton.getAttribute('aria-expanded') === 'false' ? false : true
+  let expanded = accordionButton.getAttribute('aria-expanded') !== 'false'
 
   document
     .getElementById(`accordion-button-${id}`)
@@ -22,28 +59,3 @@ export const collapseAll = () => {
     .querySelectorAll(`[id^="accordion-"]`)
     .forEach(e => e.setAttribute('aria-hidden', true))
 }
-
-export const Accordion = ({ heading, content, children, id }) => {
-  return (
-    <ul className='accordion-bordered'>
-      <li onClick={event => handleToggleClick(id)}>
-        <button
-          className='accordion-button'
-          aria-expanded='false'
-          id={`accordion-button-${id}`}
-          aria-controls={`accordion-${id}`}
-        >
-          {heading}
-        </button>
-        <div
-          id={`accordion-${id}`}
-          className='accordion-content'
-          aria-hidden='true'
-        >
-          {content || children || null}
-        </div>
-      </li>
-    </ul>
-  )
-}
-

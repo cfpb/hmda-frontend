@@ -32,8 +32,13 @@ export const getFieldType = ({ fieldType }) => {
 }
 
 export const buildEnumeratedOptions = column => {
-  const options = column.enumerations.map(({ value, description }) => (
-    <EnumOption {...{ value, description }} />
+  const { enumerations, fieldName } = column
+
+  const options = enumerations.map(({ value, description }, idx) => (
+    <EnumOption
+      key={`${idx}-${fieldName}-${value}`}
+      {...{ value, description, fieldName, idx }}
+    />
   ))
 
   options.unshift(
@@ -47,7 +52,7 @@ export const buildEnumeratedOptions = column => {
 
 const EnumOption = ({ value, description }) => {
   return (
-    <option value={value} key={value}>
+    <option value={value}>
       {formatEnumerationLabel(value, description)}
     </option>
   )}
