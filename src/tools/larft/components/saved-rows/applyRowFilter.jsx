@@ -1,7 +1,7 @@
 import {
   matchColumnFilter,
   matchSearchFilter,
-} from '../RowEditor/parsedHelpers'
+} from '../row-editor/parsedHelpers'
 
 export const applyRowFilter = ({
   searchFilter,

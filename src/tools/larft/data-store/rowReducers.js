@@ -1,6 +1,6 @@
 import { cloneObject, log } from '../utils/common'
 import { initialState } from './store'
-import { addRowId, tsUpdateLarCount } from '../components/SavedRows/service'
+import { addRowId, tsUpdateLarCount } from '../components/saved-rows/service'
 import { formatFileName } from '../utils/file'
 import { createRowID, isRowLAR, isRowTS, parseRow } from '../utils/row'
 import { collapseAll } from '../components/Accordion'

@@ -1,4 +1,4 @@
-import { addRowId } from '../components/SavedRows/service'
+import { addRowId } from '../components/saved-rows/service'
 import { createFileContent, downloadFile, formatFileName } from '../utils/file'
 import { createRowID, isRowLAR, isRowTS, parseRow } from '../utils/row'
 import { rowCreateReducer } from './rowReducers'

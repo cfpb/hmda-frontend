@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux'
 import { Prompt } from "react-router-dom"
 import { FileActions } from './components/FileActions'
 import { PageHeader } from './components/PageHeader'
-import { Editing } from './components/RowEditor/Editing'
-import { SavedRows } from './components/SavedRows'
+import { Editing } from './components/row-editor/Editing'
+import { SavedRows } from './components/saved-rows'
 import { UnparsableRows } from './components/UnparsableRows'
 import { WARN_LOST_UNSAVED } from './config/messages.js'
 import { useRestyledButtonLinks } from "./hooks/useRestyledButtonLinks"

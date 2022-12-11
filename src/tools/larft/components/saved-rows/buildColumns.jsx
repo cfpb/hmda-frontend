@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { selectCol } from '../../data-store/store'
-import { matchColumnFilter } from '../RowEditor/parsedHelpers'
+import { matchColumnFilter } from '../row-editor/parsedHelpers'
 import {
   columnIsSelected,
   formatColWidth,
