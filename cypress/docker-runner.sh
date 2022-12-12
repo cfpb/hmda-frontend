@@ -27,7 +27,7 @@ fi
 # Run Load tests, if enabled
 if [ "$CYPRESS_SHOULD_LOAD_TEST" = true ];
 then 
-	yarn cypress run --spec "cypress/integration/load/**" > output_load.txt
+	yarn cypress run --spec "cypress/e2e/load/**" > output_load.txt
 	if  grep -q "All specs passed!" "output_load.txt" ; then
 		post_success 'Load testing' "output_load.txt"
 	else
