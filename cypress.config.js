@@ -20,11 +20,7 @@ module.exports = defineConfig({
   },
   experimentalStudio: true,
   e2e: {
-    // Excludes file that allows us to run all tests in the UI
-    // Ensures PROD doesn't run all tests twice
-    excludeSpecPattern: !process.env.CYPRESS_ENVIRONMENT
-      ? ['cypress/e2e/all/index.cy.js']
-      : [],
+    experimentalRunAllSpecs: true,
     setupNodeEvents(on, config) {
       return require('./cypress/plugins/index.js')(on, config)
     },

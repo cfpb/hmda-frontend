@@ -4451,7 +4451,7 @@ cypress-keycloak@2.0.0:
   resolved "https://registry.yarnpkg.com/cypress-keycloak/-/cypress-keycloak-2.0.0.tgz#88eb1612525b25d76d2a611973583436463d0d05"
   integrity sha512-CXb2Hmoij8js1eU5MvfIrRndNdw3qYPvV3a1Sj21PjGyxrQoK+qhmWS3T9HQjKjF1sbv31RUNGU1FlOmfsUTFg==
 
-cypress@11:
+cypress@11.2.0:
   version "11.2.0"
   resolved "https://registry.yarnpkg.com/cypress/-/cypress-11.2.0.tgz#63edef8c387b687066c5493f6f0ad7b9ced4b2b7"
   integrity sha512-u61UGwtu7lpsNWLUma/FKNOsrjcI6wleNmda/TyKHe0dOBcVjbCPlp1N6uwFZ0doXev7f/91YDpU9bqDCFeBLA==
