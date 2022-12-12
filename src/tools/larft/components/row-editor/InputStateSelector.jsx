@@ -1,5 +1,5 @@
 import STATES from '../../../../data-browser/constants/states'
-import { buildEnumeratedOptions } from './parsedHelpers'
+import { buildEnumeratedOptions } from './EnumOption'
 
 export const InputStateSelector = ({ value, ...common }) => {
   return (

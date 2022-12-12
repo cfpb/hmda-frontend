@@ -3,11 +3,11 @@ import { useFocusOnSelectedColumn } from '../../hooks/useFocusOnSelectedColumn'
 import { getSchema } from '../../schema/index'
 import { parseRow } from '../../utils/row'
 import { ParsedHeader } from './ParsedHeader'
-import { matchColumnFilter, getHighlightClass } from './parsedHelpers'
+import { matchColumnFilter } from '../../utils/search'
 import { ParsedRow } from './ParsedRow'
 import { ParsedTable } from './ParsedTable'
 
-export const Parsed = ({
+export const EditingParsed = ({
   id = 'parsed-row',
   row,
   currCol,
@@ -43,4 +43,13 @@ export const Parsed = ({
       <ParsedTable rows={tableRows} />
     </div>
   )
+}
+
+const getHighlightClass = (currentField, selectedColumnName) => {
+  const isMatch =
+    selectedColumnName &&
+    currentField &&
+    selectedColumnName === currentField.fieldName
+
+  return isMatch ? 'highlight' : ''
 }

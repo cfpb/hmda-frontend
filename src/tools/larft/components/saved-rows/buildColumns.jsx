@@ -1,13 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { selectCol } from '../../data-store/store'
-import { matchColumnFilter } from '../row-editor/parsedHelpers'
-import {
-  columnIsSelected,
-  formatColWidth,
-  formatFieldID,
-  getUsableProps,
-} from './service'
+import { matchColumnFilter } from '../../utils/search'
 
 export const buildColumns = ({
   rows,
@@ -51,7 +45,7 @@ const ColumnHeader = ({ field, selectedColName, ...props }) => {
   const wrapperClasses = ['clickable', 'header-cell', 'custom']
   const fieldName = field.fieldName
 
-  if (columnIsSelected(selectedColName, field)) wrapperClasses.push('selected')
+  if (isColumnSelected(selectedColName, field)) wrapperClasses.push('selected')
 
   const clickHandler = () => {
     dispatch(selectCol(fieldName))
@@ -73,12 +67,7 @@ const ColumnHeader = ({ field, selectedColName, ...props }) => {
   )
 }
 
-const ColumnContent = ({
-  row,
-  field,
-  searchFilter,
-  selectedColName,
-}) => {
+const ColumnContent = ({ row, field, searchFilter, selectedColName }) => {
   const dispatch = useDispatch()
   const fieldName = field.fieldName
   let fieldValue = row[fieldName] || '-'
@@ -87,7 +76,7 @@ const ColumnContent = ({
   const wrapperClasses = ['custom-cell-content']
   const clickHandler = () => dispatch(selectCol(fieldName))
 
-  if (columnIsSelected(selectedColName, field))
+  if (isColumnSelected(selectedColName, field))
     wrapperClasses.push('col-selected')
 
   const isMatchForSearch =
@@ -114,6 +103,8 @@ const ColumnContent = ({
   )
 }
 
+// ----------- Utils -----------
+
 const filterFields = ({ matchedColumns, schema, columnFilter }) =>
   schema
     .filter(x => {
@@ -121,3 +112,34 @@ const filterFields = ({ matchedColumns, schema, columnFilter }) =>
       if (matchedColumns.includes(x.fieldName)) return true
     })
     .filter(x => matchColumnFilter(x, columnFilter))
+
+// Derive column width based on length of field name
+const formatColWidth = (f, adjustment = 0) => {
+  let width = Math.max(f.fieldName.length * 10, 200)
+  width += adjustment
+
+  return `${width}px`
+}
+
+// Build element ID from field name
+const formatFieldID = f => {
+  const replaceCharacters = [':', ' ', "'", ',', '(', ')']
+  let adjusted = f.fieldName.toLowerCase()
+  replaceCharacters.forEach(replaceable => {
+    adjusted = adjusted.replaceAll(replaceable, '-')
+  })
+  return 'header-' + adjusted
+}
+
+// Collect props that can be passed down to our custom component
+export const getUsableProps = props => {
+  const usableProps = {}
+  Object.keys(props)
+    .filter(p_key => !['sortDirection'].includes(p_key))
+    .forEach(p_key => (usableProps[p_key] = props[p_key]))
+
+  return usableProps
+}
+
+// Should highlight the current column?
+const isColumnSelected = (curr, field) => curr === field.fieldName

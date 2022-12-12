@@ -9,8 +9,8 @@ import {
 import { scrollToID } from '../../utils/common'
 import { isRowTS } from '../../utils/row'
 import { EditingActions } from './EditingActions'
-import { Parsed } from './Parsed'
-import { Piped } from './Piped'
+import { EditingParsed } from './EditingParsed'
+import { EditingPiped } from './EditingPiped'
 
 export const Editing = ({ id = 'row-editor' }) => {
   const [isChanged, setChanged] = useState(false)
@@ -65,13 +65,13 @@ export const Editing = ({ id = 'row-editor' }) => {
   return (
     <div className={id} id={id}>
       <Heading id={id} row={editingRow} />
-      <Parsed
+      <EditingParsed
         currCol={selectedColName}
         row={editingRow}
         onChange={changeHandler}
         textActions={ParsedActions}
       />
-      <Piped
+      <EditingPiped
         currCol={selectedColName}
         row={editingRow}
         onChange={changeHandler}

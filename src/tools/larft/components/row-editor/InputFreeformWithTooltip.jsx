@@ -1,6 +1,6 @@
 import { Tooltip } from '../../../../common/Tooltip'
 import { ReactComponent as InfoIcon } from '../../../../filing/images/info.svg'
-import { getFieldType } from './parsedHelpers'
+import { getFieldType } from '../../utils/input'
 
 export const InputFreeformWithTooltip = ({
   row,

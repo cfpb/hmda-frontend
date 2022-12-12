@@ -6,7 +6,7 @@ import { highlightText, scrollToID } from '../../utils/common'
 import { parseRow, stringifyRow } from '../../utils/row'
 import { updateCurrentColumn } from '../../utils/textArea'
 
-export const Piped = ({
+export const EditingPiped = ({
   id = 'piped',
   currCol,
   row,

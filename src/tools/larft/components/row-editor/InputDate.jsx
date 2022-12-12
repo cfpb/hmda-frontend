@@ -1,4 +1,5 @@
 import React from 'react'
+import { formatDateString } from '../../utils/input'
 
 export const InputDate = ({ onChange, value, ...common }) => {
   const adjustedValue = formatDateString(value)
@@ -13,11 +14,6 @@ export const InputDate = ({ onChange, value, ...common }) => {
       value={adjustedValue}
     />
   )
-}
-
-const formatDateString = str => {
-  if (!str) return ''
-  return `${str.slice(0, 4)}-${str.slice(4, 6)}-${str.slice(6)}`
 }
 
 const buildDateChangeHandler = changeHandler => e => {

@@ -1,11 +1,17 @@
 import { cloneObject, log } from '../utils/common'
 import { initialState } from './store'
-import { addRowId, tsUpdateLarCount } from '../components/saved-rows/service'
 import { formatFileName } from '../utils/file'
-import { createRowID, isRowLAR, isRowTS, parseRow } from '../utils/row'
+import {
+  addRowID,
+  createRowID,
+  isEditing,
+  isRowLAR,
+  isRowTS,
+  parseRow,
+} from '../utils/row'
 import { collapseAll } from '../components/Accordion'
 
-export const rowSaveReducer = (state) => {
+export const rowSaveReducer = state => {
   const selected = state.editingRow
   if (!selected) return
 
@@ -13,9 +19,7 @@ export const rowSaveReducer = (state) => {
   let updateKey
 
   if (isRowTS(selected)) {
-    // Save Filename when TS updates
     state.filename = formatFileName(selected)
-
     vals = state.ts
     updateKey = 'ts'
   } else if (isRowLAR(selected)) {
@@ -23,10 +27,10 @@ export const rowSaveReducer = (state) => {
     updateKey = 'lars'
   }
 
-  // Only allow single TS row
   if (updateKey === 'ts') {
     log('[Save] Saving TS row...')
 
+    // Only allow single TS row
     const nextTS = cloneObject(selected)
     nextTS.id = createRowID()
     nextTS.rowId = 1
@@ -37,11 +41,11 @@ export const rowSaveReducer = (state) => {
     log('[Save] Saving LAR row...')
 
     // Update existing item
-    if (!!selected?.id) {
+    if (isEditing(selected)) {
       const updateIndex = vals.findIndex(el => el?.id === selected.id)
       if (updateIndex > -1) {
         vals[updateIndex] = cloneObject(selected) // Save rows
-        state[updateKey] = vals 
+        state[updateKey] = vals
         rowCreateReducer(state) // Clear Pipe-delimited area
         return
       }
@@ -53,15 +57,15 @@ export const rowSaveReducer = (state) => {
     obj.id = createRowID()
     obj.rowId = vals.length + 1
     vals.push(obj)
-    state[updateKey] = vals  // Save rows
+    state[updateKey] = vals // Save rows
     rowCreateReducer(state) // Clear Pipe-delimited area
     tsUpdateLarCount(state)
 
-    // Focus on newly added item?
+    // TODO: Focus on newly added item?
   }
 }
 
-export const rowDeleteReducer = (state) => {
+export const rowDeleteReducer = state => {
   const confirm = window.confirm('Are you sure you want to delete this row?')
   if (!confirm) return
 
@@ -72,24 +76,23 @@ export const rowDeleteReducer = (state) => {
   else
     state.lars = state.lars
       .filter(row => row.id !== _currentRow.id)
-      .map(addRowId)
+      .map(addRowID)
 
   rowCreateReducer(state)
   tsUpdateLarCount(state)
 }
 
-export const rowCreateReducer = (state) => {
-  const nextRow = parseRow(state.ts.length ? "2|" : "1|")
+export const rowCreateReducer = state => {
+  const nextRow = parseRow(state.ts.length ? '2|' : '1|')
   nextRow.id = createRowID()
 
   state.selectedColName = null // Clear selected column
   collapseAll() // Collapse all field enumerations
   state.editingRow = nextRow // Display this row in the Editor
   state.selectedRowID = null
-
 }
 
-export const rowsResetReducer = (state) => {
+export const rowsResetReducer = state => {
   const keys = [
     'ts',
     'lars',
@@ -101,7 +104,13 @@ export const rowsResetReducer = (state) => {
     'hasNewChanges',
   ]
 
-  keys.forEach(k => state[k] = initialState[k])
+  keys.forEach(k => (state[k] = initialState[k]))
 }
 
-
+// Update TS row with number of LAR entries
+const tsUpdateLarCount = state => {
+  if (state.ts?.length) {
+    state.ts[0]['Total Number of Entries Contained in Submission'] =
+      state.lars.length
+  }
+}

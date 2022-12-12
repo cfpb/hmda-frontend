@@ -1,4 +1,4 @@
-import { getUsableProps } from './service'
+import { getUsableProps } from './buildColumns'
 
 /**
  * Components used to display Row ID column/content

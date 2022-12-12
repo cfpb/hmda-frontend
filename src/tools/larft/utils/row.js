@@ -8,6 +8,12 @@ let NEXT_ID = 0
 
 export const createRowID = () => (NEXT_ID++).toString()
 
+// Inject a row identifier
+export const addRowID = (row, idx) => ({
+  ...row,
+  rowId: (idx + 1).toString(),
+})
+
 export const isEditing = row => row && row.rowId > -1
 
 export const isRowTS = row => {

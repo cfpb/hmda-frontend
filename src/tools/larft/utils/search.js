@@ -1,7 +1,18 @@
-import {
-  matchColumnFilter,
-  matchSearchFilter,
-} from '../row-editor/parsedHelpers'
+export const matchColumnFilter = (column, filter) => {
+  if (!filter.length) return true
+
+  const nameLower = column.fieldName.toLowerCase()
+  const filterLower = filter?.toLowerCase()
+
+  return nameLower.includes(filterLower)
+}
+
+export const matchSearchFilter = (value, filter) => {
+  return value
+    .toString()
+    .toLowerCase()
+    .includes(filter.toLowerCase())
+}
 
 export const applyRowFilter = ({
   searchFilter,

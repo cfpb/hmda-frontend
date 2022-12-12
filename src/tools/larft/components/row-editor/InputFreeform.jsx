@@ -1,7 +1,7 @@
 import { isColumnDate } from '../../utils/column'
+import { getFieldType } from '../../utils/input'
 import { InputDate } from './InputDate'
 import { InputText } from './InputText'
-import { getFieldType } from './parsedHelpers'
 
 export const InputFreeform = ({ row, column, ...props }) => {
   const value = row[column.fieldName]

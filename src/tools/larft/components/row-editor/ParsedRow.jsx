@@ -1,13 +1,13 @@
 import React from 'react'
 import { isColumnState, isCombinedInput } from '../../utils/column'
 import { Accordion } from '../Accordion'
+import { buildEnumeratedOptions } from './EnumOption'
 import { FieldDetails } from './FieldDetails'
 import { InputEnumeratedComplex } from './InputEnumeratedComplex'
 import { InputEnumeratedSelector } from './InputEnumeratedSelector'
 import { InputFreeform } from './InputFreeform'
 import { InputFreeformWithTooltip } from './InputFreeformWithTooltip'
 import { InputStateSelector } from './InputStateSelector'
-import { buildEnumeratedOptions } from './parsedHelpers'
 
 const OR_DELIMITER = ' (or) '
 

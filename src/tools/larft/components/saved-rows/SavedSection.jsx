@@ -4,13 +4,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectRow } from '../../data-store/store'
 import { LAR_SCHEMA, TS_SCHEMA } from '../../schema'
 import { scrollToFileActions } from '../../utils/common'
-import { applyRowFilter } from './applyRowFilter'
+import { applyRowFilter } from '../../utils/search'
 import { buildColumns } from './buildColumns'
 import { NoMatches, NoRecords } from './EmptyStates'
 import { Filters, SearchBox } from './Filters'
 import { ContentRowID, HeaderRowID } from './RowID'
 import { SectionTitle } from './SectionTitle'
-import { calcTableHeight } from './service'
 
 export const SavedSection = ({
   id,
@@ -103,4 +102,16 @@ export const SavedSection = ({
       {body}
     </div>
   )
+}
+
+// Derive table height by number of rows
+const calcTableHeight = rows => {
+  const ROW_HEIGHT = 32
+
+  let displayedRows = 0
+
+  if (rows.length < 2) displayedRows = 3
+  else displayedRows = Math.min(rows.length * 2, 8)
+
+  return displayedRows * ROW_HEIGHT
 }
