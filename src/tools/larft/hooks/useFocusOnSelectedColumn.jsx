@@ -2,12 +2,12 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { selectCol } from '../data-store/store'
 
-export const useFocusOnSelectedColumn = colName => {
+export const useFocusOnSelectedColumn = columnID => {
   const dispatch = useDispatch()
 
   // Bring the focused column into view
   useEffect(() => {
-    const el = document.getElementById(`${colName}`)
+    const el = document.getElementById(`${columnID}`)
     const grandparent = el?.parentElement?.parentElement
     if (grandparent) {
       grandparent.scrollIntoView({
@@ -18,11 +18,11 @@ export const useFocusOnSelectedColumn = colName => {
       grandparent.scrollTop = 0
       grandparent.style = {}
     }
-  }, [colName])
+  }, [columnID])
 
   // Provide a function that will set focus to this column
   const focus = target => {
-    if (colName !== target?.fieldName)
+    if (columnID !== target?.fieldName)
       dispatch(selectCol(target.fieldName))
   }
 

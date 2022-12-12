@@ -63,12 +63,6 @@ const Table = (title, list, className) => {
   )
 }
 
-/**
- * 
- * @param {Array[Object]} list values & descriptions of enumerations/examples  
- * @param {Int} idx Index in schema
- * @returns 
- */
 const buildRows = (list) => {
   let hasDescription = false
   const rows = list.map((v, idx) => {

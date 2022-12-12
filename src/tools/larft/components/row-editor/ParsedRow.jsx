@@ -64,7 +64,7 @@ const buildPlaceholder = (examples, descriptions) => {
   return targetArray.join(OR_DELIMITER)
 }
 
-function buildInput(_col, _row, _changeFn) {
+const buildInput = (_col, _row, _changeFn) => {
   if (!_col) return null
 
   const { examples = [], enumerations = [], descriptions = [] } = _col
