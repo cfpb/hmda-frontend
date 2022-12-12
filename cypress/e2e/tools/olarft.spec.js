@@ -1,5 +1,5 @@
-import { isCI, isProd, isBeta } from '../../support/helpers'
-import { ERROR_MISSING_LAR, WARN_LOST_UNSAVED } from '../../../src/tools/larft/config/messages'
+import { WARN_LOST_UNSAVED } from '../../../src/tools/larft/config/messages'
+import { isCI } from '../../support/helpers'
 
 const { HOST, ENVIRONMENT } = Cypress.env()
 
@@ -99,7 +99,7 @@ describe('General OLART Tests', () => {
     cy.id('Calendar Quarter').select('1 - Q1')
     cy.id('Legal Entity Identifier (LEI)').type('1071FAKELEI')
     cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
-    cy.get(':nth-child(4) > .nav-link').click()
+    cy.get('.nav-link').first().click()
     // Checks Cypress confirm message
     cy.on('window:confirm', text => {
       expect(text).to.contains(WARN_LOST_UNSAVED)
@@ -129,7 +129,7 @@ describe('General OLART Tests', () => {
   it('File upload feature', () => {
     cy.visit(urlForTesting)
     // File contains TS and one LAR record
-    const FILENAME = '2022-4-FAKELEI.txt'
+    const FILENAME = '2022-FRONTENDTESTBANK9999.txt'
 
     cy.fixture(FILENAME).then(fileContent => {
       cy.get('#file-upload').click({ force: true }).attachFile({
@@ -147,7 +147,7 @@ describe('General OLART Tests', () => {
 
     cy.get('#saved-lars > h3.clickable > .count').should(
       'have.text',
-      'Loan Application Register (1)'
+      'Loan Application Register (10)'
     )
   })
 })
