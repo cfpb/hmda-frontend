@@ -26,7 +26,7 @@
   color: black;
 }
 
-.highlight {
+.toc-container .highlight {
   border-style: solid;
   border-left-color: #0071bc;
   border-left-width: 4px;
@@ -37,13 +37,13 @@
   transition: all 1s ease-in;
 }
 
-.header {
+.toc-container .header {
   font-size: 16px;
   font-weight: 800;
   cursor: pointer;
 }
 
-.subheader {
+.toc-container .subheader {
   font-size: 14px;
   padding-left: 20px;
   padding-right: 20px;
