@@ -1,4 +1,4 @@
-import { openSelector, mapsURL, isBeta, isProd, isCI } from '../../support/helpers'
+import { isBeta, mapsURL, openSelector } from '../../support/helpers'
 
 const { HOST, ENVIRONMENT } = Cypress.env()
 const ACTION_DELAY = 8000 // milliseconds
@@ -8,6 +8,7 @@ describe('Maps', () => {
     cy.get({ HOST, ENVIRONMENT }).logEnv()
     cy.viewport(1000, 940)
     cy.visit(mapsURL(HOST, '2021?geography=state'))
+    deleteBetaBanner(HOST)
 
     openSelector('#map-filter-1').type('denied{enter}');
     openSelector('#map-filter-2').type('age 55{enter}');
@@ -39,6 +40,7 @@ describe('Maps', () => {
     cy.get({ HOST, ENVIRONMENT }).logEnv()
     cy.viewport(1000, 940)
     cy.visit(mapsURL(HOST, '2020?geography=county'))
+    deleteBetaBanner(HOST)
 
     openSelector('#map-filter-1').type('denied{enter}');
     openSelector('#map-filter-2').type('age 55{enter}');
@@ -70,6 +72,7 @@ describe('Maps', () => {
     cy.get({ HOST, ENVIRONMENT }).logEnv()
     cy.viewport(1000, 940)
     cy.visit(mapsURL(HOST, '2019?geography=state'))
+    deleteBetaBanner(HOST)
 
     openSelector('#map-filter-1').type('denied{enter}');
     openSelector('#map-filter-2').type('age 55{enter}');
@@ -101,6 +104,7 @@ describe('Maps', () => {
     cy.get({ HOST, ENVIRONMENT }).logEnv()
     cy.viewport(1000, 940)
     cy.visit(mapsURL(HOST, '2018?geography=county'))
+    deleteBetaBanner(HOST)
 
     openSelector('#map-filter-1').type('denied{enter}');
     openSelector('#map-filter-2').type('age 55{enter}');
@@ -130,7 +134,16 @@ describe('Maps', () => {
 
   it('Renders empty state', () => {
     cy.visit(mapsURL(HOST, "2018?geography=county&variable=actionTaken&value=1&feature=31005&mapCenter=-101.6959558503813,41.568961419127554"))
+    deleteBetaBanner(HOST)
     cy.get('.maps-nav-bar .left .count').should('contain', '0')
     cy.contains("No LAR data for this region in 2018")
   })
 })
+
+
+const deleteBetaBanner = (env) => {
+  if (!isBeta(env)) return
+  cy.get('div.Beta').then(el => {
+    el.remove()
+  })
+}
