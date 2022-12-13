@@ -1,137 +1,165 @@
-# HMDA LAR Formatting Tool - Instructions
+# HMDA's LAR Formatting Tool
 
-1. Download the HMDA **LAR Formatting Tool for data collected in or after 2018** by selecting the link located on the Loan/Application Register (LAR) Formatting Tool webpage located at https://ffiec.cfpb.gov/tools/lar-formatting. 
+## Interaction Guide
 
-2. **Open** the HMDA LAR Formatting Tool you downloaded; If you are using Microsoft Excel 2002 or 2003, please refer to the instructions at the end of this page on how to enable macros. 
-![](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/larft/Resources_page.png)
+### File Actions
 
-3. If the message “This file originated from an Internet location and might be unsafe” appears, select the **“Enable Editing”** button.
-![](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/larft/Enable_Editing.png)
+Import or export your LAR data.
 
-4. If the message “Macros have been disabled” appears, select the **“Enable Content”** button.
-![](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/larft/Macros_enabled.png)
+- **Upload**: Work with an existing pipe-delimited LAR file.
+- **Download**: Create a [LAR file](#lar-file) based on the currently saved LAR data.
+- **Reset**: Start fresh by erasing all LAR data.
 
-5.	The workbook contains two worksheets, Resources and Data:
+![File Actions](https://github.com/cfpb/hmda-frontend/raw/master/src/documentation/markdown/images/larft/file_actions.png)
 
-      a.	 The **Resources Worksheet** provides information including:
-      - Quick Start Guide
-      
-      - Additional Resources
-          - The FFIEC and HUD have published resources for financial institutions required to file HMDA data on the Help for Filers section of the HMDA Homepage located at http://www.ffiec.cfpb.gov/;
-          - Information regarding valid values and data format can be found in Section 3.4 of the Filing Instructions Guide for HMDA data collected in or after 2018 located at https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2019-hmda-fig.pdf. 
-      
-      b.	The **Data Worksheet** is where the data is entered under the appropriate headings in **row 4**.
-      - Certain cells in the Data Worksheet provide information regarding what data to enter. Prompts will appear when you select a cell.
-      
-      - The header row (row 2 and row 4) are locked in order to keep the order of the data fields consistent.
-![](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/larft/Annotations.png)
+### Saved Records
 
-6.	**Enter** the information from what is commonly known as the HMDA transmittal sheet into the respective cells in **row 3** of the Data Worksheet.
+Review your existing records. This section also allows you to search by text content or filter which columns are displayed, helping to focus your data reviews. Clicking on a row will populate it's data in the [Editor](#editing-a-row) to allow modification.
 
-       a.	The “LAR File Row” header beginning at cell A1 details the row numbers that correspond to your LAR text file after submitting to the HMDA Platform.
+- **Transmittal Sheet**: Institution information
+- **Loan/Application Records**: Application information
 
-       b.	Do not enter any commas “,” into any of the cells.
+![Saved Records](https://github.com/cfpb/hmda-frontend/raw/master/src/documentation/markdown/images/larft/saved_records_populated.png)
 
-       c.	All of the transmittal sheet information entered into row 3, from cell B3 to O3 will be exported into a pipe delimited text file. Any information entered in row 3 after O3 will not be exported.
+### Editing a Row
 
-       d.	The data fields have been formatted to wrap text in the cells, which means that the data in each cell wraps to fit the column width. All the data entered into each individual cell will be exported, even if part of the data is not visible.
- 
+Edit the currently selected row. Use the `New Row` button to start a new record.
 
-7.	**Enter** loan level data beginning in **row 5** of the Data Worksheet.
-![](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/larft/LAR_Row.png)
+![Editing Row](https://github.com/cfpb/hmda-frontend/raw/master/src/documentation/markdown/images/larft/editing_section.png)
 
-      a.	Enter the data consecutively by row. Do not skip any rows.
+### Row Actions
 
-      b.	Each row should contain information regarding an individual loan.
+Manage the persistence of the current row.
 
-      c.	Do not enter any commas “,” into any of the cells.
+- **Save/Update**: Create/Modify the currently selected row.
+- **Delete**: Remove the selected row from [`Saved Records`](#saved-records)
+- **New Row**: Clears the [Editor](#editing-a-row) in preparation for entry of a new record.
+- **Clipboard Copy/Paste**: Quickly import/export a single row's data.
 
-      d.	The format for data fields including a date, such as date application received or date of action, is YYYYMMDD. For example, January 17, 2019 should be reported as 20190117.
-      
-      e.	Not applicable exempt codes must be entered as ‘NA’, not ‘N/A’, ‘na’, or ‘Na’. Exempt codes must be entered as ‘Exempt’, not ‘EXEMPT’ or ‘exempt’.
-      
-      f.	Beginning with row 5, all data entered from columns A to DF will be exported into the pipe delimited text file. Any information entered after column DF will not be exported.
-      
-      g.	The data fields have been formatted to wrap text in the cells, which means that the data in each cell wraps to fit the column width. All the data entered into each individual cell will be exported, even if part of the data is not visible.
+![Row Actions](https://github.com/cfpb/hmda-frontend/raw/master/src/documentation/markdown/images/larft/row_actions_update.png)
 
+### Search/Filter fields
 
-8.	When all the data have been entered, select the **“Create LAR File”** button located in cell B1 of the Data Worksheet.
-![](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/larft/Create_LAR_File.png)
+- Use the `Search` box to find rows that contain the provided text (case insensitive).
+- Use the `Filter` box to restrict which LAR fields are displayed.
 
+![Search Results](https://github.com/cfpb/hmda-frontend/raw/master/src/documentation/markdown/images/larft/saved_records_searching.png)
 
-9.	Enter a new filename and save the file type as **“Text Files”** in the prompt to save the new file.
-![](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/larft/Save_Text_File.png)
+### Editing a Record
 
+#### Editing status
 
-10.	Select **“Save”** in the message confirming whether the changes to the file should be saved.
+The heading of the [Editor](#editing-a-row) will remind you whether you are:
 
-      a.	This will save the data into a separate pipe delimited text file.
+- Creating or Updating the current [Editor](#editing-a-row) row
+  - ex. `Creating a new LAR Row`
+  - ex. `Updating LAR Row 1`
+- Working with TS vs LAR
+  - ex. `Creating a new LAR Row`
+  - ex. `Creating Transmittal Sheet`
 
+#### Parsed Values
 
-11.	The data is now formatted into a pipe delimited text file (as shown below) and ready to be submitted to the HMDA Platform. Prior to submission, the file format can be verified by the **File Format Verification Tool**.  
-![](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/larft/Text_file_sample.png)
+Edit the selected row with guided enumerations, examples, and field descriptions. Changes are not persisted until you click [`Save/Update`](#row-actions).
 
-**NOTE:** The HMDA LAR Formatting Tool workbook in which the data was originally entered will not be used during the filing process. This workbook can be saved for your reference.
+- **Enumerations**: Drop-down menus for enumerated values (i.e. Loan Type).
+- **NA/Exempt**: Buttons for easy exception inputs.
+- **Dates**: Date-picker with easily readable date format. Values are automatically converted between the display-format and the lar-format (yyyymmdd).
+- **Field details**: View description, enumerations, and examples.
 
-   To save the data entered in the workbook for future reference:
-   - Within the HMDA\_LAR\_Formatting\_Tool workbook, select **“File”**.
+![Parsed Values](https://github.com/cfpb/hmda-frontend/raw/master/src/documentation/markdown/images/larft/parsed_multi_select.png)
 
-   -	Select **“Save As”**.
+![Field Details](https://github.com/cfpb/hmda-frontend/raw/master/src/documentation/markdown/images/larft/parsed_field_details.png)
 
-   -	Enter a new filename and save the file type as **“Excel Macro-Enabled Workbook”** in the prompt to save the file.
-![](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/larft/Excel_Macro_Workbook.png)
+#### Pipe-Delimited Values
 
-   -	Select **“OK”** in the privacy warning. 
+Edit the selected row as if you were directly in the LAR file. Changes are not persisted until you click [`Save/Update`](#row-actions).
 
-![](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/larft/Document_Inspector.png)
+- **Clipboard Copy/Paste**: Easily import/export data between applications.
+- **Linking with Parsed Values**: Selecting a field in the text area will highlight the same field in [`Parsed Values`](#parsed-values) to make editing data easier with the guided enumerations, examples, and field descriptions.
 
-# Frequently Asked Questions
-The Frequently Asked Questions are available at https://ffiec.cfpb.gov/documentation/2019/faqs/
+![Pipe-Delimited Values](https://github.com/cfpb/hmda-frontend/raw/master/src/documentation/markdown/images/larft/piped.png)
 
+#### Please Review
+
+If there are records in an uploaded LAR file that we could not reliably parse, you will see the following.
+![Please review](https://github.com/cfpb/hmda-frontend/raw/master/src/documentation/markdown/images/larft/saved_records_unparsable.png)
+
+## Creating a LAR file from scratch
+
+### Create a Transmittal Sheet (TS) row
+  - Scroll down to the [Editor](#editing-a-row) which should show `Creating Transmittal Sheet`. The `Record Identifier` is already set for you
+  - Fill out your Insitution's information
+  - Click [`Save Row`](#row-actions)
+  - You will see your TS in the [`Saved Records`](#saved-records) section.
+  - Note: There is only one TS per LAR file.
+  - Now you can begin creating `Loan/Application Register (LAR)` rows.
+
+### Create a Loan/Application Register (LAR) row
+  - Click the [`New Row`](#row-actions) button to remove any previously entered data.
+  - The `Record Identifier` is automatically set for you.
+  - Use the [`Parsed Values`](#parsed-values) view for easier data input.
+  - Use the [`Pipe-Delimited Values`](#pipe-delimited-values) for quick row navigation and data scanning.
+  - Click [`Save Row`](#row-actions) to store this Loan/Application's data.
+  - Saved rows are listed in the [`Saved Records`](#saved-records) section.
+
+### Edit a row
+  - Selecting a record from the [`Saved Records`](#saved-records) will populate that row's data in the [`Editing`](#editing-a-record) section of the app.
+    - [`Parsed Values`](#parsed-values) provides examples of field inputs, field and input descriptions, and easy selectors for enumerated fields.
+    - [`Pipe-Delimited Values`](#pipe-delimited-values) provides the row's raw text, as it will appear in your downloaded LAR file.
+      - Clicking in a field will highlight that value in the [`Parsed Values`](#parsed-values) section for quick editing.
+  - Use the [`Editing`](#editing-a-record) section to make your required modifications.
+  - Click the [`Update Row`](#row-actions) button to save your changes.
+
+### Delete a row
+  - Selecting a record in [`Saved Records`](#saved-records) will populate that row's data in the [`Editing`](#editing-a-record) section of the app.
+  - Click the [`Delete`](#row-actions) button to remove the selected row.
+  - You will be prompted to confirm this action.
+
+### Download your LAR file
+  - Use the [`Download File`](#file-actions) button to download a pipe-delimited, UTF-8 encoded, `.txt` file containing the TS and LAR data shown in the [`Saved Records`](#saved-records) section. Unsaved data entered in the [`Editing`](#editing-a-record) section is not included in the downloaded LAR file.
+  - The file is saved to your browser's default download directory.
+  - The data is now formatted into a pipe-delimited text file ([as shown below](#lar-file-output)) and ready to be submitted to the HMDA Platform.
+
+## Editing an existing LAR file
+
+### Upload your file
+Use the [`Upload File`](#file-actions) button to select your file. All processing is done in your browser, no data is sent to the CFPB.
+
+Note: Rows without a valid `Record Identifier` are filtered out during data parsing and presented in a [`Records for review`](#please-review) section. You should review and correct these records.
+
+### Search the TS/LAR data
+Use the [`Saved Records`](#saved-records) area to find records relevant to your focus.
+
+  - You can search the text of your file using the `Search TS` and `Search LAR` boxes.
+  - You can filter which fields are shown using the `Filter columns/Filter by label` boxes.
+
+### Edit a row
+Selecting a record in [`Saved Records`](#saved-records) will populate that row's data in the [`Editing`](#editing-a-record) section of the app.
+
+  - [`Parsed Values`](#parsed-values) provides examples of field inputs, field and input descriptions, and easy selectors for enumerated fields.
+  - [`Pipe-Delimited Values`](#pipe-delimited-values) provides the row's raw text, as it will appear in your downloaded LAR file.
+    - Clicking in a field will highlight that value in the [`Parsed Values`](#parsed-values) section for quick editing.
+
+### Save changes
+After making your changes, use the [`Download File`](#file-actions) button to download your LAR file.
+
+The data is now formatted into a pipe-delimited text file ([as shown below](#lar-file-output)) and ready to be submitted to the HMDA Platform.
+
+## File Output
+
+The LARFT produces pipe-delimited, UTF-8 encoded LAR files. Files contain at least 1 TS and 1 LAR row.
+
+**Note**: Aside from the `Record Identifier`, data uploaded to the LARFT is **not** checked for validity. You can submit your file on the [HMDA Beta Platform](https://ffiec.beta.cfpb.gov) to test for Edits.
+
+Example output:
+
+![LAR file content](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/larft/Text_file_sample.png)
+
+## Frequently Asked Questions
+
+The Frequently Asked Questions are available at https://ffiec.cfpb.gov/documentation/2021/faqs/
 
 ## HMDA Help
-Technical questions about reporting HMDA data collected in or after 2017 should be directed to hmdahelp@cfpb.gov.
 
-### Enabling macros for Microsoft® Excel® 2002 and 2003
-
-If the message “The macro may not be available in this workbook or all macros may be disabled” appears, then the macro settings must be updated.
-
-To enable the HMDA LAR Formatting Tool macro:
-
-1.	Open the HMDA\_LAR\_Formatting\_Tool workbook.
-
-2.	Select **Tools**.
-
-3.	Select **Options**.
-
-4.	Within the Options dialog box, select the **Security** tab.
-
-5.	Select **Macro Security**.
-
-6.	In the Security dialog box, select the **Medium** option.
- 
- a. This will allow you to choose which macros to run.
-
-7.	Select **OK** to close the Security dialog box.
-
-8.	Select **OK** to close the Options dialog box.
-
-9.	Return to step 4 in the instructions for the HMDA LAR Formatting Tool.
- 
-
-### Transferring existing data from another workbook or Google Sheets™ web-based spreadsheet program
-
-Data that is saved in another workbook or in Google Sheets™ web-based spreadsheet program may be copied into the LAR Formatting Tool so that the data can be formatted into a pipe delimited text file.
-To copy data from external sources into the HMDA LAR Formatting Tool:
-
-1.	Open the workbook or the Google Sheets™ web-based spreadsheet program where the data is stored.
-2.	Confirm that the data fields are displayed in the same order as required in Section 3.4, File Specifications, of the applicable Filing Instructions Guide.
-3.	Open the HMDA\_LAR\_Formatting\_Tool workbook.
-
-4.	**Copy and paste** the information from the transmittal sheet into **row 3** of the Data Worksheet.
-- To preserve the format of the data, please use “Paste > Paste Special > Paste Values” or “Paste > Paste Special > Text.”
-- The pasted data fields should align with the headers displayed in **row 2**.
-
-5.	**Copy and paste** the information from the LAR into the Data Worksheet beginning in **row 5**.
--	To preserve the format of the data, please use “Paste > Paste Special > Paste Values” or “Paste > Paste Special > Text.”
-- The pasted data fields should align with the headers in **row 4.**
+Technical questions about reporting HMDA data collected in or after 2017 should be directed to [hmdahelp@cfpb.gov](mailto:hmdahelp@cfpb.gov).
