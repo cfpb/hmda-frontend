@@ -40,9 +40,9 @@ WORKDIR /hmda-frontend/
 RUN yarn
 
 RUN rm -rf /usr/local/share/.cache/yarn/v6/npm-public-encrypt-*/node_modules/public-encrypt/test/*
-RUN rm -rf /root/.cache/Cypress/9.5.1/Cypress/resources/app/node_modules/public-encrypt/test/*
-RUN rm -rf /root/.cache/Cypress/9.5.1/Cypress/resources/app/node_modules/http-proxy/test/*
-RUN rm -rf /root/.cache/Cypress/9.5.1/Cypress/resources/app/node_modules/lazystream/secret
+RUN rm -rf /root/.cache/Cypress/12.0.2/Cypress/resources/app/node_modules/public-encrypt/test/*
+RUN rm -rf /root/.cache/Cypress/12.0.2/Cypress/resources/app/node_modules/http-proxy/test/*
+RUN rm -rf /root/.cache/Cypress/12.0.2/Cypress/resources/app/node_modules/lazystream/secret
 
 RUN useradd -M -d /hmda-frontend -s /bin/bash hmda_cypress_user && \
   chown -R hmda_cypress_user:hmda_cypress_user /hmda-frontend/
@@ -52,7 +52,7 @@ RUN yarn --cache-folder /hmda-frontend cypress install
 
 
 RUN rm -rf /hmda-frontend/node_modules/public-encrypt/test/*
-RUN rm -rf /hmda-frontend/.cache/Cypress/9.5.1/Cypress/resources/app/node_modules/public-encrypt/test/*
-RUN rm -rf /hmda-frontend/.cache/Cypress/9.5.1/Cypress/resources/app/node_modules/http-proxy/test/*
+RUN rm -rf /hmda-frontend/.cache/Cypress/12.0.2/Cypress/resources/app/node_modules/public-encrypt/test/*
+RUN rm -rf /hmda-frontend/.cache/Cypress/12.0.2/Cypress/resources/app/node_modules/http-proxy/test/*
 
-RUN rm -rf /hmda-frontend/.cache/Cypress/9.5.1/Cypress/resources/app/node_modules/lazystream/secret
+RUN rm -rf /hmda-frontend/.cache/Cypress/12.0.2/Cypress/resources/app/node_modules/lazystream/secret
