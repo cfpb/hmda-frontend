@@ -9,11 +9,11 @@ curl https://s3.amazonaws.com/cfpb-hmda-public/prod/cypress/fixtures.zip > ./cyp
 	&& unzip -o cypress/downloads/fixtures.zip -d cypress/
 
 # Download Integration tests
-curl https://s3.amazonaws.com/cfpb-hmda-public/prod/cypress/integration.zip > ./cypress/downloads/integration.zip \
-	&& unzip -o cypress/downloads/integration.zip -d cypress/  
+curl https://s3.amazonaws.com/cfpb-hmda-public/prod/cypress/e2e.zip > ./cypress/downloads/e2e.zip \
+	&& unzip -o cypress/downloads/e2e.zip -d cypress/  
 
 # Run configured Integration tests
-# Example: "cypress/integration/data-browser/**,cypress/integration/data-publication/**"
+# Example: "cypress/e2e/data-browser/**,cypress/e2e/data-publication/**"
 if [[ -n "$CYPRESS_TEST_LIST" ]]; 
 then
 	yarn cypress run --spec ${CYPRESS_TEST_LIST} > output_integration.txt
@@ -27,7 +27,7 @@ fi
 # Run Load tests, if enabled
 if [ "$CYPRESS_SHOULD_LOAD_TEST" = true ];
 then 
-	yarn cypress run --spec "cypress/integration/load/**" > output_load.txt
+	yarn cypress run --spec "cypress/e2e/load/**" > output_load.txt
 	if  grep -q "All specs passed!" "output_load.txt" ; then
 		post_success 'Load testing' "output_load.txt"
 	else
