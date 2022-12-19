@@ -103,8 +103,18 @@ const ColumnContent = ({ row, field, searchFilter, selectedColName }) => {
   )
 }
 
-// ----------- Utils -----------
+/* ----------- Utils ----------- */
 
+/**
+ * Part of the SavedRows search functionality.  This function filters
+ * the list of all available fields for a given schema to only include
+ * those who's fieldName match the columnFilter.
+ * 
+ * @param {Array} matchedColumns List of Field names who's content matched the searchFilter
+ * @param {String} columnFilter Value to filter by
+ * @param {Object} schema JSON of LAR or TS fields
+ * 
+ */
 const filterFields = ({ matchedColumns, schema, columnFilter }) =>
   schema
     .filter(x => {
