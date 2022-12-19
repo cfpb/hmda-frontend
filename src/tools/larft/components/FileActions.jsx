@@ -17,6 +17,16 @@ export const FileActions = () => {
 
   const hasSavedRecords = !!ts.length || !!lars.length
 
+      useEffect(() => {
+        // Removes all error messages when 'Reset' button is clicked
+        if (!ts.length && !lars.length) {
+          setFileError(null)
+        }
+        // Removes error message: ERROR_MISSING_LAR or ERROR_MISSING_TS
+        else if (ts.length && lars.length) {
+          setFileError(null)
+        }
+      }, [ts, lars])
   return (
     <div className='file-actions' id='file-actions'>
       <Error text={fileError} onClick={() => setFileError(null)} />
