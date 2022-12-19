@@ -7,7 +7,7 @@
 Import or export your LAR data.
 
 - **Upload**: Work with an existing pipe-delimited LAR file.
-- **Download**: Create a [LAR file](#lar-file) based on the currently saved LAR data.
+- **Download**: Create a [LAR file](#lar-file-output) based on the currently saved LAR data.
 - **Reset**: Start fresh by erasing all LAR data.
 
 ![File Actions](https://github.com/cfpb/hmda-frontend/raw/master/src/documentation/markdown/images/larft/file_actions.png)
@@ -146,7 +146,7 @@ After making your changes, use the [`Download File`](#file-actions) button to do
 
 The data is now formatted into a pipe-delimited text file ([as shown below](#lar-file-output)) and ready to be submitted to the HMDA Platform.
 
-## File Output
+## LAR File Output
 
 The LARFT produces pipe-delimited, UTF-8 encoded LAR files. Files contain at least 1 TS and 1 LAR row.
 
