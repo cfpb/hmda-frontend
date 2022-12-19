@@ -123,11 +123,8 @@ const formatColWidth = (f, adjustment = 0) => {
 
 // Build element ID from field name
 const formatFieldID = f => {
-  const replaceCharacters = [':', ' ', "'", ',', '(', ')']
-  let adjusted = f.fieldName.toLowerCase()
-  replaceCharacters.forEach(replaceable => {
-    adjusted = adjusted.replaceAll(replaceable, '-')
-  })
+  const REGEX_UNWANTED = /[:\s',()]/g
+  let adjusted = f.fieldName.toLowerCase().replaceAll(REGEX_UNWANTED, '-')
   return 'header-' + adjusted
 }
 
