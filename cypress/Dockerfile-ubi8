@@ -1,0 +1,58 @@
+FROM redhat/ubi8
+
+RUN dnf update -y
+RUN dnf module install nodejs:14 -y
+RUN npm install yarn -g
+COPY cypress/install-cypress-dependencies.sh /
+RUN /bin/sh install-cypress-dependencies.sh
+
+
+# Install Cypress dependencies
+RUN yum install -y xorg-x11-xauth
+
+RUN yum install -y libXtst*
+# provides libXss
+RUN yum install -y libXScrnSaver*
+# provides libgconf-2
+RUN yum install -y GConf2*
+# provides libasound
+RUN yum install -y alsa-lib*
+
+# RUN yum whatprovides libnss3.so
+RUN yum install -y libnss3.so
+
+RUN yum install -y wget
+RUN yum install -y unzip
+
+# Cleanup vulnerabilities
+RUN rm -rf /usr/local/share/.cache/yarn/v6/npm-public-encrypt-*/node_modules/public-encrypt/test/*
+RUN rm -rf /root/.cache/Cypress/**/Cypress/resources/app/node_modules/public-encrypt/test/*
+RUN rm -rf /root/.cache/Cypress/**/Cypress/resources/app/node_modules/http-proxy/test/*
+RUN rm -rf /root/.cache/Cypress/**/Cypress/resources/app/node_modules/lazystream/secret
+
+# Prep working directory
+RUN mkdir hmda-frontend
+RUN useradd -M -d /hmda-frontend -s /bin/bash hmda_cypress_user && \
+  chown -R hmda_cypress_user:hmda_cypress_user /hmda-frontend/
+USER hmda_cypress_user
+WORKDIR /hmda-frontend/
+
+# Install Cypress + supporting libraries
+RUN yarn add cypress@12.0.2
+RUN yarn add @cypress/skip-test@2.6.0
+RUN yarn add @testing-library/cypress@8.0.1
+RUN yarn add cypress-file-upload@5.0.8
+RUN yarn add cypress-keycloak@2.0.0
+
+# Copy support files
+RUN mkdir cypress cypress/downloads cypress/screenshots cypress/videos cypress/integration cypress/fixtures
+COPY cypress/support cypress/support
+COPY cypress/plugins cypress/plugins
+COPY cypress/docker-runner.sh cypress/
+COPY ./cypress.config.js ./
+
+# Cleanup vulnerabilities
+RUN rm -rf /hmda-frontend/node_modules/public-encrypt/test/*
+RUN rm -rf /hmda-frontend/.cache/Cypress/**/Cypress/resources/app/node_modules/public-encrypt/test/*
+RUN rm -rf /hmda-frontend/.cache/Cypress/**/Cypress/resources/app/node_modules/http-proxy/test/*
+RUN rm -rf /hmda-frontend/.cache/Cypress/**/Cypress/resources/app/node_modules/lazystream/secret
