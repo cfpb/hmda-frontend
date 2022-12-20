@@ -9,7 +9,7 @@ let urlForTesting = baseURLToVisit + '/tools/lar-formatting'
 
 // Command used to grab ID from input fields and drop-down menus.
 // Workaround as the IDs have a space in them i.e -> Calendar Year
-Cypress.Commands.add('id', value => cy.get(`[id="${value}"]`))
+Cypress.Commands.add('getID', value => cy.get(`[id="${value}"]`))
 
 describe('General OLART Tests', () => {
   it("Tests 'Filter by label' functionality", () => {
@@ -23,9 +23,9 @@ describe('General OLART Tests', () => {
   it("Test TS 'Filter columns' and 'Search TS' functionality", () => {
     cy.visit(urlForTesting)
     // Generate TS
-    cy.id('Calendar Year').select('2019')
-    cy.id('Calendar Quarter').select('1 - Q1')
-    cy.id('Legal Entity Identifier (LEI)').type('1071FAKELEI')
+    cy.getID('Calendar Year').select('2019')
+    cy.getID('Calendar Quarter').select('1 - Q1')
+    cy.getID('Legal Entity Identifier (LEI)').type('1071FAKELEI')
     cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
     // "Filter columns" functionality
     cy.get('.filters > :nth-child(2) > input').click().type('calendar')
@@ -45,12 +45,12 @@ describe('General OLART Tests', () => {
   it("Tests LAR 'Search LAR' and 'Filter columns' functionality", () => {
     cy.visit(urlForTesting)
     // Need to generate TS first before a LAR record can be created
-    cy.id('Calendar Year').select('2019')
-    cy.id('Calendar Quarter').select('1 - Q1')
-    cy.id('Legal Entity Identifier (LEI)').type('1071FAKELEI')
+    cy.getID('Calendar Year').select('2019')
+    cy.getID('Calendar Quarter').select('1 - Q1')
+    cy.getID('Legal Entity Identifier (LEI)').type('1071FAKELEI')
     cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
     // Generate LAR
-    cy.id('Loan Type').select(
+    cy.getID('Loan Type').select(
       '1 - Conventional (not insured or guaranteed by FHA, VA, RHS, or FSA)'
     )
     cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
@@ -76,12 +76,12 @@ describe('General OLART Tests', () => {
   it("Generate TS and LAR records then clear the records by clicking 'Clear Saved' button", () => {
     cy.visit(urlForTesting).contains('(LAR) Formatting Tool')
     // Generate TS Record with calendar year, quarter and LEI
-    cy.id('Calendar Year').select('2019')
-    cy.id('Calendar Quarter').select('1 - Q1')
-    cy.id('Legal Entity Identifier (LEI)').type('1071FAKELEI')
+    cy.getID('Calendar Year').select('2019')
+    cy.getID('Calendar Quarter').select('1 - Q1')
+    cy.getID('Legal Entity Identifier (LEI)').type('1071FAKELEI')
     cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
     // Generate LAR Record
-    cy.id('Loan Type').select(
+    cy.getID('Loan Type').select(
       '1 - Conventional (not insured or guaranteed by FHA, VA, RHS, or FSA)'
     )
     cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
@@ -95,9 +95,9 @@ describe('General OLART Tests', () => {
   it('Prompts user that data will be lost when navigating away from page', () => {
     cy.visit(urlForTesting)
     // Generates TS Record
-    cy.id('Calendar Year').select('2019')
-    cy.id('Calendar Quarter').select('1 - Q1')
-    cy.id('Legal Entity Identifier (LEI)').type('1071FAKELEI')
+    cy.getID('Calendar Year').select('2019')
+    cy.getID('Calendar Quarter').select('1 - Q1')
+    cy.getID('Legal Entity Identifier (LEI)').type('1071FAKELEI')
     cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
     cy.get('.nav-link').first().click()
     // Checks Cypress confirm message
@@ -109,16 +109,16 @@ describe('General OLART Tests', () => {
   it('Verifies downloaded filename includes Calendar Year, quarter and user inputted LEI otherwise filename defaults to LarFile', () => {
     cy.visit(urlForTesting)
     // Generates TS Record
-    cy.id('Calendar Year').select('2019')
+    cy.getID('Calendar Year').select('2019')
     cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
     // Filename attribute check - defaults to "LarFile" if calendar year, quarter and LEI isn't in the TS record
     cy.get('.export').invoke('attr', 'data-filename').should('eq', 'LarFile')
 
     cy.get('.reset').click()
 
-    cy.id('Calendar Year').select('2019')
-    cy.id('Calendar Quarter').select('1 - Q1')
-    cy.id('Legal Entity Identifier (LEI)').type('1071FAKELEI')
+    cy.getID('Calendar Year').select('2019')
+    cy.getID('Calendar Quarter').select('1 - Q1')
+    cy.getID('Legal Entity Identifier (LEI)').type('1071FAKELEI')
     cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
     // Checks Download Button filename attribute
     cy.get('.export')
@@ -156,39 +156,39 @@ describe('Record specific tests', () => {
   it("TS Record is generated. Check that 'Column 1' disabled drop-down changes to LAR", () => {
     cy.visit(urlForTesting)
     // Generates TS Record
-    cy.id('Calendar Year').select('2019')
-    cy.id('Calendar Quarter').select('1 - Q1')
-    cy.id('Legal Entity Identifier (LEI)').type('1071FAKELEI')
+    cy.getID('Calendar Year').select('2019')
+    cy.getID('Calendar Quarter').select('1 - Q1')
+    cy.getID('Legal Entity Identifier (LEI)').type('1071FAKELEI')
     cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
-    cy.id('Record Identifier').contains('2 - LAR')
+    cy.getID('Record Identifier').contains('2 - LAR')
   })
 
   it("TS Record generated and LAR record generated. Ensure 'Column 1' still says '2 - LAR' in the disabled drop-down", () => {
     cy.visit(urlForTesting)
     // Generate TS - TS is required to be able to generate LAR records
-    cy.id('Calendar Year').select('2019')
-    cy.id('Legal Entity Identifier (LEI)').type('1071FAKELEI')
+    cy.getID('Calendar Year').select('2019')
+    cy.getID('Legal Entity Identifier (LEI)').type('1071FAKELEI')
     cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
 
     // Generate LAR record - with drop-down, input field and button entries
     // Input field
-    cy.id('Loan Amount').type('110500')
+    cy.getID('Loan Amount').type('110500')
     // Drop-down
-    cy.id('State').select('WA - Washington')
+    cy.getID('State').select('WA - Washington')
     // Zip Code enums -> click "NA" button option
     cy.get(
       ':nth-child(16) > .fieldValue > .enum-entry > .enums > :nth-child(1)'
     ).click()
     // Save LAR Record
     cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
-    cy.id('Record Identifier').contains('2 - LAR')
+    cy.getID('Record Identifier').contains('2 - LAR')
   })
 
   it('TS Record tests: functionality with drop-downs, input fields, update record and delete record', () => {
     cy.visit(urlForTesting)
     // Generate TS
-    cy.id('Calendar Year').select('2019')
-    cy.id('Legal Entity Identifier (LEI)').type('1071FAKELEI')
+    cy.getID('Calendar Year').select('2019')
+    cy.getID('Legal Entity Identifier (LEI)').type('1071FAKELEI')
     cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
     // Drop-down check
     cy.get('.filters > :nth-child(1) > input').click().type('2019')
@@ -206,8 +206,8 @@ describe('Record specific tests', () => {
     // Clear "Search column" filter
     cy.get('.filters > :nth-child(2) > .clear').click()
     // Update "Calendar Year drop-down menu and "LEI" input field
-    cy.id('Calendar Year').select('2020')
-    cy.id('Legal Entity Identifier (LEI)').clear().type('1071FAKELEIUPDATED')
+    cy.getID('Calendar Year').select('2020')
+    cy.getID('Legal Entity Identifier (LEI)').clear().type('1071FAKELEIUPDATED')
     // Click "Update Row" button
     cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
     // Check "Calendar Year" drop-down was updated
@@ -235,14 +235,14 @@ describe('Record specific tests', () => {
   it('LAR Record tests: functionality with drop-downs, input fields, buttons, update LAR record and delete LAR record', () => {
     cy.visit(urlForTesting)
     // Generate TS - TS is required to be able to generate LAR records
-    cy.id('Calendar Year').select('2019')
-    cy.id('Legal Entity Identifier (LEI)').type('1071FAKELEI')
+    cy.getID('Calendar Year').select('2019')
+    cy.getID('Legal Entity Identifier (LEI)').type('1071FAKELEI')
     cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
     // Generate LAR record - with drop-down, input field and button entries
     // Input field
-    cy.id('Loan Amount').type('110500')
+    cy.getID('Loan Amount').type('110500')
     // Drop-down
-    cy.id('State').select('WA - Washington')
+    cy.getID('State').select('WA - Washington')
     // Zip Code enums -> click "NA" button option
     cy.get(
       ':nth-child(16) > .fieldValue > .enum-entry > .enums > :nth-child(1)'
@@ -277,9 +277,9 @@ describe('Record specific tests', () => {
       'tr.highlight > .fieldValue > .enum-entry > .enums > :nth-child(2)'
     ).click()
     // Update "State" to "NY"
-    cy.id('State').select('NY - New York')
+    cy.getID('State').select('NY - New York')
     // Update "Loan Amount" to "110501"
-    cy.id('Loan Amount').clear().type('110501')
+    cy.getID('Loan Amount').clear().type('110501')
     // Update LAR Record
     cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
     // Clear "Filter column" functionality
