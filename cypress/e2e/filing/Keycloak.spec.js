@@ -1,10 +1,8 @@
 import { isCI } from '../../support/helpers'
 
-const { HOST, USERNAME, PASSWORD, ENVIRONMENT, AUTH_REALM, AUTH_BASE_URL } = Cypress.env()
+const { HOST, USERNAME, PASSWORD, ENVIRONMENT } = Cypress.env()
 
 describe('Keycloak', () => {
-  const authUrl = HOST.indexOf('localhost') > -1 ? AUTH_BASE_URL : HOST
-
   if(isCI(ENVIRONMENT)) 
     it('Does not run on CI')
   else {
