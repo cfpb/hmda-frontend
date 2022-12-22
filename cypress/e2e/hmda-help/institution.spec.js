@@ -36,7 +36,6 @@ describe('HMDA Help - Institutions', () => {
 
     // Log in
     if (!isCI(ENVIRONMENT)) {
-      cy.logout({ root: authUrl, realm: AUTH_REALM })
       cy.hmdaLogin('hmda-help', authUrl)
       cy.url().should('contains', `${AUTH_BASE_URL}hmda-help/`)
     }
@@ -186,7 +185,6 @@ describe('HMDA Help - Institutions', () => {
     
     // Log in
     if (!isCI(ENVIRONMENT)) {
-      cy.logout({ root: authUrl, realm: AUTH_REALM })
       cy.hmdaLogin('hmda-help', authUrl)
       cy.url().should('contains', `${AUTH_BASE_URL}hmda-help/`)
     }

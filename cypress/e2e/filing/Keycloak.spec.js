@@ -11,7 +11,6 @@ describe('Keycloak', () => {
     beforeEach(() => {
       cy.visit(`${HOST}/filing`)
       cy.get({ HOST, USERNAME, PASSWORD, ENVIRONMENT }).logEnv()
-      cy.logout({ root: authUrl, realm: AUTH_REALM })
     })
   
     describe('Sign In', () => {
