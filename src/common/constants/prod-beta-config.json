@@ -2,26 +2,6 @@
   "name": "prod-beta",
   "announcement": [
     {
-      "heading": "HMDA Quarterly Graphs updated",
-      "message": "HMDA Quarterly Graphs have been updated to include data for the recently completed 2022-Q2 filing period and can be found ",
-      "type": "info",
-      "link": {
-        "url": "https://ffiec.cfpb.gov/data-browser/graphs/quarterly",
-        "text": "here."
-      },
-      "endDate": "12/3/2022"
-    },
-    {
-      "message": "The FFIEC has announced a tentative release schedule for the 2022 Census products, which is available ",
-      "type": "info",
-      "heading": "2022 FFIEC Census Product Release Schedule",
-      "link": {
-        "url": "https://www.ffiec.gov/cra/pdf/Census_Timeline_Announcements.pdf",
-        "text": "here."
-      },
-      "endDate": "12/31/2022"
-    },
-    {
       "message": "The LAR Formatting tool, previously Excel-based, is being redeveloped as a web application. You can now easily import/input your LAR data, search to filter, make edits, and create a HMDA Platform compatible file right from your browser. Updates will be made to this tool iteratively, with the latest version now available on the ",
       "type": "warning",
       "heading": "[Preview] Create and edit LAR files online",
