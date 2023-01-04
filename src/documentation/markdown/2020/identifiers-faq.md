@@ -1,7 +1,7 @@
 # Institution Identifiers - Frequently Asked Questions
 
 ## Institution Identifiers
-The following information below details guidance regarding institution identifiers in 2017 and 2018. 
+The following information below details guidance regarding institution identifiers in 2017 and 2018.
 
 ### What are the institution identifiers for 2018?
 For 2018 and forward, <a target="_blank" rel="noopener noreferrer" href="http://ffiec.cfpb.gov/documentation/2021/filing-faq#what-is-a-legal-entity-identifier-lei">LEI (Legal Entity Identifier)</a> sourced from a <a target="_blank" rel="noopener noreferrer" href="https://www.gleif.org/">Global LEI Foundation (GLEIF)</a> operating unit is the unique identifier for HMDA Filers. Institutions can be searched by name or LEI on this site.

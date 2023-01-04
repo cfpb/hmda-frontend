@@ -12,7 +12,7 @@ National Aggregate reports are not produced for data collected in or after 2018.
 
 ## MSA/MD Aggregate Reports
 
-### Reports Retained in 2018 and later:
+### Reports Retained in 2018:
 |2018 Report Name |2017 Report Name|Change Made (If Applicable)|
 |---|---|---|
 |Reporting Institutions|i - Reporting Institutions|No Change|
@@ -44,7 +44,7 @@ National Aggregate reports are not produced for data collected in or after 2018.
 
 ## Disclosure Reports
 
-### Reports Retained in 2018 and later:
+### Reports Retained in 2018:
 |2018 Report Name |2017 Report Name|Change Made (If Applicable)
 |---|---|---|
 |Institution Register Summary |R1 - IRS Table|No Change|

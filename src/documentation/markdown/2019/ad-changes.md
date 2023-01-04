@@ -4,7 +4,7 @@ The Home Mortgage Disclosure Act (HMDA) requires lending institutions to make an
 
 Aggregate and Disclosure reports available for 2019 are listed below. Reports that have been discontinued in 2019 can now be produced using the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/data-browser/">HMDA Data Browser</a>. New in 2019, derived fields are based on new data points collected and reported using the [CFPB disclosure methodology](https://files.consumerfinance.gov/f/documents/HMDA_Data_Disclosure_Policy_Guidance.Executive_Summary.FINAL.12212018.pdf).
 
-Explanations of derived fields that were used in the creation of these reports can be found in the <a target="_blank" rel="noopener noreferrer" href="/documentation/2019/derived-data-fields/">Derived Data Fields Guide</a>. For custom report creation, visit the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/data-browser/">HMDA Data Browser</a>.
+Explanations of derived fields that were used in the creation of these reports can be found in the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/documentation/2019/derived-data-fields/">Derived Data Fields Guide</a>. For custom report creation, visit the <a target="_blank" rel="noopener noreferrer" href="https://ffiec.cfpb.gov/data-browser/">HMDA Data Browser</a>.
 Note: Series identifiers (i, 1, 2, 3, etc.) have been discontinued for all reports.
 
 ## National Aggregate Reports
@@ -12,7 +12,7 @@ National Aggregate reports are not produced for data collected in or after 2018.
 
 ## MSA/MD Aggregate Reports
 
-### Reports Retained in 2018 and later:
+### Reports Retained in 2018:
 |2018 Report Name |2017 Report Name|Change Made (If Applicable)|
 |---|---|---|
 |Reporting Institutions|i - Reporting Institutions|No Change|
@@ -44,7 +44,7 @@ National Aggregate reports are not produced for data collected in or after 2018.
 
 ## Disclosure Reports
 
-#### Reports Retained in 2018 and later:
+### Reports Retained in 2018 and later:
 |2018 Report Name |2017 Report Name|Change Made (If Applicable)
 |---|---|---|
 |Institution Register Summary |R1 - IRS Table|No Change|
