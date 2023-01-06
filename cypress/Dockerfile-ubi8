@@ -1,36 +1,33 @@
 FROM redhat/ubi8
+RUN dnf -y update
 
-RUN dnf update -y
-RUN dnf module install nodejs:14 -y
+# Install node + yarn
+RUN dnf -y module install nodejs:14
 RUN npm install yarn -g
-COPY cypress/install-cypress-dependencies.sh /
-RUN /bin/sh install-cypress-dependencies.sh
 
+# Include additional dependency repositories
+RUN dnf -y install --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-$(rpm -E %rhel).noarch.rpm
+RUN dnf -y install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm
+RUN dnf -y install --nogpgcheck https://rpms.remirepo.net/enterprise/remi-release-$(rpm -E %rhel).rpm
+RUN rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+RUN rpm -Uvh https://www.elrepo.org/elrepo-release-8.el8.elrepo.noarch.rpm
+RUN yum -y install http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
+RUN yum -y install http://mirror.ghettoforge.org/distributions/gf/gf-release-latest.gf.el8.noarch.rpm
 
 # Install Cypress dependencies
-RUN yum install -y xorg-x11-xauth
-
-RUN yum install -y libXtst*
-# provides libXss
-RUN yum install -y libXScrnSaver*
-# provides libgconf-2
-RUN yum install -y GConf2*
-# provides libasound
-RUN yum install -y alsa-lib*
-
-# RUN yum whatprovides libnss3.so
-RUN yum install -y libnss3.so
+COPY cypress/install-cypress-dependencies.sh /
+RUN /bin/sh install-cypress-dependencies.sh
 
 RUN yum install -y wget
 RUN yum install -y unzip
 
-# Cleanup vulnerabilities
+# Cleanup vulnerabilities (as root user)
 RUN rm -rf /usr/local/share/.cache/yarn/v6/npm-public-encrypt-*/node_modules/public-encrypt/test/*
 RUN rm -rf /root/.cache/Cypress/**/Cypress/resources/app/node_modules/public-encrypt/test/*
 RUN rm -rf /root/.cache/Cypress/**/Cypress/resources/app/node_modules/http-proxy/test/*
 RUN rm -rf /root/.cache/Cypress/**/Cypress/resources/app/node_modules/lazystream/secret
 
-# Prep working directory
+# Prepare working directory
 RUN mkdir hmda-frontend
 RUN useradd -M -d /hmda-frontend -s /bin/bash hmda_cypress_user && \
   chown -R hmda_cypress_user:hmda_cypress_user /hmda-frontend/
@@ -44,14 +41,14 @@ RUN yarn add @testing-library/cypress@8.0.1
 RUN yarn add cypress-file-upload@5.0.8
 RUN yarn add cypress-keycloak@2.0.0
 
-# Copy support files
+# Copy support files and create directory structure
 RUN mkdir cypress cypress/downloads cypress/screenshots cypress/videos cypress/integration cypress/fixtures
 COPY cypress/support cypress/support
 COPY cypress/plugins cypress/plugins
 COPY cypress/docker-runner.sh cypress/
 COPY ./cypress.config.js ./
 
-# Cleanup vulnerabilities
+# Cleanup vulnerabilities (as hmda_cypress_user)
 RUN rm -rf /hmda-frontend/node_modules/public-encrypt/test/*
 RUN rm -rf /hmda-frontend/.cache/Cypress/**/Cypress/resources/app/node_modules/public-encrypt/test/*
 RUN rm -rf /hmda-frontend/.cache/Cypress/**/Cypress/resources/app/node_modules/http-proxy/test/*
