@@ -1,7 +1,8 @@
 import React from 'react'
 import Alert from './Alert.jsx'
+import './Beta.css'
 
-export function isBeta(host=window.location.hostname) {
+export function isBeta(host = window.location.hostname) {
   return host.match('beta')
 }
 
