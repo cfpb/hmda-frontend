@@ -1,0 +1,12 @@
+.Beta .alert::before {
+  width: 0;
+}
+
+.Beta .alert {
+  border: 2px solid grey;
+}
+
+.Beta .alert-heading {
+  padding-bottom: 2px;
+  margin-bottom: 5px;
+}
