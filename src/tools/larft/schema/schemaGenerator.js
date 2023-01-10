@@ -2,8 +2,8 @@ const fs = require('fs')
 
 const readFile = name => fs.readFileSync(name, 'utf8')
 
-let TS_SCHEMA_RAW = readFile(`${__dirname}/schema/schema_ts.psv`)
-let LAR_SCHEMA_RAW = readFile(`${__dirname}/schema/schema_lar.psv`)
+let TS_SCHEMA_RAW = readFile(`${__dirname}/schema_ts.psv`)
+let LAR_SCHEMA_RAW = readFile(`${__dirname}/schema_lar.psv`)
 
 const unity = x => x
 const prettyJSON = json => JSON.stringify(JSON.parse(json), null, 2)
