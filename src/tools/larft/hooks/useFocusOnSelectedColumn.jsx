@@ -2,6 +2,11 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { selectCol } from '../data-store/store'
 
+/**
+ * Bring the focused column into view
+ * 
+ * @param {String} columnID 
+ */
 export const useFocusOnSelectedColumn = columnID => {
   const dispatch = useDispatch()
 

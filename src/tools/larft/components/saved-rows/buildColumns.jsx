@@ -3,6 +3,18 @@ import { useDispatch } from 'react-redux'
 import { selectCol } from '../../data-store/store'
 import { matchColumnFilter } from '../../utils/search'
 
+/**
+ * Constructs the column configurations used to display the SavedRows tables (both headers and content).
+ * This configuration gets passed to react-fluid-table for rendering.
+ * 
+ * @param {Array} rows
+ * @param {Array} matchedColumns
+ * @param {String} columnFilter
+ * @param {String} searchFiler
+ * @param {Object} schema
+ * @param {String} selectedColName
+ * @returns Array of Column data
+ */
 export const buildColumns = ({
   rows,
   matchedColumns,
@@ -38,6 +50,14 @@ export const buildColumns = ({
   }))
 }
 
+/**
+ * Column header.  When clicked, highlights the current column in both the SavedRows view
+ * and the Editing view.
+ * 
+ * @param {Object} field Field details
+ * @param {String} selectedColName Currently selected column name 
+ * @param {Object} props Additional attributes
+ */
 const ColumnHeader = ({ field, selectedColName, ...props }) => {
   const dispatch = useDispatch()
   const fieldID = formatFieldID(field)
@@ -67,6 +87,15 @@ const ColumnHeader = ({ field, selectedColName, ...props }) => {
   )
 }
 
+/**
+ * Column header.  When clicked, highlights the current column in both the SavedRows view
+ * and the Editing view.
+ * 
+ * @param {Object} row LAR/TS row content
+ * @param {Object} field Field details
+ * @param {String} selectedColName Currently selected column name 
+ * @param {String} searchFilter Content search string
+ */
 const ColumnContent = ({ row, field, searchFilter, selectedColName }) => {
   const dispatch = useDispatch()
   const fieldName = field.fieldName

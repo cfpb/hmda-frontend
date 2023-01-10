@@ -1,7 +1,21 @@
+/**
+ * Script to generate JSON versions of LAR and TS schema from the Platform's
+ * pipe-separated (PSV) definitions. This script is mostly to provide a quick
+ * starting point for Frontend integration of LAR/TS schemas. 
+ * 
+ * Note: Not all fields in the JSON are automatically derived from the PSV version. 
+ * Beware of any deletions which result from running this script. 
+ * 
+ * To run:
+ * - cd hmda-frontend/src/tools/larft/schema
+ * - node schemaGenerator.js
+ */
+
 const fs = require('fs')
 
 const readFile = name => fs.readFileSync(name, 'utf8')
 
+// PSV schema files from the HMDA Platform
 let TS_SCHEMA_RAW = readFile(`${__dirname}/schema_ts.psv`)
 let LAR_SCHEMA_RAW = readFile(`${__dirname}/schema_lar.psv`)
 

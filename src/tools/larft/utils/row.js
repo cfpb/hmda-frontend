@@ -14,26 +14,41 @@ export const addRowID = (row, idx) => ({
   rowId: (idx + 1).toString(),
 })
 
+// Does this row already exist in the SavedRows?
 export const isEditing = row => row && row.rowId > -1
 
+// Is this a Transmittal Sheet row?
 export const isRowTS = row => {
   const isStringMatch = isString(row) && row.match(/^1/)
   const isObjectMatch = row && row[RECORD_IDENTIFIER] === '1'
   return isStringMatch || isObjectMatch
 }
 
+// Is this a Loan/Application Register row?
 export const isRowLAR = row => {
   const isStringMatch = isString(row) && row.match(/^2/)
   const isObjectMatch = row && row[RECORD_IDENTIFIER] === '2'
   return isStringMatch || isObjectMatch
 }
 
+/**
+ * Convert a row object into a pipe-delimited string
+ * 
+ * @param {Object} row 
+ * @returns String
+ */
 export const stringifyRow = row =>
   getSchema(row)
     .map(column => row && row[column.fieldName])
     .join(PIPE_DELIMITER)
 
 
+/**
+ * Convert a row string into a row object
+ * 
+ * @param {Object} row 
+ * @returns Object
+ */
 export const parseRow = (row = {}) => {
   if (!row) return {}
   if (!isString(row)) return row

@@ -2,6 +2,11 @@ import { log } from './common'
 import { parseRow } from './row'
 import { grabRawArea } from './textArea'
 
+/**
+ * Paste clipboard content into EditPiped textbox
+ * 
+ * @param {Function} setFn Handler to update the currently edited row
+ */
 export const pastePiped = (setFn) => {
   return () => {
     if (navigator?.clipboard?.readText) {

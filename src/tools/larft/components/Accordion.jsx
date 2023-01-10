@@ -1,6 +1,15 @@
 import React from 'react'
 import './Accordion.css'
 
+/**
+ * Displays a field's label with details (examples, description, enumerations) as
+ * an expandable/collapsable element.
+ * 
+ * @param {String} heading
+ * @param {String} content
+ * @param {String} children
+ * @param {String} id
+ */
 export const Accordion = ({ heading, content, children, id }) => {
   const contentBody = content || children || null
 

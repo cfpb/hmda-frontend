@@ -1,9 +1,11 @@
 import { adjustFocusToTriggerRerender } from '../../hooks/adjustFocusToTriggerRerender'
 
 /**
- * Components for searching/filtering saved rows
+ * Wrapper component to help conditionally render Filter/Search inputs
+ * 
+ * @param {Boolean} show Should show filter/search inputs? 
+ * @param {Array<ReactElement>} children Filter/search inputs
  */
-
 export const Filters = ({ show, children }) => {
   if (!show) return null
   return <div className='filters'>{children}</div>
@@ -11,6 +13,7 @@ export const Filters = ({ show, children }) => {
 
 /**
  * Input field to collect and clear search/filter strings.
+ * 
  * @param {Function} onChange Handler for updating Search string in Redux store
  * @param {String} placeholder
  * @param {String} value Search string

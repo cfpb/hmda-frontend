@@ -1,6 +1,11 @@
 import React from 'react'
 import { collapseAll } from '../Accordion'
 
+/**
+ * Displays the LAR/TS fields in a tabular view. 
+ * 
+ * @param {Array<ParsedRow>} rows  
+ */
 export const ParsedTable = ({ rows }) => {
   if (!rows.length) return <NoMatches />
 

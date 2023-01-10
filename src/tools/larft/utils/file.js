@@ -1,6 +1,12 @@
 import { unity } from './common'
 import { stringifyRow } from './row'
 
+/**
+ * Derive file name from TS content
+ * 
+ * @param {Object} ts TS row content
+ * @returns 
+ */
 export const formatFileName = ts => {
   if (
     ts['Calendar Year'] &&
@@ -13,6 +19,12 @@ export const formatFileName = ts => {
   return 'LarFile'
 }
 
+/**
+ * Download LAR file
+ * 
+ * @param {String} filename 
+ * @param {String} text 
+ */
 export function downloadFile(filename, text) {
   var element = document.createElement('a')
   element.setAttribute(
@@ -29,6 +41,13 @@ export function downloadFile(filename, text) {
   document.body.removeChild(element)
 }
 
+/**
+ * Generate LAR file rows
+ * 
+ * @param {Array} ts 
+ * @param {Array} lars 
+ * @returns String
+ */
 export const createFileContent = (ts, lars) =>
   ts
     .concat(lars)

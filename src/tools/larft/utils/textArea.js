@@ -1,12 +1,26 @@
 import { getSchema } from '../schema'
 import { stringifyRow } from './row'
 
+/**
+ * Identify indexes of pipes (|) in a row string
+ * 
+ * @param {*} row 
+ * @returns Iterator of pipe locations
+ */
 export const findPipes = row =>
   stringifyRow(row).matchAll(new RegExp(/\|/, 'gi'))
 
 export const grabRawArea = () => document.getElementById('rawArea')
 
-// Thanks https://stackoverflow.com/a/7745998/15861235
+/**
+ * Determines the current cursor position within the EditingPiped textarea
+ * in order to update the currently selected column.
+ * 
+ * Thanks https://stackoverflow.com/a/7745998/15861235
+ * 
+ * @param {HTMLElement} input Textare
+ * @returns Number
+ */
 export const getCursorPos = input => {
   if ('selectionStart' in input && document.activeElement == input) {
     return {
@@ -40,9 +54,14 @@ export const getCursorPos = input => {
   return -1
 }
 
-// Compare the current cursor position to the positions of
-//   the column delimiters to determine which LAR field is
-//   currently being edited/focused.
+/**
+ * Compare the current cursor position to the positions of the column delimiters to 
+ * determine which LAR field is currently being edited/focused.
+ * 
+ * @param {Function} setFn selectCol handler
+ * @param {String} row Row string
+ * @param {Function} dispatch 
+ */
 export const updateCurrentColumn = (setFn, row, dispatch) => {
   const cursorPos = getCursorPos(grabRawArea()).start
   const pipes = findPipes(row)
