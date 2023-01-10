@@ -88,8 +88,6 @@ const FieldName = ({ column }) => {
  * @param {Array} descriptions List of strings to be listed as Examples
  */
 const buildPlaceholder = (examples, descriptions) => {
-  console.log(descriptions)
-  
   const targetArray = examples.length ? examples : descriptions
   return targetArray.join(OR_DELIMITER)
 }
@@ -158,7 +156,7 @@ const buildInput = (_col, _row, _changeFn) => {
         {...common}
         column={_col}
         row={_row}
-        placeholder={placeholder}
+        placeholder={specialPlaceholder(_col, placeholder)}
       />
     )
   }
@@ -171,4 +169,18 @@ const buildInput = (_col, _row, _changeFn) => {
       placeholder={placeholder}
     />
   )
+}
+
+/**
+ * Special cases where we don't want the "example" value to be used as
+ * the placeholder. 
+ * @param {Object} column Field details
+ * @param {String} placeholder 
+ * @returns Placeholder value
+ */
+const specialPlaceholder = (column, placeholder) => {
+  if (column.fieldName == "Total Number of Entries Contained in Submission")
+    return '0'
+  
+  return placeholder
 }
