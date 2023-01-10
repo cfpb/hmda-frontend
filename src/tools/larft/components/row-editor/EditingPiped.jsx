@@ -35,6 +35,13 @@ export const EditingPiped = ({
   )
 }
 
+/**
+ * Textarea that displays the pipe-separated text of the currently selected
+ * row. Also includes a separate, hidden, text area that specifically handles
+ * the paste functionality and updates the currently edited row as necessary. 
+ * 
+ * @param {Function} onChange Input change handler
+ */
 const PasteableTextArea = ({ onChange }) => {
   const row = useSelector(({ larft }) => larft.editingRow)
   const dispatch = useDispatch()
@@ -63,6 +70,13 @@ const PasteableTextArea = ({ onChange }) => {
   )
 }
 
+/**
+ * Provides a label for the currently focused field, including
+ * the Field Name along with column index.
+ * 
+ * @param {String} column Field name
+ * @param {Object} row LAR/TS row content
+ */
 const CurrentColumn = ({ column, row }) => {
   const schema = getSchema(row)
   const index = schema.findIndex(obj => obj.fieldName == column)
