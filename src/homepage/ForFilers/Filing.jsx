@@ -16,7 +16,7 @@ const ToolsProd = () => (
       </a>
     </li>
     <li>
-      <a href='/tools/lar-formatting'>LAR Formatting Tool</a>
+    <a href='/tools/lar-formatting'>LAR Formatting Tool <NewIndicator/></a>
     </li>
   </ul>
 )
@@ -24,7 +24,9 @@ const ToolsProd = () => (
 const ToolsBeta = () => (
   <ul>
     <li>
-      <a href='/tools/lar-formatting'>LAR Formatting Tool <NewIndicator text={'Preview'}/></a>
+      <a href='/tools/lar-formatting'>
+        LAR Formatting Tool <NewIndicator text={'Preview'} />
+      </a>
     </li>
   </ul>
 )
