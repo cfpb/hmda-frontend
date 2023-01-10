@@ -3,6 +3,10 @@ import { useSelector } from 'react-redux'
 import { scrollToFileActions } from '../../utils/common'
 import { SavedSection } from './SavedSection'
 
+/**
+ * Displays tables containing any user uploaded/saved
+ * LAR and TS data.
+ */
 export const SavedRows = () => {
   const ts = useSelector(({ larft }) => larft.ts)
   const lars = useSelector(({ larft }) => larft.lars)

@@ -1,3 +1,9 @@
+/**
+ * Composes a list of enumeration <option>
+ * 
+ * @param {Object} column Field details
+ * @returns Array of <option> elements
+ */
 export const buildEnumeratedOptions = column => {
   const { enumerations, fieldName } = column
 

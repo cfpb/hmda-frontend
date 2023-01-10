@@ -11,6 +11,16 @@ import { Filters, SearchBox } from './Filters'
 import { ContentRowID, HeaderRowID } from './RowID'
 import { SectionTitle } from './SectionTitle'
 
+/**
+ * Provides a searchable/filterable table of LAR/TS content.
+ * 
+ * Table rows are selectable, with selected content being made available in
+ * the <Editing /> component for modification. 
+ * 
+ * @param {String} id Section identifier
+ * @param {String} title Section label
+ * @param {Array} rows Table content
+ */
 export const SavedSection = ({
   id,
   title = 'Section Title',

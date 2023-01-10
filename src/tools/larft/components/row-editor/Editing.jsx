@@ -12,6 +12,13 @@ import { EditingActions } from './EditingActions'
 import { EditingParsed } from './EditingParsed'
 import { EditingPiped } from './EditingPiped'
 
+/**
+ * Combined section allowing users to edit a single row's content
+ * either as raw pipe-delimited string or parsed into individual
+ * inputs.
+ * 
+ * @param {String} id Section identifier
+ */
 export const Editing = ({ id = 'row-editor' }) => {
   const [isChanged, setChanged] = useState(false)
   const selectedRowID = useSelector(({ larft }) => larft.selectedRowID)

@@ -10,6 +10,10 @@ import { fileDownload, rowsReset } from '../data-store/store'
 import { Error } from './Error'
 import { FileUpload } from './FileUpload.jsx'
 
+/**
+ * File level interactions including uploading, downloading, 
+ * and resetting any saved data.
+ */
 export const FileActions = () => {
   const [fileError, setFileError] = useState()
   const ts = useSelector(({ larft }) => larft.ts)
@@ -27,6 +31,7 @@ export const FileActions = () => {
           setFileError(null)
         }
       }, [ts, lars])
+  
   return (
     <div className='file-actions' id='file-actions'>
       <Error text={fileError} onClick={() => setFileError(null)} />
@@ -44,6 +49,11 @@ export const FileActions = () => {
   )
 }
 
+/**
+ * Triggers conversion and download of saved user data as a CSV file.
+ * @param {Boolean} hasSavedRecords Flag to enable/disable button
+ * @param {Function} setFileError Stores error messages related to missing data
+ */
 const DownloadButton = ({ hasSavedRecords, setFileError }) => {
   const dispatch = useDispatch()
   const ts = useSelector(({ larft }) => larft.ts)
@@ -69,6 +79,10 @@ const DownloadButton = ({ hasSavedRecords, setFileError }) => {
   )
 }
 
+/**
+ * Triggers user dialog to select a CSV file for upload.
+ * @param {Boolean} hasSavedRecords Flag to enable/disable button
+ */
 const UploadButton = ({ hasSavedRecords }) => (
   <button
     className='upload'
@@ -83,6 +97,10 @@ const UploadButton = ({ hasSavedRecords }) => (
   </button>
 )
 
+/**
+ * Erases any saved TS/LAR data from the tool.
+ * @param {Boolean} hasSavedRecords Flag to enable/disable button
+ */
 const ResetButton = ({ hasSavedRecords }) => {
   const dispatch = useDispatch()
 

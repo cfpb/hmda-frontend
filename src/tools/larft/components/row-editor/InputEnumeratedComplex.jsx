@@ -1,3 +1,10 @@
+/**
+ * An input with enumerations that also allows for freeform text.
+ * 
+ * @param {Object} column Field details
+ * @param {Object} row LAR/TS row content
+ * @param {Object} common Additional input attributes
+ */
 export const InputEnumeratedComplex = ({ column, row, ...common }) => {
   const { enumerations } = column
   const needsSelector = enumerations.length >= 3

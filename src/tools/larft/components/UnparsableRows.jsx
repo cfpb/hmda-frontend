@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 
+/**
+ * Provides a dismissable section identifying any rows which were
+ * unparsable from a user uploaded file.
+ */
 export const UnparsableRows = () => {
   const items = useSelector(({ larft }) => larft.unparsable)
   const hasUnparsable = Object.keys(items).length

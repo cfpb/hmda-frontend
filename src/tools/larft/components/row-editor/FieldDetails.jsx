@@ -1,6 +1,12 @@
 import React, { memo } from 'react'
 import { unity } from '../../utils/common'
 
+/**
+ * Display examples, descriptions, and enumerations
+ * for a field.
+ * 
+ * @param {Object} field LAR/TS field
+ */
 export const FieldDetails = memo(({ field }) => {
   if (!field) return null
   const { examples = [], enumerations = [], descriptions = [] } = field

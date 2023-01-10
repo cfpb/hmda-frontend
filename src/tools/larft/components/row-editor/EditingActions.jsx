@@ -2,6 +2,16 @@ import React from 'react'
 import { copyPiped, pastePiped } from '../../utils/clipboard'
 import { isEditing } from '../../utils/row'
 
+/**
+ * Action bar to save, delete, clear, copy, paste currently selected row.
+ * 
+ * @param {Object} row Currently selected row
+ * @param {Function} deleteRow
+ * @param {Function} newRow Handler to clear currently selected row
+ * @param {Function} setRow Handler to set the currently selected row
+ * @param {Function} saveRow Handler to persist/update currently select row
+ * @param {Function} showTextActions Display buttons for Copy/Paste functionality
+ */
 export const EditingActions = ({
   row,
   deleteRow,

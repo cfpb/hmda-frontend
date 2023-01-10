@@ -6,6 +6,16 @@ import { highlightText, scrollToID } from '../../utils/common'
 import { parseRow, stringifyRow } from '../../utils/row'
 import { updateCurrentColumn } from '../../utils/textArea'
 
+/**
+ * Allows for interaction with the currently selected LAR/TS row,
+ * presenting content as a pip-delimited string.
+ *
+ * @param {String} id 
+ * @param {Object} row Selected row
+ * @param {String} currCol ID of selected column within row
+ * @param {ReactElement} textActions Action bar for section
+ * @param {Function} onChange Row update handler
+ */
 export const EditingPiped = ({
   id = 'piped',
   currCol,

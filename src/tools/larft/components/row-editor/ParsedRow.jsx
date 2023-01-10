@@ -11,6 +11,17 @@ import { InputStateSelector } from './InputStateSelector'
 
 const OR_DELIMITER = ' (or) '
 
+/**
+ * Displays a column of a LAR/TS row as a table row,
+ * including Column #, Column Label, and a value input
+ * providing enumerations (drop-down, buttons) where applicable.
+ * 
+ * @param {Object} column Current column within the selected LAR/TS row
+ * @param {String} highlightClass Classname to style selected column
+ * @param {Function} onChange Handler to update column changes
+ * @param {Function} onFocus Handler to update selected column
+ * @param {Object} row Currently selected LAR/TS row
+ */
 export const ParsedRow = ({
   column,
   highlightClass,
@@ -35,6 +46,11 @@ export const ParsedRow = ({
   )
 }
 
+/**
+ * Table column displaying the field index
+ * 
+ * @param {Object} column Field details
+ */
 const FieldNumber = ({ column }) => {
   const { fieldName, fieldIndex } = column
 
@@ -45,6 +61,12 @@ const FieldNumber = ({ column }) => {
   )
 }
 
+/**
+ * Table column displaying the field label along with
+ * descriptions of any applicable enumerations.
+ * 
+ * @param {Object} column Field details
+ */
 const FieldName = ({ column }) => {
   const { fieldName, fieldIndex } = column
 
@@ -59,11 +81,29 @@ const FieldName = ({ column }) => {
   )
 }
 
+/**
+ * Constructs the placeholder text used in a text input field.
+ * 
+ * @param {Array} examples List of strings to be listed as Examples
+ * @param {Array} descriptions List of strings to be listed as Examples
+ */
 const buildPlaceholder = (examples, descriptions) => {
+  console.log(descriptions)
+  
   const targetArray = examples.length ? examples : descriptions
   return targetArray.join(OR_DELIMITER)
 }
 
+/**
+ * Determines what input format is required for this column
+ * (text, buttons, drop-down, combination) and constructs the 
+ * appropriate input object. 
+ * 
+ * @param {Object} _col Field details
+ * @param {Object} _row Currently selected LAR/TS row
+ * @param {Function} _changeFn Handler for input modification
+ * @returns 
+ */
 const buildInput = (_col, _row, _changeFn) => {
   if (!_col) return null
 

@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom'
 import Heading from '../../../common/Heading'
 import { PAGE_DESCRIPTION, PAGE_TITLE } from '../config/page'
 
+/**
+ * Page title, description, and documentation link
+ * @returns Heading Component
+ */
 export const PageHeader = () => (
   <Heading
     key={1}
