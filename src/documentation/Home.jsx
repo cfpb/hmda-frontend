@@ -1,16 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Header from '../common/Heading.jsx'
-import YearSelector from '../common/YearSelector.jsx'
+import VersionSelector from '../common/VersionSelector.jsx'
+import { VERSIONS } from '../common/constants/DocumentationVersions.js'
 import FAQs from './FAQs.jsx'
 import FigLinks from './FigLinks.jsx'
-import Publications from './publications'
-import Tools from './tools'
-import { DOCS_YEARS } from '../common/constants/years.js'
-import { ExternalLink } from '../common/ExternalLink'
+import Publications from './publications/index.js'
+import Tools from './tools/index.js'
+import ExternalAPIs from './ExternalAPIs.jsx'
 
-const Home = props => {
-  const { year, url } = props
+const Home = ({ url, version }) => {
   return (
     <div className='home'>
       <div className='intro'>
@@ -18,36 +17,34 @@ const Home = props => {
           <p className='lead'>A collection of HMDA Documentation Resources</p>
         </Header>
       </div>
-      <YearSelector year={year} url={url} years={DOCS_YEARS} />
+      <VersionSelector url={url} version={version} versions={VERSIONS} />
       <div>
         <h2>
-          <Link to={`/documentation/${year}/faqs/`}>
+          <Link to={`/documentation/${version}/faqs/`}>
             Frequently Asked Questions
           </Link>
         </h2>
-        <FAQs year={year} />
       </div>
+      <FAQs version={version} />
       <div>
         <h2>
-          <Link to={`/documentation/${year}/fig/`}>
-            Filing Instructions Guide (FIG)
-          </Link>
+          <Link to={`/documentation/${version}/fig/`}>HMDA Filing</Link>
         </h2>
-        <FigLinks year={year} />
+        <FigLinks version={version} />
       </div>
       <div>
         <h2>
-          <Link to={`/documentation/${year}/publications/`}>
+          <Link to={`/documentation/${version}/publications/`}>
             HMDA Publications
           </Link>
         </h2>
-        <Publications year={year} />
+        <Publications version={version} />
       </div>
       <div>
         <h2>
-          <Link to={`/documentation/${year}/tools/`}>HMDA Tools</Link>
+          <Link to={`/documentation/${version}/tools/`}>HMDA Tools</Link>
         </h2>
-        <Tools year={year} />
+        <Tools version={version} />
       </div>
       <div>
         <h2>HMDA APIs</h2>
@@ -55,50 +52,7 @@ const Home = props => {
           Endpoints, schemas, and examples to help you access HMDA Data via the
           HMDA APIs.
         </p>
-        <ul>
-          <li>
-            <ExternalLink
-              url='https://cfpb.github.io/hmda-platform/'
-              text='HMDA APIs - Overview'
-            />
-          </li>
-          <li>
-            <ExternalLink
-              url='https://cfpb.github.io/hmda-platform/#data-browser-api'
-              text='HMDA Data Browser API'
-            />
-          </li>
-          <li>
-            <ExternalLink
-              url='https://cfpb.github.io/hmda-platform/#hmda-filing-api'
-              text='HMDA Filing API'
-            />
-          </li>
-          <li>
-            <ExternalLink
-              url='https://cfpb.github.io/hmda-platform/#hmda-public-verification-api'
-              text='HMDA Public Verification API'
-            />
-          </li>
-          <li>
-            <ExternalLink
-              url='https://cfpb.github.io/hmda-platform/#rate-spread-rate-spread-api'
-              text='HMDA Rate Spread API'
-            />
-          </li>
-          <li>
-            <ExternalLink
-              url='https://cfpb.github.io/hmda-platform/#check-digit'
-              text='HMDA Check Digit API'
-            />
-          </li>
-          <li>
-            <ExternalLink
-              url='https://cfpb.github.io/hmda-platform/#hmda-file-serving'
-              text='HMDA File Serving API'
-            />
-          </li>
-        </ul>
+        <ExternalAPIs />
       </div>
     </div>
   )

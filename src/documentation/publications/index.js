@@ -4,12 +4,12 @@ import ADReports from './ADReports.jsx'
 import SnapshotDynamic from './SnapshotDynamic.jsx'
 
 const Publications = props => {
-  const { year } = props
+  const { version } = props
   return (
     <ul className="ProductCollection">
-      <ModifiedLar year={year} inList={true}/>
-      <ADReports year={year} inList={true}/>
-      <SnapshotDynamic year={year} inList={true}/>
+      <ModifiedLar version={version} inList={true}/>
+      <ADReports version={version} inList={true}/>
+      <SnapshotDynamic version={version} inList={true}/>
     </ul>
   )
 }

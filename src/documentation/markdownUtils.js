@@ -1,16 +1,16 @@
-import { DOCS_YEARS } from '../common/constants/years'
+import { VERSIONS } from '../common/constants/DocumentationVersions'
 
-function isBadYear(year) {
-  return DOCS_YEARS.indexOf(year) === -1
+function isBadVersion(version) {
+  return VERSIONS.indexOf(version) === -1 
 }
 
-function getMarkdownUrl(year, slug) {
+function getMarkdownUrl(version, slug) {
   const localOrRemoteUrl =
     window.location.hostname.indexOf('localhost') > -1
       ? window.location.origin
       : 'https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation'
 
-  return `${localOrRemoteUrl}/markdown/${year}/${slug}.md`
+  return `${localOrRemoteUrl}/markdown/${version}/${slug}.md`
 }
 
 // Copied from markdown-to-jsx
@@ -104,7 +104,7 @@ const updateSelfLinks = a => {
 
 export {
   getMarkdownUrl,
-  isBadYear,
+  isBadVersion,
   slugify,
   removeHashAndReplace,
   removeTwoHashes,

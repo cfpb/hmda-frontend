@@ -14,7 +14,7 @@ const DynamicRenderer = props => {
   const [error, setError] = useState(null)
   const [idToScrollTo, setIdToScrollTo] = useState()
   const [TOCSideBarDisplay, setTOCSideBarDisplay] = useState(false)
-  const { year, slug, displayTOCBackLink } = props
+  const { version, slug, displayTOCBackLink } = props
 
   const scrollToElement = useCallback(
     id => {
@@ -27,14 +27,14 @@ const DynamicRenderer = props => {
 
   useEffect(
     function () {
-      fetch(getMarkdownUrl(year, slug))
+      fetch(getMarkdownUrl(version, slug))
         .then(res => {
           if (res.status === 404) throw new Error('404')
           res.text().then(setData)
         })
         .catch(e => setError(e))
     },
-    [year, slug]
+    [version, slug]
   )
 
   /**
@@ -70,14 +70,14 @@ const DynamicRenderer = props => {
     <div className='dynamic-renderer'>
       <TableOfContents
         markdown={data}
-        year={year}
+        version={version}
         id={idToScrollTo}
         props={props}
         setTOCSideBarDisplay={setTOCSideBarDisplay}
         displayTOCBackLink={displayTOCBackLink}
       />
       <div className='Markdown-Wrapper'>
-        <BackLink year={year} hide={TOCSideBarDisplay} />
+        <BackLink version={version} hide={TOCSideBarDisplay} />
         {data ? <Markdown>{data}</Markdown> : <LoadingIcon />}
       </div>
     </div>

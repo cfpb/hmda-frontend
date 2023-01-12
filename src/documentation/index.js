@@ -3,10 +3,8 @@ import { Switch, Redirect, Route, Link } from 'react-router-dom'
 
 import Heading from '../common/Heading.jsx'
 import NotFound from '../common/NotFound'
-import YearSelector from '../common/YearSelector.jsx'
-import Home from './Home'
 import DynamicRenderer from './DynamicRenderer'
-import { isBadYear } from './markdownUtils'
+import { isBadVersion } from './markdownUtils'
 import FAQs from './FAQs.jsx'
 import FigLinks from './FigLinks.jsx'
 import Publications from './publications'
@@ -20,20 +18,23 @@ import CheckDigit from './tools/CheckDigit.jsx'
 import LARFT from './tools/LARFT.jsx'
 import FFVT from './tools/FFVT.jsx'
 import { withAppContext } from '../common/appContextHOC'
-import { DOCS_YEARS } from '../common/constants/years'
 
 import './index.css'
 import ScrollToTop from '../common/ScrollToTop.jsx'
+import Home from './Home.jsx'
+import VersionSelector from '../common/VersionSelector.jsx'
+import { VERSIONS } from '../common/constants/DocumentationVersions.js'
 
-function makeCollectionPage(Component, heading, year, url) {
+const createCollectionPage = (Component, heading, version, url) => {
+  const backLink = `/documentation/${version}`
   return (
     <div className='App Documentation'>
-      <Link className='BackLink' to='/documentation/'>
+      <Link className='BackLink' to={backLink}>
         {'\u2b05'} DOCUMENTATION HOME
       </Link>
       <Heading type={1} headingText={heading}></Heading>
-      <YearSelector year={year} url={url} years={DOCS_YEARS} />
-      <Component year={year} />
+      <VersionSelector version={version} url={url} versions={VERSIONS} />
+      <Component version={version} />
     </div>
   )
 }
@@ -53,26 +54,23 @@ const Documentation = ({ config }) => {
   return (
     <ScrollToTop>
       <Switch>
-        <Redirect
-          exact
-          from='/documentation'
-          to={`/documentation/${config.defaultDocsPeriod}/`}
-        />
+
+        <Redirect exact from='/documentation' to={`/documentation/v2/`} />
 
         <Route
           exact
-          path='/documentation/:year/'
+          path='/documentation/:version/'
           render={props => {
             const {
               url,
-              params: { year },
+              params: { version },
             } = props.match
 
-            if (isBadYear(year)) return <NotFound />
+            if (isBadVersion(version)) return <NotFound />
 
             return (
               <div className='App Documentation'>
-                <Home year={year} url={url} />
+                <Home url={url} version={version} />
               </div>
             )
           }}
@@ -80,43 +78,38 @@ const Documentation = ({ config }) => {
 
         <Route
           exact
-          path='/documentation/:year/:collection/'
+          path='/documentation/:version/:collection'
           render={props => {
             const {
               url,
-              params: { year, collection },
+              params: { version, collection },
             } = props.match
 
-            if (isBadYear(year)) return <NotFound />
+            if (isBadVersion(version)) return <NotFound />
 
             if (collection === 'faqs')
-              return makeCollectionPage(
+              return createCollectionPage(
                 FAQs,
                 'Frequently Asked Questions',
-                year,
+                version,
                 url
               )
             if (collection === 'fig')
-              return makeCollectionPage(
-                FigLinks,
-                'Filing Instructions Guide (FIG)',
-                year,
-                url
-              )
+              return createCollectionPage(FigLinks, 'HMDA Filing', version, url)
             if (collection === 'publications')
-              return makeCollectionPage(
+              return createCollectionPage(
                 Publications,
                 'HMDA Publications',
-                year,
+                version,
                 url
               )
             if (collection === 'tools')
-              return makeCollectionPage(Tools, 'HMDA Tools', year, url)
+              return createCollectionPage(Tools, 'HMDA Tools', version, url)
 
             return (
               <div className='App Documentation'>
                 <DynamicRenderer
-                  year={year}
+                  version={version}
                   slug={collection}
                   props={props}
                   displayTOCBackLink={true}
@@ -128,16 +121,16 @@ const Documentation = ({ config }) => {
 
         <Route
           exact
-          path='/documentation/:year/:collection/:slug/'
+          path='/documentation/:version/:collection/:slug/'
           render={props => {
             const {
               url,
-              params: { year, collection, slug },
+              params: { version, collection, slug },
             } = props.match
             const Component = pageSlugs[slug]
 
             if (
-              isBadYear(year) ||
+              isBadVersion(version) ||
               (collection !== 'publications' && collection !== 'tools') ||
               !Component
             ) {
@@ -148,12 +141,12 @@ const Documentation = ({ config }) => {
               <div className='App Documentation'>
                 <Link
                   className='BackLink'
-                  to={`/documentation/${year}/${collection}/`}
+                  to={`/documentation/${version}/${collection}/`}
                 >
                   {'\u2b05'} HMDA {collection}
                 </Link>
                 <Component
-                  year={year}
+                  version={version}
                   inList={false}
                   url={url}
                   collection={collection}

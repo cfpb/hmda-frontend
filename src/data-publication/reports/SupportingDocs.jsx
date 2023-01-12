@@ -1,6 +1,5 @@
 import React from 'react'
 import Heading from '../../common/Heading.jsx'
-import { Link } from 'react-router-dom'
 import ExternalLink from '../../common/ExternalLink'
 import { S3DocLink } from '../../common/S3Integrations.jsx'
 
@@ -21,7 +20,7 @@ const ModifiedLarDocs = () => {
               <li>
                 <a
                   title='Modified LAR 2018, 2019, 2020, and 2021 file specification'
-                  href='/documentation/2021/modified-lar-schema/'
+                  href='/documentation/v2/modified-lar-schema/'
                 >
                   2018, 2019, 2020, and 2021
                 </a>
@@ -33,55 +32,6 @@ const ModifiedLarDocs = () => {
                   }
                   title='Modified LAR 2017 file specification'
                   text='2017'
-                />
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div>
-          <h4>Header for CSV files</h4>
-          <div>
-            A list of column names for use with the Modified LAR text files
-            <ul>
-              <li>
-                <Link
-                  title='Modified LAR header for 2021 csv file'
-                  to='/documentation/2021/modified-lar-header/'
-                >
-                  2021
-                </Link>
-              </li>
-              <li>
-                <Link
-                  title='Modified LAR header for 2020 csv file'
-                  to='/documentation/2020/modified-lar-header/'
-                >
-                  2020
-                </Link>
-              </li>
-              <li>
-                <Link
-                  title='Modified LAR header for 2019 csv file'
-                  to='/documentation/2019/modified-lar-header/'
-                >
-                  2019
-                </Link>
-              </li>
-              <li>
-                <Link
-                  title='Modified LAR header for 2018 csv file'
-                  to='/documentation/2018/modified-lar-header/'
-                >
-                  2018
-                </Link>
-              </li>
-              <li>
-                <ExternalLink
-                  url={
-                    'https://github.com/cfpb/hmda-platform/blob/master/docs/v1/2017_Modified_LAR_Header.csv'
-                  }
-                  text='2017'
-                  title='Modified LAR header for 2017 csv file'
                 />
               </li>
             </ul>

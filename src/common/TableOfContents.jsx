@@ -16,7 +16,7 @@ const REGEX_H2s_H3s = /#{2}.+(?=\n)/g
  * a table of contents with two layers. Headers and sub-headers will be displayed.
  *
  * @param {markdown} String Markdown data
- * @param {year} String Tells the backlink what year the documentation comes from
+ * @param {version} String Tells the backlink what version the documentation comes from
  * @param {id} String id comes from DynamicRenderer and is specifically used on developer documentation. It is a continuation of direct linking to a specific developer Field.
  * @param {props} Object Required to get access to location.hash string
  * @param {setTOCSideBarDisplay} Boolean Helps hide `back to documentation` link that appears when there is no table of contents sidebar to display
@@ -25,7 +25,7 @@ const REGEX_H2s_H3s = /#{2}.+(?=\n)/g
 
 const TableOfContents = ({
   markdown,
-  year,
+  version,
   id,
   props,
   setTOCSideBarDisplay,
@@ -69,7 +69,7 @@ const TableOfContents = ({
   return (
     <div>
       <div className='toc-container'>
-        <BackLink year={year} hide={!displayTOCBackLink} />
+        <BackLink version={version} hide={!displayTOCBackLink} />
         <ul>
           {markdownHeaders.map((header, index) => (
             <TOCHeader {...{ header, index, active: activeContent }} />

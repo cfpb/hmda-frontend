@@ -1,24 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Heading from '../common/Heading.jsx'
-import YearSelector from '../common/YearSelector.jsx'
-import { DOCS_YEARS } from '../common/constants/years.js'
+import VersionSelector from '../common/VersionSelector.jsx'
+import { VERSIONS } from '../common/constants/DocumentationVersions.js'
 
-export const excludeYearSelector = (slug) => ['check-digit', 'rate-spread'].indexOf(slug) > -1
+export const excludeVersionSelector = (slug) => ['check-digit', 'rate-spread'].indexOf(slug) > -1
 
 const Product = props => {
   let { list } = props
-  const { heading, lead, inList, url, year, collection, slug } = props
+  const { heading, lead, inList, url, version, collection, slug } = props
   let header
   
 
   if(!list || !list.length) {
     if(inList) return null
-    list = <li>No documentation for {year}.</li>
+    list = <li>No documentation for {version}.</li>
   }
 
   if(inList){
-    header = <h4><Link to={`/documentation/${year}/${collection}/${slug}/`}>{heading}</Link></h4>
+    header = <h4><Link to={`/documentation/${version}/${collection}/${slug}/`}>{heading}</Link></h4>
   }else{
     header = (
       <Heading type={1} headingText={heading}>
@@ -32,7 +32,7 @@ const Product = props => {
       <div className="intro">
         { header }
         { inList ? <p>{lead}</p> : null}
-        { inList || excludeYearSelector(slug) ? null : <YearSelector year={year} url={url} years={DOCS_YEARS} /> }
+        { inList || excludeVersionSelector(slug) ? null : <VersionSelector version={version} url={url} versions={VERSIONS} /> }
         { inList || slug === 'check-digit' ? null : <h4>Documentation</h4> }
         <ul>
           {list}

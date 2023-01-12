@@ -3,8 +3,8 @@ import Product from '../Product.jsx'
 
 const links = {
   2017: [],
-  2018: [
-    <li key='0'>
+  v2: [
+    <li key='v2-0'>
       <a
         target='_blank'
         rel='noopener noreferrer'
@@ -13,107 +13,7 @@ const links = {
         Data Requirements
       </a>
     </li>,
-    <li key='1'>
-      <a
-        target='_blank'
-        rel='noopener noreferrer'
-        href='/tools/rate-spread/methodology'
-      >
-        Methodology for Determining Average Prime Offer Rates
-      </a>
-    </li>,
-  ],
-  2019: [
-    <li key='2019-0'>
-      <a
-        target='_blank'
-        rel='noopener noreferrer'
-        href='/tools/rate-spread/requirements'
-      >
-        Data Requirements
-      </a>
-    </li>,
-    <li key='2019-1'>
-      <a
-        target='_blank'
-        rel='noopener noreferrer'
-        href='/tools/rate-spread/methodology'
-      >
-        Methodology for Determining Average Prime Offer Rates
-      </a>
-    </li>,
-  ],
-  2020: [
-    <li key='2020-0'>
-      <a
-        target='_blank'
-        rel='noopener noreferrer'
-        href='/tools/rate-spread/requirements'
-      >
-        Data Requirements
-      </a>
-    </li>,
-    <li key='2020-1'>
-      <a
-        target='_blank'
-        rel='noopener noreferrer'
-        href='/tools/rate-spread/methodology'
-      >
-        Methodology for Determining Average Prime Offer Rates
-      </a>
-    </li>,
-  ],
-  2021: [
-    <li key='2021-0'>
-      <a
-        target='_blank'
-        rel='noopener noreferrer'
-        href='/tools/rate-spread/requirements'
-      >
-        Data Requirements
-      </a>
-    </li>,
-    <li key='2021-1'>
-      <a
-        target='_blank'
-        rel='noopener noreferrer'
-        href='/tools/rate-spread/methodology'
-      >
-        Methodology for Determining Average Prime Offer Rates
-      </a>
-    </li>,
-  ],
-  2022: [
-    <li key='2022-0'>
-      <a
-        target='_blank'
-        rel='noopener noreferrer'
-        href='/tools/rate-spread/requirements'
-      >
-        Data Requirements
-      </a>
-    </li>,
-    <li key='2022-1'>
-      <a
-        target='_blank'
-        rel='noopener noreferrer'
-        href='/tools/rate-spread/methodology'
-      >
-        Methodology for Determining Average Prime Offer Rates
-      </a>
-    </li>,
-  ],
-  2023: [
-    <li key='2023-0'>
-      <a
-        target='_blank'
-        rel='noopener noreferrer'
-        href='/tools/rate-spread/requirements'
-      >
-        Data Requirements
-      </a>
-    </li>,
-    <li key='2023-1'>
+    <li key='v2-1'>
       <a
         target='_blank'
         rel='noopener noreferrer'
@@ -126,14 +26,14 @@ const links = {
 }
 
 const RateSpread = props => {
-  const { year, inList, url } = props
+  const { version, inList, url } = props
   return (
     <Product
       heading='Rate Spread'
       lead='This calculator provides rate spreads for HMDA reportable loans with a final action date on or after January 1st, 2018.'
-      list={links[year]}
+      list={links[version]}
       inList={inList}
-      year={year}
+      version={version}
       url={url}
       collection='tools'
       slug='rate-spread'

@@ -24,16 +24,8 @@ const links = {
       />
     </li>,
   ],
-  2017: [],
-  2018: [
-    <li key='18-1'>
-      <ExternalLink
-        url={
-          'https://github.com/cfpb/hmda-platform/blob/master/docs/UsingModifiedLar.md'
-        }
-        text='Using Modified LAR Data'
-      />
-    </li>,
+  v1: [],
+  v2: [
     <S3DocLink
       url={
         'https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2018-public-LAR-code-sheet.pdf'
@@ -41,19 +33,7 @@ const links = {
       key={'18-2'}
       label='2018 Public LAR Code Sheet PDF'
     />,
-    <li key='18-3'>
-      <Link to='/documentation/2018/modified-lar-header/'>
-        Modified LAR Header
-      </Link>
-    </li>,
-    <li key='18-4'>
-      <Link to='/documentation/2018/modified-lar-schema/'>
-        Modified LAR Schema
-      </Link>
-    </li>,
-  ],
-  2019: [
-    <li key='3'>
+    <li key='v2-1'>
       <ExternalLink
         url={
           'https://github.com/cfpb/hmda-platform/blob/master/docs/UsingModifiedLar.md'
@@ -61,58 +41,8 @@ const links = {
         text='Using Modified LAR Data'
       />
     </li>,
-    <li key='19-2'>
-      <Link to='/documentation/2019/modified-lar-header/'>
-        Modified LAR Header
-      </Link>
-    </li>,
-    <li key='19-3'>
-      <Link to='/documentation/2019/modified-lar-schema/'>
-        Modified LAR Schema
-      </Link>
-    </li>,
-  ],
-  2020: [
-    <li key='4'>
-      <ExternalLink
-        url={
-          'https://github.com/cfpb/hmda-platform/blob/master/docs/UsingModifiedLar.md'
-        }
-        text='Using Modified LAR Data'
-      />
-    </li>,
-    <li key='20-2'>
-      <Link to='/documentation/2020/modified-lar-schema/'>
-        Modified LAR Schema
-      </Link>
-    </li>,
-  ],
-  2021: [
-    <li key='21-1'>
-      <ExternalLink
-        url={
-          'https://github.com/cfpb/hmda-platform/blob/master/docs/UsingModifiedLar.md'
-        }
-        text='Using Modified LAR Data'
-      />
-    </li>,
-    <li key='21-2'>
-      <Link to='/documentation/2021/modified-lar-schema/'>
-        Modified LAR Schema
-      </Link>
-    </li>,
-  ],
-  2022: [
-    <li key='2022-1'>
-      <ExternalLink
-        url={
-          'https://github.com/cfpb/hmda-platform/blob/master/docs/UsingModifiedLar.md'
-        }
-        text='Using Modified LAR Data'
-      />
-    </li>,
-    <li key='2022-2'>
-      <Link to='/documentation/2022/modified-lar-schema/'>
+    <li key='v2-2'>
+      <Link to='/documentation/v2/modified-lar-schema/'>
         Modified LAR Schema
       </Link>
     </li>,
@@ -120,14 +50,14 @@ const links = {
 }
 
 const ModifiedLar = props => {
-  const { year, inList, url } = props
+  const { version, inList, url } = props
   return (
     <Product
       heading='Modified Loan/Application Register (LAR)'
       lead='The modified LAR provides loan-level data for an individual financial institution, as modified by the Bureau to protect applicant and borrower privacy.'
-      list={links.permanent.concat(links[year])}
+      list={links.permanent.concat(links[version])}
       inList={inList}
-      year={year}
+      version={version}
       url={url}
       collection='publications'
       slug='modified-lar'

@@ -1,0 +1,1 @@
+export const VERSIONS = ['v1', 'v2']

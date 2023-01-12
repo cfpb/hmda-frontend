@@ -6,14 +6,14 @@ import LARFT from './LARFT.jsx'
 import FFVT from './FFVT.jsx'
 
 const Tools = props => {
-  const { year } = props
+  const { version } = props
   return (
     <ul className="ProductCollection">
-      <DataBrowser year={year} inList={true}/>
-      <RateSpread year={year} inList={true}/>
-      <CheckDigit year={year} inList={true}/>
-      <LARFT year={year} inList={true}/>
-      <FFVT year={year} inList={true}/>
+      <DataBrowser version={version} inList={true}/>
+      <RateSpread version={version} inList={true}/>
+      <CheckDigit version={version} inList={true}/>
+      <LARFT version={version} inList={true}/>
+      <FFVT version={version} inList={true}/>
     </ul>
   )
 }

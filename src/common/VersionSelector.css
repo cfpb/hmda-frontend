@@ -1,0 +1,41 @@
+.VersionSelector {
+  margin-top: 1.8em;
+}
+
+.VersionSelector a {
+  color: #212121;
+  font-family: SourceSansProBold;
+  margin-right: 1em;
+  text-decoration: none;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.App .VersionSelector h4 {
+  margin-bottom: 0.33em;
+}
+
+.VersionSelector span {
+  display: block;
+}
+.VersionSelector a:visited {
+  color: #212121;
+}
+.VersionSelector a:hover {
+  color: #0071bc;
+  border-bottom: 2px solid;
+}
+.VersionSelector a:last-child {
+  margin-right: 0;
+}
+.VersionSelector a.active {
+  border-bottom: 2px solid;
+}
+
+.VersionSelector.standalone {
+  margin-top: none;
+}
+
+.VersionSelector.standalone a {
+  font-size: 1em;
+}
