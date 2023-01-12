@@ -1,4 +1,5 @@
-# Table of Contents
+# LARFT Dev Docs
+- [LARFT Dev Docs](#larft-dev-docs)
 - [OLARFT Data Flow](#olarft-data-flow)
   - [Storage](#storage)
   - [UI Interactions](#ui-interactions)
@@ -24,18 +25,16 @@ Search and filter logic is handled at the component level via `useState`.
 There is a `larft` slice that tracks the following items (screenshot from Redux DevTools):
 ![larft slice](larft-slice.png)
 
-- ts: [Array] Saved Transmittal Sheet rows
-- lars: [Array] Saved Loan/Application Register rows
-- unparsable: [Object] Rows (tracked by line #) from an uploaded file that could not be parsed
-  - ex. In the above graphic, lines 2 and 4 could not be parsed
-- editingRow: [Object] The currently selected or 'In Progress' row
-- selectedRowId: [String] Row identifier of the `editingRow`
-  - ex. "5"
-- selectedColName: [String] Label of the currently focused column
-  - ex. "Legal Entity Identifier (LEI)"
-- filename: [String] Derived filename used when user downloads their data
-  - ex. "2018-4-FRONTENDTESTBANK9999"
-- hasNewChanges: [Boolean] Have any saved rows changed since the last time the `Download File` button was clicked?
+| State | Type | Description | Example |
+| --- | --- | --- | --- |
+|ts| Array| Saved Transmittal Sheet rows||
+|lars| Array| Saved Loan/Application Register rows||
+|unparsable| Object| Row strings (tracked by line #) from an uploaded file that could not be parsed|In the above graphic, lines 2 and 4 could not be parsed|
+|editingRow| Object| The currently selected or 'In Progress' row||
+|selectedRowId| String| Row identifier of the `editingRow`| "5" |
+|selectedColName| String| Label of the currently focused column| "Legal Entity Identifier (LEI)"|
+|filename| String| Derived filename used when user downloads their data| "2018-4-FRONTENDTESTBANK9999"|
+|hasNewChanges| Boolean| Have any saved rows changed since the last time the `Download File` button was clicked?||
 
 ## UI Interactions
 A brief overview of how user actions affect the app state. 
