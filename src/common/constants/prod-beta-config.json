@@ -9,6 +9,15 @@
         "url": "https://ffiec.beta.cfpb.gov/tools/lar-formatting",
         "text": "HMDA Beta Platform."
       }
+    },
+    {
+      "heading": "HMDA Quarterly Graphs updated",
+      "message": "HMDA Quarterly Graphs have been updated to include data for the recently completed 2022-Q3 filing period and can be found ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/data-browser/graphs/quarterly",
+        "text": "here."
+      }
     }
   ],
   "publicationReleaseYear": "2020",

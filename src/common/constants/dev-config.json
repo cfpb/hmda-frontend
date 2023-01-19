@@ -1,6 +1,16 @@
 {
   "name": "dev",
-  "announcement": [],
+  "announcement": [
+    {
+      "heading": "HMDA Quarterly Graphs updated",
+      "message": "HMDA Quarterly Graphs have been updated to include data for the recently completed 2022-Q3 filing period and can be found ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/data-browser/graphs/quarterly",
+        "text": "here."
+      }
+    }
+  ],
   "publicationReleaseYear": "2021",
   "mlarReleaseYear": "2021",
   "maintenanceMode": false,
