@@ -2,8 +2,17 @@
 
 ### [activity\_year](#activity_year)
 - **Description:** The calendar year of data collection.
-- **Values:**
-  - Integer values for year
+  <br>
+  <br>
+  | activity_year | Value |
+  | :---: | :---: |
+  | 2017 | 2017 |
+  | 2018 | 2018 |
+  | 2019 | 2019 |
+  | 2020 | 2020 |
+  | 2021 | 2021 |
+  | 2022 | 2022 |
+  | 2023 | 2023 |
 
 ### [calendar\_quarter](#calendar_quarter)
 - **Description:** The calandar quarter to which the data refer. Quarter 4 is for the annual submission of data.
