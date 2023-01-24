@@ -1,3 +1,6 @@
+yum install -y wget
+yum install -y unzip
+
 yum install -y libXdmcp
 yum install -y libXfont2
 
