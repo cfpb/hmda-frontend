@@ -7,7 +7,7 @@ import './QuarterlyFilersTable.css';
 
 const QuarterlyFilersTable = props => {
   const dispatch = useDispatch();
-  const [year, past] = [new Date().getFullYear(), 3];
+  const [year, past] = [2022, 3];
   const { sort } = useSelector(state => state.institutionsConfig);
   const pastYears = [...Array(past).keys()].map(i => `${year - i - 1}`);
 
