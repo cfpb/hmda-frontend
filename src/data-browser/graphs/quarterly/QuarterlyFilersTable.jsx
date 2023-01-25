@@ -4,19 +4,23 @@ import LoadingIcon from '../../../common/LoadingIcon';
 import SimpleSortTable from '../../../common/SimpleSortTable';
 import { institutions } from '../slice';
 import './QuarterlyFilersTable.css';
+import { useLatestAvailableYear } from './useLatestAvailableYear'
 
 const QuarterlyFilersTable = props => {
   const dispatch = useDispatch();
-  const [year, past] = [2022, 3];
   const { sort } = useSelector(state => state.institutionsConfig);
+  const year = useLatestAvailableYear()
+  const past = 3
+  
   const pastYears = [...Array(past).keys()].map(i => `${year - i - 1}`);
-
-  const { data, isSuccess } = institutions.useGetQuarterliesWithLarsQuery({ year, past });
+  
+  const { data, isSuccess } = institutions.useGetQuarterliesWithLarsQuery(
+    { year, past },
+    { skip: !year }
+  )
 
   const setSort = sortUpdateFn =>
     dispatch(institutions.updateSort(sortUpdateFn(sort)))
-
-  let content = <LoadingIcon />
 
   const tableColumns = useMemo(() => {
     const countsColumns = pastYears.map(accessorKey => {
@@ -46,6 +50,8 @@ const QuarterlyFilersTable = props => {
       ...countsColumns,
     ]
   })
+
+  let content
 
   if (isSuccess && data) {
     const tableData = data.quarterly.map(({ name, lei, agency, larCounts }) => {
@@ -107,6 +113,8 @@ const QuarterlyFilersTable = props => {
       />
     )
   }
+
+  if (!year || !content) return <LoadingIcon />
 
   return (
     <div className='quarterly-filers-table'>
