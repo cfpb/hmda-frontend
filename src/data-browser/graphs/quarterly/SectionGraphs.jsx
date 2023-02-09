@@ -24,7 +24,7 @@ import {
   SERIES_FOR_URL
 } from '../slice/graphConfigs.js'
 import { graphs } from '../slice'
-import { formatGroupLabel } from '../utils/menuHelpers.js'
+import { formatGroupLabel, onMenuOpen } from '../utils/menuHelpers.js'
 import { useFetchGraphList } from './useFetchGraphList'
 import { useFetchSingleGraph } from './useFetchSingleGraphs'
 import { useManageGraphSelection } from './useManageGraphSelection'
@@ -215,6 +215,7 @@ export const SectionGraphs = ({
             : ''
         }
         formatGroupLabel={formatGroupLabel}
+        onMenuOpen={onMenuOpen}
       />
       <PeriodSelectors
         {...{
