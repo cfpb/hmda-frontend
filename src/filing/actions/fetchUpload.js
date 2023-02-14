@@ -15,15 +15,31 @@ export default function fetchUpload(file) {
     data.append('file', file)
 
     return postUpload(data)
-      .then(json => {
-        return hasHttpError(json).then(hasError => {
+      .then(response => {
+        return hasHttpError(response).then(hasError => {
           if (hasError) {
-            dispatch(receiveUploadError(json))
-            throw new Error(json && `${json.status}: ${json.statusText}`)
+            if (response instanceof Response) {
+              /**
+               * A Response object may contain a JSON payload with additional
+               * details about the error. If no JSON details are found, we
+               * fall back to using the Response's values.
+               */
+              response.json().then(json => {
+                const errorJson = {
+                  status: (json && json.httpStatus) || response.status,
+                  statusText: (json && json.message) || response.statusText,
+                }
+                dispatch(receiveUploadError(errorJson))
+              })
+            } else {
+              dispatch(receiveUploadError(response))
+            }
+
+            throw new Error(response && `${response.status}: ${response.statusText}`)
           }
 
-          dispatch(receiveUpload(json))
-          dispatch(updateStatus(json.status))
+          dispatch(receiveUpload(response))
+          dispatch(updateStatus(response.status))
           dispatch(pollForProgress())
         })
       })
