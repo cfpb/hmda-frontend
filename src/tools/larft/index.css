@@ -184,6 +184,11 @@
   width: 100%;
 }
 
+/* Style below fixes react-fluid-table column shrinking bug */
+.row-wrapper {
+  width: auto !important;
+}
+
 /* SavedRows */
 .saved-rows,
 .saved-rows > table {
