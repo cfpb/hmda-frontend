@@ -1,6 +1,12 @@
 {
   "log": [
     {
+      "date": "02/13/23",
+      "type": "correction",
+      "product": "filing",
+      "description": "The HMDA Ops team discovered a bug in which filers were unable to view their IRS reports upon submission. This bug has been remediated and filers should be able to view their IRS report when selecting “View Completed Filing” on the HMDA Platform."
+    },
+    {
       "date": "01/19/23",
       "type": "update",
       "product": "tools",
