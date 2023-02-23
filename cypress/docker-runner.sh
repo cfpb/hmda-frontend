@@ -16,30 +16,39 @@ curl https://s3.amazonaws.com/cfpb-hmda-public/prod/cypress/e2e.zip > ./cypress/
 mkdir -p cypress/e2e/docusaurus
 curl https://raw.githubusercontent.com/cfpb/hmda-combined-documentation/docusaurus/cypress/e2e/documentation.cy.js > cypress/e2e/docusaurus/documentation.cy.js
 
-yarn cypress run --spec "cypress/e2e/docusaurus/**" > output_load.txt
-
 # Run configured e2e tests
 # Example: "cypress/e2e/data-browser/**,cypress/e2e/data-publication/**"
-# if [[ -n "$CYPRESS_TEST_LIST" ]]; 
-# then
-# 	yarn cypress run --spec ${CYPRESS_TEST_LIST} > output_e2e.txt
-# 	if  grep -q "All specs passed!" "output_e2e.txt" ; then
-# 		post_success 'e2e testing' "output_e2e.txt"
-# 	else
-# 		post_failure 'e2e testing' "output_e2e.txt"
-# 	fi
-# fi
+if [[ -n "$CYPRESS_TEST_LIST" ]]; 
+then
+	yarn cypress run --spec ${CYPRESS_TEST_LIST} > output_e2e.txt
+	if  grep -q "All specs passed!" "output_e2e.txt" ; then
+		post_success 'e2e testing' "output_e2e.txt"
+	else
+		post_failure 'e2e testing' "output_e2e.txt"
+	fi
+fi
 
-# # Run Load tests, if enabled
-# if [ "$CYPRESS_SHOULD_LOAD_TEST" = true ];
-# then 
-# 	yarn cypress run --spec "cypress/e2e/load/**" > output_load.txt
-# 	if  grep -q "All specs passed!" "output_load.txt" ; then
-# 		post_success 'Load testing' "output_load.txt"
-# 	else
-# 		post_failure 'Load testing' "output_load.txt"
-# 	fi
-# fi
+# Run Docusaurus e2e test and display results
+if [[ "$CYPRESS_HOST" == *"ffiec.beta"* ]];
+then
+	yarn cypress run --spec "cypress/e2e/docusaurus/**" > output_docusaurus_e2e.txt
+	if grep -q "All specs passed!" "output_docusaurus_e2e.txt" ; then
+		post_success 'Docusaurus e2e testing' "output_docusaurus_e2e.txt"
+	else
+		post_failure 'Docusaurus e2e testing' "output_docusaurus_e2e.txt"
+	fi
+fi
+
+# Run Load tests, if enabled
+if [ "$CYPRESS_SHOULD_LOAD_TEST" = true ];
+then 
+	yarn cypress run --spec "cypress/e2e/load/**" > output_load.txt
+	if  grep -q "All specs passed!" "output_load.txt" ; then
+		post_success 'Load testing' "output_load.txt"
+	else
+		post_failure 'Load testing' "output_load.txt"
+	fi
+fi
 
 
-# cleanup
+cleanup
