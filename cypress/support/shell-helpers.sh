@@ -3,7 +3,7 @@
 # Args
 # 1 - Test collection label (Integration/Load)
 # 2 - Filename
-post_success() 
+post_success()
 {
 	runtime=$(tail -n 1 ${2} | xargs echo)
 	
@@ -29,6 +29,7 @@ post_failure()
 cleanup()
 {
 	rm output_load.txt
+	rm output_docusaurus_e2e.txt
 	rm output_integration.txt
 }
 
