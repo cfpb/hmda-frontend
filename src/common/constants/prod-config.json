@@ -2,7 +2,7 @@
   "name": "prod",
   "announcement": [
     {
-      "message": "We will be performing scheduled system maintenance on March 7 from 10PM - 12AM EST. During this time users may experience issues logging in to the Filing application or creating new accounts.",
+      "message": "We are performing system maintenance from 10PM - 12AM EST. During this time users may experience issues logging in to the Filing application or creating new accounts.",
       "type": "warning",
       "heading": "Scheduled Maintenance",
       "link": null
@@ -20,7 +20,12 @@
   "publicationReleaseYear": "2021",
   "mlarReleaseYear": "2021",
   "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "filingAnnouncement": {
+    "message": "We are performing system maintenance from 10PM - 12AM EST. During this time users may experience issues logging in to the Filing application or creating new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance",
+    "link": null
+  },
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "mlar": [
