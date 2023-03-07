@@ -2,6 +2,12 @@
   "name": "prod",
   "announcement": [
     {
+      "message": "We will be performing scheduled system maintenance on March 7 from 10PM - 12AM EST. During this time users may experience issues logging in to the Filing application or creating new accounts.",
+      "type": "warning",
+      "heading": "Scheduled Maintenance",
+      "link": null
+    },
+    {
       "heading": "HMDA Quarterly Graphs updated",
       "message": "HMDA Quarterly Graphs have been updated to include data for the recently completed 2022-Q3 filing period and can be found ",
       "type": "info",
