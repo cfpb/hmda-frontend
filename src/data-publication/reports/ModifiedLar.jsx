@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import Heading from '../../common/Heading.jsx'
 import SearchList from './SearchList.jsx'
 import YearSelector from '../../common/YearSelector.jsx'
@@ -28,9 +27,9 @@ const ModifiedLar = props => {
             may not have completed its HMDA data submission."
         >
           <p>
-            <Link to="/data-publication/documents#modified-lar">
+            <a href="/data-publication/documents#modified-lar">
               Modified LAR file specifications, schemas, and instructions
-            </Link>
+            </a>
           </p>
         </Heading>
         <YearSelector year={year} url={url} years={years}/>

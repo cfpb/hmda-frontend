@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import NewIndicator from '../NewIndicator'
 import { ExpandableCard } from '../ExpandableCard'
 
@@ -21,25 +20,25 @@ export const DataDocs = () => {
           </a>
         </li>
         <li>
-          <Link to='/documentation/faq/data-browser-graphs-faq'>
+          <a href='/documentation/faq/data-browser-graphs-faq'>
             Data Browser - Graphs FAQ
             <NewIndicator />
-          </Link>
+          </a>
         </li>
         <li>
-          <Link to='/documentation/faq/data-browser-maps-faq'>
+          <a href='/documentation/faq/data-browser-maps-faq'>
             Data Browser - Maps FAQ
-          </Link>
+          </a>
         </li>
         <li>
-          <Link to='/documentation/faq/downloading-datasets'>
+          <a href='/documentation/faq/downloading-datasets'>
             Data Browser - Dataset Filtering FAQ
-          </Link>
+          </a>
         </li>
         <li>
-          <Link to='/documentation/faq/static-dataset-faq'>
+          <a href='/documentation/faq/static-dataset-faq'>
             Data Publication - Static Dataset FAQ
-          </Link>
+          </a>
         </li>
       </ul>
     </ExpandableCard>

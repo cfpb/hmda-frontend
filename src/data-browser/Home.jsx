@@ -25,11 +25,7 @@ class Home extends Component {
               visualize HMDA datasets.
             </p>
             <p className='lead'>
-              Visit our{' '}
-              <ExternalLink
-                url='https://cfpb.github.io/hmda-platform/#data-browser'
-                text='HMDA API Documentation'
-              />{' '}
+              Visit our <a href='/documentation/api/data-browser/'>HMDA Data Browser API</a> {" "}
               page to learn more about the HMDA Data Browser API.
             </p>
           </Heading>
@@ -47,7 +43,7 @@ class Home extends Component {
             image={filterBw}
             imageHover={filterColor}
             faq={{
-              url: `documentation/tools/data-browser/data-browser-faq`,
+              url: `/documentation/tools/data-browser/data-browser-faq`,
               label: 'HMDA Dataset Filtering FAQ',
             }}
           />
@@ -60,7 +56,7 @@ class Home extends Component {
             image={mapBw}
             imageHover={mapColor}
             faq={{
-              url: `documentation/tools/data-browser/data-browser-maps-faq`,
+              url: `/documentation/tools/data-browser/data-browser-maps-faq`,
               label: 'HMDA Maps FAQ',
             }}
           />
@@ -75,7 +71,7 @@ class Home extends Component {
             image={graphBw}
             imageHover={graphColor}
             faq={{
-              url: `documentation/faq/data-browser-maps-faq`,
+              url: `/documentation/faq/data-browser-maps-faq`,
               label: 'HMDA Graphs FAQ',
             }}
           />

@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom"
 import { ExternalLink } from "../../common/ExternalLink"
 import { ExpandableCard } from "../ExpandableCard"
 
@@ -11,22 +10,22 @@ export const FilingDocs = () => (
   >
     <ul>
       <li>
-        <Link to='/documentation/faq/filing-faq'>HMDA Filing FAQ</Link>
+        <a href='/documentation/faq/filing-faq'>HMDA Filing FAQ</a>
       </li>
       <li>
-        <Link to='/documentation/2022/identifiers-faq/'>
+        <a href='/documentation/faq/data-collection-timelines#filing-instructions-guide-fig'>
           HMDA Institution Identifiers FAQ
-        </Link>
+        </a>
       </li>
       <li>
-        <Link to='/documentation/faq/data-collection-timelines#annual-filing-period-dates'>
+        <a href='/documentation/faq/data-collection-timelines#annual-filing-period-dates'>
           Annual HMDA Data Collection Timelines
-        </Link>
+        </a>
       </li>
       <li>
-        <Link to='/documentation/faq/data-collection-timelines#quarterly-filing-period-dates'>
+        <a href='/documentation/faq/data-collection-timelines#quarterly-filing-period-dates'>
           Quarterly HMDA Data Collection Timelines
-        </Link>
+        </a>
       </li>
       <li>
         <ExternalLink url='https://hmdahelp.consumerfinance.gov/knowledgebase/s/topic/0TOt0000000PFzGGAW/hmda-articles'>
@@ -34,9 +33,9 @@ export const FilingDocs = () => (
         </ExternalLink>
       </li>
       <li>
-        <Link to='/documentation/category/developer-apis'>
+        <a href='/documentation/category/developer-apis'>
           HMDA API Documentation
-        </Link>
+        </a>
       </li>
     </ul>
   </ExpandableCard>

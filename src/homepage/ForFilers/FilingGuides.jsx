@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { LATEST_FIG_YEAR } from '../../common/constants/years'
 import { ExternalLink } from '../../common/ExternalLink'
 import { ExpandableCard } from '../ExpandableCard'
@@ -24,9 +23,11 @@ export const FilingGuides = () => (
   >
     <ul>
       <li>
-        <Link to={`/documentation/faq/filing-faq`}>
+        <a
+          href={`/documentation/faq/data-collection-timelines#filing-instructions-guide-fig`}
+        >
           Filing Instructions Guides
-        </Link>
+        </a>
       </li>
       <ul>
         <li>

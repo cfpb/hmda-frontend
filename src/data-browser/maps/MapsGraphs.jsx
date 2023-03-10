@@ -19,28 +19,26 @@ const MapsGraphs = props => {
           <p className='lead'>
             The HMDA Maps tool allows you to explore subsets of HMDA data,
             filtered by{' '}
-            <Link
-              to={
+            <a
+              href={
                 '/documentation/tools/data-browser/data-browser-filters#action-taken-action_taken'
               }
             >
               popular variables
-            </Link>
+            </a>
             . For help getting started, visit the{' '}
-            <Link
-              to={'/documentation/tools/data-browser/data-browser-maps-faq'}
-            >
+            <a href={'/documentation/tools/data-browser/data-browser-maps-faq'}>
               HMDA Maps FAQ
-            </Link>
+            </a>
             . For advanced analysis, use the <code>Download Data</code> button
             to access all{' '}
-            <Link
-              to={
+            <a
+              href={
                 '/documentation/publications/loan-level-datasets/lar-data-fields'
               }
             >
               publicly available data fields
-            </Link>
+            </a>
             . Additional questions/suggestions can be sent to{' '}
             <a href='mailto:hmdahelp@cfpb.gov'>hmdahelp@cfpb.gov</a>.
           </p>

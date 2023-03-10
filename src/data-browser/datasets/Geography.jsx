@@ -505,7 +505,7 @@ class Geography extends Component {
               <a
                 target='_blank'
                 rel='noopener noreferrer'
-                href='https://cfpb.github.io/hmda-platform/#data-browser'
+                href='/documentation/api/data-browser/'
               >
                 Data Browser API
               </a>{' '}

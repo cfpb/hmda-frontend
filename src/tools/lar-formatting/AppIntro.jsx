@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { withAppContext } from '../../common/appContextHOC.jsx'
 import Heading from '../../common/Heading.jsx'
 import { S3DatasetLink } from '../../common/S3Integrations'
@@ -27,9 +26,9 @@ const AppIntro = ({ config = {} }) => {
         </p>
         <p>
           Follow the{' '}
-          <Link to={`/documentation/tools/lar-formatting/`}>
+          <a href={`/documentation/tools/lar-formatting/`}>
             LAR Formatting Tool instructions
-          </Link>{' '}
+          </a>{' '}
           to format your data into a pipe delimited text file.
         </p>
       </React.Fragment>
