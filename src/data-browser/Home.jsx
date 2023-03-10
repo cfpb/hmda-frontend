@@ -47,8 +47,8 @@ class Home extends Component {
             image={filterBw}
             imageHover={filterColor}
             faq={{
-              url: `/documentation/${publicationReleaseYear}/data-browser-faq`,
-              label: 'HMDA Dataset Filtering FAQ'
+              url: `documentation/tools/data-browser/data-browser-faq`,
+              label: 'HMDA Dataset Filtering FAQ',
             }}
           />
           <ImageCard
@@ -60,7 +60,7 @@ class Home extends Component {
             image={mapBw}
             imageHover={mapColor}
             faq={{
-              url: `/documentation/${publicationReleaseYear}/data-browser-maps-faq`,
+              url: `documentation/tools/data-browser/data-browser-maps-faq`,
               label: 'HMDA Maps FAQ',
             }}
           />
@@ -75,7 +75,7 @@ class Home extends Component {
             image={graphBw}
             imageHover={graphColor}
             faq={{
-              url: `/documentation/${CURRENT_YEAR}/data-browser-graphs-faq`,
+              url: `documentation/faq/data-browser-maps-faq`,
               label: 'HMDA Graphs FAQ',
             }}
           />

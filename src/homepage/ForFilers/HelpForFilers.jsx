@@ -28,7 +28,9 @@ export const HelpForFilers = () => {
           </ExternalLink>
         </li>
         <li>
-          <Link to='/documentation/2022/fig/'>Filing Instructions Guides</Link>
+          <Link to='/documentation/faq/data-collection-timelines#filing-instructions-guide-fig'>
+            Filing Instructions Guides
+          </Link>
         </li>
         <ul>
           <li>

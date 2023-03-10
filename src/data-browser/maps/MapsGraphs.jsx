@@ -10,8 +10,7 @@ import { Link } from 'react-router-dom'
 
 const MapsGraphs = props => {
   const year = props.match.params.year
-  const docsUrl = blob => `/documentation/${year}/${blob}`
-  
+
   return (
     <div className='MapsGraphs'>
       <HomeLink />
@@ -20,16 +19,26 @@ const MapsGraphs = props => {
           <p className='lead'>
             The HMDA Maps tool allows you to explore subsets of HMDA data,
             filtered by{' '}
-            <PopularVariableLink year={year}>
+            <Link
+              to={
+                '/documentation/tools/data-browser/data-browser-filters#action-taken-action_taken'
+              }
+            >
               popular variables
-            </PopularVariableLink>
+            </Link>
             . For help getting started, visit the{' '}
-            <Link to={docsUrl('data-browser-maps-faq')}>
+            <Link
+              to={'/documentation/tools/data-browser/data-browser-maps-faq'}
+            >
               HMDA Maps FAQ
             </Link>
             . For advanced analysis, use the <code>Download Data</code> button
             to access all{' '}
-            <Link to={docsUrl('lar-data-fields')}>
+            <Link
+              to={
+                '/documentation/publications/loan-level-datasets/lar-data-fields'
+              }
+            >
               publicly available data fields
             </Link>
             . Additional questions/suggestions can be sent to{' '}

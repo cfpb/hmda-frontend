@@ -21,23 +21,23 @@ export const DataDocs = () => {
           </a>
         </li>
         <li>
-          <Link to='/documentation/2022/data-browser-graphs-faq/'>
+          <Link to='/documentation/faq/data-browser-graphs-faq'>
             Data Browser - Graphs FAQ
             <NewIndicator />
           </Link>
         </li>
         <li>
-          <Link to='/documentation/2022/maps-faq/'>
+          <Link to='/documentation/faq/data-browser-maps-faq'>
             Data Browser - Maps FAQ
           </Link>
         </li>
         <li>
-          <Link to='/documentation/2022/data-browser-faq/'>
+          <Link to='/documentation/faq/downloading-datasets'>
             Data Browser - Dataset Filtering FAQ
           </Link>
         </li>
         <li>
-          <Link to='/documentation/2022/static-dataset-faq/'>
+          <Link to='/documentation/faq/static-dataset-faq'>
             Data Publication - Static Dataset FAQ
           </Link>
         </li>

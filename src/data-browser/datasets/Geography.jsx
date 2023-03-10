@@ -492,23 +492,23 @@ class Geography extends Component {
           <Heading type={1} headingText='HMDA Dataset Filtering'>
             <p className='lead'>
               You can use the HMDA Data Browser to filter and download CSV files
-              of HMDA data. These files contain all{" "}
+              of HMDA data. These files contain all{' '}
               <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="/documentation/2018/lar-data-fields/"
+                target='_blank'
+                rel='noopener noreferrer'
+                href='/documentation/publications/loan-level-datasets/lar-data-fields'
               >
                 data fields
-              </a>{" "}
+              </a>{' '}
               available in the public data record and can be used for advanced
-              analysis. You can also access the{" "}
+              analysis. You can also access the{' '}
               <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://cfpb.github.io/hmda-platform/#data-browser"
+                target='_blank'
+                rel='noopener noreferrer'
+                href='https://cfpb.github.io/hmda-platform/#data-browser'
               >
                 Data Browser API
-              </a>{" "}
+              </a>{' '}
               directly. For questions/suggestions, contact hmdahelp@cfpb.gov.
             </p>
           </Heading>
@@ -517,7 +517,7 @@ class Geography extends Component {
           year={this.state.year}
           onChange={this.onYearChange}
           years={this.props.config.dataBrowserYears}
-          label={"Data Year"}
+          label={'Data Year'}
         />
         <DatasetDocsLink year={this.state.year} />
 
@@ -564,7 +564,7 @@ class Geography extends Component {
           longRunningQuery={longRunningQuery}
         />
       </div>
-    );
+    )
   }
 }
 
