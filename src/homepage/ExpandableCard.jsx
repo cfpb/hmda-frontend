@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
 import { useLocalStorage } from "../common/useLocalStorage"
 import "./ExpandableCard.css"
 import NewIndicator from "./NewIndicator"
@@ -37,11 +36,13 @@ export const ExpandableCard = ({
   const newWindowParams = openNewWindow
     ? { target: '_blank', rel: 'noopener noreferror' }
     : {}
-  const cardHeading = destination ?
-   ( <Link to={destination}  { ...newWindowParams } >
-      {title}
-      {addNewFeatureIndicator ? <NewIndicator /> : ""}
-    </Link>
+  const cardHeading = destination ? (
+    (
+      <a href={destination} {...newWindowParams}>
+        {title}
+        {addNewFeatureIndicator ? <NewIndicator /> : ''}
+      </a>
+    )
   ) : (
     title
   )

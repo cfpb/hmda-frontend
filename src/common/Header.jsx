@@ -40,8 +40,8 @@ const Header = ({location: {pathname}, links = defaultLinks, ...others}) => {
 
                 return (
                   <li key={link.name}>
-                    <Link
-                      to={link.href}
+                    <a
+                      href={link.href}
                       className={
                           isActive
                           ? 'nav-link active'
@@ -53,7 +53,7 @@ const Header = ({location: {pathname}, links = defaultLinks, ...others}) => {
                       }
                     >
                       {link.name}
-                    </Link>
+                    </a>
                   </li>
                 )
               })}
