@@ -5,13 +5,16 @@ import SearchList from './SearchList.jsx'
 import YearSelector from '../../common/YearSelector.jsx'
 import { withAppContext } from '../../common/appContextHOC.jsx'
 import { withYearValidation } from '../../common/withYearValidation.js'
+import { CombinedMLAR } from './CombinedMLAR.jsx'
+import { Provider } from 'react-redux'
+import s3Store from '../../common/s3/store'
 
 import './ModifiedLar.css'
 
 const ModifiedLar = props => {
   const { url, params: { year } } = props.match
   const { mlar, shared  } = props.config.dataPublicationYears
-  const years =  mlar || shared
+  const years = mlar || shared
 
   return (
     <React.Fragment>
@@ -34,7 +37,14 @@ const ModifiedLar = props => {
           </p>
         </Heading>
         <YearSelector year={year} url={url} years={years}/>
-        <SearchList year={year} isModLar />
+        <div className="card">
+          <h3>Modified LAR by <span className="highlight">Individual</span> Institution</h3>
+          <SearchList year={year} isModLar />
+          <p className="updateSchedule"><strong>Update Frequency:</strong> Upon Institution Submission</p>
+        </div>
+        <Provider store={s3Store}>
+          <CombinedMLAR year={year} />
+        </Provider>
       </div>
     </React.Fragment>
   )
