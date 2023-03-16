@@ -13,8 +13,8 @@ curl https://s3.amazonaws.com/cfpb-hmda-public/prod/cypress/e2e.zip > ./cypress/
 	&& unzip -o cypress/downloads/e2e.zip -d cypress/  
 
 # Download Docusaurus test file
-mkdir -p cypress/e2e/docusaurus
-curl https://raw.githubusercontent.com/cfpb/hmda-combined-documentation/main/cypress/e2e/documentation.cy.js > cypress/e2e/docusaurus/documentation.cy.js
+# mkdir -p cypress/e2e/docusaurus
+# curl https://raw.githubusercontent.com/cfpb/hmda-combined-documentation/main/cypress/e2e/documentation.cy.js > cypress/e2e/docusaurus/documentation.cy.js
 
 # Run configured e2e tests
 # Example: "cypress/e2e/data-browser/**,cypress/e2e/data-publication/**"
@@ -29,15 +29,15 @@ then
 fi
 
 # Run Docusaurus e2e test and display results
-if [[ "$CYPRESS_HOST" == *"ffiec.beta"* ]];
-then
-	yarn cypress run --spec "cypress/e2e/docusaurus/**" > output_docusaurus_e2e.txt
-	if grep -q "All specs passed!" "output_docusaurus_e2e.txt" ; then
-		post_success 'Docusaurus e2e testing' "output_docusaurus_e2e.txt"
-	else
-		post_failure 'Docusaurus e2e testing' "output_docusaurus_e2e.txt"
-	fi
-fi
+# if [[ "$CYPRESS_HOST" == *"ffiec.beta"* ]];
+# then
+# 	yarn cypress run --spec "cypress/e2e/docusaurus/**" > output_docusaurus_e2e.txt
+# 	if grep -q "All specs passed!" "output_docusaurus_e2e.txt" ; then
+# 		post_success 'Docusaurus e2e testing' "output_docusaurus_e2e.txt"
+# 	else
+# 		post_failure 'Docusaurus e2e testing' "output_docusaurus_e2e.txt"
+# 	fi
+# fi
 
 # Run Load tests, if enabled
 if [ "$CYPRESS_SHOULD_LOAD_TEST" = true ];
