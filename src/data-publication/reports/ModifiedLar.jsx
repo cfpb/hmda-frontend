@@ -28,7 +28,7 @@ const ModifiedLar = props => {
             Enter a financial institution’s name to download its modified LAR file.
             If you cannot find a particular financial institution using this form, the
             institution may not have been required to report HMDA data or it
-            may not have completed its HMDA data submission."
+            may not have completed its HMDA data submission. You may also download a combined file containing all financial institutions' modified LAR records in a single file. The combined file is updated weekly on Mondays."
         >
           <p>
             <Link to="/data-publication/documents#modified-lar">
