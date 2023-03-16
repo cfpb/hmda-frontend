@@ -23,13 +23,14 @@
 }
 .YearSelector a:hover {
   color: #0071bc;
-  border-bottom: 2px solid;
+  border-bottom: 2px dotted;
 }
 .YearSelector a:last-child {
   margin-right: 0;
 }
 .YearSelector a.active {
   border-bottom: 2px solid;
+  color: #0071bc;
 }
 
 .YearSelector.standalone {
