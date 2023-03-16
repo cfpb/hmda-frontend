@@ -5,8 +5,8 @@
 . ./cypress/support/shell-helpers.sh
 
 # Download Fixtures
-# curl https://s3.amazonaws.com/cfpb-hmda-public/prod/cypress/fixtures.zip > ./cypress/downloads/fixtures.zip \
-# 	&& unzip -o cypress/downloads/fixtures.zip -d cypress/
+curl https://s3.amazonaws.com/cfpb-hmda-public/prod/cypress/fixtures.zip > ./cypress/downloads/fixtures.zip \
+	&& unzip -o cypress/downloads/fixtures.zip -d cypress/
 
 # Download e2e tests
 curl https://s3.amazonaws.com/cfpb-hmda-public/prod/cypress/e2e.zip > ./cypress/downloads/e2e.zip \
