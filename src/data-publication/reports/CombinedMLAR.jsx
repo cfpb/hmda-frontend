@@ -11,21 +11,26 @@ export const CombinedMLAR = ({ year }) => {
 
   // Pre-load both file's headers to avoid UI glitch when switching
   const headers = useS3FileHeaders(href, true)
-  useS3FileHeaders(formatURL(year, true), true) //
+  useS3FileHeaders(formatURL(year, true), true)
 
   const currentYear = new Date().getFullYear()
 
   const urlParts = href.split('/')
-    const filename = urlParts[urlParts.length - 1]
-    
-    let buttonLabel = 'Download Combined Modified LAR'
-    if (includeHeader) buttonLabel += ' w/ Header'
+  const filename = urlParts[urlParts.length - 1]
+
+  let buttonLabel = 'Download Combined Modified LAR'
+  if (includeHeader) buttonLabel += ' w/ Header'
 
   // Combined MLAR only produced for 2018+
   if (parseInt(year) <= 2017) return null
 
   // Show loading indicator while we check if Combined MLAR file exists for this year
-  if (!headers) return <LoadingIcon className='LoadingInline' />
+  if (!headers)
+    return (
+      <div className='card'>
+        <LoadingIcon className='LoadingInline' />
+      </div>
+    )
 
   // Hide this Card if the S3 files do not exist
   if (!headers.size && !headers.changeDate) return null
@@ -43,7 +48,7 @@ export const CombinedMLAR = ({ year }) => {
         <b>Warning:</b> Large file*
         <br />
         <br />
-        *Special software is required to open this file
+        <i>*Special software is required to open this file</i>
         <br />
       </div>
       <p className='combinedHeader'>
@@ -64,7 +69,7 @@ export const CombinedMLAR = ({ year }) => {
         <span className='label'>Update Frequency: </span>
         {year >= currentYear - 3
           ? 'Weekly on Monday, 12am EST'
-          : 'Data No Longer Updates'}
+          : 'Data No Longer Updated'}
       </p>
     </div>
   )
