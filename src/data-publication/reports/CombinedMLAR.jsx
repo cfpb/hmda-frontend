@@ -23,11 +23,8 @@ export const CombinedMLAR = ({ year, setHasCombined, hasCombined }) => {
 
   const currentYear = new Date().getFullYear()
 
-  const urlParts = href.split('/')
-  const filename = urlParts[urlParts.length - 1]
-
   let buttonLabel = 'Download Combined Modified LAR'
-  if (includeHeader) buttonLabel += ' w/ Header'
+  if (includeHeader) buttonLabel += ' with Header'
 
   // Combined MLAR only produced for 2018+
   if (parseInt(year) <= 2017) return null
@@ -49,16 +46,6 @@ export const CombinedMLAR = ({ year, setHasCombined, hasCombined }) => {
         Combined Modified LAR for <span className='highlight'>ALL</span>{' '}
         Institutions
       </h3>
-      <div className='alert alert-info'>
-        <h4 className='alert-heading'>{filename} </h4>
-        <b>File Size:</b> {humanFileSize(headers.size)}
-        <br />
-        <b>Warning:</b> Large file*
-        <br />
-        <br />
-        <i>*Special software is required to open this file</i>
-        <br />
-      </div>
       <p className='combinedHeader'>
         Include File Header{' '}
         <input
@@ -69,10 +56,20 @@ export const CombinedMLAR = ({ year, setHasCombined, hasCombined }) => {
           onChange={() => setIncludeHeader(!includeHeader)}
         />
       </p>
-      <a className='button' href={href} download>
-        {buttonLabel}
-      </a>
-      <br />
+      <div className='alert alert-warning'>
+        <h4 className='alert-heading'>
+          Warning: Large file - {humanFileSize(headers.size)}
+        </h4>
+        Special software is required to open this file
+      </div>
+      <ul className='Results'>
+        <li className=''>
+          <h4>ALL INSTITUTIONS </h4>
+          <a href={href} download>
+            {buttonLabel}
+          </a>
+        </li>
+      </ul>
       <p className='updateSchedule'>
         <span className='label'>Update Frequency: </span>
         {year >= currentYear - 3

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Heading from '../../common/Heading.jsx'
 import SearchList from './SearchList.jsx'
@@ -10,7 +10,6 @@ import { Provider } from 'react-redux'
 import s3Store from '../../common/s3/store'
 
 import './ModifiedLar.css'
-import { useState } from 'react'
 
 const ModifiedLar = props => {
   const [hasCombined, setHasCombined] = useState(false)
@@ -39,9 +38,7 @@ const ModifiedLar = props => {
             Institution
           </h3>
           <SearchList year={year} isModLar />
-          <p className='updateSchedule'>
-            <strong>Update Frequency:</strong> Upon Institution Submission
-          </p>
+          <UpdateFrequency year={year} />
         </div>
         <Provider store={s3Store}>
           <CombinedMLAR
@@ -90,4 +87,15 @@ const BaseParagraphText2 = (
 
 const CombinedParagraphAddition = " You may also download a combined file containing all financial institutions' modified LAR records in a single file. The combined file is updated weekly on Mondays."
 
+export const UpdateFrequency = ({ year }) => {
+  const currentYear = new Date().getFullYear()
+  return (
+    <p className='updateSchedule'>
+      <strong>Update Frequency:</strong>{' '}
+      {year >= currentYear - 3
+        ? 'Upon Institution Submission'
+        : 'Data No Longer Updated'}
+    </p>
+  )
+}
 export default withAppContext(withYearValidation(ModifiedLar))
