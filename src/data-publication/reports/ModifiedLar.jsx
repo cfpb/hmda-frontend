@@ -78,14 +78,15 @@ const BaseParagraphText2 = (
   <>
     <br />
     <br />
-    Typically, some data resubmissions occur during the weeks following the
-    annual submission deadline. For this reason, data users may want to wait for
-    the release of the Snapshot National Loan-Level Dataset to analyze the
-    nationwide data.
+    Typically, some data resubmissions to correct errors occur during the weeks
+    following the annual submission deadline. For this reason, data users may
+    want to wait for the release of the Snapshot National Loan-Level Dataset to
+    analyze the nationwide data.
   </>
 )
 
-const CombinedParagraphAddition = " You may also download a combined file containing all financial institutions' modified LAR records in a single file. The combined file is updated weekly on Mondays."
+const CombinedParagraphAddition =
+  " You may also download a combined file containing all financial institutions' modified LAR records in a single file. The combined file is updated weekly on Mondays."
 
 export const UpdateFrequency = ({ year }) => {
   const currentYear = new Date().getFullYear()
