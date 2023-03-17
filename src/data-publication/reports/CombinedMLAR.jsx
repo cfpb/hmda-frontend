@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
 import { humanFileSize } from '../../common/numberServices.js'
 import { useS3FileHeaders } from '../../common/S3Integrations.jsx'
+import { useEffect } from 'react'
 
-
-export const CombinedMLAR = ({ year }) => {
+export const CombinedMLAR = ({ year, setHasCombined, hasCombined }) => {
   const [includeHeader, setIncludeHeader] = useState(false)
 
   const href = formatURL(year, includeHeader)
@@ -12,6 +12,14 @@ export const CombinedMLAR = ({ year }) => {
   // Pre-load both file's headers to avoid UI glitch when switching
   const headers = useS3FileHeaders(href, true)
   useS3FileHeaders(formatURL(year, true), true)
+
+  // Update parent component to display/hide Combined MLAR language
+  // based on the existence of the S3 files.
+  useEffect(() => {
+    if (!headers) return
+    if (headers.size && headers.changeDate) return setHasCombined(true)
+    setHasCombined(false)
+  }, [headers])
 
   const currentYear = new Date().getFullYear()
 
@@ -33,7 +41,7 @@ export const CombinedMLAR = ({ year }) => {
     )
 
   // Hide this Card if the S3 files do not exist
-  if (!headers.size && !headers.changeDate) return null
+  if (!hasCombined) return null
 
   return (
     <div className='card'>
