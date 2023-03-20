@@ -2,6 +2,16 @@
   "name": "prod",
   "announcement": [
     {
+      "heading": "2022 Modified LAR Release",
+      "message": "On March 20, 2023, the 2022 Modified LAR data was released. A combined file containing all LAR records in a single file is also available. These files can be accessed via the ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/data-publication/modified-lar/",
+        "text": "Modified LAR page."
+      },
+      "endDate": "05/31/2023"
+    },
+    {
       "heading": "HMDA Quarterly Graphs updated",
       "message": "HMDA Quarterly Graphs have been updated to include data for the recently completed 2022-Q3 filing period and can be found ",
       "type": "info",
