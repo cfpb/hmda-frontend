@@ -38,7 +38,7 @@ const App = () => {
   const isFiling = !!window.location.pathname.match(/^\/filing/)
   const isHelp = !!window.location.pathname.match(/^\/hmda-help/)
 
-  const showCommonHeader = !(isFiling || isHelp)
+  const showCommonHeader = !isHelp
   const showFooter = !isHelp
   const showBetaBanner = isBeta() && !isFiling
 

@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom'
 import BannerUSA from './BannerUSA'
 import { defaultLinks } from './constants/links'
 
-import './Header.css'
+import './uswds/css/styles.css'
+import './uswds/js/uswds-init.min.js'
+import './uswds/js/uswds.min.js'
 import logo from './images/ffiec-logo.svg'
+import closeBtn from './uswds/img/usa-icons/close.svg'
 
 export const hideHeaderFooter = (path) => {
   const parts = path && path.split('/')
@@ -21,39 +24,66 @@ const Header = ({location: {pathname}, links = defaultLinks, ...others}) => {
       <a className="skipnav" href="#main-content">
         Skip to main content
       </a>
-      <header className="hmda-header header header-basic" role="banner">
-        <BannerUSA />
-        <div className="nav-container">
-          <div className="logo" id="logo">
-            <span className="logo-text">
+      <BannerUSA />
+      <div className="usa-overlay"></div>
+      <header className="usa-header usa-header--basic" role="banner">
+        <div className="usa-nav-container">
+          <div className="usa-navbar">
+            <div className="usa-logo" id="logo">
               <a className="nav-link" href="/" aria-label="Home">
                 <img alt="FFIEC" src={logo} height="32" />
-                <span>Home Mortgage Disclosure Act</span>
+                <span className="usa-logo__text">Home Mortgage Disclosure Act</span>
               </a>
-            </span>
+            </div>
+            <button type="button" className="usa-menu-btn">Menu</button>
           </div>
-          <nav className="nav">
-            <ul className="nav-primary">
+          <nav className="usa-nav">
+            <button type="button" className="usa-nav__close">
+              <img src={closeBtn} role="img" alt="Close" />
+            </button>
+            <ul className="usa-nav__primary usa-accordion">
               {links.map(link => {
                 let isActive = pathname.match(new RegExp('^' + link.href))
                 if(link.href === '/') isActive = link.href === pathname
 
                 return (
-                  <li key={link.name}>
-                    <Link
-                      to={link.href}
-                      className={
-                          isActive
-                          ? 'nav-link active'
-                          : 'nav-link'
-                      }
-                      target={link.name === 'Filing' ? '_blank' : null}
-                      rel={
-                        link.name === 'Filing' ? 'noopener noreferrer' : null
-                      }
-                    >
-                      {link.name}
-                    </Link>
+                  <li key={link.name} className="usa-nav__primary-item">
+                    {!link.submenu ? 
+                      <Link
+                        to={link.href}
+                        className={
+                            isActive
+                            ? 'usa-nav__link usa-current'
+                            : 'usa-nav__link'
+                        }
+                        //target={link.name === 'Filing' ? '_blank' : null}
+                        rel={
+                          link.name === 'Filing' ? 'noopener noreferrer' : null
+                        }
+                      >
+                        {link.name}
+                      </Link> :
+                      <>
+                        <button
+                          type="button"
+                          className="usa-accordion__button usa-nav__link"
+                          aria-expanded="false"
+                          aria-controls={link.name}
+                        >
+                          <span>{link.name}</span>
+                        </button>
+                        <ul id={link.name} className="usa-nav__submenu">
+                          {link.submenu.map(sublink => (<li key={sublink.name} className="usa-nav__submenu-item">
+                            <Link
+                              to={sublink.href}
+                            >
+                              {sublink.name}
+                            </Link>
+                          </li>)
+                          )}
+                        </ul>
+                      </>
+                    }
                   </li>
                 )
               })}

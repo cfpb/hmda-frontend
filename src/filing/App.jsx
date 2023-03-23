@@ -138,7 +138,7 @@ export class AppContainer extends Component {
         <a className="skipnav" href="#main-content">
           Skip to main content
         </a>
-        <Header filingPeriod={params.filingPeriod} pathname={location.pathname} />
+        {/*<Header filingPeriod={params.filingPeriod} pathname={location.pathname} />*/}
         <ConfirmationModal />
         {isBeta() ? <Beta/> : null}
         {filingAnnouncement ? <FilingAnnouncement data={filingAnnouncement} /> : null}

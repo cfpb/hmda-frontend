@@ -1,0 +1,432 @@
+/*
+* * * * * ==============================
+* * * * * ==============================
+* * * * * ==============================
+* * * * * ==============================
+========================================
+========================================
+========================================
+----------------------------------------
+USWDS THEME CUSTOM STYLES
+----------------------------------------
+!! Copy this file to your project's
+   sass root. Don't edit the version
+   in node_modules.
+----------------------------------------
+Custom project SASS goes here.
+
+i.e.
+@include u-padding-right('05');
+----------------------------------------
+*/
+
+@use "uswds-core" as *;
+
+body {
+   margin-bottom: 0 !important;
+}
+
+
+
+/*************************
+   usa-banner
+/*************************/
+
+.usa-banner__inner {
+   margin-left: 0;
+}
+
+.usa-banner__header--expanded .usa-banner__inner {
+   margin-left: 0;
+}
+
+
+/*************************
+   usa-nav
+/*************************/
+@media (max-width: 1023px) {
+   .usa-nav {
+      width: 80%;
+   }
+}
+
+@keyframes slidein-left {
+   0% {
+      transform: translateX(100%);
+   }
+}
+
+@media (min-width: 1024px) {
+
+   .usa-nav__link,
+   .usa-nav .usa-accordion__button {
+      text-transform: uppercase;
+      font-size: .85em;
+   }
+}
+
+/*************************
+   usa-header
+/*************************/
+
+.usa-nav-container {
+   max-width: 100%;
+
+   @media screen and (min-width: 1024px) {
+      border-bottom: 1px solid #dfe1e2;
+   }
+
+}
+
+.usa-header--basic {
+   .usa-navbar {
+      width: auto;
+      height: 4.8rem;
+
+
+      .usa-logo {
+         margin-top: .75rem;
+
+         a {
+            display: flex;
+            align-items: center;
+            color: #1f498f;
+
+            &:hover {
+               color: #0071bc;
+            }
+
+            img {
+               margin-right: .5em;
+            }
+
+            span {
+               min-width: 15em;
+
+               @media screen and (min-width: 1024px) {
+                  display: none;
+               }
+
+               @media screen and (min-width: 1240px) {
+                  display: inline-flex;
+               }
+            }
+         }
+      }
+   }
+}
+
+
+/*************************
+   usa-hero
+/*************************
+
+
+.usa-hero {
+   background-image: url("../../images/hmda-hero.jpg");
+   background-position: 100% 0%;
+   max-width: 1500px;
+   margin: 0 auto;
+
+   .grid-container {
+      margin-left: 0;
+
+      @media screen and (min-width: 1300px) {
+         margin-left: 10%;
+      }
+   }
+
+   .usa-hero__heading--alt {
+      font-size: 3.25rem;
+      margin-bottom: 1rem;
+   }
+
+   .usa-hero__callout {
+      background-color: rgba(#162e51, .8);
+
+      @media (min-width: 640px) {
+         max-width: 37rem;
+      }
+
+      .usa-hero__heading {
+         margin-top: 0rem;
+         font-size: 3rem;
+      }
+
+      p {
+         color: #ddd;
+      }
+
+      .usa-button {
+         text-shadow: 0 0 3px #000;
+
+         svg {
+            filter: drop-shadow(1px 1px 2px rgb(0 0 0 / 1));
+         }
+      }
+
+      .usa-button--accent-cool {
+         color: #fff;
+      }
+
+      .usa-icon {
+         font-size: 1.25em;
+         vertical-align: text-bottom;
+         margin-right: 0.25em;
+      }
+   }
+}
+
+/*************************
+   Modal Video Container
+/*************************
+
+.usa-modal-overlay {
+   overflow: hidden;
+}
+
+.usa-modal--lg {
+   position: relative;
+   width: 78.5vw;
+   height: 45.25vw;
+   max-width: 1120px;
+   max-height: 647px;
+   padding: 1vw;
+
+   .video-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+   }
+
+
+   iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+   }
+
+
+   .usa-modal__close {
+      position: absolute;
+      top: -1em;
+      right: 0;
+      z-index: 2;
+
+      svg {
+         fill: #fff;
+
+         &:hover {
+            fill: #0071bc;
+         }
+      }
+
+   }
+}
+
+
+/*************************
+   Quicklinks
+/*************************
+
+#quicklinks {
+   text-align: center;
+   font-size: 1.5em;
+   position: relative;
+   max-width: 1500px;
+   margin: 0 auto;
+
+   .title {
+      padding: .25em 0;
+
+      background-color: rgba(#005ea2, .5);
+      border: 1px solid rgba(#fff, .25);
+      border-width: 1px 0;
+      display: block;
+
+      @media screen and (min-width: 640px) {
+         position: absolute;
+         border-width: 0 1px;
+         width: 35px;
+         height: 100%;
+         top: 0;
+         left: .25em;
+
+         span {
+            transform: rotate(-90deg);
+            transform-origin: left bottom;
+            position: absolute;
+            left: 1.5em;
+            bottom: 1.25em;
+            font-size: 2rem;
+         }
+      }
+
+      @media screen and (min-width: 960px) {
+         span {
+            bottom: .5em;
+         }
+      }
+
+      @media screen and (min-width: 1100px) {
+         left: -1em;
+      }
+   }
+
+   &.usa-section {
+      @media screen and (min-width: 640px) {
+         padding-top: 0;
+         padding-bottom: 0;
+      }
+
+      .grid-container {
+         position: relative;
+         padding-top: 1rem;
+         padding-bottom: 1rem;
+      }
+
+      .tablet\:grid-col {
+         padding: .25em .5em;
+
+         a,
+         a:visited {
+            //text-transform: uppercase;
+            text-decoration: none;
+            display: block;
+            padding: .5em 0 .5em 1em;
+            border: 1px solid rgba(#fff, .25);
+            border-radius: .25em;
+            color: #fff;
+            text-align: left;
+
+            &:hover {
+               background-color: #005ea2;
+            }
+
+            svg {
+               height: 2em;
+               width: 2em;
+               margin-right: .25em;
+               vertical-align: bottom;
+            }
+
+            span {
+               display: inline-block;
+               font-size: .75em;
+               text-align: left;
+            }
+
+            @media screen and (min-width: 640px) {
+               text-align: center;
+               padding: .5em 0;
+               margin: auto;
+               max-width: 80%;
+
+               span {
+                  display: block;
+                  text-align: center;
+                  font-size: .5em;
+               }
+            }
+
+            @media screen and (min-width: 960px) {
+               span {
+                  display: inline-block;
+                  font-size: .75em;
+               }
+            }
+
+            @media screen and (min-width: 1100px) {
+               max-width: unset;
+            }
+         }
+      }
+   }
+}
+
+
+/*************************
+   tableOfContents w/usa-carc
+/*************************/
+
+#tableOfContents {
+   padding: 4rem 0 0;
+
+   h3 {
+      background-color: #1f498f;
+      color: #fff;
+      padding: 1em;
+      margin-bottom: 1em;
+
+      .usa-icon {
+         vertical-align: bottom;
+         height: 1.5em;
+         width: 1.5em;
+         margin-right: .25em;
+      }
+   }
+
+
+   #filerInfo {
+      .colorBanner {
+         background-color: #1f498f;
+      }
+
+      .usa-card__heading {
+         color: #1f498f;
+      }
+   }
+
+   #dataInfo {
+      .colorBanner {
+         background-color: #0071bc;
+      }
+
+      .usa-card__heading {
+         color: #0071bc;
+      }
+
+      h3.alt {
+         background-color: #0071bc;
+      }
+   }
+
+   .usa-card {
+      margin-bottom: 3.2rem;
+      width: 100%;
+
+      .colorBanner {
+         height: 2rem;
+         margin: -2px;
+         border-radius: .5em .5em 0 0;
+      }
+   }
+
+   .usa-card__heading {
+      font-family: SourceSansProBold;
+   }
+}
+
+
+.MailingListSignupForm {
+   display: flex;
+   flex-direction: column;
+   padding: 1em 10% !important;
+   margin: 1em auto 0;
+   background-color: #eee !important;
+
+   @media screen and (min-width: 960px) {
+      flex-direction: row;
+      align-items: baseline;
+      justify-content: center;
+
+      &.small #email {
+         width: 40%;
+         margin-left: 1em !important;
+         margin-right: 1em !important;
+      }
+   }
+}
+*/

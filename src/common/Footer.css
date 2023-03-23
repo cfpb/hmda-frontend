@@ -1,7 +1,7 @@
 .Footer {
   bottom: 0;
   left: 0;
-  position: absolute;
+  position: relative;
   width: 100%;
 }
 .Footer .content-wrapper {
