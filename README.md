@@ -73,7 +73,7 @@ The [HMDA Platform Tools](https://ffiec.cfpb.gov/tools/) assist filers in the pr
 </a>
 
 ### HMDA Documentation
-The [HMDA Documentation](https://ffiec.cfpb.gov/documentation/) site provides product FAQs, detailed Filing instructions, data publication schema and usage guides, as well as direction for using the HMDA Tools. Documentation content is hosted as easily editable Markdown files, loaded using Docusaurus. This allows updates to be pushed to Production without a project redeployment. 
+The [HMDA Documentation](https://ffiec.cfpb.gov/documentation/) site provides product FAQs, detailed Filing instructions, data publication schema and usage guides, as well as direction for using the HMDA Tools. Documentation content is hosted as easily editable Markdown files, loaded using Docusaurus. This allows updates to be pushed to Production without a project redeployment. Docusarus search is powered by [Algolia](https://www.algolia.com/) through the [DocSearch](https://docsearch.algolia.com/) program.
 
 <a href='./readme-files/hmda-documentation.png' alt='HMDA Documentation'>
   <p align='center'>
