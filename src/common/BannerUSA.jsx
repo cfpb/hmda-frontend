@@ -53,8 +53,8 @@ const BannerUSA = () => {
           />
           <div className="usa-media-block__body">
             <p>
-              <strong>Official websites use .gov</strong><br />A
-              <strong>.gov</strong> website belongs to an official government
+              <strong>Official websites use .gov</strong><br />
+              A <strong>.gov</strong> website belongs to an official government
               organization in the United States.
             </p>
           </div>
@@ -69,8 +69,8 @@ const BannerUSA = () => {
           />
           <div className="usa-media-block__body">
             <p>
-              <strong>Secure .gov websites use HTTPS</strong><br />A
-              <strong>lock</strong> (
+              <strong>Secure .gov websites use HTTPS</strong><br />
+              A <strong>lock</strong> (
               <span className="icon-lock"
                 ><svg
                   xmlns="http://www.w3.org/2000/svg"
