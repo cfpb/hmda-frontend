@@ -20,6 +20,7 @@ export const defaultLinks = [
       { name: '2020', href: '/data-publication/2020' },
       { name: '2019', href: '/data-publication/2019' },
       { name: '2018', href: '/data-publication/2018' },
+      { name: '2017', href: '/data-publication/2017' },
     ]
   },
   { name: 'Tools', href: '', 

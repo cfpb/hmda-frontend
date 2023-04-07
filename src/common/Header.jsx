@@ -74,11 +74,16 @@ const Header = ({location: {pathname}, links = defaultLinks, ...others}) => {
                         </button>
                         <ul id={link.name} className="usa-nav__submenu">
                           {link.submenu.map(sublink => (<li key={sublink.name} className="usa-nav__submenu-item">
-                            <Link
-                              to={sublink.href}
-                            >
-                              {sublink.name}
-                            </Link>
+                            {sublink.name == "Developer APIs" ?
+                              <a href={sublink.href} target="_blank">
+                                {sublink.name}
+                              </a> :
+                              <Link
+                                to={sublink.href}
+                              >
+                                {sublink.name}
+                              </Link>
+                            }
                           </li>)
                           )}
                         </ul>
