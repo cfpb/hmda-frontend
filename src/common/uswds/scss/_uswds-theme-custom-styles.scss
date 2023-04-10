@@ -65,6 +65,16 @@ body {
    }
 }
 
+.usa-nav__submenu-item .subMenuHeading {
+   padding-left: 1em;
+
+   @media (min-width: 1024px) {
+      background-color: rgba(255,255,255,.25);
+      padding-left: 1.5em;
+      color: #fff;
+   }
+}
+
 /*************************
    usa-header
 /*************************/
@@ -349,7 +359,7 @@ body {
 
 /*************************
    tableOfContents w/usa-carc
-/*************************/
+/*************************
 
 #tableOfContents {
    padding: 4rem 0 0;

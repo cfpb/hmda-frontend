@@ -78,11 +78,13 @@ const Header = ({location: {pathname}, links = defaultLinks, ...others}) => {
                               <a href={sublink.href} target="_blank">
                                 {sublink.name}
                               </a> :
-                              <Link
-                                to={sublink.href}
-                              >
-                                {sublink.name}
-                              </Link>
+                              !sublink.href ? 
+                                <div className="subMenuHeading">{sublink.name}</div> :
+                                <Link
+                                  to={sublink.href}
+                                >
+                                  {sublink.name}
+                                </Link>
                             }
                           </li>)
                           )}
