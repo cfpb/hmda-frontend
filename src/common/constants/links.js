@@ -19,7 +19,7 @@ export const defaultLinks = [
       { name: 'Overview', href: '/data-publication/' },
       { name: 'Dynamic Datasets' },
       { name: 'Modified LAR', href: '/data-publication/modified-lar/' },
-      { name: 'Dynamic Datasets', href: '/data-publication/dynamic-national-loan-level-dataset/' },
+      { name: 'Dynamic Dataset', href: '/data-publication/dynamic-national-loan-level-dataset/' },
       { name: 'Static Datasets' },
       { name: 'Snapshot Datasets', href: '/data-publication/snapshot-national-loan-level-dataset/' },
       { name: 'One-Year Datasets', href: '/data-publication/one-year-national-loan-level-dataset/' },
