@@ -103,15 +103,12 @@ const Header = ({location: {pathname}, links = defaultLinks, ...others}) => {
                 )
               })}
               {getKeycloak().authenticated ? (
-                <>
-                console.log('Logged in')
                 <li className='user'>
                   {getKeycloak().tokenParsed.name}
                   <button className='nav-link' onClick={logOutHandler}>
                     Logout
                   </button>
                 </li>
-                </>
               ) : console.log('Not logged in')}
             </ul>
           </nav>
