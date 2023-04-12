@@ -44,9 +44,14 @@ body {
 /*************************
    usa-nav
 /*************************/
+.usa-overlay.is-visible {
+   z-index: 1005;
+}
+
 @media (max-width: 1023px) {
    .usa-nav {
       width: 80%;
+      z-index: 1006;
    }
 }
 
