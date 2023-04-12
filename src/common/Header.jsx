@@ -109,7 +109,7 @@ const Header = ({location: {pathname}, links = defaultLinks, ...others}) => {
                     Logout
                   </button>
                 </li>
-              ) : console.log('Not logged in')}
+              ) : null }
             </ul>
           </nav>
         </div>
