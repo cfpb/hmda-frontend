@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 import BannerUSA from './BannerUSA'
 import { defaultLinks } from './constants/links'
 
+import { logout } from '../filing/utils/keycloak.js'
+import { getKeycloak } from './api/Keycloak.js'
+
 import './uswds/css/styles.css'
 import './uswds/js/uswds-init.min.js'
 import './uswds/js/uswds.min.js'
@@ -16,6 +19,11 @@ export const hideHeaderFooter = (path) => {
     section = parts[2]
   }
   return section === 'maps' ? 'no-print' : ''
+}
+
+export const logOutHandler = e => {
+  e.preventDefault()
+  logout()
 }
 
 const Header = ({location: {pathname}, links = defaultLinks, ...others}) => {
@@ -94,6 +102,14 @@ const Header = ({location: {pathname}, links = defaultLinks, ...others}) => {
                   </li>
                 )
               })}
+              {getKeycloak().authenticated ? (
+                <li className='user'>
+                  {getKeycloak().tokenParsed.name}
+                  <button className='nav-link' onClick={logOutHandler}>
+                    Logout
+                  </button>
+                </li>
+              ) : null}
             </ul>
           </nav>
         </div>
