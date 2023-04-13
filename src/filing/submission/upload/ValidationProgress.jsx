@@ -8,10 +8,6 @@ import {
   NO_MACRO_EDITS,
   UPLOADING
 } from '../../constants/statusCodes.js'
-/* TODO
-we may need to update this
-we'll have to see what a clean file upload does
-*/
 
 import './ValidationProgress.css'
 
@@ -101,13 +97,6 @@ export default class ValidationProgress extends PureComponent {
     if (code < UPLOADING && !uploading) return null
     return (
       <section className="ValidationProgress">
-        {/* the background bar */}
-        <div className="progressTotal" />
-        {/* the progress bar */}
-        <div
-          className={`progressFill ${this.getFillError()}`}
-          style={{ width: this.getFillWidth() + '%' }}
-        />
         <ProgressText
           errorApp={errorApp}
           errorUpload={errorUpload}
