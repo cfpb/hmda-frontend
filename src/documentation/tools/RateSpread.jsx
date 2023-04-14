@@ -102,15 +102,6 @@ const links = {
         Current Methodology for Determining Average Prime Offer Rates
       </a>
     </li>,
-    <li key='2022-2'>
-    <a
-      target='_blank'
-      rel='noopener noreferrer'
-      href='/tools/rate-spread/methodology-alt'
-    >
-      Previous Methodology for Determining Average Prime Offer Rates (prior to 4/24/2023)
-    </a>
-  </li>,
   ],
   2023: [
     <li key='2023-0'>
@@ -131,6 +122,15 @@ const links = {
         Methodology for Determining Average Prime Offer Rates
       </a>
     </li>,
+    <li key='2023-2'>
+    <a
+      target='_blank'
+      rel='noopener noreferrer'
+      href='/tools/rate-spread/methodology-alt'
+    >
+      Previous Methodology for Determining Average Prime Offer Rates (prior to 4/24/2023)
+    </a>
+  </li>,
   ],
 }
 
