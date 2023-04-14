@@ -3,11 +3,11 @@
   "announcement": [
     {
       "heading": "Rate Spread Metholodgy Updates",
-      "message": "Starting on or after April 24, 2023, the CFPB will begin relying on data from ICE Mortgage Technology to calculate APORs. Read the revised Methodology Statement. ",
+      "message": "Starting on or after April 24, 2023, the CFPB will begin relying on data from ICE Mortgage Technology to calculate APORs. Read the ",
       "type": "info",
       "link": {
         "url": "https://ffiec.cfpb.gov/tools/rate-spread/methodology",
-        "text": "Rate Spread Metholodgy page."
+        "text": "revised methodology Statement."
       }
     },
     {
