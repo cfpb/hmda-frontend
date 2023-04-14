@@ -40,7 +40,7 @@ const Methodology = () => {
         For any loan for which an APR of the same term to maturity or initial, fixed-rate period, as applicable, (collectively, for purposes of this paragraph, “term”) is not included among the 15 products derived or estimated from the survey data by the calculations above, the comparable transaction is identified by the following assignment rules: For a loan with a shorter term than the shortest applicable term for which an APR is derived or estimated above, the APR of the shortest term is used. For a loan with a longer term than the longest applicable term for which an APR is derived or estimated above, the APR of the longest term is used. For all other loans, the APR of the applicable term closest to the loan’s term is used; if the loan is exactly halfway between two terms, the shorter of the two is used. For example: For a loan with a term of eight years, the applicable (fixed-rate or variable-rate) seven-year APR is used; with a term of six months, the applicable one-year APR is used; with a term of nine years, the applicable ten-year APR is used; with a term of 11 years, the applicable ten-year APR is used; and with a term of four years, the applicable three-year APR is used. For a fixed-rate loan with a term of 16 years, the 15-year fixed-rate APR is used; and with a term of 35 years, the 30-year fixed-rate APR is used.
       </p>
       <p>
-        The eight APRs obtained directly from survey data for the eight products, the seven additional APRs estimated from survey data in the manner described above, and the APRs determined by the foregoing assignment rules are the average prime offer rates for their respective comparable transactions. The survey data needed for the above calculations generally are made available on Thursday of each week.  APRs representing average prime offer rates derived, estimated, or determined as above are posted in tables on the FFIEC’s rate spread calculator page the following day. Those average prime offer rates are effective beginning the following Monday and until the next posting takes effect.
+        The eight APRs obtained directly from survey data for the eight products, the seven additional APRs estimated from survey data in the manner described above, and the APRs determined by the foregoing assignment rules are the average prime offer rates for their respective comparable transactions. The survey data needed for the above calculations generally are made available on Thursday of each week <a href="#footnote2"><sup>[2]</sup></a>.  APRs representing average prime offer rates derived, estimated, or determined as above are posted in tables on the FFIEC’s rate spread calculator page the following day. Those average prime offer rates are effective beginning the following Monday and until the next posting takes effect.
       </p>
 
       <h2>Numerical Example:</h2>
@@ -96,6 +96,15 @@ const Methodology = () => {
       <a name="footnote" href="#footnote">1</a>
         . The “30-year”, “20-year”, “15-year”, and “10-year” fixed-rate product designations refer to those products’ terms to maturity. The “10/6”, “7/6”, “5/6” and “3/6” variable-rate product designations, on the other hand, refer to those products’ initial, fixed-rate periods, and the adjustment frequency. All variable-rate products discussed in this Methodology have 30-year terms to maturity.
       </p>
+
+      <p className="text-small">
+      <a name="footnote2" href="#footnote2">2</a>
+        . If survey data needed to construct APORs are unavailable on Thursday for any given week, the CFPB will republish the APORs from the prior week.  Those APORs are effective beginning the following Monday and until the next posting takes effect.
+      </p>
+
+
+
+      
     </div>
   )
 }
