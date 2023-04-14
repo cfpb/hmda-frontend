@@ -9,7 +9,7 @@ const Methodology_alt = () => {
     <div className="methodology grid" id="main-content">
       <Heading
         type={1}
-        headingText="Methodology for Determining Average Prime Offer Rates (prior to 4/21/2023)"
+        headingText="Methodology for Determining Average Prime Offer Rates (prior to 4/24/2023)"
       >
         <p className="font-lead">
           Test The calculation of average prime offer rates is based on survey data
