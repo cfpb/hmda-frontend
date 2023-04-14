@@ -2,6 +2,15 @@
   "name": "prod",
   "announcement": [
     {
+      "heading": "Rate Spread Metholodgy Updates",
+      "message": "Starting on or after April 24, 2023, the CFPB will begin relying on data from ICE Mortgage Technology to calculate APORs. Read the revised Methodology Statement. ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/tools/rate-spread/methodology",
+        "text": "Rate Spread Metholodgy page."
+      }
+    },
+    {
       "heading": "2022 Modified LAR Release",
       "message": "On March 20, 2023, the 2022 Modified LAR data was released. A combined file containing all LAR records in a single file is also available. These files can be accessed via the ",
       "type": "info",
