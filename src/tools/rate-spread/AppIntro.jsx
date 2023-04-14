@@ -47,19 +47,12 @@ const AppIntro = () => {
         rate survey data is from Freddie Mac.
       </p>
       <p>
-      This calculator provides rate spreads for HMDA reportable loans in accordance with Regulation C with a final action date on or after January 1st, 2018.
+        <Link to="/tools/rate-spread/requirements">Data requirements</Link> for the rate spread calculator are provided in accordance with Regulation C effective January 1st, 2018.
       </p>
-      <ul>
-        <li>
-          <Link to="/tools/rate-spread/requirements">Data requirements</Link>
-        </li>
-        <li>
-          <Link to="/tools/rate-spread/methodology">Current Methodology for determining Average Prime Offer Rates</Link>
-        </li>
-        <li>
-          <Link to="/tools/rate-spread/methodology2">Previous Methodology for determining Average Prime Offer Rates (prior to 4/21/2023)</Link>
-        </li>
-      </ul>
+      <p>
+        The <Link to="/tools/rate-spread/methodology">Current Methodology</Link> for determining Average Prime Offer Rates is provided. APOR rates published prior to April 24, 2023 used an <Link to="/tools/rate-spread/methodology-alt">Alternate Methodology</Link> which is also provided.
+        </p>
+
     </Heading>
   )
 }
