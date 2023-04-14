@@ -41,20 +41,15 @@ const AppIntro = () => {
         >
           Mortgage rate survey data
         </a>{' '}
-        used to calculate rate spreads for loans reportable under HMDA is
-        available for download. The data source for the 1 year ARM product is
-        CFPB market research. The data source for all other products in mortgage
-        rate survey data is from Freddie Mac.
+        used to calculate rate spreads for loans reportable under HMDA is available for download. The data are provided through ICE Mortgage TechnologyTM. ICE Data as a Service is provided by ICE Mortgage TechnologyTM, part of Intercontinental Exchange, Inc.
       </p>
       <p>
-        <Link to="/tools/rate-spread/requirements">Data requirements</Link> for the
-        rate spread calculator are provided in accordance with Regulation C
-        effective January 1st, 2018.
+        <Link to="/tools/rate-spread/requirements">Data requirements</Link> for the rate spread calculator are provided in accordance with Regulation C effective January 1st, 2018.
       </p>
       <p>
-        The <Link to="/tools/rate-spread/methodology">methodology</Link> for
-        determining Average Prime Offer Rates is provided.
-      </p>
+        The <Link to="/tools/rate-spread/methodology">Current Methodology</Link> for determining Average Prime Offer Rates is provided. APOR rates published prior to April 24, 2023 used an <Link to="/tools/rate-spread/methodology-alt">Alternate Methodology</Link> which is also provided.
+        </p>
+
     </Heading>
   )
 }
