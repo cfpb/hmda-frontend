@@ -17,7 +17,7 @@
     "make-lar": "node ./scripts/lar/generate_lar_file.mjs",
     "cy-update-s3": "./cypress/update-s3-files.sh"
   },
-  "proxy": "https://ffiec.cfpb.gov",
+  "proxy": "http://0.0.0.0",
   "keywords": [
     "HMDA"
   ],
