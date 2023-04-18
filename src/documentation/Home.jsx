@@ -8,11 +8,25 @@ import Publications from './publications'
 import Tools from './tools'
 import { DOCS_YEARS } from '../common/constants/years.js'
 import { ExternalLink } from '../common/ExternalLink'
+import WarningBanner from '../common/WarningBanner.jsx'
+import Beta from '../common/Beta.jsx'
 
 const Home = props => {
   const { year, url } = props
   return (
     <div className='home'>
+      <WarningBanner
+        alertHeader='Documentation Overhaul'
+        alertContent='New and improved documentation is coming on June 1st, 2023! The new documentation can be accessed in the same way as current documentation. Enhancements include:'
+        alertFeatures={[
+          'Ability to search for documentation',
+          'Documentation has been consolidated, the only yearly specific data is for the year 2017',
+          'HMDA API documentation has been integrated - Discover the integration under the "Developer APIs" section',
+        ]}
+        alertLink='https://ffiec.beta.cfpb.gov/documentation/category/frequently-asked-questions'
+        alertLinkHeader='View the new documentation'
+      />
+      {/* <Beta /> */}
       <div className='intro'>
         <Header type={1} headingText='HMDA Documentation'>
           <p className='lead'>A collection of HMDA Documentation Resources</p>
