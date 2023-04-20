@@ -17,7 +17,7 @@ const Home = props => {
     <div className='home'>
       <WarningBanner
         alertHeader='Documentation Overhaul'
-        alertContent='New and improved documentation is coming on June 1st, 2023! The new documentation can be accessed in the same way as current documentation. Enhancements include:'
+        alertContent='New and improved documentation is coming on June 1st, 2023! The new documentation can be accessed in the same way as the current documentation. Enhancements include:'
         alertFeatures={[
           'Ability to search for documentation',
           'Documentation has been consolidated, the only yearly specific data is for the year 2017',
