@@ -31,7 +31,7 @@ export default class EditsNav extends Component {
         isCompleted: () => this.props.code > VALIDATING,
         errorClass: 'error',
         errorText: 'uploaded with formatting errors',
-        completedText: 'uploaded',
+        completedText: () => 'uploaded',
         link: 'upload'
       },
       'syntactical & validity edits': {
@@ -45,7 +45,7 @@ export default class EditsNav extends Component {
           this.props.code === NO_SYNTACTICAL_VALIDITY_EDITS,
         errorClass: 'warning-exclamation',
         errorText: 'syntactical & validity edits found',
-        completedText: 'no syntactical & validity edits',
+        completedText: () => 'no syntactical & validity edits',
         link: 'syntacticalvalidity'
       },
       'quality edits': {
@@ -58,7 +58,9 @@ export default class EditsNav extends Component {
           (this.props.qualityVerified || !this.props.qualityExists),
         errorClass: 'warning-question',
         errorText: 'quality edits found',
-        completedText: 'quality edits verified',
+        completedText: () => !this.props.qualityExists
+          ? 'no quality edits'
+          : 'quality edits verified',
         link: 'quality'
       },
       'macro quality edits': {
@@ -70,14 +72,16 @@ export default class EditsNav extends Component {
           (!this.props.macroExists || this.props.macroVerified),
         errorClass: 'warning-question',
         errorText: 'macro quality edits found',
-        completedText: 'macro quality edits verified',
+        completedText: () => !this.props.macroExists
+          ? 'no macro quality edits'
+          : 'macro quality edits verified',
         link: 'macro'
       },
       submission: {
         isReachable: () => this.props.code >= VALIDATED || this.props.code === NO_MACRO_EDITS,
         isErrored: () => false,
         isCompleted: () => this.props.code === SIGNED,
-        completedText: 'submitted',
+        completedText: () => 'submitted',
         link: 'submission'
       }
     }
@@ -129,7 +133,7 @@ export default class EditsNav extends Component {
       const renderedName = errored
         ? navItem.errorText
         : completed
-          ? navItem.completedText
+          ? navItem.completedText()
           : name
 
       let navClass = errored
