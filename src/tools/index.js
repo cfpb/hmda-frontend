@@ -8,6 +8,7 @@ import CheckDigit from './check-digit/index'
 import RateSpread from './rate-spread/index'
 import RateSpreadRequirements from './rate-spread/Requirements'
 import RateSpreadMethodology from './rate-spread/Methodology'
+import AppIntro from './lar-formatting/AppIntro'
 import FFVT from './file-format-verification/index'
 import { LARFT } from './larft'
 
@@ -29,7 +30,8 @@ const Tools = () => {
         />
         <Route path="/tools/rate-spread" component={RateSpread} />
         <Route path="/tools/file-format-verification" component={FFVT} />
-        <Route path='/tools/lar-formatting'>
+        <Route path="/tools/lar-formatting" component={AppIntro} />
+        <Route path='/tools/online-lar-formatting'>
           <Provider store={larftStore}>
             <LARFT />
           </Provider>
