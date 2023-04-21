@@ -79,13 +79,7 @@ body {
          padding: .75em 1em .75em 2em;
       }
    }
-   .user {
-      position: absolute;
-      right: 0;
-      top: -75%;
-   }
 }
-
 .usa-nav__submenu-item .subMenuHeading {
    padding-left: 1em;
 
@@ -96,6 +90,39 @@ body {
       font-weight: bold;
    }
 }
+
+.user {
+   
+   button {
+      margin: 0 1em 0 0;
+      font-size: .75em;
+      padding: .1em 1em;
+      background-color: transparent;
+      color: #555;
+      vertical-align: top;
+
+      text-decoration-color: #1f498f;
+      text-decoration-thickness: 3px;
+      text-underline-offset: 5px;
+
+      &:hover {
+         background-color: transparent;
+         text-decoration: underline;
+         color: #555;
+      }
+   }
+   @media (min-width: 1024px) {
+      position: absolute;
+      top: -1.25em;
+      right: 0;
+
+      button {
+         padding: .15em 1em;
+      }
+   }
+
+}
+
 
 /*************************
    usa-header

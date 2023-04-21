@@ -12,6 +12,8 @@ import './uswds/js/uswds.min.js'
 import logo from './images/ffiec-logo.svg'
 import closeBtn from './uswds/img/usa-icons/close.svg'
 
+import { ShowUserName } from './ShowUserName'
+
 export const hideHeaderFooter = (path) => {
   const parts = path && path.split('/')
   let section = parts[1]
@@ -102,15 +104,10 @@ const Header = ({location: {pathname}, links = defaultLinks, ...others}) => {
                   </li>
                 )
               })}
-              {getKeycloak().authenticated ? (
-                <li className='user'>
-                  {getKeycloak().tokenParsed.name}
-                  <button className='nav-link' onClick={logOutHandler}>
-                    Logout
-                  </button>
-                </li>
-              ) : null }
             </ul>
+            {getKeycloak().authenticated ? (
+                <ShowUserName />
+              ) : null }
           </nav>
         </div>
       </header>
