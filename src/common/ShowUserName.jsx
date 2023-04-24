@@ -3,8 +3,9 @@ import { logout } from '../filing/utils/keycloak.js'
 import { getKeycloak } from './api/Keycloak.js'
 
 export const ShowUserName = (props) => {
+  let userName
   const [isLoggedIn, setIsLoggedIn] = useState(props.isLoggedIn)
-  let userName = getKeycloak().tokenParsed.name
+  isLoggedIn ? (userName = getKeycloak().tokenParsed.name) : null
   console.log('UserName = ' + userName + '\nLogged In = ' + props.isLoggedIn)
   
   useEffect(() => {
@@ -22,7 +23,7 @@ export const ShowUserName = (props) => {
   return (
     <>
       {isLoggedIn ? (
-        <div className='user'>Welcome, {userName}! <button onClick={handleLogout}>Logout</button></div>
+        <div className='user'>{userName} <button onClick={handleLogout}>Logout</button></div>
       ) : null}
     </>
   )
