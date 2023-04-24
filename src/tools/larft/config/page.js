@@ -5,11 +5,13 @@ export const PAGE_DESCRIPTION =
   'typically those with small volumes of covered loans and applications, ' +
   'to create an electronic file that can be submitted to the HMDA Platform.'
 
-
 export const PAGE_ADDITIONAL_DESCRIPTION =
   'The HMDA LAR formatting tool is a web application created by the Bureau for ' +
   'HMDA filers, who do not have another means of doing so, to enter and format ' +
   'data into a pipe delimited text file. A pipe delimited text file is the ' +
   'required format, beginning with data collected in 2017, for financial ' +
   'institutions to file their loan/application register (LAR) using the HMDA ' +
-  'Platform.' 
+  'Platform. The Online LAR Formatting Tool was developed with no login functions, ' +
+  'and does not log identifying information about you or your files. ' +
+  'This online tool allows HMDA filers to format their data into the required format. ' +
+  'The tool does not test for compliance with syntactical, validity, or quality edits.'
