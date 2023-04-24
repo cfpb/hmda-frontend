@@ -7,7 +7,7 @@
     "node": ">=14.17.x"
   },
   "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "yarn run cypress run",
     "test-large": "CYPRESS_YEARS=2020 yarn run cypress run --spec cypress/integration/load/LargeFiler.spec.js",
