@@ -105,9 +105,7 @@ const Header = ({location: {pathname}, links = defaultLinks, ...others}) => {
                 )
               })}
             </ul>
-            {getKeycloak().authenticated ? (
-                <ShowUserName />
-              ) : null }
+            <ShowUserName isLoggedIn = {getKeycloak().authenticated} />
           </nav>
         </div>
       </header>
