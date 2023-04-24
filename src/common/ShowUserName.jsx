@@ -6,7 +6,6 @@ export const ShowUserName = (props) => {
   let userName
   const [isLoggedIn, setIsLoggedIn] = useState(props.isLoggedIn)
   isLoggedIn ? (userName = getKeycloak().tokenParsed.name) : null
-  console.log('UserName = ' + userName + '\nLogged In = ' + props.isLoggedIn)
   
   useEffect(() => {
     setIsLoggedIn(props.isLoggedIn);
@@ -15,7 +14,6 @@ export const ShowUserName = (props) => {
   const handleLogout = e => {
     setIsLoggedIn(false)
     userName = ''
-    console.log('User Logged Out')
     e.preventDefault()
     logout()
   }

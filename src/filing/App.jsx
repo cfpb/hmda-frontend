@@ -17,6 +17,8 @@ import { PERIODS } from '../deriveConfig'
 import 'normalize.css'
 import './app.css'
 
+import { ShowUserName } from '../common/ShowUserName'
+
 const browser = detect()
 
 export class AppContainer extends Component {
@@ -138,6 +140,7 @@ export class AppContainer extends Component {
         <a className="skipnav" href="#main-content">
           Skip to main content
         </a>
+        <ShowUserName isLoggedIn = {getKeycloak().authenticated} />
         {/*<Header filingPeriod={params.filingPeriod} pathname={location.pathname} />*/}
         <ConfirmationModal />
         {isBeta() ? <Beta/> : null}
