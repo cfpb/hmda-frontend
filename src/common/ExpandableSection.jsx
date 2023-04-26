@@ -22,11 +22,20 @@ export const ExpandableSection = ({
   const toggleVisible = () => setExpanded(value => !value)
 
   const classes = ['expandable-section']
-  if (expanded) classes.push('expanded')
+  let ariaLabel = 'Expand ' + label
+  
+  if (expanded) {
+    classes.push('expanded')
+    ariaLabel = 'Collapse ' + label
+  }
   
   return (
     <div className={classes.join(' ')}>
-      <button onClick={toggleVisible} className='text-button heading'>
+      <button
+        onClick={toggleVisible}
+        className='text-button heading'
+        aria-label={ariaLabel}
+      >
         {labelText}
       </button>
       {expanded && <div className='content'>{children}</div>}
