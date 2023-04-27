@@ -3,7 +3,7 @@ import './ExpandableSection.css'
 
 /**
  * An understated text-button driven, expandable section for content
- * @param label Expansion button text label 
+ * @param label Expansion button text label
  * @param labelFormatter (visibility) => 'Text label'
  * @param expandedByDefault Show section's children by default
  * @param children Section content

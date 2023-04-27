@@ -5,7 +5,7 @@ const { HOST, ENVIRONMENT } = Cypress.env()
 
 let baseURLToVisit = isCI(ENVIRONMENT) ? 'http://localhost:3000' : HOST
 
-let urlForTesting = baseURLToVisit + '/tools/lar-formatting'
+let urlForTesting = baseURLToVisit + '/tools/online-lar-formatting'
 
 // Command used to grab ID from input fields and drop-down menus.
 // Workaround as the IDs have a space in them i.e -> Calendar Year
@@ -37,9 +37,10 @@ describe('General OLART Tests', () => {
     cy.get('.filters > :nth-child(2) > .clear').click()
     // Now testing "Search TS" functionality
     cy.get('.filters > :nth-child(1) > input').click().type('2019')
-    cy.get(
-      ".row-container > :nth-child(2) > .custom-cell-content"
-    ).should('have.text', '2019')
+    cy.get('.row-container > :nth-child(2) > .custom-cell-content').should(
+      'have.text',
+      '2019'
+    )
   })
 
   it("Tests LAR 'Search LAR' and 'Filter columns' functionality", () => {
@@ -58,9 +59,7 @@ describe('General OLART Tests', () => {
     cy.get('#saved-lars > h3.clickable > .filters > :nth-child(1) > input')
       .click()
       .type('1')
-    cy.get(
-      "#saved-lars .row-container #row-1"
-    ).should('have.text', '1')
+    cy.get('#saved-lars .row-container #row-1').should('have.text', '1')
     // Clear "Search LAR" input
     cy.get(':nth-child(1) > .clear').click()
     // "Filter columns" functionality

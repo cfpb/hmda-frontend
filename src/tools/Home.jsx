@@ -1,5 +1,6 @@
 import React from 'react'
 import Heading from '../common/Heading.jsx'
+import NewIndicator from '../homepage/NewIndicator.jsx'
 
 const Home = () => {
   return (
@@ -24,23 +25,25 @@ const Home = () => {
 
         <div className='card'>
           <Heading
-            headingLink='/tools/lar-formatting'
-            headingText='LAR formatting'
-            paragraphText='The LAR Formatting Tool is intended to help financial
+            headingLink=''
+            headingText='LAR formatting tools'
+            paragraphText='The LAR Formatting tools are intended to help financial
               institutions, typically those with small volumes of covered loans
               and applications, to create an electronic file that can be
               submitted to the HMDA Platform.'
             type={3}
-          />
-        </div>
-
-        <div className='card'>
-          <Heading
-            headingLink='/tools/online-lar-formatting'
-            headingText='Online LAR Formatting'
-            paragraphText='The LAR Formatting Tool is intended to help financial institutions, typically those with small volumes of covered loans and applications, to create an electronic file that can be submitted to the HMDA Platform.'
-            type={3}
-          />
+          >
+            <ul>
+              <li>
+                <a href='/tools/lar-formatting'>LAR Formatting</a>
+              </li>
+              <li>
+                <a href='/tools/online-lar-formatting'>
+                  Online LAR Formatting <NewIndicator />
+                </a>
+              </li>
+            </ul>
+          </Heading>
         </div>
 
         <div className='card'>
@@ -63,14 +66,6 @@ const Home = () => {
               Identifier (LEI) and loan or application ID. The second is to
               validate that a check digit is calculated correctly for any
               complete Universal Loan Identifier (ULI) you enter.'
-            type={3}
-          />
-        </div>
-        <div className='card'>
-          <Heading
-            headingLink=''
-            headingText=''
-            paragraphText=''
             type={3}
           />
         </div>
