@@ -14,12 +14,7 @@ export const PRIVACY =
   'The Online LAR Formatting Tool was developed with no login functions, ' +
   'and does not log identifying information about you or your files. '
 
-export const LIMITATIONS =
+export const PRIVACY_AND_LIMITATIONS =
   PRIVACY +
   'The tool does not test for compliance with syntactical, validity, or quality edits. ' +
   "This tool doesn't save your file, so you must download it to maintain the file in your records."
-
-export const PAGE_ADDITIONAL_DESCRIPTION =
-  'The HMDA LAR Online formatting tool is a web application created by the Bureau for ' +
-  'HMDA filers, who do not have another means of doing so, to enter and format ' +
-  'data into a pipe delimited text file.'

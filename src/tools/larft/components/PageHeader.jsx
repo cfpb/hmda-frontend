@@ -6,9 +6,7 @@ import {
   PAGE_DESCRIPTION,
   PAGE_TITLE,
   FILE_FORMAT,
-  PRIVACY,
-  LIMITATIONS,
-  PAGE_ADDITIONAL_DESCRIPTION,
+  PRIVACY_AND_LIMITATIONS,
 } from '../config/page'
 
 /**
@@ -16,9 +14,6 @@ import {
  * @returns Heading Component
  */
 export const PageHeader = () => {
-  const lableFormatFileFormat = visible =>
-    '▸ ' + (visible ? 'Hide' : 'View') + ' File Format'
-
   return (
     <>
       <Heading
@@ -27,10 +22,12 @@ export const PageHeader = () => {
         headingText={PAGE_TITLE}
         paragraphText={PAGE_DESCRIPTION}
       />
-      <ExpandableSection labelFormatter={lableFormatFileFormat}>
-        <Heading key={'file-format'} type={2} paragraphText={FILE_FORMAT} />
-      </ExpandableSection>
-      <Heading key={'limitations'} type={2} paragraphText={LIMITATIONS} />
+      <ExpandableSection label={'File Format'}>{FILE_FORMAT}</ExpandableSection>
+      <Heading
+        key={'limitations'}
+        type={2}
+        paragraphText={PRIVACY_AND_LIMITATIONS}
+      />
 
       <Heading key={'documentation-link'} type={2}>
         For additional guidance, please visit the LAR Formatting Tool's{' '}

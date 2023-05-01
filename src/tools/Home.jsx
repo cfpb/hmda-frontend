@@ -35,12 +35,12 @@ const Home = () => {
           >
             <ul>
               <li>
-                <a href='/tools/lar-formatting'>LAR Formatting</a>
-              </li>
-              <li>
                 <a href='/tools/online-lar-formatting'>
                   Online LAR Formatting <NewIndicator />
                 </a>
+              </li>
+              <li>
+                <a href='/tools/lar-formatting'>LAR Formatting</a>
               </li>
             </ul>
           </Heading>
