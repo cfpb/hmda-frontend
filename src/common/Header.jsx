@@ -12,8 +12,6 @@ import './uswds/js/uswds.min.js'
 import logo from './images/ffiec-logo.svg'
 import closeBtn from './uswds/img/usa-icons/close.svg'
 
-import { ShowUserName } from './ShowUserName'
-
 export const hideHeaderFooter = (path) => {
   const parts = path && path.split('/')
   let section = parts[1]
@@ -29,6 +27,9 @@ export const logOutHandler = e => {
 }
 
 const Header = ({location: {pathname}, links = defaultLinks, ...others}) => {
+  const forceReload = (route) => {
+    window.location.href = route
+  }
   return (
     <div className={hideHeaderFooter(pathname)}>
       <a className="skipnav" href="#main-content">
@@ -84,10 +85,13 @@ const Header = ({location: {pathname}, links = defaultLinks, ...others}) => {
                         </button>
                         <ul id={link.name} className="usa-nav__submenu">
                           {link.submenu.map(sublink => (<li key={sublink.name} className="usa-nav__submenu-item">
-                            {sublink.name == "Developer APIs" ?
-                              <a href={sublink.href} target="_blank">
+                            {sublink.name == "Developer APIs" || sublink.name == "FAQs" ?
+                              <Link
+                                to={sublink.href}
+                                onClick={() => forceReload(sublink.href)}
+                              >
                                 {sublink.name}
-                              </a> :
+                              </Link> :
                               !sublink.href ? 
                                 <div className="subMenuHeading">{sublink.name}</div> :
                                 <Link
@@ -105,7 +109,6 @@ const Header = ({location: {pathname}, links = defaultLinks, ...others}) => {
                 )
               })}
             </ul>
-            
           </nav>
         </div>
       </header>

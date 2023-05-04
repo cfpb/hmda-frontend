@@ -9,8 +9,8 @@ export const defaultLinks = [
   { name: 'Data Browser', href: '',
     submenu: [
       { name: 'Overview', href: '/data-browser/' },
-      { name: 'Datasets', href: '/data-browser/data/2021' },
-      { name: 'Maps', href: '/data-browser/maps/2021' },
+      { name: 'Datasets', href: '/data-browser/data/' },
+      { name: 'Maps', href: '/data-browser/maps/' },
       { name: 'Graphs', href: '/data-browser/graphs/quarterly/' },
     ]
   },
@@ -40,7 +40,7 @@ export const defaultLinks = [
   { name: 'Documentation', href: '', 
     submenu: [
       { name: 'FAQs', href: '/documentation/' },
-      { name: 'Developer APIs', href: 'https://cfpb.github.io/hmda-platform/#hmda-api-documentation' },
+      { name: 'Developer APIs', href: '/documentation/category/developer-apis' },
       { name: 'Updates', href: '/updates-notes' },
     ]
   }

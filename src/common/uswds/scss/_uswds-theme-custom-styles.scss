@@ -40,6 +40,10 @@ body {
    margin-left: 0;
 }
 
+.usa-banner__button {
+   font-family: SourceSansPro;
+}
+
 
 /*************************
    usa-nav
@@ -123,7 +127,6 @@ body {
 
 }
 
-
 /*************************
    usa-header
 /*************************/
@@ -144,7 +147,11 @@ body {
 
 
       .usa-logo {
-         margin-top: .75rem;
+         margin-top: 0;
+
+         @media (min-width: 1024px) {
+            margin-top: .75rem;
+         }
 
          a {
             display: flex;
@@ -160,7 +167,7 @@ body {
             }
 
             span {
-               min-width: 15em;
+               font-size: 1.2em;
 
                @media screen and (min-width: 1024px) {
                   display: none;
@@ -168,6 +175,8 @@ body {
 
                @media screen and (min-width: 1240px) {
                   display: inline-flex;
+                  font-size: 1em;
+                  min-width: 14em;
                }
             }
          }
