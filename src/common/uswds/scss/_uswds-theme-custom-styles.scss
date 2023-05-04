@@ -26,7 +26,47 @@ body {
    margin-bottom: 0 !important;
 }
 
+/*************************
+   Algolia Overwrites
+/*************************/
+.DocSearch-Button {
+   padding: 8px !important;
+   margin: 0 !important;
+}
 
+.DocSearch-Button-Placeholder, .DocSearch-Button-Keys {
+   display: none !important;
+   font-family: "SourceSansPro" !important;
+
+   @media(min-width: 1370px) {
+      display: flex !important;
+   }
+}
+.DocSearch-Button-Placeholder {
+   font-size: 18px !important;
+}
+.DocSearch-Button-Keys {
+   font-size: 12px !important;
+}
+
+:root {
+   --docsearch-color-primary: #1f498f !important;
+   --docsearch-highlight-color:  #1f498f !important;
+}
+
+.DocSearch-Button:active, .DocSearch-Button:focus, .DocSearch-Button:hover, .DocSearch-Form {
+   box-shadow: inset 0 0 0 2px #1f498f !important;
+}
+
+.DocSearch-Logo svg {
+   .cls-1, .cls-2 {
+      fill: #999 !important;
+   }
+}
+
+.DocSearch-Container {
+   z-index: 1010 !important;
+}
 
 /*************************
    usa-banner
@@ -51,11 +91,13 @@ body {
 .usa-overlay.is-visible {
    z-index: 1005;
 }
-
-@media (max-width: 1023px) {
+.usa-header--basic {
    .usa-nav {
       width: 80%;
       z-index: 1006;
+      @media (min-width: 1024px) {
+         padding: 0;
+      }
    }
 }
 
@@ -136,6 +178,7 @@ body {
 
    @media screen and (min-width: 1024px) {
       border-bottom: 1px solid #dfe1e2;
+      padding-right: 1em;
    }
 
 }

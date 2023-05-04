@@ -23,6 +23,7 @@
   "author": "Consumer Financial Protection Bureau",
   "license": "CC0-1.0",
   "dependencies": {
+    "@docsearch/react": "3",
     "@reduxjs/toolkit": "^1.7.1",
     "@tanstack/react-table": "^8.3.0",
     "@uswds/compile": "^1.0.0",

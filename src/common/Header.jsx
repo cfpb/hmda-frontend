@@ -12,6 +12,10 @@ import './uswds/js/uswds.min.js'
 import logo from './images/ffiec-logo.svg'
 import closeBtn from './uswds/img/usa-icons/close.svg'
 
+
+import { DocSearch } from '@docsearch/react';
+import '@docsearch/css';
+
 export const hideHeaderFooter = (path) => {
   const parts = path && path.split('/')
   let section = parts[1]
@@ -109,6 +113,11 @@ const Header = ({location: {pathname}, links = defaultLinks, ...others}) => {
                 )
               })}
             </ul>
+            <DocSearch
+              appId="69RTFLDVTR"
+              indexName="ffiec-beta-cfpb"
+              apiKey="5c0ed9de237607b9a9cbb0ce5e136996"
+            />
           </nav>
         </div>
       </header>
