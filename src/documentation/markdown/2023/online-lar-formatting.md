@@ -1,4 +1,4 @@
-# HMDA's LAR Formatting Tool
+# HMDA's Online LAR Formatting Tool
 
 ## Interaction Guide
 

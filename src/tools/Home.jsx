@@ -26,7 +26,7 @@ const Home = () => {
         <div className='card'>
           <Heading
             headingLink=''
-            headingText='LAR formatting tools'
+            headingText='LAR Formatting'
             paragraphText='The LAR Formatting tools are intended to help financial
               institutions, typically those with small volumes of covered loans
               and applications, to create an electronic file that can be
@@ -40,7 +40,7 @@ const Home = () => {
                 </a>
               </li>
               <li>
-                <a href='/tools/lar-formatting'>LAR Formatting</a>
+                <a href='/tools/lar-formatting'>Excel LAR Formatting</a>
               </li>
             </ul>
           </Heading>

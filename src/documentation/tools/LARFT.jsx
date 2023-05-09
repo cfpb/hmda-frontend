@@ -12,67 +12,67 @@ const links = {
     </li>,
     <li key='2018-0'>
       <Link to='/documentation/2018/lar-formatting/'>
-        LAR Formatting Tool Instructions
+        Excel LAR Formatting Tool Instructions
       </Link>
     </li>,
   ],
   2019: [
     <li key='2019-online'>
       <Link to='/documentation/2019/online-lar-formatting/'>
-        Online LAR Formatting Tool Instructions
+        Online LAR Formatting Instructions
       </Link>
     </li>,
     <li key='2019-0'>
       <Link to='/documentation/2019/lar-formatting/'>
-        LAR Formatting Tool Instructions
+        Excel LAR Formatting Instructions
       </Link>
     </li>,
   ],
   2020: [
     <li key='2020-online'>
       <Link to='/documentation/2020/online-lar-formatting/'>
-        Online LAR Formatting Tool Instructions
+        Online LAR Formatting Instructions
       </Link>
     </li>,
     <li key='2020-0'>
       <Link to='/documentation/2020/lar-formatting/'>
-        LAR Formatting Tool Instructions
+        Excel LAR Formatting Instructions
       </Link>
     </li>,
   ],
   2021: [
     <li key='2021-online'>
       <Link to='/documentation/2021/online-lar-formatting/'>
-        Online LAR Formatting Tool Instructions
+        Online LAR Formatting Instructions
       </Link>
     </li>,
     <li key='2021-0'>
       <Link to='/documentation/2021/lar-formatting/'>
-        LAR Formatting Tool Instructions
+        Excel LAR Formatting Instructions
       </Link>
     </li>,
   ],
   2022: [
     <li key='2022-online'>
       <Link to='/documentation/2022/online-lar-formatting/'>
-        Online LAR Formatting Tool Instructions
+        Online LAR Formatting Instructions
       </Link>
     </li>,
     <li key='2022-0'>
       <Link to='/documentation/2022/lar-formatting/'>
-        LAR Formatting Tool Instructions
+        Excel LAR Formatting Instructions
       </Link>
     </li>,
   ],
   2023: [
     <li key='2023-online'>
       <Link to='/documentation/2023/online-lar-formatting/'>
-        Online LAR Formatting Tool Instructions
+        Online LAR Formatting Instructions
       </Link>
     </li>,
     <li key='2023-0'>
       <Link to='/documentation/2023/lar-formatting/'>
-        LAR Formatting Tool Instructions
+        Excel LAR Formatting Instructions
       </Link>
     </li>,
   ],
@@ -82,8 +82,8 @@ const LARFT = props => {
   const { year, inList, url } = props
   return (
     <Product
-      heading='LAR Formatting Tool'
-      lead='The LAR Formatting Tool is intended to help financial institutions, typically those with small volumes of covered loans and applications, to create an electronic file that can be submitted to the HMDA Platform.'
+      heading='LAR Formatting'
+      lead='The LAR Formatting Tools is intended to help financial institutions, typically those with small volumes of covered loans and applications, to create an electronic file that can be submitted to the HMDA Platform.'
       list={links[year]}
       inList={inList}
       year={year}

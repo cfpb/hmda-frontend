@@ -17,11 +17,11 @@ const ToolsProd = () => (
     </li>
     <li>
       <a href='/tools/online-lar-formatting'>
-        Online LAR Formatting Tool <NewIndicator />
+        Online LAR Formatting <NewIndicator />
       </a>
     </li>
     <li>
-      <a href='/tools/lar-formatting'>LAR Formatting Tool</a>
+      <a href='/tools/lar-formatting'>Excel LAR Formatting</a>
     </li>
   </ul>
 )
@@ -30,7 +30,7 @@ const ToolsBeta = () => (
   <ul>
     <li>
       <a href='/tools/lar-formatting'>
-        LAR Formatting Tool <NewIndicator text={'Preview'} />
+        Excel LAR Formatting <NewIndicator text={'Preview'} />
       </a>
     </li>
   </ul>
