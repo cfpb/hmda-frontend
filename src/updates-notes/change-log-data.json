@@ -1,18 +1,6 @@
 {
   "log": [
     {
-      "date": "05/11/23",
-      "type": "release",
-      "product": "tools",
-      "description": "The Online LAR Formatting tool was released. Financial institutions, typically those with smaller loan volumes, can use the online tool to create an electronic file to submit to the HMDA Platform",
-      "links": [
-        {
-          "text": "Online LAR Formatting Tool.",
-          "url": "https://ffiec.cfpb.gov/tools/online-lar-formatting"
-        }
-      ]
-    },
-    {
       "date": "04/14/23",
       "type": "update",
       "product": "tools",
