@@ -1,14 +1,17 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import larftStore from './larft/data-store/store'
 
 import Home from './Home'
 import CheckDigit from './check-digit/index'
 import RateSpread from './rate-spread/index'
 import RateSpreadRequirements from './rate-spread/Requirements'
 import RateSpreadMethodology from './rate-spread/Methodology'
+import AppIntro from './lar-formatting/AppIntro'
 import RateSpreadMethodology_alt from './rate-spread/Methodology_Alt'
 import FFVT from './file-format-verification/index'
-import LARFormatting from './lar-formatting/index'
+import { LARFT } from './larft'
 
 import './index.css'
 
@@ -46,7 +49,12 @@ const Tools = () => {
         />
         <Route path="/tools/rate-spread" component={RateSpread} />
         <Route path="/tools/file-format-verification" component={FFVT} />
-        <Route path="/tools/lar-formatting" component={LARFormatting} />
+        <Route path="/tools/lar-formatting" component={AppIntro} />
+        <Route path='/tools/online-lar-formatting'>
+          <Provider store={larftStore}>
+            <LARFT />
+          </Provider>
+        </Route>
       </Switch>
     </div>
   )

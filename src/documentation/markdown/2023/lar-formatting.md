@@ -1,4 +1,4 @@
-# HMDA LAR Formatting Tool - Instructions
+# HMDA Excel LAR Formatting Tool - Instructions
 
 1. Download the HMDA **LAR Formatting Tool for data collected in or after 2018** by selecting the link located on the Loan/Application Register (LAR) Formatting Tool webpage located at https://ffiec.cfpb.gov/tools/lar-formatting. 
 
@@ -18,7 +18,7 @@
       
       - Additional Resources
           - The FFIEC and HUD have published resources for financial institutions required to file HMDA data on the Help for Filers section of the HMDA Homepage located at http://www.ffiec.cfpb.gov/;
-          - Information regarding valid values and data format can be found in Section 3.4 of the Filing Instructions Guide for HMDA data collected in or after 2018 located at https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2023-hmda-fig.pdf. 
+          - Information regarding valid values and data format can be found in Section 3.4 of the Filing Instructions Guide for HMDA data collected in or after 2018 located at https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2019-hmda-fig.pdf. 
       
       b.	The **Data Worksheet** is where the data is entered under the appropriate headings in **row 4**.
       - Certain cells in the Data Worksheet provide information regarding what data to enter. Prompts will appear when you select a cell.
@@ -46,7 +46,7 @@
 
       c.	Do not enter any commas “,” into any of the cells.
 
-      d.	The format for data fields including a date, such as date application received or date of action, is YYYYMMDD. For example, January 17, 2023 should be reported as 20230117.
+      d.	The format for data fields including a date, such as date application received or date of action, is YYYYMMDD. For example, January 17, 2019 should be reported as 20190117.
       
       e.	Not applicable exempt codes must be entered as ‘NA’, not ‘N/A’, ‘na’, or ‘Na’. Exempt codes must be entered as ‘Exempt’, not ‘EXEMPT’ or ‘exempt’.
       
@@ -85,14 +85,14 @@
 
 ![](https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/documentation/markdown/images/larft/Document_Inspector.png)
 
-## Frequently Asked Questions
-The Frequently Asked Questions are available at https://ffiec.cfpb.gov/documentation/2023/faqs/
+# Frequently Asked Questions
+The Frequently Asked Questions are available at https://ffiec.cfpb.gov/documentation/2019/faqs/
 
 
 ## HMDA Help
 Technical questions about reporting HMDA data collected in or after 2017 should be directed to hmdahelp@cfpb.gov.
 
-### *Enabling macros for Microsoft® Excel® 2002 and 2003*
+### Enabling macros for Microsoft® Excel® 2002 and 2003
 
 If the message “The macro may not be available in this workbook or all macros may be disabled” appears, then the macro settings must be updated.
 
@@ -119,7 +119,7 @@ To enable the HMDA LAR Formatting Tool macro:
 9.	Return to step 4 in the instructions for the HMDA LAR Formatting Tool.
  
 
-### *Transferring existing data from another workbook or Google Sheets™ web-based spreadsheet program*
+### Transferring existing data from another workbook or Google Sheets™ web-based spreadsheet program
 
 Data that is saved in another workbook or in Google Sheets™ web-based spreadsheet program may be copied into the LAR Formatting Tool so that the data can be formatted into a pipe delimited text file.
 To copy data from external sources into the HMDA LAR Formatting Tool:
