@@ -72,7 +72,10 @@ const TableOfContents = ({
         <BackLink year={year} hide={!displayTOCBackLink} />
         <ul>
           {markdownHeaders.map((header, index) => (
-            <TOCHeader {...{ header, index, active: activeContent }} />
+            <TOCHeader
+              {...{ header, index, active: activeContent }}
+              key={header.title + '-' + index}
+            />
           ))}
         </ul>
       </div>
@@ -87,8 +90,10 @@ const TOCHeader = ({ header, index, active }) => {
   if (active == header.id)
     content = <div className='highlight'>{header.title}</div>
 
+  console.log(header.title + '-' + index)
+  
   return (
-    <li className={liClass} key={index}>
+    <li className={liClass}>
       <a href={`#${header.id}`}>{content}</a>
     </li>
   )

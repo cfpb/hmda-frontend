@@ -24,7 +24,7 @@ export const Tools = ({ isProdBeta }) => {
           <a href='/tools/file-format-verification'>File Format Verification</a>
         </li>
         <li>
-          <a href='/tools/lar-formatting'>LAR Formatting</a>
+          <a href='/tools/lar-formatting'>Excel LAR Formatting</a>
         </li>
       </ul>
     </header>

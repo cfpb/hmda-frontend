@@ -128,7 +128,7 @@ class SearchList extends React.Component {
     let errorMessage = null
     let loading = null
     let identifier = this.props.year === '2017' ? 'ID' : 'LEI'
-    let label = <span>Enter an institution name or {identifier}</span>
+    let label = <span>Search by Institution Name or {identifier}</span>
     const {
       isLoading,
       error,

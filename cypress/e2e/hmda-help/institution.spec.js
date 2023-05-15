@@ -18,7 +18,6 @@ const LOCAL_ACTION_DELAY = 250
 const NOTE_HISTORY_ON_CI_FIXED = false
 
 describe('HMDA Help - Institutions', () => {
-  const authUrl = HOST.indexOf('localhost') > -1 ? AUTH_BASE_URL : HOST
   const years = getFilingYears(getDefaultConfig(HOST))
 
   it('Can update existing Institutions', () => {
@@ -36,8 +35,7 @@ describe('HMDA Help - Institutions', () => {
 
     // Log in
     if (!isCI(ENVIRONMENT)) {
-      cy.logout({ root: authUrl, realm: AUTH_REALM })
-      cy.hmdaLogin('hmda-help', authUrl)
+      cy.hmdaLogin('hmda-help')
       cy.url().should('contains', `${AUTH_BASE_URL}hmda-help/`)
     }
     
@@ -186,8 +184,7 @@ describe('HMDA Help - Institutions', () => {
     
     // Log in
     if (!isCI(ENVIRONMENT)) {
-      cy.logout({ root: authUrl, realm: AUTH_REALM })
-      cy.hmdaLogin('hmda-help', authUrl)
+      cy.hmdaLogin('hmda-help')
       cy.url().should('contains', `${AUTH_BASE_URL}hmda-help/`)
     }
 

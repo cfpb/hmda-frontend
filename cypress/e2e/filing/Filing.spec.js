@@ -21,9 +21,6 @@ const years = (YEARS && YEARS.toString().split(',')) || getFilingPeriods(config)
 const { filingPeriodStatus } = config
 
 describe("Filing", function() {
-  // Only need to provide an Auth URL when running locally
-  const authUrl = HOST.indexOf('localhost') > -1 ? AUTH_BASE_URL : HOST
-  
   beforeEach(() => {
     cy.get({
       HOST,
@@ -40,7 +37,7 @@ describe("Filing", function() {
     
     // Skip authentication on CI
     if (!isCI(ENVIRONMENT)) {
-      cy.hmdaLogin('filing', authUrl)
+      cy.hmdaLogin('filing')
       cy.url().should('contains', `${AUTH_BASE_URL}filing/`)
       cy.url().should('contains', `/institutions`)
     }
