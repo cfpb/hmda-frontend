@@ -50,7 +50,7 @@ const removeHashAndReplace = id => {
  * @returns
  */
 const removeTwoHashes = ArrayOfHeaders => {
-  return ArrayOfHeaders.map(h =>
+  return ArrayOfHeaders.filter(x => x.match(/^#{2,3}\s/)).map(h =>
     h.includes('##') ? h.replace('##', '').trim() : ''
   )
 }

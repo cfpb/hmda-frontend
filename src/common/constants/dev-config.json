@@ -2,22 +2,21 @@
   "name": "dev",
   "announcement": [
     {
-      "heading": "2022 Modified LAR Release",
-      "message": "On March 20, 2023, the 2022 Modified LAR data was released. A combined file containing all LAR records in a single file is also available. These files can be accessed via the ",
+      "heading": "Online LAR Formatting Tool",
+      "message": "The Online LAR Formatting tool has been released! Financial institutions can now create an electronic file online to submit to the HMDA Platform. Check out the ",
       "type": "info",
       "link": {
-        "url": "https://ffiec.cfpb.gov/data-publication/modified-lar/",
-        "text": "Modified LAR page."
-      },
-      "endDate": "05/31/2023"
+        "url": "https://ffiec.cfpb.gov/tools/online-lar-formatting",
+        "text": "new LAR Formatting tool."
+      }
     },
     {
-      "heading": "HMDA Quarterly Graphs updated",
-      "message": "HMDA Quarterly Graphs have been updated to include data for the recently completed 2022-Q3 filing period and can be found ",
+      "heading": "Rate Spread Metholodgy Updates",
+      "message": "Starting on or after April 24, 2023, the CFPB will begin relying on data from ICE Mortgage Technology to calculate APORs. Read the ",
       "type": "info",
       "link": {
-        "url": "https://ffiec.cfpb.gov/data-browser/graphs/quarterly",
-        "text": "here."
+        "url": "https://ffiec.cfpb.gov/tools/rate-spread/methodology",
+        "text": "revised methodology statement."
       }
     }
   ],
@@ -27,38 +26,12 @@
   "filingAnnouncement": null,
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
-    "mlar": [
-      "2022",
-      "2021",
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "shared": [
-      "2021",
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "threeYear": [
-      "2018",
-      "2017"
-    ],
-    "oneYear": [
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ]
+    "mlar": ["2022", "2021", "2020", "2019", "2018", "2017"],
+    "shared": ["2021", "2020", "2019", "2018", "2017"],
+    "threeYear": ["2018", "2017"],
+    "oneYear": ["2020", "2019", "2018", "2017"]
   },
-  "dataBrowserYears": [
-    "2021",
-    "2020",
-    "2019",
-    "2018"
-  ],
+  "dataBrowserYears": ["2021", "2020", "2019", "2018"],
   "timedGuards": {
     "2023": {
       "Q1": "04/01/2023 - 05/31/2023 - 06/30/2023",

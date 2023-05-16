@@ -1,6 +1,30 @@
 {
   "log": [
     {
+      "date": "05/15/23",
+      "type": "release",
+      "product": "tools",
+      "description": "The Online LAR Formatting tool was released. Financial institutions, typically those with smaller loan volumes, can use the online tool to create an electronic file to submit to the HMDA Platform",
+      "links": [
+        {
+          "text": "Online LAR Formatting Tool.",
+          "url": "https://ffiec.cfpb.gov/tools/online-lar-formatting"
+        }
+      ]
+    },
+    {
+      "date": "04/14/23",
+      "type": "update",
+      "product": "tools",
+      "description": "Starting on or after April 24, 2023, the CFPB will begin relying on data from ICE Mortgage Technology to calculate APORs. This update is related to the rate spread calculator.",
+      "links": [
+        {
+          "text": "View the press release.",
+          "url": "https://www.consumerfinance.gov/about-us/newsroom/cfpb-announces-revised-methodology-for-determining-average-prime-offer-rates/"
+        }
+      ]
+    },
+    {
       "date": "03/20/23",
       "type": "release",
       "product": "mlar",

@@ -23,20 +23,26 @@ const BaseIconStyles = {
 function linkToDocs(year = '2018') {
   return [
     <li key='0'>
-      <a href={`/documentation/${year}/public-lar-schema/`}>
+      <a
+        href={`/documentation/publications/loan-level-datasets/public-lar-schema`}
+      >
         Public LAR Schema
       </a>
     </li>,
     <li key='1'>
-      <a href={`/documentation/${year}/lar-data-fields/`}>
+      <a
+        href={`/documentation/publications/loan-level-datasets/lar-data-fields`}
+      >
         Public LAR Field Definitions and Values
       </a>
     </li>,
     <li key='2'>
-      <a href={`/documentation/${year}/public-ts-schema/`}>
+      <a
+        href={`/documentation/publications/loan-level-datasets/public-ts-schema`}
+      >
         Public Transmittal Sheet Schema
       </a>
-    </li>
+    </li>,
   ]
 }
 

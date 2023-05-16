@@ -31,8 +31,8 @@ export const HeaderDocsLink = ({ period }) => {
     : "For more information regarding filing, please visit the "
   
   const url = isQuarterly
-    ? `/documentation/${filingYear}/quarterly-filing-dates/`
-    : `/documentation/${filingYear}`
+    ? `/documentation/faq/data-collection-timelines#quarterly-filing-period-dates`
+    : `/documentation/category/frequently-asked-questions`
   
   return (
     <>

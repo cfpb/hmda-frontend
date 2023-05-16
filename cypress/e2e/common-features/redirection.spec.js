@@ -68,7 +68,7 @@ const FromTo = [
   },
   {
     from: '/data-publication/snapshot-national-loan-level-dataset/20',
-    to: `/data-publication/snapshot-national-loan-level-dataset/${years.mlar[0]}`,
+    to: `/data-publication/snapshot-national-loan-level-dataset/${years.shared[0]}`,
     description: 'Snapshot redirects correctly from invalid year',
   },
   {
