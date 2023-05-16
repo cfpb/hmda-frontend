@@ -71,6 +71,7 @@ coverage.xml
 # Front-End #
 #############
 node_modules/
+npm-packages-offline-cache/
 bower_components/
 .grunt/
 src/vendor/
