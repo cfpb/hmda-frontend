@@ -58,11 +58,14 @@ body {
    box-shadow: inset 0 0 0 2px #1f498f !important;
 }
 
-.DocSearch-Logo svg {
-   .cls-1, .cls-2 {
-      fill: #999 !important;
+.DocSearch-Logo {
+   display: none;
+   svg {
+      .cls-1, .cls-2 {
+         fill: #999 !important;
+      }
    }
-}
+} 
 
 .DocSearch-Container {
    z-index: 1010 !important;
