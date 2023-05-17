@@ -8,5 +8,12 @@ in the form $setting: value,
 */
 
 
-@use "uswds-core" with ($theme-show-notifications: false,
-    $theme-respect-user-font-size: false);
+@use "uswds-core" with (
+    $theme-show-notifications: false,
+    $theme-respect-user-font-size: false,
+    $theme-font-type-icon:   false,
+    $theme-font-type-lang:   false,
+    $theme-font-type-mono:   false,
+    $theme-font-type-sans:   'source-sans-pro',
+    $theme-font-type-serif:  'source-sans-pro',
+);
