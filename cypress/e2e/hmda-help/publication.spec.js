@@ -14,8 +14,6 @@ const {
 const ACTION_DELAY = 250
 
 describe('HMDA Help - Publications', () => {
-  const authUrl = HOST.indexOf('localhost') > -1 ? AUTH_BASE_URL : HOST
-
   it('Can trigger Publication regeneration', () => {
     cy.get({
       HOST,
@@ -32,9 +30,8 @@ describe('HMDA Help - Publications', () => {
 
     // Log in
     if (!isCI(ENVIRONMENT)) {
-      cy.logout({ root: authUrl, realm: AUTH_REALM })
       cy.wait(ACTION_DELAY)
-      cy.hmdaLogin('hmda-help', authUrl)
+      cy.hmdaLogin('hmda-help')
       cy.url().should('contains', `${AUTH_BASE_URL}hmda-help/`)
     }
     

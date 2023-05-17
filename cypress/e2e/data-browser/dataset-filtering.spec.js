@@ -172,7 +172,7 @@ describe(`Data Browser - Dataset Filtering`, () => {
           cy.url().should('include', '&loan_types=1')
 
           // View Summary Table
-          cy.findByText('View Summary Table').click()
+          cy.findByText('View Summary Table').click({ force: true })
           cy.get('.Aggregations', waitUpto2Mins).should('exist')
           
           const msa_text =

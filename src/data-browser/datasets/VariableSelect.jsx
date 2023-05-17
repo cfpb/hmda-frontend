@@ -12,19 +12,20 @@ import {
 const VariableSelect = ({ options, variables, orderedVariables, year, checkFactory, onChange }) => {
   const variableValues = setVariableSelect(orderedVariables, year)
   return (
-    <div className="SelectWrapper">
+    <div className='SelectWrapper'>
       <h3>Step 3: Select a filter (optional)</h3>
       <p>
         Narrow down your selection by filtering on up to two{' '}
         <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="/documentation/2018/data-browser-filters/#action_taken"
+          target='_blank'
+          rel='noopener noreferrer'
+          href='/documentation/tools/data-browser/data-browser-filters#action-taken-action_taken'
         >
           popular variables
         </a>
       </p>
-      <Select id='VariableSelector'
+      <Select
+        id='VariableSelector'
         controlShouldRenderValue={false}
         onChange={onChange}
         placeholder={
@@ -45,7 +46,7 @@ const VariableSelect = ({ options, variables, orderedVariables, year, checkFacto
         }
       />
       <Pills values={variableValues} onChange={onChange} />
-      <div className="QuerySummary">
+      <div className='QuerySummary'>
         {orderedVariables.map(variable => {
           return (
             <CheckboxContainer
