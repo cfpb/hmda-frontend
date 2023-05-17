@@ -13,7 +13,7 @@ export const FilingDocs = () => (
         <a href='/documentation/faq/filing-faq'>HMDA Filing FAQ</a>
       </li>
       <li>
-        <a href='/documentation/faq/data-collection-timelines#filing-instructions-guide-fig'>
+        <a href='/documentation/faq/identifiers-faq'>
           HMDA Institution Identifiers FAQ
         </a>
       </li>

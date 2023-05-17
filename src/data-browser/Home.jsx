@@ -71,7 +71,7 @@ class Home extends Component {
             image={graphBw}
             imageHover={graphColor}
             faq={{
-              url: `/documentation/faq/data-browser-maps-faq`,
+              url: `/documentation/faq/data-browser-graphs-faq`,
               label: 'HMDA Graphs FAQ',
             }}
           />

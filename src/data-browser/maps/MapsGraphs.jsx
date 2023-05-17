@@ -19,11 +19,7 @@ const MapsGraphs = props => {
           <p className='lead'>
             The HMDA Maps tool allows you to explore subsets of HMDA data,
             filtered by{' '}
-            <a
-              href={
-                '/documentation/tools/data-browser/data-browser-filters#action-taken-action_taken'
-              }
-            >
+            <a href='/documentation/tools/data-browser/data-browser-filters#pre-selected-filters'>
               popular variables
             </a>
             . For help getting started, visit the{' '}

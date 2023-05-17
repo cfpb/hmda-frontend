@@ -19,7 +19,7 @@ const VariableSelect = ({ options, variables, orderedVariables, year, checkFacto
         <a
           target='_blank'
           rel='noopener noreferrer'
-          href='/documentation/tools/data-browser/data-browser-filters#action-taken-action_taken'
+          href='/documentation/tools/data-browser/data-browser-filters#pre-selected-filters'
         >
           popular variables
         </a>
