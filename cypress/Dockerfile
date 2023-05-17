@@ -45,6 +45,8 @@ RUN mkdir -p src/filing/api/
 COPY ../src/filing/api src/filing/api
 RUN mkdir -p src/filing/utils/
 COPY ../src/filing/utils src/filing/utils
+RUN mkdir -p src/tools/larft/config/
+COPY ../src/tools/larft/config/ src/tools/larft/config/
 
 # Enable creation of screenshots/videos
 RUN useradd -M -d /hmda-frontend -s /bin/bash hmda_cypress_user && \
