@@ -24,10 +24,11 @@
   "dependencies": {
     "@docsearch/react": "3",
     "@reduxjs/toolkit": "^1.7.1",
+    "@tanstack/react-table": "8.7.9",
     "@uswds/compile": "^1.0.0",
     "@uswds/uswds": "^3.4.1",
-    "@tanstack/react-table": "8.7.9",
     "ansi-html": "0.0.8",
+    "core-js-pure": "^3.30.2",
     "csv-parse": "4.15.4",
     "detect-browser": "4.8.0",
     "elliptic": "6.5.4",
