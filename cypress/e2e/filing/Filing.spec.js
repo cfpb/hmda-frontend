@@ -145,13 +145,14 @@ describe("Filing", function() {
 
             // Action: Review Quality Edits
             cy.get('.NavButtonContainer > .NavButton').click()
-            cy.wait(ACTION_DELAY)
+            cy.wait(5000)
 
             /* Action: Verify Quality Edits */
             cy.get('.EditsTableWrapper').then(wrapper => {
               // Verify edits, if triggered
               if (wrapper.find('.Verifier').length)
                 cy.get('#qualityVerifier').check()
+                cy.wait(5000)
               // Move to next step in Submission process
               cy.get('.NavButtonContainer > .NavButton').click()
             })
