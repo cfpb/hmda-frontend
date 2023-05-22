@@ -20,23 +20,23 @@ const makeListLink = ({ url, label }, _idx) => (
 export function linkToSpecs(year = '2018') {
   const entries = [
     {
-      url: `/documentation/${year}/public-lar-schema/`,
+      url: '/documentation/publications/loan-level-datasets/public-lar-schema',
       label: 'Public LAR Schema',
     },
     {
-      url: `/documentation/${year}/public-ts-schema/`,
+      url: '/documentation/publications/loan-level-datasets/public-ts-schema',
       label: 'Public Transmittal Sheet Schema',
     },
     {
-      url: `/documentation/${year}/public-panel-schema/`,
+      url: '/documentation/publications/loan-level-datasets/public-panel-schema',
       label: 'Public Panel Schema',
     },
     {
-      url: `/documentation/${year}/lar-data-fields/`,
+      url: '/documentation/publications/loan-level-datasets/lar-data-fields',
       label: 'Public HMDA Data Fields with Values and Definitions',
     },
     {
-      url: `/documentation/${year}/panel-data-fields/`,
+      url: '/documentation/publications/loan-level-datasets/panel-data-fields',
       label: 'Public Panel Values and Definitions',
     },
   ]
@@ -94,7 +94,7 @@ export const renderDocumentation = (data, year) => {
       <ul>
         {[
           {
-            url: `/documentation/${year}/static-dataset-faq/`,
+            url: '/documentation/faq/static-dataset-faq',
             label: 'Static Dataset FAQ',
           },
         ].map(makeListLink)}

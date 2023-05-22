@@ -1,11 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { withAppContext } from '../../common/appContextHOC.jsx'
 import Heading from '../../common/Heading.jsx'
 import { S3DatasetLink } from '../../common/S3Integrations'
+import { Link } from 'react-router-dom'
 
-const AppIntro = ({ config = {} }) => {
-  const { defaultDocsPeriod } = config
+const AppIntro = () => {
 
   return [
     <Heading
@@ -21,7 +20,7 @@ const AppIntro = ({ config = {} }) => {
           The HMDA Excel LAR formatting tool is a Microsoft® Excel® workbook created by the Bureau for HMDA filers, who do not have another means of doing so, to enter and format data into a pipe delimited text file. A pipe delimited text file is the required format beginning for data collected in 2017 for financial institutions to file their loan/application register (LAR) using the HMDA Platform.
         </p>
         <p>
-          Follow the <Link to={`/documentation/${defaultDocsPeriod}/tools/lar-formatting/`}>Excel LAR Formatting Tool instructions</Link> to format your data into a pipe delimited text file.
+          Follow the <Link to='/documentation/tools/lar-formatting/'>Excel LAR Formatting Tool instructions</Link> to format your data into a pipe delimited text file.
         </p>
       </React.Fragment>
     </Heading>,
@@ -34,7 +33,7 @@ const AppIntro = ({ config = {} }) => {
         label='Excel LAR Formatting Tool for data collected in or after 2018'
         showLastUpdated
       />
-    </ul>
+    </ul>,
   ]
 }
 

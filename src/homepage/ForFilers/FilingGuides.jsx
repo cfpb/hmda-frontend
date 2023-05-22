@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { LATEST_FIG_YEAR } from '../../common/constants/years'
 import { ExternalLink } from '../../common/ExternalLink'
 import { ExpandableCard } from '../ExpandableCard'
@@ -24,7 +23,11 @@ export const FilingGuides = () => (
   >
     <ul>
       <li>
-        <Link to={`/documentation/${LATEST_FIG_YEAR}/fig/`}>Filing Instructions Guides</Link>
+        <a
+          href={`/documentation/faq/data-collection-timelines#filing-instructions-guide-fig`}
+        >
+          Filing Instructions Guides
+        </a>
       </li>
       <ul>
         <li>
@@ -33,7 +36,7 @@ export const FilingGuides = () => (
             download={true}
           >
             For data collected in {LATEST_FIG_YEAR}
-            <NewIndicator/>
+            <NewIndicator />
             <FigLastUpdated year={LATEST_FIG_YEAR} />
           </a>
         </li>
@@ -43,7 +46,7 @@ export const FilingGuides = () => (
             download={true}
           >
             Supplemental Guide for Quarterly Filers for {LATEST_FIG_YEAR}
-            <NewIndicator/>
+            <NewIndicator />
           </a>
         </li>
         <li>

@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { CURRENT_YEAR } from '../../common/constants/years'
 import { ExternalLink } from '../../common/ExternalLink'
 
@@ -28,7 +27,9 @@ export const HelpForFilers = () => {
           </ExternalLink>
         </li>
         <li>
-          <Link to='/documentation/2022/fig/'>Filing Instructions Guides</Link>
+          <a href='/documentation/faq/data-collection-timelines#filing-instructions-guide-fig'>
+            Filing Instructions Guides
+          </a>
         </li>
         <ul>
           <li>

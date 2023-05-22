@@ -1,42 +1,41 @@
-import { Link } from "react-router-dom"
 import { ExternalLink } from "../../common/ExternalLink"
 import { ExpandableCard } from "../ExpandableCard"
 
 export const FilingDocs = () => (
   <ExpandableCard
-    id="home-expand-filing-docs"
-    title="Filing Documentation"
-    description="Answers to common questions about the process of filing HMDA data."
-    destination="/documentation"
+    id='home-expand-filing-docs'
+    title='Filing Documentation'
+    description='Answers to common questions about the process of filing HMDA data.'
+    destination='/documentation/faq/filing-faq'
   >
     <ul>
       <li>
-        <Link to="documentation/2022/filing-faq/">HMDA Filing FAQ</Link>
+        <a href='/documentation/faq/filing-faq'>HMDA Filing FAQ</a>
       </li>
       <li>
-        <Link to="/documentation/2022/identifiers-faq/">
+        <a href='/documentation/faq/identifiers-faq'>
           HMDA Institution Identifiers FAQ
-        </Link>
+        </a>
       </li>
       <li>
-        <Link to="/documentation/2022/data-collection-timelines/">
+        <a href='/documentation/faq/data-collection-timelines#annual-filing-period-dates'>
           Annual HMDA Data Collection Timelines
-        </Link>
+        </a>
       </li>
       <li>
-        <Link to="/documentation/2022/quarterly-filing-dates/">
+        <a href='/documentation/faq/data-collection-timelines#quarterly-filing-period-dates'>
           Quarterly HMDA Data Collection Timelines
-        </Link>
+        </a>
       </li>
       <li>
-        <ExternalLink url="https://hmdahelp.consumerfinance.gov/knowledgebase/s/topic/0TOt0000000PFzGGAW/hmda-articles">
+        <ExternalLink url='https://hmdahelp.consumerfinance.gov/knowledgebase/s/topic/0TOt0000000PFzGGAW/hmda-articles'>
           HMDA Operations Knowledge Base
         </ExternalLink>
       </li>
       <li>
-        <ExternalLink url="https://cfpb.github.io/hmda-platform">
+        <a href='/documentation/category/developer-apis'>
           HMDA API Documentation
-        </ExternalLink>
+        </a>
       </li>
     </ul>
   </ExpandableCard>

@@ -5,9 +5,9 @@ import ExternalLink from '../../../common/ExternalLink'
 
 import './Summary.css'
 
-const tsSchemaLink = (year) => (
+const tsSchemaLink = () => (
   <ExternalLink
-    url={`/documentation/${year}/ts-data-fields/`}
+    url={`/documentation/publications/loan-level-datasets/ts-data-fields`}
     text='Transmittal Sheet'
     className='dotted'
   />
@@ -25,7 +25,7 @@ const Summary = props => {
           You have completed the verification process for your HMDA data.
         </p>
         <p className='font-lead'>
-          The values below come from your {tsSchemaLink(year)}, the first
+          The values below come from your {tsSchemaLink()}, the first
           row of your LAR file.
         </p>
         <p className='emphasize'>

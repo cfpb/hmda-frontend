@@ -1,12 +1,14 @@
 import React from 'react'
 
-function makeUrl({year, definition}) {
-  return `/documentation/${year}/data-browser-filters/#${definition}`
+function makeUrl(id, definition) {
+  id = id.replace(' ', '-').toLowerCase()
+  return `/documentation/tools/data-browser/data-browser-filters#${id}-${definition}`
 }
 
 const DocLink = props => {
+  let id = props.children.props.children
   return (
-    <a href={makeUrl(props)} target="_blank" rel="noopener noreferrer">
+    <a href={makeUrl(id, props.definition)} target="_blank" rel="noopener noreferrer">
       {props.children}
     </a>
   )
