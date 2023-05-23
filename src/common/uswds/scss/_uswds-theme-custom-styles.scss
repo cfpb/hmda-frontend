@@ -142,7 +142,9 @@ body {
 }
 
 .user {
-   
+   position: absolute;
+   top: 2px;
+   right: 0;
    button {
       margin: 0 1em 0 0;
       font-size: .75em;
@@ -162,10 +164,6 @@ body {
       }
    }
    @media (min-width: 1024px) {
-      position: absolute;
-      top: 0;
-      right: 0;
-
       button {
          padding: .15em 1em;
       }

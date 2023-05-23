@@ -9,6 +9,7 @@ const {
   INSTITUTION,
   ACTION_DELAY,
   TEST_DELAY,
+  NAV_DELAY,
   ENVIRONMENT,
   AUTH_BASE_URL,
   AUTH_REALM,
@@ -29,6 +30,7 @@ describe("Filing", function() {
       INSTITUTION,
       ACTION_DELAY,
       TEST_DELAY,
+      NAV_DELAY,
       ENVIRONMENT,
       AUTH_BASE_URL,
       AUTH_REALM,
@@ -145,14 +147,14 @@ describe("Filing", function() {
 
             // Action: Review Quality Edits
             cy.get('.NavButtonContainer > .NavButton').click()
-            cy.wait(5000)
+            cy.wait(NAV_DELAY)
 
             /* Action: Verify Quality Edits */
             cy.get('.EditsTableWrapper').then(wrapper => {
               // Verify edits, if triggered
               if (wrapper.find('.Verifier').length)
                 cy.get('#qualityVerifier').check()
-                cy.wait(5000)
+                cy.wait(NAV_DELAY)
               // Move to next step in Submission process
               cy.get('.NavButtonContainer > .NavButton').click()
             })
