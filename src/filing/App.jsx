@@ -141,7 +141,7 @@ export class AppContainer extends Component {
           Skip to main content
         </a>
         <ShowUserName isLoggedIn = {getKeycloak().authenticated} />
-        {/*<Header filingPeriod={params.filingPeriod} pathname={location.pathname} />*/}
+       
         <ConfirmationModal />
         {isBeta() ? <Beta/> : null}
         {filingAnnouncement ? <FilingAnnouncement data={filingAnnouncement} /> : null}
