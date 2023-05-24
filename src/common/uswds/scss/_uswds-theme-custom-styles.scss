@@ -143,8 +143,11 @@ body {
 
 .user {
    position: absolute;
-   top: 2px;
+   top: 100px;
    right: 0;
+   @media (min-width: 550px) {
+      top: 2px;
+   }
    button {
       margin: 0 1em 0 0;
       font-size: .75em;
