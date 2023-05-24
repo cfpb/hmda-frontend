@@ -1,28 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { logout } from '../filing/utils/keycloak.js'
 import { getKeycloak } from './api/Keycloak.js'
-
-export const ShowUserName = (props) => {
-  let userName
-  const [isLoggedIn, setIsLoggedIn] = useState(props.isLoggedIn)
-  isLoggedIn ? (userName = getKeycloak().tokenParsed.name) : null
-  
-  useEffect(() => {
-    setIsLoggedIn(props.isLoggedIn);
-  }, [props.isLoggedIn]);
-
+export const ShowUserName = ({ isLoggedIn }) => {
   const handleLogout = e => {
-    setIsLoggedIn(false)
-    userName = ''
     e.preventDefault()
     logout()
   }
-  
+  if (!isLoggedIn) return null
+  const userName = getKeycloak().tokenParsed.name
   return (
-    <>
-      {isLoggedIn ? (
-        <div className='user'>{userName} <button onClick={handleLogout}>Logout</button></div>
-      ) : null}
-    </>
+    <div className='user'>
+      {userName} <button onClick={handleLogout}>Logout</button>
+    </div>
   )
 }
