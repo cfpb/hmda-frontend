@@ -32,7 +32,8 @@ export const defaultLinks = [
   submenu: [
     { name: 'Overview', href: '/tools/' },
     { name: 'Rate Spread', href: '/tools/rate-spread' },
-    { name: 'LAR Formatting', href: '/tools/lar-formatting' },
+    { name: 'Excel LAR Formatting', href: '/tools/lar-formatting' },
+    { name: 'Online LAR Formatting', href: '/tools/online-lar-formatting' },
     { name: 'File Verification', href: '/tools/file-format-verification' },
     { name: 'Check Digit', href: '/tools/check-digit' },
   ]
