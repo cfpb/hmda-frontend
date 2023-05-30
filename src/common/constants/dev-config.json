@@ -2,21 +2,21 @@
   "name": "dev",
   "announcement": [
     {
+      "heading": "Documentation Overhaul",
+      "message": "A new and enhanced HMDA documentation page has been released! In addition to an improved visual design, financial institutions now have the ability to search the consolidated documentation and API documentation has been integrated. ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/documentation/",
+        "text": "Visit the redesigned page here."
+      }
+    },
+    {
       "heading": "Online LAR Formatting Tool",
       "message": "The Online LAR Formatting tool has been released! Financial institutions can now create an electronic file online to submit to the HMDA Platform. Check out the ",
       "type": "info",
       "link": {
         "url": "https://ffiec.cfpb.gov/tools/online-lar-formatting",
         "text": "new LAR Formatting tool."
-      }
-    },
-    {
-      "heading": "Rate Spread Metholodgy Updates",
-      "message": "Starting on or after April 24, 2023, the CFPB will begin relying on data from ICE Mortgage Technology to calculate APORs. Read the ",
-      "type": "info",
-      "link": {
-        "url": "https://ffiec.cfpb.gov/tools/rate-spread/methodology",
-        "text": "revised methodology statement."
       }
     }
   ],
