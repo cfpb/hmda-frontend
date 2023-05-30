@@ -13,7 +13,6 @@
     "test-large": "CYPRESS_YEARS=2020 yarn run cypress run --spec cypress/integration/load/LargeFiler.spec.js",
     "ci": "REACT_APP_ENVIRONMENT=CI yarn start -p 3000",
     "ci-data": "yarn newman run cypress/ci/tests/CREATE_INSTITUTIONS.postman_collection.json -e cypress/ci/config/PLATFORM_ENV.postman_environment.json -d cypress/ci/config/institutions.json",
-    "dev-docs": "cp -R ./src/documentation/markdown ./public/",
     "make-lar": "node ./scripts/lar/generate_lar_file.mjs",
     "cy-update-s3": "./cypress/update-s3-files.sh"
   },
@@ -23,8 +22,11 @@
   "author": "Consumer Financial Protection Bureau",
   "license": "CC0-1.0",
   "dependencies": {
+    "@docsearch/react": "^3.3.5",
     "@reduxjs/toolkit": "^1.7.1",
     "@tanstack/react-table": "8.7.9",
+    "@uswds/compile": "^1.0.0",
+    "@uswds/uswds": "^3.4.1",
     "ansi-html": "0.0.8",
     "csv-parse": "4.15.4",
     "detect-browser": "4.8.0",

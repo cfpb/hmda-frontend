@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { ExpandableSection } from '../../../common/ExpandableSection'
 import Heading from '../../../common/Heading'
 import {
@@ -31,9 +30,9 @@ export const PageHeader = () => {
 
       <Heading key={'documentation-link'} type={2}>
         For additional guidance, please visit the Online LAR Formatting Tool's{' '}
-        <Link to='/documentation/2023/online-lar-formatting'>
+        <a href='/documentation/tools/online-lar-formatting'>
           documentation
-        </Link>{' '}
+        </a>{' '}
         page.
       </Heading>
     </>

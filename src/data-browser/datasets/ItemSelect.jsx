@@ -33,7 +33,7 @@ const ItemSelect = ({
         <a
           target='_blank'
           rel='noopener noreferrer'
-          href='/documentation/2018/data-browser-filters/#Nationwide'
+          href='/documentation/tools/data-browser/data-browser-filters#nationwide'
         >
           View more information on the available filters.
         </a>

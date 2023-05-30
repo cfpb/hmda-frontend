@@ -105,14 +105,31 @@ class Aggregate extends React.Component {
     const header = (
       <Heading
         type={1}
-        headingText="MSA/MD Aggregate Reports"
-        paragraphText="These reports summarize lending activity by MSA/MD."
+        headingText='MSA/MD Aggregate Reports'
+        paragraphText='These reports summarize lending activity by MSA/MD.'
       >
-          <p>To learn about modifications to these reports over the years, visit the{' '}
-          <a target="_blank" rel="noopener noreferrer" href={`/documentation/${years[0]}/ad-changes/`}>A&D Report Changes</a> page.<br/>
-          Looking for other HMDA data? Visit the new <a target="_blank" rel="noopener noreferrer" href="/data-browser/">HMDA Data Browser</a> to filter and download HMDA datasets.<br/>
-          {year === '2018' ? 'The 2018 Aggregate Reports use the static dataset that was frozen on August 7, 2019.' : '\u00a0'}
-          </p>
+        <p>
+          To learn about modifications to these reports over the years, visit
+          the{' '}
+          <a
+            target='_blank'
+            rel='noopener noreferrer'
+            href={`/documentation/publications/aggregate-disclosure-reports/ad-changes`}
+          >
+            A&D Report Changes
+          </a>{' '}
+          page.
+          <br />
+          Looking for other HMDA data? Visit the new{' '}
+          <a target='_blank' rel='noopener noreferrer' href='/data-browser/'>
+            HMDA Data Browser
+          </a>{' '}
+          to filter and download HMDA datasets.
+          <br />
+          {year === '2018'
+            ? 'The 2018 Aggregate Reports use the static dataset that was frozen on August 7, 2019.'
+            : '\u00a0'}
+        </p>
       </Heading>
     )
 
