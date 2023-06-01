@@ -9,13 +9,13 @@ const Documentation = () => {
   // Redirects point to Docusaurus base route
   return (
     <Switch>
-      {/* <Redirect
+      <Redirect
         exact
         path='/documentation'
         to={window.location.assign(
           `${window.location.origin}/documentation/category/frequently-asked-questions`
         )}
-      /> */}
+      />
       <Route component={NotFound} />
     </Switch>
   )
