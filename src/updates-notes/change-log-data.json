@@ -1,6 +1,18 @@
 {
   "log": [
     {
+      "date": "06/01/23",
+      "type": "release",
+      "product": "documentation",
+      "description": "A new and enhanced HMDA documentation page has been released! In addition to an improved visual design, financial institutions now have the ability to search the consolidated documentation and API documentation has been integrated.",
+      "links": [
+        {
+          "text": "Visit the redesigned page here.",
+          "url": "https://ffiec.cfpb.gov/documentation/"
+        }
+      ]
+    },
+    {
       "date": "05/15/23",
       "type": "release",
       "product": "tools",
