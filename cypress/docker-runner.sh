@@ -29,7 +29,8 @@ then
 fi
 
 # Run Docusaurus e2e test and display results
-if [[ "$CYPRESS_HOST" == *"ffiec"* ]];
+# Only run Docusaurus in production
+if [[ "$CYPRESS_HOST" == *"ffiec.cfpb"* ]];
 then
 	yarn cypress run --spec "cypress/e2e/docusaurus/**" > output_docusaurus_e2e.txt
 	if grep -q "All specs passed!" "output_docusaurus_e2e.txt" ; then
