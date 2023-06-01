@@ -89,8 +89,6 @@ const TOCHeader = ({ header, index, active }) => {
   let content = header.title
   if (active == header.id)
     content = <div className='highlight'>{header.title}</div>
-
-  console.log(header.title + '-' + index)
   
   return (
     <li className={liClass}>
