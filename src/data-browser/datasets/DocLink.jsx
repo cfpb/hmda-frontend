@@ -1,8 +1,12 @@
 import React from 'react'
 
 function makeUrl(id, definition) {
-  id = id.replace(' ', '-').toLowerCase()
-  return `/documentation/tools/data-browser/data-browser-filters#${id}-${definition}`
+  let idFromChildren = id
+  if (Array.isArray(id)) {
+    idFromChildren = id[0]
+  }
+  idFromChildren = idFromChildren.replace(' ', '-').toLowerCase()
+  return `/documentation/tools/data-browser/data-browser-filters#${idFromChildren}-${definition}`
 }
 
 const DocLink = props => {
