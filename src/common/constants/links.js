@@ -24,7 +24,7 @@ export const defaultLinks = [
       { name: 'Snapshot Datasets', href: '/data-publication/snapshot-national-loan-level-dataset/' },
       { name: 'One-Year Datasets', href: '/data-publication/one-year-national-loan-level-dataset/' },
       { name: 'Three-Year Datasets', href: '/data-publication/three-year-national-loan-level-dataset/' },
-      { name: 'MSA/MD Datasets', href: '/data-publication/aggregate-reports/' },
+      { name: 'Aggregate Reports', href: '/data-publication/aggregate-reports/' },
       { name: 'Disclosure Reports', href: '/data-publication/disclosure-reports/' },
     ]
   },
