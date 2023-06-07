@@ -32,6 +32,46 @@ const threeYearTitle = "Three Year National Loan-Level Dataset"
 
 
 const publications = {
+  2022: [
+    // {
+    //   updateFrequency: 'Does not update. Generated a few months after filing deadline',
+    //   availableFor: '2017-2022',      
+    //   headingLink: snapLink(2022),
+    //   headingText: snapTitle,
+    //   paragraphText: snapDesc,
+    //   freezeDate: SNAPSHOT_DATASET[2022].freezeDate
+    // },
+    {
+      updateFrequency: 'Does not update. Generated a few months after filing deadline',
+      availableFor: '2017-2022',
+      headingLink: drLink(2022),
+      headingText: drTitle,
+      paragraphText: drDesc,
+    },
+    {
+      updateFrequency: 'Does not update. Generated a few months after filing deadline',
+      availableFor: '2017-2022',       
+      headingLink: arLink(2022),
+      headingText: arTitle,
+      paragraphText: arDesc,
+    },
+    // {
+    //   group: 'dynamic',
+    //   updateFrequency: 'Upon Institution resubmission',
+    //   availableFor: '2017-2022',
+    //   headingLink: mlarLink(2022),
+    //   headingText: mlarTitle,
+    //   paragraphText: mlarDesc,
+    // },
+    // {
+    //   group: 'dynamic',
+    //   updateFrequency: 'Weekly on Mondays',
+    //   availableFor: '2019-2022',
+    //   headingLink: dynLink(2022),
+    //   headingText: dynTitle,
+    //   paragraphText: dynDesc,
+    // },
+  ],
   2021: [
     {
       updateFrequency: 'Does not update. Generated a few months after filing deadline',

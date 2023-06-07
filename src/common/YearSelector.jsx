@@ -11,6 +11,8 @@ function makeToUrl(year, y, url) {
 
 const YearSelector = ({year, years=YEARS, url}) => {
 
+  console.log(YEARS)
+
   return (
     <div className="YearSelector">
       <h4>Select a year</h4>

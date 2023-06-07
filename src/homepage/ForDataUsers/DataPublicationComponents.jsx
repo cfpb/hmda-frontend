@@ -59,7 +59,11 @@ export const StaticDatasets = ({
   </li>
 )
 
-export const Reports = ({ publicationReleaseYear }) => (
+export const Reports = ({ publicationReleaseYear }) => {
+
+  console.log(publicationReleaseYear)
+
+  return (
   <li>
     Reports
     <ul>
@@ -85,5 +89,5 @@ export const Reports = ({ publicationReleaseYear }) => (
         </Link>
       </li>
     </ul>
-  </li>
-)
+  </li>)
+}
