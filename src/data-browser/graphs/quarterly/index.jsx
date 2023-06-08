@@ -1,8 +1,6 @@
 import React, { useState } from "react"
 import { Route, Switch, useLocation } from "react-router-dom"
-import { CURRENT_YEAR } from "../../../common/constants/years"
 import Error from "../../../common/Error"
-import DynamicRenderer from "../../../documentation/DynamicRenderer"
 import { HomeLink } from "../../HomeLink"
 import "../graphs.css"
 import { SectionSelector } from "../SectionSelector"
@@ -39,21 +37,10 @@ export const QuarterlyGraphs = (props) => {
           }}
         />
         <Switch>
-          {/* Setting direct paths to access other tabs */}
+          {/* Filers info tab */}
           <Route
             path={PATH_FILERS_INFO}
             render={() => <QuarterlyFilersTable />}
-          />
-          <Route
-            path={PATH_FAQ}
-            render={() => (
-              <DynamicRenderer
-                year={CURRENT_YEAR}
-                slug={'data-browser-graphs-faq'}
-                props={props}
-                displayTOCBackLink={false}
-              />
-            )}
           />
         </Switch>
       </div>

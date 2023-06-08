@@ -1,4 +1,5 @@
 import { ContactHmdaHelp } from '../../ContactHmdaHelp'
+import LinkToGraphFAQ from './LinkToGraphFAQ'
 import { QuarterlyFilingCalendar } from './QuarterlyFilingCalendar'
 
 const DefaultOverview =
@@ -9,6 +10,9 @@ export const GraphsHeader = ({ overview }) => (
     <h1>HMDA Quarterly Graphs</h1>
     <p className='lead'>{overview || DefaultOverview}</p>
     <QuarterlyFilingCalendar />
+    <p className='lead'>
+      <LinkToGraphFAQ />
+    </p>
     <p className='lead'>
       <ContactHmdaHelp subject='Quarterly Graphs' />
     </p>
