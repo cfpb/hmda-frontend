@@ -59,7 +59,7 @@ describe('Maps', () => {
       ).should("contain", "16.54%")
     })
 
-  it.skip('State 2021', () => {
+  it('State 2021', () => {
     cy.get({ HOST, ENVIRONMENT }).logEnv()
     cy.viewport(1000, 940)
     cy.visit(mapsURL(HOST, '2021?geography=state'))
@@ -123,7 +123,7 @@ describe('Maps', () => {
     cy.get('.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)').should('contain', '32.26%')
   })
   
-  it.skip('State 2019', () => {
+  it('State 2019', () => {
     cy.get({ HOST, ENVIRONMENT }).logEnv()
     cy.viewport(1000, 940)
     cy.visit(mapsURL(HOST, '2019?geography=state'))
@@ -155,7 +155,7 @@ describe('Maps', () => {
     cy.get('.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)').should('contain', '18.43%')
   })
 
-  it.skip('County 2018', () => {
+  it('County 2018', () => {
     cy.get({ HOST, ENVIRONMENT }).logEnv()
     cy.viewport(1000, 940)
     cy.visit(mapsURL(HOST, '2018?geography=county'))
@@ -187,7 +187,7 @@ describe('Maps', () => {
     cy.get('.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)').should('contain', '18.75%')
   })
 
-  it.skip('Renders empty state', () => {
+  it('Renders empty state', () => {
     cy.visit(mapsURL(HOST, "2018?geography=county&variable=actionTaken&value=1&feature=31005&mapCenter=-101.6959558503813,41.568961419127554"))
     deleteBetaBanner(HOST)
     cy.get('.maps-nav-bar .left .count').should('contain', '0')
