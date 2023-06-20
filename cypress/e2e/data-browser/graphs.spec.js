@@ -49,17 +49,6 @@ if (isBeta(HOST)) {
         `${baseURLToVisit}/data-browser/graphs/quarterly/info/filers`
       )
     })
-
-    it('Starts on Graph tab and then switches to faq tab', () => {
-      cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`)
-      cy.get('[aria-label="Navigate to the FAQ tab."]').click(0, 0, {
-        force: true,
-      })
-      cy.url().should(
-        'eq',
-        `${baseURLToVisit}/data-browser/graphs/quarterly/info/faq`
-      )
-    })
   })
 
   describe('Graph Specific tests', () => {

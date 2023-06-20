@@ -42,7 +42,8 @@ class NationalAggregate extends React.Component {
   render() {
     const { params, url } = this.props.match
     const report = detailsCache.reports[params.reportId]
-    const years = this.props.config.dataPublicationYears.shared
+    const { national, shared } = this.props.config.dataPublicationYears
+    const years = national || shared
 
     const header = (
       <Heading

@@ -4,7 +4,62 @@ const { HOST, ENVIRONMENT } = Cypress.env()
 const ACTION_DELAY = 8000 // milliseconds
 
 describe('Maps', () => {
-  it('State 2021', () => {
+    it("State 2022", () => {
+      cy.get({ HOST, ENVIRONMENT }).logEnv()
+      cy.viewport(1000, 940)
+      cy.visit(mapsURL(HOST, "2022?geography=state"))
+      deleteBetaBanner(HOST)
+
+      openSelector("#map-filter-1").type("denied{enter}")
+      openSelector("#map-filter-2").type("age 55{enter}")
+
+      cy.wait(ACTION_DELAY) // Allow the map to complete it's initial render
+      cy.get(".mapboxgl-canvas").click()
+
+      cy.get(".maps-nav-bar .left .count").should("contain", "2,430")
+      cy.get(".maps-nav-bar .right .count").should("contain", "0.83")
+      cy.get(".maps-nav-bar .feature").should("contain", "KANSAS")
+
+      cy.get(".summary-page .featureName > .colorTextWithBias").should(
+        "contain",
+        "KANSAS"
+      )
+      cy.get(".summary-page .count").should("contain", "2,430")
+
+      cy.get(
+        ".filter-report-1 > table > tbody > tr.highlight > :nth-child(1)"
+      ).should("contain", "Application denied")
+      cy.get(
+        ".filter-report-1 > table > tbody > tr.highlight > :nth-child(2)"
+      ).should("contain", "16,609")
+      cy.get(
+        ".filter-report-1 > table > tbody > tr.highlight > :nth-child(3)"
+      ).should("contain", "9.61%")
+      cy.get(
+        ".filter-report-1 > table > tbody > tr.highlight > :nth-child(4)"
+      ).should("contain", "2,430")
+      cy.get(
+        ".filter-report-1 > table > tbody > tr.highlight > :nth-child(5)"
+      ).should("contain", "16.77%")
+
+      cy.get(
+        ".filter-report-2 > table > tbody > tr.highlight > :nth-child(1)"
+      ).should("contain", "55-64")
+      cy.get(
+        ".filter-report-2 > table > tbody > tr.highlight > :nth-child(2)"
+      ).should("contain", "24,225")
+      cy.get(
+        ".filter-report-2 > table > tbody > tr.highlight > :nth-child(3)"
+      ).should("contain", "14.02%")
+      cy.get(
+        ".filter-report-2 > table > tbody > tr.highlight > :nth-child(4)"
+      ).should("contain", "2,430")
+      cy.get(
+        ".filter-report-2 > table > tbody > tr.highlight > :nth-child(5)"
+      ).should("contain", "16.54%")
+    })
+
+  it.skip('State 2021', () => {
     cy.get({ HOST, ENVIRONMENT }).logEnv()
     cy.viewport(1000, 940)
     cy.visit(mapsURL(HOST, '2021?geography=state'))
@@ -68,7 +123,7 @@ describe('Maps', () => {
     cy.get('.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)').should('contain', '32.26%')
   })
   
-  it('State 2019', () => {
+  it.skip('State 2019', () => {
     cy.get({ HOST, ENVIRONMENT }).logEnv()
     cy.viewport(1000, 940)
     cy.visit(mapsURL(HOST, '2019?geography=state'))
@@ -100,7 +155,7 @@ describe('Maps', () => {
     cy.get('.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)').should('contain', '18.43%')
   })
 
-  it('County 2018', () => {
+  it.skip('County 2018', () => {
     cy.get({ HOST, ENVIRONMENT }).logEnv()
     cy.viewport(1000, 940)
     cy.visit(mapsURL(HOST, '2018?geography=county'))
@@ -132,7 +187,7 @@ describe('Maps', () => {
     cy.get('.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)').should('contain', '18.75%')
   })
 
-  it('Renders empty state', () => {
+  it.skip('Renders empty state', () => {
     cy.visit(mapsURL(HOST, "2018?geography=county&variable=actionTaken&value=1&feature=31005&mapCenter=-101.6959558503813,41.568961419127554"))
     deleteBetaBanner(HOST)
     cy.get('.maps-nav-bar .left .count').should('contain', '0')

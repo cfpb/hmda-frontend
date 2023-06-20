@@ -153,6 +153,8 @@ const MapContainer = props => {
   const [state2020Data, setState2020Data] = useState(null)
   const [county2021Data, setCounty2021Data] = useState(null)
   const [state2021Data, setState2021Data] = useState(null)
+  const [county2022Data, setCounty2022Data] = useState(null)
+  const [state2022Data, setState2022Data] = useState(null)
 
   const [filterData, setFilterData] = useState(null)
   const [tableFilterData, setTableFilterData] = useState(null)
@@ -169,22 +171,38 @@ const MapContainer = props => {
   const [feature, setFeature] = useState(defaults.feature)
   const [mapCenter, setMapCenter] = useState(defaults.mapCenter)
   
-  const getBaseData = useCallback((year, geography) => {
-    if(!year || !geography) return null
-    popup.remove()
-    switch (year) {
-      case '2018':
-        return geography.value === 'state' ? state2018Data : county2018Data
-      case '2019':
-        return geography.value === 'state' ? state2019Data : county2019Data
-      case '2020':
-        return geography.value === 'state' ? state2020Data : county2020Data
-      case '2021':
-        return geography.value === 'state' ? state2021Data : county2021Data
-      default:
-        return null
-    }
-  }, [county2018Data, county2019Data, state2018Data, state2019Data, state2020Data, county2020Data, state2021Data, county2021Data])
+  const getBaseData = useCallback(
+    (year, geography) => {
+      if (!year || !geography) return null
+      popup.remove()
+      switch (year) {
+        case "2018":
+          return geography.value === "state" ? state2018Data : county2018Data
+        case "2019":
+          return geography.value === "state" ? state2019Data : county2019Data
+        case "2020":
+          return geography.value === "state" ? state2020Data : county2020Data
+        case "2021":
+          return geography.value === "state" ? state2021Data : county2021Data
+        case "2022":
+          return geography.value === "state" ? state2022Data : county2022Data
+        default:
+          return null
+      }
+    },
+    [
+      county2018Data,
+      county2019Data,
+      state2018Data,
+      state2019Data,
+      state2020Data,
+      county2020Data,
+      state2021Data,
+      county2021Data,
+      state2022Data,
+      county2022Data,
+    ]
+  )
 
   const resolveData = useCallback(() => {
     if(selectedFilterValue) return [filterData, selectedFilter, selectedFilterValue]
@@ -319,6 +337,21 @@ const MapContainer = props => {
     }
   }, [county2021Data, selectedGeography, year])
 
+    useEffect(() => {
+      if (
+        !county2022Data &&
+        selectedGeography.value === "county" &&
+        year === "2022"
+      ) {
+        fetchQ.push(1)
+        runFetch("/2022/county.json").then(jsonData => {
+          console.log(jsonData)
+          setCounty2022Data(jsonData)
+          fetchQ.pop()
+        })
+      }
+    }, [county2022Data, selectedGeography, year])
+
 
   useEffect(() => {
     if(!state2018Data && selectedGeography.value === 'state' && year === '2018'){
@@ -360,6 +393,20 @@ const MapContainer = props => {
       })
     }
   }, [selectedGeography, state2021Data, year])
+
+  useEffect(() => {
+    if (
+      !state2022Data &&
+      selectedGeography.value === "state" &&
+      year === "2022"
+    ) {
+      fetchQ.push(1)
+      runFetch("/2022/state.json").then(jsonData => {
+        setState2022Data(jsonData)
+        fetchQ.pop()
+      })
+    }
+  }, [selectedGeography, state2022Data, year])
 
 
   useEffect(() => {
@@ -573,7 +620,7 @@ const MapContainer = props => {
     combinedFilter2,
     onFilter1Change,
     onFilter2Change,
-    years: props.config.dataBrowserYears,
+    years: props.config?.dataBrowserMapsYears || props.config?.dataBrowserYears,
     handleGeographyChange: (g) => onGeographyChange({ value: g.toLowerCase(), label: g }),
     handleYearChange: (year) => onYearChange({ year }),
   }

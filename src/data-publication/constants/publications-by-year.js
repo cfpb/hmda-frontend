@@ -33,80 +33,94 @@ const threeYearTitle = "Three Year National Loan-Level Dataset"
 
 const publications = {
   2022: [
-    // {
-    //   updateFrequency: 'Does not update. Generated a few months after filing deadline',
-    //   availableFor: '2017-2022',      
-    //   headingLink: snapLink(2022),
-    //   headingText: snapTitle,
-    //   paragraphText: snapDesc,
-    //   freezeDate: SNAPSHOT_DATASET[2022].freezeDate
-    // },
     {
       updateFrequency: 'Does not update. Generated a few months after filing deadline',
       availableFor: '2017-2022',
+      headingLink: snapLink(2022),
+      headingText: snapTitle,
+      paragraphText: snapDesc,
+      freezeDate: SNAPSHOT_DATASET[2022].freezeDate
+    },
+    {
+      updateFrequency:
+        "Does not update. Generated a few months after filing deadline",
+      availableFor: "2017-2022",
       headingLink: drLink(2022),
       headingText: drTitle,
       paragraphText: drDesc,
     },
     {
-      updateFrequency: 'Does not update. Generated a few months after filing deadline',
-      availableFor: '2017-2022',       
+      updateFrequency:
+        "Does not update. Generated a few months after filing deadline",
+      availableFor: "2017-2022",
       headingLink: arLink(2022),
-      headingText: arTitle,
-      paragraphText: arDesc,
-    },
-    // {
-    //   group: 'dynamic',
-    //   updateFrequency: 'Upon Institution resubmission',
-    //   availableFor: '2017-2022',
-    //   headingLink: mlarLink(2022),
-    //   headingText: mlarTitle,
-    //   paragraphText: mlarDesc,
-    // },
-    // {
-    //   group: 'dynamic',
-    //   updateFrequency: 'Weekly on Mondays',
-    //   availableFor: '2019-2022',
-    //   headingLink: dynLink(2022),
-    //   headingText: dynTitle,
-    //   paragraphText: dynDesc,
-    // },
-  ],
-  2021: [
-    {
-      updateFrequency: 'Does not update. Generated a few months after filing deadline',
-      availableFor: '2017-2021',      
-      headingLink: snapLink(2021),
-      headingText: snapTitle,
-      paragraphText: snapDesc,
-      freezeDate: SNAPSHOT_DATASET[2021].freezeDate
-    },
-    {
-      updateFrequency: 'Does not update. Generated a few months after filing deadline',
-      availableFor: '2017-2021',
-      headingLink: drLink(2021),
-      headingText: drTitle,
-      paragraphText: drDesc,
-    },
-    {
-      updateFrequency: 'Does not update. Generated a few months after filing deadline',
-      availableFor: '2017-2021',       
-      headingLink: arLink(2021),
       headingText: arTitle,
       paragraphText: arDesc,
     },
     {
       group: 'dynamic',
       updateFrequency: 'Upon Institution resubmission',
-      availableFor: '2017-2021',
-      headingLink: mlarLink(2021),
+      availableFor: '2017-2022',
+      headingLink: mlarLink(2022),
       headingText: mlarTitle,
       paragraphText: mlarDesc,
     },
     {
       group: 'dynamic',
       updateFrequency: 'Weekly on Mondays',
-      availableFor: '2019-2021',
+      availableFor: '2019-2022',
+      headingLink: dynLink(2022),
+      headingText: dynTitle,
+      paragraphText: dynDesc,
+    },
+  ],
+  2021: [
+    {
+      updateFrequency:
+        "Does not update. Generated one year after filing deadline",
+      availableFor: "2019-2021",
+      headingLink: oneYearLink(2021),
+      headingText: oneYearTitle,
+      paragraphText: oneYearDesc,
+      freezeDate: ONE_YEAR_DATASET[2021].freezeDate,
+    },
+    {
+      updateFrequency:
+        "Does not update. Generated a few months after filing deadline",
+      availableFor: "2017-2021",
+      headingLink: snapLink(2021),
+      headingText: snapTitle,
+      paragraphText: snapDesc,
+      freezeDate: SNAPSHOT_DATASET[2021].freezeDate,
+    },
+    {
+      updateFrequency:
+        "Does not update. Generated a few months after filing deadline",
+      availableFor: "2017-2021",
+      headingLink: drLink(2021),
+      headingText: drTitle,
+      paragraphText: drDesc,
+    },
+    {
+      updateFrequency:
+        "Does not update. Generated a few months after filing deadline",
+      availableFor: "2017-2021",
+      headingLink: arLink(2021),
+      headingText: arTitle,
+      paragraphText: arDesc,
+    },
+    {
+      group: "dynamic",
+      updateFrequency: "Upon Institution resubmission",
+      availableFor: "2017-2021",
+      headingLink: mlarLink(2021),
+      headingText: mlarTitle,
+      paragraphText: mlarDesc,
+    },
+    {
+      group: "dynamic",
+      updateFrequency: "Weekly on Mondays",
+      availableFor: "2019-2021",
       headingLink: dynLink(2021),
       headingText: dynTitle,
       paragraphText: dynDesc,
@@ -114,47 +128,51 @@ const publications = {
   ],
   2020: [
     {
-      updateFrequency: 'Does not update. Generated one year after filing deadline',
-      availableFor: '2019-2020',      
+      updateFrequency:
+        "Does not update. Generated one year after filing deadline",
+      availableFor: "2019-2020",
       headingLink: oneYearLink(2020),
       headingText: oneYearTitle,
       paragraphText: oneYearDesc,
       freezeDate: ONE_YEAR_DATASET[2020].freezeDate,
     },
     {
-      updateFrequency: 'Does not update. Generated a few months after filing deadline',
-      availableFor: '2017-2021',      
+      updateFrequency:
+        "Does not update. Generated a few months after filing deadline",
+      availableFor: "2017-2021",
       headingLink: snapLink(2020),
       headingText: snapTitle,
       paragraphText: snapDesc,
-      freezeDate: SNAPSHOT_DATASET[2020].freezeDate
+      freezeDate: SNAPSHOT_DATASET[2020].freezeDate,
     },
     {
-      updateFrequency: 'Does not update. Generated a few months after filing deadline',
-      availableFor: '2017-2021',
+      updateFrequency:
+        "Does not update. Generated a few months after filing deadline",
+      availableFor: "2017-2021",
       headingLink: drLink(2020),
       headingText: drTitle,
       paragraphText: drDesc,
     },
     {
-      updateFrequency: 'Does not update. Generated a few months after filing deadline',
-      availableFor: '2017-2021',      
+      updateFrequency:
+        "Does not update. Generated a few months after filing deadline",
+      availableFor: "2017-2021",
       headingLink: arLink(2020),
       headingText: arTitle,
       paragraphText: arDesc,
     },
     {
-      group: 'dynamic',
-      updateFrequency: 'Upon Institution resubmission',
-      availableFor: '2017-2021',
+      group: "dynamic",
+      updateFrequency: "Upon Institution resubmission",
+      availableFor: "2017-2021",
       headingLink: mlarLink(2020),
       headingText: mlarTitle,
       paragraphText: mlarDesc,
     },
     {
-      group: 'dynamic',
-      updateFrequency: 'Weekly on Mondays',
-      availableFor: '2019-2021',
+      group: "dynamic",
+      updateFrequency: "Weekly on Mondays",
+      availableFor: "2019-2021",
       headingLink: dynLink(2020),
       headingText: dynTitle,
       paragraphText: dynDesc,
@@ -162,47 +180,60 @@ const publications = {
   ],
   2019: [
     {
-      updateFrequency: 'Does not update. Generated one year after filing deadline',
-      availableFor: '2019-2020',      
+      updateFrequency:
+        "Does not update. Generated three years after filing deadline",
+      availableFor: "2017-2019",
+      headingLink: threeYearLink(2019),
+      headingText: threeYearTitle,
+      paragraphText: threeYearDesc,
+      freezeDate: THREE_YEAR_DATASET[2019].freezeDate,
+    },
+    {
+      updateFrequency:
+        "Does not update. Generated one year after filing deadline",
+      availableFor: "2019-2020",
       headingLink: oneYearLink(2019),
       headingText: oneYearTitle,
       paragraphText: oneYearDesc,
       freezeDate: ONE_YEAR_DATASET[2019].freezeDate,
     },
     {
-      updateFrequency: 'Does not update. Generated a few months after filing deadline',
-      availableFor: '2017-2021',      
+      updateFrequency:
+        "Does not update. Generated a few months after filing deadline",
+      availableFor: "2017-2021",
       headingLink: snapLink(2019),
       headingText: snapTitle,
       paragraphText: snapDesc,
-      freezeDate: SNAPSHOT_DATASET[2019].freezeDate
+      freezeDate: SNAPSHOT_DATASET[2019].freezeDate,
     },
     {
-      updateFrequency: 'Does not update. Generated a few months after filing deadline',
-      availableFor: '2017-2021',
+      updateFrequency:
+        "Does not update. Generated a few months after filing deadline",
+      availableFor: "2017-2021",
       headingLink: drLink(2019),
       headingText: drTitle,
       paragraphText: drDesc,
     },
     {
-      updateFrequency: 'Does not update. Generated a few months after filing deadline',
-      availableFor: '2017-2021',      
+      updateFrequency:
+        "Does not update. Generated a few months after filing deadline",
+      availableFor: "2017-2021",
       headingLink: arLink(2019),
       headingText: arTitle,
       paragraphText: arDesc,
     },
     {
-      group: 'dynamic',
-      updateFrequency: 'Upon Institution resubmission',
-      availableFor: '2017-2021',
+      group: "dynamic",
+      updateFrequency: "Upon Institution resubmission",
+      availableFor: "2017-2021",
       headingLink: mlarLink(2019),
       headingText: mlarTitle,
       paragraphText: mlarDesc,
     },
     {
-      group: 'dynamic',
-      updateFrequency: 'Weekly on Mondays',
-      availableFor: '2019-2021',
+      group: "dynamic",
+      updateFrequency: "Weekly on Mondays",
+      availableFor: "2019-2021",
       headingLink: dynLink(2019),
       headingText: dynTitle,
       paragraphText: dynDesc,
@@ -210,47 +241,51 @@ const publications = {
   ],
   2018: [
     {
-      updateFrequency: 'Does not update. Generated three years after filing deadline',
-      availableFor: '2017-2018',     
+      updateFrequency:
+        "Does not update. Generated three years after filing deadline",
+      availableFor: "2017-2018",
       headingLink: threeYearLink(2018),
       headingText: threeYearTitle,
       paragraphText: threeYearDesc,
-      freezeDate: THREE_YEAR_DATASET[2018].freezeDate
+      freezeDate: THREE_YEAR_DATASET[2018].freezeDate,
     },
     {
-      updateFrequency: 'Does not update. Generated a few months after filing deadline',
-      availableFor: '2017-2021',      
+      updateFrequency:
+        "Does not update. Generated a few months after filing deadline",
+      availableFor: "2017-2021",
       headingLink: snapLink(2018),
       headingText: snapTitle,
       paragraphText: snapDesc,
-      freezeDate: SNAPSHOT_DATASET[2018].freezeDate
+      freezeDate: SNAPSHOT_DATASET[2018].freezeDate,
     },
     {
-      updateFrequency: 'Does not update. Generated a few months after filing deadline',
-      availableFor: '2017-2021',
+      updateFrequency:
+        "Does not update. Generated a few months after filing deadline",
+      availableFor: "2017-2021",
       headingLink: drLink(2018),
       headingText: drTitle,
       paragraphText: drDesc,
     },
     {
-      updateFrequency: 'Does not update. Generated a few months after filing deadline',
-      availableFor: '2017-2021',      
+      updateFrequency:
+        "Does not update. Generated a few months after filing deadline",
+      availableFor: "2017-2021",
       headingLink: arLink(2018),
       headingText: arTitle,
       paragraphText: arDesc,
     },
     {
-      group: 'dynamic',
-      updateFrequency: 'Upon Institution resubmission',
-      availableFor: '2017-2021',
+      group: "dynamic",
+      updateFrequency: "Upon Institution resubmission",
+      availableFor: "2017-2021",
       headingLink: mlarLink(2018),
       headingText: mlarTitle,
       paragraphText: mlarDesc,
     },
     {
-      group: 'dynamic',
-      updateFrequency: 'Weekly on Mondays',
-      availableFor: '2019-2021',
+      group: "dynamic",
+      updateFrequency: "Weekly on Mondays",
+      availableFor: "2019-2021",
       headingLink: dynLink(2018),
       headingText: dynTitle,
       paragraphText: dynDesc,
@@ -258,54 +293,58 @@ const publications = {
   ],
   2017: [
     {
-      updateFrequency: 'Does not update. Generated three years after filing deadline',
-      availableFor: '2017-2018',      
+      updateFrequency:
+        "Does not update. Generated three years after filing deadline",
+      availableFor: "2017-2018",
       headingLink: threeYearLink(2017),
       headingText: threeYearTitle,
       paragraphText: threeYearDesc,
-      freezeDate: THREE_YEAR_DATASET[2017].freezeDate
+      freezeDate: THREE_YEAR_DATASET[2017].freezeDate,
     },
     {
-      updateFrequency: 'Does not update. Generated a few months after filing deadline',
-      availableFor: '2017-2021',      
+      updateFrequency:
+        "Does not update. Generated a few months after filing deadline",
+      availableFor: "2017-2021",
       headingLink: snapLink(2017),
       headingText: snapTitle,
       paragraphText: snapDesc,
-      freezeDate: SNAPSHOT_DATASET[2017].freezeDate
+      freezeDate: SNAPSHOT_DATASET[2017].freezeDate,
     },
     {
-      updateFrequency: 'Does not update. Generated a few months after filing deadline',
-      availableFor: '2017-2021',
+      updateFrequency:
+        "Does not update. Generated a few months after filing deadline",
+      availableFor: "2017-2021",
       headingLink: drLink(2017),
       headingText: drTitle,
       paragraphText: drDesc,
     },
     {
-      updateFrequency: 'Does not update. Generated a few months after filing deadline',
-      availableFor: '2017-2021',      
+      updateFrequency:
+        "Does not update. Generated a few months after filing deadline",
+      availableFor: "2017-2021",
       headingLink: arLink(2017),
       headingText: arTitle,
       paragraphText: arDesc,
     },
     {
-      updateFrequency: 'Does not update.',
-      availableFor: '2017',      
+      updateFrequency: "Does not update.",
+      availableFor: "2017",
       headingLink: narLink(2017),
       headingText: narTitle,
       paragraphText: narDesc,
     },
     {
-      group: 'dynamic',
-      updateFrequency: 'Upon Institution resubmission',
-      availableFor: '2017-2021',
+      group: "dynamic",
+      updateFrequency: "Upon Institution resubmission",
+      availableFor: "2017-2021",
       headingLink: mlarLink(2017),
       headingText: mlarTitle,
       paragraphText: mlarDesc,
     },
     {
-      group: 'dynamic',
-      updateFrequency: 'Weekly on Mondays',
-      availableFor: '2019-2021',
+      group: "dynamic",
+      updateFrequency: "Weekly on Mondays",
+      availableFor: "2019-2021",
       headingLink: dynLink(2017),
       headingText: dynTitle,
       paragraphText: dynDesc,

@@ -24,6 +24,7 @@ export const DataPublication = ({
       <DynamicDatasets
         mlarReleaseYear={mlarReleaseYear}
         publicationReleaseYear={publicationReleaseYear}
+        dataPublicationYears={dataPublicationYears}
       />
       <Reports publicationReleaseYear={publicationReleaseYear} />
     </ul>
