@@ -4,7 +4,11 @@
     {
       "heading": "Data Browser Maintenance",
       "message": "The Data Browser will be temporarily down for scheduled maintenance on June 22, 2023.",
-      "type": "error"
+      "type": "error",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/documentation/",
+        "text": "Visit the redesigned page here."
+      }
     },
     {
       "heading": "Documentation Overhaul",
