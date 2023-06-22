@@ -2,6 +2,11 @@
   "name": "dev",
   "announcement": [
     {
+      "heading": "Data Browser Maintenance",
+      "message": "The Data Browser will be temporarily down for scheduled maintenance on June 22, 2023.",
+      "type": "error"
+    },
+    {
       "heading": "Documentation Overhaul",
       "message": "A new and enhanced HMDA documentation page has been released! In addition to an improved visual design, financial institutions now have the ability to search the consolidated documentation and API documentation has been integrated. ",
       "type": "info",
