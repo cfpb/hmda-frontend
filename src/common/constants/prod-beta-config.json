@@ -2,7 +2,7 @@
   "name": "prod-beta",
   "announcement": [
     {
-      "message": "We will be performing scheduled system maintenance on June 28 from 8PM - 10PM EST. During this time users may experience brief service interruptions and site slowdowns.",
+      "message": "We are currently performing scheduled system maintenance on June 28 from 8PM - 10PM EST. During this time users may experience brief service interruptions and site slowdowns.",
       "type": "warning",
       "heading": "Scheduled Maintenance",
       "link": null
