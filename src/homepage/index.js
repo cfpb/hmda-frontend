@@ -1,6 +1,8 @@
 import React from "react"
 import "./ColumnLayout.css"
 import "./Home.css"
+import { Hero } from "./Hero"
+import { QuickLinks } from "./QuickLinks"
 import { AnnouncementBanner } from "./AnnouncementBanner"
 import { ColumnLayout, Column } from "./ColumnLayout.jsx"
 import { DataBrowser } from "./ForDataUsers/DataBrowser"
@@ -20,6 +22,8 @@ const Home = ({ config }) => {
 
   return (
     <main className="App home" id="main-content">
+      <Hero />
+      <QuickLinks />
       <div>
         <header>
           <h1>The Home Mortgage Disclosure Act</h1>
