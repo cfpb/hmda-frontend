@@ -235,7 +235,7 @@ body {
 
 /*************************
    usa-hero
-/*************************
+/*************************/
 
 
 .usa-hero {
@@ -246,10 +246,6 @@ body {
 
    .grid-container {
       margin-left: 0;
-
-      @media screen and (min-width: 1300px) {
-         margin-left: 10%;
-      }
    }
 
    .usa-hero__heading--alt {
@@ -295,7 +291,7 @@ body {
 
 /*************************
    Modal Video Container
-/*************************
+/*************************/
 
 .usa-modal-overlay {
    overflow: hidden;
@@ -345,7 +341,7 @@ body {
 
 /*************************
    Quicklinks
-/*************************
+/*************************/
 
 #quicklinks {
    text-align: center;
@@ -353,6 +349,10 @@ body {
    position: relative;
    max-width: 1500px;
    margin: 0 auto;
+   padding: 0;
+   .grid-container {
+      padding: 0;
+   }
 
    .title {
       padding: .25em 0;
@@ -368,7 +368,7 @@ body {
          width: 35px;
          height: 100%;
          top: 0;
-         left: .25em;
+         left: 0;
 
          span {
             transform: rotate(-90deg);
@@ -387,7 +387,7 @@ body {
       }
 
       @media screen and (min-width: 1100px) {
-         left: -1em;
+         left: 0;
       }
    }
 
