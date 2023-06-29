@@ -345,7 +345,6 @@ const MapContainer = props => {
       ) {
         fetchQ.push(1)
         runFetch("/2022/county.json").then(jsonData => {
-          console.log(jsonData)
           setCounty2022Data(jsonData)
           fetchQ.pop()
         })
