@@ -1,6 +1,17 @@
 {
   "log": [
     {
+      "date": "06/29/23",
+      "type": "release",
+      "product": "datasets",
+      "description": "The 2022 national loan-level datasets, disclosure reports, and MSA/MD aggregate reports were released and can be accessed via the Data Publications page. Users can now explore 2022 HMDA data using the Data Browser's dataset filtering tool and maps.",
+      "links": [
+        {"text": "Data Publications", "url": "https://ffiec.cfpb.gov/data-publication/"},
+        {"text": "Data Browser", "url": "https://ffiec.cfpb.gov/data-browser/data/"},
+        {"text": "Maps", "url": "https://ffiec.cfpb.gov/data-browser/maps/"}
+      ]
+    },
+    {
       "date": "06/01/23",
       "type": "release",
       "product": "documentation",

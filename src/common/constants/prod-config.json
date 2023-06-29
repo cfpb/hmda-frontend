@@ -2,6 +2,15 @@
   "name": "prod",
   "announcement": [
     {
+      "heading": "2022 Data Publication Release",
+      "message": "On June 29, 2023, the 2022 national loan-level datasets, disclosure reports, and MSA/MD aggregate reports were released and can be accessed via the Data Publications page. Users can now explore 2022 HMDA data using the Data Browser's dataset filtering tool or maps.",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/data-publication/",
+        "text": "Data Publications page."
+      }
+    },
+    {
       "heading": "Documentation Overhaul",
       "message": "A new and enhanced HMDA documentation page has been released! In addition to an improved visual design, financial institutions now have the ability to search the consolidated documentation and API documentation has been integrated. ",
       "type": "info",
@@ -20,44 +29,24 @@
       }
     }
   ],
-  "publicationReleaseYear": "2021",
+  "publicationReleaseYear": "2022",
   "mlarReleaseYear": "2022",
   "maintenanceMode": false,
   "filingAnnouncement": null,
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
-    "mlar": [
-      "2022",
-      "2021",
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "shared": [
-      "2021",
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "threeYear": [
-      "2018",
-      "2017"
-    ],
-    "oneYear": [
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ]
+    "shared": ["2022", "2021", "2020", "2019", "2018", "2017"],
+    "mlar": ["2022", "2021", "2020", "2019", "2018", "2017"],
+    "threeYear": ["2019", "2018", "2017"],
+    "oneYear": ["2021", "2020", "2019", "2018", "2017"],
+    "aggregate": ["2022", "2021", "2020", "2019", "2018", "2017"],
+    "disclosure": ["2022", "2021", "2020", "2019", "2018", "2017"],
+    "dynamic": ["2022", "2021", "2020", "2019", "2018", "2017"],
+    "snapshot": ["2022", "2021", "2020", "2019", "2018", "2017"],
+    "national": ["2017"]
   },
-  "dataBrowserYears": [
-    "2021",
-    "2020",
-    "2019",
-    "2018"
-  ],
+  "dataBrowserYears": ["2022", "2021", "2020", "2019", "2018"],
+  "dataBrowserMapsYears": ["2022", "2021", "2020", "2019", "2018"],
   "timedGuards": {
     "2023": {
       "Q1": "04/01/2023 - 05/30/2023 - 06/30/2023",
