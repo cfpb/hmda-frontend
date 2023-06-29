@@ -10,6 +10,7 @@ const shared2018_plus = [
 ]
 
 export const AGGREGATE_REPORTS = {
+  2022: shared2018_plus,
   2021: shared2018_plus,
   2020: shared2018_plus,
   2019: shared2018_plus,

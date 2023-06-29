@@ -13,6 +13,11 @@ import { withAppContext } from '../../common/appContextHOC.jsx'
 import { withYearValidation } from '../../common/withYearValidation.js'
 
 const detailsCache = {
+  2022: {
+    institutions: {},
+    msaMds: {},
+    reports: {}
+  },
   2021: {
     institutions: {},
     msaMds: {},

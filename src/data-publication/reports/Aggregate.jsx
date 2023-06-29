@@ -15,31 +15,36 @@ import { withYearValidation } from '../../common/withYearValidation.js'
 import './Aggregate.css'
 
 const detailsCache = {
+  2022: {
+    states: {},
+    msaMds: {},
+    reports: {},
+  },
   2021: {
     states: {},
     msaMds: {},
-    reports: {}
+    reports: {},
   },
   2020: {
     states: {},
     msaMds: {},
-    reports: {}
+    reports: {},
   },
   2019: {
     states: {},
     msaMds: {},
-    reports: {}
+    reports: {},
   },
   2018: {
     states: {},
     msaMds: {},
-    reports: {}
+    reports: {},
   },
   2017: {
     states: {},
     msaMds: {},
-    reports: {}
-  }
+    reports: {},
+  },
 }
 
 STATES.forEach(v => {
