@@ -2,6 +2,12 @@
   "name": "prod-beta",
   "announcement": [
     {
+      "message": "We will be performing scheduled system maintenance on June 28 from 8PM - 10PM EST. During this time users may experience brief service interruptions and site slowdowns.",
+      "type": "warning",
+      "heading": "Scheduled Maintenance",
+      "link": null
+    },
+    {
       "heading": "2022 Modified LAR Release",
       "message": "On March 20, 2023, the 2022 Modified LAR data was released. A combined file containing all LAR records in a single file is also available. These files can be accessed via the ",
       "type": "info",

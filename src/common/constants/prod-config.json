@@ -2,6 +2,12 @@
   "name": "prod",
   "announcement": [
     {
+      "message": "We will be performing scheduled system maintenance on June 28 from 8PM - 10PM EST. During this time users may experience brief service interruptions and site slowdowns.",
+      "type": "warning",
+      "heading": "Scheduled Maintenance",
+      "link": null
+    },
+    {
       "heading": "Documentation Overhaul",
       "message": "A new and enhanced HMDA documentation page has been released! In addition to an improved visual design, financial institutions now have the ability to search the consolidated documentation and API documentation has been integrated. ",
       "type": "info",
