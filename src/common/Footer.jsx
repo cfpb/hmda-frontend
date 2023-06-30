@@ -109,7 +109,7 @@ const Footer = ({ config, location: {pathname} }) => {
       <div className="usa-identifier__usagov-description">
         Looking for U.S. government information and services? &nbsp;
       </div>
-      <a href="https://www.usa.gov/" className="usa-link">Visit USA.gov</a>
+      <a target="_blank" href="https://www.usa.gov/" className="usa-link">Visit USA.gov</a>
     </div>
     <MaintenanceMessage
         config={config}
