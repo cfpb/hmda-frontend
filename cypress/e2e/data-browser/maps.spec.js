@@ -31,10 +31,10 @@ describe('Maps', () => {
       ).should("contain", "Application denied")
       cy.get(
         ".filter-report-1 > table > tbody > tr.highlight > :nth-child(2)"
-      ).should("contain", "16,609")
+      ).should("contain", "14,689")
       cy.get(
         ".filter-report-1 > table > tbody > tr.highlight > :nth-child(3)"
-      ).should("contain", "9.61%")
+      ).should("contain", "13.38%")
       cy.get(
         ".filter-report-1 > table > tbody > tr.highlight > :nth-child(4)"
       ).should("contain", "2,430")
@@ -47,10 +47,10 @@ describe('Maps', () => {
       ).should("contain", "55-64")
       cy.get(
         ".filter-report-2 > table > tbody > tr.highlight > :nth-child(2)"
-      ).should("contain", "24,225")
+      ).should("contain", "14,486")
       cy.get(
         ".filter-report-2 > table > tbody > tr.highlight > :nth-child(3)"
-      ).should("contain", "14.02%")
+      ).should("contain", "13.19%")
       cy.get(
         ".filter-report-2 > table > tbody > tr.highlight > :nth-child(4)"
       ).should("contain", "2,430")
@@ -71,23 +71,23 @@ describe('Maps', () => {
     cy.wait(ACTION_DELAY) // Allow the map to complete it's initial render
     cy.get('.mapboxgl-canvas').click();
 
-    cy.get('.maps-nav-bar .left .count').should('contain', '3,030')
+    cy.get('.maps-nav-bar .left .count').should('contain', '3,032')
     cy.get('.maps-nav-bar .right .count').should('contain', '1.03')
     cy.get('.maps-nav-bar .feature').should('contain', 'KANSAS')
     
     cy.get('.summary-page .featureName > .colorTextWithBias').should('contain', 'KANSAS')
-    cy.get('.summary-page .count').should('contain', '3,030')
+    cy.get('.summary-page .count').should('contain', '3,032')
 
     cy.get('.filter-report-1 > table > tbody > tr.highlight > :nth-child(1)').should('contain', 'Application denied')
     cy.get('.filter-report-1 > table > tbody > tr.highlight > :nth-child(2)').should('contain', '16,609')
     cy.get('.filter-report-1 > table > tbody > tr.highlight > :nth-child(3)').should('contain', '9.61%')
-    cy.get('.filter-report-1 > table > tbody > tr.highlight > :nth-child(4)').should('contain', '3,030')
-    cy.get('.filter-report-1 > table > tbody > tr.highlight > :nth-child(5)').should('contain', '12.51%')
+    cy.get('.filter-report-1 > table > tbody > tr.highlight > :nth-child(4)').should('contain', '3,032')
+    cy.get('.filter-report-1 > table > tbody > tr.highlight > :nth-child(5)').should('contain', '12.46%')
     
     cy.get('.filter-report-2 > table > tbody > tr.highlight > :nth-child(1)').should('contain', '55-64')
     cy.get('.filter-report-2 > table > tbody > tr.highlight > :nth-child(2)').should('contain', '24,225')
     cy.get('.filter-report-2 > table > tbody > tr.highlight > :nth-child(3)').should('contain', '14.02%')
-    cy.get('.filter-report-2 > table > tbody > tr.highlight > :nth-child(4)').should('contain', '3,030')
+    cy.get('.filter-report-2 > table > tbody > tr.highlight > :nth-child(4)').should('contain', '3,032')
     cy.get('.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)').should('contain', '18.24%')
   })
 

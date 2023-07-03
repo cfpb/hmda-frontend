@@ -44,3 +44,14 @@ Cypress.Commands.add('hmdaLogin', (app) => {
   cy.get('#password').type(PASSWORD)
   cy.get('#kc-login').click()
 })
+
+// Handles uncaught exceptions...
+// https://docs.cypress.io/api/cypress-api/catalog-of-events#Uncaught-Exceptions
+Cypress.on("uncaught:exception", (err, runnable) => {
+  // _384 is related to Google Tag Manager/Google Analytics
+  if (err.message.includes("_384")) {
+    return false
+  }
+  // we still want to ensure there are no other unexpected
+  // errors, so we let them fail the test
+})
