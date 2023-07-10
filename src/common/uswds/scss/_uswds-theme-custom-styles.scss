@@ -557,9 +557,10 @@ body {
    .usa-identifier__required-link, .usa-identifier__required-link.usa-link, .usa-identifier__section--usagov a, .usa-identifier__identity-disclaimer a{ 
       &:link, &:visited, &:active {
          color: #fff;
+         text-decoration: none;
       }
       &:hover {
-         color: #aaa;
+         text-decoration: underline;
       } 
    }
 }
