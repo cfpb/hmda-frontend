@@ -30,7 +30,7 @@ export const Hero = () => {
           <li className="usa-button-group__item">
             <a href="#hmda-video" 
             onClick={handleShowModal}
-            className="usa-button  usa-button--accent-cool" 
+            className="usa-button primary" 
             aria-controls="hmda-video"
             data-open-modal> 
               <svg className="usa-icon" aria-hidden="true" focusable="false" role="img">
@@ -45,7 +45,7 @@ export const Hero = () => {
             />
           </li>
           <li className="usa-button-group__item">
-            <a href="/data-browser/" className="usa-button ">
+            <a href="/data-browser/" className="usa-button secondary">
               <svg className="usa-icon" aria-hidden="true" focusable="false" role="img">
                   <use href={`${iconSprite}#insights`}></use>
               </svg> Explore the Data

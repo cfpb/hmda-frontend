@@ -25,6 +25,10 @@ i.e.
 :root {
    --hmda-blue: #1f498f;
    --hmda-blue-light: #2360C2;
+   --hmda-blue-bright: #3B7BE9;
+   --hmda-blue-lightest: #00C8FF;
+   --hmda-blue-dark: #163851;
+   --hmda-blue-dark-opacity: rgba(22, 46, 81, .8);
 }
 
 body {
@@ -209,10 +213,10 @@ body {
          a {
             display: flex;
             align-items: center;
-            color: #1f498f;
+            color: var(--hmda-blue);
 
             &:hover {
-               color: #0071bc;
+               color: var(--hmda-blue-bright);
             }
 
             img {
@@ -253,13 +257,8 @@ body {
       margin-left: 0;
    }
 
-   .usa-hero__heading--alt {
-      font-size: 3.25rem;
-      margin-bottom: 1rem;
-   }
-
    .usa-hero__callout {
-      background-color: rgba(#162e51, .8);
+      background-color: var(--hmda-blue-dark-opacity);
 
       @media (min-width: 640px) {
          max-width: 37rem;
@@ -268,6 +267,13 @@ body {
       .usa-hero__heading {
          margin-top: 0rem;
          font-size: 3rem;
+         color: var(--hmda-blue-bright);
+         //text-shadow: 2px 2px 0px #000;
+      }
+
+      .usa-hero__heading--alt {
+         font-size: 3.25rem;
+         margin-bottom: 1rem;
       }
 
       p {
@@ -275,15 +281,22 @@ body {
       }
 
       .usa-button {
+         color: #fff;
+         background-color: var(--hmda-blue);
          text-shadow: 0 0 3px #000;
+         border: 1px solid rgba(255,255,255,.25);
 
          svg {
             filter: drop-shadow(1px 1px 2px rgb(0 0 0 / 1));
          }
-      }
 
-      .usa-button--accent-cool {
-         color: #fff;
+         &.primary {
+            background-color: var(--hmda-blue-bright);
+         }
+
+         &:hover {
+            background-color: var(--hmda-blue-light);
+         }
       }
 
       .usa-icon {
@@ -346,126 +359,7 @@ body {
 
 /*************************
    Quicklinks
-/*************************
-
-#quicklinks {
-   text-align: center;
-   font-size: 1.5em;
-   position: relative;
-   max-width: 1500px;
-   margin: 0 auto;
-   padding: 0;
-   .grid-container {
-      padding: 0;
-   }
-
-   .title {
-      padding: .25em 0;
-
-      background-color: rgba(#005ea2, .5);
-      border: 1px solid rgba(#fff, .25);
-      border-width: 1px 0;
-      display: block;
-
-      @media screen and (min-width: 640px) {
-         position: absolute;
-         border-width: 0 1px;
-         width: 35px;
-         height: 100%;
-         top: 0;
-         left: 0;
-
-         span {
-            transform: rotate(-90deg);
-            transform-origin: left bottom;
-            position: absolute;
-            left: 1.5em;
-            bottom: 1.25em;
-            font-size: 2rem;
-         }
-      }
-
-      @media screen and (min-width: 960px) {
-         span {
-            bottom: .5em;
-         }
-      }
-
-      @media screen and (min-width: 1100px) {
-         left: 0;
-      }
-   }
-
-   &.usa-section {
-      @media screen and (min-width: 640px) {
-         padding-top: 0;
-         padding-bottom: 0;
-      }
-
-      .grid-container {
-         position: relative;
-         padding-top: 1rem;
-         padding-bottom: 1rem;
-      }
-
-      .tablet\:grid-col {
-         padding: .25em .5em;
-
-         a,
-         a:visited {
-            //text-transform: uppercase;
-            text-decoration: none;
-            display: block;
-            padding: .5em 0 .5em 1em;
-            border: 1px solid rgba(#fff, .25);
-            border-radius: .25em;
-            color: #fff;
-            text-align: left;
-
-            &:hover {
-               background-color: #005ea2;
-            }
-
-            svg {
-               height: 2em;
-               width: 2em;
-               margin-right: .25em;
-               vertical-align: bottom;
-            }
-
-            span {
-               display: inline-block;
-               font-size: .75em;
-               text-align: left;
-            }
-
-            @media screen and (min-width: 640px) {
-               text-align: center;
-               padding: .5em 0;
-               margin: auto;
-               max-width: 80%;
-
-               span {
-                  display: block;
-                  text-align: center;
-                  font-size: .5em;
-               }
-            }
-
-            @media screen and (min-width: 960px) {
-               span {
-                  display: inline-block;
-                  font-size: .75em;
-               }
-            }
-
-            @media screen and (min-width: 1100px) {
-               max-width: unset;
-            }
-         }
-      }
-   }
-}*/
+/*************************/
 
 #quicklinks {
    background-color: var(--hmda-blue);
@@ -477,9 +371,9 @@ body {
    max-width: 1500px;
    padding: 0 0 .5em 0;
 
-   @media (min-width: 640px) {
+   @media (min-width: 40em) {
       flex-direction: row;
-      padding: 0 .5em 0 1.5em;
+      padding: 0;
    }
 
    .title {
@@ -491,10 +385,9 @@ body {
       display: block;
       color: #fff;
 
-      @media screen and (min-width: 40em) {
+      @media (min-width: 40em) {
          border-width: 0 1px;
          width: 35px;
-         height: 100%;
 
          span {
             transform: rotate(-90deg);
@@ -502,10 +395,18 @@ body {
             position: absolute;
             left: 1.5em;
             bottom: 1em;
-            font-size: 2rem;
+            font-size: .75em;
+            display: block;
+         }
+      }
+
+      @media (min-width: 56em) {
+         span {
+            bottom: .75em;
          }
       }
    }
+
 
    a, a:visited {
       //text-transform: uppercase;
@@ -516,7 +417,7 @@ body {
       border-radius: .25em;
       color: #fff;
       text-align: left;
-      margin: .25em 5%;
+      margin: .25em 1em;
       flex: 1;
 
       &:hover {
@@ -541,22 +442,21 @@ body {
          flex-direction: column;
          align-items: center;
          margin: .25em;
-         text-align: center;
+         
          span {
             font-size: .6em;
             text-align: center;
          }
       }
       @media (min-width: 56em) {
-         flex-direction: row;    
+         flex-direction: row;
+         margin: .75em .5em;
          span {
-            font-size: .75em;
-         }     
+            text-align: left;
+         }
       }
    }
 }
-
-
 
 
 /*************************
@@ -645,6 +545,7 @@ body {
          margin-right: 1em !important;
       }
    }
+<<<<<<< HEAD
 }
 
 
@@ -660,3 +561,6 @@ body {
       } 
    }
 }
+=======
+} */
+>>>>>>> 11a07a66 (CSS Updatest to Hero Callout)
