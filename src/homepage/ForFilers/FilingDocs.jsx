@@ -1,7 +1,8 @@
 import { ExternalLink } from "../../common/ExternalLink"
 import { ExpandableCard } from "../ExpandableCard"
+import NewIndicator from "../NewIndicator"
 
-export const FilingDocs = () => (
+export const FilingDocs = ({ hideContent }) => (
   <ExpandableCard
     id='home-expand-filing-docs'
     title='Filing Documentation'
@@ -37,6 +38,14 @@ export const FilingDocs = () => (
           HMDA API Documentation
         </a>
       </li>
+      {hideContent && (
+        <li>
+          <a href='/documentation/category/filing-instructions-guide'>
+            HMDA Online FIG
+            <NewIndicator />
+          </a>
+        </li>
+      )}
     </ul>
   </ExpandableCard>
 )
