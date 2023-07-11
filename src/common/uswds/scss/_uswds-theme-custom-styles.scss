@@ -524,16 +524,21 @@ body {
       font-family: SourceSansProBold;
    }
 }
+*/
 
 
-.MailingListSignupForm {
+/*************************
+   Mailing List Signup
+/*************************/
+
+.mainFooter .MailingListSignupForm {
    display: flex;
    flex-direction: column;
    padding: 1em 10% !important;
    margin: 1em auto 0;
    background-color: #eee !important;
 
-   @media screen and (min-width: 960px) {
+   @media screen and (min-width: 1200px) {
       flex-direction: row;
       align-items: baseline;
       justify-content: center;
@@ -545,4 +550,17 @@ body {
       }
    }
 }
-*/
+
+
+.usa-identifier {
+   background-color: #1f498f;
+   .usa-identifier__required-link, .usa-identifier__required-link.usa-link, .usa-identifier__section--usagov a, .usa-identifier__identity-disclaimer a{ 
+      &:link, &:visited, &:active {
+         color: #fff;
+         text-decoration: none;
+      }
+      &:hover {
+         text-decoration: underline;
+      } 
+   }
+}
