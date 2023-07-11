@@ -2,6 +2,15 @@
   "name": "dev",
   "announcement": [
     {
+      "heading": "HMDA Online FIG",
+      "message": "Prototype HMDA Filing Instructions Guide (FIG) now online. Note: future updates may change page structures and links. ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.beta.cfpb.gov/documentation/category/filing-instructions-guide",
+        "text": "View the HMDA Online FIG."
+      }
+    },
+    {
       "heading": "Documentation Overhaul",
       "message": "A new and enhanced HMDA documentation page has been released! In addition to an improved visual design, financial institutions now have the ability to search the consolidated documentation and API documentation has been integrated. ",
       "type": "info",

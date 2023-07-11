@@ -33,7 +33,7 @@ const Home = ({ config }) => {
       <ColumnLayout>
         <Column title="Info for Filers">
           <Filing defaultPeriod={config.defaultPeriod} />
-          <FilingDocs />
+          <FilingDocs hideContent={isProdBeta} />
           <FilingGuides />
         </Column>
         <Column title="Info for Data Users" hideContent={isProdBeta}>
