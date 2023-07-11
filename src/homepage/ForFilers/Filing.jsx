@@ -29,8 +29,8 @@ const ToolsProd = () => (
 const ToolsBeta = () => (
   <ul>
     <li>
-      <a href='/tools/lar-formatting'>
-        Excel LAR Formatting <NewIndicator text={'Preview'} />
+      <a href='/tools/online-lar-formatting'>
+        Online LAR Formatting <NewIndicator />
       </a>
     </li>
   </ul>

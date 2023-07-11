@@ -1,28 +1,27 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import BannerUSA from './BannerUSA'
-import { defaultLinks } from './constants/links'
+import React from "react"
+import { Link } from "react-router-dom"
+import BannerUSA from "./BannerUSA"
+import { defaultLinks } from "./constants/links"
+import { isBeta } from "../common/Beta"
+import { logout } from "../filing/utils/keycloak.js"
+import { getKeycloak } from "./api/Keycloak.js"
 
-import { logout } from '../filing/utils/keycloak.js'
-import { getKeycloak } from './api/Keycloak.js'
+import "./uswds/css/styles.css"
+import "./uswds/js/uswds-init.min.js"
+import "./uswds/js/uswds.min.js"
+import logo from "./images/ffiec-logo.svg"
+import closeBtn from "./uswds/img/usa-icons/close.svg"
 
-import './uswds/css/styles.css'
-import './uswds/js/uswds-init.min.js'
-import './uswds/js/uswds.min.js'
-import logo from './images/ffiec-logo.svg'
-import closeBtn from './uswds/img/usa-icons/close.svg'
+import { DocSearch } from "@docsearch/react"
+import "@docsearch/css"
 
-
-import { DocSearch } from '@docsearch/react';
-import '@docsearch/css';
-
-export const hideHeaderFooter = (path) => {
-  const parts = path && path.split('/')
+export const hideHeaderFooter = path => {
+  const parts = path && path.split("/")
   let section = parts[1]
   if (parts[2] && !parts[2].match(/^(\d){4}/)) {
     section = parts[2]
   }
-  return section === 'maps' ? 'no-print' : ''
+  return section === "maps" ? "no-print" : ""
 }
 
 export const logOutHandler = e => {
@@ -30,15 +29,11 @@ export const logOutHandler = e => {
   logout()
 }
 
-const Header = ({
-  location: { pathname },
-  links = defaultLinks,
-  ...props
-}) => {
+const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
   const forceReload = route => {
     window.location.href = route
   }
-  
+
   return (
     <div className={hideHeaderFooter(pathname)}>
       <a className='skipnav' href='#main-content'>
@@ -68,13 +63,12 @@ const Header = ({
             <ul className='usa-nav__primary usa-accordion'>
               {links.map(link => {
                 let filingPath =
-                  props.history.location.pathname.includes('/filing')
+                  props.history.location.pathname.includes("/filing")
                 let isActive = false
 
-                if (link.href === '/') {
+                if (link.href === "/") {
                   isActive = pathname === link.href
-                } 
-                else if (filingPath) {
+                } else if (filingPath) {
                   isActive = true
                 }
 
@@ -85,11 +79,11 @@ const Header = ({
                         to={link.href}
                         className={
                           isActive
-                            ? 'usa-nav__link usa-current'
-                            : 'usa-nav__link'
+                            ? "usa-nav__link usa-current"
+                            : "usa-nav__link"
                         }
                         rel={
-                          link.name === 'Filing' ? 'noopener noreferrer' : null
+                          link.name === "Filing" ? "noopener noreferrer" : null
                         }
                       >
                         {link.name}
@@ -110,8 +104,8 @@ const Header = ({
                               key={sublink.name}
                               className='usa-nav__submenu-item'
                             >
-                              {sublink.name == 'Developer APIs' ||
-                              sublink.name == 'FAQs' ? (
+                              {sublink.name == "Developer APIs" ||
+                              sublink.name == "FAQs" ? (
                                 <Link
                                   to={sublink.href}
                                   onClick={() => forceReload(sublink.href)}
@@ -134,11 +128,13 @@ const Header = ({
                 )
               })}
             </ul>
-            <DocSearch
-              appId='69RTFLDVTR'
-              indexName='ffiec-beta-cfpb'
-              apiKey='5c0ed9de237607b9a9cbb0ce5e136996'
-            />
+            {!isBeta() && (
+              <DocSearch
+                appId='69RTFLDVTR'
+                indexName='ffiec-beta-cfpb'
+                apiKey='5c0ed9de237607b9a9cbb0ce5e136996'
+              />
+            )}
           </nav>
         </div>
       </header>
