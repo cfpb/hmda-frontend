@@ -99,7 +99,7 @@ These files need to be updated when:
   - There are files that tests depend on (Ex. LAR files for Filing tests) that have changed
 
 Prerequisites:
-- Verify that `/cypress/fixtures/2020-FRONTENDTEST-MAX.txt` exists.  If not, use `yarn make-lar frontendtestbank9999 2020 MAX` to generate it (this requires the HMDA Platform - Check Digit service to be running locally). 
+- Verify that `/cypress/fixtures/2020-FRONTENDTEST-MAX.txt` exists.  If not, use `yarn make-lar frontendtestbank9999 2020 MAX` to generate it (this requires the HMDA Platform - Check Digit service to be running locally: `sbt "project check-digit" "run"`). 
 
 Upload S3 files:
 - To update the testing data used, from the root directory `/hmda-frontend/`, run 
