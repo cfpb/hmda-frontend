@@ -23,7 +23,7 @@
   "license": "CC0-1.0",
   "dependencies": {
     "@docsearch/react": "^3.3.5",
-    "@reduxjs/toolkit": "^1.7.1",
+    "@reduxjs/toolkit": "^1.9.5",
     "@tanstack/react-table": "8.7.9",
     "@uswds/compile": "^1.0.0",
     "@uswds/uswds": "^3.4.1",
