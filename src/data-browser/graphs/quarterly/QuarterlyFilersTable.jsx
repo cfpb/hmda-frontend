@@ -119,7 +119,7 @@ const QuarterlyFilersTable = props => {
   return (
     <div className='quarterly-filers-table'>
       <h2 className='table-heading'>
-        {year} Quarterly Filer Loan and Application Counts
+        Quarterly Filer Loan and Application Counts
       </h2>
       <div className='table-container'>{content}</div>
     </div>
