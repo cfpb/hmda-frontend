@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { HomeLink } from '../HomeLink.jsx'
 import { isEqual } from 'lodash'
 import Heading from '../../common/Heading.jsx'
 import DBYearSelector from './DBYearSelector'
@@ -487,7 +486,6 @@ class Geography extends Component {
 
     return (
       <div className='Geography'>
-        <HomeLink />
         <div className='intro'>
           <Heading type={1} headingText='HMDA Dataset Filtering'>
             <p className='lead'>

@@ -29,6 +29,20 @@
       }
     }
   ],
+  "toolAnnouncement": [
+    {
+      "heading": "Graphs are being updated!",
+      "message": "2023-Q1 quarertly graphs data is being added. There might be some unexpected interruptions as the service is being updated.",
+      "type": "error",
+      "tool": "Graphs"
+    },
+    {
+      "heading": "Rate Spread Maintenance",
+      "message": "The rate spread service is going to be down from 6PM EST - 8PM EST for scheduled maintenance.",
+      "type": "error",
+      "tool": "rate spread"
+    }
+  ],
   "publicationReleaseYear": "2022",
   "mlarReleaseYear": "2022",
   "maintenanceMode": false,
