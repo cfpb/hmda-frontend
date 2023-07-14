@@ -1,5 +1,4 @@
 import React from 'react'
-import { HomeLink } from '../HomeLink.jsx'
 import Heading from '../../common/Heading.jsx'
 import ExternalLink from '../../common/ExternalLink'
 import MapContainer from './MapContainer.jsx'
@@ -13,7 +12,6 @@ const MapsGraphs = props => {
 
   return (
     <div className='MapsGraphs'>
-      <HomeLink />
       <div className='intro no-print'>
         <Heading type={1} headingText='HMDA Maps'>
           <p className='lead'>

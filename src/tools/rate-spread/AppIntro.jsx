@@ -2,33 +2,34 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Heading from '../../common/Heading.jsx'
 
-const AppIntro = () => {
+const AppIntro = ({announcement}) => {
   return (
     <Heading
       type={1}
       style={{ marginBottom: 0 }}
       headingText='Rate Spread Calculator'
+      h1Class={`${announcement ? "reduce-h1-margin-top" : ""}`}
     >
       <p className='font-lead'>
         This calculator provides rate spreads for HMDA reportable loans with a
-        final action date on or after January 1st, 2018. Use the{' '}
+        final action date on or after January 1st, 2018. Use the{" "}
         <a href='https://www.ffiec.gov/ratespread/newcalc.aspx'>
           prior rate spread calculator
-        </a>{' '}
+        </a>{" "}
         for loans with a final action date before January 1st, 2018.
       </p>
       <p>
         The rate spread calculator generates the spread between the Annual
         Percentage Rate (APR) and a survey-based estimate of APRs currently
         offered on prime mortgage loans of a comparable type utilizing the
-        “Average Prime Offer Rates”{' '}
+        “Average Prime Offer Rates”{" "}
         <a
           download
           href='https://s3.amazonaws.com/cfpb-hmda-public/prod/apor/YieldTableFixed.txt'
         >
           fixed table
-        </a>{' '}
-        or{' '}
+        </a>{" "}
+        or{" "}
         <a
           href='https://s3.amazonaws.com/cfpb-hmda-public/prod/apor/YieldTableAdjustable.txt'
           download
@@ -45,7 +46,7 @@ const AppIntro = () => {
           download
         >
           Mortgage rate survey data
-        </a>{' '}
+        </a>{" "}
         used to calculate rate spreads for loans reportable under HMDA is
         available for download. The data are provided through ICE Mortgage
         TechnologyTM. ICE Data as a Service is provided by ICE Mortgage
@@ -57,16 +58,16 @@ const AppIntro = () => {
         effective January 1st, 2018.
       </p>
       <p>
-        The <Link to='/tools/rate-spread/methodology'>current methodology</Link>{' '}
+        The <Link to='/tools/rate-spread/methodology'>current methodology</Link>{" "}
         for determining Average Prime Offer Rates is provided. APOR rates
-        published prior to April 24, 2023 used an{' '}
+        published prior to April 24, 2023 used an{" "}
         <Link to='/tools/rate-spread/methodology-alt'>
           alternate methodology
-        </Link>{' '}
-        and{' '}
+        </Link>{" "}
+        and{" "}
         <a href='https://s3.amazonaws.com/cfpb-hmda-public/prod/apor/SurveyTable-legacy.csv'>
           alternate rate survey data
-        </a>{' '}
+        </a>{" "}
         which are also provided.
       </p>
     </Heading>
