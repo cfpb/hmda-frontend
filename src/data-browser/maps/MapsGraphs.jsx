@@ -1,39 +1,51 @@
 import React from 'react'
 import Heading from '../../common/Heading.jsx'
-import ExternalLink from '../../common/ExternalLink'
 import MapContainer from './MapContainer.jsx'
-import { PopularVariableLink } from './PopularVariableLink'
 import './MapsGraphs.css'
 import { withYearValidation } from '../../common/withYearValidation.js'
-import { Link } from 'react-router-dom'
+import { withAppContext } from '../../common/appContextHOC.jsx'
+import useToolAnnouncement from '../../common/useToolAnnouncement.jsx'
+import Alert from '../../common/Alert.jsx'
 
 const MapsGraphs = props => {
-  const year = props.match.params.year
+  const toolAnnouncement = useToolAnnouncement({
+    toolName: "maps",
+    config: props.config,
+  })
 
   return (
     <div className='MapsGraphs'>
+      {toolAnnouncement && (
+        <Alert heading={toolAnnouncement.heading} type={toolAnnouncement.type}>
+          <p>{toolAnnouncement.message}</p>
+        </Alert>
+      )}
       <div className='intro no-print'>
-        <Heading type={1} headingText='HMDA Maps'>
+        <Heading
+          type={1}
+          headingText='HMDA Maps'
+          h1Class={`${toolAnnouncement ? "reduce-h1-margin-top" : ""}`}
+        >
           <p className='lead'>
             The HMDA Maps tool allows you to explore subsets of HMDA data,
-            filtered by{' '}
+            filtered by{" "}
             <a href='/documentation/tools/data-browser/data-browser-filters#pre-selected-filters'>
               popular variables
             </a>
-            . For help getting started, visit the{' '}
-            <a href={'/documentation/tools/data-browser/data-browser-maps-faq'}>
+            . For help getting started, visit the{" "}
+            <a href={"/documentation/tools/data-browser/data-browser-maps-faq"}>
               HMDA Maps FAQ
             </a>
             . For advanced analysis, use the <code>Download Data</code> button
-            to access all{' '}
+            to access all{" "}
             <a
               href={
-                '/documentation/publications/loan-level-datasets/lar-data-fields'
+                "/documentation/publications/loan-level-datasets/lar-data-fields"
               }
             >
               publicly available data fields
             </a>
-            . Additional questions/suggestions can be sent to{' '}
+            . Additional questions/suggestions can be sent to{" "}
             <a href='mailto:hmdahelp@cfpb.gov'>hmdahelp@cfpb.gov</a>.
           </p>
         </Heading>
@@ -43,4 +55,4 @@ const MapsGraphs = props => {
   )
 }
 
-export default withYearValidation(MapsGraphs)
+export default withAppContext(withYearValidation(MapsGraphs))

@@ -1,26 +1,26 @@
 import React from 'react'
 import Alert from '../../common/Alert.jsx'
 import { withAppContext } from '../../common/appContextHOC.jsx'
-import useAnnouncement from '../../common/useAnnouncement.jsx'
+import useToolAnnouncement from '../../common/useToolAnnouncement.jsx'
 import AppIntro from './AppIntro.jsx'
 import CSVUpload from './CSVUpload.jsx'
 import Form from './Form.jsx'
 
 const App = (props) => {
-  const announcement = useAnnouncement({
+  const toolAnnouncement = useToolAnnouncement({
     toolName: "rate spread",
     config: props.config,
   })
 
   return (
     <div className='grid' id='main-content'>
-      {announcement && (
-        <Alert heading={announcement.heading} type={announcement.type}>
-          <p>{announcement.message}</p>
+      {toolAnnouncement && (
+        <Alert heading={toolAnnouncement.heading} type={toolAnnouncement.type}>
+          <p>{toolAnnouncement.message}</p>
         </Alert>
       )}
       
-      <AppIntro announcement={announcement}/>
+      <AppIntro toolAnnouncement={toolAnnouncement}/>
 
       <div className='grid'>
         <div className='item'>

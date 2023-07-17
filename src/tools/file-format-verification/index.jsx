@@ -13,6 +13,7 @@ import appReducer from './reducers'
 import { withAppContext } from '../../common/appContextHOC'
 
 import './FFVT.css'
+import { getToolAnnouncement } from '../../common/getToolAnnouncement'
 
 const middleware = [thunkMiddleware]
 if (process.env.NODE_ENV !== 'production') middleware.push(createLogger())
@@ -41,13 +42,24 @@ class FFVT extends React.Component {
   render() {
     const { maintenanceMode, ffvtAnnouncement, filingAnnouncement } = this.props.config
     const downtimeMessage = ffvtAnnouncement || (filingAnnouncement && filingAnnouncement.message)
+    const toolAnnouncement = getToolAnnouncement("ffvt", this.props.config)
+
     return (
       <Provider store={store}>
         <AppContainer>
           <div id='main-content' className='grid FFVT'>
+            {toolAnnouncement && (
+              <Alert
+                heading={toolAnnouncement.heading}
+                type={toolAnnouncement.type}
+              >
+                <p>{toolAnnouncement.message}</p>
+              </Alert>
+            )}
             <Heading
               type={1}
               headingText='File Format Verification Tool'
+              h1Class={`${toolAnnouncement ? "reduce-h1-margin-top" : ""}`}
               paragraphText='Select a HMDA file from your computer and
                 test whether it meets certain formatting requirements needed
                 to submit HMDA data to the HMDA Platform. The File Format 

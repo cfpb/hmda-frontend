@@ -2,13 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Heading from '../../common/Heading.jsx'
 
-const AppIntro = ({announcement}) => {
+const AppIntro = ({toolAnnouncement}) => {
   return (
     <Heading
       type={1}
       style={{ marginBottom: 0 }}
       headingText='Rate Spread Calculator'
-      h1Class={`${announcement ? "reduce-h1-margin-top" : ""}`}
+      h1Class={`${toolAnnouncement ? "reduce-h1-margin-top" : ""}`}
     >
       <p className='font-lead'>
         This calculator provides rate spreads for HMDA reportable loans with a
