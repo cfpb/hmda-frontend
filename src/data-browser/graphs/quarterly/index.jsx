@@ -3,7 +3,7 @@ import { Route, Switch, useLocation } from "react-router-dom"
 import Alert from "../../../common/Alert"
 import { withAppContext } from "../../../common/appContextHOC"
 import Error from "../../../common/Error"
-import {useAnnouncement} from "../../../common/useAnnouncement"
+import {useToolAnnouncement} from "../../../common/useToolAnnouncement"
 import "../graphs.css"
 import { SectionSelector } from "../SectionSelector"
 import { GraphsHeader } from "./GraphsHeader"
@@ -18,18 +18,18 @@ export const QuarterlyGraphs = (props) => {
   const [graphHeaderOverview, setGraphHeaderOverview] = useState() // Populated from API
   const location = useLocation()
   const showGraphs = ![PATH_FILERS_INFO, PATH_FAQ].includes(location.pathname)
-  const announcement = useAnnouncement({toolName: "graphs", config: props.config})
+  const toolAnnouncement = useToolAnnouncement({toolName: "graphs", config: props.config})
 
   return (
     <div className='Graphs'>
-      {announcement && (
-        <Alert heading={announcement.heading} type={announcement.type}>
-          <p>{announcement.message}</p>
+      {toolAnnouncement && (
+        <Alert heading={toolAnnouncement.heading} type={toolAnnouncement.type}>
+          <p>{toolAnnouncement.message}</p>
         </Alert>
       )}
       <GraphsHeader
         overview={graphHeaderOverview}
-        announcement={announcement}
+        toolAnnouncement={toolAnnouncement}
       />
       <Error error={error} />
       <SectionSelector props={props} />

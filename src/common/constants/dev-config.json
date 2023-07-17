@@ -34,16 +34,46 @@
       "heading": "Graphs are being updated!",
       "message": "2023-Q1 quarertly graphs data is being added. There might be some unexpected interruptions as the service is being updated.",
       "type": "error",
-      "tool": "Graphs"
+      "tool": "graphs"
     },
     {
       "heading": "Rate Spread Maintenance",
       "message": "The rate spread service is going to be down from 6PM EST - 8PM EST for scheduled maintenance.",
       "type": "error",
       "tool": "rate spread"
+    },
+    {
+      "heading": "Check Digit",
+      "message": "The check digit service is going to be down from 6PM EST - 8PM EST for scheduled maintenance.",
+      "type": "error",
+      "tool": "check digit"
+    },
+    {
+      "heading": "Data Browser",
+      "message": "The data browser service is going to be down from 6PM EST - 8PM EST for scheduled maintenance.",
+      "type": "error",
+      "tool": "data browser select"
+    },
+    {
+      "heading": "Maps",
+      "message": "The maps service is going to be down from 6PM EST - 8PM EST for scheduled maintenance.",
+      "type": "error",
+      "tool": "maps"
+    },
+    {
+      "heading": "Filing",
+      "message": "The filing service is going to be down from 6PM EST - 8PM EST for scheduled maintenance.",
+      "type": "error",
+      "tool": "filing"
+    },
+    {
+      "heading": "File Format Verification Tool",
+      "message": "The FFVT service is going to be down from 6PM EST - 8PM EST for scheduled maintenance.",
+      "type": "error",
+      "tool": "ffvt"
     }
   ],
-  "publicationReleaseYear": "2022",
+  "publicationReleaseYear": "2022", 
   "mlarReleaseYear": "2022",
   "maintenanceMode": false,
   "filingAnnouncement": null,

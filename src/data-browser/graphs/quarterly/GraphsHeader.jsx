@@ -5,9 +5,9 @@ import { QuarterlyFilingCalendar } from './QuarterlyFilingCalendar'
 const DefaultOverview =
   'The following graphs present data for the financial institutions reporting HMDA quarterly data.'
 
-export const GraphsHeader = ({ overview, announcement }) => (
+export const GraphsHeader = ({ overview, toolAnnouncement }) => (
   <header className='heading'>
-    <h1 className={`${announcement ? "reduce-h1-margin-top" : ""}`}>
+    <h1 className={`${toolAnnouncement ? "reduce-h1-margin-top" : ""}`}>
       HMDA Quarterly Graphs
     </h1>
     <p className='lead'>{overview || DefaultOverview}</p>

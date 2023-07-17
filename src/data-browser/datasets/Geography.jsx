@@ -34,6 +34,9 @@ import DatasetDocsLink from "./DatasetDocsLink.jsx";
 import { withYearValidation } from '../../common/withYearValidation.js'
 
 import "./Geography.css";
+import { withAppContext } from '../../common/appContextHOC.jsx'
+import { getToolAnnouncement } from '../../common/getToolAnnouncement.js'
+import Alert from '../../common/Alert.jsx'
 
 class Geography extends Component {
   constructor(props) {
@@ -484,29 +487,40 @@ class Geography extends Component {
         ? makeUrl(this.state, true)
         : makeUrl(this.state, true, false));
 
+    const toolAnnouncement = getToolAnnouncement("data browser select", this.props.config)
+
     return (
       <div className='Geography'>
+        {toolAnnouncement && (
+          <Alert heading={toolAnnouncement.heading} type={toolAnnouncement.type}>
+            <p>{toolAnnouncement.message}</p>
+          </Alert>
+        )}
         <div className='intro'>
-          <Heading type={1} headingText='HMDA Dataset Filtering'>
+          <Heading
+            type={1}
+            headingText='HMDA Dataset Filtering'
+            h1Class={`${toolAnnouncement ? "reduce-h1-margin-top" : ""}`}
+          >
             <p className='lead'>
               You can use the HMDA Data Browser to filter and download CSV files
-              of HMDA data. These files contain all{' '}
+              of HMDA data. These files contain all{" "}
               <a
                 target='_blank'
                 rel='noopener noreferrer'
                 href='/documentation/publications/loan-level-datasets/lar-data-fields'
               >
                 data fields
-              </a>{' '}
+              </a>{" "}
               available in the public data record and can be used for advanced
-              analysis. You can also access the{' '}
+              analysis. You can also access the{" "}
               <a
                 target='_blank'
                 rel='noopener noreferrer'
                 href='/documentation/api/data-browser/'
               >
                 Data Browser API
-              </a>{' '}
+              </a>{" "}
               directly. For questions/suggestions, contact hmdahelp@cfpb.gov.
             </p>
           </Heading>
@@ -515,7 +529,7 @@ class Geography extends Component {
           year={this.state.year}
           onChange={this.onYearChange}
           years={this.props.config.dataBrowserYears}
-          label={'Data Year'}
+          label={"Data Year"}
         />
         <DatasetDocsLink year={this.state.year} />
 
@@ -566,4 +580,4 @@ class Geography extends Component {
   }
 }
 
-export default withYearValidation(Geography);
+export default withAppContext(withYearValidation(Geography));
