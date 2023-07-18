@@ -21,7 +21,7 @@ export const Hero = () => {
     <div className="grid-container">
       <div className="usa-hero__callout">
         <h1 className="usa-hero__heading">
-          Transparency &amp; Accountability:<span className="usa-hero__heading--alt">U.S. Mortgage Market + Lenders</span>
+          <span className='hero__highlight'>Transparency &amp; Accountability:</span><span className="usa-hero__heading--alt">U.S. Mortgage Market + Lenders</span>
         </h1>
         <p>
         Enacted by Congress in 1975, HMDA provides the most comprehensive source of publicly available information on the U.S. Mortgage Market.

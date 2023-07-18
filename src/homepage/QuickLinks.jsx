@@ -22,7 +22,7 @@ export const QuickLinks = () => {
                     </svg> <span>HMDA Filing <br />Platform</span>
                 </Link>
                 <Link 
-                    to='documentation/2023/'
+                    to='documentation/'
                 >   
                     <svg className="usa-icon" aria-hidden="true" focusable="false" role="img">
                         <use href={`${iconSprite}#help`}></use>
