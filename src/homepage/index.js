@@ -21,9 +21,10 @@ const Home = ({ config }) => {
   const isProdBeta = isProd() && isBeta()
 
   return (
+    <>
+    <Hero />
+    <QuickLinks />
     <main className="App home" id="main-content">
-      <Hero />
-      <QuickLinks />
       <div>
         <header>
           <h1>The Home Mortgage Disclosure Act</h1>
@@ -49,6 +50,7 @@ const Home = ({ config }) => {
         </Column>
       </ColumnLayout>
     </main>
+    </>
   )
 }
 

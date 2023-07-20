@@ -269,7 +269,14 @@ body {
 
    .grid-container {
       margin-left: 0;
+      @media (min-width: 70em) {
+         margin-left: 5%;
+      }
+      @media (min-width: 90em) {
+         margin-left: 10%;
+      }
    }
+   
 
    .usa-hero__callout {
       background-color: var(--hmda-blue-dark-opacity);
@@ -395,6 +402,10 @@ body {
    @media (min-width: 40em) {
       flex-direction: row;
       padding: 0;
+      margin: 0 auto;
+   }
+   @media (min-width: 80em) {
+      padding: 0 10%;
    }
 
    .title {
@@ -490,8 +501,8 @@ body {
 }
 
 /*************************
-   tableOfContents w/usa-carc
-/*************************
+   tableOfContents w/usa-card
+/*************************/
 
 #tableOfContents {
    padding: 4rem 0 0;
@@ -550,7 +561,6 @@ body {
       font-family: SourceSansProBold;
    }
 }
-*/
 
 
 /*************************
