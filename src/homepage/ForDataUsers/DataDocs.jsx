@@ -3,12 +3,9 @@ import { ExpandableCard } from '../ExpandableCard'
 
 export const DataDocs = () => {
   return (
-    <ExpandableCard
-      id='home-expand-data-docs'
-      title='Data Documentation'
-      description='Answers to common questions about working with HMDA datasets and Data Browser tools.'
-      destination='/documentation/'
-    >
+    <article>
+      <h4>Data Documentation</h4>
+      <p>Answers to common questions about working with HMDA datasets and Data Browser tools.</p>
       <ul>
         <li>
           <a
@@ -41,6 +38,6 @@ export const DataDocs = () => {
           </a>
         </li>
       </ul>
-    </ExpandableCard>
+    </article>
   )
 }

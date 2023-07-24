@@ -13,7 +13,7 @@ export const DataInfo = ({ config }) => {
         <h3 className="alt">
             <svg className="usa-icon" aria-hidden="true" focusable="false" role="img">
                 <use href={`${iconSprite}#insights`}></use>
-            </svg> Data Info
+            </svg> Info for Data Users
         </h3>
         <ul className="usa-card-group">
             <DataBrowser />

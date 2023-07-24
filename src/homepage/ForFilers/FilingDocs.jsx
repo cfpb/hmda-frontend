@@ -3,12 +3,9 @@ import { ExpandableCard } from "../ExpandableCard"
 import NewIndicator from "../NewIndicator"
 
 export const FilingDocs = ({ hideContent }) => (
-  <ExpandableCard
-    id='home-expand-filing-docs'
-    title='Filing Documentation'
-    description='Answers to common questions about the process of filing HMDA data.'
-    destination='/documentation/faq/filing-faq'
-  >
+  <article>
+    <h4>Filing Documentation</h4>
+    <p>Answers to common questions about the process of filing HMDA data.</p>
     <ul>
       <li>
         <a href='/documentation/faq/filing-faq'>HMDA Filing FAQ</a>
@@ -47,5 +44,5 @@ export const FilingDocs = ({ hideContent }) => (
         </li>
       )}
     </ul>
-  </ExpandableCard>
+  </article>
 )

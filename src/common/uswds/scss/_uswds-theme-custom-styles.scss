@@ -521,10 +521,14 @@ body {
       }
    }
 
+   .usa-card-group {
+      margin: 0;
+      padding: 0 1em;
+   }
 
    #filerInfo {
       .colorBanner {
-         background-color: #1f498f;
+         background-color: var(--hmda-blue);
       }
 
       .usa-card__heading {
@@ -534,15 +538,11 @@ body {
 
    #dataInfo {
       .colorBanner {
-         background-color: #0071bc;
+         background-color: var(--hmda-blue);
       }
 
       .usa-card__heading {
          color: #0071bc;
-      }
-
-      h3.alt {
-         background-color: #0071bc;
       }
    }
 

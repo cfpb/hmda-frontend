@@ -12,7 +12,7 @@ export const FilerInfo = () => {
 <h3>
   <svg className="usa-icon" aria-hidden="true" focusable="false" role="img">
     <use href={`${iconSprite}#account_balance`}></use>
-  </svg> Filer Info
+  </svg> Info for Filers
 </h3>
 <section className="usa-card-group">
       <Filing />
