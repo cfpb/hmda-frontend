@@ -15,17 +15,8 @@ const MapsGraphs = props => {
 
   return (
     <div className='MapsGraphs'>
-      {toolAnnouncement && (
-        <Alert heading={toolAnnouncement.heading} type={toolAnnouncement.type}>
-          <p>{toolAnnouncement.message}</p>
-        </Alert>
-      )}
       <div className='intro no-print'>
-        <Heading
-          type={1}
-          headingText='HMDA Maps'
-          h1Class={`${toolAnnouncement ? "reduce-h1-margin-top" : ""}`}
-        >
+        <Heading type={1} headingText='HMDA Maps'>
           <p className='lead'>
             The HMDA Maps tool allows you to explore subsets of HMDA data,
             filtered by{" "}
@@ -50,6 +41,11 @@ const MapsGraphs = props => {
           </p>
         </Heading>
       </div>
+      {toolAnnouncement && (
+        <Alert heading={toolAnnouncement.heading} type={toolAnnouncement.type}>
+          <p>{toolAnnouncement.message}</p>
+        </Alert>
+      )}
       <MapContainer {...props} />
     </div>
   )

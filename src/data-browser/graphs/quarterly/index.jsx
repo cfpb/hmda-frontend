@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import { Route, Switch, useLocation } from "react-router-dom"
-import Alert from "../../../common/Alert"
 import { withAppContext } from "../../../common/appContextHOC"
 import Error from "../../../common/Error"
 import {useToolAnnouncement} from "../../../common/useToolAnnouncement"
@@ -22,11 +21,6 @@ export const QuarterlyGraphs = (props) => {
 
   return (
     <div className='Graphs'>
-      {toolAnnouncement && (
-        <Alert heading={toolAnnouncement.heading} type={toolAnnouncement.type}>
-          <p>{toolAnnouncement.message}</p>
-        </Alert>
-      )}
       <GraphsHeader
         overview={graphHeaderOverview}
         toolAnnouncement={toolAnnouncement}

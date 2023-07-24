@@ -8,8 +8,8 @@ const makeHeadingLink = (headingText, headingLink) => {
   return <Link to={headingLink}>{headingText}</Link>
 }
 
-const renderHeading = (type, heading, h1Class) => {
-  if (type === 1) return <h1 className={h1Class}>{heading}</h1>
+const renderHeading = (type, heading) => {
+  if (type === 1) return <h1>{heading}</h1>
   if (type === 2) return <h2>{heading}</h2>
   if (type === 3) return <h3>{heading}</h3>
   if (type === 4) return <h4>{heading}</h4>
@@ -41,7 +41,7 @@ const Heading = props => {
 
   return (
     <header className={headingClass} style={style}>
-      {renderHeading(props.type, heading, props.h1Class)}
+      {renderHeading(props.type, heading)}
       {paragraphText}
       {props.children}
     </header>

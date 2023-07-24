@@ -48,6 +48,15 @@ class FFVT extends React.Component {
       <Provider store={store}>
         <AppContainer>
           <div id='main-content' className='grid FFVT'>
+            <Heading
+              type={1}
+              headingText='File Format Verification Tool'
+              paragraphText='Select a HMDA file from your computer and
+                test whether it meets certain formatting requirements needed
+                to submit HMDA data to the HMDA Platform. The File Format 
+                Verification Tool does not test for compliance with Edits.'
+            />
+
             {toolAnnouncement && (
               <Alert
                 heading={toolAnnouncement.heading}
@@ -56,15 +65,6 @@ class FFVT extends React.Component {
                 <p>{toolAnnouncement.message}</p>
               </Alert>
             )}
-            <Heading
-              type={1}
-              headingText='File Format Verification Tool'
-              h1Class={`${toolAnnouncement ? "reduce-h1-margin-top" : ""}`}
-              paragraphText='Select a HMDA file from your computer and
-                test whether it meets certain formatting requirements needed
-                to submit HMDA data to the HMDA Platform. The File Format 
-                Verification Tool does not test for compliance with Edits.'
-            />
 
             <div className='grid'>
               <div className='item'>

@@ -1,12 +1,11 @@
 import React from 'react'
 import Heading from '../../common/Heading.jsx'
 
-const AppIntro = ({toolAnnouncement}) => {
+const AppIntro = () => {
   return (
     <Heading
       type={1}
       style={{ marginBottom: 0 }}
-      h1Class={`${toolAnnouncement ? "reduce-h1-margin-top" : ""}`}
       headingText='Check Digit Tool'
       paragraphText='You can use this tool for two functions. The first is to generate a two
       character check digit when you enter a Legal Entity Identifier (LEI) and

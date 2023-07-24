@@ -491,17 +491,8 @@ class Geography extends Component {
 
     return (
       <div className='Geography'>
-        {toolAnnouncement && (
-          <Alert heading={toolAnnouncement.heading} type={toolAnnouncement.type}>
-            <p>{toolAnnouncement.message}</p>
-          </Alert>
-        )}
         <div className='intro'>
-          <Heading
-            type={1}
-            headingText='HMDA Dataset Filtering'
-            h1Class={`${toolAnnouncement ? "reduce-h1-margin-top" : ""}`}
-          >
+          <Heading type={1} headingText='HMDA Dataset Filtering' style={toolAnnouncement ? {marginBottom: "0"} : ""}>
             <p className='lead'>
               You can use the HMDA Data Browser to filter and download CSV files
               of HMDA data. These files contain all{" "}
@@ -525,6 +516,14 @@ class Geography extends Component {
             </p>
           </Heading>
         </div>
+        {toolAnnouncement && (
+          <Alert
+            heading={toolAnnouncement.heading}
+            type={toolAnnouncement.type}
+          >
+            <p>{toolAnnouncement.message}</p>
+          </Alert>
+        )}
         <DBYearSelector
           year={this.state.year}
           onChange={this.onYearChange}
