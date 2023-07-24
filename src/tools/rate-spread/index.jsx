@@ -1,5 +1,4 @@
 import React from 'react'
-import Alert from '../../common/Alert.jsx'
 import { withAppContext } from '../../common/appContextHOC.jsx'
 import useToolAnnouncement from '../../common/useToolAnnouncement.jsx'
 import AppIntro from './AppIntro.jsx'
@@ -13,13 +12,7 @@ const App = (props) => {
   })
 
   return (
-    <div className='grid' id='main-content'>
-      {toolAnnouncement && (
-        <Alert heading={toolAnnouncement.heading} type={toolAnnouncement.type}>
-          <p>{toolAnnouncement.message}</p>
-        </Alert>
-      )}
-      
+    <div className='grid' id='main-content'>      
       <AppIntro toolAnnouncement={toolAnnouncement}/>
 
       <div className='grid'>

@@ -15,16 +15,12 @@ const Home = ({ maintenanceMode, config }) => {
     toolName: "filing",
     config: config,
   })
+  const marginTop = toolAnnouncement ? "0px" : ""
 
   return (
     <main className={cname} id='main-content'>
       <section className='hero'>
         <div className='full-width'>
-          {toolAnnouncement && (
-            <Alert heading={toolAnnouncement.heading} type={toolAnnouncement.type}>
-              <p>{toolAnnouncement.message}</p>
-            </Alert>
-          )}
           {sessionExpired && (
             <Alert type='success' heading='Session Expired'>
               <p>
@@ -41,8 +37,17 @@ const Home = ({ maintenanceMode, config }) => {
             accuracy and completeness of the data, and submit data for the
             filing year.
           </p>
+          {toolAnnouncement && (
+            <Alert
+              heading={toolAnnouncement.heading}
+              type={toolAnnouncement.type}
+            >
+              <p>{toolAnnouncement.message}</p>
+            </Alert>
+          )}
           <button
             className='button'
+            style={{ marginTop }}
             onClick={e => {
               e.preventDefault()
               login()
@@ -55,13 +60,14 @@ const Home = ({ maintenanceMode, config }) => {
           <span className='text-small'>or</span>
           <button
             className='button register-link'
+            style={{ marginTop }}
             onClick={e => {
               e.preventDefault()
               register()
             }}
             disabled={buttonsDisabled}
             title={maintenanceTitle || "Create an account"}
-          >
+            >
             Create an account
           </button>
           <p className='text-small'>

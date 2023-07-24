@@ -389,7 +389,6 @@ input[type='submit']:visited:disabled:active {
   font-weight: bold;
 }
 
-
-.reduce-h1-margin-top {
+.zero-margin-top {
   margin-top: 0px;
 }
