@@ -15,7 +15,7 @@ export const VideoModal = ({ showModal, setShowModal, title, content }) => {
             aria-labelledby="modal-1-heading"
             aria-describedby="modal-1-description"
             >
-                <div class="video-container">
+                <div className="video-container">
                     <iframe width="1120" height="630" src="https://www.youtube.com/embed/C_73Swgyc4g" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                 </div>
                 <button

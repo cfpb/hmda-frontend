@@ -4,6 +4,8 @@ import "./Home.css"
 import { Hero } from "./Hero"
 import { QuickLinks } from "./QuickLinks"
 import { AnnouncementBanner } from "./AnnouncementBanner"
+import { FilerInfo } from "./ForFilers/FilerInfo"
+import { DataInfo } from "./ForDataUsers/DataInfo"
 import { ColumnLayout, Column } from "./ColumnLayout.jsx"
 import { DataBrowser } from "./ForDataUsers/DataBrowser"
 import { DataPublication } from "./ForDataUsers/DataPublication"
@@ -35,6 +37,17 @@ const Home = ({ config }) => {
         </header>
         <AnnouncementBanner {...config} />
       </div>
+      <div id="tableOfContents" className="grid-container">
+        <div className="grid-row grid-gap">
+          <div id="filerInfo" className="tablet:grid-col">
+            <FilerInfo />
+          </div>
+          <div id="dataInfo" className="tablet:grid-col">
+            <DataInfo config={config} />
+          </div>
+        </div>
+      </div>
+      
       <ColumnLayout>
         <Column title="Info for Filers">
           <Filing defaultPeriod={config.defaultPeriod} />
