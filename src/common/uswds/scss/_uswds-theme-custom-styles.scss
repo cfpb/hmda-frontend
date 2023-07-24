@@ -507,11 +507,25 @@ body {
 #tableOfContents {
    padding: 4rem 0 0;
 
+   a, a:link, a:active, a:focus {
+      color: var(--hmda-blue-light);
+      .new-indicator {
+         background-color: var(--hmda-blue-light);
+      }
+      
+   }
+   a:visited {
+      color: var(--hmda-blue);
+      .new-indicator {
+         background-color: var(--hmda-blue);
+      }
+   }
+
    h3 {
-      background-color: #1f498f;
+      background-color: var(--hmda-blue);
       color: #fff;
       padding: 1em;
-      margin-bottom: 1em;
+      margin-bottom: 1.5em;
 
       .usa-icon {
          vertical-align: bottom;
@@ -523,42 +537,31 @@ body {
 
    .usa-card-group {
       margin: 0;
-      padding: 0 1em;
-   }
+      padding: 0;
+      
 
-   #filerInfo {
-      .colorBanner {
-         background-color: var(--hmda-blue);
-      }
-
-      .usa-card__heading {
-         color: #1f498f;
+      article {
+         h4 {
+            color: var(--hmda-blue);
+            font-size: 1.25em;
+         }
+         margin-bottom: 2em;
+         padding: 2em;
+         border: 1px solid #ddd;  
+         border-top: 1em solid var(--hmda-blue);       
       }
    }
 
    #dataInfo {
-      .colorBanner {
-         background-color: var(--hmda-blue);
+      h3 {
+         background-color: var(--hmda-blue-light);
       }
-
-      .usa-card__heading {
-         color: #0071bc;
+      article {
+         h4 {
+            color: var(--hmda-blue-light);
+         }
+         border-top: 1em solid var(--hmda-blue-light); 
       }
-   }
-
-   .usa-card {
-      margin-bottom: 3.2rem;
-      width: 100%;
-
-      .colorBanner {
-         height: 2rem;
-         margin: -2px;
-         border-radius: .5em .5em 0 0;
-      }
-   }
-
-   .usa-card__heading {
-      font-family: SourceSansProBold;
    }
 }
 
