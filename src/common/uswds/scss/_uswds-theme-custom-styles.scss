@@ -522,6 +522,12 @@ body {
          background-color: var(--hmda-blue);
       }
    }
+   a:hover {
+      color: var(--hmda-blue-bright);
+      .new-indicator {
+         background-color: var(--hmda-blue-bright);
+      }
+   }
 
    h3 {
       background-color: var(--hmda-blue);
