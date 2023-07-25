@@ -45,7 +45,7 @@ export const OptionCarousel = ({
   const navControls = useAutoAdvance({ cycleTime, totalCount, autoAdvance })
 
   return (
-    <div id={id} className="oc" style={styles}>
+    <div id={id} className="oc" /*style={styles}*/>
       <span className={classname}>
         {showNavigator && (
           <OptionNavigator {...{ ...navControls, totalCount }} />

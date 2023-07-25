@@ -47,21 +47,6 @@ const Home = ({ config }) => {
           </div>
         </div>
       </div>
-      
-      <ColumnLayout>
-        <Column title="Info for Filers">
-          <Filing defaultPeriod={config.defaultPeriod} />
-          <FilingDocs hideContent={isProdBeta} />
-          <FilingGuides />
-        </Column>
-        <Column title="Info for Data Users" hideContent={isProdBeta}>
-          <DataBrowser />
-          <DataDocs />
-          <ChangeLog />
-          <DataPublication {...config} />
-          <ResearchAndReports />
-        </Column>
-      </ColumnLayout>
     </main>
     </>
   )

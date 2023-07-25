@@ -15,13 +15,13 @@ export const DataInfo = ({ config }) => {
                 <use href={`${iconSprite}#insights`}></use>
             </svg> Info for Data Users
         </h3>
-        <ul className="usa-card-group">
+        <section className="usa-card-group">
             <DataBrowser />
             <DataDocs />
             <ChangeLog />
             <DataPublication {...config} />
             <ResearchAndReports />
-        </ul>
+        </section>
         </>
     )
 }

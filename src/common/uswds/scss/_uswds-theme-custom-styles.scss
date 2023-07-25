@@ -372,10 +372,12 @@ body {
       top: -1em;
       right: 0;
       z-index: 2;
+      background-color: transparent !important;
+      border: none !important;
 
       svg {
          fill: #fff;
-
+ 
          &:hover {
             fill: #0071bc;
          }
@@ -548,7 +550,8 @@ body {
          margin-bottom: 2em;
          padding: 2em;
          border: 1px solid #ddd;  
-         border-top: 1em solid var(--hmda-blue);       
+         border-top: 1em solid var(--hmda-blue);
+         width: 100%;
       }
    }
 
@@ -560,7 +563,7 @@ body {
          h4 {
             color: var(--hmda-blue-light);
          }
-         border-top: 1em solid var(--hmda-blue-light); 
+         border-top: 1em solid var(--hmda-blue-light);
       }
    }
 }
