@@ -39,7 +39,7 @@
     "html-to-image": "1.11.11",
     "jspdf": "^2.5.1",
     "keycloak-js": "11.0.3",
-    "mapbox-gl": "1.13.1",
+    "mapbox-gl": "1.13.3",
     "normalize.css": "8.0.1",
     "react": "17.0.2",
     "react-app-polyfill": "2.0.0",
