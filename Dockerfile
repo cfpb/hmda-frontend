@@ -1,4 +1,4 @@
-FROM node:14.18.3-alpine3.15 as build-stage
+FROM node:16.20-alpine3.17 as build-stage
 WORKDIR /usr/src/app
 ARG DOCKER_TAG="latest"
 
