@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import Heading from '../../common/Heading.jsx'
 import SearchList from './SearchList.jsx'
 import YearSelector from '../../common/YearSelector.jsx'
@@ -26,15 +25,19 @@ const ModifiedLar = props => {
           paragraphText={buildParagraphText(hasCombined)}
         >
           <p>
-            <Link to='/documentation/publications/modified-lar/resources/supporting-resources'>
+            <a
+              href='/documentation/publications/modified-lar/resources/supporting-resources'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               Modified LAR file specifications, schemas, and instructions
-            </Link>
+            </a>
           </p>
         </Heading>
         <YearSelector year={year} url={url} years={years} />
         <div className='card'>
           <h3>
-            Modified LAR by <span className='highlight'>Individual</span>{' '}
+            Modified LAR by <span className='highlight'>Individual</span>{" "}
             Institution
           </h3>
           <SearchList year={year} isModLar />
