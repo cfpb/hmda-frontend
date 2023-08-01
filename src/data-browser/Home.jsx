@@ -31,11 +31,12 @@ class Home extends Component {
           </Heading>
         </div>
 
-        <h3>I would like to...</h3>
+        <h3>Data Browser Tools:</h3>
 
         <div className='card-container'>
           <ImageCard
             year={publicationReleaseYear}
+            title='Datasets'
             caption='Select, Summarize, Download'
             description='Filter and download HMDA datasets'
             path='data'
@@ -49,6 +50,7 @@ class Home extends Component {
           />
           <ImageCard
             year={publicationReleaseYear}
+            title='Maps'
             caption={'Explore, Compare, Share'}
             path='maps'
             enabled
@@ -60,10 +62,9 @@ class Home extends Component {
               label: 'HMDA Maps FAQ',
             }}
           />
-        </div>
-        <div className='card-container'>
           <ImageCard
             year=''
+            title='Graphs'
             caption='Visualize Mortgage Trends'
             description='Interactive graphs of summarized HMDA data'
             path='graphs/quarterly'
@@ -75,7 +76,6 @@ class Home extends Component {
               label: 'HMDA Graphs FAQ',
             }}
           />
-          <ImageCard placeholder />
         </div>
       </div>
     )
