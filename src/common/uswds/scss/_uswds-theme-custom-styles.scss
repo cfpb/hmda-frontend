@@ -22,6 +22,17 @@ i.e.
 
 @use "uswds-core" as *;
 
+:root {
+   --hmda-blue: #1f498f;
+   --hmda-blue-opacity: rgba(31, 73, 143, .8);
+   --hmda-blue-light: #2360C2;
+   --hmda-blue-bright: #3B7BE9;
+   --hmda-blue-lightest: #00C8FF;
+   --hmda-blue-dark: #163851;
+   --hmda-blue-dark-opacity: rgba(22, 46, 81, .8);
+   --usa-blue: #0071bc;
+}
+
 body {
    margin-bottom: 0 !important;
 }
