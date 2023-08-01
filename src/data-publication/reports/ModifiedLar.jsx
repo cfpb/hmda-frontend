@@ -26,7 +26,7 @@ const ModifiedLar = props => {
           paragraphText={buildParagraphText(hasCombined)}
         >
           <p>
-            <Link to='/data-publication/documents#modified-lar'>
+            <Link to='/documentation/publications/modified-lar/resources/supporting-resources'>
               Modified LAR file specifications, schemas, and instructions
             </Link>
           </p>
