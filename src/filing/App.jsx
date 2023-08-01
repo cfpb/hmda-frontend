@@ -141,9 +141,8 @@ export class AppContainer extends Component {
           Skip to main content
         </a>
         <ShowUserName isLoggedIn = {getKeycloak().authenticated} />
-       
+      
         <ConfirmationModal />
-        {isBeta() ? <Beta/> : null}
         {filingAnnouncement ? <FilingAnnouncement data={filingAnnouncement} /> : null}
         {params.filingPeriod === '2017' ? (
           <p className='full-width'>
