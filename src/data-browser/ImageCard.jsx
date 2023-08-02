@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './ImageCard.scss'
+import iconSprite from "../common/uswds/img/sprite.svg";
 
 const TileImage = ({ src }) => <img className='tile-image' src={src} />
 
@@ -16,11 +17,15 @@ const ImageCard = (props) => {
         <TileImage src={props.image} />
         <div className='info'>
           <h3>{props.title}</h3>
-          <h4>{props.caption}</h4>
           <span className='desc'>{props.description}</span>
         </div>
       </Link>
-      {props.faq && <Link to={props.faq.url} target="_blank" rel="noopener noreferrer" className='faq'>{props.faq.label || "FAQ"}</Link>}
+      {props.faq && <Link to={props.faq.url} target="_blank" rel="noopener noreferrer" className='faq'>
+        <svg className="usa-icon" aria-hidden="true" focusable="false" role="img">
+            <use href={`${iconSprite}#help_outline`}></use>
+        </svg> 
+        {props.faq.label || "FAQ"}
+      </Link>}
     </div>
   )
 }

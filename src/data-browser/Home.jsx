@@ -36,16 +36,16 @@ class Home extends Component {
         <div className='card-container'>
           <ImageCard
             year={publicationReleaseYear}
-            title='Datasets'
+            title='Dataset Filtering'
             caption='Select, Summarize, Download'
-            description='Filter and download HMDA datasets'
+            description='Filter, summarize, and download HMDA datasets'
             path='data'
             enabled
             image={filterBw}
             imageHover={filterColor}
             faq={{
               url: `/documentation/tools/data-browser/data-browser-faq`,
-              label: 'HMDA Dataset Filtering FAQ',
+              label: 'HMDA Dataset FAQ',
             }}
           />
           <ImageCard
@@ -54,7 +54,7 @@ class Home extends Component {
             caption={'Explore, Compare, Share'}
             path='maps'
             enabled
-            description='Explore HMDA datasets using an interactive map'
+            description='Explore HMDA datasets using an interactive map with custom filters'
             image={mapBw}
             imageHover={mapColor}
             faq={{
@@ -66,7 +66,7 @@ class Home extends Component {
             year=''
             title='Graphs'
             caption='Visualize Mortgage Trends'
-            description='Interactive graphs of summarized HMDA data'
+            description='Visualize quarterly mortgage trends with interactive graphs of summarized HMDA data'
             path='graphs/quarterly'
             enabled
             image={graphBw}

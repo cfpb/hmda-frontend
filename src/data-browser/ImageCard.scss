@@ -1,3 +1,13 @@
+a:link, a:active, a:focus {
+  color: var(--hmda-blue-light);
+}
+a:visited {
+    color: var(--hmda-blue);
+}
+a:hover {
+    color: var(--hmda-blue-bright);
+}
+
 .DataBrowser .home .card-container {
   width: 100%;
   display: flex;
@@ -54,7 +64,28 @@
     .faq {
       display: block;
       text-align: center;
-      padding: .5em 1em 1em;
+      margin: 1em auto;
+      padding: .5em 1em;
+      border: 1px solid var(--hmda-blue);
+      border-radius: .5em;
+      width: 80%;
+
+      svg {
+        height: 1.25em;
+        width: 1.25em;
+        margin-right: .25em;
+        vertical-align: bottom;
+        stroke: none;
+     }
+
+     &:hover {
+      background-color: var(--hmda-blue-light);
+      color: #fff;
+      svg {
+        fill: #fff;
+      }
+     }
+
     }
   }
 
@@ -62,8 +93,10 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: stretch;
+    margin-bottom: 7em;
     .card-wrapper {
       width: 31%;
+      max-height: 400px;
     }
   }
 }
