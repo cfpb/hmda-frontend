@@ -54,8 +54,8 @@ onlyOn(!isBeta(HOST), () => {
           }
         )
 
-        // Documentation link points to correct place
-        const docLink = `/data-publication/documents#modified-lar`
+        // Documentation link points to correct place - documentation lives in Docusaurus now
+        const docLink = `/documentation/publications/modified-lar/resources/supporting-resources`
         cy.get(".App > #main-content > .heading > p > a").should($link => {
           expect($link).to.have.attr("href", docLink)
         })
