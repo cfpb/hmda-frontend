@@ -31,7 +31,7 @@ export const Hero = () => {
             <a href="#hmda-video" 
             onClick={handleShowModal}
             className="usa-button primary" 
-            aria-controls="hmda-video"
+            aria-label="Open Modal"
             data-open-modal> 
               <svg className="usa-icon" aria-hidden="true" focusable="false" role="img">
                 <use href={`${iconSprite}#youtube`}></use>

@@ -36,7 +36,7 @@ const ToolsBeta = () => (
 export const Filing = ({ defaultPeriod }) => (
   <>
   <article>
-    <h4>{'HMDA ' + (isBeta() ? 'Beta ' : '') + 'Filing Tools'}</h4>
+    <h3>{'HMDA ' + (isBeta() ? 'Beta ' : '') + 'Filing Tools'}</h3>
     <p>The HMDA Filing Platform allows financial institutions to upload, review, certify, and submit HMDA data collected in or after 2017.</p>
     {isBeta() ? <ToolsBeta /> : <ToolsProd />}
   </article>

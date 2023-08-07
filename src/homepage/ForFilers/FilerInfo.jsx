@@ -9,11 +9,11 @@ import iconSprite from "../../common/uswds/img/sprite.svg";
 export const FilerInfo = () => {
     return (
       <>
-<h3>
+<h2>
   <svg className="usa-icon" aria-hidden="true" focusable="false" role="img">
     <use href={`${iconSprite}#account_balance`}></use>
   </svg> Info for Filers
-</h3>
+</h2>
 <section className="usa-card-group">
       <Filing />
       <FilingDocs />

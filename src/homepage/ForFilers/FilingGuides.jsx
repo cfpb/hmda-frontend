@@ -17,7 +17,7 @@ export const FigLastUpdated = ({ year }) => {
 
 export const FilingGuides = () => (
   <article>
-    <h4>Guides for HMDA Filers</h4>
+    <h3>Guides for HMDA Filers</h3>
     <p>Published resources to help guide financial institutions through the processes of submitting HMDA data.</p>
     <ul>
       <li>
@@ -26,33 +26,33 @@ export const FilingGuides = () => (
         >
           Filing Instructions Guides
         </a>
+        <ul>
+          <li>
+            <a
+              href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${LATEST_FIG_YEAR}-hmda-fig.pdf`}
+              download={true}
+            >
+              For data collected in {LATEST_FIG_YEAR}
+              <NewIndicator />
+              <FigLastUpdated year={LATEST_FIG_YEAR} />
+            </a>
+          </li>
+          <li>
+            <a
+              href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-${LATEST_FIG_YEAR}.pdf`}
+              download={true}
+            >
+              Supplemental Guide for Quarterly Filers for {LATEST_FIG_YEAR}
+              <NewIndicator />
+            </a>
+          </li>
+          <li>
+            <ExternalLink url='https://www.ffiec.gov/hmda/fileformats.htm'>
+              For data collected in or before 2016
+            </ExternalLink>
+          </li>
+        </ul>
       </li>
-      <ul>
-        <li>
-          <a
-            href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${LATEST_FIG_YEAR}-hmda-fig.pdf`}
-            download={true}
-          >
-            For data collected in {LATEST_FIG_YEAR}
-            <NewIndicator />
-            <FigLastUpdated year={LATEST_FIG_YEAR} />
-          </a>
-        </li>
-        <li>
-          <a
-            href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-${LATEST_FIG_YEAR}.pdf`}
-            download={true}
-          >
-            Supplemental Guide for Quarterly Filers for {LATEST_FIG_YEAR}
-            <NewIndicator />
-          </a>
-        </li>
-        <li>
-          <ExternalLink url='https://www.ffiec.gov/hmda/fileformats.htm'>
-            For data collected in or before 2016
-          </ExternalLink>
-        </li>
-      </ul>
       <li>
         <ExternalLink url='https://www.ffiec.gov/hmda/guide.htm'>
           A Guide to HMDA Reporting: Getting It Right

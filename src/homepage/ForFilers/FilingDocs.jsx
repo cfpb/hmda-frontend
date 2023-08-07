@@ -4,7 +4,7 @@ import NewIndicator from "../NewIndicator"
 
 export const FilingDocs = ({ hideContent }) => (
   <article>
-    <h4>Filing Documentation</h4>
+    <h3>Filing Documentation</h3>
     <p>Answers to common questions about the process of filing HMDA data.</p>
     <ul>
       <li>

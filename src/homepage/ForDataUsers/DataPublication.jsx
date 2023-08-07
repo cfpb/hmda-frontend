@@ -11,7 +11,7 @@ export const DataPublication = ({
   dataPublicationYears,
 }) => (
   <article>
-    <h4>Data Publication</h4>
+    <h3>Data Publication</h3>
     <p>The HMDA datasets and reports are the most comprehensive, publicly available information on mortgage market activity.</p>
     <ul>
       <StaticDatasets

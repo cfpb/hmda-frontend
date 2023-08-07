@@ -43,6 +43,7 @@ body {
 .DocSearch-Button {
    padding: 8px !important;
    margin: 0 !important;
+   color: #555 !important;
 }
 
 .DocSearch-Button-Placeholder, .DocSearch-Button-Keys {
@@ -552,11 +553,12 @@ body {
       }
    }
 
-   h3 {
+   h2 {
       background-color: var(--hmda-blue);
       color: #fff;
       padding: 1em;
       margin-bottom: 1.5em;
+      font-size: 1.17em;
 
       .usa-icon {
          vertical-align: bottom;
@@ -572,7 +574,7 @@ body {
       
 
       article {
-         h4 {
+         h3 {
             color: var(--hmda-blue);
             font-size: 1.25em;
          }
@@ -585,7 +587,7 @@ body {
    }
 
    #dataInfo {
-      h3 {
+      h2 {
          background-color: var(--hmda-blue-light);
       }
       article {
@@ -629,6 +631,9 @@ body {
 
 .usa-identifier {
    background-color: #1f498f;
+   .usa-identifier__identity-domain {
+      color: #fff;
+   }
    .usa-identifier__required-link, .usa-identifier__required-link.usa-link, .usa-identifier__section--usagov a, .usa-identifier__identity-disclaimer a{ 
       &:link, &:visited, &:active {
          color: #fff;
