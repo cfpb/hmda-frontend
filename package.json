@@ -60,7 +60,7 @@
     "redux-logger": "3.0.6",
     "redux-thunk": "2.4.2",
     "split2": "3.2.2",
-    "streamsaver": "2.0.5",
+    "streamsaver": "2.0.6",
     "web-streams-ponyfill": "1.4.2"
   },
   "browserslist": [
