@@ -1,0 +1,53 @@
+.tools-card {
+  background-color: #1F498f;
+  border-radius: 8px;
+  padding: 8px 12px;
+  text-decoration: none;
+  transition: all 500ms;
+}
+
+.tools-card:hover {
+  background-color: #2360c2;
+  cursor: pointer;
+}
+
+.tools-card-no-hover-change:hover {
+  background-color: #1F498f;
+}
+
+.tools-card:visited {
+  color: #ffffff;
+}
+
+.tools-card header h3 {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.tools-card header p {
+  color: #ffffffe4;
+}
+
+.tools-card header ul li {
+  color: #ffffffd4;
+}
+
+.tools-card header ul li a {
+  color: #ffffffd4;
+  text-decoration: none;
+}
+
+.tools-card header ul li a:hover {
+  color: #ffffffeb;
+  text-decoration: underline;
+}
+
+#tools-card-indicator {
+  background: #2360c2;
+}
+
+@media screen and (max-width: 640px) {
+  .Tools .home .card {
+    margin-right: 0 !important;
+  }
+}
