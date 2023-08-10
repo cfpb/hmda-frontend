@@ -10,7 +10,7 @@ const Home = () => {
     <div className='grid home'>
       <Heading
         type={1}
-        style={{ marginBottom: "0em" }}
+        style={{ marginBottom: "3em" }}
         headingText='HMDA Tools'
         paragraphText='Here you can find various tools to assist you in getting your HMDA LAR ready for filing.'
       />
@@ -18,8 +18,8 @@ const Home = () => {
       <div className='card-container'>
         <Link to='/tools/rate-spread' className='card tools-card'>
           <Heading
-            headingText='Rate Spread'
-            paragraphText='This calculator provides rate spreads for HMDA reportable loans
+            headingText='Rate Spread Calculator'
+            paragraphText='Provides rate spreads for HMDA reportable loans
             with a final action date on or after January 1st, 2018.'
             type={3}
           />
@@ -31,10 +31,7 @@ const Home = () => {
         >
           <Heading
             headingText='LAR Formatting'
-            paragraphText='The LAR Formatting tools are intended to help financial
-              institutions, typically those with small volumes of covered loans
-              and applications, to create an electronic file that can be
-              submitted to the HMDA Platform.'
+            paragraphText='Tools to help small financial institutions create electronic HMDA submission files.'
             type={3}
           >
             <ul>
@@ -53,10 +50,8 @@ const Home = () => {
 
         <Link to='/tools/file-format-verification' className='card tools-card'>
           <Heading
-            headingText='File Format Verification'
-            paragraphText='The File Format Verification Tool (FFVT) is a resource for testing
-              whether your file meets certain formatting requirements specified
-              in the HMDA Filing Instructions Guide.'
+            headingText='File Format Verification Tool'
+            paragraphText='Checks if your LAR file meets format specified in the HMDA Filing Instructions Guide.'
             type={3}
           />
         </Link>
@@ -64,11 +59,7 @@ const Home = () => {
         <Link to='/tools/check-digit' className='card tools-card'>
           <Heading
             headingText='Check Digit'
-            paragraphText='You can use this tool for two functions. The first is to generate
-              a two character check digit when you enter a Legal Entity
-              Identifier (LEI) and loan or application ID. The second is to
-              validate that a check digit is calculated correctly for any
-              complete Universal Loan Identifier (ULI) you enter.'
+            paragraphText='Generates a two character check digit for a Legal Entity Identifier (LEI) and loan/application ID. It can also validate check digits in a complete Universal Loan Identifier (ULI) that is entered.'
             type={3}
           />
         </Link>
