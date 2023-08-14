@@ -2,30 +2,12 @@
   "name": "prod",
   "announcement": [
     {
-      "heading": "HMDA Online FIG",
-      "message": "Prototype HMDA Filing Instructions Guide (FIG) now online. Note: future updates may change page structures and links. ",
-      "type": "info",
-      "link": {
-        "url": "https://ffiec.beta.cfpb.gov/documentation/category/filing-instructions-guide",
-        "text": "View the HMDA Online FIG."
-      }
-    },
-    {
       "heading": "2022 Data Publication Release",
       "message": "On June 29, 2023, the 2022 national loan-level datasets, disclosure reports, and MSA/MD aggregate reports were released and can be accessed via the Data Publications page. Users can now explore 2022 HMDA data using the Data Browser's dataset filtering tool or maps.",
       "type": "info",
       "link": {
         "url": "https://ffiec.cfpb.gov/data-publication/",
         "text": "Data Publications page."
-      }
-    },
-    {
-      "heading": "Documentation Overhaul",
-      "message": "A new and enhanced HMDA documentation page has been released! In addition to an improved visual design, financial institutions now have the ability to search the consolidated documentation and API documentation has been integrated. ",
-      "type": "info",
-      "link": {
-        "url": "https://ffiec.cfpb.gov/documentation/",
-        "text": "Visit the redesigned page here."
       }
     },
     {
