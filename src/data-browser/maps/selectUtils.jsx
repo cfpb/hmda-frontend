@@ -196,15 +196,15 @@ export const parseCombinedFilter = (selected) => {
 
 
 /* Builds the group header w/ documentation link for Select menus */
-const formatGroupLabel = (data, year) => (
+const formatGroupLabel = (data) => (
   <div className='menu-group'>
     <span className='menu-group-label'>{data.label}</span>
     <a
       target='_blank'
       rel='noopener noreferrer'
       className='menu-group-badge'
-      title={`Documentation for ${data.label} (${year})`}
-      href={`/documentation/${year}/data-browser-filters/#${data.definition}`}
+      title={`Documentation for ${data.label}`}
+      href={`/documentation/tools/data-browser/data-browser-filters#${data.definition.replaceAll("_", "-")}-${data.definition}`}
     >
       Documentation
     </a>
