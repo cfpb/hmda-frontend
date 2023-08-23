@@ -196,20 +196,26 @@ export const parseCombinedFilter = (selected) => {
 
 
 /* Builds the group header w/ documentation link for Select menus */
-const formatGroupLabel = (data, year) => (
-  <div className='menu-group'>
-    <span className='menu-group-label'>{data.label}</span>
-    <a
-      target='_blank'
-      rel='noopener noreferrer'
-      className='menu-group-badge'
-      title={`Documentation for ${data.label} (${year})`}
-      href={`/documentation/${year}/data-browser-filters/#${data.definition}`}
-    >
-      Documentation
-    </a>
-  </div>
-)
+const formatGroupLabel = (data) => {
+  const label = data.label.split(' ').length > 1 
+    ? data.definition
+    : data.label.toLowerCase();
+
+  return (
+    <div className='menu-group'>
+      <span className='menu-group-label'>{data.label}</span>
+      <a
+        target='_blank'
+        rel='noopener noreferrer'
+        className='menu-group-badge'
+        title={`Documentation for ${data.label}`}
+        href={`/documentation/tools/data-browser/data-browser-filters#${label.replaceAll("_", "-")}-${data.definition}`}
+      >
+        Documentation
+      </a>
+    </div>
+  );
+}
 
 export {
   geographies,

@@ -30,9 +30,14 @@ export const logOutHandler = e => {
 }
 
 const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
-  const forceReload = route => {
-    window.location.href = route
-  }
+  
+  // Links used to take users to Docusaurus
+  const docusaurusLinks = [
+    "FAQs",
+    "Developer APIs",
+    "Publications",
+    "Tools"
+  ]
 
   return (
     <div className={hideHeaderFooter(pathname)}>
@@ -104,14 +109,8 @@ const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
                               key={sublink.name}
                               className='usa-nav__submenu-item'
                             >
-                              {sublink.name == "Developer APIs" ||
-                              sublink.name == "FAQs" ? (
-                                <Link
-                                  to={sublink.href}
-                                  onClick={() => forceReload(sublink.href)}
-                                >
-                                  {sublink.name}
-                                </Link>
+                              {docusaurusLinks.includes(sublink.name) ? (
+                                <a href={sublink.href}>{sublink.name}</a>
                               ) : !sublink.href ? (
                                 <div className='subMenuHeading'>
                                   {sublink.name}
