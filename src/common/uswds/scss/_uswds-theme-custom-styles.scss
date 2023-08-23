@@ -22,6 +22,17 @@ i.e.
 
 @use "uswds-core" as *;
 
+:root {
+   --hmda-blue: #1f498f;
+   --hmda-blue-opacity: rgba(31, 73, 143, .8);
+   --hmda-blue-light: #2360C2;
+   --hmda-blue-bright: #3B7BE9;
+   --hmda-blue-lightest: #00C8FF;
+   --hmda-blue-dark: #163851;
+   --hmda-blue-dark-opacity: rgba(22, 46, 81, .9);
+   --usa-blue: #0071bc;
+}
+
 body {
    margin-bottom: 0 !important;
 }
@@ -119,14 +130,23 @@ body {
       font-size: .85em;
    }
 
+   .usa-nav__primary button[aria-expanded=true] {
+      background-color: var(--hmda-blue);
+   }
+
    .usa-nav__submenu .usa-nav__submenu-item {
       border-bottom: 1px solid rgba(255,255,255,.1);
       margin: 0;
+      background-color: var(--hmda-blue);
       
 
       a {
          display: block;
          padding: .75em 1em .75em 2em;
+
+         &:hover {
+            background-color: var(--hmda-blue-light);
+         }
       }
    }
 }
@@ -192,6 +212,13 @@ body {
    .usa-navbar {
       width: auto;
       height: 4.8rem;
+
+      .usa-menu-btn {
+         background-color: var(--hmda-blue);
+         &:hover {
+            background-color: var(--hmda-blue-light);
+         }
+      }
 
 
       .usa-logo {
