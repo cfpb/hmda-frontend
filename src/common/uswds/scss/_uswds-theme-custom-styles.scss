@@ -31,6 +31,7 @@ i.e.
    --hmda-blue-dark: #163851;
    --hmda-blue-dark-opacity: rgba(22, 46, 81, .9);
    --usa-blue: #0071bc;
+   --cfpb-green: #20aa3f;
 }
 
 body {
@@ -131,6 +132,10 @@ body {
       font-size: .85em;
    }
 
+   .usa-nav__primary button[aria-expanded=true] {
+      background-color: var(--hmda-blue);
+   }
+
    .usa-nav__submenu .usa-nav__submenu-item {
       border-bottom: 1px solid rgba(255,255,255,.1);
       margin: 0;
@@ -140,6 +145,10 @@ body {
       a {
          display: block;
          padding: .75em 1em .75em 2em;
+
+         &:hover {
+            background-color: var(--hmda-blue-light);
+         }
       }
    }
 }
@@ -260,6 +269,11 @@ body {
    background-position: 100% 0%;
    max-width: 1500px;
    margin: 0 auto;
+   height: 450px;
+
+   @media (min-width: 640px) {
+      height: 500px;
+   }
 
    .grid-container {
       margin-left: 0;
@@ -276,7 +290,7 @@ body {
       background-color: var(--hmda-blue-dark-opacity);
 
       @media (min-width: 640px) {
-         max-width: 37rem;
+         max-width: 41rem;
       }
 
       .usa-hero__heading {
