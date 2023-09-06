@@ -6,6 +6,7 @@ import getFilingPeriodOptions from '../actions/getFilingPeriodOptions'
 import Institutions from './index.jsx'
 import InstitutionDetailsWrapper from './details/InstitutionDetailsWrapper'
 import { getKeycloak } from '../../common/api/Keycloak.js'
+import { Redirect } from 'react-router-dom'
 
 export class InstitutionContainer extends Component {
   componentDidMount() {
@@ -46,6 +47,13 @@ export class InstitutionContainer extends Component {
   }
 
   render() {
+    const { user } = this.props
+
+    // Redirect user to profile page if they don't any LEIs associated with their account
+    if (user?.userInfo?.tokenParsed?.lei == "") {
+      return <Redirect to='/filing/profile' />
+    }
+
     if(this.props.match.params.institution) 
       return <InstitutionDetailsWrapper {...this.props} />
       
@@ -54,7 +62,7 @@ export class InstitutionContainer extends Component {
 }
 
 export function mapStateToProps(state, _ownProps) {
-  const { institutions, filingPeriod, filings, submission, latestSubmissions, error, redirecting, filingPeriodOptions } = state.app
+  const { institutions, filingPeriod, filings, submission, latestSubmissions, error, redirecting, filingPeriodOptions, user } = state.app
 
   return {
     submission,
@@ -66,6 +74,7 @@ export function mapStateToProps(state, _ownProps) {
     redirecting,
     hasQuarterlyFilers: hasQuarterlyFilers(institutions),
     filingPeriodOptions,
+    user: user
   }
 }
 
