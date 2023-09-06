@@ -41,6 +41,8 @@ export const defaultLinks = [
   { name: 'Documentation', href: '', 
     submenu: [
       { name: 'FAQs', href: '/documentation/' },
+      { name: 'Publications', href: '/documentation/category/publications' },
+      { name: 'Tools', href: '/documentation/category/tools' },
       { name: 'Developer APIs', href: '/documentation/category/developer-apis' },
       { name: 'Updates', href: '/updates-notes' },
     ]

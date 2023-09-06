@@ -2,14 +2,13 @@
   "name": "prod-beta",
   "announcement": [
     {
-      "heading": "2022 Modified LAR Release",
-      "message": "On March 20, 2023, the 2022 Modified LAR data was released. A combined file containing all LAR records in a single file is also available. These files can be accessed via the ",
+      "heading": "HMDA Online FIG",
+      "message": "A prototype of the 2023 HMDA Filing Instructions Guide (FIG) is now available on the Beta platform. Page structure and links are subject to change. ",
       "type": "info",
       "link": {
-        "url": "https://ffiec.cfpb.gov/data-publication/modified-lar/",
-        "text": "Modified LAR page."
-      },
-      "endDate": "05/31/2023"
+        "url": "https://ffiec.beta.cfpb.gov/documentation/category/filing-instructions-guide",
+        "text": "View the HMDA Online FIG."
+      }
     }
   ],
   "publicationReleaseYear": "2020",

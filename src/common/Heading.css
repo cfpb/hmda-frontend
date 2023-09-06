@@ -42,3 +42,8 @@
   margin: 0 0 -2px;
   padding: 0 2.5rem 0 0.5rem;
 }
+
+/* Target Tool Announcment Banner when it's available */
+.heading .alert-body .alert-text {
+  max-width: 100%;
+}

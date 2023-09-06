@@ -5,6 +5,9 @@ import Form from './Form.jsx'
 import Answer from './Answer.jsx'
 import CSVUpload from './CSVUpload.jsx'
 import { isUliValid, isLoanIdValid } from './utils/index.js'
+import { AppContext } from '../../common/appContextHOC.jsx'
+import Alert from '../../common/Alert.jsx'
+import { getToolAnnouncement } from '../../common/getToolAnnouncement.js'
 
 const defaultState = {
   inputValue: '',
@@ -157,15 +160,27 @@ export default class App extends Component {
       checkDigit,
       errors,
       fetchError,
-      isSubmitted
+      isSubmitted,
     } = this.state
 
+    const toolAnnouncement = getToolAnnouncement("check digit", this.context.config)
+    let marginTop = toolAnnouncement ? "0px" : ""
+
     return (
-      <div className="grid" id="main-content">
+      <div className='grid' id='main-content'>
         <AppIntro />
 
-        <div className="grid">
-          <div className="item">
+        {toolAnnouncement && (
+          <Alert
+            heading={toolAnnouncement.heading}
+            type={toolAnnouncement.type}
+          >
+            <p>{toolAnnouncement.message}</p>
+          </Alert>
+        )}
+
+        <div className='grid'>
+          <div className='item' style={{ marginTop }}>
             <InputError errors={errors} isSubmitted={isSubmitted} />
             <Form
               inputValue={inputValue}
@@ -191,7 +206,7 @@ export default class App extends Component {
               />
             </div>
           </div>
-          <div className="item">
+          <div className='item' style={{ marginTop }}>
             <CSVUpload />
           </div>
         </div>
@@ -199,3 +214,5 @@ export default class App extends Component {
     )
   }
 }
+
+App.contextType = AppContext

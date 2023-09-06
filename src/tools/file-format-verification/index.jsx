@@ -13,6 +13,7 @@ import appReducer from './reducers'
 import { withAppContext } from '../../common/appContextHOC'
 
 import './FFVT.css'
+import { getToolAnnouncement } from '../../common/getToolAnnouncement'
 
 const middleware = [thunkMiddleware]
 if (process.env.NODE_ENV !== 'production') middleware.push(createLogger())
@@ -41,6 +42,8 @@ class FFVT extends React.Component {
   render() {
     const { maintenanceMode, ffvtAnnouncement, filingAnnouncement } = this.props.config
     const downtimeMessage = ffvtAnnouncement || (filingAnnouncement && filingAnnouncement.message)
+    const toolAnnouncement = getToolAnnouncement("ffvt", this.props.config)
+
     return (
       <Provider store={store}>
         <AppContainer>
@@ -53,6 +56,15 @@ class FFVT extends React.Component {
                 to submit HMDA data to the HMDA Platform. The File Format 
                 Verification Tool does not test for compliance with Edits.'
             />
+
+            {toolAnnouncement && (
+              <Alert
+                heading={toolAnnouncement.heading}
+                type={toolAnnouncement.type}
+              >
+                <p>{toolAnnouncement.message}</p>
+              </Alert>
+            )}
 
             <div className='grid'>
               <div className='item'>
