@@ -20,34 +20,18 @@
   "publicationReleaseYear": "2020",
   "maintenanceMode": false,
   "filingAnnouncement": {
-    "message": "We will be performing scheduled system maintenance on September 19 from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "message": "We will be performing scheduled system maintenance on September 19 from 8pm - 10pm EST. During this time users may experience brief service interruptions and site slowdowns.",
     "type": "warning",
     "heading": "Scheduled Maintenance",
-    "endDate": null
+    "link": null
   },
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
-    "shared": [
-      "2021",
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "threeYear": [
-      "2018"
-    ],
-    "oneYear": [
-      "2020",
-      "2019"
-    ]
+    "shared": ["2021", "2020", "2019", "2018", "2017"],
+    "threeYear": ["2018"],
+    "oneYear": ["2020", "2019"]
   },
-  "dataBrowserYears": [
-    "2021",
-    "2020",
-    "2019",
-    "2018"
-  ],
+  "dataBrowserYears": ["2021", "2020", "2019", "2018"],
   "timedGuards": {
     "2017": {
       "annual": "01/01/2018 - 03/01/2018 - 12/31/2019"
@@ -82,11 +66,6 @@
       "Q3": "10/01/2023 - 11/30/2023 - 12/31/2023",
       "annual": "01/01/2024 - 03/01/2024 - 12/31/2026"
     },
-    "preview": [
-      "2022",
-      "2023",
-      "2023-Q1",
-      "2023-Q2"
-    ]
+    "preview": ["2022", "2023", "2023-Q1", "2023-Q2"]
   }
 }

@@ -30,91 +30,25 @@
   "mlarReleaseYear": "2022",
   "maintenanceMode": false,
   "filingAnnouncement": {
-    "message": "We will be performing scheduled system maintenance on September 19 from 8pm - 10pm EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "message": "We will be performing scheduled system maintenance on September 19 from 8pm - 10pm EST. During this time users may experience brief service interruptions and site slowdowns.",
     "type": "warning",
     "heading": "Scheduled Maintenance",
-    "endDate": null
+    "link": null
   },
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
-    "shared": [
-      "2022",
-      "2021",
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "mlar": [
-      "2022",
-      "2021",
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "threeYear": [
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "oneYear": [
-      "2021",
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "aggregate": [
-      "2022",
-      "2021",
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "disclosure": [
-      "2022",
-      "2021",
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "dynamic": [
-      "2022",
-      "2021",
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "snapshot": [
-      "2022",
-      "2021",
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "national": [
-      "2017"
-    ]
+    "shared": ["2022", "2021", "2020", "2019", "2018", "2017"],
+    "mlar": ["2022", "2021", "2020", "2019", "2018", "2017"],
+    "threeYear": ["2019", "2018", "2017"],
+    "oneYear": ["2021", "2020", "2019", "2018", "2017"],
+    "aggregate": ["2022", "2021", "2020", "2019", "2018", "2017"],
+    "disclosure": ["2022", "2021", "2020", "2019", "2018", "2017"],
+    "dynamic": ["2022", "2021", "2020", "2019", "2018", "2017"],
+    "snapshot": ["2022", "2021", "2020", "2019", "2018", "2017"],
+    "national": ["2017"]
   },
-  "dataBrowserYears": [
-    "2022",
-    "2021",
-    "2020",
-    "2019",
-    "2018"
-  ],
-  "dataBrowserMapsYears": [
-    "2022",
-    "2021",
-    "2020",
-    "2019",
-    "2018"
-  ],
+  "dataBrowserYears": ["2022", "2021", "2020", "2019", "2018"],
+  "dataBrowserMapsYears": ["2022", "2021", "2020", "2019", "2018"],
   "timedGuards": {
     "2017": {
       "annual": "01/01/2018 - 03/01/2018 - 12/31/2019"
