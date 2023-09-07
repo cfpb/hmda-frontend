@@ -2,6 +2,15 @@
   "name": "prod-beta",
   "announcement": [
     {
+      "heading": "2024 Filing Instructions Guides Released",
+      "message": "On September 7, 2023, the Bureau released the 2024 FIG and Supplemental Guide for Quarterly Filers for 2024, which are available ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/documentation/faq/data-collection-timelines#filing-instructions-guide-fig",
+        "text": "here."
+      }
+    },
+    {
       "heading": "HMDA Online FIG",
       "message": "A prototype of the 2023 HMDA Filing Instructions Guide (FIG) is now available on the Beta platform. Page structure and links are subject to change. ",
       "type": "info",
