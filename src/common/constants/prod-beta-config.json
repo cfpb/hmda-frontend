@@ -2,10 +2,19 @@
   "name": "prod-beta",
   "announcement": [
     {
-      "message": "We will be performing scheduled system maintenance on September 12 from 8pm - 10pm EST. During this time users may experience brief service interruptions and site slowdowns.",
+      "message": "We are currently performing scheduled system maintenance on September 12 from 8PM - 10PM EST. During this time users may experience brief service interruptions and site slowdowns.",
       "type": "warning",
       "heading": "Scheduled Maintenance",
       "link": null
+    },
+    {
+      "heading": "2024 Filing Instructions Guides Released",
+      "message": "On September 7, 2023, the Bureau released the 2024 FIG and Supplemental Guide for Quarterly Filers for 2024, which are available ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/documentation/faq/data-collection-timelines#filing-instructions-guide-fig",
+        "text": "here."
+      }
     },
     {
       "heading": "HMDA Online FIG",
