@@ -1,5 +1,5 @@
 import Highcharts from 'highcharts'
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CopyURLButton from '../../../common/CopyURLButton.jsx'
 import LoadingIcon from '../../../common/LoadingIcon'
@@ -55,6 +55,7 @@ export const SectionGraphs = ({
   const rawGraphList = graphs.getConfig(graphConfigStore, RAW_GRAPH_LIST) // List of available graphs from API
   const resetSeriesVisability = graphs.getConfig(graphConfigStore, RESET_SERIES_VIS) // Force Highcharts to reset series visibility
   const selectedGraph = graphs.getConfig(graphConfigStore, SELECTED_GRAPH) // Configuration for the currently selected graph
+  const setSelectedGraph = value => dispatch(graphs.setConfig(SELECTED_GRAPH, value))
   const selectedGraphData = graphs.getConfig(graphConfigStore, SELECTED_GRAPH_DATA) // API data of currently selected graph
   const seriesForURL = graphs.getConfig(graphConfigStore, SERIES_FOR_URL) // List of series names to be included in the URL's `visibleSeries` query parameter
   const setSeriesForURL = value =>
@@ -92,6 +93,78 @@ export const SectionGraphs = ({
     selectedGraphData,
   })
 
+  // Loan Purpose Selector Functionality
+  const loanPurposeOptions = [
+    { value: '', label: 'All' },
+    { value: 'home', label: 'Home Purchase' },
+    { value: 'refinance', label: 'Refinance' }
+  ]
+
+  const [loanPurposeSelected, setLoanPurposeSelected] = useState({
+    value: '', label: 'All'
+  });
+
+  const filteredGraphMenuOptions = graphMenuOptions.map(category => {
+    // Filter the options array
+    const options = category.options.filter(option => {
+      if (!loanPurposeSelected || loanPurposeSelected.value == '') {
+        return (!option.value.endsWith('home') && !option.value.endsWith('refinance'))
+      }
+      else if (loanPurposeSelected.value == 'home') {
+        return option.value.endsWith('home')
+      } 
+      else if (loanPurposeSelected.value == 'refinance') {
+        return option.value.endsWith('refinance')
+      }
+    })
+  
+    // Return new object with filtered options
+    return {
+      ...category,
+      options  
+    }
+  })
+
+  const handleLoanPurposeSelection = (loanPurposeSelected) => {
+    
+      setLoanPurposeSelected(loanPurposeSelected)   
+      console.log('Currrent Graph: ' + selectedGraph.value)
+      console.log('Current Label: ' + loanPurposeSelected.label)
+      console.log('Purpose: ' + loanPurposeSelected.value)
+
+
+      let valueIndex = ((selectedGraph.value).toString()).indexOf('-loan-purpose')
+      let labelIndex = ((selectedGraph.label).toString()).indexOf('-')
+      console.log('Value Index = ' + valueIndex)
+      console.log('Label Index = ' + labelIndex)
+      let updatedGraphSelection = '' 
+      let updatedGraphLabel = ''
+      if (loanPurposeSelected.value == '') {
+        updatedGraphSelection = selectedGraph.value.substring(0, valueIndex)
+        updatedGraphLabel = selectedGraph.label.substring(0, labelIndex)
+      }
+      else if (valueIndex !== -1) {
+        updatedGraphSelection = selectedGraph.value.substring(0, valueIndex) + '-loan-purpose-' + loanPurposeSelected.value
+        updatedGraphLabel = selectedGraph.label.substring(0, labelIndex) + ' - ' + loanPurposeSelected.label
+      } else {
+        updatedGraphSelection = selectedGraph.value + '-loan-purpose-' + loanPurposeSelected.value
+        updatedGraphLabel = selectedGraph.label + ' - ' + loanPurposeSelected.label
+      } 
+      
+      //setSelectedGraph({value: updatedGraphSelection, label: updatedGraphLabel})
+      
+        
+        // updatedGraphLabel = selectedGraph.label + ' - ' + loanPurposeSelected.label
+      dispatch(graphs.setConfig(SELECTED_GRAPH, {value: updatedGraphSelection, label: updatedGraphLabel}))
+      fetchSingleGraph(updatedGraphSelection)
+      //console.log(updatedGraphLabel)
+      console.log('Updated Graph: ' + updatedGraphSelection)
+      console.log('Updated Label: ' + updatedGraphLabel)
+      
+  }
+
+  
+
   const handleGraphSelection = useCallback(
     event => {
       dispatch(
@@ -101,6 +174,7 @@ export const SectionGraphs = ({
         )
       )
       fetchSingleGraph(event.value) // value = endpoint for single graph (i.e) -> /applications
+      console.log('Event Value: ' + event.value)
     },
     [rawGraphList, fetchSingleGraph, dispatch]
   )
@@ -202,10 +276,21 @@ export const SectionGraphs = ({
 
   return (
     <>
-      <p className='instructions'>Select a graph from the menu below</p>
+      <p className='instructions'>Select a Loan Purpose:</p>
+      <Select
+        classNamePrefix='react-select__loan' // Used for cypress testing
+        options={loanPurposeOptions}
+        placeholder='Select a Loan Purpose'
+        aria-label='Select a Loan Purpose'
+        onChange={handleLoanPurposeSelection}
+        value={loanPurposeSelected}
+        formatGroupLabel={formatGroupLabel}
+        onMenuOpen={onMenuOpen}
+      />
+      <p className='instructions'>Select a Graph:</p>
       <Select
         classNamePrefix='react-select__graph' // Used for cypress testing
-        options={graphMenuOptions}
+        options={filteredGraphMenuOptions}
         placeholder='Select a Graph'
         aria-label='Select a Graph.'
         onChange={handleGraphSelection}

@@ -6,6 +6,7 @@
   "engines": {
     "node": ">=v16.20.0"
   },
+  "proxy": "https://hmda4.demo.cfpb.gov/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
