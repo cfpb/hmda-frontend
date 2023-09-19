@@ -16,7 +16,7 @@ RUN echo "{ \"version\": \"${DOCKER_TAG}\" }" > ./src/common/constants/release.j
 
 RUN yarn build
 
-FROM nginx:1.24-alpine
+FROM nginx:1.25.2-alpine
 ENV NGINX_USER=svc_nginx_hmda
 RUN apk update; apk upgrade
 RUN rm -rf /etc/nginx/conf.d
