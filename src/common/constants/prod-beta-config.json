@@ -18,7 +18,7 @@
     }
   ],
   "publicationReleaseYear": "2020",
-  "maintenanceMode": false,
+  "maintenanceMode": true,
   "filingAnnouncement": {
     "message": "We will be performing scheduled system maintenance on September 19 from 8pm - 10pm EST. During this time users may experience brief service interruptions and site slowdowns.",
     "type": "warning",
