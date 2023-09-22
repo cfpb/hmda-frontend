@@ -1,6 +1,21 @@
-// Function used to create associated institution options from API for checkbox/search
-export const createAssociatedInstitutionsList = (institutions, setAssociatedInstitutions) => {
-  console.log(institutions)
+const sortByInstitutionName = (a, b) => {
+  if (a.institutionName < b.institutionName) {
+    return -1
+  }
+  if (a.institutionName > b.institutionName) {
+    return 1
+  }
+  return 0
+}
+
+// Function used to create associated institution options from user JWT and institutions API to build an array of objects for the checkboxes
+export const createAssociatedInstitutionsList = (
+  associatedLEIsWithUser,
+  institutions,
+  setAssociatedInstitutions,
+  setSelectedInstitutions,
+  setLoading
+) => {
   let generateInstitutionOptions = []
   let institutionObject = {}
 
@@ -13,9 +28,16 @@ export const createAssociatedInstitutionsList = (institutions, setAssociatedInst
     generateInstitutionOptions.push(institutionObject)
     institutionObject = {}
   }
-  setAssociatedInstitutions(generateInstitutionOptions)
+  setAssociatedInstitutions(
+    generateInstitutionOptions.sort(sortByInstitutionName)
+  )
+  let filteredSelectedInstitutions = generateInstitutionOptions.filter(obj => {
+    return associatedLEIsWithUser.some(item => item === obj.lei)
+  })
+  setSelectedInstitutions(filteredSelectedInstitutions)
+  setLoading(false)
 }
 
 export default {
-  createAssociatedInstitutionsList
+  createAssociatedInstitutionsList,
 }

@@ -7,13 +7,16 @@ import Institutions from './index.jsx'
 import InstitutionDetailsWrapper from './details/InstitutionDetailsWrapper'
 import { getKeycloak } from '../../common/api/Keycloak.js'
 import { Redirect } from 'react-router-dom'
+import * as AccessToken from "../../common/api/AccessToken"
+import jwtDecode from 'jwt-decode'
+import { shouldFetchInstitutions } from '../actions/shouldFetchInstitutions.js'
 
 export class InstitutionContainer extends Component {
   componentDidMount() {
     this.fetchIfNeeded()
   }
 
-  componentDidUpdate(){
+  componentDidUpdate() {
     this.fetchIfNeeded()
   }
 
@@ -22,19 +25,36 @@ export class InstitutionContainer extends Component {
     // Fetching institition data without a filingPeriod results in an error that interferes with upload/filing
     if (!selectedPeriod || !selectedPeriod.period) return
 
-    if(!institutions.fetched && !institutions.isFetching){
+    // shouldFetchInstitutions flag gets set in CompleteProfile component
+    if (institutions.shouldFetchInstitutions) {
       dispatch(requestInstitutions())
-      const leiString = getKeycloak().tokenParsed.lei
-      const leis = leiString ? leiString.split(',') : []
+      // Decode fresh token which contains the most up to date lei
+      let leiFromNewToken = jwtDecode(AccessToken.get())
+      const leiString = leiFromNewToken.lei
+      const leis = leiString ? leiString.split(",") : []
 
       // Fetch Institutions associated with this Keycloak account
-      let associatedInstitutions = leis.map((lei) => ({ lei }))
+      let associatedInstitutions = leis.map(lei => ({ lei }))
+      dispatch(fetchEachInstitution(associatedInstitutions, selectedPeriod))
+
+      // Determine which filing periods to make available to the user
       dispatch(
-        fetchEachInstitution(
+        getFilingPeriodOptions(
           associatedInstitutions,
-          selectedPeriod
+          this.props.config.filingPeriodStatus
         )
       )
+      // Reset flag after fetch
+      dispatch(shouldFetchInstitutions(false))
+    }
+    if (!institutions.fetched && !institutions.isFetching) {
+      dispatch(requestInstitutions())
+      const leiString = getKeycloak().tokenParsed.lei
+      const leis = leiString ? leiString.split(",") : []
+
+      // Fetch Institutions associated with this Keycloak account
+      let associatedInstitutions = leis.map(lei => ({ lei }))
+      dispatch(fetchEachInstitution(associatedInstitutions, selectedPeriod))
 
       // Determine which filing periods to make available to the user
       dispatch(
@@ -49,14 +69,14 @@ export class InstitutionContainer extends Component {
   render() {
     const { user } = this.props
 
-    // Redirect user to profile page if they don't any LEIs associated with their account
+    // Redirect user to profile page if they don't have any LEIs associated with their account
     if (user?.userInfo?.tokenParsed?.lei == "") {
       return <Redirect to='/filing/profile' />
     }
 
-    if(this.props.match.params.institution) 
+    if (this.props.match.params.institution)
       return <InstitutionDetailsWrapper {...this.props} />
-      
+
     return <Institutions {...this.props} />
   }
 }
@@ -70,6 +90,7 @@ export function mapStateToProps(state, _ownProps) {
     institutions,
     filings,
     error,
+    shouldFetchInstitutions: state.app.institutions.shouldFetchInstitutions,
     latestSubmissions: latestSubmissions.latestSubmissions,
     redirecting,
     hasQuarterlyFilers: hasQuarterlyFilers(institutions),

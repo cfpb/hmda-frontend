@@ -10,6 +10,11 @@
   
 }
 
+.profile_form_container .missing_institutions_banner_container .alert {
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
 /* Associated Instutions CSS */
 .associated_insitutions_container h1 {
   font-size: 18px;
@@ -52,7 +57,7 @@
 
 .profile_back_button {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   margin-top: 8px;
   margin-bottom: 0;
@@ -71,4 +76,24 @@ a:hover {
   font-size: 15px;
   margin-left: 4px;
   text-transform: uppercase;
+}
+
+.institutions_checkbox_container .LoadingIconWrapper {
+  margin-left: 0;
+  margin-top: 12px;
+}
+
+.profile_form_container .alert {
+  margin-top: 0;
+}
+
+.no_institutions_associated {
+  max-width: 85rem !important;
+}
+
+/* Profile Icon CSS */
+.profile_icon_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

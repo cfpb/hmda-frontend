@@ -48,9 +48,9 @@ const Filing = ({ config }) => {
       <Provider store={store}>
         <Switch>
           <Route path="/filing/profile" render={props => {
-            return (
-              <CompleteProfile {...props} config={config} />
-            )
+            return <AppContainer {...props} config={config}>
+              <CompleteProfile />
+            </AppContainer>
           }}/>
           <Redirect exact from="/filing" to={`/filing/${config.defaultPeriod}/`}/>
           <Route exact path={'/filing/:filingPeriod/'} render={props => {

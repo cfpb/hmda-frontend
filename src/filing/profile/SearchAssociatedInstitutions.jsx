@@ -5,6 +5,7 @@ const SearchAssociatedInstitutions = ({
   institutions,
   selectedInstitutions,
   setSelectedInstitutions,
+  setUserIsEditingForm,
 }) => {
   const handleSearch = selectedOptions => {
     console.log("Search Function", selectedOptions)
@@ -19,6 +20,7 @@ const SearchAssociatedInstitutions = ({
         }))
       : []
 
+    setUserIsEditingForm(true)
     setSelectedInstitutions(transformBack)
   }
 
@@ -30,14 +32,16 @@ const SearchAssociatedInstitutions = ({
   }))
 
   // Tracks what associated institutions have been checked and displays in react-select
-  const currentlySelectedAssociatedInstitutions = selectedInstitutions.map((institution) => ({
-    value: institution.lei,
-    label: institution.institutionName,
-    ...institution
-  }))
+  const currentlySelectedAssociatedInstitutions = selectedInstitutions.map(
+    institution => ({
+      value: institution.lei,
+      label: institution.institutionName,
+      ...institution,
+    })
+  )
 
   return (
-    <div>
+    <div style={{ marginBottom: "30px" }}>
       <p>
         If you need to file for additional institutions not listed above, search
         and select the institutions you are associated with.

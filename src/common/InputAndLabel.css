@@ -31,3 +31,11 @@
   color: #5A5D61;
   border: 1px solid #A2A3A4;
 }
+
+.container .error {
+  font-size: 1.7rem;
+  margin-top: 0;
+  color: #cd2026;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
