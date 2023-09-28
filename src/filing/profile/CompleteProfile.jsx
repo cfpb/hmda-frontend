@@ -218,10 +218,10 @@ const CompleteProfile = props => {
             )}
 
             <div className='missing_institutions_banner_container'>
-              {(institutions.fetched && associatedInstitutions.length !== 0) ||
-                (errorFromAPI && (
-                  <MissingInstitutionsBanner leis={unregisteredInstitutions} />
-                ))}
+              {((institutions.fetched && associatedInstitutions.length !== 0) ||
+                errorFromAPI) && (
+                <MissingInstitutionsBanner leis={unregisteredInstitutions} />
+              )}
             </div>
 
             <button type='submit' disabled={!userIsEditingForm}>
