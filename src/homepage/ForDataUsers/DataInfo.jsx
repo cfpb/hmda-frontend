@@ -8,6 +8,9 @@ import iconSprite from "../../common/uswds/img/sprite.svg"
 
 
 export const DataInfo = ({ config, hideContent }) => {
+    if (hideContent)
+        return (<></>)
+        
     return (
         <>
         <h2 className="alt">
