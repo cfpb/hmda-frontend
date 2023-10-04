@@ -7,7 +7,7 @@ import iconSprite from "../../common/uswds/img/sprite.svg"
 
 
 
-export const DataInfo = ({ config }) => {
+export const DataInfo = ({ config, hideContent }) => {
     return (
         <>
         <h2 className="alt">
