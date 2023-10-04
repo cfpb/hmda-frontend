@@ -1,5 +1,4 @@
 import { ExternalLink } from "../../common/ExternalLink"
-import { ExpandableCard } from "../ExpandableCard"
 import NewIndicator from "../NewIndicator"
 
 export const FilingDocs = ({ hideContent }) => (

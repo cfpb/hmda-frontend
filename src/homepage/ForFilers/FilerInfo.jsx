@@ -16,7 +16,7 @@ export const FilerInfo = () => {
 </h2>
 <section className="usa-card-group">
       <Filing />
-      <FilingDocs />
+      <FilingDocs hideContent={isProdBeta} />
       <FilingGuides />
 </section>
       </>

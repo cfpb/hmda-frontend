@@ -33,7 +33,7 @@ const Home = ({ config }) => {
           <div id="filerInfo" className="tablet:grid-col">
             <FilerInfo />
           </div>
-          <div id="dataInfo" className="tablet:grid-col">
+          <div id="dataInfo" className="tablet:grid-col" hideContent={isProdBeta}>
             <DataInfo config={config} />
           </div>
         </div>
