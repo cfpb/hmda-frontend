@@ -9,7 +9,9 @@ export const ResearchAndReports = ({ isProdBeta }) => {
       <p>Research and reports on mortgage market activity.</p>
       <ul>
         <li>
-          <a href="https://www.consumerfinance.gov/data-research/hmda/" target="_blank">Research and Reports</a>
+          <ExternalLink url='https://www.consumerfinance.gov/data-research/hmda/'>
+            Research and Reports
+          </ExternalLink>
         </li>
       </ul>
     </article>
