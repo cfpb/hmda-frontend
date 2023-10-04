@@ -6,7 +6,7 @@ import iconSprite from "../../common/uswds/img/sprite.svg";
 
 
 
-export const FilerInfo = () => {
+export const FilerInfo = ( {hideContent} ) => {
     return (
       <>
 <h2>
@@ -16,7 +16,7 @@ export const FilerInfo = () => {
 </h2>
 <section className="usa-card-group">
       <Filing />
-      <FilingDocs hideContent={isProdBeta} />
+      <FilingDocs hideContent />
       <FilingGuides />
 </section>
       </>

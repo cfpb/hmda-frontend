@@ -31,7 +31,7 @@ const Home = ({ config }) => {
       <div id="tableOfContents" className="grid-container">
         <div className="grid-row grid-gap">
           <div id="filerInfo" className="tablet:grid-col">
-            <FilerInfo />
+            <FilerInfo hideContent={isProdBeta} />
           </div>
           <div id="dataInfo" className="tablet:grid-col">
             <DataInfo config={config} hideContent={isProdBeta} />
