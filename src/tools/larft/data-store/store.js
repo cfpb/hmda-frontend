@@ -45,7 +45,7 @@ const larftSlice = createSlice({
 })
 
 const larftStore = configureStore({
-  devTools: process.env.NODE_ENV !== 'production',
+  devTools: import.meta.env.NODE_ENV !== 'production',
   reducer: {
     larft: larftSlice.reducer,
   },

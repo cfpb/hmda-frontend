@@ -34,7 +34,7 @@ const ReportFilters = ({ data }) => {
 
   
   data.filter1 && results.push(
-    <div key='1' className={'filter-label first' + (long ? ' long' : '')} key='f-where'>
+    <div key='1 f-where' className={'filter-label first' + (long ? ' long' : '')}>
       <div className='filter-clause'>WHERE</div>{' '}
       <div className='filter-text colorTextWithBias'>{label}</div>
     </div>
@@ -44,7 +44,7 @@ const ReportFilters = ({ data }) => {
   long = label.length > 38
 
   data.filter2 && results.push(
-    <div key='2' className={'filter-label' + (long ? ' long' : '')} key='f-and'>
+    <div key='2 f-and' className={'filter-label' + (long ? ' long' : '')}>
       <div className='filter-clause'>AND</div>{' '}
       <div className='filter-text colorTextWithBias'>{label}</div>
     </div>

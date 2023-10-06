@@ -10,7 +10,7 @@ import STATES from '../constants/states.js'
 import stateToMsas from '../constants/stateToMsas.js'
 import { AGGREGATE_REPORTS } from '../constants/aggregate-reports.js'
 import { withAppContext } from '../../common/appContextHOC.jsx'
-import { withYearValidation } from '../../common/withYearValidation.js'
+import { withYearValidation } from '../../common/withYearValidation.jsx'
 
 import './Aggregate.css'
 

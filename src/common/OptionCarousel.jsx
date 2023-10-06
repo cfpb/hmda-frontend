@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import { useAutoAdvance } from "./useAutoAdvance"
 import { useDynamicHeight } from "./useDynamicHeight"
-import { ReactComponent as IconPlay } from "../common/images/play.svg"
-import { ReactComponent as IconPause } from "../common/images/pause.svg"
+import IconPlay from "../common/images/play.svg?react"
+import IconPause from "../common/images/pause.svg?react"
 import "./OptionCarousel.css"
 
 /**

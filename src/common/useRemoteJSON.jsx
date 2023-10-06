@@ -19,7 +19,7 @@ export function useRemoteJSON(sourceUrl, options = {}) {
 
   const shouldFetch =
     forceFetch ||
-    (process.env.REACT_APP_ENVIRONMENT !== 'CI' &&   // Not CI
+    (import.meta.env.VITE_ENVIRONMENT !== 'CI' &&   // Not CI
       window.location.host.indexOf('localhost') < 0) // Not localhost
 
   useEffect(() => {

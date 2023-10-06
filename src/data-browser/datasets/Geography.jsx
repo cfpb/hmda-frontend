@@ -31,7 +31,7 @@ import {
 } from "./selectUtils.js";
 import { sanitizeArray } from "../query";
 import DatasetDocsLink from "./DatasetDocsLink.jsx";
-import { withYearValidation } from '../../common/withYearValidation.js'
+import { withYearValidation } from '../../common/withYearValidation.jsx'
 
 import "./Geography.css";
 import { withAppContext } from '../../common/appContextHOC.jsx'

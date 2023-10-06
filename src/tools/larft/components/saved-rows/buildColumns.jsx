@@ -33,7 +33,6 @@ export const buildColumns = ({
 
   return relevantColumns.map(f => ({
     key: f.fieldName,
-    header: f.fieldName,
     width: 'auto',
     header: props => (
       <ColumnHeader field={f} selectedColName={selectedColName} {...props} />

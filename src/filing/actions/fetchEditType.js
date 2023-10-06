@@ -1,5 +1,5 @@
 import requestEdit from './requestEdit.js'
-import receiveEdit from './receiveEdit.js'
+import receiveEdit from './receiveEdit.jsx'
 import requestEditType from './requestEditType.js'
 import receiveEditType from './receiveEditType.js'
 import hasHttpError from './hasHttpError.js'

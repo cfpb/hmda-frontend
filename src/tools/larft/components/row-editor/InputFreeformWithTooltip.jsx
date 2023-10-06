@@ -1,5 +1,5 @@
 import { Tooltip } from '../../../../common/Tooltip'
-import { ReactComponent as InfoIcon } from '../../../../filing/images/info.svg'
+import InfoIcon from '../../../../filing/images/info.svg'
 import { getFieldType } from '../../utils/input'
 
 /**

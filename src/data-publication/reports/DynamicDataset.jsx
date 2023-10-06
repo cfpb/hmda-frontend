@@ -4,9 +4,9 @@ import YearSelector from '../../common/YearSelector.jsx'
 import { DYNAMIC_DATASET } from '../constants/dynamic-dataset.js'
 import { withAppContext } from '../../common/appContextHOC.jsx'
 import { S3DatasetLink } from '../../common/S3Integrations'
-import { ReactComponent as CfpbClock } from '../../common/images/cfpb-clock.svg'
-import { ReactComponent as CfpbLock } from '../../common/images/cfpb-lock.svg'
-import { withYearValidation } from '../../common/withYearValidation.js'
+import CfpbClock from "../../common/images/cfpb-clock.svg?react"
+import CfpbLock from "../../common/images/cfpb-lock.svg?react"
+import { withYearValidation } from '../../common/withYearValidation.jsx'
 import './DynamicDataset.css'
 
 const linkToDocs2017 = ({ lar_spec, ts_spec }) => [

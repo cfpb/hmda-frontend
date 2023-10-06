@@ -1,1 +1,1 @@
-export const isCI = () => process.env.REACT_APP_ENVIRONMENT === 'CI'
+export const isCI = () => import.meta.env.VITE_ENVIRONMENT === 'CI'

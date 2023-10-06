@@ -1,6 +1,6 @@
 import Heading from '../../../common/Heading.jsx'
 import YearSelector from '../../../common/YearSelector.jsx'
-import { ONE_YEAR_DATASET } from '../../constants/one-year-datasets.js'
+import { ONE_YEAR_DATASET } from '../../constants/one-year-datasets.jsx'
 import { SNAPSHOT_DATASET } from '../../constants/snapshot-dataset.js'
 import { THREE_YEAR_DATASET } from '../../constants/three-year-datasets.js'
 import { renderDatasets, renderDocumentation } from './snapshotHelpers'

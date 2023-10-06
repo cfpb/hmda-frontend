@@ -16,7 +16,7 @@ import './FFVT.css'
 import { getToolAnnouncement } from '../../common/getToolAnnouncement'
 
 const middleware = [thunkMiddleware]
-if (process.env.NODE_ENV !== 'production') middleware.push(createLogger())
+if (import.meta.env.MODE !== 'production') middleware.push(createLogger())
 
 const store = createStore(
   combineReducers({

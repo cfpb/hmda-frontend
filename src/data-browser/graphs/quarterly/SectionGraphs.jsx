@@ -24,7 +24,7 @@ import {
   SERIES_FOR_URL
 } from '../slice/graphConfigs.js'
 import { graphs } from '../slice'
-import { formatGroupLabel, onMenuOpen } from '../utils/menuHelpers.js'
+import { formatGroupLabel, onMenuOpen } from '../utils/menuHelpers.jsx'
 import { useFetchGraphList } from './useFetchGraphList'
 import { useFetchSingleGraph } from './useFetchSingleGraphs'
 import { useManageGraphSelection } from './useManageGraphSelection'

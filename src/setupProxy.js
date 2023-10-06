@@ -1,6 +1,6 @@
 const { createProxyMiddleware } = require('http-proxy-middleware')
 
-const isCI = () => process.env.REACT_APP_ENVIRONMENT === 'CI'
+const isCI = () => import.meta.env.VITE_ENVIRONMENT === 'CI'
 
 APIS = [
   { endpoint: `/v2/filing/`, target:  'http://localhost:8080' },       // hmda-filing-api

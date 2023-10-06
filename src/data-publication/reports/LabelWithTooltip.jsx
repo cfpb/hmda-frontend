@@ -1,5 +1,5 @@
 import React from 'react'
-import { ReactComponent as InfoIcon } from '../../filing/images/info.svg'
+import InfoIcon from "../../filing/images/info.svg?react"
 import { Descriptions } from '../constants/descriptions.js'
 import Tooltip from '../../common/Tooltip'
 import './LabelWithTooltip.css'

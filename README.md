@@ -139,9 +139,9 @@ export HMDA_RUNTIME_MODE=dev
 
 ##### Configure the UI
 
-If you will be testing against an Institution that is not the default, you can configure this via a `REACT_APP_*` variable:
+If you will be testing against an Institution that is not the default, you can configure this via a `VITE_*` variable:
 ```
-REACT_APP_LEIS=INSTITUTION1,INSTITUTION2
+VITE_LEIS=INSTITUTION1,INSTITUTION2
 ```
 
 Second, you will need to bypass Frontend authentication.  This is most easily done by running the Frontend the way we do in a Continuous Integration environment:
@@ -151,7 +151,7 @@ yarn ci
 
 To combine these configuration options
 ```
-REACT_APP_LEIS=INSTITUTION1,INSTITUTION2 yarn ci
+VITE_LEIS=INSTITUTION1,INSTITUTION2 yarn ci
 ```
 
 You can now visit the filing application at http://localhost:3000/filing.

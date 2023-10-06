@@ -10,7 +10,7 @@ import Report from './Report.jsx'
 import fetchMsas from './fetchMsas.js'
 import { DISCLOSURE_REPORTS } from '../constants/disclosure-reports.js'
 import { withAppContext } from '../../common/appContextHOC.jsx'
-import { withYearValidation } from '../../common/withYearValidation.js'
+import { withYearValidation } from '../../common/withYearValidation.jsx'
 
 const detailsCache = {
   2022: {

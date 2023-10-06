@@ -1,5 +1,5 @@
 import React from "react"
-import { ReactComponent as PrinterIcon } from "../images/printer.svg"
+import PrinterIcon from "../images/printer.svg"
 import "./PrintPageButton.css"
 
 function clickHandler(e) {

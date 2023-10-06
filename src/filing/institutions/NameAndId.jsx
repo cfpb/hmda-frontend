@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { ReactComponent as InfoIcon } from '../images/info.svg'
+import InfoIcon from "../images/info.svg"
 
 const InstitutionNameAndId = ({ name, lei, filingPeriod }) => {
   return (

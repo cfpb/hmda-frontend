@@ -6,7 +6,7 @@ import Reports from './Reports.jsx'
 import Report from './Report.jsx'
 import { NATIONAL_AGGREGATE_REPORTS } from '../constants/national-aggregate-reports.js'
 import { withAppContext } from '../../common/appContextHOC.jsx'
-import { withYearValidation } from '../../common/withYearValidation.js'
+import { withYearValidation } from '../../common/withYearValidation.jsx'
 
 import './NationalAggregate.css'
 
