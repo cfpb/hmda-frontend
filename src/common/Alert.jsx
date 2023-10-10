@@ -13,10 +13,10 @@ const Alert = ({ type = 'info', headingType = 'normal', heading, children }) => 
     <div className={`alert alert-${type}`}>
       <div className="alert-body">
         {heading ? (
-          <h3 className={headingClass}>
+          <div className={headingClass}>
             {type === 'success' ? <span className="alert-check" /> : null}
             {heading}
-          </h3>
+          </div>
         ) : null}
         {React.cloneElement(children, { className: 'alert-text' })}
       </div>

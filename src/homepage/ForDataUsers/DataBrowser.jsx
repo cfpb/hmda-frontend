@@ -6,13 +6,9 @@ const DBLink = ({ id, children }) => (
 )
 
 export const DataBrowser = () => (
-  <ExpandableCard
-    id="home-expand-data-browser"
-    title="HMDA Data Browser"
-    description="A suite of tools that allows users to filter, summarize, download, and visualize HMDA datasets."
-    destination="/data-browser/"
-    expandedByDefault={true}
-  >
+  <article>
+    <h3>HMDA Data Browser</h3>
+    <p>A suite of tools that allows users to filter, summarize, download, and visualize HMDA datasets.</p>
     <ul>
       <li>
         <DBLink id="graphs/quarterly">
@@ -27,5 +23,5 @@ export const DataBrowser = () => (
         <DBLink id="data">Dataset Filtering and Summary Tables</DBLink>
       </li>
     </ul>
-  </ExpandableCard>
+  </article>
 )
