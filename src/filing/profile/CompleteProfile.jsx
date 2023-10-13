@@ -79,14 +79,6 @@ const CompleteProfile = props => {
     }
   }, [accessTokenDecoded])
 
-  const showNotification = () => {
-    setDisplayNotification(true)
-
-    setTimeout(() => {
-      setDisplayNotification(false)
-    }, 3000) // hide after 3 secs
-  }
-
   const handleInstituionsCheckboxChange = (event, institution) => {
     if (event.target.checked) {
       setSelectedInstitutions([...selectedInstitutions, institution])
@@ -123,7 +115,7 @@ const CompleteProfile = props => {
       fetch(endpoint, request)
         .then(response => response.json())
         .then(async () => {
-          showNotification()
+          setDisplayNotification(true)
           await forceRefreshToken()
           let newToken = jwtDecode(AccessToken.get())
           setAccessTokenDecoded(newToken)
@@ -141,7 +133,7 @@ const CompleteProfile = props => {
         when={userIsEditingForm}
         message='You have unsaved changes. Are you sure you want to leave?'
       />
-      {loading ? (
+      {loading && displayNotification !== true ? (
         <LoadingIcon />
       ) : (
         <>
@@ -176,7 +168,7 @@ const CompleteProfile = props => {
 
           <form onSubmit={saveUserInfo} className='profile_form_container'>
             {displayNotification && (
-              <Alert type='success'>
+              <Alert type='success' closeAlert={displayNotification} setCloseAlert={setDisplayNotification}>
                 <p>Your information was updated!</p>
               </Alert>
             )}

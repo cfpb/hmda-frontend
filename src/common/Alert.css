@@ -120,6 +120,17 @@
   margin-bottom: 0
 }
 
+.alert-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 4px;
+  margin-right: 4px;
+  font-size: 22px;
+  color: black;
+  cursor: pointer;
+}
+
 @media (min-width: 801px){
   .alert-text > .failed {
     width: 80%;
