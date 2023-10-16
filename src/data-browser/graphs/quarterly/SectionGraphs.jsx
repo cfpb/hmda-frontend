@@ -271,7 +271,7 @@ export const SectionGraphs = ({
 
   return (
     <>
-      <p className='instructions'>Select a Loan Purpose:</p>
+      {/*<p className='instructions'>Select a Loan Purpose:</p>
       <Select
         classNamePrefix='react-select__loan' // Used for cypress testing
         options={loanPurposeOptions}
@@ -281,7 +281,7 @@ export const SectionGraphs = ({
         value={loanPurposeSelected}
         formatGroupLabel={formatGroupLabel}
         onMenuOpen={onMenuOpen}
-      />
+      />*/}
       <p className='instructions'>Select a Graph:</p>
       <Select
         classNamePrefix='react-select__graph' // Used for cypress testing
