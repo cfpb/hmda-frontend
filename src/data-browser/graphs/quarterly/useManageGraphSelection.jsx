@@ -1,4 +1,4 @@
-import { produce } from "immer"
+import produce from "immer"
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { useQuery } from "../utils/utils"

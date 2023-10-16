@@ -1,4 +1,4 @@
-import { produce } from "immer";
+import produce from "immer";
 import { yearQuarters } from "../config";
 import { graphOptions, graphOptionsCategory } from "../graphOptions";
 
