@@ -31,6 +31,7 @@ i.e.
    --hmda-blue-dark: #163851;
    --hmda-blue-dark-opacity: rgba(22, 46, 81, .9);
    --usa-blue: #0071bc;
+   --cfpb-green: #20aa3f;
 }
 
 body {
@@ -43,6 +44,7 @@ body {
 .DocSearch-Button {
    padding: 8px !important;
    margin: 0 !important;
+   color: #555 !important;
 }
 
 .DocSearch-Button-Placeholder, .DocSearch-Button-Keys {
@@ -161,6 +163,10 @@ body {
    }
 }
 
+
+/*************************
+   Logged In User
+/*************************/
 .user {
    display: flex;
    justify-content: center;
@@ -226,7 +232,6 @@ body {
          }
       }
 
-
       .usa-logo {
          margin-top: 0;
 
@@ -237,10 +242,10 @@ body {
          a {
             display: flex;
             align-items: center;
-            color: #1f498f;
+            color: var(--hmda-blue);
 
             &:hover {
-               color: #0071bc;
+               color: var(--usa-blue);
             }
 
             img {
@@ -268,33 +273,37 @@ body {
 
 /*************************
    usa-hero
-/*************************
+/*************************/
 
 
 .usa-hero {
-   background-image: url("../../images/hmda-hero.jpg");
-   background-position: 100% 0%;
+   background-image: url("../../images/hmda-hero.min.jpg");
+   background-position: 50% 0%;
    max-width: 1500px;
    margin: 0 auto;
+   height: 450px;
+
+   @media (min-width: 640px) {
+      height: 500px;
+      margin-top: 5px;
+   }
 
    .grid-container {
       margin-left: 0;
-
-      @media screen and (min-width: 1300px) {
+      @media (min-width: 70em) {
+         margin-left: 5%;
+      }
+      @media (min-width: 90em) {
          margin-left: 10%;
       }
    }
-
-   .usa-hero__heading--alt {
-      font-size: 3.25rem;
-      margin-bottom: 1rem;
-   }
+   
 
    .usa-hero__callout {
-      background-color: rgba(#162e51, .8);
+      background-color: var(--hmda-blue-dark-opacity);
 
       @media (min-width: 640px) {
-         max-width: 37rem;
+         max-width: 41rem;
       }
 
       .usa-hero__heading {
@@ -302,21 +311,58 @@ body {
          font-size: 3rem;
       }
 
+      .hero__highlight {
+         color: #fff;
+         background-color: var(--hmda-blue-opacity);
+         font-size: .7em;
+         padding: .25em .25em;
+         margin-bottom: .1em;
+         display: inline-block;
+      }
+
+      .usa-hero__heading--alt {
+         font-size: 3.25rem;
+         margin-bottom: 1rem;
+      }
+
       p {
-         color: #ddd;
+         color: #fff;
+      }
+
+      @media (min-width: 30em) {
+         .usa-button-group {
+            flex-direction: column;
+            .usa-button-group__item {
+               width: 100%;
+               margin: 0 0 .5em;
+            }
+         }  
       }
 
       .usa-button {
+         color: #fff;
+         background-color: var(--hmda-blue);
          text-shadow: 0 0 3px #000;
+         border: 1px solid rgba(255,255,255,.25);
 
          svg {
             filter: drop-shadow(1px 1px 2px rgb(0 0 0 / 1));
          }
+
+         &.primary {
+            background-color: var(--hmda-blue-bright);
+         }
+
+         &:hover {
+            background-color: var(--hmda-blue-light);
+         }
+
+         @media (min-width: 30em) {
+            width: 100%;
+         }
       }
 
-      .usa-button--accent-cool {
-         color: #fff;
-      }
+      
 
       .usa-icon {
          font-size: 1.25em;
@@ -328,7 +374,7 @@ body {
 
 /*************************
    Modal Video Container
-/*************************
+/*************************/
 
 .usa-modal-overlay {
    overflow: hidden;
@@ -363,10 +409,12 @@ body {
       top: -1em;
       right: 0;
       z-index: 2;
+      background-color: transparent !important;
+      border: none !important;
 
       svg {
          fill: #fff;
-
+ 
          &:hover {
             fill: #0071bc;
          }
@@ -378,136 +426,153 @@ body {
 
 /*************************
    Quicklinks
-/*************************
+/*************************/
 
 #quicklinks {
+   background-color: var(--hmda-blue);
+   display: flex;
+   flex-direction: column;
    text-align: center;
    font-size: 1.5em;
    position: relative;
    max-width: 1500px;
-   margin: 0 auto;
+   padding: 0 0 .5em 0;
+
+   @media (min-width: 40em) {
+      flex-direction: row;
+      padding: 0;
+      margin: 0 auto;
+   }
+   @media (min-width: 80em) {
+      padding: 0 10%;
+   }
 
    .title {
+      position: relative;
       padding: .25em 0;
-
-      background-color: rgba(#005ea2, .5);
+      background-color: rgba(#000, .25);
       border: 1px solid rgba(#fff, .25);
       border-width: 1px 0;
       display: block;
+      color: #fff;
 
-      @media screen and (min-width: 640px) {
-         position: absolute;
+      @media (min-width: 40em) {
          border-width: 0 1px;
          width: 35px;
-         height: 100%;
-         top: 0;
-         left: .25em;
 
          span {
             transform: rotate(-90deg);
             transform-origin: left bottom;
             position: absolute;
             left: 1.5em;
-            bottom: 1.25em;
-            font-size: 2rem;
+            bottom: 1em;
+            font-size: .75em;
+            display: block;
          }
       }
 
-      @media screen and (min-width: 960px) {
+      @media (min-width: 56em) {
          span {
-            bottom: .5em;
+            bottom: .75em;
          }
-      }
-
-      @media screen and (min-width: 1100px) {
-         left: -1em;
       }
    }
 
-   &.usa-section {
-      @media screen and (min-width: 640px) {
-         padding-top: 0;
-         padding-bottom: 0;
+
+   a, a:visited {
+      //text-transform: uppercase;
+      text-decoration: none;
+      display: block;
+      padding: .5em 1em;
+      border: 1px solid rgba(#fff, .25);
+      border-radius: .25em;
+      color: #fff;
+      text-align: left;
+      margin: .25em 1em;
+      flex: 1;
+
+      &:hover {
+         background-color: var(--hmda-blue-light);
       }
 
-      .grid-container {
-         position: relative;
-         padding-top: 1rem;
-         padding-bottom: 1rem;
+      svg {
+         height: 2em;
+         width: 2em;
+         margin-right: .25em;
+         vertical-align: bottom;
       }
 
-      .tablet\:grid-col {
-         padding: .25em .5em;
+      span {
+         display: inline-block;
+         font-size: .75em;
+         text-align: left;
+      }
 
-         a,
-         a:visited {
-            //text-transform: uppercase;
-            text-decoration: none;
-            display: block;
-            padding: .5em 0 .5em 1em;
-            border: 1px solid rgba(#fff, .25);
-            border-radius: .25em;
-            color: #fff;
+      @media (min-width: 40em) {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         margin: .25em;
+         
+         span {
+            font-size: .6em;
+            text-align: center;
+         }
+      }
+      @media (min-width: 56em) {
+         flex-direction: row;
+         margin: .75em .5em;
+         span {
             text-align: left;
-
-            &:hover {
-               background-color: #005ea2;
-            }
-
-            svg {
-               height: 2em;
-               width: 2em;
-               margin-right: .25em;
-               vertical-align: bottom;
-            }
-
-            span {
-               display: inline-block;
-               font-size: .75em;
-               text-align: left;
-            }
-
-            @media screen and (min-width: 640px) {
-               text-align: center;
-               padding: .5em 0;
-               margin: auto;
-               max-width: 80%;
-
-               span {
-                  display: block;
-                  text-align: center;
-                  font-size: .5em;
-               }
-            }
-
-            @media screen and (min-width: 960px) {
-               span {
-                  display: inline-block;
-                  font-size: .75em;
-               }
-            }
-
-            @media screen and (min-width: 1100px) {
-               max-width: unset;
-            }
          }
       }
    }
 }
 
+/*************************
+   Homepage Overwrites
+/*************************/
+
+.home {
+   h1 {
+      color: var(--hmda-blue);
+   }
+}
 
 /*************************
-   tableOfContents w/usa-carc
-/*************************
+   tableOfContents w/usa-card
+/*************************/
 
 #tableOfContents {
    padding: 4rem 0 0;
 
-   h3 {
-      background-color: #1f498f;
+   a, a:link, a:active, a:focus {
+      color: var(--hmda-blue-light);
+      line-height: 2em;
+      .new-indicator {
+         background-color: var(--hmda-blue-light);
+      }
+      
+   }
+   a:visited {
+      color: var(--hmda-blue);
+      .new-indicator {
+         background-color: var(--hmda-blue);
+      }
+   }
+   a:hover {
+      color: var(--hmda-blue-bright);
+      .new-indicator {
+         background-color: var(--hmda-blue-bright);
+      }
+   }
+
+   h2 {
+      background-color: var(--hmda-blue);
       color: #fff;
       padding: 1em;
-      margin-bottom: 1em;
+      margin-bottom: 1.5em;
+      font-size: 1.17em;
 
       .usa-icon {
          vertical-align: bottom;
@@ -517,47 +582,36 @@ body {
       }
    }
 
+   .usa-card-group {
+      margin: 0;
+      padding: 0;
+      
 
-   #filerInfo {
-      .colorBanner {
-         background-color: #1f498f;
-      }
-
-      .usa-card__heading {
-         color: #1f498f;
+      article {
+         h3 {
+            color: var(--hmda-blue);
+            font-size: 1.25em;
+         }
+         margin-bottom: 2em;
+         padding: 2em;
+         border: 1px solid #ddd;  
+         border-top: .75em solid var(--hmda-blue);
+         width: 100%;
       }
    }
 
    #dataInfo {
-      .colorBanner {
-         background-color: #0071bc;
+      h2 {
+         background-color: var(--hmda-blue-light);
       }
-
-      .usa-card__heading {
-         color: #0071bc;
+      article {
+         h3 {
+            color: var(--hmda-blue-light);
+         }
+         border-top: .75em solid var(--hmda-blue-light);
       }
-
-      h3.alt {
-         background-color: #0071bc;
-      }
-   }
-
-   .usa-card {
-      margin-bottom: 3.2rem;
-      width: 100%;
-
-      .colorBanner {
-         height: 2rem;
-         margin: -2px;
-         border-radius: .5em .5em 0 0;
-      }
-   }
-
-   .usa-card__heading {
-      font-family: SourceSansProBold;
    }
 }
-*/
 
 
 /*************************
@@ -585,8 +639,15 @@ body {
 }
 
 
+/*************************
+   USWDS Footer
+/*************************/
+
 .usa-identifier {
    background-color: #1f498f;
+   .usa-identifier__identity-domain {
+      color: #fff;
+   }
    .usa-identifier__required-link, .usa-identifier__required-link.usa-link, .usa-identifier__section--usagov a, .usa-identifier__identity-disclaimer a{ 
       &:link, &:visited, &:active {
          color: #fff;

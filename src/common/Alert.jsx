@@ -21,10 +21,10 @@ const Alert = ({
     <div className={`alert alert-${type}`}>
       <div className='alert-body'>
         {heading ? (
-          <h3 className={headingClass}>
-            {type === "success" ? <span className='alert-check' /> : null}
+          <div className={headingClass}>
+            {type === 'success' ? <span className="alert-check" /> : null}
             {heading}
-          </h3>
+          </div>
         ) : null}
         {React.cloneElement(children, { className: "alert-text" })}
         {closeAlert && (

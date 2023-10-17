@@ -18,9 +18,8 @@
   position: absolute;
   user-select: none;
   top: 0;
-  right: 0;
+  right: .5em;
   z-index: 1;
-  background: rgba(153, 153, 153, .8); 
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
@@ -32,7 +31,7 @@
   margin: 0;
   padding: 3px 6px;
   background: none;
-  color: white;
+  color: #555;
   border: 1px solid rgba(0,0,0,0)
 }
 
@@ -53,8 +52,8 @@
 }
 
 .oc .progress button.pause svg * {
-  fill: white;
-  stroke: white;
+  fill: #555;
+  stroke: #555;
 }
 
 .oc .progress button.pause:hover svg *,

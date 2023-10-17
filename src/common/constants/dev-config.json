@@ -2,6 +2,15 @@
   "name": "dev",
   "announcement": [
     {
+      "heading": "2024 Filing Instructions Guides Released",
+      "message": "On September 7, 2023, the Bureau released the 2024 FIG and Supplemental Guide for Quarterly Filers for 2024, which are available ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/documentation/faq/data-collection-timelines#filing-instructions-guide-fig",
+        "text": "here."
+      }
+    },
+    {
       "heading": "Online LAR Formatting Tool",
       "message": "The Online LAR Formatting tool has been released! Financial institutions can now create an electronic file online to submit to the HMDA Platform. Check out the ",
       "type": "info",
@@ -30,6 +39,10 @@
   "dataBrowserYears": ["2022", "2021", "2020", "2019", "2018"],
   "dataBrowserMapsYears": ["2022", "2021", "2020", "2019", "2018"],
   "timedGuards": {
+    "2024": {
+      "Q1": "10/01/2023 - 05/30/2024 - 06/30/2024",
+      "annual": "10/01/2023 - 03/01/2025 - 12/31/2027"
+    },
     "2023": {
       "Q1": "04/01/2023 - 05/30/2023 - 06/30/2023",
       "Q2": "07/01/2023 - 08/29/2023 - 09/30/2023",
@@ -63,6 +76,6 @@
     "2017": {
       "annual": "01/01/2018 - 03/01/2018 - 12/31/2019"
     },
-    "preview": []
+    "preview": ["2023", "2024", "2024-Q1"]
   }
 }
