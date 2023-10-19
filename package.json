@@ -23,8 +23,8 @@
   "license": "CC0-1.0",
   "dependencies": {
     "@docsearch/react": "3.5.2",
-    "@reduxjs/toolkit": "1.9.5",
-    "@tanstack/react-table": "8.9.3",
+    "@reduxjs/toolkit": "^1.9.7",
+    "@tanstack/react-table": "8.10.7",
     "@uswds/compile": "^1.0.0",
     "@uswds/uswds": "3.6.0",
     "ansi-html": "0.0.8",
@@ -46,7 +46,7 @@
     "react-dev-utils": "11.0.4",
     "react-dom": "17.0.2",
     "react-dropzone": "10.2.2",
-    "react-fluid-table": "^0.4.2",
+    "react-fluid-table": "0.5.1",
     "react-helmet": "5.2.1",
     "react-highlight-words": "0.20.0",
     "react-paginate": "8.2.0",
@@ -73,7 +73,7 @@
   "devDependencies": {
     "@cypress/skip-test": "2.6.0",
     "@testing-library/cypress": "8.0.1",
-    "cypress": "^12.17.2",
+    "cypress": "13.3.1",
     "cypress-file-upload": "5.0.8",
     "cypress-keycloak": "2.0.0",
     "ejs": "^3.1.8",
