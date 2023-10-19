@@ -11928,12 +11928,13 @@ react-fast-compare@^2.0.2:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
 
-react-fluid-table@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/react-fluid-table/-/react-fluid-table-0.4.2.tgz#3ff9f29a1bf00ae2a4c03bc16f985b2bfef9282a"
-  integrity sha512-f+Mw4ZH3RWM0POk9q9x8iaudLzW2qW7p5cl6eCfJPbbhV3cxSKSIFnzMij4U4fmed4gTfTvZ+bv3m7JbxBN19A==
+react-fluid-table@0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/react-fluid-table/-/react-fluid-table-0.5.1.tgz#7b70f6ea7c1f428e193d707321abc81f28421395"
+  integrity sha512-Di9a8XJva9Ut9uQS+wvlsu9oAYYrPXicq+Mci4w070kQMucpJps7qZMhCoJqEhy1bROtBaYwiZsckZn7t5PHhQ==
   dependencies:
-    react-window "^1.8.5"
+    react-resize-detector "^9.1.0"
+    react-window "^1.8.9"
 
 react-helmet@5.2.1:
   version "5.2.1"
@@ -11999,6 +12000,13 @@ react-refresh@^0.8.3:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.8.3.tgz#721d4657672d400c5e3c75d063c4a85fb2d5d68f"
   integrity sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
+
+react-resize-detector@^9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/react-resize-detector/-/react-resize-detector-9.1.0.tgz#45ea7176e57f1a568abd0e3eafcbfd3532fb284e"
+  integrity sha512-vGFbfkIZp4itJqR4yl+GhjrZHtdlQvou1r10ek0yZUMkizKbPdekKTpPb003IV3b8E5BJFThVG0oocjE3lNsug==
+  dependencies:
+    lodash "^4.17.21"
 
 react-router-dom@5.3.4:
   version "5.3.4"
@@ -12143,18 +12151,10 @@ react-transition-group@^4.3.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react-window@1.8.9:
+react-window@1.8.9, react-window@^1.8.9:
   version "1.8.9"
   resolved "https://registry.yarnpkg.com/react-window/-/react-window-1.8.9.tgz#24bc346be73d0468cdf91998aac94e32bc7fa6a8"
   integrity sha512-+Eqx/fj1Aa5WnhRfj9dJg4VYATGwIUP2ItwItiJ6zboKWA6EX3lYDAXfGF2hyNqplEprhbtjbipiADEcwQ823Q==
-  dependencies:
-    "@babel/runtime" "^7.0.0"
-    memoize-one ">=3.1.1 <6"
-
-react-window@^1.8.5:
-  version "1.8.6"
-  resolved "https://registry.yarnpkg.com/react-window/-/react-window-1.8.6.tgz#d011950ac643a994118632665aad0c6382e2a112"
-  integrity sha512-8VwEEYyjz6DCnGBsd+MgkD0KJ2/OXFULyDtorIiTz+QzwoP94tBoA7CnbtyXMm+cCeAUER5KJcPtWl9cpKbOBg==
   dependencies:
     "@babel/runtime" "^7.0.0"
     memoize-one ">=3.1.1 <6"
