@@ -2,11 +2,6 @@
   "name": "prod-beta",
   "announcement": [
     {
-      "heading": "2023 Annual Filing Issues",
-      "message": "We are currently experiencing issues with 2023 annual filing on the Beta platform.",
-      "type": "warning"
-    },
-    {
       "heading": "HMDA Online FIG",
       "message": "A prototype of the 2023 HMDA Filing Instructions Guide (FIG) is now available on the Beta platform. Page structure and links are subject to change. ",
       "type": "info",
