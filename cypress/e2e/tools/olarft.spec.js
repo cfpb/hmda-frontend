@@ -1,5 +1,6 @@
 import { WARN_LOST_UNSAVED } from '../../../src/tools/larft/config/messages'
-import { isCI } from '../../support/helpers'
+import { isCI, isBeta } from '../../support/helpers'
+import { onlyOn } from '@cypress/skip-test'
 
 const { HOST, ENVIRONMENT } = Cypress.env()
 
@@ -11,6 +12,13 @@ let urlForTesting = baseURLToVisit + '/tools/online-lar-formatting'
 // Workaround as the IDs have a space in them i.e -> Calendar Year
 Cypress.Commands.add('getID', value => cy.get(`[id="${value}"]`))
 
+onlyOn(isBeta(HOST), () => {
+  describe('Online LAR Formatting Tool', function () {
+    it('Does not run in Beta environments', () => {})
+  })
+})
+
+onlyOn(!isBeta(HOST), () => {
 describe('General OLART Tests', () => {
   it("Tests 'Filter by label' functionality", () => {
     cy.visit(urlForTesting)
@@ -311,4 +319,5 @@ describe('Record specific tests', () => {
     // LAR should have no records
     cy.get('.no-records').should('have.text', 'No Records Saved')
   })
+})
 })
