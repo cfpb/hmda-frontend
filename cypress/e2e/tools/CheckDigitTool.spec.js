@@ -5,7 +5,12 @@ const { HOST, TEST_DELAY, ENVIRONMENT } = Cypress.env()
 
 onlyOn(!isCI(ENVIRONMENT) && (isBeta(HOST) || !isProd(HOST)), () => {
   describe("Check Digit Tool UI", function() {
-    it(`Does not run on ${HOST}`, () => {})
+    it(
+      isBeta(HOST)
+        ? 'Does not run in Beta environments'
+        : `Does not run on ${HOST}`,
+      () => {}
+    )
   })
 })
 

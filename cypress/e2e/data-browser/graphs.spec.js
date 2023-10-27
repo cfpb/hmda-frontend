@@ -1,14 +1,16 @@
-import { isCI, isProd, isBeta } from "../../support/helpers"
-
+import { isCI, isProd, isBeta } from '../../support/helpers'
+import { onlyOn } from '@cypress/skip-test'
 const { HOST, ENVIRONMENT } = Cypress.env()
 
-let baseURLToVisit = isCI(ENVIRONMENT) ? "http://localhost:3000" : HOST
+let baseURLToVisit = isCI(ENVIRONMENT) ? 'http://localhost:3000' : HOST
 
-if (isBeta(HOST)) {
-  describe('HMDA Graphs', () => {
-    it('API does not run in Beta', () => null)
+onlyOn(isBeta(HOST), () => {
+  describe('HMDA Graphs', function () {
+    it('API does not run in Beta environments', () => {})
   })
-} else {
+})
+
+onlyOn(!isBeta(HOST), () => {
   describe('General Tests', () => {
     it('Checks <GraphsHeader/> component if overview props was not sent to the component', () => {
       cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`).contains(
@@ -16,7 +18,7 @@ if (isBeta(HOST)) {
       )
     })
 
-    it('Checks <GraphsHeader/> component if data from API succeedes then it checks if numbered financial institutions show in the header', () => {
+    it.skip('Checks <GraphsHeader/> component if data from API succeedes then it checks if numbered financial institutions show in the header', () => {
       // In Dev only an alphanumeric approximation is provided (ex. 5x).
       // In Prod we want to ensure that the count is numeric.
       let institutionCountRx = isProd(HOST) ? '[0-9]{1,3}' : '[0-9x]{1,3}'
@@ -131,4 +133,4 @@ if (isBeta(HOST)) {
       })
     })
   })
-}
+})

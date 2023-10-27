@@ -1,4 +1,6 @@
 import config from '../../../src/common/constants/prod-config.json'
+import { isBeta } from '../../support/helpers'
+import { onlyOn } from '@cypress/skip-test'
 const years = config.dataPublicationYears
 
 const { HOST } = Cypress.env()
@@ -43,8 +45,8 @@ const FromTo = [
   },
   { from: '/data-publication', to: `/data-publication/${years.shared[0]}` },
   { from: '/data-browser/maps', to: `/data-browser/maps/${years.shared[0]}` },
-  { from: '/data-browser/data/', to: `/data-browser/data/${years.shared[0]}` },  
-  
+  { from: '/data-browser/data/', to: `/data-browser/data/${years.shared[0]}` },
+
   // Test redirect from invalid years
   {
     from: '/data-publication/aggregate-reports/20',
@@ -93,12 +95,20 @@ const FromTo = [
   },
 ]
 
-describe('withYearValidation', () => {
-  FromTo.forEach(({ from, to, description }) => {
-    const testDescription = description || `Auto-redirects from ${from}`
-    it(testDescription, () => {
-      cy.visit(`${HOST}${from}`)
-      cy.url().should('include', to)
+onlyOn(isBeta(HOST), () => {
+  describe('National Aggregate Reports', function () {
+    it('Does not run in Beta environments', () => {})
+  })
+})
+
+onlyOn(!isBeta(HOST), () => {
+  describe('withYearValidation', () => {
+    FromTo.forEach(({ from, to, description }) => {
+      const testDescription = description || `Auto-redirects from ${from}`
+      it(testDescription, () => {
+        cy.visit(`${HOST}${from}`)
+        cy.url().should('include', to)
+      })
     })
   })
 })

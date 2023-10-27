@@ -13,7 +13,7 @@ const testCases = [
 
 onlyOn(isBeta(HOST), () => {
   describe("Modified LAR", function() {
-    it("Does not run on Beta", () => {})
+    it("Does not run in Beta environments", () => {})
   })
 })
 
