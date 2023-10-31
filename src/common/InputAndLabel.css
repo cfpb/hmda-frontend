@@ -15,8 +15,7 @@
 }
 
 .container label {
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 1.7rem;
   margin-bottom: 10px;
 }
 
@@ -36,6 +35,5 @@
   font-size: 1.7rem;
   margin-top: 0;
   color: #cd2026;
-  font-weight: 700;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }

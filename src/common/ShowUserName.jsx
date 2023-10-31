@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import { setUserInfo } from '../filing/actions/setUserInfo.js'
 import ProfileIcon from '../filing/profile/ProfileIcon.jsx'
 
-export const ShowUserName = ({ isLoggedIn }) => {
+export const ShowUserName = ({ isLoggedIn, userNameWasUpdated }) => {
   const handleLogout = e => {
     e.preventDefault()
     logout()
@@ -16,7 +16,11 @@ export const ShowUserName = ({ isLoggedIn }) => {
   const { name, family_name, given_name, email } = getKeycloak().tokenParsed
 
   const emailAddress = email
-  const userName = name ? name : given_name + " " + family_name
+  const userName = name
+    ? name
+    : given_name && family_name
+    ? given_name + ' ' + family_name
+    : ''
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -37,7 +41,7 @@ export const ShowUserName = ({ isLoggedIn }) => {
               cursor: 'pointer',
             }}
           >
-            {userName}
+            {userName.length > 0 ? userName : 'User'}
           </Link>
         </>
       )}

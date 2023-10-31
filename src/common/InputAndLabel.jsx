@@ -27,8 +27,7 @@ const InputAndLabel = ({
         </>
       ) : (
         <>
-          <label>{labelName}</label>
-          {error && <p className='error'>{error}</p>}
+          {error ? <p className='error'>{error}</p> : <label>{labelName}</label>}
           <input value={value} onChange={handleChange} />
         </>
       )}

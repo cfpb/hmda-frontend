@@ -47,8 +47,8 @@ const CompleteProfile = props => {
       setLoading(true)
       let associatedLEIsWithUser = user?.lei?.split(",")
       let emailDomain = user?.email?.split("@")[1]
-      setFirstName(user?.given_name)
-      setLastName(user?.family_name)
+      setFirstName(user?.given_name ? user?.given_name : "")
+      setLastName(user?.family_name ? user?.family_name : "")
       setEmailAddress(user?.email)
 
       let endpoint = `${window.location.origin}/v2/public/institutions?domain=${emailDomain}`
@@ -93,7 +93,7 @@ const CompleteProfile = props => {
   const saveUserInfo = event => {
     event.preventDefault()
 
-    if (firstName.length !== 0 || lastName.length !== 0) {
+    if (firstName?.length !== 0 || lastName?.length !== 0) {
       let endpoint = window.location.origin + "/hmda-auth/users/"
 
       let body = {
@@ -174,13 +174,13 @@ const CompleteProfile = props => {
             )}
             <InputAndLabel
               labelName='First name'
-              value={firstName}
+              value={firstName || ""}
               onChange={e => setFirstName(e.target.value)}
               setUserIsEditingForm={setUserIsEditingForm}
             />
             <InputAndLabel
               labelName='Last name'
-              value={lastName}
+              value={lastName || ""}
               onChange={e => setLastName(e.target.value)}
               setUserIsEditingForm={setUserIsEditingForm}
             />
