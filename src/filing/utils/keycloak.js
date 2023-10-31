@@ -56,7 +56,7 @@ const forceRefreshToken = async () => {
   resetLoginAttempts()
   const updateKeycloak = () => {
     return keycloak
-      .updateToken(7000)
+      .updateToken(55000)
       .then(refreshed => {
         if (refreshed) {
           AccessToken.set(keycloak.token)

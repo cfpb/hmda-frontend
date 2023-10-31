@@ -45,7 +45,7 @@ const CompleteProfile = props => {
   useEffect(() => {
     if (user) {
       setLoading(true)
-      let associatedLEIsWithUser = user.lei.split(",")
+      let associatedLEIsWithUser = user?.lei?.split(",")
       let emailDomain = user?.email?.split("@")[1]
       setFirstName(user?.given_name)
       setLastName(user?.family_name)

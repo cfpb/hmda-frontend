@@ -12,12 +12,29 @@ import jwtDecode from 'jwt-decode'
 import { shouldFetchInstitutions } from '../actions/shouldFetchInstitutions.js'
 
 export class InstitutionContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+      shouldRedirect: false
+    }
+  }
+
+
   componentDidMount() {
     this.fetchIfNeeded()
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     this.fetchIfNeeded()
+    const { user } = this.props
+    if (user?.userInfo?.tokenParsed !== prevProps.user?.userInfo?.tokenParsed) {
+      if (
+        !user?.userInfo?.tokenParsed?.lei ||
+        user?.userInfo?.tokenParsed?.lei == ''
+      ) {
+        this.setState({ shouldRedirect: true })
+      }
+    }
   }
 
   fetchIfNeeded() {
@@ -67,10 +84,8 @@ export class InstitutionContainer extends Component {
   }
 
   render() {
-    const { user } = this.props
-
     // Redirect user to profile page if they don't have any LEIs associated with their account
-    if (user?.userInfo?.tokenParsed?.lei == "") {
+    if (this.state.shouldRedirect) {
       return <Redirect to='/filing/profile' />
     }
 
