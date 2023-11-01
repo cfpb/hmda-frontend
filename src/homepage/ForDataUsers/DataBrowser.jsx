@@ -7,7 +7,7 @@ const DBLink = ({ id, children }) => (
 
 export const DataBrowser = () => (
   <article>
-    <h4>HMDA Data Browser</h4>
+    <h3>HMDA Data Browser</h3>
     <p>A suite of tools that allows users to filter, summarize, download, and visualize HMDA datasets.</p>
     <ul>
       <li>

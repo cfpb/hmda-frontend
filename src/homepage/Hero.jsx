@@ -2,12 +2,6 @@ import React, { useState } from 'react';
 import { VideoModal } from './VideoModal.jsx';
 import iconSprite from "../common/uswds/img/sprite.svg";
 
-// const [showModal, setShowModal] = useState(false);
-
-// const handleShowModal = () => {
-//   setShowModal(true);
-// };
-
 export const Hero = () => {
   const [showModal, setShowModal] = useState(false);
 
@@ -31,7 +25,7 @@ export const Hero = () => {
             <a href="#hmda-video" 
             onClick={handleShowModal}
             className="usa-button primary" 
-            aria-controls="hmda-video"
+            aria-label="Open Modal"
             data-open-modal> 
               <svg className="usa-icon" aria-hidden="true" focusable="false" role="img">
                 <use href={`${iconSprite}#youtube`}></use>

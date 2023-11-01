@@ -39,7 +39,7 @@ export const MapsController = ({
       simpleValue: true,
       styles: menuStyle,
       filterOption: searchFilter,
-      formatGroupLabel: data => formatGroupLabel(data, year),
+      formatGroupLabel: data => formatGroupLabel(data),
     }
 
     return (

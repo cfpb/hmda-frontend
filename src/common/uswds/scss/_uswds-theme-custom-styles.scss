@@ -29,8 +29,9 @@ i.e.
    --hmda-blue-bright: #3B7BE9;
    --hmda-blue-lightest: #00C8FF;
    --hmda-blue-dark: #163851;
-   --hmda-blue-dark-opacity: rgba(22, 46, 81, .8);
+   --hmda-blue-dark-opacity: rgba(22, 46, 81, .9);
    --usa-blue: #0071bc;
+   --cfpb-green: #20aa3f;
 }
 
 body {
@@ -43,6 +44,7 @@ body {
 .DocSearch-Button {
    padding: 8px !important;
    margin: 0 !important;
+   color: #555 !important;
 }
 
 .DocSearch-Button-Placeholder, .DocSearch-Button-Keys {
@@ -129,9 +131,11 @@ body {
       text-transform: uppercase;
       font-size: .85em;
    }
+
    .usa-nav__primary button[aria-expanded=true] {
       background-color: var(--hmda-blue);
    }
+
    .usa-nav__submenu .usa-nav__submenu-item {
       border-bottom: 1px solid rgba(255,255,255,.1);
       margin: 0;
@@ -141,7 +145,6 @@ body {
       a {
          display: block;
          padding: .75em 1em .75em 2em;
-         
 
          &:hover {
             background-color: var(--hmda-blue-light);
@@ -216,6 +219,12 @@ body {
       width: auto;
       height: 4.8rem;
 
+      .usa-menu-btn {
+         background-color: var(--hmda-blue);
+         &:hover {
+            background-color: var(--hmda-blue-light);
+         }
+      }
 
       .usa-logo {
          margin-top: 0;
@@ -263,9 +272,15 @@ body {
 
 .usa-hero {
    background-image: url("../../images/hmda-hero.min.jpg");
-   background-position: 100% 0%;
+   background-position: 50% 0%;
    max-width: 1500px;
    margin: 0 auto;
+   height: 450px;
+
+   @media (min-width: 640px) {
+      height: 500px;
+      margin-top: 5px;
+   }
 
    .grid-container {
       margin-left: 0;
@@ -282,7 +297,7 @@ body {
       background-color: var(--hmda-blue-dark-opacity);
 
       @media (min-width: 640px) {
-         max-width: 37rem;
+         max-width: 41rem;
       }
 
       .usa-hero__heading {
@@ -308,6 +323,16 @@ body {
          color: #fff;
       }
 
+      @media (min-width: 30em) {
+         .usa-button-group {
+            flex-direction: column;
+            .usa-button-group__item {
+               width: 100%;
+               margin: 0 0 .5em;
+            }
+         }  
+      }
+
       .usa-button {
          color: #fff;
          background-color: var(--hmda-blue);
@@ -325,7 +350,13 @@ body {
          &:hover {
             background-color: var(--hmda-blue-light);
          }
+
+         @media (min-width: 30em) {
+            width: 100%;
+         }
       }
+
+      
 
       .usa-icon {
          font-size: 1.25em;
@@ -511,6 +542,7 @@ body {
 
    a, a:link, a:active, a:focus {
       color: var(--hmda-blue-light);
+      line-height: 2em;
       .new-indicator {
          background-color: var(--hmda-blue-light);
       }
@@ -529,11 +561,12 @@ body {
       }
    }
 
-   h3 {
+   h2 {
       background-color: var(--hmda-blue);
       color: #fff;
       padding: 1em;
       margin-bottom: 1.5em;
+      font-size: 1.17em;
 
       .usa-icon {
          vertical-align: bottom;
@@ -549,27 +582,27 @@ body {
       
 
       article {
-         h4 {
+         h3 {
             color: var(--hmda-blue);
             font-size: 1.25em;
          }
          margin-bottom: 2em;
          padding: 2em;
          border: 1px solid #ddd;  
-         border-top: 1em solid var(--hmda-blue);
+         border-top: .75em solid var(--hmda-blue);
          width: 100%;
       }
    }
 
    #dataInfo {
-      h3 {
+      h2 {
          background-color: var(--hmda-blue-light);
       }
       article {
-         h4 {
+         h3 {
             color: var(--hmda-blue-light);
          }
-         border-top: 1em solid var(--hmda-blue-light);
+         border-top: .75em solid var(--hmda-blue-light);
       }
    }
 }
@@ -600,8 +633,15 @@ body {
 }
 
 
+/*************************
+   USWDS Footer
+/*************************/
+
 .usa-identifier {
    background-color: #1f498f;
+   .usa-identifier__identity-domain {
+      color: #fff;
+   }
    .usa-identifier__required-link, .usa-identifier__required-link.usa-link, .usa-identifier__section--usagov a, .usa-identifier__identity-disclaimer a{ 
       &:link, &:visited, &:active {
          color: #fff;

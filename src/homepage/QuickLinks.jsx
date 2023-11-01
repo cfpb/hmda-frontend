@@ -15,7 +15,7 @@ export const QuickLinks = () => {
                     </svg> <span>Rate Spread<br />Calculator</span>
                 </Link>
                 <Link 
-                    to='/filing/2023-Q1/'
+                    to='/filing/'
                 >   
                     <svg className="usa-icon" aria-hidden="true" focusable="false" role="img">
                         <use href={`${iconSprite}#account_balance`}></use>

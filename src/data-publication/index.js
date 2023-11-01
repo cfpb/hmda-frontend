@@ -3,7 +3,6 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 
 import Home from './Home'
 import ModifiedLar from './reports/ModifiedLar'
-import SupportingDocs from './reports/SupportingDocs.jsx'
 import Disclosure from './reports/Disclosure'
 import Aggregate from './reports/Aggregate'
 import NationalAggregate from './reports/NationalAggregate'
@@ -29,7 +28,6 @@ const DataPublication = ({ config }) => {
           from='/data-publication'
           to={`/data-publication/${shared[0]}`}
         />
-        <Route path='/data-publication/documents' component={SupportingDocs} />
         <Route
           path='/data-publication/modified-lar/:year?'
           render={props => <ModifiedLar {...props} targetYearKey='mlar' />}

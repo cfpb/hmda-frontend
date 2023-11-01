@@ -4,7 +4,7 @@ import { ExpandableCard } from '../ExpandableCard'
 export const DataDocs = () => {
   return (
     <article>
-      <h4>Data Documentation</h4>
+      <h3>Data Documentation</h3>
       <p>Answers to common questions about working with HMDA datasets and Data Browser tools.</p>
       <ul>
         <li>

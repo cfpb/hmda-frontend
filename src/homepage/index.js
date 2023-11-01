@@ -6,18 +6,9 @@ import { QuickLinks } from "./QuickLinks"
 import { AnnouncementBanner } from "./AnnouncementBanner"
 import { FilerInfo } from "./ForFilers/FilerInfo"
 import { DataInfo } from "./ForDataUsers/DataInfo"
-import { ColumnLayout, Column } from "./ColumnLayout.jsx"
-import { DataBrowser } from "./ForDataUsers/DataBrowser"
-import { DataPublication } from "./ForDataUsers/DataPublication"
-import { Filing } from "./ForFilers/Filing"
 import { isBeta } from "../common/Beta.jsx"
 import { isProd } from "../common/configUtils"
-import { ResearchAndReports } from "./ForDataUsers/ResearchAndReports"
 import { withAppContext } from "../common/appContextHOC"
-import { FilingDocs } from "./ForFilers/FilingDocs"
-import { FilingGuides } from "./ForFilers/FilingGuides"
-import { DataDocs } from "./ForDataUsers/DataDocs"
-import { ChangeLog } from "./ForDataUsers/ChangeLog"
 
 const Home = ({ config }) => {
   const isProdBeta = isProd() && isBeta()
@@ -40,10 +31,10 @@ const Home = ({ config }) => {
       <div id="tableOfContents" className="grid-container">
         <div className="grid-row grid-gap">
           <div id="filerInfo" className="tablet:grid-col">
-            <FilerInfo />
+            <FilerInfo hideContent={isProdBeta} />
           </div>
           <div id="dataInfo" className="tablet:grid-col">
-            <DataInfo config={config} />
+            <DataInfo config={config} hideContent={isProdBeta} />
           </div>
         </div>
       </div>

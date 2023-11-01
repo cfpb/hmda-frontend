@@ -7,14 +7,17 @@ import iconSprite from "../../common/uswds/img/sprite.svg"
 
 
 
-export const DataInfo = ({ config }) => {
+export const DataInfo = ({ config, hideContent }) => {
+    if (hideContent)
+        return (<></>)
+        
     return (
         <>
-        <h3 className="alt">
+        <h2 className="alt">
             <svg className="usa-icon" aria-hidden="true" focusable="false" role="img">
                 <use href={`${iconSprite}#insights`}></use>
             </svg> Info for Data Users
-        </h3>
+        </h2>
         <section className="usa-card-group">
             <DataBrowser />
             <DataDocs />
