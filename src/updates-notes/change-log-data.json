@@ -1,6 +1,18 @@
 {
   "log": [
     {
+      "date": "11/08/23",
+      "type": "update",
+      "product": "documentation",
+      "description": "The 2024 Filing Instructions Guide (FIG) was updated to include a minor correction to validity edit V720, a language change to quality edit Q660, and the inclusion of the validity edit V660 in the New and Revised Edits table.",
+      "links": [
+        {
+          "text": "2024 Filing Instructions Guide (FIG)",
+          "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2024-hmda-fig.pdf"
+        }
+      ]
+    },
+    {
       "date": "10/24/23",
       "type": "update",
       "product": "tools",
