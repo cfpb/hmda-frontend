@@ -12,11 +12,11 @@ import { withAppContext } from "../common/appContextHOC"
 
 const Home = ({ config }) => {
   const isProdBeta = isProd() && isBeta()
-
+  console.log('isProdBeta: ' + isProdBeta);
   return (
     <>
-    <Hero />
-    <QuickLinks />
+    <Hero hideContent={isProdBeta} />
+    <QuickLinks hideContent={isProdBeta} />
     <main className="App home" id="main-content">
       <div>
         <header>
