@@ -29,6 +29,7 @@ const ToolsProd = () => (
 const ToolsBeta = () => (
   <ul>
     <li>
+      <a href='/filing'>HMDA Beta Filing Platform</a>
     </li>
   </ul>
 )
