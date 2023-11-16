@@ -1,4 +1,4 @@
-FROM redhat/ubi8
+FROM redhat/ubi8:8.9
 RUN dnf -y update
 
 # Install node & yarn
