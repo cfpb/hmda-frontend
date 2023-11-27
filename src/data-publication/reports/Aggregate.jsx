@@ -119,7 +119,7 @@ class Aggregate extends React.Component {
           <a
             target='_blank'
             rel='noopener noreferrer'
-            href={`/documentation/publications/aggregate-disclosure-reports/ad-changes`}
+            href={`https://ffiec.cfpb.gov/documentation/publications/ad-changes#msamd-aggregate-reports`}
           >
             A&D Report Changes
           </a>{' '}
