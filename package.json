@@ -38,6 +38,7 @@
     "highcharts-react-official": "3.2.1",
     "html-to-image": "1.11.11",
     "jspdf": "^2.5.1",
+    "jwt-decode": "^3.1.2",
     "keycloak-js": "11.0.3",
     "mapbox-gl": "1.13.3",
     "normalize.css": "8.0.1",

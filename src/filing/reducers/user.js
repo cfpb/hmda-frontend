@@ -5,13 +5,15 @@ import {
   USER_SIGNED_OUT,
   SILENT_RENEW_ERROR,
   SESSION_TERMINATED,
-  CLEAR_USER_ERROR
-} from '../constants'
+  CLEAR_USER_ERROR,
+  SET_USER_INFO,
+} from "../constants"
 
 const defaultUser = {
   oidc: null,
   isFetching: false,
-  userError: false
+  userError: false,
+  userInfo: null
 }
 
 export default (state = defaultUser, action) => {
@@ -46,6 +48,11 @@ export default (state = defaultUser, action) => {
       return {
         ...state,
         userError: false
+      }
+    case SET_USER_INFO:
+      return {
+        ...state,
+        userInfo: action.payload
       }
 
     default:
