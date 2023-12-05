@@ -24,7 +24,7 @@ export const FilingGuides = () => (
         <a
           href={`/documentation/faq/data-collection-timelines#filing-instructions-guide-fig`}
         >
-          Filing Instructions Guides
+          Filing Instructions Guides (FIG)
         </a>
         <ul>
           <li>
