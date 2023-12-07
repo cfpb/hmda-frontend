@@ -15,7 +15,7 @@ const {
   YEARS,
 } = Cypress.env()
 
-const years = [2020]
+const years = [2022]
 const uploadTimeout = 3 * 60 * 60 * 1000 // 3 hours
 
 const config = getDefaultConfig(HOST)
@@ -99,7 +99,7 @@ describe('Large Filer', () => {
             /* File Upload */
             const FILENAME = getFilename(filingPeriod, INSTITUTION)
 
-            cy.fixture(FILENAME).then(fileContent => {
+            cy.fixture(FILENAME, {timeout: 60000} ).then(fileContent => {
               cy.get('.UploadForm input', { force: true }).attachFile({
                 fileContent,
                 fileName: FILENAME,
