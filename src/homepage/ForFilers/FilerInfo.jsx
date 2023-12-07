@@ -15,9 +15,9 @@ export const FilerInfo = ({hideContent}) => {
   </svg> Info for Filers
 </h2>
 <section className="usa-card-group">
+      <FilingGuides />
       <Filing />
       <FilingDocs hideContent={hideContent} />
-      <FilingGuides />
 </section>
       </>
     )
