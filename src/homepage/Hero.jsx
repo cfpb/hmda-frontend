@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { VideoModal } from './VideoModal.jsx';
 import iconSprite from "../common/uswds/img/sprite.svg";
 
-export const Hero = () => {
+export const Hero = ({ hideContent }) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleShowModal = () => {
     setShowModal(true);
   };
+  if (hideContent)
+        return (<></>)
 
   return(
     <>
