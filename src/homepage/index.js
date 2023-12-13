@@ -12,7 +12,6 @@ import { withAppContext } from "../common/appContextHOC"
 
 const Home = ({ config }) => {
   const isProdBeta = isProd() && isBeta()
-  console.log('isProdBeta: ' + isProdBeta);
   return (
     <>
     <Hero hideContent={isProdBeta} />
