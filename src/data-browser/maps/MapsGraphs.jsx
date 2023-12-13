@@ -24,7 +24,7 @@ const MapsGraphs = props => {
               popular variables
             </a>
             . For help getting started, visit the{" "}
-            <a href={"/documentation/tools/data-browser/data-browser-maps-faq"}>
+            <a href={"/documentation/faq/data-browser-maps-faq"}>
               HMDA Maps FAQ
             </a>
             . For advanced analysis, use the <code>Download Data</code> button
