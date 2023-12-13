@@ -240,7 +240,7 @@ describe("Complete Profile Page", () => {
     cy.get(
       '[style="color: black; text-decoration: none; cursor: pointer;"]'
     ).click()
-    cy.get(".institution_info_container > input").click()
+    cy.get(".institution_info_container > input").click({ multiple: true })
     cy.get(".profile_form_container > button").click()
     cy.wait(1000)
 
@@ -253,7 +253,7 @@ describe("Complete Profile Page", () => {
 
     cy.url().should("contains", "/filing/profile")
 
-    cy.get(".institution_info_container > input").click()
+    cy.get(".institution_info_container > input").click({ multiple: true })
     cy.get(".profile_form_container > button").click()
     cy.wait(1000)
 
