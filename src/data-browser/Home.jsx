@@ -58,7 +58,7 @@ class Home extends Component {
             image={mapBw}
             imageHover={mapColor}
             faq={{
-              url: `/documentation/tools/data-browser/data-browser-maps-faq`,
+              url: `/documentation/faq/data-browser-maps-faq`,
               label: 'HMDA Maps FAQ',
             }}
           />
