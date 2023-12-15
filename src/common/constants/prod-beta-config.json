@@ -1,16 +1,6 @@
 {
   "name": "prod-beta",
-  "announcement": [
-    {
-      "heading": "HMDA Online FIG",
-      "message": "A prototype of the 2023 HMDA Filing Instructions Guide (FIG) is now available on the Beta platform. Page structure and links are subject to change. ",
-      "type": "info",
-      "link": {
-        "url": "https://ffiec.beta.cfpb.gov/documentation/category/filing-instructions-guide",
-        "text": "View the HMDA Online FIG."
-      }
-    }
-  ],
+  "announcement": [],
   "publicationReleaseYear": "2020",
   "maintenanceMode": false,
   "filingAnnouncement": null,
