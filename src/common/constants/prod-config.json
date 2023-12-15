@@ -2,6 +2,11 @@
   "name": "prod",
   "announcement": [
     {
+      "heading": "Introducing Multifactor Authentication (MFA) via Login.gov",
+      "message": "When logging into the HMDA Platform, users will now see an option to login with Login.gov. Select 'Login.gov' and follow the prompts to enable MFA on your account. Users have the option to continue signing in using the existing process.",
+      "type": "info"
+    },
+    {
       "heading": "2023 Q2 Graphs Released",
       "message": "HMDA Quarterly Graphs have been updated to include data from the recently completed 2023-Q2 filing period and can be found ",
       "type": "info",

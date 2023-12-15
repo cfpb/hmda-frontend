@@ -1,6 +1,18 @@
 {
   "log": [
     {
+      "date": "12/15/23",
+      "type": "release",
+      "product": "HMDA Filing",
+      "description": "The HMDA Platform has partnered with Login.gov to introduce multifactor authentication (MFA) to the HMDA Platform. When logging into the HMDA Platform, users will now see an option to login with Login.gov. Selecting that option will allow HMDA filers to enable MFA on their HMDA platform accounts. While this feature is optional for the upcoming filing season, it will be required for all accounts beginning in 2025.",
+      "links": [
+        {
+          "text": "What is Login.gov?",
+          "url": "https://login.gov/what-is-login/"
+        }
+      ]
+    },
+    {
       "date": "11/08/23",
       "type": "update",
       "product": "documentation",
