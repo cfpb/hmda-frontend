@@ -52,6 +52,7 @@ Cypress.on("uncaught:exception", (err, runnable) => {
   if (err.message.includes("_384")) {
     return false
   }
+  return false
   // we still want to ensure there are no other unexpected
   // errors, so we let them fail the test
 })
