@@ -27,6 +27,14 @@ export const FilingGuides = () => (
           Filing Instructions Guides (FIG)
         </a>
         <ul>
+        <li>
+            <a
+              href={`/documentation/fig/2023/overview`}
+            >
+              For data collected in 2023
+              <NewIndicator />
+            </a>
+          </li>
           <li>
             <a
               href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${LATEST_FIG_YEAR}-hmda-fig.pdf`}
