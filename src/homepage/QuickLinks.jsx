@@ -32,6 +32,14 @@ export const QuickLinks = ({ hideContent }) => {
                     </svg>                     
                     <span>Frequently Asked<br />Questions</span>
                 </Link>
+                <Link 
+                    to='documentation/fig/2023/overview'
+                >   
+                    <svg className="usa-icon" aria-hidden="true" focusable="false" role="img">
+                        <use href={`${iconSprite}#near_me`}></use>
+                    </svg>                     
+                    <span>Filing Instructions<br />Guide</span>
+                </Link>
         </section>
         </>
     )
