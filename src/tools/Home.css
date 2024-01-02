@@ -23,10 +23,13 @@
   color: #ffffff;
   margin-bottom: 5px;
   text-decoration: underline;
+  padding-left: 4px;
 }
 
 .tools-card header p {
   color: #ffffffe4;
+  padding-left: 4px;
+  padding-right: 4px;
 }
 
 .tools-card header ul li {
@@ -41,6 +44,13 @@
 .tools-card header ul li a:hover {
   color: #ffffffeb;
   text-decoration: underline;
+}
+
+.tools-card .icon {
+  height: 44px;
+  width: 44px;
+  margin-bottom: 4px;
+  color: white;
 }
 
 #tools-card-indicator {
