@@ -19,7 +19,7 @@ export default () => {
             "*": "/",
           },
         },
-        '/v2/public/institutions/quarterly': {
+        '/v2/public': {
           target: "https://ffiec.cfpb.gov",
           changeOrigin: true,
           cookiePathRewrite: {
