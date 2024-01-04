@@ -13,6 +13,10 @@ export default () => {
   return defineConfig({
     plugins: [react(), svgr(), nodePolyfills()],
     server: {
+      watch: {
+        usePolling: true,
+      },
+      host: true,
       port: "3000",
       proxy: { // Enter the domain to proxy to, this is Vite's way of proxing
         "/quarterly-data/graphs": { // Quarterly graphs endpoint
