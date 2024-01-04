@@ -19,9 +19,9 @@ export const initKeycloak = (overrides) => {
     return setKeycloak(mockKeycloak(overrides))
   if (import.meta.env.MODE === 'development')
     return setKeycloak(
-      Keycloak(import.meta.env.PUBLIC_URL + "/local_keycloak.json")
+      Keycloak("/local_keycloak.json")
     )
-  return setKeycloak(Keycloak(import.meta.env.PUBLIC_URL + '/keycloak.json'))
+  return setKeycloak(Keycloak('/keycloak.json'))
 }
 
 export const mockKeycloak = (overrides = {}) => ({

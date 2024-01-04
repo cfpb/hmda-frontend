@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useLayoutEffect } from "react"
 import { Link } from "react-router-dom"
 import BannerUSA from "./BannerUSA"
 import { defaultLinks } from "./constants/links"
@@ -7,8 +7,8 @@ import { logout } from "../filing/utils/keycloak.js"
 import { getKeycloak } from "./api/Keycloak.js"
 
 import "./uswds/css/styles.css"
-import "./uswds/js/uswds-init.min.js"
-import "./uswds/js/uswds.min.js"
+// import "./uswds/js/uswds.min.js"
+// import "./uswds/js/uswds-init.min.js"
 import logo from "./images/ffiec-logo.svg"
 import closeBtn from "./uswds/img/usa-icons/close.svg"
 
@@ -38,6 +38,11 @@ const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
     "Publications",
     "Tools"
   ]
+
+  useEffect(() => {
+    import('./uswds/js/uswds.min.js')
+    import('./uswds/js/uswds-init.min.js')
+  }, []);
 
   return (
     <div className={hideHeaderFooter(pathname)}>

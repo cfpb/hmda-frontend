@@ -90,6 +90,7 @@
     "sass": "^1.69.0",
     "serialize-javascript": "5.0.1",
     "vite": "^4.4.11",
+    "vite-plugin-node-polyfills": "^0.19.0",
     "vite-plugin-svgr": "^4.1.0"
   },
   "resolutions": {
