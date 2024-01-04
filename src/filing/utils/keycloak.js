@@ -4,7 +4,6 @@ import { getStore } from "./store.js"
 import isRedirecting from "../actions/isRedirecting.js"
 import { getKeycloak } from "../../common/api/Keycloak"
 import * as AccessToken from "../../common/api/AccessToken.js"
-import jwtDecode from "jwt-decode"
 
 let keycloak = getKeycloak()
 

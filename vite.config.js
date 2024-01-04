@@ -1,8 +1,11 @@
 import { defineConfig } from "vite"
+import dotenv from 'dotenv'
 import react from "@vitejs/plugin-react"
 import svgr from "vite-plugin-svgr"
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
 import dns from "dns"
+
+dotenv.config()
 
 dns.setDefaultResultOrder("verbatim")
 
@@ -11,20 +14,22 @@ export default () => {
     plugins: [react(), svgr(), nodePolyfills()],
     server: {
       port: "3000",
-      proxy: {
-        "/quarterly-data/graphs": {
-          target: "https://ffiec.cfpb.gov", // Enter the domain to proxy to, this is Vite's way of proxing to DEV or PROD
+      proxy: { // Enter the domain to proxy to, this is Vite's way of proxing
+        "/quarterly-data/graphs": { // Quarterly graphs endpoint
+          target: process.env.DEV_URL,
           changeOrigin: true,
-          cookiePathRewrite: {
-            "*": "/",
-          },
         },
-        '/v2/public': {
-          target: "https://ffiec.cfpb.gov",
+        '/v2/public/institutions': { // Verifies user domain and associated institutions endpoint
+          target: process.env.DEV_URL,
           changeOrigin: true,
-          cookiePathRewrite: {
-            "*": "/",
-          },
+        },
+        '/v2/reporting': { // Modified LAR endpoint
+          target: process.env.DEV_URL,
+          changeOrigin: true,
+        },
+        '/v2/filing': { // Fetch all filings
+          target: process.env.DEV_URL,
+          changeOrigin: true,
         }
       },
     },

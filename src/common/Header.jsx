@@ -7,8 +7,6 @@ import { logout } from "../filing/utils/keycloak.js"
 import { getKeycloak } from "./api/Keycloak.js"
 
 import "./uswds/css/styles.css"
-// import "./uswds/js/uswds.min.js"
-// import "./uswds/js/uswds-init.min.js"
 import logo from "./images/ffiec-logo.svg"
 import closeBtn from "./uswds/img/usa-icons/close.svg"
 
