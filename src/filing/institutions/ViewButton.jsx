@@ -20,6 +20,7 @@ const InstitutionViewButton = ({ submission, institution, filingPeriod, isClosed
   const { status, isStalled } = submission
   const code = status ? status.code : CREATED
   let text
+  let link = `/filing/${filingPeriod}/${institution.lei}`
   
   if (isClosed && code <= CREATED) return null
   if (code === FAILED || isStalled) {
@@ -32,19 +33,19 @@ const InstitutionViewButton = ({ submission, institution, filingPeriod, isClosed
     text = 'Review formatting errors'
   } else if (code < NO_SYNTACTICAL_VALIDITY_EDITS) {
     text = 'View progress'
-  } else if (code > VALIDATING && code < VALIDATED && code !== NO_MACRO_EDITS) {
+  } else if (code > VALIDATING && code < VALIDATED && code !== NO_MACRO_EDITS && (code !== 8 && code !== 12)) {
     text = 'Review edits'
   } else if (code === VALIDATED || code === NO_MACRO_EDITS) {
     text = 'Review summary'
+  } else if (code === 8 || code === 12) {
+    text = 'View progress'
+    link = `/filing/${filingPeriod}/${institution.lei}/upload`
   } else {
     text = 'View completed filing'
   }
 
   return (
-    <Link
-      className="ViewButton button"
-      to={`/filing/${filingPeriod}/${institution.lei}/`}
-    >
+    <Link className='ViewButton button' to={link}>
       {text}
     </Link>
   )

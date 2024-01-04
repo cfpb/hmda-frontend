@@ -1,6 +1,42 @@
 {
   "log": [
     {
+      "date": "12/15/23",
+      "type": "release",
+      "product": "HMDA Filing",
+      "description": "The HMDA Platform has partnered with Login.gov to introduce multifactor authentication (MFA) to the HMDA Platform. When logging into the HMDA Platform, users will now see an option to login with Login.gov. Selecting that option will allow HMDA filers to enable MFA on their HMDA platform accounts. While this feature is optional for the upcoming filing season, it will be required for all accounts beginning in 2025.",
+      "links": [
+        {
+          "text": "What is Login.gov?",
+          "url": "https://login.gov/what-is-login/"
+        }
+      ]
+    },
+    {
+      "date": "11/08/23",
+      "type": "update",
+      "product": "documentation",
+      "description": "The 2024 Filing Instructions Guide (FIG) was updated to include a minor correction to validity edit V720, a language change to quality edit Q660, and the inclusion of the validity edit V660 in the New and Revised Edits table.",
+      "links": [
+        {
+          "text": "2024 Filing Instructions Guide (FIG)",
+          "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2024-hmda-fig.pdf"
+        }
+      ]
+    },
+    {
+      "date": "10/24/23",
+      "type": "update",
+      "product": "tools",
+      "description": "HMDA Quarterly Graphs have been updated to include data for 2023-Q2.",
+      "links": [
+        {
+          "text": "HMDA Quarterly Graphs",
+          "url": "https://ffiec.cfpb.gov/data-browser/graphs/quarterly"
+        }
+      ]
+    },
+    {
       "date": "09/07/23",
       "type": "release",
       "product": "documentation",
@@ -17,14 +53,32 @@
       ]
     },
     {
+      "date": "07/14/23",
+      "type": "update",
+      "product": "tools",
+      "description": "HMDA Quarterly Graphs have been updated to include data for 2023-Q1.",
+      "links": [
+        {
+          "text": "HMDA Quarterly Graphs",
+          "url": "https://ffiec.cfpb.gov/data-browser/graphs/quarterly"
+        }
+      ]
+    },
+    {
       "date": "06/29/23",
       "type": "release",
       "product": "datasets",
       "description": "The 2022 national loan-level datasets, disclosure reports, and MSA/MD aggregate reports were released and can be accessed via the Data Publications page. Users can now explore 2022 HMDA data using the Data Browser's dataset filtering tool and maps.",
       "links": [
-        {"text": "Data Publications", "url": "https://ffiec.cfpb.gov/data-publication/"},
-        {"text": "Data Browser", "url": "https://ffiec.cfpb.gov/data-browser/data/"},
-        {"text": "Maps", "url": "https://ffiec.cfpb.gov/data-browser/maps/"}
+        {
+          "text": "Data Publications",
+          "url": "https://ffiec.cfpb.gov/data-publication/"
+        },
+        {
+          "text": "Data Browser",
+          "url": "https://ffiec.cfpb.gov/data-browser/data/"
+        },
+        { "text": "Maps", "url": "https://ffiec.cfpb.gov/data-browser/maps/" }
       ]
     },
     {

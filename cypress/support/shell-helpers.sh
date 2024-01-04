@@ -30,7 +30,7 @@ cleanup()
 {
 	rm output_load.txt
 	rm output_docusaurus_e2e.txt
-	rm output_integration.txt
+	rm output_e2e.txt
 }
 
 if [[ "$CYPRESS_HOST" == *"ffiec.cfpb"* ]]; then

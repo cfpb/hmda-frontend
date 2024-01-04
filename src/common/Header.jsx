@@ -36,7 +36,8 @@ const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
     "FAQs",
     "Developer APIs",
     "Publications",
-    "Tools"
+    "Tools",
+    "Filing Instructions Guide"
   ]
 
   useEffect(() => {

@@ -160,7 +160,7 @@ class Disclosure extends React.Component {
           <a
             target='_blank'
             rel='noopener noreferrer'
-            href={`/documentation/publications/aggregate-disclosure-reports/ad-changes`}
+            href={`https://ffiec.cfpb.gov/documentation/publications/ad-changes#disclosure-reports`}
           >
             A&amp;D Report Changes
           </a>{' '}

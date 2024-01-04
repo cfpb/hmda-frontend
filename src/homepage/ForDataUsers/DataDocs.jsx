@@ -3,12 +3,12 @@ import { ExpandableCard } from '../ExpandableCard'
 
 export const DataDocs = () => {
   return (
-    <ExpandableCard
-      id='home-expand-data-docs'
-      title='Data Documentation'
-      description='Answers to common questions about working with HMDA datasets and Data Browser tools.'
-      destination='/documentation/'
-    >
+    <article>
+      <h3>Data Documentation</h3>
+      <p>
+        Answers to common questions about working with HMDA datasets and Data
+        Browser tools.
+      </p>
       <ul>
         <li>
           <a
@@ -31,7 +31,7 @@ export const DataDocs = () => {
           </a>
         </li>
         <li>
-          <a href='/documentation/faq/downloading-datasets'>
+          <a href='/documentation/tools/data-browser/data-browser-faq'>
             Data Browser - Dataset Filtering FAQ
           </a>
         </li>
@@ -41,6 +41,6 @@ export const DataDocs = () => {
           </a>
         </li>
       </ul>
-    </ExpandableCard>
+    </article>
   )
 }

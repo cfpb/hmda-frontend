@@ -3,12 +3,9 @@ import { withAppContext } from '../common/appContextHOC'
 import { CURRENT_YEAR } from '../common/constants/years.js'
 import ExternalLink from '../common/ExternalLink'
 import Heading from '../common/Heading.jsx'
-import filterBw from '../common/images/db-filter-bw.png'
-import filterColor from '../common/images/db-filter-color.png'
-import graphBw from '../common/images/db-graph-bw.png'
-import graphColor from '../common/images/db-graph-color.png'
-import mapBw from '../common/images/db-map-bw.png'
-import mapColor from '../common/images/db-map-color.png'
+import filter from '../common/images/db-filter-lightblue.png'
+import graph from '../common/images/db-graph-lightblue.png'
+import map from '../common/images/db-map-lightblue.png'
 import ImageCard from './ImageCard.jsx'
 
 import './Home.css'
@@ -31,51 +28,48 @@ class Home extends Component {
           </Heading>
         </div>
 
-        <h3>I would like to...</h3>
+        <h3>Data Browser Tools:</h3>
 
         <div className='card-container'>
           <ImageCard
             year={publicationReleaseYear}
+            title='Dataset Filtering'
             caption='Select, Summarize, Download'
-            description='Filter and download HMDA datasets'
+            description='Filter, summarize, and download HMDA datasets'
             path='data'
             enabled
-            image={filterBw}
-            imageHover={filterColor}
+            image={filter}
             faq={{
               url: `/documentation/tools/data-browser/data-browser-faq`,
-              label: 'HMDA Dataset Filtering FAQ',
+              label: 'HMDA Dataset FAQ',
             }}
           />
           <ImageCard
             year={publicationReleaseYear}
+            title='Maps'
             caption={'Explore, Compare, Share'}
             path='maps'
             enabled
-            description='Explore HMDA datasets using an interactive map'
-            image={mapBw}
-            imageHover={mapColor}
+            description='Explore HMDA datasets using an interactive map with custom filters'
+            image={map}
             faq={{
-              url: `/documentation/tools/data-browser/data-browser-maps-faq`,
+              url: `/documentation/faq/data-browser-maps-faq`,
               label: 'HMDA Maps FAQ',
             }}
           />
-        </div>
-        <div className='card-container'>
           <ImageCard
             year=''
+            title='Graphs'
             caption='Visualize Mortgage Trends'
-            description='Interactive graphs of summarized HMDA data'
+            description='Visualize quarterly mortgage trends with interactive graphs of summarized HMDA data'
             path='graphs/quarterly'
             enabled
-            image={graphBw}
-            imageHover={graphColor}
+            image={graph}
             faq={{
               url: `/documentation/faq/data-browser-graphs-faq`,
               label: 'HMDA Graphs FAQ',
             }}
           />
-          <ImageCard placeholder />
         </div>
       </div>
     )

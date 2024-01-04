@@ -23,18 +23,19 @@ const browser = detect()
 
 export class AppContainer extends Component {
   componentDidMount() {
-    if(this.props.maintenanceMode && !this._isHome(this.props))
-      return this.props.history.push('/filing')
+    if (this.props.maintenanceMode && !this._isHome(this.props))
+      return this.props.history.push("/filing")
 
     const filingPeriod = this.props.match.params.filingPeriod
-    
-    if(this.isPeriodReachable(filingPeriod))
+
+    // If check is used to allow /profile to be acceptable and not force endless re-directs
+    if (this.props.location.pathname.includes("/profile")) {} 
+    else if (this.isPeriodReachable(filingPeriod))
       this.props.dispatch(updateFilingPeriod(filingPeriod))
-    else 
-      this.redirectToReachablePeriod(filingPeriod)
-    
+    else this.redirectToReachablePeriod(filingPeriod)
+
     const keycloak = initKeycloak()
-    keycloak.init({ pkceMethod: 'S256' }).then(authenticated => {
+    keycloak.init({ pkceMethod: "S256" }).then(authenticated => {
       this.keycloakConfigured = true
       if (authenticated) {
         AccessToken.set(keycloak.token)
@@ -42,29 +43,29 @@ export class AppContainer extends Component {
         if (this.props.redirecting) this.props.dispatch(isRedirecting(false))
         else this.forceUpdate()
       } else {
-        if (!this._isHome(this.props))
-          login(this.props.location.pathname)
+        if (!this._isHome(this.props)) login(this.props.location.pathname)
       }
     })
   }
 
   componentDidUpdate(prevProps) {
-    if(this.props.maintenanceMode && !this._isHome(this.props))
-      return this.props.history.push('/filing')
+    if (this.props.maintenanceMode && !this._isHome(this.props))
+      return this.props.history.push("/filing")
 
     const filingPeriod = this.props.match.params.filingPeriod
-    if (!this.isPeriodReachable(filingPeriod))
+    // If check is used to allow /profile to be acceptable and not force endless re-directs
+    if (this.props.location.pathname.includes("/profile")) {}
+    else if (!this.isPeriodReachable(filingPeriod)) {
       this.redirectToReachablePeriod(filingPeriod)
-    else if (filingPeriod !== this.props.filingPeriod)
+    } else if (filingPeriod !== this.props.filingPeriod)
       this.props.dispatch(updateFilingPeriod(filingPeriod))
-
     const keycloak = getKeycloak()
-    if (!keycloak.authenticated && !this._isHome(this.props)){
-      if(this.keycloakConfigured) login(this.props.location.pathname)
+    if (!keycloak.authenticated && !this._isHome(this.props)) {
+      if (this.keycloakConfigured) login(this.props.location.pathname)
     }
 
-    if (this.props.location.pathname !== prevProps.location.pathname){
-      window.scrollTo(0,0)
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      window.scrollTo(0, 0)
     }
   }
 
