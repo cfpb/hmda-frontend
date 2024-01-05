@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react"
+import React, { useEffect } from "react"
 import { Link } from "react-router-dom"
 import BannerUSA from "./BannerUSA"
 import { defaultLinks } from "./constants/links"

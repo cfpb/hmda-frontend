@@ -34,6 +34,10 @@ export default () => {
         '/v2/filing': { // Fetch all filings
           target: process.env.DEV_URL,
           changeOrigin: true,
+        },
+        '/v2/admin/institutions': { // HMDA Help endpoint
+          target: process.env.DEV_URL,
+          changeOrigin: true,
         }
       },
     },
