@@ -13,24 +13,32 @@
   flex-direction: column;
   flex: 1;
   text-align: center;
-  padding: .5em 0;
+  padding: 0.5em 0;
 }
 
 .loan-grouping-calendar .quarter .label {
-  margin-bottom: .25em;
+  margin-bottom: 0.25em;
   font-weight: bold;
   text-transform: uppercase;
 }
 
 .loan-grouping-calendar .quarter .dates {
   color: white;
-  font-size: 1.2em;  
+  font-size: 1.2em;
   font-family: 'SourceSansPro';
   border: 1px solid black;
   padding: 5px;
 }
 
-.loan-grouping-calendar .q1 .dates { background-color: #2783f4 }
-.loan-grouping-calendar .q2 .dates { background-color: #239a41 }
-.loan-grouping-calendar .q3 .dates { background-color: #ce7d0c }
-.loan-grouping-calendar .q4 .dates { background-color: #934ae0 }
+.loan-grouping-calendar .q1 .dates {
+  background-color: #2783f4;
+}
+.loan-grouping-calendar .q2 .dates {
+  background-color: #239a41;
+}
+.loan-grouping-calendar .q3 .dates {
+  background-color: #ce7d0c;
+}
+.loan-grouping-calendar .q4 .dates {
+  background-color: #934ae0;
+}

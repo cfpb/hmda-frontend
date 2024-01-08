@@ -5,7 +5,7 @@ import Alert from '../../common/Alert.jsx'
 const InputError = ({ isSubmitted, errors }) => {
   if (isSubmitted && errors.length > 0) {
     return (
-      <Alert type="error" heading="Sorry!">
+      <Alert type='error' heading='Sorry!'>
         <ul>
           {errors.map((error, i) => {
             return <li key={i}>{error}</li>
@@ -20,7 +20,7 @@ const InputError = ({ isSubmitted, errors }) => {
 
 InputError.propTypes = {
   errors: PropTypes.array,
-  isSubmitted: PropTypes.bool
+  isSubmitted: PropTypes.bool,
 }
 
 export default InputError

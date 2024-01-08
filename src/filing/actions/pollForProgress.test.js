@@ -10,12 +10,12 @@ import fs from 'fs'
 import { VALIDATING } from '../constants/statusCodes.js'
 
 const filingsObj = JSON.parse(
-  fs.readFileSync('./test-resources/json/filings.json')
+  fs.readFileSync('./test-resources/json/filings.json'),
 )
 getLatestSubmission.mockImplementation(() =>
-  Promise.resolve(filingsObj.submissions[2])
+  Promise.resolve(filingsObj.submissions[2]),
 )
-getEdits.mockImplementation(id => Promise.resolve({ fakeEdits: 1 }))
+getEdits.mockImplementation((id) => Promise.resolve({ fakeEdits: 1 }))
 const mockStore = configureMockStore([thunk])
 
 describe('pollForProgress', () => {
@@ -26,7 +26,7 @@ describe('pollForProgress', () => {
     })
   })
 
-  it('creates a thunk that will poll for updated status codes in the latest submission', done => {
+  it('creates a thunk that will poll for updated status codes in the latest submission', (done) => {
     const store = mockStore({ submission: {} })
     const submission = filingsObj.submissions[2]
 
@@ -42,28 +42,28 @@ describe('pollForProgress', () => {
             id: submission.id,
             status: submission.status,
             start: submission.start,
-            end: submission.end
+            end: submission.end,
           },
           {
-            type: 'REQUEST_EDITS'
+            type: 'REQUEST_EDITS',
           },
           {
             edits: {
-              fakeEdits: 1
+              fakeEdits: 1,
             },
-            type: 'RECEIVE_EDITS'
-          }
+            type: 'RECEIVE_EDITS',
+          },
         ])
 
         done()
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err)
         done.fail()
       })
   })
 
-  it('creates a thunk that will poll for updated status codes in the latest submission, but will not get errors', done => {
+  it('creates a thunk that will poll for updated status codes in the latest submission, but will not get errors', (done) => {
     const store = mockStore({ submission: {} })
     const submission = filingsObj.submissions[1]
 
@@ -71,7 +71,7 @@ describe('pollForProgress', () => {
     global.location = { pathname: '/upload' }
 
     getLatestSubmission.mockImplementation(() =>
-      Promise.resolve(filingsObj.submissions[1])
+      Promise.resolve(filingsObj.submissions[1]),
     )
     store
       .dispatch(pollForProgress())
@@ -82,13 +82,13 @@ describe('pollForProgress', () => {
             id: submission.id,
             status: submission.status,
             start: submission.start,
-            end: submission.end
-          }
+            end: submission.end,
+          },
         ])
 
         done()
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err)
         done.fail()
       })
@@ -121,8 +121,8 @@ describe('pollForProgress', () => {
           id: submission.id,
           status: submission.status,
           start: submission.start,
-          end: submission.end
-        }
+          end: submission.end,
+        },
       ])
       expect(timeout).toBeCalled()
       expect(typeof timeout.mock.calls[0][0]).toBe('function')
@@ -130,24 +130,24 @@ describe('pollForProgress', () => {
     })
   })
 
-  it('handles errors when introduced', done => {
+  it('handles errors when introduced', (done) => {
     delete window.setTimeout
     const timeout = jest.fn()
     window.setTimeout = timeout
 
     console.error = jest.fn()
     getLatestSubmission.mockImplementation(() =>
-      Promise.resolve({ status: 404, statusText: 'argle' })
+      Promise.resolve({ status: 404, statusText: 'argle' }),
     )
     const poller = pollForProgress()
-    poller().then(json => {
+    poller().then((json) => {
       expect(json).toBe(undefined)
       expect(timeout).toBeCalled()
       expect(console.error).not.toBeCalled()
-      poller().then(json => {
+      poller().then((json) => {
         expect(json).toBe(undefined)
         expect(console.error).not.toBeCalled()
-        poller(jest.fn()).then(json => {
+        poller(jest.fn()).then((json) => {
           expect(json).toBe(undefined)
           expect(console.error).toBeCalled()
           done()
@@ -156,7 +156,7 @@ describe('pollForProgress', () => {
     })
   })
 
-  it('does not process old polls', done => {
+  it('does not process old polls', (done) => {
     delete global.location
     global.location = { pathname: '/upload' }
 
@@ -168,7 +168,7 @@ describe('pollForProgress', () => {
 
     const p1 = pollForProgress()
     pollForProgress()
-    p1(jest.fn(fn => Promise.resolve('defined'))).then(json => {
+    p1(jest.fn((fn) => Promise.resolve('defined'))).then((json) => {
       expect(json).toBe(null)
       expect(console.error).not.toBeCalled()
       done()

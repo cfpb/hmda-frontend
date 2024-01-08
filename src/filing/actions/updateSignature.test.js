@@ -8,11 +8,11 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { postSignature } from '../api/api.js'
 
-postSignature.mockImplementation(id => Promise.resolve({ status: 10 }))
+postSignature.mockImplementation((id) => Promise.resolve({ status: 10 }))
 const mockStore = configureMockStore([thunk])
 
 describe('updateSignature', () => {
-  it('creates a thunk that will update a signature', done => {
+  it('creates a thunk that will update a signature', (done) => {
     const store = mockStore({})
 
     store
@@ -23,25 +23,25 @@ describe('updateSignature', () => {
           {
             type: types.RECEIVE_SIGNATURE_POST,
             receipt: undefined,
-            timestamp: undefined
+            timestamp: undefined,
           },
           {
             type: types.UPDATE_STATUS,
-            status: {}
-          }
+            status: {},
+          },
         ])
         done()
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err)
         done.fail()
       })
   })
-  it('handles errors when introduced', done => {
+  it('handles errors when introduced', (done) => {
     const store = mockStore({})
     console.error = jest.fn()
     postSignature.mockImplementation(() =>
-      Promise.resolve({ status: 404, statusText: 'argle' })
+      Promise.resolve({ status: 404, statusText: 'argle' }),
     )
 
     store
@@ -51,12 +51,12 @@ describe('updateSignature', () => {
           { type: types.REQUEST_SIGNATURE_POST },
           {
             type: types.RECEIVE_ERROR,
-            error: { status: 404, statusText: 'argle' }
-          }
+            error: { status: 404, statusText: 'argle' },
+          },
         ])
         done()
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err)
         done.fail()
       })

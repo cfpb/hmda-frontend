@@ -18,8 +18,9 @@ export function mapStateToProps(state) {
   const { code } = state.app.submission.status
   const { newFile } =
     state.app.upload[lei] || state.app.upload['__DEFAULT_UPLOAD__']
-  const institution = lei && 
-    state.app.institutions.fetched && 
+  const institution =
+    lei &&
+    state.app.institutions.fetched &&
     state.app.institutions.institutions[lei]
 
   return {
@@ -28,7 +29,7 @@ export function mapStateToProps(state) {
     code,
     showing,
     newFile,
-    institution
+    institution,
   }
 }
 
@@ -41,8 +42,8 @@ export function mapDispatchToProps(dispatch, ownProps) {
     dispatch(startRefile())
     dispatch(refreshState())
     if (page === 'upload' && file) {
-      checkFileErrors(file, fileErrors => {
-        if (fileErrors.length){
+      checkFileErrors(file, (fileErrors) => {
+        if (fileErrors.length) {
           dispatch(refileReady())
           return dispatch(processFileErrors(fileErrors, file.name))
         }
@@ -55,7 +56,7 @@ export function mapDispatchToProps(dispatch, ownProps) {
     } else {
       return dispatch(fetchNewSubmission(lei, period)).then(() => {
         const pathname = `/filing/${period}/${lei}/upload`
-        if(page === 'institutions') ownProps.history.push(pathname)
+        if (page === 'institutions') ownProps.history.push(pathname)
         else ownProps.history.replace(pathname)
         dispatch(refileReady())
       })
@@ -64,11 +65,10 @@ export function mapDispatchToProps(dispatch, ownProps) {
 
   return {
     hideConfirmModal,
-    triggerRefile
+    triggerRefile,
   }
 }
 
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ConfirmationModal))
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ConfirmationModal),
+)

@@ -4,13 +4,9 @@ import Home from './index.jsx'
 import InstitutionsContainer from '../institutions/container.jsx'
 
 export class HomeContainer extends Component {
-  
   render() {
-    if (this.props.user === null || this.props.maintenanceMode) return (
-      <Home
-        maintenanceMode={this.props.maintenanceMode}
-      />
-    )
+    if (this.props.user === null || this.props.maintenanceMode)
+      return <Home maintenanceMode={this.props.maintenanceMode} />
     return <InstitutionsContainer />
   }
 }
@@ -20,7 +16,7 @@ export function mapStateToProps(state, ownProps) {
     user: state.app.user.oidc,
     filingPeriods: ownProps.config.filingPeriods,
     maintenanceMode: ownProps.config.maintenanceMode,
-    announcement: ownProps.config.announcement
+    announcement: ownProps.config.announcement,
   }
 }
 

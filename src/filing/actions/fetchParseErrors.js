@@ -6,11 +6,11 @@ import { getParseErrors } from '../api/api.js'
 import { error } from '../utils/log.js'
 
 export default function fetchParseErrors() {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(requestParseErrors())
     return getParseErrors()
-      .then(json => {
-        return hasHttpError(json).then(hasError => {
+      .then((json) => {
+        return hasHttpError(json).then((hasError) => {
           if (hasError) {
             dispatch(receiveError(json))
             throw new Error(json && `${json.status}: ${json.statusText}`)
@@ -18,7 +18,7 @@ export default function fetchParseErrors() {
           return dispatch(receiveParseErrors(json))
         })
       })
-      .catch(err => {
+      .catch((err) => {
         error(err)
       })
   }

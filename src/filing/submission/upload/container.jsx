@@ -4,7 +4,7 @@ import handleFile from '../../actions/handleFile.js'
 import pollForProgress from '../../actions/pollForProgress.js'
 
 export function mapStateToProps(state) {
-  const { lei, filingPeriod, submission }= state.app
+  const { lei, filingPeriod, submission } = state.app
   const code = submission.status.code
   const filename = submission.filename
 
@@ -23,7 +23,7 @@ export function mapStateToProps(state) {
     filename,
     filingPeriod,
     lei,
-    uploading
+    uploading,
   }
 }
 
@@ -35,11 +35,8 @@ export function mapDispatchToProps(dispatch) {
     },
     pollSubmission() {
       dispatch(pollForProgress())
-    }
+    },
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Upload)
+export default connect(mapStateToProps, mapDispatchToProps)(Upload)

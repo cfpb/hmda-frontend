@@ -3,12 +3,12 @@ import { shallow } from 'enzyme'
 import Geography from './Geography'
 
 describe('Geography', () => {
-  const geoFromQS = qs =>
+  const geoFromQS = (qs) =>
     shallow(
       <Geography
         location={{ search: qs, pathname: '/data/2018' }}
         match={{ params: { year: '2018' } }}
-      />
+      />,
     )
 
   const getActionProp = (wrapper, key) =>

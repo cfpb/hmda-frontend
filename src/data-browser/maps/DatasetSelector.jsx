@@ -3,11 +3,11 @@ import Select from '../Select.jsx'
 
 /**
  * The DatasetSelector component was built with the intention of allowing
- * users to select which dataset is used as the source for their queries. 
- *  
- * For now, we have decided to automatically provide users with the 
- * latest-available dataset.  
- *  
+ * users to select which dataset is used as the source for their queries.
+ *
+ * For now, we have decided to automatically provide users with the
+ * latest-available dataset.
+ *
  * Keeping this component around to make it easy to enable this functionality
  * in the future.
  */
@@ -32,8 +32,8 @@ export const DatasetSelector = ({ dataset, year, setDataset, menuStyle }) => {
                 value: datasetsAvailable[0],
               }
         }
-        onChange={opt => setDataset(opt.value)}
-        options={datasetsAvailable.map(d => ({
+        onChange={(opt) => setDataset(opt.value)}
+        options={datasetsAvailable.map((d) => ({
           label: d,
           value: d,
         }))}

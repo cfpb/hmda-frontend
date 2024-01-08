@@ -30,7 +30,7 @@ function mapStateToProps(state, ownProps) {
   fetchChecker[ownProps.target] = isFetching
   return {
     pagination: state.app.pagination[ownProps.target],
-    transmittalSheetErrors: state.app.parseErrors.transmittalSheetErrors
+    transmittalSheetErrors: state.app.parseErrors.transmittalSheetErrors,
   }
 }
 
@@ -51,24 +51,24 @@ function mapDispatchToProps(dispatch, ownProps) {
       if (!pagination || page === undefined) return
       fetchAndFade(dispatch, ownProps.target, pagination, '?page=' + page)
     },
-    getNextPage: pagination => {
+    getNextPage: (pagination) => {
       if (!pagination) return
       fetchAndFade(
         dispatch,
         ownProps.target,
         pagination,
-        pagination._links.next
+        pagination._links.next,
       )
     },
-    getPreviousPage: pagination => {
+    getPreviousPage: (pagination) => {
       if (!pagination) return
       fetchAndFade(
         dispatch,
         ownProps.target,
         pagination,
-        pagination._links.prev
+        pagination._links.prev,
       )
-    }
+    },
   }
 }
 
@@ -82,5 +82,5 @@ export {
   PaginationContainer,
   mapStateToProps,
   mapDispatchToProps,
-  makePathname
+  makePathname,
 }

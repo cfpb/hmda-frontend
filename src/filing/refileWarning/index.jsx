@@ -8,12 +8,12 @@ import {
   PARSED_WITH_ERRORS,
   SYNTACTICAL_VALIDITY_EDITS,
   MACRO_EDITS,
-  VALIDATED
+  VALIDATED,
 } from '../constants/statusCodes.js'
 
 import './RefileWarning.css'
 
-export const getText = props => {
+export const getText = (props) => {
   const periodIsClosed = props.isPassed
   let text = null
   let button = !periodIsClosed && <RefileButton />
@@ -39,7 +39,7 @@ export const getText = props => {
       )
     }
   } else if (props.code === SYNTACTICAL_VALIDITY_EDITS) {
-    if (periodIsClosed){
+    if (periodIsClosed) {
       text = <NoNewChanges />
     } else {
       text = (
@@ -53,7 +53,7 @@ export const getText = props => {
     (props.qualityExists && props.page === 'quality') ||
     (props.macroExists && props.page === 'macro')
   ) {
-    if (periodIsClosed){
+    if (periodIsClosed) {
       text = <NoNewChanges />
     } else {
       text = (
@@ -69,7 +69,7 @@ export const getText = props => {
   }
   if (props.code === PARSED_WITH_ERRORS) {
     reviewAndDownload = null
-    if (periodIsClosed){
+    if (periodIsClosed) {
       text = <NoNewChanges />
     } else {
       text = (
@@ -112,7 +112,7 @@ export const getText = props => {
   )
 }
 
-export const getHeading = props => {
+export const getHeading = (props) => {
   let heading = null
 
   if (props.code === FAILED) {
@@ -140,7 +140,7 @@ const NoNewChanges = ({ className }) => {
   )
 }
 
-const RefileWarning = props => {
+const RefileWarning = (props) => {
   const { code, page } = props
   if (code > FAILED) {
     if (code >= VALIDATED || code < PARSED_WITH_ERRORS) return null
@@ -166,7 +166,7 @@ const RefileWarning = props => {
   }
 
   return (
-    <div className="RefileWarning">
+    <div className='RefileWarning'>
       <Alert type={alertClass} heading={getHeading(props)}>
         {getText(props)}
       </Alert>
@@ -177,7 +177,7 @@ const RefileWarning = props => {
 RefileWarning.propTypes = {
   page: PropTypes.string,
   base: PropTypes.string,
-  code: PropTypes.number
+  code: PropTypes.number,
 }
 
 export default RefileWarning

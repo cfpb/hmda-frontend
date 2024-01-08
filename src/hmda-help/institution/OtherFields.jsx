@@ -7,8 +7,8 @@ import InputRadio from '../InputRadio'
 
 import { otherInputs } from '../constants/inputs'
 
-const OtherFields = props => {
-  return otherInputs.map(otherInput => {
+const OtherFields = (props) => {
+  return otherInputs.map((otherInput) => {
     if (otherInput.type === 'select') {
       return (
         <InputSelect
@@ -54,7 +54,7 @@ const OtherFields = props => {
 
 OtherFields.propTypes = {
   institution: PropTypes.object,
-  onInputChange: PropTypes.func.isRequired
+  onInputChange: PropTypes.func.isRequired,
 }
 
 export default OtherFields

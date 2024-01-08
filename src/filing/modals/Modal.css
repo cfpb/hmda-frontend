@@ -1,6 +1,8 @@
 .modal {
   transition: top 0.2s;
-  box-shadow: 0 1px 2px 0 #212121, 0 8px 8px -6px #212121;
+  box-shadow:
+    0 1px 2px 0 #212121,
+    0 8px 8px -6px #212121;
   background: #ffffff;
   left: 50%;
   width: 40%;
@@ -55,7 +57,9 @@
   left: 0;
   right: 0;
   z-index: 9002;
-  transition: visibility 0.2s, opacity 0.2s;
+  transition:
+    visibility 0.2s,
+    opacity 0.2s;
 }
 
 .modal .inline {

@@ -22,7 +22,10 @@ class Home extends Component {
               visualize HMDA datasets.
             </p>
             <p className='lead'>
-              Visit our <a href='/documentation/api/data-browser/'>HMDA Data Browser API</a> {" "}
+              Visit our{' '}
+              <a href='/documentation/api/data-browser/'>
+                HMDA Data Browser API
+              </a>{' '}
               page to learn more about the HMDA Data Browser API.
             </p>
           </Heading>

@@ -9,7 +9,7 @@ import './UploadForm.css'
 let timeout = null
 
 export const UploadErrors = ({ errors, parsed, parseErrors }) => {
-  const[ref, scrollToRef] = useScrollIntoView()
+  const [ref, scrollToRef] = useScrollIntoView()
 
   useEffect(() => {
     scrollToRef()
@@ -34,16 +34,14 @@ export const UploadErrors = ({ errors, parsed, parseErrors }) => {
       </span>
     )
 
-  if (!errors.length && !parseErrors) return (
-    <span ref={ref}>
-      <Alert
-        type='success'
-        heading='Congratulations! No Formatting Errors.'
-      >
-        <p>Your file meets the specified formatting requirements.</p>
-      </Alert>
-    </span>
-  )
+  if (!errors.length && !parseErrors)
+    return (
+      <span ref={ref}>
+        <Alert type='success' heading='Congratulations! No Formatting Errors.'>
+          <p>Your file meets the specified formatting requirements.</p>
+        </Alert>
+      </span>
+    )
 
   return null
 }
@@ -61,8 +59,8 @@ export default class Upload extends Component {
         props.errors.length !== 0
           ? "Sorry, we can't check "
           : fileStatus === 'error'
-          ? 'Errors found in '
-          : 'No errors found in '
+            ? 'Errors found in '
+            : 'No errors found in '
       content = (
         <React.Fragment>
           <p>
@@ -76,7 +74,7 @@ export default class Upload extends Component {
       )
     }
 
-    return <div className="dropzone-content">{content}</div>
+    return <div className='dropzone-content'>{content}</div>
   }
 
   componentDidUpdate() {
@@ -95,23 +93,27 @@ export default class Upload extends Component {
       !parsed && !uploadErrorCount
         ? ''
         : errorCount + uploadErrorCount > 0
-        ? 'error'
-        : 'success'
+          ? 'error'
+          : 'success'
 
     return (
       <div>
         <div className={`UploadForm ${fileStatus}`}>
-          <UploadErrors errors={this.props.errors} parsed={parsed} parseErrors={errorCount} />
-          <div className="container-upload">
-            <Dropzone
-              disablePreview={true}
-              onDrop={setFile}
-              multiple={false}
-            >
-              {({getRootProps, getInputProps}) => {
+          <UploadErrors
+            errors={this.props.errors}
+            parsed={parsed}
+            parseErrors={errorCount}
+          />
+          <div className='container-upload'>
+            <Dropzone disablePreview={true} onDrop={setFile} multiple={false}>
+              {({ getRootProps, getInputProps }) => {
                 return (
-                  <div {...getRootProps({className: `dropzone ${dropzoneDisabled}`})}>
-                    <input {...getInputProps()}/>
+                  <div
+                    {...getRootProps({
+                      className: `dropzone ${dropzoneDisabled}`,
+                    })}
+                  >
+                    <input {...getInputProps()} />
                     {this.updateDropArea(this.props, fileStatus)}
                   </div>
                 )
@@ -130,12 +132,12 @@ Upload.propTypes = {
   file: PropTypes.object,
   code: PropTypes.number,
   errors: PropTypes.array,
-  filingPeriod: PropTypes.string
+  filingPeriod: PropTypes.string,
 }
 
 Upload.defaultProps = {
   file: {
-    name: 'No file chosen'
+    name: 'No file chosen',
   },
-  errors: []
+  errors: [],
 }

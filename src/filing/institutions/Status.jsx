@@ -1,11 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import CSVDownload from '../common/CSVContainer.jsx'
-import { CREATED, NO_QUALITY_EDITS, NO_MACRO_EDITS, SIGNED, VALIDATING } from '../constants/statusCodes.js'
+import {
+  CREATED,
+  NO_QUALITY_EDITS,
+  NO_MACRO_EDITS,
+  SIGNED,
+  VALIDATING,
+} from '../constants/statusCodes.js'
 
 import './Status.css'
 
-const defaultSubmission = closed => ({
+const defaultSubmission = (closed) => ({
   status: {
     code: CREATED,
     message: closed
@@ -13,21 +19,24 @@ const defaultSubmission = closed => ({
       : 'No data has been uploaded yet.',
     description: closed
       ? 'The filing period is closed and not accepting HMDA data.'
-      : 'The filing period is open and available to accept HMDA data. Make sure your data is in a pipe-delimited text file.'
-  }
+      : 'The filing period is open and available to accept HMDA data. Make sure your data is in a pipe-delimited text file.',
+  },
 })
 
 const InstitutionStatus = ({ submission, filing, isClosed }) => {
   const currSubmission = submission || defaultSubmission(isClosed)
   const { isStalled } = currSubmission
   const { code, message, description } = currSubmission.status
-  const qualityOverride = code > NO_QUALITY_EDITS && (currSubmission.qualityExists && !currSubmission.qualityVerified)
+  const qualityOverride =
+    code > NO_QUALITY_EDITS &&
+    currSubmission.qualityExists &&
+    !currSubmission.qualityVerified
   const submitOverride = code === NO_MACRO_EDITS
   const refileInProgress =
     filing && filing.status && filing.status.code === 3 && code !== SIGNED
-  
-  let heading = message 
-  let body = description 
+
+  let heading = message
+  let body = description
 
   if (isStalled) {
     heading = 'Your previous upload attempt failed.'
@@ -36,7 +45,8 @@ const InstitutionStatus = ({ submission, filing, isClosed }) => {
     heading = 'Your data has quality edits that need to be reviewed.'
   } else if (submitOverride) {
     heading = 'Your data is ready for submission.'
-    body = 'Your financial institution has certified that the data is correct, but it has not been submitted yet.'
+    body =
+      'Your financial institution has certified that the data is correct, but it has not been submitted yet.'
   }
 
   return (
@@ -65,7 +75,7 @@ const InstitutionStatus = ({ submission, filing, isClosed }) => {
 InstitutionStatus.propTypes = {
   filing: PropTypes.object,
   submission: PropTypes.object,
-  isClosed: PropTypes.bool
+  isClosed: PropTypes.bool,
 }
 
 export default InstitutionStatus

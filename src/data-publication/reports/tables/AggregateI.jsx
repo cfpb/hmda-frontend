@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const renderData = institutions => {
+const renderData = (institutions) => {
   const sortedInstitutions = institutions.sort()
   return getRows(sortedInstitutions)
 }
 
-const getRows = institutions => {
+const getRows = (institutions) => {
   let toRender = []
   let institutionsToRender = []
 
@@ -29,7 +29,7 @@ const getRows = institutions => {
               </td>
             )
           })}
-        </tr>
+        </tr>,
       )
 
       institutionsToRender = []
@@ -42,7 +42,7 @@ const getRows = institutions => {
 const AggregateI = React.forwardRef((props, ref) => {
   if (!props.report) return null
   return (
-    <table ref={ref} className="narrowTable">
+    <table ref={ref} className='narrowTable'>
       <thead>
         <tr>
           <th style={{ borderWidth: 0, textAlign: 'left' }} colSpan={3}>
@@ -56,7 +56,7 @@ const AggregateI = React.forwardRef((props, ref) => {
 })
 
 AggregateI.propTypes = {
-  report: PropTypes.object
+  report: PropTypes.object,
 }
 
 export default AggregateI

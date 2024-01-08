@@ -7,7 +7,7 @@ import { renderDatasets, renderDocumentation } from './snapshotHelpers'
 import './Snapshot.css'
 
 const Paragraphs = {
-  snapshot: freezeDate =>
+  snapshot: (freezeDate) =>
     `The Snapshot files contain the national HMDA datasets as of ${freezeDate} for all HMDA reporters, as modified by the Bureau to protect applicant and borrower privacy. The snapshot files are  available to download in both .csv and pipe delimited text file formats.`,
   oneYear: (freezeDate, year) => {
     if (!freezeDate)

@@ -15,8 +15,8 @@ AvoidJumpToDataTable(Highcharts) // Workaround for Accessibility module bug
 
 Highcharts.setOptions({
   lang: {
-    thousandsSep: ','
-  }
+    thousandsSep: ',',
+  },
 })
 
 export const Graph = ({ options, loading, seriesForURL }) => {
@@ -35,11 +35,11 @@ export const Graph = ({ options, loading, seriesForURL }) => {
    * https://github.com/highcharts/highcharts-react/issues/315
    */
   const onLoad = useCallback(
-    ref => {
+    (ref) => {
       // Hide series based on URL query parameters
       hideUnselectedLines(ref, seriesForURL)
     },
-    [seriesForURL]
+    [seriesForURL],
   )
 
   useGraphLoading(chartRef, loading, options)

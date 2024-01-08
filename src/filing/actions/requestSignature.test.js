@@ -6,7 +6,7 @@ import requestSignature from './requestSignature.js'
 describe('requestSignature', () => {
   it('creates an action to signal a request for the signature', () => {
     expect(requestSignature()).toEqual({
-      type: types.REQUEST_SIGNATURE
+      type: types.REQUEST_SIGNATURE,
     })
   })
 })

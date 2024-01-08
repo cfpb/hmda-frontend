@@ -10,8 +10,8 @@ describe('InstitutionNameAndId', () => {
   it('renders the institution name and lei', () => {
     const nameAndId = TestUtils.renderIntoDocument(
       <Wrapper>
-        <InstitutionNameAndId lei="123456" name="Bank0" />
-      </Wrapper>
+        <InstitutionNameAndId lei='123456' name='Bank0' />
+      </Wrapper>,
     )
     const nameAndIdNode = ReactDOM.findDOMNode(nameAndId)
 

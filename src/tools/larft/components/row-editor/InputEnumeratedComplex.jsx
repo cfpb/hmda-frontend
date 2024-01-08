@@ -1,6 +1,6 @@
 /**
  * An input with enumerations that also allows for freeform text.
- * 
+ *
  * @param {Object} column Field details
  * @param {Object} row LAR/TS row content
  * @param {Object} common Additional input attributes
@@ -28,10 +28,7 @@ const Selector = ({ value, enumerations, name, ...common }) => {
     <select {...common} value={value}>
       {enumerations.map((e, idx) => {
         return (
-          <option
-            key={`${name}-${e.value}-${idx}}`}
-            value={e.value}
-          >
+          <option key={`${name}-${e.value}-${idx}}`} value={e.value}>
             {e.description}
           </option>
         )
@@ -65,7 +62,7 @@ const getLabel = ({ description, value }) => {
 
 const allowOptionOther = (userInput, enumerations) => {
   // Display enumerated value in drop-down if input matches
-  if (enumerations.some(enumeration => enumeration.value == userInput)) {
+  if (enumerations.some((enumeration) => enumeration.value == userInput)) {
     return userInput
   }
 

@@ -5,7 +5,7 @@ import { InputText } from './InputText'
 
 /**
  * Text input (Date or Freeform)
- * 
+ *
  * @param {Object} row LAR/TS row content
  * @param {Object} column Field details
  * @param {Object} props Additional input attributes
@@ -17,11 +17,5 @@ export const InputFreeform = ({ row, column, ...props }) => {
     return <InputDate {...props} value={value} />
   }
 
-  return (
-    <InputText
-      {...props}
-      type={getFieldType(column)}
-      value={value}
-    />
-  )
+  return <InputText {...props} type={getFieldType(column)} value={value} />
 }

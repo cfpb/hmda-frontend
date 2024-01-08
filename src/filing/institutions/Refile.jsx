@@ -8,11 +8,7 @@ const InstitutionRefile = ({ status, institution, isClosed }) => {
   if (isClosed) return null
   if (status.code === PARSED_WITH_ERRORS || status.code > VALIDATING) {
     return (
-      <RefileButton
-        institution={institution}
-        isLink={true}
-        isSmall={true}
-      />
+      <RefileButton institution={institution} isLink={true} isSmall={true} />
     )
   } else {
     return null
@@ -21,7 +17,7 @@ const InstitutionRefile = ({ status, institution, isClosed }) => {
 
 InstitutionRefile.propTypes = {
   status: PropTypes.object,
-  institution: PropTypes.object
+  institution: PropTypes.object,
 }
 
 export default InstitutionRefile

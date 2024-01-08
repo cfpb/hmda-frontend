@@ -7,20 +7,22 @@ function makeAsyncComponent(importComponentFn, title, description) {
     const [Component, setComponent] = useState(null)
 
     useEffect(() => {
-      importComponentFn().then(component => {
+      importComponentFn().then((component) => {
         setComponent(component.default)
       })
     }, [])
 
-    return Component
-      ? <>
-          <Helmet>
-            <title>{title}</title>
-            <meta name="description" content={description}/>
-          </Helmet>
-          {Component}
-        </>
-      : <LoadingIcon/>
+    return Component ? (
+      <>
+        <Helmet>
+          <title>{title}</title>
+          <meta name='description' content={description} />
+        </Helmet>
+        {Component}
+      </>
+    ) : (
+      <LoadingIcon />
+    )
   }
 }
 

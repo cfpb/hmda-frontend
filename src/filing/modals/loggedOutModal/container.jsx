@@ -13,7 +13,7 @@ export function mapDispatchToProps(dispatch) {
   return {
     clearErrorModal() {
       dispatch(clearUserError())
-    }
+    },
   }
 }
 

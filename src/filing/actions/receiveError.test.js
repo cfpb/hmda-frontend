@@ -7,14 +7,14 @@ describe('receiveError', () => {
   it('creates an action to signal receiving an error', () => {
     expect(receiveError('b')).toEqual({
       type: types.RECEIVE_ERROR,
-      error: 'b'
+      error: 'b',
     })
   })
 
   it('creates an action to signal receiving an error when no error passed', () => {
     expect(receiveError()).toEqual({
       type: types.RECEIVE_ERROR,
-      error: new Error('Unexpected error')
+      error: new Error('Unexpected error'),
     })
   })
 })

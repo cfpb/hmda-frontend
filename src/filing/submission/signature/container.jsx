@@ -28,19 +28,19 @@ export function mapStateToProps(state) {
     receipt,
     status,
     checked,
-    error
+    error,
   }
 }
 
 export function mapDispatchToProps(dispatch, ownProps) {
   return {
-    onSignatureClick: signed => {
+    onSignatureClick: (signed) => {
       dispatch(updateSignature(signed, ownProps.lei))
     },
-    onSignatureCheck: checked => {
+    onSignatureCheck: (checked) => {
       dispatch(checkSignature(checked))
     },
-    dispatch
+    dispatch,
   }
 }
 

@@ -4,14 +4,22 @@ import YearSelector from '../../common/YearSelector.jsx'
 import { DYNAMIC_DATASET } from '../constants/dynamic-dataset.js'
 import { withAppContext } from '../../common/appContextHOC.jsx'
 import { S3DatasetLink } from '../../common/S3Integrations'
-import CfpbClock from "../../common/images/cfpb-clock.svg?react"
-import CfpbLock from "../../common/images/cfpb-lock.svg?react"
+import CfpbClock from '../../common/images/cfpb-clock.svg?react'
+import CfpbLock from '../../common/images/cfpb-lock.svg?react'
 import { withYearValidation } from '../../common/withYearValidation.jsx'
 import './DynamicDataset.css'
 
 const linkToDocs2017 = ({ lar_spec, ts_spec }) => [
-  <S3DatasetLink url={lar_spec} label='Loan/Application Records (LAR)' key='lar-docs' />,
-  <S3DatasetLink url={ts_spec} label='Transmittal Sheet Records (TS)' key='ts-docs' />
+  <S3DatasetLink
+    url={lar_spec}
+    label='Loan/Application Records (LAR)'
+    key='lar-docs'
+  />,
+  <S3DatasetLink
+    url={ts_spec}
+    label='Transmittal Sheet Records (TS)'
+    key='ts-docs'
+  />,
 ]
 
 const BaseIconStyles = {
@@ -46,7 +54,7 @@ function linkToDocs(year = '2018') {
   ]
 }
 
-const DynamicDataset = props => {
+const DynamicDataset = (props) => {
   const { params, url } = props.match
   const year = params.year
   const { filingPeriodStatus, dataPublicationYears } = props.config
@@ -111,21 +119,21 @@ const PublicationUpdateSettings = {
       cname: 'updated',
       message: ({ endDate }) => (
         <>This dataset is open for filer resubmissions through {endDate}.</>
-      )
+      ),
     },
     notUpdated: {
       icon: <CfpbLock {...BaseIconStyles} />,
       cname: 'notUpdated',
       message: ({ endDate }) => (
         <>This dataset is no longer updated as of {endDate}.</>
-      )
-    }
-  }
+      ),
+    },
+  },
 }
 
 const UpdateSchedule = ({ status, publication }) => {
   if (!status) return null // User has not made a selection
-  
+
   const cellStyle = { border: 0, paddingLeft: 0 }
   const settings = PublicationUpdateSettings[publication]
   const isUpdated = status?.isOpen || status?.isLate
@@ -136,8 +144,8 @@ const UpdateSchedule = ({ status, publication }) => {
   return (
     <table id='UpdateSchedule' className='font-lead'>
       <tbody>
-        <tr style={{paddingBottom: 0}}>
-          <td className={'icon ' + cname} style={{ ...cellStyle,  }}>
+        <tr style={{ paddingBottom: 0 }}>
+          <td className={'icon ' + cname} style={{ ...cellStyle }}>
             {icon}
           </td>
           <td className='message' style={cellStyle}>

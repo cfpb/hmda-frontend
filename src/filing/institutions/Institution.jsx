@@ -15,7 +15,7 @@ const Institution = ({
   submissions,
   links,
   submissionPages,
-  selectedPeriod
+  selectedPeriod,
 }) => {
   const status = submission && submission.status
 
@@ -92,7 +92,7 @@ Institution.propTypes = {
   filing: PropTypes.object,
   submission: PropTypes.object,
   submissions: PropTypes.array,
-  selectedPeriod: PropTypes.object
+  selectedPeriod: PropTypes.object,
 }
 
 export default Institution

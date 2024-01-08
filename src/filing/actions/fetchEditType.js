@@ -11,20 +11,20 @@ export default function fetchEditType(type) {
     dispatch(requestEditType(type))
     const promises = []
     const editTypes = getState().app.edits.types
-    editTypes[type].edits.forEach(edit => {
+    editTypes[type].edits.forEach((edit) => {
       dispatch(requestEdit(edit.edit))
       promises.push(
-        getEdit({ edit: edit.edit }).then(json => {
-          return hasHttpError(json).then(hasError => {
+        getEdit({ edit: edit.edit }).then((json) => {
+          return hasHttpError(json).then((hasError) => {
             if (hasError) {
               return dispatch(suppressEdits())
             }
             return dispatch(receiveEdit(json))
           })
-        })
+        }),
       )
     })
-    return Promise.all(promises).then(json => {
+    return Promise.all(promises).then((json) => {
       return dispatch(receiveEditType(type))
     })
   }

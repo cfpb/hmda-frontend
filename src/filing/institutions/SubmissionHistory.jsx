@@ -32,13 +32,16 @@ class InstitutionPreviousSubmissions extends Component {
       .setAttribute('aria-hidden', expanded)
   }
 
-  handlePaginationClick(targetPage){
+  handlePaginationClick(targetPage) {
     this.setState({ page: targetPage })
     this.props.dispatch(fetchFilingPage(this.props.lei, targetPage))
 
     setTimeout(() => {
-      let historyContainer = document.getElementById(`history-${this.props.lei}`)
-      if(historyContainer) historyContainer.scrollIntoView({ behavior: 'smooth' })
+      let historyContainer = document.getElementById(
+        `history-${this.props.lei}`,
+      )
+      if (historyContainer)
+        historyContainer.scrollIntoView({ behavior: 'smooth' })
     }, 0)
   }
 
@@ -49,24 +52,22 @@ class InstitutionPreviousSubmissions extends Component {
     const hasSubmissions = this.props.links.last !== '0'
 
     return (
-      <section className="SubmissionHistory" id={`history-${this.props.lei}`}>
-        <ul className="accordion-bordered">
+      <section className='SubmissionHistory' id={`history-${this.props.lei}`}>
+        <ul className='accordion-bordered'>
           <li>
             <button
-              className="accordion-button"
-              aria-expanded="false"
+              className='accordion-button'
+              aria-expanded='false'
               id={`submissions-button-${this.props.lei}`}
               aria-controls={`submissions-${this.props.lei}`}
-              onClick={event =>
-                this.handleToggleClick(this.props.lei)
-              }
+              onClick={(event) => this.handleToggleClick(this.props.lei)}
             >
               History of your progress in this filing period
             </button>
             <div
               id={`submissions-${this.props.lei}`}
-              className="accordion-content"
-              aria-hidden="true"
+              className='accordion-content'
+              aria-hidden='true'
             >
               {hasSubmissions ? (
                 <p>
@@ -76,8 +77,8 @@ class InstitutionPreviousSubmissions extends Component {
               ) : (
                 'There are no previous submissions.'
               )}
-              <SubmissionHistoryNav 
-                clickHandler={this.handlePaginationClick} 
+              <SubmissionHistoryNav
+                clickHandler={this.handlePaginationClick}
                 links={this.props.links}
                 page={this.state.page}
                 top={true}
@@ -99,7 +100,7 @@ class InstitutionPreviousSubmissions extends Component {
                   if (submission.status.code > VALIDATING) {
                     if (submission.signerUsername)
                       message += ` and was signed by ${submission.signerUsername}`
-                      
+
                     return (
                       <li key={i} value={submission.id.sequenceNumber}>
                         Filing progress on {startDate}:{' '}
@@ -119,8 +120,8 @@ class InstitutionPreviousSubmissions extends Component {
                   )
                 })}
               </ol>
-              <SubmissionHistoryNav 
-                clickHandler={this.handlePaginationClick} 
+              <SubmissionHistoryNav
+                clickHandler={this.handlePaginationClick}
                 links={this.props.links}
                 page={this.state.page}
                 hidden={pageSubmissions.length < 10}
@@ -135,7 +136,7 @@ class InstitutionPreviousSubmissions extends Component {
 
 InstitutionPreviousSubmissions.propTypes = {
   submissions: PropTypes.array,
-  lei: PropTypes.string
+  lei: PropTypes.string,
 }
 
 export default connect()(InstitutionPreviousSubmissions)

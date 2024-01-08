@@ -5,6 +5,7 @@
 These tools are used to generate the submission files for our Cypress integration tests of the HMDA Platform's Filing process.
 
 ## Requirements
+
 1. Install dependencies: `./scripts/lar/setup.sh`
 2. Verify the HMDA Platform + Check Digit service are running locally
 3. Run commands from `hmda-frontend` root dir
@@ -12,14 +13,16 @@ These tools are used to generate the submission files for our Cypress integratio
 ## Running
 
 ### Single Year/Quarter
-| Description | Command |
-|---|---|
-|Usage|`yarn make-lar <LEI> <YEAR-QUARTER> <NUM_ROWS>`|
-|ex. Annual |`yarn make-lar frontendtestbank9999 2023 10`|
-|ex. Quarterly |`yarn make-lar frontendtestbank9999 2023-Q1 10`|
- 
+
+| Description   | Command                                         |
+| ------------- | ----------------------------------------------- |
+| Usage         | `yarn make-lar <LEI> <YEAR-QUARTER> <NUM_ROWS>` |
+| ex. Annual    | `yarn make-lar frontendtestbank9999 2023 10`    |
+| ex. Quarterly | `yarn make-lar frontendtestbank9999 2023-Q1 10` |
+
 ### All Filing Periods
-To generate all annual/quarterly files for given year: 
+
+To generate all annual/quarterly files for given year:
 | Description | Command |
 |---|---|
 |Usage|`./scripts/lar/generateAll.sh <LEI> <YEAR> <NUM_ROWS>` |

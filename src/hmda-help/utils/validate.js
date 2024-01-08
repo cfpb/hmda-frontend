@@ -1,4 +1,4 @@
-const _hasContent = inputValue => {
+const _hasContent = (inputValue) => {
   return inputValue.length > 0 || Number.isInteger(inputValue)
 }
 

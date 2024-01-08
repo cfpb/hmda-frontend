@@ -30,12 +30,20 @@ export const FilterReports = ({ data }) => {
   )
 }
 
-
-const FilterReport = ({ id, filter, otherFilter, values, label, total, level }) => {
+const FilterReport = ({
+  id,
+  filter,
+  otherFilter,
+  values,
+  label,
+  total,
+  level,
+}) => {
   const truthy_values = values.filter(Boolean)
   const [tableRef, scrollToTable] = useScrollIntoView()
 
-  if (!filter || !filter.variable || !filter.value || !truthy_values) return null
+  if (!filter || !filter.variable || !filter.value || !truthy_values)
+    return null
   const { variable, value } = filter
   const primaryFilterHasData = values.length >= 1 && !!values[0]
   const otherFilterHasData = values.length > 1 && !!values[1]
@@ -65,7 +73,6 @@ const FilterReport = ({ id, filter, otherFilter, values, label, total, level }) 
   )
 }
 
-
 const GroupHeaders = ({ label, level, otherFilter }) => (
   <tr>
     <th className='group-header spacer'>{label}</th>
@@ -80,7 +87,6 @@ const GroupHeaders = ({ label, level, otherFilter }) => (
     )}
   </tr>
 )
-
 
 const CountHeaders = ({ variable, values }) => (
   <tr>
@@ -98,7 +104,6 @@ const CountHeaders = ({ variable, values }) => (
   </tr>
 )
 
-
 const BodyRows = ({ valsForVar, variable, value, total, truthy_values }) => {
   return valsForVar[variable.value].map((v, idx) => {
     let val = v.value
@@ -114,7 +119,6 @@ const BodyRows = ({ valsForVar, variable, value, total, truthy_values }) => {
     )
   })
 }
-
 
 const BodyColumns = ({ values, val, cname, total }) =>
   values.reduce(
@@ -133,10 +137,9 @@ const BodyColumns = ({ values, val, cname, total }) =>
           {calcPct(values[v_idx][val], total[v_idx])}%
         </td>,
       ]),
-    []
+    [],
   )
 
-  
 const TotalsRow = ({ total }) => (
   <tr>
     <th>Total</th>
@@ -150,7 +153,7 @@ const TotalsRow = ({ total }) => (
             </td>,
             <td key={`${t_idx}_spacer`} className='spacer'></td>,
           ]),
-        []
+        [],
       )}
   </tr>
 )

@@ -9,7 +9,7 @@
 }
 
 .MailingListSignupForm label {
-  margin: 1.5rem auto .5rem;
+  margin: 1.5rem auto 0.5rem;
   font-size: 2rem;
   font-weight: bold;
 }
@@ -49,8 +49,8 @@
 }
 
 .MailingListSignupForm .alert {
-  margin: .5em 0;
-  margin-bottom: .5em !important;
+  margin: 0.5em 0;
+  margin-bottom: 0.5em !important;
 }
 
 .MailingListSignupForm .submitButton:disabled {
@@ -60,7 +60,7 @@
 /** 
 * Large version
 */
-.MailingListSignupForm.large  {
+.MailingListSignupForm.large {
   padding-bottom: 0;
   max-width: 77rem;
 }
@@ -73,7 +73,7 @@
   display: inline-block;
   width: 100%;
   margin-top: 1em;
-  padding-right: .5em;
+  padding-right: 0.5em;
   text-align: right;
 }
 
@@ -118,7 +118,7 @@
   .MailingListSignupForm.large .inline {
     flex-flow: wrap;
   }
-  
+
   .MailingListSignupForm.large .inline .title {
     flex-basis: 100%;
   }
@@ -133,7 +133,7 @@
 
   .MailingListSignupForm.large .privacy-statement {
     text-align: left;
-    margin: .5em 0 0 0;
+    margin: 0.5em 0 0 0;
   }
 }
 
@@ -150,7 +150,7 @@
   border-radius: 0;
 }
 
-.MailingListSignupForm.small h3.title label{
+.MailingListSignupForm.small h3.title label {
   margin: 5px 0;
   font-size: 1.7rem;
 }

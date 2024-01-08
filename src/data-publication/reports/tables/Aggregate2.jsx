@@ -1,4 +1,4 @@
-import PropTypes from "prop-types"
+import PropTypes from 'prop-types'
 import React, { useMemo } from 'react'
 import { ReportPagination, usePagination } from '../ReportPagination'
 import { fixAgg2, pageLabelTracts, sortAndFix } from './AggregateUtils'
@@ -9,9 +9,9 @@ const renderData = (tracts) => {
       <tr key={index}>
         <th
           style={{
-            fontWeight: "bold",
-            textTransform: "uppercase",
-            backgroundColor: "#f1f1f1",
+            fontWeight: 'bold',
+            textTransform: 'uppercase',
+            backgroundColor: '#f1f1f1',
           }}
         >
           {tract.tract}
@@ -34,7 +34,7 @@ const renderValues = (values, key) => {
 const Aggregate2 = React.forwardRef((props, ref) => {
   const sortedTracts = useMemo(
     () => sortAndFix(props.report, fixAgg2),
-    [props.report]
+    [props.report],
   )
 
   const {
@@ -63,10 +63,10 @@ const Aggregate2 = React.forwardRef((props, ref) => {
         displayLabel={displayLabel}
       />
 
-      <table ref={ref} style={{ fontSize: ".75em" }}>
+      <table ref={ref} style={{ fontSize: '.75em' }}>
         <thead>
           <tr>
-            <th width="20%" rowSpan={5}>
+            <th width='20%' rowSpan={5}>
               CENSUS TRACT OR COUNTY NAME (COUNTY/STATE/TRACT NUMBER)
             </th>
             <th colSpan={8}>
@@ -88,25 +88,25 @@ const Aggregate2 = React.forwardRef((props, ref) => {
             <th colSpan={2}>G</th>
           </tr>
           <tr>
-            <th width="5%" colSpan={2}>
+            <th width='5%' colSpan={2}>
               FHA, FSA/RHS & VA
             </th>
-            <th width="5%" colSpan={2}>
+            <th width='5%' colSpan={2}>
               Conventional
             </th>
-            <th width="5%" colSpan={2}>
+            <th width='5%' colSpan={2}>
               Refinancings
             </th>
-            <th width="5%" colSpan={2}>
+            <th width='5%' colSpan={2}>
               Home Improvement Loans
             </th>
-            <th width="5%" colSpan={2}>
+            <th width='5%' colSpan={2}>
               Loans on Dwellings For 5 or More Families
             </th>
-            <th width="5%" colSpan={2}>
+            <th width='5%' colSpan={2}>
               Nonoccupant Loans From Columns A, B, C, and D
             </th>
-            <th width="5%" colSpan={2}>
+            <th width='5%' colSpan={2}>
               Loans On Manufactured Home Dwellings From Columns A, B, C, & D
             </th>
           </tr>
@@ -130,13 +130,13 @@ const Aggregate2 = React.forwardRef((props, ref) => {
         <tbody>
           {props.report.tracts.length === 0 ? (
             <tr>
-              <td style={{ textAlign: "center" }} colSpan={15}>
-                <p style={{ fontSize: "1.7rem" }}>
-                  There were no loans purchased by{" "}
-                  <strong>{props.report.institutionName}</strong> in{" "}
+              <td style={{ textAlign: 'center' }} colSpan={15}>
+                <p style={{ fontSize: '1.7rem' }}>
+                  There were no loans purchased by{' '}
+                  <strong>{props.report.institutionName}</strong> in{' '}
                   <strong>
                     MSA/MD {props.report.msa.id} - {props.report.msa.name}
-                  </strong>{" "}
+                  </strong>{' '}
                   for <strong>{props.report.year}</strong>.
                 </p>
               </td>

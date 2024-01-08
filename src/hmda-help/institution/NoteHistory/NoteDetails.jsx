@@ -22,7 +22,7 @@ const DiffTable = ({ json }) => {
   const keys = json && Object.keys(json)
   if (!keys || (keys.length === 1 && keys.indexOf('notes') === 0))
     return <NoChanges />
-  
+
   return (
     <>
       <table className='diff-table'>
@@ -59,32 +59,32 @@ const DiffTableBody = ({ json }) => {
               <td>{checkForNone(current.newVal)}</td>
             </tr>
           )
-        }
-        else if (typeof current !== 'string') {
+        } else if (typeof current !== 'string') {
           return Object.keys(current).map((nestedKey, nidx) => {
             const nestedCurrent = json[key][nestedKey]
             return (
               <tr key={`${key}-${idx}-${nidx}`}>
-                <td>{key} {nestedKey}</td>
+                <td>
+                  {key} {nestedKey}
+                </td>
                 <td>{checkForNone(nestedCurrent.oldVal)}</td>
                 <td>{checkForNone(nestedCurrent.newVal)}</td>
               </tr>
             )
           })
-        }
-        else return null
-    })}
+        } else return null
+      })}
     </tbody>
   )
 }
 
 function checkForNone(val) {
-  if([null, undefined].indexOf(val) > -1) return '<none>'
+  if ([null, undefined].indexOf(val) > -1) return '<none>'
   return val.toString()
 }
 
 const NoChanges = ({ text = 'No Changes' }) => {
-  return <div className="no-changes">{text}</div>
+  return <div className='no-changes'>{text}</div>
 }
 
 export default NoteDetails

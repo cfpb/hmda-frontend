@@ -1,22 +1,16 @@
-import React from "react"
+import React from 'react'
 
-const SubmissionHistoryNav = ({
-  clickHandler,
-  links,
-  page,
-  hidden,
-  top
-}) => {
+const SubmissionHistoryNav = ({ clickHandler, links, page, hidden, top }) => {
   if (hidden) return null
 
-  const marginClass = top ? "marginBottom" : "marginTop"
+  const marginClass = top ? 'marginBottom' : 'marginTop'
 
   return (
-    <div className={"paginationNav " + marginClass}>
+    <div className={'paginationNav ' + marginClass}>
       <ul>
         <li>
           <button
-            onClick={e => clickHandler(`${parseInt(page) - 1}`)}
+            onClick={(e) => clickHandler(`${parseInt(page) - 1}`)}
             disabled={links.first === page}
           >
             &lt;
@@ -25,7 +19,7 @@ const SubmissionHistoryNav = ({
         <li>{`Page ${page} / ${links.last}`}</li>
         <li>
           <button
-            onClick={e => clickHandler(`${parseInt(page) + 1}`)}
+            onClick={(e) => clickHandler(`${parseInt(page) + 1}`)}
             disabled={links.last === page}
           >
             &gt;

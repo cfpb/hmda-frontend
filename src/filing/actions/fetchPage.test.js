@@ -8,7 +8,7 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { fetch } from '../api/fetch.js'
 
-fetch.mockImplementation(pathObj => Promise.resolve({ bargle: 'foo' }))
+fetch.mockImplementation((pathObj) => Promise.resolve({ bargle: 'foo' }))
 const mockStore = configureMockStore([thunk])
 
 const emptyParseErrors = {
@@ -18,12 +18,12 @@ const emptyParseErrors = {
   pagination: {
     count: undefined,
     total: undefined,
-    _links: undefined
-  }
+    _links: undefined,
+  },
 }
 
 describe('fetchPage', () => {
-  it('creates a thunk that will fetch a page by pathname and select sub actions', done => {
+  it('creates a thunk that will fetch a page by pathname and select sub actions', (done) => {
     const store = mockStore({})
 
     store
@@ -31,21 +31,21 @@ describe('fetchPage', () => {
       .then(() => {
         expect(store.getActions()).toEqual([
           { type: types.REQUEST_PARSE_ERRORS },
-          emptyParseErrors
+          emptyParseErrors,
         ])
         done()
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err)
         done.fail()
       })
   })
 
-  it('handles errors when introduced', done => {
+  it('handles errors when introduced', (done) => {
     const store = mockStore({})
     console.error = jest.fn()
-    fetch.mockImplementation(id =>
-      Promise.resolve({ status: 404, statusText: 'argle' })
+    fetch.mockImplementation((id) =>
+      Promise.resolve({ status: 404, statusText: 'argle' }),
     )
 
     store
@@ -55,12 +55,12 @@ describe('fetchPage', () => {
           { type: types.REQUEST_PARSE_ERRORS },
           {
             type: types.RECEIVE_ERROR,
-            error: { status: 404, statusText: 'argle' }
-          }
+            error: { status: 404, statusText: 'argle' },
+          },
         ])
         done()
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err)
         done.fail()
       })

@@ -1,5 +1,5 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { institutions, graphs } from '../graphs/slice';
+import { configureStore } from '@reduxjs/toolkit'
+import { institutions, graphs } from '../graphs/slice'
 
 export const store = configureStore({
   reducer: {
@@ -8,7 +8,8 @@ export const store = configureStore({
     graphsConfig: graphs.configReducer,
     [graphs.apiReducerPath]: graphs.apiReducer,
   },
-  middleware: getDefaultMiddleware => getDefaultMiddleware()
-    .concat(graphs.apiMiddleware)
-    .concat(institutions.apiMiddleware),
-});
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware()
+      .concat(graphs.apiMiddleware)
+      .concat(institutions.apiMiddleware),
+})

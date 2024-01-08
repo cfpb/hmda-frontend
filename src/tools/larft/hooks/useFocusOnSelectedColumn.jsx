@@ -4,10 +4,10 @@ import { selectCol } from '../data-store/store'
 
 /**
  * Bring the focused column into view
- * 
- * @param {String} columnID 
+ *
+ * @param {String} columnID
  */
-export const useFocusOnSelectedColumn = columnID => {
+export const useFocusOnSelectedColumn = (columnID) => {
   const dispatch = useDispatch()
 
   // Bring the focused column into view
@@ -26,9 +26,8 @@ export const useFocusOnSelectedColumn = columnID => {
   }, [columnID])
 
   // Provide a function that will set focus to this column
-  const focus = target => {
-    if (columnID !== target?.fieldName)
-      dispatch(selectCol(target.fieldName))
+  const focus = (target) => {
+    if (columnID !== target?.fieldName) dispatch(selectCol(target.fieldName))
   }
 
   return focus

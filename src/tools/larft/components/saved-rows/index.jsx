@@ -27,19 +27,9 @@ const Header = () => (
 )
 
 const TSheet = ({ rows }) => {
-  return (
-    <SavedSection
-      rows={rows}
-      title='Transmittal Sheet'
-      id='saved-ts'
-    />
-  )
+  return <SavedSection rows={rows} title='Transmittal Sheet' id='saved-ts' />
 }
 
 const LARs = ({ rows }) => (
-  <SavedSection
-    rows={rows}
-    title='Loan Application Register'
-    id='saved-lars'
-  />
+  <SavedSection rows={rows} title='Loan Application Register' id='saved-lars' />
 )

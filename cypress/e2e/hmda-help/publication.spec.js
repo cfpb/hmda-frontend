@@ -70,13 +70,13 @@ onlyOn(!isBeta(HOST), () => {
 
       if (isProd(HOST)) {
         // Has valid Download links
-        cy.findAllByText('Download').each(link => {
+        cy.findAllByText('Download').each((link) => {
           cy.get(link)
             .hasValidHref()
             .then(({ status, url }) => {
               assert.isTrue(
                 status,
-                `"${link.text()}" is a valid link. URL: ${url}`
+                `"${link.text()}" is a valid link. URL: ${url}`,
               )
             })
           cy.wait(ACTION_DELAY)

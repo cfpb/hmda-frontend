@@ -3,12 +3,15 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import ReleaseVersion from '../common/ReleaseVersion'
 
-const Header = props => {
+const Header = (props) => {
   return (
-    <header className="grid">
-      <h1 className="App-title">HMDA Help<ReleaseVersion /></h1>
+    <header className='grid'>
+      <h1 className='App-title'>
+        HMDA Help
+        <ReleaseVersion />
+      </h1>
       <nav>
-        <Link to="/">Search</Link>
+        <Link to='/'>Search</Link>
         <Link
           to={{
             pathname: '/add',
@@ -16,10 +19,10 @@ const Header = props => {
               institution: {
                 lei: '',
                 taxId: '',
-                respondentName: ''
+                respondentName: '',
               },
-              wasAddition: false
-            }
+              wasAddition: false,
+            },
           }}
         >
           Add a new institution

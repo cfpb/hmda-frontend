@@ -7,14 +7,14 @@ let lastTimeout = null
 
 const MSG_SHORT_LEI = [{ type: 'error', text: 'LEI must be 20 characters' }]
 const MSG_GOOD_LEI = [{ type: 'success', text: 'LEI (20 characters)' }]
-const MSG_NOT_LEI = length => [
+const MSG_NOT_LEI = (length) => [
   { type: 'status', text: `Not an LEI: ${length} characters` },
 ]
 
 /** Provide feedback about the user provided input */
 export const useInputHandler = ({ setValidationMsgs, onSelect }) => {
   return useCallback(
-    text => {
+    (text) => {
       if (!text) return setValidationMsgs(null)
 
       const cleanUpperCased = text.toUpperCase().replace(/[^\sA-Z0-9+]+/gi, '')
@@ -36,7 +36,7 @@ export const useInputHandler = ({ setValidationMsgs, onSelect }) => {
 
       return cleanUpperCased
     },
-    [setValidationMsgs, onSelect]
+    [setValidationMsgs, onSelect],
   )
 }
 
@@ -47,7 +47,7 @@ export const useSelectionHandler = ({
   onChange,
 }) => {
   return useCallback(
-    item => {
+    (item) => {
       const itemValue = item ? item.value : ''
       setIsInitial(false)
       setSelectedValue(item)
@@ -56,10 +56,9 @@ export const useSelectionHandler = ({
         preventDefault: () => null,
       })
     },
-    [setIsInitial, setSelectedValue, onChange]
+    [setIsInitial, setSelectedValue, onChange],
   )
 }
-
 
 /** Enable type-to-search on pageload by focusing the LEI input element */
 export const useFocusOnInput = (isFetching, data) => {
@@ -75,7 +74,6 @@ export const useFocusOnInput = (isFetching, data) => {
     return () => lastTimeout && clearTimeout(lastTimeout)
   }, [data, isFetching])
 }
-
 
 /** Fetch Institution Data */
 export const useInstitutionData = ({ endpoint, year }) => {

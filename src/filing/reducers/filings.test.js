@@ -16,15 +16,15 @@ describe('filings reducer', () => {
         {},
         {
           type: types.REQUEST_FILING,
-          lei: '2'
-        }
-      )
+          lei: '2',
+        },
+      ),
     ).toEqual({
       2: {
         isFetching: true,
         fetched: false,
-        filing: null
-      }
+        filing: null,
+      },
     })
   })
   it('handles RECEIVE_FILING', () => {
@@ -33,21 +33,21 @@ describe('filings reducer', () => {
         {},
         {
           type: types.RECEIVE_FILING,
-          filing: { filing: { lei: '2' } }
-        }
-      )
+          filing: { filing: { lei: '2' } },
+        },
+      ),
     ).toEqual({
       2: {
         isFetching: false,
         fetched: true,
-        filing: { filing: { lei: '2' } }
-      }
+        filing: { filing: { lei: '2' } },
+      },
     })
   })
 
   it("shouldn't modify state on an unknown action type", () => {
-    excludeTypes(types.RECEIVE_FILING, types.REQUEST_FILING).forEach(v =>
-      expect(filings(defaultFilings, v)).toEqual(defaultFilings)
+    excludeTypes(types.RECEIVE_FILING, types.REQUEST_FILING).forEach((v) =>
+      expect(filings(defaultFilings, v)).toEqual(defaultFilings),
     )
   })
 })

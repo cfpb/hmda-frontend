@@ -9,36 +9,41 @@ import { error } from '../utils/log.js'
 import receiveNonQFiling from './receiveNonQFiling'
 import { splitYearQuarter } from '../api/utils'
 
-export default function fetchInstitution(institution, selectedPeriod, fetchFilings = true) {
-  return dispatch => {
+export default function fetchInstitution(
+  institution,
+  selectedPeriod,
+  fetchFilings = true,
+) {
+  return (dispatch) => {
     dispatch(requestInstitution(institution.lei))
     return getInstitution(institution.lei, selectedPeriod.period)
-      .then(json => {
-        return hasHttpError(json).then(hasError => {
+      .then((json) => {
+        return hasHttpError(json).then((hasError) => {
           if (hasError) {
-            if(json.status === 404) {
+            if (json.status === 404) {
               dispatch(receiveInstitutionNotFound({ lei: institution.lei }))
               throw new Error(
                 `${institution.lei} does not exist in ${
                   splitYearQuarter(selectedPeriod.period)[0]
-                }.`
+                }.`,
               )
             }
-            
+
             dispatch(receiveError(json))
             throw new Error(json && `${json.status}: ${json.statusText}`)
           }
 
           dispatch(receiveInstitution(json))
 
-          if(fetchFilings) {
-            return selectedPeriod.isQuarterly && !json.institution.quarterlyFiler
+          if (fetchFilings) {
+            return selectedPeriod.isQuarterly &&
+              !json.institution.quarterlyFiler
               ? dispatch(receiveNonQFiling(json))
               : dispatch(fetchCurrentFiling(json, selectedPeriod))
           }
         })
       })
-      .catch(err => {
+      .catch((err) => {
         error(err)
       })
   }

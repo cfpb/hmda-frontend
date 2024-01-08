@@ -1,8 +1,8 @@
-import { getFiling } from "../api/api"
-import { error } from "../utils/log.js"
-import hasHttpError from "./hasHttpError"
-import receiveError from "./receiveError"
-import receiveFilingPage from "./receiveFilingPage"
+import { getFiling } from '../api/api'
+import { error } from '../utils/log.js'
+import hasHttpError from './hasHttpError'
+import receiveError from './receiveError'
+import receiveFilingPage from './receiveFilingPage'
 
 export default function fetchFilingPage(lei, page) {
   if (!lei) return
@@ -16,8 +16,8 @@ export default function fetchFilingPage(lei, page) {
 
     // Fetch data, then update store
     return getFiling(lei, filingPeriod, page)
-      .then(json => {
-        return hasHttpError(json).then(hasError => {
+      .then((json) => {
+        return hasHttpError(json).then((hasError) => {
           if (hasError) {
             dispatch(receiveError(json))
             throw new Error(json && `${json.status}: ${json.statusText}`)
@@ -26,7 +26,7 @@ export default function fetchFilingPage(lei, page) {
           if (!hasError) dispatch(receiveFilingPage(json))
         })
       })
-      .catch(err => {
+      .catch((err) => {
         error(err)
       })
   }

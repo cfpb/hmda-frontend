@@ -11,7 +11,7 @@ describe('ErrorWarning', () => {
   const errorWarning = TestUtils.renderIntoDocument(
     <Wrapper>
       <ErrorWarning error={{ status: 500 }} />
-    </Wrapper>
+    </Wrapper>,
   )
   const warningNode = ReactDOM.findDOMNode(errorWarning)
 
@@ -22,7 +22,7 @@ describe('ErrorWarning', () => {
   const nullError = TestUtils.renderIntoDocument(
     <Wrapper>
       <ErrorWarning />
-    </Wrapper>
+    </Wrapper>,
   )
   const nullNode = ReactDOM.findDOMNode(nullError)
 
@@ -58,7 +58,7 @@ describe('ErrorWarning', () => {
   it('renders correct body on 400', () => {
     const rendered = getText({ error: { status: 400 } })
     expect(rendered).toEqual(
-      'Your request could not be completed. Please try again.'
+      'Your request could not be completed. Please try again.',
     )
   })
 
@@ -70,7 +70,7 @@ describe('ErrorWarning', () => {
   it('renders correct body on 403', () => {
     const rendered = getText({ error: { status: 403 } })
     expect(rendered).toEqual(
-      "You don't have access to the requested resources. Please ensure you are filing for the correct institution."
+      "You don't have access to the requested resources. Please ensure you are filing for the correct institution.",
     )
   })
 
@@ -82,20 +82,20 @@ describe('ErrorWarning', () => {
   it('renders correct body on 500', () => {
     const rendered = getText({ error: { status: 500 } })
     expect(rendered).toEqual(
-      "We're quickly working on resolving the issue, please refresh the page."
+      "We're quickly working on resolving the issue, please refresh the page.",
     )
   })
 
   it('renders correct body on 502', () => {
     const rendered = getText({ error: { status: 502 } })
     expect(rendered).toEqual(
-      "We're having trouble routing your request, please refresh the page or try again later."
+      "We're having trouble routing your request, please refresh the page or try again later.",
     )
   })
   it('renders correct body on 503', () => {
     const rendered = getText({ error: { status: 503 } })
     expect(rendered).toEqual(
-      "We're experiencing some issues on our end, please refresh the page or try again later."
+      "We're experiencing some issues on our end, please refresh the page or try again later.",
     )
   })
   it('renders correct body on unknown error', () => {

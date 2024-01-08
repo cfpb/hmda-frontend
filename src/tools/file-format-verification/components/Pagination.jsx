@@ -58,10 +58,10 @@ class Pagination extends Component {
   _getInput() {
     return (
       <form onSubmit={this._submit}>
-        <label htmlFor="ParseErrorPagination">Lar Errors</label>
+        <label htmlFor='ParseErrorPagination'>Lar Errors</label>
         <input
-          id="ParseErrorPagination"
-          type="text"
+          id='ParseErrorPagination'
+          type='text'
           value={this.state.value}
           onBlur={this._setFromProps}
           onChange={this._change}
@@ -98,10 +98,10 @@ class Pagination extends Component {
     const lastPage = page === pagination.total
 
     return (
-      <div className="PaginationControls">
+      <div className='PaginationControls'>
         <button
           className={firstPage ? 'button-disabled' : ''}
-          onClick={e => {
+          onClick={(e) => {
             if (!firstPage) {
               this._setScrollValues()
               this.props.getPage(page - 1)
@@ -115,7 +115,7 @@ class Pagination extends Component {
         </div>
         <button
           className={lastPage ? 'button-disabled' : ''}
-          onClick={e => {
+          onClick={(e) => {
             if (!lastPage) {
               this._setScrollValues()
               this.props.getPage(page + 1)
@@ -124,7 +124,9 @@ class Pagination extends Component {
         >
           Next
         </button>
-        {this.props.pagination && this.props.pagination.fade ? <LoadingIcon /> : null}
+        {this.props.pagination && this.props.pagination.fade ? (
+          <LoadingIcon />
+        ) : null}
       </div>
     )
   }
@@ -132,7 +134,7 @@ class Pagination extends Component {
 
 Pagination.propTypes = {
   pagination: PropTypes.object,
-  getPage: PropTypes.func
+  getPage: PropTypes.func,
 }
 
 export default Pagination

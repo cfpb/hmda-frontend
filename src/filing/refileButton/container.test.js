@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 import TestUtils from 'react-dom/test-utils'
 import RefileButton, {
   RefileButtonContainer,
-  mapDispatchToProps
+  mapDispatchToProps,
 } from './container.jsx'
 import Wrapper from '../../test-resources/Wrapper.js'
 
@@ -14,15 +14,15 @@ console.error = jest.fn()
 const defaultState = {
   app: {
     institution: {
-      id: '1'
+      id: '1',
     },
     filingPeriod: '2017',
     submission: {
       status: {
-        code: 5
-      }
-    }
-  }
+        code: 5,
+      },
+    },
+  },
 }
 
 describe('RefileButton', () => {
@@ -30,7 +30,7 @@ describe('RefileButton', () => {
     const wrappedConnected = TestUtils.renderIntoDocument(
       <Wrapper store={defaultState}>
         <RefileButton />
-      </Wrapper>
+      </Wrapper>,
     )
 
     expect(console.error).not.toBeCalled()
@@ -40,7 +40,7 @@ describe('RefileButton', () => {
     const wrappedContainer = TestUtils.renderIntoDocument(
       <Wrapper>
         <RefileButtonContainer />
-      </Wrapper>
+      </Wrapper>,
     )
     expect(console.error).toHaveBeenCalledTimes(2)
   })
@@ -49,7 +49,7 @@ describe('RefileButton', () => {
     const buttonState = TestUtils.renderIntoDocument(
       <Wrapper store={defaultState}>
         <RefileButton />
-      </Wrapper>
+      </Wrapper>,
     )
     expect(buttonState.props.store).toEqual(defaultState)
   })
@@ -60,7 +60,7 @@ describe('RefileButton', () => {
 
     expect(Object.keys(mapped)).toEqual([
       'showConfirmModal',
-      'updateInstitution'
+      'updateInstitution',
     ])
     mapped.showConfirmModal()
     expect(dispatch).toBeCalled()

@@ -15,12 +15,12 @@ describe('InstitutionViewButton', () => {
       <Wrapper>
         <InstitutionViewButton
           status={{
-            code: STATUS.CREATED
+            code: STATUS.CREATED,
           }}
-          lei="123456"
-          filingPeriod="2017"
+          lei='123456'
+          filingPeriod='2017'
         />
-      </Wrapper>
+      </Wrapper>,
     )
     const viewButtonNode = ReactDOM.findDOMNode(viewButton)
 
@@ -28,7 +28,7 @@ describe('InstitutionViewButton', () => {
 
     expect(
       TestUtils.findRenderedDOMComponentWithClass(viewButton, 'status-button')
-        .textContent
+        .textContent,
     ).toBe('Upload your file')
   })
 
@@ -36,7 +36,7 @@ describe('InstitutionViewButton', () => {
     const button = InstitutionViewButton({
       status: { code: -1 },
       lei: 'a',
-      filingPeriod: 'b'
+      filingPeriod: 'b',
     })
     expect(button.props.children).toBe('Upload your file')
   })
@@ -45,7 +45,7 @@ describe('InstitutionViewButton', () => {
     const button = InstitutionViewButton({
       status: { code: 0 },
       lei: 'a',
-      filingPeriod: 'b'
+      filingPeriod: 'b',
     })
     expect(button.props.children).toBe('Upload your file')
   })
@@ -54,7 +54,7 @@ describe('InstitutionViewButton', () => {
     const button = InstitutionViewButton({
       status: { code: 1 },
       lei: 'a',
-      filingPeriod: 'b'
+      filingPeriod: 'b',
     })
     expect(button.props.children).toBe('Upload your file')
   })
@@ -63,7 +63,7 @@ describe('InstitutionViewButton', () => {
     const button = InstitutionViewButton({
       status: { code: 2 },
       lei: 'a',
-      filingPeriod: 'b'
+      filingPeriod: 'b',
     })
     expect(button.props.children).toBe('View upload progress')
   })
@@ -72,7 +72,7 @@ describe('InstitutionViewButton', () => {
     const button = InstitutionViewButton({
       status: { code: 3 },
       lei: 'a',
-      filingPeriod: 'b'
+      filingPeriod: 'b',
     })
     expect(button.props.children).toBe('View upload progress')
   })
@@ -81,7 +81,7 @@ describe('InstitutionViewButton', () => {
     const button = InstitutionViewButton({
       status: { code: 4 },
       lei: 'a',
-      filingPeriod: 'b'
+      filingPeriod: 'b',
     })
     expect(button.props.children).toBe('View upload progress')
   })
@@ -90,7 +90,7 @@ describe('InstitutionViewButton', () => {
     const button = InstitutionViewButton({
       status: { code: 5 },
       lei: 'a',
-      filingPeriod: 'b'
+      filingPeriod: 'b',
     })
     expect(button.props.children).toBe('Review formatting errors')
   })
@@ -99,7 +99,7 @@ describe('InstitutionViewButton', () => {
     const button = InstitutionViewButton({
       status: { code: 6 },
       lei: 'a',
-      filingPeriod: 'b'
+      filingPeriod: 'b',
     })
     expect(button.props.children).toBe('View progress')
   })
@@ -108,7 +108,7 @@ describe('InstitutionViewButton', () => {
     const button = InstitutionViewButton({
       status: { code: 7 },
       lei: 'a',
-      filingPeriod: 'b'
+      filingPeriod: 'b',
     })
     expect(button.props.children).toBe('View progress')
   })
@@ -117,7 +117,7 @@ describe('InstitutionViewButton', () => {
     const button = InstitutionViewButton({
       status: { code: 8 },
       lei: 'a',
-      filingPeriod: 'b'
+      filingPeriod: 'b',
     })
     expect(button.props.children).toBe('Review edits')
   })
@@ -126,7 +126,7 @@ describe('InstitutionViewButton', () => {
     const button = InstitutionViewButton({
       status: { code: 9 },
       lei: 'a',
-      filingPeriod: 'b'
+      filingPeriod: 'b',
     })
     expect(button.props.children).toBe('Review summary')
   })
@@ -135,7 +135,7 @@ describe('InstitutionViewButton', () => {
     const button = InstitutionViewButton({
       status: { code: 10 },
       lei: 'a',
-      filingPeriod: 'b'
+      filingPeriod: 'b',
     })
     expect(button.props.children).toBe('View completed filing')
   })
@@ -144,7 +144,7 @@ describe('InstitutionViewButton', () => {
     const button = InstitutionViewButton({
       status: null,
       instituionId: 'a',
-      filingPeriod: 'b'
+      filingPeriod: 'b',
     })
     expect(button.props.children).toBe('Upload your file')
   })

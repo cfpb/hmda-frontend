@@ -8,25 +8,25 @@ import thunk from 'redux-thunk'
 import { getFiling } from '../api/api.js'
 
 const mockStore = configureMockStore([thunk])
-getFiling.mockImplementation(id => Promise.resolve({ filing: 'afiling' }))
+getFiling.mockImplementation((id) => Promise.resolve({ filing: 'afiling' }))
 
 const filings = [
   {
     period: '2016',
-    lei: '123'
+    lei: '123',
   },
-  { period: '2017', lei: '123' }
+  { period: '2017', lei: '123' },
 ]
 
 describe('fetchCurrentFiling', () => {
-  it('fetches edits', done => {
+  it('fetches edits', (done) => {
     const store = mockStore({ app: { filingPeriod: '2017' } })
 
     store.dispatch(fetchCurrentFiling(filings)).then(() => {
       setTimeout(() => {
         expect(store.getActions()).toEqual([
           { type: 'REQUEST_FILING', id: '123' },
-          { type: 'RECEIVE_FILING', filing: { filing: 'afiling' } }
+          { type: 'RECEIVE_FILING', filing: { filing: 'afiling' } },
         ])
         done()
       }, 0)

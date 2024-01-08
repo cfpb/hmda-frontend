@@ -8,14 +8,14 @@ import {
 } from './lar_helpers.mjs'
 
 /**
- * Usage: 
+ * Usage:
  *   node ./generate_lar_file.mjs <LEI> <YEAR> <NUM_ROWS>
  *
  *  Generate load test file
  *   yarn make-lar frontendtestbank9999 2020 MAX
  **/
 
-const _logError = msg => console.error(`\n[Error] ${msg}\n`)
+const _logError = (msg) => console.error(`\n[Error] ${msg}\n`)
 
 const _checkRequiredArg = (label, value) => {
   if (value) return
@@ -32,7 +32,10 @@ _checkRequiredArg('yearQuarter', yearQuarter)
 
 // Parse params + Set reasonable defaults
 lei = lei.toUpperCase()
-let [year, quarter] = yearQuarter.replace(/Q/gi, '').split('-').map(val => parseInt(val))
+let [year, quarter] = yearQuarter
+  .replace(/Q/gi, '')
+  .split('-')
+  .map((val) => parseInt(val))
 
 year = year || parseInt(new Date().getFullYear()) - 1
 quarter = quarter > 0 && quarter < 4 ? quarter : 4

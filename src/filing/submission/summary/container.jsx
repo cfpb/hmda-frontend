@@ -24,7 +24,7 @@ export function mapStateToProps(state) {
   return {
     isFetching,
     submission,
-    ts
+    ts,
   }
 }
 

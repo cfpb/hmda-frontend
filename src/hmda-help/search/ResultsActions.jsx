@@ -39,40 +39,40 @@ class ResultsActions extends Component {
     const { institution, index, error, handleDeleteClick } = this.props
 
     return (
-      <td className="action">
+      <td className='action'>
         {this.state.deleting ? (
-          <Loading className="LoadingInline" />
+          <Loading className='LoadingInline' />
         ) : (
           <React.Fragment>
-            <div className="initialActions" id={`initialActions${index}`}>
+            <div className='initialActions' id={`initialActions${index}`}>
               <Link
                 to={{
                   pathname: `/update/institution/${institution.lei}/${institution.activityYear}`,
-                  state: { institution: institution }
+                  state: { institution: institution },
                 }}
               >
                 Update
               </Link>
               <button
-                className="delete"
-                onClick={event => this.toggleAreYouSure(index)}
+                className='delete'
+                onClick={(event) => this.toggleAreYouSure(index)}
               >
                 Delete
               </button>
               <button
-                onClick={event => this.handleViewMoreClick(index)}
-                ref={element => this.buttons.set(index, element)}
-                className="showOtherFields"
+                onClick={(event) => this.handleViewMoreClick(index)}
+                ref={(element) => this.buttons.set(index, element)}
+                className='showOtherFields'
               >
                 Show other fields
               </button>
             </div>
-            <div className="areYouSure hidden" id={`areYouSure${index}`}>
+            <div className='areYouSure hidden' id={`areYouSure${index}`}>
               <span>Are you sure?</span>{' '}
-              <div className="buttons">
+              <div className='buttons'>
                 <button
-                  className="yes"
-                  onClick={event => {
+                  className='yes'
+                  onClick={(event) => {
                     this.setState({ deleting: true })
                     handleDeleteClick(institution, index)
                   }}
@@ -80,8 +80,8 @@ class ResultsActions extends Component {
                   Yes
                 </button>
                 <button
-                  className="delete"
-                  onClick={event => this.toggleAreYouSure(index)}
+                  className='delete'
+                  onClick={(event) => this.toggleAreYouSure(index)}
                 >
                   No
                 </button>
@@ -89,8 +89,8 @@ class ResultsActions extends Component {
             </div>
             {error ? (
               <Alert
-                type="error"
-                heading="Access Denied"
+                type='error'
+                heading='Access Denied'
                 text="Sorry, it doesn't look like you have the correct permissions to
                     perform this action."
               />
@@ -107,7 +107,7 @@ ResultsActions.propTypes = {
   index: PropTypes.number.isRequired,
   error: PropTypes.string,
   handleDeleteClick: PropTypes.func.isRequired,
-  tables: PropTypes.object.isRequired
+  tables: PropTypes.object.isRequired,
   //onInputChange: PropTypes.func.isRequired
 }
 

@@ -1,5 +1,11 @@
 import { createFileContent, downloadFile, formatFileName } from '../utils/file'
-import { addRowID, createRowID, isRowLAR, isRowTS, parseRow } from '../utils/row'
+import {
+  addRowID,
+  createRowID,
+  isRowLAR,
+  isRowTS,
+  parseRow,
+} from '../utils/row'
 import { rowCreateReducer } from './rowReducers'
 
 export const fileUploadReducer = (state, { payload }) => {
@@ -32,7 +38,7 @@ export const fileUploadReducer = (state, { payload }) => {
   rowCreateReducer(state)
 }
 
-export const fileDownloadReducer = state => {
+export const fileDownloadReducer = (state) => {
   const { filename, ts, lars } = state
 
   downloadFile(`${filename}.txt`, createFileContent(ts, lars))

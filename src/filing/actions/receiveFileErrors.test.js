@@ -9,7 +9,7 @@ describe('receiveFileErrors', () => {
       type: types.RECEIVE_FILE_ERRORS,
       errors: ['oi'],
       lei: '123',
-      file: 'afile'
+      file: 'afile',
     })
   })
 })

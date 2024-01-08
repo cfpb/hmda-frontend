@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 // Automatically redirecting from the base URL to /baseURL/:year breaks
 // the user's ability to change the selected year in these reports. We will
 // skip automatic redirection from these cases.
-const SKIP_BASE_REDIRECT = ['aggregate', 'disclosure', ]
+const SKIP_BASE_REDIRECT = ['aggregate', 'disclosure']
 
 /**
  * Reconstructs the URL to point to the targetYear
@@ -40,7 +40,7 @@ const formatPath = (props, targetYear) => {
  * @param {String} props.targetYearKey Product key used to determine which year availability array, from config.dataPublicationsYear, should be used to determine the targetYear
  * @returns
  */
-export const withYearValidation = WrappedComponent => props => {
+export const withYearValidation = (WrappedComponent) => (props) => {
   const {
     config: { dataPublicationYears },
     match: { params },
@@ -65,7 +65,7 @@ export const withYearValidation = WrappedComponent => props => {
     // Redirect from the base URL, if safe to do so
     shouldRedirect = true
   }
-  
+
   if (shouldRedirect) return <Redirect to={formatPath(props, targetYear)} />
   return <WrappedComponent {...props} />
 }

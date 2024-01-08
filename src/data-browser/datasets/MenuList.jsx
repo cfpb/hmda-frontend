@@ -30,7 +30,7 @@ export class MenuList extends React.Component {
 
     return (
       <List
-        ref={(ref) => this.listRef = ref}
+        ref={(ref) => (this.listRef = ref)}
         height={Math.min(maxHeight, (children.length || 1) * height)}
         itemCount={children.length || 0}
         itemSize={height}

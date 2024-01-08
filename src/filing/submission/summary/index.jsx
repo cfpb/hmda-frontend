@@ -13,7 +13,7 @@ const tsSchemaLink = () => (
   />
 )
 
-const Summary = props => {
+const Summary = (props) => {
   if (!props.submission || !props.ts) return null
   const [year, quarter] = splitYearQuarter(props.filingPeriod)
 
@@ -25,8 +25,8 @@ const Summary = props => {
           You have completed the verification process for your HMDA data.
         </p>
         <p className='font-lead'>
-          The values below come from your {tsSchemaLink()}, the first
-          row of your LAR file.
+          The values below come from your {tsSchemaLink()}, the first row of
+          your LAR file.
         </p>
         <p className='emphasize'>
           Please review your Respondent Information and submit any necessary
@@ -37,10 +37,10 @@ const Summary = props => {
         <div className='note'>
           <span className='point'>*</span>
           <p className='emphasize'>
-            To make changes, update your Transmittal Sheet and resubmit
-            your data for {props.filingPeriod}.
+            To make changes, update your Transmittal Sheet and resubmit your
+            data for {props.filingPeriod}.
           </p>
-        </div>        
+        </div>
         <section className='info-section'>
           <div className='section-heading'>
             <h3>Respondent Information *</h3>
@@ -68,7 +68,9 @@ const Summary = props => {
         <section className='info-section'>
           <div className='section-heading flex'>
             <h3>File Information *</h3>
-            <p className='info-section-lead'>Filing Period details and LAR count</p>
+            <p className='info-section-lead'>
+              Filing Period details and LAR count
+            </p>
           </div>
           <dl>
             <dt>File Name:</dt>
@@ -94,7 +96,7 @@ const Summary = props => {
 
 Summary.propTypes = {
   submission: PropTypes.object,
-  ts: PropTypes.object
+  ts: PropTypes.object,
 }
 
 export default Summary

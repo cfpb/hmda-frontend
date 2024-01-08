@@ -10,7 +10,7 @@ import { QUARTERS } from '../slice/graphConfigs'
 export const useLatestAvailableYear = () => {
   const config = useSelector(({ graphsConfig }) => graphsConfig)
   const quarters = graphs.getConfig(config, QUARTERS)
-  
+
   if (!quarters || !quarters.length) return 0
 
   const year = quarters[quarters.length - 1]?.value.split('-')[0]

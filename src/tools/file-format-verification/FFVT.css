@@ -43,17 +43,16 @@
 }
 
 .FFVT #uploadFileInput {
-   display: none 
+  display: none;
 }
 
 .FFVT #uploadFileButton {
   margin: 1rem;
   margin-left: 2rem;
-  font-size: .75em;
+  font-size: 0.75em;
   white-space: nowrap;
   text-transform: uppercase;
   background: rgb(227, 28, 61);
-  
 }
 
 .FFVT #uploadFileButton:hover,

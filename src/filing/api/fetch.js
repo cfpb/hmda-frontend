@@ -10,7 +10,7 @@ export function getFilingData() {
   return {
     lei: appState.lei,
     filing: appState.filingPeriod,
-    submission: appState.submission.id && appState.submission.id.sequenceNumber
+    submission: appState.submission.id && appState.submission.id.sequenceNumber,
   }
 }
 
@@ -36,32 +36,32 @@ export function fetchData(options = { method: 'GET' }) {
   if (options.method === 'POST' && !isFormData) {
     headers = {
       'Content-Type': 'application/json',
-      Accept: 'application/json'
+      Accept: 'application/json',
     }
   }
 
   if (options.params && options.params.format === 'csv') {
     headers = {
       'Content-Type': 'text/csv',
-      Accept: 'text/csv'
+      Accept: 'text/csv',
     }
   }
 
   if (accessToken) headers.Authorization = 'Bearer ' + accessToken
 
-  if(options.noCache || options.method === 'POST') {
+  if (options.noCache || options.method === 'POST') {
     headers['Cache-Control'] = 'no-cache, no-store'
   }
 
   var fetchOptions = {
     method: options.method || 'GET',
     body: options.body,
-    headers: headers
+    headers: headers,
   }
 
   return fetch(url, fetchOptions)
-    .then(response => {
-      return new Promise(resolve => {
+    .then((response) => {
+      return new Promise((resolve) => {
         log('got res', response, response.status)
         if (response.status === 401 || response.status === 403) login()
         if (response.status > 399) return resolve(response)
@@ -71,8 +71,7 @@ export function fetchData(options = { method: 'GET' }) {
         resolve(response.json())
       })
     })
-    .catch(err => {
+    .catch((err) => {
       error(err)
     })
 }
-

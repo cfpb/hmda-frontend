@@ -10,7 +10,7 @@ import {
   VERIFY_QUALITY,
   VERIFY_MACRO,
   SUPPRESS_EDITS,
-  REFRESH_STATE
+  REFRESH_STATE,
 } from '../constants'
 
 const defaultEdits = {
@@ -21,9 +21,9 @@ const defaultEdits = {
     syntactical: { edits: [] },
     validity: { edits: [] },
     quality: { edits: [], verified: false },
-    macro: { edits: [], verified: false }
+    macro: { edits: [], verified: false },
   },
-  rows: {}
+  rows: {},
 }
 
 export default (state = defaultEdits, action) => {
@@ -31,14 +31,14 @@ export default (state = defaultEdits, action) => {
     case REQUEST_EDITS:
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
       }
     case RECEIVE_EDITS:
       return {
         ...state,
         types: action.edits,
         isFetching: false,
-        fetched: true
+        fetched: true,
       }
     case REQUEST_EDIT_TYPE:
       return {
@@ -48,9 +48,9 @@ export default (state = defaultEdits, action) => {
           [action.editType]: {
             ...state.types[action.editType],
             isFetching: true,
-            fetched: false
-          }
-        }
+            fetched: false,
+          },
+        },
       }
     case RECEIVE_EDIT_TYPE:
       return {
@@ -60,9 +60,9 @@ export default (state = defaultEdits, action) => {
           [action.editType]: {
             ...state.types[action.editType],
             isFetching: false,
-            fetched: true
-          }
-        }
+            fetched: true,
+          },
+        },
       }
     case REQUEST_EDIT:
       return {
@@ -71,9 +71,9 @@ export default (state = defaultEdits, action) => {
           ...state.rows,
           [action.edit]: {
             ...state.rows[action.edit],
-            isFetching: true
-          }
-        }
+            isFetching: true,
+          },
+        },
       }
     case RECEIVE_EDIT:
       return {
@@ -83,9 +83,9 @@ export default (state = defaultEdits, action) => {
           [action.edit]: {
             ...state.rows[action.edit],
             isFetching: false,
-            rows: action.rows
-          }
-        }
+            rows: action.rows,
+          },
+        },
       }
     case REQUEST_VERIFY_QUALITY: {
       const clonedState = { ...state }

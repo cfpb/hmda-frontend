@@ -22,12 +22,12 @@ class SearchResults extends Component {
     const colWidth = 90 / colCount
 
     return (
-      <div className="SearchResults">
+      <div className='SearchResults'>
         <ResultsHeading institutions={institutions} />
-        <table className="institutions">
+        <table className='institutions'>
           <thead>
             <tr>
-              <th width="10%">Year</th>
+              <th width='10%'>Year</th>
               <th width={colWidth}>LEI</th>
               <th width={colWidth}>Name</th>
               <th width={colWidth}>Email Domain(s)</th>
@@ -65,8 +65,8 @@ class SearchResults extends Component {
                       />
                     </tr>
                     <tr
-                      className="otherData hidden"
-                      ref={element => this.tables.set(i, element)}
+                      className='otherData hidden'
+                      ref={(element) => this.tables.set(i, element)}
                     >
                       <td colSpan={colCount}>
                         <table>
@@ -121,6 +121,6 @@ class SearchResults extends Component {
 SearchResults.propTypes = {
   institutions: PropTypes.array.isRequired,
   handleDeleteClick: PropTypes.func.isRequired,
-  error: PropTypes.string
+  error: PropTypes.string,
 }
 export default SearchResults

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const renderData = applicantCharacteristics => {
+const renderData = (applicantCharacteristics) => {
   return applicantCharacteristics.map((characteristic, index) => {
     return [
       <tr key={index}>
@@ -10,7 +10,7 @@ const renderData = applicantCharacteristics => {
             borderTopWidth: '2px',
             fontWeight: 'bold',
             textTransform: 'uppercase',
-            backgroundColor: '#f1f1f1'
+            backgroundColor: '#f1f1f1',
           }}
           colSpan={21}
         >
@@ -19,7 +19,7 @@ const renderData = applicantCharacteristics => {
             : characteristic.characteristic}
         </th>
       </tr>,
-      renderDetails(characteristic, index)
+      renderDetails(characteristic, index),
     ]
   })
 }
@@ -49,12 +49,12 @@ const renderDetails = (characteristic, key) => {
 const renderDenialReasons = (denialReasons, key, key2) => {
   return denialReasons.map((denialReason, index) => {
     //remove duplicate total row
-    if(index === 10) return null
+    if (index === 10) return null
     return [
       <td key={`count-${index}-${key}-${key2}`}>{denialReason.count}</td>,
       <td key={`percentage-${index}-${key}-${key2}`}>
         {denialReason.percentage}
-      </td>
+      </td>,
     ]
   })
 }
@@ -63,40 +63,40 @@ const Eight = React.forwardRef((props, ref) => {
   if (!props.report) return null
 
   return (
-    <table ref={ref} className="table-large" style={{ fontSize: '.75em' }}>
+    <table ref={ref} className='table-large' style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
-          <th width="20%" rowSpan={2}>
+          <th width='20%' rowSpan={2}>
             APPLICANT CHARACTERISTICS
           </th>
-          <th colSpan={2} width="8%">
+          <th colSpan={2} width='8%'>
             Debt-to-Income Ratio
           </th>
-          <th colSpan={2} width="8%">
+          <th colSpan={2} width='8%'>
             Employment History
           </th>
-          <th colSpan={2} width="8%">
+          <th colSpan={2} width='8%'>
             Credit History
           </th>
-          <th colSpan={2} width="8%">
+          <th colSpan={2} width='8%'>
             Collateral
           </th>
-          <th colSpan={2} width="8%">
+          <th colSpan={2} width='8%'>
             Insufficient Cash
           </th>
-          <th colSpan={2} width="8%">
+          <th colSpan={2} width='8%'>
             Unverifiable Information
           </th>
-          <th colSpan={2} width="8%">
+          <th colSpan={2} width='8%'>
             Credit App. Incomplete
           </th>
-          <th colSpan={2} width="8%">
+          <th colSpan={2} width='8%'>
             Mortgage Insurance Denied
           </th>
-          <th colSpan={2} width="8%">
+          <th colSpan={2} width='8%'>
             Other
           </th>
-          <th colSpan={2} width="8%">
+          <th colSpan={2} width='8%'>
             Total
           </th>
         </tr>
@@ -129,7 +129,7 @@ const Eight = React.forwardRef((props, ref) => {
 })
 
 Eight.propTypes = {
-  report: PropTypes.object
+  report: PropTypes.object,
 }
 
 export default Eight

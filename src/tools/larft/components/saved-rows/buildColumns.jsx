@@ -6,7 +6,7 @@ import { matchColumnFilter } from '../../utils/search'
 /**
  * Constructs the column configurations used to display the SavedRows tables (both headers and content).
  * This configuration gets passed to react-fluid-table for rendering.
- * 
+ *
  * @param {Array} rows
  * @param {Array} matchedColumns
  * @param {String} columnFilter
@@ -31,10 +31,10 @@ export const buildColumns = ({
     columnFilter,
   })
 
-  return relevantColumns.map(f => ({
+  return relevantColumns.map((f) => ({
     key: f.fieldName,
     width: 'auto',
-    header: props => (
+    header: (props) => (
       <ColumnHeader field={f} selectedColName={selectedColName} {...props} />
     ),
     content: ({ row, ...props }) => (
@@ -52,9 +52,9 @@ export const buildColumns = ({
 /**
  * Column header.  When clicked, highlights the current column in both the SavedRows view
  * and the Editing view.
- * 
+ *
  * @param {Object} field Field details
- * @param {String} selectedColName Currently selected column name 
+ * @param {String} selectedColName Currently selected column name
  * @param {Object} props Additional attributes
  */
 const ColumnHeader = ({ field, selectedColName, ...props }) => {
@@ -89,10 +89,10 @@ const ColumnHeader = ({ field, selectedColName, ...props }) => {
 /**
  * Column header.  When clicked, highlights the current column in both the SavedRows view
  * and the Editing view.
- * 
+ *
  * @param {Object} row LAR/TS row content
  * @param {Object} field Field details
- * @param {String} selectedColName Currently selected column name 
+ * @param {String} selectedColName Currently selected column name
  * @param {String} searchFilter Content search string
  */
 const ColumnContent = ({ row, field, searchFilter, selectedColName }) => {
@@ -137,19 +137,19 @@ const ColumnContent = ({ row, field, searchFilter, selectedColName }) => {
  * Part of the SavedRows search functionality.  This function filters
  * the list of all available fields for a given schema to only include
  * those who's fieldName match the columnFilter.
- * 
+ *
  * @param {Array} matchedColumns List of Field names who's content matched the searchFilter
  * @param {String} columnFilter Value to filter by
  * @param {Object} schema JSON of LAR or TS fields
- * 
+ *
  */
 const filterFields = ({ matchedColumns, schema, columnFilter }) =>
   schema
-    .filter(x => {
+    .filter((x) => {
       if (!matchedColumns.length) return true
       if (matchedColumns.includes(x.fieldName)) return true
     })
-    .filter(x => matchColumnFilter(x, columnFilter))
+    .filter((x) => matchColumnFilter(x, columnFilter))
 
 // Derive column width based on length of field name
 const formatColWidth = (f, adjustment = 0) => {
@@ -160,18 +160,18 @@ const formatColWidth = (f, adjustment = 0) => {
 }
 
 // Build element ID from field name
-const formatFieldID = f => {
+const formatFieldID = (f) => {
   const REGEX_UNWANTED = /[:\s',()]/g
   let adjusted = f.fieldName.toLowerCase().replaceAll(REGEX_UNWANTED, '-')
   return 'header-' + adjusted
 }
 
 // Collect props that can be passed down to our custom component
-export const getUsableProps = props => {
+export const getUsableProps = (props) => {
   const usableProps = {}
   Object.keys(props)
-    .filter(p_key => !['sortDirection'].includes(p_key))
-    .forEach(p_key => (usableProps[p_key] = props[p_key]))
+    .filter((p_key) => !['sortDirection'].includes(p_key))
+    .forEach((p_key) => (usableProps[p_key] = props[p_key]))
 
   return usableProps
 }

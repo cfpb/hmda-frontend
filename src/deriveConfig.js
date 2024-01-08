@@ -5,11 +5,11 @@ import { easternOffsetHours } from './filing/utils/date'
 export const PERIODS = ['Q3', 'Q2', 'Q1', 'annual']
 
 /**
- * Driver function - Adds derived configuration 
+ * Driver function - Adds derived configuration
  * @param {Object} baseConfig
  * @returns enhanced config object
  */
- export function deriveConfig(baseConfig) {
+export function deriveConfig(baseConfig) {
   const config = JSON.parse(JSON.stringify(baseConfig))
 
   // Order matters
@@ -17,10 +17,9 @@ export const PERIODS = ['Q3', 'Q2', 'Q1', 'annual']
   config.defaultPeriod = calcDefaultPeriod(config)
   config.defaultDocsPeriod = calcDefaultDocsPeriod(config)
   return config
- }
+}
 
-
-/** 
+/**
  * Types - Useful for a config generator tool?
  **/
 
@@ -28,56 +27,55 @@ const FilingPeriodStatus = {
   endDate: {
     type: Date,
     description:
-      'After this date, at midnight ET, users will no longer be able to submit new files to the HMDA Platform'
+      'After this date, at midnight ET, users will no longer be able to submit new files to the HMDA Platform',
   },
   isClosed: {
     type: Boolean,
-    description: "Are we past this filing period's {endDate}?"
+    description: "Are we past this filing period's {endDate}?",
   },
   isLate: {
     type: Boolean,
-    description: "Are we past this filing period's {lateDate}?"
+    description: "Are we past this filing period's {lateDate}?",
   },
   isOpen: {
     type: Boolean,
-    description: "Are we past this filing period's {startDate}?"
+    description: "Are we past this filing period's {startDate}?",
   },
   isQuarterly: {
     type: Boolean,
     description:
-      'Does the currently selected filing period have quarterly filing?'
+      'Does the currently selected filing period have quarterly filing?',
   },
   isVisible: {
     type: Boolean,
-    description: 'Should this filing period be available to Platform users?'
+    description: 'Should this filing period be available to Platform users?',
   },
   isPassed: { type: Boolean, description: 'Is this filing period closed' },
   lateDate: {
     type: Date,
     description:
-      'After this date, at midnight ET, new submissions to the HMDA Platform will no longer be considered timely'
+      'After this date, at midnight ET, new submissions to the HMDA Platform will no longer be considered timely',
   },
   period: { type: String, description: 'Currently selected year-period' },
   startDate: {
     type: Date,
-    description: 'Start filing submissions beginning at 12am'
-  }
+    description: 'Start filing submissions beginning at 12am',
+  },
 }
 
-
-/** 
+/**
  * Calculators
  **/
 
-const calcFilingPeriodStatus = config => {
+const calcFilingPeriodStatus = (config) => {
   const now = Date.now()
   const timedGuards = config.timedGuards
   const dateIsDeadline = [false, true, true]
 
   const filingPeriodStatus = {}
 
-  potentialYears().forEach(year => {
-    PERIODS.forEach(period => {
+  potentialYears().forEach((year) => {
+    PERIODS.forEach((period) => {
       if (!timedGuards || !timedGuards[year] || !timedGuards[year][period])
         return
 
@@ -89,7 +87,7 @@ const calcFilingPeriodStatus = config => {
         timedGuards[year][period]
           .split('-')
           .map((dateString, idx) =>
-            parseTimedGuardDate(dateString.trim(), dateIsDeadline[idx])
+            parseTimedGuardDate(dateString.trim(), dateIsDeadline[idx]),
           )
 
       // Collect all pertinant info about the filing period
@@ -102,8 +100,8 @@ const calcFilingPeriodStatus = config => {
         dates: {
           start: startOfCollection,
           late: startOfLateFiling,
-          end: collectionDeadline
-        }
+          end: collectionDeadline,
+        },
       }
 
       if (period.includes('Q')) thisPeriod.isQuarterly = true
@@ -137,12 +135,12 @@ const calcFilingPeriodStatus = config => {
   return filingPeriodStatus
 }
 
-/* The most recent filing period to start accepting submissions */ 
-const calcDefaultPeriod = config => {
+/* The most recent filing period to start accepting submissions */
+const calcDefaultPeriod = (config) => {
   const reachableViaUI = getFilingPeriods(config)
 
   const acceptingSubmissions = reachableViaUI
-    .filter(period => {
+    .filter((period) => {
       const { isOpen, isLate } = config.filingPeriodStatus[period]
       return isOpen || isLate
     })
@@ -158,13 +156,11 @@ const calcDefaultPeriod = config => {
   return latest
 }
 
-/* The documentation year correlating to defaultFilingPeriod */ 
-const calcDefaultDocsPeriod = config =>
+/* The documentation year correlating to defaultFilingPeriod */
+const calcDefaultDocsPeriod = (config) =>
   splitYearQuarter(config.defaultPeriod)[0]
 
-
-
-/** 
+/**
  * Helpers
  **/
 
@@ -187,7 +183,7 @@ function potentialYears(start = 2017) {
  * @returns Date (Eastern time)
  */
 export function parseTimedGuardDate(str, isDeadline = false) {
-  let [month, day, year] = str.split('/').map(s => parseInt(s, 10))
+  let [month, day, year] = str.split('/').map((s) => parseInt(s, 10))
   month = month - 1 // JS months are 0 indexed
 
   // The addition of abs() is a workaround for our Cypress testing pods, which seem to run in UTC
@@ -201,7 +197,7 @@ export function parseTimedGuardDate(str, isDeadline = false) {
       day,
       23 - offset, // 11:59pm ET
       59,
-      59
+      59,
     )
 
   // Start of Day
@@ -211,20 +207,20 @@ export function parseTimedGuardDate(str, isDeadline = false) {
     day,
     0 - offset, // 12am ET
     0,
-    0
+    0,
   )
 }
 
 /**
  * Date string in Eastern Time
- * @param {Date} date 
+ * @param {Date} date
  * @returns String
  */
- export function formatLocalString(date) {
+export function formatLocalString(date) {
   return date.toLocaleString('en-US', {
     year: 'numeric',
     day: 'numeric',
     month: 'long',
-    timeZone: 'America/New_York'
+    timeZone: 'America/New_York',
   })
 }

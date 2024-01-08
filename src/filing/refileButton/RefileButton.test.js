@@ -11,7 +11,7 @@ describe('RefileButton', () => {
     const rendered = RefileButton({
       showConfirmModal: showConfirmModal,
       updateInstitution: updateInstitution,
-      institution: { id: '1', name: 'bank0' }
+      institution: { id: '1', name: 'bank0' },
     })
 
     expect(rendered).toBeDefined()
@@ -28,7 +28,7 @@ describe('RefileButton', () => {
     const rendered = RefileButton({
       showConfirmModal: showConfirmModal,
       updateInstitution: updateInstitution,
-      institution: { id: '1', name: 'bank0' }
+      institution: { id: '1', name: 'bank0' },
     })
 
     rendered.props.onClick({ preventDefault: jest.fn() })
@@ -40,7 +40,7 @@ describe('RefileButton', () => {
     const updateInstitution = jest.fn()
     const rendered = RefileButton({
       showConfirmModal: showConfirmModal,
-      updateInstitution: updateInstitution
+      updateInstitution: updateInstitution,
     })
 
     rendered.props.onClick({ preventDefault: jest.fn() })
@@ -51,7 +51,7 @@ describe('RefileButton', () => {
     const showConfirmModal = jest.fn()
     const rendered = RefileButton({
       showConfirmModal: showConfirmModal,
-      isLink: true
+      isLink: true,
     })
 
     expect(rendered).toBeDefined()

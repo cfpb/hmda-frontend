@@ -8,7 +8,7 @@ describe('verifyQuality', () => {
     expect(verifyQuality(true)).toEqual({
       type: types.VERIFY_QUALITY,
       checked: true,
-      isFetching: false
+      isFetching: false,
     })
   })
 })

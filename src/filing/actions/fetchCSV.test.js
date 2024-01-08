@@ -9,14 +9,14 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { getCSV } from '../api/api.js'
 
-getCSV.mockImplementation(id => Promise.resolve('a,b,c'))
+getCSV.mockImplementation((id) => Promise.resolve('a,b,c'))
 const mockStore = configureMockStore([thunk])
 
 delete window.Blob
 window.Blob = jest.fn(() => {})
 
 describe('fetchCSV', () => {
-  it('creates a thunk that will request edits and trigger a csv download', done => {
+  it('creates a thunk that will request edits and trigger a csv download', (done) => {
     const store = mockStore({})
 
     store
@@ -28,13 +28,13 @@ describe('fetchCSV', () => {
           done()
         }, 0)
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err)
         done.fail()
       })
   })
 
-  it('creates a thunk that will request edits and trigger a csv download when IE is detected', done => {
+  it('creates a thunk that will request edits and trigger a csv download when IE is detected', (done) => {
     const store = mockStore({})
 
     window.navigator.__defineGetter__('userAgent', () => 'MSIE ')
@@ -46,18 +46,18 @@ describe('fetchCSV', () => {
         expect(window.Blob.mock.calls.length).toBe(2)
         done()
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err)
         done.fail()
       })
   })
 })
 
-it('creates a thunk that manages an error during csv downloads', done => {
+it('creates a thunk that manages an error during csv downloads', (done) => {
   const store = mockStore({})
   console.error = jest.fn()
-  getCSV.mockImplementation(id =>
-    Promise.resolve({ status: 403, statusText: 'nope' })
+  getCSV.mockImplementation((id) =>
+    Promise.resolve({ status: 403, statusText: 'nope' }),
   )
   store
     .dispatch(fetchCSV())
@@ -67,14 +67,14 @@ it('creates a thunk that manages an error during csv downloads', done => {
           { type: types.REQUEST_CSV },
           {
             type: types.RECEIVE_ERROR,
-            error: { status: 403, statusText: 'nope' }
-          }
+            error: { status: 403, statusText: 'nope' },
+          },
         ])
         expect(window.Blob.mock.calls.length).toBe(2)
         done()
       }, 0)
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err)
       done.fail()
     })

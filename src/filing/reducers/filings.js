@@ -2,8 +2,8 @@ import {
   REQUEST_FILING,
   RECEIVE_FILING,
   UPDATE_FILING_PERIOD,
-  RECEIVE_FILING_PAGE
-} from "../constants"
+  RECEIVE_FILING_PAGE,
+} from '../constants'
 
 const defaultFilings = {}
 
@@ -11,11 +11,11 @@ const defaultFilings = {}
  * Parse page numbers from query strings
  * @param {Object} originalLinks
  */
-function parsePageNumbers(originalLinks){
-  const links = {...originalLinks}
-  Object.keys(links).forEach(key =>
-    {if (key !== "href") links[key] = links[key].split("=")[1]}
-  )
+function parsePageNumbers(originalLinks) {
+  const links = { ...originalLinks }
+  Object.keys(links).forEach((key) => {
+    if (key !== 'href') links[key] = links[key].split('=')[1]
+  })
   return links
 }
 
@@ -32,10 +32,10 @@ export default (state = defaultFilings, action) => {
         [action.lei]: {
           isFetching: true,
           fetched: false,
-          filing: null
-        }
+          filing: null,
+        },
       }
-      
+
     case RECEIVE_FILING:
       const links = parsePageNumbers(action.filing._links)
 
@@ -56,11 +56,11 @@ export default (state = defaultFilings, action) => {
           links,
           submissionPages: {
             ...prevSubmissionPages,
-            ...newSubmissionPage
-          }
-        }
+            ...newSubmissionPage,
+          },
+        },
       }
-      
+
     case RECEIVE_FILING_PAGE:
       const lei = action.json.filing.lei
       const filingPageLinks = parsePageNumbers(action.json._links)
@@ -72,10 +72,10 @@ export default (state = defaultFilings, action) => {
           ...state[lei],
           submissionPages: {
             ...state[lei].submissionPages,
-            [currentPage]: [...action.json.submissions]
+            [currentPage]: [...action.json.submissions],
           },
-          links: filingPageLinks
-        }
+          links: filingPageLinks,
+        },
       }
 
     case UPDATE_FILING_PERIOD:

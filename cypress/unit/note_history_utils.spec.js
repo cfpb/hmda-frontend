@@ -15,7 +15,7 @@ describe('#calcDiff', () => {
     expect(util.calcDiff({}, {})).to.equal(null)
     expect(util.calcDiff(null, null)).to.equal(null)
   })
-  
+
   it('Returns all diffs when one arg is null', () => {
     const res_no_prev = {
       shallow: { oldVal: null, newVal: 'diff' },
@@ -25,7 +25,7 @@ describe('#calcDiff', () => {
     }
 
     expect(util.calcDiff(curr, null)).to.deep.equal(res_no_prev)
-    
+
     const res_no_curr = {
       shallow: { oldVal: null, newVal: 'diff' },
       nested: { value: { oldVal: null, newVal: 'diff' } },
@@ -43,14 +43,13 @@ describe('#calcDiff', () => {
       newKey: { oldVal: null, newVal: 'diff' },
     }
     expect(util.calcDiff(curr, prev)).to.deep.equal(expected)
-
   })
 })
 
 describe('#allDiffs', () => {
   it('Returns null without fields to diff', () => {
-    expect(util.allDiff()).to.equal(null);
-    expect(util.allDiff({})).to.equal(null);
+    expect(util.allDiff()).to.equal(null)
+    expect(util.allDiff({})).to.equal(null)
   })
 
   it('Treats all fields as changed', () => {
@@ -60,7 +59,7 @@ describe('#allDiffs', () => {
       array: { oldVal: null, newVal: [2, 1] },
       newKey: { oldVal: null, newVal: 'diff' },
     }
-    expect(util.allDiff(curr)).to.deep.equal(expected);
+    expect(util.allDiff(curr)).to.deep.equal(expected)
   })
 })
 
@@ -79,11 +78,11 @@ describe('#formatHistoryDate', () => {
 
 describe('#sortNotes', () => {
   it('Sorts notes desc by id', () => {
-    const data = [{id: 3}, {id: 8}]
-    expect(data[0].id < data[1].id).to.equal(true);
+    const data = [{ id: 3 }, { id: 8 }]
+    expect(data[0].id < data[1].id).to.equal(true)
     const sorted = util.sortNotes(data)
-    expect(data[0].id < data[1].id).to.equal(false);
-    expect(data[1].id < data[0].id).to.equal(true);
+    expect(data[0].id < data[1].id).to.equal(false)
+    expect(data[1].id < data[0].id).to.equal(true)
   })
 })
 
@@ -103,6 +102,6 @@ describe('#addDiff', () => {
       newKey: { oldVal: null, newVal: 'diff' },
     }
 
-    expect(injected[0].diff).to.deep.equal(expected);
+    expect(injected[0].diff).to.deep.equal(expected)
   })
 })

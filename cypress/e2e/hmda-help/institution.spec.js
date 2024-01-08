@@ -78,10 +78,10 @@ onlyOn(!isBeta(HOST), () => {
           .should('not.contain.text', timestamp1)
       }
 
-      cy.findByLabelText(nameLabelText).then($name => {
+      cy.findByLabelText(nameLabelText).then(($name) => {
         const savedName = $name.attr('value')
 
-        cy.findByLabelText(quarterlyFilerLabel).then($qFiler => {
+        cy.findByLabelText(quarterlyFilerLabel).then(($qFiler) => {
           const savedQFiler = getSelectedOptionValue($qFiler, 'false')
           const flippedQFilerVal =
             ['true'].indexOf(savedQFiler) > -1 ? 'false' : 'true'
@@ -94,12 +94,12 @@ onlyOn(!isBeta(HOST), () => {
           cy.findByLabelText(nameLabelText)
             .type('{selectAll}' + testName)
             .blur()
-            .then($name2 => {
+            .then(($name2) => {
               // Flip Quarterly Filer value [Select Field]
               cy.findByLabelText(quarterlyFilerLabel)
                 .select(flippedQFilerVal)
                 .blur()
-                .then($qFiler2 => {
+                .then(($qFiler2) => {
                   // Notes field is required on Update
                   cy.findByText(updateButtonText).should('not.be.enabled')
                   cy.findByLabelText('Notes')
@@ -115,7 +115,7 @@ onlyOn(!isBeta(HOST), () => {
                         .then(() => {
                           expect($name2.attr('value')).to.contain(testName)
                           expect(getSelectedOptionValue($qFiler2)).to.contain(
-                            flippedQFilerVal
+                            flippedQFilerVal,
                           )
 
                           // Check Note History entry correctly created
@@ -169,7 +169,7 @@ onlyOn(!isBeta(HOST), () => {
                     .then(() => {
                       expect($name.attr('value')).to.contain(savedName)
                       expect(getSelectedOptionValue($qFiler)).to.contain(
-                        savedQFiler
+                        savedQFiler,
                       )
                     })
                 })
@@ -236,7 +236,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.findByLabelText('Email Domains').type('bank1.com')
       cy.findByLabelText('Tax Id').type('53-0000001')
       cy.findByLabelText(
-        '9 - Consumer Financial Protection Bureau (CFPB)'
+        '9 - Consumer Financial Protection Bureau (CFPB)',
       ).click()
       cy.findByLabelText('Quarterly Filer')
         .select('true')
@@ -251,7 +251,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.findByText('Add the Institution').should('be.enabled').click()
 
       cy.findAllByText(
-        `The institution, ${institution}, has been added!`
+        `The institution, ${institution}, has been added!`,
       ).should('exist')
     })
   })

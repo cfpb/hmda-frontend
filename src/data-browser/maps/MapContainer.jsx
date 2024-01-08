@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useCallback, useRef, createContext }  from 'react'
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  createContext,
+} from 'react'
 import Alert from '../../common/Alert.jsx'
 import {
   geographies,
@@ -9,7 +15,14 @@ import {
   parseCombinedFilter,
   varNameMapping,
 } from './selectUtils.jsx'
-import { setOutline, getOrigPer1000, makeLegend, makeStops, addLayers, useBias } from './layerUtils.jsx'
+import {
+  setOutline,
+  getOrigPer1000,
+  makeLegend,
+  makeStops,
+  addLayers,
+  useBias,
+} from './layerUtils.jsx'
 import { popup, buildPopupHTML } from './popupUtils.jsx'
 import { fetchFilterData } from './filterUtils.jsx'
 import { runFetch, getCSV } from '../api.js'
@@ -23,7 +36,8 @@ import { ReportSummary } from './ReportSummary'
 import './mapbox.css'
 import DatasetDocsLink from '../datasets/DatasetDocsLink.jsx'
 
-mapbox.accessToken = 'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlvaQw'
+mapbox.accessToken =
+  'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlvaQw'
 
 export const MapContext = createContext({})
 
@@ -46,15 +60,18 @@ function getDefaultsFromSearch(props) {
     filtervalue: null,
     feature: null,
   }
-  qsParts.forEach(part => {
-    if(!part) return
+  qsParts.forEach((part) => {
+    if (!part) return
     let [key, val] = part.split('=')
-    if(key === 'geography') val = getSelectData(geographies, val)
-    else if(key === 'variable' || key === 'filter') val = getSelectData(variables, val)
-    else if(key === 'value') val = getSelectData(getValuesForVariable(defaults.variable), val)
-    else if(key === 'filtervalue') val = getSelectData(getValuesForVariable(defaults.filter), val)
+    if (key === 'geography') val = getSelectData(geographies, val)
+    else if (key === 'variable' || key === 'filter')
+      val = getSelectData(variables, val)
+    else if (key === 'value')
+      val = getSelectData(getValuesForVariable(defaults.variable), val)
+    else if (key === 'filtervalue')
+      val = getSelectData(getValuesForVariable(defaults.filter), val)
     else if (key === 'mapCenter') null // No processing needed
-    
+
     defaults[key] = val || null
   })
 
@@ -64,9 +81,9 @@ function getDefaultsFromSearch(props) {
   return defaults
 }
 
-function scrollToTable(node){
-  if(!node) return
-  node.scrollIntoView({behavior: 'smooth', block: 'start'})
+function scrollToTable(node) {
+  if (!node) return
+  node.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
 
 const zoomMapping = {
@@ -78,7 +95,7 @@ const zoomMapping = {
  * @param {String} geo Geographic Level
  * @param {Number} amount Amount to shift the default zoom level for this Geographic Level
  * @param {Array} list Feature IDs for which this adjustment applies
- * @returns 
+ * @returns
  */
 const adjustZoom = (geo, amount, list) => {
   const dflt = zoomMapping[geo].default
@@ -87,14 +104,26 @@ const adjustZoom = (geo, amount, list) => {
 
 const getZoom = (geo, featureId) => {
   if (!geo || !featureId) return 3.5
-  if (geo === 'state') return zoomMapping[geo][featureId] || zoomMapping[geo].default
+  if (geo === 'state')
+    return zoomMapping[geo][featureId] || zoomMapping[geo].default
   return zoomMapping[geo][featureId.substr(0, 2)] || zoomMapping[geo].default
 }
 
 // Zoom more on small states, less on large states (default zoom: 5)
 adjustZoom('state', -2, ['02'])
 adjustZoom('state', -0.5, ['16', '48'])
-adjustZoom('state', 0.5, [ '15', '23', '24', '25', '33', '42', '44', '45', '50', '54'])
+adjustZoom('state', 0.5, [
+  '15',
+  '23',
+  '24',
+  '25',
+  '33',
+  '42',
+  '44',
+  '45',
+  '50',
+  '54',
+])
 adjustZoom('state', 1.5, ['09', '10', '33', '34', '44', '72'])
 adjustZoom('state', 3, ['11'])
 
@@ -131,10 +160,9 @@ const extractGeoCenters = (map) => {
   console.log('counts center: ', JSON.stringify(cs))
 }
 
-
 let currentHighlightColor = null
 
-const MapContainer = props => {
+const MapContainer = (props) => {
   const mapContainer = useRef(null)
   const tableRef = useRef(null)
   const mapRef = useRef(null)
@@ -159,33 +187,37 @@ const MapContainer = props => {
   const [filterData, setFilterData] = useState(null)
   const [tableFilterData, setTableFilterData] = useState(null)
   const [selectedGeography, setGeography] = useState(defaults.geography)
-  
-  const [combinedFilter1, setCombinedFilter1] = useState(defaults.combinedFilter1)
+
+  const [combinedFilter1, setCombinedFilter1] = useState(
+    defaults.combinedFilter1,
+  )
   const [selectedVariable, setVariable] = useState(defaults.variable)
   const [selectedValue, setValue] = useState(defaults.value)
-  
-  const [combinedFilter2, setCombinedFilter2] = useState(defaults.combinedFilter2)
+
+  const [combinedFilter2, setCombinedFilter2] = useState(
+    defaults.combinedFilter2,
+  )
   const [selectedFilter, setFilter] = useState(defaults.filter)
   const [selectedFilterValue, setFilterValue] = useState(defaults.filtervalue)
- 
+
   const [feature, setFeature] = useState(defaults.feature)
   const [mapCenter, setMapCenter] = useState(defaults.mapCenter)
-  
+
   const getBaseData = useCallback(
     (year, geography) => {
       if (!year || !geography) return null
       popup.remove()
       switch (year) {
-        case "2018":
-          return geography.value === "state" ? state2018Data : county2018Data
-        case "2019":
-          return geography.value === "state" ? state2019Data : county2019Data
-        case "2020":
-          return geography.value === "state" ? state2020Data : county2020Data
-        case "2021":
-          return geography.value === "state" ? state2021Data : county2021Data
-        case "2022":
-          return geography.value === "state" ? state2022Data : county2022Data
+        case '2018':
+          return geography.value === 'state' ? state2018Data : county2018Data
+        case '2019':
+          return geography.value === 'state' ? state2019Data : county2019Data
+        case '2020':
+          return geography.value === 'state' ? state2020Data : county2020Data
+        case '2021':
+          return geography.value === 'state' ? state2021Data : county2021Data
+        case '2022':
+          return geography.value === 'state' ? state2022Data : county2022Data
         default:
           return null
       }
@@ -201,17 +233,25 @@ const MapContainer = props => {
       county2021Data,
       state2022Data,
       county2022Data,
-    ]
+    ],
   )
 
   const resolveData = useCallback(() => {
-    if(selectedFilterValue) return [filterData, selectedFilter, selectedFilterValue]
-    else if(data) return [data, selectedVariable, selectedValue]
+    if (selectedFilterValue)
+      return [filterData, selectedFilter, selectedFilterValue]
+    else if (data) return [data, selectedVariable, selectedValue]
     return null
-  }, [data, filterData, selectedFilter, selectedFilterValue, selectedValue, selectedVariable])
+  }, [
+    data,
+    filterData,
+    selectedFilter,
+    selectedFilterValue,
+    selectedValue,
+    selectedVariable,
+  ])
 
   const makeCsvUrl = () => {
-    if (!selectedVariable || !selectedValue) return 
+    if (!selectedVariable || !selectedValue) return
     const geoString =
       selectedGeography.value === 'county'
         ? `counties=${feature}`
@@ -221,32 +261,34 @@ const MapContainer = props => {
       ? `&${varNameMapping[selectedFilter.value]}=${selectedFilterValue.value}`
       : ''
 
-    const csv = `/v2/data-browser-api/view/csv?years=${year}&${geoString}&${varNameMapping[selectedVariable.value]}=${selectedValue.value}${filter}`
+    const csv = `/v2/data-browser-api/view/csv?years=${year}&${geoString}&${
+      varNameMapping[selectedVariable.value]
+    }=${selectedValue.value}${filter}`
     return csv
   }
-  
+
   const fetchCSV = () => {
     getCSV(makeCsvUrl(), feature + '.csv')
   }
 
-  const onYearChange = selected => {
+  const onYearChange = (selected) => {
     scrollToMap()
     const basePath = '/data-browser/maps/'
     const search = makeSearch(selected.year)
     props.history.push(`${basePath}${selected.year}${search}`)
   }
 
-  const onGeographyChange = selected => {
+  const onGeographyChange = (selected) => {
     scrollToMap()
     popup.remove()
     setFeature(null)
     setGeography(selected)
-    !mapCenter && setMapCenter("-96,38")
+    !mapCenter && setMapCenter('-96,38')
   }
 
   const onFilter1Change = (selected) => {
     scrollToMap()
-    if(!selected) {
+    if (!selected) {
       setCombinedFilter1(selected)
       setCombinedFilter2(selected)
       setVariable(selected)
@@ -257,7 +299,7 @@ const MapContainer = props => {
       return
     }
 
-  const parsed = parseCombinedFilter(selected)
+    const parsed = parseCombinedFilter(selected)
     setCombinedFilter1(selected)
     setVariable(parsed.variable)
     setValue(parsed.value)
@@ -280,37 +322,50 @@ const MapContainer = props => {
 
   const makeSearch = (yr = '2018') => {
     const searchArr = []
-    if(selectedGeography) searchArr.push(`geography=${selectedGeography.value}`)
-    if(selectedVariable) searchArr.push(`variable=${selectedVariable.value}`)
-    if(selectedValue) searchArr.push(`value=${selectedValue.value}`)
-    if(selectedFilter) searchArr.push(`filter=${selectedFilter.value}`)
-    if(selectedFilterValue) searchArr.push(`filtervalue=${selectedFilterValue.value}`)
-    if(feature) searchArr.push(`feature=${feature}`)
-    if(mapCenter) searchArr.push(`mapCenter=${mapCenter}`)
-    if(searchArr.length) return `?${searchArr.join('&')}`
+    if (selectedGeography)
+      searchArr.push(`geography=${selectedGeography.value}`)
+    if (selectedVariable) searchArr.push(`variable=${selectedVariable.value}`)
+    if (selectedValue) searchArr.push(`value=${selectedValue.value}`)
+    if (selectedFilter) searchArr.push(`filter=${selectedFilter.value}`)
+    if (selectedFilterValue)
+      searchArr.push(`filtervalue=${selectedFilterValue.value}`)
+    if (feature) searchArr.push(`feature=${feature}`)
+    if (mapCenter) searchArr.push(`mapCenter=${mapCenter}`)
+    if (searchArr.length) return `?${searchArr.join('&')}`
     return ''
   }
 
   function scrollToMap() {
     if (!mapRef.current || !mapRef.current.scrollIntoView) return
-    return setTimeout(() => mapRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' }), 0)
+    return setTimeout(
+      () =>
+        mapRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' }),
+      0,
+    )
   }
 
   useEffect(() => {
-    if(!county2018Data && selectedGeography.value === 'county' && year === '2018'){
+    if (
+      !county2018Data &&
+      selectedGeography.value === 'county' &&
+      year === '2018'
+    ) {
       fetchQ.push(1)
-      runFetch('/2018/county.json').then(jsonData => {
+      runFetch('/2018/county.json').then((jsonData) => {
         setCounty2018Data(jsonData)
         fetchQ.pop()
       })
     }
   }, [county2018Data, selectedGeography, year])
 
-
   useEffect(() => {
-    if(!county2019Data && selectedGeography.value === 'county' && year === '2019'){
+    if (
+      !county2019Data &&
+      selectedGeography.value === 'county' &&
+      year === '2019'
+    ) {
       fetchQ.push(1)
-      runFetch('/2019/county.json').then(jsonData => {
+      runFetch('/2019/county.json').then((jsonData) => {
         setCounty2019Data(jsonData)
         fetchQ.pop()
       })
@@ -318,9 +373,13 @@ const MapContainer = props => {
   }, [county2019Data, selectedGeography, year])
 
   useEffect(() => {
-    if(!county2020Data && selectedGeography.value === 'county' && year === '2020'){
+    if (
+      !county2020Data &&
+      selectedGeography.value === 'county' &&
+      year === '2020'
+    ) {
       fetchQ.push(1)
-      runFetch('/2020/county.json').then(jsonData => {
+      runFetch('/2020/county.json').then((jsonData) => {
         setCounty2020Data(jsonData)
         fetchQ.pop()
       })
@@ -328,45 +387,55 @@ const MapContainer = props => {
   }, [county2020Data, selectedGeography, year])
 
   useEffect(() => {
-    if(!county2021Data && selectedGeography.value === 'county' && year === '2021'){
+    if (
+      !county2021Data &&
+      selectedGeography.value === 'county' &&
+      year === '2021'
+    ) {
       fetchQ.push(1)
-      runFetch('/2021/county.json').then(jsonData => {
+      runFetch('/2021/county.json').then((jsonData) => {
         setCounty2021Data(jsonData)
         fetchQ.pop()
       })
     }
   }, [county2021Data, selectedGeography, year])
 
-    useEffect(() => {
-      if (
-        !county2022Data &&
-        selectedGeography.value === "county" &&
-        year === "2022"
-      ) {
-        fetchQ.push(1)
-        runFetch("/2022/county.json").then(jsonData => {
-          setCounty2022Data(jsonData)
-          fetchQ.pop()
-        })
-      }
-    }, [county2022Data, selectedGeography, year])
-
+  useEffect(() => {
+    if (
+      !county2022Data &&
+      selectedGeography.value === 'county' &&
+      year === '2022'
+    ) {
+      fetchQ.push(1)
+      runFetch('/2022/county.json').then((jsonData) => {
+        setCounty2022Data(jsonData)
+        fetchQ.pop()
+      })
+    }
+  }, [county2022Data, selectedGeography, year])
 
   useEffect(() => {
-    if(!state2018Data && selectedGeography.value === 'state' && year === '2018'){
+    if (
+      !state2018Data &&
+      selectedGeography.value === 'state' &&
+      year === '2018'
+    ) {
       fetchQ.push(1)
-      runFetch('/2018/state.json').then(jsonData => {
+      runFetch('/2018/state.json').then((jsonData) => {
         setState2018Data(jsonData)
         fetchQ.pop()
       })
     }
   }, [selectedGeography, state2018Data, year])
 
-
   useEffect(() => {
-    if(!state2019Data && selectedGeography.value === 'state' && year === '2019'){
+    if (
+      !state2019Data &&
+      selectedGeography.value === 'state' &&
+      year === '2019'
+    ) {
       fetchQ.push(1)
-      runFetch('/2019/state.json').then(jsonData => {
+      runFetch('/2019/state.json').then((jsonData) => {
         setState2019Data(jsonData)
         fetchQ.pop()
       })
@@ -374,9 +443,13 @@ const MapContainer = props => {
   }, [selectedGeography, state2019Data, year])
 
   useEffect(() => {
-    if(!state2020Data && selectedGeography.value === 'state' && year === '2020'){
+    if (
+      !state2020Data &&
+      selectedGeography.value === 'state' &&
+      year === '2020'
+    ) {
       fetchQ.push(1)
-      runFetch('/2020/state.json').then(jsonData => {
+      runFetch('/2020/state.json').then((jsonData) => {
         setState2020Data(jsonData)
         fetchQ.pop()
       })
@@ -384,9 +457,13 @@ const MapContainer = props => {
   }, [selectedGeography, state2020Data, year])
 
   useEffect(() => {
-    if(!state2021Data && selectedGeography.value === 'state' && year === '2021'){
+    if (
+      !state2021Data &&
+      selectedGeography.value === 'state' &&
+      year === '2021'
+    ) {
       fetchQ.push(1)
-      runFetch('/2021/state.json').then(jsonData => {
+      runFetch('/2021/state.json').then((jsonData) => {
         setState2021Data(jsonData)
         fetchQ.pop()
       })
@@ -396,34 +473,40 @@ const MapContainer = props => {
   useEffect(() => {
     if (
       !state2022Data &&
-      selectedGeography.value === "state" &&
-      year === "2022"
+      selectedGeography.value === 'state' &&
+      year === '2022'
     ) {
       fetchQ.push(1)
-      runFetch("/2022/state.json").then(jsonData => {
+      runFetch('/2022/state.json').then((jsonData) => {
         setState2022Data(jsonData)
         fetchQ.pop()
       })
     }
   }, [selectedGeography, state2022Data, year])
 
-
   useEffect(() => {
     setData(getBaseData(year, selectedGeography))
   }, [year, getBaseData, selectedGeography])
 
-
   useEffect(() => {
-    if(selectedValue) {
-      fetchFilterData(year, selectedGeography, selectedVariable, selectedValue)
-        .then(d => setFilterData(d))
+    if (selectedValue) {
+      fetchFilterData(
+        year,
+        selectedGeography,
+        selectedVariable,
+        selectedValue,
+      ).then((d) => setFilterData(d))
     }
   }, [selectedGeography, selectedValue, selectedVariable, year])
 
   useEffect(() => {
-    if(selectedFilterValue) {
-      fetchFilterData(year, selectedGeography, selectedFilter, selectedFilterValue)
-        .then(d => setTableFilterData(d))
+    if (selectedFilterValue) {
+      fetchFilterData(
+        year,
+        selectedGeography,
+        selectedFilter,
+        selectedFilterValue,
+      ).then((d) => setTableFilterData(d))
     } else {
       setTableFilterData(undefined)
     }
@@ -431,16 +514,14 @@ const MapContainer = props => {
 
   useEffect(() => {
     const search = makeSearch()
-    if(search && props.location.search !== search){
-      props.history.replace({search})
+    if (search && props.location.search !== search) {
+      props.history.replace({ search })
     }
   })
 
   useEffect(() => {
-    if (!mapCenter)
-      setTimeout(() => window.scrollTo(0,0))
+    if (!mapCenter) setTimeout(() => window.scrollTo(0, 0))
   }, [])
-
 
   useEffect(() => {
     let map
@@ -450,10 +531,10 @@ const MapContainer = props => {
         container: mapContainer.current,
         style: 'mapbox://styles/mapbox/light-v10?optimize=true',
         zoom: 3.5,
-        center: [-96, 38]
+        center: [-96, 38],
       })
       map.addControl(new mapbox.NavigationControl(), 'top-left')
-    } catch (e){
+    } catch (e) {
       setMap(false)
       return
     }
@@ -463,65 +544,95 @@ const MapContainer = props => {
     map.on('load', () => {
       map.addSource('county', {
         type: 'vector',
-        url: 'mapbox://cfpb.00l6sz7f'
+        url: 'mapbox://cfpb.00l6sz7f',
       })
 
       map.addSource('state', {
         type: 'vector',
-        url: 'mapbox://cfpb.57ndfhgx'
+        url: 'mapbox://cfpb.57ndfhgx',
       })
     })
 
     return () => map.remove()
-  /*eslint-disable-next-line*/
+    /*eslint-disable-next-line*/
   }, [])
 
-
   useEffect(() => {
-    if(map) {
+    if (map) {
       const addLayersAndOutline = () => {
         const resolved = resolveData()
-        if(resolved){
-          const [stops, highlightColor] = makeStops(...resolved, year, selectedGeography, selectedVariable, selectedValue)
+        if (resolved) {
+          const [stops, highlightColor] = makeStops(
+            ...resolved,
+            year,
+            selectedGeography,
+            selectedVariable,
+            selectedValue,
+          )
           currentHighlightColor = highlightColor
           addLayers(map, selectedGeography, stops)
-          setOutline(map, selectedGeography, feature, null, currentHighlightColor)
+          setOutline(
+            map,
+            selectedGeography,
+            feature,
+            null,
+            currentHighlightColor,
+          )
         }
       }
-      if(map._loaded) addLayersAndOutline()
+      if (map._loaded) addLayersAndOutline()
       else map.on('load', addLayersAndOutline)
     }
-  }, [feature, map, resolveData, selectedGeography, selectedValue, selectedVariable, year])
-
+  }, [
+    feature,
+    map,
+    resolveData,
+    selectedGeography,
+    selectedValue,
+    selectedVariable,
+    year,
+  ])
 
   useEffect(() => {
-    if(!data || !map) return
+    if (!data || !map) return
 
     let lastTimeout
 
     function mouseIsLeavingMap(e) {
       const EDGE_LIMIT_PX = 35
-      const {height, width} = e.target.transform
-      if (e.point.x < EDGE_LIMIT_PX || e.point.x > width - EDGE_LIMIT_PX) return true
-      if (e.point.y < EDGE_LIMIT_PX || e.point.y > height - EDGE_LIMIT_PX) return true
+      const { height, width } = e.target.transform
+      if (e.point.x < EDGE_LIMIT_PX || e.point.x > width - EDGE_LIMIT_PX)
+        return true
+      if (e.point.y < EDGE_LIMIT_PX || e.point.y > height - EDGE_LIMIT_PX)
+        return true
       return false
     }
 
     function highlight(e) {
-      if(!map._loaded) return
+      if (!map._loaded) return
 
-      const geoVal =  selectedGeography.value
+      const geoVal = selectedGeography.value
 
-      const features = map.queryRenderedFeatures(e.point, {layers: [selectedGeography.value]})
-      if(!features.length || mouseIsLeavingMap(e)) return popup.remove()
+      const features = map.queryRenderedFeatures(e.point, {
+        layers: [selectedGeography.value],
+      })
+      if (!features.length || mouseIsLeavingMap(e)) return popup.remove()
       const feat = features[0].properties['GEOID']
 
       const d = tableFilterData ? tableFilterData : data
-      const origPer1000 = getOrigPer1000(d, feat, year, selectedGeography, selectedVariable, selectedValue)
+      const origPer1000 = getOrigPer1000(
+        d,
+        feat,
+        year,
+        selectedGeography,
+        selectedVariable,
+        selectedValue,
+      )
 
       map.getCanvas().style.cursor = selectedVariable ? 'pointer' : 'initial'
 
-      popup.setLngLat(map.unproject(e.point))
+      popup
+        .setLngLat(map.unproject(e.point))
         .setHTML(buildPopupHTML(geoVal, feat, origPer1000))
         .addTo(map)
 
@@ -533,21 +644,22 @@ const MapContainer = props => {
     }
 
     function highlightSavedFeature({ scroll, zoom }) {
-      const [lng,lat] = mapCenter ? mapCenter.split(',') : []
+      const [lng, lat] = mapCenter ? mapCenter.split(',') : []
       setOutline(map, selectedGeography, feature, null, currentHighlightColor)
-      const tmp_a = [lng,lat]
-      if (tmp_a.every(x => x || x === 0)){
-        zoom && zoomToGeography({
-          GEOID: feature,
-          CENTROID_LNG: lng,
-          CENTROID_LAT: lat,
-        })
+      const tmp_a = [lng, lat]
+      if (tmp_a.every((x) => x || x === 0)) {
+        zoom &&
+          zoomToGeography({
+            GEOID: feature,
+            CENTROID_LNG: lng,
+            CENTROID_LAT: lat,
+          })
       }
     }
 
-    function getTableData(properties){
+    function getTableData(properties) {
       const feat = properties['GEOID']
-      if(feat !== feature) {
+      if (feat !== feature) {
         setFeature(feat)
         detachHandlers()
       }
@@ -561,9 +673,11 @@ const MapContainer = props => {
     }
 
     function handleMapClick(e) {
-      if(!map._loaded || !selectedGeography || !selectedVariable) return
-      const features = map.queryRenderedFeatures(e.point, {layers: [selectedGeography.value]})
-      if(!features.length) return
+      if (!map._loaded || !selectedGeography || !selectedVariable) return
+      const features = map.queryRenderedFeatures(e.point, {
+        layers: [selectedGeography.value],
+      })
+      if (!features.length) return
       const properties = features[0].properties
       const center = [properties.CENTROID_LNG, properties.CENTROID_LAT]
 
@@ -574,16 +688,19 @@ const MapContainer = props => {
 
     const clearPopup = () => popup.remove()
 
-    function attachHandlers () {
-      if(map._loaded) highlightSavedFeature({ scroll: true, zoom: true })
-      else map.on('load', () => highlightSavedFeature({ scroll: true, zoom: true }))
+    function attachHandlers() {
+      if (map._loaded) highlightSavedFeature({ scroll: true, zoom: true })
+      else
+        map.on('load', () =>
+          highlightSavedFeature({ scroll: true, zoom: true }),
+        )
       map.on('mousemove', highlight)
       map.on('mouseleave', 'county', highlightSavedFeature)
       map.on('mouseleave', 'state', highlightSavedFeature)
       map.on('click', handleMapClick)
       map.on('wheel', clearPopup) // Popup tends to capture mouse focus, causing page to scroll instead of map to zoom
     }
-    
+
     function detachHandlers() {
       map.off('mousemove', highlight)
       map.off('mouseleave', 'county', highlightSavedFeature)
@@ -596,19 +713,35 @@ const MapContainer = props => {
     attachHandlers()
 
     return detachHandlers
+  }, [
+    map,
+    selectedVariable,
+    data,
+    selectedGeography,
+    feature,
+    selectedValue,
+    tableFilterData,
+    year,
+  ])
 
-  }, [map, selectedVariable, data, selectedGeography, feature, selectedValue, tableFilterData, year])
-
-  const reportData = useReportData(selectedGeography, feature, data, combinedFilter1, filterData, combinedFilter2, tableFilterData)
+  const reportData = useReportData(
+    selectedGeography,
+    feature,
+    data,
+    combinedFilter1,
+    filterData,
+    combinedFilter2,
+    tableFilterData,
+  )
 
   const resolved = resolveData()
-  
+
   const [_bias, biasLabel] = useBias(
     ...(resolved || [null, null, null]),
     year,
     selectedGeography,
     selectedVariable,
-    selectedValue
+    selectedValue,
   )
 
   const mapsControllerProps = {
@@ -620,7 +753,8 @@ const MapContainer = props => {
     onFilter1Change,
     onFilter2Change,
     years: props.config?.dataBrowserMapsYears || props.config?.dataBrowserYears,
-    handleGeographyChange: (g) => onGeographyChange({ value: g.toLowerCase(), label: g }),
+    handleGeographyChange: (g) =>
+      onGeographyChange({ value: g.toLowerCase(), label: g }),
     handleYearChange: (year) => onYearChange({ year }),
   }
 
@@ -631,11 +765,11 @@ const MapContainer = props => {
     year,
     selectedGeography,
     selectedVariable,
-    selectedValue
+    selectedValue,
   )
 
   const ctxValues = {
-    makeCsvUrl
+    makeCsvUrl,
   }
 
   return (
@@ -669,7 +803,7 @@ const MapContainer = props => {
                     year,
                     selectedGeography,
                     selectedVariable,
-                    selectedValue
+                    selectedValue,
                   )
                 : null}
             </div>
@@ -683,7 +817,7 @@ const MapContainer = props => {
               selectedGeography,
               selectedVariable,
               selectedValue,
-              'below'
+              'below',
             )
           : null}
         <ReportSummary
@@ -700,10 +834,10 @@ const MapContainer = props => {
   )
 }
 
-const LoadingOverlay = ({ isLoading, symbol='*' }) => {
+const LoadingOverlay = ({ isLoading, symbol = '*' }) => {
   const [text, setText] = useState(`${symbol}`)
   let interval
-  
+
   const updateIndicator = () => {
     let newText = text.length > 10 ? symbol : text + symbol
     setText(newText)
@@ -720,7 +854,10 @@ const LoadingOverlay = ({ isLoading, symbol='*' }) => {
   }, [text, isLoading])
 
   return (
-    <div id='maps-loading-overlay' className={ isLoading ? 'loading' : undefined }>
+    <div
+      id='maps-loading-overlay'
+      className={isLoading ? 'loading' : undefined}
+    >
       <div>{text}</div>
       <div style={{ margin: '1em auto' }}>LOADING</div>
       <div>{text}</div>

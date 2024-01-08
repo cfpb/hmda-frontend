@@ -15,15 +15,12 @@ function mapDispatchToProps(dispatch) {
     dispatch(showConfirm())
   }
 
-  const updateInstitution = lei => {
+  const updateInstitution = (lei) => {
     dispatch(setLei(lei))
   }
 
   return { showConfirmModal, updateInstitution }
 }
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(RefileButtonContainer)
+export default connect(null, mapDispatchToProps)(RefileButtonContainer)
 export { RefileButtonContainer, mapDispatchToProps }

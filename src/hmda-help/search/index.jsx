@@ -11,14 +11,17 @@ import InstitutionNotFound from './InstitutionNotFound'
 import ServerErrors from './ServerErrors'
 import { fetchInstitution } from './fetchInstitution'
 import PublicationTable from '../publications/PublicationTable'
-import { getFilingYears, getFilingPeriods } from '../../common/constants/configHelpers'
+import {
+  getFilingYears,
+  getFilingPeriods,
+} from '../../common/constants/configHelpers'
 import { SubmissionStatus } from './SubmissionStatus'
-import * as AccessToken from '../../common/api/AccessToken' 
+import * as AccessToken from '../../common/api/AccessToken'
 import { FilersSearchBox } from './FilersSelectBox'
 import './Search.css'
 
 function onlyUnique(value, index, self) {
-  return self.indexOf(value) === index;
+  return self.indexOf(value) === index
 }
 
 const defaultState = {
@@ -27,9 +30,9 @@ const defaultState = {
   institutions: null,
   year: null,
   notFound: [],
-  searchType: "search",
+  searchType: 'search',
   submitted: false,
-  lei: ''
+  lei: '',
 }
 
 class Form extends Component {
@@ -48,7 +51,7 @@ class Form extends Component {
 
   removeAnInstitutionFromState(key) {
     let newInstitutions = this.state.institutions.filter(
-      (institution, i) => i !== key
+      (institution, i) => i !== key,
     )
     if (newInstitutions.length === 0) {
       this.setState({ institutions: defaultState.institutions })
@@ -70,7 +73,7 @@ class Form extends Component {
       body: JSON.stringify(nestInstitutionStateForAPI(institution)),
       headers,
     })
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
           this.setState({ errorDelete: defaultState.errorDelete })
           return response.json()
@@ -78,11 +81,11 @@ class Form extends Component {
           throw new Error(response.status)
         }
       })
-      .then(json => {
+      .then((json) => {
         // need to remove the institution from the state
         this.removeAnInstitutionFromState(key)
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({ errorDelete: error.message })
       })
   }
@@ -102,15 +105,15 @@ class Form extends Component {
       fetchInstitution(
         this.state.lei,
         this.setState,
-        getFilingYears(this.props.config)
-      )
+        getFilingYears(this.props.config),
+      ),
     )
       .then(() => this.setState({ fetching: false }))
-      .catch(error =>
-        this.setState(state => ({
+      .catch((error) =>
+        this.setState((state) => ({
           errors: [...state.errors, error.message],
           fetching: false,
-        }))
+        })),
       )
 
     // Feature: Direct linking
@@ -149,7 +152,7 @@ class Form extends Component {
     }
   }
 
-  isBtnDisabled = type =>
+  isBtnDisabled = (type) =>
     !this.state.lei ||
     this.state.lei.length !== 20 ||
     (this.state.searchType === type && this.state.fetching)
@@ -218,15 +221,15 @@ class Form extends Component {
       fetchInstitution(
         processedLEI,
         this.setState,
-        getFilingYears(this.props.config)
-      )
+        getFilingYears(this.props.config),
+      ),
     )
       .then(() => this.setState({ fetching: false }))
-      .catch(error =>
-        this.setState(state => ({
+      .catch((error) =>
+        this.setState((state) => ({
           errors: [...state.errors, error.message],
           fetching: false,
-        }))
+        })),
       )
   }
 
@@ -242,9 +245,9 @@ class Form extends Component {
 
     const { config } = this.props
 
-    let leis = institutions && institutions.map(i => i.lei).filter(onlyUnique)
+    let leis = institutions && institutions.map((i) => i.lei).filter(onlyUnique)
     const year = getFilingYears(this.props.config).filter(
-      x => !x.includes('Q')
+      (x) => !x.includes('Q'),
     )[1]
 
     return (
@@ -253,14 +256,16 @@ class Form extends Component {
           <h3>Search for institution records</h3>
           <form
             className='SearchForm'
-            onSubmit={event => this.handleSubmit(event)}
+            onSubmit={(event) => this.handleSubmit(event)}
           >
-            {searchInputs.map(textInput => {
+            {searchInputs.map((textInput) => {
               delete textInput.validation
               return (
                 <FilersSearchBox
                   key={textInput.id}
-                  onChange={event => this.onInputTextChange(event, this.props.location.pathname)}
+                  onChange={(event) =>
+                    this.onInputTextChange(event, this.props.location.pathname)
+                  }
                   value={this.state[textInput.id]}
                   year={year}
                   {...textInput}
@@ -271,19 +276,21 @@ class Form extends Component {
             })}
             <InputSubmit
               actionType='search'
-              onClick={event => this.handleSubmitButton(event, 'search')}
+              onClick={(event) => this.handleSubmitButton(event, 'search')}
               disabled={this.isBtnDisabled('search')}
             />
             <InputSubmit
               actionType='publications'
               addClass='secondary'
-              onClick={event => this.handleSubmitButton(event, 'publications')}
+              onClick={(event) =>
+                this.handleSubmitButton(event, 'publications')
+              }
               disabled={this.isBtnDisabled('publications')}
             />
             <InputSubmit
               actionType='submissions'
               addClass='secondary'
-              onClick={event => this.handleSubmitButton(event, 'submissions')}
+              onClick={(event) => this.handleSubmitButton(event, 'submissions')}
               disabled={this.isBtnDisabled('submissions')}
             />
             {isFetching && <Loading className='LoadingInline' />}
@@ -321,7 +328,7 @@ class Form extends Component {
                   getFilingPeriods(config)
                     .sort()
                     .reverse()
-                    .map(fPeriod => (
+                    .map((fPeriod) => (
                       <tr
                         key={`${lei}-${idx}-${fPeriod}`}
                         className='submission-row'
@@ -339,7 +346,7 @@ class Form extends Component {
                           latest
                         />
                       </tr>
-                    ))
+                    )),
                 )}
               </tbody>
             </table>
@@ -351,7 +358,7 @@ class Form extends Component {
 }
 
 Form.propTypes = {
-  token: PropTypes.string
+  token: PropTypes.string,
 }
 
 export default Form

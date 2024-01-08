@@ -17,35 +17,34 @@ class SearchList extends React.Component {
   }
 
   getData() {
-    this.setState({isLoading: true})
+    this.setState({ isLoading: true })
     const year = this.props.year
     const fetchURL =
       year === '2017'
         ? 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017/2017_filers.json'
         : `/v2/reporting/filers/${year}`
     fetch(fetchURL)
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
           return response.json()
         } else {
           return Promise.reject('Failed to fetch')
         }
       })
-      .then(result => {
-        INSTITUTIONS[year] = result.institutions.map(
-          institution => {
-            return {
-              ...institution,
-              name: institution.name.toUpperCase()
-            }
-          })
+      .then((result) => {
+        INSTITUTIONS[year] = result.institutions.map((institution) => {
+          return {
+            ...institution,
+            name: institution.name.toUpperCase(),
+          }
+        })
 
         this.setState({
           isLoading: false,
-          institutions: INSTITUTIONS[year]
+          institutions: INSTITUTIONS[year],
         })
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({ error, isLoading: false })
       })
   }
@@ -58,11 +57,15 @@ class SearchList extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.year !== prevProps.year) {
-      this.setState({ institutionsFiltered: [], textInputValue: '', error: null })
+      this.setState({
+        institutionsFiltered: [],
+        textInputValue: '',
+        error: null,
+      })
       if (!INSTITUTIONS[this.props.year]) {
         this.getData()
-      }else{
-        this.setState({institutions: INSTITUTIONS[this.props.year]})
+      } else {
+        this.setState({ institutions: INSTITUTIONS[this.props.year] })
       }
     }
   }
@@ -73,7 +76,7 @@ class SearchList extends React.Component {
       isLoading: !INSTITUTIONS[this.props.year],
       institutions: INSTITUTIONS[this.props.year] || [],
       institutionsFiltered: [],
-      textInputValue: ''
+      textInputValue: '',
     }
   }
 
@@ -90,7 +93,7 @@ class SearchList extends React.Component {
         const institution = institutions[i]
         if (
           (institution.name.indexOf(val) !== -1 ||
-          institution[identifier].indexOf(val) !== -1) &&
+            institution[identifier].indexOf(val) !== -1) &&
           institution.respondentId !== 'Bank0_RID' &&
           institution.respondentId !== 'Bank1_RID'
         ) {
@@ -104,14 +107,14 @@ class SearchList extends React.Component {
     }
 
     this.setState({
-      institutionsFiltered
+      institutionsFiltered,
     })
   }
 
   handleTextInputChange(event) {
     this.setState({
       textInputValue: event.target.value,
-      error: null
+      error: null,
     })
 
     this.searchInstitutions(event.target.value)
@@ -129,12 +132,8 @@ class SearchList extends React.Component {
     let loading = null
     let identifier = this.props.year === '2017' ? 'ID' : 'LEI'
     let label = <span>Search by Institution Name or {identifier}</span>
-    const {
-      isLoading,
-      error,
-      textInputValue,
-      institutionsFiltered
-    } = this.state
+    const { isLoading, error, textInputValue, institutionsFiltered } =
+      this.state
 
     if (error && error !== 'Not a filer') {
       disabled = true
@@ -142,35 +141,36 @@ class SearchList extends React.Component {
       inputLabelClass = 'input-error-label'
       errorMessage = (
         <span
-          className="input-error-message"
-          id="input-error-message"
-          role="alert"
+          className='input-error-message'
+          id='input-error-message'
+          role='alert'
         >
-          Sorry, we&#39;re unable to load the list of institutions that have filed.
+          Sorry, we&#39;re unable to load the list of institutions that have
+          filed.
         </span>
       )
     }
 
     if (isLoading) {
       disabled = true
-      loading = <LoadingIcon className="LoadingInline" />
+      loading = <LoadingIcon className='LoadingInline' />
       label = (
         <span style={{ fontWeight: 'bold' }}>Loading Institutions...</span>
       )
     }
 
     return (
-      <div className="SearchList">
+      <div className='SearchList'>
         <form onSubmit={this.handleSubmit}>
           <div className={inputClass}>
-            <label className={inputLabelClass} htmlFor="institution-name">
+            <label className={inputLabelClass} htmlFor='institution-name'>
               {label}
             </label>
             {errorMessage}
             <input
-              id="institution-name"
-              name="institution-name"
-              type="text"
+              id='institution-name'
+              name='institution-name'
+              type='text'
               value={textInputValue}
               onChange={this.handleTextInputChange}
               placeholder={`Institution name or ${identifier}`}

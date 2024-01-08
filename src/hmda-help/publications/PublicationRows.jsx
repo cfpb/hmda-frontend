@@ -17,7 +17,7 @@ const PublicationRows = ({ institution }) => {
   useEffect(() => {
     if (!loading) return
     const env = !!window.location.host.match(/^ffiec/) ? 'prod' : 'dev'
-    const baseUrl = "https://s3.amazonaws.com/cfpb-hmda-public/"
+    const baseUrl = 'https://s3.amazonaws.com/cfpb-hmda-public/'
 
     const irsUrl = `${baseUrl}${env}/reports/disclosure/${activityYear}/${lei}/nationwide/IRS.csv`
     const mlarUrl = `${baseUrl}${env}/modified-lar/${activityYear}/${lei}.txt`
@@ -27,17 +27,17 @@ const PublicationRows = ({ institution }) => {
       { url: mlarUrl, setter: setMlar },
     ]
 
-    targets.forEach(({ url, setter}) => {
+    targets.forEach(({ url, setter }) => {
       fileExists(url)
         .then(() =>
           setter(() => ({
             ...defaultPubState,
             fetched: true,
             url,
-          }))
+          })),
         )
         .catch((status) => {
-          let error = status === 0 ? "CORS Error" : "No file"
+          let error = status === 0 ? 'CORS Error' : 'No file'
           setter((state) => ({ ...state, fetched: true, error }))
         })
     })
@@ -60,13 +60,13 @@ const PublicationRows = ({ institution }) => {
   return (
     <>
       <PublicationRow
-        type="mlar"
+        type='mlar'
         institution={institution}
         seqNum={seqNum}
         {...mlar}
       />
       <PublicationRow
-        type="irs"
+        type='irs'
         institution={institution}
         seqNum={seqNum}
         {...irs}

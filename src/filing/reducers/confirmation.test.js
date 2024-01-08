@@ -4,7 +4,7 @@ import excludeTypes from './excludeTypes.js'
 import confirmation from './confirmation.js'
 
 const defaultConfirmation = {
-  showing: false
+  showing: false,
 }
 
 describe('confirmation reducer', () => {
@@ -16,8 +16,8 @@ describe('confirmation reducer', () => {
     expect(
       confirmation(defaultConfirmation, {
         type: types.SHOW_CONFIRM,
-        showing: true
-      })
+        showing: true,
+      }),
     ).toEqual({ showing: true })
   })
 
@@ -25,8 +25,8 @@ describe('confirmation reducer', () => {
     expect(
       confirmation(
         { showing: true },
-        { type: types.HIDE_CONFIRM, showing: false }
-      )
+        { type: types.HIDE_CONFIRM, showing: false },
+      ),
     ).toEqual({ showing: false })
   })
 })

@@ -29,15 +29,15 @@ function mapStateToProps(state, ownProps) {
     isFetching,
     verified,
     noEditsExist,
-    code
+    code,
   }
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
-    onVerify: checked => {
+    onVerify: (checked) => {
       dispatch(fetchVerify(ownProps.type, checked, ownProps.lei))
-    }
+    },
   }
 }
 
@@ -46,7 +46,7 @@ VerifierContainer.propTypes = {
   noEditsExist: PropTypes.bool.isRequired,
   type: PropTypes.string.isRequired,
   onVerify: PropTypes.func.isRequired,
-  isFetching: PropTypes.bool.isRequired
+  isFetching: PropTypes.bool.isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(VerifierContainer)

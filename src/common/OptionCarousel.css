@@ -2,7 +2,7 @@
   position: relative;
   user-select: text;
   margin-bottom: -1rem;
-  transition: height .5s ease;
+  transition: height 0.5s ease;
   display: flex;
   align-items: top;
 }
@@ -18,7 +18,7 @@
   position: absolute;
   user-select: none;
   top: 0;
-  right: .5em;
+  right: 0.5em;
   z-index: 1;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -26,13 +26,13 @@
 
 .oc .progress button {
   cursor: default;
-  position:relative;
+  position: relative;
   user-select: none;
   margin: 0;
   padding: 3px 6px;
   background: none;
   color: #555;
-  border: 1px solid rgba(0,0,0,0)
+  border: 1px solid rgba(0, 0, 0, 0);
 }
 
 .oc .progress button.clickable {
@@ -40,8 +40,8 @@
 }
 
 .oc .progress button.clickable:hover,
-.oc .progress button.clickable:focus-visible { 
-  background: #DDD;
+.oc .progress button.clickable:focus-visible {
+  background: #ddd;
   border: 1px solid darkgrey;
   color: black;
 }
@@ -58,7 +58,7 @@
 
 .oc .progress button.pause:hover svg *,
 .oc .progress button.pause:focus-visible svg * {
-  fill: #000; 
+  fill: #000;
   stroke: black;
 }
 
@@ -88,7 +88,7 @@
   width: 20px;
 }
 
-.oc-option.no-icon:before{
+.oc-option.no-icon:before {
   background: none;
   border-radius: inherit;
   content: '';
@@ -102,11 +102,10 @@
 .oc-option-custom {
   width: 80%;
   border: 2px solid transparent;
-  font-family: "SourceSansPro";
+  font-family: 'SourceSansPro';
   font-size: 15px;
   color: rgb(91, 97, 107);
   margin-left: 0;
-
 }
 
 .oc-option-custom:focus {
@@ -116,7 +115,7 @@
 .oc-button {
   margin: 0;
   font-size: 1rem;
-  padding: .75rem;
+  padding: 0.75rem;
   margin-left: 1rem;
   line-height: inherit;
 }

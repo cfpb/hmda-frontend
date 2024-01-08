@@ -16,21 +16,21 @@ class Form extends Component {
 
     this.label = {
       get: (
-        <label htmlFor="dataInput">
-          Enter the <abbr title="Legal Entity Identifier">LEI</abbr> and
+        <label htmlFor='dataInput'>
+          Enter the <abbr title='Legal Entity Identifier'>LEI</abbr> and
           Loan/Application ID
         </label>
       ),
       validate: (
-        <label htmlFor="dataInput">
-          Enter the <abbr title="Universal Loan Identifier">ULI</abbr>
+        <label htmlFor='dataInput'>
+          Enter the <abbr title='Universal Loan Identifier'>ULI</abbr>
         </label>
-      )
+      ),
     }
 
     this.buttonText = {
       get: 'Generate a check digit',
-      validate: 'Validate a ULI'
+      validate: 'Validate a ULI',
     }
   }
 
@@ -55,7 +55,7 @@ class Form extends Component {
   render() {
     if (!this.props.onSubmit)
       return (
-        <Alert type="error" heading="Uh oh!">
+        <Alert type='error' heading='Uh oh!'>
           <p>Something went wrong. Submitting a loan ID won't work.</p>
         </Alert>
       )
@@ -67,12 +67,21 @@ class Form extends Component {
       isSubmitted,
       uli,
       isValidUli,
-      fetchError
+      fetchError,
     } = this.props
 
     let loadingIcon = null
-    if (isSubmitted && (uli === null && isValidUli === null && fetchError === null)) {
-      loadingIcon = <div><LoadingIcon className="LoadingInline"/></div>
+    if (
+      isSubmitted &&
+      uli === null &&
+      isValidUli === null &&
+      fetchError === null
+    ) {
+      loadingIcon = (
+        <div>
+          <LoadingIcon className='LoadingInline' />
+        </div>
+      )
     }
 
     const label = this.label[whichApp]
@@ -82,58 +91,58 @@ class Form extends Component {
     const errorClass = errors.length !== 0 ? 'input-error' : ''
 
     return (
-      <form className="Form" onSubmit={this.handleFormSubmit}>
+      <form className='Form' onSubmit={this.handleFormSubmit}>
         <Heading
           type={3}
-          headingText="Enter data manually"
-          paragraphText="You can manually enter a LEI and Loan/Application ID to generate a
+          headingText='Enter data manually'
+          paragraphText='You can manually enter a LEI and Loan/Application ID to generate a
             check digit -or- you can manually enter a ULI to validate a check
-            digit."
+            digit.'
         />
-        <ul className="unstyled-list">
+        <ul className='unstyled-list'>
           <li>
             <input
-              id="getCheckDigit"
-              type="radio"
-              name="whichApp"
-              value="get"
+              id='getCheckDigit'
+              type='radio'
+              name='whichApp'
+              value='get'
               onChange={this.handleRadioChange}
               checked={whichApp === 'get'}
             />
-            <label htmlFor="getCheckDigit">Generate a check digit</label>
+            <label htmlFor='getCheckDigit'>Generate a check digit</label>
           </li>
           <li>
             <input
-              id="validateCheckDigit"
-              type="radio"
-              name="whichApp"
-              value="validate"
+              id='validateCheckDigit'
+              type='radio'
+              name='whichApp'
+              value='validate'
               onChange={this.handleRadioChange}
               checked={whichApp === 'validate'}
             />
-            <label htmlFor="validateCheckDigit">Validate a ULI</label>
+            <label htmlFor='validateCheckDigit'>Validate a ULI</label>
           </li>
         </ul>
         <div className={errorClass}>
           {label}
           {errors.map((error, i) => {
             return (
-              <span key={i} className="input-error-message" role="alert">
+              <span key={i} className='input-error-message' role='alert'>
                 {error}
               </span>
             )
           })}
           <input
-            id="dataInput"
-            ref={input => {
+            id='dataInput'
+            ref={(input) => {
               this.dataInput = input
             }}
-            type="text"
+            type='text'
             value={inputValue}
             onChange={this.handleInputChange}
           />
         </div>
-        <input disabled={buttonDisabled} type="submit" value={buttonText} />
+        <input disabled={buttonDisabled} type='submit' value={buttonText} />
         {loadingIcon}
       </form>
     )
@@ -150,7 +159,7 @@ Form.propTypes = {
   whichApp: PropTypes.string,
   uli: PropTypes.string,
   isValidUli: PropTypes.bool,
-  isSubmitted: PropTypes.bool
+  isSubmitted: PropTypes.bool,
 }
 
 export default Form

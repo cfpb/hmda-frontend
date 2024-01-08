@@ -4,7 +4,7 @@ import { getFieldType } from '../../utils/input'
 
 /**
  * A freeform text input with a tooltip for added guidance.
- * 
+ *
  * @param {String} placeholder
  * @param {Object} column Field details
  * @param {Object} row LAR/TS row content

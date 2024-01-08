@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 export const FilterResetButton = ({ onClick }) => (
   <button className='reset-filters' onClick={onClick} type='button'>

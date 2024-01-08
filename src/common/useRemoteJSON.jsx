@@ -19,7 +19,7 @@ export function useRemoteJSON(sourceUrl, options = {}) {
 
   const shouldFetch =
     forceFetch ||
-    (import.meta.env.VITE_ENVIRONMENT !== 'CI' &&   // Not CI
+    (import.meta.env.VITE_ENVIRONMENT !== 'CI' && // Not CI
       window.location.host.indexOf('localhost') < 0) // Not localhost
 
   useEffect(() => {
@@ -29,8 +29,8 @@ export function useRemoteJSON(sourceUrl, options = {}) {
 
     fetch(sourceUrl)
       .then((response) => {
-        return hasHttpError(response).then(res => {
-          if(res) return Promise.reject(response)
+        return hasHttpError(response).then((res) => {
+          if (res) return Promise.reject(response)
           return response.json()
         })
       })

@@ -2,7 +2,7 @@ import axios from 'axios'
 import fs from 'fs'
 import { ACTION_TAKEN_MMDD, COUNTY, MAX_ROWS, TRACTS } from './constants.mjs'
 
-export const buildCensusTract = year => {
+export const buildCensusTract = (year) => {
   const tract = year > 2021 ? TRACTS['2022+'] : TRACTS.default
   return `${COUNTY}${tract}`
 }
@@ -14,7 +14,6 @@ export const getFilePath = ({ lei, rows, yearQuarter }) => {
 
 export const makeRowTS = ({ year, rows, lei, quarter }) =>
   `1|HMDA Test Institution|${year}|${quarter}|Mr. Smug Pockets|555-555-5555|pockets@ficus.com|1234 Hocus Potato Way|Tatertown|UT|84096|9|${rows}|53-1111111|${lei}\n`
-
 
 export const makeRowLAR = ({ uli, year, lei, quarter, county = COUNTY }) => {
   const censusTract = buildCensusTract(year)
@@ -30,19 +29,25 @@ export const initializeFile = ({ filePath, ts }) => {
   console.log('  - Transmittal row created. ')
 }
 
-export const generateLarRows = async ({ lei, rows, year, filePath, quarter }) => {
+export const generateLarRows = async ({
+  lei,
+  rows,
+  year,
+  filePath,
+  quarter,
+}) => {
   console.log('Generating LAR... ')
   for (let i = 0; i < rows; i++) {
     const body = { loanId: `${lei}${i.toString().padStart(23, 0)}` }
     const response = await getCheckDigit(body)
     const uli = response.data.uli
-    
+
     const larRow = makeRowLAR({ uli, year, lei, quarter })
     fs.appendFileSync(filePath, larRow) // Save row to file
   }
   console.log(`  - ${rows} rows generated. \n`)
 }
 
-const getCheckDigit = async reqBody => {
+const getCheckDigit = async (reqBody) => {
   return await axios.post('http://localhost:9091/uli/checkDigit', reqBody)
 }

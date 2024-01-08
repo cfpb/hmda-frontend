@@ -16,22 +16,25 @@ import './index.css'
 let keycloak = initKeycloak()
 let refreshTimeout = null
 
-const refreshToken = self => {
+const refreshToken = (self) => {
   const updateKeycloak = () => {
     refreshTimeout && clearTimeout(refreshTimeout)
-    refreshTimeout = setTimeout(() => {
-      keycloak
-        .updateToken(20)
-        .then(refreshed => {
-          if (refreshed) {
-            AccessToken.set(keycloak.token)
-          }
-          updateKeycloak()
-        })
-        .catch(() => {
-          return keycloak.login()
-        })
-    }, +(keycloak.tokenParsed.exp + '000') - Date.now() - 10000)
+    refreshTimeout = setTimeout(
+      () => {
+        keycloak
+          .updateToken(20)
+          .then((refreshed) => {
+            if (refreshed) {
+              AccessToken.set(keycloak.token)
+            }
+            updateKeycloak()
+          })
+          .catch(() => {
+            return keycloak.login()
+          })
+      },
+      +(keycloak.tokenParsed.exp + '000') - Date.now() - 10000,
+    )
   }
   updateKeycloak()
 }
@@ -42,12 +45,12 @@ class App extends Component {
     this.state = {
       tokenParsed: null,
       authenticated: false,
-      authorized: false
+      authorized: false,
     }
   }
 
   componentDidMount() {
-    keycloak.init({ pkceMethod: 'S256' }).then(authenticated => {
+    keycloak.init({ pkceMethod: 'S256' }).then((authenticated) => {
       if (authenticated) {
         AccessToken.set(keycloak.token)
         refreshToken(this)
@@ -65,9 +68,7 @@ class App extends Component {
       return (
         <Route
           {...rest}
-          render={(props) => (
-            <Component {...props} config={rest.config} />
-          )}
+          render={(props) => <Component {...props} config={rest.config} />}
         />
       )
     }

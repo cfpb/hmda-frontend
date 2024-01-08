@@ -1,11 +1,11 @@
 /**
  * Script to generate JSON versions of LAR and TS schema from the Platform's
  * pipe-separated (PSV) definitions. This script is mostly to provide a quick
- * starting point for Frontend integration of LAR/TS schemas. 
- * 
- * Note: Not all fields in the JSON are automatically derived from the PSV version. 
- * Beware of any deletions which result from running this script. 
- * 
+ * starting point for Frontend integration of LAR/TS schemas.
+ *
+ * Note: Not all fields in the JSON are automatically derived from the PSV version.
+ * Beware of any deletions which result from running this script.
+ *
  * To run:
  * - cd hmda-frontend/src/tools/larft/schema
  * - node schemaGenerator.js
@@ -13,16 +13,16 @@
 
 const fs = require('fs')
 
-const readFile = name => fs.readFileSync(name, 'utf8')
+const readFile = (name) => fs.readFileSync(name, 'utf8')
 
 // PSV schema files from the HMDA Platform
 let TS_SCHEMA_RAW = readFile(`${__dirname}/schema_ts.psv`)
 let LAR_SCHEMA_RAW = readFile(`${__dirname}/schema_lar.psv`)
 
-const unity = x => x
-const prettyJSON = json => JSON.stringify(JSON.parse(json), null, 2)
+const unity = (x) => x
+const prettyJSON = (json) => JSON.stringify(JSON.parse(json), null, 2)
 
-const cleanupFieldName = str =>
+const cleanupFieldName = (str) =>
   str
     ?.split('->')[0]
     .replace(/\\|#|\[",/g, '')
@@ -31,7 +31,7 @@ const cleanupFieldName = str =>
     .replace(/{comma}/g, ',')
     .trim()
 
-const cleanString = str => {
+const cleanString = (str) => {
   const cleaned = str
     ?.replace(/\\|#|\[",/g, '')
     .replace(/"/g, '')
@@ -41,12 +41,12 @@ const cleanString = str => {
   return cleaned?.length ? cleaned : null
 }
 
-const convertType = type =>
+const convertType = (type) =>
   type.includes('yyyyddmm')
     ? 'date'
     : type.includes('.toString')
-    ? 'enum'
-    : 'string'
+      ? 'enum'
+      : 'string'
 
 const parse = (raw, name) => {
   const isTs = !!name.toLowerCase().includes('ts')
@@ -54,7 +54,7 @@ const parse = (raw, name) => {
   return raw
     .split('\n')
     .slice(1)
-    .filter(s => s && !s.match(/^"All data fields in the LAR/))
+    .filter((s) => s && !s.match(/^"All data fields in the LAR/))
     .map((line, idx) => {
       const [
         field_name,
@@ -63,7 +63,7 @@ const parse = (raw, name) => {
         _examples,
         _descriptions,
         data_point,
-      ] = line.split('|').map(s => s.trim())
+      ] = line.split('|').map((s) => s.trim())
 
       const fieldName = cleanupFieldName(field_name)
 
@@ -75,12 +75,12 @@ const parse = (raw, name) => {
       const enumerations = _enumerations
         ?.split(',')
         .map(cleanString)
-        .map(opt => {
+        .map((opt) => {
           const [val, desc] =
             opt
               ?.split('-')
-              .filter(x => x)
-              .map(x => cleanupFieldName(x)) || []
+              .filter((x) => x)
+              .map((x) => cleanupFieldName(x)) || []
 
           if (!val) return
           return { value: val, description: desc || val }

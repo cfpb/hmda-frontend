@@ -4,7 +4,7 @@ import { isEditing } from '../../utils/row'
 
 /**
  * Action bar to save, delete, clear, copy, paste currently selected row.
- * 
+ *
  * @param {Object} row Currently selected row
  * @param {Function} deleteRow
  * @param {Function} newRow Handler to clear currently selected row

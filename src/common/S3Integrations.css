@@ -18,7 +18,7 @@
   border-left: 3px solid transparent;
   padding-left: 0.5em;
   margin-left: calc(-1em - 3px);
-  transition: max-height .3s;
+  transition: max-height 0.3s;
 }
 .s3-modified .warning .marker {
   color: goldenrod;
@@ -36,12 +36,12 @@
 .dataset:hover .s3-modified .warning,
 .dataset:focus-within .s3-modified .warning {
   max-height: 120px;
-  transition: max-height .3s;
+  transition: max-height 0.3s;
   border: 1px dashed goldenrod;
   border-left: 3px solid goldenrod;
 }
 
 .dataset:focus-within .s3-modified .warning > *:not(.marker),
-.dataset:hover .s3-modified .warning > *:not(.marker){
+.dataset:hover .s3-modified .warning > *:not(.marker) {
   display: inline-block;
 }

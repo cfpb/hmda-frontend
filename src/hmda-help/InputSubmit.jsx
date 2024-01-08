@@ -8,23 +8,23 @@ const values = {
   add: 'Add the Institution',
   update: 'Update the Institution',
   publications: 'Search Publications',
-  submissions: 'Search Submissions'
+  submissions: 'Search Submissions',
 }
 
 class InputSubmit extends Component {
   render() {
-    let cname = "inputSubmit"
+    let cname = 'inputSubmit'
     const options = {}
     const { addClass, actionType, disabled, onClick } = this.props
-    
-    if(addClass) cname = `${cname} ${addClass}`
-    if(onClick) options.onClick = onClick
+
+    if (addClass) cname = `${cname} ${addClass}`
+    if (onClick) options.onClick = onClick
 
     return (
       <input
         id={actionType}
         className={cname}
-        type="submit"
+        type='submit'
         value={values[actionType]}
         disabled={disabled}
         {...options}
@@ -36,7 +36,7 @@ class InputSubmit extends Component {
 InputSubmit.defaultProps = {
   disabled: false,
   className: 'inputSubmit',
-  onClick: () => null
+  onClick: () => null,
 }
 
 InputSubmit.propTypes = {
@@ -44,7 +44,7 @@ InputSubmit.propTypes = {
   disabled: PropTypes.bool,
   className: PropTypes.string,
   onClick: PropTypes.func,
-  addClass: PropTypes.string
+  addClass: PropTypes.string,
 }
 
 export default InputSubmit

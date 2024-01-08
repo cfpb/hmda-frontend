@@ -1,10 +1,10 @@
 /**
  * Composes a list of enumeration <option>
- * 
+ *
  * @param {Object} column Field details
  * @returns Array of <option> elements
  */
-export const buildEnumeratedOptions = column => {
+export const buildEnumeratedOptions = (column) => {
   const { enumerations, fieldName } = column
 
   const options = enumerations.map(({ value, description }, idx) => (
@@ -17,7 +17,7 @@ export const buildEnumeratedOptions = column => {
   options.unshift(
     <option key='none' value=''>
       - No selection -
-    </option>
+    </option>,
   )
 
   return options
@@ -25,10 +25,9 @@ export const buildEnumeratedOptions = column => {
 
 const EnumOption = ({ value, description }) => {
   return (
-    <option value={value}>
-      {formatEnumerationLabel(value, description)}
-    </option>
-  )}
+    <option value={value}>{formatEnumerationLabel(value, description)}</option>
+  )
+}
 
 const formatEnumerationLabel = (value, description) => {
   if (value === description) return value

@@ -9,8 +9,8 @@ import Wrapper from '../../test-resources/Wrapper.js'
 const defaultState = {
   routing: {
     locationBeforeTransitions: {
-      pathname: 'a/b/c'
-    }
+      pathname: 'a/b/c',
+    },
   },
   app: {
     edits: {
@@ -19,15 +19,15 @@ const defaultState = {
         syntactical: { edits: [] },
         validity: { edits: [] },
         quality: { edits: [], verified: false },
-        macro: { edits: [], verified: false }
-      }
+        macro: { edits: [], verified: false },
+      },
     },
     submission: {
       status: {
-        code: 0
-      }
-    }
-  }
+        code: 0,
+      },
+    },
+  },
 }
 
 describe('submissionProgressHOC', () => {
@@ -51,7 +51,7 @@ describe('submissionProgressHOC', () => {
       'editsFetched',
       'syntacticalValidityEditsExist',
       'qualityVerified',
-      'macroVerified'
+      'macroVerified',
     ])
 
     expect(mapped.page).toBe('c')

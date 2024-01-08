@@ -3,15 +3,15 @@ import PropTypes from 'prop-types'
 
 import './Alert.css'
 
-const Alert = props => {
+const Alert = (props) => {
   let alertClass = `alert alert-${props.type}`
 
   return (
     <div id={props.id} className={alertClass}>
-      <div className="alert-body">
-        <h3 className="alert-heading">{props.heading}</h3>
-        {props.message ? <p className="alert-text">{props.message}</p> : null}
-        {React.Children.map(props.children, child => {
+      <div className='alert-body'>
+        <h3 className='alert-heading'>{props.heading}</h3>
+        {props.message ? <p className='alert-text'>{props.message}</p> : null}
+        {React.Children.map(props.children, (child) => {
           return React.cloneElement(child, { className: 'alert-text' })
         })}
       </div>
@@ -20,7 +20,7 @@ const Alert = props => {
 }
 
 Alert.defaultProps = {
-  type: 'info'
+  type: 'info',
 }
 
 Alert.propTypes = {
@@ -30,7 +30,7 @@ Alert.propTypes = {
   message: PropTypes.string,
   // can be used with the `message` prop or by itself
   // useful for multiple paragraph (or other element(s)) content
-  children: PropTypes.element
+  children: PropTypes.element,
 }
 
 export default Alert

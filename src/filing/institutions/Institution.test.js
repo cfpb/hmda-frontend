@@ -14,14 +14,14 @@ import TestUtils from 'react-dom/test-utils'
 
 const fs = require('fs')
 const filings = JSON.parse(
-  fs.readFileSync('./test-resources/json/filings.json')
+  fs.readFileSync('./test-resources/json/filings.json'),
 )
 const filing = filings.filing
 const submissions = filings.submissions
 const submission = submissions[0]
 
 const institutions = JSON.parse(
-  fs.readFileSync('./test-resources/json/institutions.json')
+  fs.readFileSync('./test-resources/json/institutions.json'),
 )
 const singleFI = institutions.institutions[0]
 
@@ -33,19 +33,19 @@ describe('Institution', () => {
           institution={singleFI}
           filing={filing}
           submissions={submissions}
-          filingPeriod="2017"
+          filingPeriod='2017'
         />
-      </Wrapper>
+      </Wrapper>,
     )
     const fiNode = ReactDOM.findDOMNode(fi)
 
     expect(fiNode).toBeDefined()
 
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(fi, 'institution').length
+      TestUtils.scryRenderedDOMComponentsWithClass(fi, 'institution').length,
     ).toBe(1)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(fi, 'current-status').length
+      TestUtils.scryRenderedDOMComponentsWithClass(fi, 'current-status').length,
     ).toBe(1)
   })
 })

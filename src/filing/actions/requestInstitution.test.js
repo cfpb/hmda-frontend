@@ -6,7 +6,7 @@ import requestInstitution from './requestInstitution.js'
 describe('requestInstitution', () => {
   it('creates an action to signal a request for an institution', () => {
     expect(requestInstitution()).toEqual({
-      type: types.REQUEST_INSTITUTION
+      type: types.REQUEST_INSTITUTION,
     })
   })
 })

@@ -17,7 +17,7 @@ const store = mockStore({ app: { lei: '123' } })
 
 const setItem = jest.fn()
 window.localStorage = {
-  setItem
+  setItem,
 }
 
 describe('handleFile', () => {
@@ -28,8 +28,8 @@ describe('handleFile', () => {
   it('presence of errors dispatches processFileErrors', () => {
     const file = {}
 
-    checkFileErrors.mockImplementation(id => ['error'])
-    processFileErrors.mockImplementation(id => {
+    checkFileErrors.mockImplementation((id) => ['error'])
+    processFileErrors.mockImplementation((id) => {
       return { type: 'argle', errors: ['error'] }
     })
     store.dispatch(handleFile(file, 8))
@@ -40,11 +40,11 @@ describe('handleFile', () => {
     const store = mockStore({ app: { lei: '123' } })
     const file = {}
 
-    checkFileErrors.mockImplementation(id => [])
+    checkFileErrors.mockImplementation((id) => [])
     store.dispatch(handleFile(file, 8))
     expect(store.getActions()).toEqual([
       { type: types.SHOW_CONFIRM, showing: true },
-      { type: types.SELECT_NEW_FILE, id: '123', file: {} }
+      { type: types.SELECT_NEW_FILE, id: '123', file: {} },
     ])
   })
 
@@ -52,25 +52,25 @@ describe('handleFile', () => {
     const store = mockStore({ app: { lei: '123' } })
     const file = {}
 
-    checkFileErrors.mockImplementation(id => [])
+    checkFileErrors.mockImplementation((id) => [])
     store.dispatch(handleFile(file, 2, 1))
     expect(store.getActions()).toEqual([
       { type: types.SHOW_CONFIRM, showing: true },
-      { type: types.SELECT_NEW_FILE, id: '123', file: {} }
+      { type: types.SELECT_NEW_FILE, id: '123', file: {} },
     ])
   })
   it('dispatches selectfile and fetchUpload when before uploading', () => {
     const store = mockStore({ app: { lei: '123' } })
     const file = {}
 
-    fetchUpload.mockImplementation(id => {
+    fetchUpload.mockImplementation((id) => {
       return { type: 'fetchup' }
     })
-    checkFileErrors.mockImplementation(id => [])
+    checkFileErrors.mockImplementation((id) => [])
     store.dispatch(handleFile(file, 1))
     expect(store.getActions()).toEqual([
       { type: types.SELECT_FILE, id: '123', file: {} },
-      { type: 'fetchup' }
+      { type: 'fetchup' },
     ])
   })
 })

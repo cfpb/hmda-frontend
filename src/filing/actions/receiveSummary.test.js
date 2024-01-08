@@ -9,7 +9,7 @@ describe('receiveSummary', () => {
     expect(receiveSummary({ respondent: 'argle', file: 'bargle' })).toEqual({
       type: types.RECEIVE_SUMMARY,
       respondent: 'argle',
-      file: 'bargle'
+      file: 'bargle',
     })
   })
 })

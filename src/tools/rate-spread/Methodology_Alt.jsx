@@ -6,24 +6,26 @@ import './Methodology.css'
 
 const Methodology_alt = () => {
   return (
-    <div className="methodology grid" id="main-content">
+    <div className='methodology grid' id='main-content'>
       <Heading
         type={1}
-        headingText="Methodology for Determining Average Prime Offer Rates (prior to 4/24/2023)"
+        headingText='Methodology for Determining Average Prime Offer Rates (prior to 4/24/2023)'
       >
-        <p className="font-lead">
-          Test The calculation of average prime offer rates is based on survey data
-          for four hypothetical mortgage products (the four products): (1)
+        <p className='font-lead'>
+          Test The calculation of average prime offer rates is based on survey
+          data for four hypothetical mortgage products (the four products): (1)
           30-year fixed-rate; (2) 15-year fixed-rate; (3) five-year
-          variable-rate; and (4) one-year variable-rate<a href="#footnote">
+          variable-rate; and (4) one-year variable-rate
+          <a href='#footnote'>
             <sup>[1]</sup>
-          </a>. The survey collects data for a hypothetical, “best quality,” 80%
+          </a>
+          . The survey collects data for a hypothetical, “best quality,” 80%
           loan-to-value, first-lien loan. Both the five-year and one-year
           variable-rate products adjust to an index based on the one-year
           Treasury rate plus a margin and adjust annually after the initial,
           fixed-rate period. The Consumer Financial Protection Bureau (Bureau)
           makes available the{' '}
-          <a href="https://s3.amazonaws.com/cfpb-hmda-public/prod/apor/SurveyTable.csv">
+          <a href='https://s3.amazonaws.com/cfpb-hmda-public/prod/apor/SurveyTable.csv'>
             survey data
           </a>{' '}
           used to calculate APORs. This Methodology first describes all the
@@ -32,7 +34,9 @@ const Methodology_alt = () => {
           the week of May 19, 2008.
         </p>
         <p>
-          <Link to="/tools/rate-spread">Go back to the Rate Spread Calculator</Link>
+          <Link to='/tools/rate-spread'>
+            Go back to the Rate Spread Calculator
+          </Link>
         </p>
       </Heading>
       <p>
@@ -163,13 +167,13 @@ const Methodology_alt = () => {
         above, and the APRs determined by the foregoing assignment rules are the
         average prime offer rates for their respective comparable transactions.
         The{' '}
-        <a href="https://s3.amazonaws.com/cfpb-hmda-public/prod/apor/SurveyTable.csv">
+        <a href='https://s3.amazonaws.com/cfpb-hmda-public/prod/apor/SurveyTable.csv'>
           survey data
         </a>{' '}
         needed for the above calculations generally are made available on
         Thursday of each week. APRs representing average prime offer rates
         derived, estimated, or determined as above are posted in tables on the{' '}
-        <a href="https://ffiec.cfpb.gov/tools/rate-spread">
+        <a href='https://ffiec.cfpb.gov/tools/rate-spread'>
           FFIEC’s rate spread calculator page
         </a>{' '}
         the following day. Those average prime offer rates are effective
@@ -614,8 +618,10 @@ const Methodology_alt = () => {
         </tbody>
       </table>
       <hr />
-      <p className="text-small">
-      <a name="footnote" href="#footnote">1</a>
+      <p className='text-small'>
+        <a name='footnote' href='#footnote'>
+          1
+        </a>
         . The “30-year” and “15-year” fixed-rate product designations refer to
         those products’ terms to maturity. The “one-year” and “five-year”
         variable-rate product designations, on the other hand, refer to those

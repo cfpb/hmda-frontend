@@ -41,5 +41,5 @@ export default combineReducers({
   redirecting,
   latestSubmissions,
   refiling,
-  filingPeriodOptions
+  filingPeriodOptions,
 })

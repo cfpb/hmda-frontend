@@ -6,25 +6,25 @@ import getPaginationReceiveAction from './getPaginationReceiveAction.js'
 const pagination = {
   _links: undefined,
   count: undefined,
-  total: undefined
+  total: undefined,
 }
 
 const emptyParseErrors = {
   type: types.RECEIVE_PARSE_ERRORS,
   larErrors: undefined,
   transmittalSheetErrors: undefined,
-  pagination
+  pagination,
 }
 
 describe('getPaginationReceiveAction', () => {
   it('gets the correct receive actions', () => {
     expect(getPaginationReceiveAction('parseErrors', {})).toEqual(
-      emptyParseErrors
+      emptyParseErrors,
     )
     expect(getPaginationReceiveAction('q021', {})).toEqual({
       type: types.RECEIVE_EDIT,
       edit: undefined,
-      pagination
+      pagination,
     })
   })
 })

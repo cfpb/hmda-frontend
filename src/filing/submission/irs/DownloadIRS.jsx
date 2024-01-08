@@ -28,7 +28,7 @@ const download = (period, lei, opts) => {
 
   // IRS proxy endpoint requires Authentication and the fetchData method encapsulates that
   fetchData(fetchOptions)
-    .then(data => {
+    .then((data) => {
       // Successful will be a string with content
       if (typeof data !== 'string' || !data.length) {
         onResult(false)
@@ -37,17 +37,16 @@ const download = (period, lei, opts) => {
 
       FileSaver.saveAs(
         new Blob([data], { type: 'text/csv;charset=utf-16' }),
-        `${period}-${lei}-nationwide-irs.csv`
+        `${period}-${lei}-nationwide-irs.csv`,
       )
 
       onResult(true)
     })
-    .catch(_ => {
+    .catch((_) => {
       error(`Error fetching ${period} IRS for ${lei}`)
       onResult(false)
     })
 }
-
 
 /**
  * Encapsulates IRS downloading

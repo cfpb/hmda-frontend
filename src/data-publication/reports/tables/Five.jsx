@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const renderData = applicantIncomes => {
+const renderData = (applicantIncomes) => {
   return applicantIncomes.map((applicantIncome, index) => {
     return [
       renderApplicantIncome(applicantIncome.applicantIncome, index),
-      renderCharacteristics(applicantIncome.borrowerCharacteristics)
+      renderCharacteristics(applicantIncome.borrowerCharacteristics),
     ]
   })
 }
@@ -19,7 +19,7 @@ const renderApplicantIncome = (applicantIncome, index) => {
           borderTopWidth: '2px',
           fontWeight: 'bold',
           textTransform: 'uppercase',
-          backgroundColor: '#f1f1f1'
+          backgroundColor: '#f1f1f1',
         }}
       >
         {applicantIncome}
@@ -27,7 +27,7 @@ const renderApplicantIncome = (applicantIncome, index) => {
     </tr>
   )
 }
-const renderCharacteristics = borrowerCharacteristics => {
+const renderCharacteristics = (borrowerCharacteristics) => {
   return borrowerCharacteristics.map((characteristic, index) => {
     return [
       <tr key={index}>
@@ -35,18 +35,18 @@ const renderCharacteristics = borrowerCharacteristics => {
           colSpan={13}
           style={{
             textTransform: 'uppercase',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
           }}
         >
           {characteristic.characteristic}
         </th>
       </tr>,
-      renderCharacteristicDetails(characteristic)
+      renderCharacteristicDetails(characteristic),
     ]
   })
 }
 
-const renderCharacteristicDetails = characteristic => {
+const renderCharacteristicDetails = (characteristic) => {
   if (characteristic.characteristic === 'Race')
     return characteristic.races.map((race, index) => {
       return (
@@ -54,8 +54,8 @@ const renderCharacteristicDetails = characteristic => {
           <th>{race.race}</th>
           {race.dispositions.map((disposition, index) => {
             return [
-              <td key="count">{disposition.count}</td>,
-              <td key="value">{disposition.value}</td>
+              <td key='count'>{disposition.count}</td>,
+              <td key='value'>{disposition.value}</td>,
             ]
           })}
         </tr>
@@ -69,8 +69,8 @@ const renderCharacteristicDetails = characteristic => {
           <th>{ethnicity.ethnicity}</th>
           {ethnicity.dispositions.map((disposition, index) => {
             return [
-              <td key="count">{disposition.count}</td>,
-              <td key="value">{disposition.value}</td>
+              <td key='count'>{disposition.count}</td>,
+              <td key='value'>{disposition.value}</td>,
             ]
           })}
         </tr>
@@ -84,8 +84,8 @@ const renderCharacteristicDetails = characteristic => {
           <th>{minorityStatus.minorityStatus}</th>
           {minorityStatus.dispositions.map((disposition, index) => {
             return [
-              <td key="count">{disposition.count}</td>,
-              <td key="value">{disposition.value}</td>
+              <td key='count'>{disposition.count}</td>,
+              <td key='value'>{disposition.value}</td>,
             ]
           })}
         </tr>
@@ -100,25 +100,25 @@ const Five = React.forwardRef((props, ref) => {
     <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
-          <th width="20%" rowSpan={2}>
+          <th width='20%' rowSpan={2}>
             INCOME, RACE AND ETHNICITY
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Applications Received
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Loans Originated
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Apps. Approved But Not Accepted
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Applications Denied
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Applications Withdrawn
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Files Closed for Incompleteness
           </th>
         </tr>
@@ -143,8 +143,8 @@ const Five = React.forwardRef((props, ref) => {
           <th>Total</th>
           {props.report.total.map((total, index) => {
             return [
-              <td key="count">{total.count}</td>,
-              <td key="value">{total.value}</td>
+              <td key='count'>{total.count}</td>,
+              <td key='value'>{total.value}</td>,
             ]
           })}
         </tr>
@@ -154,7 +154,7 @@ const Five = React.forwardRef((props, ref) => {
 })
 
 Five.propTypes = {
-  report: PropTypes.object
+  report: PropTypes.object,
 }
 
 export default Five

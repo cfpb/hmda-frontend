@@ -2,16 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ErrorWarning from '../../common/ErrorWarning.jsx'
 import Loading from '../../../common/LoadingIcon.jsx'
-import { VALIDATED, NO_MACRO_EDITS, SIGNED } from '../../constants/statusCodes.js'
+import {
+  VALIDATED,
+  NO_MACRO_EDITS,
+  SIGNED,
+} from '../../constants/statusCodes.js'
 import Alert from '../../../common/Alert.jsx'
 import './Signature.css'
 
-const showWarning = props => {
+const showWarning = (props) => {
   if (!props.error) return null
   return (
     <ErrorWarning
       error={props.error}
-      bodyText="You cannot sign your submission if you have encountered an error in the filing process. Please refresh the page or try again later."
+      bodyText='You cannot sign your submission if you have encountered an error in the filing process. Please refresh the page or try again later.'
     />
   )
 }
@@ -34,10 +38,13 @@ const SignatureClosed = ({ status }) => {
 }
 
 const Signature = (props) => {
-  if(props.isPassed) return <SignatureClosed status={props.status} />
+  if (props.isPassed) return <SignatureClosed status={props.status} />
 
   let isButtonDisabled =
-    (props.status.code === VALIDATED || props.status.code === NO_MACRO_EDITS) && props.checked ? false : true
+    (props.status.code === VALIDATED || props.status.code === NO_MACRO_EDITS) &&
+    props.checked
+      ? false
+      : true
 
   let isCheckBoxDisabled = props.status.code === SIGNED ? true : false
 
@@ -59,34 +66,34 @@ const Signature = (props) => {
   }
 
   return (
-    <section className="Signature" id="signature">
+    <section className='Signature' id='signature'>
       <header>
         <h2>Signature</h2>
-        <p className="font-lead">
-          To complete your official regulatory submission, select the checkbox below to certify the
-          accuracy and completeness of the data submitted. Then, click the
-          &quot;Submit HMDA data&quot; button.
+        <p className='font-lead'>
+          To complete your official regulatory submission, select the checkbox
+          below to certify the accuracy and completeness of the data submitted.
+          Then, click the &quot;Submit HMDA data&quot; button.
         </p>
       </header>
 
       {showWarning(props)}
 
-      {props.isFetching ? <Loading className="LoadingInline"/> : null}
-      <ul className="unstyled-list">
+      {props.isFetching ? <Loading className='LoadingInline' /> : null}
+      <ul className='unstyled-list'>
         <li>
           <input
-            id="signatureAuth"
-            name="signatureAuth"
-            type="checkbox"
-            value="signature"
+            id='signatureAuth'
+            name='signatureAuth'
+            type='checkbox'
+            value='signature'
             disabled={isCheckBoxDisabled}
             checked={props.checked || props.status.code === SIGNED}
-            onChange={e => props.onSignatureCheck(e.target.checked)}
+            onChange={(e) => props.onSignatureCheck(e.target.checked)}
           />
-          <label htmlFor="signatureAuth">
-            I am an authorized representative of my institution with knowledge of
-            the data submitted and I am certifying the accuracy and completeness
-            of the data submitted.
+          <label htmlFor='signatureAuth'>
+            I am an authorized representative of my institution with knowledge
+            of the data submitted and I am certifying the accuracy and
+            completeness of the data submitted.
           </label>
         </li>
       </ul>
@@ -107,7 +114,7 @@ Signature.propTypes = {
   checked: PropTypes.bool,
   isFetching: PropTypes.bool,
   onSignatureClick: PropTypes.func.isRequired,
-  onSignatureCheck: PropTypes.func.isRequired
+  onSignatureCheck: PropTypes.func.isRequired,
 }
 
 export default Signature

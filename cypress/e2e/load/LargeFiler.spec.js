@@ -63,23 +63,23 @@ describe('Large Filer', () => {
       // Filing period is open
       if (status.isOpen || status.isLate) {
         cy.get(`#main-content .institution`, { timeout: 20000 })
-          .then($list => {
+          .then(($list) => {
             // Find target institution
             let institution = $list
               .toArray()
-              .filter(x => x.innerText.indexOf(INSTITUTION) > -1)[0]
+              .filter((x) => x.innerText.indexOf(INSTITUTION) > -1)[0]
 
             if (!institution) throw Error(`${INSTITUTION} not found!`)
 
             let clicked = false
             cy.wrap(institution)
               .find('.current-status > .ViewButton')
-              .then($viewButton => {
+              .then(($viewButton) => {
                 const first = $viewButton[0]
                 if (
                   first &&
                   first.innerText.indexOf(
-                    `Upload your ${testVsOfficial} file`
+                    `Upload your ${testVsOfficial} file`,
                   ) > -1
                 ) {
                   /* Start a new Submission */
@@ -99,7 +99,7 @@ describe('Large Filer', () => {
             /* File Upload */
             const FILENAME = getFilename(filingPeriod, INSTITUTION)
 
-            cy.fixture(FILENAME, {timeout: 60000} ).then(fileContent => {
+            cy.fixture(FILENAME, { timeout: 60000 }).then((fileContent) => {
               cy.get('.UploadForm input', { force: true }).attachFile({
                 fileContent,
                 fileName: FILENAME,
@@ -116,7 +116,7 @@ describe('Large Filer', () => {
               cy.wait(ACTION_DELAY)
 
               /* Action: Verify Quality Edits */
-              cy.get('.EditsTableWrapper').then(wrapper => {
+              cy.get('.EditsTableWrapper').then((wrapper) => {
                 // Verify edits, if triggered
                 if (wrapper.find('.Verifier').length)
                   cy.get('#qualityVerifier').check()
@@ -126,7 +126,7 @@ describe('Large Filer', () => {
               cy.wait(ACTION_DELAY)
 
               /* Action: Verify Macro Edits */
-              cy.get('.EditsTableWrapper').then(wrapper => {
+              cy.get('.EditsTableWrapper').then((wrapper) => {
                 // Verify edits, if triggered
                 if (wrapper.find('.Verifier').length)
                   cy.get('#macroVerifier').check()
@@ -139,7 +139,7 @@ describe('Large Filer', () => {
               if (THIS_IS_BETA) {
                 cy.get('.alert.alert-warning:last').should(
                   'contain.text',
-                  '[Beta Platform] Filing Simulation Complete!'
+                  '[Beta Platform] Filing Simulation Complete!',
                 )
               } else {
                 cy.wait(500)

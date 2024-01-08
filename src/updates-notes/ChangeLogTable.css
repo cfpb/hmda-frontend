@@ -3,7 +3,6 @@
   overflow: auto;
 }
 
-
 #ChangeLogTable .result-count {
   margin: 3rem 0;
   display: flex;
@@ -36,7 +35,7 @@
 #ChangeLogTable .result-count .highlight {
   font-weight: bolder;
   font-size: 1.75rem;
-  padding: 0 .25rem;
+  padding: 0 0.25rem;
   color: #0b6e4f;
 }
 
@@ -67,22 +66,21 @@
 #ChangeLogTable .change-row .date,
 #ChangeLogTable .change-row .date.header {
   text-transform: capitalize;
-  padding-left: .5rem;
+  padding-left: 0.5rem;
 }
-
 
 #ChangeLogTable .change-row .changeType {
   padding-left: 1rem;
 }
 
 #ChangeLogTable .change-row .changeType .pill {
-  margin: 0
+  margin: 0;
 }
 
 #ChangeLogTable .change-row .type {
   width: 200px;
   text-align: center;
-  padding: .3rem .5rem;
+  padding: 0.3rem 0.5rem;
   border-radius: 7px;
   text-transform: uppercase;
   color: white;
@@ -117,17 +115,17 @@
 }
 
 /** Color - Update */
-#ChangeLogTable .change-row .type.update  {
+#ChangeLogTable .change-row .type.update {
   background-color: #254b87;
 }
 
 /** Color - Release */
-#ChangeLogTable .change-row .type.release  {
+#ChangeLogTable .change-row .type.release {
   background-color: #0b6e4f;
 }
 
 /** Color - Notice */
-#ChangeLogTable .change-row .type.notice  {
+#ChangeLogTable .change-row .type.notice {
   background-color: #dc731c;
   color: white;
 }
@@ -171,7 +169,6 @@
   margin-bottom: 0;
   padding-left: 1em;
 }
-
 
 @media screen and (max-width: 850px) {
   #ChangeLogTable {

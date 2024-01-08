@@ -1,10 +1,10 @@
-import { produce } from "immer"
-import { useEffect } from "react"
-import { useDispatch } from "react-redux"
-import { useQuery } from "../utils/utils"
-import { graphs } from "../slice"
-import { DATA, PERIOD_HI, PERIOD_LO, QUARTERS } from "../slice/graphConfigs"
-import { useLocation } from "react-router-dom"
+import { produce } from 'immer'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { useQuery } from '../utils/utils'
+import { graphs } from '../slice'
+import { DATA, PERIOD_HI, PERIOD_LO, QUARTERS } from '../slice/graphConfigs'
+import { useLocation } from 'react-router-dom'
 
 /**
  * On graph selection,
@@ -32,7 +32,7 @@ export const useManageGraphSelection = ({
         selectedGraphData.series.map((line) => {
           // Create an Array of zeros, matching the length of the xAxis labels array
           const currentSeries = Array.apply(null, Array(categories.length)).map(
-            (_) => null
+            (_) => null,
           )
 
           // Match each point in the series to its xAxis index by referencing categories
@@ -54,8 +54,8 @@ export const useManageGraphSelection = ({
       })
       dispatch(graphs.setConfig(DATA, nextState))
 
-      let lowPeriod = query.get("periodLow")
-      let highPeriod = query.get("periodHigh")
+      let lowPeriod = query.get('periodLow')
+      let highPeriod = query.get('periodHigh')
 
       // Dynamically generate period selector options
       let periodOptions = categories.map((yq) => ({
@@ -73,15 +73,15 @@ export const useManageGraphSelection = ({
         periodOptions.some((q) => q.value == highPeriod)
       ) {
         dispatch(
-          graphs.setConfig(PERIOD_LO, { value: lowPeriod, label: lowPeriod })
+          graphs.setConfig(PERIOD_LO, { value: lowPeriod, label: lowPeriod }),
         )
         dispatch(
-          graphs.setConfig(PERIOD_HI, { value: highPeriod, label: highPeriod })
+          graphs.setConfig(PERIOD_HI, { value: highPeriod, label: highPeriod }),
         )
       } else {
         dispatch(graphs.setConfig(PERIOD_LO, periodOptions[0]))
         dispatch(
-          graphs.setConfig(PERIOD_HI, periodOptions[periodOptions.length - 1])
+          graphs.setConfig(PERIOD_HI, periodOptions[periodOptions.length - 1]),
         )
       }
     }

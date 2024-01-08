@@ -7,7 +7,7 @@ describe('hideConfirm', () => {
   it('creates an action signalling hiding of the confirmation modal', () => {
     expect(hideConfirm()).toEqual({
       type: types.HIDE_CONFIRM,
-      showing: false
+      showing: false,
     })
   })
 })

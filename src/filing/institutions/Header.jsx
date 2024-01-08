@@ -27,23 +27,19 @@ export const HeaderDocsLink = ({ period }) => {
   const [filingYear, isQuarterly] = period.split('-')
 
   const text = isQuarterly
-    ? "For more information on quarterly filing dates, visit the "
-    : "For more information regarding filing, please visit the "
-  
+    ? 'For more information on quarterly filing dates, visit the '
+    : 'For more information regarding filing, please visit the '
+
   const url = isQuarterly
     ? `/documentation/faq/data-collection-timelines#quarterly-filing-period-dates`
     : `/documentation/category/frequently-asked-questions`
-  
+
   return (
     <>
       {text}
-      <a
-        href={url}
-        rel="noopener noreferrer"
-        target="_blank"
-      >
+      <a href={url} rel='noopener noreferrer' target='_blank'>
         Documentation
-      </a>{" "}
+      </a>{' '}
       page.
     </>
   )
@@ -51,7 +47,7 @@ export const HeaderDocsLink = ({ period }) => {
 
 InstitutionsHeader.propTypes = {
   selectedPeriod: PropTypes.object,
-  hasQuarterlyFilers: PropTypes.bool
+  hasQuarterlyFilers: PropTypes.bool,
 }
 
 export default InstitutionsHeader

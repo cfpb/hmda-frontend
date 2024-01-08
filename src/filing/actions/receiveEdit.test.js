@@ -10,7 +10,7 @@ describe('receiveEdit', () => {
       rows: 'b',
       count: 1,
       total: 2,
-      _links: 'c'
+      _links: 'c',
     }
 
     expect(receiveEdit(data)).toEqual({
@@ -20,8 +20,8 @@ describe('receiveEdit', () => {
       pagination: {
         count: 1,
         total: 2,
-        _links: 'c'
-      }
+        _links: 'c',
+      },
     })
   })
 })

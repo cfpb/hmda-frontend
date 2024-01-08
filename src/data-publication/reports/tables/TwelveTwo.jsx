@@ -13,21 +13,21 @@ const renderData = (report, label) => {
 }
 
 const mapCharacteristic = (arr, label) => {
-  return arr.map(characteristic => {
+  return arr.map((characteristic) => {
     return renderCharacteristic(characteristic, label)
   })
 }
 
-const renderCharacteristicTitle = key => {
+const renderCharacteristicTitle = (key) => {
   return (
-    <tr className="characteristic-grey-title" key={key}>
+    <tr className='characteristic-grey-title' key={key}>
       <th
         colSpan={11}
         style={{
           borderTopWidth: '2px',
           fontWeight: 'bold',
           textTransform: 'uppercase',
-          backgroundColor: '#f1f1f1'
+          backgroundColor: '#f1f1f1',
         }}
       >
         {key}
@@ -38,19 +38,19 @@ const renderCharacteristicTitle = key => {
 
 const renderCharacteristic = (characteristic, label) => {
   let name, currChar
-  Object.keys(characteristic).forEach(key => {
+  Object.keys(characteristic).forEach((key) => {
     if (key === 'characteristic') name = characteristic[key]
     else currChar = characteristic[key]
   })
 
   return [
-    <tr className="characteristic-title" key={name}>
+    <tr className='characteristic-title' key={name}>
       <th
         colSpan={11}
         style={{
           borderTopWidth: '2px',
           textTransform: 'uppercase',
-          fontWeight: 'bold'
+          fontWeight: 'bold',
         }}
       >
         {name}
@@ -58,7 +58,7 @@ const renderCharacteristic = (characteristic, label) => {
     </tr>,
     currChar.map((detailObj, index) => {
       let detail, pricing
-      Object.keys(detailObj).forEach(key => {
+      Object.keys(detailObj).forEach((key) => {
         if (key === 'pricingInformation') pricing = detailObj[key]
         else detail = detailObj[key]
       })
@@ -76,7 +76,7 @@ const renderCharacteristic = (characteristic, label) => {
           })}
         </tr>
       )
-    })
+    }),
   ]
 }
 
@@ -85,29 +85,29 @@ const makeTable = (report, label, ref) => {
     <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
-          <th width="20%" rowSpan={2}>
+          <th width='20%' rowSpan={2}>
             {`BORROWER OR CENSUS TRACT CHARACTERISTICS (${label})`}
           </th>
-          <th rowSpan={2} width="8%">
+          <th rowSpan={2} width='8%'>
             No Reported Pricing Data
           </th>
-          <th rowSpan={2} width="8%">
+          <th rowSpan={2} width='8%'>
             Reported Pricing Data
           </th>
-          <th colSpan={9} width="64%">
+          <th colSpan={9} width='64%'>
             Percentage Points above Average Prime Offer Rate (Only Includes
             Loans with Apr above the Threshold)
           </th>
         </tr>
         <tr>
-          <th width="8%">1.50 - 1.99</th>
-          <th width="8%">2.00 - 2.49</th>
-          <th width="8%">2.50 - 2.99</th>
-          <th width="8%">3.00 - 3.99</th>
-          <th width="8%">4.00 - 4.99</th>
-          <th width="8%">5 or More</th>
-          <th width="8%">Mean</th>
-          <th width="8%">Median</th>
+          <th width='8%'>1.50 - 1.99</th>
+          <th width='8%'>2.00 - 2.49</th>
+          <th width='8%'>2.50 - 2.99</th>
+          <th width='8%'>3.00 - 3.99</th>
+          <th width='8%'>4.00 - 4.99</th>
+          <th width='8%'>5 or More</th>
+          <th width='8%'>Mean</th>
+          <th width='8%'>Median</th>
         </tr>
       </thead>
       <tbody>{renderData(report, label)}</tbody>
@@ -115,7 +115,7 @@ const makeTable = (report, label, ref) => {
   )
 }
 
-const TwelveTwo = props => {
+const TwelveTwo = (props) => {
   const { report, tableOneRef, tableTwoRef } = props
   if (!report) return null
 
@@ -128,7 +128,7 @@ const TwelveTwo = props => {
 }
 
 TwelveTwo.propTypes = {
-  report: PropTypes.object
+  report: PropTypes.object,
 }
 
 export default TwelveTwo

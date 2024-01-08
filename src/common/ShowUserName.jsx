@@ -7,7 +7,7 @@ import { setUserInfo } from '../filing/actions/setUserInfo.js'
 import ProfileIcon from '../filing/profile/ProfileIcon.jsx'
 
 export const ShowUserName = ({ isLoggedIn, userNameWasUpdated }) => {
-  const handleLogout = e => {
+  const handleLogout = (e) => {
     e.preventDefault()
     logout()
   }
@@ -19,8 +19,8 @@ export const ShowUserName = ({ isLoggedIn, userNameWasUpdated }) => {
   const userName = name
     ? name
     : given_name && family_name
-    ? given_name + ' ' + family_name
-    : ''
+      ? given_name + ' ' + family_name
+      : ''
   const dispatch = useDispatch()
 
   useEffect(() => {

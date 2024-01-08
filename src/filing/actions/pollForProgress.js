@@ -9,7 +9,7 @@ import {
   SYNTACTICAL_VALIDITY_EDITS,
   NO_MACRO_EDITS,
   MACRO_EDITS,
-  VALIDATED
+  VALIDATED,
 } from '../constants/statusCodes.js'
 
 export const makeDurationGetter = () => {
@@ -29,12 +29,12 @@ export default function pollForProgress() {
   let errorCounter = 0
   const currentPoll = ++poll
 
-  const poller = dispatch => {
+  const poller = (dispatch) => {
     if (currentPoll !== poll || !window.location.pathname.match('/upload'))
       return Promise.resolve(null)
     return getLatestSubmission()
-      .then(json => {
-        return hasHttpError(json).then(hasError => {
+      .then((json) => {
+        return hasHttpError(json).then((hasError) => {
           if (hasError) {
             if (++errorCounter >= 3) {
               dispatch(receiveError(json))
@@ -48,7 +48,7 @@ export default function pollForProgress() {
           return dispatch(receiveSubmission(json))
         })
       })
-      .then(json => {
+      .then((json) => {
         if (!json) return
         const { code } = json.status
         if (
@@ -69,7 +69,7 @@ export default function pollForProgress() {
           return dispatch(fetchEdits())
         }
       })
-      .catch(err => {
+      .catch((err) => {
         error(err)
       })
   }

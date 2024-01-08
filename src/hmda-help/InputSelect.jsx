@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 
 import './InputSelect.css'
 
-const InputSelect = props => {
-  const { disabled, id, innerRef, label, name, onChange, options, value } = props
+const InputSelect = (props) => {
+  const { disabled, id, innerRef, label, name, onChange, options, value } =
+    props
 
   function handleChange(event) {
     if (onChange) onChange(event)
@@ -34,7 +35,7 @@ const InputSelect = props => {
 }
 
 InputSelect.defaultProps = {
-  disabled: false
+  disabled: false,
 }
 
 InputSelect.propTypes = {
@@ -46,9 +47,9 @@ InputSelect.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
-    PropTypes.bool
+    PropTypes.bool,
   ]),
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 }
 
 export default React.forwardRef((props, ref) => {

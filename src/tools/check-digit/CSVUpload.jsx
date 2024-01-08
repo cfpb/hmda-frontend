@@ -10,7 +10,7 @@ import './CSVUpload.css'
 const defaultState = {
   isFetching: false,
   filename: '',
-  error: false
+  error: false,
 }
 
 class CSVUpload extends PureComponent {
@@ -26,7 +26,7 @@ class CSVUpload extends PureComponent {
     if (this.state.isFetching) {
       window.scrollTo({
         top: this.refScrollTo.current.offsetTop,
-        behavior: 'smooth'
+        behavior: 'smooth',
       })
     }
   }
@@ -39,7 +39,7 @@ class CSVUpload extends PureComponent {
     if (response.status) {
       return this.setState({
         isFetching: false,
-        error: true
+        error: true,
       })
     }
 
@@ -47,17 +47,17 @@ class CSVUpload extends PureComponent {
 
     this.setState({
       isFetching: false,
-      filename: filename
+      filename: filename,
     })
 
     return fileSaver.saveAs(
       new Blob([response], { type: 'text/csv;charset=utf-16' }),
-      filename
+      filename,
     )
   }
 
   makeSelectHandler(url, prefix) {
-    return event => this.handleCSVSelect(event, url, prefix)
+    return (event) => this.handleCSVSelect(event, url, prefix)
   }
 
   handleCSVSelect(event, url, prefix) {
@@ -68,7 +68,7 @@ class CSVUpload extends PureComponent {
     event.target.value = null
 
     this.onCSVFetch()
-    runFetch(url, this.prepareCSVBody(file), true).then(res => {
+    runFetch(url, this.prepareCSVBody(file), true).then((res) => {
       this.onCSVCalculated(res, file, prefix)
     })
   }
@@ -81,25 +81,25 @@ class CSVUpload extends PureComponent {
 
   render() {
     return (
-      <div className="CSVUpload">
-        <div className="Form">
+      <div className='CSVUpload'>
+        <div className='Form'>
           <Heading
             type={3}
-            headingText="Upload a CSV file"
-            paragraphText="You can also upload a csv to generate or validate many check
-              digits at once."
+            headingText='Upload a CSV file'
+            paragraphText='You can also upload a csv to generate or validate many check
+              digits at once.'
           />
           <input
             onChange={this.makeSelectHandler(
               '/v2/public/uli/checkDigit/csv',
-              'generated'
+              'generated',
             )}
-            type="file"
-            href="#"
-            id="generateCSV"
+            type='file'
+            href='#'
+            id='generateCSV'
           />
           <p>
-            <label className="button csvLabel" htmlFor="generateCSV">
+            <label className='button csvLabel' htmlFor='generateCSV'>
               Generate check digits
             </label>{' '}
           </p>
@@ -107,19 +107,22 @@ class CSVUpload extends PureComponent {
             <input
               onChange={this.makeSelectHandler(
                 '/v2/public/uli/validate/csv',
-                'validated'
+                'validated',
               )}
-              type="file"
-              href="#"
-              id="validateCSV"
+              type='file'
+              href='#'
+              id='validateCSV'
             />
-            <label className="button csvLabel" htmlFor="validateCSV">
+            <label className='button csvLabel' htmlFor='validateCSV'>
               Validate check digits
             </label>
           </p>
-          <p className="text-small">
+          <p className='text-small'>
             Please see{' '}
-            <a href='https://ffiec.cfpb.gov/documentation/api/check-digit/#batch-check-digit-generation' target='_blank'>
+            <a
+              href='https://ffiec.cfpb.gov/documentation/api/check-digit/#batch-check-digit-generation'
+              target='_blank'
+            >
               the API documentation
             </a>{' '}
             for information on csv formatting.
@@ -127,22 +130,22 @@ class CSVUpload extends PureComponent {
         </div>
         <div ref={this.refScrollTo}>
           {this.state.isFetching ? (
-            <LoadingIcon className="LoadingInline" />
+            <LoadingIcon className='LoadingInline' />
           ) : this.state.error ? (
             <Alert
-              type="error"
-              heading="Sorry, an error has occurred processing your file."
+              type='error'
+              heading='Sorry, an error has occurred processing your file.'
             >
               <p>
                 Please check your file format and try again later. If the
                 problem persists, contact{' '}
-                <a href="mailto:hmdahelp@cfpb.gov">HMDA Help</a>.
+                <a href='mailto:hmdahelp@cfpb.gov'>HMDA Help</a>.
               </p>
             </Alert>
           ) : this.state.filename ? (
             <Alert
-              type="success"
-              heading="Batch check digit calculation complete"
+              type='success'
+              heading='Batch check digit calculation complete'
             >
               <p>
                 Downloaded <strong>{this.state.filename}</strong> with your

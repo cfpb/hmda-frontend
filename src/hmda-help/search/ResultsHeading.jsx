@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const ResultsHeading = props => {
-  let numOfResults = props.institutions.filter(x => x).length
+const ResultsHeading = (props) => {
+  let numOfResults = props.institutions.filter((x) => x).length
   if (numOfResults === 0) return <h2>Sorry, no results were found.</h2>
 
   let resultsText = numOfResults === 1 ? 'result' : 'results'
@@ -14,7 +14,7 @@ const ResultsHeading = props => {
 }
 
 ResultsHeading.propTypes = {
-  institutions: PropTypes.array
+  institutions: PropTypes.array,
 }
 
 export default ResultsHeading

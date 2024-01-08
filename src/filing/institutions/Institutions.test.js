@@ -5,7 +5,7 @@ jest.mock('oidc-client')
 
 import Institutions, {
   renderAlert,
-  getFilingFromInstitution
+  getFilingFromInstitution,
 } from './index.jsx'
 import Wrapper from '../../test-resources/Wrapper.js'
 import React from 'react'
@@ -14,22 +14,23 @@ import TestUtils from 'react-dom/test-utils'
 
 const fs = require('fs')
 const filingJSON = JSON.parse(
-  fs.readFileSync('./test-resources/json/filings.json')
+  fs.readFileSync('./test-resources/json/filings.json'),
 )
 const multifilings = JSON.parse(
-  fs.readFileSync('./test-resources/json/multi-filings.json')
+  fs.readFileSync('./test-resources/json/multi-filings.json'),
 )
 const institutionsJSON = JSON.parse(
-  fs.readFileSync('./test-resources/json/institutions.json')
+  fs.readFileSync('./test-resources/json/institutions.json'),
 )
 const submission = {
   id: { lei: '2', sequenceNumber: '2' },
   status: {
     code: 7,
     message: 'validated',
-    description: 'Your submission has been validated and is ready to be signed.'
+    description:
+      'Your submission has been validated and is ready to be signed.',
   },
-  isFetching: false
+  isFetching: false,
 }
 
 window.HMDA_ENV = { APP_SUFFIX: '/filing/', HOMEPAGE_URL: 'home' }
@@ -40,17 +41,17 @@ describe('Institutions', () => {
       <Wrapper>
         <Institutions
           filings={{
-            0: { filing: filingJSON, isFetching: false, fetched: true }
+            0: { filing: filingJSON, isFetching: false, fetched: true },
           }}
-          filingPeriod="2017"
+          filingPeriod='2017'
           institutions={{
             isFetching: false,
             fetched: true,
-            institutions: institutionsJSON
+            institutions: institutionsJSON,
           }}
           submission={submission}
         />
-      </Wrapper>
+      </Wrapper>,
     )
     const institutionsNode = ReactDOM.findDOMNode(institutions)
     expect(institutionsNode).toBeDefined()
@@ -62,21 +63,21 @@ describe('Institutions', () => {
         <Institutions
           filings={{
             1: { filing: multifilings[0], isFetching: false, fetched: true },
-            2: { filing: multifilings[1], isFetching: false, fetched: true }
+            2: { filing: multifilings[1], isFetching: false, fetched: true },
           }}
-          filingPeriod="2017"
+          filingPeriod='2017'
           institutions={{
             isFetching: false,
             fetched: true,
-            institutions: institutionsJSON.institutions
+            institutions: institutionsJSON.institutions,
           }}
           submission={submission}
         />
-      </Wrapper>
+      </Wrapper>,
     )
     const institutionRendered = TestUtils.scryRenderedDOMComponentsWithClass(
       institutions,
-      'institution'
+      'institution',
     )
     // an 'institution' is rendered even without filings
     expect(institutionRendered.length).toBe(4)
@@ -88,23 +89,23 @@ describe('Institutions', () => {
         <Institutions
           filings={{
             1: { filing: multifilings[0], isFetching: false, fetched: true },
-            2: { filing: multifilings[1], isFetching: false, fetched: true }
+            2: { filing: multifilings[1], isFetching: false, fetched: true },
           }}
-          filingPeriod="2017"
+          filingPeriod='2017'
           institutions={{
             isFetching: false,
             fetched: true,
-            institutions: institutionsJSON.institutions
+            institutions: institutionsJSON.institutions,
           }}
           submission={submission}
         />
-      </Wrapper>
+      </Wrapper>,
     )
     expect(
       TestUtils.scryRenderedDOMComponentsWithClass(
         institutions,
-        'usa-alert-error'
-      ).length
+        'usa-alert-error',
+      ).length,
     ).toEqual(2)
   })
 
@@ -115,22 +116,22 @@ describe('Institutions', () => {
           error={{ error: 402 }}
           filings={{
             1: { filing: multifilings[0], isFetching: false, fetched: true },
-            2: { filing: multifilings[1], isFetching: false, fetched: true }
+            2: { filing: multifilings[1], isFetching: false, fetched: true },
           }}
-          filingPeriod="2017"
+          filingPeriod='2017'
           institutions={{
             isFetching: false,
             fetched: true,
-            institutions: institutionsJSON.institutions
+            institutions: institutionsJSON.institutions,
           }}
           submission={submission}
         />
-      </Wrapper>
+      </Wrapper>,
     )
 
     expect(
       TestUtils.scryRenderedDOMComponentsWithClass(institutions, 'ErrorWarning')
-        .length
+        .length,
     ).toEqual(1)
   })
 })

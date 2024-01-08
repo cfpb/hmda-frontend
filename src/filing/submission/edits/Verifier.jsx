@@ -9,7 +9,7 @@ import './Verifier.css'
 export const renderVerified = (verified, type) => {
   if (verified) {
     return (
-      <Alert type="success" heading="Verified.">
+      <Alert type='success' heading='Verified.'>
         <p>
           <span>{type}</span> edits have been verified.
         </p>
@@ -38,7 +38,7 @@ class Verifier extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      checked: props.verified
+      checked: props.verified,
     }
   }
 
@@ -51,30 +51,31 @@ class Verifier extends Component {
     const props = this.props
     const disabled = props.code === SIGNED ? true : false
 
-    if(props.isPassed) return <VerificationClosed type={props.type} verified={props.verified} />
+    if (props.isPassed)
+      return <VerificationClosed type={props.type} verified={props.verified} />
 
     return props.noEditsExist ? null : (
-      <section className="Verifier">
+      <section className='Verifier'>
         <hr />
         <h2>Verify {props.type} edits</h2>
-        <p className="font-lead">
+        <p className='font-lead'>
           In order to continue you must verify all {props.type} edits.
         </p>
-        {props.isFetching ? <Loading className="LoadingInline"/> : null}
-        <ul className="unstyled-list">
+        {props.isFetching ? <Loading className='LoadingInline' /> : null}
+        <ul className='unstyled-list'>
           <li>
             <input
               id={`${props.type}Verifier`}
               name={`${props.type}Verifier`}
-              type="checkbox"
+              type='checkbox'
               checked={this.state.checked}
               disabled={disabled}
-              onChange={e => {
+              onChange={(e) => {
                 this.setState({ checked: e.target.checked })
                 props.onVerify(e.target.checked)
               }}
             />
-            <label htmlFor={`${props.type}Verifier`} className="max-width-100">
+            <label htmlFor={`${props.type}Verifier`} className='max-width-100'>
               All data are accurate, no corrections required. I have verified
               the accuracy of all data fields referenced by the {props.type}{' '}
               edits.
@@ -92,7 +93,7 @@ Verifier.propTypes = {
   verified: PropTypes.bool.isRequired,
   onVerify: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  code: PropTypes.number
+  code: PropTypes.number,
 }
 
 export default Verifier

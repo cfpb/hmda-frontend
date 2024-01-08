@@ -14,11 +14,15 @@ export const ActionsWarningsErrors = ({
   requestSubset,
   isLargeFile,
   error,
-  longRunningQuery
+  longRunningQuery,
 }) => {
   return (
     <>
-      <LoadingButton onClick={downloadCallback} disabled={!downloadEnabled} dataUrl={downloadUrl}>
+      <LoadingButton
+        onClick={downloadCallback}
+        disabled={!downloadEnabled}
+        dataUrl={downloadUrl}
+      >
         Download Dataset
       </LoadingButton>
       {showSummaryButton && (
@@ -41,7 +45,10 @@ export const ActionsWarningsErrors = ({
 const LongRunningMessage = () => {
   return (
     <Alert type='warning'>
-      <p>Queries which result in large datasets may take longer than expected to load.</p>
+      <p>
+        Queries which result in large datasets may take longer than expected to
+        load.
+      </p>
     </Alert>
   )
 }

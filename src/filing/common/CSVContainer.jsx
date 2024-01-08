@@ -27,8 +27,8 @@ export function mapStateToProps(state, ownProps) {
 
 export function mapDispatchToProps(dispatch) {
   // triggered by a click on "Download edit report"
-  const onDownloadClick = function(lei, filing, submissionId) {
-    return e => {
+  const onDownloadClick = function (lei, filing, submissionId) {
+    return (e) => {
       e.preventDefault()
       this.setState({ isFetching: true })
       dispatch(fetchCSV(lei, filing, submissionId)).then(() => {

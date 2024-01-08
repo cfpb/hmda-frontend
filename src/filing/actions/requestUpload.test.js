@@ -17,7 +17,7 @@ describe('uploadStart', () => {
   it('creates an action to signal the start of the fule upload when dispatched', () => {
     store.dispatch(requestUpload())
     expect(store.getActions()).toEqual([
-      { type: types.REQUEST_UPLOAD, lei: '123' }
+      { type: types.REQUEST_UPLOAD, lei: '123' },
     ])
   })
 })

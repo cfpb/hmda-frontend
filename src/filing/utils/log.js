@@ -1,4 +1,4 @@
-export default function(...data) {
+export default function (...data) {
   if (import.meta.env.NODE_ENV !== 'production') console.log(...data)
 }
 

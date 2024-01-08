@@ -17,12 +17,12 @@ import thunk from 'redux-thunk'
 const mockStore = configureMockStore([thunk])
 
 fetchNewSubmission.mockImplementation((id, filing) => {
-  return dispatch => {
+  return (dispatch) => {
     return { type: 'resolved' }
   }
 })
 
-receiveSubmission.mockImplementation(json => {
+receiveSubmission.mockImplementation((json) => {
   return { type: types.RECEIVE_SUBMISSION }
 })
 
@@ -34,9 +34,9 @@ describe('fetchSubmission', () => {
         id: {
           sequenceNumber: 1,
           lei: '123',
-          period: '2017'
-        }
-      })
+          period: '2017',
+        },
+      }),
     )
 
     store.dispatch(fetchSubmission()).then(() => {
@@ -50,9 +50,8 @@ describe('fetchSubmission', () => {
     getLatestSubmission.mockImplementation(() =>
       Promise.resolve({
         status: 404,
-        url:
-          'https://url.com/hmda/institutions/abc/filings/2017/submissions/latest'
-      })
+        url: 'https://url.com/hmda/institutions/abc/filings/2017/submissions/latest',
+      }),
     )
 
     store.dispatch(fetchSubmission()).then(() => {
@@ -70,8 +69,8 @@ describe('fetchSubmission', () => {
     getLatestSubmission.mockImplementation(() =>
       Promise.resolve({
         status: 500,
-        statusText: 'uhoh'
-      })
+        statusText: 'uhoh',
+      }),
     )
 
     store.dispatch(fetchSubmission()).then(() => {

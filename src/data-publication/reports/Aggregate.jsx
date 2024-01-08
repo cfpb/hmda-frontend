@@ -47,24 +47,24 @@ const detailsCache = {
   },
 }
 
-STATES.forEach(v => {
-  Object.keys(detailsCache).forEach(year => {
+STATES.forEach((v) => {
+  Object.keys(detailsCache).forEach((year) => {
     detailsCache[year].states[v.id] = v
   })
 })
 
-Object.keys(AGGREGATE_REPORTS).forEach(year =>
-  AGGREGATE_REPORTS[year].forEach(v => {
+Object.keys(AGGREGATE_REPORTS).forEach((year) =>
+  AGGREGATE_REPORTS[year].forEach((v) => {
     if (v.value) {
       detailsCache[year].reports[v.value] = v
     }
 
     if (v.options) {
-      v.options.forEach(option => {
+      v.options.forEach((option) => {
         detailsCache[year].reports[option.value] = option
       })
     }
-  })
+  }),
 )
 
 class Aggregate extends React.Component {
@@ -76,7 +76,7 @@ class Aggregate extends React.Component {
 
     const { params } = this.props.match
     if (params.stateId && params.msaMdId) {
-      stateToMsas[params.year][params.stateId].forEach(v => {
+      stateToMsas[params.year][params.stateId].forEach((v) => {
         if (v.id === +params.msaMdId) this.setMsaMd(v)
       })
     }
@@ -84,7 +84,7 @@ class Aggregate extends React.Component {
 
   handleChange(val) {
     this.props.history.push({
-      pathname: `${this.props.match.url}/${val.value}`
+      pathname: `${this.props.match.url}/${val.value}`,
     })
   }
 
@@ -103,7 +103,7 @@ class Aggregate extends React.Component {
     const msaMd = year && details.msaMds[params.msaMdId]
     const report = year && details.reports[params.reportId]
 
-    const options = STATES.map(state => {
+    const options = STATES.map((state) => {
       return { value: state.id, label: state.name }
     })
 
@@ -140,42 +140,45 @@ class Aggregate extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="Aggregate" id="main-content">
+        <div className='Aggregate' id='main-content'>
           {header}
-          <ol className="ProgressCards">
+          <ol className='ProgressCards'>
             <li>
               <ProgressCard
-                title="year"
-                name={
-                  params.year
-                    ? params.year
-                    : 'Select a year'
-                }
+                title='year'
+                name={params.year ? params.year : 'Select a year'}
                 id=''
                 link={'/data-publication/aggregate-reports/'}
               />
             </li>
             <li>
               <ProgressCard
-                title="state"
-                name={params.stateId
-                  ? state.name
-                  : params.year
-                  ? 'Select a state'
-                  : ''
+                title='state'
+                name={
+                  params.stateId
+                    ? state.name
+                    : params.year
+                      ? 'Select a state'
+                      : ''
                 }
                 id={params.stateId ? state.id : ''}
-                link={ params.year ? `/data-publication/aggregate-reports/${params.year}` : null }
+                link={
+                  params.year
+                    ? `/data-publication/aggregate-reports/${params.year}`
+                    : null
+                }
               />
             </li>
 
             <li>
               <ProgressCard
-                title="MSA/MD"
+                title='MSA/MD'
                 name={
                   params.msaMdId
                     ? msaMd.name
-                    : params.stateId ? 'Select a MSA/MD' : ''
+                    : params.stateId
+                      ? 'Select a MSA/MD'
+                      : ''
                 }
                 id={params.msaMdId ? msaMd.id : ''}
                 link={
@@ -188,13 +191,15 @@ class Aggregate extends React.Component {
 
             <li>
               <ProgressCard
-                title="report"
+                title='report'
                 name={
                   params.reportId
                     ? report.label
                     : params.msaMdId
                       ? 'Select a report'
-                      : params.stateId ? '' : ''
+                      : params.stateId
+                        ? ''
+                        : ''
                 }
                 id={params.reportId ? report.value : ''}
                 link={
@@ -218,11 +223,11 @@ class Aggregate extends React.Component {
               )
             ) : (
               <React.Fragment>
-                <Heading type={4} headingText="Select a state" />
+                <Heading type={4} headingText='Select a state' />
                 <Select
                   id='StateSelector'
                   onChange={this.handleChange}
-                  placeholder="Select a state..."
+                  placeholder='Select a state...'
                   searchable={true}
                   autoFocus
                   openOnFocus
@@ -230,9 +235,9 @@ class Aggregate extends React.Component {
                   options={options}
                 />
               </React.Fragment>
-              )
-            ) : (
-            <YearSelector year={year} url={url} years={years}/>
+            )
+          ) : (
+            <YearSelector year={year} url={url} years={years} />
           )}
         </div>
 

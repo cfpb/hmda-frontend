@@ -1,8 +1,8 @@
 /**
  * Determines if the fieldName of the column matches the provided filter
- * 
- * @param {Object} column 
- * @param {String} filter 
+ *
+ * @param {Object} column
+ * @param {String} filter
  * @returns Boolean
  */
 export const matchColumnFilter = (column, filter) => {
@@ -16,27 +16,24 @@ export const matchColumnFilter = (column, filter) => {
 
 /**
  * Determines if the value matches the provided filter
- * 
- * @param {String} value 
- * @param {String} filter 
+ *
+ * @param {String} value
+ * @param {String} filter
  * @returns Boolean
  */
 export const matchSearchFilter = (value, filter) => {
-  return value
-    .toString()
-    .toLowerCase()
-    .includes(filter.toLowerCase())
+  return value.toString().toLowerCase().includes(filter.toLowerCase())
 }
 
 /**
  * Returns a list of rows who's columns that match the columnFilter
  * also have content which matches the searchFilter.
- * 
- * @param {String} searchFilter 
- * @param {Object} schema 
- * @param {String} columnFilter 
- * @param {Array} rows 
- * @param {Array} matchedColumns 
+ *
+ * @param {String} searchFilter
+ * @param {Object} schema
+ * @param {String} columnFilter
+ * @param {Array} rows
+ * @param {Array} matchedColumns
  * @returns Array of matching row objects
  */
 export const applyRowFilter = ({
@@ -48,10 +45,10 @@ export const applyRowFilter = ({
 }) => {
   if (!searchFilter) return rows
 
-  const filtered = rows.filter(_row => {
+  const filtered = rows.filter((_row) => {
     let hasMatches = false
 
-    schema.forEach(col => {
+    schema.forEach((col) => {
       // Only search targeted columns
       if (!matchColumnFilter(col, columnFilter)) return
 

@@ -14,7 +14,7 @@ onlyOn(!isBeta(HOST), () => {
   describe('General Tests', () => {
     it('Checks <GraphsHeader/> component if overview props was not sent to the component', () => {
       cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`).contains(
-        'The following graphs present data for the financial institutions reporting HMDA quarterly data.'
+        'The following graphs present data for the financial institutions reporting HMDA quarterly data.',
       )
     })
 
@@ -23,7 +23,7 @@ onlyOn(!isBeta(HOST), () => {
       // In Prod we want to ensure that the count is numeric.
       let institutionCountRx = isProd(HOST) ? '[0-9]{1,3}' : '[0-9x]{1,3}'
       const financialInstitutionsRx = new RegExp(
-        ` ${institutionCountRx} financial institutions`
+        ` ${institutionCountRx} financial institutions`,
       )
 
       cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`)
@@ -48,7 +48,7 @@ onlyOn(!isBeta(HOST), () => {
       })
       cy.url().should(
         'eq',
-        `${baseURLToVisit}/data-browser/graphs/quarterly/info/filers`
+        `${baseURLToVisit}/data-browser/graphs/quarterly/info/filers`,
       )
     })
   })
@@ -63,7 +63,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.url().should('match', /periodHigh=20\d{2}-Q\d/)
       cy.url().should(
         'match',
-        /visibleSeries=([a-zA-Z-\/]+(%20)?[a-zA-Z-]*,?)+/
+        /visibleSeries=([a-zA-Z-\/]+(%20)?[a-zA-Z-]*,?)+/,
       )
     })
 
@@ -72,7 +72,7 @@ onlyOn(!isBeta(HOST), () => {
 
       cy.wait(1000)
 
-      cy.url().then(url => {
+      cy.url().then((url) => {
         cy.get('.react-select__graph__value-container').click(0, 0, {
           force: true,
         })
@@ -86,7 +86,7 @@ onlyOn(!isBeta(HOST), () => {
 
       cy.wait(2000)
 
-      cy.url().then(url => {
+      cy.url().then((url) => {
         cy.log(url)
         cy.get('.react-select__period_start__value-container').click(0, 0, {
           force: true,
@@ -123,10 +123,10 @@ onlyOn(!isBeta(HOST), () => {
 
       cy.wait(2000)
 
-      cy.url().then(url => {
+      cy.url().then((url) => {
         cy.log(url)
         cy.visit(
-          `${baseURLToVisit}/data-browser/graphs/quarterly/applications?periodLow=2018-Q1&periodHigh=2021-Q4&visibleSeries=FHA,HELOC,VA`
+          `${baseURLToVisit}/data-browser/graphs/quarterly/applications?periodLow=2018-Q1&periodHigh=2021-Q4&visibleSeries=FHA,HELOC,VA`,
         )
         cy.wait(1000)
         cy.url().should('not.eq', url)

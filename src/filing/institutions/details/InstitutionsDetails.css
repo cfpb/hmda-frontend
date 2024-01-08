@@ -22,7 +22,7 @@
   font-weight: normal;
 }
 
-.institutions-details h2 { 
+.institutions-details h2 {
   font-size: 2rem;
   font-weight: normal;
 }
@@ -55,11 +55,10 @@
   color: #000;
 }
 
-
 .institutions-details .center {
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;  
+  justify-content: center;
 }
 
 .institutions-details .input-wrap.filler input,

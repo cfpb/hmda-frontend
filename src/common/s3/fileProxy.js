@@ -5,10 +5,10 @@ export const IRS = {
 }
 
 export const MLAR = {
- buildURL: (year, lei, withHeader) => {
-   let fileType = '/txt'
-   if (withHeader) fileType += '/header'
+  buildURL: (year, lei, withHeader) => {
+    let fileType = '/txt'
+    if (withHeader) fileType += '/header'
 
-   return `/file/modifiedLar/year/` + year + `/institution/` + lei + fileType
- }
+    return `/file/modifiedLar/year/` + year + `/institution/` + lei + fileType
+  },
 }

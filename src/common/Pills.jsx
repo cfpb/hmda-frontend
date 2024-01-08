@@ -12,9 +12,15 @@ function makeCloser(values, index, onChange) {
 
 const Pills = ({ values, onChange }) => {
   return (
-    <div className="Pills">
+    <div className='Pills'>
       {values.map((v, i) => {
-        return <Pill key={i} value={v.label} close={makeCloser(values, i, onChange)} />
+        return (
+          <Pill
+            key={i}
+            value={v.label}
+            close={makeCloser(values, i, onChange)}
+          />
+        )
       })}
     </div>
   )

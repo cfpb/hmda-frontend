@@ -15,7 +15,7 @@ class Selector extends React.Component {
     let url = this.props.match.url
     if (!url.match(/\/$/)) url += '/'
     this.props.history.push({
-      pathname: url + option.value
+      pathname: url + option.value,
     })
   }
 
@@ -31,9 +31,9 @@ class Selector extends React.Component {
           menuIsOpen
           options={this.props.options}
           noResultsText={
-            <div className="alert alert-error" role="alert">
-              <div className="alert-body">
-                <h3 className="alert-heading">No results found!</h3>
+            <div className='alert alert-error' role='alert'>
+              <div className='alert-body'>
+                <h3 className='alert-heading'>No results found!</h3>
                 Sorry, there doesn't seem to be a match found. Please try again.
               </div>
             </div>

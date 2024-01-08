@@ -8,11 +8,11 @@ import TestUtils from 'react-dom/test-utils'
 
 const types = {
   syntactical: JSON.parse(
-    fs.readFileSync('./test-resources/json/syntactical.json')
+    fs.readFileSync('./test-resources/json/syntactical.json'),
   ),
   validity: JSON.parse(fs.readFileSync('./test-resources/json/validity.json')),
   quality: JSON.parse(fs.readFileSync('./test-resources/json/quality.json')),
-  macro: JSON.parse(fs.readFileSync('./test-resources/json/macro.json'))
+  macro: JSON.parse(fs.readFileSync('./test-resources/json/macro.json')),
 }
 
 describe('Edits Table Row', () => {
@@ -21,7 +21,7 @@ describe('Edits Table Row', () => {
       <tbody>
         <EditsTableRow />
       </tbody>
-    </table>
+    </table>,
   )
   const rowNode = ReactDOM.findDOMNode(editsTableRow)
 
@@ -37,7 +37,7 @@ describe('Edits Table Row', () => {
   it('makes an cells for rows and fields', () => {
     const row = EditsTableRow({
       row: { rowId: 'Transmittal Sheet' },
-      fields: { 'Agency Code': 22 }
+      fields: { 'Agency Code': 22 },
     })
     expect(row.props.children.length).toBe(2)
   })

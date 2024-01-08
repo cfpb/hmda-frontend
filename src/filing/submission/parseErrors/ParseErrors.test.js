@@ -7,7 +7,7 @@ import TestUtils from 'react-dom/test-utils'
 
 const fs = require('fs')
 const parseJSON = JSON.parse(
-  fs.readFileSync('./test-resources/json/parseErrors.json')
+  fs.readFileSync('./test-resources/json/parseErrors.json'),
 )
 
 describe('Parse errors', () => {
@@ -17,7 +17,7 @@ describe('Parse errors', () => {
     transmittalSheetErrors: parseJSON.transmittalSheetErrors,
     larErrors: parseJSON.larErrors,
     isFetching: false,
-    fetched: true
+    fetched: true,
   })
 
   const parseErrors = parseErrorsClass.render()
@@ -27,7 +27,7 @@ describe('Parse errors', () => {
     expect(parseErrors.props.className).toBe('ParseErrors full-width')
     expect(parseErrors.props.children[1].props.children[0]).not.toBe(null)
     expect(
-      parseErrors.props.children[1].props.children[0].props.children.join('')
+      parseErrors.props.children[1].props.children[0].props.children.join(''),
     ).toBe('47 Rows with Formatting Errors')
   })
 
@@ -38,13 +38,13 @@ describe('Parse errors', () => {
 
   it('creates the pagination component', () => {
     expect(parseErrors.props.children[4].type.displayName).toBe(
-      'Connect(PaginationContainer)'
+      'Connect(PaginationContainer)',
     )
   })
 
   it('creates the refile warning', () => {
     expect(parseErrors.props.children[5].type.displayName).toBe(
-      'Connect(RefileWarning)'
+      'Connect(RefileWarning)',
     )
   })
 
@@ -54,7 +54,7 @@ describe('Parse errors', () => {
       transmittalSheetErrors: ['yikes'],
       larErrors: parseJSON.larErrors,
       isFetching: false,
-      fetched: true
+      fetched: true,
     })
     const parseErrors = parseErrorsClass.render()
     expect(parseErrors.props.children[1].props.children[0]).toBe(null)
@@ -67,11 +67,11 @@ describe('Parse errors', () => {
       transmittalSheetErrors: ['yikes'],
       larErrors: parseJSON.larErrors,
       isFetching: false,
-      fetched: true
+      fetched: true,
     })
     const parseErrors = parseErrorsClass.render()
     expect(
-      parseErrors.props.children[1].props.children[0].props.children.join('')
+      parseErrors.props.children[1].props.children[0].props.children.join(''),
     ).toBe('1 Row with Formatting Errors')
   })
 
@@ -82,7 +82,7 @@ describe('Parse errors', () => {
       transmittalSheetErrors: ['yikes'],
       larErrors: parseJSON.larErrors,
       isFetching: false,
-      fetched: false
+      fetched: false,
     })
     const parseErrors = parseErrorsClass.render()
     expect(parseErrors.type.name).toBe('LoadingIcon')
@@ -95,7 +95,7 @@ describe('Parse errors', () => {
       transmittalSheetErrors: ['yikes'],
       larErrors: parseJSON.larErrors,
       isFetching: false,
-      fetched: true
+      fetched: true,
     })
 
     parseErrorsClass.rendered = { offsetTop: 1 }
@@ -114,7 +114,7 @@ describe('Parse errors', () => {
 describe('renderTSErrors', () => {
   it('renders transmittal sheet errors from data', () => {
     const ts = renderTSErrors({
-      transmittalSheetErrors: parseJSON.transmittalSheetErrors
+      transmittalSheetErrors: parseJSON.transmittalSheetErrors,
     })
     expect(ts.props.children[2].props.children.length).toBe(2)
   })
@@ -128,7 +128,7 @@ describe('renderLarErrors', () => {
   it('renders lar errors from data', () => {
     const lar = renderLarErrors({
       larErrors: parseJSON.larErrors,
-      paginationFade: false
+      paginationFade: false,
     })
     expect(lar.props.children[2].props.children.length).toBe(3)
     expect(lar.props.className).toBe('PaginationTarget')
@@ -141,7 +141,7 @@ describe('renderLarErrors', () => {
   it('adds fade to className when required', () => {
     const lar = renderLarErrors({
       larErrors: parseJSON.larErrors,
-      paginationFade: true
+      paginationFade: true,
     })
     expect(lar.props.className).toBe('PaginationTarget fadeOut')
   })

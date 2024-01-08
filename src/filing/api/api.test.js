@@ -9,14 +9,14 @@ describe('api', () => {
   it('gets institution', () => {
     api.getInstitution('lei', 'filingYear')
     expect(mockedFetch.mock.calls[0][0]).toEqual({
-      pathname: '/institutions/lei/year/filingYear'
+      pathname: '/institutions/lei/year/filingYear',
     })
   })
 
   it('gets quarterly institution', () => {
     api.getInstitution('lei', 'filingYear-fq')
     expect(mockedFetch.mock.calls[1][0]).toEqual({
-      pathname: '/institutions/lei/year/filingYear/quarter/FQ'
+      pathname: '/institutions/lei/year/filingYear/quarter/FQ',
     })
   })
 
@@ -24,7 +24,7 @@ describe('api', () => {
     api.postUpload({})
     expect(mockedFetch.mock.calls[2][0]).toEqual({
       method: 'POST',
-      body: {}
+      body: {},
     })
   })
 
@@ -32,14 +32,14 @@ describe('api', () => {
     api.createSubmission('1', '2')
     expect(mockedFetch.mock.calls[3][0]).toEqual({
       pathname: '/institutions/1/filings/2/submissions',
-      method: 'POST'
+      method: 'POST',
     })
   })
 
   it('gets filing', () => {
     api.getFiling('1', '2')
     expect(mockedFetch.mock.calls[4][0]).toEqual({
-      pathname: '/institutions/1/filings/2'
+      pathname: '/institutions/1/filings/2',
     })
   })
 
@@ -47,7 +47,7 @@ describe('api', () => {
     api.getLatestSubmission()
     expect(mockedFetch.mock.calls[5][0]).toEqual({
       submission: 'latest',
-      noCache: 1
+      noCache: 1,
     })
   })
 
@@ -59,7 +59,7 @@ describe('api', () => {
   it('gets edit', () => {
     api.getEdit({ edit: '1' })
     expect(mockedFetch.mock.calls[7][0]).toEqual({
-      suffix: '/edits/1'
+      suffix: '/edits/1',
     })
   })
 
@@ -67,13 +67,13 @@ describe('api', () => {
     api.getCSV({})
     expect(mockedFetch.mock.calls[8][0]).toEqual({
       params: { format: 'csv' },
-      suffix: '/edits/csv'
+      suffix: '/edits/csv',
     })
 
     api.getCSV({ suffix: '1' })
     expect(mockedFetch.mock.calls[9][0]).toEqual({
       params: { format: 'csv' },
-      suffix: '1'
+      suffix: '1',
     })
   })
 
@@ -82,28 +82,28 @@ describe('api', () => {
     expect(mockedFetch.mock.calls[10][0]).toEqual({
       suffix: '/edits/2',
       method: 'POST',
-      body: { verified: '3' }
+      body: { verified: '3' },
     })
   })
 
   it('gets summary', () => {
     api.getSummary()
     expect(mockedFetch.mock.calls[11][0]).toEqual({
-      suffix: '/summary'
+      suffix: '/summary',
     })
   })
 
   it('gets signature', () => {
     api.getSignature()
     expect(mockedFetch.mock.calls[12][0]).toEqual({
-      suffix: '/sign'
+      suffix: '/sign',
     })
   })
 
   it('gets parse errors', () => {
     api.getParseErrors()
     expect(mockedFetch.mock.calls[13][0]).toEqual({
-      suffix: '/parseErrors'
+      suffix: '/parseErrors',
     })
   })
 
@@ -112,16 +112,15 @@ describe('api', () => {
     expect(mockedFetch.mock.calls[14][0]).toEqual({
       suffix: '/sign',
       method: 'POST',
-      body: { signed: '2' }
+      body: { signed: '2' },
     })
   })
-
 
   it('creates filing', () => {
     api.createFiling('1', '2')
     expect(mockedFetch.mock.calls[15][0]).toEqual({
       pathname: '/institutions/1/filings/2',
-      method: 'POST'
+      method: 'POST',
     })
   })
 })

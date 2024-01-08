@@ -14,9 +14,9 @@ describe('Header', () => {
     <Wrapper>
       <Header
         user={{ profile: { name: 'Some One' } }}
-        pathname="/0/2017/upload"
+        pathname='/0/2017/upload'
       />
-    </Wrapper>
+    </Wrapper>,
   )
   const headerNode = ReactDOM.findDOMNode(header)
 
@@ -26,13 +26,13 @@ describe('Header', () => {
 
   const headerNoUser = TestUtils.renderIntoDocument(
     <Wrapper>
-      <Header pathname="/0/2017/upload" />
-    </Wrapper>
+      <Header pathname='/0/2017/upload' />
+    </Wrapper>,
   )
 
   it('renders links without a user', () => {
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(headerNoUser, 'li').length
+      TestUtils.scryRenderedDOMComponentsWithTag(headerNoUser, 'li').length,
     ).toBe(1)
   })
 })

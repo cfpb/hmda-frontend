@@ -22,15 +22,16 @@ class InputText extends Component {
   handleBlur(event) {
     if (this.props.validation) {
       this.setState({
-        error: validateInput(this.props.validation, event.target.value)
+        error: validateInput(this.props.validation, event.target.value),
       })
     }
 
     if (this.props.onBlur) this.props.onBlur()
   }
 
-  render(){
-    const { disabled, id, innerRef, label, maxLength, placeholder, value } = this.props
+  render() {
+    const { disabled, id, innerRef, label, maxLength, placeholder, value } =
+      this.props
     const { error } = this.state
 
     return (
@@ -39,7 +40,7 @@ class InputText extends Component {
         <InputErrorMsg msg={error} />
         <input
           ref={innerRef}
-          type="text"
+          type='text'
           className={error ? 'input-error' : null}
           name={id}
           id={id}
@@ -57,7 +58,7 @@ class InputText extends Component {
 }
 
 InputText.defaultProps = {
-  disabled: false
+  disabled: false,
 }
 
 InputText.propTypes = {
@@ -69,7 +70,7 @@ InputText.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   disabled: PropTypes.bool,
-  validation: PropTypes.array
+  validation: PropTypes.array,
 }
 
 export default React.forwardRef((props, ref) => {
