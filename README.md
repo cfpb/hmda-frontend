@@ -31,7 +31,7 @@ The HMDA Frontend monorepo hosts the public facing applications for the collecti
     + [Running in TravisCI](#running-in-travisci)
 
 ## Technical Overview
-Each React application lives in it's own sub-directory of the `/src` folder, with shared assets and components housed in `/common`. All sub-applications are rendered as asynchronous components within an application shell `/App.jsx` that provides a common header.  This approach eliminates unneccesary reloading of the site-wide navigation, giving the separate apps a more connected feel.  [React Router](https://reacttraining.com/react-router/) is used for client side routing with [React Redux](https://redux.js.org/) integrated for state management of the more complex apps, such as Filing.  [Unit tests](#unit-tests) are developed using Enzyme and [end-to-end](#end-to-end-testing) testing performed with Cypress. Dependencies are managed with [yarn](https://classic.yarnpkg.com/en/).
+Each React application lives in it's own sub-directory of the `/src` folder, with shared assets and components housed in `/common`. All sub-applications are rendered as asynchronous components within an application shell `/App.jsx` that provides a common header.  This approach eliminates unneccesary reloading of the site-wide navigation, giving the separate apps a more connected feel.  [React Router](https://reacttraining.com/react-router/) is used for client side routing with [React Redux](https://redux.js.org/) integrated for state management of the more complex apps, such as Filing.  [Unit tests](#unit-tests) are developed using Enzyme and [end-to-end](#end-to-end-testing) testing performed with Cypress. Dependencies are managed with [yarn](https://yarnpkg.com/getting-started).
 
 ## Applications
 
