@@ -3,9 +3,12 @@ WORKDIR /usr/src/app
 ARG DOCKER_TAG="latest"
 
 # install build dependencies
-COPY package.json yarn.lock .yarnrc ./
-# install packages offline
-COPY npm-packages-offline-cache ./npm-packages-offline-cache
+COPY package.json .
+
+# Using Yarn V4
+RUN yarn set version berry
+
+COPY yarn.lock .yarn .yarnrc.yml ./
 RUN yarn install
 
 # Copying all directories and subdirectories as Vite needs everything

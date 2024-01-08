@@ -101,8 +101,8 @@ The [HMDA Documentation](https://ffiec.cfpb.gov/documentation/) site provides pr
 
 ## Development
 ### Requirements
- - Node >= v12.4.1 
- - Yarn
+ - Node >= v20.8.0
+ - Yarn berry >= v4.0.2
 
 ### Installation
   - Clone repo

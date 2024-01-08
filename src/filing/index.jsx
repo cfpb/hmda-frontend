@@ -15,7 +15,7 @@ import { initKeycloak } from '../common/api/Keycloak'
 import { setStore } from './utils/store.js'
 import appReducer from './reducers'
 import { withAppContext } from '../common/appContextHOC'
-import { composeWithDevTools } from "redux-devtools-extension"
+import { composeWithDevTools } from "@redux-devtools/extension"
 import CompleteProfile from './profile/CompleteProfile'
 
 initKeycloak()
