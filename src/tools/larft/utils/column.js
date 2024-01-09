@@ -8,17 +8,16 @@ const KNOWN_ENUMERATIONS = [
   'No co-applicant',
 ]
 
-export const isColumnState = column => column?.fieldName?.includes('State')
+export const isColumnState = (column) => column?.fieldName?.includes('State')
 
-export const isColumnDate = column => column?.fieldName?.includes('Date')
+export const isColumnDate = (column) => column?.fieldName?.includes('Date')
 
-export const isCombinedInput = column => {
+export const isCombinedInput = (column) => {
   const { examples = [], enumerations = [] } = column
-  
+
   return (
     examples.length &&
     enumerations.length &&
-    enumerations.some(e => KNOWN_ENUMERATIONS.includes(e.value))
+    enumerations.some((e) => KNOWN_ENUMERATIONS.includes(e.value))
   )
 }
-

@@ -1,5 +1,5 @@
-import React from "react"
-import Alert from "../../common/Alert"
+import React from 'react'
+import Alert from '../../common/Alert'
 import { HeaderDocsLink } from './Header'
 
 export const HeaderEnded = ({ endDate, period }) => {

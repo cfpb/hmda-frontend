@@ -24,18 +24,18 @@ const browser = detect()
 export class AppContainer extends Component {
   componentDidMount() {
     if (this.props.maintenanceMode && !this._isHome(this.props))
-      return this.props.history.push("/filing")
+      return this.props.history.push('/filing')
 
     const filingPeriod = this.props.match.params.filingPeriod
 
     // If check is used to allow /profile to be acceptable and not force endless re-directs
-    if (this.props.location.pathname.includes("/profile")) {} 
-    else if (this.isPeriodReachable(filingPeriod))
+    if (this.props.location.pathname.includes('/profile')) {
+    } else if (this.isPeriodReachable(filingPeriod))
       this.props.dispatch(updateFilingPeriod(filingPeriod))
     else this.redirectToReachablePeriod(filingPeriod)
 
     const keycloak = initKeycloak()
-    keycloak.init({ pkceMethod: "S256" }).then(authenticated => {
+    keycloak.init({ pkceMethod: 'S256' }).then((authenticated) => {
       this.keycloakConfigured = true
       if (authenticated) {
         AccessToken.set(keycloak.token)
@@ -50,12 +50,12 @@ export class AppContainer extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.maintenanceMode && !this._isHome(this.props))
-      return this.props.history.push("/filing")
+      return this.props.history.push('/filing')
 
     const filingPeriod = this.props.match.params.filingPeriod
     // If check is used to allow /profile to be acceptable and not force endless re-directs
-    if (this.props.location.pathname.includes("/profile")) {}
-    else if (!this.isPeriodReachable(filingPeriod)) {
+    if (this.props.location.pathname.includes('/profile')) {
+    } else if (!this.isPeriodReachable(filingPeriod)) {
       this.redirectToReachablePeriod(filingPeriod)
     } else if (filingPeriod !== this.props.filingPeriod)
       this.props.dispatch(updateFilingPeriod(filingPeriod))
@@ -75,12 +75,12 @@ export class AppContainer extends Component {
       props.redirecting ||
       (!getKeycloak().authenticated && !this._isHome(props))
     )
-      return <Loading className="floatingIcon" />
+      return <Loading className='floatingIcon' />
     return React.cloneElement(props.children, {
       match: this.props.match,
       location: this.props.location,
       config: this.props.config,
-      selectedPeriod: this.props.selectedPeriod
+      selectedPeriod: this.props.selectedPeriod,
     })
   }
 
@@ -97,15 +97,15 @@ export class AppContainer extends Component {
 
     this.props.dispatch(updateFilingPeriod(defaultPeriod))
     this.props.history.replace(
-      this.props.location.pathname.replace(previous, defaultPeriod)
+      this.props.location.pathname.replace(previous, defaultPeriod),
     )
   }
 
-  redirectToReachablePeriod(period){
-    const quarters = PERIODS
-      .filter(p => p.includes('Q'))
-      .map(period => '-' + period)
-    
+  redirectToReachablePeriod(period) {
+    const quarters = PERIODS.filter((p) => p.includes('Q')).map(
+      (period) => '-' + period,
+    )
+
     const [year, _quarter] = splitYearQuarter(period)
 
     // Try to redirect to the latest Quarterly period
@@ -114,7 +114,7 @@ export class AppContainer extends Component {
       if (this.isPeriodReachable(fp)) {
         this.props.dispatch(updateFilingPeriod(fp))
         this.props.history.replace(
-          this.props.location.pathname.replace(period, fp)
+          this.props.location.pathname.replace(period, fp),
         )
         return
       }
@@ -134,17 +134,23 @@ export class AppContainer extends Component {
   }
 
   render() {
-    const { match: { params }, location, config: { filingAnnouncement } } = this.props
+    const {
+      match: { params },
+      location,
+      config: { filingAnnouncement },
+    } = this.props
 
     return (
-      <div className="AppContainer">
-        <a className="skipnav" href="#main-content">
+      <div className='AppContainer'>
+        <a className='skipnav' href='#main-content'>
           Skip to main content
         </a>
-        <ShowUserName isLoggedIn = {getKeycloak().authenticated} />
-      
+        <ShowUserName isLoggedIn={getKeycloak().authenticated} />
+
         <ConfirmationModal />
-        {filingAnnouncement ? <FilingAnnouncement data={filingAnnouncement} /> : null}
+        {filingAnnouncement ? (
+          <FilingAnnouncement data={filingAnnouncement} />
+        ) : null}
         {params.filingPeriod === '2017' ? (
           <p className='full-width'>
             Files are no longer being accepted for the 2017 filing period. For
@@ -160,7 +166,8 @@ export class AppContainer extends Component {
 }
 
 export function mapStateToProps(state, ownProps) {
-  const { filingPeriod, redirecting, statePathname, filingPeriodOptions } = state.app
+  const { filingPeriod, redirecting, statePathname, filingPeriodOptions } =
+    state.app
   const { maintenanceMode, filingAnnouncement } = ownProps.config
   const selectedPeriod = ownProps.config.filingPeriodStatus[filingPeriod] || {}
 
@@ -171,7 +178,7 @@ export function mapStateToProps(state, ownProps) {
     filingAnnouncement,
     filingPeriod,
     filingPeriodOptions,
-    selectedPeriod // FilingPeriodStatus
+    selectedPeriod, // FilingPeriodStatus
   }
 }
 

@@ -10,13 +10,12 @@ import './ParseErrors.css'
 const RefileWarning = submissionProgressHOC(RefileWarningComponent)
 
 export const renderTSErrors = ({ transmittalSheetErrors }) => {
-
   if (transmittalSheetErrors.length === 0) return null
   let uliNeeded = false
   let tsErrorMessages = errorResponseParser(transmittalSheetErrors, uliNeeded)
 
   return (
-    <table width="100%">
+    <table width='100%'>
       <caption>
         <h3>Transmittal Sheet Errors</h3>
         <p>
@@ -32,9 +31,7 @@ export const renderTSErrors = ({ transmittalSheetErrors }) => {
           <th>Valid Value</th>
         </tr>
       </thead>
-      <tbody>
-        {tsErrorMessages}
-      </tbody>
+      <tbody>{tsErrorMessages}</tbody>
     </table>
   )
 }
@@ -43,7 +40,7 @@ export const renderLarErrors = ({ larErrors, ...props }) => {
   if (larErrors.length === 0) return null
 
   let uliNeeded = true
-  let larErrorMessages =errorResponseParser(larErrors, uliNeeded)
+  let larErrorMessages = errorResponseParser(larErrors, uliNeeded)
 
   const caption = (
     <caption>
@@ -56,7 +53,7 @@ export const renderLarErrors = ({ larErrors, ...props }) => {
   className += props.paginationFade ? ' fadeOut' : ''
 
   return (
-    <table className={className} id="parseErrors" width="100%">
+    <table className={className} id='parseErrors' width='100%'>
       {caption}
       <thead>
         <tr>
@@ -67,9 +64,7 @@ export const renderLarErrors = ({ larErrors, ...props }) => {
           <th>Valid Value</th>
         </tr>
       </thead>
-      <tbody>
-      {larErrorMessages}
-      </tbody>
+      <tbody>{larErrorMessages}</tbody>
     </table>
   )
 }
@@ -91,9 +86,9 @@ class ParseErrors extends Component {
 
     return (
       <section
-        ref={el => (this.rendered = el)}
-        className="ParseErrors"
-        id="parseErrors"
+        ref={(el) => (this.rendered = el)}
+        className='ParseErrors'
+        id='parseErrors'
       >
         <RefileWarning />
         <header>
@@ -102,28 +97,29 @@ class ParseErrors extends Component {
               {props.pagination.total} {errorText} with Formatting Errors
             </h2>
           )}
-          <p className="usa-font-lead">
+          <p className='usa-font-lead'>
             The uploaded file is not formatted according to the requirements
             specified in the{' '}
             <a
-              rel="noopener noreferrer"
-              target="_blank"
-              href={filingPeriod === '2018'
-                ? 'https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2018-hmda-fig-2018-hmda-rule.pdf'
-                : `https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${filingPeriod}-hmda-fig.pdf`
+              rel='noopener noreferrer'
+              target='_blank'
+              href={
+                filingPeriod === '2018'
+                  ? 'https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2018-hmda-fig-2018-hmda-rule.pdf'
+                  : `https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${filingPeriod}-hmda-fig.pdf`
               }
             >
               Filing Instructions Guide
             </a>{' '}
-            for data collected in {filingPeriod}{filingPeriod === '2018'
+            for data collected in {filingPeriod}
+            {filingPeriod === '2018'
               ? ' incorporating the 2018 HMDA Rule.'
-              : '.'
-            }
+              : '.'}
           </p>
         </header>
         {renderTSErrors(props)}
         {renderLarErrors(props)}
-        <Pagination isFetching={props.isFetching} target="parseErrors" />
+        <Pagination isFetching={props.isFetching} target='parseErrors' />
         <RefileWarning />
       </section>
     )
@@ -147,7 +143,7 @@ function errorResponseParser(errorResponse, uliNeeded) {
             <td>{errorMessage.fieldName}</td>
             <td>{inputContent}</td>
             <td> {errorMessage.validValues}</td>
-          </tr>
+          </tr>,
         )
       })
     }
@@ -161,7 +157,7 @@ ParseErrors.propTypes = {
   paginationFade: PropTypes.number,
   transmittalSheetErrors: PropTypes.array.isRequired,
   larErrors: PropTypes.array.isRequired,
-  isFetching: PropTypes.bool.isRequired
+  isFetching: PropTypes.bool.isRequired,
 }
 
 export default ParseErrors

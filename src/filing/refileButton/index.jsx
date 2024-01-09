@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 
 import './RefileButton.css'
 
-const RefileButton = props => {
+const RefileButton = (props) => {
   let refileStyle = 'RefileButton text-small'
-  
+
   if (props.isLink) {
     refileStyle = 'RefileButton link'
     if (props.isLower) {
@@ -22,7 +22,7 @@ const RefileButton = props => {
   return (
     <button
       className={refileStyle}
-      onClick={e => {
+      onClick={(e) => {
         e.preventDefault()
         if (props.institution) {
           props.updateInstitution(props.institution.lei)
@@ -41,7 +41,7 @@ RefileButton.propTypes = {
   showConfirmModal: PropTypes.func.isRequired,
   isLink: PropTypes.bool,
   isLower: PropTypes.bool,
-  isSmall: PropTypes.bool
+  isSmall: PropTypes.bool,
 }
 
 export default RefileButton

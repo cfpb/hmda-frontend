@@ -3,22 +3,18 @@ import Alert from '../../common/Alert'
 import { HeaderDocsLink } from './Header'
 import { isBeta } from '../../common/Beta'
 
-export const HeaderOpen = ({
-  period,
-  lateDate,
-  endDate,
-}) => {
+export const HeaderOpen = ({ period, lateDate, endDate }) => {
   const officialOrSimulated = isBeta() ? (
     <>
-      You may <span className="simulated">simulate filing of HMDA data</span> for
-      your authorized institutions below.
+      You may <span className='simulated'>simulate filing of HMDA data</span>{' '}
+      for your authorized institutions below.
     </>
   ) : (
     <>
-      You may <span className="official">file official HMDA data</span> for your
+      You may <span className='official'>file official HMDA data</span> for your
       authorized institutions below.
     </>
-  );
+  )
 
   return (
     <Alert>
@@ -27,9 +23,11 @@ export const HeaderOpen = ({
           The {period} filing period is open.
         </h2>
         <p className='font-lead'>
-          Timely submissions of {period} HMDA data will be accepted until <strong>{lateDate}</strong>.
+          Timely submissions of {period} HMDA data will be accepted until{' '}
+          <strong>{lateDate}</strong>.
           <br />
-          Resubmissions and late submissions will be accepted until <strong>{endDate}</strong>.
+          Resubmissions and late submissions will be accepted until{' '}
+          <strong>{endDate}</strong>.
         </p>
         <br />
         <p className='font-lead'>

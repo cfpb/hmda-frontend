@@ -18,7 +18,10 @@ export const FigLastUpdated = ({ year }) => {
 export const FilingGuides = () => (
   <article>
     <h3>Guides for HMDA Filers</h3>
-    <p>Published resources to help guide financial institutions through the processes of submitting HMDA data.</p>
+    <p>
+      Published resources to help guide financial institutions through the
+      processes of submitting HMDA data.
+    </p>
     <ul>
       <li>
         <a
@@ -27,10 +30,8 @@ export const FilingGuides = () => (
           Filing Instructions Guides (FIG)
         </a>
         <ul>
-        <li>
-            <a
-              href={`/documentation/fig/2023/overview`}
-            >
+          <li>
+            <a href={`/documentation/fig/2023/overview`}>
               For data collected in 2023
               <NewIndicator />
             </a>

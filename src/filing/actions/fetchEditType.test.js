@@ -9,17 +9,17 @@ import thunk from 'redux-thunk'
 import { getEdit } from '../api/api.js'
 
 const mockStore = configureMockStore([thunk])
-getEdit.mockImplementation(id => Promise.resolve({ edit: 'anedit' }))
+getEdit.mockImplementation((id) => Promise.resolve({ edit: 'anedit' }))
 
 const editTypes = {
   syntactical: { edits: [{ edit: { edit: 1 } }] },
   validity: { edits: [] },
   quality: { edits: [{ edit: { edit: 2 } }], verified: false },
-  macro: { edits: [], verified: false }
+  macro: { edits: [], verified: false },
 }
 
 describe('fetchEditType', () => {
-  it('fetches edits', done => {
+  it('fetches edits', (done) => {
     const store = mockStore({ app: { edits: { types: editTypes } } })
 
     store.dispatch(fetchEditType('syntactical')).then(() => {
@@ -34,21 +34,21 @@ describe('fetchEditType', () => {
             pagination: {
               count: undefined,
               total: undefined,
-              _links: undefined
-            }
+              _links: undefined,
+            },
           },
-          { type: 'RECEIVE_EDIT_TYPE', editType: 'syntactical' }
+          { type: 'RECEIVE_EDIT_TYPE', editType: 'syntactical' },
         ])
         done()
       }, 0)
     })
   })
 
-  it('suppresses when given errors on edit fetch', done => {
+  it('suppresses when given errors on edit fetch', (done) => {
     const store = mockStore({ app: { edits: { types: editTypes } } })
 
-    getEdit.mockImplementation(id =>
-      Promise.resolve({ status: 404, statusText: 'nah' })
+    getEdit.mockImplementation((id) =>
+      Promise.resolve({ status: 404, statusText: 'nah' }),
     )
 
     console.error = jest.fn()
@@ -59,9 +59,9 @@ describe('fetchEditType', () => {
           { type: 'REQUEST_EDIT_TYPE', editType: 'syntactical' },
           { type: 'REQUEST_EDIT', edit: { edit: 1 } },
           {
-            type: 'SUPPRESS_EDITS'
+            type: 'SUPPRESS_EDITS',
           },
-          { type: 'RECEIVE_EDIT_TYPE', editType: 'syntactical' }
+          { type: 'RECEIVE_EDIT_TYPE', editType: 'syntactical' },
         ])
         done()
       }, 0)
@@ -74,7 +74,7 @@ describe('fetchEditType', () => {
     store.dispatch(fetchEditType('validity')).then(() => {
       expect(store.getActions()).toEqual([
         { type: 'REQUEST_EDIT_TYPE', editType: 'validity' },
-        { type: 'RECEIVE_EDIT_TYPE', editType: 'validity' }
+        { type: 'RECEIVE_EDIT_TYPE', editType: 'validity' },
       ])
     })
   })

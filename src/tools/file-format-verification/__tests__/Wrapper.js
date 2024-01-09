@@ -7,8 +7,10 @@ const mockStore = configureMockStore([thunk])
 
 export default class Wrapper extends Component {
   render() {
-    return <Provider store={mockStore(this.props.store||{})}>
-      {this.props.children}
-    </Provider>
+    return (
+      <Provider store={mockStore(this.props.store || {})}>
+        {this.props.children}
+      </Provider>
+    )
   }
 }

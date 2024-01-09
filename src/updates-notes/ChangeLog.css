@@ -1,5 +1,9 @@
 #UpdatesNotes * {
-  font-family: 'Arial', "Segoe UI", 'Roboto', -apple-system;
+  font-family:
+    'Arial',
+    'Segoe UI',
+    'Roboto',
+    -apple-system;
 }
 
 #UpdatesNotes h2 {
@@ -26,7 +30,6 @@
 #UpdatesNotes .split.columns {
   flex-flow: column nowrap;
 }
-
 
 #UpdatesNotes .highlighted {
   background: yellow;
@@ -58,7 +61,6 @@
   background-color: #0a6a58;
   cursor: pointer;
 }
-
 
 .pill {
   align-items: center;
@@ -92,11 +94,11 @@
 .pill:focus,
 .reset-filters:focus,
 .column.product:focus,
-.clear-text:focus   {
+.clear-text:focus {
   outline: none;
   border-color: transparent;
   box-shadow: none;
-  animation: highlight-focus .25s;
+  animation: highlight-focus 0.25s;
   animation-fill-mode: forwards;
 }
 

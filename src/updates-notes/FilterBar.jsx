@@ -8,12 +8,10 @@ import './FilterBar.css'
  * UI to adjust Filter criteria
  * (default export)
  */
-const FilterBar = ({
-  productOptions,
-  typeOptions,
-  filter,
-}) => {
-  const searchValue = filter.filters.keywords ? filter.filters.keywords.join(' ') : ''
+const FilterBar = ({ productOptions, typeOptions, filter }) => {
+  const searchValue = filter.filters.keywords
+    ? filter.filters.keywords.join(' ')
+    : ''
 
   return (
     <div id='filter-bar'>
@@ -92,16 +90,14 @@ const FilterColumn = ({ name, options, heading, filter }) => (
   </div>
 )
 
-
 /** Option that toggles it's filter when clicked */
 const FilterPill = ({ option, filter }) => {
   const { type, value } = option
   const { toggle, filters } = filter
   const id = `pill-${type}-${value}`
   const map = type === 'product' ? PRODUCT_NAMES : null
-  const selected = filters[option.type].indexOf(option.value) > -1 
-    ? 'selected' 
-    : ''
+  const selected =
+    filters[option.type].indexOf(option.value) > -1 ? 'selected' : ''
   const [wasClicked, setWasClicked] = useState(false)
 
   // Scroll to page top on initial load
@@ -118,19 +114,17 @@ const FilterPill = ({ option, filter }) => {
   return (
     <button
       id={id}
-      type="button"
+      type='button'
       className={`pill ${type} ${value} ${selected}`}
       onClick={() => {
         toggle(type, value)
         setWasClicked(!wasClicked)
       }}
     >
-      
-      <span className="icon">{ selected ? '\u2713': '+' }</span>
+      <span className='icon'>{selected ? '\u2713' : '+'}</span>
       <div className='text'>{map ? map[value] : value}</div>
     </button>
   )
 }
-
 
 export default FilterBar

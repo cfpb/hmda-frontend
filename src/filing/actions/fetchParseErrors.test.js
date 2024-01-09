@@ -8,19 +8,19 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { getParseErrors } from '../api/api.js'
 
-getParseErrors.mockImplementation(id =>
+getParseErrors.mockImplementation((id) =>
   Promise.resolve({
     transmittalSheetErrors: 1,
     larErrors: 2,
     count: 3,
     total: 4,
-    _links: 5
-  })
+    _links: 5,
+  }),
 )
 const mockStore = configureMockStore([thunk])
 
 describe('fetchParseErrors', () => {
-  it('creates a thunk that will fetch parse errors', done => {
+  it('creates a thunk that will fetch parse errors', (done) => {
     const store = mockStore({})
 
     store
@@ -35,22 +35,22 @@ describe('fetchParseErrors', () => {
             pagination: {
               count: 3,
               total: 4,
-              _links: 5
-            }
-          }
+              _links: 5,
+            },
+          },
         ])
         done()
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err)
         done.fail()
       })
   })
-  it('handles errors when introduced', done => {
+  it('handles errors when introduced', (done) => {
     const store = mockStore({})
     console.error = jest.fn()
-    getParseErrors.mockImplementation(id =>
-      Promise.resolve({ status: 404, statusText: 'argle' })
+    getParseErrors.mockImplementation((id) =>
+      Promise.resolve({ status: 404, statusText: 'argle' }),
     )
 
     store
@@ -60,12 +60,12 @@ describe('fetchParseErrors', () => {
           { type: types.REQUEST_PARSE_ERRORS },
           {
             type: types.RECEIVE_ERROR,
-            error: { status: 404, statusText: 'argle' }
-          }
+            error: { status: 404, statusText: 'argle' },
+          },
         ])
         done()
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err)
         done.fail()
       })

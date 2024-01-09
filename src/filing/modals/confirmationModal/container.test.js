@@ -9,28 +9,28 @@ import Connected, { mapStateToProps, mapDispatchToProps } from './container.jsx'
 
 const replace = jest.fn()
 reactRouter.browserHistory = {
-  replace: replace
+  replace: replace,
 }
 
 const mockedState = {
   app: {
     confirmation: {
-      showing: true
+      showing: true,
     },
     lei: '123',
     filingPeriod: '2017',
     submission: {
       status: {
-        code: 8
-      }
+        code: 8,
+      },
     },
     upload: {
       123: {
         file: {},
-        newFile: {}
-      }
-    }
-  }
+        newFile: {},
+      },
+    },
+  },
 }
 
 window.HMDA_ENV = { APP_SUFFIX: '/filing/', HOMEPAGE_URL: 'home' }
@@ -42,11 +42,11 @@ describe('ConfirmationModal Container', () => {
       filingPeriod: '2017',
       code: 8,
       showing: true,
-      newFile: {}
+      newFile: {},
     })
   })
 
-  it('maps dispatch appropriately', done => {
+  it('maps dispatch appropriately', (done) => {
     const dispatch = jest.fn(() => Promise.resolve())
     const mapped = mapDispatchToProps(dispatch)
 
@@ -81,7 +81,7 @@ describe('ConfirmationModal Container', () => {
     const connected = TestUtils.renderIntoDocument(
       <Wrapper store={mockedState}>
         <Connected />
-      </Wrapper>
+      </Wrapper>,
     )
 
     expect(connected).toBeDefined()

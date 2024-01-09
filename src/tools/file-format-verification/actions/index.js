@@ -3,14 +3,14 @@ import * as types from '../constants'
 export function updateStatus(status) {
   return {
     type: types.UPDATE_STATUS,
-    status: status
+    status: status,
   }
 }
 
 export function setFilingPeriod(filingPeriod) {
   return {
     type: types.SET_FILING_PERIOD,
-    filingPeriod: filingPeriod
+    filingPeriod: filingPeriod,
   }
 }
 
@@ -18,20 +18,20 @@ export function selectFile(file, previousErrors = []) {
   return {
     type: types.SELECT_FILE,
     file,
-    errors: previousErrors
+    errors: previousErrors,
   }
 }
 
 export function uploadError(error) {
   return {
     type: types.UPLOAD_ERROR,
-    errors: error
+    errors: error,
   }
 }
 
 export function beginParse() {
   return {
-    type: types.BEGIN_PARSE
+    type: types.BEGIN_PARSE,
   }
 }
 
@@ -39,12 +39,12 @@ export function endParse(data) {
   return {
     type: types.END_PARSE,
     transmittalSheetErrors: data.transmittalSheetErrors,
-    larErrors: data.larErrors
+    larErrors: data.larErrors,
   }
 }
 
 export function triggerParse(file) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(beginParse())
     var formData = new FormData()
     formData.append('file', file)
@@ -52,29 +52,29 @@ export function triggerParse(file) {
     fetch('/v2/public/hmda/parse', {
       method: 'POST',
       body: formData,
-      headers: { Accept: 'application/json' }
+      headers: { Accept: 'application/json' },
     })
-      .then(response => {
+      .then((response) => {
         if (response.status >= 400) {
           dispatch(
             uploadError([
-              'Sorry, something went wrong with the upload. Please try again.'
-            ])
+              'Sorry, something went wrong with the upload. Please try again.',
+            ]),
           )
           throw new Error('Bad response from server.')
         }
         return response.json()
       })
-      .then(success => {
+      .then((success) => {
         let data = { transmittalSheetErrors: [], larErrors: [] }
-        success.forEach(error => {
+        success.forEach((error) => {
           if (error.rowNumber === 1) {
             data.transmittalSheetErrors.push(...error.errorMessages)
           } else {
-            const messages = error.errorMessages.map(emsg => ({
+            const messages = error.errorMessages.map((emsg) => ({
               ...emsg,
               uli: error.estimatedULI,
-              row: error.rowNumber
+              row: error.rowNumber,
             }))
 
             data.larErrors.push(...messages)
@@ -82,25 +82,25 @@ export function triggerParse(file) {
         })
         dispatch(endParse(data))
       })
-      .catch(error => console.log('ERROR', error))
+      .catch((error) => console.log('ERROR', error))
   }
 }
 
 export function setPage(page) {
   return {
     type: types.SET_PAGE,
-    page
+    page,
   }
 }
 
 export function paginationFadeIn() {
   return {
-    type: types.PAGINATION_FADE_IN
+    type: types.PAGINATION_FADE_IN,
   }
 }
 
 export function paginationFadeOut() {
   return {
-    type: types.PAGINATION_FADE_OUT
+    type: types.PAGINATION_FADE_OUT,
   }
 }

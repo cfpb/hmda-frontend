@@ -4,7 +4,7 @@ import { unity } from '../../utils/common'
 /**
  * Display examples, descriptions, and enumerations
  * for a field.
- * 
+ *
  * @param {Object} field LAR/TS field
  */
 export const FieldDetails = memo(({ field }) => {
@@ -15,7 +15,7 @@ export const FieldDetails = memo(({ field }) => {
   descriptions.forEach((d, d_idx) => {
     const lines = d?.split('<br/><br/>')
     lines.forEach((ex, idx) =>
-      _descriptions.push(<li key={`${ex}-${d_idx}-${idx}`}>{ex}</li>)
+      _descriptions.push(<li key={`${ex}-${d_idx}-${idx}`}>{ex}</li>),
     )
   })
 
@@ -47,12 +47,11 @@ const List = (title, list, className) => {
   )
 }
 
-
 const Table = (title, list, className) => {
   if (!list.length) return null
   const [hasDescription, rows] = buildRows(list)
   const descriptionColumn = hasDescription ? <th>Description</th> : null
-  
+
   return (
     <div className={className}>
       <h3>{title}</h3>
@@ -81,6 +80,3 @@ const buildRows = (list) => {
   })
   return [hasDescription, rows]
 }
-
-
-

@@ -9,34 +9,39 @@ import receiveNonQFiling from './receiveNonQFiling'
 import { FilingNotAllowed } from '../../common/constants/platform-messages.js'
 
 export default function fetchNewFiling(filing) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(requestFiling(filing))
     return createFiling(filing.lei, filing.period)
-      .then(json => {
-        return hasHttpError(json).then(hasError => {
+      .then((json) => {
+        return hasHttpError(json).then((hasError) => {
           if (hasError) {
-            if (json.status == '400' && json.statusText.match(FilingNotAllowed)) {
+            if (
+              json.status == '400' &&
+              json.statusText.match(FilingNotAllowed)
+            ) {
               console.log(
                 'Ignoring that we are unable to create a Filing for this period...',
                 filing.period,
-                filing.lei
+                filing.lei,
               )
 
               return dispatch(
-                receiveNonQFiling({ institution: { lei: filing.lei } })
+                receiveNonQFiling({ institution: { lei: filing.lei } }),
               )
             }
-            
+
             dispatch(receiveError(json))
             throw new Error(json && `${json.status}: ${json.statusText}`)
           }
           if (!hasError) {
             dispatch(receiveFiling(json))
-            return dispatch(receiveLatestSubmission({ id: { lei: filing.lei } }))
+            return dispatch(
+              receiveLatestSubmission({ id: { lei: filing.lei } }),
+            )
           }
         })
       })
-      .catch(err => {
+      .catch((err) => {
         error(err)
       })
   }

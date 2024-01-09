@@ -1,7 +1,12 @@
 import { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { graphs } from '../slice'
-import { CATEGORIES, FIRST_LOAD, SELECTED_GRAPH_DATA, SERIES_FOR_URL } from '../slice/graphConfigs'
+import {
+  CATEGORIES,
+  FIRST_LOAD,
+  SELECTED_GRAPH_DATA,
+  SERIES_FOR_URL,
+} from '../slice/graphConfigs'
 import { processSingleGraph, useQuery } from '../utils/utils'
 
 /**
@@ -9,24 +14,25 @@ import { processSingleGraph, useQuery } from '../utils/utils'
  * @returns Function
  */
 export const useFetchSingleGraph = ({
-  isFirstLoad,       // Boolean - Is this the first graph to be fetched?
+  isFirstLoad, // Boolean - Is this the first graph to be fetched?
   onGraphFetchError, // Function - Error handler for API calls
-  seriesForURL,      // Array - List of series names to be included in the URL's `visibleSeries` query parameter
+  seriesForURL, // Array - List of series names to be included in the URL's `visibleSeries` query parameter
   setError,
 }) => {
   const dispatch = useDispatch()
   const query = useQuery()
 
   const fetchSingleGraph = useCallback(
-    async endpoint => {
+    async (endpoint) => {
       const response = await dispatch(graphs.getSingleGraph.initiate(endpoint))
         .unwrap()
-        .then(data => data)
-        .catch(err => onGraphFetchError(err))
+        .then((data) => data)
+        .catch((err) => onGraphFetchError(err))
 
       if (!response) return
 
-      const { filingPeriods, seriesForUrl, graph } = processSingleGraph(response)
+      const { filingPeriods, seriesForUrl, graph } =
+        processSingleGraph(response)
 
       /**
        * Enable direct linking to a graph with pre-hidden series by preserving
@@ -34,7 +40,7 @@ export const useFetchSingleGraph = ({
        */
       let visibleSeries = query.get('visibleSeries')?.split(',') || []
       // Remove series names that are invalid for the selectedGraph
-      visibleSeries = visibleSeries.filter(v => seriesForUrl.includes(v))
+      visibleSeries = visibleSeries.filter((v) => seriesForUrl.includes(v))
       if (isFirstLoad && visibleSeries.length) {
         dispatch(graphs.setConfig(SERIES_FOR_URL, visibleSeries))
       } else {
@@ -46,17 +52,8 @@ export const useFetchSingleGraph = ({
       dispatch(graphs.setConfig(FIRST_LOAD, false))
       dispatch(graphs.setConfig(SELECTED_GRAPH_DATA, graph))
     },
-    [
-      dispatch,
-      isFirstLoad,
-      onGraphFetchError,
-      query,
-      seriesForURL,
-      setError,
-    ]
+    [dispatch, isFirstLoad, onGraphFetchError, query, seriesForURL, setError],
   )
 
   return fetchSingleGraph
 }
-
-

@@ -8,26 +8,26 @@ export const fetchData = (url, options) => {
   const fetchOpts = { ...defaults, ...options }
   return fetch(url, fetchOpts)
     .then((response) => checkError(response))
-    .catch(error => ({ error: true, message: error }))
+    .catch((error) => ({ error: true, message: error }))
 }
 
 /**
  * @param {Response} response
  * @return {Object} {error, message, status, response}
  */
-const checkError = response => {
-  const result = { error: false, response}
-  if(response.status >= 400) {
+const checkError = (response) => {
+  const result = { error: false, response }
+  if (response.status >= 400) {
     result.error = true
-    result.message = "Unable to fetch data"
+    result.message = 'Unable to fetch data'
     result.status = response.status
   }
-  return result 
+  return result
 }
 
 /**
  * Sequence Number is required for Regeneration
- * @param {String} url 
+ * @param {String} url
  * @param {Object} options fetch options
  * @param {Function} setResult success callback
  */

@@ -22,17 +22,13 @@ const renderLarErrors = (larErrors, pagination) => {
     if (i === larErrors.length) break
     const err = larErrors[i]
 
-    currentErrs.push(
-      <tr key={i}>
-        {renderErrorColumns(err)}
-      </tr>
-    )
+    currentErrs.push(<tr key={i}>{renderErrorColumns(err)}</tr>)
   }
 
   return (
     <table
       className={'PaginationTarget' + (pagination.fade ? ' fadeOut' : '')}
-      width="100%"
+      width='100%'
     >
       <caption>
         <h3>LAR Errors</h3>
@@ -46,10 +42,10 @@ const renderLarErrors = (larErrors, pagination) => {
   )
 }
 
-const renderTSErrors = transmittalSheetErrors => {
+const renderTSErrors = (transmittalSheetErrors) => {
   if (transmittalSheetErrors.length === 0) return null
   return (
-    <table className="margin-bottom-0" width="100%">
+    <table className='margin-bottom-0' width='100%'>
       <caption>
         <h3>Transmittal Sheet Errors</h3>
         <p>
@@ -99,14 +95,14 @@ const renderParseResults = (count, errors) => {
           requirements can be checked.
         </p>
         <div>
-          <ConnectedUploadButton  />
+          <ConnectedUploadButton />
         </div>
       </div>
     </Alert>
   )
 }
 
-function renderErrorColumns(err){
+function renderErrorColumns(err) {
   const columns = []
   const { fieldName, inputValue, row, validValues, uli } = err
   const userInput = inputValue === '' ? <em>(blank)</em> : inputValue
@@ -115,7 +111,7 @@ function renderErrorColumns(err){
   columns.push(<td key='2'>{userInput}</td>)
   columns.push(<td key='3'>{validValues}</td>)
 
-  if(uli) {
+  if (uli) {
     columns.unshift(<td key='4'>{uli}</td>)
     columns.unshift(<td key='5'>{row}</td>)
   }
@@ -140,7 +136,7 @@ function getHeaders(isTs) {
   return headers.map((label, idx) => <th key={idx}>{label}</th>)
 }
 
-const ParseErrors = props => {
+const ParseErrors = (props) => {
   const {
     parsed,
     isParsing,
@@ -148,7 +144,7 @@ const ParseErrors = props => {
     larErrors,
     pagination,
     errors,
-    filingPeriod
+    filingPeriod,
   } = props
   const count = transmittalSheetErrors.length + larErrors.length
   const [statusRef, scrollToStatus] = useScrollIntoView()
@@ -162,7 +158,7 @@ const ParseErrors = props => {
   if (!parsed || errors.length) return null
 
   return (
-    <div className="ParseErrors usa-grid-full" id="parseErrors" ref={statusRef}>
+    <div className='ParseErrors usa-grid-full' id='parseErrors' ref={statusRef}>
       {renderParseResults(count, errors)}
       {renderTSErrors(transmittalSheetErrors, filingPeriod)}
       {renderLarErrors(larErrors, pagination, filingPeriod)}
@@ -174,7 +170,7 @@ const ParseErrors = props => {
 ParseErrors.propTypes = {
   transmittalSheetErrors: PropTypes.array,
   larErrors: PropTypes.array,
-  period: PropTypes.string
+  period: PropTypes.string,
 }
 
 export default ParseErrors

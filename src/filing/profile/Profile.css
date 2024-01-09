@@ -1,13 +1,12 @@
 .profile_form_container {
   max-width: 85rem;
-  background-color: #F7F8F9;
+  background-color: #f7f8f9;
   padding: 25px 35px;
-  border: 1px solid #A2A3A4;
+  border: 1px solid #a2a3a4;
 }
 
 .profile_form_container button {
   margin-top: 35px;
-  
 }
 
 .profile_form_container .missing_institutions_banner_container .alert {
@@ -34,7 +33,7 @@
   align-items: flex-start;
 }
 
-.institutions_checkbox_container input[type="checkbox"] {
+.institutions_checkbox_container input[type='checkbox'] {
   margin-top: 2px;
   height: 20px;
   width: 20px;
@@ -50,7 +49,10 @@
   margin-left: 12px;
 }
 
-.institutions_checkbox_container .institution_info_container .institution_info h1 {
+.institutions_checkbox_container
+  .institution_info_container
+  .institution_info
+  h1 {
   margin: 0;
   font-weight: normal !important;
 }
@@ -66,9 +68,9 @@
 }
 
 a:hover {
-    color: black; 
-    text-decoration:none; 
-    cursor: pointer;  
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .profile_back_button p {

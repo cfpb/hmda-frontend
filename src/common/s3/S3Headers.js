@@ -2,13 +2,13 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export const S3Headers = createSlice({
   name: 's3Headers',
-  initialState: { "url": "headers" },
+  initialState: { url: 'headers' },
   reducers: {
     saveHeaders: (state, action) => {
       const { url, headers } = action.payload
       state[url] = headers
-    }
-  }
+    },
+  },
 })
 
 export const { saveHeaders } = S3Headers.actions

@@ -15,7 +15,7 @@ const OR_DELIMITER = ' (or) '
  * Displays a column of a LAR/TS row as a table row,
  * including Column #, Column Label, and a value input
  * providing enumerations (drop-down, buttons) where applicable.
- * 
+ *
  * @param {Object} column Current column within the selected LAR/TS row
  * @param {String} highlightClass Classname to style selected column
  * @param {Function} onChange Handler to update column changes
@@ -39,16 +39,14 @@ export const ParsedRow = ({
     >
       <FieldNumber column={column} />
       <FieldName column={column} />
-      <td className='fieldValue'>
-        {buildInput(column, row, onChange)}
-      </td>
+      <td className='fieldValue'>{buildInput(column, row, onChange)}</td>
     </tr>
   )
 }
 
 /**
  * Table column displaying the field index
- * 
+ *
  * @param {Object} column Field details
  */
 const FieldNumber = ({ column }) => {
@@ -64,7 +62,7 @@ const FieldNumber = ({ column }) => {
 /**
  * Table column displaying the field label along with
  * descriptions of any applicable enumerations.
- * 
+ *
  * @param {Object} column Field details
  */
 const FieldName = ({ column }) => {
@@ -83,7 +81,7 @@ const FieldName = ({ column }) => {
 
 /**
  * Constructs the placeholder text used in a text input field.
- * 
+ *
  * @param {Array} examples List of strings to be listed as Examples
  * @param {Array} descriptions List of strings to be listed as Examples
  */
@@ -94,13 +92,13 @@ const buildPlaceholder = (examples, descriptions) => {
 
 /**
  * Determines what input format is required for this column
- * (text, buttons, drop-down, combination) and constructs the 
- * appropriate input object. 
- * 
+ * (text, buttons, drop-down, combination) and constructs the
+ * appropriate input object.
+ *
  * @param {Object} _col Field details
  * @param {Object} _row Currently selected LAR/TS row
  * @param {Function} _changeFn Handler for input modification
- * @returns 
+ * @returns
  */
 const buildInput = (_col, _row, _changeFn) => {
   if (!_col) return null
@@ -173,14 +171,14 @@ const buildInput = (_col, _row, _changeFn) => {
 
 /**
  * Special cases where we don't want the "example" value to be used as
- * the placeholder. 
+ * the placeholder.
  * @param {Object} column Field details
- * @param {String} placeholder 
+ * @param {String} placeholder
  * @returns Placeholder value
  */
 const specialPlaceholder = (column, placeholder) => {
-  if (column.fieldName == "Total Number of Entries Contained in Submission")
+  if (column.fieldName == 'Total Number of Entries Contained in Submission')
     return '0'
-  
+
   return placeholder
 }

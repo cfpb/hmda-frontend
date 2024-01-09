@@ -34,7 +34,7 @@ const RefileWarning = submissionProgressHOC(RefileWarningComponent)
 const renderByCode = (code, page, lei, selectedPeriod) => {
   const { period, isPassed } = selectedPeriod
   const toRender = []
-  
+
   if (code === FAILED) {
     toRender.push(<RefileWarning isPassed={isPassed} />)
     return toRender
@@ -49,18 +49,18 @@ const renderByCode = (code, page, lei, selectedPeriod) => {
     ) {
       toRender.push(<Edits isPassed={isPassed} lei={lei} />)
     } else if (page === 'submission') {
-      if(isBeta()){
+      if (isBeta()) {
         toRender.push(<BetaAlertComplete filingPeriod={period} />)
         toRender.push(<Summary filingPeriod={period} />)
         toRender.push(<BetaAlertComplete filingPeriod={period} />)
       } else {
         // at the top of the page
         if (code !== SIGNED) toRender.push(<ReadyToSign isPassed={isPassed} />)
-        
+
         toRender.push(<ReceiptContainer />)
-        toRender.push(<IRSReport lei={lei} filingPeriod={period}/>)
+        toRender.push(<IRSReport lei={lei} filingPeriod={period} />)
         toRender.push(<Summary filingPeriod={period} />)
-  
+
         // and just before the signature
         if (code !== SIGNED) {
           toRender.push(<ReadyToSign isPassed={isPassed} />)
@@ -79,7 +79,7 @@ const renderByCode = (code, page, lei, selectedPeriod) => {
           Return to institutions
         </Link>
         .
-      </p>
+      </p>,
     )
   }
 
@@ -95,7 +95,7 @@ class SubmissionContainer extends Component {
     const { selectedPeriod } = this.props
 
     if (!this.props.institutions.institutions[lei]) {
-      this.props.dispatch(fetchInstitution( { lei }, selectedPeriod, false))
+      this.props.dispatch(fetchInstitution({ lei }, selectedPeriod, false))
     }
   }
 
@@ -110,7 +110,7 @@ class SubmissionContainer extends Component {
 
     const toRender = code
       ? renderByCode(code, page, lei, selectedPeriod)
-      : [<Loading key="0" />]
+      : [<Loading key='0' />]
 
     return (
       <div>
@@ -119,13 +119,13 @@ class SubmissionContainer extends Component {
           name={institution && institution.name ? institution.name : ''}
         />
         <EditsNav />
-        <main id="main-content" className="SubmissionContainer full-width">
+        <main id='main-content' className='SubmissionContainer full-width'>
           {this.props.error && code !== FAILED ? (
             <ErrorWarning error={this.props.error} />
           ) : null}
           {toRender.map((component, i) => {
             return (
-              <div className="usa-width-one-whole" key={i}>
+              <div className='usa-width-one-whole' key={i}>
                 {component}
               </div>
             )
@@ -149,7 +149,7 @@ function mapStateToProps(state, _ownProps) {
 
 SubmissionContainer.propTypes = {
   match: PropTypes.object,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
 }
 
 export default connect(mapStateToProps)(SubmissionContainer)

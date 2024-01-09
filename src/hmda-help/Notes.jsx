@@ -3,10 +3,10 @@ import InputTextArea from './InputTextArea'
 import { notesInput } from './constants/inputs'
 import { PropTypes } from 'prop-types'
 
-const Notes = props => {
+const Notes = (props) => {
   const { hide, notes, onBlur, onChange, prevNotes, required } = props
-  
-  if(hide) return null
+
+  if (hide) return null
 
   if (required)
     return (
@@ -16,7 +16,7 @@ const Notes = props => {
         {...notesInput}
         onChange={onChange}
         onBlur={onBlur}
-        placeholder="e.g. Case #123 - Updated Tax ID due to acquisition."
+        placeholder='e.g. Case #123 - Updated Tax ID due to acquisition.'
       />
     )
 
@@ -35,7 +35,7 @@ Notes.propTypes = {
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   prevNotes: PropTypes.string,
-  required: PropTypes.bool
+  required: PropTypes.bool,
 }
 
 export default Notes

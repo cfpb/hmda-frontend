@@ -19,7 +19,7 @@ const ProgressCard = ({ name, id, link, title }) => {
   }
 
   return (
-    <div className="ProgressCard">
+    <div className='ProgressCard'>
       <Heading
         type={4}
         headingText={title}

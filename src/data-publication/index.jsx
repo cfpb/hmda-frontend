@@ -30,41 +30,43 @@ const DataPublication = ({ config }) => {
         />
         <Route
           path='/data-publication/modified-lar/:year?'
-          render={props => <ModifiedLar {...props} targetYearKey='mlar' />}
+          render={(props) => <ModifiedLar {...props} targetYearKey='mlar' />}
         />
         <Route
           path='/data-publication/disclosure-reports/:year?/:institutionId?/:msaMdId?/:reportId?'
-          render={props => <Disclosure {...props} targetYearKey='disclosure'/>}
+          render={(props) => (
+            <Disclosure {...props} targetYearKey='disclosure' />
+          )}
         />
         <Route
           path='/data-publication/aggregate-reports/:year?/:stateId?/:msaMdId?/:reportId?'
-          render={props => <Aggregate {...props} targetYearKey='aggregate'/>}
+          render={(props) => <Aggregate {...props} targetYearKey='aggregate' />}
         />
         <Route
           path='/data-publication/national-aggregate-reports/:year?/:reportId?'
-          render={props => (
+          render={(props) => (
             <NationalAggregate {...props} targetYearKey='NationalAggregate' />
           )}
         />
         <Route
           path='/data-publication/snapshot-national-loan-level-dataset/:year?'
-          render={props => <Snapshot {...props} targetYearKey='snapshot' />}
+          render={(props) => <Snapshot {...props} targetYearKey='snapshot' />}
         />
         <Route
           path='/data-publication/three-year-national-loan-level-dataset/:year?'
-          render={props => (
+          render={(props) => (
             <ThreeYearDataset {...props} targetYearKey='threeYear' />
           )}
         />
         <Route
           path='/data-publication/one-year-national-loan-level-dataset/:year?'
-          render={props => (
+          render={(props) => (
             <OneYearDataset {...props} targetYearKey='oneYear' />
           )}
         />
         <Route
           path='/data-publication/dynamic-national-loan-level-dataset/:year?'
-          render={props => (
+          render={(props) => (
             <DynamicDataset {...props} targetYearKey='dynamic' />
           )}
         />

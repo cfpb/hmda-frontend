@@ -23,66 +23,72 @@ export const getStatus = (code, filingPeriod) => {
     <>
       <br />
       <p>
-        HMDA data for <strong>{filingPeriod} {status}</strong>
+        HMDA data for{' '}
+        <strong>
+          {filingPeriod} {status}
+        </strong>
         {appendComplete}.
       </p>
     </>
-  ) : null;
+  ) : null
 
   return message
 }
 
 const BetaInfoBlock = () => (
   <>
-    <span className="notice-wrapper">
-      <p className="usa-font-lead">
-        <b className='emphasized urgent'>Note: </b>Official HMDA data must be submitted on the live{" "}
-        <a href="https://ffiec.cfpb.gov" target="_blank">
+    <span className='notice-wrapper'>
+      <p className='usa-font-lead'>
+        <b className='emphasized urgent'>Note: </b>Official HMDA data must be
+        submitted on the live{' '}
+        <a href='https://ffiec.cfpb.gov' target='_blank'>
           HMDA Platform.
         </a>
       </p>
     </span>
     <br />
   </>
-);
+)
 
 const WarningDataWillBeDeleted = ({ institution, filingPeriod }) =>
   !isBeta() && (
     <>
       <br />
-      <span className="notice-wrapper">
-        <p className="usa-font-lead">
-          The previously submitted {filingPeriod} HMDA data for{" "}
-          <span className="bold">{institution.name} </span>
-          <span className="emphasized urgent nowrap">
+      <span className='notice-wrapper'>
+        <p className='usa-font-lead'>
+          The previously submitted {filingPeriod} HMDA data for{' '}
+          <span className='bold'>{institution.name} </span>
+          <span className='emphasized urgent nowrap'>
             will be deleted and cannot be recovered
-          </span> if you choose to proceed.
+          </span>{' '}
+          if you choose to proceed.
         </p>
       </span>
     </>
-  );
+  )
 
 const RefileText = (props) => {
   const { institution, code, filingPeriod } = props
-  const dataOfficialVsTest = isBeta() ? "HMDA test data" : "official HMDA data";
+  const dataOfficialVsTest = isBeta() ? 'HMDA test data' : 'official HMDA data'
 
   return (
-    <div className="RefileText">
+    <div className='RefileText'>
       {isBeta() && <BetaInfoBlock />}
-      <p className="usa-font-lead">
-        Are you sure you want to replace your {dataOfficialVsTest} for this filing?
+      <p className='usa-font-lead'>
+        Are you sure you want to replace your {dataOfficialVsTest} for this
+        filing?
       </p>
       {!isBeta() && getStatus(code, filingPeriod)}
-      <WarningDataWillBeDeleted 
-        institution={institution} 
+      <WarningDataWillBeDeleted
+        institution={institution}
         filingPeriod={filingPeriod}
       />
     </div>
-  );
-};
+  )
+}
 
 RefileText.propTypes = {
-  code: PropTypes.number.isRequired
+  code: PropTypes.number.isRequired,
 }
 
 export default RefileText

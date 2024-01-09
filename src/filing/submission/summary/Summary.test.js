@@ -8,14 +8,14 @@ import TestUtils from 'react-dom/test-utils'
 
 const fs = require('fs')
 const summaryJSON = JSON.parse(
-  fs.readFileSync('./test-resources/json/summary.json')
+  fs.readFileSync('./test-resources/json/summary.json'),
 )
 
 describe('Summary', () => {
   const summary = TestUtils.renderIntoDocument(
     <Wrapper>
       <Summary respondent={summaryJSON.respondent} file={summaryJSON.file} />
-    </Wrapper>
+    </Wrapper>,
   )
   const summaryNode = ReactDOM.findDOMNode(summary)
 
@@ -25,19 +25,19 @@ describe('Summary', () => {
 
   it('renders the correct description lists', () => {
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(summary, 'dl').length
+      TestUtils.scryRenderedDOMComponentsWithTag(summary, 'dl').length,
     ).toEqual(2)
   })
 
   it('renders the correct description terms', () => {
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(summary, 'dt').length
+      TestUtils.scryRenderedDOMComponentsWithTag(summary, 'dt').length,
     ).toEqual(10)
   })
 
   it('returns NULL without a respondent', () => {
     const rendered = Summary({
-      file: summaryJSON.file
+      file: summaryJSON.file,
     })
 
     expect(rendered).toBe(null)
@@ -45,7 +45,7 @@ describe('Summary', () => {
 
   it('returns NULL without a file', () => {
     const rendered = Summary({
-      respondent: summaryJSON.respondent
+      respondent: summaryJSON.respondent,
     })
 
     expect(rendered).toBe(null)
@@ -53,7 +53,7 @@ describe('Summary', () => {
 
   it('uppercases agency via className', () => {
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(summary, 'dd')[3].className
+      TestUtils.scryRenderedDOMComponentsWithTag(summary, 'dd')[3].className,
     ).toBe('text-uppercase')
   })
 })

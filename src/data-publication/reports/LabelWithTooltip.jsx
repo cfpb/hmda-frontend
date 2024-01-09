@@ -1,12 +1,11 @@
 import React from 'react'
-import InfoIcon from "../../filing/images/info.svg?react"
+import InfoIcon from '../../filing/images/info.svg?react'
 import { Descriptions } from '../constants/descriptions.js'
 import Tooltip from '../../common/Tooltip'
 import './LabelWithTooltip.css'
 
 export const LabelWithTooltip = ({ label, dataKey }) => {
-  if (!dataKey || !Descriptions[dataKey])
-    return label
+  if (!dataKey || !Descriptions[dataKey]) return label
 
   return (
     <span className='LabelWithTooltip'>
@@ -20,7 +19,7 @@ export const LabelWithTooltip = ({ label, dataKey }) => {
             data-tip
             data-for={label}
             href='#' // Enable keyboard focus
-            onClick={e => e.preventDefault()} // Disable click
+            onClick={(e) => e.preventDefault()} // Disable click
           >
             <InfoIcon />
           </a>

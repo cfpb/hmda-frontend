@@ -6,8 +6,8 @@ const MAX_UPLOAD_HOURS = 5
 
 export const getNextAnnualPeriod = (periodOptions = { options: [] }) => {
   let annual = periodOptions.options
-    ?.filter(period => period.indexOf('Q') === -1)
-    .map(period => parseInt(splitYearQuarter(period)[0], 10))
+    ?.filter((period) => period.indexOf('Q') === -1)
+    .map((period) => parseInt(splitYearQuarter(period)[0], 10))
     .sort()
 
   const nextAnnual = annual && annual[annual.length - 1]

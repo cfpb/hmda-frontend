@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const renderData = report => {
+const renderData = (report) => {
   return report.msas.map(renderRow)
 }
 
@@ -11,7 +11,7 @@ const renderRow = (row, i) => {
       <th>{row.msa}</th>
       {Object.keys(row)
         .slice(1)
-        .map(key => {
+        .map((key) => {
           return <td key={key}>{row[key]}</td>
         })}
     </tr>
@@ -52,7 +52,7 @@ const R = React.forwardRef((props, ref) => {
 })
 
 R.propTypes = {
-  report: PropTypes.object
+  report: PropTypes.object,
 }
 
 export default R

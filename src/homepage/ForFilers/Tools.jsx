@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 
-
 export const Tools = ({ isProdBeta }) => {
   if (isProdBeta) return null
 

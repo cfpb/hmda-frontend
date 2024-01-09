@@ -4,7 +4,7 @@ import { grabRawArea } from './textArea'
 
 /**
  * Paste clipboard content into EditPiped textbox
- * 
+ *
  * @param {Function} setFn Handler to update the currently edited row
  */
 export const pastePiped = (setFn) => {
@@ -12,7 +12,7 @@ export const pastePiped = (setFn) => {
     if (navigator?.clipboard?.readText) {
       navigator.clipboard
         .readText()
-        .then(clipText => setFn(parseRow(clipText)))
+        .then((clipText) => setFn(parseRow(clipText)))
     } else {
       document.getElementById('paste-button-input')
       el.select()
@@ -26,12 +26,12 @@ export const pastePiped = (setFn) => {
 /**
  * Copy pipe-delimited row to user's clipboard
  */
- export const copyPiped = () => {
+export const copyPiped = () => {
   const el = grabRawArea()
   if (navigator?.clipboard?.writeText) {
     navigator.clipboard.writeText(el?.value).then(
-      _success => log('[Piped] Copied to clipboard!'),
-      _failed => log('[Piped] Error - Failed to copy!')
+      (_success) => log('[Piped] Copied to clipboard!'),
+      (_failed) => log('[Piped] Error - Failed to copy!'),
     )
   } else {
     el.select()

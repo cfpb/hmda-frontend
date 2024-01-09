@@ -10,7 +10,7 @@ import {
   PAGINATION_FADE_IN,
   PAGINATION_FADE_OUT,
   SET_FILING_PERIOD,
-  UPLOAD_ERROR
+  UPLOAD_ERROR,
 } from '../constants'
 
 const config = getDefaultConfig(window.location.host)
@@ -18,26 +18,26 @@ const config = getDefaultConfig(window.location.host)
 const defaultUpload = {
   uploading: false,
   file: null,
-  errors: []
+  errors: [],
 }
 
 const defaultStatus = {
   code: null,
-  message: ''
+  message: '',
 }
 
 const defaultParseErrors = {
   isParsing: false,
   parsed: false,
   transmittalSheetErrors: [],
-  larErrors: []
+  larErrors: [],
 }
 
 const defaultPagination = {
   page: 1,
   previousPage: 1,
   total: 1,
-  fade: 0
+  fade: 0,
 }
 
 const defaultFilingPeriod = config && config.defaultDocsPeriod
@@ -56,7 +56,7 @@ export const upload = (state = defaultUpload, action) => {
       return {
         ...state,
         file: action.file,
-        errors: action.errors
+        errors: action.errors,
       }
     case SET_FILING_PERIOD:
       return defaultUpload
@@ -64,7 +64,7 @@ export const upload = (state = defaultUpload, action) => {
       return {
         ...state,
         errors: action.errors,
-        uploading: false
+        uploading: false,
       }
     default:
       return state
@@ -96,7 +96,7 @@ export const parseErrors = (state = defaultParseErrors, action) => {
     case BEGIN_PARSE:
       return {
         ...state,
-        isParsing: true
+        isParsing: true,
       }
 
     case END_PARSE:
@@ -104,14 +104,14 @@ export const parseErrors = (state = defaultParseErrors, action) => {
         parsed: true,
         isParsing: false,
         transmittalSheetErrors: action.transmittalSheetErrors,
-        larErrors: action.larErrors
+        larErrors: action.larErrors,
       }
     case UPLOAD_ERROR:
       return {
         ...state,
         isParsing: false,
         transmittalSheetErrors: [],
-        larErrors: []
+        larErrors: [],
       }
     case SET_FILING_PERIOD:
       return defaultParseErrors
@@ -126,23 +126,23 @@ export const pagination = (state = defaultPagination, action) => {
       return {
         ...state,
         page: action.page,
-        previousPage: state.page
+        previousPage: state.page,
       }
     case END_PARSE:
       return {
         page: 1,
         total: Math.ceil(action.larErrors.length / ERRORS_PER_PAGE) || 1,
-        fade: 0
+        fade: 0,
       }
     case PAGINATION_FADE_IN:
       return {
         ...state,
-        fade: 0
+        fade: 0,
       }
     case PAGINATION_FADE_OUT:
       return {
         ...state,
-        fade: 1
+        fade: 1,
       }
     case SET_FILING_PERIOD:
       return defaultPagination
@@ -157,5 +157,5 @@ export default combineReducers({
   status,
   parseErrors,
   pagination,
-  filingPeriod
+  filingPeriod,
 })

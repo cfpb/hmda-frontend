@@ -91,7 +91,7 @@ export const useSubscriptionLogic = ({ endpoint, topicId }) => {
     request.open('POST', url)
     request.setRequestHeader(
       'Content-Type',
-      'application/x-www-form-urlencoded'
+      'application/x-www-form-urlencoded',
     )
     request.setRequestHeader('X-Requested-With', 'XMLHttpRequest') // Required for cf.gov to send JSON response
     request.send(content)

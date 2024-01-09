@@ -13,7 +13,7 @@ const irsJSON = JSON.parse(fs.readFileSync('./test-resources/json/irs.json'))
 const id = {
   lei: 1,
   period: '2017',
-  sequenceNumber: 1
+  sequenceNumber: 1,
 }
 
 describe('IRS report', () => {
@@ -25,7 +25,7 @@ describe('IRS report', () => {
         renderTotals={false}
         id={id}
       />
-    </Wrapper>
+    </Wrapper>,
   )
   const irsReportNode = ReactDOM.findDOMNode(irsReport)
 
@@ -35,7 +35,7 @@ describe('IRS report', () => {
 
   it('creates the correct number of rows', () => {
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(irsReport, 'tr').length
+      TestUtils.scryRenderedDOMComponentsWithTag(irsReport, 'tr').length,
     ).toEqual(4)
   })
 
@@ -47,12 +47,12 @@ describe('IRS report', () => {
         renderTotals={true}
         id={id}
       />
-    </Wrapper>
+    </Wrapper>,
   )
 
   it('creates the correct number of rows with totals', () => {
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(withTotals, 'tr').length
+      TestUtils.scryRenderedDOMComponentsWithTag(withTotals, 'tr').length,
     ).toEqual(5)
   })
 
@@ -65,15 +65,15 @@ describe('IRS report', () => {
         id={id}
         isFetching={true}
       />
-    </Wrapper>
+    </Wrapper>,
   )
 
   it('creates a loading icon when IRS is loading', () => {
     expect(
       TestUtils.scryRenderedDOMComponentsWithClass(
         irsLoading,
-        'LoadingIconWrapper'
-      ).length
+        'LoadingIconWrapper',
+      ).length,
     ).toEqual(1)
   })
 })

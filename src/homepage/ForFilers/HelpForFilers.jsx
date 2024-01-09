@@ -3,13 +3,14 @@ import { ExternalLink } from '../../common/ExternalLink'
 
 const figUpdates = {
   2021: '11/20/2020',
-  2022: '10/20/2021'
+  2022: '10/20/2021',
 }
 
-
 export const FigLastUpdated = ({ year }) => {
-  if(!figUpdates[year]) return null
-  return <span className='last-updated'>( Last updated: {figUpdates[year]})</span>
+  if (!figUpdates[year]) return null
+  return (
+    <span className='last-updated'>( Last updated: {figUpdates[year]})</span>
+  )
 }
 
 export const HelpForFilers = () => {

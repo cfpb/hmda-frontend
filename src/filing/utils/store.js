@@ -5,5 +5,5 @@ export function getStore() {
 }
 
 export function setStore(s) {
-  return store = s
+  return (store = s)
 }

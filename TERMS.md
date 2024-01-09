@@ -14,7 +14,6 @@ rights for that work are waived through the CC0 1.0 Universal dedication.
 
 For further details, please see the CFPB [Source Code Policy][policy].
 
-
 ## CC0 1.0 Universal Summary
 
 This is a human-readable summary of the [Legal Code (read the full text)][CC0].
@@ -26,7 +25,7 @@ the public domain by waiving all of his or her rights to the work worldwide
 under copyright law, including all related and neighboring rights, to the
 extent allowed by law.
 
-You can copy, modify, distribute and perform the work, even for commercial 
+You can copy, modify, distribute and perform the work, even for commercial
 purposes, all without asking permission. See Other Information below.
 
 ### Other Information
@@ -43,7 +42,6 @@ author or the affirmer.
 
 [policy]: https://github.com/cfpb/source-code-policy/
 [CC0]: http://creativecommons.org/publicdomain/zero/1.0/legalcode
-
 
 ## Exceptions
 

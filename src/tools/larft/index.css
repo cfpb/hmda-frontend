@@ -6,7 +6,7 @@
 .warning {
   border: 1px solid #fdb81e;
   border-left-width: 5px;
-  padding: .5em;
+  padding: 0.5em;
   padding-left: 1em;
 }
 
@@ -57,7 +57,8 @@
 }
 
 /* RawRow */
-.row-editor, .saved-rows {
+.row-editor,
+.saved-rows {
   margin-top: 2em;
   border-top: 3px solid #0071bc;
 }
@@ -179,7 +180,7 @@
 .more-info .values td {
   border-color: grey;
 }
-.more-info .values, 
+.more-info .values,
 .more-info .examples {
   width: 100%;
 }
@@ -341,7 +342,7 @@
   border-radius: 50%;
 }
 .unparsable .dismiss:hover {
-  background-color:grey;
+  background-color: grey;
   color: white;
 }
 
@@ -366,7 +367,9 @@
   width: 120px;
   overflow: auto;
 }
-.unparsable th { text-align: center;}
+.unparsable th {
+  text-align: center;
+}
 .unparsable tbody td {
   overflow: auto;
   white-space: nowrap;

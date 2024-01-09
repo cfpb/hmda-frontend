@@ -18,24 +18,24 @@ const UpdatesNotes = () => {
     transformReceive: (data) => organizeChangeData(data),
     defaultData: organizeChangeData(defaultData),
   })
-  
+
   const heading = 'HMDA Updates and Notes'
 
   if (loading) return <LoadingState heading={heading} />
 
   return (
     <PageWrapper>
-      <header className="heading">
-      <div className='intro'>
-        <h1>{heading}</h1>
-        <p className='lead'>
-          The HMDA data and reports are the most comprehensive publicly
-          available information on mortgage market activity. This page includes
-          all updates related to data products for the HMDA data collected in or
-          after 2017. This includes header changes, data product differences
-          over the years, and release notes.
-        </p>
-      </div>
+      <header className='heading'>
+        <div className='intro'>
+          <h1>{heading}</h1>
+          <p className='lead'>
+            The HMDA data and reports are the most comprehensive publicly
+            available information on mortgage market activity. This page
+            includes all updates related to data products for the HMDA data
+            collected in or after 2017. This includes header changes, data
+            product differences over the years, and release notes.
+          </p>
+        </div>
       </header>
       <a
         id='focus-on-filter-bar'
@@ -78,9 +78,11 @@ const PageWrapper = ({ children }) => (
 )
 
 const PageRouter = () => {
-  return <Switch>
-    <Route path='/updates-notes' component={UpdatesNotes} />
-  </Switch>
+  return (
+    <Switch>
+      <Route path='/updates-notes' component={UpdatesNotes} />
+    </Switch>
+  )
 }
 
 export default PageRouter

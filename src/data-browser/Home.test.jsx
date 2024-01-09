@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import Home from './Home.jsx'
 
-const r = shallow(<Home/>)
+const r = shallow(<Home />)
 
 it('renders the Home component', () => {
   expect(r.find('.home').length).toBe(1)

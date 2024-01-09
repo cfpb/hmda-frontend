@@ -4,9 +4,8 @@ export default [
   { id: '1', name: 'Mortgage Banking Subsidiary of Commercial Bank' },
   {
     id: '2',
-    name:
-      'Mortgage Banking Subsidiary or Bank Holding Company or Service Corporation'
+    name: 'Mortgage Banking Subsidiary or Bank Holding Company or Service Corporation',
   },
   { id: '3', name: 'Independent MBS' },
-  { id: '5', name: 'Affiliate' }
+  { id: '5', name: 'Affiliate' },
 ]

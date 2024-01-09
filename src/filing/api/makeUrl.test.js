@@ -18,10 +18,10 @@ describe('make url from location object', () => {
         filing: 'filing',
         submission: 'submission',
         suffix: '/suffix',
-        querystring: '?qs'
-      })
+        querystring: '?qs',
+      }),
     ).toEqual(
-      `${baseUrl}/institutions/lei/filings/filing/submissions/submission/suffix?qs`
+      `${baseUrl}/institutions/lei/filings/filing/submissions/submission/suffix?qs`,
     )
   })
 
@@ -32,10 +32,10 @@ describe('make url from location object', () => {
         filing: 'filing-quarterly',
         submission: 'submission',
         suffix: '/suffix',
-        querystring: '?qs'
-      })
+        querystring: '?qs',
+      }),
     ).toEqual(
-      `${baseUrl}/institutions/lei/filings/filing/quarter/QUARTERLY/submissions/submission/suffix?qs`
+      `${baseUrl}/institutions/lei/filings/filing/quarter/QUARTERLY/submissions/submission/suffix?qs`,
     )
   })
 })

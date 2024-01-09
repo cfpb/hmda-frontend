@@ -8,7 +8,7 @@ describe('receiveEdits', () => {
     const data = { a: 1 }
     expect(receiveEdits(data)).toEqual({
       type: types.RECEIVE_EDITS,
-      edits: data
+      edits: data,
     })
   })
 })

@@ -51,5 +51,5 @@ export default [
   { id: 'WV', name: 'West Virginia' },
   { id: 'WI', name: 'Wisconsin' },
   { id: 'WY', name: 'Wyoming' },
-  { id: 'NA', name: 'N/A or outside MSA/MD' }
+  { id: 'NA', name: 'N/A or outside MSA/MD' },
 ]

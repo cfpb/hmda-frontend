@@ -1,8 +1,8 @@
 /**
  * Formatting function for react-select category groups.
  * Includes the group label along with a count of items in the group.
- * @param {*} data 
- * @returns 
+ * @param {*} data
+ * @returns
  */
 export const formatGroupLabel = (data) => (
   <div className='menu-group-label'>
@@ -14,7 +14,7 @@ export const formatGroupLabel = (data) => (
 /**
  * When opened, focus the Graph selection menu on the currently selected
  * graph so that users can easily continue exploring options without having
- * to manually scroll to their last selection. 
+ * to manually scroll to their last selection.
  */
 export const onMenuOpen = () => {
   setTimeout(() => {

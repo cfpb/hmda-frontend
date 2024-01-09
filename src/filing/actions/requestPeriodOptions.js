@@ -1,5 +1,5 @@
 export default function requestPeriodOptions() {
   return {
-    type: "REQUEST_PERIOD_OPTIONS"
-  };
+    type: 'REQUEST_PERIOD_OPTIONS',
+  }
 }

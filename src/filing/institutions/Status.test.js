@@ -12,9 +12,9 @@ describe('InstitutionStatus', () => {
   it('renders the status', () => {
     const filing = {
       status: {
-        code: 1
+        code: 1,
       },
-      period: '2017'
+      period: '2017',
     }
 
     const submission = {
@@ -22,32 +22,32 @@ describe('InstitutionStatus', () => {
         code: STATUS.CREATED,
         message: 'not started',
         description:
-          'You may begin your filing process by selecting the "Begin Filing" button below.'
-      }
+          'You may begin your filing process by selecting the "Begin Filing" button below.',
+      },
     }
 
     const status = TestUtils.renderIntoDocument(
       <Wrapper>
         <InstitutionStatus filing={filing} submission={submission} />
-      </Wrapper>
+      </Wrapper>,
     )
     const statusNode = ReactDOM.findDOMNode(status)
 
     expect(statusNode).toBeDefined()
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(status, 'h4').length
+      TestUtils.scryRenderedDOMComponentsWithTag(status, 'h4').length,
     ).toBe(1)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(status, 'h4')[0].textContent
+      TestUtils.scryRenderedDOMComponentsWithTag(status, 'h4')[0].textContent,
     ).toEqual('not started')
   })
 
   it('renders the previous submission message', () => {
     const filing = {
       status: {
-        code: 3
+        code: 3,
       },
-      period: '2017'
+      period: '2017',
     }
 
     const submission = {
@@ -55,23 +55,23 @@ describe('InstitutionStatus', () => {
         code: STATUS.VALIDATED,
         message: 'not started',
         description:
-          'You may begin your filing process by selecting the "Begin Filing" button below.'
-      }
+          'You may begin your filing process by selecting the "Begin Filing" button below.',
+      },
     }
 
     const status = TestUtils.renderIntoDocument(
       <Wrapper>
         <InstitutionStatus filing={filing} submission={submission} />
-      </Wrapper>
+      </Wrapper>,
     )
 
     const paras = TestUtils.scryRenderedDOMComponentsWithClass(
       status,
-      'usa-text-small'
+      'usa-text-small',
     )
     expect(paras.length).toBe(2)
     expect(paras[0].textContent).toBe(
-      'You have previously submitted a HMDA file and are in the process of refiling. If you do not complete your current refiling process, your original submission will be accepted for the current filing period.'
+      'You have previously submitted a HMDA file and are in the process of refiling. If you do not complete your current refiling process, your original submission will be accepted for the current filing period.',
     )
   })
 })

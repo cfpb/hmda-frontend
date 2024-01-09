@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './ImageCard.scss'
-import iconSprite from "../common/uswds/img/sprite.svg";
+import iconSprite from '../common/uswds/img/sprite.svg'
 
 const TileImage = ({ src }) => <img className='tile-image' src={src} />
 
@@ -10,22 +10,31 @@ const ImageCard = (props) => {
 
   return (
     <div className={'card-wrapper'}>
-      <Link
-        className='ImageCard'
-        to={linkUrl}
-      >
+      <Link className='ImageCard' to={linkUrl}>
         <TileImage src={props.image} />
         <div className='info'>
           <h3>{props.title}</h3>
           <span className='desc'>{props.description}</span>
         </div>
       </Link>
-      {props.faq && <Link to={props.faq.url} target="_blank" rel="noopener noreferrer" className='faq'>
-        <svg className="usa-icon" aria-hidden="true" focusable="false" role="img">
+      {props.faq && (
+        <Link
+          to={props.faq.url}
+          target='_blank'
+          rel='noopener noreferrer'
+          className='faq'
+        >
+          <svg
+            className='usa-icon'
+            aria-hidden='true'
+            focusable='false'
+            role='img'
+          >
             <use href={`${iconSprite}#help_outline`}></use>
-        </svg> 
-        {props.faq.label || "FAQ"}
-      </Link>}
+          </svg>
+          {props.faq.label || 'FAQ'}
+        </Link>
+      )}
     </div>
   )
 }

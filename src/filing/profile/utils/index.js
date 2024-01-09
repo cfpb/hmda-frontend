@@ -14,7 +14,7 @@ export const createAssociatedInstitutionsList = (
   institutions,
   setAssociatedInstitutions,
   setSelectedInstitutions,
-  setLoading
+  setLoading,
 ) => {
   let generateInstitutionOptions = []
   let institutionObject = {}
@@ -29,11 +29,13 @@ export const createAssociatedInstitutionsList = (
     institutionObject = {}
   }
   setAssociatedInstitutions(
-    generateInstitutionOptions.sort(sortByInstitutionName)
+    generateInstitutionOptions.sort(sortByInstitutionName),
   )
-  let filteredSelectedInstitutions = generateInstitutionOptions.filter(obj => {
-    return associatedLEIsWithUser.some(item => item === obj.lei)
-  })
+  let filteredSelectedInstitutions = generateInstitutionOptions.filter(
+    (obj) => {
+      return associatedLEIsWithUser.some((item) => item === obj.lei)
+    },
+  )
   setSelectedInstitutions(filteredSelectedInstitutions)
   setLoading(false)
 }

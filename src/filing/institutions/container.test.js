@@ -7,7 +7,7 @@ import Wrapper from '../../test-resources/Wrapper.js'
 import fetchInstitutions from '../actions/fetchInstitutions.js'
 import Connected, {
   InstitutionContainer,
-  mapStateToProps
+  mapStateToProps,
 } from './container.jsx'
 
 const fetch = jest.fn(() => {
@@ -21,17 +21,17 @@ const state = {
     institutions: {
       institutions: {},
       isFetching: false,
-      fetched: false
+      fetched: false,
     },
     filingPeriod: '2017',
     filings: {},
     error: null,
     submission: {
       status: {
-        code: 1
-      }
-    }
-  }
+        code: 1,
+      },
+    },
+  },
 }
 
 describe('Institution Container', () => {
@@ -42,7 +42,7 @@ describe('Institution Container', () => {
       <InstitutionContainer
         dispatch={jest.fn()}
         institutions={state.app.institutions}
-      />
+      />,
     )
 
     expect(rendered).toBeDefined()
@@ -53,19 +53,19 @@ describe('Institution Container', () => {
   it('fetches institutions if not fetched and not fetching', () => {
     const container = new InstitutionContainer({
       dispatch: jest.fn(),
-      institutions: {}
+      institutions: {},
     })
     container.componentDidMount()
     expect(fetch.mock.calls.length).toBe(2)
 
     const c2 = new InstitutionContainer({
-      institutions: { fetched: false, isFetching: true, dispatch: jest.fn() }
+      institutions: { fetched: false, isFetching: true, dispatch: jest.fn() },
     })
     c2.componentDidMount()
     expect(fetch.mock.calls.length).toBe(2)
 
     const c3 = new InstitutionContainer({
-      institutions: { fetched: true, isFetching: false }
+      institutions: { fetched: true, isFetching: false },
     })
     c3.componentDidMount()
     expect(fetch.mock.calls.length).toBe(2)
@@ -76,12 +76,12 @@ describe('Institution Container', () => {
       institutions: {
         institutions: {},
         isFetching: false,
-        fetched: false
+        fetched: false,
       },
       filingPeriod: '2017',
       filings: {},
       error: null,
-      submission: { status: { code: 1 } }
+      submission: { status: { code: 1 } },
     })
   })
 
@@ -97,7 +97,7 @@ describe('Institution Container', () => {
     const wrapped = TestUtils.renderIntoDocument(
       <Wrapper store={state}>
         <Connected />
-      </Wrapper>
+      </Wrapper>,
     )
 
     expect(wrapped).toBeDefined()

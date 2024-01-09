@@ -25,7 +25,7 @@ const MoreInfo = ({ label, value }) => {
  * Takes a list of publication details we want to highlight and applies the necessary formatting/spacing
  * @param {infoPoints} Array[Object] List of points to highlight [{label, valueKey}] for a given publication
  * @param {publication} Object Details about the publication from constants/*-datasets.js
- * @returns 
+ * @returns
  */
 const MoreInfoList = ({ infoPoints, publication }) => {
   const infoList = []
@@ -39,10 +39,11 @@ const MoreInfoList = ({ infoPoints, publication }) => {
         label={ip.label}
         value={publication[ip.valueKey]}
         key={ip.label}
-      />
+      />,
     )
 
-    if (idx + 1 < lastInfoPointIdx) { // Include spacer, unless this is the last item
+    if (idx + 1 < lastInfoPointIdx) {
+      // Include spacer, unless this is the last item
       infoList.push(<br key={ip.label + '-spacer'} />)
     }
   })
@@ -65,13 +66,12 @@ const DatasetGroup = ({ name, heading, publications, infoPoints, year }) => {
     <div className={name}>
       <Heading type={3} headingText={heading} />
       <div className='card-container'>
-        {publications
-          .map((pub) => (
-            <div className='card' key={`${year}-${pub.headingText}`}>
-              <Heading type={4} {...pub} />
-              <MoreInfoList infoPoints={infoPoints} publication={pub} />
-            </div>
-          ))}
+        {publications.map((pub) => (
+          <div className='card' key={`${year}-${pub.headingText}`}>
+            <Heading type={4} {...pub} />
+            <MoreInfoList infoPoints={infoPoints} publication={pub} />
+          </div>
+        ))}
       </div>
     </div>
   )
@@ -81,7 +81,7 @@ class Home extends Component {
   render() {
     const { year } = this.props.match.params
     const { shared } = this.props.config.dataPublicationYears
-    
+
     if (shared.indexOf(year) === -1) return <NotFound />
 
     return (
@@ -116,7 +116,7 @@ class Home extends Component {
             name='dynamic'
             heading='Dynamic Datasets'
             publications={publicationsByYear[year].filter(
-              p => p.group == 'dynamic'
+              (p) => p.group == 'dynamic',
             )}
             infoPoints={[
               { label: 'Update Frequency', valueKey: 'updateFrequency' },
@@ -127,7 +127,7 @@ class Home extends Component {
             name='static'
             heading='Static Datasets'
             publications={publicationsByYear[year].filter(
-              p => p.group !== 'dynamic'
+              (p) => p.group !== 'dynamic',
             )}
             infoPoints={[
               { label: 'Data Freeze Date', valueKey: 'freezeDate' },

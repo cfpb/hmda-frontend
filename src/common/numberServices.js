@@ -1,4 +1,4 @@
-export const toInt = str => parseInt(str, 10)
+export const toInt = (str) => parseInt(str, 10)
 
 // Add the thousands separator
 export function formatNumber(x = 0) {
@@ -56,7 +56,7 @@ export function humanFileSize(size) {
   )
 }
 
-export const isBigFile = size => {
+export const isBigFile = (size) => {
   if (size.includes('GB') || size.includes('TB')) return true
   if (size.includes('MB') && parseFloat(size.split(' ')[0]) > 450) return true
 }

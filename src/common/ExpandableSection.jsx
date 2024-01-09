@@ -6,7 +6,7 @@ const standardLabelFormatter = (isExpanded, label) =>
 
 /**
  * An understated text-button driven, expandable section for content
- * @param label Expansion button text label 
+ * @param label Expansion button text label
  * @param labelFormatter (isExpanded, label) => 'Text label'
  * @param expandedByDefault Show section's children by default
  * @param children Section content
@@ -19,16 +19,16 @@ export const ExpandableSection = ({
 }) => {
   const [expanded, setExpanded] = useState(expandedByDefault)
   const labelText = labelFormatter(expanded, label)
-  const toggleVisible = () => setExpanded(value => !value)
+  const toggleVisible = () => setExpanded((value) => !value)
 
   const classes = ['expandable-section']
   let ariaLabel = 'Expand ' + label
-  
+
   if (expanded) {
     classes.push('expanded')
     ariaLabel = 'Collapse ' + label
   }
-  
+
   return (
     <div className={classes.join(' ')}>
       <button

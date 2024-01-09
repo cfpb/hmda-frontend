@@ -2,33 +2,37 @@ import { fetchData } from './fetch.js'
 import { yearQuarterToPath, splitYearQuarter } from './utils.js'
 
 export function getInstitution(lei, filing) {
-  return fetchData({ pathname: `/institutions/${lei}/year/${splitYearQuarter(filing)[0]}` })
+  return fetchData({
+    pathname: `/institutions/${lei}/year/${splitYearQuarter(filing)[0]}`,
+  })
 }
 
 export function createSubmission(lei, filing) {
   return fetchData({
-    pathname: `/institutions/${lei}/filings/${yearQuarterToPath(filing)}/submissions`,
-    method: 'POST'
+    pathname: `/institutions/${lei}/filings/${yearQuarterToPath(
+      filing,
+    )}/submissions`,
+    method: 'POST',
   })
 }
 
 export function getFiling(lei, filing, page) {
   let pathname = `/institutions/${lei}/filings/${yearQuarterToPath(filing)}`
-  if(page) pathname += `?page=${page}`
+  if (page) pathname += `?page=${page}`
   return fetchData({ pathname })
 }
 
 export function createFiling(lei, filing) {
   return fetchData({
     pathname: `/institutions/${lei}/filings/${yearQuarterToPath(filing)}`,
-    method: 'POST'
+    method: 'POST',
   })
 }
 
 export function getLatestSubmission(lei, filing) {
   const options = { submission: 'latest', noCache: 1 }
-  if(lei) options.lei = lei
-  if(filing) options.filing = filing
+  if (lei) options.lei = lei
+  if (filing) options.filing = filing
   return fetchData(options)
 }
 
@@ -50,7 +54,7 @@ export function postVerify(type, verified) {
   return fetchData({
     suffix: `/edits/${type}`,
     method: 'POST',
-    body: { verified: verified }
+    body: { verified: verified },
   })
 }
 
@@ -69,7 +73,7 @@ export function getParseErrors() {
 export function postUpload(body) {
   return fetchData({
     method: 'POST',
-    body: body
+    body: body,
   })
 }
 
@@ -77,6 +81,6 @@ export function postSignature(signed) {
   return fetchData({
     suffix: '/sign',
     method: 'POST',
-    body: { signed: signed }
+    body: { signed: signed },
   })
 }

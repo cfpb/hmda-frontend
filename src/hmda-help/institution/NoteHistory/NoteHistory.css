@@ -6,7 +6,7 @@
   height: 0;
   margin: 3rem 0 4rem;
   position: relative;
-  transition: height .5s;
+  transition: height 0.5s;
 }
 
 #NoteHistory.open {
@@ -55,7 +55,6 @@
   background: #3d4f6d;
   color: white;
 }
-
 
 /* 
   Note List 
@@ -123,7 +122,7 @@
   float: right;
   font-size: 1.1rem;
   margin-right: 1rem;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 
 #NoteHistory .note-list .item .details {
@@ -131,10 +130,10 @@
   display: block;
   max-height: 0;
   overflow: hidden;
-  transition: max-height .1s;
+  transition: max-height 0.1s;
 }
 
-#NoteHistory .note-list .item.open  {
+#NoteHistory .note-list .item.open {
   border: 1px solid #aabdcd;
 }
 
@@ -155,7 +154,7 @@
 
 #NoteHistory .note-list .item .details.open {
   max-height: 100vh;
-  transition: max-height .3s;
+  transition: max-height 0.3s;
   padding: 2rem 1rem;
   background: #80807f;
 }
@@ -199,7 +198,7 @@
   border: 1px solid #808080;
   background: #808080;
   color: #ffffff;
-  font-size: .9em;
+  font-size: 0.9em;
 }
 
 #NoteHistory .diff-table tbody td {

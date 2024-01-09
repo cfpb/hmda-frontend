@@ -43,6 +43,7 @@
     "keycloak-js": "11.0.3",
     "mapbox-gl": "1.13.3",
     "normalize.css": "8.0.1",
+    "prettier": "^3.1.1",
     "react": "17.0.2",
     "react-app-polyfill": "2.0.0",
     "react-dom": "17.0.2",

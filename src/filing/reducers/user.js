@@ -7,13 +7,13 @@ import {
   SESSION_TERMINATED,
   CLEAR_USER_ERROR,
   SET_USER_INFO,
-} from "../constants"
+} from '../constants'
 
 const defaultUser = {
   oidc: null,
   isFetching: false,
   userError: false,
-  userInfo: null
+  userInfo: null,
 }
 
 export default (state = defaultUser, action) => {
@@ -24,35 +24,35 @@ export default (state = defaultUser, action) => {
       return {
         ...state,
         oidc: null,
-        isFetching: false
+        isFetching: false,
       }
     case USER_FOUND:
       return {
         ...state,
         oidc: action.payload,
-        isFetching: false
+        isFetching: false,
       }
     case USER_LOADING:
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
       }
     case SILENT_RENEW_ERROR:
       return {
         ...state,
         oidc: null,
         isFetching: false,
-        userError: true
+        userError: true,
       }
     case CLEAR_USER_ERROR:
       return {
         ...state,
-        userError: false
+        userError: false,
       }
     case SET_USER_INFO:
       return {
         ...state,
-        userInfo: action.payload
+        userInfo: action.payload,
       }
 
     default:

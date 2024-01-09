@@ -3,7 +3,7 @@ import { REQUEST_SUMMARY, RECEIVE_SUMMARY, REFRESH_STATE } from '../constants'
 const defaultSummary = {
   isFetching: false,
   submission: {},
-  ts: {}
+  ts: {},
 }
 
 export default (state = defaultSummary, action) => {
@@ -11,7 +11,7 @@ export default (state = defaultSummary, action) => {
     case REQUEST_SUMMARY:
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
       }
 
     case RECEIVE_SUMMARY:
@@ -19,7 +19,7 @@ export default (state = defaultSummary, action) => {
         ...state,
         isFetching: false,
         submission: action.submission,
-        ts: action.ts
+        ts: action.ts,
       }
     case REFRESH_STATE: {
       return defaultSummary

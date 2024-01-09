@@ -30,23 +30,23 @@ function renderCheckboxes(variable, vars, makeCb, year) {
     <button
       className='CheckboxToggleBtn'
       key={'all'}
-      onClick={makeCb(variable, {id: 'all'})}
-      id={variable + "-all"}
+      onClick={makeCb(variable, { id: 'all' })}
+      id={variable + '-all'}
     >
       {allChecked ? 'Clear Selected' : 'Select All'}
-    </button>
+    </button>,
   )
 
   return boxes
 }
 
-const CheckboxContainer = props => {
+const CheckboxContainer = (props) => {
   const { vars, selectedVar, year, callbackFactory } = props
   const variables = getVariables(year)
 
   return (
-    <div className="CheckboxContainer">
-      <div className="border">
+    <div className='CheckboxContainer'>
+      <div className='border'>
         <DocLink year={year} definition={variables[selectedVar].definition}>
           <h3>{variables[selectedVar].label}</h3>
         </DocLink>

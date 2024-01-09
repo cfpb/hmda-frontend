@@ -12,8 +12,8 @@ const submission = {
   id: {
     lei: '1',
     period: '2017',
-    sequenceNumber: 1
-  }
+    sequenceNumber: 1,
+  },
 }
 
 describe('Refile Warning', () => {
@@ -34,14 +34,14 @@ describe('Refile Warning', () => {
           syntacticalValidityEditsExist={true}
           submission={submission}
         />
-      </Wrapper>
+      </Wrapper>,
     )
 
     expect(
       TestUtils.scryRenderedDOMComponentsWithClass(
         refileWarning,
-        'usa-alert-text'
-      )[0].parentNode.textContent
+        'usa-alert-text',
+      )[0].parentNode.textContent,
     ).toEqual(parserText)
   })
 
@@ -53,14 +53,14 @@ describe('Refile Warning', () => {
           syntacticalValidityEditsExist={true}
           submission={submission}
         />
-      </Wrapper>
+      </Wrapper>,
     )
 
     expect(
       TestUtils.scryRenderedDOMComponentsWithClass(
         refileWarning,
-        'usa-alert-text'
-      )[0].parentNode.textContent
+        'usa-alert-text',
+      )[0].parentNode.textContent,
     ).toEqual(refileText)
   })
 
@@ -73,14 +73,14 @@ describe('Refile Warning', () => {
           submission={submission}
           page={'syntacticalvalidity'}
         />
-      </Wrapper>
+      </Wrapper>,
     )
 
     expect(
       TestUtils.scryRenderedDOMComponentsWithClass(
         refileWarning,
-        'usa-alert-text'
-      ).length
+        'usa-alert-text',
+      ).length,
     ).toEqual(0)
   })
 
@@ -93,14 +93,14 @@ describe('Refile Warning', () => {
           submission={submission}
           page={'quality'}
         />
-      </Wrapper>
+      </Wrapper>,
     )
 
     expect(
       TestUtils.scryRenderedDOMComponentsWithClass(
         refileWarning,
-        'usa-alert-text'
-      )[0].parentNode.textContent
+        'usa-alert-text',
+      )[0].parentNode.textContent,
     ).toEqual(qualityText)
   })
 
@@ -113,14 +113,14 @@ describe('Refile Warning', () => {
           submission={submission}
           page={'quality'}
         />
-      </Wrapper>
+      </Wrapper>,
     )
 
     expect(
       TestUtils.scryRenderedDOMComponentsWithClass(
         refileWarning,
-        'usa-alert-text'
-      ).length
+        'usa-alert-text',
+      ).length,
     ).toEqual(0)
   })
 
@@ -133,14 +133,14 @@ describe('Refile Warning', () => {
           submission={submission}
           page={'macro'}
         />
-      </Wrapper>
+      </Wrapper>,
     )
 
     expect(
       TestUtils.scryRenderedDOMComponentsWithClass(
         refileWarning,
-        'usa-alert-text'
-      )[0].parentNode.textContent
+        'usa-alert-text',
+      )[0].parentNode.textContent,
     ).toEqual(macroText)
   })
 
@@ -153,14 +153,14 @@ describe('Refile Warning', () => {
           submission={submission}
           page={'macro'}
         />
-      </Wrapper>
+      </Wrapper>,
     )
 
     expect(
       TestUtils.scryRenderedDOMComponentsWithClass(
         refileWarning,
-        'usa-alert-text'
-      ).length
+        'usa-alert-text',
+      ).length,
     ).toEqual(0)
   })
   it('renders the correct elements for status code > 8', () => {
@@ -171,17 +171,17 @@ describe('Refile Warning', () => {
           syntacticalValidityEditsExist={false}
           submission={submission}
         />
-      </Wrapper>
+      </Wrapper>,
     )
 
     expect(
       TestUtils.scryRenderedDOMComponentsWithClass(
         refileWarning,
-        'usa-alert-text'
-      ).length
+        'usa-alert-text',
+      ).length,
     ).toEqual(0)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(refileWarning, 'a').length
+      TestUtils.scryRenderedDOMComponentsWithTag(refileWarning, 'a').length,
     ).toEqual(0)
   })
 })

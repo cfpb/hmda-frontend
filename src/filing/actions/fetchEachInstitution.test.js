@@ -12,11 +12,11 @@ import { getInstitution } from '../api/api.js'
 import fs from 'fs'
 
 const institutionsDetailObj = JSON.parse(
-  fs.readFileSync('./test-resources/json/institutions-detail.json')
+  fs.readFileSync('./test-resources/json/institutions-detail.json'),
 )
 
-getInstitution.mockImplementation(id =>
-  Promise.resolve(institutionsDetailObj[id])
+getInstitution.mockImplementation((id) =>
+  Promise.resolve(institutionsDetailObj[id]),
 )
 fetchCurrentFiling.mockImplementation(() => () => {
   return { type: 'fetchCurrentFiling' }
@@ -31,23 +31,23 @@ const getEachInstitution = [
   { type: types.REQUEST_INSTITUTION, id: '3' },
   {
     type: types.RECEIVE_INSTITUTION,
-    institution: institutionsDetailObj['0'].institution
+    institution: institutionsDetailObj['0'].institution,
   },
   {
     type: types.RECEIVE_INSTITUTION,
-    institution: institutionsDetailObj['1'].institution
+    institution: institutionsDetailObj['1'].institution,
   },
   {
     type: types.RECEIVE_INSTITUTION,
-    institution: institutionsDetailObj['2'].institution
+    institution: institutionsDetailObj['2'].institution,
   },
   {
     type: types.RECEIVE_INSTITUTION,
-    institution: institutionsDetailObj['3'].institution
-  }
+    institution: institutionsDetailObj['3'].institution,
+  },
 ]
 describe('fetchEachInstitution', () => {
-  it('creates a thunk that will clear current filings and fetch each institution', done => {
+  it('creates a thunk that will clear current filings and fetch each institution', (done) => {
     const store = mockStore({ app: { filingPeriod: '2017' } })
 
     store
@@ -56,14 +56,14 @@ describe('fetchEachInstitution', () => {
           { id: '0' },
           { id: '1' },
           { id: '2' },
-          { id: '3' }
-        ])
+          { id: '3' },
+        ]),
       )
       .then(() => {
         expect(store.getActions()).toEqual([...getEachInstitution])
         done()
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err)
         done.fail()
       })

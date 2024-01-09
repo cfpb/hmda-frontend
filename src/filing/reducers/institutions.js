@@ -6,14 +6,14 @@ import {
   UPDATE_FILING_PERIOD,
   RECEIVE_INSTITUTION_NOT_FOUND,
   SHOULD_FETCH_INSTITUTIONS,
-  CLEAR_INSTITUTIONS
+  CLEAR_INSTITUTIONS,
 } from '../constants'
 
 const defaultInstitutions = {
   institutions: {},
   isFetching: false,
   fetched: false,
-  shouldFetchInstitutions: false
+  shouldFetchInstitutions: false,
 }
 
 /*
@@ -107,7 +107,7 @@ export default (state = defaultInstitutions, action) => {
     case CLEAR_INSTITUTIONS:
       return {
         ...state,
-        institutions: {}
+        institutions: {},
       }
     default:
       return state

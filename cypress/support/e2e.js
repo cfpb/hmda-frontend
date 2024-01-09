@@ -1,7 +1,7 @@
-import { logEnv, urlExists } from "./helpers"
-import '@testing-library/cypress/add-commands';
-import 'cypress-keycloak';
-import 'cypress-file-upload';
+import { logEnv, urlExists } from './helpers'
+import '@testing-library/cypress/add-commands'
+import 'cypress-keycloak'
+import 'cypress-file-upload'
 
 // ***********************************************************
 // This example support/index.js is processed and
@@ -21,15 +21,15 @@ import 'cypress-file-upload';
 // Import commands.js using ES2015 syntax:
 // import './commands'
 
-Cypress.Commands.add("hasValidHref", { prevSubject: true }, anchor => {
-  return urlExists(anchor.attr("href"))
+Cypress.Commands.add('hasValidHref', { prevSubject: true }, (anchor) => {
+  return urlExists(anchor.attr('href'))
 })
 
-Cypress.Commands.add("dataUrl", { prevSubject: true }, target => {
+Cypress.Commands.add('dataUrl', { prevSubject: true }, (target) => {
   return urlExists(target.attr('data-url'))
 })
 
-Cypress.Commands.add("logEnv", { prevSubject: true }, vars => {
+Cypress.Commands.add('logEnv', { prevSubject: true }, (vars) => {
   logEnv(vars[0])
 })
 
@@ -47,9 +47,9 @@ Cypress.Commands.add('hmdaLogin', (app) => {
 
 // Handles uncaught exceptions...
 // https://docs.cypress.io/api/cypress-api/catalog-of-events#Uncaught-Exceptions
-Cypress.on("uncaught:exception", (err, runnable) => {
+Cypress.on('uncaught:exception', (err, runnable) => {
   // _384 is related to Google Tag Manager/Google Analytics
-  if (err.message.includes("_384")) {
+  if (err.message.includes('_384')) {
     return false
   }
   return false

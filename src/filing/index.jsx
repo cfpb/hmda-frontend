@@ -1,5 +1,5 @@
 import 'react-app-polyfill/ie11' // For IE 11 support
-import "core-js/es/array"
+import 'core-js/es/array'
 
 import React, { useEffect } from 'react'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
@@ -15,7 +15,7 @@ import { initKeycloak } from '../common/api/Keycloak'
 import { setStore } from './utils/store.js'
 import appReducer from './reducers'
 import { withAppContext } from '../common/appContextHOC'
-import { composeWithDevTools } from "@redux-devtools/extension"
+import { composeWithDevTools } from '@redux-devtools/extension'
 import CompleteProfile from './profile/CompleteProfile'
 
 initKeycloak()
@@ -25,16 +25,16 @@ let store
 if (import.meta.env.MODE !== 'production') {
   store = createStore(
     combineReducers({
-      app: appReducer
+      app: appReducer,
     }),
-    composeWithDevTools(applyMiddleware(...middleware))
+    composeWithDevTools(applyMiddleware(...middleware)),
   )
 } else {
   store = createStore(
     combineReducers({
-      app: appReducer
+      app: appReducer,
     }),
-    applyMiddleware(...middleware)
+    applyMiddleware(...middleware),
   )
 }
 
@@ -42,20 +42,35 @@ setStore(store)
 
 const Filing = ({ config }) => {
   return (
-    <div className="App Filing">
+    <div className='App Filing'>
       <Provider store={store}>
         <Switch>
-          <Route path="/filing/profile" render={props => {
-            return <AppContainer {...props} config={config}>
-              <CompleteProfile />
-            </AppContainer>
-          }}/>
-          <Redirect exact from="/filing" to={`/filing/${config.defaultPeriod}/`}/>
-          <Route exact path={'/filing/:filingPeriod/'} render={props => {
-            return <AppContainer {...props} config={config}>
-              <HomeContainer/>
-            </AppContainer>
-          }}/>
+          <Route
+            path='/filing/profile'
+            render={(props) => {
+              return (
+                <AppContainer {...props} config={config}>
+                  <CompleteProfile />
+                </AppContainer>
+              )
+            }}
+          />
+          <Redirect
+            exact
+            from='/filing'
+            to={`/filing/${config.defaultPeriod}/`}
+          />
+          <Route
+            exact
+            path={'/filing/:filingPeriod/'}
+            render={(props) => {
+              return (
+                <AppContainer {...props} config={config}>
+                  <HomeContainer />
+                </AppContainer>
+              )
+            }}
+          />
           <Route
             path={[
               '/filing/:filingPeriod/institutions/:institution',
@@ -69,16 +84,27 @@ const Filing = ({ config }) => {
               )
             }}
           />
-          <Route exact path={'/filing/:filingPeriod/:lei/'} render={props => {
-            return <AppContainer {...props} config={config}>
-              <SubmissionRouter/>
-            </AppContainer>
-          }}/>
-          <Route path={'/filing/:filingPeriod/:lei/:splat'} render={props => {
-            return <AppContainer {...props} config={config}>
-              <SubmissionRouter/>
-            </AppContainer>
-          }}/>
+          <Route
+            exact
+            path={'/filing/:filingPeriod/:lei/'}
+            render={(props) => {
+              return (
+                <AppContainer {...props} config={config}>
+                  <SubmissionRouter />
+                </AppContainer>
+              )
+            }}
+          />
+          <Route
+            path={'/filing/:filingPeriod/:lei/:splat'}
+            render={(props) => {
+              return (
+                <AppContainer {...props} config={config}>
+                  <SubmissionRouter />
+                </AppContainer>
+              )
+            }}
+          />
         </Switch>
       </Provider>
     </div>

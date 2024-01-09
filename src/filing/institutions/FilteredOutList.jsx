@@ -9,7 +9,11 @@ export const FilteredOutList = ({ list, title }) => {
         <h3>{title}</h3>
         <section className='status'>
           <ul>
-            {list.map((i, idx) => <li key={idx}>{i.name} - {i.lei}</li>)}
+            {list.map((i, idx) => (
+              <li key={idx}>
+                {i.name} - {i.lei}
+              </li>
+            ))}
           </ul>
         </section>
       </div>
@@ -18,5 +22,5 @@ export const FilteredOutList = ({ list, title }) => {
 }
 
 FilteredOutList.defaultProps = {
-  list: []
+  list: [],
 }

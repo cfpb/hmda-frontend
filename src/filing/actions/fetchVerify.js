@@ -9,13 +9,13 @@ import { postVerify } from '../api/api.js'
 import { error } from '../utils/log.js'
 
 export default function fetchVerify(type, checked, lei) {
-  return dispatch => {
+  return (dispatch) => {
     if (type === 'quality') dispatch(requestVerifyQuality())
     else dispatch(requestVerifyMacro())
 
     return postVerify(type, checked)
-      .then(json => {
-        return hasHttpError(json).then(hasError => {
+      .then((json) => {
+        return hasHttpError(json).then((hasError) => {
           if (hasError) {
             dispatch(receiveError(json))
             throw new Error(json && `${json.status}: ${json.statusText}`)
@@ -26,7 +26,7 @@ export default function fetchVerify(type, checked, lei) {
           return dispatch(updateStatus(json.status, lei))
         })
       })
-      .catch(err => {
+      .catch((err) => {
         error(err)
       })
   }

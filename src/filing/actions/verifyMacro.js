@@ -5,6 +5,6 @@ export default function verifyMacro(checked, lei) {
     type: types.VERIFY_MACRO,
     checked: checked,
     isFetching: false,
-    lei
+    lei,
   }
 }

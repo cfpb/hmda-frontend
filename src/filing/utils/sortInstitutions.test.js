@@ -11,13 +11,13 @@ const institutionsFixed = ['0123', '1111', '1234', '2345', '3456']
 describe('sortInstitutions', () => {
   it('returns the sorted institutions', () => {
     expect(institutionsSorted.sort(sortInstitutions)).toEqual(
-      institutionsSorted
+      institutionsSorted,
     )
   })
 
   it('returns the sorted institutions', () => {
     expect(institutionsNotSorted.sort(sortInstitutions)).toEqual(
-      institutionsFixed
+      institutionsFixed,
     )
   })
 })

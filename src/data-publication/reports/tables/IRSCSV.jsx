@@ -1,16 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const renderData = csv => {
+const renderData = (csv) => {
   return csv.map((row, i) => {
-    return <tr key={i}>
-      <th>{row[0]}</th>
-      {row.slice(1)
-        .map((cell, i) => {
+    return (
+      <tr key={i}>
+        <th>{row[0]}</th>
+        {row.slice(1).map((cell, i) => {
           return <td key={i}>{cell}</td>
-        })
-      }
-    </tr>
+        })}
+      </tr>
+    )
   })
 }
 
@@ -26,13 +26,21 @@ const IRSCSV = React.forwardRef((props, ref) => {
     <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
-        {head.map((v, i) => {
-          return <td key={i} width={i===1 ? '15%' : '5%'}>{v}</td>
-        })}
+          {head.map((v, i) => {
+            return (
+              <td key={i} width={i === 1 ? '15%' : '5%'}>
+                {v}
+              </td>
+            )
+          })}
         </tr>
       </thead>
       <tbody>
-        {renderData(csv.slice(1,-1).sort((a, b) => {return a[0] - b[0]}))}
+        {renderData(
+          csv.slice(1, -1).sort((a, b) => {
+            return a[0] - b[0]
+          }),
+        )}
       </tbody>
       <tfoot>
         <tr>
@@ -48,7 +56,7 @@ const IRSCSV = React.forwardRef((props, ref) => {
 })
 
 IRSCSV.propTypes = {
-  report: PropTypes.object
+  report: PropTypes.object,
 }
 
 export default IRSCSV

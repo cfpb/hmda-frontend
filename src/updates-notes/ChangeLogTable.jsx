@@ -1,46 +1,60 @@
 import React, { useMemo } from 'react'
-import Highlighter from "react-highlight-words";
+import Highlighter from 'react-highlight-words'
 import { PRODUCT_NAMES } from './constants'
 import { FilterResetButton } from './FilterResetButton'
 import filterImg from '../common/images/filters.svg'
 import './ChangeLogTable.css'
-/** 
+/**
  * Display Publication Change Log Entries
  * (default export)
  */
-const ChangeLogTable = ({ data = {}, products = PRODUCT_NAMES, filter, changeLog }) => {
+const ChangeLogTable = ({
+  data = {},
+  products = PRODUCT_NAMES,
+  filter,
+  changeLog,
+}) => {
   const totalEntries = useMemo(
     () =>
       Object.keys(changeLog)
         .map((key) => changeLog[key].length)
         .reduce((acc, curr) => acc + curr, 0),
-    [changeLog]
+    [changeLog],
   )
 
-  const hasFilters = Object.keys(filter.filters).some(key => filter.filters[key].length)
-  
-  const dates = Object.keys(data)
-  const rows = dates.map((date, row) => {
-    const todaysItems = data[date]
-    if (!todaysItems || !todaysItems.length) return null
+  const hasFilters = Object.keys(filter.filters).some(
+    (key) => filter.filters[key].length,
+  )
 
-    return todaysItems.map((item, col) => {
-      return (
-        <Row
-          key={'clt-row-' + row + 'col-' + col}
-          item={item}
-          products={products}
-          filter={filter}
-        />
-      )
+  const dates = Object.keys(data)
+  const rows = dates
+    .map((date, row) => {
+      const todaysItems = data[date]
+      if (!todaysItems || !todaysItems.length) return null
+
+      return todaysItems.map((item, col) => {
+        return (
+          <Row
+            key={'clt-row-' + row + 'col-' + col}
+            item={item}
+            products={products}
+            filter={filter}
+          />
+        )
+      })
     })
-  }).flat().filter(x => x)
+    .flat()
+    .filter((x) => x)
 
   const isEmpty = !rows.length
 
   return (
     <div id='ChangeLogTable'>
-      <ResultCount count={rows.length} total={totalEntries} hide={!hasFilters} />
+      <ResultCount
+        count={rows.length}
+        total={totalEntries}
+        hide={!hasFilters}
+      />
       {!isEmpty && <Header />}
       <EmptyState clear={filter.clear} isEmpty={isEmpty} />
       {rows}
@@ -62,12 +76,12 @@ const ResultCount = ({ count, total, hide }) => {
         <span className='highlight'>{total}</span> entries
       </div>
     </div>
-  )}
-
+  )
+}
 
 const EmptyState = ({ clear, isEmpty }) => {
   if (!isEmpty) return null
-  
+
   return (
     <div className='empty-state'>
       <span role='img' aria-label='warning sign'>
@@ -78,7 +92,6 @@ const EmptyState = ({ clear, isEmpty }) => {
     </div>
   )
 }
-
 
 const Header = () => {
   return (
@@ -91,7 +104,6 @@ const Header = () => {
   )
 }
 
-
 const Row = ({ item, filter, products }) => {
   let rowClassname = 'change-row split'
 
@@ -99,7 +111,7 @@ const Row = ({ item, filter, products }) => {
     `product ${item.product}` +
     (filter.filters['product'].indexOf(item.product) > -1 ? ' selected' : '')
 
-  const toggleType    = () => filter.toggle('type', item.type)
+  const toggleType = () => filter.toggle('type', item.type)
   const toggleProduct = () => filter.toggle('product', item.product)
 
   return (
@@ -145,7 +157,6 @@ const Links = ({ links }) => {
   )
 }
 
-
 const Column = ({ value, onClick = () => null, className, children }) => {
   if (className.indexOf('product') > -1)
     return (
@@ -157,7 +168,7 @@ const Column = ({ value, onClick = () => null, className, children }) => {
         >
           {value || children}
         </button>
-      </div>  
+      </div>
     )
 
   return (

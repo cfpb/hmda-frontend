@@ -17,5 +17,5 @@ export default [
   { id: '15', name: 'MBS of S&L HC' },
   { id: '16', name: 'MBS of State-Chartered Thrift' },
   { id: '17', name: 'MBS of Federal-Chartered Thrift' },
-  { id: '18', name: 'Affiliate' }
+  { id: '18', name: 'Affiliate' },
 ]

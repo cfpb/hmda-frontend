@@ -1,9 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const renderData = report => {
-
-  const  {ethnicities}  = report
+const renderData = (report) => {
+  const { ethnicities } = report
 
   return (
     <React.Fragment>
@@ -15,25 +14,25 @@ const renderData = report => {
 const mapCharacteristic = (arr, key) => {
   return [
     renderCharacteristicTitle(key),
-    arr.map(characteristic => {
+    arr.map((characteristic) => {
       return renderCharacteristic(characteristic, key)
-    })
+    }),
   ]
 }
 
-const renderCharacteristicTitle = key => {
+const renderCharacteristicTitle = (key) => {
   return (
-    <tr className="characteristic-grey-title" key={key}>
+    <tr className='characteristic-grey-title' key={key}>
       <th
         colSpan={13}
         style={{
           borderTopWidth: '2px',
           fontWeight: 'bold',
           textTransform: 'uppercase',
-          backgroundColor: '#f1f1f1'
+          backgroundColor: '#f1f1f1',
         }}
       >
-      {'Ethnicity'}
+        {'Ethnicity'}
       </th>
     </tr>
   )
@@ -43,12 +42,12 @@ const renderCharacteristic = (characteristic, key) => {
   const currChar = characteristic[key]
   if (key === 'income') {
     return (
-      <tr className="characteristic-title" key={currChar}>
+      <tr className='characteristic-title' key={currChar}>
         <th>{currChar}</th>
-        {characteristic.dispositions.map(disposition => {
+        {characteristic.dispositions.map((disposition) => {
           return [
-            <td key="count">{disposition.count}</td>,
-            <td key="value">{disposition.value}</td>
+            <td key='count'>{disposition.count}</td>,
+            <td key='value'>{disposition.value}</td>,
           ]
         })}
       </tr>
@@ -56,13 +55,13 @@ const renderCharacteristic = (characteristic, key) => {
   }
 
   return [
-    <tr className="characteristic-title" key={currChar}>
+    <tr className='characteristic-title' key={currChar}>
       <th
         colSpan={13}
         style={{
           borderTopWidth: '2px',
           textTransform: 'uppercase',
-          fontWeight: 'bold'
+          fontWeight: 'bold',
         }}
       >
         {currChar}
@@ -73,10 +72,10 @@ const renderCharacteristic = (characteristic, key) => {
       return (
         <tr key={key}>
           <th>{gender.gender}</th>
-          {gender.dispositions.map(disposition => {
+          {gender.dispositions.map((disposition) => {
             return [
-              <td key="count">{disposition.count}</td>,
-              <td key="value">{disposition.value}</td>
+              <td key='count'>{disposition.count}</td>,
+              <td key='value'>{disposition.value}</td>,
             ]
           })}
         </tr>
@@ -84,13 +83,13 @@ const renderCharacteristic = (characteristic, key) => {
     }),
     <tr key={currChar + 'total'}>
       <th>Total</th>
-      {characteristic.dispositions.map(disposition => {
+      {characteristic.dispositions.map((disposition) => {
         return [
-          <td key="count">{disposition.count}</td>,
-          <td key="value">{disposition.value}</td>
+          <td key='count'>{disposition.count}</td>,
+          <td key='value'>{disposition.value}</td>,
         ]
       })}
-    </tr>
+    </tr>,
   ]
 }
 
@@ -101,25 +100,25 @@ const Aggregate4 = React.forwardRef((props, ref) => {
     <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
-          <th width="20%" rowSpan={2}>
+          <th width='20%' rowSpan={2}>
             ETHNICITY AND SEX
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Loans Originated
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Apps. Approved But Not Accepted
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Applications Denied
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Applications Withdrawn
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Files Closed for Incompleteness
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Purchased Loans
           </th>
         </tr>
@@ -139,9 +138,7 @@ const Aggregate4 = React.forwardRef((props, ref) => {
         </tr>
       </thead>
       <tbody>{renderData(props.report)}</tbody>
-      <tfoot>
-
-      </tfoot>
+      <tfoot></tfoot>
     </table>
   )
 })
@@ -149,7 +146,7 @@ const Aggregate4 = React.forwardRef((props, ref) => {
 Aggregate4.displayName = 'Aggregate4'
 
 Aggregate4.propTypes = {
-  report: PropTypes.object
+  report: PropTypes.object,
 }
 
 export default Aggregate4

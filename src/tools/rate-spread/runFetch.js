@@ -5,17 +5,17 @@ export default function runFetch(url, body, isCSV) {
     headers: isCSV
       ? {}
       : {
-          'Content-Type': 'application/json'
-        }
+          'Content-Type': 'application/json',
+        },
   })
-    .then(response => {
-      return new Promise(resolve => {
+    .then((response) => {
+      return new Promise((resolve) => {
         if (response.status > 399) return resolve(response)
         if (isCSV) return resolve(response.text())
         resolve(response.json())
       })
     })
-    .catch(err => {
+    .catch((err) => {
       return { status: 400 }
     })
 }

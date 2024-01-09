@@ -7,9 +7,7 @@ export const PRODUCT_NAMES = {
   filing: 'HMDA Filing',
 }
 
-
 export const PRODUCTS = Object.keys(PRODUCT_NAMES)
-
 
 export const CATEGORIES = {
   correction: { order: 3 },
@@ -17,10 +15,8 @@ export const CATEGORIES = {
   release: { order: 1 },
 }
 
-
 export const PUB_CHANGELOG_URL =
   'https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/updates-notes/change-log-data.json'
-
 
 export const DEFAULT_FILTERS = {
   type: [],
@@ -34,8 +30,10 @@ export const FILTER_OPTIONS = {
     type: 'product',
   })),
 
-  TYPE: Object.keys(CATEGORIES).sort((a,b) => CATEGORIES[a].order - CATEGORIES[b].order).map((type) => ({
-    value: type,
-    type: 'type',
-  })),
+  TYPE: Object.keys(CATEGORIES)
+    .sort((a, b) => CATEGORIES[a].order - CATEGORIES[b].order)
+    .map((type) => ({
+      value: type,
+      type: 'type',
+    })),
 }

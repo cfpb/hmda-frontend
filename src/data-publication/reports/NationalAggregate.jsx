@@ -11,16 +11,16 @@ import { withYearValidation } from '../../common/withYearValidation.jsx'
 import './NationalAggregate.css'
 
 const detailsCache = {
-  reports: {}
+  reports: {},
 }
 
-NATIONAL_AGGREGATE_REPORTS.forEach(v => {
+NATIONAL_AGGREGATE_REPORTS.forEach((v) => {
   if (v.value) {
     detailsCache.reports[v.value] = v
   }
 
   if (v.options) {
-    v.options.forEach(option => {
+    v.options.forEach((option) => {
       detailsCache.reports[option.value] = option
     })
   }
@@ -35,7 +35,7 @@ class NationalAggregate extends React.Component {
 
   handleChange(val) {
     this.props.history.push({
-      pathname: `${this.props.match.url}/${val}`
+      pathname: `${this.props.match.url}/${val}`,
     })
   }
 
@@ -76,29 +76,26 @@ class NationalAggregate extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="NationalAggregate" id="main-content">
+        <div className='NationalAggregate' id='main-content'>
           {header}
-          <ol className="ProgressCards">
+          <ol className='ProgressCards'>
             <li>
               <ProgressCard
-                title="year"
-                name={
-                  params.year
-                    ? params.year
-                    : 'Select a year'
-                }
+                title='year'
+                name={params.year ? params.year : 'Select a year'}
                 id=''
                 link={'/data-publication/national-aggregate-reports/'}
               />
             </li>
             <li>
               <ProgressCard
-                title="report"
-                name={params.reportId
-                  ? report.label
-                  : params.year
-                  ? 'Select a report'
-                  : ''
+                title='report'
+                name={
+                  params.reportId
+                    ? report.label
+                    : params.year
+                      ? 'Select a report'
+                      : ''
                 }
                 id={params.reportId ? report.value : ''}
                 link={
@@ -111,16 +108,22 @@ class NationalAggregate extends React.Component {
           </ol>
           <hr />
           {params.year ? (
-           params.year !== '2017'
-            ? <h3>National Aggregate reports are not produced for data collected in or after 2018.</h3>
-            : params.reportId ? null :
-            <Reports {...this.props} />
-          )
-          : <YearSelector url={url} years={years}/>
-          }
+            params.year !== '2017' ? (
+              <h3>
+                National Aggregate reports are not produced for data collected
+                in or after 2018.
+              </h3>
+            ) : params.reportId ? null : (
+              <Reports {...this.props} />
+            )
+          ) : (
+            <YearSelector url={url} years={years} />
+          )}
         </div>
 
-        {params.reportId && params.year === '2017' ? <Report {...this.props} /> : null}
+        {params.reportId && params.year === '2017' ? (
+          <Report {...this.props} />
+        ) : null}
       </React.Fragment>
     )
   }

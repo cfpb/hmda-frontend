@@ -2,13 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import * as STATUS from '../../constants/statusCodes.js'
 
-const getProgressText = ({ code, validationComplete, errorApp, errorUpload }) => {
+const getProgressText = ({
+  code,
+  validationComplete,
+  errorApp,
+  errorUpload,
+}) => {
   let progressText = 'Uploading...'
 
   if (code === STATUS.PARSING) progressText = 'Analyzing file format...'
   if (code === STATUS.PARSED_WITH_ERRORS)
     progressText = 'File contains formatting errors.'
-  if (code >= STATUS.VALIDATING && !validationComplete) progressText = 'Validating edits...'
+  if (code >= STATUS.VALIDATING && !validationComplete)
+    progressText = 'Validating edits...'
   if (validationComplete) progressText = 'Edit validation complete.'
 
   if (errorUpload)
@@ -20,7 +26,15 @@ const getProgressText = ({ code, validationComplete, errorApp, errorUpload }) =>
   return progressText
 }
 
-const getExtraMessage = ({ code, validationComplete, qualityExists, qualityVerified, errorApp, errorUpload, file }) => {
+const getExtraMessage = ({
+  code,
+  validationComplete,
+  qualityExists,
+  qualityVerified,
+  errorApp,
+  errorUpload,
+  file,
+}) => {
   if (file && file.size > 1e5) {
     if (code <= STATUS.UPLOADED)
       return 'Please do not close your browser until the file upload has completed.'
@@ -48,7 +62,12 @@ const getExtraMessage = ({ code, validationComplete, qualityExists, qualityVerif
   return null
 }
 
-const getIndicatorClass = ({ code, validationComplete, errorApp, errorUpload }) => {
+const getIndicatorClass = ({
+  code,
+  validationComplete,
+  errorApp,
+  errorUpload,
+}) => {
   if (code === STATUS.PARSED_WITH_ERRORS || errorUpload || errorApp) {
     return 'error'
   }
@@ -58,9 +77,9 @@ const getIndicatorClass = ({ code, validationComplete, errorApp, errorUpload }) 
   return 'pulsing'
 }
 
-const ProgressText = props => {
+const ProgressText = (props) => {
   return (
-    <section className="progressText">
+    <section className='progressText'>
       <p>
         {getProgressText(props)}{' '}
         <span className={`progressIndicator ${getIndicatorClass(props)}`} />
@@ -83,7 +102,7 @@ ProgressText.propTypes = {
   editsFetched: PropTypes.bool,
   validationComplete: PropTypes.bool,
   qualityExists: PropTypes.bool,
-  qualityVerified: PropTypes.bool
+  qualityVerified: PropTypes.bool,
 }
 
 export default ProgressText

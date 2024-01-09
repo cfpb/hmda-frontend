@@ -24,18 +24,18 @@ class InputText extends Component {
   handleBlur(event) {
     if (this.props.validation) {
       this.setState({
-        error: validateInput(this.props.validation, event.target.value)
+        error: validateInput(this.props.validation, event.target.value),
       })
     }
 
     if (this.props.onBlur) this.props.onBlur()
   }
 
-  render(){
+  render() {
     const { disabled, id, innerRef, label, placeholder, value } = this.props
     const { error } = this.state
 
-    const rows = Math.ceil((value || placeholder).length/LINE_WIDTH) || 1
+    const rows = Math.ceil((value || placeholder).length / LINE_WIDTH) || 1
 
     return (
       <React.Fragment>
@@ -61,7 +61,7 @@ class InputText extends Component {
 InputText.defaultProps = {
   disabled: false,
   value: '',
-  placeholder: ''
+  placeholder: '',
 }
 
 InputText.propTypes = {
@@ -73,7 +73,7 @@ InputText.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   disabled: PropTypes.bool,
-  validation: PropTypes.array
+  validation: PropTypes.array,
 }
 
 export default React.forwardRef((props, ref) => {

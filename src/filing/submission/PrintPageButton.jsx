@@ -1,6 +1,6 @@
-import React from "react"
-import PrinterIcon from "../images/printer.svg"
-import "./PrintPageButton.css"
+import React from 'react'
+import PrinterIcon from '../images/printer.svg'
+import './PrintPageButton.css'
 
 function clickHandler(e) {
   e.preventDefault()
@@ -10,9 +10,9 @@ function clickHandler(e) {
 
 const PrintPageButton = () => {
   return (
-    <div className="print-page-container">
-      <button className="print-page" onClick={clickHandler}>
-        <PrinterIcon className="icon" alt="printer" />
+    <div className='print-page-container'>
+      <button className='print-page' onClick={clickHandler}>
+        <PrinterIcon className='icon' alt='printer' />
         Print
       </button>
     </div>

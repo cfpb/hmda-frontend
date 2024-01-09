@@ -10,14 +10,14 @@ import TestUtils from 'react-dom/test-utils'
 
 const filing = {
   period: 2017,
-  lei: '123456'
+  lei: '123456',
 }
 describe('InstitutionRefile', () => {
   it('renders the refile button', () => {
     const refile = TestUtils.renderIntoDocument(
       <Wrapper>
         <InstitutionRefile status={{ code: STATUS.CREATED }} filing={filing} />
-      </Wrapper>
+      </Wrapper>,
     )
     const refileNode = ReactDOM.findDOMNode(refile)
 
@@ -28,7 +28,7 @@ describe('InstitutionRefile', () => {
     const refile = TestUtils.renderIntoDocument(
       <Wrapper>
         <InstitutionRefile filing={filing} />
-      </Wrapper>
+      </Wrapper>,
     )
     const refileNode = ReactDOM.findDOMNode(refile)
 
@@ -39,7 +39,7 @@ describe('InstitutionRefile', () => {
     const refile = TestUtils.renderIntoDocument(
       <Wrapper>
         <InstitutionRefile filing={filing} status={{ something: 'nothing' }} />
-      </Wrapper>
+      </Wrapper>,
     )
     const refileNode = ReactDOM.findDOMNode(refile)
 
@@ -50,7 +50,7 @@ describe('InstitutionRefile', () => {
     const refile = TestUtils.renderIntoDocument(
       <Wrapper>
         <InstitutionRefile filing={filing} status={{ code: STATUS.PARSING }} />
-      </Wrapper>
+      </Wrapper>,
     )
     const refileNode = ReactDOM.findDOMNode(refile)
 
@@ -64,7 +64,7 @@ describe('InstitutionRefile', () => {
           filing={filing}
           status={{ code: STATUS.VALIDATING }}
         />
-      </Wrapper>
+      </Wrapper>,
     )
     const refileNode = ReactDOM.findDOMNode(refile)
 
@@ -78,7 +78,7 @@ describe('InstitutionRefile', () => {
           filing={filing}
           status={{ code: STATUS.PARSED_WITH_ERRORS }}
         />
-      </Wrapper>
+      </Wrapper>,
     )
     const refileNode = ReactDOM.findDOMNode(refile)
     expect(refileNode.textContent).toEqual('Upload a new file')
@@ -91,7 +91,7 @@ describe('InstitutionRefile', () => {
           filing={filing}
           status={{ code: STATUS.VALIDATED }}
         />
-      </Wrapper>
+      </Wrapper>,
     )
     const refileNode = ReactDOM.findDOMNode(refile)
     expect(refileNode.textContent).toEqual('Upload a new file')

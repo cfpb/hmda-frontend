@@ -9,10 +9,8 @@ export const byType = (a, b) => {
   return -1
 }
 
-
 /** Sort by Date field */
 export const byDate = (a, b) => new Date(b.date) - new Date(a.date)
-
 
 /** Groups and sorts change log entries by date */
 export const organizeChangeData = (input) => {

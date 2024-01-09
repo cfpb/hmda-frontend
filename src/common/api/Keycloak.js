@@ -1,4 +1,3 @@
-
 import Keycloak from 'keycloak-js'
 
 let keycloak = null
@@ -9,18 +8,16 @@ export const setKeycloak = (cloak) => {
 }
 
 export const getKeycloak = () => {
-  if(!keycloak) return initKeycloak()
+  if (!keycloak) return initKeycloak()
   return keycloak
 }
 
 export const initKeycloak = (overrides) => {
-  if(keycloak) return keycloak
+  if (keycloak) return keycloak
   if (import.meta.env.VITE_ENVIRONMENT === 'CI')
     return setKeycloak(mockKeycloak(overrides))
   if (import.meta.env.MODE === 'development')
-    return setKeycloak(
-      Keycloak("/local_keycloak.json")
-    )
+    return setKeycloak(Keycloak('/local_keycloak.json'))
   return setKeycloak(Keycloak('/keycloak.json'))
 }
 
@@ -36,11 +33,11 @@ export const mockKeycloak = (overrides = {}) => ({
     new Promise((resolve) =>
       resolve({
         success: () => {},
-        error: () => false
-      })
+        error: () => false,
+      }),
     ),
   logout: () => (window.location.href = '/filing'),
   login: () => (window.location.href += 'institutions'),
   hasResourceRole: () => true,
-  ...overrides
+  ...overrides,
 })

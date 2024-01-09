@@ -5,7 +5,7 @@ import {
   RECEIVE_UPLOAD_ERROR,
   REQUEST_UPLOAD,
   RECEIVE_UPLOAD,
-  REFRESH_STATE
+  REFRESH_STATE,
 } from '../constants'
 
 const defaultUploads = {
@@ -15,8 +15,8 @@ const defaultUploads = {
     newFile: null,
     errors: [],
     errorFile: null,
-    errorUpload: null
-  }
+    errorUpload: null,
+  },
 }
 
 /*
@@ -36,53 +36,53 @@ export default (state = defaultUploads, action) => {
           file: action.file,
           errors: upload.errors.length === 0 ? upload.errors : [],
           errorFile: null,
-          errorUpload: null
-        }
+          errorUpload: null,
+        },
       }
     case SELECT_NEW_FILE:
       return {
         ...state,
         [action.lei]: {
           ...upload,
-          newFile: action.file
-        }
+          newFile: action.file,
+        },
       }
     case RECEIVE_FILE_ERRORS:
       return {
         ...state,
         [action.lei]: {
           errors: action.errors,
-          errorFile: action.file
-        }
+          errorFile: action.file,
+        },
       }
     case RECEIVE_UPLOAD_ERROR:
       return {
         ...state,
         [action.lei]: {
           ...upload,
-          errorUpload: action.error
-        }
+          errorUpload: action.error,
+        },
       }
     case REQUEST_UPLOAD:
       return {
         ...state,
         [action.lei]: {
           ...upload,
-          uploading: true
-        }
+          uploading: true,
+        },
       }
     case RECEIVE_UPLOAD:
       return {
         ...state,
         [action.lei]: {
           ...upload,
-          uploading: false
-        }
+          uploading: false,
+        },
       }
     case REFRESH_STATE:
       return {
         ...state,
-        [action.lei]: state['__DEFAULT_UPLOAD__']
+        [action.lei]: state['__DEFAULT_UPLOAD__'],
       }
     default:
       return state

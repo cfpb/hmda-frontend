@@ -13,21 +13,21 @@ const renderData = (report, label) => {
 }
 
 const mapCharacteristic = (arr, label) => {
-  return arr.map(characteristic => {
+  return arr.map((characteristic) => {
     return renderCharacteristic(characteristic, label)
   })
 }
 
-const renderCharacteristicTitle = key => {
+const renderCharacteristicTitle = (key) => {
   return (
-    <tr className="characteristic-grey-title" key={key}>
+    <tr className='characteristic-grey-title' key={key}>
       <th
         colSpan={13}
         style={{
           borderTopWidth: '2px',
           fontWeight: 'bold',
           textTransform: 'uppercase',
-          backgroundColor: '#f1f1f1'
+          backgroundColor: '#f1f1f1',
         }}
       >
         {key}
@@ -38,19 +38,19 @@ const renderCharacteristicTitle = key => {
 
 const renderCharacteristic = (characteristic, label) => {
   let name, currChar
-  Object.keys(characteristic).forEach(key => {
+  Object.keys(characteristic).forEach((key) => {
     if (key === 'characteristic') name = characteristic[key]
     else currChar = characteristic[key]
   })
 
   return [
-    <tr className="characteristic-title" key={name}>
+    <tr className='characteristic-title' key={name}>
       <th
         colSpan={13}
         style={{
           borderTopWidth: '2px',
           textTransform: 'uppercase',
-          fontWeight: 'bold'
+          fontWeight: 'bold',
         }}
       >
         {name}
@@ -58,7 +58,7 @@ const renderCharacteristic = (characteristic, label) => {
     </tr>,
     currChar.map((detailObj, index) => {
       let detail, dispositions
-      Object.keys(detailObj).forEach(key => {
+      Object.keys(detailObj).forEach((key) => {
         if (key === 'dispositions') dispositions = detailObj[key]
         else detail = detailObj[key]
       })
@@ -69,12 +69,12 @@ const renderCharacteristic = (characteristic, label) => {
           {dispositions.map((disObj, i) => {
             return [
               <td key={i + 'count'}>{disObj.count}</td>,
-              <td key={i + 'value'}>{disObj.value}</td>
+              <td key={i + 'value'}>{disObj.value}</td>,
             ]
           })}
         </tr>
       )
-    })
+    }),
   ]
 }
 
@@ -85,25 +85,25 @@ const TwelveOne = React.forwardRef((props, ref) => {
     <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
-          <th width="20%" rowSpan={2}>
+          <th width='20%' rowSpan={2}>
             BORROWER OR CENSUS TRACT CHARACTERISTICS
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Applications Received
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Loans Originated
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Apps. Approved But Not Accepted
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Applications Denied
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Applications Withdrawn
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Files Closed for Incompleteness
           </th>
         </tr>
@@ -128,7 +128,7 @@ const TwelveOne = React.forwardRef((props, ref) => {
 })
 
 TwelveOne.propTypes = {
-  report: PropTypes.object
+  report: PropTypes.object,
 }
 
 export default TwelveOne

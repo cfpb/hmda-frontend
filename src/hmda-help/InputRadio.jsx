@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import './InputRadio.css'
 
-const InputRadio = props => {
+const InputRadio = (props) => {
   const { id, label, onChange, options, value } = props
 
   function handleChange(event) {
@@ -13,20 +13,18 @@ const InputRadio = props => {
   return (
     <React.Fragment>
       <label htmlFor={id}>{label}</label>
-      <ul className="unstyled-list">
+      <ul className='unstyled-list'>
         {options.map((option, i) => {
           return (
             <li key={i}>
               <input
-                type="radio"
+                type='radio'
                 id={`radio${i}`}
                 name={id}
                 value={option.id}
                 onChange={handleChange}
                 checked={
-                  parseInt(value, 10) === parseInt(option.id, 10)
-                    ? true
-                    : false
+                  parseInt(value, 10) === parseInt(option.id, 10) ? true : false
                 }
               />
               <label htmlFor={`radio${i}`}>
@@ -41,7 +39,7 @@ const InputRadio = props => {
 }
 
 InputRadio.defaultProps = {
-  disabled: false
+  disabled: false,
 }
 
 InputRadio.propTypes = {
@@ -51,7 +49,7 @@ InputRadio.propTypes = {
   options: PropTypes.array.isRequired,
   name: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 }
 
 export default React.forwardRef((props, ref) => {

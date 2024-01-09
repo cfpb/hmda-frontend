@@ -6,7 +6,8 @@ import EditsTableRow from './TableRow.jsx'
 
 import './Table.css'
 
-export const supressULI = edit => ["S303", "V609","V608-1","V608-2"].indexOf(edit) > -1
+export const supressULI = (edit) =>
+  ['S303', 'V609', 'V608-1', 'V608-2'].indexOf(edit) > -1
 
 export const formatHeader = (text, isTransmittal) => {
   if (text === 'value' || text === 'fields') return null
@@ -28,23 +29,23 @@ export const renderHeader = (edit, rows, type) => {
   const cellWidth = `${100 / numOfCells}%`
 
   Object.keys(keyCells).forEach((field, index) => {
-    if(supressULI(edit.edit) && index === 0) return
+    if (supressULI(edit.edit) && index === 0) return
 
     const text = formatHeader(field, edit.transmittalSheet)
     if (text) {
       cells.push(
         <th key={++cellCount} width={cellWidth}>
           {text}
-        </th>
+        </th>,
       )
     }
   })
 
-  rows[0].fields.forEach(field => {
+  rows[0].fields.forEach((field) => {
     cells.push(
       <th key={++cellCount} width={cellWidth}>
         {formatHeader(field.name)}
-      </th>
+      </th>,
     )
   })
 
@@ -57,7 +58,7 @@ export const renderBody = (edits, rows, type) => {
   })
 }
 
-export const renderTableCaption = props => {
+export const renderTableCaption = (props) => {
   const name = props.edit.edit
   if (!name) return null
   let renderedName = name
@@ -78,11 +79,11 @@ export const renderTableCaption = props => {
     captionHeader = 'Review your loan/application IDs'
   }
 
-  const description = props.edit.description.replace(/"/g, "")
+  const description = props.edit.description.replace(/"/g, '')
 
   if (shouldSuppressTable(props)) {
     return (
-      <div className="caption">
+      <div className='caption'>
         <h3>{captionHeader}</h3>
         {description ? <p>{description}</p> : null}
         {name === 'S040' ? (
@@ -103,7 +104,7 @@ export const renderTableCaption = props => {
   )
 }
 
-export const makeTable = props => {
+export const makeTable = (props) => {
   const edit = props.edit
   const type = props.type
   const rowObj = props.rowObj
@@ -124,7 +125,7 @@ export const makeTable = props => {
 
   return (
     <table
-      width="100%"
+      width='100%'
       className={className}
       summary={`Report for edit ${edit.edit} - ${edit.description}`}
     >
@@ -135,7 +136,7 @@ export const makeTable = props => {
   )
 }
 
-export const shouldSuppressTable = props => {
+export const shouldSuppressTable = (props) => {
   return (
     props.type === 'macro' ||
     props.suppressEdits ||
@@ -145,13 +146,13 @@ export const shouldSuppressTable = props => {
   )
 }
 
-const EditsTable = props => {
+const EditsTable = (props) => {
   if (!props.edit) return null
   const name = props.edit.edit
   const rowObj = props.rowObj
 
   return (
-    <section className="EditsTable" id={name}>
+    <section className='EditsTable' id={name}>
       {makeTable(props)}
       {shouldSuppressTable(props) ? null : (
         <Pagination isFetching={rowObj.isFetching} target={name} />
@@ -166,7 +167,7 @@ EditsTable.propTypes = {
   rowObj: PropTypes.object,
   type: PropTypes.string,
   pagination: PropTypes.object,
-  paginationFade: PropTypes.number
+  paginationFade: PropTypes.number,
 }
 
 export default EditsTable

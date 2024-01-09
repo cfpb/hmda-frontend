@@ -11,22 +11,21 @@ describe('actions', () => {
   it('creates an action to update the status', () => {
     const status = {
       code: 10,
-      message: ''
+      message: '',
     }
     expect(actions.updateStatus(status)).toEqual({
       type: types.UPDATE_STATUS,
-      status: status
+      status: status,
     })
   })
 
   it('creates an action to signal file selection', () => {
-    const file = {size:42, name: 'test.txt'}
+    const file = { size: 42, name: 'test.txt' }
 
     expect(actions.selectFile(file)).toEqual({
       type: types.SELECT_FILE,
       file,
-      errors: []
+      errors: [],
     })
   })
-
 })

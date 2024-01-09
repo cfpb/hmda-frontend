@@ -6,9 +6,9 @@ const ServerErrors = ({ errors }) => {
 
   return (
     <Alert
-      type="error"
-      heading="Server Error"
-      message="Please try again later."
+      type='error'
+      heading='Server Error'
+      message='Please try again later.'
     >
       <>
         {errors.map((err, idx) => (

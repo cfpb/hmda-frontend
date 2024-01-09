@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import { searchInputs, requiredInputs, otherInputs, notesInput } from '../constants/inputs'
+import {
+  searchInputs,
+  requiredInputs,
+  otherInputs,
+  notesInput,
+} from '../constants/inputs'
 import {
   nestInstitutionStateForAPI,
-  flattenApiForInstitutionState
+  flattenApiForInstitutionState,
 } from '../utils/convert'
 import { validateAll } from '../utils/validate'
 
@@ -18,7 +23,7 @@ import Loading from '../../common/LoadingIcon.jsx'
 import Notes from '../Notes'
 import NoteHistory from './NoteHistory'
 import { getFilingYears } from '../../common/constants/configHelpers'
-import * as AccessToken from '../../common/api/AccessToken' 
+import * as AccessToken from '../../common/api/AccessToken'
 
 import './Form.css'
 import { fetchInstitution } from '../search/fetchInstitution'
@@ -27,7 +32,7 @@ let defaultInstitutionState = {}
 searchInputs
   .concat(requiredInputs, otherInputs)
   .forEach(
-    textInput => (defaultInstitutionState[textInput.id] = textInput.value)
+    (textInput) => (defaultInstitutionState[textInput.id] = textInput.value),
   )
 
 class Institution extends Component {
@@ -44,7 +49,7 @@ class Institution extends Component {
       requiresNewNotes: false,
       fetchNotesHistory: true,
       institutions: [],
-      ...defaultInstitutionState
+      ...defaultInstitutionState,
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -79,51 +84,59 @@ class Institution extends Component {
       splitURL[4] = state.institution.activityYear.toString()
       this.props.history.push({
         pathname: splitURL.join('/'),
-        state: { institution: state.institution }
+        state: { institution: state.institution },
       })
     } else if (!state) {
       let year = this.props.match.params.year
       let lei = this.props.match.params.id
-      Promise.all(fetchInstitution(lei.toUpperCase(), this.setState, [year])).then(() => {
-        this.setState({...this.state.institutions[0]})
+      Promise.all(
+        fetchInstitution(lei.toUpperCase(), this.setState, [year]),
+      ).then(() => {
+        this.setState({ ...this.state.institutions[0] })
       })
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(prevState.error !== this.state.error){
+    if (prevState.error !== this.state.error) {
       let errorMsg = document.getElementById('bottomError')
       errorMsg && errorMsg.scrollIntoView({ behavior: 'smooth' })
-    } else if( this.state.isSubmitted ) {
+    } else if (this.state.isSubmitted) {
       const successMsg = document.querySelectorAll('.alert-success')
-      if ( successMsg.length )
+      if (successMsg.length)
         successMsg[successMsg.length - 1].scrollIntoView({
-          behavior: 'smooth'
+          behavior: 'smooth',
         })
     }
   }
 
   toggleShowOtherFields() {
-    this.setState(prevState => ({
-      showOtherFields: !prevState.showOtherFields
+    this.setState((prevState) => ({
+      showOtherFields: !prevState.showOtherFields,
     }))
   }
 
   onInputChange(event) {
     let additionalKeys = { isSubmitted: false, error: null }
 
-    if(this.props.location.pathname.includes('/update')){
+    if (this.props.location.pathname.includes('/update')) {
       // Update to Notes field required on Institution data change
       additionalKeys.requiresNewNotes = true
-      if(event.target.id !== 'notes' && this.state.notes === this.state.prevNotes){
+      if (
+        event.target.id !== 'notes' &&
+        this.state.notes === this.state.prevNotes
+      ) {
         additionalKeys.notes = ''
       }
     }
 
     if (['radio', 'select-one'].includes(event.target.type)) {
-      this.setState({ [event.target.name]: event.target.value, ...additionalKeys }, () => {
-        this.onInputBlur()
-      })
+      this.setState(
+        { [event.target.name]: event.target.value, ...additionalKeys },
+        () => {
+          this.onInputBlur()
+        },
+      )
     } else {
       let value = event.target.value
       if (event.target.name === 'lei') value = value.toUpperCase()
@@ -136,13 +149,10 @@ class Institution extends Component {
   onInputBlur() {
     const checkedInputs = searchInputs.concat(requiredInputs)
 
-    if(this.state.requiresNewNotes) checkedInputs.push(notesInput)
+    if (this.state.requiresNewNotes) checkedInputs.push(notesInput)
 
     this.setState({
-      disabledSubmit: validateAll(
-        checkedInputs,
-        this.state
-      )
+      disabledSubmit: validateAll(checkedInputs, this.state),
     })
   }
 
@@ -158,17 +168,17 @@ class Institution extends Component {
     fetch('/v2/admin/institutions', {
       method: method,
       body: JSON.stringify(nestInstitutionStateForAPI(this.state)),
-      headers
+      headers,
     })
-      .then(response => {
+      .then((response) => {
         if (response.ok) return response.json()
         if ([403, 404].indexOf(response.status) > -1)
           return Promise.reject(
-            new Promise(resolve => resolve({ httpStatus: response.status }))
+            new Promise((resolve) => resolve({ httpStatus: response.status })),
           )
         return Promise.reject(response.json())
       })
-      .then(json => {
+      .then((json) => {
         // set the rest of the state here to be the json response
         // just in case something goes wrong
         // we then have the what the back-end has
@@ -179,20 +189,22 @@ class Institution extends Component {
           wasAddition: false,
           fetching: false,
           disabledSubmit: true,
-          fetchNotesHistory: true
+          fetchNotesHistory: true,
         })
       })
       .then(() => {
         this.props.history.push({
-          pathname: `/update/institution/${this.state.lei}/${this.state.activityYear.toString()}`,
+          pathname: `/update/institution/${
+            this.state.lei
+          }/${this.state.activityYear.toString()}`,
           state: {
             institution: this.state,
             wasAddition: this.props.location.pathname === '/add',
           },
         })
       })
-      .catch(error => {
-        error.then(json => {
+      .catch((error) => {
+        error.then((json) => {
           const status = this.getResponseStatus(json)
           this.setState({ error: status, fetching: false })
         })
@@ -205,35 +217,47 @@ class Institution extends Component {
   }
 
   getErrorHeading() {
-    switch(this.state.error){
-      case '400': return 'Duplicate LEI'
-      case '403': return 'Access Denied'
-      case '404': return 'Not Found'
-      case '412': return 'Institution LEI is an LOU'
-      case '601': return 'Invalid LEI format'
-      default: return ''
+    switch (this.state.error) {
+      case '400':
+        return 'Duplicate LEI'
+      case '403':
+        return 'Access Denied'
+      case '404':
+        return 'Not Found'
+      case '412':
+        return 'Institution LEI is an LOU'
+      case '601':
+        return 'Invalid LEI format'
+      default:
+        return ''
     }
   }
 
   getErrorText() {
-    switch(this.state.error){
-      case '400': return 'Sorry, that LEI already exists. You can verify that by using the search.'
-      case '403': return 'Sorry, you don\'t have the correct permissions. Please contact a HMDA Help administrator.'
-      case '404': return 'Something went wrong. It doesn\'t look like this institution can be added. Please check your data and try again.'
-      case '412': return 'Local Operating Units (LOU) are not valid HMDA Filers.'
-      case '601': return 'Please verify the format of the LEI and try again.'
-      default: return ''
+    switch (this.state.error) {
+      case '400':
+        return 'Sorry, that LEI already exists. You can verify that by using the search.'
+      case '403':
+        return "Sorry, you don't have the correct permissions. Please contact a HMDA Help administrator."
+      case '404':
+        return "Something went wrong. It doesn't look like this institution can be added. Please check your data and try again."
+      case '412':
+        return 'Local Operating Units (LOU) are not valid HMDA Filers.'
+      case '601':
+        return 'Please verify the format of the LEI and try again.'
+      default:
+        return ''
     }
   }
 
   render() {
     const filingYears = getFilingYears(this.props.config)
     const { pathname } = this.props.location
-    
+
     const successAlert = this.state.isSubmitted ? (
       <Alert
-        type="success"
-        heading="Success!"
+        type='success'
+        heading='Success!'
         message={
           this.state.wasAddition
             ? `The institution, ${this.state.lei}, has been added!`
@@ -242,8 +266,8 @@ class Institution extends Component {
       >
         <p>
           You can update this institution by using the form on this page,{' '}
-          <Link to="/">search for an institution</Link>, or{' '}
-          <Link to="/add">add a new institution.</Link>
+          <Link to='/'>search for an institution</Link>, or{' '}
+          <Link to='/add'>add a new institution.</Link>
         </p>
       </Alert>
     ) : null
@@ -256,8 +280,8 @@ class Institution extends Component {
             : 'Update an institution record'}
         </h3>
         <Alert
-          type="error"
-          heading="Are you Tier 2 support?"
+          type='error'
+          heading='Are you Tier 2 support?'
           message={
             pathname === '/add'
               ? 'New institutions should be submitted by Tier 2. Please escalate the case to Tier 2 for further support.'
@@ -266,12 +290,11 @@ class Institution extends Component {
         />
         {successAlert}
         <form
-          className="InstitutionForm"
+          className='InstitutionForm'
           onSubmit={(event) => this.handleSubmit(event)}
         >
           {searchInputs.concat(requiredInputs).map((searchInput) => {
             if (searchInput.type === 'select') {
-
               if (searchInput.id === 'activityYear') {
                 // Derive options from config
                 searchInput.options = [
@@ -279,7 +302,7 @@ class Institution extends Component {
                   ...filingYears.map((yr) => ({
                     id: `${yr}`,
                     name: `${yr}`,
-                  }))
+                  })),
                 ]
               }
 
@@ -338,8 +361,8 @@ class Institution extends Component {
           )}
 
           <button
-            className="button-link toggleButton"
-            type="button"
+            className='button-link toggleButton'
+            type='button'
             onClick={this.toggleShowOtherFields}
           >
             {this.state.showOtherFields ? 'Hide' : 'Show'} other fields
@@ -357,12 +380,12 @@ class Institution extends Component {
             disabled={this.state.disabledSubmit}
           />
 
-          {this.state.fetching ? <Loading className="LoadingInline" /> : null}
+          {this.state.fetching ? <Loading className='LoadingInline' /> : null}
 
           {this.state.error ? (
             <Alert
               id='bottomError'
-              type="error"
+              type='error'
               heading={this.getErrorHeading()}
               message={this.getErrorText()}
             />

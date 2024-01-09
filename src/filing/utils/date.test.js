@@ -45,10 +45,10 @@ describe('ordinal', () => {
 describe('ordinal hour', () => {
   it('returns correct ordinal datetimes', () => {
     expect(ordinalHour(new Date('2013-12-22T00:05:10'))).toBe(
-      'December 22nd, 2013, 12:05:10 AM'
+      'December 22nd, 2013, 12:05:10 AM',
     )
     expect(ordinalHour(new Date('2017-07-18T14:14:14'))).toBe(
-      'July 18th, 2017, 2:14:14 PM'
+      'July 18th, 2017, 2:14:14 PM',
     )
   })
 })

@@ -13,7 +13,7 @@ const Documentation = () => {
         exact
         path='/documentation'
         to={window.location.assign(
-          `${window.location.origin}/documentation/category/frequently-asked-questions`
+          `${window.location.origin}/documentation/category/frequently-asked-questions`,
         )}
       />
       <Route component={NotFound} />

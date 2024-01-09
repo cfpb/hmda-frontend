@@ -11,9 +11,9 @@ const { HOST, ENVIRONMENT } = Cypress.env()
 const dbUrl = dbURL.bind(null, HOST)
 
 describe(`Data Browser - Dataset Filtering`, () => {
-  if ((!isProd(HOST)) || isBeta(HOST)) it('Only runs in Production')
+  if (!isProd(HOST) || isBeta(HOST)) it('Only runs in Production')
   else {
-    YEARS.forEach(year => {
+    YEARS.forEach((year) => {
       describe(`${year} Dataset Filtering`, () => {
         it('State/Institution/PropertyType', () => {
           cy.get({ HOST, ENVIRONMENT }).logEnv()
@@ -34,7 +34,7 @@ describe(`Data Browser - Dataset Filtering`, () => {
           cy.get('#lei-item-select').type('chase bank{enter}')
           cy.url().should(
             'include',
-            'leis=B4TYDEB6GKMZO031MB27,7H6GLXDRUGQFU57RNE97'
+            'leis=B4TYDEB6GKMZO031MB27,7H6GLXDRUGQFU57RNE97',
           )
 
           // Variables
@@ -42,7 +42,7 @@ describe(`Data Browser - Dataset Filtering`, () => {
           cy.findByText('Single Family (1-4 Units):Site-Built').click()
           cy.url().should(
             'include',
-            '&dwelling_categories=Single%20Family%20(1-4%20Units)%3ASite-Built'
+            '&dwelling_categories=Single%20Family%20(1-4%20Units)%3ASite-Built',
           )
 
           // View Summary Table
@@ -50,16 +50,16 @@ describe(`Data Browser - Dataset Filtering`, () => {
           cy.get('.Aggregations', waitUpto2Mins).should('exist')
           cy.get('.Aggregations :nth-child(1) > .sublist > li').should(
             'have.text',
-            'ALABAMA, ALASKA'
+            'ALABAMA, ALASKA',
           )
-          cy.get('.Aggregations :nth-child(2) > .sublist > li').then($li => {
+          cy.get('.Aggregations :nth-child(2) > .sublist > li').then(($li) => {
             let text = $li.text().toLowerCase()
             cy.wrap(text).should('contain', 'bank of america')
             cy.wrap(text).should('contain', 'chase bank')
           })
           cy.get('.Aggregations :nth-child(3) > .sublist > li').should(
             'have.text',
-            'Single Family (1-4 Units):Site-Built'
+            'Single Family (1-4 Units):Site-Built',
           )
           cy.get('.Error').should('not.exist')
         })
@@ -75,7 +75,7 @@ describe(`Data Browser - Dataset Filtering`, () => {
           cy.get('#lei-item-select').type('chase bank{enter}')
           cy.url().should(
             'include',
-            'leis=B4TYDEB6GKMZO031MB27,7H6GLXDRUGQFU57RNE97'
+            'leis=B4TYDEB6GKMZO031MB27,7H6GLXDRUGQFU57RNE97',
           )
 
           // Variables
@@ -86,14 +86,14 @@ describe(`Data Browser - Dataset Filtering`, () => {
           // View Summary Table
           cy.findByText('View Summary Table').click({ force: true })
           cy.get('.Aggregations', waitUpto2Mins).should('exist')
-          cy.get('.Aggregations :nth-child(1) > .sublist > li').then($li => {
+          cy.get('.Aggregations :nth-child(1) > .sublist > li').then(($li) => {
             let text = $li.text().toLowerCase()
             cy.wrap(text).should('contain', 'bank of america')
             cy.wrap(text).should('contain', 'chase bank')
           })
           cy.get('.Aggregations :nth-child(2) > .sublist > li').should(
             'have.text',
-            'Secured By First Lien'
+            'Secured By First Lien',
           )
           cy.get('.Error').should('not.exist')
         })
@@ -117,7 +117,7 @@ describe(`Data Browser - Dataset Filtering`, () => {
           cy.get('#lei-item-select').type('chase bank{enter}')
           cy.url().should(
             'include',
-            'leis=B4TYDEB6GKMZO031MB27,7H6GLXDRUGQFU57RNE97'
+            'leis=B4TYDEB6GKMZO031MB27,7H6GLXDRUGQFU57RNE97',
           )
 
           // Variables
@@ -130,16 +130,16 @@ describe(`Data Browser - Dataset Filtering`, () => {
           cy.get('.Aggregations', waitUpto2Mins).should('exist')
           cy.get('.Aggregations :nth-child(1) > .sublist > li').should(
             'have.text',
-            'AUTAUGA COUNTY, BALDWIN COUNTY'
+            'AUTAUGA COUNTY, BALDWIN COUNTY',
           )
-          cy.get('.Aggregations :nth-child(2) > .sublist > li').then($li => {
+          cy.get('.Aggregations :nth-child(2) > .sublist > li').then(($li) => {
             let text = $li.text().toLowerCase()
             cy.wrap(text).should('contain', 'bank of america')
             cy.wrap(text).should('contain', 'chase bank')
           })
           cy.get('.Aggregations :nth-child(3) > .sublist > li').should(
             'have.text',
-            '25-49'
+            '25-49',
           )
           cy.get('.Error').should('not.exist')
         })
@@ -163,7 +163,7 @@ describe(`Data Browser - Dataset Filtering`, () => {
           cy.get('#lei-item-select').type('chase bank{enter}')
           cy.url().should(
             'include',
-            'leis=B4TYDEB6GKMZO031MB27,7H6GLXDRUGQFU57RNE97'
+            'leis=B4TYDEB6GKMZO031MB27,7H6GLXDRUGQFU57RNE97',
           )
 
           // Variables
@@ -174,24 +174,24 @@ describe(`Data Browser - Dataset Filtering`, () => {
           // View Summary Table
           cy.findByText('View Summary Table').click({ force: true })
           cy.get('.Aggregations', waitUpto2Mins).should('exist')
-          
+
           const msa_text =
             year === 2018
               ? '11500\u00A0-\u00A0ANNISTON-OXFORD-JACKSONVILLE, 12220\u00A0-\u00A0AUBURN-OPELIKA'
               : '11500\u00A0-\u00A0ANNISTON-OXFORD, 12220\u00A0-\u00A0AUBURN-OPELIKA'
-          
+
           cy.get('.Aggregations :nth-child(1) > .sublist > li').should(
             'have.text',
-            msa_text
+            msa_text,
           )
-          cy.get('.Aggregations :nth-child(2) > .sublist > li').then($li => {
+          cy.get('.Aggregations :nth-child(2) > .sublist > li').then(($li) => {
             let text = $li.text().toLowerCase()
             cy.wrap(text).should('contain', 'bank of america')
             cy.wrap(text).should('contain', 'chase bank')
           })
           cy.get('.Aggregations :nth-child(3) > .sublist > li').should(
             'have.text',
-            'Conventional'
+            'Conventional',
           )
           cy.get('.Error').should('not.exist')
         })
