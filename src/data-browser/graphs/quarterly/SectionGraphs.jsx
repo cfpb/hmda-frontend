@@ -1,5 +1,5 @@
 import Highcharts from 'highcharts'
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CopyURLButton from '../../../common/CopyURLButton.jsx'
 import LoadingIcon from '../../../common/LoadingIcon'
@@ -91,6 +91,74 @@ export const SectionGraphs = ({
     selectedGraph,
     selectedGraphData,
   })
+//*******************************************
+//  Loan Purpose Selector Functionality
+//*******************************************/
+  // Dropdown Menu Options
+  const loanPurposeOptions = [
+    { value: '', label: 'All' },
+    { value: 'home', label: 'Home Purchase' },
+    { value: 'refinance', label: 'Refinance' }
+  ]
+
+  const [loanPurposeSelected, setLoanPurposeSelected] = useState({
+    value: '', label: 'All'
+  });
+
+  // Filter Options for Graphs Dropdown Menu based on Loan Purpose selected
+  const filteredGraphMenuOptions = graphMenuOptions.map(category => {
+    const options = category.options.filter(option => {
+      if (!loanPurposeSelected || loanPurposeSelected.value == '') {
+        return (!option.value.endsWith('home') && !option.value.endsWith('refinance'))
+      }
+      else if (loanPurposeSelected.value == 'home') {
+        return option.value.endsWith('home')
+      } 
+      else if (loanPurposeSelected.value == 'refinance') {
+        return option.value.endsWith('refinance')
+      }
+    })
+  
+    // Return new object with filtered options
+    return {
+      ...category,
+      options  
+    }
+  })
+
+  // Update Graph according to Loan Purpose selected
+  const handleLoanPurposeSelection = (loanPurposeSelected) => {
+    
+      setLoanPurposeSelected(loanPurposeSelected)   
+
+      let valueIndex = ((selectedGraph.value).toString()).indexOf('-loan-purpose')
+      let labelIndex = ((selectedGraph.label).toString()).indexOf('-')
+      let updatedGraphSelection = '' 
+      let updatedGraphLabel = ''
+
+      // Switching to 'All' Loan Purpose
+      if (loanPurposeSelected.value == '') {
+        updatedGraphSelection = selectedGraph.value.substring(0, valueIndex)
+        updatedGraphLabel = selectedGraph.label.substring(0, labelIndex)
+      }
+      // Switching from 'Home Purchase' to 'Refinance' Loan Purpose (and vice-versa)
+      else if (valueIndex !== -1) {
+        updatedGraphSelection = selectedGraph.value.substring(0, valueIndex) + '-loan-purpose-' + loanPurposeSelected.value
+        updatedGraphLabel = selectedGraph.label.substring(0, labelIndex) + ' - ' + loanPurposeSelected.label
+      } 
+      // Switching from 'All' to 'Home Purchase' or 'Refinance' Loan Purpose
+      else {
+        updatedGraphSelection = selectedGraph.value + '-loan-purpose-' + loanPurposeSelected.value
+        updatedGraphLabel = selectedGraph.label + ' - ' + loanPurposeSelected.label
+      } 
+      
+      // Update Graph Selection
+      dispatch(graphs.setConfig(SELECTED_GRAPH, {value: updatedGraphSelection, label: updatedGraphLabel}))
+      fetchSingleGraph(updatedGraphSelection)
+      
+  }
+// End Loan Purpose Selection functionality
+  
 
   const handleGraphSelection = useCallback(
     event => {
@@ -101,6 +169,7 @@ export const SectionGraphs = ({
         )
       )
       fetchSingleGraph(event.value) // value = endpoint for single graph (i.e) -> /applications
+      console.log('Event Value: ' + event.value)
     },
     [rawGraphList, fetchSingleGraph, dispatch]
   )
@@ -202,10 +271,21 @@ export const SectionGraphs = ({
 
   return (
     <>
-      <p className='instructions'>Select a graph from the menu below</p>
+      <p className='instructions'>Select a Loan Purpose:</p>
+      <Select
+        classNamePrefix='react-select__loan' // Used for cypress testing
+        options={loanPurposeOptions}
+        placeholder='Select a Loan Purpose'
+        aria-label='Select a Loan Purpose'
+        onChange={handleLoanPurposeSelection}
+        value={loanPurposeSelected}
+        formatGroupLabel={formatGroupLabel}
+        onMenuOpen={onMenuOpen}
+      />
+      <p className='instructions'>Select a Graph:</p>
       <Select
         classNamePrefix='react-select__graph' // Used for cypress testing
-        options={graphMenuOptions}
+        options={filteredGraphMenuOptions}
         placeholder='Select a Graph'
         aria-label='Select a Graph.'
         onChange={handleGraphSelection}
