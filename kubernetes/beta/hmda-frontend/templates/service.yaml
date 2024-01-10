@@ -35,5 +35,3 @@ metadata:
       service: {{ include "hmda-frontend.fullname" . }}:{{ .Values.service.port }}
 spec:
   clusterIP: None
-  ports:
-    - port: {{ .Values.service.port }}
