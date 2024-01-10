@@ -169,7 +169,6 @@ export const SectionGraphs = ({
         )
       )
       fetchSingleGraph(event.value) // value = endpoint for single graph (i.e) -> /applications
-      console.log('Event Value: ' + event.value)
     },
     [rawGraphList, fetchSingleGraph, dispatch]
   )
