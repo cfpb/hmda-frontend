@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import RefileButton from '../refileButton/container.jsx'
+import RefileButton from '../common/RefileButton'
 import Alert from '../../common/Alert.jsx'
 import CSVDownload from '../common/CSVContainer.jsx'
 import {

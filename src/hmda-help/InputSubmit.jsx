@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import './InputSubmit.css'
@@ -11,26 +11,20 @@ const values = {
   submissions: 'Search Submissions',
 }
 
-class InputSubmit extends Component {
-  render() {
-    let cname = 'inputSubmit'
-    const options = {}
-    const { addClass, actionType, disabled, onClick } = this.props
+const InputSubmit = ({ addClass, actionType, disabled, onClick }) => {
+  let cname = 'inputSubmit'
+  if (addClass) cname = `${cname} ${addClass}`
 
-    if (addClass) cname = `${cname} ${addClass}`
-    if (onClick) options.onClick = onClick
-
-    return (
-      <input
-        id={actionType}
-        className={cname}
-        type='submit'
-        value={values[actionType]}
-        disabled={disabled}
-        {...options}
-      />
-    )
-  }
+  return (
+    <input
+      id={actionType}
+      className={cname}
+      type='submit'
+      value={values[actionType]}
+      disabled={disabled}
+      onClick={onClick}
+    />
+  )
 }
 
 InputSubmit.defaultProps = {

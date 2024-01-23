@@ -71,7 +71,7 @@ export function sanitizeArray(key, val, year = '2018') {
   return arr
 }
 
-export function makeStateFromSearch(search, s, detailsCb, updateSearch) {
+export function makeStateFromSearch(search, state, detailsCb, updateSearch) {
   const qsParts = search.slice(1).split('&')
   let regenerateSearch = false
 
@@ -81,32 +81,32 @@ export function makeStateFromSearch(search, s, detailsCb, updateSearch) {
     let [key, val] = part.split('=')
     val = val.split(',')
 
-    if (isInvalidKey(key, s)) {
+    if (isInvalidKey(key, state)) {
       regenerateSearch = true
       return
     }
 
     if (key === 'category') {
-      s[key] = val[0]
-    } else if (key === 'items' && s.category) {
-      const sanitized = sanitizeArray(s.category, val, s.year)
+      state[key] = val[0]
+    } else if (key === 'items' && state.category) {
+      const sanitized = sanitizeArray(state.category, val, state.year)
       if (sanitized.length !== val.length) regenerateSearch = true
-      s[key] = sanitized
+      state[key] = sanitized
     } else if (['leis', 'arids'].indexOf(key) > -1) {
       let stateKey = 'leis'
       const sanitized = sanitizeArray(stateKey, val)
       if (sanitized.length !== val.length) regenerateSearch = true
-      s[stateKey] = sanitized
+      state[stateKey] = sanitized
     } else if (key === 'getDetails') {
       setTimeout(detailsCb, 0)
     } else {
-      const sanitized = sanitizeArray(key, val, s.year)
+      const sanitized = sanitizeArray(key, val, state.year)
       if (sanitized.length !== val.length) regenerateSearch = true
-      if (sanitized.length) s.orderedVariables.push(key)
+      if (sanitized.length) state.orderedVariables.push(key)
       sanitized.forEach((v) => {
-        if (s.variables[key]) s.variables[key][v] = true
-        else if (v) s.variables[key] = { [v]: true }
-        else s.variables[key] = {}
+        if (state.variables[key]) state.variables[key][v] = true
+        else if (v) state.variables[key] = { [v]: true }
+        else state.variables[key] = {}
       })
     }
   })
@@ -114,16 +114,16 @@ export function makeStateFromSearch(search, s, detailsCb, updateSearch) {
   //update search based on failed validation
   if (regenerateSearch) setTimeout(updateSearch, 0)
 
-  return s
+  return state
 }
 
-export function makeSearchFromState(s) {
+export function makeSearchFromState(state) {
   let params = [
-    makeParam(s, 'category'),
-    makeParam(s, 'items'),
-    makeParam(s, getInstitutionIdKey(s.year)),
-    makeParam(s, 'variables'),
-    makeParam(s, 'details'),
+    makeParam(state, 'category'),
+    makeParam(state, 'items'),
+    makeParam(state, getInstitutionIdKey(state.year)),
+    makeParam(state, 'variables'),
+    makeParam(state, 'details'),
   ]
 
   params = params.filter((v) => v)

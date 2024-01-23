@@ -12,8 +12,6 @@ import { AGGREGATE_REPORTS } from '../constants/aggregate-reports.js'
 import { withAppContext } from '../../common/appContextHOC.jsx'
 import { withYearValidation } from '../../common/withYearValidation.jsx'
 
-import './Aggregate.css'
-
 const detailsCache = {
   2022: {
     states: {},
@@ -46,13 +44,11 @@ const detailsCache = {
     reports: {},
   },
 }
-
 STATES.forEach((v) => {
   Object.keys(detailsCache).forEach((year) => {
     detailsCache[year].states[v.id] = v
   })
 })
-
 Object.keys(AGGREGATE_REPORTS).forEach((year) =>
   AGGREGATE_REPORTS[year].forEach((v) => {
     if (v.value) {
@@ -66,7 +62,6 @@ Object.keys(AGGREGATE_REPORTS).forEach((year) =>
     }
   }),
 )
-
 class Aggregate extends React.Component {
   constructor(props) {
     super(props)
@@ -219,10 +214,7 @@ class Aggregate extends React.Component {
                   <Reports {...this.props} />
                 )
               ) : (
-                <MsaMds
-                  {...this.props}
-                  selectorCallback={this.setMsaMd}
-                />
+                <MsaMds {...this.props} selectorCallback={this.setMsaMd} />
               )
             ) : (
               <React.Fragment>
@@ -249,5 +241,4 @@ class Aggregate extends React.Component {
     )
   }
 }
-
 export default withAppContext(withYearValidation(Aggregate))

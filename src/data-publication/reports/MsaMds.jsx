@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Selector from './Selector.jsx'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
 import stateToMsas from '../constants/stateToMsas.js'
@@ -6,75 +6,64 @@ import fetchMsas from './fetchMsas.js'
 
 const MSA_MDS = {}
 
-class MsaMds extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      error: null,
-      isLoaded: !!this.props.msaMds,
-      msaMds: this.props.msaMds || [],
-    }
-    if (this.props.msaMds) {
-      MSA_MDS[props.match.params.institutionId] = this.props.msaMds
-    }
+const MsaMds = (props) => {
+  const { msaMds: propsMsaMds, match } = props
+
+  if (propsMsaMds) {
+    MSA_MDS[match.params.institutionId] = propsMsaMds
   }
 
-  componentDidMount() {
-    if (this.state.msaMds.length) return
+  const [msaMds, setMsaMds] = useState(propsMsaMds || [])
+  const [isLoaded, setIsLoaded] = useState(!!msaMds)
+  const [error, setError] = useState(null)
 
-    const { params } = this.props.match
+  useEffect(() => {
+    const { params } = match
+    if (msaMds.length) return
+
     if (params.stateId) {
-      this.setState({
-        msaMds: stateToMsas[params.year][params.stateId],
-        isLoaded: true,
-      })
+      setMsaMds(stateToMsas[params.year][params.stateId])
+      setIsLoaded(true)
     } else {
       if (MSA_MDS[params.institutionId]) {
-        return this.setState({
-          isLoaded: true,
-          msaMds: MSA_MDS[params.institutionId],
-        })
+        setMsaMds(MSA_MDS[params.institutionId])
+        setIsLoaded(true)
+        return
       }
       fetchMsas(params.institutionId, params.year).then(
         (result) => {
-          const msaMds = result.msaMds.sort((a, b) => a.id - b.id)
-          msaMds.push({ id: 'nationwide' })
-          MSA_MDS[params.institutionId] = msaMds
-          this.setState({
-            isLoaded: true,
-            msaMds: msaMds,
-          })
+          const sortedMsaMds = result.msaMds.sort((a, b) => a.id - b.id)
+          sortedMsaMds.push({ id: 'nationwide' })
+          MSA_MDS[params.institutionId] = sortedMsaMds
+          setMsaMds(sortedMsaMds)
+          setIsLoaded(true)
         },
         (error) => {
-          this.setState({
-            isLoaded: true,
-            error: `${error.status}: ${error.statusText}`,
-          })
+          setIsLoaded(true)
+          setError(`${error.status}: ${error.statusText}`)
         },
       )
     }
-  }
+  }, [propsMsaMds, match.params, msaMds.length])
 
-  render() {
-    if (this.state.error) return <p>{this.state.error}</p>
-    if (!this.state.isLoaded) return <LoadingIcon />
+  if (error) return <p>{error}</p>
+  if (!isLoaded) return <LoadingIcon />
 
-    const options = this.state.msaMds.map((val) => {
-      let label = val.id
-      if (val.name) label += ' - ' + val.name
-      else label = val.id.toUpperCase()
-      return { value: val.id, label, data: val }
-    })
+  const options = msaMds.map((val) => {
+    let label = val.id
+    if (val.name) label += ' - ' + val.name
+    else label = val.id.toUpperCase()
+    return { value: val.id, label, data: val }
+  })
 
-    return (
-      <Selector
-        options={options}
-        placeholder='Select MSA/MD...'
-        header='Choose an available MSA/MD'
-        {...this.props}
-      />
-    )
-  }
+  return (
+    <Selector
+      options={options}
+      placeholder='Select MSA/MD...'
+      header='Choose an available MSA/MD'
+      {...props}
+    />
+  )
 }
 
 export default MsaMds

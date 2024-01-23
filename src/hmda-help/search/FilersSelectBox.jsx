@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { createFilter } from 'react-select'
 import CreatableSelect from 'react-select/creatable'
 import { isCI } from '../../common/environmentChecks'
-import { MenuList } from '../../data-browser/datasets/MenuList'
+import MenuList from '../../data-browser/datasets/MenuList'
 import CI_INSTITUTIONS from '../constants/ciInstitutions'
 import {
   useFocusOnInput,

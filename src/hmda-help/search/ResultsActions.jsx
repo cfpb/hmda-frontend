@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
@@ -7,25 +7,24 @@ import Loading from '../../common/LoadingIcon.jsx'
 
 import './Results.css'
 
-class ResultsActions extends Component {
-  constructor(props) {
-    super(props)
+const ResultsActions = ({
+  institution,
+  index,
+  error,
+  handleDeleteClick,
+  tables,
+}) => {
+  const [deleting, setDeleting] = useState(false)
+  const buttonsRef = useRef(new Map())
 
-    this.state = { deleting: false }
-    this.buttons = new Map()
-
-    this.handleViewMoreClick = this.handleViewMoreClick.bind(this)
-    this.toggleAreYouSure = this.toggleAreYouSure.bind(this)
-  }
-
-  toggleAreYouSure(index) {
+  const toggleAreYouSure = (index) => {
     document.getElementById(`initialActions${index}`).classList.toggle('hidden')
     document.getElementById(`areYouSure${index}`).classList.toggle('hidden')
   }
 
-  handleViewMoreClick(index) {
-    const table = this.props.tables.get(index)
-    const button = this.buttons.get(index)
+  const handleViewMoreClick = (index) => {
+    const table = tables.get(index)
+    const button = buttonsRef.current.get(index)
 
     table.classList.toggle('hidden')
     if (table.classList.contains('hidden')) {
@@ -35,71 +34,64 @@ class ResultsActions extends Component {
     }
   }
 
-  render() {
-    const { institution, index, error, handleDeleteClick } = this.props
-
-    return (
-      <td className='action'>
-        {this.state.deleting ? (
-          <Loading className='LoadingInline' />
-        ) : (
-          <React.Fragment>
-            <div className='initialActions' id={`initialActions${index}`}>
-              <Link
-                to={{
-                  pathname: `/update/institution/${institution.lei}/${institution.activityYear}`,
-                  state: { institution: institution },
+  return (
+    <td className='action'>
+      {deleting ? (
+        <Loading className='LoadingInline' />
+      ) : (
+        <React.Fragment>
+          <div className='initialActions' id={`initialActions${index}`}>
+            <Link
+              to={{
+                pathname: `/update/institution/${institution.lei}/${institution.activityYear}`,
+                state: { institution: institution },
+              }}
+            >
+              Update
+            </Link>
+            <button className='delete' onClick={() => toggleAreYouSure(index)}>
+              Delete
+            </button>
+            <button
+              onClick={() => handleViewMoreClick(index)}
+              ref={(element) => buttonsRef.current.set(index, element)}
+              className='showOtherFields'
+            >
+              Show other fields
+            </button>
+          </div>
+          <div className='areYouSure hidden' id={`areYouSure${index}`}>
+            <span>Are you sure?</span>{' '}
+            <div className='buttons'>
+              <button
+                className='yes'
+                onClick={() => {
+                  setDeleting(true)
+                  handleDeleteClick(institution, index)
                 }}
               >
-                Update
-              </Link>
+                Yes
+              </button>
               <button
                 className='delete'
-                onClick={(event) => this.toggleAreYouSure(index)}
+                onClick={() => toggleAreYouSure(index)}
               >
-                Delete
-              </button>
-              <button
-                onClick={(event) => this.handleViewMoreClick(index)}
-                ref={(element) => this.buttons.set(index, element)}
-                className='showOtherFields'
-              >
-                Show other fields
+                No
               </button>
             </div>
-            <div className='areYouSure hidden' id={`areYouSure${index}`}>
-              <span>Are you sure?</span>{' '}
-              <div className='buttons'>
-                <button
-                  className='yes'
-                  onClick={(event) => {
-                    this.setState({ deleting: true })
-                    handleDeleteClick(institution, index)
-                  }}
-                >
-                  Yes
-                </button>
-                <button
-                  className='delete'
-                  onClick={(event) => this.toggleAreYouSure(index)}
-                >
-                  No
-                </button>
-              </div>
-            </div>
-            {error ? (
-              <Alert
-                type='error'
-                heading='Access Denied'
-                text="Sorry, it doesn't look like you have the correct permissions to
+          </div>
+          {error ? (
+            <Alert
+              type='error'
+              heading='Access Denied'
+              text="Sorry, it doesn't look like you have the correct permissions to
                     perform this action."
-              />
-            ) : null}
-          </React.Fragment>
-        )}
-      </td>
-    )
-  }
+            />
+          ) : null}
+        </React.Fragment>
+      )}
+    </td>
+  )
 }
 
 ResultsActions.propTypes = {
@@ -108,7 +100,6 @@ ResultsActions.propTypes = {
   error: PropTypes.string,
   handleDeleteClick: PropTypes.func.isRequired,
   tables: PropTypes.object.isRequired,
-  //onInputChange: PropTypes.func.isRequired
 }
 
 export default ResultsActions
