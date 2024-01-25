@@ -18,7 +18,6 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click()
       cy.get('#institution-name').type('cypress bank, ssb')
       cy.findByText('View MSA/MDs').click()
-      cy.wait(10000)
       cy.findByText('Select MSA/MD...').type('Dallas{enter}')
       cy.findByText('Select report...').type('Applications by Tract{enter}')
 
@@ -70,7 +69,6 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click()
       cy.get('#institution-name').type('cypress bank, ssb')
       cy.findByText('View MSA/MDs').click()
-      cy.wait(10000)
       cy.findByText('Select MSA/MD...').type('Dallas{enter}')
       cy.findByText('Select report...').type('Applications by Tract{enter}')
 
@@ -122,7 +120,6 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click()
       cy.get('#institution-name').type('cypress bank, ssb')
       cy.findByText('View MSA/MDs').click()
-      cy.wait(10000)
       cy.findByText('Select MSA/MD...').type('Dallas{enter}')
       cy.findByText('Select report...').type('Applications by Tract{enter}')
 
@@ -177,7 +174,6 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click()
       cy.get('#institution-name').type('cypress bank, ssb')
       cy.findByText('View MSA/MDs').click()
-      cy.wait(10000)
       cy.findByText('Select MSA/MD...').type('Dallas{enter}')
       cy.findByText('Select report...').type('Applications by Tract{enter}')
 
@@ -224,7 +220,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('tbody > :nth-child(4) > :nth-child(15)').should('have.text', '0')
     })
 
-    it.only('Fetches a 2018 Applications by Tract Report', () => {
+    it('Fetches a 2018 Applications by Tract Report', () => {
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 867)
       cy.visit(`${HOST}/data-publication/disclosure-reports/2018`)
@@ -235,8 +231,6 @@ onlyOn(!isBeta(HOST), () => {
       cy.get(
         '#main-content > .SearchList > .Results > li > .button-link',
       ).click()
-
-      cy.wait(10000)
 
       cy.get('#react-select-2-option-2').click()
       cy.get('#react-select-3-option-0').click()
