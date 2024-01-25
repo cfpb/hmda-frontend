@@ -1,29 +1,15 @@
-FROM redhat/ubi8:8.9
-RUN dnf -y update
+# Insalling specific versions of required image dependencies 
+ARG YARN_VERSION='1.22.19'
+ARG NODE_VERSION='20.8.0'
 
-# Install node & yarn
-RUN dnf -y module install nodejs:18
-RUN npm install -g npm@latest
-RUN npm install yarn -g
+# https://hub.docker.com/r/cypress/factory/
+FROM cypress/factory
 
-# Integrate additional dependency source repositories
-RUN dnf -y install --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-$(rpm -E %rhel).noarch.rpm
-RUN dnf -y install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm
-RUN dnf -y install --nogpgcheck https://rpms.remirepo.net/enterprise/remi-release-$(rpm -E %rhel).rpm
-RUN rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
-RUN rpm -Uvh https://www.elrepo.org/elrepo-release-8.el8.elrepo.noarch.rpm
-RUN yum -y install http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
-RUN yum -y install http://mirror.ghettoforge.org/distributions/gf/gf-release-latest.gf.el8.noarch.rpm
-
-# Install Cypress' dependencies
-COPY cypress/install-cypress-dependencies.sh /
-RUN /bin/sh install-cypress-dependencies.sh
-
-# Cleanup vulnerabilities (as root user)
-RUN rm -rf /usr/local/share/.cache/yarn/v6/npm-public-encrypt-*/node_modules/public-encrypt/test/*
-RUN rm -rf /root/.cache/Cypress/**/Cypress/resources/app/node_modules/public-encrypt/test/*
-RUN rm -rf /root/.cache/Cypress/**/Cypress/resources/app/node_modules/http-proxy/test/*
-RUN rm -rf /root/.cache/Cypress/**/Cypress/resources/app/node_modules/lazystream/secret
+RUN apt-get update -y
+RUN apt-get upgrade -y
+RUN apt-get install curl unzip -y
+RUN apt-get clean autoclean
+RUN apt-get autoremove --yes
 
 # Prepare working directory
 RUN mkdir -p hmda-frontend/cypress/downloads hmda-frontend/cypress/screenshots hmda-frontend/cypress/videos hmda-frontend/cypress/integration hmda-frontend/cypress/fixtures
@@ -47,6 +33,8 @@ RUN mkdir -p src/filing/utils/
 COPY ../src/filing/utils src/filing/utils
 RUN mkdir -p src/tools/larft/config/
 COPY ../src/tools/larft/config/ src/tools/larft/config/
+RUN mkdir -p src/updates-notes/
+COPY ../src/updates-notes/change-log-data.json src/updates-notes/
 
 # Enable creation of screenshots/videos
 RUN useradd -M -d /hmda-frontend -s /bin/bash hmda_cypress_user && \
@@ -62,3 +50,6 @@ RUN rm -rf /hmda-frontend/node_modules/public-encrypt/test/*
 RUN rm -rf /hmda-frontend/.cache/Cypress/**/Cypress/resources/app/node_modules/public-encrypt/test/*
 RUN rm -rf /hmda-frontend/.cache/Cypress/**/Cypress/resources/app/node_modules/http-proxy/test/*
 RUN rm -rf /hmda-frontend/.cache/Cypress/**/Cypress/resources/app/node_modules/lazystream/secret
+
+# ENTRYPOINT is used so the image/container doesn't automatically run
+ENTRYPOINT [ "/bin/bash" ]
