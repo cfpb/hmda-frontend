@@ -15,41 +15,42 @@ import { LARFT } from './larft'
 
 import './index.css'
 
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+import HomeOptionTwo from './HomeOptionTwo'
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname } = useLocation()
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    window.scrollTo(0, 0)
+  }, [pathname])
 
-  return null;
+  return null
 }
 
 const Tools = () => {
   return (
-    <div className="Tools App">
+    <div className='Tools App'>
       <ScrollToTop />
       <Switch>
-        <Route exact path="/tools" component={Home} />
-        <Route path="/tools/check-digit" component={CheckDigit} />
+        <Route exact path='/tools' component={HomeOptionTwo} />
+        <Route path='/tools/check-digit' component={CheckDigit} />
         <Route
-          path="/tools/rate-spread/requirements"
+          path='/tools/rate-spread/requirements'
           component={RateSpreadRequirements}
         />
         <Route
-          path="/tools/rate-spread/methodology"
+          path='/tools/rate-spread/methodology'
           component={RateSpreadMethodology}
         />
         <Route
-          path="/tools/rate-spread/methodology-alt"
+          path='/tools/rate-spread/methodology-alt'
           component={RateSpreadMethodology_alt}
         />
-        <Route path="/tools/rate-spread" component={RateSpread} />
-        <Route path="/tools/file-format-verification" component={FFVT} />
-        <Route path="/tools/lar-formatting" component={AppIntro} />
+        <Route path='/tools/rate-spread' component={RateSpread} />
+        <Route path='/tools/file-format-verification' component={FFVT} />
+        <Route path='/tools/lar-formatting' component={AppIntro} />
         <Route path='/tools/online-lar-formatting'>
           <Provider store={larftStore}>
             <LARFT />

@@ -1,14 +1,13 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import Heading from "../common/Heading.jsx"
-import NewIndicator from "../homepage/NewIndicator.jsx"
-import { IoCalculatorSharp } from "react-icons/io5";
-import { MdFormatIndentIncrease } from "react-icons/md";
-import { FiFileText } from "react-icons/fi";
-import { MdOutlineFactCheck } from "react-icons/md";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import Heading from '../common/Heading.jsx'
+import NewIndicator from '../homepage/NewIndicator.jsx'
+import { ReactComponent as Calculator } from '../common/images/tools/calculator_color.svg'
+import { ReactComponent as Check } from '../common/images/tools/check_color.svg'
+import { ReactComponent as Format } from '../common/images/tools/format_color.svg'
+import { ReactComponent as Verify } from '../common/images/tools/verify_color.svg'
 
-
-import "./Home.css"
+import './Home.css'
 
 const Home = () => {
   return (
@@ -21,7 +20,7 @@ const Home = () => {
 
       <div className='card-container'>
         <Link to='/tools/rate-spread' className='card tools-card'>
-          <IoCalculatorSharp className="icon"/>
+          <Calculator className='icon' style={{ marginLeft: '-1px' }} />
           <Heading
             headingText='Rate Spread Calculator'
             paragraphText='Provides rate spreads for HMDA reportable loans
@@ -33,19 +32,22 @@ const Home = () => {
 
         <div
           className='card tools-card tools-card-no-hover-change'
-          style={{ cursor: "initial" }}
+          style={{ cursor: 'initial' }}
         >
-          <MdFormatIndentIncrease className="icon"/>
+          <Format
+            className='icon'
+            style={{ marginLeft: '5px', height: '36px', width: '36px' }}
+          />
           <Heading
             headingText='LAR Formatting'
             paragraphText='Tools to help small financial institutions create electronic HMDA submission files.'
             type={3}
-            style={{ marginTop: 0}}
+            style={{ marginTop: 0 }}
           >
             <ul>
               <li>
                 <a href='/tools/online-lar-formatting'>
-                  Online LAR Formatting{" "}
+                  Online LAR Formatting{' '}
                   <NewIndicator id='tools-card-indicator' />
                 </a>
               </li>
@@ -57,22 +59,22 @@ const Home = () => {
         </div>
 
         <Link to='/tools/file-format-verification' className='card tools-card'>
-          <FiFileText className="icon" />
+          <Verify className='icon' />
           <Heading
             headingText='File Format Verification Tool'
             paragraphText='Checks if your LAR file meets format specified in the HMDA Filing Instructions Guide.'
             type={3}
-            style={{ marginTop: 0}}
+            style={{ marginTop: 0 }}
           />
         </Link>
 
         <Link to='/tools/check-digit' className='card tools-card'>
-          <MdOutlineFactCheck className="icon" />
+          <Check className='icon' />
           <Heading
             headingText='Check Digit'
             paragraphText='Generates a two character check digit for a Legal Entity Identifier (LEI) and loan/application ID. It can also validate check digits in a complete Universal Loan Identifier (ULI) that is entered.'
             type={3}
-            style={{ marginTop: 0}}
+            style={{ marginTop: 0 }}
           />
         </Link>
       </div>

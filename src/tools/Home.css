@@ -1,5 +1,5 @@
 .tools-card {
-  background-color: #1F498f;
+  background-color: #1f498f;
   border-radius: 8px;
   padding: 20px 25px 8px 25px;
   text-decoration: none;
@@ -12,7 +12,7 @@
 }
 
 .tools-card-no-hover-change:hover {
-  background-color: #1F498f;
+  background-color: #1f498f;
 }
 
 .tools-card:visited {
@@ -47,8 +47,8 @@
 }
 
 .tools-card .icon {
-  height: 44px;
-  width: 44px;
+  height: 38px;
+  width: 38px;
   margin-bottom: 4px;
   color: white;
 }
