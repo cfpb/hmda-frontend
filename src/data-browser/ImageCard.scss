@@ -53,6 +53,9 @@ a:hover {
         border: 15px solid #fff;
         border-style: double;
       }
+      .tile-list {
+        padding-left: 1em;
+      }
       .info {
         h3 {
           color: var(--hmda-blue);
@@ -103,7 +106,6 @@ a:hover {
   }
 }
 
-
 .Tools .home .card-container {
   @media (min-width: 56em) {
     .card-wrapper {
@@ -113,7 +115,7 @@ a:hover {
   }
   @media (min-width: 85em) {
     .card-wrapper {
-      width: 24%;
+      width: 49%;
       max-height: 600px;
     }
   }

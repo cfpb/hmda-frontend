@@ -18,13 +18,13 @@ const ImageCardWithList = props => {
         <span className='desc'>{props.description}</span>
         {/* Render list */}
         {props.list && (
-          <ul>
+          <ul className='tile-list'>
             {props.list.map((option, i) => (
               <li key={i}>
-                <a href={option.link}>
+                <Link to={option.link}>
                   {option.name}
                   {option.new && <NewIndicator id='tools-card-indicator' />}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

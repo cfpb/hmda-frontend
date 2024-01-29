@@ -1,15 +1,23 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import Heading from '../common/Heading.jsx'
-import NewIndicator from '../homepage/NewIndicator.jsx'
 import Calculator from '../common/images/tools/calculator_color.png'
 import Check from '../common/images/tools/check_color.png'
 import Format from '../common/images/tools/format_color.png'
 import Verify from '../common/images/tools/verify_color.png'
 
 import './Home.css'
+import ImageCard from '../data-browser/ImageCard.jsx'
 
 const Home = () => {
+  const LARFormattingOptions = [
+    { name: 'LAR Formatting', link: '/tools/lar-formatting' },
+    {
+      name: 'Online LAR Formatting',
+      link: '/tools/online-lar-formatting',
+      new: true,
+    },
+  ]
+
   return (
     <div className='grid home'>
       <Heading
@@ -19,64 +27,38 @@ const Home = () => {
       />
 
       <div className='card-container'>
-        <Link to='/tools/rate-spread' className='card tools-card'>
-          <Calculator className='icon' style={{ marginLeft: '-1px' }} />
-          <Heading
-            headingText='Rate Spread Calculator'
-            paragraphText='Provides rate spreads for HMDA reportable loans
-            with a final action date on or after January 1st, 2018.'
-            type={3}
-            style={{ marginTop: 0 }}
-          />
-        </Link>
+        <ImageCard
+          title='Rate Spread Calculator'
+          description='Provides rate spreads for HMDA reportable loans
+          with a final action date on or after January 1st, 2018.'
+          enabled
+          url={'/tools/rate-spread'}
+          image={Calculator}
+        />
 
-        <div
-          className='card tools-card tools-card-no-hover-change'
-          style={{ cursor: 'initial' }}
-        >
-          <Format
-            className='icon'
-            style={{ marginLeft: '5px', height: '36px', width: '36px' }}
-          />
-          <Heading
-            headingText='LAR Formatting'
-            paragraphText='Tools to help small financial institutions create electronic HMDA submission files.'
-            type={3}
-            style={{ marginTop: 0 }}
-          >
-            <ul>
-              <li>
-                <a href='/tools/online-lar-formatting'>
-                  Online LAR Formatting{' '}
-                  <NewIndicator id='tools-card-indicator' />
-                </a>
-              </li>
-              <li>
-                <a href='/tools/lar-formatting'>Excel LAR Formatting</a>
-              </li>
-            </ul>
-          </Heading>
-        </div>
+        <ImageCard
+          title='LAR Formatting'
+          description='Tools to help small financial institutions create electronic HMDA submission files.'
+          disabled
+          image={Format}
+          list={LARFormattingOptions}
+        />
 
-        <Link to='/tools/file-format-verification' className='card tools-card'>
-          <Verify className='icon' />
-          <Heading
-            headingText='File Format Verification Tool'
-            paragraphText='Checks if your LAR file meets format specified in the HMDA Filing Instructions Guide.'
-            type={3}
-            style={{ marginTop: 0 }}
-          />
-        </Link>
+        <ImageCard
+          title='File Format Verification Tool'
+          description='Checks if your LAR file meets format specified in the HMDA Filing Instructions Guide.'
+          enabled
+          url='/tools/file-format-verification'
+          image={Verify}
+        />
 
-        <Link to='/tools/check-digit' className='card tools-card'>
-          <Check className='icon' />
-          <Heading
-            headingText='Check Digit'
-            paragraphText='Generates a two character check digit for a Legal Entity Identifier (LEI) and loan/application ID. It can also validate check digits in a complete Universal Loan Identifier (ULI) that is entered.'
-            type={3}
-            style={{ marginTop: 0 }}
-          />
-        </Link>
+        <ImageCard
+          title='Check Digit'
+          description='Generates a two character check digit for a Legal Entity Identifier (LEI) and loan/application ID. It can also validate check digits in a complete Universal Loan Identifier (ULI) that is entered.'
+          enabled
+          url='/tools/check-digit'
+          image={Check}
+        />
       </div>
     </div>
   )

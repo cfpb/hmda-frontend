@@ -17,7 +17,6 @@ import './index.css'
 
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import HomeOptionTwo from './HomeOptionTwo'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -34,7 +33,7 @@ const Tools = () => {
     <div className='Tools App'>
       <ScrollToTop />
       <Switch>
-        <Route exact path='/tools' component={HomeOptionTwo} />
+        <Route exact path='/tools' component={Home} />
         <Route path='/tools/check-digit' component={CheckDigit} />
         <Route
           path='/tools/rate-spread/requirements'
