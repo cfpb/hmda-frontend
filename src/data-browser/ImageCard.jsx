@@ -11,11 +11,8 @@ const TileImage = ({ src }) => {
 const ImageCardWithList = props => {
   return (
     <div className='ImageCard' style={{ cursor: 'initial' }}>
-      {props.svg ? (
-        <props.svg className='tile-image' />
-      ) : (
-        <TileImage src={props.image} />
-      )}
+      <TileImage src={props.image} />
+
       <div className='info'>
         <h3>{props.title}</h3>
         <span className='desc'>{props.description}</span>
@@ -46,11 +43,7 @@ const ImageCard = props => {
         <ImageCardWithList {...props} />
       ) : (
         <Link className='ImageCard' to={props.url ? props.url : linkUrl}>
-          {props.svg ? (
-            <props.svg className='tile-image' />
-          ) : (
-            <TileImage src={props.image} />
-          )}
+          <TileImage src={props.image} />
           <div className='info'>
             <h3>{props.title}</h3>
             <span className='desc'>{props.description}</span>

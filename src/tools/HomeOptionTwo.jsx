@@ -1,15 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import Heading from '../common/Heading.jsx'
-import NewIndicator from '../homepage/NewIndicator.jsx'
-import { MdFormatIndentIncrease } from 'react-icons/md'
-import { FiFileText } from 'react-icons/fi'
-import { MdOutlineFactCheck } from 'react-icons/md'
-import { ReactComponent as Calculator } from '../common/images/tools/calculator_color.svg'
-import { ReactComponent as Check } from '../common/images/tools/check_color.svg'
-import { ReactComponent as Format } from '../common/images/tools/format_color.svg'
-import { ReactComponent as Verify } from '../common/images/tools/verify_color.svg'
-import filter from '../common/images/db-filter-lightblue.png'
+import Calculator from '../common/images/tools/calculator_color.png'
+import Check from '../common/images/tools/check_color.png'
+import Format from '../common/images/tools/format_color.png'
+import Verify from '../common/images/tools/verify_color.png'
 
 import './Home.css'
 import ImageCard from '../data-browser/ImageCard.jsx'
@@ -39,14 +33,14 @@ const HomeOptionTwo = () => {
           with a final action date on or after January 1st, 2018.'
           enabled
           url={'/tools/rate-spread'}
-          svg={Calculator}
+          image={Calculator}
         />
 
         <ImageCard
           title='LAR Formatting'
           description='Tools to help small financial institutions create electronic HMDA submission files.'
           disabled
-          svg={Format}
+          image={Format}
           list={LARFormattingOptions}
         />
 
@@ -55,7 +49,7 @@ const HomeOptionTwo = () => {
           description='Checks if your LAR file meets format specified in the HMDA Filing Instructions Guide.'
           enabled
           url='/tools/file-format-verification'
-          svg={Verify}
+          image={Verify}
         />
 
         <ImageCard
@@ -63,7 +57,7 @@ const HomeOptionTwo = () => {
           description='Generates a two character check digit for a Legal Entity Identifier (LEI) and loan/application ID. It can also validate check digits in a complete Universal Loan Identifier (ULI) that is entered.'
           enabled
           url='/tools/check-digit'
-          svg={Check}
+          image={Check}
         />
       </div>
     </div>
