@@ -5,7 +5,6 @@
       "fieldIndex": 0,
       "fieldName": "Record Identifier",
       "examples": [],
-      "disable": true,
       "enumerations": [
         {
           "value": "1",
@@ -16,7 +15,8 @@
           "description": "LAR"
         }
       ],
-      "descriptions": []
+      "descriptions": [],
+      "disable": true
     },
     {
       "fieldIndex": 1,
@@ -184,10 +184,10 @@
       "examples": [
         "100"
       ],
-      "disable": true,
-      "tooltip": "Field is automatically populated with the count of LAR Rows",
       "enumerations": [],
-      "descriptions": []
+      "descriptions": [],
+      "disable": true,
+      "tooltip": "Field is automatically populated with the count of LAR Rows"
     },
     {
       "fieldIndex": 13,
