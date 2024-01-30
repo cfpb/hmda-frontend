@@ -30,7 +30,7 @@ const Home = () => {
         <ImageCard
           title='Rate Spread Calculator'
           description='Provides rate spreads for HMDA reportable loans
-          with a final action date on or after January 1st, 2018.'
+          with a final action date on or after January 1st, 2018. Average Prime Offer Rates (APOR) are also available on this page.'
           enabled
           url={'/tools/rate-spread'}
           image={Calculator}
@@ -46,7 +46,7 @@ const Home = () => {
 
         <ImageCard
           title='File Format Verification Tool'
-          description='Checks if your LAR file meets format specified in the HMDA Filing Instructions Guide.'
+          description='Verifies that your LAR file meets format specifications required to submit on the HMDA Platform.'
           enabled
           url='/tools/file-format-verification'
           image={Verify}
@@ -54,7 +54,7 @@ const Home = () => {
 
         <ImageCard
           title='Check Digit'
-          description='Generates a two character check digit for a Legal Entity Identifier (LEI) and loan/application ID. It can also validate check digits in a complete Universal Loan Identifier (ULI) that is entered.'
+          description='Generates the two-character check digit to create a Universal Loan Identifier (ULI) and/or validates an existing ULI.'
           enabled
           url='/tools/check-digit'
           image={Check}
