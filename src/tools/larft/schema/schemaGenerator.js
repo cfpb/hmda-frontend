@@ -83,7 +83,10 @@ const parse = (raw, name) => {
               .map(x => cleanupFieldName(x)) || []
 
           if (!val) return
-          return { value: val, description: desc || val }
+          
+          // Special case: Intentionally empty string value
+          const finalVal = val == '{empty}' ? "" : val
+          return { value: finalVal, description: desc || val }
         })
         .filter(unity)
 
@@ -93,6 +96,15 @@ const parse = (raw, name) => {
         examples,
         enumerations,
         descriptions,
+      }
+
+      // Only the OLARFT determines if this is a TS or LAR row
+      if (fieldName == "Record Identifier")
+        obj.disable = true 
+
+      if (fieldName == "Total Number of Entries Contained in Submission") {
+        obj.disable = true 
+        obj.tooltip = "Field is automatically populated with the count of LAR Rows"
       }
 
       // Include Data Point for LAR
