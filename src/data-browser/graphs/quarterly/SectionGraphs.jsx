@@ -245,13 +245,22 @@ export const SectionGraphs = ({
             const cellData = columnData?.coordinates?.find(
               item => item.x === rowYearQuarter
             )
+            
             if (!cellData) return
+            else if (cellData.y == 0) {
+              console.log("cellData: " + JSON.stringify(cellData))
+              cell.textContent = "N/A"
+            } else {
+              // Update the cell with value formatted to the API configured precision
+              cell.textContent = Highcharts.numberFormat(
+                cellData.y,
+                selectedGraphData.decimalPrecision
+              )
+            }
 
-            // Update the cell with value formatted to the API configured precision
-            cell.textContent = Highcharts.numberFormat(
-              cellData.y,
-              selectedGraphData.decimalPrecision
-            )
+            
+
+            
           } 
         })
       })
