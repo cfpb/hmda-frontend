@@ -6,7 +6,7 @@ import './SearchList.css'
 
 let INSTITUTIONS = {}
 
-const SearchListRefactor = (props) => {
+const SearchList = (props) => {
   const { year } = props
   const yearRef = useRef(year)
 
@@ -164,4 +164,4 @@ const SearchListRefactor = (props) => {
   )
 }
 
-export default SearchListRefactor
+export default SearchList

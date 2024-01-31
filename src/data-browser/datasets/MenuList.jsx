@@ -6,18 +6,18 @@ const height = 35
 const MenuList = ({ children, maxHeight }) => {
   const listRef = useRef()
 
-  const getFocusIndex = (childrenArrary) => {
-    const isArray = childrenArrary instanceof Array
-    childrenArrary = isArray ? childrenArrary : [childrenArrary]
-    for (let i = 0; i < childrenArrary.length - 1; i++) {
+  const getFocusIndex = (childrenArray) => {
+    const isArray = childrenArray instanceof Array
+    childrenArray = isArray ? childrenArray : [childrenArray]
+    for (let i = 0; i < childrenArray.length - 1; i++) {
       if (
-        childrenArrary[i] &&
-        childrenArrary[i].props &&
-        childrenArrary[i].props.isFocused
+        childrenArray[i] &&
+        childrenArray[i].props &&
+        childrenArray[i].props.isFocused
       )
         return i
     }
-    return childrenArrary.length - 1
+    return childrenArray.length - 1
   }
 
   useEffect(() => {

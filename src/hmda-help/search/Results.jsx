@@ -10,7 +10,7 @@ import './Results.css'
 const SearchResults = ({ institutions, handleDeleteClick, error }) => {
   const tableRef = useRef(new Map())
 
-  if (!institutions || institutions.lenght) return null
+  if (!institutions || institutions.length) return null
 
   institutions.sort((a, b) => (b.activityYear > a.activityYear ? 1 : -1))
   const colCount = 7
