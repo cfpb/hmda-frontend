@@ -1,0 +1,64 @@
+.tools-card {
+  background-color: #1f498f;
+  border-radius: 8px;
+  padding: 20px 25px 8px 25px;
+  text-decoration: none;
+  transition: all 500ms;
+}
+
+.tools-card:hover {
+  background-color: #2360c2;
+  cursor: pointer;
+}
+
+.tools-card-no-hover-change:hover {
+  background-color: #1f498f;
+}
+
+.tools-card:visited {
+  color: #ffffff;
+}
+
+.tools-card header h3 {
+  color: #ffffff;
+  margin-bottom: 5px;
+  text-decoration: underline;
+  padding-left: 4px;
+}
+
+.tools-card header p {
+  color: #ffffffe4;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.tools-card header ul li {
+  color: #ffffffd4;
+}
+
+.tools-card header ul li a {
+  color: #ffffffd4;
+  text-decoration: none;
+}
+
+.tools-card header ul li a:hover {
+  color: #ffffffeb;
+  text-decoration: underline;
+}
+
+.tools-card .icon {
+  height: 38px;
+  width: 38px;
+  margin-bottom: 4px;
+  color: white;
+}
+
+#tools-card-indicator {
+  background: #2360c2;
+}
+
+@media screen and (max-width: 640px) {
+  .Tools .home .card {
+    margin-right: 0 !important;
+  }
+}
