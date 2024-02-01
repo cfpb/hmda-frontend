@@ -41,7 +41,6 @@ export const SectionGraphs = ({
   const graphConfigStore = useSelector(({ graphsConfig }) => graphsConfig)
   const categories = graphs.getConfig(graphConfigStore, CATEGORIES) // Holds the xAxis values/labels
   const data = graphs.getConfig(graphConfigStore, DATA) || {} // API data cache (transformed data)
-  console.log("data: " + JSON.stringify(data))
   const graphMenuOptions =
     graphs.getConfig(graphConfigStore, GRAPH_MENU_OPTIONS) || [] // All the graph options with categories
   const firstLoadState = graphs.getConfig(graphConfigStore, FIRST_LOAD)
@@ -57,7 +56,6 @@ export const SectionGraphs = ({
   const resetSeriesVisability = graphs.getConfig(graphConfigStore, RESET_SERIES_VIS) // Force Highcharts to reset series visibility
   const selectedGraph = graphs.getConfig(graphConfigStore, SELECTED_GRAPH) // Configuration for the currently selected graph
   const selectedGraphData = graphs.getConfig(graphConfigStore, SELECTED_GRAPH_DATA) // API data of currently selected graph
-  console.log("selectedGraphData: " + JSON.stringify(selectedGraphData))
   const seriesForURL = graphs.getConfig(graphConfigStore, SERIES_FOR_URL) // List of series names to be included in the URL's `visibleSeries` query parameter
   const setSeriesForURL = value =>
     dispatch(graphs.setConfig(SERIES_FOR_URL, value))
@@ -248,10 +246,8 @@ export const SectionGraphs = ({
               item => item.x === rowYearQuarter
             )
             
-            if (!cellData) return
-            else if (cellData.y == 0 ) {
-              console.log("cellData: " + JSON.stringify(cellData))
-              cell.textContent = "N/A"
+            if (!cellData) {
+              cell.textContent = ""
             } else {
               // Update the cell with value formatted to the API configured precision
               cell.textContent = Highcharts.numberFormat(
