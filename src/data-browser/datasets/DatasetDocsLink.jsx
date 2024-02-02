@@ -1,8 +1,8 @@
 import React from "react";
 
 const determineDataset = (year) => {
-  let ThreeYear = [2018];
-  let OneYear = [2020, 2019];
+  let ThreeYear = [2019, 2018];
+  let OneYear = [2021, 2020];
 
   if (ThreeYear.includes(year))
     return {
@@ -30,23 +30,23 @@ const DatasetDocsLink = ({ year }) => {
   let dataset = determineDataset(parseInt(year));
 
   return (
-    <div className="SelectWrapper" style={{ paddingTop: ".33em" }}>
+    <div className='SelectWrapper' style={{ paddingTop: '.33em' }}>
       <p>
-        Queries for {year} pull from the{" "}
-        <a target="_blank" rel="noopener noreferrer" href={dataset.link}>
+        Queries for {year} pull from the{' '}
+        <a target='_blank' rel='noopener noreferrer' href={dataset.link}>
           {dataset.name}
-        </a>{" "}
-        dataset. For more info visit the{" "}
+        </a>{' '}
+        dataset. For more info visit the{' '}
         <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={`/documentation/${year}/static-dataset-faq`}
+          target='_blank'
+          rel='noopener noreferrer'
+          href={`/documentation/faq/static-dataset-faq`}
         >
           Static Dataset FAQ.
         </a>
       </p>
     </div>
-  );
+  )
 };
 
 export default DatasetDocsLink;

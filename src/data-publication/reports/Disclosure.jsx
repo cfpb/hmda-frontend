@@ -13,6 +13,11 @@ import { withAppContext } from '../../common/appContextHOC.jsx'
 import { withYearValidation } from '../../common/withYearValidation.js'
 
 const detailsCache = {
+  2022: {
+    institutions: {},
+    msaMds: {},
+    reports: {}
+  },
   2021: {
     institutions: {},
     msaMds: {},
@@ -144,13 +149,29 @@ class Disclosure extends React.Component {
     const header = (
       <Heading
         type={1}
-        headingText="Disclosure reports"
-        paragraphText={'These reports summarize lending activity for individual institutions, both nationwide and by MSA/MD. They are based on the most recent data submission made in each filing period. To find an institution\'s IRS (Institution Register Summary), select "Nationwide" from the MSA/MD dropdown after choosing an institution.'}
+        headingText='Disclosure reports'
+        paragraphText={
+          'These reports summarize lending activity for individual institutions, both nationwide and by MSA/MD. They are based on the most recent data submission made in each filing period. To find an institution\'s IRS (Institution Register Summary), select "Nationwide" from the MSA/MD dropdown after choosing an institution.'
+        }
       >
-          <p>To learn about modifications to these reports over the years, visit the{' '}
-          <a target="_blank" rel="noopener noreferrer" href={`/documentation/${years[0]}/ad-changes/`}>A&amp;D Report Changes</a> page.<br/>
-          Looking for other HMDA data? Visit the new <a target="_blank" rel="noopener noreferrer" href="/data-browser/">HMDA Data Browser</a> to filter and download HMDA datasets.
-          </p>
+        <p>
+          To learn about modifications to these reports over the years, visit
+          the{' '}
+          <a
+            target='_blank'
+            rel='noopener noreferrer'
+            href={`https://ffiec.cfpb.gov/documentation/publications/ad-changes#disclosure-reports`}
+          >
+            A&amp;D Report Changes
+          </a>{' '}
+          page.
+          <br />
+          Looking for other HMDA data? Visit the new{' '}
+          <a target='_blank' rel='noopener noreferrer' href='/data-browser/'>
+            HMDA Data Browser
+          </a>{' '}
+          to filter and download HMDA datasets.
+        </p>
       </Heading>
     )
 

@@ -1,7 +1,11 @@
 import "./NewIndicator.css"
 
-export const NewIndicator = () => {
-  return <span className="new-indicator">New</span>
+export const NewIndicator = ({ text, id }) => {
+  return (
+    <span id={id} className='new-indicator'>
+      {text || "New"}
+    </span>
+  )
 }
 
 export default NewIndicator

@@ -2,76 +2,96 @@ import React from 'react'
 import { login, register } from '../utils/keycloak.js'
 import Alert from '../../common/Alert.jsx'
 import { MailingSignupLarge } from '../../common/MailingListSignup'
-
 import './Home.css'
+import { withAppContext } from '../../common/appContextHOC.jsx'
+import useToolAnnouncement from '../../common/useToolAnnouncement.jsx'
 
-const Home = ({ maintenanceMode }) => {
+const Home = ({ maintenanceMode, config }) => {
   const maintenanceTitle = maintenanceMode && 'Unavailable during maintenance'
   const buttonsDisabled = !!maintenanceMode
   const cname = 'FilingHome' + (maintenanceMode ? ' maintenance' : '')
   const sessionExpired = window.location.href.indexOf('session=expired') > -1
+  const toolAnnouncement = useToolAnnouncement({
+    toolName: "filing",
+    config: config,
+  })
+  const marginTop = toolAnnouncement ? "0px" : ""
 
   return (
-    <main className={cname} id="main-content">
-      <section className="hero">
-        <div className="full-width">
+    <main className={cname} id='main-content'>
+      <section className='hero'>
+        <div className='full-width'>
           {sessionExpired && (
-            <Alert type="success" heading="Session Expired">
-              <p>Please log in. If you are having trouble accessing the Filing application please contact <a href="mailto:hmdahelp@cfpb.gov">HMDA Help</a>.</p>
+            <Alert type='success' heading='Session Expired'>
+              <p>
+                Please log in. If you are having trouble accessing the Filing
+                application please contact{" "}
+                <a href='mailto:hmdahelp@cfpb.gov'>HMDA Help</a>.
+              </p>
             </Alert>
           )}
           <h1>Get started filing your HMDA data</h1>
-          <p className="font-lead max-width">
-             Financial institutions use the HMDA Platform to upload their
-             loan/application registers (LARs), review edits, certify the
-             accuracy and completeness of the data, and submit data for the
-             filing year.
-           </p>
+          <p className='font-lead max-width'>
+            Financial institutions use the HMDA Platform to upload their
+            loan/application registers (LARs), review edits, certify the
+            accuracy and completeness of the data, and submit data for the
+            filing year.
+          </p>
+          {toolAnnouncement && (
+            <Alert
+              heading={toolAnnouncement.heading}
+              type={toolAnnouncement.type}
+            >
+              <p>{toolAnnouncement.message}</p>
+            </Alert>
+          )}
           <button
-            className="button"
+            className='button'
+            style={{ marginTop }}
             onClick={e => {
               e.preventDefault()
               login()
             }}
             disabled={buttonsDisabled}
-            title={maintenanceTitle || 'Login'}
+            title={maintenanceTitle || "Login"}
           >
             Log in
           </button>
-          <span className="text-small">or</span>
+          <span className='text-small'>or</span>
           <button
-            className="button register-link"
+            className='button register-link'
+            style={{ marginTop }}
             onClick={e => {
               e.preventDefault()
               register()
             }}
             disabled={buttonsDisabled}
-            title={maintenanceTitle || 'Create an account'}
-          >
+            title={maintenanceTitle || "Create an account"}
+            >
             Create an account
           </button>
-          <p className="text-small">
+          <p className='text-small'>
             Every user is required to register online for login credentials and
             establish an account prior to accessing the HMDA Platform.
           </p>
         </div>
-        <div className="full-width" style={{ marginTop: '3rem'}}>
+        <div className='full-width' style={{ marginTop: "3rem" }}>
           <MailingSignupLarge />
         </div>
       </section>
-      <div className="full-width">
-        <section className="video-container">
+      <div className='full-width'>
+        <section className='video-container'>
           <iframe
-            src="https://www.youtube.com/embed/C_73Swgyc4g?rel=0"
-            frameBorder="0"
-            allow="encrypted-media"
+            src='https://www.youtube.com/embed/C_73Swgyc4g?rel=0'
+            frameBorder='0'
+            allow='encrypted-media'
             allowFullScreen
-            title="HMDA Video"
+            title='HMDA Video'
           />
         </section>
-        <div className="max-width">
+        <div className='max-width'>
           <h3>CFPB Notice and Consent Banner</h3>
-          <p className="text-small">
+          <p className='text-small'>
             This is a Consumer Financial Protection Bureau (CFPB) information
             system. The CFPB is an independent agency of the United States
             Government. CFPB information systems are provided for the processing
@@ -90,7 +110,7 @@ const Home = ({ maintenanceMode }) => {
 
           <hr />
           <h3>Paperwork Reduction Act</h3>
-          <p className="text-small">
+          <p className='text-small'>
             According to the Paperwork Reduction Act of 1995, an agency may not
             conduct or sponsor, and, not withstanding any other provision of
             law, a person is not required to respond to a collection of
@@ -121,4 +141,4 @@ const Home = ({ maintenanceMode }) => {
   )
 }
 
-export default Home
+export default withAppContext(Home)

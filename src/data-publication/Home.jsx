@@ -59,6 +59,8 @@ const MoreInfoList = ({ infoPoints, publication }) => {
  * @param {year} String Selected year
  */
 const DatasetGroup = ({ name, heading, publications, infoPoints, year }) => {
+  if (!publications || !publications.length) return null
+
   return (
     <div className={name}>
       <Heading type={3} headingText={heading} />

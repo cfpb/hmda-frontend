@@ -4,13 +4,16 @@ import {
   REQUEST_INSTITUTION,
   RECEIVE_INSTITUTION,
   UPDATE_FILING_PERIOD,
-  RECEIVE_INSTITUTION_NOT_FOUND
+  RECEIVE_INSTITUTION_NOT_FOUND,
+  SHOULD_FETCH_INSTITUTIONS,
+  CLEAR_INSTITUTIONS
 } from '../constants'
 
 const defaultInstitutions = {
   institutions: {},
   isFetching: false,
-  fetched: false
+  fetched: false,
+  shouldFetchInstitutions: false
 }
 
 /*
@@ -23,7 +26,7 @@ export default (state = defaultInstitutions, action) => {
     case REQUEST_INSTITUTIONS:
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
       }
     case REQUEST_INSTITUTION:
       return {
@@ -31,9 +34,9 @@ export default (state = defaultInstitutions, action) => {
         institutions: {
           ...state.institutions,
           [action.lei]: {
-            isFetching: true
-          }
-        }
+            isFetching: true,
+          },
+        },
       }
 
     case RECEIVE_INSTITUTION:
@@ -52,24 +55,35 @@ export default (state = defaultInstitutions, action) => {
             institutionId2017: action.institution.institutionId2017,
             taxId: action.institution.taxId,
             rssd: action.institution.rssd,
-            emailDomains: action.institution.emailDomains ? [...action.institution.emailDomains] : [],
-            respondent: action.institution.respondent ? {...action.institution.respondent} : {},
-            parent: action.institution.parent ? {...action.institution.parent} : {},
+            emailDomains: action.institution.emailDomains
+              ? [...action.institution.emailDomains]
+              : [],
+            respondent: action.institution.respondent
+              ? { ...action.institution.respondent }
+              : {},
+            parent: action.institution.parent
+              ? { ...action.institution.parent }
+              : {},
             assets: action.institution.assets,
             otherLenderCode: action.institution.otherLenderCode,
-            topHolder: action.institution.topHolder ? {...action.institution.topHolder} : {},
+            topHolder: action.institution.topHolder
+              ? { ...action.institution.topHolder }
+              : {},
             hmdaFiler: action.institution.hmdaFiler,
-            quarterlyFilerHasFiledQ1: action.institution.quarterlyFilerHasFiledQ1,
-            quarterlyFilerHasFiledQ2: action.institution.quarterlyFilerHasFiledQ2,
-            quarterlyFilerHasFiledQ3: action.institution.quarterlyFilerHasFiledQ3,
-          }
-        }
+            quarterlyFilerHasFiledQ1:
+              action.institution.quarterlyFilerHasFiledQ1,
+            quarterlyFilerHasFiledQ2:
+              action.institution.quarterlyFilerHasFiledQ2,
+            quarterlyFilerHasFiledQ3:
+              action.institution.quarterlyFilerHasFiledQ3,
+          },
+        },
       }
     case RECEIVE_INSTITUTIONS:
       return {
         ...state,
         isFetching: false,
-        fetched: true
+        fetched: true,
       }
     case RECEIVE_INSTITUTION_NOT_FOUND:
       return {
@@ -79,12 +93,22 @@ export default (state = defaultInstitutions, action) => {
           [action.lei]: {
             isFetching: false,
             notFound: true,
-            lei: action.lei
-          }
-        }
+            lei: action.lei,
+          },
+        },
       }
     case UPDATE_FILING_PERIOD:
       return defaultInstitutions
+    case SHOULD_FETCH_INSTITUTIONS:
+      return {
+        ...state,
+        shouldFetchInstitutions: action.payload,
+      }
+    case CLEAR_INSTITUTIONS:
+      return {
+        ...state,
+        institutions: {}
+      }
     default:
       return state
   }

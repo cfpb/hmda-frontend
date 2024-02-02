@@ -73,7 +73,7 @@ The [HMDA Platform Tools](https://ffiec.cfpb.gov/tools/) assist filers in the pr
 </a>
 
 ### HMDA Documentation
-The [HMDA Documentation](https://ffiec.cfpb.gov/documentation/) site provides product FAQs, detailed Filing instructions, data publication schema and usage guides, as well as direction for using the HMDA Tools. Documentation content is hosted as easily editable Markdown files, loaded on-demand with the Fetch API, and rendered dynamically using the markdown-to-jsx library. This allows updates to be pushed to Production without a project redeployment. 
+The [HMDA Documentation](https://ffiec.cfpb.gov/documentation/) site provides product FAQs, detailed Filing instructions, data publication schema and usage guides, as well as direction for using the HMDA Tools. Documentation content is hosted as easily editable Markdown files, loaded using Docusaurus. This allows updates to be pushed to Production without a project redeployment. Docusarus search is powered by [Algolia](https://www.algolia.com/) through the [DocSearch](https://docsearch.algolia.com/) program.
 
 <a href='./readme-files/hmda-documentation.png' alt='HMDA Documentation'>
   <p align='center'>
@@ -155,12 +155,6 @@ REACT_APP_LEIS=INSTITUTION1,INSTITUTION2 yarn ci
 ```
 
 You can now visit the filing application at http://localhost:3000/filing.
-
-
-#### Updating or Previewing Documentation
-In production, Markdown files for documentation are served from Github and dynamically rendered in the application. This architecture makes it difficult to preview changes made locally. 
-
-The script `yarn run dev-docs` will copy `/src/documentation/markdown` to `/public/markdown` for local preview. Files copied into the `/public/markdown` folder are ignored by git to avoid duplication.
 
 ### Running via Docker
 

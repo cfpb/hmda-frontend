@@ -1,0 +1,50 @@
+.accordion-bordered {
+  list-style-type: none;
+  color: #212121;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.accordion-bordered > li {
+  background-color: #f1f1f1;
+  font-family: SourceSansPro;
+  list-style: none;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.accordion-button {
+  background-color: #d6d7d9 !important;
+  background-image: url('/src/filing/images/minus.png');
+  background-position: right 2rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5rem;
+  border-radius: 0;
+  color: #212121;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 0;
+  padding: .5rem 4rem .5rem .5em;
+  text-align: left;
+  width: 100%;
+}
+
+.accordion-button[aria-expanded='false'] {
+  background-image: url('/src/filing/images/plus.png');
+}
+
+.accordion-content {
+  background-color: #ffffff;
+  border-top: 1px solid lightgrey;
+  overflow: auto;
+  padding: 0em 1em 1em;
+}
+
+.accordion-content[aria-hidden='true'] {
+  display: none;
+}
+
+.accordion-content > *:first-child {
+  margin-top: 0;
+}

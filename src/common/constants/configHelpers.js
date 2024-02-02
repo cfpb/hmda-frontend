@@ -73,3 +73,32 @@ export const getOpenFilingYears = (config) => {
     return isOpen || isLate
   })
 }
+
+/**
+ * Sorts the Filing years
+ * @param {Array} years contains the filing years and quarters
+ */
+export const sortFilingYears = (years) =>  {
+  function getYear(year) {
+    // y = year, q = quarter
+    const [y, q] = year.split("-")
+
+    if (q) {
+      return [parseInt(y), parseInt(q.slice(1))]
+    } else {
+      return parseInt(y)
+    }
+  }
+
+  years.sort((a, b) => {
+    const aYear = getYear(a)
+    const bYear = getYear(b)
+
+    if (aYear[0] === bYear[0]) {
+      return aYear[1] - bYear[1]
+    } else {
+      return aYear[0] - bYear[0]
+    }
+  })
+  return years
+}

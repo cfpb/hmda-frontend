@@ -9,6 +9,7 @@ module.exports = defineConfig({
     INSTITUTION: 'FRONTENDTESTBANK9999',
     TEST_DELAY: 1000,
     ACTION_DELAY: 1000,
+    NAV_DELAY: 5000,
     AUTH_REALM: 'hmda2',
     AUTH_CLIENT_ID: 'hmda2-api',
   },

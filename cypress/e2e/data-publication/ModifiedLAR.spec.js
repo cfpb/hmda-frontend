@@ -3,6 +3,7 @@ import { isBeta } from "../../support/helpers"
 const { HOST } = Cypress.env()
 
 const testCases = [
+  { year: 2022, name: "cypress", institution: "549300I4IUWMEMGLST06"},
   { year: 2021, name: "cypress", institution: "549300I4IUWMEMGLST06"},
   { year: 2020, name: "cypress", institution: "549300I4IUWMEMGLST06"},
   { year: 2019, name: "cypress", institution: "549300I4IUWMEMGLST06"},
@@ -12,7 +13,7 @@ const testCases = [
 
 onlyOn(isBeta(HOST), () => {
   describe("Modified LAR", function() {
-    it("Does not run on Beta", () => {})
+    it("Does not run in Beta environments", () => {})
   })
 })
 
@@ -27,9 +28,9 @@ onlyOn(!isBeta(HOST), () => {
         cy.get("#institution-name").click()
         cy.get("#institution-name").type(name)
   
-        cy.get("#main-content > .SearchList > h4").contains("1 results found")
-        cy.get("#main-content > .SearchList > .Results > li > p").contains(institution)
-        cy.get("#main-content > .SearchList > .Results > li > .font-small").then(
+        cy.get("#main-content .SearchList > h4").contains("1 results found")
+        cy.get("#main-content .SearchList > .Results > li > p").contains(institution)
+        cy.get("#main-content .SearchList > .Results > li > .font-small").then(
           $el => {
             expect($el).to.have.text("Download Modified LAR ")
             expect($el).to.have.attr(
@@ -43,7 +44,7 @@ onlyOn(!isBeta(HOST), () => {
         cy.get("#inclHeader").click()
         cy.get("#inclHeader").check("true")
   
-        cy.get("#main-content > .SearchList > .Results > li > .font-small").should(
+        cy.get("#main-content .SearchList > .Results > li > .font-small").should(
           $el => {
             expect($el).to.have.text("Download Modified LAR with Header")
             expect($el).to.have.attr(
@@ -53,8 +54,8 @@ onlyOn(!isBeta(HOST), () => {
           }
         )
 
-        // Documentation link points to correct place
-        const docLink = `/data-publication/documents#modified-lar`
+        // Documentation link points to correct place - documentation lives in Docusaurus now
+        const docLink = `/documentation/publications/modified-lar/resources/supporting-resources`
         cy.get(".App > #main-content > .heading > p > a").should($link => {
           expect($link).to.have.attr("href", docLink)
         })

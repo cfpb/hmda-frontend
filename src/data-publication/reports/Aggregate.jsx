@@ -15,31 +15,36 @@ import { withYearValidation } from '../../common/withYearValidation.js'
 import './Aggregate.css'
 
 const detailsCache = {
+  2022: {
+    states: {},
+    msaMds: {},
+    reports: {},
+  },
   2021: {
     states: {},
     msaMds: {},
-    reports: {}
+    reports: {},
   },
   2020: {
     states: {},
     msaMds: {},
-    reports: {}
+    reports: {},
   },
   2019: {
     states: {},
     msaMds: {},
-    reports: {}
+    reports: {},
   },
   2018: {
     states: {},
     msaMds: {},
-    reports: {}
+    reports: {},
   },
   2017: {
     states: {},
     msaMds: {},
-    reports: {}
-  }
+    reports: {},
+  },
 }
 
 STATES.forEach(v => {
@@ -105,14 +110,31 @@ class Aggregate extends React.Component {
     const header = (
       <Heading
         type={1}
-        headingText="MSA/MD Aggregate Reports"
-        paragraphText="These reports summarize lending activity by MSA/MD."
+        headingText='MSA/MD Aggregate Reports'
+        paragraphText='These reports summarize lending activity by MSA/MD.'
       >
-          <p>To learn about modifications to these reports over the years, visit the{' '}
-          <a target="_blank" rel="noopener noreferrer" href={`/documentation/${years[0]}/ad-changes/`}>A&D Report Changes</a> page.<br/>
-          Looking for other HMDA data? Visit the new <a target="_blank" rel="noopener noreferrer" href="/data-browser/">HMDA Data Browser</a> to filter and download HMDA datasets.<br/>
-          {year === '2018' ? 'The 2018 Aggregate Reports use the static dataset that was frozen on August 7, 2019.' : '\u00a0'}
-          </p>
+        <p>
+          To learn about modifications to these reports over the years, visit
+          the{' '}
+          <a
+            target='_blank'
+            rel='noopener noreferrer'
+            href={`https://ffiec.cfpb.gov/documentation/publications/ad-changes#msamd-aggregate-reports`}
+          >
+            A&D Report Changes
+          </a>{' '}
+          page.
+          <br />
+          Looking for other HMDA data? Visit the new{' '}
+          <a target='_blank' rel='noopener noreferrer' href='/data-browser/'>
+            HMDA Data Browser
+          </a>{' '}
+          to filter and download HMDA datasets.
+          <br />
+          {year === '2018'
+            ? 'The 2018 Aggregate Reports use the static dataset that was frozen on August 7, 2019.'
+            : '\u00a0'}
+        </p>
       </Heading>
     )
 

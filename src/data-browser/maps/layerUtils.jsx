@@ -205,12 +205,12 @@ function getOrigPer1000(data, feature, year, geography, variable, value){
      if(geography.value === 'state') {
        const dataObj = data[fips2Shortcode[feature]]
        if(!dataObj) return
-       const val = decodeURI(value.value)
+       const val = decodeURIComponent(value.value)
        orig = Math.round(dataObj[variable.value][val]/STATE_POP[year][feature]*100000)/100 || 0
      }else if (geography.value === 'county') {
        const dataObj = data[feature]
        if(!dataObj) return
-       const val = decodeURI(value.value)
+       const val = decodeURIComponent(value.value)
        orig = Math.round(dataObj[variable.value][val]/COUNTY_POP[year][feature]*100000)/100 || 0
      }
 

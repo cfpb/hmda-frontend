@@ -1,36 +1,74 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import './ImageCard.css'
+import './ImageCard.scss'
+import iconSprite from '../common/uswds/img/sprite.svg'
+import NewIndicator from '../homepage/NewIndicator'
 
-const TileImage = ({ src }) => <img className='tile-image' src={src} />
+const TileImage = ({ src }) => {
+  return <img className='tile-image' src={src} />
+}
 
-const ImageCard = (props) => {
-  if (props.placeholder) return <div className='card-wrapper placeholder' />
+const ImageCardWithList = props => {
+  return (
+    <div className='ImageCard' style={{ cursor: 'initial' }}>
+      <TileImage src={props.image} />
 
-  const [isHovered, setIsHovered] = useState(false)
-  
-  const enabled = props.enabled ? ' enabled' : ''
-  let cardClass = 'ImageCard' + enabled
+      <div className='info'>
+        <h3>{props.title}</h3>
+        <span className='desc'>{props.description}</span>
+        {/* Render list */}
+        {props.list && (
+          <ul className='tile-list'>
+            {props.list.map((option, i) => (
+              <li key={i}>
+                <Link to={option.link}>
+                  {option.name}
+                  {option.new && <NewIndicator id='tools-card-indicator' />}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  )
+}
+
+const ImageCard = props => {
   const linkUrl = `/data-browser/${props.path}/${props.year}`
 
   return (
-    <div className={'card-wrapper' + enabled}>
-      <Link
-        className='card'
-        disabled={!props.enabled}
-        to={linkUrl}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <div className={cardClass}>
-          <TileImage src={isHovered ? props.imageHover : props.image} />
-          <span>
-            <h4>{props.caption}</h4>
+    <div className={'card-wrapper'}>
+      {props.list ? (
+        <ImageCardWithList {...props} />
+      ) : (
+        <Link className='ImageCard' to={props.url ? props.url : linkUrl}>
+          <TileImage src={props.image} />
+          <div className='info'>
+            <h3>{props.title}</h3>
             <span className='desc'>{props.description}</span>
-          </span>
-        </div>
-      </Link>
-      {props.faq && <Link to={props.faq.url} target="_blank" rel="noopener noreferrer" className='faq'>{props.faq.label || "FAQ"}</Link>}
+          </div>
+        </Link>
+      )}
+
+      {props.faq && (
+        <Link
+          to={props.faq.url}
+          target='_blank'
+          rel='noopener noreferrer'
+          className='faq'
+        >
+          <svg
+            className='usa-icon'
+            aria-hidden='true'
+            focusable='false'
+            role='img'
+          >
+            <use href={`${iconSprite}#help_outline`}></use>
+          </svg>
+          {props.faq.label || 'FAQ'}
+        </Link>
+      )}
     </div>
   )
 }

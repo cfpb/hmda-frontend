@@ -39,8 +39,8 @@ const Datasets = {
 export const SnapshotDataset = ({ label, match, config, dataKey }) => {
   const { params, url } = match
   const { year } = params
-  const { shared } = config.dataPublicationYears
-  const years = config.dataPublicationYears[dataKey] || shared
+  const { snapshot, shared } = config.dataPublicationYears
+  const years = config.dataPublicationYears[dataKey] || snapshot || shared
   const dataForYear = Datasets[dataKey][year]
   const snapshotDate = year ? dataForYear.freezeDate : 'a fixed date per year'
 

@@ -268,7 +268,6 @@ hr {
   color: #5b616b;
   font-size: 2rem;
   line-height: 1.7;
-  max-width: 77rem;
 }
 
 .home h2 a {
@@ -387,4 +386,8 @@ input[type='submit']:visited:disabled:active {
 
 .bold {
   font-weight: bold;
+}
+
+.zero-margin-top {
+  margin-top: 0px;
 }

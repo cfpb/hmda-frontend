@@ -1,0 +1,211 @@
+{
+  "name": "TS Schema",
+  "schema": [
+    {
+      "fieldIndex": 0,
+      "fieldName": "Record Identifier",
+      "examples": [],
+      "enumerations": [
+        {
+          "value": "1",
+          "description": "TS"
+        },
+        {
+          "value": "2",
+          "description": "LAR"
+        }
+      ],
+      "descriptions": [],
+      "disable": true
+    },
+    {
+      "fieldIndex": 1,
+      "fieldName": "Financial Institution Name",
+      "examples": [
+        "Ficus Bank"
+      ],
+      "enumerations": [],
+      "descriptions": []
+    },
+    {
+      "fieldIndex": 2,
+      "fieldName": "Calendar Year",
+      "examples": [
+        "2021"
+      ],
+      "enumerations": [
+        {
+          "value": "2019",
+          "description": "2019"
+        },
+        {
+          "value": "2020",
+          "description": "2020"
+        },
+        {
+          "value": "2021",
+          "description": "2021"
+        },
+        {
+          "value": "2022",
+          "description": "2022"
+        },
+        {
+          "value": "2023",
+          "description": "2023"
+        }
+      ],
+      "descriptions": []
+    },
+    {
+      "fieldIndex": 3,
+      "fieldName": "Calendar Quarter",
+      "examples": [
+        "4"
+      ],
+      "enumerations": [
+        {
+          "value": "1",
+          "description": "Q1"
+        },
+        {
+          "value": "2",
+          "description": "Q2"
+        },
+        {
+          "value": "3",
+          "description": "Q3"
+        },
+        {
+          "value": "4",
+          "description": "Annual"
+        }
+      ],
+      "descriptions": []
+    },
+    {
+      "fieldIndex": 4,
+      "fieldName": "Contact Person's Name",
+      "examples": [
+        "Erika Otis"
+      ],
+      "enumerations": [],
+      "descriptions": []
+    },
+    {
+      "fieldIndex": 5,
+      "fieldName": "Contact Person's Phone Number",
+      "examples": [
+        "999-999-9999"
+      ],
+      "enumerations": [],
+      "descriptions": []
+    },
+    {
+      "fieldIndex": 6,
+      "fieldName": "Contact Person's E-mail Address",
+      "examples": [
+        "erikaotis@bank.com"
+      ],
+      "enumerations": [],
+      "descriptions": []
+    },
+    {
+      "fieldIndex": 7,
+      "fieldName": "Contact Person's Office Street Address",
+      "examples": [
+        "4321 W Random Blvd Ste 201"
+      ],
+      "enumerations": [],
+      "descriptions": []
+    },
+    {
+      "fieldIndex": 8,
+      "fieldName": "Contact Person's Office City",
+      "examples": [
+        "Somecity"
+      ],
+      "enumerations": [],
+      "descriptions": []
+    },
+    {
+      "fieldIndex": 9,
+      "fieldName": "Contact Person's Office State",
+      "examples": [
+        "CA"
+      ],
+      "enumerations": [],
+      "descriptions": []
+    },
+    {
+      "fieldIndex": 10,
+      "fieldName": "Contact Person's Office Zip Code",
+      "examples": [
+        "90049-9998"
+      ],
+      "enumerations": [],
+      "descriptions": []
+    },
+    {
+      "fieldIndex": 11,
+      "fieldName": "Federal Agency",
+      "examples": [],
+      "enumerations": [
+        {
+          "value": "1",
+          "description": "Office of the Comptroller of the Currency (OCC)"
+        },
+        {
+          "value": "2",
+          "description": "Federal Reserve System (FRS)"
+        },
+        {
+          "value": "3",
+          "description": "Federal Deposit Insurance Corporation (FDIC)"
+        },
+        {
+          "value": "5",
+          "description": "National Credit Union Administration 9 (NCUA)"
+        },
+        {
+          "value": "7",
+          "description": "United States Department of Housing and Urban Development (HUD)"
+        },
+        {
+          "value": "9",
+          "description": "Consumer Financial Protection Bureau (Bureau)"
+        }
+      ],
+      "descriptions": []
+    },
+    {
+      "fieldIndex": 12,
+      "fieldName": "Total Number of Entries Contained in Submission",
+      "examples": [
+        "100"
+      ],
+      "enumerations": [],
+      "descriptions": [],
+      "disable": true,
+      "tooltip": "Field is automatically populated with the count of LAR Rows"
+    },
+    {
+      "fieldIndex": 13,
+      "fieldName": "Federal Taxpayer Identification Number",
+      "examples": [
+        "99-9999999"
+      ],
+      "enumerations": [],
+      "descriptions": []
+    },
+    {
+      "fieldIndex": 14,
+      "fieldName": "Legal Entity Identifier (LEI)",
+      "examples": [
+        "10BX939C5543TQA1144M"
+      ],
+      "enumerations": [],
+      "descriptions": []
+    }
+  ]
+}

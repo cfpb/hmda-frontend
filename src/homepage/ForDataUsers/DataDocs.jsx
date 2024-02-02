@@ -1,15 +1,14 @@
-import { Link } from 'react-router-dom'
 import NewIndicator from '../NewIndicator'
 import { ExpandableCard } from '../ExpandableCard'
 
 export const DataDocs = () => {
   return (
-    <ExpandableCard
-      id='home-expand-data-docs'
-      title='Data Documentation'
-      description='Answers to common questions about working with HMDA datasets and Data Browser tools.'
-      destination='/documentation/'
-    >
+    <article>
+      <h3>Data Documentation</h3>
+      <p>
+        Answers to common questions about working with HMDA datasets and Data
+        Browser tools.
+      </p>
       <ul>
         <li>
           <a
@@ -21,27 +20,27 @@ export const DataDocs = () => {
           </a>
         </li>
         <li>
-          <Link to='/documentation/2022/data-browser-graphs-faq/'>
+          <a href='/documentation/faq/data-browser-graphs-faq'>
             Data Browser - Graphs FAQ
             <NewIndicator />
-          </Link>
+          </a>
         </li>
         <li>
-          <Link to='/documentation/2022/maps-faq/'>
+          <a href='/documentation/faq/data-browser-maps-faq'>
             Data Browser - Maps FAQ
-          </Link>
+          </a>
         </li>
         <li>
-          <Link to='/documentation/2022/data-browser-faq/'>
+          <a href='/documentation/tools/data-browser/data-browser-faq'>
             Data Browser - Dataset Filtering FAQ
-          </Link>
+          </a>
         </li>
         <li>
-          <Link to='/documentation/2022/static-dataset-faq/'>
+          <a href='/documentation/faq/static-dataset-faq'>
             Data Publication - Static Dataset FAQ
-          </Link>
+          </a>
         </li>
       </ul>
-    </ExpandableCard>
+    </article>
   )
 }

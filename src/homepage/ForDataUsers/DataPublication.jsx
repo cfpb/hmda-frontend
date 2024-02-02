@@ -10,12 +10,9 @@ export const DataPublication = ({
   publicationReleaseYear,
   dataPublicationYears,
 }) => (
-  <ExpandableCard
-    id='home-expand-data-publication'
-    title='Data Publication'
-    description='The HMDA datasets and reports are the most comprehensive, publicly available information on mortgage market activity.'
-    destination='/data-publication/'
-  >
+  <article>
+    <h3>Data Publication</h3>
+    <p>The HMDA datasets and reports are the most comprehensive, publicly available information on mortgage market activity.</p>
     <ul>
       <StaticDatasets
         dataPublicationYears={dataPublicationYears}
@@ -24,8 +21,9 @@ export const DataPublication = ({
       <DynamicDatasets
         mlarReleaseYear={mlarReleaseYear}
         publicationReleaseYear={publicationReleaseYear}
+        dataPublicationYears={dataPublicationYears}
       />
       <Reports publicationReleaseYear={publicationReleaseYear} />
     </ul>
-  </ExpandableCard>
+  </article>
 )

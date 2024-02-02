@@ -6,7 +6,7 @@ import {
   waitUpto2Mins,
 } from '../../support/helpers'
 
-const YEARS = [2021, 2020, 2019, 2018]
+const YEARS = [2022, 2021, 2020, 2019, 2018]
 const { HOST, ENVIRONMENT } = Cypress.env()
 const dbUrl = dbURL.bind(null, HOST)
 
@@ -17,7 +17,7 @@ describe(`Data Browser - Dataset Filtering`, () => {
       describe(`${year} Dataset Filtering`, () => {
         it('State/Institution/PropertyType', () => {
           cy.get({ HOST, ENVIRONMENT }).logEnv()
-          cy.viewport(1000, 940)
+          cy.viewport(1000, 1400)
           cy.visit(dbUrl(`${year}?category=states`))
 
           // Wait for the Institutions selector to load because it can steal focus when trying to enter data in another input field.
@@ -66,7 +66,7 @@ describe(`Data Browser - Dataset Filtering`, () => {
 
         it('Nationwide/Institution/LienStatus', () => {
           cy.get({ HOST, ENVIRONMENT }).logEnv()
-          cy.viewport(1000, 940)
+          cy.viewport(1000, 1400)
           cy.visit(dbUrl(`${year}?category=nationwide`))
 
           // Select Institutions
@@ -100,7 +100,7 @@ describe(`Data Browser - Dataset Filtering`, () => {
 
         it('County/Institution/Action&Purpose', () => {
           cy.get({ HOST, ENVIRONMENT }).logEnv()
-          cy.viewport(1000, 940)
+          cy.viewport(1000, 1400)
           cy.visit(dbUrl(`${year}?category=counties`))
 
           // Wait for the Institutions selector to load because it can steal focus when trying to enter data in another input field.
@@ -146,7 +146,7 @@ describe(`Data Browser - Dataset Filtering`, () => {
 
         it('MSA/Institution/PropertyType', () => {
           cy.get({ HOST, ENVIRONMENT }).logEnv()
-          cy.viewport(1000, 940)
+          cy.viewport(1000, 1400)
           cy.visit(dbUrl(`${year}?category=msamds`))
 
           // Wait for the Institutions selector to load because it can steal focus when trying to enter data in another input field.
@@ -172,7 +172,7 @@ describe(`Data Browser - Dataset Filtering`, () => {
           cy.url().should('include', '&loan_types=1')
 
           // View Summary Table
-          cy.findByText('View Summary Table').click()
+          cy.findByText('View Summary Table').click({ force: true })
           cy.get('.Aggregations', waitUpto2Mins).should('exist')
           
           const msa_text =

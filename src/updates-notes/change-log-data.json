@@ -1,6 +1,153 @@
 {
   "log": [
     {
+      "date": "12/15/23",
+      "type": "release",
+      "product": "HMDA Filing",
+      "description": "The HMDA Platform has partnered with Login.gov to introduce multifactor authentication (MFA) to the HMDA Platform. When logging into the HMDA Platform, users will now see an option to login with Login.gov. Selecting that option will allow HMDA filers to enable MFA on their HMDA platform accounts. While this feature is optional for the upcoming filing season, it will be required for all accounts beginning in 2025.",
+      "links": [
+        {
+          "text": "What is Login.gov?",
+          "url": "https://login.gov/what-is-login/"
+        }
+      ]
+    },
+    {
+      "date": "11/08/23",
+      "type": "update",
+      "product": "documentation",
+      "description": "The 2024 Filing Instructions Guide (FIG) was updated to include a minor correction to validity edit V720, a language change to quality edit Q660, and the inclusion of the validity edit V660 in the New and Revised Edits table.",
+      "links": [
+        {
+          "text": "2024 Filing Instructions Guide (FIG)",
+          "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2024-hmda-fig.pdf"
+        }
+      ]
+    },
+    {
+      "date": "10/24/23",
+      "type": "update",
+      "product": "tools",
+      "description": "HMDA Quarterly Graphs have been updated to include data for 2023-Q2.",
+      "links": [
+        {
+          "text": "HMDA Quarterly Graphs",
+          "url": "https://ffiec.cfpb.gov/data-browser/graphs/quarterly"
+        }
+      ]
+    },
+    {
+      "date": "09/07/23",
+      "type": "release",
+      "product": "documentation",
+      "description": "The 2024 Filing Instructions Guide (FIG) and 2024 Supplemental Guide for Quarterly Filers have been released.",
+      "links": [
+        {
+          "text": "2024 Filing Instructions Guide (FIG)",
+          "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2024-hmda-fig.pdf"
+        },
+        {
+          "text": "2024 Supplemental Guide for Quarterly Filers",
+          "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-2024.pdf"
+        }
+      ]
+    },
+    {
+      "date": "07/14/23",
+      "type": "update",
+      "product": "tools",
+      "description": "HMDA Quarterly Graphs have been updated to include data for 2023-Q1.",
+      "links": [
+        {
+          "text": "HMDA Quarterly Graphs",
+          "url": "https://ffiec.cfpb.gov/data-browser/graphs/quarterly"
+        }
+      ]
+    },
+    {
+      "date": "06/29/23",
+      "type": "release",
+      "product": "datasets",
+      "description": "The 2022 national loan-level datasets, disclosure reports, and MSA/MD aggregate reports were released and can be accessed via the Data Publications page. Users can now explore 2022 HMDA data using the Data Browser's dataset filtering tool and maps.",
+      "links": [
+        {
+          "text": "Data Publications",
+          "url": "https://ffiec.cfpb.gov/data-publication/"
+        },
+        {
+          "text": "Data Browser",
+          "url": "https://ffiec.cfpb.gov/data-browser/data/"
+        },
+        { "text": "Maps", "url": "https://ffiec.cfpb.gov/data-browser/maps/" }
+      ]
+    },
+    {
+      "date": "06/01/23",
+      "type": "release",
+      "product": "documentation",
+      "description": "A new and enhanced HMDA documentation page has been released! In addition to an improved visual design, financial institutions now have the ability to search the consolidated documentation and API documentation has been integrated.",
+      "links": [
+        {
+          "text": "Visit the redesigned page here.",
+          "url": "https://ffiec.cfpb.gov/documentation/"
+        }
+      ]
+    },
+    {
+      "date": "05/15/23",
+      "type": "release",
+      "product": "tools",
+      "description": "The Online LAR Formatting tool was released. Financial institutions, typically those with smaller loan volumes, can use the online tool to create an electronic file to submit to the HMDA Platform",
+      "links": [
+        {
+          "text": "Online LAR Formatting Tool.",
+          "url": "https://ffiec.cfpb.gov/tools/online-lar-formatting"
+        }
+      ]
+    },
+    {
+      "date": "04/14/23",
+      "type": "update",
+      "product": "tools",
+      "description": "Starting on or after April 24, 2023, the CFPB will begin relying on data from ICE Mortgage Technology to calculate APORs. This update is related to the rate spread calculator.",
+      "links": [
+        {
+          "text": "View the press release.",
+          "url": "https://www.consumerfinance.gov/about-us/newsroom/cfpb-announces-revised-methodology-for-determining-average-prime-offer-rates/"
+        }
+      ]
+    },
+    {
+      "date": "03/20/23",
+      "type": "release",
+      "product": "mlar",
+      "description": "On March 20, 2023, the 2022 Modified LAR data was released. A combined file containing all financial institutions' LAR records in a single file is also available for users to download.",
+      "links": [
+        {
+          "text": "View the press release.",
+          "url": "https://www.consumerfinance.gov/about-us/newsroom/2022-hmda-data-on-mortgage-lending-now-available/"
+        }
+      ]
+    },
+    {
+      "date": "02/13/23",
+      "type": "correction",
+      "product": "filing",
+      "description": "The HMDA Ops team discovered a bug in which filers were unable to view their IRS reports upon submission. This bug has been remediated and filers should be able to view their IRS report when selecting “View Completed Filing” on the HMDA Platform."
+    },
+    {
+      "date": "01/19/23",
+      "type": "update",
+      "product": "tools",
+      "description": "HMDA Quarterly Graphs have been updated to include data for 2022-Q3",
+      "links": [
+        {
+          "text": "HMDA Quarterly Graphs",
+          "url": "https://ffiec.cfpb.gov/data-browser/graphs/quarterly"
+        }
+      ]
+    },
+    {
       "date": "11/04/2022",
       "type": "update",
       "product": "documentation",
@@ -42,8 +189,14 @@
       "product": "documentation",
       "description": "The 2023 Filing Instructions Guide (FIG) and 2023 Supplemental Guide for Quarterly Filers have been released.",
       "links": [
-        {"text": "2023 Filing Instructions Guide (FIG)", "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2023-hmda-fig.pdf"},
-        {"text": "2023 Supplemental Guide for Quarterly Filers", "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-2023.pdf"}
+        {
+          "text": "2023 Filing Instructions Guide (FIG)",
+          "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2023-hmda-fig.pdf"
+        },
+        {
+          "text": "2023 Supplemental Guide for Quarterly Filers",
+          "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-2023.pdf"
+        }
       ]
     },
     {
@@ -75,7 +228,12 @@
       "type": "correction",
       "product": "tools",
       "description": "Two sets of APORs were published for the week of 7/11/2022 for fixed rate loans with terms of 9 to 12 years and adjustable rate loans with terms of 9 to 50 years. The first set was published on 7/8/2022 and was incorporated into the Bureau’s rate spread calculator until 7/15/2022. The second set was briefly incorporated into the Bureau’s rate spread calculator from 7/15/2022 until 7/21/2022, when the first set of APORs was reincorporated. Both sets of APORs are available below.",
-      "links": [{"text": "APOR Table - 7.11.22", "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/apor/7_11_2022_APOR_tables.csv" }],
+      "links": [
+        {
+          "text": "APOR Table - 7.11.22",
+          "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/apor/7_11_2022_APOR_tables.csv"
+        }
+      ],
       "url": ""
     },
     {
@@ -84,8 +242,14 @@
       "product": "datasets",
       "description": "One Year National Loan-Level (2019, 2020) and Three Year National Loan-Level (2018) datasets were released.",
       "links": [
-        {"text": "One Year National Loan-Level Dataset", "url": "https://ffiec.cfpb.gov/data-publication/one-year-national-loan-level-dataset/2020"},
-        {"text": "Three Year National Loan-Level Dataset", "url": "https://ffiec.cfpb.gov/data-publication/three-year-national-loan-level-dataset/2018"}
+        {
+          "text": "One Year National Loan-Level Dataset",
+          "url": "https://ffiec.cfpb.gov/data-publication/one-year-national-loan-level-dataset/2020"
+        },
+        {
+          "text": "Three Year National Loan-Level Dataset",
+          "url": "https://ffiec.cfpb.gov/data-publication/three-year-national-loan-level-dataset/2018"
+        }
       ]
     },
     {
@@ -94,7 +258,10 @@
       "product": "datasets",
       "description": "Disclosure Reports, MSA/MD Aggregate Reports, Snapshot National Loan-Level dataset, and Dynamic National Loan-Level dataset for 2021 were released.",
       "links": [
-        {"text": "HMDA Data Publications", "url": "https://ffiec.cfpb.gov/data-publication/"}
+        {
+          "text": "HMDA Data Publications",
+          "url": "https://ffiec.cfpb.gov/data-publication/"
+        }
       ]
     },
     {
@@ -133,7 +300,10 @@
       "product": "documentation",
       "description": "The HMDA API documentation has been updated to provide users more information about the Check Digit tool error response messaging for batch uploads during generate and validate processing.",
       "links": [
-          {"text": "HMDA API Documentation", "url": "https://cfpb.github.io/hmda-platform/"}
+        {
+          "text": "HMDA API Documentation",
+          "url": "https://cfpb.github.io/hmda-platform/"
+        }
       ]
     },
     {
@@ -142,8 +312,14 @@
       "product": "documentation",
       "description": "The 2022 Filing Instructions Guide (FIG) and 2022 Supplemental Guide for Quarterly Filers have been released.",
       "links": [
-        {"text": "2022 Filing Instructions Guide (FIG)", "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2022-hmda-fig.pdf"},
-        {"text": "2022 Supplemental Guide for Quarterly Filers", "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-2022.pdf"}
+        {
+          "text": "2022 Filing Instructions Guide (FIG)",
+          "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2022-hmda-fig.pdf"
+        },
+        {
+          "text": "2022 Supplemental Guide for Quarterly Filers",
+          "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-2022.pdf"
+        }
       ]
     },
     {
@@ -152,7 +328,10 @@
       "product": "datasets",
       "description": "The ARID2017 to LEI Reference Table has been released. This provides a mapping of 2017 Agency Code and Respondent IDs (ARID2017) to their current LEIs.",
       "links": [
-        {"text": "HMDA Snapshot Datasets", "url": "https://ffiec.cfpb.gov/data-publication/snapshot-national-loan-level-dataset/2020"}
+        {
+          "text": "HMDA Snapshot Datasets",
+          "url": "https://ffiec.cfpb.gov/data-publication/snapshot-national-loan-level-dataset/2020"
+        }
       ]
     },
     {
@@ -166,7 +345,6 @@
       "type": "correction",
       "product": "datasets",
       "description": "The LEI column header was incorrectly named 'upper' in the Reporter Panel file. We have corrected this so the column header displays the correct header name 'lei'."
-
     },
     {
       "date": "06/29/21",
@@ -174,7 +352,10 @@
       "product": "reports",
       "description": "Aggregate Report \"Applications by Median Age of Homes\" has been regenerated for 2020 and 2019 in order to address an error in the data format, which was causing the UI to crash.",
       "links": [
-        {"text": "HMDA Aggregate Reports", "url": "https://ffiec.cfpb.gov/data-publication/aggregate-reports/"}
+        {
+          "text": "HMDA Aggregate Reports",
+          "url": "https://ffiec.cfpb.gov/data-publication/aggregate-reports/"
+        }
       ]
     },
     {
@@ -183,7 +364,10 @@
       "product": "datasets",
       "description": "Disclosure Reports, MSA/MD Aggregate Reports, Snapshot National Loan-Level dataset, and Dynamic National Loan-Level dataset for 2020 were released.",
       "links": [
-        {"text": "HMDA Data Publications", "url": "https://ffiec.cfpb.gov/data-publication/"}
+        {
+          "text": "HMDA Data Publications",
+          "url": "https://ffiec.cfpb.gov/data-publication/"
+        }
       ]
     },
     {
@@ -198,7 +382,10 @@
       "product": "documentation",
       "description": "The HMDA API documentation has been updated to provide users more information about our endpoints and the Filing process. Additionally, the styling of the page has been better aligned with the Filing platform.",
       "links": [
-        {"text": "HMDA API Documentation", "url": "https://cfpb.github.io/hmda-platform/"}
+        {
+          "text": "HMDA API Documentation",
+          "url": "https://cfpb.github.io/hmda-platform/"
+        }
       ]
     },
     {
@@ -231,14 +418,24 @@
       "product": "mlar",
       "description": "On March 31, 2021, the 2020 Modified LAR data was released.",
       "url": "https://github.com/cfpb/hmda-frontend/issues/882",
-      "links": [{"text": "View the press release.", "url": "https://www.consumerfinance.gov/about-us/newsroom/2020-hmda-data-on-mortgage-lending-now-available" }]
+      "links": [
+        {
+          "text": "View the press release.",
+          "url": "https://www.consumerfinance.gov/about-us/newsroom/2020-hmda-data-on-mortgage-lending-now-available"
+        }
+      ]
     },
     {
       "date": "02/23/21",
       "type": "correction",
       "product": "tools",
       "description": "Two sets of APORs were published for the week of 7/20/2020 for fixed rate loans with terms of 13 to 22 years. The first set was published on 7/16/2020 and was briefly incorporated into the Bureau’s rate spread calculator. The second set was published on 7/20/2020 and was substituted for the first in the Bureau’s rate spread calculator. Both sets of APORs are available below.",
-      "links": [{"text": "APOR Table - 7.20.20", "url": "https://files.consumerfinance.gov/hmda/7_20_2020_APORs_table.csv" }],
+      "links": [
+        {
+          "text": "APOR Table - 7.20.20",
+          "url": "https://files.consumerfinance.gov/hmda/7_20_2020_APORs_table.csv"
+        }
+      ],
       "url": ""
     },
     {

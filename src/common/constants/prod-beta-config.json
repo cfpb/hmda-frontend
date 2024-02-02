@@ -1,16 +1,6 @@
 {
   "name": "prod-beta",
-  "announcement": [
-    {
-      "message": "The LAR Formatting tool, previously Excel-based, is being redeveloped as a web application. You can now easily import/input your LAR data, search to filter, make edits, and create a HMDA Platform compatible file right from your browser. Updates will be made to this tool iteratively, with the latest version now available on the ",
-      "type": "warning",
-      "heading": "[Preview] Create and edit LAR files online",
-      "link": {
-        "url": "https://ffiec.beta.cfpb.gov/tools/lar-formatting",
-        "text": "HMDA Beta Platform."
-      }
-    }
-  ],
+  "announcement": [],
   "publicationReleaseYear": "2020",
   "maintenanceMode": false,
   "filingAnnouncement": null,
@@ -38,9 +28,15 @@
     "2018"
   ],
   "timedGuards": {
+    "2024": {
+      "Q1": "04/01/2024 - 05/30/2024 - 06/30/2024",
+      "Q2": "07/01/2024 - 08/29/2024 - 09/30/2024",
+      "Q3": "10/01/2024 - 11/30/2024 - 12/31/2024",
+      "annual": "10/01/2023 - 03/01/2025 - 12/31/2027"
+    },
     "2023": {
-      "Q1": "04/01/2023 - 05/31/2023 - 06/30/2023",
-      "Q2": "07/01/2023 - 08/30/2023 - 09/30/2023",
+      "Q1": "04/01/2023 - 05/30/2023 - 06/30/2023",
+      "Q2": "07/01/2023 - 08/29/2023 - 09/30/2023",
       "Q3": "10/01/2023 - 11/30/2023 - 12/31/2023",
       "annual": "01/01/2024 - 03/01/2024 - 12/31/2026"
     },
@@ -74,7 +70,10 @@
     "preview": [
       "2022",
       "2023",
-      "2023-Q1"
+      "2023-Q1",
+      "2023-Q2",
+      "2024",
+      "2024-Q1"
     ]
   }
 }

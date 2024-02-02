@@ -28,14 +28,14 @@ export const useAutoAdvance = ({
   useEffect(() => {
     if (isPaused) clearTimeout(advanceTimeout)
     else {
-      if (totalCount < 1) return null
+      if (totalCount < 2) return null
       const secs = parseInt(cycleTime)
       if (secs > 0) {
         advanceTimeout = setTimeout(showNext, secs * 1000)
         return () => clearTimeout(advanceTimeout)
       }
     }
-  }, [currentIdx, isPaused])
+  }, [currentIdx, isPaused, totalCount])
 
   return {
     currentIdx,

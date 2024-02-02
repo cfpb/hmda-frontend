@@ -1,0 +1,16 @@
+Field Name | _scalaStruct | Enumerations | Examples | Descriptions
+"Record Identifier"                               | ts.id.toString | 1 - TS, 2 - LAR | ||
+"Financial Institution Name"                      | ts.institutionName || Ficus Bank ||
+"Calendar Year"                                   | ts.year.toString | 2019 - 2019,2020 - 2020,2021 - 2021,2022 - 2022,2023 - 2023 | 2021 ||
+"Calendar Quarter"                                | ts.quarter.toString | 1 - Q1, 2 - Q2, 3 - Q3, 4 - Annual | 4 ||
+"Contact Person's Name"                           | ts.contact.name || Erika Otis ||
+"Contact Person's Phone Number"                   | ts.contact.phone || 999{hyphen}999{hyphen}9999 ||
+"Contact Person's E-mail Address"                 | ts.contact.email || erikaotis@bank.com ||
+"Contact Person's Office Street Address"          | ts.contact.address.street || 4321 W Random Blvd Ste 201 ||
+"Contact Person's Office City"                    | ts.contact.address.city || Somecity ||
+"Contact Person's Office State"                   | ts.contact.address.state || CA  ||
+"Contact Person's Office Zip Code"                | ts.contact.address.zipCode || 90049{hyphen}9998 ||
+"Federal Agency"                                  | ts.agency.code.toString |  1 - Office of the Comptroller of the Currency (OCC), 2 - Federal Reserve System (FRS), 3 - Federal Deposit Insurance Corporation (FDIC), 5 - National Credit Union Administration 9 (NCUA), 7 - United States Department of Housing and Urban Development (HUD), 9 - Consumer Financial Protection Bureau (Bureau) ||| 
+"Total Number of Entries Contained in Submission" | ts.totalLines.toString || 100 ||
+"Federal Taxpayer Identification Number"          | ts.taxId || 99{hyphen}9999999 ||
+"Legal Entity Identifier (LEI)"                   | ts.LEI || 10BX939C5543TQA1144M ||

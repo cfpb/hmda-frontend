@@ -1,0 +1,99 @@
+.profile_form_container {
+  max-width: 85rem;
+  background-color: #F7F8F9;
+  padding: 25px 35px;
+  border: 1px solid #A2A3A4;
+}
+
+.profile_form_container button {
+  margin-top: 35px;
+  
+}
+
+.profile_form_container .missing_institutions_banner_container .alert {
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+/* Associated Instutions CSS */
+.associated_insitutions_container h1 {
+  font-size: 18px;
+  font-weight: normal !important;
+}
+
+.associated_insitutions_container p {
+  font-size: 16px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.institutions_checkbox_container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 14px;
+  align-items: flex-start;
+}
+
+.institutions_checkbox_container input[type="checkbox"] {
+  margin-top: 2px;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+
+.institution_info_container {
+  display: flex;
+  margin: 8px 0;
+}
+
+.institutions_checkbox_container .institution_info_container .institution_info {
+  margin-left: 12px;
+}
+
+.institutions_checkbox_container .institution_info_container .institution_info h1 {
+  margin: 0;
+  font-weight: normal !important;
+}
+
+.profile_back_button {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 8px;
+  margin-bottom: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:hover {
+    color: black; 
+    text-decoration:none; 
+    cursor: pointer;  
+}
+
+.profile_back_button p {
+  margin: 0;
+  font-size: 15px;
+  margin-left: 4px;
+  text-transform: uppercase;
+}
+
+.institutions_checkbox_container .LoadingIconWrapper {
+  margin-left: 0;
+  margin-top: 12px;
+}
+
+.profile_form_container .alert {
+  margin-top: 0;
+}
+
+.no_institutions_associated {
+  max-width: 85rem !important;
+}
+
+/* Profile Icon CSS */
+.profile_icon_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

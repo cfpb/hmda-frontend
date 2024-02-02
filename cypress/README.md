@@ -1,14 +1,16 @@
 # Cypress Integration Testing
 In an effort to automate system validation, this test suite emulates user interaction with the HMDA Frontend using the Cypress testing library.
-  * [Setup](#setup)
-    + [Installation Issues](#installation-issues)
-    + [Environment Configuration](#environment-configuration)
-  * [Running Tests](#running-tests)
-    + [via CLI](#via-cli)
-    + [via Cypress UI](#via-cypress-ui)
-  * [Cronjob integration](#cronjob-integration)
-    + [Updating Specs](#updating-specs)
-    + [Updating Credentials](#updating-credentials)
+- [Cypress Integration Testing](#cypress-integration-testing)
+  - [Setup](#setup)
+    - [Installation Issues](#installation-issues)
+    - [Environment Configuration](#environment-configuration)
+  - [Running Tests](#running-tests)
+    - [via CLI](#via-cli)
+    - [via Cypress UI](#via-cypress-ui)
+  - [Cronjob integration](#cronjob-integration)
+    - [Updating the test image](#updating-the-test-image)
+    - [Updating Specs/Fixtures](#updating-specsfixtures)
+    - [Updating Credentials](#updating-credentials)
 
 ## Setup  
 Install [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm#installing-and-updating)  
@@ -82,6 +84,7 @@ yarn cypress open
 Integration testing automatically runs once daily via cronjob. 
 
 ### Updating the test image
+The test image only needs to be updated when there is a change to the testing workflow (i.e. changes to `./docker-runner.sh`) or updates to the image dependencies (`./package.json`, `./install-cypress-dependencies.sh`, './Dockerfile`)
 ```
 docker build . -t hmda-cypress -f cypress/Dockerfile &&
 docker tag hmda-cypress <image_repo>/hmda/hmda-cypress &&
@@ -89,12 +92,22 @@ docker push  <image_repo>/hmda/hmda-cypress
 ```
 
 ### Updating Specs/Fixtures
-Cronjob specs and fixtures are pulled from AWS S3 on each job run. To update the testing data used, from the root directory `/hmda-frontend/`, run 
-```
-yarn cy-update-s3
-```
+Cronjob specs and fixtures are pulled from AWS S3 on each job run. 
  
-You will be prompted for an AWS user profile that has `write` access to the S3 bucket.
+These files need to be updated when:
+  - There are tests being added/removed/updated
+  - There are files that tests depend on (Ex. LAR files for Filing tests) that have changed
+
+Prerequisites:
+- Verify that `/cypress/fixtures/2020-FRONTENDTEST-MAX.txt` exists.  If not, use `yarn make-lar frontendtestbank9999 2020 MAX` to generate it (this requires the HMDA Platform - Check Digit service to be running locally: `sbt "project check-digit" "run"`). 
+
+Upload S3 files:
+- To update the testing data used, from the root directory `/hmda-frontend/`, run 
+  ```
+  yarn cy-update-s3
+  ```
+ 
+- You will be prompted for an AWS user profile that has `write` access to the S3 bucket.
 
 ### Updating Credentials
 In order to update the login credentials used by the testing pod, please see the `Quick Start` section in `/hmda-devops/kubernetes/cypress/README.md`.

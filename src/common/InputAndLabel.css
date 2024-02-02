@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.container .email_label {
+  margin-bottom: 0;
+}
+
+.container p {
+  margin-top: 4px;
+  margin-bottom: 10px;
+  font-weight: 100;
+}
+
+.container label {
+  font-size: 1.7rem;
+  margin-bottom: 10px;
+}
+
+.container input {
+  height: 35px;
+  padding: 5px 7px;
+  font-size: 16px;
+}
+
+.container input[type="email"][disabled] {
+  background-color: #E7E8E9;
+  color: #5A5D61;
+  border: 1px solid #A2A3A4;
+}
+
+.container .error {
+  font-size: 1.7rem;
+  margin-top: 0;
+  color: #cd2026;
+  margin-bottom: 10px;
+}

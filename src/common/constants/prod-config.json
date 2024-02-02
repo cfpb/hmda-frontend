@@ -1,20 +1,46 @@
 {
   "name": "prod",
-  "announcement": [],
-  "publicationReleaseYear": "2021",
-  "mlarReleaseYear": "2021",
+  "announcement": [
+    {
+      "heading": "Introducing Multifactor Authentication (MFA) via Login.gov",
+      "message": "When logging into the HMDA Platform, users will now see an option to login with Login.gov. Select 'Login.gov' and follow the prompts to enable MFA on your account. Users have the option to continue signing in using the existing process.",
+      "type": "info"
+    },
+    {
+      "heading": "2023 Q2 Graphs Released",
+      "message": "HMDA Quarterly Graphs have been updated to include data from the recently completed 2023-Q2 filing period and can be found ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/data-browser/graphs/quarterly/",
+        "text": "here."
+      }
+    },
+    {
+      "heading": "Online LAR Formatting Tool",
+      "message": "The Online LAR Formatting tool has been released! Financial institutions can now create an electronic file online to submit to the HMDA Platform. Check out the ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/tools/online-lar-formatting",
+        "text": "new LAR Formatting tool."
+      }
+    }
+  ],
+  "publicationReleaseYear": "2022",
+  "mlarReleaseYear": "2022",
   "maintenanceMode": false,
   "filingAnnouncement": null,
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
-    "mlar": [
+    "shared": [
+      "2022",
       "2021",
       "2020",
       "2019",
       "2018",
       "2017"
     ],
-    "shared": [
+    "mlar": [
+      "2022",
       "2021",
       "2020",
       "2019",
@@ -22,23 +48,74 @@
       "2017"
     ],
     "threeYear": [
+      "2019",
       "2018",
       "2017"
     ],
     "oneYear": [
+      "2021",
       "2020",
       "2019",
       "2018",
       "2017"
+    ],
+    "aggregate": [
+      "2022",
+      "2021",
+      "2020",
+      "2019",
+      "2018",
+      "2017"
+    ],
+    "disclosure": [
+      "2022",
+      "2021",
+      "2020",
+      "2019",
+      "2018",
+      "2017"
+    ],
+    "dynamic": [
+      "2022",
+      "2021",
+      "2020",
+      "2019",
+      "2018",
+      "2017"
+    ],
+    "snapshot": [
+      "2022",
+      "2021",
+      "2020",
+      "2019",
+      "2018",
+      "2017"
+    ],
+    "national": [
+      "2017"
     ]
   },
   "dataBrowserYears": [
+    "2022",
+    "2021",
+    "2020",
+    "2019",
+    "2018"
+  ],
+  "dataBrowserMapsYears": [
+    "2022",
     "2021",
     "2020",
     "2019",
     "2018"
   ],
   "timedGuards": {
+    "2023": {
+      "Q1": "04/01/2023 - 05/30/2023 - 06/30/2023",
+      "Q2": "07/01/2023 - 08/29/2023 - 09/30/2023",
+      "Q3": "10/01/2023 - 11/29/2023 - 12/31/2023",
+      "annual": "01/01/2024 - 03/01/2024 - 12/31/2026"
+    },
     "2022": {
       "Q1": "04/01/2022 - 05/31/2022 - 06/30/2022",
       "Q2": "07/01/2022 - 08/30/2022 - 09/30/2022",

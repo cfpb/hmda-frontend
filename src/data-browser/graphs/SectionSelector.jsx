@@ -32,8 +32,7 @@ const SectionOption = ({ isSelected, title, url }) => {
 export const SectionSelector = ({ props }) => {
   const SectionOptions = [
     { label: "Graphs" }, // url for graphs comes from redux
-    { label: "Filer Info", url: "/filers" },
-    { label: "FAQ", url: "/faq" },
+    { label: "Filer Info", url: "/filers" }
   ]
 
   const [section, setSection] = useState(SectionOptions[0])
@@ -42,8 +41,6 @@ export const SectionSelector = ({ props }) => {
     // Handling which tab is active via url
     if (props.history.location.pathname.includes("/info/filers")) {
       setSection(SectionOptions[1])
-    } else if (props.history.location.pathname.includes("/info/faq")) {
-      setSection(SectionOptions[2])
     } else {
       setSection(SectionOptions[0])
     }

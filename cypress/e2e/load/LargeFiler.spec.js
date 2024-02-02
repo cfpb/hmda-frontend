@@ -15,7 +15,7 @@ const {
   YEARS,
 } = Cypress.env()
 
-const years = [2020]
+const years = [2022]
 const uploadTimeout = 3 * 60 * 60 * 1000 // 3 hours
 
 const config = getDefaultConfig(HOST)
@@ -23,9 +23,6 @@ const getFilename = (filingPeriod, lei) => `${filingPeriod}-${lei}-MAX.txt`
 const { filingPeriodStatus } = config
 
 describe('Large Filer', () => {
-  // Only need to provide an Auth URL when running locally
-  const authUrl = HOST.indexOf('localhost') > -1 ? AUTH_BASE_URL : HOST
-
   beforeEach(() => {
     cy.get({
       HOST,
@@ -42,8 +39,7 @@ describe('Large Filer', () => {
 
     // Skip authentication on CI
     if (!isCI(ENVIRONMENT)) {
-      cy.logout({ root: authUrl, realm: AUTH_REALM })
-      cy.hmdaLogin('filing', authUrl)
+      cy.hmdaLogin('filing')
       cy.url().should('contains', `${AUTH_BASE_URL}filing/`)
     }
 
@@ -103,7 +99,7 @@ describe('Large Filer', () => {
             /* File Upload */
             const FILENAME = getFilename(filingPeriod, INSTITUTION)
 
-            cy.fixture(FILENAME).then(fileContent => {
+            cy.fixture(FILENAME, {timeout: 60000} ).then(fileContent => {
               cy.get('.UploadForm input', { force: true }).attachFile({
                 fileContent,
                 fileName: FILENAME,

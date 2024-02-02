@@ -1,47 +1,51 @@
 {
   "name": "dev",
-  "announcement": [],
-  "publicationReleaseYear": "2021",
-  "mlarReleaseYear": "2021",
+  "announcement": [
+    {
+      "heading": "2024 Filing Instructions Guides Released",
+      "message": "On September 7, 2023, the Bureau released the 2024 FIG and Supplemental Guide for Quarterly Filers for 2024, which are available ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/documentation/faq/data-collection-timelines#filing-instructions-guide-fig",
+        "text": "here."
+      }
+    },
+    {
+      "heading": "Online LAR Formatting Tool",
+      "message": "The Online LAR Formatting tool has been released! Financial institutions can now create an electronic file online to submit to the HMDA Platform. Check out the ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/tools/online-lar-formatting",
+        "text": "new LAR Formatting tool."
+      }
+    }
+  ],
+  "publicationReleaseYear": "2022", 
+  "mlarReleaseYear": "2022",
   "maintenanceMode": false,
   "filingAnnouncement": null,
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
-    "mlar": [
-      "2021",
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "shared": [
-      "2021",
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "threeYear": [
-      "2018",
-      "2017"
-    ],
-    "oneYear": [
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ]
+    "shared": ["2022", "2021", "2020", "2019", "2018", "2017"],
+    "mlar": ["2022", "2021", "2020", "2019", "2018", "2017"],
+    "threeYear": ["2019", "2018", "2017"],
+    "oneYear": ["2021", "2020", "2019", "2018", "2017"],
+    "aggregate": ["2022", "2021", "2020", "2019", "2018", "2017"],
+    "disclosure": ["2022", "2021", "2020", "2019", "2018", "2017"],
+    "dynamic": ["2022", "2021", "2020", "2019", "2018", "2017"],
+    "snapshot": ["2022", "2021", "2020", "2019", "2018", "2017"],
+    "national": ["2017"]
   },
-  "dataBrowserYears": [
-    "2021",
-    "2020",
-    "2019",
-    "2018"
-  ],
+  "dataBrowserYears": ["2022", "2021", "2020", "2019", "2018"],
+  "dataBrowserMapsYears": ["2022", "2021", "2020", "2019", "2018"],
   "timedGuards": {
+    "2024": {
+      "Q1": "10/01/2023 - 05/30/2024 - 06/30/2024",
+      "annual": "10/01/2023 - 03/01/2025 - 12/31/2027"
+    },
     "2023": {
-      "Q1": "04/01/2023 - 05/31/2023 - 06/30/2023",
-      "Q2": "07/01/2023 - 08/30/2023 - 09/30/2023",
+      "Q1": "04/01/2023 - 05/30/2023 - 06/30/2023",
+      "Q2": "07/01/2023 - 08/29/2023 - 09/30/2023",
       "Q3": "10/01/2023 - 11/29/2023 - 12/31/2023",
       "annual": "01/01/2024 - 03/01/2024 - 12/31/2026"
     },
@@ -72,6 +76,6 @@
     "2017": {
       "annual": "01/01/2018 - 03/01/2018 - 12/31/2019"
     },
-    "preview": ["2022", "2023-Q1"]
+    "preview": ["2021-Q1", "2021-Q2", "2021-Q3", "2022-Q1", "2022-Q2", "2022-Q3", "2023-Q1", "2023-Q2", "2023-Q3", "2024", "2024-Q1"]
   }
 }

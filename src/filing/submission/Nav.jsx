@@ -50,7 +50,7 @@ export default class EditsNav extends Component {
       },
       'quality edits': {
         isReachable: () =>
-          this.props.editsFetched && this.navMap['syntactical & validity edits'].isCompleted(),
+          this.props.editsFetched && this.navMap['syntactical & validity edits'].isCompleted() && this.props.code !== 8,
         isErrored: () => this.props.qualityExists && !this.props.qualityVerified,
         isCompleted: () =>
           this.navMap['quality edits'].isReachable() &&
@@ -62,7 +62,7 @@ export default class EditsNav extends Component {
         link: 'quality'
       },
       'macro quality edits': {
-        isReachable: () => this.props.editsFetched && this.navMap['quality edits'].isCompleted(),
+        isReachable: () => this.props.editsFetched && this.navMap['quality edits'].isCompleted() && this.props.code !== 12,
         isErrored: () => this.props.macroExists && !this.props.macroVerified,
         isCompleted: () =>
           this.navMap['macro quality edits'].isReachable() &&
@@ -141,7 +141,6 @@ export default class EditsNav extends Component {
       if (navClass !== 'active') step = null
       if (navClass === 'warning-exclamation') step = '!'
       if (navClass === 'warning-question') step = '?'
-
       if (navItem.link === page) navClass = `${navClass} current`
 
       return (
