@@ -1738,6 +1738,10 @@
           "description": "Not applicable"
         },
         {
+          "value": "5",
+          "description": "No co-applicant"
+        },
+        {
           "value": "6",
           "description": "Applicant selected both male and female"
         }
