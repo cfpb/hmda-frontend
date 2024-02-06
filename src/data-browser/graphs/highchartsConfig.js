@@ -214,7 +214,8 @@ const formatXdescription = (loading, axes) => {
 }
 
 const deriveLegendTitle = endpoint => {
-  if (endpoint.match('-re$')) return 'Race / Ethnicity'
-  if (endpoint === 'all-applications') return 'Filer Types'
+  const race = /-re(?:-|$)/
+  if (race.test(endpoint)) return 'Race / Ethnicity'
+  if (endpoint.match('all-applications')) return 'Filer Types'
   return 'Loan Types'
 }
