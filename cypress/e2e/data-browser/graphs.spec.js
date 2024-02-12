@@ -71,9 +71,6 @@ if (isBeta(HOST)) {
       cy.wait(1000)
 
       cy.url().then(url => {
-        // cy.get('.react-select__graph__value-container').click(0, 0, {
-        //   force: true,
-        // })
         cy.get('.react-select__graph__control').click(0, 0, {
           force: true,
         })
