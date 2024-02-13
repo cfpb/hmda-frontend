@@ -1,5 +1,5 @@
 import Highcharts from 'highcharts'
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CopyURLButton from '../../../common/CopyURLButton.jsx'
 import LoadingIcon from '../../../common/LoadingIcon'
@@ -21,7 +21,7 @@ import {
   RESET_SERIES_VIS,
   SELECTED_GRAPH,
   SELECTED_GRAPH_DATA,
-  SERIES_FOR_URL
+  SERIES_FOR_URL,
 } from '../slice/graphConfigs.js'
 import { graphs } from '../slice'
 import { formatGroupLabel, onMenuOpen } from '../utils/menuHelpers.js'
@@ -53,9 +53,15 @@ export const SectionGraphs = ({
 
   const quarters = graphs.getConfig(graphConfigStore, QUARTERS) // Contains all the quarters from a selected graph and is used for period filtering
   const rawGraphList = graphs.getConfig(graphConfigStore, RAW_GRAPH_LIST) // List of available graphs from API
-  const resetSeriesVisability = graphs.getConfig(graphConfigStore, RESET_SERIES_VIS) // Force Highcharts to reset series visibility
+  const resetSeriesVisability = graphs.getConfig(
+    graphConfigStore,
+    RESET_SERIES_VIS
+  ) // Force Highcharts to reset series visibility
   const selectedGraph = graphs.getConfig(graphConfigStore, SELECTED_GRAPH) // Configuration for the currently selected graph
-  const selectedGraphData = graphs.getConfig(graphConfigStore, SELECTED_GRAPH_DATA) // API data of currently selected graph
+  const selectedGraphData = graphs.getConfig(
+    graphConfigStore,
+    SELECTED_GRAPH_DATA
+  ) // API data of currently selected graph
   const seriesForURL = graphs.getConfig(graphConfigStore, SERIES_FOR_URL) // List of series names to be included in the URL's `visibleSeries` query parameter
   const setSeriesForURL = value =>
     dispatch(graphs.setConfig(SERIES_FOR_URL, value))
@@ -91,6 +97,85 @@ export const SectionGraphs = ({
     selectedGraph,
     selectedGraphData,
   })
+  //*******************************************
+  //  Loan Purpose Selector Functionality
+  //*******************************************/
+  // Dropdown Menu Options
+  const loanPurposeOptions = [
+    { value: '', label: 'All' },
+    { value: 'home', label: 'Home Purchase' },
+    { value: 'refinance', label: 'Refinance' },
+  ]
+
+  const [loanPurposeSelected, setLoanPurposeSelected] = useState({
+    value: '',
+    label: 'All',
+  })
+
+  // Filter Options for Graphs Dropdown Menu based on Loan Purpose selected
+  const filteredGraphMenuOptions = graphMenuOptions.map(category => {
+    const options = category.options.filter(option => {
+      if (!loanPurposeSelected || loanPurposeSelected.value == '') {
+        return (
+          !option.value.endsWith('home') && !option.value.endsWith('refinance')
+        )
+      } else if (loanPurposeSelected.value == 'home') {
+        return option.value.endsWith('home')
+      } else if (loanPurposeSelected.value == 'refinance') {
+        return option.value.endsWith('refinance')
+      }
+    })
+
+    // Return new object with filtered options
+    return {
+      ...category,
+      options,
+    }
+  })
+
+  // Update Graph according to Loan Purpose selected
+  const handleLoanPurposeSelection = loanPurposeSelected => {
+    setLoanPurposeSelected(loanPurposeSelected)
+
+    let valueIndex = selectedGraph.value.toString().indexOf('-loan-purpose')
+    let labelIndex = selectedGraph.label.toString().indexOf('-')
+    let updatedGraphSelection = ''
+    let updatedGraphLabel = ''
+
+    // Switching to 'All' Loan Purpose
+    if (loanPurposeSelected.value == '') {
+      updatedGraphSelection = selectedGraph.value.substring(0, valueIndex)
+      updatedGraphLabel = selectedGraph.label.substring(0, labelIndex)
+    }
+    // Switching from 'Home Purchase' to 'Refinance' Loan Purpose (and vice-versa)
+    else if (valueIndex !== -1) {
+      updatedGraphSelection =
+        selectedGraph.value.substring(0, valueIndex) +
+        '-loan-purpose-' +
+        loanPurposeSelected.value
+      updatedGraphLabel =
+        selectedGraph.label.substring(0, labelIndex) +
+        ' - ' +
+        loanPurposeSelected.label
+    }
+    // Switching from 'All' to 'Home Purchase' or 'Refinance' Loan Purpose
+    else {
+      updatedGraphSelection =
+        selectedGraph.value + '-loan-purpose-' + loanPurposeSelected.value
+      updatedGraphLabel =
+        selectedGraph.label + ' - ' + loanPurposeSelected.label
+    }
+
+    // Update Graph Selection
+    dispatch(
+      graphs.setConfig(SELECTED_GRAPH, {
+        value: updatedGraphSelection,
+        label: updatedGraphLabel,
+      })
+    )
+    fetchSingleGraph(updatedGraphSelection)
+  }
+  // End Loan Purpose Selection functionality
 
   const handleGraphSelection = useCallback(
     event => {
@@ -124,14 +209,30 @@ export const SectionGraphs = ({
       )
     }
 
+    // Handles URL use case for Home Purchae and Refinance by updating dropdown menu
+    const loanPurposeOptions = ['home', 'refinance']
+    let splitSelectedGraphValue = selectedGraph?.value?.split('-')
+    let loanPurposeType =
+      splitSelectedGraphValue[splitSelectedGraphValue.length - 1]
+
+    if (loanPurposeOptions.includes(loanPurposeType)) {
+      if (loanPurposeType == 'home') {
+        setLoanPurposeSelected({
+          label: 'Home Purchase',
+          value: loanPurposeType,
+        })
+      } else {
+        setLoanPurposeSelected({
+          label: 'Refinance',
+          value: loanPurposeType,
+        })
+      }
+    }
+
     // Allows direct linking to the different tabs
     if (props.history.location.pathname.includes('/info/filers')) {
       props.history.push({
         pathname: `${BaseURLQuarterly}/info/filers`,
-      })
-    } else if (props.history.location.pathname.includes('/info/faq')) {
-      props.history.push({
-        pathname: `${BaseURLQuarterly}/info/faq`,
       })
     } else {
       props.history.push({
@@ -159,13 +260,15 @@ export const SectionGraphs = ({
   // Reformat data table values to match graph's decimal precision
   // https://jsfiddle.net/BlackLabel/5kj9pnfm/
   useEffect(() => {
-    Highcharts.addEvent(Highcharts.Chart, "aftergetTableAST", function (e) {
+    Highcharts.addEvent(Highcharts.Chart, 'aftergetTableAST', function (e) {
       if (!selectedGraphData?.series?.length) return
 
       // Determine which column === which Series
-      const columnLabels = [...e.tree.children[1].children[0].children].slice(1).map(x => x.textContent)
- 
-      e.tree.children[2].children.forEach(function (row,r) {
+      const columnLabels = [...e.tree.children[1].children[0].children]
+        .slice(1)
+        .map(x => x.textContent)
+
+      e.tree.children[2].children.forEach(function (row, r) {
         const rowYearQuarter = row.children[0].textContent
         row.children.forEach(function (cell, i) {
           if (i !== 0) {
@@ -177,14 +280,17 @@ export const SectionGraphs = ({
             const cellData = columnData?.coordinates?.find(
               item => item.x === rowYearQuarter
             )
-            if (!cellData) return
 
-            // Update the cell with value formatted to the API configured precision
-            cell.textContent = Highcharts.numberFormat(
-              cellData.y,
-              selectedGraphData.decimalPrecision
-            )
-          } 
+            if (!cellData) {
+              cell.textContent = ''
+            } else {
+              // Update the cell with value formatted to the API configured precision
+              cell.textContent = Highcharts.numberFormat(
+                cellData.y,
+                selectedGraphData.decimalPrecision
+              )
+            }
+          }
         })
       })
     })
@@ -202,10 +308,21 @@ export const SectionGraphs = ({
 
   return (
     <>
-      <p className='instructions'>Select a graph from the menu below</p>
+      <p className='instructions'>Select a Loan Purpose:</p>
+      <Select
+        classNamePrefix='react-select__loan' // Used for cypress testing
+        options={loanPurposeOptions}
+        placeholder='Select a Loan Purpose'
+        aria-label='Select a Loan Purpose'
+        onChange={handleLoanPurposeSelection}
+        value={loanPurposeSelected}
+        formatGroupLabel={formatGroupLabel}
+        onMenuOpen={onMenuOpen}
+      />
+      <p className='instructions'>Select a Graph:</p>
       <Select
         classNamePrefix='react-select__graph' // Used for cypress testing
-        options={graphMenuOptions}
+        options={filteredGraphMenuOptions}
         placeholder='Select a Graph'
         aria-label='Select a Graph.'
         onChange={handleGraphSelection}

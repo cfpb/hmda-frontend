@@ -1,17 +1,17 @@
-import { hmda_charts, seriesColors, yearQuarters } from "./config"
-import { cloneObject, filterByPeriods } from "./utils/utils"
+import { hmda_charts, seriesColors, yearQuarters } from './config'
+import { cloneObject, filterByPeriods } from './utils/utils'
 
 // Highcharts configuration for a line graph
 export const baseConfig = {
   title: {
-    text: "Title",
+    text: 'Title',
   },
   subtitle: {
-    text: "Subtitle",
-    style: { fontSize: "14px" },
+    text: 'Subtitle',
+    style: { fontSize: '14px' },
   },
   caption: {
-    text: "",
+    text: '',
   },
   exporting: {
     scale: 1, // Scale by default is 2 unless specified
@@ -21,10 +21,10 @@ export const baseConfig = {
   },
   colors: seriesColors,
   chart: {
-    type: "spline",
+    type: 'spline',
     spacingLeft: 0,
     spacingRight: 0,
-    height: "60%",
+    height: '60%',
   },
   plotOptions: {
     spline: {
@@ -38,7 +38,7 @@ export const baseConfig = {
     padding: 15,
     margin: 25,
     symbolRadius: 0,
-    title: { text: "Measure names", style: { textAlign: "center" } },
+    title: { text: 'Measure names', style: { textAlign: 'center' } },
     ...hmda_charts.config.alignLegendRight,
     ...hmda_charts.styles.withBorder,
   },
@@ -67,7 +67,7 @@ export const baseConfig = {
           legend: {
             maxWidth: 150,
             title: {
-              text: "",
+              text: '',
             },
             itemStyle: {
               fontSize: 10,
@@ -84,20 +84,20 @@ export const baseConfig = {
       },
       {
         condition: {
-          maxWidth: 800
+          maxWidth: 800,
         },
         chartOptions: {
           chart: {
             height: 600,
-          }
-        }
-      }
+          },
+        },
+      },
     ],
   },
 }
 
 export const defaultAxisX = {
-  title: { text: "Year Quarter", y: 10 }, // TODO: Replace with data from API
+  title: { text: 'Year Quarter', y: 10 }, // TODO: Replace with data from API
   categories: yearQuarters,
   crosshair: true, // Highlight xAxis hovered category ie. 2020-Q3
   labels: hmda_charts.styles.axisLabel,
@@ -121,7 +121,7 @@ export const deriveHighchartsConfig = ({
 
   config.title.text = title
   config.subtitle.text = subtitle
-  config.accessibility = { description: "Graph summary: " + subtitle }
+  config.accessibility = { description: 'Graph summary: ' + subtitle }
   config.xAxis = xAxis
   config.legend.title.text = deriveLegendTitle(endpoint)
 
@@ -165,15 +165,25 @@ export const deriveHighchartsConfig = ({
     labels: {
       ...hmda_charts.styles.axisLabel,
       // Formatter used to add "K" and "M"
+      // Formatter display examples: 100, 200, 850, 1K, 3.5K, 10K, 100K, 500K, 1M, 1.8M, 2M
       formatter: tick => {
         if (!tick) return
+        const formatThousands = tickValue => {
+          const suffix = tickValue & (1000 === 0) ? 'K' : 'K'
+          return `${(tickValue / 1000).toFixed(
+            tickValue % 1000 === 0 ? 0 : 1
+          )}${suffix}`
+        }
+        const formatMillions = tickValue => {
+          return `${(tickValue / 1000000).toFixed(1)}M`
+        }
 
-        if (tick.value > 999 && tick.value < 1000000) {
-          return (tick.value / 1000).toFixed(0) + "K" // convert to K for number from > 1000 < 1 million
+        if (tick.value >= 1000 && tick.value < 1000000) {
+          return formatThousands(tick.value)
         } else if (tick.value >= 1000000) {
-          return (tick.value / 1000000).toFixed(1) + "M" // convert to M for number from > 1 million
+          return formatMillions(tick.value)
         } else {
-          return tick.value // if value < 1000, nothing to do
+          return tick.value // Return value if it is less than 1000
         }
       },
     },
@@ -181,12 +191,12 @@ export const deriveHighchartsConfig = ({
   }))
 
   if (loading) {
-    config.legend.title.text = ""
-    config.xAxis[0].title.text = ""
-    config.yAxis[0].title.text = ""
-    config.yAxis[0].accessibility.description = ""
+    config.legend.title.text = ''
+    config.xAxis[0].title.text = ''
+    config.yAxis[0].title.text = ''
+    config.yAxis[0].accessibility.description = ''
   } else {
-    config.xAxis[0].title.text = "Year Quarter"
+    config.xAxis[0].title.text = 'Year Quarter'
   }
 
   return config
@@ -194,7 +204,7 @@ export const deriveHighchartsConfig = ({
 
 // Construct the axis description for screen readers
 const formatXdescription = (loading, axes) => {
-  if (loading) return ""
+  if (loading) return ''
 
   const title = axes[0]?.title?.text
   const from = axes[0]?.categories[0]
@@ -204,7 +214,8 @@ const formatXdescription = (loading, axes) => {
 }
 
 const deriveLegendTitle = endpoint => {
-  if (endpoint.match("-re$")) return "Race / Ethnicity"
-  if (endpoint === "all-applications") return "Filer Types"
-  return "Loan Types"
+  const race = /-re(?:-|$)/
+  if (race.test(endpoint)) return 'Race / Ethnicity'
+  if (endpoint.match('all-applications')) return 'Filer Types'
+  return 'Loan Types'
 }
