@@ -16,15 +16,6 @@
       "type": "info"
     },
     {
-      "heading": "2023 Q2 Graphs Released",
-      "message": "HMDA Quarterly Graphs have been updated to include data from the recently completed 2023-Q2 filing period and can be found ",
-      "type": "info",
-      "link": {
-        "url": "https://ffiec.cfpb.gov/data-browser/graphs/quarterly/",
-        "text": "here."
-      }
-    },
-    {
       "heading": "Online LAR Formatting Tool",
       "message": "The Online LAR Formatting tool has been released! Financial institutions can now create an electronic file online to submit to the HMDA Platform. Check out the ",
       "type": "info",
