@@ -1,6 +1,18 @@
 {
   "log": [
     {
+      "date": "2/16/24",
+      "type": "correction",
+      "product": "filing",
+      "description": "V695 was corrected on the HMDA Filing Platform to only allow numeric values for Mortgage Loan Originator NMLSR Identifier (Field 95), unless filers are reporting 'NA' or 'Exempt', to conform to the language in the Filing Instructions Guide.",
+      "links": [
+        {
+          "text": "V695 Edit Description",
+          "url": "https://ffiec.cfpb.gov/documentation/fig/2023/overview#table6-V695"
+        }
+      ]
+    },
+    {
       "date": "2/15/24",
       "type": "update",
       "product": "tools",
