@@ -1,5 +1,19 @@
 #!/bin/bash
 
+if [[ "$CYPRESS_HOST" == *"ffiec.cfpb"* ]]; then
+  environment="PROD"
+elif [[ "$CYPRESS_HOST" == *"ffiec.beta"* ]]; then
+  environment="BETA"
+elif [[ "$CYPRESS_HOST" == *"hmda4.demo"* ]]; then
+  environment="DEV"
+else
+  environment="DEV-BETA"
+fi
+
+DATE=$(date +%F-%H-%M-%S)
+S3_BUCKET='cfpb-platform-archive'
+S3_PATH="s3://$S3_BUCKET/cypress/$environment/$DATE"
+
 # Args
 # 1 - Test collection label (Integration/Load)
 # 2 - Filename
@@ -18,7 +32,7 @@ post_success()
 # 2 - Filename
 post_failure() 
 {
-	msg="- [ [${environment}](${CYPRESS_HOST}) ] ${1}\n  - Failed. :old-man-yells-at-cloud-simpsons:\n  - Check the logs\n    \`\`\`\n    kubectl logs \$(kubectl get pods -n monitoring --sort-by=.status.startTime | grep 'hmda-cypress-' | tail -n 1 | awk 'NR==1{print \$1}') -n monitoring\n    \`\`\`"
+	msg="- [ [${environment}](${CYPRESS_HOST}) ] ${1}\n  - Failed. :old-man-yells-at-cloud-simpsons:\n  - Check the logs\n    \`\`\`\n    kubectl logs \$(kubectl get pods -n monitoring --sort-by=.status.startTime | grep 'hmda-cypress-' | tail -n 1 | awk 'NR==1{print \$1}') -n monitoring\n Screenshots are stored in s3: $S3_PATH  \`\`\`"
 
 	curl -i -X POST -H 'Content-Type: application/json' -d "{\"text\": \"${msg}\" }"  $CYPRESS_WEB_HOOK
 
@@ -33,12 +47,7 @@ cleanup()
 	rm output_e2e.txt
 }
 
-if [[ "$CYPRESS_HOST" == *"ffiec.cfpb"* ]]; then
-  environment="PROD"
-elif [[ "$CYPRESS_HOST" == *"ffiec.beta"* ]]; then
-  environment="BETA"
-elif [[ "$CYPRESS_HOST" == *"hmda4.demo"* ]]; then
-  environment="DEV"
-else
-  environment="DEV-BETA"
-fi
+upload_images()
+{
+  aws s3 cp --recursive /hmda-frontend/cypress/screenshots $S3_PATH/
+}

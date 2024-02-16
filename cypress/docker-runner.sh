@@ -36,6 +36,7 @@ then
 	if grep -q "All specs passed!" "output_docusaurus_e2e.txt" ; then
 		post_success 'Docusaurus e2e testing' "output_docusaurus_e2e.txt"
 	else
+    upload_images
 		post_failure 'Docusaurus e2e testing' "output_docusaurus_e2e.txt"
 	fi
 fi
@@ -47,9 +48,12 @@ then
 	if  grep -q "All specs passed!" "output_load.txt" ; then
 		post_success 'Load testing' "output_load.txt"
 	else
+    upload_images
 		post_failure 'Load testing' "output_load.txt"
 	fi
 fi
 
 
 cleanup
+
+

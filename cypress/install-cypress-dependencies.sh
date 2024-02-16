@@ -142,7 +142,7 @@ dnf install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/libXfont2-2.
 
 dnf install -y https://vault.centos.org/centos/8/AppStream/x86_64/os/Packages/libxkbfile-1.1.0-1.el8.x86_64.rpm
 dnf install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/xorg-x11-xkb-utils-7.7-14.el7.x86_64.rpm
-dnf install -y http://mirror.centos.org/centos/8-stream/AppStream/x86_64/os/Packages/xorg-x11-server-common-1.20.10-1.el8.x86_64.rpm
+dnf install -y http://mirror.centos.org/centos/8-stream/AppStream/x86_64/os/Packages/xorg-x11-server-common-1.20.11-22.el8.x86_64.rpm
 
 dnf install -y https://vault.centos.org/centos/8/AppStream/x86_64/os/Packages/libXdmcp-1.1.3-1.el8.x86_64.rpm
-dnf install -y http://mirror.centos.org/centos/8-stream/AppStream/x86_64/os/Packages/xorg-x11-server-Xvfb-1.20.10-1.el8.x86_64.rpm
+dnf install -y http://mirror.centos.org/centos/8-stream/AppStream/x86_64/os/Packages/xorg-x11-server-Xvfb-1.20.11-22.el8.x86_64.rpm
