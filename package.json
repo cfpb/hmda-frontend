@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
+    "start:coverage": "react-scripts -r @cypress/instrument-cra --openssl-legacy-provider start",
     "build": "react-scripts --openssl-legacy-provider build",
     "test": "yarn run cypress run",
     "test-large": "CYPRESS_YEARS=2020 yarn run cypress run --spec cypress/integration/load/LargeFiler.spec.js",
@@ -22,6 +23,7 @@
   "author": "Consumer Financial Protection Bureau",
   "license": "CC0-1.0",
   "dependencies": {
+    "@cypress/instrument-cra": "^1.4.0",
     "@docsearch/react": "3.5.2",
     "@reduxjs/toolkit": "^1.9.7",
     "@tanstack/react-table": "8.10.7",
@@ -73,6 +75,7 @@
     "ie >= 11"
   ],
   "devDependencies": {
+    "@cypress/code-coverage": "^3.12.24",
     "@cypress/skip-test": "2.6.0",
     "@testing-library/cypress": "8.0.1",
     "cypress": "13.3.1",
