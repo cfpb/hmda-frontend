@@ -24,7 +24,9 @@ module.exports = defineConfig({
     experimentalRunAllSpecs: true,
     testIsolation: true,
     setupNodeEvents(on, config) {
-      return require('./cypress/plugins/index.js')(on, config)
+      require('@cypress/code-coverage/task')(on, config)
+      require('./cypress/plugins/index.js')(on, config)
+      return config
     },
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
   },
