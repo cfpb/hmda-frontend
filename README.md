@@ -99,6 +99,15 @@ The [HMDA Documentation](https://ffiec.cfpb.gov/documentation/) site provides pr
   </p>
 </a>
 
+### HMDA User Profile Information
+The [HMDA Profile page](https://ffiec.cfpb.gov/filing/profile) is designed to update associated institutions with the logged in account. Once the associated institutions have been added to your account, you can now file for those institutions.
+
+<a href='./readme-files/hmda-completeprofile.png' alt='HMDA User Profile Information'>
+  <p align='center'>
+    <img src='./readme-files/hmda-completeprofile.png' width='80%'  overflow='scroll'/>
+  </p>
+</a>
+
 ## Development
 ### Requirements
  - Node >= v12.4.1 
