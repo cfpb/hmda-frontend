@@ -16,7 +16,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/disclosure-reports/2022`)
 
       cy.get('#institution-name').click()
-      cy.get('#institution-name').type('cypress')
+      cy.get('#institution-name').type('cypress bank, ssb')
       cy.findByText('View MSA/MDs').click()
       cy.findByText('Select MSA/MD...').type('Dallas{enter}')
       cy.findByText('Select report...').type('Applications by Tract{enter}')
@@ -67,7 +67,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/disclosure-reports/2021`)
 
       cy.get('#institution-name').click()
-      cy.get('#institution-name').type('cypress')
+      cy.get('#institution-name').type('cypress bank, ssb')
       cy.findByText('View MSA/MDs').click()
       cy.findByText('Select MSA/MD...').type('Dallas{enter}')
       cy.findByText('Select report...').type('Applications by Tract{enter}')
@@ -118,7 +118,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/disclosure-reports/2020`)
 
       cy.get('#institution-name').click()
-      cy.get('#institution-name').type('cypress')
+      cy.get('#institution-name').type('cypress bank, ssb')
       cy.findByText('View MSA/MDs').click()
       cy.findByText('Select MSA/MD...').type('Dallas{enter}')
       cy.findByText('Select report...').type('Applications by Tract{enter}')
@@ -172,7 +172,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/disclosure-reports/2019`)
 
       cy.get('#institution-name').click()
-      cy.get('#institution-name').type('cypress')
+      cy.get('#institution-name').type('cypress bank, ssb')
       cy.findByText('View MSA/MDs').click()
       cy.findByText('Select MSA/MD...').type('Dallas{enter}')
       cy.findByText('Select report...').type('Applications by Tract{enter}')
@@ -226,7 +226,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/disclosure-reports/2018`)
 
       cy.get('#institution-name').click()
-      cy.get('#institution-name').type('cypress')
+      cy.get('#institution-name').type('cypress bank, state savings bank')
 
       cy.get(
         '#main-content > .SearchList > .Results > li > .button-link',
@@ -307,7 +307,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/disclosure-reports/2017`)
 
       cy.get('#institution-name').click()
-      cy.get('#institution-name').type('cypress')
+      cy.get('#institution-name').type('cypress bank, ssb')
 
       cy.get(
         '#main-content > .SearchList > .Results > li > .button-link',
