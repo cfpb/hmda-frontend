@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const ResultsHeading = (props) => {
+const SearchResultHeading = (props) => {
   let numOfResults = props.institutions.filter((x) => x).length
   if (numOfResults === 0) return <h2>Sorry, no results were found.</h2>
 
@@ -13,8 +13,8 @@ const ResultsHeading = (props) => {
   )
 }
 
-ResultsHeading.propTypes = {
+SearchResultHeading.propTypes = {
   institutions: PropTypes.array,
 }
 
-export default ResultsHeading
+export default SearchResultHeading

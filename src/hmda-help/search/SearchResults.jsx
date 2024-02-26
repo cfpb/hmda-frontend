@@ -1,16 +1,18 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 
-import ResultsHeading from './ResultsHeading'
-// import ResultsActions from './ResultsActions'
-import ResultsActions from './ResultsActions'
+import SearchResultHeading from './SearchResultHeading'
+// import SearchResultActions from './SearchResultActions'
+import SearchResultActions from './SearchResultActions'
 
-import './Results.css'
+import './SearchResults.css'
 
 const SearchResults = ({ institutions, handleDeleteClick, error }) => {
   const tableRef = useRef(new Map())
 
-  if (!institutions || institutions.length) return null
+  useEffect(() => {
+    if (!institutions || institutions.length) return null
+  }, [])
 
   institutions.sort((a, b) => (b.activityYear > a.activityYear ? 1 : -1))
   const colCount = 7
@@ -18,7 +20,7 @@ const SearchResults = ({ institutions, handleDeleteClick, error }) => {
 
   return (
     <div className='SearchResults'>
-      <ResultsHeading institutions={institutions} />
+      <SearchResultHeading institutions={institutions} />
       <table className='institutions'>
         <thead>
           <tr>
@@ -51,7 +53,7 @@ const SearchResults = ({ institutions, handleDeleteClick, error }) => {
                     <td>{institution.taxId}</td>
                     <td>{institution.agency}</td>
                     <td>{institution.quarterlyFiler.toString()}</td>
-                    <ResultsActions
+                    <SearchResultActions
                       institution={institution}
                       index={i}
                       error={error}

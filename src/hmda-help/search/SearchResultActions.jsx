@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom'
 import Alert from '../Alert'
 import Loading from '../../common/LoadingIcon.jsx'
 
-import './Results.css'
+import './SearchResults.css'
 
-const ResultsActions = ({
+const SearchResultActions = ({
   institution,
   index,
   error,
@@ -94,7 +94,7 @@ const ResultsActions = ({
   )
 }
 
-ResultsActions.propTypes = {
+SearchResultActions.propTypes = {
   institution: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
   error: PropTypes.string,
@@ -102,4 +102,4 @@ ResultsActions.propTypes = {
   tables: PropTypes.object.isRequired,
 }
 
-export default ResultsActions
+export default SearchResultActions
