@@ -9,6 +9,7 @@ The HMDA Frontend monorepo hosts the public facing applications for the collecti
   * [Applications](#applications)
     + [HMDA Homepage](#hmda-homepage)
     + [HMDA Filing](#hmda-filing)
+         +  [HMDA User Profile](#hmda-user-profile)
     + [HMDA Data Browser](#hmda-data-browser)
     + [HMDA Platform Tools](#hmda-platform-tools)
     + [HMDA Documentation](#hmda-documentation)
@@ -50,6 +51,15 @@ The [HMDA Filing Platform UI](https://ffiec.cfpb.gov/filing/) allows lending ins
 <a href='./readme-files/hmda-filing.png' alt='HMDA Filing Overview'>
   <p align='center'>
     <img src='./readme-files/hmda-filing.png' width='80%'  overflow='scroll'/>
+  </p>
+</a>
+
+#### HMDA User Profile  
+The [HMDA Profile page](https://ffiec.cfpb.gov/filing/profile) is designed to update associated institutions with the logged in account. Once the associated institutions have been added to your account, you can now file for those institutions.
+
+<a href='./readme-files/hmda-completeprofile.png' alt='HMDA User Profile Information'>
+  <p align='center'>
+    <img src='./readme-files/hmda-completeprofile.png' width='80%'  overflow='scroll'/>
   </p>
 </a>
 
@@ -99,14 +109,6 @@ The [HMDA Documentation](https://ffiec.cfpb.gov/documentation/) site provides pr
   </p>
 </a>
 
-### HMDA User Profile Information
-The [HMDA Profile page](https://ffiec.cfpb.gov/filing/profile) is designed to update associated institutions with the logged in account. Once the associated institutions have been added to your account, you can now file for those institutions.
-
-<a href='./readme-files/hmda-completeprofile.png' alt='HMDA User Profile Information'>
-  <p align='center'>
-    <img src='./readme-files/hmda-completeprofile.png' width='80%'  overflow='scroll'/>
-  </p>
-</a>
 
 ## Development
 ### Requirements
