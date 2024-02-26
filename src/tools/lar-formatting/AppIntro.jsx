@@ -20,7 +20,7 @@ const AppIntro = () => {
           The HMDA Excel LAR formatting tool is a Microsoft® Excel® workbook created by the Bureau for HMDA filers, who do not have another means of doing so, to enter and format data into a pipe delimited text file. A pipe delimited text file is the required format beginning for data collected in 2017 for financial institutions to file their loan/application register (LAR) using the HMDA Platform.
         </p>
         <p>
-          Follow the <Link to='/documentation/tools/lar-formatting/'>Excel LAR Formatting Tool instructions</Link> to format your data into a pipe delimited text file.
+          Follow the <a href='/documentation/tools/lar-formatting/'>Excel LAR Formatting Tool instructions</a> to format your data into a pipe delimited text file.
         </p>
       </React.Fragment>
     </Heading>,
