@@ -1,4 +1,5 @@
 # HMDA Frontend Projects
+![Static Badge](https://img.shields.io/badge/coverage-85%25-green)
 
 The HMDA Frontend monorepo hosts the public facing applications for the collection, publication, and navigation of millions of HMDA records per year.  This repository combines six, previously separate, React application repos in order to simplify component sharing, synchronize versioning of common dependencies, and improve rendering efficiency when navigating between apps. 
 
