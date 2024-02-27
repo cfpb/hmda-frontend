@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
-    "start:coverage": "react-scripts -r @cypress/instrument-cra --openssl-legacy-provider start",
+    "start:coverage": "react-scripts --openssl-legacy-provider -r @cypress/instrument-cra  start",
     "build": "react-scripts --openssl-legacy-provider build",
     "test": "yarn run cypress run",
     "test-large": "CYPRESS_YEARS=2020 yarn run cypress run --spec cypress/integration/load/LargeFiler.spec.js",
@@ -16,6 +16,13 @@
     "ci-data": "yarn newman run cypress/ci/tests/CREATE_INSTITUTIONS.postman_collection.json -e cypress/ci/config/PLATFORM_ENV.postman_environment.json -d cypress/ci/config/institutions.json",
     "make-lar": "node ./scripts/lar/generate_lar_file.mjs",
     "cy-update-s3": "./cypress/update-s3-files.sh"
+  },
+  "nyc": {
+    "exclude": [
+      "src/common/uswds/**/*",
+      "**/node_modules/**"
+    ],
+    "excludeNodeModules": true
   },
   "keywords": [
     "HMDA"
