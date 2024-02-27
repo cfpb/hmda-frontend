@@ -79,6 +79,7 @@ describe('Keycloak', () => {
         const emailLabel = 'Email'
         const institutionError = '#institutions .hmda-error-message'
 
+        cy.wait(1000)
         cy.findByText('Create an account').click()
         cy.findByText(registerText).should('be.disabled')
         cy.findByLabelText('First name').type('First')
