@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { searchInputs } from '../constants/inputs.js'
 import { nestInstitutionStateForAPI } from '../utils/convert'
 
-import Results from './Results'
+import SearchResults from './SearchResults'
 import InputSubmit from '../InputSubmit'
 import Loading from '../../common/LoadingIcon.jsx'
 import InstitutionNotFound from './InstitutionNotFound'
@@ -301,7 +301,7 @@ class Form extends Component {
         {!isFetching && <InstitutionNotFound yearList={notFound} />}
 
         {searchType === 'search' && !isFetching && institutions && (
-          <Results
+          <SearchResults
             institutions={institutions}
             handleDeleteClick={this.handleDeleteClick}
             error={errorDelete}

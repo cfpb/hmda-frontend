@@ -15,8 +15,8 @@ import NavButtonComponent from './NavButton.jsx'
 import RefileWarningComponent from '../refileWarning/index.jsx'
 import submissionProgressHOC from './progressHOC.jsx'
 import IRSReport from './irs/index.jsx'
-import Signature from './signature/container.jsx'
-import Summary from './summary/container.jsx'
+import Signature from './signature/Signature'
+import Summary from './summary/Summary'
 import ParseErrors from './parseErrors/container.jsx'
 import Loading from '../../common/LoadingIcon.jsx'
 import { FAILED, PARSED_WITH_ERRORS, SIGNED } from '../constants/statusCodes.js'
@@ -65,7 +65,7 @@ const renderByCode = (code, page, lei, selectedPeriod) => {
         if (code !== SIGNED) {
           toRender.push(<ReadyToSign isPassed={isPassed} />)
         }
-        toRender.push(<Signature isPassed={isPassed} />)
+        toRender.push(<Signature lei={lei} isPassed={isPassed} />)
         toRender.push(<ReceiptContainer />)
       }
     }

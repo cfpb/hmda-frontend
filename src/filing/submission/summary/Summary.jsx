@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
+import fetchSummary from '../../actions/fetchSummary.js'
 import { splitYearQuarter } from '../../api/utils'
 import ExternalLink from '../../../common/ExternalLink'
 
 import './Summary.css'
+import { useDispatch, useSelector } from 'react-redux'
 
 const tsSchemaLink = () => (
   <ExternalLink
@@ -13,9 +15,29 @@ const tsSchemaLink = () => (
   />
 )
 
-const Summary = (props) => {
-  if (!props.submission || !props.ts) return null
-  const [year, quarter] = splitYearQuarter(props.filingPeriod)
+/**
+ * Component display a summary of the submitted HMDA File
+ * Component can be found within the UI when viewing a completed filing
+ */
+
+const Summary = ({ filingPeriod }) => {
+  const dispatch = useDispatch()
+  const { isFetching, submission, ts } = useSelector(
+    (state) => state.app.summary,
+  )
+
+  useEffect(() => {
+    if (
+      !isFetching &&
+      (!submission ||
+        (!Object.keys(submission).length && !Object.keys(ts).length))
+    ) {
+      dispatch(fetchSummary())
+    }
+  }, [isFetching, submission, ts])
+
+  if (!submission || !ts) return null
+  const [year, quarter] = splitYearQuarter(filingPeriod)
 
   return (
     <section className='Summary full-width' id='summary'>
@@ -38,7 +60,7 @@ const Summary = (props) => {
           <span className='point'>*</span>
           <p className='emphasize'>
             To make changes, update your Transmittal Sheet and resubmit your
-            data for {props.filingPeriod}.
+            data for {filingPeriod}.
           </p>
         </div>
         <section className='info-section'>
@@ -50,19 +72,19 @@ const Summary = (props) => {
           </div>
           <dl>
             <dt>Name:</dt>
-            <dd>{props.ts.institutionName}</dd>
+            <dd>{ts.institutionName}</dd>
             <dt>Respondent LEI:</dt>
-            <dd>{props.ts.LEI}</dd>
+            <dd>{ts.LEI}</dd>
             <dt>Tax ID:</dt>
-            <dd>{props.ts.taxId}</dd>
+            <dd>{ts.taxId}</dd>
             <dt>Agency:</dt>
-            <dd className='text-uppercase'>{props.ts.agency}</dd>
+            <dd className='text-uppercase'>{ts.agency}</dd>
             <dt>Contact Name:</dt>
-            <dd>{props.ts.contact && props.ts.contact.name}</dd>
+            <dd>{ts.contact && ts.contact.name}</dd>
             <dt>Phone:</dt>
-            <dd>{props.ts.contact && props.ts.contact.phone}</dd>
+            <dd>{ts.contact && ts.contact.phone}</dd>
             <dt>Email</dt>
-            <dd>{props.ts.contact && props.ts.contact.email}</dd>
+            <dd>{ts.contact && ts.contact.email}</dd>
           </dl>
         </section>
         <section className='info-section'>
@@ -74,9 +96,9 @@ const Summary = (props) => {
           </div>
           <dl>
             <dt>File Name:</dt>
-            <dd>{props.submission.fileName}</dd>
+            <dd>{submission.fileName}</dd>
             <dt>Year:</dt>
-            <dd>{props.ts.year}</dd>
+            <dd>{ts.year}</dd>
             {quarter && (
               <>
                 <dt>Quarter:</dt>
@@ -84,7 +106,7 @@ const Summary = (props) => {
               </>
             )}
             <dt>Total Loans/Applications:</dt>
-            <dd>{props.ts.totalLines}</dd>
+            <dd>{ts.totalLines}</dd>
           </dl>
         </section>
       </div>
@@ -94,9 +116,8 @@ const Summary = (props) => {
   )
 }
 
-Summary.propTypes = {
-  submission: PropTypes.object,
-  ts: PropTypes.object,
+Summary.PropTypes = {
+  filingPeriod: PropTypes.string.isRequired,
 }
 
 export default Summary

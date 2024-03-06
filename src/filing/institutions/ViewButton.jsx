@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import RefileButton from '../refileButton/container.jsx'
+import RefileButton from '../common/RefileButton'
 import { isBeta } from '../../common/Beta'
 
 import {

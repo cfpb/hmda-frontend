@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
+import fetchSignature from '../../actions/fetchSignature.js'
+import updateSignature from '../../actions/updateSignature.js'
+import checkSignature from '../../actions/checkSignature.js'
 import ErrorWarning from '../../common/ErrorWarning.jsx'
 import Loading from '../../../common/LoadingIcon.jsx'
 import {
@@ -8,13 +12,14 @@ import {
   SIGNED,
 } from '../../constants/statusCodes.js'
 import Alert from '../../../common/Alert.jsx'
+
 import './Signature.css'
 
-const showWarning = (props) => {
-  if (!props.error) return null
+const showWarning = (error) => {
+  if (!error) return null
   return (
     <ErrorWarning
-      error={props.error}
+      error={error}
       bodyText='You cannot sign your submission if you have encountered an error in the filing process. Please refresh the page or try again later.'
     />
   )
@@ -37,29 +42,52 @@ const SignatureClosed = ({ status }) => {
   )
 }
 
-const Signature = (props) => {
-  if (props.isPassed) return <SignatureClosed status={props.status} />
+/**
+ * Component is used to have the HMDA user sign off/submit their filing
+ */
+
+const Signature = ({ lei, isPassed }) => {
+  const dispatch = useDispatch()
+  const signatureState = useSelector((state) => state.app.signature)
+  const error = useSelector((state) => state.app.error)
+  const { isFetching, receipt, checked } = signatureState
+  const status = useSelector((state) => state.app.submission.status)
+
+  useEffect(() => {
+    if (!isFetching && receipt === null) {
+      dispatch(fetchSignature())
+    }
+  }, [isFetching, receipt])
+
+  const onSignatureClick = (signed) => {
+    dispatch(updateSignature(signed, lei))
+  }
+
+  const onSignatureCheck = (checked) => {
+    dispatch(checkSignature(checked))
+  }
+
+  if (isPassed) return <SignatureClosed status={status} />
 
   let isButtonDisabled =
-    (props.status.code === VALIDATED || props.status.code === NO_MACRO_EDITS) &&
-    props.checked
+    (status.code === VALIDATED || status.code === NO_MACRO_EDITS) && checked
       ? false
       : true
 
-  let isCheckBoxDisabled = props.status.code === SIGNED ? true : false
+  let isCheckBoxDisabled = status.code === SIGNED ? true : false
 
   let buttonClass = 'button-disabled'
   // if the checkbox is checked remove disabled from button
-  if (props.checked) {
+  if (checked) {
     buttonClass = ''
   }
   // if signed, disable button again
-  if (props.status.code === SIGNED) {
+  if (status.code === SIGNED) {
     buttonClass = 'button-disabled'
   }
 
   // if an error has occurred, disable both checkbox and button
-  if (props.error) {
+  if (error) {
     isButtonDisabled = true
     isCheckBoxDisabled = true
     buttonClass = 'button-disabled'
@@ -76,9 +104,9 @@ const Signature = (props) => {
         </p>
       </header>
 
-      {showWarning(props)}
+      {showWarning(error)}
 
-      {props.isFetching ? <Loading className='LoadingInline' /> : null}
+      {isFetching ? <Loading className='LoadingInline' /> : null}
       <ul className='unstyled-list'>
         <li>
           <input
@@ -87,8 +115,8 @@ const Signature = (props) => {
             type='checkbox'
             value='signature'
             disabled={isCheckBoxDisabled}
-            checked={props.checked || props.status.code === SIGNED}
-            onChange={(e) => props.onSignatureCheck(e.target.checked)}
+            checked={checked || status.code === SIGNED}
+            onChange={(e) => onSignatureCheck(e.target.checked)}
           />
           <label htmlFor='signatureAuth'>
             I am an authorized representative of my institution with knowledge
@@ -100,7 +128,7 @@ const Signature = (props) => {
 
       <button
         className={buttonClass}
-        onClick={() => props.onSignatureClick(props.checked)}
+        onClick={() => onSignatureClick(checked)}
         disabled={isButtonDisabled}
       >
         Submit HMDA data
@@ -109,12 +137,9 @@ const Signature = (props) => {
   )
 }
 
-Signature.propTypes = {
-  status: PropTypes.object,
-  checked: PropTypes.bool,
-  isFetching: PropTypes.bool,
-  onSignatureClick: PropTypes.func.isRequired,
-  onSignatureCheck: PropTypes.func.isRequired,
+Signature.PropTypes = {
+  lei: PropTypes.string.isRequired,
+  isPassed: PropTypes.bool,
 }
 
 export default Signature

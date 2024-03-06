@@ -45,6 +45,16 @@ export default () => {
           target: process.env.DEV_URL,
           changeOrigin: true,
         },
+        '/v2/admin/receipt/': {
+          // HMDA Help Submissions file download endpoint
+          target: process.env.DEV_URL,
+          changeOrigin: true,
+        },
+        '/v2/data-browser-api': {
+          // Data Browser API
+          target: process.env.DEV_URL,
+          changeOrigin: true,
+        },
       },
     },
     optimizeDeps: {

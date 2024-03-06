@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import RefileButton from '../refileButton/container.jsx'
+import RefileButton from '../common/RefileButton'
 import { PARSED_WITH_ERRORS, VALIDATING } from '../constants/statusCodes.js'
 
 const InstitutionRefile = ({ status, institution, isClosed }) => {

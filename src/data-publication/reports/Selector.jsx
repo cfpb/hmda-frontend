@@ -4,44 +4,37 @@ import Heading from '../../common/Heading.jsx'
 
 import './Selector.css'
 
-class Selector extends React.Component {
-  constructor(props) {
-    super(props)
-    this.handleChange = this.handleChange.bind(this)
-  }
-
-  handleChange(option) {
-    if (this.props.selectorCallback) this.props.selectorCallback(option.data)
-    let url = this.props.match.url
+const Selector = (props) => {
+  const handleChange = (option) => {
+    if (props.selectorCallback) props.selectorCallback(option.data)
+    let url = props.match.url
     if (!url.match(/\/$/)) url += '/'
-    this.props.history.push({
+    props.history.push({
       pathname: url + option.value,
     })
   }
 
-  render() {
-    return (
-      <React.Fragment>
-        <Heading type={4} headingText={this.props.header} />
-        <Select
-          onChange={this.handleChange}
-          placeholder={this.props.placeholder}
-          searchable={true}
-          autoFocus
-          menuIsOpen
-          options={this.props.options}
-          noResultsText={
-            <div className='alert alert-error' role='alert'>
-              <div className='alert-body'>
-                <h3 className='alert-heading'>No results found!</h3>
-                Sorry, there doesn't seem to be a match found. Please try again.
-              </div>
+  return (
+    <>
+      <Heading type={4} headingText={props.header} />
+      <Select
+        onChange={handleChange}
+        placeholder={props.placeholder}
+        searchable={true}
+        autoFocus
+        menuIsOpen
+        options={props.options}
+        noResultsText={
+          <div className='alert alert-error' role='alert'>
+            <div className='alert-body'>
+              <h3 className='alert-heading'>No results found!</h3>
+              Sorry, there doesn't seem to be a match found. Please try again.
             </div>
-          }
-        />
-      </React.Fragment>
-    )
-  }
+          </div>
+        }
+      />
+    </>
+  )
 }
 
 export default Selector
