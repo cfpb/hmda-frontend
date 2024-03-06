@@ -1,0 +1,3 @@
+.simple-sort-table th:nth-of-type(n+4) {
+    min-width: auto;
+}
