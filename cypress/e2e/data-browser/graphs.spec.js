@@ -72,11 +72,29 @@ onlyOn(!isBeta(HOST), () => {
 
       cy.wait(1000)
 
-      cy.url().then((url) => {
-        cy.get('.react-select__graph__value-container').click(0, 0, {
+      cy.url().then(url => {
+        cy.get('.react-select__graph__control').click(0, 0, {
           force: true,
         })
-        cy.get('#react-select-2-option-0-0').click(0, 0, { force: true })
+        cy.get('#react-select-3-option-4-0').click(0, 0, { force: true })
+        cy.url().should('not.eq', url)
+      })
+    })
+
+    it('Visit graph page, change loan type, then selects a graph from the dropdown menu', () => {
+      cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`)
+
+      cy.wait(1000)
+
+      cy.url().then(url => {
+        cy.get('.react-select__loan__control').click(0, 0, {
+          force: true,
+        })
+        cy.get('#react-select-2-option-2').click(0, 0, { force: true })
+        cy.get('.react-select__graph__control').click(0, 0, {
+          force: true,
+        })
+        cy.get('#react-select-3-option-0-0').click(0, 0, { force: true })
         cy.url().should('not.eq', url)
       })
     })
@@ -91,14 +109,14 @@ onlyOn(!isBeta(HOST), () => {
         cy.get('.react-select__period_start__value-container').click(0, 0, {
           force: true,
         })
-        cy.get('#react-select-3-option-3').click(0, 0, { force: true })
+        cy.get('#react-select-4-option-3').click(0, 0, { force: true })
         // Check url doesn't include base graph url start quarter
         cy.url().should('not.eq', url)
 
         cy.get('.react-select__period_end__value-container').click(0, 0, {
           force: true,
         })
-        cy.get('#react-select-4-option-6').click(0, 0, { force: true })
+        cy.get('#react-select-5-option-6').click(0, 0, { force: true })
         // Check URL doesn't include base graph url end quarter
         cy.url().should('not.eq', url)
         // Checks url was reset to base graph url which includes start and end quarters

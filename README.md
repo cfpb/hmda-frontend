@@ -1,24 +1,27 @@
 # HMDA Frontend Projects
 
-The HMDA Frontend monorepo hosts the public facing applications for the collection, publication, and navigation of millions of HMDA records per year. This repository combines six, previously separate, React application repos in order to simplify component sharing, synchronize versioning of common dependencies, and improve rendering efficiency when navigating between apps.
+![Static Badge](https://img.shields.io/badge/coverage-85%25-green)
+
+The HMDA Frontend monorepo hosts the public facing applications for the collection, publication, and navigation of millions of HMDA records per year.  This repository combines six, previously separate, React application repos in order to simplify component sharing, synchronize versioning of common dependencies, and improve rendering efficiency when navigating between apps. 
 
 ## Contents
 
 - [HMDA Frontend Projects](#hmda-frontend-projects)
-  - [Contents](#contents)
-  - [Technical Overview](#technical-overview)
-  - [Applications](#applications)
-    - [HMDA Homepage](#hmda-homepage)
-    - [HMDA Filing](#hmda-filing)
-    - [HMDA Data Browser](#hmda-data-browser)
-    - [HMDA Platform Tools](#hmda-platform-tools)
-    - [HMDA Documentation](#hmda-documentation)
-    - [HMDA Data Publication](#hmda-data-publication)
-    - [HMDA Data Publication - Updates and Notes](#hmda-data-publication---updates-and-notes)
-  - [Development](#development)
-    - [Requirements](#requirements)
-    - [Installation](#installation)
-    - [Running Locally](#running-locally)
+  * [Contents](#contents)
+  * [Technical Overview](#technical-overview)
+  * [Applications](#applications)
+    + [HMDA Homepage](#hmda-homepage)
+    + [HMDA Filing](#hmda-filing)
+         +  [HMDA User Profile](#hmda-user-profile)
+    + [HMDA Data Browser](#hmda-data-browser)
+    + [HMDA Platform Tools](#hmda-platform-tools)
+    + [HMDA Documentation](#hmda-documentation)
+    + [HMDA Data Publication](#hmda-data-publication)
+    + [HMDA Data Publication - Updates and Notes](#hmda-data-publication---updates-and-notes)
+  * [Development](#development)
+    + [Requirements](#requirements)
+    + [Installation](#installation)
+    + [Running Locally](#running-locally)
       - [Integrating with the Filing application](#integrating-with-the-filing-application)
         - [Create Institutions](#create-institutions)
         - [Bypass API Authentication](#bypass-api-authentication)
@@ -57,6 +60,16 @@ The [HMDA Filing Platform UI](https://ffiec.cfpb.gov/filing/) allows lending ins
     <img src='./readme-files/hmda-filing.png' width='80%'  overflow='scroll'/>
   </p>
 </a>
+
+#### HMDA User Profile  
+The [HMDA Profile page](https://ffiec.cfpb.gov/filing/profile) is designed to update associated institutions with the logged in account. Once the associated institutions have been added to your account, you can now file for those institutions.
+
+<a href='./readme-files/hmda-completeprofile.png' alt='HMDA User Profile Information'>
+  <p align='center'>
+    <img src='./readme-files/hmda-completeprofile.png' width='80%'  overflow='scroll'/>
+  </p>
+</a>
+
 
 ### HMDA Data Browser
 
@@ -107,6 +120,7 @@ The [HMDA Documentation](https://ffiec.cfpb.gov/documentation/) site provides pr
     <img src='./readme-files/hmda-data-publication-updates.png' width='80%'  overflow='scroll'/>
   </p>
 </a>
+
 
 ## Development
 
@@ -250,21 +264,3 @@ yarn run cypress run
 [Cypress](https://www.cypress.io/) is used to perform end-to-end testing of the filing application, tools, data publication products, and data browser. It mimicks a user's interaction with the site and allows for rapid, automated system validation of project deployments.
 
 ![Cypress automated filing test](./readme-files/filing-2020-q1-cypress.gif)
-
-### Running in TravisCI
-
-[TravisCI](https://travis-ci.com/github/cfpb/hmda-frontend) is configured to automatically build and test each pull request to the Frontend repo. This includes running the [HMDA Platform](https://github.com/cfpb/hmda-platform) within the TravisCI virtual machine to enable testing of the Filing application. All mandatory environment variables are configured in the [.travis.yml](https://github.com/cfpb/hmda-frontend/blob/master/.travis.yml) file.
-
-Generation of video recordings is disabled by default using TravisCI environment variables.
-
-```
-CONFIG="--config video=false"
-```
-
-In the event that you need to review video to help debug CI failures, update the environment configuration as follows. This will save the video output to the [Cypress Dashboard](https://dashboard.cypress.io/projects/uk89dv/runs).
-
-```
-CONFIG="--config video=true"
-RECORD="--record"
-CYPRESS_RECORD_KEY=<Configured in TravisCI>
-```

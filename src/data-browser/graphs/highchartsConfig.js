@@ -165,15 +165,25 @@ export const deriveHighchartsConfig = ({
     labels: {
       ...hmda_charts.styles.axisLabel,
       // Formatter used to add "K" and "M"
-      formatter: (tick) => {
+      // Formatter display examples: 100, 200, 850, 1K, 3.5K, 10K, 100K, 500K, 1M, 1.8M, 2M
+      formatter: tick => {
         if (!tick) return
+        const formatThousands = tickValue => {
+          const suffix = tickValue & (1000 === 0) ? 'K' : 'K'
+          return `${(tickValue / 1000).toFixed(
+            tickValue % 1000 === 0 ? 0 : 1
+          )}${suffix}`
+        }
+        const formatMillions = tickValue => {
+          return `${(tickValue / 1000000).toFixed(1)}M`
+        }
 
-        if (tick.value > 999 && tick.value < 1000000) {
-          return (tick.value / 1000).toFixed(0) + 'K' // convert to K for number from > 1000 < 1 million
+        if (tick.value >= 1000 && tick.value < 1000000) {
+          return formatThousands(tick.value)
         } else if (tick.value >= 1000000) {
-          return (tick.value / 1000000).toFixed(1) + 'M' // convert to M for number from > 1 million
+          return formatMillions(tick.value)
         } else {
-          return tick.value // if value < 1000, nothing to do
+          return tick.value // Return value if it is less than 1000
         }
       },
     },
@@ -203,8 +213,9 @@ const formatXdescription = (loading, axes) => {
   return `${title} from ${from} to ${to}`
 }
 
-const deriveLegendTitle = (endpoint) => {
-  if (endpoint.match('-re$')) return 'Race / Ethnicity'
-  if (endpoint === 'all-applications') return 'Filer Types'
+const deriveLegendTitle = endpoint => {
+  const race = /-re(?:-|$)/
+  if (race.test(endpoint)) return 'Race / Ethnicity'
+  if (endpoint.match('all-applications')) return 'Filer Types'
   return 'Loan Types'
 }

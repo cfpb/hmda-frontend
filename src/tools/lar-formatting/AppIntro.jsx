@@ -2,7 +2,6 @@ import React from 'react'
 import { withAppContext } from '../../common/appContextHOC.jsx'
 import Heading from '../../common/Heading.jsx'
 import { S3DatasetLink } from '../../common/S3Integrations'
-import { Link } from 'react-router-dom'
 
 const AppIntro = () => {
   return [
@@ -24,11 +23,7 @@ const AppIntro = () => {
           loan/application register (LAR) using the HMDA Platform.
         </p>
         <p>
-          Follow the{' '}
-          <Link to='/documentation/tools/lar-formatting/'>
-            Excel LAR Formatting Tool instructions
-          </Link>{' '}
-          to format your data into a pipe delimited text file.
+          Follow the <a href='/documentation/tools/lar-formatting/'>Excel LAR Formatting Tool instructions</a> to format your data into a pipe delimited text file.
         </p>
       </React.Fragment>
     </Heading>,

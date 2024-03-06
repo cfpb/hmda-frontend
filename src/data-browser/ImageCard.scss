@@ -10,7 +10,8 @@ a:hover {
   color: var(--hmda-blue-bright);
 }
 
-.DataBrowser .home .card-container {
+.DataBrowser .home .card-container,
+.Tools .home .card-container {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -51,6 +52,10 @@ a:hover {
         margin: 1em;
         border: 15px solid #fff;
         border-style: double;
+      }
+      .tile-list {
+        padding-left: 1em;
+        margin-bottom: 0.25em;
       }
       .info {
         h3 {
@@ -98,6 +103,21 @@ a:hover {
     .card-wrapper {
       width: 31%;
       max-height: 400px;
+    }
+  }
+}
+
+.Tools .home .card-container {
+  @media (min-width: 56em) {
+    .card-wrapper {
+      width: 49%;
+      max-height: 500px;
+    }
+  }
+  @media (min-width: 85em) {
+    .card-wrapper {
+      width: 49%;
+      max-height: 600px;
     }
   }
 }

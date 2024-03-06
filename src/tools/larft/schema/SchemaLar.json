@@ -5,7 +5,6 @@
       "fieldIndex": 0,
       "fieldName": "Record Identifier",
       "examples": [],
-      "disable": true,
       "enumerations": [
         {
           "value": "1",
@@ -20,6 +19,7 @@
         "1 - Transmittal Sheet",
         "2 - Loan/Application Register"
       ],
+      "disable": true,
       "dataPoint": "Record Identifier"
     },
     {
@@ -600,12 +600,14 @@
         {
           "value": "4",
           "description": "Not applicable"
+        },
+        {
+          "value": "5",
+          "description": "No co-applicant"
         }
       ],
       "descriptions": [
-        "If the Co-Applicant or Co-Borrower did not select any ethnicity(ies)",
-        "but only provided ethnicity(ies) in the Ethnicity of Co-Applicant or Co-Borrower: Free Form Text Field for Other Hispanic or Latino",
-        "either leave this this data field blank or enter Code 14."
+        "If the Co-Applicant or Co-Borrower did not select any ethnicity(ies), but only provided ethnicity(ies) in the Ethnicity of Co-Applicant or Co-Borrower: Free Form Text Field for Other Hispanic or Latino, either leave this data field blank or enter Code 14."
       ],
       "dataPoint": "Ethnicity"
     },
@@ -637,18 +639,10 @@
         {
           "value": "2",
           "description": "Not Hispanic or Latino"
-        },
-        {
-          "value": "3",
-          "description": "Information not provided by applicant in mail, internet, or telephone application"
-        },
-        {
-          "value": "4",
-          "description": "Not applicable"
         }
       ],
       "descriptions": [
-        "If this data field does not contain an entry, leave it blank.<br/><br/>  If the Co-Applicant or Co-Borrower did not select any ethnicity(ies), but only provided ethnicity(ies) in the Ethnicity of Co-Applicant or Co-Borrower: Free Form Text Field for Other Hispanic or Latino, either leave this this data field blank or enter Code 14."
+        "If this data field does not contain an entry, leave it blank.<br/><br/>  If the Co-Applicant or Co-Borrower did not select any ethnicity(ies), but only provided ethnicity(ies) in the Ethnicity of Co-Applicant or Co-Borrower: Free Form Text Field for Other Hispanic or Latino, either leave this data field blank or enter Code 14."
       ],
       "dataPoint": "Ethnicity"
     },
@@ -680,18 +674,10 @@
         {
           "value": "2",
           "description": "Not Hispanic or Latino"
-        },
-        {
-          "value": "3",
-          "description": "Information not provided by applicant in mail, internet, or telephone application"
-        },
-        {
-          "value": "4",
-          "description": "Not applicable"
         }
       ],
       "descriptions": [
-        "If this data field does not contain an entry, leave it blank.<br/><br/>  If the Co-Applicant or Co-Borrower did not select any ethnicity(ies), but only provided ethnicity(ies) in the Ethnicity of Co-Applicant or Co-Borrower: Free Form Text Field for Other Hispanic or Latino, either leave this this data field blank or enter Code 14."
+        "If this data field does not contain an entry, leave it blank.<br/><br/>  If the Co-Applicant or Co-Borrower did not select any ethnicity(ies), but only provided ethnicity(ies) in the Ethnicity of Co-Applicant or Co-Borrower: Free Form Text Field for Other Hispanic or Latino, either leave this data field blank or enter Code 14."
       ],
       "dataPoint": "Ethnicity"
     },
@@ -723,18 +709,10 @@
         {
           "value": "2",
           "description": "Not Hispanic or Latino"
-        },
-        {
-          "value": "3",
-          "description": "Information not provided by applicant in mail, internet, or telephone application"
-        },
-        {
-          "value": "4",
-          "description": "Not applicable"
         }
       ],
       "descriptions": [
-        "If this data field does not contain an entry, leave it blank.<br/><br/>  If the Co-Applicant or Co-Borrower did not select any ethnicity(ies), but only provided ethnicity(ies) in the Ethnicity of Co-Applicant or Co-Borrower: Free Form Text Field for Other Hispanic or Latino, either leave this this data field blank or enter Code 14."
+        "If this data field does not contain an entry, leave it blank.<br/><br/>  If the Co-Applicant or Co-Borrower did not select any ethnicity(ies), but only provided ethnicity(ies) in the Ethnicity of Co-Applicant or Co-Borrower: Free Form Text Field for Other Hispanic or Latino, either leave this data field blank or enter Code 14."
       ],
       "dataPoint": "Ethnicity"
     },
@@ -766,18 +744,10 @@
         {
           "value": "2",
           "description": "Not Hispanic or Latino"
-        },
-        {
-          "value": "3",
-          "description": "Information not provided by applicant in mail, internet, or telephone application"
-        },
-        {
-          "value": "4",
-          "description": "Not applicable"
         }
       ],
       "descriptions": [
-        "If this data field does not contain an entry, leave it blank.<br/><br/>  If the Co-Applicant or Co-Borrower did not select any ethnicity(ies), but only provided ethnicity(ies) in the Ethnicity of Co-Applicant or Co-Borrower: Free Form Text Field for Other Hispanic or Latino, either leave this this data field blank or enter Code 14."
+        "If this data field does not contain an entry, leave it blank.<br/><br/>  If the Co-Applicant or Co-Borrower did not select any ethnicity(ies), but only provided ethnicity(ies) in the Ethnicity of Co-Applicant or Co-Borrower: Free Form Text Field for Other Hispanic or Latino, either leave this data field blank or enter Code 14."
       ],
       "dataPoint": "Ethnicity"
     },
@@ -1768,6 +1738,10 @@
           "description": "Not applicable"
         },
         {
+          "value": "5",
+          "description": "No co-applicant"
+        },
+        {
           "value": "6",
           "description": "Applicant selected both male and female"
         }
@@ -2082,6 +2056,26 @@
           "description": "Not applicable"
         },
         {
+          "value": "11",
+          "description": "FICO Score 9"
+        },
+        {
+          "value": "12",
+          "description": "FICO Score 8 (2024+)"
+        },
+        {
+          "value": "13",
+          "description": "FICO Score 10 (2024+)"
+        },
+        {
+          "value": "14",
+          "description": "FICO Score 10T (2024+)"
+        },
+        {
+          "value": "15",
+          "description": " VantageScore 4.0 (2024+)"
+        },
+        {
           "value": "1111",
           "description": "Exempt"
         }
@@ -2145,6 +2139,26 @@
         {
           "value": "10",
           "description": "No co-applicant"
+        },
+        {
+          "value": "11",
+          "description": "FICO Score 9"
+        },
+        {
+          "value": "12",
+          "description": "FICO Score 8 (2024+)"
+        },
+        {
+          "value": "13",
+          "description": "FICO Score 10 (2024+)"
+        },
+        {
+          "value": "14",
+          "description": "FICO Score 10T (2024+)"
+        },
+        {
+          "value": "15",
+          "description": " VantageScore 4.0 (2024+)"
         },
         {
           "value": "1111",
