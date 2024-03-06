@@ -33,12 +33,16 @@ export const Hero = ({ hideContent }) => {
                 <use href={`${iconSprite}#youtube`}></use>
               </svg> See How It Works
             </a>
-            <VideoModal
-              showModal={showModal}
-              setShowModal={setShowModal}
-              title="Example Modal"
-              content="This is an example modal."
-            />
+            {showModal && 
+              (
+                <VideoModal
+                  showModal={showModal}
+                  setShowModal={setShowModal}
+                  title="HMDA Overview"
+                  content="How HMDA Filing Works"
+                />
+              )
+            }            
           </li>
           <li className="usa-button-group__item">
             <a href="/data-browser/" className="usa-button secondary">
