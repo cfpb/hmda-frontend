@@ -2,12 +2,6 @@
   "name": "prod",
   "announcement": [
     {
-      "message": "We will be performing scheduled system maintenance on March 7 from 8PM - 10PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-      "type": "warning",
-      "heading": "Scheduled Maintenance",
-      "link": null
-    },
-    {
       "heading": "2023 Q3 Graphs Released",
       "message": "HMDA Quarterly Graphs have been updated to include data from the 2023-Q3 filing period and can now be filtered by loan purpose. View Quarterly Graphs",
       "type": "info",
@@ -34,12 +28,7 @@
   "publicationReleaseYear": "2022",
   "mlarReleaseYear": "2022",
   "maintenanceMode": false,
-  "filingAnnouncement": {
-    "message": "We will be performing scheduled system maintenance on March 7 from 8PM - 10PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-    "type": "warning",
-    "heading": "Scheduled Maintenance",
-    "endDate": null
-  },
+  "filingAnnouncement": null,
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
