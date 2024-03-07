@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 
 import SearchResultHeading from './SearchResultHeading'
@@ -10,9 +10,9 @@ import './SearchResults.css'
 const SearchResults = ({ institutions, handleDeleteClick, error }) => {
   const tableRef = useRef(new Map())
 
-  useEffect(() => {
-    if (!institutions || institutions.length) return null
-  }, [])
+  if (!institutions || institutions.length === 0) {
+    return null;
+  }
 
   institutions.sort((a, b) => (b.activityYear > a.activityYear ? 1 : -1))
   const colCount = 7

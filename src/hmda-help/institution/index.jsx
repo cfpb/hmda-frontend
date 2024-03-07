@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { flushSync } from 'react-dom';
 import { Link } from 'react-router-dom'
 
 import {
@@ -182,14 +183,18 @@ class Institution extends Component {
         // set the rest of the state here to be the json response
         // just in case something goes wrong
         // we then have the what the back-end has
-        this.setState({
-          ...flattenApiForInstitutionState(json),
-          requiresNewNotes: false,
-          isSubmitted: true,
-          wasAddition: false,
-          fetching: false,
-          disabledSubmit: true,
-          fetchNotesHistory: true,
+        // React 18 changed how class component setState calls are batched and using flushSync fixes the issue.
+        // https://react.dev/reference/react-dom/flushSync
+        flushSync(() => { 
+          this.setState({
+            ...flattenApiForInstitutionState(json),
+            requiresNewNotes: false,
+            isSubmitted: true,
+            wasAddition: false,
+            fetching: false,
+            disabledSubmit: true,
+            fetchNotesHistory: true,
+          })
         })
       })
       .then(() => {

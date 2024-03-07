@@ -14,7 +14,7 @@ const SearchResultActions = ({
   handleDeleteClick,
   tables,
 }) => {
-  const [deleting, setDeleting] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const buttonsRef = useRef(new Map())
 
   const toggleAreYouSure = (index) => {
@@ -34,9 +34,15 @@ const SearchResultActions = ({
     }
   }
 
+  const handleDeleteClickAdjustment = (institution, index) => {
+    handleDeleteClick(institution, index)
+    setIsLoading(false)
+    toggleAreYouSure(index)
+  }
+
   return (
     <td className='action'>
-      {deleting ? (
+      {isLoading ? (
         <Loading className='LoadingInline' />
       ) : (
         <React.Fragment>
@@ -66,8 +72,8 @@ const SearchResultActions = ({
               <button
                 className='yes'
                 onClick={() => {
-                  setDeleting(true)
-                  handleDeleteClick(institution, index)
+                  setIsLoading(true)
+                  handleDeleteClickAdjustment(institution, index)
                 }}
               >
                 Yes

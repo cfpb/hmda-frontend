@@ -6,7 +6,7 @@ ARG DOCKER_TAG="latest"
 COPY package.json .
 
 # Using Yarn V4
-RUN yarn set version berry
+RUN yarn set version 4.1.0
 
 COPY yarn.lock .yarn .yarnrc.yml ./
 RUN yarn install
