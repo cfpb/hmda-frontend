@@ -24,7 +24,7 @@
   "dependencies": {
     "@docsearch/react": "3.5.2",
     "@reduxjs/toolkit": "^1.9.7",
-    "@tanstack/react-table": "8.10.7",
+    "@tanstack/react-table": "8.11.0",
     "@uswds/compile": "^1.1.0",
     "@uswds/uswds": "3.6.1",
     "ansi-html": "0.0.8",
