@@ -12,7 +12,8 @@ export default function fetchCSV(lei, filing, submissionId) {
     return getCSV({
       lei: lei,
       filing: filing,
-      submission: submissionId
+      submission: submissionId,
+      _isStream: true
     })
       .then(csv => {
         return hasHttpError(csv).then(hasError => {

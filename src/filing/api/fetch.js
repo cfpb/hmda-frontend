@@ -14,7 +14,7 @@ export function getFilingData() {
   }
 }
 
-export function fetchData(options = { method: 'GET' }) {
+export async function fetchData(options = { method: 'GET' }) {
   const accessToken = AccessToken.get()
   const pathname = options.pathname
   const filingData = pathname ? {} : getFilingData()
@@ -58,6 +58,84 @@ export function fetchData(options = { method: 'GET' }) {
     body: options.body,
     headers: headers
   }
+  
+  // Attempt #1
+  // if (options._isStream) {
+  //   console.log("We've got a Streamer!")
+  //   const response = await fetch(url, fetchOptions)
+  //   const streamReader = response.body.getReader();
+  //   const decode = value => console.log('Decoding: ', value)
+    
+  //   streamReader.read().then(function processData({done, value}) {
+  //     if (done) {
+  //       console.log('** We have read all of the data!!!')
+  //       return
+  //     }
+  
+  //     decode(value)
+  
+  //     return streamReader.read().then(processData)
+  //   })
+  // }
+  
+  
+  // // Attempt #2
+  // if (options._isStream) {
+  //   console.log("We've got a Streamer!")
+  //   const response = await fetch(url, fetchOptions)
+  //   // console.log(response.status)
+  //   // console.log(response.statusText)
+  //   // return response.blob()
+  //   const streamReader = response.body.getReader();
+  //   let data = ""
+  //   const addData = (newData) => {
+  //     const decoded = new TextDecoder('utf-8').decode(newData)
+  //     console.log(decoded)
+  //     data += decoded
+  //   }
+
+  //   streamReader.read().then(function processData({done, value}) {
+  //     if (done) {
+  //       console.log('** We have read all of the data!!!')
+  //       console.log('**** DATA ****')
+  //       const d2 = data.split("/r")
+  //       console.log(data)
+  //       return data
+  //     }
+
+  //     addData(value)
+  //     return streamReader.read().then(processData)
+  //   })
+  // }
+  
+  // // Attempt #3
+  // if (options._isStream) {
+  //   console.log("We've got a Streamer!")
+  //   const response = await fetch(url, fetchOptions)
+  //   // console.log(response.status)
+  //   // console.log(response.statusText)
+  //   // return response.blob()
+  //   const streamReader = response.body.getReader();
+  //   let data = ""
+  //   const addData = (newData) => {
+  //     const decoded = new TextDecoder('utf-8').decode(newData)
+  //     // console.log(decoded)
+  //     data += decoded
+  //   }
+
+  //   return streamReader.read().then(function processData({done, value}) {
+  //     if (done) {
+  //       console.log('** We have read all of the data!!!')
+  //       console.log('**** DATA ****')
+  //       const d2 = data.split("/r")
+  //       // console.log(data)
+  //       return data
+  //     }
+
+  //     addData(value)
+  //     return streamReader.read().then(processData)
+  //   })
+  // }
 
   return fetch(url, fetchOptions)
     .then(response => {
