@@ -9,7 +9,7 @@ import fetchParseErrors from '../../actions/fetchParseErrors.js'
 import ParseErrorsComponent from './index.jsx'
 import ParseErrors, {
   ParseErrorsContainer,
-  mapStateToProps
+  mapStateToProps,
 } from './container.jsx'
 import Wrapper from '../../../test-resources/Wrapper.js'
 
@@ -27,11 +27,11 @@ const defaultState = {
       isFetching: false,
       fetched: false,
       transmittalSheetErrors: [],
-      larErrors: []
+      larErrors: [],
     },
     pagination: { parseErrors: {} },
-    paginationFade: { parseErrors: 0 }
-  }
+    paginationFade: { parseErrors: 0 },
+  },
 }
 
 describe('ParseErrors', () => {
@@ -39,7 +39,7 @@ describe('ParseErrors', () => {
     const wrappedConnected = TestUtils.renderIntoDocument(
       <Wrapper store={defaultState}>
         <ParseErrors />
-      </Wrapper>
+      </Wrapper>,
     )
 
     expect(parseFetch).toBeCalled()
@@ -57,7 +57,7 @@ describe('ParseErrors', () => {
           transmittalSheetErrors={[]}
           total={null}
         />
-      </Wrapper>
+      </Wrapper>,
     )
     expect(console.error).not.toBeCalled()
   })
@@ -71,7 +71,7 @@ describe('ParseErrors', () => {
       'transmittalSheetErrors',
       'larErrors',
       'pagination',
-      'paginationFade'
+      'paginationFade',
     ])
     expect(mapped.isFetching).toEqual(false)
     expect(mapped.fetched).toEqual(false)
@@ -85,11 +85,11 @@ describe('ParseErrors', () => {
         parseErrors: defaultState.app.parseErrors,
         pagination: {
           parseErrors: {
-            total: 123
-          }
+            total: 123,
+          },
         },
-        paginationFade: {}
-      }
+        paginationFade: {},
+      },
     })
     expect(mappedTotal.pagination.total).toBe(123)
   })

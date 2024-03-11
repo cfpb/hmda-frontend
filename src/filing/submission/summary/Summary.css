@@ -21,10 +21,10 @@
 }
 
 .Summary .info-section h3 {
-  margin-top: .5em;
+  margin-top: 0.5em;
 }
 
-.Summary .font-lead, 
+.Summary .font-lead,
 .Summary .info-section-lead {
   color: #323a45;
   margin-top: 0.5em;
@@ -34,7 +34,7 @@
 .Summary .info-section-lead {
   font-size: 1em;
   color: #666;
-  margin: .75em 0;
+  margin: 0.75em 0;
 }
 
 .Summary .section-heading {
@@ -42,7 +42,7 @@
   flex-flow: row nowrap;
   justify-content: space-between;
   background: #eee;
-  padding: 0 .5em;
+  padding: 0 0.5em;
 }
 
 .Summary .section-heading .info-section-lead {
@@ -59,7 +59,7 @@
 
 .Summary .emphasize {
   font-weight: bold;
-  margin: .75em 0 0;
+  margin: 0.75em 0 0;
 }
 
 .Summary .info .emphasize {
@@ -67,7 +67,7 @@
 }
 
 .Summary .emphasize .point {
-  padding-right: .3em;
+  padding-right: 0.3em;
   color: black;
   font-style: normal;
 }
@@ -95,7 +95,6 @@
   justify-content: flex-start;
 }
 
-
 .Summary .note .point {
   width: 10px;
   height: 10px;
@@ -113,7 +112,7 @@
 
 #summary dt,
 #summary dd {
-  padding-left: .5em;
+  padding-left: 0.5em;
 }
 
 /*

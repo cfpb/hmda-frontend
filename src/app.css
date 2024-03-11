@@ -11,8 +11,10 @@
   src: url(./common/uswds/fonts/source-sans-pro/sourcesanspro-italic-webfont.woff2);
 }
 
-*, *::before, *::after {
-   box-sizing: inherit;
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
 html {
@@ -31,7 +33,8 @@ body {
   font-size: 1.7rem;
 }
 
-main, #main-content {
+main,
+#main-content {
   display: block;
 }
 
@@ -89,7 +92,8 @@ input {
   font-size: 1.3rem;
 }
 
-.App, .full-width {
+.App,
+.full-width {
   max-width: 1040px;
   margin: 0 auto;
   padding: 0 3rem;
@@ -126,12 +130,13 @@ a:active {
   color: #205493;
 }
 
-p, li {
+p,
+li {
   line-height: 1.5;
 }
 
 li {
-   margin-bottom: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 h1,
@@ -147,17 +152,31 @@ h6 {
   line-height: 1.3;
 }
 
-h1+ul, h1+ol, h2+ul, h2+ol, h3+ul, h3+ol, h4+ul, h4+ol, h5+ul, h5+ol, h6+ul, h6+ol, p+ul, p+ol {
-   margin-top: 0;
+h1 + ul,
+h1 + ol,
+h2 + ul,
+h2 + ol,
+h3 + ul,
+h3 + ol,
+h4 + ul,
+h4 + ol,
+h5 + ul,
+h5 + ol,
+h6 + ul,
+h6 + ol,
+p + ul,
+p + ol {
+  margin-top: 0;
 }
 
-ol, ul {
+ol,
+ul {
   padding-left: 1.94em;
 }
 
 hr {
   border-bottom: none;
-  border-top: 1px solid #5b616b;;
+  border-top: 1px solid #5b616b;
 }
 
 .button-link {
@@ -174,7 +193,8 @@ hr {
   -webkit-font-smoothing: unset;
 }
 
-.CSVDownload:hover, .button-link:hover {
+.CSVDownload:hover,
+.button-link:hover {
   color: #4c2c92;
   background: inherit;
 }
@@ -188,7 +208,7 @@ hr {
 }
 
 .Beta {
-  margin: 0 auto 32px ;
+  margin: 0 auto 32px;
   max-width: 1040px;
 }
 
@@ -286,7 +306,7 @@ hr {
 }
 
 @media screen and (max-width: 1054px) {
-  .home .card:nth-of-type(2){
+  .home .card:nth-of-type(2) {
     margin-top: 2em;
   }
 }

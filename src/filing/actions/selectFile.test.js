@@ -10,7 +10,7 @@ const mockStore = configureMockStore([thunk])
 const store = mockStore({ app: { lei: '123' } })
 
 window.localStorage = {
-  setItem: jest.fn()
+  setItem: jest.fn(),
 }
 
 describe('selectFile', () => {
@@ -23,8 +23,8 @@ describe('selectFile', () => {
     const getState = jest.fn(() => {
       return {
         app: {
-          lei: '123'
-        }
+          lei: '123',
+        },
       }
     })
     selectFile({ size: 5e7 })(dispatch, getState)
@@ -35,7 +35,7 @@ describe('selectFile', () => {
     const file = { size: 42, name: 'test.txt' }
     store.dispatch(selectFile(file))
     expect(store.getActions()).toEqual([
-      { type: types.SELECT_FILE, file, lei: '123' }
+      { type: types.SELECT_FILE, file, lei: '123' },
     ])
   })
 })

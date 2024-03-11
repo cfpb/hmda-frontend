@@ -8,7 +8,7 @@ export default function receiveParseErrors(data) {
     pagination: {
       count: data.count,
       total: data.total,
-      _links: data._links
-    }
+      _links: data._links,
+    },
   }
 }

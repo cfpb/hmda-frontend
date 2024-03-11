@@ -1,14 +1,14 @@
-import { useEffect } from "react"
-import { useDispatch } from "react-redux"
-import { useHistory, useLocation, useRouteMatch } from "react-router-dom"
-import { BaseURLQuarterly } from "../constants"
-import { graphs } from "../slice"
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { useHistory, useLocation, useRouteMatch } from 'react-router-dom'
+import { BaseURLQuarterly } from '../constants'
+import { graphs } from '../slice'
 import {
   GRAPH_MENU_OPTIONS,
   RAW_GRAPH_LIST,
-  SELECTED_GRAPH
-} from "../slice/graphConfigs"
-import { buildGraphListOptions } from "../utils/graphHelpers"
+  SELECTED_GRAPH,
+} from '../slice/graphConfigs'
+import { buildGraphListOptions } from '../utils/graphHelpers'
 
 export const useFetchGraphList = ({
   fetchSingleGraph,
@@ -48,7 +48,7 @@ export const useFetchGraphList = ({
           value: firstGraph.endpoint,
           label: firstGraph.title,
           category: firstGraph.category,
-        })
+        }),
       )
 
       history.push(`${BaseURLQuarterly}/info/filers`)
@@ -65,7 +65,7 @@ export const useFetchGraphList = ({
           value: firstGraph.endpoint,
           label: firstGraph.title,
           category: firstGraph.category,
-        })
+        }),
       )
 
       history.push(`${BaseURLQuarterly}/info/faq`)
@@ -78,13 +78,13 @@ export const useFetchGraphList = ({
           value: firstGraph.endpoint,
           label: firstGraph.title,
           category: firstGraph.category,
-        })
+        }),
       )
 
       history.push(`${BaseURLQuarterly}/${firstGraph.endpoint}`)
     } else if (match.params.graph) {
       let initialGraphToLoad = response.graphs.find(
-        (graph) => graph.endpoint == match.params.graph
+        (graph) => graph.endpoint == match.params.graph,
       )
       fetchSingleGraph(initialGraphToLoad.endpoint)
       dispatch(
@@ -92,7 +92,7 @@ export const useFetchGraphList = ({
           value: initialGraphToLoad.endpoint,
           label: initialGraphToLoad.title,
           category: initialGraphToLoad.category,
-        })
+        }),
       )
     }
 

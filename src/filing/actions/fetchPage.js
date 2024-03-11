@@ -7,11 +7,11 @@ import { error } from '../utils/log.js'
 import { fetchData } from '../api/fetch.js'
 
 export default function fetchPage(target, pathname) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(getPaginationRequestAction(target))
     return fetchData({ pathname: pathname })
-      .then(json => {
-        return hasHttpError(json).then(hasError => {
+      .then((json) => {
+        return hasHttpError(json).then((hasError) => {
           if (hasError) {
             dispatch(receiveError(json))
             throw new Error(json && `${json.status}: ${json.statusText}`)
@@ -19,7 +19,7 @@ export default function fetchPage(target, pathname) {
           return dispatch(getPaginationReceiveAction(target, json))
         })
       })
-      .catch(err => {
+      .catch((err) => {
         error(err)
       })
   }

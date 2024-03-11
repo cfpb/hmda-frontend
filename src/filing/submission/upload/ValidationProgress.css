@@ -48,7 +48,9 @@
   line-height: 1em;
   height: 1em;
   margin-top: -1em;
-  transition: width 0.3s, background-color 0.2s;
+  transition:
+    width 0.3s,
+    background-color 0.2s;
 }
 
 .ValidationProgress .progressFill.error {

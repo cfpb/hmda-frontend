@@ -1,15 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const renderData = report => {
+const renderData = (report) => {
   return [
     renderCensusTractCharacteristics(report.censusTractCharacteristics),
     renderIncomeRaces(report.incomeRaces),
-    renderTypes(report.types)
+    renderTypes(report.types),
   ]
 }
 
-const renderTypes = types => {
+const renderTypes = (types) => {
   return types.map((type, index) => {
     return (
       <tr key={`type-${index}`}>
@@ -18,7 +18,7 @@ const renderTypes = types => {
             borderTopWidth: '2px',
             fontWeight: 'bold',
             textTransform: 'uppercase',
-            backgroundColor: '#f1f1f1'
+            backgroundColor: '#f1f1f1',
           }}
         >
           {type.type}
@@ -35,7 +35,7 @@ const renderTypeDispositions = (dispositions, key) => {
       <td
         style={{
           borderTopWidth: '2px',
-          backgroundColor: '#f1f1f1'
+          backgroundColor: '#f1f1f1',
         }}
         key={`type-count-${index}-${key}`}
       >
@@ -44,17 +44,17 @@ const renderTypeDispositions = (dispositions, key) => {
       <td
         style={{
           borderTopWidth: '2px',
-          backgroundColor: '#f1f1f1'
+          backgroundColor: '#f1f1f1',
         }}
         key={`type-value-${index}-${key}`}
       >
         {disposition.value}
-      </td>
+      </td>,
     ]
   })
 }
 
-const renderIncomeRaces = incomeRaces => {
+const renderIncomeRaces = (incomeRaces) => {
   return incomeRaces.map((incomeRace, index) => {
     return [
       <tr key={`inccomeRaces-${index}`}>
@@ -64,13 +64,13 @@ const renderIncomeRaces = incomeRaces => {
             borderTopWidth: '2px',
             fontWeight: 'bold',
             textTransform: 'uppercase',
-            backgroundColor: '#f1f1f1'
+            backgroundColor: '#f1f1f1',
           }}
         >
           {incomeRace.characteristic}
         </th>
       </tr>,
-      renderIncomeRacesDetails(incomeRace.incomes, index)
+      renderIncomeRacesDetails(incomeRace.incomes, index),
     ]
   })
 }
@@ -84,13 +84,13 @@ const renderIncomeRacesDetails = (incomes, key) => {
           style={{
             textTransform: 'uppercase',
             fontWeight: 'bold',
-            backgroundColor: '#f1f1f1'
+            backgroundColor: '#f1f1f1',
           }}
         >
           {income.income}
         </th>
       </tr>,
-      renderIncomeRacesCompositions(income.compositions, key, index)
+      renderIncomeRacesCompositions(income.compositions, key, index),
     ]
   })
 }
@@ -102,7 +102,7 @@ const renderIncomeRacesCompositions = (compositions, key, key2) => {
         <th
           style={{
             textTransform: 'uppercase',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
           }}
         >
           {composition.composition}
@@ -111,9 +111,9 @@ const renderIncomeRacesCompositions = (compositions, key, key2) => {
           composition.dispositions,
           key,
           key2,
-          index
+          index,
         )}
-      </tr>
+      </tr>,
     ]
   })
 }
@@ -126,12 +126,12 @@ const renderIncomeRacesDispositions = (dispositions, key, key2, key3) => {
       </td>,
       <td key={`inccomeRaces-value-${index}-${key}-${key2}-${key3}`}>
         {disposition.value}
-      </td>
+      </td>,
     ]
   })
 }
 
-const renderCensusTractCharacteristics = censusTractCharacteristics => {
+const renderCensusTractCharacteristics = (censusTractCharacteristics) => {
   return censusTractCharacteristics.map((censusTractCharacteristic, index) => {
     let details = ''
     if (censusTractCharacteristic.compositions) {
@@ -149,13 +149,17 @@ const renderCensusTractCharacteristics = censusTractCharacteristics => {
             borderTopWidth: '2px',
             fontWeight: 'bold',
             textTransform: 'uppercase',
-            backgroundColor: '#f1f1f1'
+            backgroundColor: '#f1f1f1',
           }}
         >
           {censusTractCharacteristic.characteristic}
         </th>
       </tr>,
-      renderCensusTractCharacteristic(censusTractCharacteristic, details, index)
+      renderCensusTractCharacteristic(
+        censusTractCharacteristic,
+        details,
+        index,
+      ),
     ]
   })
 }
@@ -163,7 +167,7 @@ const renderCensusTractCharacteristics = censusTractCharacteristics => {
 const renderCensusTractCharacteristic = (
   censusTractCharacteristic,
   details,
-  key
+  key,
 ) => {
   let subDetail = 'composition'
   if (details === 'incomes') subDetail = 'income'
@@ -174,7 +178,7 @@ const renderCensusTractCharacteristic = (
         <th
           style={{
             textTransform: 'uppercase',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
           }}
         >
           {detail[subDetail]}
@@ -193,7 +197,7 @@ const renderDispositions = (dispositions, key, key2) => {
       </td>,
       <td key={`censusTract-value-${index}-${key}-${key2}`}>
         {disposition.value}
-      </td>
+      </td>,
     ]
   })
 }
@@ -205,25 +209,25 @@ const Seven = React.forwardRef((props, ref) => {
     <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
-          <th width="20%" rowSpan={2}>
+          <th width='20%' rowSpan={2}>
             TYPE OF CENSUS TRACT
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Applications Received
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Loans Originated
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Apps. Approved But Not Accepted
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Applications Denied
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Applications Withdrawn
           </th>
-          <th colSpan={2} width="13.333%">
+          <th colSpan={2} width='13.333%'>
             Files Closed for Incompleteness
           </th>
         </tr>
@@ -249,7 +253,7 @@ const Seven = React.forwardRef((props, ref) => {
           {props.report.total.map((total, index) => {
             return [
               <td key={`total-count-${index}`}>{total.count}</td>,
-              <td key={`total-value-${index}`}>{total.value}</td>
+              <td key={`total-value-${index}`}>{total.value}</td>,
             ]
           })}
         </tr>
@@ -259,7 +263,7 @@ const Seven = React.forwardRef((props, ref) => {
 })
 
 Seven.propTypes = {
-  report: PropTypes.object
+  report: PropTypes.object,
 }
 
 export default Seven

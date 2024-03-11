@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { BiLinkAlt } from "react-icons/bi";
+import React, { useState } from 'react'
+import { BiLinkAlt } from 'react-icons/bi'
 import './CopyURLButton.css'
 
 /**
@@ -12,7 +12,7 @@ let debounceCopyConfirmation = null
 
 const CopyURLButton = ({ cname, text = 'Share URL' }) => {
   const [showTooltip, setShowTooltip] = useState(false)
- 
+
   const copy = () => {
     const el = document.createElement('input')
     el.value = window.location.href
@@ -48,4 +48,4 @@ const CopyURLButton = ({ cname, text = 'Share URL' }) => {
   )
 }
 
-export default CopyURLButton;
+export default CopyURLButton

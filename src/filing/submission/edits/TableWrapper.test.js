@@ -9,16 +9,16 @@ import Wrapper from '../../../test-resources/Wrapper.js'
 import EditsTableWrapper, {
   renderTablesOrSuccess,
   getTotalTypeCount,
-  makeEntry
+  makeEntry,
 } from './TableWrapper.jsx'
 
 const types = {
   syntactical: JSON.parse(
-    fs.readFileSync('./test-resources/json/syntactical.json')
+    fs.readFileSync('./test-resources/json/syntactical.json'),
   ),
   validity: JSON.parse(fs.readFileSync('./test-resources/json/validity.json')),
   quality: JSON.parse(fs.readFileSync('./test-resources/json/quality.json')),
-  macro: JSON.parse(fs.readFileSync('./test-resources/json/macro.json'))
+  macro: JSON.parse(fs.readFileSync('./test-resources/json/macro.json')),
 }
 
 const props = {
@@ -29,15 +29,15 @@ const props = {
   rows: {
     S020: {
       isFetching: false,
-      rows: []
-    }
+      rows: [],
+    },
   },
   types: {
     syntactical: types.syntactical,
     validity: types.validity,
     quality: types.quality,
-    macro: types.macro
-  }
+    macro: types.macro,
+  },
 }
 
 describe('EditsTableWrapper', () => {
@@ -51,7 +51,7 @@ describe('EditsTableWrapper', () => {
   it('does not render verifier on synval and renders 3 tables', () => {
     const localProps = {
       ...props,
-      page: 'syntacticalvalidity'
+      page: 'syntacticalvalidity',
     }
     const rendered = EditsTableWrapper(localProps)
 
@@ -64,7 +64,7 @@ describe('EditsTableWrapper Loading', () => {
   const localProps = {
     ...props,
     isFetching: true,
-    editsFetched: false
+    editsFetched: false,
   }
 
   it('renders loading icon is necessary', () => {
@@ -78,21 +78,21 @@ describe('renderTablesOrSuccess', () => {
   it('render the success message with verification note if NO edits and quality', () => {
     const rendered = renderTablesOrSuccess({}, [], 'quality')
     expect(rendered.props.children.props.children.join('')).toBe(
-      'Your data did not trigger any quality edits; no verification is required.'
+      'Your data did not trigger any quality edits; no verification is required.',
     )
   })
 
   it('render the success message with verification note if NO edits and macro', () => {
     const rendered = renderTablesOrSuccess({}, [], 'macro')
     expect(rendered.props.children.props.children.join('')).toBe(
-      'Your data did not trigger any macro edits; no verification is required.'
+      'Your data did not trigger any macro edits; no verification is required.',
     )
   })
 
   it('render the success message with verification note if NO edits and synval', () => {
     const rendered = renderTablesOrSuccess({}, [], 'syntacticalvalidity')
     expect(rendered.props.children.props.children.join('')).toBe(
-      'Your data did not trigger any syntactical or validity edits.'
+      'Your data did not trigger any syntactical or validity edits.',
     )
   })
 
@@ -100,7 +100,7 @@ describe('renderTablesOrSuccess', () => {
     const rendered = renderTablesOrSuccess(
       {},
       types.syntactical.edits,
-      'syntacticalvalidity'
+      'syntacticalvalidity',
     )
     expect(rendered.length).toBe(2)
   })
@@ -120,7 +120,7 @@ describe('getTotalTypeCount', () => {
   it('totals edit counts from multiple edits', () => {
     const count = getTotalTypeCount([{ edit: 'a' }, { edit: 'b' }], {
       a: { total: 4 },
-      b: { total: 5 }
+      b: { total: 5 },
     })
     expect(count).toBe(9)
   })
@@ -142,7 +142,7 @@ describe('makeEntry', () => {
     const pagination = {
       S020: { total: 1 },
       S010: { total: 2 },
-      V555: { total: 3 }
+      V555: { total: 3 },
     }
     const localProps = { ...props, page: 'syntacticalvalidity', pagination }
 

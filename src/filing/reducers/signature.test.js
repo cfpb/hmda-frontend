@@ -7,7 +7,7 @@ const defaultSignature = {
   isFetching: false,
   timestamp: null,
   receipt: null,
-  checked: false
+  checked: false,
 }
 
 describe('signature reducer', () => {
@@ -17,13 +17,13 @@ describe('signature reducer', () => {
 
   it('handles REQUEST_SIGNATURE', () => {
     expect(signature({}, { type: types.REQUEST_SIGNATURE })).toEqual({
-      isFetching: true
+      isFetching: true,
     })
   })
 
   it('handles REQUEST_SIGNATURE_POST', () => {
     expect(signature({}, { type: types.REQUEST_SIGNATURE_POST })).toEqual({
-      isFetching: true
+      isFetching: true,
     })
   })
 
@@ -31,13 +31,13 @@ describe('signature reducer', () => {
     expect(
       signature(
         {},
-        { type: types.RECEIVE_SIGNATURE, timestamp: 1234, receipt: 'asdf' }
-      )
+        { type: types.RECEIVE_SIGNATURE, timestamp: 1234, receipt: 'asdf' },
+      ),
     ).toEqual({
       isFetching: false,
       timestamp: 1234,
       receipt: 'asdf',
-      checked: true
+      checked: true,
     })
   })
 
@@ -45,14 +45,18 @@ describe('signature reducer', () => {
     expect(
       signature(
         {},
-        { type: types.RECEIVE_SIGNATURE_POST, timestamp: 1234, receipt: 'asdf' }
-      )
+        {
+          type: types.RECEIVE_SIGNATURE_POST,
+          timestamp: 1234,
+          receipt: 'asdf',
+        },
+      ),
     ).toEqual({ isFetching: false, timestamp: 1234, receipt: 'asdf' })
   })
 
   it('handles CHECK_SIGNATURE', () => {
     expect(
-      signature({}, { type: types.CHECK_SIGNATURE, checked: true })
+      signature({}, { type: types.CHECK_SIGNATURE, checked: true }),
     ).toEqual({ checked: true, isFetching: false })
   })
 
@@ -63,7 +67,7 @@ describe('signature reducer', () => {
       types.REQUEST_SIGNATURE_POST,
       types.RECEIVE_SIGNATURE_POST,
       types.CHECK_SIGNATURE,
-      types.REFRESH_STATE
-    ).forEach(v => expect(signature({}, v)).toEqual({}))
+      types.REFRESH_STATE,
+    ).forEach((v) => expect(signature({}, v)).toEqual({}))
   })
 })

@@ -1,7 +1,7 @@
 jest.unmock('./Nav.jsx')
 jest.mock('./UserHeading.jsx', () => jest.fn(() => null))
 jest.mock('../refileWarning/index.jsx', () => jest.fn(() => null))
-jest.mock('./progressHOC.jsx', () => jest.fn(comp => comp))
+jest.mock('./progressHOC.jsx', () => jest.fn((comp) => comp))
 
 import EditsNav from './Nav.jsx'
 import Wrapper from '../../test-resources/Wrapper.js'
@@ -16,10 +16,10 @@ const baseProps = {
   syntacticalValidityEditsExist: true,
   qualityVerified: false,
   macroVerified: false,
-  editsFetched: true
+  editsFetched: true,
 }
 
-const getLinkCount = rendered => {
+const getLinkCount = (rendered) => {
   return TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'usa-nav-link')
     .length
 }
@@ -28,8 +28,8 @@ describe('EditsNav', () => {
   it('renders with base props', () => {
     const rendered = TestUtils.renderIntoDocument(
       <Wrapper>
-        <EditsNav {...baseProps} period="2017" institution={{ name: 'Test' }} />
-      </Wrapper>
+        <EditsNav {...baseProps} period='2017' institution={{ name: 'Test' }} />
+      </Wrapper>,
     )
     const renderedNode = ReactDOM.findDOMNode(rendered)
     expect(renderedNode).toBeDefined()
@@ -40,8 +40,8 @@ describe('EditsNav', () => {
     const props = { ...baseProps, code: 8 }
     const rendered = TestUtils.renderIntoDocument(
       <Wrapper>
-        <EditsNav {...props} period="2017" institution={{ name: 'Test' }} />
-      </Wrapper>
+        <EditsNav {...props} period='2017' institution={{ name: 'Test' }} />
+      </Wrapper>,
     )
     expect(getLinkCount(rendered)).toBe(2)
   })
@@ -50,12 +50,12 @@ describe('EditsNav', () => {
     const props = {
       ...baseProps,
       syntacticalValidityEditsExist: false,
-      code: 8
+      code: 8,
     }
     const rendered = TestUtils.renderIntoDocument(
       <Wrapper>
-        <EditsNav {...props} period="2017" institution={{ name: 'Test' }} />
-      </Wrapper>
+        <EditsNav {...props} period='2017' institution={{ name: 'Test' }} />
+      </Wrapper>,
     )
     expect(getLinkCount(rendered)).toBe(3)
   })
@@ -65,12 +65,12 @@ describe('EditsNav', () => {
       ...baseProps,
       syntacticalValidityEditsExist: false,
       qualityVerified: true,
-      code: 8
+      code: 8,
     }
     const rendered = TestUtils.renderIntoDocument(
       <Wrapper>
-        <EditsNav {...props} period="2017" institution={{ name: 'Test' }} />
-      </Wrapper>
+        <EditsNav {...props} period='2017' institution={{ name: 'Test' }} />
+      </Wrapper>,
     )
     expect(getLinkCount(rendered)).toBe(4)
   })
@@ -81,12 +81,12 @@ describe('EditsNav', () => {
       syntacticalValidityEditsExist: false,
       qualityVerified: true,
       macroVerified: true,
-      code: 8
+      code: 8,
     }
     const rendered = TestUtils.renderIntoDocument(
       <Wrapper>
-        <EditsNav {...props} period="2017" institution={{ name: 'Test' }} />
-      </Wrapper>
+        <EditsNav {...props} period='2017' institution={{ name: 'Test' }} />
+      </Wrapper>,
     )
     expect(getLinkCount(rendered)).toBe(4)
   })
@@ -94,12 +94,12 @@ describe('EditsNav', () => {
   it('renders all links if code > 8', () => {
     const props = {
       ...baseProps,
-      code: 9
+      code: 9,
     }
     const rendered = TestUtils.renderIntoDocument(
       <Wrapper>
-        <EditsNav {...props} period="2017" institution={{ name: 'Test' }} />
-      </Wrapper>
+        <EditsNav {...props} period='2017' institution={{ name: 'Test' }} />
+      </Wrapper>,
     )
     expect(getLinkCount(rendered)).toBe(5)
   })
@@ -237,7 +237,7 @@ describe('render', () => {
     nav.state.fixed = true
     const rendered = nav.render()
     expect(rendered.props.children.props.className).toEqual(
-      'EditsNav EditsNav-fixed'
+      'EditsNav EditsNav-fixed',
     )
   })
 })
@@ -247,33 +247,33 @@ describe('navMap', () => {
     upload: {
       isReachable: true,
       isErrored: false,
-      isCompleted: false
+      isCompleted: false,
     },
     'syntactical & validity edits': {
       isReachable: false,
       isErrored: true,
-      isCompleted: false
+      isCompleted: false,
     },
     'quality edits': {
       isReachable: false,
       isErrored: true,
-      isCompleted: false
+      isCompleted: false,
     },
     'macro quality edits': {
       isReachable: false,
       isErrored: true,
-      isCompleted: false
+      isCompleted: false,
     },
     submission: {
       isReachable: false,
       isErrored: false,
-      isCompleted: false
-    }
+      isCompleted: false,
+    },
   }
   function checkMap(navMap, expected = {}) {
     expected = { ...baseMap, ...expected }
-    Object.keys(navMap).forEach(key => {
-      return ['isReachable', 'isCompleted', 'isErrored'].forEach(fn => {
+    Object.keys(navMap).forEach((key) => {
+      return ['isReachable', 'isCompleted', 'isErrored'].forEach((fn) => {
         expect(navMap[key][fn]()).toBe(expected[key][fn])
       })
     })
@@ -291,8 +291,8 @@ describe('navMap', () => {
       'syntactical & validity edits': {
         isReachable: true,
         isErrored: true,
-        isCompleted: false
-      }
+        isCompleted: false,
+      },
     })
   })
 
@@ -300,20 +300,20 @@ describe('navMap', () => {
     const navMap = new EditsNav({
       ...baseProps,
       code: 8,
-      syntacticalValidityEditsExist: false
+      syntacticalValidityEditsExist: false,
     }).navMap
     checkMap(navMap, {
       upload: { isCompleted: true, isErrored: false, isReachable: true },
       'syntactical & validity edits': {
         isReachable: true,
         isErrored: false,
-        isCompleted: true
+        isCompleted: true,
       },
       'quality edits': {
         isReachable: true,
         isErrored: true,
-        isCompleted: false
-      }
+        isCompleted: false,
+      },
     })
   })
 
@@ -322,25 +322,25 @@ describe('navMap', () => {
       ...baseProps,
       code: 8,
       syntacticalValidityEditsExist: false,
-      qualityVerified: true
+      qualityVerified: true,
     }).navMap
     checkMap(navMap, {
       upload: { isCompleted: true, isErrored: false, isReachable: true },
       'syntactical & validity edits': {
         isReachable: true,
         isErrored: false,
-        isCompleted: true
+        isCompleted: true,
       },
       'quality edits': {
         isReachable: true,
         isErrored: false,
-        isCompleted: true
+        isCompleted: true,
       },
       'macro quality edits': {
         isReachable: true,
         isErrored: true,
-        isCompleted: false
-      }
+        isCompleted: false,
+      },
     })
   })
 
@@ -350,30 +350,30 @@ describe('navMap', () => {
       code: 10,
       syntacticalValidityEditsExist: false,
       qualityVerified: true,
-      macroVerified: true
+      macroVerified: true,
     }).navMap
     checkMap(navMap, {
       upload: { isCompleted: true, isErrored: false, isReachable: true },
       'syntactical & validity edits': {
         isReachable: true,
         isErrored: false,
-        isCompleted: true
+        isCompleted: true,
       },
       'quality edits': {
         isReachable: true,
         isErrored: false,
-        isCompleted: true
+        isCompleted: true,
       },
       'macro quality edits': {
         isReachable: true,
         isErrored: false,
-        isCompleted: true
+        isCompleted: true,
       },
       submission: {
         isReachable: true,
         isErrored: false,
-        isCompleted: true
-      }
+        isCompleted: true,
+      },
     })
   })
 })

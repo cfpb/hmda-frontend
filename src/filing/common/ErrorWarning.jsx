@@ -6,9 +6,9 @@ import './ErrorWarning.css'
 
 export function getHeading(props) {
   const { status, heading } = props.error
-  
+
   if (props.headerText) return props.headerText
-  if(status === 404 && heading) return heading
+  if (status === 404 && heading) return heading
 
   switch (status) {
     case 401:
@@ -23,7 +23,7 @@ export function getText(props) {
   const { status, message } = props.error
 
   if (props.bodyText) return props.bodyText
-  if(status === 404 && message) return message
+  if (status === 404 && message) return message
 
   switch (status) {
     case 400:
@@ -63,14 +63,14 @@ const showErrorStatus = ({ status, statusText }) => {
   return <span className='error-code'>{text}</span>
 }
 
-const ErrorWarning = props => {
+const ErrorWarning = (props) => {
   if (props.error)
     return (
-      <div className="ErrorWarning">
-        <Alert type="error" heading={getHeading(props)}>
+      <div className='ErrorWarning'>
+        <Alert type='error' heading={getHeading(props)}>
           <p>
             {getText(props)} {getContact(props)}
-            <a href="mailto:hmdahelp@cfpb.gov">HMDA Help</a>.
+            <a href='mailto:hmdahelp@cfpb.gov'>HMDA Help</a>.
             {showErrorStatus(props.error)}
           </p>
         </Alert>
@@ -83,7 +83,7 @@ const ErrorWarning = props => {
 ErrorWarning.propTypes = {
   error: PropTypes.object,
   bodyText: PropTypes.string,
-  headerText: PropTypes.string
+  headerText: PropTypes.string,
 }
 
 export default ErrorWarning

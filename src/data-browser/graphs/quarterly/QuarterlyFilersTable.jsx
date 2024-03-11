@@ -1,51 +1,51 @@
-import { useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import LoadingIcon from '../../../common/LoadingIcon';
-import SimpleSortTable from '../../../common/SimpleSortTable';
-import { institutions } from '../slice';
-import './QuarterlyFilersTable.css';
+import { useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import LoadingIcon from '../../../common/LoadingIcon'
+import SimpleSortTable from '../../../common/SimpleSortTable'
+import { institutions } from '../slice'
+import './QuarterlyFilersTable.css'
 import { useLatestAvailableYear } from './useLatestAvailableYear'
 
-const QuarterlyFilersTable = props => {
-  const dispatch = useDispatch();
-  const { sort } = useSelector(state => state.institutionsConfig);
+const QuarterlyFilersTable = (props) => {
+  const dispatch = useDispatch()
+  const { sort } = useSelector((state) => state.institutionsConfig)
   const year = useLatestAvailableYear()
   const past = 3
-  
-  const pastYears = [...Array(past).keys()].map(i => `${year - i - 1}`);
-  
+
+  const pastYears = [...Array(past).keys()].map((i) => `${year - i - 1}`)
+
   const { data, isSuccess } = institutions.useGetQuarterliesWithLarsQuery(
     { year, past },
-    { skip: !year }
+    { skip: !year },
   )
 
-  const setSort = sortUpdateFn =>
+  const setSort = (sortUpdateFn) =>
     dispatch(institutions.updateSort(sortUpdateFn(sort)))
 
   const tableColumns = useMemo(() => {
-    const countsColumns = pastYears.map(accessorKey => {
+    const countsColumns = pastYears.map((accessorKey) => {
       return {
         header: accessorKey,
         accessorKey,
-        sortingFn: "alphanumeric",
+        sortingFn: 'alphanumeric',
       }
     })
 
     return [
       {
-        header: "Institution",
-        accessorKey: "name",
-        sortingFn: "text",
+        header: 'Institution',
+        accessorKey: 'name',
+        sortingFn: 'text',
       },
       {
-        header: "LEI",
-        accessorKey: "lei",
-        sortingFn: "text",
+        header: 'LEI',
+        accessorKey: 'lei',
+        sortingFn: 'text',
       },
       {
-        header: "Agency",
-        accessorKey: "agency",
-        sortingFn: "text",
+        header: 'Agency',
+        accessorKey: 'agency',
+        sortingFn: 'text',
       },
       ...countsColumns,
     ]
@@ -56,7 +56,7 @@ const QuarterlyFilersTable = props => {
   if (isSuccess && data) {
     const tableData = data.quarterly.map(({ name, lei, agency, larCounts }) => {
       let counts = {}
-      larCounts.forEach(ts => {
+      larCounts.forEach((ts) => {
         counts[ts.year] = ts.count
       })
       return {
@@ -68,9 +68,9 @@ const QuarterlyFilersTable = props => {
     })
 
     const quarterlySums = {}
-    pastYears.forEach(yr => {
+    pastYears.forEach((yr) => {
       quarterlySums[yr] = data.quarterly.reduce((prev, curr) => {
-        const tsLar = curr.larCounts.find(ts => ts.year === yr)
+        const tsLar = curr.larCounts.find((ts) => ts.year === yr)
         return tsLar ? prev + tsLar.count : prev
       }, 0)
     })
@@ -78,22 +78,24 @@ const QuarterlyFilersTable = props => {
     const customFooter = (
       <>
         <tr>
-          <th colSpan='3' style={{ textAlign: "right" }}>
+          <th colSpan='3' style={{ textAlign: 'right' }}>
             Total of Quarterly Filers
           </th>
-          {pastYears.map(yr => {
+          {pastYears.map((yr) => {
             return <td key={yr}>{quarterlySums[yr].toLocaleString()}</td>
           })}
         </tr>
         <tr>
-          <th colSpan='3' style={{ textAlign: "right" }}>
+          <th colSpan='3' style={{ textAlign: 'right' }}>
             Total of All Filers
           </th>
-          {pastYears.map(yr => {
+          {pastYears.map((yr) => {
             return (
               <td key={yr}>
                 {(
-                  data.yearly.find(yearlyCount => yearlyCount.year === yr) || {
+                  data.yearly.find(
+                    (yearlyCount) => yearlyCount.year === yr,
+                  ) || {
                     count: 0,
                   }
                 ).count.toLocaleString()}

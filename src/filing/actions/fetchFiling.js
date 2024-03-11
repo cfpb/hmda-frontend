@@ -9,11 +9,11 @@ import fetchLatestSubmission from './fetchLatestSubmission'
 import receiveNonQFiling from './receiveNonQFiling'
 
 export default function fetchFiling(filing, selectedPeriod) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(requestFiling(filing))
     return getFiling(filing.lei, filing.period)
-      .then(json => {
-        return hasHttpError(json).then(hasError => {
+      .then((json) => {
+        return hasHttpError(json).then((hasError) => {
           if (!hasError) {
             dispatch(receiveFiling(json))
             return dispatch(fetchLatestSubmission(filing.lei, filing.period))
@@ -22,7 +22,9 @@ export default function fetchFiling(filing, selectedPeriod) {
           if (json && json.status === 404) {
             // Avoid creating Filings for closed filing periods
             return selectedPeriod.isClosed
-              ? dispatch(receiveNonQFiling({ institution: { lei: filing.lei } }))
+              ? dispatch(
+                  receiveNonQFiling({ institution: { lei: filing.lei } }),
+                )
               : dispatch(fetchNewFiling(filing))
           }
 
@@ -32,7 +34,7 @@ export default function fetchFiling(filing, selectedPeriod) {
           }
         })
       })
-      .catch(err => {
+      .catch((err) => {
         error(err)
       })
   }

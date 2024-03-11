@@ -19,7 +19,7 @@ class Report extends React.Component {
     this.state = {
       error: false,
       isLoaded: false,
-      report: null
+      report: null,
     }
 
     this.selectReport = this.selectReport.bind(this)
@@ -40,20 +40,28 @@ class Report extends React.Component {
       : ''
     theCSV = theCSV + institution
 
-    if(report.table === 'IRSCSV') {
+    if (report.table === 'IRSCSV') {
       theCSV += `Institution: ${this.props.match.params.institutionId}\n`
       theCSV += report.csv
-    } else if (report.table === '1' && report.msa.id == '99999' && report.type=='Aggregate') {
+    } else if (
+      report.table === '1' &&
+      report.msa.id == '99999' &&
+      report.type == 'Aggregate'
+    ) {
       // Large reports that use pagination need to generate the CSV body from the raw JSON
       const tHeadRows = this.tableRef.current.tHead.rows
       theCSV += this.buildCSVRows(tHeadRows, 'head')
       theCSV += buildCSVRowsAggregate1(this.state.report)
-    } else if (report.table === '2' && report.msa.id == '99999' && report.type == 'Aggregate') {
+    } else if (
+      report.table === '2' &&
+      report.msa.id == '99999' &&
+      report.type == 'Aggregate'
+    ) {
       // Large reports that use pagination need to generate the CSV body from the raw JSON
       const tHeadRows = this.tableRef.current.tHead.rows
       theCSV += this.buildCSVRows(tHeadRows, 'head')
       theCSV += buildCSVRowsAggregate2(this.state.report)
-    }else{
+    } else {
       const tHeadRows = this.tableRef.current.tHead.rows
       theCSV = theCSV + this.buildCSVRows(tHeadRows, 'head')
 
@@ -72,7 +80,7 @@ class Report extends React.Component {
 
     fileSaver.saveAs(
       new Blob([theCSV], { type: 'text/csv;charset=utf-16' }),
-      `${this.createFileName(report)}.csv`
+      `${this.createFileName(report)}.csv`,
     )
   }
 
@@ -108,7 +116,7 @@ class Report extends React.Component {
 
   createFileName(report) {
     let name = report.table
-    if(name === 'IRSCSV') name = 'IRS'
+    if (name === 'IRSCSV') name = 'IRS'
     let filename = `report-${name}`
     if (report.respondentId) {
       filename =
@@ -133,8 +141,8 @@ class Report extends React.Component {
     let reportId = params.reportId
     let ext = year === '2017' ? '.txt' : '.json'
     const devProd = isProd(window.location.host) ? 'prod' : 'dev'
-    
-    if(reportId === 'IRS') ext = '.csv'
+
+    if (reportId === 'IRS') ext = '.csv'
     let url = `https://s3.amazonaws.com/cfpb-hmda-public/${devProd}/reports/`
     if (params.stateId) {
       url += `aggregate/${year}/${msaMdId}/${reportId}${ext}`
@@ -143,41 +151,39 @@ class Report extends React.Component {
         msaMdId = 'nationwide'
         reportId = 'IRS'
       }
-      url += `disclosure/${year}/${
-        params.institutionId
-      }/${msaMdId}/${reportId}${ext}`
+      url += `disclosure/${year}/${params.institutionId}/${msaMdId}/${reportId}${ext}`
     } else {
       url += `national/${year}/${reportId}${ext}`
     }
     fetch(url)
-      .then(response => {
+      .then((response) => {
         if (!response.ok) throw new Error('Network response was not ok.')
-        if(ext === '.csv') return response.text()
+        if (ext === '.csv') return response.text()
         return response.json()
       })
-      .then(result => {
-        if(ext === '.csv') {
-          parse(result, {cast: v => v.trim()}, (err, output) => {
+      .then((result) => {
+        if (ext === '.csv') {
+          parse(result, { cast: (v) => v.trim() }, (err, output) => {
             this.setState({
               isLoaded: true,
               report: {
                 table: 'IRSCSV',
                 csv: result,
-                parsed: output
-              }
+                parsed: output,
+              },
             })
           })
-        }else{
+        } else {
           this.setState({
             isLoaded: true,
-            report: result
+            report: result,
           })
         }
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({
           isLoaded: true,
-          error: true
+          error: true,
         })
       })
   }
@@ -193,24 +199,24 @@ class Report extends React.Component {
       https://gist.github.com/gaearon/1a018a023347fe1c2476073330cc5509
     */
     const table = report.table
-    if(reportType === 'aggregate' && report.year !== '2017'){
-      if(table.match(/^1$/))
-        return <Tables.Aggregate1 ref={this.tableRef} report={report}/>
-      if(table.match(/^2$/))
-        return <Tables.Aggregate2 ref={this.tableRef} report={report}/>
-      if(table.match(/^3$/))
-        return <Tables.Aggregate3 ref={this.tableRef} report={report}/>
-      if(table.match(/^4$/))
-        return <Tables.Aggregate4 ref={this.tableRef} report={report}/>
-      if(table.match(/^5$/))
-        return <Tables.Aggregate5 ref={this.tableRef} report={report}/>
-      if(table.match(/^9$/))
-        return <Tables.Aggregate9 ref={this.tableRef} report={report}/>
-      if(table.match(/^i$/i))
-        return <Tables.AggregateI ref={this.tableRef} report={report}/>
+    if (reportType === 'aggregate' && report.year !== '2017') {
+      if (table.match(/^1$/))
+        return <Tables.Aggregate1 ref={this.tableRef} report={report} />
+      if (table.match(/^2$/))
+        return <Tables.Aggregate2 ref={this.tableRef} report={report} />
+      if (table.match(/^3$/))
+        return <Tables.Aggregate3 ref={this.tableRef} report={report} />
+      if (table.match(/^4$/))
+        return <Tables.Aggregate4 ref={this.tableRef} report={report} />
+      if (table.match(/^5$/))
+        return <Tables.Aggregate5 ref={this.tableRef} report={report} />
+      if (table.match(/^9$/))
+        return <Tables.Aggregate9 ref={this.tableRef} report={report} />
+      if (table.match(/^i$/i))
+        return <Tables.AggregateI ref={this.tableRef} report={report} />
     }
-    if(table.match(/^IRSCSV$/))
-      return <Tables.IRSCSV ref={this.tableRef} report={report}/>
+    if (table.match(/^IRSCSV$/))
+      return <Tables.IRSCSV ref={this.tableRef} report={report} />
     if (table.match(/^i$/))
       return <Tables.I ref={this.tableRef} report={report} />
     if (table.match(/^1$/))
@@ -277,12 +283,13 @@ class Report extends React.Component {
     const suppressTable = report.year !== '2017'
     const irsCsvYear = this.props.match.params.year
     let table = report.table
-    if(table === 'IRSCSV') return `Home Mortgage Disclosure Act Institution Register Summary for ${irsCsvYear}`
+    if (table === 'IRSCSV')
+      return `Home Mortgage Disclosure Act Institution Register Summary for ${irsCsvYear}`
     if (table === 'IRS') table = 'R1'
     let tableText = suppressTable ? '' : `Table ${table}: `
     return `${tableText}${report.description}${
-          table === 'R1' ? '' : `, ${report.year}`
-        }`
+      table === 'R1' ? '' : `, ${report.year}`
+    }`
   }
 
   render() {
@@ -290,12 +297,13 @@ class Report extends React.Component {
 
     if (this.state.error)
       return (
-        <div className="Report">
-          <div className="alert alert-error">
-            <div className="alert-body">
-              <h3 className="alert-heading">No report exists</h3>
-              <p className="alert-text">
-                No data that meets the criteria of this table was reported by the institution.
+        <div className='Report'>
+          <div className='alert alert-error'>
+            <div className='alert-body'>
+              <h3 className='alert-heading'>No report exists</h3>
+              <p className='alert-text'>
+                No data that meets the criteria of this table was reported by
+                the institution.
               </p>
             </div>
           </div>
@@ -309,14 +317,11 @@ class Report extends React.Component {
     const headingText = this.makeHeadingText(report)
 
     return (
-      <div className="Report">
+      <div className='Report'>
         <Heading type={3} headingText={headingText}>
           {report.table === 'IRSCSV' ? (
-            <p>
-              Institution: {this.props.match.params.institutionId}
-            </p>
-          ) : null
-          }
+            <p>Institution: {this.props.match.params.institutionId}</p>
+          ) : null}
           {report.respondentId ? (
             <p>
               Institution: {report.respondentId} - {report.institutionName}
@@ -334,10 +339,9 @@ class Report extends React.Component {
         </Heading>
 
         {this.selectReport(report, reportType)}
-        {report.reportDate
-          ? <p className="report-date">Report date: {report.reportDate}</p>
-          : null
-        }
+        {report.reportDate ? (
+          <p className='report-date'>Report date: {report.reportDate}</p>
+        ) : null}
       </div>
     )
   }

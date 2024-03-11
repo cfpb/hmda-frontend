@@ -8,11 +8,11 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { getEdits } from '../api/api.js'
 
-getEdits.mockImplementation(id => Promise.resolve({ fakeEdits: 1 }))
+getEdits.mockImplementation((id) => Promise.resolve({ fakeEdits: 1 }))
 const mockStore = configureMockStore([thunk])
 
 describe('fetchEdits', () => {
-  it('creates a thunk that will fetch edits by type', done => {
+  it('creates a thunk that will fetch edits by type', (done) => {
     const store = mockStore({})
 
     store
@@ -22,21 +22,21 @@ describe('fetchEdits', () => {
           { type: types.REQUEST_EDITS },
           {
             type: types.RECEIVE_EDITS,
-            edits: { fakeEdits: 1 }
-          }
+            edits: { fakeEdits: 1 },
+          },
         ])
         done()
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err)
         done.fail()
       })
   })
-  it('handles errors when introduced', done => {
+  it('handles errors when introduced', (done) => {
     const store = mockStore({})
     console.error = jest.fn()
-    getEdits.mockImplementation(id =>
-      Promise.resolve({ status: 404, statusText: 'argle' })
+    getEdits.mockImplementation((id) =>
+      Promise.resolve({ status: 404, statusText: 'argle' }),
     )
 
     store
@@ -46,12 +46,12 @@ describe('fetchEdits', () => {
           { type: types.REQUEST_EDITS },
           {
             type: types.RECEIVE_ERROR,
-            error: { status: 404, statusText: 'argle' }
-          }
+            error: { status: 404, statusText: 'argle' },
+          },
         ])
         done()
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err)
         done.fail()
       })

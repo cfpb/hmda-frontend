@@ -19,12 +19,8 @@ export class ParseErrorsContainer extends Component {
 }
 
 export function mapStateToProps(state) {
-  const {
-    isFetching,
-    fetched,
-    transmittalSheetErrors,
-    larErrors
-  } = state.app.parseErrors
+  const { isFetching, fetched, transmittalSheetErrors, larErrors } =
+    state.app.parseErrors
 
   const pagination = state.app.pagination.parseErrors
 
@@ -36,7 +32,7 @@ export function mapStateToProps(state) {
     transmittalSheetErrors,
     larErrors,
     pagination,
-    paginationFade
+    paginationFade,
   }
 }
 

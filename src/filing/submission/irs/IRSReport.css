@@ -58,13 +58,13 @@
 
 .IRSReport .status {
   display: inline;
-  margin-left: .5em;
+  margin-left: 0.5em;
   /* border: 1px solid #e48a34; */
   border-radius: 5px;
   padding: 0 5px;
 }
 .IRSReport .status svg {
-  margin-right: .3em;
+  margin-right: 0.3em;
   fill: #e48a34;
 }
 
@@ -75,7 +75,7 @@
 }
 
 .IRSReport .flex-inline {
-  display:flex;
+  display: flex;
   flex-direction: row;
   align-items: center;
 }

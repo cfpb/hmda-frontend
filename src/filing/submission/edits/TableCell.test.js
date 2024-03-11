@@ -10,10 +10,10 @@ describe('Edits Table Cell', () => {
     <table>
       <tbody>
         <tr>
-          <EditsTableCell cell="content" type="syntactical" />
+          <EditsTableCell cell='content' type='syntactical' />
         </tr>
       </tbody>
-    </table>
+    </table>,
   )
   const tableNode = ReactDOM.findDOMNode(editsTableCell)
 

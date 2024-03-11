@@ -12,7 +12,7 @@ export default function checkFileErrors(file, cb, app = 'filing') {
       fileIsEmpty(file),
       extensionIsNotTxt(file),
       missingTransmittalSheet(file, app, firstBytes),
-    ].filter(x => x)
+    ].filter((x) => x)
 
     return cb(errors)
   })
@@ -35,7 +35,7 @@ function fileIsEmpty(file) {
     return 'The file you uploaded does not contain any data. Please check your file and re-upload.'
 }
 
-const extensionIsTxt = file => {
+const extensionIsTxt = (file) => {
   const extension = file?.name?.split('.').slice(-1)[0]?.toLowerCase()
   return extension === 'txt'
 }
@@ -58,7 +58,7 @@ function missingTransmittalSheet(file, app, sample) {
     return detailText
   }
 
-  // In the Filing app we want users to focus on one error at a time, 
+  // In the Filing app we want users to focus on one error at a time,
   // so only show missing TS or incorrect file encoding errors when file extension is txt.
   if (extensionIsTxt(file) && !sample.match(/^1\|/))
     return invalidContentText + detailText

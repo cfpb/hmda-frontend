@@ -1,11 +1,11 @@
 import {
   RECEIVE_ERROR,
   RECEIVE_UPLOAD_ERROR,
-  REFRESH_STATE
+  REFRESH_STATE,
 } from '../constants'
 
 const defaultError = null
-const unknownError = { status: 999, statusText: 'Unknown error'}
+const unknownError = { status: 999, statusText: 'Unknown error' }
 
 export default (state = defaultError, action) => {
   const { status, statusText } = action.error || unknownError

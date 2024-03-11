@@ -1,14 +1,14 @@
 import {
   REQUEST_PARSE_ERRORS,
   RECEIVE_PARSE_ERRORS,
-  REFRESH_STATE
+  REFRESH_STATE,
 } from '../constants'
 
 const defaultParseErrors = {
   isFetching: false,
   fetched: false,
   transmittalSheetErrors: [],
-  larErrors: []
+  larErrors: [],
 }
 
 export default (state = defaultParseErrors, action) => {
@@ -16,7 +16,7 @@ export default (state = defaultParseErrors, action) => {
     case REQUEST_PARSE_ERRORS:
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
       }
 
     case RECEIVE_PARSE_ERRORS:
@@ -24,7 +24,7 @@ export default (state = defaultParseErrors, action) => {
         isFetching: false,
         fetched: true,
         transmittalSheetErrors: action.transmittalSheetErrors,
-        larErrors: action.larErrors
+        larErrors: action.larErrors,
       }
 
     case REFRESH_STATE: {

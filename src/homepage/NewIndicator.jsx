@@ -1,4 +1,4 @@
-import "./NewIndicator.css"
+import './NewIndicator.css'
 
 export const NewIndicator = ({ text, id }) => {
   return (

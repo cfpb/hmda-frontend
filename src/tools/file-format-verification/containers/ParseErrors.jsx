@@ -9,12 +9,8 @@ class ParseErrorsContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  const {
-    isParsing,
-    parsed,
-    transmittalSheetErrors,
-    larErrors
-  } = state.app.parseErrors
+  const { isParsing, parsed, transmittalSheetErrors, larErrors } =
+    state.app.parseErrors
 
   const { errors } = state.app.upload
 
@@ -27,7 +23,7 @@ function mapStateToProps(state) {
     larErrors,
     pagination,
     errors,
-    filingPeriod
+    filingPeriod,
   }
 }
 

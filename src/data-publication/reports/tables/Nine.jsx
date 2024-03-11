@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const renderData = medianAges => {
+const renderData = (medianAges) => {
   return medianAges.map((medianAge, index) => {
     return [
       <tr key={index}>
@@ -10,14 +10,14 @@ const renderData = medianAges => {
             borderTopWidth: '2px',
             fontWeight: 'bold',
             textTransform: 'uppercase',
-            backgroundColor: '#f1f1f1'
+            backgroundColor: '#f1f1f1',
           }}
           colSpan={21}
         >
           {medianAge.medianAge}
         </th>
       </tr>,
-      renderRows(medianAge.loanCategories, index)
+      renderRows(medianAge.loanCategories, index),
     ]
   })
 }
@@ -34,22 +34,18 @@ const renderRows = (loanCategories, key) => {
         {loanCategories.map((loanCategory, index) => {
           return [
             <td
-              key={`count-${
-                loanCategories[0].dispositions[i].disposition
-              }-${key}`}
+              key={`count-${loanCategories[0].dispositions[i].disposition}-${key}`}
             >
               {loanCategory.dispositions[i].count}
             </td>,
             <td
-              key={`value-${
-                loanCategories[0].dispositions[i].disposition
-              }-${key}`}
+              key={`value-${loanCategories[0].dispositions[i].disposition}-${key}`}
             >
               {loanCategory.dispositions[i].value}
-            </td>
+            </td>,
           ]
         })}
-      </tr>
+      </tr>,
     )
   }
 
@@ -63,7 +59,7 @@ const Nine = React.forwardRef((props, ref) => {
     <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
-          <th width="20%" rowSpan={5}>
+          <th width='20%' rowSpan={5}>
             CENSUS TRACTS BY MEDIAN AGE OF HOMES
           </th>
           <th colSpan={8}>
@@ -76,25 +72,25 @@ const Nine = React.forwardRef((props, ref) => {
           <th colSpan={10} />
         </tr>
         <tr>
-          <th width="5%" colSpan={2}>
+          <th width='5%' colSpan={2}>
             FHA, FSA/RHS & VA
           </th>
-          <th width="5%" colSpan={2}>
+          <th width='5%' colSpan={2}>
             Conventional
           </th>
-          <th width="5%" colSpan={2}>
+          <th width='5%' colSpan={2}>
             Refinancings
           </th>
-          <th width="5%" colSpan={2}>
+          <th width='5%' colSpan={2}>
             Home Improvement Loans
           </th>
-          <th width="5%" colSpan={2}>
+          <th width='5%' colSpan={2}>
             Loans on Dwellings For 5 or More Families
           </th>
-          <th width="5%" colSpan={2}>
+          <th width='5%' colSpan={2}>
             Nonoccupant Loans From Columns A, B, C, and D
           </th>
-          <th width="5%" colSpan={2}>
+          <th width='5%' colSpan={2}>
             Loans On Manufactured Home Dwellings From Columns A, B, C, & D
           </th>
         </tr>
@@ -130,7 +126,7 @@ const Nine = React.forwardRef((props, ref) => {
 })
 
 Nine.propTypes = {
-  report: PropTypes.object
+  report: PropTypes.object,
 }
 
 export default Nine

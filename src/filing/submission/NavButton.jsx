@@ -4,12 +4,22 @@ import { Link } from 'react-router-dom'
 import Loading from '../../common/LoadingIcon.jsx'
 import {
   VALIDATING,
-  SYNTACTICAL_VALIDITY_EDITS
+  SYNTACTICAL_VALIDITY_EDITS,
 } from '../constants/statusCodes.js'
 
 import './NavButton.css'
 
-const NavButton = ({ page, base, code, editsFetched, validationComplete, qualityExists, qualityVerified, macroExists, macroVerified }) => {
+const NavButton = ({
+  page,
+  base,
+  code,
+  editsFetched,
+  validationComplete,
+  qualityExists,
+  qualityVerified,
+  macroExists,
+  macroVerified,
+}) => {
   let className
   let suffix
   let spinOn = false
@@ -19,19 +29,31 @@ const NavButton = ({ page, base, code, editsFetched, validationComplete, quality
     case 'upload':
       suffix = 'syntacticalvalidity'
       if (preError || editFetchInProgress) className = 'hidden'
-      if (editFetchInProgress && code > VALIDATING && code !== 8 && code !== 11) spinOn = true
+      if (editFetchInProgress && code > VALIDATING && code !== 8 && code !== 11)
+        spinOn = true
       break
     case 'syntacticalvalidity':
       suffix = 'quality'
-      if (preError || code === SYNTACTICAL_VALIDITY_EDITS || editFetchInProgress) className = 'hidden'
+      if (
+        preError ||
+        code === SYNTACTICAL_VALIDITY_EDITS ||
+        editFetchInProgress
+      )
+        className = 'hidden'
       break
     case 'quality':
       suffix = 'macro'
-      if (preError || (qualityExists && !qualityVerified) || editFetchInProgress) className = 'hidden'
+      if (
+        preError ||
+        (qualityExists && !qualityVerified) ||
+        editFetchInProgress
+      )
+        className = 'hidden'
       break
     case 'macro':
       suffix = 'submission'
-      if (preError || (macroExists && !macroVerified) || editFetchInProgress) className = 'hidden'
+      if (preError || (macroExists && !macroVerified) || editFetchInProgress)
+        className = 'hidden'
       break
     default:
       return null
@@ -41,7 +63,7 @@ const NavButton = ({ page, base, code, editsFetched, validationComplete, quality
   displayName = suffix !== 'submission' ? `${displayName} Edits` : displayName
 
   return (
-    <div className="NavButtonContainer">
+    <div className='NavButtonContainer'>
       <Link
         className={`NavButton button ${className || ''}`}
         tabIndex={className === 'hidden' ? -1 : 0}
@@ -49,13 +71,12 @@ const NavButton = ({ page, base, code, editsFetched, validationComplete, quality
       >
         {`Review ${displayName}`}
       </Link>
-      {spinOn ?
+      {spinOn ? (
         <>
           <span>Fetching edits...</span>
-          <Loading className="LoadingInline"/>
+          <Loading className='LoadingInline' />
         </>
-        : null
-      }
+      ) : null}
     </div>
   )
 }
@@ -67,7 +88,7 @@ NavButton.propTypes = {
   editsFetched: PropTypes.bool,
   validationComplete: PropTypes.bool,
   qualityExists: PropTypes.bool,
-  qualityVerified: PropTypes.bool
+  qualityVerified: PropTypes.bool,
 }
 
 export default NavButton

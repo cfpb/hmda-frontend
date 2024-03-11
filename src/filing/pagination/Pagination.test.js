@@ -18,8 +18,8 @@ describe('Pagination component', () => {
       last: '?page=5',
       next: '?page=2',
       first: '?page=1',
-      href: '/thehref{rel}'
-    }
+      href: '/thehref{rel}',
+    },
   }
 
   const nextPage = {
@@ -31,8 +31,8 @@ describe('Pagination component', () => {
       last: '?page=5',
       next: '?page=3',
       first: '?page=1',
-      href: '/thehref{rel}'
-    }
+      href: '/thehref{rel}',
+    },
   }
 
   const paginate = (page = pageObj) => {
@@ -42,7 +42,7 @@ describe('Pagination component', () => {
         getPage={getPage}
         getPreviousPage={getPreviousPage}
         getNextPage={getNextPage}
-      />
+      />,
     )
   }
 
@@ -56,27 +56,27 @@ describe('Pagination component', () => {
 
   it('contains the buttons', () => {
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(pagination, 'button').length
+      TestUtils.scryRenderedDOMComponentsWithTag(pagination, 'button').length,
     ).toEqual(2)
   })
 
   it('renders the current page', () => {
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(pagination, 'input')[0].value
+      TestUtils.scryRenderedDOMComponentsWithTag(pagination, 'input')[0].value,
     ).toEqual('1')
   })
 
   it('renders the pagenav text', () => {
     expect(
       TestUtils.scryRenderedDOMComponentsWithTag(pagination, 'div')[1]
-        .textContent
+        .textContent,
     ).toEqual('Page  of 3')
   })
 
   it('does not call prev on change when self===1', () => {
     var previous = TestUtils.scryRenderedDOMComponentsWithTag(
       pagination,
-      'button'
+      'button',
     )[0]
 
     TestUtils.Simulate.click(previous)
@@ -87,7 +87,7 @@ describe('Pagination component', () => {
   it('calls next on change', () => {
     var next = TestUtils.scryRenderedDOMComponentsWithTag(
       pagination,
-      'button'
+      'button',
     )[1]
 
     TestUtils.Simulate.click(next)
@@ -117,8 +117,8 @@ describe('Pagination component', () => {
         last: '?page=5',
         next: '?page=2',
         first: '?page=1',
-        href: '/thehref{rel}'
-      }
+        href: '/thehref{rel}',
+      },
     }
 
     const smallPagination = paginate(pageObjSmall)
@@ -167,10 +167,10 @@ describe('Pagination component', () => {
       pagination._getPaginationValue({
         pagination: {
           _links: {
-            self: '?page=3'
-          }
-        }
-      })
+            self: '?page=3',
+          },
+        },
+      }),
     ).toBe('3')
   })
 

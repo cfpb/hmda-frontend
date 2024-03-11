@@ -17,7 +17,7 @@ const defaultState = {
   errors: [],
   fetchError: null,
   isSubmitted: false,
-  whichApp: 'get'
+  whichApp: 'get',
 }
 
 export default class App extends Component {
@@ -38,7 +38,7 @@ export default class App extends Component {
     if (this.state.checkDigit || this.state.isValidUli !== null) {
       window.scrollTo({
         top: this.refScrollTo.current.offsetTop,
-        behavior: 'smooth'
+        behavior: 'smooth',
       })
     }
   }
@@ -53,13 +53,13 @@ export default class App extends Component {
       {
         ...defaultState,
         inputValue: this.state.inputValue, // keep this around
-        whichApp: app
+        whichApp: app,
       },
       () => {
         if (this.state.inputValue !== '') {
           this.validateInput(this.state.inputValue)
         }
-      }
+      },
     )
   }
 
@@ -72,7 +72,7 @@ export default class App extends Component {
     this.setState({
       ...defaultState,
       inputValue: inputValue,
-      whichApp: this.state.whichApp // keep this around
+      whichApp: this.state.whichApp, // keep this around
     })
   }
 
@@ -84,7 +84,7 @@ export default class App extends Component {
     */
     this.setState({ isSubmitted: true }, () => {
       const errors = this.validateInput(this.state.inputValue)
-      if(!errors.length) {
+      if (!errors.length) {
         this.getResponse(this.state.inputValue)
       }
     })
@@ -93,36 +93,36 @@ export default class App extends Component {
   getResponse(loanId) {
     let endpoint = 'checkDigit'
     let body = {
-      loanId: this.state.inputValue
+      loanId: this.state.inputValue,
     }
     if (this.state.whichApp === 'validate') {
       endpoint = 'validate'
       body = {
-        uli: this.state.inputValue
+        uli: this.state.inputValue,
       }
     }
 
     const API_URL = '/v2/public/uli/'
 
     if (this.state.isSubmitted) {
-      this.setState({fetchError: null})
+      this.setState({ fetchError: null })
 
       fetch(API_URL + endpoint, {
         method: 'POST',
         body: JSON.stringify(body),
         headers: {
           'Content-Type': 'application/json',
-          Accept: 'application/json'
-        }
+          Accept: 'application/json',
+        },
       })
-        .then(response => {
-          if(response.status > 399) return response.text()
+        .then((response) => {
+          if (response.status > 399) return response.text()
           return response.json()
         })
-        .then(json => {
-          if(typeof json === 'string'){
-            this.setState({fetchError: json})
-          }else{
+        .then((json) => {
+          if (typeof json === 'string') {
+            this.setState({ fetchError: json })
+          } else {
             if (endpoint === 'checkDigit') {
               this.setState({ uli: json.uli, checkDigit: json.checkDigit })
             } else {
@@ -130,8 +130,8 @@ export default class App extends Component {
             }
           }
         })
-        .catch(err => {
-          this.setState({fetchError: err})
+        .catch((err) => {
+          this.setState({ fetchError: err })
         })
     }
   }
@@ -163,8 +163,11 @@ export default class App extends Component {
       isSubmitted,
     } = this.state
 
-    const toolAnnouncement = getToolAnnouncement("check digit", this.context.config)
-    let marginTop = toolAnnouncement ? "0px" : ""
+    const toolAnnouncement = getToolAnnouncement(
+      'check digit',
+      this.context.config,
+    )
+    let marginTop = toolAnnouncement ? '0px' : ''
 
     return (
       <div className='grid' id='main-content'>

@@ -1,18 +1,18 @@
 FROM node:20-alpine3.17 as build-stage
 WORKDIR /usr/src/app
 ARG DOCKER_TAG="latest"
-# Set the node options to enable legacy OpenSSL providers - Node v17+ requires this flag
-ENV NODE_OPTIONS="--openssl-legacy-provider"
 
 # install build dependencies
-COPY package.json yarn.lock .yarnrc ./
-# install packages offline
-COPY npm-packages-offline-cache ./npm-packages-offline-cache
+COPY package.json .
+
+# Using Yarn V4
+RUN yarn set version 4.1.0
+
+COPY yarn.lock .yarn .yarnrc.yml ./
 RUN yarn install
 
-# create react app needs src and public directories
-COPY src ./src
-COPY public ./public
+# Copying all directories and subdirectories as Vite needs everything
+COPY . .
 
 RUN echo "{ \"version\": \"${DOCKER_TAG}\" }" > ./src/common/constants/release.json
 
@@ -23,7 +23,7 @@ ENV NGINX_USER=svc_nginx_hmda
 RUN apk update; apk upgrade
 RUN rm -rf /etc/nginx/conf.d
 COPY nginx /etc/nginx
-COPY --from=build-stage /usr/src/app/build /usr/share/nginx/html
+COPY --from=build-stage /usr/src/app/dist /usr/share/nginx/html
 RUN adduser -S $NGINX_USER nginx && \
     addgroup -S $NGINX_USER && \
     addgroup $NGINX_USER $NGINX_USER && \

@@ -1,0 +1,38 @@
+.RefileButton {
+  background-color: transparent;
+  color: #0071bc;
+  font-family: SourceSansProBold;
+  font-weight: normal;
+  padding: 1rem 2rem;
+  margin: 0 0 0 2em;
+  text-decoration: underline;
+}
+
+.RefileWarning .RefileButton.link {
+  background-color: transparent;
+  color: #0071bc;
+  font-family: SourceSansPro;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  text-decoration: underline;
+  transform: none;
+  -moz-osx-font-smoothing: unset;
+  -webkit-font-smoothing: unset;
+}
+.RefileWarning .RefileButton.link:hover,
+.RefileButton.link:hover {
+  background: transparent;
+  color: #205493;
+}
+
+.text-lowercase {
+  text-transform: lowercase;
+}
+
+.RefileButton.disabled {
+  color: grey;
+  cursor: not-allowed;
+  display: inline-block;
+  text-decoration: none;
+}

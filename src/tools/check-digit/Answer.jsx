@@ -14,19 +14,19 @@ export default class Answer extends Component {
   }
 
   render() {
-    const { uli, isValidUli, checkDigit, isSubmitted, errors, fetchError } = this.props
-    if(fetchError) {
+    const { uli, isValidUli, checkDigit, isSubmitted, errors, fetchError } =
+      this.props
+    if (fetchError) {
       return (
-        <Alert type="error" heading="Error running check">
+        <Alert type='error' heading='Error running check'>
           <p>{fetchError}</p>
         </Alert>
       )
-
     }
     if (isSubmitted && errors.length === 0) {
       if (uli && checkDigit)
         return (
-          <Alert type="success" heading="Check digit generated!">
+          <Alert type='success' heading='Check digit generated!'>
             <p>
               Your check digit is <strong>{checkDigit}</strong>.<br />
               Your ULI is <strong>{uli}</strong>.
@@ -36,13 +36,13 @@ export default class Answer extends Component {
 
       if (isValidUli) {
         return (
-          <Alert type="success" heading="Valid ULI!">
+          <Alert type='success' heading='Valid ULI!'>
             <p>The ULI is valid.</p>
           </Alert>
         )
       } else {
         return (
-          <Alert type="error" heading="Not a valid ULI!">
+          <Alert type='error' heading='Not a valid ULI!'>
             <p>Sorry, that ULI does not appear to be valid.</p>
           </Alert>
         )
@@ -58,5 +58,5 @@ Answer.propTypes = {
   isValidUli: PropTypes.bool,
   checkDigit: PropTypes.string,
   isSubmitted: PropTypes.bool,
-  errors: PropTypes.array
+  errors: PropTypes.array,
 }

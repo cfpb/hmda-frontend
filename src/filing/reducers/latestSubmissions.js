@@ -4,14 +4,14 @@ import {
   RECEIVE_SUBMISSION,
   UPDATE_STATUS,
   VERIFY_QUALITY,
-  VERIFY_MACRO
+  VERIFY_MACRO,
 } from '../constants'
 import { defaultSubmission } from './submission'
 
 const defaultLatestSubmissions = {
   latestSubmissions: {},
   isFetching: false,
-  fetched: false
+  fetched: false,
 }
 
 export default (state = defaultLatestSubmissions, action) => {
@@ -24,9 +24,9 @@ export default (state = defaultLatestSubmissions, action) => {
         latestSubmissions: {
           ...state.latestSubmissions,
           [action.lei]: {
-            isFetching: true
-          }
-        }
+            isFetching: true,
+          },
+        },
       }
 
     case RECEIVE_LATEST_SUBMISSION:
@@ -39,13 +39,16 @@ export default (state = defaultLatestSubmissions, action) => {
             filename: action.fileName || defaultSubmission.fileName,
             id: action.id || defaultSubmission.id,
             status: action.status || defaultSubmission.status,
-            qualityExists: action.qualityExists || defaultSubmission.qualityExists,
-            qualityVerified: action.qualityVerified || defaultSubmission.qualityVerified,
+            qualityExists:
+              action.qualityExists || defaultSubmission.qualityExists,
+            qualityVerified:
+              action.qualityVerified || defaultSubmission.qualityVerified,
             macroExists: action.macroExists || defaultSubmission.macroExists,
-            macroVerified: action.macroVerified || defaultSubmission.macroVerified,
+            macroVerified:
+              action.macroVerified || defaultSubmission.macroVerified,
             isStalled: action.isStalled,
-          }
-        }
+          },
+        },
       }
 
     case RECEIVE_SUBMISSION:
@@ -57,20 +60,20 @@ export default (state = defaultLatestSubmissions, action) => {
           ...state.latestSubmissions,
           [action.id.lei]: {
             ...submission,
-            id: {...action.id},
-            status: {...action.status},
+            id: { ...action.id },
+            status: { ...action.status },
             filename: action.fileName,
             qualityVerified: action.qualityVerified,
             qualityExists: action.qualityExists,
             macroVerified: action.macroVerified,
             macroExists: action.macroExists,
-          }
-        }
+          },
+        },
       }
 
     case UPDATE_STATUS:
       submission = state.latestSubmissions[action.lei]
-      if(!submission) return state
+      if (!submission) return state
 
       return {
         ...state,
@@ -78,9 +81,9 @@ export default (state = defaultLatestSubmissions, action) => {
           ...state.latestSubmissions,
           [action.lei]: {
             ...submission,
-            status: {...action.status}
-          }
-        }
+            status: { ...action.status },
+          },
+        },
       }
 
     case VERIFY_QUALITY:
@@ -93,9 +96,9 @@ export default (state = defaultLatestSubmissions, action) => {
           [action.lei]: {
             ...submission,
             qualityVerified: action.checked,
-          }
-        }
-      }  
+          },
+        },
+      }
 
     case VERIFY_MACRO:
       submission = state.latestSubmissions[action.lei] || {}
@@ -107,9 +110,9 @@ export default (state = defaultLatestSubmissions, action) => {
           [action.lei]: {
             ...submission,
             macroVerified: action.checked,
-          }
-        }
-      }      
+          },
+        },
+      }
 
     default:
       return state

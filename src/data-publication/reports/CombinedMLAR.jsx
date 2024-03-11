@@ -80,17 +80,17 @@ export const CombinedMLAR = ({ year, setHasCombined, hasCombined }) => {
   )
 }
 
-
 const formatURL = (year, withHeader) => {
-    let baseFilename = `${year}_combined_mlar`
-    let href = 'https://s3.amazonaws.com/cfpb-hmda-public/prod/dynamic-data/combined-mlar/'  
-    href += `${year}/` // Year sub-folder
+  let baseFilename = `${year}_combined_mlar`
+  let href =
+    'https://s3.amazonaws.com/cfpb-hmda-public/prod/dynamic-data/combined-mlar/'
+  href += `${year}/` // Year sub-folder
 
-    if (withHeader) {
-        href += 'header/' // Headered file Sub-folder
-        baseFilename += '_header' // Headered Filename adjustment
-    }
+  if (withHeader) {
+    href += 'header/' // Headered file Sub-folder
+    baseFilename += '_header' // Headered Filename adjustment
+  }
 
-    href += baseFilename + '.zip'
-    return href
+  href += baseFilename + '.zip'
+  return href
 }

@@ -9,9 +9,8 @@ import {
   pruneItemOptions,
   makeItemSelectValues,
   makeItemPlaceholder,
-  itemStyleFn
+  itemStyleFn,
 } from './selectUtils.js'
-
 
 const ItemSelect = ({
   options,
@@ -19,7 +18,7 @@ const ItemSelect = ({
   onCategoryChange,
   items,
   onChange,
-  year
+  year,
 }) => {
   const selectedValues = makeItemSelectValues(category, items, year)
   const nationwide = isNationwide(category)

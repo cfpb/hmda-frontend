@@ -13,12 +13,12 @@ describe('Verifier component', () => {
       <Verifier
         verified={true}
         onVerify={onVerify}
-        type="macro"
+        type='macro'
         code={1}
         isFetching={false}
         noEditsExist={false}
       />
-    </Wrapper>
+    </Wrapper>,
   )
   const verifierNode = ReactDOM.findDOMNode(verifier)
 
@@ -28,16 +28,16 @@ describe('Verifier component', () => {
 
   it('contains the checkbox input', () => {
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(verifier, 'input').length
+      TestUtils.scryRenderedDOMComponentsWithTag(verifier, 'input').length,
     ).toEqual(1)
   })
 
   expect(
-    TestUtils.scryRenderedDOMComponentsWithClass(verifier, 'usa-alert').length
+    TestUtils.scryRenderedDOMComponentsWithClass(verifier, 'usa-alert').length,
   ).toEqual(1)
 
   expect(
-    TestUtils.scryRenderedDOMComponentsWithTag(verifier, 'h2')[0].textContent
+    TestUtils.scryRenderedDOMComponentsWithTag(verifier, 'h2')[0].textContent,
   ).toEqual('Verify macro edits')
 
   it('calls the function on change', () => {
@@ -46,8 +46,8 @@ describe('Verifier component', () => {
 
     TestUtils.Simulate.change(checkbox, {
       target: {
-        checked: false
-      }
+        checked: false,
+      },
     })
 
     expect(onVerify).toBeCalled()
@@ -59,18 +59,19 @@ describe('Verifier component', () => {
         <Verifier
           verified={false}
           onVerify={onVerify}
-          type="quality"
+          type='quality'
           isFetching={false}
           code={1}
         />
-      </Wrapper>
+      </Wrapper>,
     )
     const verifierNode = ReactDOM.findDOMNode(verifier)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(verifier, 'usa-alert').length
+      TestUtils.scryRenderedDOMComponentsWithClass(verifier, 'usa-alert')
+        .length,
     ).toEqual(0)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(verifier, 'h2')[0].textContent
+      TestUtils.scryRenderedDOMComponentsWithTag(verifier, 'h2')[0].textContent,
     ).toEqual('Verify quality edits')
   })
 
@@ -80,11 +81,11 @@ describe('Verifier component', () => {
         <Verifier
           verified={false}
           onVerify={onVerify}
-          type="quality"
+          type='quality'
           isFetching={false}
           code={10}
         />
-      </Wrapper>
+      </Wrapper>,
     )
 
     const input = TestUtils.findRenderedDOMComponentWithTag(verifier, 'input')
@@ -97,12 +98,12 @@ describe('Verifier component', () => {
         <Verifier
           verified={false}
           onVerify={onVerify}
-          type="quality"
+          type='quality'
           code={10}
           isFetching={false}
           noEditsExist={true}
         />
-      </Wrapper>
+      </Wrapper>,
     )
 
     const input = TestUtils.scryRenderedDOMComponentsWithTag(verifier, 'input')

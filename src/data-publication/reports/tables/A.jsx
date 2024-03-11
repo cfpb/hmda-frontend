@@ -1,20 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const renderData = report => {
+const renderData = (report) => {
   return report.dispositions.map(renderDisposition)
 }
 
-const renderDispositionTitle = title => {
+const renderDispositionTitle = (title) => {
   return (
-    <tr className="disposition-grey-title" key={title}>
+    <tr className='disposition-grey-title' key={title}>
       <th
         colSpan={8}
         style={{
           borderTopWidth: '2px',
           fontWeight: 'bold',
           textTransform: 'uppercase',
-          backgroundColor: '#f1f1f1'
+          backgroundColor: '#f1f1f1',
         }}
       >
         {title}
@@ -31,7 +31,7 @@ const renderDisposition = (disposition, i) => {
       return (
         <tr key={title + i + index}>
           <th>{type.loanType}</th>
-          {type.purposes.map(purpose => {
+          {type.purposes.map((purpose) => {
             const noLien =
               purpose.noLienCount !== undefined ? (
                 <td key={3}>{purpose.noLienCount}</td>
@@ -39,31 +39,31 @@ const renderDisposition = (disposition, i) => {
             return [
               <td key={1}>{purpose.firstLienCount}</td>,
               <td key={2}>{purpose.juniorLienCount}</td>,
-              noLien
+              noLien,
             ]
           })}
         </tr>
       )
-    })
+    }),
   ]
 }
 
 const A = React.forwardRef((props, ref) => {
   if (!props.report) return null
   return (
-    <table ref={ref} className="narrowTable">
+    <table ref={ref} className='narrowTable'>
       <thead>
         <tr>
-          <th width="20%" rowSpan={2}>
+          <th width='20%' rowSpan={2}>
             LOAN TYPE
           </th>
-          <th colSpan={2} width="26.667%">
+          <th colSpan={2} width='26.667%'>
             Home Purchase
           </th>
-          <th colSpan={2} width="26.667%">
+          <th colSpan={2} width='26.667%'>
             Refinance
           </th>
-          <th colSpan={3} width="26.667%">
+          <th colSpan={3} width='26.667%'>
             Home Improvement
           </th>
         </tr>
@@ -83,7 +83,7 @@ const A = React.forwardRef((props, ref) => {
 })
 
 A.propTypes = {
-  report: PropTypes.object
+  report: PropTypes.object,
 }
 
 export default A

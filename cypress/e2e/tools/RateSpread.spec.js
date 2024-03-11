@@ -41,10 +41,10 @@ onlyOn(!isBeta(HOST), () => {
         cy.get({ HOST, TEST_DELAY }).logEnv()
         cy.get('.Form > fieldset > .unstyled-list > li > #actionTaken1').click()
         cy.get(
-          '.Form > fieldset > .unstyled-list > li > #amortizationVariable'
+          '.Form > fieldset > .unstyled-list > li > #amortizationVariable',
         ).click()
         cy.get(
-          '.Form > fieldset > .unstyled-list > li > #amortizationVariable'
+          '.Form > fieldset > .unstyled-list > li > #amortizationVariable',
         ).type('Variable')
         cy.get('.item > div > .Form > div > #rateSetDate')
           .clear()
@@ -85,7 +85,7 @@ onlyOn(!isBeta(HOST), () => {
           '1,30,VariableRate,6.0,2017-11-20,2,2.150\n'
 
         // Get file from fixtures as binary
-        cy.fixture(fileName, 'binary').then(excelBin => {
+        cy.fixture(fileName, 'binary').then((excelBin) => {
           // File in binary format gets converted to blob so it can be sent as Form data
           const blob = Cypress.Blob.binaryStringToBlob(excelBin, fileType)
 

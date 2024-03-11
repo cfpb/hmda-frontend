@@ -7,11 +7,11 @@ import DropzoneContent from './DropzoneContent.jsx'
 import * as STATUS from '../../constants/statusCodes.js'
 import Wrapper from '../../../test-resources/Wrapper.js'
 
-describe('DropzoneContent', function() {
+describe('DropzoneContent', function () {
   const rendered = TestUtils.renderIntoDocument(
     <Wrapper>
       <DropzoneContent />
-    </Wrapper>
+    </Wrapper>,
   )
 
   const renderedNode = ReactDOM.findDOMNode(rendered)
@@ -21,12 +21,12 @@ describe('DropzoneContent', function() {
   })
 })
 
-describe('renders with codes', function() {
-  const renderByCode = STATUS => {
+describe('renders with codes', function () {
+  const renderByCode = (STATUS) => {
     for (var key in STATUS) {
       let rendered = DropzoneContent({
         code: STATUS[key],
-        filename: 'textfile.txt'
+        filename: 'textfile.txt',
       })
 
       if (STATUS[key] === STATUS.CREATED) {
@@ -41,28 +41,28 @@ describe('renders with codes', function() {
       ) {
         expect(rendered.props.children[1].props.children[0]).toBe('Upload of')
         expect(rendered.props.children[1].props.children[4]).toBe(
-          'is currently in progress'
+          'is currently in progress',
         )
       }
 
       if (STATUS[key] === STATUS.PARSED_WITH_ERRORS) {
         expect(rendered.props.children[1].props.children[0]).toBe('Upload of')
         expect(rendered.props.children[1].props.children[4]).toBe(
-          'has formatting errors'
+          'has formatting errors',
         )
       }
 
       if (STATUS[key] === STATUS.VALIDATED_WITH_ERRORS) {
         expect(rendered.props.children[1].props.children[0]).toBe('Upload of')
         expect(rendered.props.children[1].props.children[4]).toBe(
-          'is ready for review'
+          'is ready for review',
         )
       }
 
       if (STATUS[key] === STATUS.VALIDATED) {
         expect(rendered.props.children[1].props.children[0]).toBe('Upload of')
         expect(rendered.props.children[1].props.children[4]).toBe(
-          'is ready for submission'
+          'is ready for submission',
         )
       }
 

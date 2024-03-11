@@ -11,7 +11,7 @@ const baseProps = {
   syntacticalValidityEditsExist: true,
   qualityVerified: false,
   macroVerified: false,
-  editsFetched: true
+  editsFetched: true,
 }
 
 const showing = 'NavButton usa-button '
@@ -32,7 +32,7 @@ describe('NavButton', () => {
     const showingButton = NavButton({
       ...baseProps,
       page: 'upload',
-      code: 8
+      code: 8,
     })[0]
     expect(showingButton.props.className).toBe(showing)
   })
@@ -42,7 +42,7 @@ describe('NavButton', () => {
       ...baseProps,
       page: 'upload',
       code: 8,
-      editsFetched: 0
+      editsFetched: 0,
     })[1]
     expect(rendered.props.className).toBe('NavSpinner')
   })
@@ -57,7 +57,7 @@ describe('NavButton', () => {
       ...baseProps,
       code: 8,
       page: 'syntacticalvalidity',
-      syntacticalValidityEditsExist: false
+      syntacticalValidityEditsExist: false,
     })[0]
     expect(showingButton.props.className).toBe(showing)
   })
@@ -73,7 +73,7 @@ describe('NavButton', () => {
       code: 8,
       page: 'quality',
       syntacticalValidityEditsExist: false,
-      qualityVerified: true
+      qualityVerified: true,
     })[0]
     expect(showingButton.props.className).toBe(showing)
 
@@ -81,7 +81,7 @@ describe('NavButton', () => {
       ...baseProps,
       page: 'quality',
       syntacticalValidityEditsExist: false,
-      qualityVerified: true
+      qualityVerified: true,
     })[0]
     expect(hiddenButton.props.className).toBe(hidden)
   })
@@ -98,7 +98,7 @@ describe('NavButton', () => {
       code: 8,
       syntacticalValidityEditsExist: false,
       qualityVerified: true,
-      macroVerified: true
+      macroVerified: true,
     })[0]
     expect(showingButton.props.className).toBe(showing)
   })

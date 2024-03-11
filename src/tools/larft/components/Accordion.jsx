@@ -4,7 +4,7 @@ import './Accordion.css'
 /**
  * Displays a field's label with details (examples, description, enumerations) as
  * an expandable/collapsable element.
- * 
+ *
  * @param {String} heading
  * @param {String} content
  * @param {String} children
@@ -48,7 +48,7 @@ const AccordionContent = ({ id, content }) => {
   )
 }
 
-const handleToggle = id => {
+const handleToggle = (id) => {
   let accordionButton = document.getElementById(`accordion-button-${id}`)
   let expanded = accordionButton.getAttribute('aria-expanded') !== 'false'
 
@@ -63,8 +63,8 @@ const handleToggle = id => {
 export const collapseAll = () => {
   document
     .querySelectorAll(`[id^="accordion-button-"]`)
-    .forEach(e => e.setAttribute('aria-expanded', false))
+    .forEach((e) => e.setAttribute('aria-expanded', false))
   document
     .querySelectorAll(`[id^="accordion-"]`)
-    .forEach(e => e.setAttribute('aria-hidden', true))
+    .forEach((e) => e.setAttribute('aria-hidden', true))
 }

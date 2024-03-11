@@ -16,13 +16,13 @@ describe('Confirmation Modal', () => {
     <Wrapper>
       <ModalConfirm
         code={1}
-        filingPeriod="2017"
-        lei="1"
+        filingPeriod='2017'
+        lei='1'
         showing={false}
         hideConfirmModal={hideConfirmModal}
         triggerRefile={triggerRefile}
       />
-    </Wrapper>
+    </Wrapper>,
   )
   const confirmNode = ReactDOM.findDOMNode(confirm)
 
@@ -46,15 +46,15 @@ describe('Confirmation Modal', () => {
     expect(
       TestUtils.scryRenderedDOMComponentsWithClass(
         confirm,
-        'showing-blurred-blocker'
-      ).length
+        'showing-blurred-blocker',
+      ).length,
     ).toEqual(0)
   })
 
   it('calls hideConfirmModal', () => {
     const yesButton = TestUtils.scryRenderedDOMComponentsWithTag(
       confirm,
-      'button'
+      'button',
     )[0]
 
     TestUtils.Simulate.click(yesButton)
@@ -71,7 +71,7 @@ describe('Confirmation Modal', () => {
   it('blurs button', () => {
     const yesButton = TestUtils.scryRenderedDOMComponentsWithTag(
       confirm,
-      'button'
+      'button',
     )[0]
     const prev = jest.fn()
     TestUtils.Simulate.blur(yesButton, { preventDefault: prev })
@@ -89,13 +89,13 @@ describe('Confirmation Modal', () => {
     <Wrapper>
       <ModalConfirm
         code={1}
-        filingPeriod="2017"
-        lei="1"
+        filingPeriod='2017'
+        lei='1'
         showing={true}
         hideConfirmModal={hideConfirmModal}
         triggerRefile={triggerRefile}
       />
-    </Wrapper>
+    </Wrapper>,
   )
 
   it('focuses if showing', () => {
@@ -113,15 +113,15 @@ describe('Confirmation Modal', () => {
     expect(
       TestUtils.scryRenderedDOMComponentsWithClass(
         confirmShowing,
-        'showing-blurred-blocker'
-      ).length
+        'showing-blurred-blocker',
+      ).length,
     ).toEqual(1)
   })
 
   it('renders showing button', () => {
     const button = TestUtils.findRenderedDOMComponentWithTag(
       confirmShowing,
-      'button'
+      'button',
     )
     expect(button.length).not.toBeNull()
     expect(button.tabIndex).toBe(0)
@@ -135,11 +135,11 @@ describe('Confirmation Modal', () => {
   const confirmBroken = TestUtils.renderIntoDocument(
     <Wrapper>
       <ModalConfirm
-        lei="1"
+        lei='1'
         hideConfirmModal={hideConfirmModal}
         triggerRefile={triggerRefile}
       />
-    </Wrapper>
+    </Wrapper>,
   )
 
   it('with no code passed, renders WITHOUT the showing-blurred-blocker class', () => {

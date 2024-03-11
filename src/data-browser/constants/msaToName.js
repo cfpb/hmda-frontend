@@ -411,7 +411,7 @@ const msaToName = {
   40484: 'ROCKINGHAM COUNTY-STRAFFORD COUNTY',
   39660: 'RAPID CITY',
   43620: 'SIOUX FALLS',
-  99999: 'N/A OR OUTSIDE MSA/MD'
+  99999: 'N/A OR OUTSIDE MSA/MD',
 }
 
 const msaToName2019 = {
@@ -492,5 +492,5 @@ export default {
   2019: msaToName2019,
   2020: msaToName2020,
   2021: msaToName2020,
-  2022: msaToName2020
+  2022: msaToName2020,
 }

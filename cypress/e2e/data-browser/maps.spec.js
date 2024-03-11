@@ -29,40 +29,40 @@ onlyOn(!isBeta(HOST), () => {
 
       cy.get('.summary-page .featureName > .colorTextWithBias').should(
         'contain',
-        'KANSAS'
+        'KANSAS',
       )
       cy.get('.summary-page .count').should('contain', '2,430')
 
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(1)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(1)',
       ).should('contain', 'Application denied')
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(2)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(2)',
       ).should('contain', '14,689')
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(3)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(3)',
       ).should('contain', '13.38%')
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(4)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(4)',
       ).should('contain', '2,430')
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(5)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(5)',
       ).should('contain', '16.77%')
 
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(1)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(1)',
       ).should('contain', '55-64')
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(2)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(2)',
       ).should('contain', '14,486')
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(3)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(3)',
       ).should('contain', '13.19%')
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(4)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(4)',
       ).should('contain', '2,430')
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)',
       ).should('contain', '16.54%')
     })
 
@@ -84,40 +84,40 @@ onlyOn(!isBeta(HOST), () => {
 
       cy.get('.summary-page .featureName > .colorTextWithBias').should(
         'contain',
-        'KANSAS'
+        'KANSAS',
       )
       cy.get('.summary-page .count').should('contain', '3,032')
 
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(1)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(1)',
       ).should('contain', 'Application denied')
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(2)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(2)',
       ).should('contain', '16,609')
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(3)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(3)',
       ).should('contain', '9.61%')
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(4)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(4)',
       ).should('contain', '3,032')
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(5)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(5)',
       ).should('contain', '12.46%')
 
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(1)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(1)',
       ).should('contain', '55-64')
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(2)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(2)',
       ).should('contain', '24,225')
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(3)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(3)',
       ).should('contain', '14.02%')
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(4)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(4)',
       ).should('contain', '3,032')
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)',
       ).should('contain', '18.24%')
     })
 
@@ -139,40 +139,40 @@ onlyOn(!isBeta(HOST), () => {
 
       cy.get('.summary-page .featureName > .colorTextWithBias').should(
         'contain',
-        'GREENWOOD COUNTY, KS'
+        'GREENWOOD COUNTY, KS',
       )
       cy.get('.summary-page .count').should('contain', '10')
 
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(1)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(1)',
       ).should('contain', 'Application denied')
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(2)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(2)',
       ).should('contain', '31')
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(3)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(3)',
       ).should('contain', '16.49%')
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(4)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(4)',
       ).should('contain', '10')
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(5)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(5)',
       ).should('contain', '22.22%')
 
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(1)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(1)',
       ).should('contain', '55-64')
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(2)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(2)',
       ).should('contain', '45')
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(3)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(3)',
       ).should('contain', '23.94%')
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(4)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(4)',
       ).should('contain', '10')
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)',
       ).should('contain', '32.26%')
     })
 
@@ -194,40 +194,40 @@ onlyOn(!isBeta(HOST), () => {
 
       cy.get('.summary-page .featureName > .colorTextWithBias').should(
         'contain',
-        'KANSAS'
+        'KANSAS',
       )
       cy.get('.summary-page .count').should('contain', '2,686')
 
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(1)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(1)',
       ).should('contain', 'Application denied')
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(2)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(2)',
       ).should('contain', '14,571')
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(3)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(3)',
       ).should('contain', '12.14%')
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(4)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(4)',
       ).should('contain', '2,686')
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(5)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(5)',
       ).should('contain', '15.45%')
 
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(1)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(1)',
       ).should('contain', '55-64')
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(2)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(2)',
       ).should('contain', '17,385')
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(3)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(3)',
       ).should('contain', '14.48%')
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(4)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(4)',
       ).should('contain', '2,686')
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)',
       ).should('contain', '18.43%')
     })
 
@@ -249,40 +249,40 @@ onlyOn(!isBeta(HOST), () => {
 
       cy.get('.summary-page .featureName > .colorTextWithBias').should(
         'contain',
-        'GREENWOOD COUNTY, KS'
+        'GREENWOOD COUNTY, KS',
       )
       cy.get('.summary-page .count').should('contain', '6')
 
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(1)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(1)',
       ).should('contain', 'Application denied')
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(2)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(2)',
       ).should('contain', '32')
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(3)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(3)',
       ).should('contain', '18.93%')
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(4)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(4)',
       ).should('contain', '6')
       cy.get(
-        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(5)'
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(5)',
       ).should('contain', '21.43%')
 
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(1)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(1)',
       ).should('contain', '55-64')
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(2)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(2)',
       ).should('contain', '28')
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(3)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(3)',
       ).should('contain', '16.57%')
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(4)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(4)',
       ).should('contain', '6')
       cy.get(
-        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)'
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)',
       ).should('contain', '18.75%')
     })
 
@@ -290,8 +290,8 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(
         mapsURL(
           HOST,
-          '2018?geography=county&variable=actionTaken&value=1&feature=31005&mapCenter=-101.6959558503813,41.568961419127554'
-        )
+          '2018?geography=county&variable=actionTaken&value=1&feature=31005&mapCenter=-101.6959558503813,41.568961419127554',
+        ),
       )
       deleteBetaBanner(HOST)
       cy.get('.maps-nav-bar .left .count').should('contain', '0')
@@ -299,9 +299,9 @@ onlyOn(!isBeta(HOST), () => {
     })
   })
 
-  const deleteBetaBanner = env => {
+  const deleteBetaBanner = (env) => {
     if (!isBeta(env)) return
-    cy.get('div.Beta').then(el => {
+    cy.get('div.Beta').then((el) => {
       el.remove()
     })
   }

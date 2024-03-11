@@ -1,5 +1,5 @@
 const { HOST } = Cypress.env()
-import { isBeta } from "../../support/helpers"
+import { isBeta } from '../../support/helpers'
 import { onlyOn } from '@cypress/skip-test'
 
 onlyOn(isBeta(HOST), () => {
@@ -16,7 +16,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/disclosure-reports/2022`)
 
       cy.get('#institution-name').click()
-      cy.get('#institution-name').type('cypress')
+      cy.get('#institution-name').type('cypress bank, ssb')
       cy.findByText('View MSA/MDs').click()
       cy.findByText('Select MSA/MD...').type('Dallas{enter}')
       cy.findByText('Select report...').type('Applications by Tract{enter}')
@@ -29,19 +29,19 @@ onlyOn(!isBeta(HOST), () => {
       // Institution
       cy.get('.ProgressCards > :nth-child(2) .heading > p').should(
         'contain.text',
-        'CYPRESS BANK, SSB - 549300I4IUWMEMGLST06'
+        'CYPRESS BANK, SSB - 549300I4IUWMEMGLST06',
       )
 
       // MSA/MD
       cy.get('.ProgressCards > :nth-child(3) .heading > p').should(
         'contain.text',
-        'Dallas-Plano-Irving, TX - 19124'
+        'Dallas-Plano-Irving, TX - 19124',
       )
 
       // Report Type
       cy.get('.ProgressCards > :nth-child(4) .heading > p').should(
         'contain.text',
-        'Applications by Tract'
+        'Applications by Tract',
       )
 
       // Validate a row - Third row called "Applications Denied by Financial Institution"
@@ -67,7 +67,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/disclosure-reports/2021`)
 
       cy.get('#institution-name').click()
-      cy.get('#institution-name').type('cypress')
+      cy.get('#institution-name').type('cypress bank, ssb')
       cy.findByText('View MSA/MDs').click()
       cy.findByText('Select MSA/MD...').type('Dallas{enter}')
       cy.findByText('Select report...').type('Applications by Tract{enter}')
@@ -80,19 +80,19 @@ onlyOn(!isBeta(HOST), () => {
       // Institution
       cy.get('.ProgressCards > :nth-child(2) .heading > p').should(
         'contain.text',
-        'CYPRESS BANK, SSB - 549300I4IUWMEMGLST06'
+        'CYPRESS BANK, SSB - 549300I4IUWMEMGLST06',
       )
 
       // MSA/MD
       cy.get('.ProgressCards > :nth-child(3) .heading > p').should(
         'contain.text',
-        'Dallas-Plano-Irving, TX - 19124'
+        'Dallas-Plano-Irving, TX - 19124',
       )
 
       // Report Type
       cy.get('.ProgressCards > :nth-child(4) .heading > p').should(
         'contain.text',
-        'Applications by Tract'
+        'Applications by Tract',
       )
 
       // Validate a row - Third row called "Applications Denied by Financial Institution"
@@ -118,7 +118,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/disclosure-reports/2020`)
 
       cy.get('#institution-name').click()
-      cy.get('#institution-name').type('cypress')
+      cy.get('#institution-name').type('cypress bank, ssb')
       cy.findByText('View MSA/MDs').click()
       cy.findByText('Select MSA/MD...').type('Dallas{enter}')
       cy.findByText('Select report...').type('Applications by Tract{enter}')
@@ -131,19 +131,19 @@ onlyOn(!isBeta(HOST), () => {
       // Institution
       cy.get('.ProgressCards > :nth-child(2) .heading > p').should(
         'contain.text',
-        'CYPRESS BANK, SSB - 549300I4IUWMEMGLST06'
+        'CYPRESS BANK, SSB - 549300I4IUWMEMGLST06',
       )
 
       // MSA/MD
       cy.get('.ProgressCards > :nth-child(3) .heading > p').should(
         'contain.text',
-        'Dallas-Fort Worth, TX-OK - 19124'
+        'Dallas-Fort Worth, TX-OK - 19124',
       )
 
       // Report Type
       cy.get('.ProgressCards > :nth-child(4) .heading > p').should(
         'contain.text',
-        'Applications by Tract'
+        'Applications by Tract',
       )
 
       // Validate a row - Third row called "Applications Denied by Financial Institution"
@@ -154,7 +154,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('tbody > :nth-child(4) > :nth-child(6)').should('have.text', '1')
       cy.get('tbody > :nth-child(4) > :nth-child(7)').should(
         'have.text',
-        '55000'
+        '55000',
       )
       cy.get('tbody > :nth-child(4) > :nth-child(8)').should('have.text', '0')
       cy.get('tbody > :nth-child(4) > :nth-child(9)').should('have.text', '0')
@@ -172,7 +172,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/disclosure-reports/2019`)
 
       cy.get('#institution-name').click()
-      cy.get('#institution-name').type('cypress')
+      cy.get('#institution-name').type('cypress bank, ssb')
       cy.findByText('View MSA/MDs').click()
       cy.findByText('Select MSA/MD...').type('Dallas{enter}')
       cy.findByText('Select report...').type('Applications by Tract{enter}')
@@ -185,19 +185,19 @@ onlyOn(!isBeta(HOST), () => {
       // Institution
       cy.get('.ProgressCards > :nth-child(2) .heading > p').should(
         'contain.text',
-        'CYPRESS BANK, SSB - 549300I4IUWMEMGLST06'
+        'CYPRESS BANK, SSB - 549300I4IUWMEMGLST06',
       )
 
       // MSA/MD
       cy.get('.ProgressCards > :nth-child(3) .heading > p').should(
         'contain.text',
-        'Dallas-Fort Worth, TX-OK - 19124'
+        'Dallas-Fort Worth, TX-OK - 19124',
       )
 
       // Report Type
       cy.get('.ProgressCards > :nth-child(4) .heading > p').should(
         'contain.text',
-        'Applications by Tract'
+        'Applications by Tract',
       )
 
       // Validate a row - Third row called "Applications Denied by Financial Institution"
@@ -206,7 +206,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('tbody > :nth-child(4) > :nth-child(4)').should('have.text', '3')
       cy.get('tbody > :nth-child(4) > :nth-child(5)').should(
         'have.text',
-        '1845000'
+        '1845000',
       )
       cy.get('tbody > :nth-child(4) > :nth-child(6)').should('have.text', '0')
       cy.get('tbody > :nth-child(4) > :nth-child(7)').should('have.text', '0')
@@ -226,10 +226,10 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/disclosure-reports/2018`)
 
       cy.get('#institution-name').click()
-      cy.get('#institution-name').type('cypress')
+      cy.get('#institution-name').type('cypress bank, state savings bank')
 
       cy.get(
-        '#main-content > .SearchList > .Results > li > .button-link'
+        '#main-content > .SearchList > .Results > li > .button-link',
       ).click()
 
       cy.get('#react-select-2-option-2').click()
@@ -245,19 +245,19 @@ onlyOn(!isBeta(HOST), () => {
       // Institution
       cy.get('.ProgressCards > :nth-child(2)').should(
         'contain.text',
-        'CYPRESS BANK, STATE SAVINGS BANK - 549300I4IUWMEMGLST06'
+        'CYPRESS BANK, STATE SAVINGS BANK - 549300I4IUWMEMGLST06',
       )
 
       // MSA/MD
       cy.get('.ProgressCards > :nth-child(3)').should(
         'contain.text',
-        'TAMPA-ST. PETERSBURG-CLEARWATER,FL - 45300'
+        'TAMPA-ST. PETERSBURG-CLEARWATER,FL - 45300',
       )
 
       // Report Type
       cy.get('.ProgressCards > :nth-child(4)').should(
         'contain.text',
-        'Applications by Tract'
+        'Applications by Tract',
       )
 
       /* 
@@ -267,7 +267,7 @@ onlyOn(!isBeta(HOST), () => {
       // County
       cy.get('tbody > :nth-child(1) > th').should(
         'have.text',
-        'Pinellas County/Florida/027606'
+        'Pinellas County/Florida/027606',
       )
 
       // Verify the Applications Received row of the report content contains expected data
@@ -276,7 +276,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('tbody > :nth-child(7) > :nth-child(4)').should('have.text', '1')
       cy.get('tbody > :nth-child(7) > :nth-child(5)').should(
         'have.text',
-        '455000'
+        '455000',
       )
       cy.get('tbody > :nth-child(7) > :nth-child(6)').should('have.text', '0')
       cy.get('tbody > :nth-child(7) > :nth-child(7)').should('have.text', '0')
@@ -287,7 +287,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('tbody > :nth-child(7) > :nth-child(12)').should('have.text', '1')
       cy.get('tbody > :nth-child(7) > :nth-child(13)').should(
         'have.text',
-        '455000'
+        '455000',
       )
       cy.get('tbody > :nth-child(7) > :nth-child(14)').should('have.text', '0')
       cy.get('tbody > :nth-child(7) > :nth-child(15)').should('have.text', '0')
@@ -307,10 +307,10 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/disclosure-reports/2017`)
 
       cy.get('#institution-name').click()
-      cy.get('#institution-name').type('cypress')
+      cy.get('#institution-name').type('cypress bank, ssb')
 
       cy.get(
-        '#main-content > .SearchList > .Results > li > .button-link'
+        '#main-content > .SearchList > .Results > li > .button-link',
       ).click()
 
       cy.get('#react-select-2-option-5').click()
@@ -326,19 +326,19 @@ onlyOn(!isBeta(HOST), () => {
       // Institution
       cy.get('.ProgressCards > :nth-child(2)').should(
         'contain.text',
-        'CYPRESS BANK, SSB - 31905'
+        'CYPRESS BANK, SSB - 31905',
       )
 
       // MSA/MD
       cy.get('.ProgressCards > :nth-child(3)').should(
         'contain.text',
-        'nationwide'
+        'nationwide',
       )
 
       // Report Type
       cy.get('.ProgressCards > :nth-child(4)').should(
         'contain.text',
-        'Conv Price Info by Incidence and Level - Nationwide - BW'
+        'Conv Price Info by Incidence and Level - Nationwide - BW',
       )
 
       /* 
@@ -348,29 +348,29 @@ onlyOn(!isBeta(HOST), () => {
       // County
       cy.get('tbody > :nth-child(1) > th').should(
         'have.text',
-        '1- TO 4-FAMILY OWNER OCCUPIED DWELLINGS (EXCLUDES MANUFACTURED HOMES)'
+        '1- TO 4-FAMILY OWNER OCCUPIED DWELLINGS (EXCLUDES MANUFACTURED HOMES)',
       )
 
       // Verify the Applications Received row of the report contains expected data
       cy.get('tbody > :nth-child(6) > :nth-child(2)').should(
         'have.text',
-        '1.77'
+        '1.77',
       )
       cy.get('tbody > :nth-child(6) > :nth-child(3)').should('have.text', '0')
       cy.get('tbody > :nth-child(6) > :nth-child(4)').should('have.text', '0')
       cy.get('tbody > :nth-child(6) > :nth-child(5)').should(
         'have.text',
-        '1.95'
+        '1.95',
       )
       cy.get('tbody > :nth-child(6) > :nth-child(6)').should('have.text', '0')
       cy.get('tbody > :nth-child(6) > :nth-child(7)').should('have.text', '0')
       cy.get('tbody > :nth-child(6) > :nth-child(8)').should(
         'have.text',
-        '1.98'
+        '1.98',
       )
       cy.get('tbody > :nth-child(6) > :nth-child(9)').should(
         'have.text',
-        '6.85'
+        '6.85',
       )
       cy.get('tbody > :nth-child(6) > :nth-child(10)').should('have.text', '0')
 

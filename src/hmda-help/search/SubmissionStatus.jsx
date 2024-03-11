@@ -24,15 +24,15 @@ export const SubmissionStatus = ({ lei, latest, year }) => {
         if (error) throw error
         return response.json()
       })
-      .then(json => {
+      .then((json) => {
         return fetchAuthenticated(getSummaryEndpoint(json.id), {
-          type: 'json'
+          type: 'json',
         }).then(({ response, error }) => {
           if (error) throw error
           return response.json()
         })
       })
-      .then(json => {
+      .then((json) => {
         setFetching(false)
         setData(json)
       })
@@ -58,19 +58,28 @@ export const SubmissionStatus = ({ lei, latest, year }) => {
     end,
     fileName,
     receipt,
-    signerUsername
+    signerUsername,
   } = data?.submission || {}
 
   return (
     <td>
-      <div className='col'><div className='label'>Status:</div> <div>{status.message}</div></div>
-      <div className='col'><DownloadSubmission receipt={receipt} fileName={fileName} /></div>
+      <div className='col'>
+        <div className='label'>Status:</div> <div>{status.message}</div>
+      </div>
+      <div className='col'>
+        <DownloadSubmission receipt={receipt} fileName={fileName} />
+      </div>
       <div className='col'>
         <div className='label'>LAR Count:</div>
         {totalLines}
       </div>
-      <div className='col'><div className='label'>Signed On:</div> <div>{ordinal(new Date(end))}</div></div>
-      <div className='col'><div className='label'>Signed By:</div> <div>{signerUsername}</div></div>
+      <div className='col'>
+        <div className='label'>Signed On:</div>{' '}
+        <div>{ordinal(new Date(end))}</div>
+      </div>
+      <div className='col'>
+        <div className='label'>Signed By:</div> <div>{signerUsername}</div>
+      </div>
     </td>
   )
 }
@@ -78,7 +87,9 @@ export const SubmissionStatus = ({ lei, latest, year }) => {
 const DownloadSubmission = ({ receipt, fileName }) => {
   const [statusIndicator, status] = useStatusIndicator(0)
 
-  const submissionId = receipt ? receipt.substr(0, receipt.lastIndexOf('-')) : null
+  const submissionId = receipt
+    ? receipt.substr(0, receipt.lastIndexOf('-'))
+    : null
 
   const onClick = () => {
     if (!submissionId) return
@@ -108,4 +119,3 @@ const DownloadSubmission = ({ receipt, fileName }) => {
     </>
   )
 }
-

@@ -5,11 +5,17 @@ import CheckboxContainer from './CheckboxContainer.jsx'
 import {
   setVariableSelect,
   removeSelected,
-  heightStyleFn
+  heightStyleFn,
 } from './selectUtils.js'
 
-
-const VariableSelect = ({ options, variables, orderedVariables, year, checkFactory, onChange }) => {
+const VariableSelect = ({
+  options,
+  variables,
+  orderedVariables,
+  year,
+  checkFactory,
+  onChange,
+}) => {
   const variableValues = setVariableSelect(orderedVariables, year)
   return (
     <div className='SelectWrapper'>
@@ -47,7 +53,7 @@ const VariableSelect = ({ options, variables, orderedVariables, year, checkFacto
       />
       <Pills values={variableValues} onChange={onChange} />
       <div className='QuerySummary'>
-        {orderedVariables.map(variable => {
+        {orderedVariables.map((variable) => {
           return (
             <CheckboxContainer
               key={variable}

@@ -4,10 +4,14 @@ import Alert from '../../common/Alert.jsx'
 const SubmissionPageInfo = ({ isPassed }) => {
   let type, heading, content
 
-  if(isPassed){
+  if (isPassed) {
     type = 'warning'
     heading = 'Filing period is closed'
-    content = <div>The filing deadline has passed. New signings are no longer accepted.</div>
+    content = (
+      <div>
+        The filing deadline has passed. New signings are no longer accepted.
+      </div>
+    )
   } else {
     type = 'info'
     heading = 'Your official filing is ready to be signed and submitted'

@@ -1,6 +1,6 @@
-import { splitYearQuarter } from "../api/utils"
-import receivePeriodOptions from "./receivePeriodOptions"
-import requestPeriodOptions from "./requestPeriodOptions"
+import { splitYearQuarter } from '../api/utils'
+import receivePeriodOptions from './receivePeriodOptions'
+import requestPeriodOptions from './requestPeriodOptions'
 import fetchAllInstitutions from './fetchAllInstitutions'
 
 /**
@@ -9,25 +9,28 @@ import fetchAllInstitutions from './fetchAllInstitutions'
  * @param {Object} filingPeriodStatus Status and meta data of each filing period
  * @returns Thunk
  */
-export default function getFilingPeriodOptions(institutions, filingPeriodStatus) {
+export default function getFilingPeriodOptions(
+  institutions,
+  filingPeriodStatus,
+) {
   // Filter out future filing periods
   const periodOptions = Object.keys(filingPeriodStatus).filter(
-    period => filingPeriodStatus[period].isVisible
+    (period) => filingPeriodStatus[period].isVisible,
   )
 
   let yearsWithQuarterly = new Set(
     periodOptions
-      .filter(period => filingPeriodStatus[period].isQuarterly)
-      .map(period => splitYearQuarter(period)[0])
+      .filter((period) => filingPeriodStatus[period].isQuarterly)
+      .map((period) => splitYearQuarter(period)[0]),
   )
 
-  return dispatch => {
+  return (dispatch) => {
     const optionDisplayMap = {}
 
     dispatch(requestPeriodOptions)
 
-    fetchAllInstitutions(yearsWithQuarterly, institutions).then(jsons => {
-      jsons.forEach(json => {
+    fetchAllInstitutions(yearsWithQuarterly, institutions).then((jsons) => {
+      jsons.forEach((json) => {
         if (!json || json.status) return // An error has occurred
         const { activityYear, quarterlyFiler } = json.institution
         if (!activityYear) return
@@ -38,7 +41,7 @@ export default function getFilingPeriodOptions(institutions, filingPeriodStatus)
       })
 
       dispatch(
-        receivePeriodOptions(filterOptions(periodOptions, optionDisplayMap))
+        receivePeriodOptions(filterOptions(periodOptions, optionDisplayMap)),
       )
     })
   }
@@ -52,9 +55,9 @@ export default function getFilingPeriodOptions(institutions, filingPeriodStatus)
 function filterOptions(periodOptions, optionDisplayMap) {
   let keepers = []
 
-  periodOptions.forEach(po => {
+  periodOptions.forEach((po) => {
     const [yr, hasQtr] = splitYearQuarter(po)
-    if(!optionDisplayMap[yr] && hasQtr) return 
+    if (!optionDisplayMap[yr] && hasQtr) return
     keepers.push(po)
   })
 

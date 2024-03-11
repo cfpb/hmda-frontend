@@ -10,12 +10,12 @@ import { ParsedTable } from './ParsedTable'
 /**
  * Allows for interaction with the currently selected LAR/TS row,
  * presenting content as a table with each field on it's
- * own row. 
- *  
- * Enumerated fields are presented with input assistance 
- * (drop-downs and/or buttons). 
+ * own row.
  *
- * @param {String} id 
+ * Enumerated fields are presented with input assistance
+ * (drop-downs and/or buttons).
+ *
+ * @param {String} id
  * @param {Object} row Selected row
  * @param {String} currCol ID of selected column within row
  * @param {ReactElement} textActions Action bar for section
@@ -31,15 +31,15 @@ export const EditingParsed = ({
   const [filter, setFilter] = useState('')
   const setFocus = useFocusOnSelectedColumn(currCol)
 
-  const _onChange = e => {
+  const _onChange = (e) => {
     const newRow = { ...row }
     newRow[e.target.id] = e.target.value
     onChange(newRow)
   }
 
   const tableRows = getSchema(row)
-    .filter(x => matchColumnFilter(x, filter))
-    .map(column => (
+    .filter((x) => matchColumnFilter(x, filter))
+    .map((column) => (
       <ParsedRow
         key={column.fieldName}
         column={column}

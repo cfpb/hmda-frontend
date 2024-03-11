@@ -13,4 +13,3 @@ export default {
   2021: populations2021,
   2022: populations2022,
 }
-

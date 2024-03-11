@@ -11,7 +11,7 @@ import {
 } from '../utils/row'
 import { collapseAll } from '../components/Accordion'
 
-export const rowSaveReducer = state => {
+export const rowSaveReducer = (state) => {
   const selected = state.editingRow
   if (!selected) return
 
@@ -42,7 +42,7 @@ export const rowSaveReducer = state => {
 
     // Update existing item
     if (isEditing(selected)) {
-      const updateIndex = vals.findIndex(el => el?.id === selected.id)
+      const updateIndex = vals.findIndex((el) => el?.id === selected.id)
       if (updateIndex > -1) {
         vals[updateIndex] = cloneObject(selected) // Save rows
         state[updateKey] = vals
@@ -65,7 +65,7 @@ export const rowSaveReducer = state => {
   }
 }
 
-export const rowDeleteReducer = state => {
+export const rowDeleteReducer = (state) => {
   const confirm = window.confirm('Are you sure you want to delete this row?')
   if (!confirm) return
 
@@ -75,14 +75,14 @@ export const rowDeleteReducer = state => {
   if (isRowTS(_currentRow)) state.ts = initialState.ts
   else
     state.lars = state.lars
-      .filter(row => row.id !== _currentRow.id)
+      .filter((row) => row.id !== _currentRow.id)
       .map(addRowID)
 
   rowCreateReducer(state)
   tsUpdateLarCount(state)
 }
 
-export const rowCreateReducer = state => {
+export const rowCreateReducer = (state) => {
   const nextRow = parseRow(state.ts.length ? '2|' : '1|')
   nextRow.id = createRowID()
 
@@ -92,7 +92,7 @@ export const rowCreateReducer = state => {
   state.selectedRowID = null
 }
 
-export const rowsResetReducer = state => {
+export const rowsResetReducer = (state) => {
   const keys = [
     'ts',
     'lars',
@@ -104,11 +104,11 @@ export const rowsResetReducer = state => {
     'hasNewChanges',
   ]
 
-  keys.forEach(k => (state[k] = initialState[k]))
+  keys.forEach((k) => (state[k] = initialState[k]))
 }
 
 // Update TS row with number of LAR entries
-const tsUpdateLarCount = state => {
+const tsUpdateLarCount = (state) => {
   if (state.ts?.length) {
     state.ts[0]['Total Number of Entries Contained in Submission'] =
       state.lars.length

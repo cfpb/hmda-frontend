@@ -9,7 +9,7 @@
   font-size: 1.4rem;
   line-height: 1;
   padding: 3px;
-  background: rgb(239, 239, 239)
+  background: rgb(239, 239, 239);
 }
 @media screen and (min-width: 481px) {
   .toggleButton {
@@ -19,13 +19,13 @@
 .toggleButton:hover,
 .toggleButton:visited:hover {
   color: #205493;
-  background: rgb(239, 239, 239)
+  background: rgb(239, 239, 239);
 }
 .toggleButton:active,
 .toggleButton:visited:active {
   color: #112e51;
 }
 
-select{
+select {
   padding: 1rem 2.5em;
 }

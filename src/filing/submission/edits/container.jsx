@@ -54,7 +54,7 @@ export function mapStateToProps(state) {
     suppressEdits,
     isFetching,
     types,
-    pagination
+    pagination,
   }
 }
 

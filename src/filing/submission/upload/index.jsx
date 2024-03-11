@@ -10,7 +10,7 @@ import {
   SYNTACTICAL_VALIDITY_EDITS,
   NO_MACRO_EDITS,
   MACRO_EDITS,
-  VALIDATED
+  VALIDATED,
 } from '../../constants/statusCodes.js'
 
 import './UploadForm.css'
@@ -20,7 +20,7 @@ export default class Upload extends Component {
     super(props)
 
     // handle the onDrop to set the file and show confirmation modal
-    this.onDrop = acceptedFiles => {
+    this.onDrop = (acceptedFiles) => {
       const { handleDrop, code, errorUpload } = this.props
       handleDrop(acceptedFiles, code, errorUpload)
     }
@@ -50,17 +50,17 @@ export default class Upload extends Component {
       filename,
       filingPeriod,
       lei,
-      uploading
+      uploading,
     } = this.props
 
     return (
-      <section className="UploadForm">
+      <section className='UploadForm'>
         {/*
           something is wrong with the file
           detected by the front-end
         */}
         {errors.length > 0 ? (
-          <Alert heading="Sorry, your file has errors." type="error">
+          <Alert heading='Sorry, your file has errors.' type='error'>
             <ul>
               {errors.map((error, i) => {
                 return <li key={i}>{error}</li>
@@ -74,7 +74,7 @@ export default class Upload extends Component {
           multiple={false}
           disabled={this.props.isPassed}
         >
-          {({getRootProps, getInputProps}) => {
+          {({ getRootProps, getInputProps }) => {
             return (
               <DropzoneContent
                 getRootProps={getRootProps}
@@ -115,5 +115,5 @@ Upload.propTypes = {
   uploading: PropTypes.bool,
   // dispatch
   handleDrop: PropTypes.func,
-  pollSubmission: PropTypes.func
+  pollSubmission: PropTypes.func,
 }

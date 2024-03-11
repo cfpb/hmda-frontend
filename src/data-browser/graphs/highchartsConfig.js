@@ -132,7 +132,7 @@ export const deriveHighchartsConfig = ({
   config.tooltip.valueDecimals = decimalPlace
 
   // Listener used to remove a series from URL when user de-selects
-  config.plotOptions.series.events.hide = event => {
+  config.plotOptions.series.events.hide = (event) => {
     const index = seriesForURL.indexOf(event.target.userOptions.name)
     if (index > -1) {
       const nextSeries = [...seriesForURL]
@@ -143,7 +143,7 @@ export const deriveHighchartsConfig = ({
   }
 
   // Listener used to add a series to URL when user de-selects
-  config.plotOptions.series.events.show = event => {
+  config.plotOptions.series.events.show = (event) => {
     const seriesName = event.target.userOptions.name
     if (!seriesForURL.includes(seriesName)) {
       const nextSeries = [...seriesForURL]

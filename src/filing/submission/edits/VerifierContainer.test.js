@@ -6,7 +6,7 @@ import Wrapper from '../../../test-resources/Wrapper.js'
 import Connected, {
   VerifierContainer,
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 } from './VerifierContainer.jsx'
 
 const defaultQuality = {
@@ -15,16 +15,16 @@ const defaultQuality = {
       types: {
         quality: {
           verified: true,
-          edits: []
-        }
-      }
+          edits: [],
+        },
+      },
     },
     submission: {
       status: {
-        code: 1
-      }
-    }
-  }
+        code: 1,
+      },
+    },
+  },
 }
 const defaultMacro = {
   app: {
@@ -32,16 +32,16 @@ const defaultMacro = {
       types: {
         macro: {
           verified: true,
-          edits: []
-        }
-      }
+          edits: [],
+        },
+      },
     },
     submission: {
       status: {
-        code: 1
-      }
-    }
-  }
+        code: 1,
+      },
+    },
+  },
 }
 
 describe('Verifier Container', () => {
@@ -50,12 +50,12 @@ describe('Verifier Container', () => {
     console.error = jest.fn()
     const rendered = TestUtils.renderIntoDocument(
       <VerifierContainer
-        type="quality"
+        type='quality'
         verified={true}
         onVerify={jest.fn()}
         noEditsExist={true}
         isFetching={false}
-      />
+      />,
     )
 
     expect(rendered).toBeDefined()
@@ -74,7 +74,7 @@ describe('Verifier Container', () => {
       type: 'quality',
       verified: true,
       code: 1,
-      isFetching: false
+      isFetching: false,
     })
   })
 
@@ -84,7 +84,7 @@ describe('Verifier Container', () => {
       type: 'macro',
       verified: true,
       code: 1,
-      isFetching: false
+      isFetching: false,
     })
   })
 
@@ -94,17 +94,17 @@ describe('Verifier Container', () => {
         {
           app: {
             edits: { types: { macro: { edits: ['a'] } } },
-            submission: { status: {} }
-          }
+            submission: { status: {} },
+          },
         },
-        { type: 'macro' }
-      )
+        { type: 'macro' },
+      ),
     ).toEqual({
       noEditsExist: false,
       type: 'macro',
       verified: false,
       code: undefined,
-      isFetching: false
+      isFetching: false,
     })
   })
 
@@ -128,8 +128,8 @@ describe('Verifier Container', () => {
     console.error = jest.fn()
     const qualityVerifier = TestUtils.renderIntoDocument(
       <Wrapper store={defaultQuality}>
-        <Connected type="quality" />
-      </Wrapper>
+        <Connected type='quality' />
+      </Wrapper>,
     )
 
     expect(qualityVerifier).toBeDefined()
@@ -142,8 +142,8 @@ describe('Verifier Container', () => {
     console.error = jest.fn()
     const macroVerifier = TestUtils.renderIntoDocument(
       <Wrapper store={defaultMacro}>
-        <Connected type="macro" />
-      </Wrapper>
+        <Connected type='macro' />
+      </Wrapper>,
     )
 
     expect(macroVerifier).toBeDefined()

@@ -9,7 +9,7 @@ import TestUtils from 'react-dom/test-utils'
 
 const fs = require('fs')
 const filings = JSON.parse(
-  fs.readFileSync('./test-resources/json/filings.json')
+  fs.readFileSync('./test-resources/json/filings.json'),
 )
 const submissions = filings.submissions
 
@@ -17,11 +17,8 @@ describe('InstitutionSubmissionHistory', () => {
   it('renders the previous submissions', () => {
     const previous = TestUtils.renderIntoDocument(
       <Wrapper>
-        <InstitutionSubmissionHistory
-          submissions={submissions}
-          lei="123456"
-        />
-      </Wrapper>
+        <InstitutionSubmissionHistory submissions={submissions} lei='123456' />
+      </Wrapper>,
     )
     const previousNode = ReactDOM.findDOMNode(previous)
 

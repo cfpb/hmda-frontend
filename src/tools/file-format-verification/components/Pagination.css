@@ -1,4 +1,6 @@
-.PaginationControls .button-disabled, .PaginationControls .button-disabled:hover,  .PaginationControls .button-disabled:active {
+.PaginationControls .button-disabled,
+.PaginationControls .button-disabled:hover,
+.PaginationControls .button-disabled:active {
   background-color: #d6d7d9;
   border-color: #d6d7d9;
   outline: 0;

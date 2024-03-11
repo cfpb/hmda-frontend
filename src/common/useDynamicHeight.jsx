@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 /**
  * Adjust container height based on the longest
  * option message and the current window width.

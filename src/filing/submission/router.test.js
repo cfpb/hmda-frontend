@@ -8,25 +8,25 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import ConnectedRouter, {
   SubmissionRouter,
-  mapStateToProps
+  mapStateToProps,
 } from './router.jsx'
 import * as STATUS from '../constants/statusCodes.js'
 import Wrapper from '../../test-resources/Wrapper.js'
 
 const mockStore = configureMockStore([thunk])
 window.localStorage = {
-  getItem: jest.fn()
+  getItem: jest.fn(),
 }
 
 const submissionDefault = {
   id: { lei: '123' },
-  status: { code: STATUS.VALIDATED }
+  status: { code: STATUS.VALIDATED },
 }
 const typesDefault = {
   syntactical: { edits: [] },
   validity: { edits: [] },
   quality: { edits: [], verified: false },
-  macro: { edits: [], verified: false }
+  macro: { edits: [], verified: false },
 }
 
 window.HMDA_ENV = { APP_SUFFIX: '/filing/', HOMEPAGE_URL: 'home' }
@@ -36,13 +36,13 @@ describe('ConnectedRouter', () => {
     app: {
       submission: submissionDefault,
       edits: {
-        types: typesDefault
+        types: typesDefault,
       },
       lei: '123',
       institutions: {
-        institutions: {}
-      }
-    }
+        institutions: {},
+      },
+    },
   })
   console.error = jest.fn()
   const container = TestUtils.renderIntoDocument(
@@ -51,7 +51,7 @@ describe('ConnectedRouter', () => {
       params={{ lei: '123', filingPeriod: '234', splat: 'upload' }}
     >
       <p>hey</p>
-    </ConnectedRouter>
+    </ConnectedRouter>,
   )
 
   const containerNode = ReactDOM.findDOMNode(container)
@@ -70,16 +70,16 @@ describe('mapStateToProps', () => {
           app: {
             submission: submissionDefault,
             edits: {
-              types: typesDefault
-            }
-          }
+              types: typesDefault,
+            },
+          },
         },
-        { params: 'argle' }
-      )
+        { params: 'argle' },
+      ),
     ).toEqual({
       submission: submissionDefault,
       types: typesDefault,
-      params: 'argle'
+      params: 'argle',
     })
   })
 })
@@ -90,7 +90,7 @@ describe('replaceHistory', () => {
     browserHistory.replace = replace
 
     const router = new SubmissionRouter({
-      params: { lei: 'argle', filingPeriod: 'bargle' }
+      params: { lei: 'argle', filingPeriod: 'bargle' },
     })
     router.replaceHistory('foofaraw')
 
@@ -103,9 +103,9 @@ describe('render', () => {
     const router = new SubmissionRouter({
       submission: {
         status: { code: STATUS.VALIDATED },
-        id: { lei: 'argle' }
+        id: { lei: 'argle' },
       },
-      params: { lei: 'argle', splat: 'bargle' }
+      params: { lei: 'argle', splat: 'bargle' },
     })
     router.renderChildren = true
     const rendered = router.render()
@@ -116,9 +116,9 @@ describe('render', () => {
     const router = new SubmissionRouter({
       submission: {
         status: { code: STATUS.UNINITIALIZED },
-        id: { lei: 'argle' }
+        id: { lei: 'argle' },
       },
-      params: { lei: 'argle', splat: 'bargle' }
+      params: { lei: 'argle', splat: 'bargle' },
     })
     router.renderChildren = true
     const rendered = router.render()
@@ -129,9 +129,9 @@ describe('render', () => {
     const router = new SubmissionRouter({
       submission: {
         status: { code: STATUS.FAILED, message: 'Failzone' },
-        id: { lei: 'argle' }
+        id: { lei: 'argle' },
       },
-      params: { lei: 'elsewise', splat: 'bargle' }
+      params: { lei: 'elsewise', splat: 'bargle' },
     })
     const rendered = router.render()
     expect(rendered.props.children.props.children).toBe('Failzone')
@@ -140,9 +140,9 @@ describe('render', () => {
     const router = new SubmissionRouter({
       submission: {
         status: { code: STATUS.VALIDATED },
-        id: { lei: 'argle' }
+        id: { lei: 'argle' },
       },
-      params: { lei: 'elsewise', splat: 'bargle' }
+      params: { lei: 'elsewise', splat: 'bargle' },
     })
     router.renderChildren = true
     const rendered = router.render()
@@ -153,9 +153,9 @@ describe('render', () => {
     const router = new SubmissionRouter({
       submission: {
         status: { code: STATUS.VALIDATED },
-        id: { lei: 'argle' }
+        id: { lei: 'argle' },
       },
-      params: { lei: 'argle', splat: 'bargle' }
+      params: { lei: 'argle', splat: 'bargle' },
     })
 
     const rendered = router.render()
@@ -166,9 +166,9 @@ describe('render', () => {
     const router = new SubmissionRouter({
       submission: {
         status: { code: STATUS.VALIDATED },
-        id: { lei: 'argle' }
+        id: { lei: 'argle' },
       },
-      params: { lei: 'argle' }
+      params: { lei: 'argle' },
     })
 
     router.renderChildren = true
@@ -187,10 +187,10 @@ describe('componentDidMount', () => {
     const router = new SubmissionRouter({
       submission: {
         status: { code: STATUS.VALIDATED },
-        id: { lei: 'argle' }
+        id: { lei: 'argle' },
       },
       params: { filingPeriod: 'bargle' },
-      dispatch: dispatch
+      dispatch: dispatch,
     })
 
     router.componentDidMount()
@@ -207,10 +207,10 @@ describe('componentDidMount', () => {
     const router = new SubmissionRouter({
       submission: {
         status: { code: STATUS.VALIDATED },
-        id: { lei: 'argle' }
+        id: { lei: 'argle' },
       },
       params: { lei: 'argle' },
-      dispatch: dispatch
+      dispatch: dispatch,
     })
 
     router.componentDidMount()
@@ -225,10 +225,10 @@ describe('componentDidMount', () => {
     const router = new SubmissionRouter({
       submission: {
         status: { code: STATUS.VALIDATED },
-        id: { lei: 'argle' }
+        id: { lei: 'argle' },
       },
       params: { lei: 'argle', filingPeriod: 'bargle' },
-      dispatch: dispatch
+      dispatch: dispatch,
     })
 
     router.route = route
@@ -239,7 +239,7 @@ describe('componentDidMount', () => {
     expect(dispatch.mock.calls.length).toBe(2)
   })
 
-  it('refreshes and routes when id exists and is unmatched', done => {
+  it('refreshes and routes when id exists and is unmatched', (done) => {
     const route = jest.fn()
     const dispatch = jest.fn(() => {
       return Promise.resolve()
@@ -247,10 +247,10 @@ describe('componentDidMount', () => {
     const router = new SubmissionRouter({
       submission: {
         status: { code: STATUS.VALIDATED },
-        id: { lei: 'argle' }
+        id: { lei: 'argle' },
       },
       params: { lei: 'elsewise', filingPeriod: 'bargle' },
-      dispatch: dispatch
+      dispatch: dispatch,
     })
 
     router.route = route
@@ -263,7 +263,7 @@ describe('componentDidMount', () => {
     }, 0)
   })
 
-  it('routes with no status', done => {
+  it('routes with no status', (done) => {
     const route = jest.fn()
     const editsNeeded = jest.fn(() => false)
     const dispatch = jest.fn(() => {
@@ -272,10 +272,10 @@ describe('componentDidMount', () => {
     const router = new SubmissionRouter({
       submission: {
         status: null,
-        id: { lei: 'argle' }
+        id: { lei: 'argle' },
       },
       params: { lei: 'argle', filingPeriod: 'bargle' },
-      dispatch: dispatch
+      dispatch: dispatch,
     })
 
     router.route = route
@@ -290,7 +290,7 @@ describe('componentDidMount', () => {
     }, 0)
   })
 
-  it('routes with UNINITIALIZED status', done => {
+  it('routes with UNINITIALIZED status', (done) => {
     const route = jest.fn()
     const dispatch = jest.fn(() => {
       return Promise.resolve()
@@ -298,10 +298,10 @@ describe('componentDidMount', () => {
     const router = new SubmissionRouter({
       submission: {
         status: { code: STATUS.UNINITIALIZED },
-        id: { lei: 'argle' }
+        id: { lei: 'argle' },
       },
       params: { lei: 'argle', filingPeriod: 'bargle' },
-      dispatch: dispatch
+      dispatch: dispatch,
     })
 
     router.route = route
@@ -314,7 +314,7 @@ describe('componentDidMount', () => {
     }, 0)
   })
 
-  it('routes with UNINITIALIZED status and edits needed', done => {
+  it('routes with UNINITIALIZED status and edits needed', (done) => {
     const route = jest.fn()
     const editsNeeded = jest.fn(() => true)
     const dispatch = jest.fn(() => {
@@ -323,10 +323,10 @@ describe('componentDidMount', () => {
     const router = new SubmissionRouter({
       submission: {
         status: { code: STATUS.UNINITIALIZED },
-        id: { lei: 'argle' }
+        id: { lei: 'argle' },
       },
       params: { lei: 'argle', filingPeriod: 'bargle' },
-      dispatch: dispatch
+      dispatch: dispatch,
     })
 
     router.route = route
@@ -340,7 +340,7 @@ describe('componentDidMount', () => {
     }, 0)
   })
 
-  it('routes when edits needed', done => {
+  it('routes when edits needed', (done) => {
     const route = jest.fn()
     const editsNeeded = jest.fn(() => true)
     const dispatch = jest.fn(() => {
@@ -349,10 +349,10 @@ describe('componentDidMount', () => {
     const router = new SubmissionRouter({
       submission: {
         status: { code: STATUS.VALIDATED_WITH_ERRORS },
-        id: { lei: 'argle' }
+        id: { lei: 'argle' },
       },
       params: { lei: 'argle', filingPeriod: 'bargle' },
-      dispatch: dispatch
+      dispatch: dispatch,
     })
 
     router.route = route
@@ -371,8 +371,8 @@ describe('editsNeeded', () => {
   it('returns positively when editsneeded', () => {
     const router = new SubmissionRouter({
       submission: {
-        status: { code: STATUS.VALIDATED_WITH_ERRORS }
-      }
+        status: { code: STATUS.VALIDATED_WITH_ERRORS },
+      },
     })
     expect(router.editsNeeded()).toBe(true)
   })
@@ -380,8 +380,8 @@ describe('editsNeeded', () => {
   it('returns negatively when edits are not needed', () => {
     const router = new SubmissionRouter({
       submission: {
-        status: { code: STATUS.VALIDATED }
-      }
+        status: { code: STATUS.VALIDATED },
+      },
     })
     expect(router.editsNeeded()).toBe(false)
   })
@@ -394,10 +394,10 @@ describe('route', () => {
     const router = new SubmissionRouter({
       submission: {
         status: { code: STATUS.VALIDATED },
-        id: { lei: 'argle' }
+        id: { lei: 'argle' },
       },
       types: typesDefault,
-      params: { lei: 'argle', filingPeriod: 'bargle' }
+      params: { lei: 'argle', filingPeriod: 'bargle' },
     })
     router.getLatestPage = latest
     router.replaceHistory = replace
@@ -411,10 +411,10 @@ describe('route', () => {
     const router = new SubmissionRouter({
       submission: {
         status: { code: STATUS.VALIDATED },
-        id: { lei: 'argle' }
+        id: { lei: 'argle' },
       },
       types: typesDefault,
-      params: { lei: 'argle', filingPeriod: 'bargle', splat: 'badsplat' }
+      params: { lei: 'argle', filingPeriod: 'bargle', splat: 'badsplat' },
     })
     router.route()
     expect(replace).toBeCalledWith('/filing/')
@@ -425,10 +425,10 @@ describe('route', () => {
     const router = new SubmissionRouter({
       submission: {
         status: { code: STATUS.UPLOADING },
-        id: { lei: 'argle' }
+        id: { lei: 'argle' },
       },
       types: typesDefault,
-      params: { lei: 'argle', filingPeriod: 'bargle', splat: 'upload' }
+      params: { lei: 'argle', filingPeriod: 'bargle', splat: 'upload' },
     })
     router.forceUpdate = force
     router.route()
@@ -441,10 +441,10 @@ describe('route', () => {
     const router = new SubmissionRouter({
       submission: {
         status: { code: STATUS.UPLOADING },
-        id: { lei: 'argle' }
+        id: { lei: 'argle' },
       },
       types: typesDefault,
-      params: { lei: 'argle', filingPeriod: 'bargle', splat: 'quality' }
+      params: { lei: 'argle', filingPeriod: 'bargle', splat: 'quality' },
     })
     router.replaceHistory = replace
     router.route()
@@ -457,10 +457,10 @@ describe('route', () => {
     const router = new SubmissionRouter({
       submission: {
         status: { code: STATUS.VALIDATED_WITH_ERRORS },
-        id: { lei: 'argle' }
+        id: { lei: 'argle' },
       },
       types: typesDefault,
-      params: { lei: 'argle', filingPeriod: 'bargle', splat: 'quality' }
+      params: { lei: 'argle', filingPeriod: 'bargle', splat: 'quality' },
     })
     router.forceUpdate = force
     router.getLatestPage = latest
@@ -474,10 +474,10 @@ describe('route', () => {
     const router = new SubmissionRouter({
       submission: {
         status: { code: STATUS.VALIDATED_WITH_ERRORS },
-        id: { lei: 'argle' }
+        id: { lei: 'argle' },
       },
       types: typesDefault,
-      params: { lei: 'argle', filingPeriod: 'bargle', splat: 'macro' }
+      params: { lei: 'argle', filingPeriod: 'bargle', splat: 'macro' },
     })
     router.replaceHistory = replace
     router.getLatestPage = latest
@@ -491,10 +491,10 @@ describe('route', () => {
     const router = new SubmissionRouter({
       submission: {
         status: { code: STATUS.VALIDATED_WITH_ERRORS },
-        id: { lei: 'argle' }
+        id: { lei: 'argle' },
       },
       types: typesDefault,
-      params: { lei: 'argle', filingPeriod: 'bargle', splat: 'upload' }
+      params: { lei: 'argle', filingPeriod: 'bargle', splat: 'upload' },
     })
     router.forceUpdate = force
     router.getLatestPage = latest
@@ -507,10 +507,10 @@ describe('route', () => {
     const router = new SubmissionRouter({
       submission: {
         status: { code: STATUS.VALIDATED },
-        id: { lei: 'argle' }
+        id: { lei: 'argle' },
       },
       types: typesDefault,
-      params: { lei: 'argle', filingPeriod: 'bargle', splat: 'quality' }
+      params: { lei: 'argle', filingPeriod: 'bargle', splat: 'quality' },
     })
     router.forceUpdate = force
     router.route()
@@ -522,9 +522,9 @@ describe('getLatestPage', () => {
   it('latest is upload when code is < VALIDATED_WITH_ERRORS', () => {
     const router = new SubmissionRouter({
       submission: {
-        status: { code: STATUS.UPLOADING }
+        status: { code: STATUS.UPLOADING },
       },
-      types: typesDefault
+      types: typesDefault,
     })
     expect(router.getLatestPage()).toBe('upload')
   })
@@ -532,9 +532,9 @@ describe('getLatestPage', () => {
   it('latest is submission when code is > VALIDATED_WITH_ERRORS', () => {
     const router = new SubmissionRouter({
       submission: {
-        status: { code: STATUS.VALIDATED }
+        status: { code: STATUS.VALIDATED },
       },
-      types: typesDefault
+      types: typesDefault,
     })
     expect(router.getLatestPage()).toBe('submission')
   })
@@ -542,9 +542,9 @@ describe('getLatestPage', () => {
   it('latest is synval when code is VALIDATED_WITH_ERRORS and synvalExist', () => {
     const router = new SubmissionRouter({
       submission: {
-        status: { code: STATUS.VALIDATED_WITH_ERRORS }
+        status: { code: STATUS.VALIDATED_WITH_ERRORS },
       },
-      types: { ...typesDefault, syntactical: { edits: [{}] } }
+      types: { ...typesDefault, syntactical: { edits: [{}] } },
     })
     expect(router.getLatestPage()).toBe('syntacticalvalidity')
   })
@@ -552,9 +552,9 @@ describe('getLatestPage', () => {
   it('latest is quality when code is VALIDATED_WITH_ERRORS and quality exists', () => {
     const router = new SubmissionRouter({
       submission: {
-        status: { code: STATUS.VALIDATED_WITH_ERRORS }
+        status: { code: STATUS.VALIDATED_WITH_ERRORS },
       },
-      types: { ...typesDefault, quality: { edits: [{}] } }
+      types: { ...typesDefault, quality: { edits: [{}] } },
     })
     expect(router.getLatestPage()).toBe('quality')
   })
@@ -562,9 +562,9 @@ describe('getLatestPage', () => {
   it('latest is macro when code is VALIDATED_WITH_ERRORS and quality exists but is verified', () => {
     const router = new SubmissionRouter({
       submission: {
-        status: { code: STATUS.VALIDATED_WITH_ERRORS }
+        status: { code: STATUS.VALIDATED_WITH_ERRORS },
       },
-      types: { ...typesDefault, quality: { edits: [{}], verified: true } }
+      types: { ...typesDefault, quality: { edits: [{}], verified: true } },
     })
     expect(router.getLatestPage()).toBe('macro')
   })
@@ -572,9 +572,9 @@ describe('getLatestPage', () => {
   it('latest is macro when code is VALIDATED_WITH_ERRORS and not blocked by errors', () => {
     const router = new SubmissionRouter({
       submission: {
-        status: { code: STATUS.VALIDATED_WITH_ERRORS }
+        status: { code: STATUS.VALIDATED_WITH_ERRORS },
       },
-      types: typesDefault
+      types: typesDefault,
     })
     expect(router.getLatestPage()).toBe('macro')
   })

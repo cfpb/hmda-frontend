@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import BannerUSA from './BannerUSA.jsx'
 
-const r = shallow(<BannerUSA/>)
+const r = shallow(<BannerUSA />)
 
 it('renders the img', () => {
   expect(r.find('img').length).toBe(1)

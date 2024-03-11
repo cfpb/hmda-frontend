@@ -7,18 +7,17 @@ import Institutions from './index.jsx'
 import InstitutionDetailsWrapper from './details/InstitutionDetailsWrapper'
 import { getKeycloak } from '../../common/api/Keycloak.js'
 import { Redirect } from 'react-router-dom'
-import * as AccessToken from "../../common/api/AccessToken"
+import * as AccessToken from '../../common/api/AccessToken'
 import jwtDecode from 'jwt-decode'
 import { shouldFetchInstitutions } from '../actions/shouldFetchInstitutions.js'
 
 export class InstitutionContainer extends Component {
   constructor(props) {
-    super(props);
-    this.state = { 
-      shouldRedirect: false
+    super(props)
+    this.state = {
+      shouldRedirect: false,
     }
   }
-
 
   componentDidMount() {
     this.fetchIfNeeded()
@@ -48,18 +47,18 @@ export class InstitutionContainer extends Component {
       // Decode fresh token which contains the most up to date lei
       let leiFromNewToken = jwtDecode(AccessToken.get())
       const leiString = leiFromNewToken.lei
-      const leis = leiString ? leiString.split(",") : []
+      const leis = leiString ? leiString.split(',') : []
 
       // Fetch Institutions associated with this Keycloak account
-      let associatedInstitutions = leis.map(lei => ({ lei }))
+      let associatedInstitutions = leis.map((lei) => ({ lei }))
       dispatch(fetchEachInstitution(associatedInstitutions, selectedPeriod))
 
       // Determine which filing periods to make available to the user
       dispatch(
         getFilingPeriodOptions(
           associatedInstitutions,
-          this.props.config.filingPeriodStatus
-        )
+          this.props.config.filingPeriodStatus,
+        ),
       )
       // Reset flag after fetch
       dispatch(shouldFetchInstitutions(false))
@@ -67,18 +66,18 @@ export class InstitutionContainer extends Component {
     if (!institutions.fetched && !institutions.isFetching) {
       dispatch(requestInstitutions())
       const leiString = getKeycloak().tokenParsed.lei
-      const leis = leiString ? leiString.split(",") : []
+      const leis = leiString ? leiString.split(',') : []
 
       // Fetch Institutions associated with this Keycloak account
-      let associatedInstitutions = leis.map(lei => ({ lei }))
+      let associatedInstitutions = leis.map((lei) => ({ lei }))
       dispatch(fetchEachInstitution(associatedInstitutions, selectedPeriod))
 
       // Determine which filing periods to make available to the user
       dispatch(
         getFilingPeriodOptions(
           associatedInstitutions,
-          this.props.config.filingPeriodStatus
-        )
+          this.props.config.filingPeriodStatus,
+        ),
       )
     }
   }
@@ -97,7 +96,17 @@ export class InstitutionContainer extends Component {
 }
 
 export function mapStateToProps(state, _ownProps) {
-  const { institutions, filingPeriod, filings, submission, latestSubmissions, error, redirecting, filingPeriodOptions, user } = state.app
+  const {
+    institutions,
+    filingPeriod,
+    filings,
+    submission,
+    latestSubmissions,
+    error,
+    redirecting,
+    filingPeriodOptions,
+    user,
+  } = state.app
 
   return {
     submission,
@@ -110,16 +119,20 @@ export function mapStateToProps(state, _ownProps) {
     redirecting,
     hasQuarterlyFilers: hasQuarterlyFilers(institutions),
     filingPeriodOptions,
-    user: user
+    user: user,
   }
 }
 
-function hasQuarterlyFilers(institutionState){
-  if(institutionState.fetched){
+function hasQuarterlyFilers(institutionState) {
+  if (institutionState.fetched) {
     const institutions = institutionState.institutions
-    const institutionsList = Object.keys(institutions).map(key => institutions[key])
-    const isQFList = institutionsList.map(i => i.isFetching ? true : i.quarterlyFiler)
-    return isQFList.some(i => i)
+    const institutionsList = Object.keys(institutions).map(
+      (key) => institutions[key],
+    )
+    const isQFList = institutionsList.map((i) =>
+      i.isFetching ? true : i.quarterlyFiler,
+    )
+    return isQFList.some((i) => i)
   }
 
   return true

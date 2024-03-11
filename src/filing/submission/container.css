@@ -28,9 +28,8 @@
   #summary hr,
   #signature,
   .usa-width-one-whole + .usa-width-one-whole .RefileWarning,
-  footer
-  {
-    display: none
+  footer {
+    display: none;
   }
 
   .RefileWarning,
@@ -52,18 +51,18 @@
     flex-flow: row wrap;
   }
 
-  #summary dt, 
+  #summary dt,
   #summary dd {
     display: inline-block;
     align-items: flex-start;
     width: 50%;
   }
 
-  #summary, 
+  #summary,
   #summary dd,
   .SubmissionContainer .RefileWarning {
     margin: 0;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
 
   .Filing.App #main-content {

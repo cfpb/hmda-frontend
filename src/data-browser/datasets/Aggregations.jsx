@@ -12,7 +12,11 @@ function buildRows(aggregations, orderedVariables, variables) {
   return aggregations.map((row, i) => {
     return (
       <tr key={i}>
-        <th>{orderedVariables.map(v => variables[v].mapping[encodeURIComponent(row[v])]).join(', ')}</th>
+        <th>
+          {orderedVariables
+            .map((v) => variables[v].mapping[encodeURIComponent(row[v])])
+            .join(', ')}
+        </th>
         <td>{formatWithCommas(row.count)}</td>
         <td>{formatWithCommas(row.sum)}</td>
       </tr>
@@ -22,11 +26,66 @@ function buildRows(aggregations, orderedVariables, variables) {
 
 function makeHeader(params, orderedVariables, year, leis, variables) {
   const list = []
-  if(params.state) list.push(<li key="0"><h4>State:</h4><ul className="sublist"><li>{params.state.split(',').map(v => before2018(year) ? STATEOBJCODES[v] : STATEOBJ[v]).join(', ')}</li></ul></li>)
-  else if(params.msamd) list.push(<li key="0"><h4>MSA/MD:</h4><ul className="sublist"><li>{params.msamd.split(',').map(v => `${v}\u00A0-\u00A0${MSATONAME[year][v]}`).join(', ')}</li></ul></li>)
-  else if(params.county) list.push(<li key="0"><h4>County:</h4><ul className="sublist"><li>{params.county.split(',').map(v => COUNTIES[year][v]).join(', ')}</li></ul></li>)
-  if(params.lei) list.push(<li key="1"><h4>Institutions:</h4><ul className="sublist"><li>{institutionsOrLoading(params.lei, leis)}</li></ul></li>)
-  else if(params.arid) list.push(<li key="1"><h4>Institutions:</h4><ul className="sublist"><li>{institutionsOrLoading(params.arid, leis)}</li></ul></li>)
+  if (params.state)
+    list.push(
+      <li key='0'>
+        <h4>State:</h4>
+        <ul className='sublist'>
+          <li>
+            {params.state
+              .split(',')
+              .map((v) => (before2018(year) ? STATEOBJCODES[v] : STATEOBJ[v]))
+              .join(', ')}
+          </li>
+        </ul>
+      </li>,
+    )
+  else if (params.msamd)
+    list.push(
+      <li key='0'>
+        <h4>MSA/MD:</h4>
+        <ul className='sublist'>
+          <li>
+            {params.msamd
+              .split(',')
+              .map((v) => `${v}\u00A0-\u00A0${MSATONAME[year][v]}`)
+              .join(', ')}
+          </li>
+        </ul>
+      </li>,
+    )
+  else if (params.county)
+    list.push(
+      <li key='0'>
+        <h4>County:</h4>
+        <ul className='sublist'>
+          <li>
+            {params.county
+              .split(',')
+              .map((v) => COUNTIES[year][v])
+              .join(', ')}
+          </li>
+        </ul>
+      </li>,
+    )
+  if (params.lei)
+    list.push(
+      <li key='1'>
+        <h4>Institutions:</h4>
+        <ul className='sublist'>
+          <li>{institutionsOrLoading(params.lei, leis)}</li>
+        </ul>
+      </li>,
+    )
+  else if (params.arid)
+    list.push(
+      <li key='1'>
+        <h4>Institutions:</h4>
+        <ul className='sublist'>
+          <li>{institutionsOrLoading(params.arid, leis)}</li>
+        </ul>
+      </li>,
+    )
 
   orderedVariables.forEach((variable) => {
     list.push(
@@ -34,21 +93,28 @@ function makeHeader(params, orderedVariables, year, leis, variables) {
         <DocLink year={year} definition={variables[variable].definition}>
           <h4>{variables[variable].label}:</h4>
         </DocLink>
-        <ul className="sublist">
+        <ul className='sublist'>
           {params[variable].split(',').map((v, i) => {
-            return <li key={i}>{variables[variable].mapping[encodeURIComponent(v)]}</li>
+            return (
+              <li key={i}>
+                {variables[variable].mapping[encodeURIComponent(v)]}
+              </li>
+            )
           })}
         </ul>
-      </li>
+      </li>,
     )
   })
 
   return <ul>{list}</ul>
 }
 
-function institutionsOrLoading(selected, details){
-  if(details.loading) return <LoadingIcon className="LoadingInline" />
-  return selected.split(',').map(v => details.leis[v].name).join(', ')
+function institutionsOrLoading(selected, details) {
+  if (details.loading) return <LoadingIcon className='LoadingInline' />
+  return selected
+    .split(',')
+    .map((v) => details.leis[v].name)
+    .join(', ')
 }
 
 // eslint-disable-next-line
@@ -56,14 +122,14 @@ const Aggregations = React.forwardRef((props, ref) => {
   const { aggregations, parameters } = props.details
   const ordered = []
   const variables = getVariables(props.year)
-  if(!aggregations) return null
+  if (!aggregations) return null
 
-  props.orderedVariables.forEach(v => {
-    if(parameters[v]) ordered.push(v)
+  props.orderedVariables.forEach((v) => {
+    if (parameters[v]) ordered.push(v)
   })
 
   return (
-    <div ref={ref} className="Aggregations">
+    <div ref={ref} className='Aggregations'>
       <h2>Data Summary</h2>
       {makeHeader(parameters, ordered, props.year, props.leis, variables)}
       <table>
@@ -74,10 +140,8 @@ const Aggregations = React.forwardRef((props, ref) => {
             <th>$ Amount</th>
           </tr>
         </thead>
-        <tbody>
-          {buildRows(aggregations, ordered, variables)}
-        </tbody>
-       </table>
+        <tbody>{buildRows(aggregations, ordered, variables)}</tbody>
+      </table>
     </div>
   )
 })

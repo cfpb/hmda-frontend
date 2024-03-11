@@ -1,7 +1,9 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import Alert from '../../../common/Alert.jsx'
 import Loading from '../../../common/LoadingIcon.jsx'
+import fetchVerify from '../../actions/fetchVerify.js'
 import { SIGNED } from '../../constants/statusCodes.js'
 
 import './Verifier.css'
@@ -9,7 +11,7 @@ import './Verifier.css'
 export const renderVerified = (verified, type) => {
   if (verified) {
     return (
-      <Alert type="success" heading="Verified.">
+      <Alert type='success' heading='Verified.'>
         <p>
           <span>{type}</span> edits have been verified.
         </p>
@@ -34,65 +36,73 @@ const VerificationClosed = ({ type, verified }) => {
   )
 }
 
-class Verifier extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      checked: props.verified
-    }
+/**
+ * Displays any edits when a HMDA filer submits their HMDA file
+ */
+
+const Verifier = ({ type, lei, isPassed }) => {
+  const dispatch = useDispatch()
+  const types = useSelector((state) => state.app.edits.types)
+  const editsState = useSelector((state) => state.app.edits.types[type])
+  const submissionStatus = useSelector(
+    (state) => state.app.submission.status.code,
+  )
+  const [checked, setChecked] = useState(editsState.verified)
+
+  useEffect(() => {
+    setChecked(editsState.verified)
+  }, [editsState.verified])
+
+  const onVerify = (checked) => {
+    dispatch(fetchVerify(type, checked, lei))
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.verified !== this.props.verified)
-      this.setState({ checked: nextProps.verified })
-  }
+  const disabled = submissionStatus === SIGNED ? true : false
+  const verified =
+    types[type]?.verified !== undefined ? types[type]?.verified : false
+  const isFetching = types[type]?.isFetching || false
+  const noEditsExist = !types[type].edits.length
 
-  render() {
-    const props = this.props
-    const disabled = props.code === SIGNED ? true : false
+  if (isPassed)
+    return <VerificationClosed type={type} verified={editsState.verified} />
+  if (noEditsExist) return null
 
-    if(props.isPassed) return <VerificationClosed type={props.type} verified={props.verified} />
-
-    return props.noEditsExist ? null : (
-      <section className="Verifier">
-        <hr />
-        <h2>Verify {props.type} edits</h2>
-        <p className="font-lead">
-          In order to continue you must verify all {props.type} edits.
-        </p>
-        {props.isFetching ? <Loading className="LoadingInline"/> : null}
-        <ul className="unstyled-list">
-          <li>
-            <input
-              id={`${props.type}Verifier`}
-              name={`${props.type}Verifier`}
-              type="checkbox"
-              checked={this.state.checked}
-              disabled={disabled}
-              onChange={e => {
-                this.setState({ checked: e.target.checked })
-                props.onVerify(e.target.checked)
-              }}
-            />
-            <label htmlFor={`${props.type}Verifier`} className="max-width-100">
-              All data are accurate, no corrections required. I have verified
-              the accuracy of all data fields referenced by the {props.type}{' '}
-              edits.
-            </label>
-          </li>
-        </ul>
-        {renderVerified(props.verified, props.type)}
-      </section>
-    )
-  }
+  return (
+    <section className='Verifier'>
+      <hr />
+      <h2>Verify {type} edits</h2>
+      <p className='font-lead'>
+        In order to continue you must verify all {type} edits.
+      </p>
+      {isFetching ? <Loading className='LoadingInline' /> : null}
+      <ul className='unstyled-list'>
+        <li>
+          <input
+            id={`${type}Verifier`}
+            name={`${type}Verifier`}
+            type='checkbox'
+            checked={checked}
+            disabled={disabled}
+            onChange={(e) => {
+              setChecked(e.target.checked)
+              onVerify(e.target.checked)
+            }}
+          />
+          <label htmlFor={`${type}Verifier`} className='max-width-100'>
+            All data are accurate, no corrections required. I have verified the
+            accuracy of all data fields referenced by the {type} edits.
+          </label>
+        </li>
+      </ul>
+      {renderVerified(verified, type)}
+    </section>
+  )
 }
 
 Verifier.propTypes = {
   type: PropTypes.string.isRequired,
-  verified: PropTypes.bool.isRequired,
-  onVerify: PropTypes.func.isRequired,
-  isFetching: PropTypes.bool.isRequired,
-  code: PropTypes.number
+  lei: PropTypes.string.isRequired,
+  isPassed: PropTypes.bool,
 }
 
 export default Verifier

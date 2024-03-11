@@ -16,9 +16,9 @@ onlyOn(!isBeta(HOST), () => {
     describe('Filter Bar', () => {
       it('Sets Type and Product filters from URL query string', () => {
         cy.visit(
-          `${HOST}/updates-notes/updates?type=release&product=documentation,tools`
+          `${HOST}/updates-notes/updates?type=release&product=documentation,tools`,
         )
-        EXPECTED_SELECTED_PILLS.forEach(pillClass => {
+        EXPECTED_SELECTED_PILLS.forEach((pillClass) => {
           cy.get(`#filter-bar .pill.selected.${pillClass}`)
         })
       })
@@ -28,7 +28,7 @@ onlyOn(!isBeta(HOST), () => {
         cy.get('.change-row').should('have.length', 2)
         cy.get('.result-count .body').should(
           'contain',
-          'Showing ' + 1 + ' out of'
+          'Showing ' + 1 + ' out of',
         )
         cy.get('.change-row')
           .find('.highlighted')
@@ -55,16 +55,16 @@ onlyOn(!isBeta(HOST), () => {
       it('Filters by keyword', () => {
         cy.visit(`${HOST}/updates-notes/updates?product=tools`)
         cy.findByLabelText('by Change Description').type(
-          'The 2017 File Format Verification Tool'
+          'The 2017 File Format Verification Tool',
         )
         cy.url().should(
           'contain',
-          'keywords=The,2017,File,Format,Verification,Tool'
+          'keywords=The,2017,File,Format,Verification,Tool',
         )
         cy.get('.change-row').should('have.length', 2)
         cy.get('.result-count .body').should(
           'contain',
-          'Showing ' + 1 + ' out of'
+          'Showing ' + 1 + ' out of',
         )
         cy.log('>> Highlight keywords')
         cy.get('.change-row .highlighted').should('have.length', 7)

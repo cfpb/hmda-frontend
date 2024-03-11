@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import { VideoModal } from './VideoModal.jsx';
-import iconSprite from "../common/uswds/img/sprite.svg";
+import React, { useState } from 'react'
+import { VideoModal } from './VideoModal.jsx'
+import iconSprite from '../common/uswds/img/sprite.svg'
 
 export const Hero = ({ hideContent }) => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false)
 
   const handleShowModal = () => {
-    setShowModal(true);
-  };
-  if (hideContent)
-        return (<></>)
+    setShowModal(true)
+  }
+  if (hideContent) return <></>
 
-  return(
+  return (
     <>
     <section className="usa-hero" aria-label="Introduction">
     <div className="grid-container">
@@ -58,4 +57,5 @@ export const Hero = ({ hideContent }) => {
 
 
     </>
-)}
+  )
+}

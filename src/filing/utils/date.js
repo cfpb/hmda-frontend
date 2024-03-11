@@ -1,6 +1,6 @@
 export const months =
   'January,February,March,April,May,June,July,August,September,October,November,December'.split(
-    ','
+    ',',
   )
 
 export function nth(d) {
@@ -40,21 +40,21 @@ export function ordinalHour(d) {
   return `${ordinal(d)}, ${hour}:${min}:${sec} ${period}`
 }
 
-const msToDays = ms => ms / (1000 * 60 * 60 * 24)
+const msToDays = (ms) => ms / (1000 * 60 * 60 * 24)
 
-const msToHours = ms => ms / (1000 * 60 * 60)
+const msToHours = (ms) => ms / (1000 * 60 * 60)
 
 export const numDaysBetween = function (d1, d2) {
   var diff = d1.getTime() - d2.getTime()
   return msToDays(diff)
 }
 
-export const hoursSince = timestamp => {
+export const hoursSince = (timestamp) => {
   const diffTime = Date.now() - timestamp
   return msToHours(diffTime)
 }
 
-export const stdTimezoneOffset = date => {
+export const stdTimezoneOffset = (date) => {
   var jan = new Date(date.getFullYear(), 0, 1)
   var jul = new Date(date.getFullYear(), 6, 1)
   return Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset())
@@ -76,7 +76,7 @@ export const easternOffsetHours = (date = new Date()) => {
  * @param {Number} timeToFormat timestamp of when receipt was submitted
  * @returns formatted string that includes month, day, year and time from ET
  */
-export const formatReceiptTime = timeToFormat => {
+export const formatReceiptTime = (timeToFormat) => {
   let timezone = {
     timeZone: 'America/New_York',
   }

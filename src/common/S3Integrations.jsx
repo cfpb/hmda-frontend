@@ -15,7 +15,7 @@ import './S3Integrations.css'
  */
 export const useS3FileHeaders = (url, shouldFetch) => {
   const [currHeaders, setCurrHeaders] = useState()
-  const s3Cache = useSelector(state => state.s3Headers)
+  const s3Cache = useSelector((state) => state.s3Headers)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -28,9 +28,9 @@ export const useS3FileHeaders = (url, shouldFetch) => {
     setCurrHeaders(null)
     if (!shouldFetch) return
 
-    fetch(url, { method: 'HEAD' }).then(response => {
+    fetch(url, { method: 'HEAD' }).then((response) => {
       const hdrs = ['last-modified', 'Content-Length']
-      const [lastMod, size] = hdrs.map(h => response.headers.get(h))
+      const [lastMod, size] = hdrs.map((h) => response.headers.get(h))
       let changeDate
 
       if (lastMod) {

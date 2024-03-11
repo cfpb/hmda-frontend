@@ -7,7 +7,7 @@ describe('showConfirm', () => {
   it('creates an action to signal display of the refile confirmation modal', () => {
     expect(showConfirm()).toEqual({
       type: types.SHOW_CONFIRM,
-      showing: true
+      showing: true,
     })
   })
 })

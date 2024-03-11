@@ -5,7 +5,7 @@ export default function refreshState() {
     const lei = getState().app.lei
     return dispatch({
       type: types.REFRESH_STATE,
-      lei
+      lei,
     })
   }
 }

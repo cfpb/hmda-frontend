@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import NotesItem from "./NoteItem"
+import NotesItem from './NoteItem'
 
 const NoteList = ({ items, isMenuOpen }) => {
   const [openItem, setOpenItem] = useState(null)

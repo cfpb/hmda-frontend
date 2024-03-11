@@ -8,5 +8,5 @@ export const agencyCodes = {
 }
 
 export const keyMap = {
-  "idRssd": "RSSD",
+  idRssd: 'RSSD',
 }

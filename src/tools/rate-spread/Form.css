@@ -4,7 +4,7 @@
   padding-left: 0;
 }
 
-.Form+div .LoadingIconWrapper {
+.Form + div .LoadingIconWrapper {
   margin-top: 1em;
 }
 

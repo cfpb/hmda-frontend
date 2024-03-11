@@ -1,6 +1,6 @@
 /**
  * Plain text input
- * 
+ *
  * @param {Object} value Current value
  * @param {Object} props Additional input attributes
  */

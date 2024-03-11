@@ -1,9 +1,9 @@
-import React, { useEffect } from "react"
-import { agencyCodes } from "../constants"
-import { Input } from "./InstitutionInput"
-import { OtherFields } from "./OtherFields"
-import { wrapLoading } from "../wrapLoading"
-import ProfileIcon from "../../profile/ProfileIcon"
+import React, { useEffect } from 'react'
+import { agencyCodes } from '../constants'
+import { Input } from './InstitutionInput'
+import { OtherFields } from './OtherFields'
+import { wrapLoading } from '../wrapLoading'
+import ProfileIcon from '../../profile/ProfileIcon'
 
 export const InstitutionDetails = ({ data }) => {
   const {
@@ -25,10 +25,15 @@ export const InstitutionDetails = ({ data }) => {
     <form id={`form-${lei}`} onSubmit={() => null}>
       <div className='institution-details-info-container'>
         <h1>
-          Institution Details - <span>{name}</span> -{" "}
+          Institution Details - <span>{name}</span> -{' '}
           <span>{activityYear}</span>
         </h1>
-        <ProfileIcon iconWidth="20px" iconHeight="20px" profileText="Profile" profileTextSize="18px" />
+        <ProfileIcon
+          iconWidth='20px'
+          iconHeight='20px'
+          profileText='Profile'
+          profileTextSize='18px'
+        />
       </div>
       <div className='top-fields center'>
         <Input disabled text name='Name' value={name} />

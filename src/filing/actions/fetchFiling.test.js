@@ -8,11 +8,11 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { getFiling } from '../api/api.js'
 
-getFiling.mockImplementation(id => Promise.resolve({ filing: 1 }))
+getFiling.mockImplementation((id) => Promise.resolve({ filing: 1 }))
 const mockStore = configureMockStore([thunk])
 
 describe('fetchFiling', () => {
-  it('creates a thunk that will fetch a filing', done => {
+  it('creates a thunk that will fetch a filing', (done) => {
     const store = mockStore({})
 
     store
@@ -22,21 +22,21 @@ describe('fetchFiling', () => {
           { type: types.REQUEST_FILING, id: '123' },
           {
             type: types.RECEIVE_FILING,
-            filing: { filing: 1 }
-          }
+            filing: { filing: 1 },
+          },
         ])
         done()
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err)
         done.fail()
       })
   })
-  it('handles errors when introduced', done => {
+  it('handles errors when introduced', (done) => {
     const store = mockStore({})
     console.error = jest.fn()
-    getFiling.mockImplementation(id =>
-      Promise.resolve({ status: 404, statusText: 'argle' })
+    getFiling.mockImplementation((id) =>
+      Promise.resolve({ status: 404, statusText: 'argle' }),
     )
 
     store
@@ -46,12 +46,12 @@ describe('fetchFiling', () => {
           { type: types.REQUEST_FILING, id: '123' },
           {
             type: types.RECEIVE_ERROR,
-            error: { status: 404, statusText: 'argle' }
-          }
+            error: { status: 404, statusText: 'argle' },
+          },
         ])
         done()
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err)
         done.fail()
       })

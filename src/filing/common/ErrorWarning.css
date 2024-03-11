@@ -2,8 +2,8 @@
   margin: 2em 0;
 }
 
-.ErrorWarning .error-code{
+.ErrorWarning .error-code {
   display: block;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   font-weight: bold;
 }

@@ -7,75 +7,75 @@ import COUNTIES from '../constants/counties.js'
 import fipsToState from '../constants/fipsToState.js'
 import msaToName from '../constants/msaToName.js'
 
-
 const itemFnMap = {
   states: createStateOption,
   msamds: createMSAOption,
-  counties: createCountyOption
+  counties: createCountyOption,
 }
 
-function makeItemSelectValues(category, items, year){
-  if(isNationwide(category)) return [{value: 'nationwide', label: 'NATIONWIDE'}]
-  return items.map(id => itemFnMap[category](id, year))
+function makeItemSelectValues(category, items, year) {
+  if (isNationwide(category))
+    return [{ value: 'nationwide', label: 'NATIONWIDE' }]
+  return items.map((id) => itemFnMap[category](id, year))
 }
 
-export function createLEIOption(id, map){
+export function createLEIOption(id, map) {
   const name = map[id] && map[id].name
-  return {value: id, label: `${name} - ${id}`}
+  return { value: id, label: `${name} - ${id}` }
 }
 
-function pruneItemOptions(category, options, selectedValues){
-  if(isNationwide(category)) return []
+function pruneItemOptions(category, options, selectedValues) {
+  if (isNationwide(category)) return []
   return removeSelected(selectedValues, options[category])
 }
 
 function setVariableSelect(orderedVariables, year) {
   const options = []
   const variables = getVariables(year)
-  
-  orderedVariables.forEach(v => {
+
+  orderedVariables.forEach((v) => {
     const value = variables[v] ? v : variableNameMap[v]
-    if(value) options.push({ value, label: variables[value].label })
+    if (value) options.push({ value, label: variables[value].label })
   })
   return options
 }
 
 function makeItemPlaceholder(category, selectedValues) {
   let type = category === 'msamds' ? 'MSA/MDs' : category
-  if(type === 'leis') type = 'LEIs'
-  if(type === 'arids') type = 'ARIDs'
-  if(isNationwide(type)) return 'Nationwide selected'
-  if(selectedValues.length) return `Select or type additional ${type}`
+  if (type === 'leis') type = 'LEIs'
+  if (type === 'arids') type = 'ARIDs'
+  if (isNationwide(type)) return 'Nationwide selected'
+  if (selectedValues.length) return `Select or type additional ${type}`
   return `Select or type the name of one or more ${type}`
 }
 
-function someChecksExist(vars){
+function someChecksExist(vars) {
   const keys = Object.keys(vars)
-  if(!keys.length) return false
+  if (!keys.length) return false
 
-  return keys.some(key => {
+  return keys.some((key) => {
     const checkKeys = Object.keys(vars[key] || [])
-    for(let j=0; j < checkKeys.length; j++){
-      if(vars[key][checkKeys[j]]) return true
+    for (let j = 0; j < checkKeys.length; j++) {
+      if (vars[key][checkKeys[j]]) return true
     }
     return false
   })
 }
 
 function removeSelected(selected, options) {
-  if(selected.length === 0) return options
+  if (selected.length === 0) return options
 
   const trimmed = []
   selected = [...selected]
 
-  for(let i=0; i < options.length; i++){
-    if(!selected.length) trimmed.push(options[i])
+  for (let i = 0; i < options.length; i++) {
+    if (!selected.length) trimmed.push(options[i])
     else {
-      for(let j=0; j<selected.length; j++){
-        if(selected[j].value === options[i].value){
-          selected = selected.slice(0,j).concat(selected.slice(j+1))
+      for (let j = 0; j < selected.length; j++) {
+        if (selected[j].value === options[i].value) {
+          selected = selected.slice(0, j).concat(selected.slice(j + 1))
           break
-        } else if (j === selected.length - 1){
+        } else if (j === selected.length - 1) {
           trimmed.push(options[i])
         }
       }
@@ -84,43 +84,43 @@ function removeSelected(selected, options) {
   return trimmed
 }
 
-function formatWithCommas(str='') {
+function formatWithCommas(str = '') {
   str = str + ''
   let formatted = ''
   let comma = ','
-  for(let i = str.length; i > 0; i-=3) {
+  for (let i = str.length; i > 0; i -= 3) {
     let start = i - 3
-    if(start < 0) start = 0
-    if(start === 0) comma = ''
+    if (start < 0) start = 0
+    if (start === 0) comma = ''
     formatted = `${comma}${str.slice(start, i)}${formatted}`
   }
   return formatted
 }
 
-function createStateOption(id, year){
+function createStateOption(id, year) {
   const states = before2018(year) ? STATEOBJCODES : STATEOBJ
-  return {value: id, label: `${states[id]}`}
+  return { value: id, label: `${states[id]}` }
 }
 
-function createMSAOption(id, year){
-  const stateLabel = MSATOSTATE[year][id].map(v => STATEOBJ[v]).join(' - ')
+function createMSAOption(id, year) {
+  const stateLabel = MSATOSTATE[year][id].map((v) => STATEOBJ[v]).join(' - ')
   const msaName = msaToName[year][id]
   return {
     value: '' + id,
-    label:  `${id} - ${msaName} - ${stateLabel}`,
+    label: `${id} - ${msaName} - ${stateLabel}`,
     state: stateLabel,
-    other: msaName
+    other: msaName,
   }
 }
 
-function createCountyOption(id, year){
+function createCountyOption(id, year) {
   const stateLabel = fipsToState[id.slice(0, 2)]
   const countyName = COUNTIES[year][id]
   return {
     value: id,
     label: `${id} - ${countyName} - ${stateLabel}`,
     state: stateLabel,
-    other: countyName
+    other: countyName,
   }
 }
 
@@ -128,22 +128,23 @@ function createItemOptions(props) {
   const subsetYear = props.location.pathname.split('/')[3]
   const statesWithMsas = stateToMsas[subsetYear]
   let itemOptions = {
-    nationwide: [{value: 'nationwide', label: 'NATIONWIDE'}],
+    nationwide: [{ value: 'nationwide', label: 'NATIONWIDE' }],
     states: [],
     msamds: [],
-    counties: []
+    counties: [],
   }
 
   const msaSet = new Set()
   const stateObj = before2018(subsetYear) ? STATEOBJCODES : STATEOBJ
 
-  Object.keys(statesWithMsas).forEach(state => {
+  Object.keys(statesWithMsas).forEach((state) => {
     const stateMapped = before2018(subsetYear) ? abbrToCode[state] : state
-    stateObj[stateMapped] && itemOptions.states.push(createStateOption(stateMapped, subsetYear))
-    statesWithMsas[state].forEach(msa => msaSet.add(msa))
+    stateObj[stateMapped] &&
+      itemOptions.states.push(createStateOption(stateMapped, subsetYear))
+    statesWithMsas[state].forEach((msa) => msaSet.add(msa))
   })
 
-  msaSet.forEach(msa => {
+  msaSet.forEach((msa) => {
     itemOptions.msamds.push(createMSAOption(msa, subsetYear))
   })
 
@@ -155,27 +156,27 @@ function createItemOptions(props) {
   return itemOptions
 }
 
-function sortByLabel(a,b){
-  const labels = [a,b].map(i => i.label)
+function sortByLabel(a, b) {
+  const labels = [a, b].map((i) => i.label)
   return compareStrings(...labels)
 }
 
-function sortByStateThenOther(a,b){
+function sortByStateThenOther(a, b) {
   const statesDiffer = compareStrings(a.state, b.state)
-  if(statesDiffer) return statesDiffer
+  if (statesDiffer) return statesDiffer
   return compareStrings(a.other, b.other)
 }
 
-function compareStrings(a,b){
-  const [aLower, bLower] = [a,b].map(i => i.toLowerCase())
-  if(!aLower || aLower > bLower) return 1
-  if(aLower === bLower) return 0
+function compareStrings(a, b) {
+  const [aLower, bLower] = [a, b].map((i) => i.toLowerCase())
+  if (!aLower || aLower > bLower) return 1
+  if (aLower === bLower) return 0
   return -1
 }
 
 function createVariableOptions(year) {
   const variables = getVariables(year)
-  return Object.keys(variables).map(variable => {
+  return Object.keys(variables).map((variable) => {
     return { value: variable, label: variables[variable].label }
   })
 }
@@ -188,31 +189,32 @@ function before2018(year) {
   return +year < 2018
 }
 
-function getInstitutionIdKey(year){
+function getInstitutionIdKey(year) {
   return before2018(year) ? 'arids' : 'leis'
 }
 
 const heightStyleFn = {
-  valueContainer: p => ({...p, height: '50px'})
+  valueContainer: (p) => ({ ...p, height: '50px' }),
 }
 
 const categoryStyleFn = {
   ...heightStyleFn,
-  container: p => ({...p, width: '20%', display: 'inline-block'}),
+  container: (p) => ({ ...p, width: '20%', display: 'inline-block' }),
   control: (p, s) => {
     return {
       ...p,
       borderTopRightRadius: 0,
       borderBottomRightRadius: 0,
-      zIndex: s.isFocused ? 1 : 0
-    }},
-  indicatorsContainer: p => ({...p, zIndex: 1}),
+      zIndex: s.isFocused ? 1 : 0,
+    }
+  },
+  indicatorsContainer: (p) => ({ ...p, zIndex: 1 }),
 }
 
 const itemStyleFn = {
   ...heightStyleFn,
-  container: p => ({...p, width: '80%', display: 'inline-block'}),
-  control: p => ({...p, borderTopLeftRadius: 0, borderBottomLeftRadius: 0 })
+  container: (p) => ({ ...p, width: '80%', display: 'inline-block' }),
+  control: (p) => ({ ...p, borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }),
 }
 
 export {
@@ -233,5 +235,5 @@ export {
   isNationwide,
   sortByLabel,
   before2018,
-  getInstitutionIdKey
+  getInstitutionIdKey,
 }

@@ -6,11 +6,11 @@ import { getSummary } from '../api/api.js'
 import { error } from '../utils/log.js'
 
 export default function fetchSummary() {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(requestSummary())
     return getSummary()
-      .then(json => {
-        return hasHttpError(json).then(hasError => {
+      .then((json) => {
+        return hasHttpError(json).then((hasError) => {
           if (hasError) {
             dispatch(receiveError(json))
             throw new Error(json && `${json.status}: ${json.statusText}`)
@@ -18,7 +18,7 @@ export default function fetchSummary() {
           return dispatch(receiveSummary(json))
         })
       })
-      .catch(err => {
+      .catch((err) => {
         error(err)
       })
   }

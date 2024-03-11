@@ -8,7 +8,7 @@ export function mapStateToProps(state) {
   const { uploading, file, errors } = state.app.upload || {
     uploading: false,
     file: null,
-    errors: []
+    errors: [],
   }
 
   const filingPeriod = state.app.filingPeriod || null
@@ -16,20 +16,21 @@ export function mapStateToProps(state) {
     transmittalSheetErrors: [],
     larErrors: [],
   }
-  const errorCount = parseErrors.transmittalSheetErrors.length + parseErrors.larErrors.length
+  const errorCount =
+    parseErrors.transmittalSheetErrors.length + parseErrors.larErrors.length
 
   return {
     uploading,
     file,
     filingPeriod,
     errors,
-    parseErrors: {...parseErrors, errorCount}
+    parseErrors: { ...parseErrors, errorCount },
   }
 }
 
 function setAndParseFile(file) {
   return (dispatch, getState) => {
-    const handleErrors = fileErrors => {
+    const handleErrors = (fileErrors) => {
       // Save client-side validation errors, whose presence will halt backend processing
       dispatch(selectFile(file, fileErrors))
 
@@ -48,15 +49,14 @@ export function mapDispatchToProps(dispatch) {
     setFile: (acceptedFiles, rejectedFiles) => {
       if (!acceptedFiles || !rejectedFiles) return
       let file = acceptedFiles[0] || rejectedFiles[0]
-      if(!file) return
+      if (!file) return
       dispatch(setAndParseFile(file))
-    }
+    },
   }
 }
 
-
 const UploadButton = (props) => {
-  const text = props.text || 'Upload file' 
+  const text = props.text || 'Upload file'
 
   const handleSelection = (event) => {
     if (!event || !event.target.files) return
@@ -77,6 +77,8 @@ const UploadButton = (props) => {
   )
 }
 
-
-export const ConnectedUploadButton = connect(mapStateToProps, mapDispatchToProps)(UploadButton)
+export const ConnectedUploadButton = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(UploadButton)
 export default connect(mapStateToProps, mapDispatchToProps)(Upload)

@@ -11,14 +11,14 @@ const localSet = jest.fn()
 
 window.localStorage = {
   getItem: localGet,
-  setItem: localSet
+  setItem: localSet,
 }
 
 describe('ValidationProgress', () => {
   const progress = TestUtils.renderIntoDocument(
     <Wrapper>
-      <ValidationProgress code={9} lei="argle" />
-    </Wrapper>
+      <ValidationProgress code={9} lei='argle' />
+    </Wrapper>,
   )
   const progressNode = ReactDOM.findDOMNode(progress)
 
@@ -28,35 +28,35 @@ describe('ValidationProgress', () => {
 
   it('renders the correct amount of children', () => {
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(progress, 'span').length
+      TestUtils.scryRenderedDOMComponentsWithTag(progress, 'span').length,
     ).toEqual(1)
   })
 
   it('renders a complete class when code is appropriate', () => {
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(progress, 'complete').length
+      TestUtils.scryRenderedDOMComponentsWithClass(progress, 'complete').length,
     ).toEqual(1)
   })
 
   it('renders a pulsing class when code is appropriate', () => {
     const progress = TestUtils.renderIntoDocument(
       <Wrapper>
-        <ValidationProgress code={7} lei="argle" />
-      </Wrapper>
+        <ValidationProgress code={7} lei='argle' />
+      </Wrapper>,
     )
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(progress, 'pulsing').length
+      TestUtils.scryRenderedDOMComponentsWithClass(progress, 'pulsing').length,
     ).toEqual(1)
   })
 
   it('renders an error class', () => {
     const progress = TestUtils.renderIntoDocument(
       <Wrapper>
-        <ValidationProgress code={5} lei="argle" />
-      </Wrapper>
+        <ValidationProgress code={5} lei='argle' />
+      </Wrapper>,
     )
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(progress, 'error').length
+      TestUtils.scryRenderedDOMComponentsWithClass(progress, 'error').length,
     ).toEqual(2)
   })
 
@@ -64,7 +64,7 @@ describe('ValidationProgress', () => {
     const progress = TestUtils.renderIntoDocument(
       <Wrapper>
         <ValidationProgress code={5} />
-      </Wrapper>
+      </Wrapper>,
     )
     expect(progress.props.children.key).toBe(null)
   })
@@ -174,7 +174,7 @@ describe('ValidationProgress', () => {
 
     window.localStorage = {
       getItem: localGet,
-      setItem: localSet
+      setItem: localSet,
     }
 
     let progress = new ValidationProgress({ errorUpload: 1 })
@@ -225,25 +225,25 @@ describe('ValidationProgress', () => {
     progress = new ValidationProgress({
       uploadError: '34',
       file: { size: 123 },
-      lei: 'argle'
+      lei: 'argle',
     })
   })
 
   it('sets the right scaling factor', () => {
     let progress = new ValidationProgress({
-      lei: 'argle'
+      lei: 'argle',
     })
     expect(progress.SCALING_FACTOR).toBe(1)
 
     progress = new ValidationProgress({
       file: { size: 10 },
-      lei: 'argle'
+      lei: 'argle',
     })
     expect(progress.SCALING_FACTOR).toBe(1)
 
     progress = new ValidationProgress({
       file: { size: 1e8 },
-      lei: 'argle'
+      lei: 'argle',
     })
     expect(progress.SCALING_FACTOR).toBe(5)
   })

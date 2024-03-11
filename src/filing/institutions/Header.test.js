@@ -16,17 +16,17 @@ describe('InstitutionsHeader', () => {
     afterFilingPeriod.mockImplementation(() => false)
     const header = TestUtils.renderIntoDocument(
       <Wrapper>
-        <InstitutionsHeader filingPeriod="2017" />
-      </Wrapper>
+        <InstitutionsHeader filingPeriod='2017' />
+      </Wrapper>,
     )
     const headerNode = ReactDOM.findDOMNode(header)
 
     expect(headerNode).toBeDefined()
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(header, 'h2').length
+      TestUtils.scryRenderedDOMComponentsWithTag(header, 'h2').length,
     ).toBe(1)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(header, 'h2')[0].textContent
+      TestUtils.scryRenderedDOMComponentsWithTag(header, 'h2')[0].textContent,
     ).toEqual('2017 filing period')
   })
 
@@ -34,7 +34,7 @@ describe('InstitutionsHeader', () => {
     const header = TestUtils.renderIntoDocument(
       <Wrapper>
         <InstitutionsHeader />
-      </Wrapper>
+      </Wrapper>,
     )
     const headerNode = ReactDOM.findDOMNode(header)
 
@@ -45,16 +45,16 @@ describe('InstitutionsHeader', () => {
     beforeFilingPeriod.mockImplementation(() => true)
     const header = TestUtils.renderIntoDocument(
       <Wrapper>
-        <InstitutionsHeader filingPeriod="2017" />
-      </Wrapper>
+        <InstitutionsHeader filingPeriod='2017' />
+      </Wrapper>,
     )
     const headerNode = ReactDOM.findDOMNode(header)
 
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(header, 'h3').length
+      TestUtils.scryRenderedDOMComponentsWithTag(header, 'h3').length,
     ).toBe(1)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(header, 'h3')[0].textContent
+      TestUtils.scryRenderedDOMComponentsWithTag(header, 'h3')[0].textContent,
     ).toEqual('The 2017 filing period is not yet open.')
   })
 
@@ -63,16 +63,16 @@ describe('InstitutionsHeader', () => {
     afterFilingPeriod.mockImplementation(() => true)
     const header = TestUtils.renderIntoDocument(
       <Wrapper>
-        <InstitutionsHeader filingPeriod="2017" />
-      </Wrapper>
+        <InstitutionsHeader filingPeriod='2017' />
+      </Wrapper>,
     )
     const headerNode = ReactDOM.findDOMNode(header)
 
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(header, 'h3').length
+      TestUtils.scryRenderedDOMComponentsWithTag(header, 'h3').length,
     ).toBe(1)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(header, 'h3')[0].textContent
+      TestUtils.scryRenderedDOMComponentsWithTag(header, 'h3')[0].textContent,
     ).toEqual('The 2017 filing period is closed.')
   })
 
@@ -80,16 +80,16 @@ describe('InstitutionsHeader', () => {
     isBeta.mockImplementation(() => true)
     const header = TestUtils.renderIntoDocument(
       <Wrapper>
-        <InstitutionsHeader filingPeriod="2017" />
-      </Wrapper>
+        <InstitutionsHeader filingPeriod='2017' />
+      </Wrapper>,
     )
     const headerNode = ReactDOM.findDOMNode(header)
 
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(header, 'h3').length
+      TestUtils.scryRenderedDOMComponentsWithTag(header, 'h3').length,
     ).toBe(1)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(header, 'h3')[0].textContent
+      TestUtils.scryRenderedDOMComponentsWithTag(header, 'h3')[0].textContent,
     ).toEqual('HMDA Filing Beta')
   })
 })

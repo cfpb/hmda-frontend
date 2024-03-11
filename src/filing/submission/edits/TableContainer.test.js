@@ -7,7 +7,7 @@ import TestUtils from 'react-dom/test-utils'
 import TableComponent from './Table.jsx'
 import Table, {
   EditsTableContainer,
-  mapStateToProps
+  mapStateToProps,
 } from './TableContainer.jsx'
 import Wrapper from '../../../test-resources/Wrapper.js'
 
@@ -19,16 +19,16 @@ const defaultState = {
   app: {
     edits: {
       rows: {
-        a: { 123: 456 }
-      }
+        a: { 123: 456 },
+      },
     },
     pagination: {
-      a: { b: 'c' }
+      a: { b: 'c' },
     },
     paginationFade: {
-      a: 0
-    }
-  }
+      a: 0,
+    },
+  },
 }
 
 describe('Table', () => {
@@ -36,7 +36,7 @@ describe('Table', () => {
     const wrappedConnected = TestUtils.renderIntoDocument(
       <Wrapper store={defaultState}>
         <Table edit={{ edit: 'a' }} />
-      </Wrapper>
+      </Wrapper>,
     )
 
     expect(console.error).not.toBeCalled()
@@ -51,7 +51,7 @@ describe('Table', () => {
           paginationFade={0}
           edit={{ edit: 'a' }}
         />
-      </Wrapper>
+      </Wrapper>,
     )
     expect(console.error).not.toBeCalled()
   })
@@ -62,7 +62,7 @@ describe('Table', () => {
     expect(Object.keys(mapped)).toEqual([
       'rowObj',
       'pagination',
-      'paginationFade'
+      'paginationFade',
     ])
     expect(mapped.rowObj).toEqual({ 123: 456 })
     expect(mapped.pagination).toEqual({ b: 'c' })
@@ -79,7 +79,7 @@ describe('Table', () => {
       edit: { edit: 'a' },
       rowObj: {},
       pagination: {},
-      paginationFade: 0
+      paginationFade: 0,
     })
 
     expect(table.shouldComponentUpdate({ paginationFade: 1 })).toBe(true)
@@ -89,7 +89,7 @@ describe('Table', () => {
       edit: { edit: 'a' },
       rowObj: {},
       pagination: {},
-      paginationFade: 1
+      paginationFade: 1,
     })
 
     expect(t2.shouldComponentUpdate({ paginationFade: 1 })).toBe(false)

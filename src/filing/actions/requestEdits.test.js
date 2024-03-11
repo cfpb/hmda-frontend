@@ -6,7 +6,7 @@ import requestEdits from './requestEdits.js'
 describe('requestEdits', () => {
   it('creates an action to signal a request for edits', () => {
     expect(requestEdits()).toEqual({
-      type: types.REQUEST_EDITS
+      type: types.REQUEST_EDITS,
     })
   })
 })

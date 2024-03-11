@@ -6,7 +6,7 @@ import TestUtils from 'react-dom/test-utils'
 import CSV, {
   CSVContainer,
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 } from './CSVContainer.jsx'
 import Wrapper from '../../test-resources/Wrapper.js'
 
@@ -15,12 +15,12 @@ console.error = jest.fn()
 //ParseErrorsComponent.mockImplementation(() => null)
 //fetchParseErrors.mockImplementation(() => parseFetch())
 const submission = {
-  id: { lei: '123', period: '2017', sequenceNumber: 2 }
+  id: { lei: '123', period: '2017', sequenceNumber: 2 },
 }
 const defaultState = {
   app: {
-    submission
-  }
+    submission,
+  },
 }
 
 describe('CSVContainer', () => {
@@ -28,7 +28,7 @@ describe('CSVContainer', () => {
     const wrappedConnected = TestUtils.renderIntoDocument(
       <Wrapper store={defaultState}>
         <CSV />
-      </Wrapper>
+      </Wrapper>,
     )
 
     expect(console.error).not.toBeCalled()
@@ -38,7 +38,7 @@ describe('CSVContainer', () => {
     const wrappedContainer = TestUtils.renderIntoDocument(
       <Wrapper>
         <CSVContainer submission={submission} onDownloadClick={jest.fn()} />
-      </Wrapper>
+      </Wrapper>,
     )
     expect(console.error).not.toBeCalled()
   })
@@ -50,7 +50,7 @@ describe('CSVContainer', () => {
     expect(mapped.submission).toBe(submission)
 
     const mappedWithPassedSubmission = mapStateToProps(defaultState, {
-      submission: 'woah'
+      submission: 'woah',
     })
 
     expect(mappedWithPassedSubmission.submission).toBe('woah')
@@ -62,7 +62,7 @@ describe('CSVContainer', () => {
     expect(Object.keys(mapped)).toEqual(['onDownloadClick'])
   })
 
-  it('wraps the correct functions in onDownloadClick', done => {
+  it('wraps the correct functions in onDownloadClick', (done) => {
     const dispatch = jest.fn(() => Promise.resolve())
     const prev = jest.fn()
     const setState = jest.fn()

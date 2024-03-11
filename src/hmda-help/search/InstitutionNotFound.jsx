@@ -7,8 +7,8 @@ const InstitutionNotFound = ({ yearList }) => {
 
   return (
     <Alert
-      type="warning"
-      heading="Would you like to add it?"
+      type='warning'
+      heading='Would you like to add it?'
       message="That institution doesn't exist for the following year(s):"
     >
       <>
@@ -24,7 +24,7 @@ const LinkWithState = ({ data, idx }) => (
   <Link
     to={{
       pathname: `/add`,
-      state: { institution: { lei: data.lei, activityYear: data.year } }
+      state: { institution: { lei: data.lei, activityYear: data.year } },
     }}
   >
     <br />

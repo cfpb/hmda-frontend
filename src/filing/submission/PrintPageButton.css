@@ -2,7 +2,9 @@
   position: absolute;
   top: 0px;
   right: 10px;
-  transform: translateY(calc(50% + 15px + .5rem - 2px)); /* transform = half container + half icon + half text - half bottom margin */
+  transform: translateY(
+    calc(50% + 15px + 0.5rem - 2px)
+  ); /* transform = half container + half icon + half text - half bottom margin */
 }
 
 .print-page {
@@ -12,7 +14,7 @@
   font-size: 1.3rem;
   text-align: center;
   padding: 0;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
 }
 
 .print-page .icon {

@@ -37,7 +37,7 @@
 
 .ModifiedLar .card {
   border: 1px solid #ddd;
-  border-radius: .25em;
+  border-radius: 0.25em;
   padding: 0 5% 1em;
   margin: 1em 0;
   max-width: 500px;
@@ -64,5 +64,5 @@
 
 .ModifiedLar .updateSchedule {
   font-style: italic;
-  font-size: .9em;
+  font-size: 0.9em;
 }

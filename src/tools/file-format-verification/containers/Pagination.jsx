@@ -13,7 +13,7 @@ function mapStateToProps(state) {
   const { pagination } = state.app
 
   return {
-    pagination
+    pagination,
   }
 }
 
@@ -29,10 +29,10 @@ function fadeAndSet(dispatch, page) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getPage: page => {
+    getPage: (page) => {
       if (page === undefined) return
       fadeAndSet(dispatch, page)
-    }
+    },
   }
 }
 

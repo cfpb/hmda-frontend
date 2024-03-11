@@ -10,12 +10,12 @@ const PAGINATION_LOWER_LIMIT = 2000
 // https://www.npmjs.com/package/react-paginate
 export const ReportPagination = ({
   currentPage,
-  isBottom,      // Provide extra space above Pagination?
+  isBottom, // Provide extra space above Pagination?
   isPageLoading, // Display loading indicator?
-  isVisible,     // Display Pagination?
+  isVisible, // Display Pagination?
   onPageChange,
   pageCount = 0,
-  displayLabel=null
+  displayLabel = null,
 }) => {
   if (!isVisible) return null
 
@@ -35,13 +35,19 @@ export const ReportPagination = ({
         renderOnZeroPageCount={null}
         forcePage={currentPage}
       />
-      <span className='display-label'>{isPageLoading ? <LoadingIcon /> : displayLabel}</span>
+      <span className='display-label'>
+        {isPageLoading ? <LoadingIcon /> : displayLabel}
+      </span>
     </div>
   )
 }
 
-
-export const usePagination = ({ data, renderFn, itemsPerPage = TABLES_PER_PAGE, formatDisplayLabel = () => null }) => {
+export const usePagination = ({
+  data,
+  renderFn,
+  itemsPerPage = TABLES_PER_PAGE,
+  formatDisplayLabel = () => null,
+}) => {
   const [currentItems, setCurrentItems] = useState(null)
   const [currentPage, setCurrentPage] = useState(0)
   const [isPageLoading, setPageLoading] = useState(true)
@@ -67,7 +73,7 @@ export const usePagination = ({ data, renderFn, itemsPerPage = TABLES_PER_PAGE, 
   // Event handler that will display a loading icon near the PaginationController
   // while the new page items are being rendered.
   const handlePageChange = useCallback(
-    event => {
+    (event) => {
       const newOffset = (event.selected * itemsPerPage) % data.length
       setCurrentPage(parseInt(event.selected))
       setPageLoading(true)
@@ -88,7 +94,7 @@ export const usePagination = ({ data, renderFn, itemsPerPage = TABLES_PER_PAGE, 
       setCurrentItems,
       renderFn,
       itemsPerPage,
-    ]
+    ],
   )
 
   return {

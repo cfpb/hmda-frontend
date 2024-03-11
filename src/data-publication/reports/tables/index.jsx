@@ -49,5 +49,5 @@ export default {
   Aggregate4,
   Aggregate5,
   Aggregate9,
-  AggregateI
+  AggregateI,
 }

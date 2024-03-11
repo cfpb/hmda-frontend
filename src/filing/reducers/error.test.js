@@ -12,7 +12,7 @@ describe('error reducer', () => {
 
   it('should update the error state when error encountered', () => {
     expect(
-      error(defaultError, { type: types.RECEIVE_ERROR, error: 'an error' })
+      error(defaultError, { type: types.RECEIVE_ERROR, error: 'an error' }),
     ).toEqual('an error')
   })
 
@@ -20,8 +20,8 @@ describe('error reducer', () => {
     expect(
       error(defaultError, {
         type: types.RECEIVE_UPLOAD_ERROR,
-        error: 'an error'
-      })
+        error: 'an error',
+      }),
     ).toEqual('an error')
   })
 
@@ -33,7 +33,7 @@ describe('error reducer', () => {
     excludeTypes(
       types.REFRESH_STATE,
       types.RECEIVE_ERROR,
-      types.RECEIVE_UPLOAD_ERROR
-    ).forEach(v => expect(error({}, v)).toEqual({}))
+      types.RECEIVE_UPLOAD_ERROR,
+    ).forEach((v) => expect(error({}, v)).toEqual({}))
   })
 })

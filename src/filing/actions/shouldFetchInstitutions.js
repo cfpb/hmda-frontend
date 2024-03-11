@@ -5,6 +5,6 @@ import { SHOULD_FETCH_INSTITUTIONS } from '../constants/index'
 export function shouldFetchInstitutions(shouldFetch) {
   return {
     type: SHOULD_FETCH_INSTITUTIONS,
-    payload: shouldFetch
+    payload: shouldFetch,
   }
 }

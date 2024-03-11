@@ -5,6 +5,6 @@ export default function verifyQuality(checked, lei) {
     type: types.VERIFY_QUALITY,
     checked: checked,
     isFetching: false,
-    lei
+    lei,
   }
 }

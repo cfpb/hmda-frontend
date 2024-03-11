@@ -135,7 +135,6 @@
   display: inline-block;
 }
 
-
 @media screen and (max-width: 1279px) {
   .nav-primary > li > a {
     margin: 0 0.5rem;

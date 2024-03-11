@@ -1,8 +1,8 @@
 import { getSchema, LAR_SCHEMA, TS_SCHEMA } from '../schema'
 import { isString } from './common'
 
-const PIPE_DELIMITER = "|"
-const RECORD_IDENTIFIER = "Record Identifier"
+const PIPE_DELIMITER = '|'
+const RECORD_IDENTIFIER = 'Record Identifier'
 
 let NEXT_ID = 0
 
@@ -15,17 +15,17 @@ export const addRowID = (row, idx) => ({
 })
 
 // Does this row already exist in the SavedRows?
-export const isEditing = row => row && row.rowId > -1
+export const isEditing = (row) => row && row.rowId > -1
 
 // Is this a Transmittal Sheet row?
-export const isRowTS = row => {
+export const isRowTS = (row) => {
   const isStringMatch = isString(row) && row.match(/^1/)
   const isObjectMatch = row && row[RECORD_IDENTIFIER] === '1'
   return isStringMatch || isObjectMatch
 }
 
 // Is this a Loan/Application Register row?
-export const isRowLAR = row => {
+export const isRowLAR = (row) => {
   const isStringMatch = isString(row) && row.match(/^2/)
   const isObjectMatch = row && row[RECORD_IDENTIFIER] === '2'
   return isStringMatch || isObjectMatch
@@ -33,20 +33,19 @@ export const isRowLAR = row => {
 
 /**
  * Convert a row object into a pipe-delimited string
- * 
- * @param {Object} row 
+ *
+ * @param {Object} row
  * @returns String
  */
-export const stringifyRow = row =>
+export const stringifyRow = (row) =>
   getSchema(row)
-    .map(column => row && row[column.fieldName])
+    .map((column) => row && row[column.fieldName])
     .join(PIPE_DELIMITER)
-
 
 /**
  * Convert a row string into a row object
- * 
- * @param {Object} row 
+ *
+ * @param {Object} row
  * @returns Object
  */
 export const parseRow = (row = {}) => {

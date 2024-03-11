@@ -10,7 +10,9 @@
   opacity: 1;
   visibility: visible;
   text-decoration: none;
-  transition: opacity 0.3s, visibility 0.3s;
+  transition:
+    opacity 0.3s,
+    visibility 0.3s;
 }
 .NavButton.button {
   margin: 0;

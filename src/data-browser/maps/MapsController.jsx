@@ -7,12 +7,12 @@ import {
 } from './selectUtils.jsx'
 
 const menuStyle = {
-  menu: provided => ({
+  menu: (provided) => ({
     ...provided,
     zIndex: 3,
     fontSize: '1.2em',
   }),
-  control: p => ({
+  control: (p) => ({
     ...p,
     fontSize: '1.2em',
   }),
@@ -39,7 +39,7 @@ export const MapsController = ({
       simpleValue: true,
       styles: menuStyle,
       filterOption: searchFilter,
-      formatGroupLabel: data => formatGroupLabel(data),
+      formatGroupLabel: (data) => formatGroupLabel(data),
     }
 
     return (
@@ -53,7 +53,7 @@ export const MapsController = ({
               placeholder='Select a level (type to search)'
               value={selectedGeography}
               options={geographies}
-              onChange={g => handleGeographyChange(g.label)}
+              onChange={(g) => handleGeographyChange(g.label)}
               autoFocus={false}
               isClearable={false}
               openOnFocus={true}
@@ -68,8 +68,8 @@ export const MapsController = ({
               id='year-select'
               placeholder='Select a year (type to search)'
               value={{ label: year, value: year }}
-              options={years.map(yr => ({ label: yr, value: yr }))}
-              onChange={o => handleYearChange(o.label)}
+              options={years.map((yr) => ({ label: yr, value: yr }))}
+              onChange={(o) => handleYearChange(o.label)}
               autoFocus={false}
               isClearable={false}
               openOnFocus={true}
@@ -123,9 +123,7 @@ export const MapsController = ({
 
   return (
     <div className={'maps-control-wrapper no-print'}>
-      <div className='maps-control-box'>
-        {filterSelectors()}
-      </div>
+      <div className='maps-control-box'>{filterSelectors()}</div>
     </div>
   )
 }

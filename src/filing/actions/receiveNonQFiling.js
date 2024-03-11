@@ -3,8 +3,8 @@ import receiveFiling from './receiveFiling.js'
 
 function receiveNonQFiling(data) {
   const institution = data.institution
-  
-  return dispatch => {
+
+  return (dispatch) => {
     dispatch(receiveFiling({ filing: { lei: institution.lei } }))
     return dispatch(receiveLatestSubmission({ id: { lei: institution.lei } }))
   }

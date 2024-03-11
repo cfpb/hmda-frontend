@@ -7,13 +7,13 @@ import ReactDOM from 'react-dom'
 import TestUtils from 'react-dom/test-utils'
 
 const submission = {
-  id: { lei: '123', period: '2017', sequenceNumber: 2 }
+  id: { lei: '123', period: '2017', sequenceNumber: 2 },
 }
 describe('CSVDownload', () => {
   const csvDownload = TestUtils.renderIntoDocument(
     <Wrapper>
       <CSVDownload onDownloadClick={jest.fn()} submission={submission} />
-    </Wrapper>
+    </Wrapper>,
   )
   const csvDownloadNode = ReactDOM.findDOMNode(csvDownload)
 
@@ -33,7 +33,7 @@ describe('CSVDownload', () => {
     const rendered = CSVDownload({
       submission,
       onDownloadClick: odc,
-      isFetching: true
+      isFetching: true,
     })
     expect(odc).toBeCalled()
     expect(rendered.props.children[1].type.name).toBe('LoadingIcon')
@@ -47,7 +47,7 @@ describe('CSVDownload', () => {
     const rendered = CSVDownload({
       submission,
       onDownloadClick: odc,
-      text: 'yo'
+      text: 'yo',
     })
     expect(odc).toBeCalled()
     expect(rendered.props.children[0].props.children).toBe('yo')

@@ -8,12 +8,14 @@ const DefaultOverview =
 
 export const GraphsHeader = ({ overview, toolAnnouncement }) => (
   <header className='heading'>
-    <h1>
-      HMDA Quarterly Graphs
-    </h1>
+    <h1>HMDA Quarterly Graphs</h1>
     <p className='lead'>{overview || DefaultOverview}</p>
     {toolAnnouncement && (
-      <Alert heading={toolAnnouncement.heading} type={toolAnnouncement.type} style={{ maxWidth: "100%"}}>
+      <Alert
+        heading={toolAnnouncement.heading}
+        type={toolAnnouncement.type}
+        style={{ maxWidth: '100%' }}
+      >
         <p>{toolAnnouncement.message}</p>
       </Alert>
     )}

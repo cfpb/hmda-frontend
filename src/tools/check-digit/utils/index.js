@@ -1,4 +1,4 @@
-export const isUliValid = uli => {
+export const isUliValid = (uli) => {
   let errors = []
 
   if (uli.length === 0) {
@@ -23,7 +23,7 @@ export const isUliValid = uli => {
         uli.length +
         ' ' +
         characters +
-        '.'
+        '.',
     )
   }
 
@@ -36,26 +36,26 @@ export const isUliValid = uli => {
     errors.push(
       'A valid LEI and Loan/Application ID has a maximum of 45 characters. You have entered ' +
         uli.length +
-        ' characters.'
+        ' characters.',
     )
   }
 
   return errors
 }
 
-export const isLoanIdValid = loanId => {
+export const isLoanIdValid = (loanId) => {
   let errors = []
 
   if (loanId.length === 0) {
     errors.push(
-      'Please enter a valid LEI and Loan/Application ID to generate the check digit.'
+      'Please enter a valid LEI and Loan/Application ID to generate the check digit.',
     )
   }
 
   // a LEI and Loan/Application ID is alphanumeric
   if (!!loanId.match(/[^a-zA-Z0-9]/)) {
     errors.push(
-      'A valid LEI and Loan/Application ID can only contain alphanumeric characters.'
+      'A valid LEI and Loan/Application ID can only contain alphanumeric characters.',
     )
   }
 
@@ -71,7 +71,7 @@ export const isLoanIdValid = loanId => {
         loanId.length +
         ' ' +
         characters +
-        '.'
+        '.',
     )
   }
 
@@ -85,7 +85,7 @@ export const isLoanIdValid = loanId => {
     errors.push(
       'A valid LEI and Loan/Application ID has a maximum of 43 characters. You have entered ' +
         loanId.length +
-        ' characters.'
+        ' characters.',
     )
   }
 

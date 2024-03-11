@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from "react"
-import PropTypes from "prop-types"
-import { isBeta } from "../../../common/Beta.jsx"
-import DownloadIRS from "./DownloadIRS.jsx"
-import ExternalLink from "../../../common/ExternalLink"
+import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
+import { isBeta } from '../../../common/Beta.jsx'
+import DownloadIRS from './DownloadIRS.jsx'
+import ExternalLink from '../../../common/ExternalLink'
 
-import "./IRSReport.css"
+import './IRSReport.css'
 
 // IRS reports are NOT generated for quarterly filings
 const IRSReport = ({ filingPeriod, lei }) => {
   if (isBeta()) return null
-  const [quarter, setQuarter] = useState("")
-  const quarterlyInURL = ["Q1", "Q2", "Q3"]
+  const [quarter, setQuarter] = useState('')
+  const quarterlyInURL = ['Q1', 'Q2', 'Q3']
 
   useEffect(() => {
-    if (filingPeriod.split("-")) {
-      setQuarter(filingPeriod.split("-")[1])
+    if (filingPeriod.split('-')) {
+      setQuarter(filingPeriod.split('-')[1])
     }
   }, [filingPeriod])
 
   let noQuarterlyIRSReportText =
-    "No IRS will be made available for quarterly HMDA submissions."
+    'No IRS will be made available for quarterly HMDA submissions.'
 
   return (
     <section className='IRSReport'>
@@ -39,10 +39,10 @@ const IRSReport = ({ filingPeriod, lei }) => {
             <p className='text-small'>
               Loan amounts in the IRS are binned and disclosed in accordance
               with the 2018 HMDA data publication policy guidance. An overview
-              of the policy guidance can be found in this{" "}
+              of the policy guidance can be found in this{' '}
               <ExternalLink
                 url={
-                  "https://www.consumerfinance.gov/documents/7052/HMDA_Data_Disclosure_Policy_Guidance.Executive_Summary.FINAL.12212018.pdf"
+                  'https://www.consumerfinance.gov/documents/7052/HMDA_Data_Disclosure_Policy_Guidance.Executive_Summary.FINAL.12212018.pdf'
                 }
                 text='executive summary'
               />

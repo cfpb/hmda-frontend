@@ -10,39 +10,39 @@ const renderData = (report, countOrValue, ref) => {
   )
 }
 
-const renderTHead = countOrValue => {
+const renderTHead = (countOrValue) => {
   const symbol = countOrValue === 'count' ? '#' : "$000's"
   return (
     <thead>
       <tr>
-        <th width="20%" rowSpan={2}>
+        <th width='20%' rowSpan={2}>
           PRICING INFORMATION
         </th>
-        <th colSpan={2} width="13.333%">
+        <th colSpan={2} width='13.333%'>
           Fannie Mae
         </th>
-        <th colSpan={2} width="13.333%">
+        <th colSpan={2} width='13.333%'>
           Ginnie Mae
         </th>
-        <th colSpan={2} width="13.333%">
+        <th colSpan={2} width='13.333%'>
           Freddie Mac
         </th>
-        <th colSpan={2} width="13.333%">
+        <th colSpan={2} width='13.333%'>
           Farmer Mac
         </th>
-        <th colSpan={2} width="13.333%">
+        <th colSpan={2} width='13.333%'>
           Private Securitization
         </th>
-        <th colSpan={2} width="13.333%">
+        <th colSpan={2} width='13.333%'>
           Commercial Bank, Savings Bank, or Saving Assoc
         </th>
-        <th colSpan={2} width="13.333%">
+        <th colSpan={2} width='13.333%'>
           Insurance Co, Credit Union, Mortgage Bk, or Finance Co
         </th>
-        <th colSpan={2} width="13.333%">
+        <th colSpan={2} width='13.333%'>
           Affiliate Institution
         </th>
-        <th colSpan={2} width="13.333%">
+        <th colSpan={2} width='13.333%'>
           Other Purchaser
         </th>
       </tr>
@@ -73,14 +73,14 @@ const renderTHead = countOrValue => {
 const renderRows = (report, countOrValue) => {
   let toRender = []
 
-  Object.keys(report).forEach(key => {
+  Object.keys(report).forEach((key) => {
     if (key === 'pricingInformation' || key === 'points' || key === 'hoepa') {
       const style =
         key === 'pricingInformation'
           ? {
               textTransform: 'uppercase',
               fontWeight: 'bold',
-              borderTopWidth: '2px'
+              borderTopWidth: '2px',
             }
           : {}
 
@@ -91,13 +91,13 @@ const renderRows = (report, countOrValue) => {
               style={{
                 borderTopWidth: '2px',
                 fontWeight: 'bold',
-                textTransform: 'uppercase'
+                textTransform: 'uppercase',
               }}
             >
               {report[key].pricing}
             </th>
             {renderDataDetails(report[key].purchasers, key, countOrValue)}
-          </tr>
+          </tr>,
         )
       } else {
         if (key === 'points')
@@ -109,20 +109,20 @@ const renderRows = (report, countOrValue) => {
                   borderTopWidth: '2px',
                   fontWeight: 'bold',
                   textTransform: 'uppercase',
-                  backgroundColor: `#f1f1f1`
+                  backgroundColor: `#f1f1f1`,
                 }}
               >
                 PERCENTAGE POINTS ABOVE AVERAGE PRIME OFFER RATE: ONLY INCLUDES
                 LOANS WITH APR ABOVE THE THRESHOLD
               </th>
-            </tr>
+            </tr>,
           )
         report[key].forEach((dataType, index) => {
           toRender.push(
             <tr key={key + index}>
               <th style={style}>{dataType.pricing}</th>
               {renderDataDetails(dataType.purchasers, key, countOrValue)}
-            </tr>
+            </tr>,
           )
         })
       }
@@ -149,22 +149,22 @@ const renderDataDetails = (purchasers, key, countOrValue) => {
       </td>,
       <td style={style} key={'junior' + key + countOrValue + index}>
         {purchaser[juniorLienProperty]}
-      </td>
+      </td>,
     ]
   })
 }
 
-const ThreeTwo = props => {
+const ThreeTwo = (props) => {
   if (!props.report) return null
 
   return [
     renderData(props.report, 'count', props.tableOneRef),
-    renderData(props.report, 'value', props.tableTwoRef)
+    renderData(props.report, 'value', props.tableTwoRef),
   ]
 }
 
 ThreeTwo.propTypes = {
-  report: PropTypes.object
+  report: PropTypes.object,
 }
 
 export default ThreeTwo
