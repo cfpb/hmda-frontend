@@ -1,10 +1,11 @@
 {
+  "license": "CC0-1.0",
   "dependencies": {
     "@cypress/skip-test": "2.6.1",
-    "@testing-library/cypress": "9.0.0",
-    "cypress": "12.3.0",
+    "@testing-library/cypress": "10.0.1",
+    "cypress":"13.6.4",    
     "cypress-file-upload": "5.0.8",
-    "cypress-keycloak": "2.0.0"
+    "cypress-keycloak": "2.0.1"
   },
   "browser": {
     "../../../src/**/*": "../src",

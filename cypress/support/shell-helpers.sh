@@ -26,19 +26,32 @@ post_failure()
 	cat $2
 }
 
-cleanup()
-{
-	rm output_load.txt
-	rm output_docusaurus_e2e.txt
-	rm output_e2e.txt
-}
+ cleanup()
+ {
+
+ 	if test -f output_load.txt; then
+ 		rm output_load.txt
+	fi
+
+ 	if test -f output_docusaurus_e2e.txt; then
+ 		rm output_docusaurus_e2e.txt
+	fi
+
+ 	if test -f output_e2e.txt; then
+ 		rm output_e2e.txt
+	fi
+
+ }
 
 if [[ "$CYPRESS_HOST" == *"ffiec.cfpb"* ]]; then
   environment="PROD"
 elif [[ "$CYPRESS_HOST" == *"ffiec.beta"* ]]; then
   environment="BETA"
-elif [[ "$CYPRESS_HOST" == *"hmda4.demo"* ]]; then
+elif [[ "$CYPRESS_HOST" == *"hmdadev"* ]]; then
   environment="DEV"
+else
+  environment="DEV-BETA"
+fi
 else
   environment="DEV-BETA"
 fi
