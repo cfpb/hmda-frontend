@@ -38,8 +38,8 @@ const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
   ]
 
   useEffect(() => {
-    import('./uswds/js/uswds.min.js')
     import('./uswds/js/uswds-init.min.js')
+    import('./uswds/js/uswds.min.js')
   }, [])
 
   return (
