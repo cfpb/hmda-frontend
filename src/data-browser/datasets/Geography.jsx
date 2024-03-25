@@ -576,6 +576,7 @@ class Geography extends Component {
           downloadCallback={
             checksExist ? this.requestSubsetCSV : this.requestItemCSV
           }
+          category={this.state.category}
           downloadUrl={fileDownloadUrl}
           showSummaryButton={!details.aggregations}
           summaryEnabled={enabled && checksExist}
