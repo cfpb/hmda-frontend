@@ -2,31 +2,22 @@
   "name": "prod",
   "announcement": [
     {
-      "heading": "2023 Q3 Graphs Released",
-      "message": "HMDA Quarterly Graphs have been updated to include data from the 2023-Q3 filing period and can now be filtered by loan purpose. View Quarterly Graphs",
+      "heading": "2023 Modified LAR Data Release",
+      "message": "On March 25, 2024, the 2023 Modified LAR was released. A combined file containing all LAR records in a single file is also available. These files can be accessed via the ",
       "type": "info",
       "link": {
-        "url": "https://ffiec.cfpb.gov/data-browser/graphs/quarterly/",
-        "text": "here."
+        "url": "https://ffiec.cfpb.gov/data-publication/modified-lar/2023",
+        "text": "Modified LAR page."
       }
     },
     {
       "heading": "Introducing Multifactor Authentication (MFA) via Login.gov",
       "message": "When logging into the HMDA Platform, users will now see an option to login with Login.gov. Select 'Login.gov' and follow the prompts to enable MFA on your account. Users have the option to continue signing in using the existing process.",
       "type": "info"
-    },
-    {
-      "heading": "Online LAR Formatting Tool",
-      "message": "The Online LAR Formatting tool has been released! Financial institutions can now create an electronic file online to submit to the HMDA Platform. Check out the ",
-      "type": "info",
-      "link": {
-        "url": "https://ffiec.cfpb.gov/tools/online-lar-formatting",
-        "text": "new LAR Formatting tool."
-      }
     }
   ],
   "publicationReleaseYear": "2022",
-  "mlarReleaseYear": "2022",
+  "mlarReleaseYear": "2023",
   "maintenanceMode": false,
   "filingAnnouncement": null,
   "ffvtAnnouncement": null,
