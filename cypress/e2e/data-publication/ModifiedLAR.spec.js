@@ -3,11 +3,36 @@ import { isBeta } from '../../support/helpers'
 const { HOST } = Cypress.env()
 
 const testCases = [
-  { year: 2022, name: 'cypress bank, ssb', institution: '549300I4IUWMEMGLST06' },
-  { year: 2021, name: 'cypress bank, ssb', institution: '549300I4IUWMEMGLST06' },
-  { year: 2020, name: 'cypress bank, ssb', institution: '549300I4IUWMEMGLST06' },
-  { year: 2019, name: 'cypress bank, ssb', institution: '549300I4IUWMEMGLST06' },
-  { year: 2018, name: 'cypress bank, state savings bank', institution: '549300I4IUWMEMGLST06' },
+  {
+    year: 2023,
+    name: 'cypress bank, ssb',
+    institution: '549300I4IUWMEMGLST06',
+  },
+  {
+    year: 2022,
+    name: 'cypress bank, ssb',
+    institution: '549300I4IUWMEMGLST06',
+  },
+  {
+    year: 2021,
+    name: 'cypress bank, ssb',
+    institution: '549300I4IUWMEMGLST06',
+  },
+  {
+    year: 2020,
+    name: 'cypress bank, ssb',
+    institution: '549300I4IUWMEMGLST06',
+  },
+  {
+    year: 2019,
+    name: 'cypress bank, ssb',
+    institution: '549300I4IUWMEMGLST06',
+  },
+  {
+    year: 2018,
+    name: 'cypress bank, state savings bank',
+    institution: '549300I4IUWMEMGLST06',
+  },
   { year: 2017, name: 'cypress bank, ssb', institution: '729178' },
 ]
 
