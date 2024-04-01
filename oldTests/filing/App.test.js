@@ -7,10 +7,10 @@ jest.mock('detect-browser', () => {
 import React from 'react'
 import ReactDOM from 'react-dom'
 import TestUtils from 'react-dom/test-utils'
-import ConnectedAppContainer, { AppContainer, mapStateToProps } from './App.jsx'
+import ConnectedAppContainer, { AppContainer, mapStateToProps } from '../../src/filing/App.jsx'
 import * as AccessToken from './api/AccessToken.js'
 import * as redirect from './utils/redirect.js'
-import * as log from './utils/log'
+import * as log from '../../src/filing/utils/log'
 import Wrapper from '../test-resources/Wrapper.js'
 import browser from 'detect-browser'
 
