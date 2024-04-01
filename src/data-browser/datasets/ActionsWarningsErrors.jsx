@@ -2,7 +2,7 @@ import React from 'react'
 import Error from '../../common/Error.jsx'
 import LoadingButton from './LoadingButton.jsx'
 import Alert from '../../common/Alert.jsx'
-import { LargeFileWarning } from '../../common/LargeFileWarning.jsx'
+import LargeFileWarning from '../../common/LargeFileWarning'
 
 export const ActionsWarningsErrors = ({
   downloadCallback,
@@ -15,6 +15,7 @@ export const ActionsWarningsErrors = ({
   isLargeFile,
   error,
   longRunningQuery,
+  category,
 }) => {
   return (
     <>
@@ -35,7 +36,7 @@ export const ActionsWarningsErrors = ({
           View Summary Table
         </LoadingButton>
       )}
-      {isLargeFile ? <LargeFileWarning /> : null}
+      {isLargeFile ? <LargeFileWarning category={category} /> : null}
       {!error && longRunningQuery ? <LongRunningMessage /> : null}
       {error ? <Error error={error} /> : null}
     </>
