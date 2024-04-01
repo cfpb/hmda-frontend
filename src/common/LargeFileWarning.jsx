@@ -20,7 +20,7 @@ const LargeFileWarning = ({ category }) => {
   )
 
   return (
-    <div className='LargeFileWarning'>
+    <div className='LargeFileWarning' style={{ paddingBottom: '20px' }}>
       {isNationwide ? nationWideWarning : standardWarning}
     </div>
   )
