@@ -2746,22 +2746,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-table@npm:8.10.7":
-  version: 8.10.7
-  resolution: "@tanstack/react-table@npm:8.10.7"
+"@tanstack/react-table@npm:8.11.0":
+  version: 8.11.0
+  resolution: "@tanstack/react-table@npm:8.11.0"
   dependencies:
-    "@tanstack/table-core": "npm:8.10.7"
+    "@tanstack/table-core": "npm:8.11.0"
   peerDependencies:
     react: ">=16"
     react-dom: ">=16"
-  checksum: 10c0/2ddf6f90b06e7af069f16dbe5d0dc8c8afab3de88c25e33f6c297beaf2507c2e46fee1f746f7977d48bad2114909bba0016026fc2b6a85bcaee472cdafdc7ffd
+  checksum: 10c0/14a25969b499634e90d19120aa02f9b396d83d38e1a6064a97b94e6abf274709ef84ded5bafadc4d979a14564c74489763be39f68d05a0497c28287bae3c7669
   languageName: node
   linkType: hard
 
-"@tanstack/table-core@npm:8.10.7":
-  version: 8.10.7
-  resolution: "@tanstack/table-core@npm:8.10.7"
-  checksum: 10c0/3f671484319094443bb2db86356f408d4246e22bebd7ad444edc919fef131899384c3a27261c5ee01fb18887bc9157c5a0d9db3e32aae940ce5416f6e58b038b
+"@tanstack/table-core@npm:8.11.0":
+  version: 8.11.0
+  resolution: "@tanstack/table-core@npm:8.11.0"
+  checksum: 10c0/05cb965937675c8e110fb5b4c53950d2c2f76458d37a4e2add3e535220f78e4b805dcf6e262046aaa2ec36301a95d4427bf5e65c0620711613514c8955d9f407
   languageName: node
   linkType: hard
 
@@ -3053,15 +3053,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uswds/uswds@npm:3.6.1":
-  version: 3.6.1
-  resolution: "@uswds/uswds@npm:3.6.1"
+"@uswds/uswds@npm:3.7.1":
+  version: 3.7.1
+  resolution: "@uswds/uswds@npm:3.7.1"
   dependencies:
-    classlist-polyfill: "npm:1.0.3"
+    classlist-polyfill: "npm:1.2.0"
     object-assign: "npm:4.1.1"
     receptor: "npm:1.0.0"
     resolve-id-refs: "npm:0.1.0"
-  checksum: 10c0/626e3ea7d7fd104df346652e825faff8d8a92abc1fd052433268114527f1ceb710d3bfcb6527baa7a967704b8d7edc56043908515439524e3032ed7807da8fee
+  checksum: 10c0/c1f031d21a0a9194786f8642638b11eaec8ce4609a8afc9b8aca54eb28d5289f6fe3dda7b4cc5d09f8b1ddc4234b2f39c14e0f4ad3e513b116add9ac1329f9d2
   languageName: node
   linkType: hard
 
@@ -4410,10 +4410,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"classlist-polyfill@npm:1.0.3":
-  version: 1.0.3
-  resolution: "classlist-polyfill@npm:1.0.3"
-  checksum: 10c0/77ae760d244dd88986c9ee0cbadda83909dacfb726fe18c64b07f70b329a6fca97628b209a893475cebb56d3651dee790b864db2d7f4c8611740f527c3b0b3b9
+"classlist-polyfill@npm:1.2.0":
+  version: 1.2.0
+  resolution: "classlist-polyfill@npm:1.2.0"
+  checksum: 10c0/97a6c6865daa1f74e6219f24bb5971c6b418aa9dcec0dcaab38283dbd9388af1c0057e9bd281b7236959059d971c55705bc055ee8382ee89f0c2d70749794cf3
   languageName: node
   linkType: hard
 
@@ -7207,10 +7207,10 @@ __metadata:
     "@esbuild-plugins/node-globals-polyfill": "npm:^0.2.3"
     "@redux-devtools/extension": "npm:^3.3.0"
     "@reduxjs/toolkit": "npm:^1.9.7"
-    "@tanstack/react-table": "npm:8.10.7"
+    "@tanstack/react-table": "npm:8.11.0"
     "@testing-library/cypress": "npm:8.0.1"
     "@uswds/compile": "npm:^1.1.0"
-    "@uswds/uswds": "npm:3.6.1"
+    "@uswds/uswds": "npm:3.7.1"
     "@vitejs/plugin-react": "npm:^4.1.0"
     ansi-html: "npm:0.0.8"
     csv-parse: "npm:4.16.3"
@@ -7250,11 +7250,11 @@ __metadata:
     react-router-dom: "npm:5.3.4"
     react-select: "npm:3.2.0"
     react-tooltip: "npm:^4.2.21"
-    react-window: "npm:1.8.9"
+    react-window: "npm:1.8.10"
     redux: "npm:4.2.1"
     redux-logger: "npm:3.0.6"
     redux-thunk: "npm:2.4.2"
-    sass: "npm:1.69.3"
+    sass: "npm:1.69.5"
     serialize-javascript: "npm:5.0.1"
     split2: "npm:3.2.2"
     streamsaver: "npm:2.0.6"
@@ -11056,20 +11056,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-window@npm:1.8.9":
-  version: 1.8.9
-  resolution: "react-window@npm:1.8.9"
-  dependencies:
-    "@babel/runtime": "npm:^7.0.0"
-    memoize-one: "npm:>=3.1.1 <6"
-  peerDependencies:
-    react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
-  checksum: 10c0/8c87980e1906235ca3a550c37bc2958f979a928ae3f71dc2efeb77e5a60a9036c9d5d1148b90ebeac0d2858054da97604fa3b89522219ed0a8dfa933846ca0b4
-  languageName: node
-  linkType: hard
-
-"react-window@npm:^1.8.9":
+"react-window@npm:1.8.10, react-window@npm:^1.8.9":
   version: 1.8.10
   resolution: "react-window@npm:1.8.10"
   dependencies:
@@ -11838,16 +11825,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:1.69.3":
-  version: 1.69.3
-  resolution: "sass@npm:1.69.3"
+"sass@npm:1.69.5":
+  version: 1.69.5
+  resolution: "sass@npm:1.69.5"
   dependencies:
     chokidar: "npm:>=3.0.0 <4.0.0"
     immutable: "npm:^4.0.0"
     source-map-js: "npm:>=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: 10c0/633fa5220dfe49fddd0ede1484f9bdf1827547e3f9790b935c791b621af3c2acd9ebcafdaf34a622e02fc1724f4c84f4bdcc3a3797f13c1aee595d08c4e8bb29
+  checksum: 10c0/a9003a9482f2e467fc412cfe58ba4fa14fb78bef7e1283ce5d64a065f8a31114ec3bbf5d4e724f94eb8512c32c768a6f91f228c7f16a26a300bbf4db293b5608
   languageName: node
   linkType: hard
 
