@@ -137,7 +137,7 @@ const CompleteProfile = (props) => {
         <LoadingIcon />
       ) : (
         <>
-          {user.lei !== '' ? (
+          {!selectedInstitutions?.length == 0 ? (
             <Link
               to={`/filing/${props.config?.defaultPeriod}/institutions`}
               className='button back'
@@ -204,7 +204,7 @@ const CompleteProfile = (props) => {
               setUserIsEditingForm={setUserIsEditingForm}
             />
 
-            {associatedInstitutions.length > 4 && (
+            {associatedInstitutions?.length > 4 && (
               <SearchAssociatedInstitutions
                 institutions={associatedInstitutions}
                 selectedInstitutions={selectedInstitutions}
@@ -214,7 +214,7 @@ const CompleteProfile = (props) => {
             )}
 
             <div className='missing_institutions_banner_container'>
-              {((institutions.fetched && associatedInstitutions.length !== 0) ||
+              {((institutions?.fetched && associatedInstitutions?.length !== 0) ||
                 errorFromAPI) && (
                 <MissingInstitutionsBanner leis={unregisteredInstitutions} />
               )}
