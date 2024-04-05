@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import X from './X.jsx'
+import X from '../../src/common/images/X.jsx'
 
 const r = shallow(<X />)
 

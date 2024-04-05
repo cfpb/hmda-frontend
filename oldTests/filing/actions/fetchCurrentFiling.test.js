@@ -1,6 +1,5 @@
-jest.unmock('../constants')
-jest.mock('../api/api')
-import * as types from '../../../src/filing/constants'
+jest.unmock('../../../src/filing/constants')
+jest.mock('../../../src/filing/api/api')
 import fetchCurrentFiling from '../../../src/filing/actions/fetchCurrentFiling.js'
 
 import configureMockStore from 'redux-mock-store'

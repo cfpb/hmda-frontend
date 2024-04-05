@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import PDFIcon from './PDFIcon.jsx'
+import PDFIcon from '../../src/common/images/PDFIcon.jsx'
 
 const r = shallow(<PDFIcon />)
 

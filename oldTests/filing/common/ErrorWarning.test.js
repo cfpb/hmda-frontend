@@ -1,4 +1,4 @@
-jest.unmock('./ErrorWarning.jsx')
+jest.unmock('../../../src/filing/common/ErrorWarning.jsx')
 jest.mock('./Alert.jsx', () => jest.fn(() => null))
 
 import ErrorWarning, { getHeading, getText } from '../../../src/filing/common/ErrorWarning.jsx'

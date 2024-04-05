@@ -1,4 +1,4 @@
-jest.unmock('./Header.jsx')
+jest.unmock('../../../src/filing/common/Header.jsx')
 jest.mock('oidc-client')
 
 import Header, { addActiveClass, makeNav, logOutHandler } from '../../../src/filing/common/Header.jsx'

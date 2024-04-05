@@ -1,6 +1,6 @@
-import { getDefaultConfig } from '../configUtils'
-import { getFilingYears } from './configHelpers'
-import { PERIODS } from '../../deriveConfig'
+import { getDefaultConfig } from '../../../src/common/configUtils'
+import { getFilingYears } from '../../../src/common/constants/configHelpers'
+import { PERIODS } from '../../../src/deriveConfig'
 
 const baseConfig = {
   timedGuards: {

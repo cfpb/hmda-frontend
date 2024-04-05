@@ -1,7 +1,7 @@
 import {
   nestInstitutionStateForAPI,
   flattenApiForInstitutionState,
-} from './convert'
+} from '../../../src/hmda-help/utils/convert'
 
 describe('nestInstitutionStateForApi', () => {
   const stateWithQuarterlyFiler = (qFiler) => ({

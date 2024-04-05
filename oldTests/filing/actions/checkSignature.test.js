@@ -1,5 +1,5 @@
-jest.unmock('./checkSignature.js')
-jest.unmock('../constants')
+jest.unmock('../../../src/filing/actions/checkSignature.js')
+jest.unmock('../../../src/filing/constants')
 import * as types from '../../../src/filing/constants'
 import checkSignature from '../../../src/filing/actions/checkSignature.js'
 

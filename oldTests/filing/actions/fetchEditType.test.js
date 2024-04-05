@@ -1,7 +1,6 @@
-jest.unmock('./fetchEditType.js')
-jest.unmock('../constants')
-jest.mock('../api/api')
-import * as types from '../../../src/filing/constants'
+jest.unmock('../../../src/filing/actions/fetchEditType.js')
+jest.mock('../../../src/filing/api/api')
+jest.unmock('../../../src/filing/constants')
 import fetchEditType from '../../../src/filing/actions/fetchEditType.js'
 
 import configureMockStore from 'redux-mock-store'

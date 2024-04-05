@@ -1,6 +1,6 @@
-jest.mock('../api/api')
-jest.unmock('./fetchCSV.js')
-jest.unmock('../constants')
+jest.mock('../../../src/filing/api/api')
+jest.unmock('../../../src/filing/actions/fetchCSV.js')
+jest.unmock('../../../src/filing/constants')
 jest.mock('file-saver')
 import * as types from '../../../src/filing/constants/index.js'
 import fetchCSV from '../../../src/filing/actions/fetchCSV.js'

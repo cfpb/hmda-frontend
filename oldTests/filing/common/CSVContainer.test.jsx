@@ -1,7 +1,6 @@
-jest.unmock('./CSVContainer.jsx')
+jest.unmock('../../../src/filing/common/CSVContainer.jsx')
 
 import React from 'react'
-import ReactDOM from 'react-dom'
 import TestUtils from 'react-dom/test-utils'
 import CSV, {
   CSVContainer,

@@ -1,7 +1,7 @@
-jest.mock('../api/api')
-jest.mock('./fetchCurrentFiling.js')
-jest.unmock('./fetchEachInstitution.js')
-jest.unmock('../constants')
+jest.mock('../../../src/filing/api/api')
+jest.mock('../../../src/filing/actions/fetchCurrentFiling.js')
+jest.unmock('../../../src/filing/actions/fetchEachInstitution.js')
+jest.unmock('../../../src/filing/constants')
 import * as types from '../../../src/filing/constants'
 import fetchEachInstitution from '../../../src/filing/actions/fetchEachInstitution.js'
 import fetchCurrentFiling from '../../../src/filing/actions/fetchCurrentFiling.js'

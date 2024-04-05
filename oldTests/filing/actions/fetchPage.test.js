@@ -1,6 +1,6 @@
-jest.mock('../api/fetch')
-jest.unmock('./fetchPage.js')
-jest.unmock('../constants')
+jest.mock('../../../src/filing/api/fetch')
+jest.unmock('../../../src/filing/constants')
+jest.unmock('../../../src/filing/actions/fetchPage.js')
 import * as types from '../../../src/filing/constants'
 import fetchPage from '../../../src/filing/actions/fetchPage.js'
 

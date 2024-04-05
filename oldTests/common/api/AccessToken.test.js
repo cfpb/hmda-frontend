@@ -1,4 +1,4 @@
-import * as AccessToken from './AccessToken'
+import * as AccessToken from '../../../src/common/api/AccessToken'
 
 describe('access token getter/setter', () => {
   it('should return an empty string when access token is not set', () => {

@@ -1,6 +1,6 @@
 jest.unmock('./sortInstitutions.js')
 
-import sortInstitutions from './sortInstitutions.js'
+import sortInstitutions from '../../../src/filing/utils/sortInstitutions.js'
 
 const institutionsSorted = ['1234', '2345']
 

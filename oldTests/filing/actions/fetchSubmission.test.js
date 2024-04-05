@@ -1,9 +1,9 @@
-jest.mock('../api/api.js')
-jest.mock('./receiveSubmission.js')
-jest.mock('./fetchNewSubmission.js')
-jest.unmock('./fetchSubmission.js')
-jest.unmock('./hasHttpError.js')
-jest.unmock('../constants')
+jest.mock('../../../src/filing/api/api')
+jest.mock('../../../src/filing/actions/receiveSubmission.j')
+jest.mock('../../../src/filing/actions/fetchSubmission.js')
+jest.unmock('../../../src/filing/actions/fetchNewSubmission.js')
+jest.unmock('../../../src/filing/actions/hasHttpError.js')
+jest.unmock('../../../src/filing/constants')
 
 import * as types from '../../../src/filing/constants'
 import fetchSubmission from '../../../src/filing/actions/fetchSubmission.js'

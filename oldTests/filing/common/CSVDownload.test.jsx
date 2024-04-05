@@ -1,4 +1,4 @@
-jest.unmock('./CSVDownload.jsx')
+jest.unmock('../../../src/filing/common/CSVDownload.jsx')
 
 import CSVDownload from '../../../src/filing/common/CSVDownload.jsx'
 import Wrapper from '../../test-resources/Wrapper.js'

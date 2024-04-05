@@ -1,4 +1,4 @@
-import { parseTimedGuardDate, formatLocalString } from './deriveConfig'
+import { parseTimedGuardDate, formatLocalString } from '../src/deriveConfig'
 
 describe('parseTimedGuardDate', () => {
   const timedGuard = '01/01/2022'

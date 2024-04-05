@@ -1,6 +1,6 @@
-jest.mock('../api/api')
-jest.unmock('./fetchParseErrors.js')
-jest.unmock('../constants')
+jest.mock('../../../src/filing/api/api')
+jest.unmock('../../../src/filing/constants')
+jest.unmock('../../../src/filing/actions/fetchParseErrors.js')
 import * as types from '../../../src/filing/constants'
 import fetchParseErrors from '../../../src/filing/actions/fetchParseErrors.js'
 

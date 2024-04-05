@@ -8,7 +8,7 @@ import {
   stdTimezoneOffset,
   isDstObserved,
   easternOffsetHours,
-} from './date.js'
+} from '../../../src/filing/utils/date.js'
 
 describe('nth', () => {
   it('calculates date ends correctly', () => {

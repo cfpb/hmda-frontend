@@ -1,6 +1,6 @@
 jest.unmock('./log.js')
 
-import log, { error } from './log.js'
+import log, { error } from '../../../src/filing/utils/log.js'
 
 const mockedLog = jest.fn()
 console.log = mockedLog

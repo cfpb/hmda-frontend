@@ -1,7 +1,7 @@
 jest.unmock('./checkFileErrors.js')
 jest.unmock('../constants')
-import * as types from '../constants'
-import checkFileErrors from './checkFileErrors.js'
+import * as types from '../../../src/filing/constants'
+import checkFileErrors from '../../../src/filing/utils/checkFileErrors.js'
 
 describe('checkFileErrors', () => {
   it('checks for file upload errors', () => {

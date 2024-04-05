@@ -1,6 +1,6 @@
-jest.mock('../api/api')
-jest.unmock('./fetchUpload.js')
-jest.unmock('../constants')
+jest.mock('../../../src/filing/api/api')
+jest.unmock('../../../src/filing/constants')
+jest.unmock('../../../src/filing/actions/fetchUpload.js')
 import * as types from '../../../src/filing/constants'
 import fetchUpload from '../../../src/filing/actions/fetchUpload.js'
 
