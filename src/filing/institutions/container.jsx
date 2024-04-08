@@ -28,8 +28,7 @@ export class InstitutionContainer extends Component {
     const { user } = this.props
     if (user?.userInfo?.tokenParsed !== prevProps.user?.userInfo?.tokenParsed) {
       if (
-        !user?.userInfo?.tokenParsed?.lei ||
-        user?.userInfo?.tokenParsed?.lei == ''
+        !("lei" in user?.userInfo?.tokenParsed) || user?.userInfo?.tokenParsed?.lei == ''
       ) {
         this.setState({ shouldRedirect: true })
       }
