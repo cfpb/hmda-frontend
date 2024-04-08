@@ -1,6 +1,6 @@
 import { yearQuarterToPath } from './utils'
 
-export default function(obj) {
+export default function (obj) {
   let url = '/v2/filing'
 
   if (obj.pathname) return url + obj.pathname

@@ -25,10 +25,10 @@
   font-size: 16px;
 }
 
-.container input[type="email"][disabled] {
-  background-color: #E7E8E9;
-  color: #5A5D61;
-  border: 1px solid #A2A3A4;
+.container input[type='email'][disabled] {
+  background-color: #e7e8e9;
+  color: #5a5d61;
+  border: 1px solid #a2a3a4;
 }
 
 .container .error {

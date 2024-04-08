@@ -13,19 +13,15 @@ import { SectionTitle } from './SectionTitle'
 
 /**
  * Provides a searchable/filterable table of LAR/TS content.
- * 
+ *
  * Table rows are selectable, with selected content being made available in
- * the <Editing /> component for modification. 
- * 
+ * the <Editing /> component for modification.
+ *
  * @param {String} id Section identifier
  * @param {String} title Section label
  * @param {Array} rows Table content
  */
-export const SavedSection = ({
-  id,
-  title = 'Section Title',
-  rows,
-}) => {
+export const SavedSection = ({ id, title = 'Section Title', rows }) => {
   const dispatch = useDispatch()
   const selectedColName = useSelector(({ larft }) => larft.selectedColName)
   const selectedRowID = useSelector(({ larft }) => larft.selectedRowID)
@@ -36,7 +32,7 @@ export const SavedSection = ({
   const matchedColumns = []
   const schema = id === 'saved-lars' ? LAR_SCHEMA : TS_SCHEMA
 
-  const highlightSelected = r => {
+  const highlightSelected = (r) => {
     if (!selectedRowID || !r) return {}
     const highlighted = selectedRowID === r.id
     return highlighted ? { background: 'lightblue' } : {}
@@ -65,10 +61,10 @@ export const SavedSection = ({
       columns.unshift({
         key: 'rowId',
         width: 'auto',
-        header: props => <HeaderRowID {...props} />,
-        content: props => <ContentRowID {...props} />,
+        header: (props) => <HeaderRowID {...props} />,
+        content: (props) => <ContentRowID {...props} />,
       })
-  
+
       if (!filteredRows.length || columns.length === 1) {
         return <NoMatches />
       } else {
@@ -78,8 +74,10 @@ export const SavedSection = ({
             columns={columns}
             tableHeight={calcTableHeight(filteredRows)}
             minColumnWidth={200}
-            onRowClick={(_, { index }) => dispatch(selectRow(filteredRows[index].id)) }
-            rowStyle={i => highlightSelected(filteredRows[i])}
+            onRowClick={(_, { index }) =>
+              dispatch(selectRow(filteredRows[index].id))
+            }
+            rowStyle={(i) => highlightSelected(filteredRows[i])}
           />
         )
       }
@@ -92,7 +90,7 @@ export const SavedSection = ({
         <SectionTitle title={title} filteredRows={filteredRows} rows={rows} />
         <Filters show={!!rows.length}>
           <SearchBox
-            onChange={e => setSearchFilter(e.target.value)}
+            onChange={(e) => setSearchFilter(e.target.value)}
             placeholder={'Search ' + (id.match(/ts/) ? 'TS' : 'LAR')}
             value={searchFilter}
             onClear={() => setSearchFilter('')}
@@ -100,7 +98,7 @@ export const SavedSection = ({
             isTS={!!id.match(/ts/)}
           />
           <SearchBox
-            onChange={e => setColumnFilter(e.target.value)}
+            onChange={(e) => setColumnFilter(e.target.value)}
             placeholder={'Filter columns'}
             value={columnFilter}
             onClear={() => setColumnFilter('')}
@@ -115,7 +113,7 @@ export const SavedSection = ({
 }
 
 // Derive table height by number of rows
-const calcTableHeight = rows => {
+const calcTableHeight = (rows) => {
   const ROW_HEIGHT = 32
 
   let displayedRows = 0

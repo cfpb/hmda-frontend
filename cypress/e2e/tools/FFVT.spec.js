@@ -21,7 +21,7 @@ const isNotTxt = () =>
   cy
     .get('.alert-error .alert-text')
     .contains(
-      'The file you uploaded is not a text file (.txt). Please check your file and re-upload.'
+      'The file you uploaded is not a text file (.txt). Please check your file and re-upload.',
     )
     .should('have.length', 1)
 
@@ -31,10 +31,10 @@ const isNotUTF8 = () =>
     .contains('Verify that your file is UTF-8 encoded.')
     .should('have.length', 1)
 
-const uploadFile = filename => {
-  cy.fixture(filename).then(fileContent => {
+const uploadFile = (filename) => {
+  cy.fixture(filename).then((fileContent) => {
     cy.get(
-      'div > .UploadForm > .container-upload > .dropzone > input'
+      'div > .UploadForm > .container-upload > .dropzone > input',
     ).attachFile({
       fileContent,
       fileName: filename,
@@ -57,7 +57,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/tools/file-format-verification`)
       cy.get({ HOST, TEST_DELAY, ENVIRONMENT }).logEnv()
       cy.get('div > .UploadForm > .container-upload > .dropzone > input').click(
-        { force: true }
+        { force: true },
       )
     })
 
@@ -86,10 +86,10 @@ onlyOn(!isBeta(HOST), () => {
       // LAR Error
       cy.get('tbody:not(:first) > tr > :nth-child(1)').contains('11')
       cy.get('tbody:not(:first) > tr > :nth-child(2)').contains(
-        'MEISSADIATESTBANK001MGJIPL5D07WUU8HO33EPNI975'
+        'MEISSADIATESTBANK001MGJIPL5D07WUU8HO33EPNI975',
       )
       cy.get('tbody:not(:first) > tr > :nth-child(3)').contains(
-        'Incorrect Number of LAR Fields'
+        'Incorrect Number of LAR Fields',
       )
       cy.get('tbody:not(:first) > tr > :nth-child(4)').contains('109')
       cy.get('tbody:not(:first) > tr > :nth-child(5)').contains('110 Fields')

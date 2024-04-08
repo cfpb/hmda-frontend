@@ -3,17 +3,20 @@ import Heading from '../../common/Heading.jsx'
 import SearchList from './SearchList.jsx'
 import YearSelector from '../../common/YearSelector.jsx'
 import { withAppContext } from '../../common/appContextHOC.jsx'
-import { withYearValidation } from '../../common/withYearValidation.js'
+import { withYearValidation } from '../../common/withYearValidation.jsx'
 import { CombinedMLAR } from './CombinedMLAR.jsx'
 import { Provider } from 'react-redux'
 import s3Store from '../../common/s3/store'
 
 import './ModifiedLar.css'
 
-const ModifiedLar = props => {
+const ModifiedLar = (props) => {
   const [hasCombined, setHasCombined] = useState(false)
-  const { url, params: { year } } = props.match
-  const { mlar, shared  } = props.config.dataPublicationYears
+  const {
+    url,
+    params: { year },
+  } = props.match
+  const { mlar, shared } = props.config.dataPublicationYears
   const years = mlar || shared
 
   return (
@@ -37,7 +40,7 @@ const ModifiedLar = props => {
         <YearSelector year={year} url={url} years={years} />
         <div className='card'>
           <h3>
-            Modified LAR by <span className='highlight'>Individual</span>{" "}
+            Modified LAR by <span className='highlight'>Individual</span>{' '}
             Institution
           </h3>
           <SearchList year={year} isModLar />
@@ -55,7 +58,7 @@ const ModifiedLar = props => {
   )
 }
 
-const buildParagraphText = hasCombined => {
+const buildParagraphText = (hasCombined) => {
   return (
     <>
       {BaseParagraphText}

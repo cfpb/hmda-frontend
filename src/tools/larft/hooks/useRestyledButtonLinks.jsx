@@ -8,12 +8,12 @@ export const useRestyledButtonLinks = () => {
     () =>
       document
         .querySelectorAll('.button-link')
-        .forEach(e => updateClassName(e)),
-    []
+        .forEach((e) => updateClassName(e)),
+    [],
   )
 }
 
-const updateClassName = element => {
+const updateClassName = (element) => {
   const name = element.className || ''
   const adjustedName = name.replace('button-link', '')
   element.className = adjustedName

@@ -5,8 +5,8 @@ import InstitutionNameAndId from './NameAndId.jsx'
 import InstitutionStatus from './Status.jsx'
 import InstitutionViewButton from './ViewButton.jsx'
 import InstitutionRefile from './Refile.jsx'
-import InstitutionSubmissionHistory from './SubmissionHistory.jsx'
 import SubmissionNav from './Progress.jsx'
+import SubmissionHistory from './SubmissionHistory.jsx'
 
 const Institution = ({
   institution,
@@ -15,7 +15,7 @@ const Institution = ({
   submissions,
   links,
   submissionPages,
-  selectedPeriod
+  selectedPeriod,
 }) => {
   const status = submission && submission.status
 
@@ -57,7 +57,7 @@ const Institution = ({
               isClosed={selectedPeriod.isClosed}
             />
           </div>
-          <InstitutionSubmissionHistory
+          <SubmissionHistory
             submissions={submissions}
             lei={institution.lei}
             links={links}
@@ -92,7 +92,7 @@ Institution.propTypes = {
   filing: PropTypes.object,
   submission: PropTypes.object,
   submissions: PropTypes.array,
-  selectedPeriod: PropTypes.object
+  selectedPeriod: PropTypes.object,
 }
 
 export default Institution

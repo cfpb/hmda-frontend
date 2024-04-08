@@ -18,10 +18,10 @@ const searchInputs = [
       {
         type: 'regex',
         value: '([a-zA-Z0-9]{20})',
-        message: 'Must contain only a-z, A-Z, and 0-9 (no special characters).'
-      }
-    ]
-  }
+        message: 'Must contain only a-z, A-Z, and 0-9 (no special characters).',
+      },
+    ],
+  },
 ]
 
 const requiredInputs = [
@@ -32,7 +32,7 @@ const requiredInputs = [
     value: '',
     placeholder: '',
     type: 'select',
-    options: [{ name: 'Select Year' }]
+    options: [{ name: 'Select Year' }],
   },
   {
     label: 'Respondent Name',
@@ -40,14 +40,14 @@ const requiredInputs = [
     name: 'respondentName',
     value: '',
     placeholder: '',
-    validation: [{ type: 'required' }]
+    validation: [{ type: 'required' }],
   },
   {
     label: 'Email Domains',
     id: 'emailDomains',
     name: 'emailDomains',
     value: '',
-    placeholder: ''
+    placeholder: '',
   },
   {
     label: 'Tax Id',
@@ -63,9 +63,9 @@ const requiredInputs = [
       {
         type: 'regex',
         value: '^([0-9]{2}-[0-9]{7})',
-        message: 'Must be 2 digits, followed by a dash, followed by 7 digits.'
-      }
-    ]
+        message: 'Must be 2 digits, followed by a dash, followed by 7 digits.',
+      },
+    ],
   },
   {
     label: 'Agency Code',
@@ -74,7 +74,7 @@ const requiredInputs = [
     value: '',
     type: 'radio',
     options: agencyCodes,
-    validation: [{ type: 'required' }]
+    validation: [{ type: 'required' }],
   },
   {
     label: 'Quarterly Filer',
@@ -85,9 +85,9 @@ const requiredInputs = [
     type: 'select',
     options: [
       { id: 'false', name: 'false', value: false },
-      { id: 'true', name: 'true', value: true }
-    ]
-  }
+      { id: 'true', name: 'true', value: true },
+    ],
+  },
 ]
 
 const otherInputs = [
@@ -98,7 +98,7 @@ const otherInputs = [
     value: '',
     placeholder: '',
     type: 'select',
-    options: institutionTypes
+    options: institutionTypes,
   },
   {
     label: 'Other Lender Code',
@@ -107,21 +107,21 @@ const otherInputs = [
     value: '',
     placeholder: '',
     type: 'select',
-    options: otherLenderCodes
+    options: otherLenderCodes,
   },
   {
     label: 'Institution ID 2017',
     id: 'institutionId2017',
     name: 'institutionId2017',
     value: '',
-    placeholder: ''
+    placeholder: '',
   },
   {
     label: 'RSSD',
     id: 'rssd',
     name: 'rssd',
     value: '',
-    placeholder: ''
+    placeholder: '',
   },
   {
     label: 'Respondent State',
@@ -130,49 +130,49 @@ const otherInputs = [
     value: '',
     placeholder: '',
     type: 'select',
-    options: states
+    options: states,
   },
   {
     label: 'Respondent City',
     id: 'respondentCity',
     name: 'respondentCity',
     value: '',
-    placeholder: ''
+    placeholder: '',
   },
   {
     label: 'Parent ID RSSD',
     id: 'parentIdRssd',
     name: 'parentIdRssd',
     value: '',
-    placeholder: ''
+    placeholder: '',
   },
   {
     label: 'Parent Name',
     id: 'parentName',
     name: 'parentName',
     value: '',
-    placeholder: ''
+    placeholder: '',
   },
   {
     label: 'Assets',
     id: 'assets',
     name: 'assets',
     value: '',
-    placeholder: ''
+    placeholder: '',
   },
   {
     label: 'Top Holder ID RSSD',
     id: 'topHolderIdRssd',
     name: 'topHolderIdRssd',
     value: '',
-    placeholder: ''
+    placeholder: '',
   },
   {
     label: 'Top Holder Name',
     id: 'topHolderName',
     name: 'topHolderName',
     value: '',
-    placeholder: ''
+    placeholder: '',
   },
 ]
 
@@ -181,7 +181,7 @@ export const notesInput = {
   id: 'notes',
   name: 'notes',
   placeholder: '',
-  validation: [{ type: 'required' }]
+  validation: [{ type: 'required' }],
 }
 
 export { searchInputs, requiredInputs, otherInputs }

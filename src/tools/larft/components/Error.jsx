@@ -3,9 +3,9 @@ import React, { useLayoutEffect } from 'react'
 /**
  * Displays a dismissable error for issues which prevent file actions
  * ex. Please create at least one LAR row before saving!
- *  
- * @param {String} text Error message 
- * @param {Function} onClick Handler function to close error banner 
+ *
+ * @param {String} text Error message
+ * @param {Function} onClick Handler function to close error banner
  */
 export const Error = ({ text, onClick }) => {
   const err_id = 'file-error'

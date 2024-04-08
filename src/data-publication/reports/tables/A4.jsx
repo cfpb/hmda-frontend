@@ -13,21 +13,21 @@ const renderData = (report, label) => {
 }
 
 const mapCharacteristic = (arr, label) => {
-  return arr.map(characteristic => {
+  return arr.map((characteristic) => {
     return renderCharacteristic(characteristic, label)
   })
 }
 
-const renderCharacteristicTitle = key => {
+const renderCharacteristicTitle = (key) => {
   return (
-    <tr className="characteristic-grey-title" key={key}>
+    <tr className='characteristic-grey-title' key={key}>
       <th
         colSpan={13}
         style={{
           borderTopWidth: '2px',
           fontWeight: 'bold',
           textTransform: 'uppercase',
-          backgroundColor: '#f1f1f1'
+          backgroundColor: '#f1f1f1',
         }}
       >
         {key}
@@ -38,19 +38,19 @@ const renderCharacteristicTitle = key => {
 
 const renderCharacteristic = (characteristic, label) => {
   let name, currChar
-  Object.keys(characteristic).forEach(key => {
+  Object.keys(characteristic).forEach((key) => {
     if (key === 'characteristic') name = characteristic[key]
     else currChar = characteristic[key]
   })
 
   return [
-    <tr className="characteristic-title" key={name}>
+    <tr className='characteristic-title' key={name}>
       <th
         colSpan={13}
         style={{
           borderTopWidth: '2px',
           textTransform: 'uppercase',
-          fontWeight: 'bold'
+          fontWeight: 'bold',
         }}
       >
         {name}
@@ -58,7 +58,7 @@ const renderCharacteristic = (characteristic, label) => {
     </tr>,
     currChar.map((detailObj, index) => {
       let detail, statuses
-      Object.keys(detailObj).forEach(key => {
+      Object.keys(detailObj).forEach((key) => {
         if (key === 'preapprovalStatuses') statuses = detailObj[key]
         else detail = detailObj[key]
       })
@@ -69,12 +69,12 @@ const renderCharacteristic = (characteristic, label) => {
           {statuses.map((disObj, i) => {
             return [
               <td key={i + 'count'}>{disObj.count}</td>,
-              <td key={i + 'value'}>{disObj.value}</td>
+              <td key={i + 'value'}>{disObj.value}</td>,
             ]
           })}
         </tr>
       )
-    })
+    }),
   ]
 }
 
@@ -82,19 +82,19 @@ const A4 = React.forwardRef((props, ref) => {
   if (!props.report) return null
 
   return (
-    <table ref={ref} className="narrowTable">
+    <table ref={ref} className='narrowTable'>
       <thead>
         <tr>
-          <th width="25%" rowSpan={2}>
+          <th width='25%' rowSpan={2}>
             BORROWER OR CENSUS TRACT CHARACTERISTICS
           </th>
-          <th colSpan={2} width="25%">
+          <th colSpan={2} width='25%'>
             Preapprovals Resulting in Originations
           </th>
-          <th colSpan={2} width="25%">
+          <th colSpan={2} width='25%'>
             Preapprovals Approved but not Accepted
           </th>
-          <th colSpan={2} width="25%">
+          <th colSpan={2} width='25%'>
             Preapprovals Denied
           </th>
         </tr>
@@ -113,7 +113,7 @@ const A4 = React.forwardRef((props, ref) => {
 })
 
 A4.propTypes = {
-  report: PropTypes.object
+  report: PropTypes.object,
 }
 
 export default A4

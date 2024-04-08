@@ -8,15 +8,15 @@ import receiveUploadError from './receiveUploadError.js'
 import { error } from '../utils/log.js'
 
 export default function fetchUpload(file) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(requestUpload())
 
     const data = new FormData()
     data.append('file', file)
 
     return postUpload(data)
-      .then(response => {
-        return hasHttpError(response).then(hasError => {
+      .then((response) => {
+        return hasHttpError(response).then((hasError) => {
           if (hasError) {
             if (response instanceof Response) {
               /**
@@ -24,7 +24,7 @@ export default function fetchUpload(file) {
                * details about the error. If no JSON details are found, we
                * fall back to using the Response's values.
                */
-              response.json().then(json => {
+              response.json().then((json) => {
                 const errorJson = {
                   status: (json && json.httpStatus) || response.status,
                   statusText: (json && json.message) || response.statusText,
@@ -35,7 +35,9 @@ export default function fetchUpload(file) {
               dispatch(receiveUploadError(response))
             }
 
-            throw new Error(response && `${response.status}: ${response.statusText}`)
+            throw new Error(
+              response && `${response.status}: ${response.statusText}`,
+            )
           }
 
           dispatch(receiveUpload(response))
@@ -43,7 +45,7 @@ export default function fetchUpload(file) {
           dispatch(pollForProgress())
         })
       })
-      .catch(err => {
+      .catch((err) => {
         error(err)
       })
   }

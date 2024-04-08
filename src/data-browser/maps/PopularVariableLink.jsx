@@ -1,6 +1,9 @@
 import React from 'react'
 
-export const PopularVariableLink = ({ children = 'popular variables', year }) => (
+export const PopularVariableLink = ({
+  children = 'popular variables',
+  year,
+}) => (
   <a
     target='_blank'
     rel='noopener noreferrer'

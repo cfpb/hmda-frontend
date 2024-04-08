@@ -10,57 +10,57 @@ import Report from './Report.jsx'
 import fetchMsas from './fetchMsas.js'
 import { DISCLOSURE_REPORTS } from '../constants/disclosure-reports.js'
 import { withAppContext } from '../../common/appContextHOC.jsx'
-import { withYearValidation } from '../../common/withYearValidation.js'
+import { withYearValidation } from '../../common/withYearValidation.jsx'
 
 const detailsCache = {
   2022: {
     institutions: {},
     msaMds: {},
-    reports: {}
+    reports: {},
   },
   2021: {
     institutions: {},
     msaMds: {},
-    reports: {}
+    reports: {},
   },
   2020: {
     institutions: {},
     msaMds: {},
-    reports: {}
+    reports: {},
   },
   2019: {
     institutions: {},
     msaMds: {},
-    reports: {}
+    reports: {},
   },
   2018: {
     institutions: {},
     msaMds: {},
-    reports: {}
+    reports: {},
   },
   2017: {
     institutions: {},
     msaMds: {},
-    reports: {}
-  }
+    reports: {},
+  },
 }
 
 let fetchedMsas = null
 
-Object.keys(DISCLOSURE_REPORTS).forEach(year =>
-  Object.keys(DISCLOSURE_REPORTS[year]).forEach(key =>
-    DISCLOSURE_REPORTS[year][key].forEach(v => {
+Object.keys(DISCLOSURE_REPORTS).forEach((year) =>
+  Object.keys(DISCLOSURE_REPORTS[year]).forEach((key) =>
+    DISCLOSURE_REPORTS[year][key].forEach((v) => {
       if (v.value) {
         detailsCache[year].reports[v.value] = v
       }
 
       if (v.options) {
-        v.options.forEach(option => {
+        v.options.forEach((option) => {
           detailsCache[year].reports[option.value] = option
         })
       }
-    })
-  )
+    }),
+  ),
 )
 
 class Disclosure extends React.Component {
@@ -74,22 +74,27 @@ class Disclosure extends React.Component {
   componentDidMount() {
     const { params } = this.props.match
     if (params.institutionId) {
-      fetchMsas(params.institutionId, params.year).then(result => {
-        this.setInstitution(result.institution)
-        if (params.msaMdId) {
-          if (params.msaMdId === 'nationwide')
-            this.setMsaMd({ id: 'nationwide' })
-          result.msaMds.forEach(v => {
-            if (v.id === params.msaMdId) this.setMsaMd(v)
+      fetchMsas(params.institutionId, params.year)
+        .then((result) => {
+          this.setInstitution(result.institution)
+          if (params.msaMdId) {
+            if (params.msaMdId === 'nationwide')
+              this.setMsaMd({ id: 'nationwide' })
+            result.msaMds.forEach((v) => {
+              if (v.id === params.msaMdId) this.setMsaMd(v)
+            })
+          }
+          const msaMds = result.msaMds.sort((a, b) => a.id - b.id)
+          msaMds.push({ id: 'nationwide' })
+          fetchedMsas = msaMds
+          this.setState({ fetched: true })
+        })
+        .catch((e) => {
+          this.setState({
+            fetched: true,
+            error: `${e.status}: ${e.statusText}`,
           })
-        }
-        const msaMds = result.msaMds.sort((a,b) => a.id - b.id)
-        msaMds.push({ id: 'nationwide' })
-        fetchedMsas = msaMds
-        this.setState({ fetched: true })
-      }).catch(e => {
-        this.setState({fetched: true, error: `${e.status}: ${e.statusText}`})
-      })
+        })
     } else {
       this.setState({ fetched: true })
     }
@@ -98,23 +103,26 @@ class Disclosure extends React.Component {
   makeListItem(institution, index) {
     let url = this.props.match.url
     if (!url.match(/\/$/)) url += '/'
-    const normalizedInstitution = this.props.match.params.year === '2017'
+    const normalizedInstitution =
+      this.props.match.params.year === '2017'
         ? {
             title: 'Institution ID',
-            id: institution.institutionId
+            id: institution.institutionId,
           }
         : { title: 'LEI', id: institution.lei }
     return (
       <li key={index}>
         <h4>{institution.name}</h4>
-        <p>{normalizedInstitution.title}: {normalizedInstitution.id}</p>
+        <p>
+          {normalizedInstitution.title}: {normalizedInstitution.id}
+        </p>
         <button
-          className="button-link"
-          onClick={e => {
+          className='button-link'
+          onClick={(e) => {
             e.preventDefault()
             this.setInstitution(institution)
             this.props.history.push({
-              pathname: url + normalizedInstitution.id
+              pathname: url + normalizedInstitution.id,
             })
           }}
         >
@@ -126,7 +134,8 @@ class Disclosure extends React.Component {
 
   setInstitution(institution) {
     const year = this.props.match.params.year
-    const institutionId = institution.lei || institution.institutionId || institution.id
+    const institutionId =
+      institution.lei || institution.institutionId || institution.id
     detailsCache[year].institutions[institutionId] = institution
   }
 
@@ -145,7 +154,8 @@ class Disclosure extends React.Component {
     const msaMd = year && details.msaMds[params.msaMdId]
     const report = year && details.reports[params.reportId]
     const institutionId =
-      institution && (institution.lei || institution.institutionId || institution.id)
+      institution &&
+      (institution.lei || institution.institutionId || institution.id)
     const header = (
       <Heading
         type={1}
@@ -175,9 +185,9 @@ class Disclosure extends React.Component {
       </Heading>
     )
 
-    if(this.state.error) {
+    if (this.state.error) {
       return (
-        <div className="Disclosure" id="main-content">
+        <div className='Disclosure' id='main-content'>
           {header}
           <p>{this.state.error}</p>
         </div>
@@ -186,17 +196,13 @@ class Disclosure extends React.Component {
 
     return this.state.fetched ? (
       <React.Fragment>
-        <div className="Disclosure" id="main-content">
+        <div className='Disclosure' id='main-content'>
           {header}
-          <ol className="ProgressCards">
+          <ol className='ProgressCards'>
             <li>
               <ProgressCard
-                title="year"
-                name={
-                  params.year
-                    ? params.year
-                    : 'Select a year'
-                }
+                title='year'
+                name={params.year ? params.year : 'Select a year'}
                 id=''
                 link={'/data-publication/disclosure-reports/'}
               />
@@ -204,31 +210,36 @@ class Disclosure extends React.Component {
 
             <li>
               <ProgressCard
-                title="institution"
+                title='institution'
                 name={
                   params.institutionId
                     ? institution.name
                     : params.year
-                    ? 'Select an institution'
+                      ? 'Select an institution'
+                      : ''
+                }
+                id={
+                  params.institutionId
+                    ? institution.lei || institution.respondentId
                     : ''
                 }
-                id={params.institutionId ? (institution.lei || institution.respondentId) : ''}
-                link={ params.year
-                  ? `/data-publication/disclosure-reports/${params.year}`
-                  : null
+                link={
+                  params.year
+                    ? `/data-publication/disclosure-reports/${params.year}`
+                    : null
                 }
               />
             </li>
 
             <li>
               <ProgressCard
-                title="MSA/MD"
+                title='MSA/MD'
                 name={
                   params.msaMdId
                     ? msaMd.name
                     : params.institutionId
-                    ? 'Select an MSA/MD'
-                    : ''
+                      ? 'Select an MSA/MD'
+                      : ''
                 }
                 id={params.msaMdId ? msaMd.id : ''}
                 link={
@@ -241,22 +252,20 @@ class Disclosure extends React.Component {
 
             <li>
               <ProgressCard
-                title="report"
+                title='report'
                 name={
                   params.reportId
                     ? report.label
                     : params.msaMdId
-                    ? 'Select a report'
-                    : params.institutionId
-                    ? ''
-                    : ''
+                      ? 'Select a report'
+                      : params.institutionId
+                        ? ''
+                        : ''
                 }
                 id={params.reportId ? report.value : ''}
                 link={
                   params.msaMdId
-                    ? `/data-publication/disclosure-reports/${params.year}/${institutionId}/${
-                        msaMd.id
-                      }`
+                    ? `/data-publication/disclosure-reports/${params.year}/${institutionId}/${msaMd.id}`
                     : null
                 }
               />
@@ -281,7 +290,7 @@ class Disclosure extends React.Component {
               <SearchList makeListItem={this.makeListItem} year={params.year} />
             )
           ) : (
-            <YearSelector year={year} url={url} years={years}/>
+            <YearSelector year={year} url={url} years={years} />
           )}
         </div>
 

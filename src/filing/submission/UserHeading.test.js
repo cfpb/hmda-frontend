@@ -12,9 +12,9 @@ const data = {
   user: 'User1',
   institution: {
     id: '1',
-    name: 'Wacky data'
+    name: 'Wacky data',
   },
-  period: '2017'
+  period: '2017',
 }
 
 describe('UserHeading', () => {
@@ -22,7 +22,7 @@ describe('UserHeading', () => {
     const heading = TestUtils.renderIntoDocument(
       <Wrapper>
         <UserHeading institution={{}} period={null} />
-      </Wrapper>
+      </Wrapper>,
     )
     const headingNode = ReactDOM.findDOMNode(heading)
 
@@ -34,8 +34,8 @@ describe('UserHeading', () => {
   describe('render with username', () => {
     const heading = TestUtils.renderIntoDocument(
       <Wrapper>
-        <UserHeading name="Test" period={data.period} />
-      </Wrapper>
+        <UserHeading name='Test' period={data.period} />
+      </Wrapper>,
     )
     const headingNode = ReactDOM.findDOMNode(heading)
 
@@ -45,7 +45,7 @@ describe('UserHeading', () => {
 
     it('renders correctly', () => {
       expect(headingNode.textContent).toEqual(
-        'Filing on behalf of Test for 2017'
+        'Filing on behalf of Test for 2017',
       )
     })
   })

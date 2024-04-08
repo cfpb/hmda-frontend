@@ -9,10 +9,7 @@ import {
   rowsResetReducer,
 } from './rowReducers'
 
-import {
-  selectColReducer,
-  selectRowReducer
-} from './selectionReducers'
+import { selectColReducer, selectRowReducer } from './selectionReducers'
 
 export const initialState = {
   ts: [],
@@ -22,7 +19,7 @@ export const initialState = {
   selectedRowID: null,
   selectedColName: null,
   filename: null,
-  hasNewChanges: false
+  hasNewChanges: false,
 }
 
 const larftSlice = createSlice({
@@ -45,7 +42,7 @@ const larftSlice = createSlice({
 })
 
 const larftStore = configureStore({
-  devTools: process.env.NODE_ENV !== 'production',
+  devTools: import.meta.env.NODE_ENV !== 'production',
   reducer: {
     larft: larftSlice.reducer,
   },

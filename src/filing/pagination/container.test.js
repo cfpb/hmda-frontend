@@ -7,11 +7,11 @@ import Connected, {
   PaginationContainer,
   mapStateToProps,
   mapDispatchToProps,
-  makePathname
+  makePathname,
 } from './container.jsx'
 
 const defaultPagination = {
-  parseErrors: null
+  parseErrors: null,
 }
 
 const pageObj = {
@@ -23,8 +23,8 @@ const pageObj = {
     last: '?page=5',
     next: '?page=2',
     first: '?page=1',
-    href: '/thehref{rel}'
-  }
+    href: '/thehref{rel}',
+  },
 }
 
 describe('Pagination Container', () => {
@@ -37,15 +37,15 @@ describe('Pagination Container', () => {
   })
 
   it('renders the unwrapped component', () => {
-    const targetDiv = TestUtils.renderIntoDocument(<div id="testDiv" />)
+    const targetDiv = TestUtils.renderIntoDocument(<div id='testDiv' />)
     const rendered = TestUtils.renderIntoDocument(
       <PaginationContainer
         pagination={null}
         getPage={jest.fn()}
         getPreviousPage={jest.fn()}
         getNextPage={jest.fn()}
-        target="testDiv"
-      />
+        target='testDiv'
+      />,
     )
 
     expect(rendered).toBeDefined()
@@ -57,11 +57,11 @@ describe('Pagination Container', () => {
         {
           app: {
             pagination: defaultPagination,
-            parseErrors: { isFetching: false }
-          }
+            parseErrors: { isFetching: false },
+          },
         },
-        { target: 'parseErrors' }
-      )
+        { target: 'parseErrors' },
+      ),
     ).toEqual({ pagination: null })
   })
 
@@ -71,11 +71,11 @@ describe('Pagination Container', () => {
         {
           app: {
             pagination: { parseErrors: pageObj },
-            parseErrors: { isFetching: false }
-          }
+            parseErrors: { isFetching: false },
+          },
         },
-        { target: 'parseErrors' }
-      )
+        { target: 'parseErrors' },
+      ),
     ).toEqual({ pagination: pageObj })
   })
 
@@ -86,11 +86,11 @@ describe('Pagination Container', () => {
           app: {
             pagination: { parseErrors: pageObj },
             parseErrors: { isFetching: false },
-            edits: { rows: { argle: '123' } }
-          }
+            edits: { rows: { argle: '123' } },
+          },
         },
-        { target: 'fake' }
-      )
+        { target: 'fake' },
+      ),
     ).toEqual({ pagination: undefined })
   })
 
@@ -101,7 +101,7 @@ describe('Pagination Container', () => {
     expect(Object.keys(mapped)).toEqual([
       'getPage',
       'getNextPage',
-      'getPreviousPage'
+      'getPreviousPage',
     ])
     expect(dispatch).not.toBeCalled()
   })
@@ -135,12 +135,12 @@ describe('Pagination Container', () => {
         store={{
           app: {
             pagination: defaultPagination,
-            edits: { rows: { argle: '123' } }
-          }
+            edits: { rows: { argle: '123' } },
+          },
         }}
       >
-        <Connected target="argle" />
-      </Wrapper>
+        <Connected target='argle' />
+      </Wrapper>,
     )
 
     expect(pagination).toBeDefined()

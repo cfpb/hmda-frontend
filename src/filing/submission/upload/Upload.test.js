@@ -15,10 +15,10 @@ const localSet = jest.fn()
 
 window.localStorage = {
   getItem: localGet,
-  setItem: localSet
+  setItem: localSet,
 }
 
-describe('submitform', function() {
+describe('submitform', function () {
   const setFile = jest.fn()
   const pollSubmission = jest.fn()
   const poll2 = jest.fn()
@@ -33,15 +33,15 @@ describe('submitform', function() {
         uploading={true}
         file={{ size: 108 }}
         code={5}
-        filingPeriod="2017"
+        filingPeriod='2017'
         errors={['this is an error', 'and another']}
       />
     </Wrapper>,
-    node
+    node,
   )
   const formNode = ReactDOM.findDOMNode(form)
 
-  it('renders the form', function() {
+  it('renders the form', function () {
     expect(formNode).toBeDefined()
   })
 
@@ -66,7 +66,7 @@ describe('submitform', function() {
         errors={[]}
       />
     </Wrapper>,
-    n2
+    n2,
   )
   const form2Node = ReactDOM.findDOMNode(form2)
 
@@ -90,11 +90,12 @@ describe('submitform', function() {
           file={{ size: 200 }}
           errors={['error']}
         />
-      </Wrapper>
+      </Wrapper>,
     )
 
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'usa-alert').length
+      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'usa-alert')
+        .length,
     ).toBe(1)
   })
 })

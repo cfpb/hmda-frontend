@@ -57,7 +57,7 @@
 }
 
 .DynamicDataset .updated svg {
-  fill:#0093bc;
+  fill: #0093bc;
 }
 
 .DynamicDataset .notUpdated + .message {

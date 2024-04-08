@@ -4,14 +4,14 @@ import {
   REQUEST_SIGNATURE_POST,
   RECEIVE_SIGNATURE_POST,
   CHECK_SIGNATURE,
-  REFRESH_STATE
+  REFRESH_STATE,
 } from '../constants'
 
 const defaultSignature = {
   isFetching: false,
   timestamp: null,
   receipt: null,
-  checked: false
+  checked: false,
 }
 
 export default (state = defaultSignature, action) => {
@@ -19,7 +19,7 @@ export default (state = defaultSignature, action) => {
     case REQUEST_SIGNATURE:
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
       }
 
     case RECEIVE_SIGNATURE:
@@ -29,13 +29,13 @@ export default (state = defaultSignature, action) => {
         timestamp: action.timestamp,
         receipt: action.receipt,
         email: action.email,
-        checked: action.timestamp !== 0
+        checked: action.timestamp !== 0,
       }
 
     case REQUEST_SIGNATURE_POST:
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
       }
 
     case RECEIVE_SIGNATURE_POST:
@@ -44,14 +44,14 @@ export default (state = defaultSignature, action) => {
         isFetching: false,
         timestamp: action.timestamp,
         receipt: action.receipt,
-        email: action.email
+        email: action.email,
       }
 
     case CHECK_SIGNATURE:
       return {
         ...state,
         isFetching: false,
-        checked: action.checked
+        checked: action.checked,
       }
 
     case REFRESH_STATE:

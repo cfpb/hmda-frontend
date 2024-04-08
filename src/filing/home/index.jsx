@@ -12,10 +12,10 @@ const Home = ({ maintenanceMode, config }) => {
   const cname = 'FilingHome' + (maintenanceMode ? ' maintenance' : '')
   const sessionExpired = window.location.href.indexOf('session=expired') > -1
   const toolAnnouncement = useToolAnnouncement({
-    toolName: "filing",
+    toolName: 'filing',
     config: config,
   })
-  const marginTop = toolAnnouncement ? "0px" : ""
+  const marginTop = toolAnnouncement ? '0px' : ''
 
   return (
     <main className={cname} id='main-content'>
@@ -25,7 +25,7 @@ const Home = ({ maintenanceMode, config }) => {
             <Alert type='success' heading='Session Expired'>
               <p>
                 Please log in. If you are having trouble accessing the Filing
-                application please contact{" "}
+                application please contact{' '}
                 <a href='mailto:hmdahelp@cfpb.gov'>HMDA Help</a>.
               </p>
             </Alert>
@@ -48,12 +48,12 @@ const Home = ({ maintenanceMode, config }) => {
           <button
             className='button'
             style={{ marginTop }}
-            onClick={e => {
+            onClick={(e) => {
               e.preventDefault()
               login()
             }}
             disabled={buttonsDisabled}
-            title={maintenanceTitle || "Login"}
+            title={maintenanceTitle || 'Login'}
           >
             Log in
           </button>
@@ -61,13 +61,13 @@ const Home = ({ maintenanceMode, config }) => {
           <button
             className='button register-link'
             style={{ marginTop }}
-            onClick={e => {
+            onClick={(e) => {
               e.preventDefault()
               register()
             }}
             disabled={buttonsDisabled}
-            title={maintenanceTitle || "Create an account"}
-            >
+            title={maintenanceTitle || 'Create an account'}
+          >
             Create an account
           </button>
           <p className='text-small'>
@@ -75,7 +75,7 @@ const Home = ({ maintenanceMode, config }) => {
             establish an account prior to accessing the HMDA Platform.
           </p>
         </div>
-        <div className='full-width' style={{ marginTop: "3rem" }}>
+        <div className='full-width' style={{ marginTop: '3rem' }}>
           <MailingSignupLarge />
         </div>
       </section>

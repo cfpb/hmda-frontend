@@ -5,6 +5,6 @@ export default function receiveFileErrors(lei, errors, file) {
     type: types.RECEIVE_FILE_ERRORS,
     lei,
     errors,
-    file
+    file,
   }
 }

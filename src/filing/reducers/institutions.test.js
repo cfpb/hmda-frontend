@@ -10,19 +10,19 @@ describe('institutions reducer', () => {
 
   it('handles REQUEST_INSTITUTIONS', () => {
     expect(institutions({}, { type: types.REQUEST_INSTITUTIONS })).toEqual({
-      isFetching: true
+      isFetching: true,
     })
   })
 
   it('handles REQUEST_INSTITUTION', () => {
     expect(
-      institutions({}, { type: types.REQUEST_INSTITUTION, lei: '123' })
+      institutions({}, { type: types.REQUEST_INSTITUTION, lei: '123' }),
     ).toEqual({
       institutions: {
         123: {
-          isFetching: true
-        }
-      }
+          isFetching: true,
+        },
+      },
     })
   })
 
@@ -32,23 +32,23 @@ describe('institutions reducer', () => {
         {},
         {
           type: types.RECEIVE_INSTITUTION,
-          institution: { lei: '123', name: 'oi' }
-        }
-      )
+          institution: { lei: '123', name: 'oi' },
+        },
+      ),
     ).toEqual({
       institutions: {
         123: {
           isFetching: false,
           name: 'oi',
-          lei: '123'
-        }
-      }
+          lei: '123',
+        },
+      },
     })
   })
   it('handles RECEIVE_INSTITUTIONS', () => {
     expect(institutions({}, { type: types.RECEIVE_INSTITUTIONS })).toEqual({
       isFetching: false,
-      fetched: true
+      fetched: true,
     })
   })
 
@@ -57,7 +57,7 @@ describe('institutions reducer', () => {
       types.RECEIVE_INSTITUTIONS,
       types.REQUEST_INSTITUTIONS,
       types.REQUEST_INSTITUTION,
-      types.RECEIVE_INSTITUTION
-    ).forEach(v => expect(institutions({}, v)).toEqual({}))
+      types.RECEIVE_INSTITUTION,
+    ).forEach((v) => expect(institutions({}, v)).toEqual({}))
   })
 })

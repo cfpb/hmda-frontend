@@ -11,12 +11,12 @@ describe('InstitutionsEditsNav', () => {
     const rendered = TestUtils.renderIntoDocument(
       <Wrapper>
         <InstitutionsEditsNav status={{ code: 1 }} />
-      </Wrapper>
+      </Wrapper>,
     )
     const renderedNode = ReactDOM.findDOMNode(rendered)
     expect(renderedNode).toBeDefined()
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(rendered, 'li').length
+      TestUtils.scryRenderedDOMComponentsWithTag(rendered, 'li').length,
     ).toBe(5)
   })
 
@@ -24,18 +24,18 @@ describe('InstitutionsEditsNav', () => {
     const rendered = TestUtils.renderIntoDocument(
       <Wrapper>
         <InstitutionsEditsNav status={{ code: 2 }} />
-      </Wrapper>
+      </Wrapper>,
     )
     const renderedNode = ReactDOM.findDOMNode(rendered)
     expect(renderedNode).toBeDefined()
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(rendered, 'li').length
+      TestUtils.scryRenderedDOMComponentsWithTag(rendered, 'li').length,
     ).toBe(5)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'error').length
+      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'error').length,
     ).toBe(0)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'complete').length
+      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'complete').length,
     ).toBe(0)
   })
 
@@ -43,18 +43,18 @@ describe('InstitutionsEditsNav', () => {
     const rendered = TestUtils.renderIntoDocument(
       <Wrapper>
         <InstitutionsEditsNav status={{ code: 3 }} />
-      </Wrapper>
+      </Wrapper>,
     )
     const renderedNode = ReactDOM.findDOMNode(rendered)
     expect(renderedNode).toBeDefined()
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(rendered, 'li').length
+      TestUtils.scryRenderedDOMComponentsWithTag(rendered, 'li').length,
     ).toBe(5)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'error').length
+      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'error').length,
     ).toBe(0)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'complete').length
+      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'complete').length,
     ).toBe(0)
   })
 
@@ -62,18 +62,18 @@ describe('InstitutionsEditsNav', () => {
     const rendered = TestUtils.renderIntoDocument(
       <Wrapper>
         <InstitutionsEditsNav status={{ code: 4 }} />
-      </Wrapper>
+      </Wrapper>,
     )
     const renderedNode = ReactDOM.findDOMNode(rendered)
     expect(renderedNode).toBeDefined()
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(rendered, 'li').length
+      TestUtils.scryRenderedDOMComponentsWithTag(rendered, 'li').length,
     ).toBe(5)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'error').length
+      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'error').length,
     ).toBe(0)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'complete').length
+      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'complete').length,
     ).toBe(0)
   })
 
@@ -81,16 +81,16 @@ describe('InstitutionsEditsNav', () => {
     const rendered = TestUtils.renderIntoDocument(
       <Wrapper>
         <InstitutionsEditsNav status={{ code: 5 }} />
-      </Wrapper>
+      </Wrapper>,
     )
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(rendered, 'li').length
+      TestUtils.scryRenderedDOMComponentsWithTag(rendered, 'li').length,
     ).toBe(5)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'error').length
+      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'error').length,
     ).toBe(1)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'complete').length
+      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'complete').length,
     ).toBe(0)
   })
 
@@ -98,16 +98,16 @@ describe('InstitutionsEditsNav', () => {
     const rendered = TestUtils.renderIntoDocument(
       <Wrapper>
         <InstitutionsEditsNav status={{ code: 6 }} />
-      </Wrapper>
+      </Wrapper>,
     )
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(rendered, 'li').length
+      TestUtils.scryRenderedDOMComponentsWithTag(rendered, 'li').length,
     ).toBe(5)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'error').length
+      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'error').length,
     ).toBe(0)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'complete').length
+      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'complete').length,
     ).toBe(1)
   })
 
@@ -115,16 +115,16 @@ describe('InstitutionsEditsNav', () => {
     const rendered = TestUtils.renderIntoDocument(
       <Wrapper>
         <InstitutionsEditsNav status={{ code: 7 }} />
-      </Wrapper>
+      </Wrapper>,
     )
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(rendered, 'li').length
+      TestUtils.scryRenderedDOMComponentsWithTag(rendered, 'li').length,
     ).toBe(5)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'error').length
+      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'error').length,
     ).toBe(0)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'complete').length
+      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'complete').length,
     ).toBe(1)
   })
 
@@ -132,16 +132,16 @@ describe('InstitutionsEditsNav', () => {
     const rendered = TestUtils.renderIntoDocument(
       <Wrapper>
         <InstitutionsEditsNav status={{ code: 8 }} />
-      </Wrapper>
+      </Wrapper>,
     )
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(rendered, 'li').length
+      TestUtils.scryRenderedDOMComponentsWithTag(rendered, 'li').length,
     ).toBe(5)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'error').length
+      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'error').length,
     ).toBe(3)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'complete').length
+      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'complete').length,
     ).toBe(1)
   })
 
@@ -149,16 +149,16 @@ describe('InstitutionsEditsNav', () => {
     const rendered = TestUtils.renderIntoDocument(
       <Wrapper>
         <InstitutionsEditsNav status={{ code: 9 }} />
-      </Wrapper>
+      </Wrapper>,
     )
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(rendered, 'li').length
+      TestUtils.scryRenderedDOMComponentsWithTag(rendered, 'li').length,
     ).toBe(5)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'error').length
+      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'error').length,
     ).toBe(1)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'complete').length
+      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'complete').length,
     ).toBe(4)
   })
 
@@ -166,16 +166,16 @@ describe('InstitutionsEditsNav', () => {
     const rendered = TestUtils.renderIntoDocument(
       <Wrapper>
         <InstitutionsEditsNav status={{ code: 10 }} />
-      </Wrapper>
+      </Wrapper>,
     )
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(rendered, 'li').length
+      TestUtils.scryRenderedDOMComponentsWithTag(rendered, 'li').length,
     ).toBe(5)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'error').length
+      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'error').length,
     ).toBe(0)
     expect(
-      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'complete').length
+      TestUtils.scryRenderedDOMComponentsWithClass(rendered, 'complete').length,
     ).toBe(5)
   })
 })

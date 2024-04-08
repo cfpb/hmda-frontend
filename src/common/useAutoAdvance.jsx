@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from 'react'
 let advanceTimeout = null
 
 /**
@@ -14,14 +14,13 @@ export const useAutoAdvance = ({
   totalCount = 0,
   autoAdvance = true,
 }) => {
-  
   const [currentIdx, setCurrentIdx] = useState(0)
   const [isPaused, setPaused] = useState(!autoAdvance) // Auto-advance?
 
   const showNext = () => setCurrentIdx((currentIdx + 1) % totalCount)
   const showPrevious = () =>
     setCurrentIdx(
-      currentIdx - 1 < 0 ? totalCount - 1 : (currentIdx - 1) % totalCount
+      currentIdx - 1 < 0 ? totalCount - 1 : (currentIdx - 1) % totalCount,
     )
 
   /* Automatically cycle through available options */

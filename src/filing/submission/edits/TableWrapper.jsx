@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Header from './Header.jsx'
 import Loading from '../../../common/LoadingIcon.jsx'
 import EditsTable from './TableContainer.jsx'
-import Verifier from './VerifierContainer.jsx'
+import Verifier from './Verifier'
 import SuppressionAlert from './SuppressionAlert.jsx'
 import RefileWarningComponent from '../../refileWarning/index.jsx'
 import submissionProgressHOC from '../progressHOC.jsx'
@@ -39,7 +39,7 @@ export const makeEntry = (props, type) => {
   const count = getTotalTypeCount(type, edits, props.pagination)
 
   return (
-    <article className="EditsTableWrapper-Edit">
+    <article className='EditsTableWrapper-Edit'>
       <Header
         count={count}
         type={type}
@@ -63,7 +63,7 @@ export const renderTablesOrSuccess = (props, edits, type) => {
     }
 
     return (
-      <Alert type="success">
+      <Alert type='success'>
         <p>
           Your data did not trigger any {type} edits
           {verificationMsg}
@@ -84,7 +84,7 @@ export const renderTablesOrSuccess = (props, edits, type) => {
   })
 }
 
-const EditsTableWrapper = props => {
+const EditsTableWrapper = (props) => {
   const type = props.page
 
   if (!props.editsFetched || props.isFetching) {
@@ -92,18 +92,14 @@ const EditsTableWrapper = props => {
   }
 
   return (
-    <section className="EditsTableWrapper">
+    <section className='EditsTableWrapper'>
       {/* warn at the top of the page */}
       <RefileWarning isPassed={props.isPassed} />
       {makeEntry(props, type)}
       {/* warn at the bottom of the page */}
       <RefileWarning isPassed={props.isPassed} />
-      {type === "quality" || type === "macro" ? (
-        <Verifier
-          type={type}
-          isPassed={props.isPassed}
-          lei={props.lei}
-        />
+      {type === 'quality' || type === 'macro' ? (
+        <Verifier type={type} isPassed={props.isPassed} lei={props.lei} />
       ) : null}
       <hr />
     </section>
@@ -121,7 +117,7 @@ EditsTableWrapper.propTypes = {
   syntacticalValidityEditsExist: PropTypes.bool,
   qualityVerified: PropTypes.bool,
   macroVerified: PropTypes.bool,
-  editsFetched: PropTypes.bool
+  editsFetched: PropTypes.bool,
 }
 
 export default EditsTableWrapper

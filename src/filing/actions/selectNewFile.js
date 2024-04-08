@@ -5,7 +5,7 @@ export default function selectNewFile(file) {
     return dispatch({
       type: types.SELECT_NEW_FILE,
       file,
-      lei: getState().app.lei
+      lei: getState().app.lei,
     })
   }
 }

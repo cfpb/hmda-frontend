@@ -1,44 +1,46 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import BannerUSA from "./BannerUSA"
-import { defaultLinks } from "./constants/links"
-import { isBeta } from "../common/Beta"
-import { logout } from "../filing/utils/keycloak.js"
-import { getKeycloak } from "./api/Keycloak.js"
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import BannerUSA from './BannerUSA'
+import { defaultLinks } from './constants/links'
+import { isBeta } from '../common/Beta'
+import { logout } from '../filing/utils/keycloak.js'
+import { getKeycloak } from './api/Keycloak.js'
 
-import "./uswds/css/styles.css"
-import "./uswds/js/uswds-init.min.js"
-import "./uswds/js/uswds.min.js"
-import logo from "./images/ffiec-logo.svg"
-import closeBtn from "./uswds/img/usa-icons/close.svg"
+import './uswds/css/styles.css'
+import logo from './images/ffiec-logo.svg'
+import closeBtn from './uswds/img/usa-icons/close.svg'
 
-import { DocSearch } from "@docsearch/react"
-import "@docsearch/css"
+import { DocSearch } from '@docsearch/react'
+import '@docsearch/css'
 
-export const hideHeaderFooter = path => {
-  const parts = path && path.split("/")
+export const hideHeaderFooter = (path) => {
+  const parts = path && path.split('/')
   let section = parts[1]
   if (parts[2] && !parts[2].match(/^(\d){4}/)) {
     section = parts[2]
   }
-  return section === "maps" ? "no-print" : ""
+  return section === 'maps' ? 'no-print' : ''
 }
 
-export const logOutHandler = e => {
+export const logOutHandler = (e) => {
   e.preventDefault()
   logout()
 }
 
 const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
-  
   // Links used to take users to Docusaurus
   const docusaurusLinks = [
-    "FAQs",
-    "Developer APIs",
-    "Publications",
-    "Tools",
-    "Filing Instructions Guide"
+    'FAQs',
+    'Developer APIs',
+    'Publications',
+    'Tools',
+    'Filing Instructions Guide',
   ]
+
+  useEffect(() => {
+    import('./uswds/js/uswds-init.min.js')
+    import('./uswds/js/uswds.min.js')
+  }, [])
 
   return (
     <div className={hideHeaderFooter(pathname)}>
@@ -67,12 +69,12 @@ const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
               <img src={closeBtn} role='img' alt='Close' />
             </button>
             <ul className='usa-nav__primary usa-accordion'>
-              {links.map(link => {
+              {links.map((link) => {
                 let filingPath =
-                  props.history.location.pathname.includes("/filing")
+                  props.history.location.pathname.includes('/filing')
                 let isActive = false
 
-                if (link.href === "/") {
+                if (link.href === '/') {
                   isActive = pathname === link.href
                 } else if (filingPath) {
                   isActive = true
@@ -85,11 +87,11 @@ const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
                         to={link.href}
                         className={
                           isActive
-                            ? "usa-nav__link usa-current"
-                            : "usa-nav__link"
+                            ? 'usa-nav__link usa-current'
+                            : 'usa-nav__link'
                         }
                         rel={
-                          link.name === "Filing" ? "noopener noreferrer" : null
+                          link.name === 'Filing' ? 'noopener noreferrer' : null
                         }
                       >
                         {link.name}
@@ -105,7 +107,7 @@ const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
                           <span>{link.name}</span>
                         </button>
                         <ul id={link.name} className='usa-nav__submenu'>
-                          {link.submenu.map(sublink => (
+                          {link.submenu.map((sublink) => (
                             <li
                               key={sublink.name}
                               className='usa-nav__submenu-item'

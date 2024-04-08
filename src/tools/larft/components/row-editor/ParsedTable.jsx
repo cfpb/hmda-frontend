@@ -2,9 +2,9 @@ import React from 'react'
 import { collapseAll } from '../Accordion'
 
 /**
- * Displays the LAR/TS fields in a tabular view. 
- * 
- * @param {Array<ParsedRow>} rows  
+ * Displays the LAR/TS fields in a tabular view.
+ *
+ * @param {Array<ParsedRow>} rows
  */
 export const ParsedTable = ({ rows }) => {
   if (!rows.length) return <NoMatches />
@@ -15,7 +15,7 @@ export const ParsedTable = ({ rows }) => {
       style={{ height: window.innerHeight * 0.623 }}
     >
       <table
-        onSubmit={e => e.preventDefault()}
+        onSubmit={(e) => e.preventDefault()}
         style={{
           height: window.innerHeight * 0.4,
           borderCollapse: 'separate',

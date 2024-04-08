@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import App from './'
 
-const r = shallow(<App/>)
+const r = shallow(<App />)
 
 it('renders a header', () => {
   expect(r.find('Header').length).toBe(1)

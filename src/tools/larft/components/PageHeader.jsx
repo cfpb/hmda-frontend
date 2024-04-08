@@ -30,9 +30,7 @@ export const PageHeader = () => {
 
       <Heading key={'documentation-link'} type={2}>
         For additional guidance, please visit the Online LAR Formatting Tool's{' '}
-        <a href='/documentation/tools/online-lar-formatting'>
-          documentation
-        </a>{' '}
+        <a href='/documentation/tools/online-lar-formatting'>documentation</a>{' '}
         page.
       </Heading>
     </>

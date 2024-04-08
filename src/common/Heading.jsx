@@ -16,15 +16,15 @@ const renderHeading = (type, heading) => {
 }
 
 const renderParagraph = (type, paragraphText) => {
-  if (type === 1) return <p className="font-lead">{paragraphText}</p>
+  if (type === 1) return <p className='font-lead'>{paragraphText}</p>
   return <p>{paragraphText}</p>
 }
 
-const Heading = props => {
+const Heading = (props) => {
   let style = { marginBottom: '1em' }
   if (props.type === 1) style = { marginBottom: '2em' }
 
-  if(props.style) style = {...style, ...props.style}
+  if (props.style) style = { ...style, ...props.style }
 
   let headingClass = 'heading'
   if (props.disabled) {
@@ -53,7 +53,7 @@ Heading.propTypes = {
   headingText: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   paragraphText: PropTypes.string,
   headingLink: PropTypes.string,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 }
 
 export default Heading

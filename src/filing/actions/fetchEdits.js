@@ -6,11 +6,11 @@ import { getEdits } from '../api/api.js'
 import { error } from '../utils/log.js'
 
 export default function fetchEdits() {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(requestEdits())
     return getEdits()
-      .then(json => {
-        return hasHttpError(json).then(hasError => {
+      .then((json) => {
+        return hasHttpError(json).then((hasError) => {
           if (hasError) {
             dispatch(receiveError(json))
             throw new Error(json && `${json.status}: ${json.statusText}`)
@@ -19,7 +19,7 @@ export default function fetchEdits() {
           return json
         })
       })
-      .catch(err => {
+      .catch((err) => {
         error(err)
       })
   }

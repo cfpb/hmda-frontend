@@ -1,12 +1,12 @@
 import {
   nestInstitutionStateForAPI,
-  flattenApiForInstitutionState
+  flattenApiForInstitutionState,
 } from './convert'
 
 describe('nestInstitutionStateForApi', () => {
-  const stateWithQuarterlyFiler = qFiler => ({
+  const stateWithQuarterlyFiler = (qFiler) => ({
     emailDomains: '',
-    quarterlyFiler: qFiler
+    quarterlyFiler: qFiler,
   })
 
   it('sets quarterlyFiler appropriately when given "true"', () => {
@@ -27,10 +27,10 @@ describe('nestInstitutionStateForApi', () => {
 })
 
 describe('flattenApiForInstitutionState', () => {
-  const jsonWithQuarterlyFiler = qFiler => ({
+  const jsonWithQuarterlyFiler = (qFiler) => ({
     quarterlyFiler: qFiler,
     emailDomains: [],
-    respondent: {}
+    respondent: {},
   })
 
   it('reads quarterlyFiler into state', () => {

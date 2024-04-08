@@ -11,5 +11,5 @@ export default {
   2019: counts2019,
   2020: counts2020,
   2021: counts2021,
-  2022: counts2022
+  2022: counts2022,
 }

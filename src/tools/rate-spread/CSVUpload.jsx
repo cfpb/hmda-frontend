@@ -11,7 +11,7 @@ import './CSVUpload.css'
 const defaultState = {
   isFetching: false,
   filename: '',
-  error: false
+  error: false,
 }
 
 class CSVUpload extends Component {
@@ -27,7 +27,7 @@ class CSVUpload extends Component {
     if (this.state.isFetching) {
       window.scrollTo({
         top: this.refScrollTo.current.offsetTop,
-        behavior: 'smooth'
+        behavior: 'smooth',
       })
     }
   }
@@ -40,7 +40,7 @@ class CSVUpload extends Component {
     if (response.status) {
       return this.setState({
         isFetching: false,
-        error: true
+        error: true,
       })
     }
 
@@ -48,12 +48,12 @@ class CSVUpload extends Component {
 
     this.setState({
       isFetching: false,
-      filename: filename
+      filename: filename,
     })
 
     return fileSaver.saveAs(
       new Blob([response], { type: 'text/csv;charset=utf-16' }),
-      filename
+      filename,
     )
   }
 
@@ -66,7 +66,7 @@ class CSVUpload extends Component {
 
     this.onCSVFetch()
     const CSV_URL = '/public/rateSpread/csv'
-    runFetch(CSV_URL, this.prepareCSVBody(file), true).then(res => {
+    runFetch(CSV_URL, this.prepareCSVBody(file), true).then((res) => {
       this.onCSVCalculated(res, file)
     })
   }
@@ -79,27 +79,30 @@ class CSVUpload extends Component {
 
   render() {
     return (
-      <div className="CSVUpload">
-        <div className="Form">
+      <div className='CSVUpload'>
+        <div className='Form'>
           <Heading
             type={3}
-            headingText="Upload a CSV file"
-            paragraphText="You can also upload a csv to calculate many rate spreads at once."
+            headingText='Upload a CSV file'
+            paragraphText='You can also upload a csv to calculate many rate spreads at once.'
           />
           <p>
             <input
               onChange={this.handleCSVSelect}
-              type="file"
-              href="#"
-              id="csvfile"
+              type='file'
+              href='#'
+              id='csvfile'
             />
-            <label className="button csvLabel" htmlFor="csvfile">
+            <label className='button csvLabel' htmlFor='csvfile'>
               Upload a csv
             </label>
           </p>
-          <p className="text-small">
+          <p className='text-small'>
             Please see{' '}
-            <a href="https://ffiec.cfpb.gov/documentation/api/rate-spread/#batch-ratespreads" target="_blank">
+            <a
+              href='https://ffiec.cfpb.gov/documentation/api/rate-spread/#batch-ratespreads'
+              target='_blank'
+            >
               the batch section of the API documentation
             </a>{' '}
             for information on csv formatting.
@@ -107,22 +110,22 @@ class CSVUpload extends Component {
         </div>
         <div ref={this.refScrollTo}>
           {this.state.isFetching ? (
-            <LoadingIcon className="LoadingInline"/>
+            <LoadingIcon className='LoadingInline' />
           ) : this.state.error ? (
             <Alert
-              type="error"
-              heading="Sorry, an error has occurred processing your file."
+              type='error'
+              heading='Sorry, an error has occurred processing your file.'
             >
               <p>
                 Please check your file format and try again later. If the
                 problem persists, contact{' '}
-                <a href="mailto:hmdahelp@cfpb.gov">HMDA Help</a>.
+                <a href='mailto:hmdahelp@cfpb.gov'>HMDA Help</a>.
               </p>
             </Alert>
           ) : this.state.filename ? (
             <Alert
-              type="success"
-              heading="Batch rate spread calculation complete"
+              type='success'
+              heading='Batch rate spread calculation complete'
             >
               <p>
                 Downloaded <strong>{this.state.filename}</strong> with your

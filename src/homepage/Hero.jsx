@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import { VideoModal } from './VideoModal.jsx';
-import iconSprite from "../common/uswds/img/sprite.svg";
+import React, { useState } from 'react'
+import { VideoModal } from './VideoModal.jsx'
+import iconSprite from '../common/uswds/img/sprite.svg'
 
 export const Hero = ({ hideContent }) => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false)
 
   const handleShowModal = () => {
-    setShowModal(true);
-  };
-  if (hideContent)
-        return (<></>)
+    setShowModal(true)
+  }
+  if (hideContent) return <></>
 
-  return(
+  return (
     <>
     <section className="usa-hero" aria-label="Introduction">
     <div className="grid-container">
@@ -33,12 +32,16 @@ export const Hero = ({ hideContent }) => {
                 <use href={`${iconSprite}#youtube`}></use>
               </svg> See How It Works
             </a>
-            <VideoModal
-              showModal={showModal}
-              setShowModal={setShowModal}
-              title="Example Modal"
-              content="This is an example modal."
-            />
+            {showModal && 
+              (
+                <VideoModal
+                  showModal={showModal}
+                  setShowModal={setShowModal}
+                  title="HMDA Overview"
+                  content="How HMDA Filing Works"
+                />
+              )
+            }            
           </li>
           <li className="usa-button-group__item">
             <a href="/data-browser/" className="usa-button secondary">
@@ -54,4 +57,5 @@ export const Hero = ({ hideContent }) => {
 
 
     </>
-)}
+  )
+}

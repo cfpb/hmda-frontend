@@ -14,20 +14,20 @@ describe('pagination reducer', () => {
     expect(
       pagination(defaultPagination, {
         type: types.RECEIVE_PARSE_ERRORS,
-        pagination: 'parseErrorsPage'
-      })
+        pagination: 'parseErrorsPage',
+      }),
     ).toEqual({ parseErrors: 'parseErrorsPage' })
   })
 
   it('handles REFRESH_STATE', () => {
     expect(pagination({}, { type: types.REFRESH_STATE })).toEqual(
-      defaultPagination
+      defaultPagination,
     )
   })
 
   it("shouldn't modify state on an unknown action type", () => {
-    excludeTypes(types.RECEIVE_PARSE_ERRORS).forEach(v =>
-      expect(pagination({}, v)).toEqual({})
+    excludeTypes(types.RECEIVE_PARSE_ERRORS).forEach((v) =>
+      expect(pagination({}, v)).toEqual({}),
     )
   })
 })

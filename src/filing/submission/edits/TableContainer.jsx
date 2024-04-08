@@ -23,7 +23,7 @@ export function mapStateToProps(state, ownProps) {
   return {
     rowObj,
     pagination,
-    paginationFade
+    paginationFade,
   }
 }
 

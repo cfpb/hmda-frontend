@@ -11,7 +11,7 @@ onlyOn(isBeta(HOST), () => {
 
 onlyOn(!isBeta(HOST), () => {
   describe('National Aggregate Report - Not Generated', () => {
-    ;['2021', '2020', '2019', '2018'].forEach(year => {
+    ;['2021', '2020', '2019', '2018'].forEach((year) => {
       it(`${year} does not have Reports`, () => {
         cy.get({ HOST }).logEnv()
         cy.viewport(1000, 867)
@@ -20,7 +20,7 @@ onlyOn(!isBeta(HOST), () => {
           .last()
           .should(
             'have.text',
-            `National Aggregate reports are not produced for data collected in or after 2018.`
+            `National Aggregate reports are not produced for data collected in or after 2018.`,
           )
       })
     })
@@ -41,7 +41,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('.ProgressCards > :nth-child(1)').should('contain.text', '2017')
       cy.get('.ProgressCards > :nth-child(2)').should(
         'contain.text',
-        'Loans Sold by Purchaser Type - 3-2'
+        'Loans Sold by Purchaser Type - 3-2',
       )
 
       // Validate a row of report data
@@ -49,7 +49,7 @@ onlyOn(!isBeta(HOST), () => {
         () => {
           cy.get(':nth-child(1)').should(
             'have.text',
-            'No reported pricing data'
+            'No reported pricing data',
           )
           cy.get(':nth-child(2)').should('have.text', '1348626')
           cy.get(':nth-child(3)').should('have.text', '437')
@@ -69,7 +69,7 @@ onlyOn(!isBeta(HOST), () => {
           cy.get(':nth-child(17)').should('have.text', '548')
           cy.get(':nth-child(18)').should('have.text', '309291')
           cy.get(':nth-child(19)').should('have.text', '35227')
-        }
+        },
       )
     })
   })

@@ -5,7 +5,7 @@ export default function receiveUploadError(error) {
     return dispatch({
       type: types.RECEIVE_UPLOAD_ERROR,
       error: error || new Error('Unexpected upload error'),
-      lei: getState().app.lei
+      lei: getState().app.lei,
     })
   }
 }

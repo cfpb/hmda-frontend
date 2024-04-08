@@ -1,15 +1,22 @@
 import React from 'react'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
 
-function makeClassname(opts={}){
+function makeClassname(opts = {}) {
   let cname = 'QueryButton'
-  if(opts.disabled) cname += ' disabled'
-  if(opts.secondary) cname += ' secondary'
+  if (opts.disabled) cname += ' disabled'
+  if (opts.secondary) cname += ' secondary'
 
   return cname
 }
 
-const LoadingButton = ({loading, disabled, onClick, children, secondary, dataUrl}) => {
+const LoadingButton = ({
+  loading,
+  disabled,
+  onClick,
+  children,
+  secondary,
+  dataUrl,
+}) => {
   return (
     <>
       <button
@@ -20,7 +27,7 @@ const LoadingButton = ({loading, disabled, onClick, children, secondary, dataUrl
       >
         {children}
       </button>
-      {loading ? <LoadingIcon className="LoadingInline" /> : null}
+      {loading ? <LoadingIcon className='LoadingInline' /> : null}
     </>
   )
 }

@@ -1,5 +1,5 @@
-  const data2017 = {
-    TX: [
+const data2017 = {
+  TX: [
     { id: 10180, name: 'ABILENE' },
     { id: 11100, name: 'AMARILLO' },
     { id: 12420, name: 'AUSTIN-ROUND ROCK' },
@@ -25,7 +25,7 @@
     { id: 46340, name: 'TYLER' },
     { id: 47020, name: 'VICTORIA' },
     { id: 47380, name: 'WACO' },
-    { id: 48660, name: 'WICHITA FALLS' }
+    { id: 48660, name: 'WICHITA FALLS' },
   ],
   PR: [
     { id: 10380, name: 'AGUADILLA-ISABELA' },
@@ -34,7 +34,7 @@
     { id: 32420, name: 'MAYAGÜEZ' },
     { id: 38660, name: 'PONCE' },
     { id: 41900, name: 'SAN GERMÁN' },
-    { id: 41980, name: 'SAN JUAN-CAROLINA-CAGUAS' }
+    { id: 41980, name: 'SAN JUAN-CAROLINA-CAGUAS' },
   ],
   OH: [
     { id: 10420, name: 'AKRON' },
@@ -50,7 +50,7 @@
     { id: 45780, name: 'TOLEDO' },
     { id: 48260, name: 'WEIRTON-STEUBENVILLE' },
     { id: 48540, name: 'WHEELING' },
-    { id: 49660, name: 'YOUNGSTOWN-WARREN-BOARDMAN' }
+    { id: 49660, name: 'YOUNGSTOWN-WARREN-BOARDMAN' },
   ],
   GA: [
     { id: 10500, name: 'ALBANY' },
@@ -67,7 +67,7 @@
     { id: 40660, name: 'ROME' },
     { id: 42340, name: 'SAVANNAH' },
     { id: 46660, name: 'VALDOSTA' },
-    { id: 47580, name: 'WARNER ROBINS' }
+    { id: 47580, name: 'WARNER ROBINS' },
   ],
   OR: [
     { id: 10540, name: 'ALBANY' },
@@ -77,7 +77,7 @@
     { id: 24420, name: 'GRANTS PASS' },
     { id: 32780, name: 'MEDFORD' },
     { id: 38900, name: 'PORTLAND-VANCOUVER-HILLSBORO' },
-    { id: 41420, name: 'SALEM' }
+    { id: 41420, name: 'SALEM' },
   ],
   NY: [
     { id: 10580, name: 'ALBANY-SCHENECTADY-TROY' },
@@ -93,13 +93,13 @@
     { id: 40380, name: 'ROCHESTER' },
     { id: 45060, name: 'SYRACUSE' },
     { id: 46540, name: 'UTICA-ROME' },
-    { id: 48060, name: 'WATERTOWN-FORT DRUM' }
+    { id: 48060, name: 'WATERTOWN-FORT DRUM' },
   ],
   NM: [
     { id: 10740, name: 'ALBUQUERQUE' },
     { id: 22140, name: 'FARMINGTON' },
     { id: 29740, name: 'LAS CRUCES' },
-    { id: 42140, name: 'SANTA FE' }
+    { id: 42140, name: 'SANTA FE' },
   ],
   LA: [
     { id: 10780, name: 'ALEXANDRIA' },
@@ -110,7 +110,7 @@
     { id: 29340, name: 'LAKE CHARLES' },
     { id: 33740, name: 'MONROE' },
     { id: 35380, name: 'NEW ORLEANS-METAIRIE' },
-    { id: 43340, name: 'SHREVEPORT-BOSSIER CITY' }
+    { id: 43340, name: 'SHREVEPORT-BOSSIER CITY' },
   ],
   PA: [
     { id: 10900, name: 'ALLENTOWN-BETHLEHEM-EASTON' },
@@ -133,7 +133,7 @@
     { id: 44300, name: 'STATE COLLEGE' },
     { id: 48700, name: 'WILLIAMSPORT' },
     { id: 49620, name: 'YORK-HANOVER' },
-    { id: 49660, name: 'YOUNGSTOWN-WARREN-BOARDMAN' }
+    { id: 49660, name: 'YOUNGSTOWN-WARREN-BOARDMAN' },
   ],
   NJ: [
     { id: 10900, name: 'ALLENTOWN-BETHLEHEM-EASTON' },
@@ -144,7 +144,7 @@
     { id: 36140, name: 'OCEAN CITY' },
     { id: 45940, name: 'TRENTON' },
     { id: 47220, name: 'VINELAND-BRIDGETON' },
-    { id: 48864, name: 'WILMINGTON' }
+    { id: 48864, name: 'WILMINGTON' },
   ],
   IA: [
     { id: 11180, name: 'AMES' },
@@ -155,7 +155,7 @@
     { id: 26980, name: 'IOWA CITY' },
     { id: 36540, name: 'OMAHA-COUNCIL BLUFFS' },
     { id: 43580, name: 'SIOUX CITY' },
-    { id: 47940, name: 'WATERLOO-CEDAR FALLS' }
+    { id: 47940, name: 'WATERLOO-CEDAR FALLS' },
   ],
   CA: [
     { id: 11244, name: 'ANAHEIM-SANTA ANA-IRVINE' },
@@ -186,9 +186,12 @@
     { id: 44700, name: 'STOCKTON-LODI' },
     { id: 46700, name: 'VALLEJO-FAIRFIELD' },
     { id: 47300, name: 'VISALIA-PORTERVILLE' },
-    { id: 49700, name: 'YUBA CITY' }
+    { id: 49700, name: 'YUBA CITY' },
   ],
-  AK: [{ id: 11260, name: 'ANCHORAGE' }, { id: 21820, name: 'FAIRBANKS' }],
+  AK: [
+    { id: 11260, name: 'ANCHORAGE' },
+    { id: 21820, name: 'FAIRBANKS' },
+  ],
   MI: [
     { id: 11460, name: 'ANN ARBOR' },
     { id: 12980, name: 'BATTLE CREEK' },
@@ -205,7 +208,7 @@
     { id: 35660, name: 'NILES-BENTON HARBOR' },
     { id: 40980, name: 'SAGINAW' },
     { id: 43780, name: 'SOUTH BEND-MISHAWAKA' },
-    { id: 47664, name: 'WARREN-TROY-FARMINGTON HILLS' }
+    { id: 47664, name: 'WARREN-TROY-FARMINGTON HILLS' },
   ],
   AL: [
     { id: 11500, name: 'ANNISTON-OXFORD-JACKSONVILLE' },
@@ -220,7 +223,7 @@
     { id: 26620, name: 'HUNTSVILLE' },
     { id: 33660, name: 'MOBILE' },
     { id: 33860, name: 'MONTGOMERY' },
-    { id: 46220, name: 'TUSCALOOSA' }
+    { id: 46220, name: 'TUSCALOOSA' },
   ],
   WI: [
     { id: 11540, name: 'APPLETON' },
@@ -237,7 +240,7 @@
     { id: 36780, name: 'OSHKOSH-NEENAH' },
     { id: 39540, name: 'RACINE' },
     { id: 43100, name: 'SHEBOYGAN' },
-    { id: 48140, name: 'WAUSAU' }
+    { id: 48140, name: 'WAUSAU' },
   ],
   NC: [
     { id: 11700, name: 'ASHEVILLE' },
@@ -256,7 +259,7 @@
     { id: 40580, name: 'ROCKY MOUNT' },
     { id: 47260, name: 'VIRGINIA BEACH-NORFOLK-NEWPORT NEWS' },
     { id: 48900, name: 'WILMINGTON' },
-    { id: 49180, name: 'WINSTON-SALEM' }
+    { id: 49180, name: 'WINSTON-SALEM' },
   ],
   SC: [
     { id: 12260, name: 'AUGUSTA-RICHMOND COUNTY' },
@@ -268,7 +271,7 @@
     { id: 25940, name: 'HILTON HEAD ISLAND-BLUFFTON-BEAUFORT' },
     { id: 34820, name: 'MYRTLE BEACH-CONWAY-NORTH MYRTLE BEACH' },
     { id: 43900, name: 'SPARTANBURG' },
-    { id: 44940, name: 'SUMTER' }
+    { id: 44940, name: 'SUMTER' },
   ],
   MD: [
     { id: 12580, name: 'BALTIMORE-COLUMBIA-TOWSON' },
@@ -278,12 +281,12 @@
     { id: 41540, name: 'SALISBURY' },
     { id: 43524, name: 'SILVER SPRING-FREDERICK-ROCKVILLE' },
     { id: 47894, name: 'WASHINGTON-ARLINGTON-ALEXANDRIA' },
-    { id: 48864, name: 'WILMINGTON' }
+    { id: 48864, name: 'WILMINGTON' },
   ],
   ME: [
     { id: 12620, name: 'BANGOR' },
     { id: 30340, name: 'LEWISTON-AUBURN' },
-    { id: 38860, name: 'PORTLAND-SOUTH PORTLAND' }
+    { id: 38860, name: 'PORTLAND-SOUTH PORTLAND' },
   ],
   MA: [
     { id: 12700, name: 'BARNSTABLE TOWN' },
@@ -292,7 +295,7 @@
     { id: 38340, name: 'PITTSFIELD' },
     { id: 39300, name: 'PROVIDENCE-WARWICK' },
     { id: 44140, name: 'SPRINGFIELD' },
-    { id: 49340, name: 'WORCESTER' }
+    { id: 49340, name: 'WORCESTER' },
   ],
   WV: [
     { id: 13220, name: 'BECKLEY' },
@@ -305,7 +308,7 @@
     { id: 47894, name: 'WASHINGTON-ARLINGTON-ALEXANDRIA' },
     { id: 48260, name: 'WEIRTON-STEUBENVILLE' },
     { id: 48540, name: 'WHEELING' },
-    { id: 49020, name: 'WINCHESTER' }
+    { id: 49020, name: 'WINCHESTER' },
   ],
   WA: [
     { id: 13380, name: 'BELLINGHAM' },
@@ -321,17 +324,17 @@
     { id: 45104, name: 'TACOMA-LAKEWOOD' },
     { id: 47460, name: 'WALLA WALLA' },
     { id: 48300, name: 'WENATCHEE' },
-    { id: 49420, name: 'YAKIMA' }
+    { id: 49420, name: 'YAKIMA' },
   ],
   MT: [
     { id: 13740, name: 'BILLINGS' },
     { id: 24500, name: 'GREAT FALLS' },
-    { id: 33540, name: 'MISSOULA' }
+    { id: 33540, name: 'MISSOULA' },
   ],
   ND: [
     { id: 13900, name: 'BISMARCK' },
     { id: 22020, name: 'FARGO' },
-    { id: 24220, name: 'GRAND FORKS' }
+    { id: 24220, name: 'GRAND FORKS' },
   ],
   VA: [
     { id: 13980, name: 'BLACKSBURG-CHRISTIANSBURG-RADFORD' },
@@ -344,7 +347,7 @@
     { id: 44420, name: 'STAUNTON-WAYNESBORO' },
     { id: 47260, name: 'VIRGINIA BEACH-NORFOLK-NEWPORT NEWS' },
     { id: 47894, name: 'WASHINGTON-ARLINGTON-ALEXANDRIA' },
-    { id: 49020, name: 'WINCHESTER' }
+    { id: 49020, name: 'WINCHESTER' },
   ],
   IL: [
     { id: 14010, name: 'BLOOMINGTON' },
@@ -361,7 +364,7 @@
     { id: 37900, name: 'PEORIA' },
     { id: 40420, name: 'ROCKFORD' },
     { id: 41180, name: 'ST. LOUIS' },
-    { id: 44100, name: 'SPRINGFIELD' }
+    { id: 44100, name: 'SPRINGFIELD' },
   ],
   IN: [
     { id: 14020, name: 'BLOOMINGTON' },
@@ -378,7 +381,7 @@
     { id: 33140, name: 'MICHIGAN CITY-LA PORTE' },
     { id: 34620, name: 'MUNCIE' },
     { id: 43780, name: 'SOUTH BEND-MISHAWAKA' },
-    { id: 45460, name: 'TERRE HAUTE' }
+    { id: 45460, name: 'TERRE HAUTE' },
   ],
   ID: [
     { id: 14260, name: 'BOISE CITY' },
@@ -386,7 +389,7 @@
     { id: 26820, name: 'IDAHO FALLS' },
     { id: 30300, name: 'LEWISTON' },
     { id: 30860, name: 'LOGAN' },
-    { id: 38540, name: 'POCATELLO' }
+    { id: 38540, name: 'POCATELLO' },
   ],
   CO: [
     { id: 14500, name: 'BOULDER' },
@@ -395,7 +398,7 @@
     { id: 22660, name: 'FORT COLLINS' },
     { id: 24300, name: 'GRAND JUNCTION' },
     { id: 24540, name: 'GREELEY' },
-    { id: 39380, name: 'PUEBLO' }
+    { id: 39380, name: 'PUEBLO' },
   ],
   KY: [
     { id: 14540, name: 'BOWLING GREEN' },
@@ -406,14 +409,14 @@
     { id: 26580, name: 'HUNTINGTON-ASHLAND' },
     { id: 30460, name: 'LEXINGTON-FAYETTE' },
     { id: 31140, name: 'LOUISVILLE/JEFFERSON COUNTY' },
-    { id: 36980, name: 'OWENSBORO' }
+    { id: 36980, name: 'OWENSBORO' },
   ],
   CT: [
     { id: 14860, name: 'BRIDGEPORT-STAMFORD-NORWALK' },
     { id: 25540, name: 'HARTFORD-WEST HARTFORD-EAST HARTFORD' },
     { id: 35300, name: 'NEW HAVEN-MILFORD' },
     { id: 35980, name: 'NORWICH-NEW LONDON' },
-    { id: 49340, name: 'WORCESTER' }
+    { id: 49340, name: 'WORCESTER' },
   ],
   VT: [{ id: 15540, name: 'BURLINGTON-SOUTH BURLINGTON' }],
   FL: [
@@ -440,7 +443,7 @@
     { id: 45220, name: 'TALLAHASSEE' },
     { id: 45300, name: 'TAMPA-ST. PETERSBURG-CLEARWATER' },
     { id: 45540, name: 'THE VILLAGES' },
-    { id: 48424, name: 'WEST PALM BEACH-BOCA RATON-DELRAY BEACH' }
+    { id: 48424, name: 'WEST PALM BEACH-BOCA RATON-DELRAY BEACH' },
   ],
   MO: [
     { id: 16020, name: 'CAPE GIRARDEAU' },
@@ -451,14 +454,17 @@
     { id: 28140, name: 'KANSAS CITY' },
     { id: 41140, name: 'ST. JOSEPH' },
     { id: 41180, name: 'ST. LOUIS' },
-    { id: 44180, name: 'SPRINGFIELD' }
+    { id: 44180, name: 'SPRINGFIELD' },
   ],
   NV: [
     { id: 16180, name: 'CARSON CITY' },
     { id: 29820, name: 'LAS VEGAS-HENDERSON-PARADISE' },
-    { id: 39900, name: 'RENO' }
+    { id: 39900, name: 'RENO' },
   ],
-  WY: [{ id: 16220, name: 'CASPER' }, { id: 16940, name: 'CHEYENNE' }],
+  WY: [
+    { id: 16220, name: 'CASPER' },
+    { id: 16940, name: 'CHEYENNE' },
+  ],
   TN: [
     { id: 16860, name: 'CHATTANOOGA' },
     { id: 17300, name: 'CLARKSVILLE' },
@@ -469,12 +475,12 @@
     { id: 28940, name: 'KNOXVILLE' },
     { id: 32820, name: 'MEMPHIS' },
     { id: 34100, name: 'MORRISTOWN' },
-    { id: 34980, name: 'NASHVILLE-DAVIDSON--MURFREESBORO--FRANKLIN' }
+    { id: 34980, name: 'NASHVILLE-DAVIDSON--MURFREESBORO--FRANKLIN' },
   ],
   DE: [
     { id: 20100, name: 'DOVER' },
     { id: 41540, name: 'SALISBURY' },
-    { id: 48864, name: 'WILMINGTON' }
+    { id: 48864, name: 'WILMINGTON' },
   ],
   MN: [
     { id: 20260, name: 'DULUTH' },
@@ -484,14 +490,14 @@
     { id: 31860, name: 'MANKATO-NORTH MANKATO' },
     { id: 33460, name: 'MINNEAPOLIS-ST. PAUL-BLOOMINGTON' },
     { id: 40340, name: 'ROCHESTER' },
-    { id: 41060, name: 'ST. CLOUD' }
+    { id: 41060, name: 'ST. CLOUD' },
   ],
   OK: [
     { id: 21420, name: 'ENID' },
     { id: 22900, name: 'FORT SMITH' },
     { id: 30020, name: 'LAWTON' },
     { id: 36420, name: 'OKLAHOMA CITY' },
-    { id: 46140, name: 'TULSA' }
+    { id: 46140, name: 'TULSA' },
   ],
   AR: [
     { id: 22220, name: 'FAYETTEVILLE-SPRINGDALE-ROGERS' },
@@ -501,7 +507,7 @@
     { id: 30780, name: 'LITTLE ROCK-NORTH LITTLE ROCK-CONWAY' },
     { id: 32820, name: 'MEMPHIS' },
     { id: 38220, name: 'PINE BLUFF' },
-    { id: 45500, name: 'TEXARKANA' }
+    { id: 45500, name: 'TEXARKANA' },
   ],
   AZ: [
     { id: 22380, name: 'FLAGSTAFF' },
@@ -510,23 +516,23 @@
     { id: 39140, name: 'PRESCOTT' },
     { id: 43420, name: 'SIERRA VISTA-DOUGLAS' },
     { id: 46060, name: 'TUCSON' },
-    { id: 49740, name: 'YUMA' }
+    { id: 49740, name: 'YUMA' },
   ],
   NE: [
     { id: 24260, name: 'GRAND ISLAND' },
     { id: 30700, name: 'LINCOLN' },
     { id: 36540, name: 'OMAHA-COUNCIL BLUFFS' },
-    { id: 43580, name: 'SIOUX CITY' }
+    { id: 43580, name: 'SIOUX CITY' },
   ],
   MS: [
     { id: 25060, name: 'GULFPORT-BILOXI-PASCAGOULA' },
     { id: 25620, name: 'HATTIESBURG' },
     { id: 27140, name: 'JACKSON' },
-    { id: 32820, name: 'MEMPHIS' }
+    { id: 32820, name: 'MEMPHIS' },
   ],
   HI: [
     { id: 27980, name: 'KAHULUI-WAILUKU-LAHAINA' },
-    { id: 46520, name: 'URBAN HONOLULU' }
+    { id: 46520, name: 'URBAN HONOLULU' },
   ],
   KS: [
     { id: 28140, name: 'KANSAS CITY' },
@@ -534,27 +540,27 @@
     { id: 31740, name: 'MANHATTAN' },
     { id: 41140, name: 'ST. JOSEPH' },
     { id: 45820, name: 'TOPEKA' },
-    { id: 48620, name: 'WICHITA' }
+    { id: 48620, name: 'WICHITA' },
   ],
   UT: [
     { id: 30860, name: 'LOGAN' },
     { id: 36260, name: 'OGDEN-CLEARFIELD' },
     { id: 39340, name: 'PROVO-OREM' },
     { id: 41100, name: 'ST. GEORGE' },
-    { id: 41620, name: 'SALT LAKE CITY' }
+    { id: 41620, name: 'SALT LAKE CITY' },
   ],
   NH: [
     { id: 31700, name: 'MANCHESTER-NASHUA' },
-    { id: 40484, name: 'ROCKINGHAM COUNTY-STRAFFORD COUNTY' }
+    { id: 40484, name: 'ROCKINGHAM COUNTY-STRAFFORD COUNTY' },
   ],
   RI: [{ id: 39300, name: 'PROVIDENCE-WARWICK' }],
   SD: [
     { id: 39660, name: 'RAPID CITY' },
     { id: 43580, name: 'SIOUX CITY' },
-    { id: 43620, name: 'SIOUX FALLS' }
+    { id: 43620, name: 'SIOUX FALLS' },
   ],
   DC: [{ id: 47894, name: 'WASHINGTON-ARLINGTON-ALEXANDRIA' }],
-  NA: [{ id: 99999, name: 'N/A OR OUTSIDE MSA/MD' }]
+  NA: [{ id: 99999, name: 'N/A OR OUTSIDE MSA/MD' }],
 }
 
 const add2019 = {
@@ -631,10 +637,10 @@ const rename2019 = {
 }
 
 const data2018 = {
-  ...data2017
+  ...data2017,
 }
 
-data2018.ID.push({ id: 46300, name: 'TWIN FALLS'})
+data2018.ID.push({ id: 46300, name: 'TWIN FALLS' })
 
 // Add new MSA/MD entries
 function add(additions = {}, existing = {}) {
@@ -669,5 +675,5 @@ export default {
   2019: data2019,
   2020: data2019,
   2021: data2019,
-  2022: data2019
+  2022: data2019,
 }

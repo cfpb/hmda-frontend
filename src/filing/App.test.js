@@ -31,9 +31,9 @@ const defaultState = {
     user: {
       oidc: null,
       userError: false,
-      isFetching: false
-    }
-  }
+      isFetching: false,
+    },
+  },
 }
 
 window.HMDA_ENV = { APP_SUFFIX: '/filing/', HOMEPAGE_URL: 'home' }
@@ -45,7 +45,7 @@ describe('AppContainer', () => {
       <ConnectedAppContainer location={{}}>
         <p>hey</p>
       </ConnectedAppContainer>
-    </Wrapper>
+    </Wrapper>,
   )
 
   const containerNode = ReactDOM.findDOMNode(wrappedContainer).firstChild
@@ -63,7 +63,7 @@ describe('mapStateToProps', () => {
       isFetching: false,
       userError: false,
       redirecting: false,
-      oidc: null
+      oidc: null,
     })
   })
 })
@@ -71,7 +71,7 @@ describe('mapStateToProps', () => {
 describe('componentWillMount', () => {
   it('sets accessToken when provided an unexpired user', () => {
     const app = new AppContainer({
-      oidc: { access_token: 1, expired: false }
+      oidc: { access_token: 1, expired: false },
     })
 
     app.componentWillMount()
@@ -86,7 +86,7 @@ describe('componentWillMount', () => {
     const dispatch = jest.fn()
     const app = new AppContainer({
       oidc: { access_token: 1, expired: true },
-      dispatch: dispatch
+      dispatch: dispatch,
     })
 
     app.componentWillMount()
@@ -102,7 +102,7 @@ describe('componentWillMount', () => {
     const dispatch = jest.fn()
     const app = new AppContainer({
       oidc: { access_token: 1, expired: true },
-      dispatch: dispatch
+      dispatch: dispatch,
     })
 
     app.componentWillMount()
@@ -116,10 +116,10 @@ describe('componentWillUpdate', () => {
   redirect.signinRedirect = signinRedirect
   it('short circuits if oidc is present', () => {
     const app = new AppContainer({
-      oidc: { access_token: 1, expired: false }
+      oidc: { access_token: 1, expired: false },
     })
     app.componentWillUpdate({
-      oidc: { access_token: 1, expired: false }
+      oidc: { access_token: 1, expired: false },
     })
     expect(signinRedirect).not.toBeCalled()
   })
@@ -176,7 +176,7 @@ describe('_handleUser', () => {
     app._handleUser({ expired: false })
     expect(dispatch).toBeCalledWith({
       type: 'USER_FOUND',
-      payload: { expired: false }
+      payload: { expired: false },
     })
     expect(set.mock.calls.length).toBe(2)
   })
@@ -209,7 +209,7 @@ describe('_isOidc', () => {
   it('returns true when matches oidc endpoint', () => {
     const app = new AppContainer({})
     expect(
-      app._isOidc({ location: { pathname: '/filing/oidc-callback' } })
+      app._isOidc({ location: { pathname: '/filing/oidc-callback' } }),
     ).toBe(true)
   })
 
@@ -249,7 +249,7 @@ describe('_renderAppContents', () => {
     const app = new AppContainer({})
     app._isOldBrowser = jest.fn(() => false)
     expect(app._renderAppContents({ redirecting: true }).type.name).toBe(
-      'LoadingIcon'
+      'LoadingIcon',
     )
   })
 
@@ -273,7 +273,7 @@ describe('render', () => {
     const app = new AppContainer({ location: {}, userError: true })
     app._renderAppContents = jest.fn(() => null)
     expect(app.render().props.children[2].type.displayName).toBe(
-      'Connect(LoggedOutContainer)'
+      'Connect(LoggedOutContainer)',
     )
   })
 })

@@ -3,16 +3,16 @@ import { stringifyRow } from './row'
 
 /**
  * Derive file name from TS content
- * 
+ *
  * @param {Object} ts TS row content
- * @returns 
+ * @returns
  */
-export const formatFileName = ts => {
+export const formatFileName = (ts) => {
   if (
     ts['Calendar Year'] &&
     ts['Calendar Quarter'] &&
     ts['Legal Entity Identifier (LEI)']
-  ){
+  ) {
     return `${ts['Calendar Year']}-${ts['Calendar Quarter']}-${ts['Legal Entity Identifier (LEI)']}`
   }
 
@@ -21,15 +21,15 @@ export const formatFileName = ts => {
 
 /**
  * Download LAR file
- * 
- * @param {String} filename 
- * @param {String} text 
+ *
+ * @param {String} filename
+ * @param {String} text
  */
 export function downloadFile(filename, text) {
   var element = document.createElement('a')
   element.setAttribute(
     'href',
-    'data:text/plain;charset=utf-8,' + encodeURIComponent(text)
+    'data:text/plain;charset=utf-8,' + encodeURIComponent(text),
   )
   element.setAttribute('download', filename)
 
@@ -43,9 +43,9 @@ export function downloadFile(filename, text) {
 
 /**
  * Generate LAR file rows
- * 
- * @param {Array} ts 
- * @param {Array} lars 
+ *
+ * @param {Array} ts
+ * @param {Array} lars
  * @returns String
  */
 export const createFileContent = (ts, lars) =>
@@ -53,5 +53,5 @@ export const createFileContent = (ts, lars) =>
     .concat(lars)
     .map(stringifyRow)
     .filter(unity)
-    .map(s => s.trim())
+    .map((s) => s.trim())
     .join('\n')

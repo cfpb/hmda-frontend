@@ -7,13 +7,13 @@ import { getOpenFilingYears } from '../common/constants/configHelpers'
 import { parseTimedGuardDate } from '../deriveConfig'
 
 /**
- * Length of time, in days, to display the announcement 
- * after the event has occurred. 
-*/
+ * Length of time, in days, to display the announcement
+ * after the event has occurred.
+ */
 const SCHEDULED_EVENT_DURATIONS = {
-  annualOpen: 60,    // Annual Filing period is open.
-  annualLate: 30,    // Annual resubmissions still accepted.
-  annualClose: 7,    // Annual resubmissions no longer accepted.
+  annualOpen: 60, // Annual Filing period is open.
+  annualLate: 30, // Annual resubmissions still accepted.
+  annualClose: 7, // Annual resubmissions no longer accepted.
   quarterlyOpen: 60, // Quarterly Filing period is open.
   quarterlyClose: 0, // Quarterly Filing period is closed (no message)
 }
@@ -49,19 +49,16 @@ const availableAnnualRange = (filingPeriods) => {
  * @param {Object} filingPeriodStatus Status and meta data of each filing period
  * @returns Array[ConfiguredAlert]
  */
-const scheduledFilingAnnouncements = (
-  defaultPeriod,
-  filingPeriodStatus
-) => {
+const scheduledFilingAnnouncements = (defaultPeriod, filingPeriodStatus) => {
   const [year, quarter] = splitYearQuarter(defaultPeriod)
   const annualFilingYear = quarter ? parseInt(year) - 1 : parseInt(year)
   const closingAnnualFiling = new Date().getFullYear() - 4
   const announcements = []
 
   let status = filingPeriodStatus[defaultPeriod]
-  
+
   /*** Quarterly Filing Announcements ***/
-  
+
   // Only display Quarterly announcements during Quarterly Filing periods
   if (quarter) {
     // Quarterly Filing Open
@@ -71,13 +68,13 @@ const scheduledFilingAnnouncements = (
           heading={`${status.period} Quarterly filing period is open`}
           message={`Submissions of ${status.period} HMDA data will be accepted through ${status.lateDate}.`}
           type='success'
-        />
+        />,
       )
     }
   }
 
   /*** Annual Filing Announcements ***/
-  
+
   // Annual announcements may overlap with Quarterly announcements, so we will always check for these.
   status = filingPeriodStatus[annualFilingYear]
 
@@ -88,14 +85,14 @@ const scheduledFilingAnnouncements = (
         heading={`${status.period} Annual filing period is open`}
         message={`Submissions of ${status.period} HMDA data will be considered timely if received on or before ${status.lateDate}. `}
         type='success'
-      />
+      />,
     )
   }
 
   // Annual Filing Resubmission period begins
   if (isEventWithinRange('annualLate', status.dates.late)) {
     const openFilingRange = availableAnnualRange(
-      getOpenFilingYears({ filingPeriodStatus })
+      getOpenFilingYears({ filingPeriodStatus }),
     )
 
     announcements.push(
@@ -103,20 +100,20 @@ const scheduledFilingAnnouncements = (
         heading={`${annualFilingYear} Annual filing deadline has passed`}
         message={`The HMDA Platform remains available outside of the filing period for late submissions and resubmissions of ${openFilingRange} HMDA data.`}
         type='info'
-      />
+      />,
     )
   }
 
   // Annual Filing Resubmission period ends
   status = filingPeriodStatus[closingAnnualFiling]
-  
+
   if (isEventWithinRange('annualClose', status.dates.end)) {
     announcements.push(
       <ConfiguredAlert
         heading={`${status.period} Annual filing is closed`}
         message={`The HMDA Platform no longer accepts late submissions or resubmissions of ${status.period} HMDA data.`}
         type='warning'
-      />
+      />,
     )
   }
 
@@ -135,10 +132,13 @@ const scheduledFilingAnnouncements = (
 export const AnnouncementBanner = ({
   announcement,
   defaultPeriod,
-  filingPeriodStatus
+  filingPeriodStatus,
 }) => {
   // Collect all scheduled announcements
-  const announcements = scheduledFilingAnnouncements(defaultPeriod, filingPeriodStatus)
+  const announcements = scheduledFilingAnnouncements(
+    defaultPeriod,
+    filingPeriodStatus,
+  )
 
   // Prioritize the message set in the external configuration
   if (announcement) {
@@ -148,14 +148,16 @@ export const AnnouncementBanner = ({
         announcement
           .reverse()
           .filter(
-            item =>
+            (item) =>
               !item.endDate ||
-              Date.now() < parseTimedGuardDate(item.endDate, true)
+              Date.now() < parseTimedGuardDate(item.endDate, true),
           )
-          .forEach(item => announcements.unshift(<ConfiguredAlert {...item} />))
+          .forEach((item) =>
+            announcements.unshift(<ConfiguredAlert {...item} />),
+          )
     } else if (announcement) {
       // Single announcement object (maintenance script)
-      announcements.unshift(<ConfiguredAlert {...announcement} />);
+      announcements.unshift(<ConfiguredAlert {...announcement} />)
     }
   }
 

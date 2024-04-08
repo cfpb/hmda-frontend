@@ -8,11 +8,11 @@ import TestUtils from 'react-dom/test-utils'
 
 const fs = require('fs')
 const signJSON = JSON.parse(
-  fs.readFileSync('./test-resources/json/receipt.json')
+  fs.readFileSync('./test-resources/json/receipt.json'),
 )
 const status = {
   code: 9,
-  message: ''
+  message: '',
 }
 
 describe('Signature component', () => {
@@ -26,7 +26,7 @@ describe('Signature component', () => {
         onSignatureClick={onSignatureClick}
         onSignatureCheck={onSignatureCheck}
       />
-    </Wrapper>
+    </Wrapper>,
   )
   const signatureNode = ReactDOM.findDOMNode(signature)
 
@@ -36,13 +36,13 @@ describe('Signature component', () => {
 
   it('contains the checkbox input', () => {
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(signature, 'input').length
+      TestUtils.scryRenderedDOMComponentsWithTag(signature, 'input').length,
     ).toEqual(1)
   })
 
   it('contains the submit button', () => {
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(signature, 'button').length
+      TestUtils.scryRenderedDOMComponentsWithTag(signature, 'button').length,
     ).toEqual(1)
   })
 
@@ -50,8 +50,8 @@ describe('Signature component', () => {
     expect(
       TestUtils.scryRenderedDOMComponentsWithClass(
         signature,
-        'usa-button-disabled'
-      ).length
+        'usa-button-disabled',
+      ).length,
     ).toEqual(1)
   })
 
@@ -61,8 +61,8 @@ describe('Signature component', () => {
 
     TestUtils.Simulate.change(checkbox, {
       target: {
-        checked: true
-      }
+        checked: true,
+      },
     })
 
     expect(onSignatureCheck).toBeCalled()
@@ -77,7 +77,7 @@ describe('Signature component', () => {
         onSignatureClick={onSignatureClick}
         onSignatureCheck={onSignatureCheck}
       />
-    </Wrapper>
+    </Wrapper>,
   )
   const buttonEnabledNode = ReactDOM.findDOMNode(buttonEnabled)
 
@@ -85,15 +85,15 @@ describe('Signature component', () => {
     expect(
       TestUtils.scryRenderedDOMComponentsWithClass(
         buttonEnabled,
-        'usa-button-disabled'
-      ).length
+        'usa-button-disabled',
+      ).length,
     ).toEqual(0)
   })
 
   it('calls the function on click', () => {
     var button = TestUtils.findRenderedDOMComponentWithTag(
       buttonEnabled,
-      'button'
+      'button',
     )
 
     TestUtils.Simulate.click(button)
@@ -104,7 +104,7 @@ describe('Signature component', () => {
   // checkbox checked and status is signed
   const statusSigned = {
     code: 10,
-    message: ''
+    message: '',
   }
   const signatureSigned = TestUtils.renderIntoDocument(
     <Wrapper>
@@ -114,14 +114,14 @@ describe('Signature component', () => {
         onSignatureClick={onSignatureClick}
         onSignatureCheck={onSignatureCheck}
       />
-    </Wrapper>
+    </Wrapper>,
   )
   const signatureSignedNode = ReactDOM.findDOMNode(signatureSigned)
 
   it('has the checkbox checked', () => {
     const checkboxChecked = TestUtils.findRenderedDOMComponentWithTag(
       signatureSigned,
-      'input'
+      'input',
     )
     expect(checkboxChecked.checked).toBeTruthy()
   })
@@ -129,7 +129,7 @@ describe('Signature component', () => {
   it('has the checkbox disabled', () => {
     const checkboxDisabled = TestUtils.findRenderedDOMComponentWithTag(
       signatureSigned,
-      'input'
+      'input',
     )
     expect(checkboxDisabled.disabled).toBeTruthy()
   })
@@ -138,8 +138,8 @@ describe('Signature component', () => {
     expect(
       TestUtils.findRenderedDOMComponentWithClass(
         signatureSigned,
-        'usa-button-disabled'
-      )
+        'usa-button-disabled',
+      ),
     ).toBeTruthy()
   })
 })

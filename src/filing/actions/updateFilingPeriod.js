@@ -5,6 +5,6 @@ export default function updateFilingPeriod(filingPeriod) {
 
   return {
     type: types.UPDATE_FILING_PERIOD,
-    filingPeriod: filingPeriod
+    filingPeriod: filingPeriod,
   }
 }

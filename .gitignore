@@ -79,6 +79,7 @@ yarn-error.log
 # setupProxy.js
 build/
 env.json
+env.dev.local
 local_keycloak.json
 cypress.env.json
 cypress/videos/

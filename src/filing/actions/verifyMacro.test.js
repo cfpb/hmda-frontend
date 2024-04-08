@@ -8,7 +8,7 @@ describe('verifyMacro', () => {
     expect(verifyMacro(true)).toEqual({
       type: types.VERIFY_MACRO,
       checked: true,
-      isFetching: false
+      isFetching: false,
     })
   })
 })

@@ -1,10 +1,9 @@
 import React from 'react'
 import { formatDateString } from '../../utils/input'
 
-
 /**
  * Formatted text input with date selector
- * 
+ *
  * @param {Function} onChange Handler to save input value
  * @param {String} value Current value
  * @param {Object} common Additional input attributes
@@ -24,7 +23,7 @@ export const InputDate = ({ onChange, value, ...common }) => {
   )
 }
 
-const buildDateChangeHandler = changeHandler => e => {
+const buildDateChangeHandler = (changeHandler) => (e) => {
   changeHandler({
     target: {
       id: e.target.id,

@@ -6,19 +6,19 @@ import TestUtils from 'react-dom/test-utils'
 import Wrapper from '../../../test-resources/Wrapper.js'
 import EditsHeaderDescription, { getText } from './Header.jsx'
 
-describe('EditsHeaderDescription', function() {
+describe('EditsHeaderDescription', function () {
   const header = TestUtils.renderIntoDocument(
     <Wrapper>
-      <EditsHeaderDescription type="syntacticalvalidity" count={1} />
-    </Wrapper>
+      <EditsHeaderDescription type='syntacticalvalidity' count={1} />
+    </Wrapper>,
   )
   const headerNode = ReactDOM.findDOMNode(header)
 
-  it('renders the header', function() {
+  it('renders the header', function () {
     expect(headerNode).toBeDefined()
   })
 
-  it('sets the prop appropriately', function() {
+  it('sets the prop appropriately', function () {
     expect(header.props.children.props.type).toEqual('syntacticalvalidity')
     expect(header.props.children.props.count).toEqual(1)
   })
@@ -26,14 +26,14 @@ describe('EditsHeaderDescription', function() {
   it('renders a loading icon if not fetched', () => {
     expect(
       EditsHeaderDescription({ type: 'quality', count: 4, fetched: false })
-        .props.children[0].props.children[2].type.name
+        .props.children[0].props.children[2].type.name,
     ).toBe('LoadingIcon')
   })
 
   it('renders no loading icon if fetched', () => {
     expect(
       EditsHeaderDescription({ type: 'quality', count: 4, fetched: true }).props
-        .children[0].props.children[2]
+        .children[0].props.children[2],
     ).toBe(null)
   })
 
@@ -43,8 +43,8 @@ describe('EditsHeaderDescription', function() {
         type: 'quality',
         count: 4,
         fetched: false,
-        suppressCount: true
-      }).props.children[0].props.children[1]
+        suppressCount: true,
+      }).props.children[0].props.children[1],
     ).toBe('')
   })
 })
@@ -52,22 +52,19 @@ describe('EditsHeaderDescription', function() {
 const syntacticalValidity = {
   id: 'syntacticalvalidity',
   title: 'Syntactical and validity edits',
-  desc:
-    'Syntactical edits check whether the LAR is formatted correctly and the data is from the correct filing year. Validity edits check whether there are valid values in each data field. Your LAR cannot be submitted until syntactical and validity edits are corrected in your file and the corrected file is uploaded.'
+  desc: 'Syntactical edits check whether the LAR is formatted correctly and the data is from the correct filing year. Validity edits check whether there are valid values in each data field. Your LAR cannot be submitted until syntactical and validity edits are corrected in your file and the corrected file is uploaded.',
 }
 
 const quality = {
   id: 'quality',
   title: 'Quality edits',
-  desc:
-    'Quality edits check if data fields do not conform to expected values. Your LAR cannot be submitted until you either confirm the accuracy of all the values flagged by the quality edits in the HMDA Platform, or correct the flagged values and upload the updated LAR to the HMDA Platform.'
+  desc: 'Quality edits check if data fields do not conform to expected values. Your LAR cannot be submitted until you either confirm the accuracy of all the values flagged by the quality edits in the HMDA Platform, or correct the flagged values and upload the updated LAR to the HMDA Platform.',
 }
 
 const macro = {
   id: 'macro',
   title: 'Macro edits',
-  desc:
-    'Macro quality edits check whether the submitted LAR as a whole conforms to expected values. Your LAR cannot be submitted until you either confirm the accuracy of all the values flagged by the macro quality edits in the HMDA Platform, or correct the flagged values and upload the updated LAR to the HMDA Platform.'
+  desc: 'Macro quality edits check whether the submitted LAR as a whole conforms to expected values. Your LAR cannot be submitted until you either confirm the accuracy of all the values flagged by the macro quality edits in the HMDA Platform, or correct the flagged values and upload the updated LAR to the HMDA Platform.',
 }
 
 describe('getText', () => {
@@ -76,7 +73,7 @@ describe('getText', () => {
       getText('thisIsNotAType')
     } catch (err) {
       expect(err.message).toEqual(
-        'Unexpected edit type. Unable to create edit description.'
+        'Unexpected edit type. Unable to create edit description.',
       )
     }
   })
@@ -86,7 +83,7 @@ describe('getText', () => {
       getText('')
     } catch (err) {
       expect(err.message).toEqual(
-        'Missing edit type. Unable to create edit description.'
+        'Missing edit type. Unable to create edit description.',
       )
     }
   })

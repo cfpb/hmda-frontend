@@ -10,7 +10,7 @@ const renderData = (tracts, reportType) => {
             borderTopWidth: '2px',
             fontWeight: 'bold',
             textTransform: 'uppercase',
-            backgroundColor: '#f1f1f1'
+            backgroundColor: '#f1f1f1',
           }}
           colSpan={15}
         >
@@ -20,12 +20,12 @@ const renderData = (tracts, reportType) => {
           ? renderAggregateData(tract.dispositions)
           : null}
       </tr>,
-      renderDispositions(tract.dispositions, reportType, index)
+      renderDispositions(tract.dispositions, reportType, index),
     ]
   })
 }
 
-const renderAggregateData = dispositions => {
+const renderAggregateData = (dispositions) => {
   let toRender = []
   dispositions.forEach((disposition, index) => {
     if (
@@ -38,11 +38,11 @@ const renderAggregateData = dispositions => {
           key={key}
           style={{
             borderTopWidth: '2px',
-            backgroundColor: '#f1f1f1'
+            backgroundColor: '#f1f1f1',
           }}
         >
           {disposition.values}
-        </td>
+        </td>,
       )
     }
   })
@@ -80,7 +80,7 @@ const renderDispositionValues = (values, key, key2) => {
   return values.map((value, index) => {
     return [
       <td key={`count-${key}-${key2}-${index}`}>{value.count}</td>,
-      <td key={`value-${key}-${key2}-${index}`}>{value.value}</td>
+      <td key={`value-${key}-${key2}-${index}`}>{value.value}</td>,
     ]
   })
 }
@@ -88,7 +88,7 @@ const renderDispositionValues = (values, key, key2) => {
 const One = React.forwardRef((props, ref) => {
   if (!props.report) return null
 
-  const sortedTracts = props.report.tracts.sort(function(tractA, tractB) {
+  const sortedTracts = props.report.tracts.sort(function (tractA, tractB) {
     const idA = tractA.tract.toUpperCase()
     const idB = tractB.tract.toUpperCase()
 
@@ -109,7 +109,7 @@ const One = React.forwardRef((props, ref) => {
     <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
-          <th width="20%" rowSpan={5}>
+          <th width='20%' rowSpan={5}>
             CENSUS TRACT OR COUNTY NAME AND DISPOSITION OF APPLICATION
             (STATE/COUNTY/TRACT NUMBER)
           </th>
@@ -205,7 +205,7 @@ const One = React.forwardRef((props, ref) => {
 
 One.propTypes = {
   report: PropTypes.object,
-  reportType: PropTypes.string
+  reportType: PropTypes.string,
 }
 
 export default One

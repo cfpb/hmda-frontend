@@ -1,10 +1,10 @@
 'use strict'
 //Override of https://github.com/JedWatson/react-select to prevent needless Option rerenders
 Object.defineProperty(exports, '__esModule', {
-  value: true
+  value: true,
 })
 
-var _createClass = (function() {
+var _createClass = (function () {
   function defineProperties(target, props) {
     for (var i = 0; i < props.length; i++) {
       var descriptor = props[i]
@@ -14,7 +14,7 @@ var _createClass = (function() {
       Object.defineProperty(target, descriptor.key, descriptor)
     }
   }
-  return function(Constructor, protoProps, staticProps) {
+  return function (Constructor, protoProps, staticProps) {
     if (protoProps) defineProperties(Constructor.prototype, protoProps)
     if (staticProps) defineProperties(Constructor, staticProps)
     return Constructor
@@ -50,7 +50,7 @@ function _classCallCheck(instance, Constructor) {
 function _possibleConstructorReturn(self, call) {
   if (!self) {
     throw new ReferenceError(
-      "this hasn't been initialised - super() hasn't been called"
+      "this hasn't been initialised - super() hasn't been called",
     )
   }
   return call && (typeof call === 'object' || typeof call === 'function')
@@ -62,7 +62,7 @@ function _inherits(subClass, superClass) {
   if (typeof superClass !== 'function' && superClass !== null) {
     throw new TypeError(
       'Super expression must either be null or a function, not ' +
-        typeof superClass
+        typeof superClass,
     )
   }
   subClass.prototype = Object.create(superClass && superClass.prototype, {
@@ -70,8 +70,8 @@ function _inherits(subClass, superClass) {
       value: subClass,
       enumerable: false,
       writable: true,
-      configurable: true
-    }
+      configurable: true,
+    },
   })
   if (superClass)
     Object.setPrototypeOf
@@ -79,7 +79,7 @@ function _inherits(subClass, superClass) {
       : (subClass.__proto__ = superClass)
 }
 
-var Option = (function(_React$Component) {
+var Option = (function (_React$Component) {
   _inherits(Option, _React$Component)
 
   function Option(props) {
@@ -87,7 +87,7 @@ var Option = (function(_React$Component) {
 
     var _this = _possibleConstructorReturn(
       this,
-      (Option.__proto__ || Object.getPrototypeOf(Option)).call(this, props)
+      (Option.__proto__ || Object.getPrototypeOf(Option)).call(this, props),
     )
 
     _this.handleMouseDown = _this.handleMouseDown.bind(_this)
@@ -107,13 +107,13 @@ var Option = (function(_React$Component) {
         event.preventDefault()
         event.stopPropagation()
         this.props.onSelect(this.props.option, event)
-      }
+      },
     },
     {
       key: 'handleMouseEnter',
       value: function handleMouseEnter(event) {
         this.onFocus(event)
-      }
+      },
     },
     {
       key: 'shouldComponentUpdate',
@@ -125,13 +125,13 @@ var Option = (function(_React$Component) {
         }
         if (state !== this.state) return true
         return false
-      }
+      },
     },
     {
       key: 'handleMouseMove',
       value: function handleMouseMove(event) {
         this.onFocus(event)
-      }
+      },
     },
     {
       key: 'handleTouchEnd',
@@ -141,21 +141,21 @@ var Option = (function(_React$Component) {
         if (this.dragging) return
 
         this.handleMouseDown(event)
-      }
+      },
     },
     {
       key: 'handleTouchMove',
       value: function handleTouchMove() {
         // Set a flag that the view is being dragged
         this.dragging = true
-      }
+      },
     },
     {
       key: 'handleTouchStart',
       value: function handleTouchStart() {
         // Set a flag that the view is not being dragged
         this.dragging = false
-      }
+      },
     },
     {
       key: 'onFocus',
@@ -163,7 +163,7 @@ var Option = (function(_React$Component) {
         if (!this.props.isFocused) {
           this.props.onFocus(this.props.option, event)
         }
-      }
+      },
     },
     {
       key: 'render',
@@ -175,7 +175,7 @@ var Option = (function(_React$Component) {
 
         var className = (0, _classnames2.default)(
           this.props.className,
-          option.className
+          option.className,
         )
 
         return option.disabled
@@ -184,9 +184,9 @@ var Option = (function(_React$Component) {
               {
                 className: className,
                 onMouseDown: _blockEvent2.default,
-                onClick: _blockEvent2.default
+                onClick: _blockEvent2.default,
               },
-              this.props.children
+              this.props.children,
             )
           : _react2.default.createElement(
               'div',
@@ -202,12 +202,12 @@ var Option = (function(_React$Component) {
                 onTouchMove: this.handleTouchMove,
                 onTouchEnd: this.handleTouchEnd,
                 id: instancePrefix + '-option-' + optionIndex,
-                title: option.title
+                title: option.title,
               },
-              this.props.children
+              this.props.children,
             )
-      }
-    }
+      },
+    },
   ])
 
   return Option
@@ -224,7 +224,7 @@ Option.propTypes = {
   onSelect: _propTypes2.default.func, // method to handle click on option element
   onUnfocus: _propTypes2.default.func, // method to handle mouseLeave on option element
   option: _propTypes2.default.object.isRequired, // object that is base for that option
-  optionIndex: _propTypes2.default.number // index of the option, used to generate unique ids for aria
+  optionIndex: _propTypes2.default.number, // index of the option, used to generate unique ids for aria
 }
 
 exports.default = Option

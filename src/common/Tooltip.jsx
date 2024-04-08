@@ -2,7 +2,7 @@ import ReactTooltip from 'react-tooltip'
 
 /**
  * Provides a context message upon hover/focus
- * 
+ *
  * @param {String} id Tooltip identifier
  * @param {String} children Tooltip text
  * @param {Object} others Additional tooltip attributes

@@ -14,7 +14,7 @@ const makeListLink = ({ url, label }, _idx) => (
 
 /**
  * List of Documentation links for a given year
- * @param {String} year 
+ * @param {String} year
  * @returns Array
  */
 export function linkToSpecs(year = '2018') {

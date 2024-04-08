@@ -1,5 +1,5 @@
-import React from "react"
-import iconSprite from "../img/sprite.svg"
+import React from 'react'
+import iconSprite from '../img/sprite.svg'
 
 const Icon = ({ iconName, styleIcon }) => {
   return (

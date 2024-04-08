@@ -18,7 +18,7 @@ describe('processFileErrors', () => {
     const errors = ['qwe']
     store.dispatch(processFileErrors(errors, 'afile'))
     expect(store.getActions()).toEqual([
-      { type: types.RECEIVE_FILE_ERRORS, errors, file: 'afile', lei: '123' }
+      { type: types.RECEIVE_FILE_ERRORS, errors, file: 'afile', lei: '123' },
     ])
   })
 })

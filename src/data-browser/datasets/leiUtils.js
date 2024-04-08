@@ -3,7 +3,7 @@ import { isEqual } from 'lodash'
 import { before2018 } from './selectUtils.js'
 
 export function keepValidLeis(valid, selected) {
-  return selected.filter(s => valid[s])
+  return selected.filter((s) => valid[s])
 }
 
 export function filterLeis() {
@@ -11,7 +11,7 @@ export function filterLeis() {
   if (Object.keys(leis).length) {
     const validLeis = keepValidLeis(leis, this.state.leis)
     if (!isEqual(this.state.leis, validLeis))
-      this.onInstitutionChange(validLeis.map(v => ({ value: v })))
+      this.onInstitutionChange(validLeis.map((v) => ({ value: v })))
   }
 }
 
@@ -21,25 +21,28 @@ export function fetchLeis() {
   const { category, items, year } = this.state
   const localTracker = ++fetchTracker
 
-  this.setState(state => ({ leiDetails: { ...state.leiDetails, loading: true }}))
+  this.setState((state) => ({
+    leiDetails: { ...state.leiDetails, loading: true },
+  }))
   return runFetch(makeFilersUrl({ category, items, year }))
-    .then(data => {
-      if(localTracker !== fetchTracker) return
-      const counts = {}, leis = {}
-      data.institutions.forEach(institution => {
+    .then((data) => {
+      if (localTracker !== fetchTracker) return
+      const counts = {},
+        leis = {}
+      data.institutions.forEach((institution) => {
         const id = before2018(year) ? institution.arid : institution.lei
         counts[id] = institution.count
-        leis[id] = {...institution}
+        leis[id] = { ...institution }
       })
       this.setState({
         leiDetails: {
           loading: false,
           leis,
-          counts
-        }
+          counts,
+        },
       })
     })
-    .catch(error => {
-      return this.setStateAndRoute({error})
+    .catch((error) => {
+      return this.setStateAndRoute({ error })
     })
 }

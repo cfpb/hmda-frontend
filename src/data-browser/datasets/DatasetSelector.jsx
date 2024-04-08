@@ -17,14 +17,9 @@
   />
  */
 
-export const datasets = [
-  '3-Year',
-  '1-Year',
-  'Snapshot',
-  'Dynamic',
-]
+export const datasets = ['3-Year', '1-Year', 'Snapshot', 'Dynamic']
 
-export const datasetOptions = year => {
+export const datasetOptions = (year) => {
   const options = []
   const vintage = new Date().getFullYear() - parseInt(year)
   if (vintage > 3) options.push('3-Year')

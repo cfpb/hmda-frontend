@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import external from '../common/images/external-link-128px.png'
 import './ExternalLink.css'
 

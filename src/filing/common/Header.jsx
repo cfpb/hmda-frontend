@@ -7,24 +7,24 @@ import BannerUSA from '../../common/BannerUSA.jsx'
 
 import './Header.css'
 import logo from '../images/ffiec-logo.svg'
-import { isBeta } from '../../common/Beta';
+import { isBeta } from '../../common/Beta'
 
 export const addActiveClass = (selected, current) => {
   if (selected === current) return 'active'
   return null
 }
 
-export const logOutHandler = e => {
+export const logOutHandler = (e) => {
   e.preventDefault()
   logout()
 }
 
-export const getLink = filingPeriod => {
+export const getLink = (filingPeriod) => {
   if (getKeycloak().authenticated) return `/filing/${filingPeriod}/institutions`
   return `/filing/${filingPeriod}/`
 }
 
-const getDocLink = filingPeriod => {
+const getDocLink = (filingPeriod) => {
   const year = filingPeriod.split('-')[0]
   return `/documentation/${year}`
 }
@@ -33,9 +33,9 @@ export const makeNav = (props, page) => {
   const openNewPage = {
     className: 'nav-link',
     target: '_blank',
-    rel: 'noopener noreferrer'
+    rel: 'noopener noreferrer',
   }
-  
+
   let userHeader = (
     <ul className='nav-primary'>
       <li>
@@ -66,26 +66,26 @@ export const makeNav = (props, page) => {
 
   if (page === 'oidc-callback') userHeader = null
 
-  return <nav className="nav">{userHeader}</nav>
+  return <nav className='nav'>{userHeader}</nav>
 }
 
-const Header = props => {
+const Header = (props) => {
   const page = props.pathname.split('/').slice(-1)[0]
   const platformLabel = isBeta() ? 'Beta' : 'Filing'
 
   return (
-    <header className="Header header header-basic" id="header" role="banner">
+    <header className='Header header header-basic' id='header' role='banner'>
       <BannerUSA />
-      <section className="nav-container">
-        <div className="logo" id="logo">
-          <span className="logo-text">
+      <section className='nav-container'>
+        <div className='logo' id='logo'>
+          <span className='logo-text'>
             <Link
-              className="nav-link"
+              className='nav-link'
               to={getLink(props.filingPeriod)}
-              title="Home"
-              aria-label="Home"
+              title='Home'
+              aria-label='Home'
             >
-              <img src={logo} height="32px" alt="FFIEC" />
+              <img src={logo} height='32px' alt='FFIEC' />
               <span>HMDA {platformLabel} Platform</span>
             </Link>
           </span>
@@ -98,7 +98,7 @@ const Header = props => {
 
 Header.propTypes = {
   //user: PropTypes.object,
-  pathname: PropTypes.string
+  pathname: PropTypes.string,
 }
 
 export default Header

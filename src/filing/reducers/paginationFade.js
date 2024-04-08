@@ -1,7 +1,7 @@
 import {
   PAGINATION_FADE_IN,
   PAGINATION_FADE_OUT,
-  REFRESH_STATE
+  REFRESH_STATE,
 } from '../constants'
 
 const defaultFade = {}
@@ -11,12 +11,12 @@ export default (state = defaultFade, action) => {
     case PAGINATION_FADE_IN:
       return {
         ...state,
-        [action.target]: 0
+        [action.target]: 0,
       }
     case PAGINATION_FADE_OUT:
       return {
         ...state,
-        [action.target]: 1
+        [action.target]: 1,
       }
     case REFRESH_STATE:
       return defaultFade

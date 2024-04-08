@@ -7,7 +7,7 @@ const defaultParseErrors = {
   isFetching: false,
   fetched: false,
   transmittalSheetErrors: [],
-  larErrors: []
+  larErrors: [],
 }
 
 describe('parseErrors reducer', () => {
@@ -17,16 +17,16 @@ describe('parseErrors reducer', () => {
 
   it('handles REQUEST_PARSE_ERRORS', () => {
     const action = {
-      type: 'REQUEST_PARSE_ERRORS'
+      type: 'REQUEST_PARSE_ERRORS',
     }
     expect(parseErrors({}, action)).toEqual({
-      isFetching: true
+      isFetching: true,
     })
   })
 
   it('handles REFRESH_STATE', () => {
     expect(parseErrors({}, { type: 'REFRESH_STATE' })).toEqual(
-      defaultParseErrors
+      defaultParseErrors,
     )
   })
 
@@ -37,14 +37,14 @@ describe('parseErrors reducer', () => {
         {
           type: 'RECEIVE_PARSE_ERRORS',
           transmittalSheetErrors: 1,
-          larErrors: 2
-        }
-      )
+          larErrors: 2,
+        },
+      ),
     ).toEqual({
       isFetching: false,
       fetched: true,
       transmittalSheetErrors: 1,
-      larErrors: 2
+      larErrors: 2,
     })
   })
 
@@ -52,7 +52,7 @@ describe('parseErrors reducer', () => {
     excludeTypes(
       types.RECEIVE_PARSE_ERRORS,
       types.REFRESH_STATE,
-      types.REQUEST_PARSE_ERRORS
-    ).forEach(v => expect(parseErrors({}, v)).toEqual({}))
+      types.REQUEST_PARSE_ERRORS,
+    ).forEach((v) => expect(parseErrors({}, v)).toEqual({}))
   })
 })

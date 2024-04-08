@@ -2,8 +2,8 @@ import { adjustFocusToTriggerRerender } from '../../hooks/adjustFocusToTriggerRe
 
 /**
  * Wrapper component to help conditionally render Filter/Search inputs
- * 
- * @param {Boolean} show Should show filter/search inputs? 
+ *
+ * @param {Boolean} show Should show filter/search inputs?
  * @param {Array<ReactElement>} children Filter/search inputs
  */
 export const Filters = ({ show, children }) => {
@@ -13,7 +13,7 @@ export const Filters = ({ show, children }) => {
 
 /**
  * Input field to collect and clear search/filter strings.
- * 
+ *
  * @param {Function} onChange Handler for updating Search string in Redux store
  * @param {String} placeholder
  * @param {String} value Search string
@@ -35,14 +35,14 @@ export const SearchBox = ({
 
   /**
    * This event handler, which completely clears the filter value upon
-   * pressing `backspace`, is an attempted workaround for a glitch in 
+   * pressing `backspace`, is an attempted workaround for a glitch in
    * react-fluid-table where column sizes/width/alignment are incorrect after
    * changing which columns are displayed (via filtration).
-   * 
-   * This fix only works some of the time.  A more consistent resolution 
+   *
+   * This fix only works some of the time.  A more consistent resolution
    * still needs to be found.
-   **/ 
-  const backspaceHandler = e => {
+   **/
+  const backspaceHandler = (e) => {
     if (e.code == 'Backspace' && value) {
       onClear()
       e.preventDefault()

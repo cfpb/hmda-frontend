@@ -17,17 +17,14 @@ export const UnparsableRows = () => {
 
   if (!hasUnparsable || isHidden) return null
 
-  const tableRows = Object.keys(items).map(rowNum => [rowNum, items[rowNum]])
+  const tableRows = Object.keys(items).map((rowNum) => [rowNum, items[rowNum]])
 
   return (
     <div className='unparsable' id='unparsable'>
       <Header onClose={() => setHidden(true)} />
       <Description />
       <Tips />
-      <Table
-        rows={tableRows}
-        headers={['File Row #', 'Row text']}
-      />
+      <Table rows={tableRows} headers={['File Row #', 'Row text']} />
     </div>
   )
 }
@@ -48,7 +45,8 @@ const Header = ({ onClose }) => (
 const Description = () => (
   <p>
     The following rows of your uploaded LAR file are malformed and have been
-    excluded from further processing. <br /><br />
+    excluded from further processing. <br />
+    <br />
     Please correct your file and re-upload.
   </p>
 )
@@ -80,7 +78,7 @@ const Table = ({ rows = [], headers = [] }) => {
 
 const TableHeaders = ({ items }) => {
   if (!items.length) return null
-  const headers = items.map(h => <th key={h}>{h}</th>)
+  const headers = items.map((h) => <th key={h}>{h}</th>)
 
   return (
     <thead>
@@ -92,9 +90,9 @@ const TableHeaders = ({ items }) => {
 const TableRows = ({ items }) => {
   if (!items.length) return null
 
-  const rows = items.map(item => (
+  const rows = items.map((item) => (
     <tr>
-      {item.map(column => (
+      {item.map((column) => (
         <td key={column}>
           <div className='scroll-wrapper'>{column}</div>
         </td>

@@ -1,33 +1,33 @@
-import React from "react";
+import React from 'react'
 
 const determineDataset = (year) => {
-  let ThreeYear = [2019, 2018];
-  let OneYear = [2021, 2020];
+  let ThreeYear = [2019, 2018]
+  let OneYear = [2021, 2020]
 
   if (ThreeYear.includes(year))
     return {
-      name: "Three Year",
+      name: 'Three Year',
       link: `/data-publication/three-year-national-loan-level-dataset/${year}`,
-    };
-  
+    }
+
   if (OneYear.includes(year))
     return {
-      name: "One Year",
+      name: 'One Year',
       link: `/data-publication/one-year-national-loan-level-dataset/${year}`,
-    };
-  
+    }
+
   return {
     name: 'Snapshot',
     link: `/data-publication/snapshot-national-loan-level-dataset/${year}`,
   }
-};
+}
 
 /**
  * Component that takes in a 'year' and generates Snapshot, One Year or Three Year direct links and includes link to 'Data Browser - FAQ'
  * @param {String} year string that contains the year (i.e) 2018, 2019, 2020 etc...
  */
 const DatasetDocsLink = ({ year }) => {
-  let dataset = determineDataset(parseInt(year));
+  let dataset = determineDataset(parseInt(year))
 
   return (
     <div className='SelectWrapper' style={{ paddingTop: '.33em' }}>
@@ -47,6 +47,6 @@ const DatasetDocsLink = ({ year }) => {
       </p>
     </div>
   )
-};
+}
 
-export default DatasetDocsLink;
+export default DatasetDocsLink

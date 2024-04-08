@@ -8,7 +8,7 @@ import fetchInstitution from '../actions/fetchInstitution.js'
 import Connected, {
   SubmissionContainer,
   mapStateToProps,
-  renderByCode
+  renderByCode,
 } from './container.jsx'
 
 const fetch = jest.fn(() => {
@@ -22,16 +22,16 @@ const state = {
     institutions: {
       institutions: {},
       isFetching: false,
-      fetched: false
+      fetched: false,
     },
     lei: 'abc',
     error: null,
     submission: {
       status: {
-        code: 1
-      }
-    }
-  }
+        code: 1,
+      },
+    },
+  },
 }
 
 window.HMDA_ENV = { APP_SUFFIX: '/filing/', HOMEPAGE_URL: 'home' }
@@ -43,8 +43,8 @@ describe('SubmissionContainer', () => {
       <SubmissionContainer
         params={{ lei: '123' }}
         dispatch={jest.fn()}
-        institutions={{ institutions: { '123': {} } }}
-      />
+        institutions={{ institutions: { 123: {} } }}
+      />,
     )
 
     expect(rendered).toBeDefined()
@@ -56,14 +56,14 @@ describe('SubmissionContainer', () => {
     const container = new SubmissionContainer({
       dispatch: jest.fn(),
       institutions: state.app.institutions,
-      params: { lei: '123' }
+      params: { lei: '123' },
     })
     container.componentDidMount()
     expect(fetch.mock.calls.length).toBe(1)
 
     const c2 = new SubmissionContainer({
-      institutions: { institutions: { '123': {} } },
-      params: { lei: '123' }
+      institutions: { institutions: { 123: {} } },
+      params: { lei: '123' },
     })
     c2.componentDidMount()
     expect(fetch.mock.calls.length).toBe(1)
@@ -74,11 +74,11 @@ describe('SubmissionContainer', () => {
       institutions: {
         institutions: {},
         isFetching: false,
-        fetched: false
+        fetched: false,
       },
       lei: 'abc',
       error: null,
-      submission: { status: { code: 1 } }
+      submission: { status: { code: 1 } },
     })
   })
 
@@ -119,7 +119,7 @@ describe('SubmissionContainer', () => {
     const wrapped = TestUtils.renderIntoDocument(
       <Wrapper store={state}>
         <Connected params={{ lei: '123' }} />
-      </Wrapper>
+      </Wrapper>,
     )
 
     expect(wrapped).toBeDefined()
@@ -132,19 +132,19 @@ describe('SubmissionContainer', () => {
       dispatch: jest.fn(),
       institutions: {
         ...state.app.institutions,
-        institutions: { '123': { name: 'oi' } }
+        institutions: { 123: { name: 'oi' } },
       },
       submission: state.app.submission,
       params: { lei: '123' },
-      location: { pathname: '/upload' }
+      location: { pathname: '/upload' },
     })
 
     const rendered = container.render()
     expect(rendered.props.children[1].type.displayName).toBe(
-      'Connect(EditsNav)'
+      'Connect(EditsNav)',
     )
     expect(rendered.props.children[2].props.className).toBe(
-      'full-width SubmissionContainer'
+      'full-width SubmissionContainer',
     )
     expect(rendered.props.children[2].props.children[0]).toBe(null)
   })
@@ -156,15 +156,15 @@ describe('SubmissionContainer', () => {
       submission: state.app.submission,
       params: { lei: '123' },
       location: { pathname: '/upload' },
-      error: { error: 'an err' }
+      error: { error: 'an err' },
     })
 
     const rendered = container.render()
     expect(rendered.props.children[1].type.displayName).toBe(
-      'Connect(EditsNav)'
+      'Connect(EditsNav)',
     )
     expect(rendered.props.children[2].props.className).toBe(
-      'full-width SubmissionContainer'
+      'full-width SubmissionContainer',
     )
     expect(rendered.props.children[2].props.children[0]).not.toBe(null)
   })
@@ -175,12 +175,12 @@ describe('SubmissionContainer', () => {
       institutions: state.app.institutions,
       submission: { ...state.app.submission, status: {} },
       params: { lei: '123' },
-      location: { pathname: '/upload' }
+      location: { pathname: '/upload' },
     })
 
     const rendered = container.render()
     expect(
-      rendered.props.children[2].props.children[1][0].props.children.type.name
+      rendered.props.children[2].props.children[1][0].props.children.type.name,
     ).toBe('LoadingIcon')
   })
 })

@@ -11,10 +11,10 @@ const renderData = (tracts) => {
       <tr key={index}>
         <th
           style={{
-            borderTopWidth: "2px",
-            fontWeight: "bold",
-            textTransform: "uppercase",
-            backgroundColor: "#f1f1f1",
+            borderTopWidth: '2px',
+            fontWeight: 'bold',
+            textTransform: 'uppercase',
+            backgroundColor: '#f1f1f1',
           }}
           colSpan={15}
         >
@@ -49,7 +49,7 @@ const renderDispositionValues = (values, key, key2) => {
 const Aggregate1 = React.forwardRef((props, ref) => {
   const sortedTracts = useMemo(
     () => sortAndFix(props.report, fixAgg1),
-    [props.report]
+    [props.report],
   )
 
   const {
@@ -65,7 +65,6 @@ const Aggregate1 = React.forwardRef((props, ref) => {
     renderFn: renderData,
     formatDisplayLabel: pageLabelTracts,
   })
-
 
   return (
     <>

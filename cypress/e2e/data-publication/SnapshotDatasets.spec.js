@@ -22,7 +22,7 @@ onlyOn(!isBeta(HOST), () => {
     const datasetUrl = '/data-publication/snapshot-national-loan-level-dataset/'
     const basePath = '.grid > :nth-child(1) > :nth-child(2)'
 
-    years.forEach(year => {
+    years.forEach((year) => {
       describe(year + ' Datasets', () => {
         it('has valid Dataset links', () => {
           cy.get({ HOST, ACTION_DELAY, TEST_DELAY }).logEnv()
@@ -30,19 +30,19 @@ onlyOn(!isBeta(HOST), () => {
           cy.visit(`${HOST}${datasetUrl}${year}`)
 
           // Test validity of each link in the Datasets list
-          Object.keys(sectionMap).forEach(key => {
+          Object.keys(sectionMap).forEach((key) => {
             cy.get(`${basePath} > :nth-child(${sectionMap[key]}) a`).each(
-              link => {
+              (link) => {
                 cy.get(link)
                   .hasValidHref()
                   .then(({ status }) => {
                     assert.isTrue(
                       status,
-                      `${key} - ${link.text()} is a valid link`
+                      `${key} - ${link.text()} is a valid link`,
                     )
                   })
                 cy.wait(ACTION_DELAY)
-              }
+              },
             )
           })
 

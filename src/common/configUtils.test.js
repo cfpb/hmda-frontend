@@ -8,7 +8,6 @@ describe('isProd', () => {
 })
 
 describe('getDefaultConfig', () => {
-
   it('finds prod', () => {
     const host = 'ffiec.test'
     expect(getDefaultConfig(host).name).toEqual('prod')

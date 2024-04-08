@@ -13,7 +13,7 @@ const validParams = Object.keys(defaultState)
 const hasAllWords = (string, words) => {
   if (!string || !words || !words.length) return false
   return words.every(
-    (word) => string.toLowerCase().indexOf(word.toLowerCase()) > -1
+    (word) => string.toLowerCase().indexOf(word.toLowerCase()) > -1,
   )
 }
 
@@ -32,9 +32,10 @@ export function useChangeLogFilter(initState = defaultState) {
 
   // Update URL everytime the filters are updated
   // eslint-disable-next-line
-  useEffect(() => history.push(location.pathname + toQueryString(filters)), [
-    filters,
-  ])
+  useEffect(
+    () => history.push(location.pathname + toQueryString(filters)),
+    [filters],
+  )
 
   /* Add a filter */
   const add = (key, value) => {
@@ -82,21 +83,21 @@ export function useChangeLogFilter(initState = defaultState) {
 
           // Search only Change Description by keyword
           result[date] = result[date].filter((item) =>
-            hasAllWords(item.description, words)
+            hasAllWords(item.description, words),
           )
         }
 
         // Change Type filter
         if (filterLists.type && filterLists.type.length > 0) {
           result[date] = result[date].filter(
-            (item) => filterLists.type.indexOf(item.type) > -1
+            (item) => filterLists.type.indexOf(item.type) > -1,
           )
         }
 
         // Product filter
         if (filterLists.product && filterLists.product.length > 0) {
           result[date] = result[date].filter(
-            (item) => filterLists.product.indexOf(item.product) > -1
+            (item) => filterLists.product.indexOf(item.product) > -1,
           )
         }
       }

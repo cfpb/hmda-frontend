@@ -6,7 +6,7 @@ describe('parseTimedGuardDate', () => {
     const date = new Date(
       parseTimedGuardDate(timedGuard).toLocaleString('en-US', {
         timeZone: 'America/New_York',
-      })
+      }),
     )
     expect(date === `${timedGuard}, 12:00:00 AM`)
   })
@@ -15,7 +15,7 @@ describe('parseTimedGuardDate', () => {
     const date = new Date(
       parseTimedGuardDate(timedGuard, true).toLocaleString('en-US', {
         timeZone: 'America/New_York',
-      })
+      }),
     )
     expect(date === `${timedGuard}, 11:59:59 PM`)
   })

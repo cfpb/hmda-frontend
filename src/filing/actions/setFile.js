@@ -5,6 +5,6 @@ export default function setFile(file, filingPeriod, lei) {
   return {
     type: types.SELECT_FILE,
     file,
-    lei
+    lei,
   }
 }

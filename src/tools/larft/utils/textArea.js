@@ -3,11 +3,11 @@ import { stringifyRow } from './row'
 
 /**
  * Identify indexes of pipes (|) in a row string
- * 
- * @param {*} row 
+ *
+ * @param {*} row
  * @returns Iterator of pipe locations
  */
-export const findPipes = row =>
+export const findPipes = (row) =>
   stringifyRow(row).matchAll(new RegExp(/\|/, 'gi'))
 
 export const grabRawArea = () => document.getElementById('rawArea')
@@ -15,13 +15,13 @@ export const grabRawArea = () => document.getElementById('rawArea')
 /**
  * Determines the current cursor position within the EditingPiped textarea
  * in order to update the currently selected column.
- * 
+ *
  * Thanks https://stackoverflow.com/a/7745998/15861235
- * 
+ *
  * @param {HTMLElement} input Textare
  * @returns Number
  */
-export const getCursorPos = input => {
+export const getCursorPos = (input) => {
   if ('selectionStart' in input && document.activeElement == input) {
     return {
       start: input.selectionStart,
@@ -55,12 +55,12 @@ export const getCursorPos = input => {
 }
 
 /**
- * Compare the current cursor position to the positions of the column delimiters to 
+ * Compare the current cursor position to the positions of the column delimiters to
  * determine which LAR field is currently being edited/focused.
- * 
+ *
  * @param {Function} setFn selectCol handler
  * @param {String} row Row string
- * @param {Function} dispatch 
+ * @param {Function} dispatch
  */
 export const updateCurrentColumn = (setFn, row, dispatch) => {
   const cursorPos = getCursorPos(grabRawArea()).start

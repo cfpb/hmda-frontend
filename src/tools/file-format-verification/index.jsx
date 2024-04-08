@@ -16,33 +16,36 @@ import './FFVT.css'
 import { getToolAnnouncement } from '../../common/getToolAnnouncement'
 
 const middleware = [thunkMiddleware]
-if (process.env.NODE_ENV !== 'production') middleware.push(createLogger())
+if (import.meta.env.MODE !== 'production') middleware.push(createLogger())
 
 const store = createStore(
   combineReducers({
-    app: appReducer
+    app: appReducer,
   }),
-  applyMiddleware(...middleware)
+  applyMiddleware(...middleware),
 )
 
 let timeout = null
 
-const FFVTDowntimeBanner = ({ message }) => message && (
-  <Alert type="error" heading="FFVT Unavailable">
-    <p>{message}</p>
-  </Alert>
-);
+const FFVTDowntimeBanner = ({ message }) =>
+  message && (
+    <Alert type='error' heading='FFVT Unavailable'>
+      <p>{message}</p>
+    </Alert>
+  )
 
 class FFVT extends React.Component {
   componentDidMount() {
     timeout && clearTimeout(timeout)
-    timeout = setTimeout(() => window.scrollTo(0,0), 100)
+    timeout = setTimeout(() => window.scrollTo(0, 0), 100)
   }
 
   render() {
-    const { maintenanceMode, ffvtAnnouncement, filingAnnouncement } = this.props.config
-    const downtimeMessage = ffvtAnnouncement || (filingAnnouncement && filingAnnouncement.message)
-    const toolAnnouncement = getToolAnnouncement("ffvt", this.props.config)
+    const { maintenanceMode, ffvtAnnouncement, filingAnnouncement } =
+      this.props.config
+    const downtimeMessage =
+      ffvtAnnouncement || (filingAnnouncement && filingAnnouncement.message)
+    const toolAnnouncement = getToolAnnouncement('ffvt', this.props.config)
 
     return (
       <Provider store={store}>

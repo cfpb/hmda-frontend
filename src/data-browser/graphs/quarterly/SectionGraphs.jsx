@@ -24,7 +24,7 @@ import {
   SERIES_FOR_URL,
 } from '../slice/graphConfigs.js'
 import { graphs } from '../slice'
-import { formatGroupLabel, onMenuOpen } from '../utils/menuHelpers.js'
+import { formatGroupLabel, onMenuOpen } from '../utils/menuHelpers.jsx'
 import { useFetchGraphList } from './useFetchGraphList'
 import { useFetchSingleGraph } from './useFetchSingleGraphs'
 import { useManageGraphSelection } from './useManageGraphSelection'
@@ -47,9 +47,9 @@ export const SectionGraphs = ({
   const isFirstLoad = firstLoadState === undefined ? true : firstLoadState
 
   const periodHigh = graphs.getConfig(graphConfigStore, PERIOD_HI) // Period filters
-  const setPeriodHigh = value => dispatch(graphs.setConfig(PERIOD_HI, value))
+  const setPeriodHigh = (value) => dispatch(graphs.setConfig(PERIOD_HI, value))
   const periodLow = graphs.getConfig(graphConfigStore, PERIOD_LO) // Period filters
-  const setPeriodLow = value => dispatch(graphs.setConfig(PERIOD_LO, value))
+  const setPeriodLow = (value) => dispatch(graphs.setConfig(PERIOD_LO, value))
 
   const quarters = graphs.getConfig(graphConfigStore, QUARTERS) // Contains all the quarters from a selected graph and is used for period filtering
   const rawGraphList = graphs.getConfig(graphConfigStore, RAW_GRAPH_LIST) // List of available graphs from API
@@ -63,15 +63,15 @@ export const SectionGraphs = ({
     SELECTED_GRAPH_DATA
   ) // API data of currently selected graph
   const seriesForURL = graphs.getConfig(graphConfigStore, SERIES_FOR_URL) // List of series names to be included in the URL's `visibleSeries` query parameter
-  const setSeriesForURL = value =>
+  const setSeriesForURL = (value) =>
     dispatch(graphs.setConfig(SERIES_FOR_URL, value))
 
   const onGraphFetchError = useCallback(
-    err => {
+    (err) => {
       dispatch(graphs.setConfig(SELECTED_GRAPH_DATA, null))
       setError(err)
     },
-    [setError, dispatch]
+    [setError, dispatch],
   )
 
   // Function to fetch single graph data when a graph from the dropdown has been selected
@@ -178,16 +178,16 @@ export const SectionGraphs = ({
   // End Loan Purpose Selection functionality
 
   const handleGraphSelection = useCallback(
-    event => {
+    (event) => {
       dispatch(
         graphs.setConfig(
           SELECTED_GRAPH,
-          rawGraphList.find(opt => opt.value == event.value)
-        )
+          rawGraphList.find((opt) => opt.value == event.value),
+        ),
       )
       fetchSingleGraph(event.value) // value = endpoint for single graph (i.e) -> /applications
     },
-    [rawGraphList, fetchSingleGraph, dispatch]
+    [rawGraphList, fetchSingleGraph, dispatch],
   )
 
   // Update the URL when query parameters change
@@ -199,13 +199,13 @@ export const SectionGraphs = ({
       selectedGraph,
       periodLow,
       periodHigh,
-      seriesForURL
+      seriesForURL,
     ) => {
       dispatch(
         graphs.setConfig(
           GRAPH_URL,
-          `${BaseURLQuarterly}/${selectedGraph}?periodLow=${periodLow}&periodHigh=${periodHigh}&visibleSeries=${seriesForURL}`
-        )
+          `${BaseURLQuarterly}/${selectedGraph}?periodLow=${periodLow}&periodHigh=${periodHigh}&visibleSeries=${seriesForURL}`,
+        ),
       )
     }
 
@@ -245,13 +245,13 @@ export const SectionGraphs = ({
       selectedGraph.value,
       periodLow.value,
       periodHigh.value,
-      seriesForURL
+      seriesForURL,
     )
   }, [periodLow, periodHigh, seriesForURL, selectedGraph])
 
   // A workaround to force Highcharts to reset series visibility when a new graph is selected
   useEffect(() => {
-    const setResetSeriesVisability = value =>
+    const setResetSeriesVisability = (value) =>
       dispatch(graphs.setConfig(RESET_SERIES_VIS, value))
     setResetSeriesVisability(true)
     setTimeout(() => setResetSeriesVisability(false), 100)
@@ -275,10 +275,10 @@ export const SectionGraphs = ({
             // Find the corresponding raw data for this Series + YearQuarter
             const columnName = columnLabels[i - 1]
             const columnData = selectedGraphData.series.find(
-              column => column.name === columnName
+              (column) => column.name === columnName,
             )
             const cellData = columnData?.coordinates?.find(
-              item => item.x === rowYearQuarter
+              (item) => item.x === rowYearQuarter,
             )
 
             if (!cellData) {
@@ -364,8 +364,8 @@ export const SectionGraphs = ({
           periodHigh,
           periodLow,
           periodRange: [
-            quarters?.findIndex(q => q.value == periodLow.value),
-            quarters?.findIndex(q => q.value == periodHigh.value) + 1,
+            quarters?.findIndex((q) => q.value == periodLow.value),
+            quarters?.findIndex((q) => q.value == periodHigh.value) + 1,
           ],
           series: data[selectedGraph?.value],
           seriesForURL,

@@ -17,7 +17,7 @@ describe('uploadComplete', () => {
   it('creates an action to signal upload completion when dispatched', () => {
     store.dispatch(receiveUpload())
     expect(store.getActions()).toEqual([
-      { type: types.RECEIVE_UPLOAD, lei: '123' }
+      { type: types.RECEIVE_UPLOAD, lei: '123' },
     ])
   })
 })

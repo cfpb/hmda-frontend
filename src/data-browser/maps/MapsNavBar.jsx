@@ -27,10 +27,17 @@ function openPrintDialog(e) {
   }
 }
 
+export const MapsNavBar = ({
+  data,
+  viewReport,
+  download,
+  hasFilter,
+  clearFeature,
+  origPer1000,
+}) => {
+  const { filter1, filter2, union12, filter1_geo, featureName, geoLevel } =
+    data || {}
 
-export const MapsNavBar = ({ data, viewReport, download, hasFilter, clearFeature, origPer1000 }) => {
-  const { filter1, filter2, union12, filter1_geo, featureName, geoLevel } = (data || {})
-  
   if (!geoLevel || !hasFilter) return null
   if (!featureName && !filter1_geo)
     return (

@@ -5,7 +5,7 @@ import receiveSignature from './receiveSignature.js'
 import fs from 'fs'
 
 const signatureObj = JSON.parse(
-  fs.readFileSync('./test-resources/json/receipt.json')
+  fs.readFileSync('./test-resources/json/receipt.json'),
 )
 
 describe('receiveSignature', () => {
@@ -14,7 +14,7 @@ describe('receiveSignature', () => {
     expect(receiveSignature(data)).toEqual({
       type: types.RECEIVE_SIGNATURE,
       timestamp: data.timestamp,
-      receipt: data.receipt
+      receipt: data.receipt,
     })
   })
 })

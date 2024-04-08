@@ -4,7 +4,7 @@ import {
   editingRowSet,
   rowCreate,
   rowDelete,
-  rowSave
+  rowSave,
 } from '../../data-store/store'
 import { scrollToID } from '../../utils/common'
 import { isRowTS } from '../../utils/row'
@@ -16,7 +16,7 @@ import { EditingPiped } from './EditingPiped'
  * Combined section allowing users to edit a single row's content
  * either as raw pipe-delimited string or parsed into individual
  * inputs.
- * 
+ *
  * @param {String} id Section identifier
  */
 export const Editing = ({ id = 'row-editor' }) => {
@@ -28,7 +28,7 @@ export const Editing = ({ id = 'row-editor' }) => {
 
   useEffect(() => setChanged(false), [selectedRowID])
 
-  const changeHandler = e => {
+  const changeHandler = (e) => {
     setChanged(true)
     dispatch(editingRowSet(e))
   }
@@ -100,7 +100,7 @@ const Heading = ({ id, row }) => {
   )
 }
 
-const formatDescriptor = row => {
+const formatDescriptor = (row) => {
   if (isRowTS(row)) return 'Transmittal Sheet'
   if (row.rowId) return `LAR - Row ${row.rowId}`
   return 'a new LAR Row'

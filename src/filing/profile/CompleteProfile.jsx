@@ -1,35 +1,35 @@
-import React, { useEffect, useState } from "react"
-import { Link, Redirect, Prompt } from "react-router-dom"
-import Heading from "../../common/Heading"
-import InputAndLabel from "../../common/InputAndLabel"
-import AssociatedInstitutions from "./AssociatedInstitutions"
-import SearchAssociatedInstitutions from "./SearchAssociatedInstitutions"
+import React, { useEffect, useState } from 'react'
+import { Link, Redirect, Prompt } from 'react-router-dom'
+import Heading from '../../common/Heading'
+import InputAndLabel from '../../common/InputAndLabel'
+import AssociatedInstitutions from './AssociatedInstitutions'
+import SearchAssociatedInstitutions from './SearchAssociatedInstitutions'
 
-import "./Profile.css"
-import { useDispatch, useSelector } from "react-redux"
-import { ShowUserName } from "../../common/ShowUserName"
-import { getKeycloak } from "../../common/api/Keycloak"
-import { runFetch } from "../../data-browser/api"
-import { createAssociatedInstitutionsList } from "./utils"
+import './Profile.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { ShowUserName } from '../../common/ShowUserName'
+import { getKeycloak } from '../../common/api/Keycloak'
+import { runFetch } from '../../data-browser/api'
+import { createAssociatedInstitutionsList } from './utils'
 
-import * as AccessToken from "../../common/api/AccessToken"
-import Alert from "../../common/Alert"
-import LoadingIcon from "../../common/LoadingIcon"
-import jwtDecode from "jwt-decode"
-import { forceRefreshToken } from "../utils/keycloak"
-import { shouldFetchInstitutions } from "../actions/shouldFetchInstitutions"
-import { MissingInstitutionsBanner } from "../institutions/MissingInstitutionsBanner"
+import * as AccessToken from '../../common/api/AccessToken'
+import Alert from '../../common/Alert'
+import LoadingIcon from '../../common/LoadingIcon'
+import jwtDecode from 'jwt-decode'
+import { forceRefreshToken } from '../utils/keycloak'
+import { shouldFetchInstitutions } from '../actions/shouldFetchInstitutions'
+import { MissingInstitutionsBanner } from '../institutions/MissingInstitutionsBanner'
 
-const CompleteProfile = props => {
+const CompleteProfile = (props) => {
   const dispatch = useDispatch()
-  const user = useSelector(state => state?.app?.user?.userInfo?.tokenParsed)
-  const institutions = useSelector(state => state?.app?.institutions)
+  const user = useSelector((state) => state?.app?.user?.userInfo?.tokenParsed)
+  const institutions = useSelector((state) => state?.app?.institutions)
 
   const [accessTokenDecoded, setAccessTokenDecoded] = useState()
   const [userIsEditingForm, setUserIsEditingForm] = useState(false)
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [emailAddress, setEmailAddress] = useState("")
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [emailAddress, setEmailAddress] = useState('')
   const [associatedInstitutions, setAssociatedInstitutions] = useState([])
   const [selectedInstitutions, setSelectedInstitutions] = useState([])
   const [unregisteredInstitutions, setUnregisteredInstitutions] = useState([])
@@ -45,25 +45,25 @@ const CompleteProfile = props => {
   useEffect(() => {
     if (user) {
       setLoading(true)
-      let associatedLEIsWithUser = user?.lei?.split(",")
-      let emailDomain = user?.email?.split("@")[1]
-      setFirstName(user?.given_name ? user?.given_name : "")
-      setLastName(user?.family_name ? user?.family_name : "")
+      let associatedLEIsWithUser = user?.lei?.split(',')
+      let emailDomain = user?.email?.split('@')[1]
+      setFirstName(user?.given_name ? user?.given_name : '')
+      setLastName(user?.family_name ? user?.family_name : '')
       setEmailAddress(user?.email)
 
       let endpoint = `${window.location.origin}/v2/public/institutions?domain=${emailDomain}`
 
       runFetch(endpoint)
-        .then(data =>
+        .then((data) =>
           createAssociatedInstitutionsList(
             associatedLEIsWithUser,
             data.institutions,
             setAssociatedInstitutions,
             setSelectedInstitutions,
-            setLoading
-          )
+            setLoading,
+          ),
         )
-        .catch(error => {
+        .catch((error) => {
           // 404 status relates to the domain in the user's email not being found from institutions api
           setLoading(false)
           if (error.status == 404) {
@@ -73,7 +73,7 @@ const CompleteProfile = props => {
 
       if (institutions.fetched) {
         let leis = Object.keys(institutions)
-        let filteredLEIs = leis.filter(i => institutions[i].notFound)
+        let filteredLEIs = leis.filter((i) => institutions[i].notFound)
         setUnregisteredInstitutions(filteredLEIs)
       }
     }
@@ -84,36 +84,36 @@ const CompleteProfile = props => {
       setSelectedInstitutions([...selectedInstitutions, institution])
     } else {
       const newArray = selectedInstitutions.filter(
-        item => item.lei !== institution.lei
+        (item) => item.lei !== institution.lei,
       )
       setSelectedInstitutions(newArray)
     }
   }
 
-  const saveUserInfo = event => {
+  const saveUserInfo = (event) => {
     event.preventDefault()
 
     if (firstName?.length !== 0 || lastName?.length !== 0) {
-      let endpoint = window.location.origin + "/hmda-auth/users/"
+      let endpoint = window.location.origin + '/hmda-auth/users/'
 
       let body = {
         firstName: firstName,
         lastName: lastName,
-        leis: selectedInstitutions.map(inst => inst.lei),
+        leis: selectedInstitutions.map((inst) => inst.lei),
       }
 
       let request = {
-        method: "PUT",
-        credentials: "include",
+        method: 'PUT',
+        credentials: 'include',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${AccessToken.get()}`,
         },
         body: JSON.stringify(body),
       }
 
       fetch(endpoint, request)
-        .then(response => response.json())
+        .then((response) => response.json())
         .then(async () => {
           setDisplayNotification(true)
           await forceRefreshToken()
@@ -122,7 +122,7 @@ const CompleteProfile = props => {
           dispatch(shouldFetchInstitutions(true))
           setUserIsEditingForm(false)
         })
-        .catch(error => console.log(error))
+        .catch((error) => console.log(error))
     }
   }
 
@@ -137,11 +137,11 @@ const CompleteProfile = props => {
         <LoadingIcon />
       ) : (
         <>
-          {user.lei !== "" ? (
+          {!selectedInstitutions?.length == 0 ? (
             <Link
               to={`/filing/${props.config?.defaultPeriod}/institutions`}
               className='button back'
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: 'none' }}
             >
               &#9668; Back
             </Link>
@@ -163,25 +163,29 @@ const CompleteProfile = props => {
             type={1}
             headingText='Complete your profile'
             paragraphText='Update your filing profile by changing your name and what institutions you are associated with.'
-            style={{ marginBottom: 0, marginTop: "5px" }}
+            style={{ marginBottom: 0, marginTop: '5px' }}
           />
 
           <form onSubmit={saveUserInfo} className='profile_form_container'>
             {displayNotification && (
-              <Alert type='success' closeAlert={displayNotification} setCloseAlert={setDisplayNotification}>
+              <Alert
+                type='success'
+                closeAlert={displayNotification}
+                setCloseAlert={setDisplayNotification}
+              >
                 <p>Your information was updated!</p>
               </Alert>
             )}
             <InputAndLabel
               labelName='First name'
-              value={firstName || ""}
-              onChange={e => setFirstName(e.target.value)}
+              value={firstName || ''}
+              onChange={(e) => setFirstName(e.target.value)}
               setUserIsEditingForm={setUserIsEditingForm}
             />
             <InputAndLabel
               labelName='Last name'
-              value={lastName || ""}
-              onChange={e => setLastName(e.target.value)}
+              value={lastName || ''}
+              onChange={(e) => setLastName(e.target.value)}
               setUserIsEditingForm={setUserIsEditingForm}
             />
             <InputAndLabel
@@ -200,7 +204,7 @@ const CompleteProfile = props => {
               setUserIsEditingForm={setUserIsEditingForm}
             />
 
-            {associatedInstitutions.length > 4 && (
+            {associatedInstitutions?.length > 4 && (
               <SearchAssociatedInstitutions
                 institutions={associatedInstitutions}
                 selectedInstitutions={selectedInstitutions}
@@ -210,7 +214,7 @@ const CompleteProfile = props => {
             )}
 
             <div className='missing_institutions_banner_container'>
-              {((institutions.fetched && associatedInstitutions.length !== 0) ||
+              {((institutions?.fetched && associatedInstitutions?.length !== 0) ||
                 errorFromAPI) && (
                 <MissingInstitutionsBanner leis={unregisteredInstitutions} />
               )}

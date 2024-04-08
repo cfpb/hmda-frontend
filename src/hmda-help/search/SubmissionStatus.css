@@ -4,22 +4,19 @@
   margin-top: 2em;
 }
 
-
 #submissions #SubmissionResults {
   width: 100%;
   margin: 3rem 0 5rem 0;
 }
 
-#submissions #SubmissionResults .split{
+#submissions #SubmissionResults .split {
   width: 40%;
 }
-
 
 #submissions #SubmissionResults th,
 #submissions #SubmissionResults td {
   border: 1px solid grey;
 }
-
 
 #submissions #SubmissionResults th:not(:first-child) {
   border-left: none;
@@ -29,18 +26,15 @@
   border-right: none;
 }
 
-
 #submissions #SubmissionResults th {
   text-align: center;
   text-transform: uppercase;
 }
 
-
 #submissions #SubmissionResults .submission-row .period {
   width: 15%;
   text-align: center;
 }
-
 
 #submissions #SubmissionResults .submission-row .label {
   font-weight: bold;
@@ -61,7 +55,12 @@
 
 #submissions #SubmissionResults .submission-row .status,
 #submissions #SubmissionResults .submission-row .status img,
-#submissions #SubmissionResults .submission-row .status .LoadingInline.LoadingIconWrapper .LoadingIcon {
+#submissions
+  #SubmissionResults
+  .submission-row
+  .status
+  .LoadingInline.LoadingIconWrapper
+  .LoadingIcon {
   height: 20px;
   width: 20px;
 }
@@ -73,7 +72,6 @@
   padding: 0;
 }
 
-
 #submissions #SubmissionResults .submission-row .message {
   padding: 2.5rem 1rem;
   text-align: center;
@@ -84,13 +82,11 @@
   background: #f2ccd2;
 }
 
-
 #submissions #SubmissionResults .submission-row .col {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
 }
-
 
 #submissions #SubmissionResults .submission-row .col:not(:last-child) {
   margin-bottom: 1.5rem;

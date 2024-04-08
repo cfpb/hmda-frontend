@@ -10,7 +10,14 @@ const formatMessage = ({ pre, post }, filename) => {
   )
 }
 
-const DropzoneContent = ({ getRootProps, getInputProps, code, filename, errorFile, isDisabled}) => {
+const DropzoneContent = ({
+  getRootProps,
+  getInputProps,
+  code,
+  filename,
+  errorFile,
+  isDisabled,
+}) => {
   let message = ''
   let messageObj = {}
 
@@ -19,13 +26,13 @@ const DropzoneContent = ({ getRootProps, getInputProps, code, filename, errorFil
       case STATUS.CREATED:
         messageObj = {
           pre: '',
-          post: 'selected'
+          post: 'selected',
         }
         break
       case STATUS.UPLOADING:
         messageObj = {
           pre: 'Upload of',
-          post: 'is currently in progress'
+          post: 'is currently in progress',
         }
         break
       case STATUS.UPLOADED:
@@ -36,44 +43,44 @@ const DropzoneContent = ({ getRootProps, getInputProps, code, filename, errorFil
       case STATUS.NO_QUALITY_EDITS:
         messageObj = {
           pre: 'Analysis of',
-          post: 'is currently in progress'
+          post: 'is currently in progress',
         }
         break
       case STATUS.PARSED_WITH_ERRORS:
         messageObj = {
           pre: 'Upload of',
-          post: 'has formatting errors'
+          post: 'has formatting errors',
         }
         break
       case STATUS.SYNTACTICAL_VALIDITY_EDITS:
         messageObj = {
           pre: 'Upload of',
-          post: 'is ready for review'
+          post: 'is ready for review',
         }
         break
       case STATUS.QUALITY_EDITS:
         messageObj = {
           pre: 'Upload of',
-          post: 'is ready for review'
+          post: 'is ready for review',
         }
         break
       case STATUS.MACRO_EDITS:
         messageObj = {
           pre: 'Upload of',
-          post: 'is ready for review'
+          post: 'is ready for review',
         }
         break
       case STATUS.NO_MACRO_EDITS:
       case STATUS.VALIDATED:
         messageObj = {
           pre: 'Upload of',
-          post: 'is ready for submission'
+          post: 'is ready for submission',
         }
         break
       case STATUS.SIGNED:
         messageObj = {
           pre: 'Upload of',
-          post: 'is complete'
+          post: 'is complete',
         }
         break
       default:
@@ -88,16 +95,15 @@ const DropzoneContent = ({ getRootProps, getInputProps, code, filename, errorFil
   }
 
   let classname = 'dropzone'
-  if(isDisabled) classname += ' dropzone-disabled'
+  if (isDisabled) classname += ' dropzone-disabled'
 
   return (
-    <div {...getRootProps({className: classname})}>
-      <input {...getInputProps()}/>
-      <p className="file-selected">
-        {isDisabled 
+    <div {...getRootProps({ className: classname })}>
+      <input {...getInputProps()} />
+      <p className='file-selected'>
+        {isDisabled
           ? 'The filing period is closed. New uploads are no longer accepted.'
-          : 'To begin uploading a new file, drag it into this box or click here.'
-        }
+          : 'To begin uploading a new file, drag it into this box or click here.'}
       </p>
       {message}
     </div>
@@ -109,7 +115,7 @@ DropzoneContent.propTypes = {
   getInputProps: PropTypes.func,
   code: PropTypes.number,
   errorFile: PropTypes.string,
-  filename: PropTypes.string
+  filename: PropTypes.string,
 }
 
 export default DropzoneContent

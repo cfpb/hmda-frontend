@@ -17,7 +17,7 @@ describe('refreshState', () => {
   it('dispatches an action when handed to dispatch', () => {
     store.dispatch(refreshState())
     expect(store.getActions()).toEqual([
-      { type: types.REFRESH_STATE, lei: '123' }
+      { type: types.REFRESH_STATE, lei: '123' },
     ])
   })
 })

@@ -7,7 +7,7 @@ import TestUtils from 'react-dom/test-utils'
 describe('RefileText', () => {
   it('renders with provided props', () => {
     const rendered = RefileText({
-      code: 3
+      code: 3,
     })
 
     expect(rendered).toBeDefined()
@@ -35,7 +35,7 @@ describe('getStaus', () => {
   it('returns as "has already been submitted" if code === 10', () => {
     const rendered = getStatus(10)
     expect(rendered.props.children[1].props.children).toBe(
-      'has already been submitted'
+      'has already been submitted',
     )
   })
 })

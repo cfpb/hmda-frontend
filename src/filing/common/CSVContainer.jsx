@@ -1,43 +1,33 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { useCallback, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import fetchCSV from '../actions/fetchCSV.js'
 import CSVDownload from './CSVDownload.jsx'
 
-export class CSVContainer extends Component {
-  constructor() {
-    super()
-    this.state = { isFetching: false }
-  }
-  render() {
-    return (
-      <CSVDownload
-        {...this.props}
-        onDownloadClick={this.props.onDownloadClick.bind(this)}
-        isFetching={this.state.isFetching}
-      />
-    )
-  }
-}
+const CSVContainer = (props) => {
+  const [isFetching, setIsFetching] = useState(false)
+  const dispatch = useDispatch()
+  // Submission is being sent as a prop to CSVDownload
+  const submission =
+    props.submission || useSelector((state) => state.app.submission)
+  const newProps = { ...props, submission }
 
-export function mapStateToProps(state, ownProps) {
-  const submission = ownProps.submission || state.app.submission
-
-  return { submission }
-}
-
-export function mapDispatchToProps(dispatch) {
-  // triggered by a click on "Download edit report"
-  const onDownloadClick = function(lei, filing, submissionId) {
-    return e => {
+  const onDownloadClick = useCallback((lei, filing, submissionId) => {
+    return (e) => {
       e.preventDefault()
-      this.setState({ isFetching: true })
+      setIsFetching(true)
       dispatch(fetchCSV(lei, filing, submissionId)).then(() => {
-        this.setState({ isFetching: false })
+        setIsFetching(false)
       })
     }
-  }
+  })
 
-  return { onDownloadClick }
+  return (
+    <CSVDownload
+      {...newProps}
+      onDownloadClick={onDownloadClick}
+      isFetching={isFetching}
+    />
+  )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CSVContainer)
+export default CSVContainer

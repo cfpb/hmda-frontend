@@ -12,7 +12,6 @@ const Quarter = ({ number, dates }) => {
   )
 }
 
-
 export const LoanGroupingCalendar = () => {
   return (
     <>
@@ -31,4 +30,3 @@ export const LoanGroupingCalendar = () => {
     </>
   )
 }
-

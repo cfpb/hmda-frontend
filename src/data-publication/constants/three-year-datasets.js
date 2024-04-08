@@ -1,7 +1,8 @@
 export const THREE_YEAR_DATASET = {
   2017: {
     freezeDate: 'December 31, 2020',
-    dataformat: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_dataformat.pdf',
+    dataformat:
+      'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_dataformat.pdf',
     datasets: [
       {
         label: 'Loan/Application Records (LAR)',
@@ -26,8 +27,8 @@ export const THREE_YEAR_DATASET = {
         dataKey: 'msamd',
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2017/2017_public_msamd_three_year_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2017/2017_public_msamd_three_year_pipe.zip',
-      }
-    ]
+      },
+    ],
   },
   2018: {
     freezeDate: 'December 31, 2021',
@@ -55,8 +56,8 @@ export const THREE_YEAR_DATASET = {
         dataKey: 'msamd',
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2018/2018_public_msamd_three_year_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2018/2018_public_msamd_three_year_pipe.zip',
-      }
-    ]
+      },
+    ],
   },
   2019: {
     freezeDate: 'December 31, 2022',
@@ -84,7 +85,7 @@ export const THREE_YEAR_DATASET = {
         dataKey: 'msamd',
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2019/2019_public_msamd_three_year_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2019/2019_public_msamd_three_year_pipe.zip',
-      }
-    ]
+      },
+    ],
   },
 }

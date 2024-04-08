@@ -15,7 +15,7 @@ onlyOn(!isBeta(HOST), () => {
     const datasetUrl = '/data-publication/dynamic-national-loan-level-dataset/'
     const linksPath = '#main-content > .grid > :nth-child(1) > ul > li > a'
 
-    years.forEach(year => {
+    years.forEach((year) => {
       describe(year + ' Dynamic Datasets', () => {
         it('has valid Dataset links', () => {
           cy.get({ HOST, TEST_DELAY, ACTION_DELAY }).logEnv()
@@ -23,7 +23,7 @@ onlyOn(!isBeta(HOST), () => {
           cy.visit(`${HOST}${datasetUrl}${year}`)
 
           // Test validity of each link in the Datasets list
-          cy.get(linksPath).each(link => {
+          cy.get(linksPath).each((link) => {
             cy.get(link)
               .hasValidHref()
               .then(({ status }) => {

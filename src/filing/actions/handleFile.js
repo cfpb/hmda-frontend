@@ -7,9 +7,8 @@ import processFileErrors from '../actions/processFileErrors.js'
 import checkFileErrors from '../utils/checkFileErrors.js'
 
 export default function handleFile(file, code, error) {
-  return dispatch => {
-    checkFileErrors(file, fileErrors => {
-
+  return (dispatch) => {
+    checkFileErrors(file, (fileErrors) => {
       if (fileErrors.length)
         return dispatch(processFileErrors(fileErrors, file.name))
 

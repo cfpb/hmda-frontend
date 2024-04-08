@@ -16,8 +16,8 @@ export default function fetchNewSubmission() {
 
     dispatch(requestSubmission())
     return createSubmission(lei, filing)
-      .then(json => {
-        return hasHttpError(json).then(hasError => {
+      .then((json) => {
+        return hasHttpError(json).then((hasError) => {
           if (hasError) {
             dispatch(receiveError(json))
             throw new Error(json && `${json.status}: ${json.statusText}`)
@@ -25,7 +25,7 @@ export default function fetchNewSubmission() {
           return dispatch(receiveSubmission(json))
         })
       })
-      .catch(err => {
+      .catch((err) => {
         error(err)
       })
   }

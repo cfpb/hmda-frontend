@@ -1,5 +1,5 @@
-import { ExternalLink } from "../../common/ExternalLink"
-import NewIndicator from "../NewIndicator"
+import { ExternalLink } from '../../common/ExternalLink'
+import NewIndicator from '../NewIndicator'
 
 export const FilingDocs = ({ hideContent }) => (
   <article>

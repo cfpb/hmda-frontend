@@ -39,7 +39,7 @@
 /* .TextSelector .options  */
 
 .TextSelector .option {
-  padding: .25em;
+  padding: 0.25em;
   cursor: pointer;
   text-decoration: none;
   color: #555;
@@ -50,8 +50,8 @@
   text-align: center;
   background: transparent;
   font-size: 1em;
-  margin: 0 .25em;
-  transition: all .25s ease-in-out;
+  margin: 0 0.25em;
+  transition: all 0.25s ease-in-out;
 }
 
 .TextSelector .option.active {
@@ -66,9 +66,11 @@
   border-color: #666;
 }
 
-.TextSelector .option.QueryButton {  margin: 0; }
+.TextSelector .option.QueryButton {
+  margin: 0;
+}
 
-@media only screen and (max-width:430px) {
+@media only screen and (max-width: 430px) {
   .TextSelector .options {
     overflow: scroll;
   }

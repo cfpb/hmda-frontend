@@ -1,4 +1,4 @@
-const flattenApiForInstitutionState = json => {
+const flattenApiForInstitutionState = (json) => {
   const state = {
     activityYear: json.activityYear || 2018,
     lei: json.lei || '',
@@ -24,7 +24,7 @@ const flattenApiForInstitutionState = json => {
   return state
 }
 
-const nestInstitutionStateForAPI = state => {
+const nestInstitutionStateForAPI = (state) => {
   const api = {
     activityYear: parseInt(state.activityYear),
     lei: state.lei || '',
@@ -37,24 +37,24 @@ const nestInstitutionStateForAPI = state => {
     respondent: {
       name: state.respondentName || '',
       state: state.respondentState || '',
-      city: state.respondentCity || ''
+      city: state.respondentCity || '',
     },
     parent: {
       idRssd: parseInt(state.parentIdRssd, 10) || -1,
-      name: state.parentName || ''
+      name: state.parentName || '',
     },
     assets: parseInt(state.assets, 10) || -1,
     otherLenderCode: parseInt(state.otherLenderCode, 10) || -1,
     topHolder: {
       idRssd: parseInt(state.topHolderIdRssd, 10) || -1,
-      name: state.topHolderName || ''
+      name: state.topHolderName || '',
     },
     hmdaFiler: false,
     quarterlyFiler: state.quarterlyFiler === 'true',
     quarterlyFilerHasFiledQ1: false,
     quarterlyFilerHasFiledQ2: false,
     quarterlyFilerHasFiledQ3: false,
-    notes: state.requiresNewNotes ? state.notes : state.prevNotes
+    notes: state.requiresNewNotes ? state.notes : state.prevNotes,
   }
   return api
 }

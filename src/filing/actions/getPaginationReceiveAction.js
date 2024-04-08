@@ -1,4 +1,4 @@
-import receiveEdit from './receiveEdit.js'
+import receiveEdit from './receiveEdit.jsx'
 import receiveParseErrors from './receiveParseErrors.js'
 
 export default function getPaginationReceiveAction(target, data) {

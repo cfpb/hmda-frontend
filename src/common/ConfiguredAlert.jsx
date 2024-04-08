@@ -4,7 +4,10 @@ import Alert from './Alert'
 const ConfiguredAlert = ({ message, heading, type, link }) => {
   return (
     <Alert heading={heading} type={type}>
-      <p>{message}<Anchor link={link} /></p>
+      <p>
+        {message}
+        <Anchor link={link} />
+      </p>
     </Alert>
   )
 }

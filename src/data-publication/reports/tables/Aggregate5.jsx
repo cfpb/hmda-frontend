@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const renderData = applicantIncomes => {
+const renderData = (applicantIncomes) => {
   return applicantIncomes.map((applicantIncome, index) => {
     return [
       renderApplicantIncome(applicantIncome.applicantIncome, index),
-      renderCharacteristics(applicantIncome.borrowerCharacteristics)
+      renderCharacteristics(applicantIncome.borrowerCharacteristics),
     ]
   })
 }
@@ -19,7 +19,7 @@ const renderApplicantIncome = (applicantIncome, index) => {
           borderTopWidth: '2px',
           fontWeight: 'bold',
           textTransform: 'uppercase',
-          backgroundColor: '#f1f1f1'
+          backgroundColor: '#f1f1f1',
         }}
       >
         {applicantIncome}
@@ -28,19 +28,17 @@ const renderApplicantIncome = (applicantIncome, index) => {
   )
 }
 
-function entries( obj ){
+function entries(obj) {
   const keys = Object.keys(obj)
-  const keyValuePairs = keys.map(key => {
+  const keyValuePairs = keys.map((key) => {
     const value = obj[key]
     return { [key]: value }
   })
   return keyValuePairs
 }
 
-const renderCharacteristics = borrowerCharacteristics => {
-  let convertedBorrowerCharacteristics = entries(
-    borrowerCharacteristics
-  )
+const renderCharacteristics = (borrowerCharacteristics) => {
+  let convertedBorrowerCharacteristics = entries(borrowerCharacteristics)
 
   return convertedBorrowerCharacteristics.map((borrower, index) => {
     return [
@@ -49,7 +47,7 @@ const renderCharacteristics = borrowerCharacteristics => {
           colSpan={15}
           style={{
             textTransform: 'uppercase',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
           }}
         >
           {borrower.race
@@ -58,13 +56,13 @@ const renderCharacteristics = borrowerCharacteristics => {
         </th>
       </tr>,
       renderCharacteristicDetails(
-        borrower.race ? borrower.race : borrower.ethnicity
-      )
+        borrower.race ? borrower.race : borrower.ethnicity,
+      ),
     ]
   })
 }
 
-const renderCharacteristicDetails = characteristic => {
+const renderCharacteristicDetails = (characteristic) => {
   if (characteristic.characteristic === 'Race')
     return characteristic.races.map((race, index) => {
       return (
@@ -72,8 +70,8 @@ const renderCharacteristicDetails = characteristic => {
           <th>{race.race}</th>
           {race.dispositions.map((disposition, index) => {
             return [
-              <td key="count">{disposition.count}</td>,
-              <td key="value">{disposition.value}</td>
+              <td key='count'>{disposition.count}</td>,
+              <td key='value'>{disposition.value}</td>,
             ]
           })}
         </tr>
@@ -87,8 +85,8 @@ const renderCharacteristicDetails = characteristic => {
           <th>{ethnicity.ethnicityName}</th>
           {ethnicity.dispositions.map((disposition, index) => {
             return [
-              <td key="count">{disposition.count}</td>,
-              <td key="value">{disposition.value}</td>
+              <td key='count'>{disposition.count}</td>,
+              <td key='value'>{disposition.value}</td>,
             ]
           })}
         </tr>
@@ -102,8 +100,8 @@ const renderCharacteristicDetails = characteristic => {
           <th>{minorityStatus.minorityStatus}</th>
           {minorityStatus.dispositions.sort().map((disposition, index) => {
             return [
-              <td key="count">{disposition.count}</td>,
-              <td key="value">{disposition.value}</td>
+              <td key='count'>{disposition.count}</td>,
+              <td key='value'>{disposition.value}</td>,
             ]
           })}
         </tr>
@@ -118,28 +116,28 @@ const Aggregate5 = React.forwardRef((props, ref) => {
     <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
-          <th width="20%" rowSpan={2}>
+          <th width='20%' rowSpan={2}>
             INCOME, RACE AND ETHNICITY
           </th>
-          <th colSpan={2} width="11.429%">
+          <th colSpan={2} width='11.429%'>
             Applications Received
           </th>
-          <th colSpan={2} width="11.429%">
+          <th colSpan={2} width='11.429%'>
             Loans Originated
           </th>
-          <th colSpan={2} width="11.429%">
+          <th colSpan={2} width='11.429%'>
             Apps. Approved But Not Accepted
           </th>
-          <th colSpan={2} width="11.429%">
+          <th colSpan={2} width='11.429%'>
             Applications Denied
           </th>
-          <th colSpan={2} width="11.429%">
+          <th colSpan={2} width='11.429%'>
             Applications Withdrawn
           </th>
-          <th colSpan={2} width="11.429%">
+          <th colSpan={2} width='11.429%'>
             Files Closed for Incompleteness
           </th>
-          <th colSpan={2} width="11.429%">
+          <th colSpan={2} width='11.429%'>
             Purchased Loans
           </th>
         </tr>
@@ -169,7 +167,7 @@ const Aggregate5 = React.forwardRef((props, ref) => {
 Aggregate5.displayName = 'Aggregate5'
 
 Aggregate5.propTypes = {
-  report: PropTypes.object
+  report: PropTypes.object,
 }
 
 export default Aggregate5

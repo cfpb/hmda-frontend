@@ -3,14 +3,23 @@ import { useParams } from 'react-router-dom'
 import { createFilter } from 'react-select'
 import CreatableSelect from 'react-select/creatable'
 import { isCI } from '../../common/environmentChecks'
-import { MenuList } from '../../data-browser/datasets/MenuList'
+import MenuList from '../../data-browser/datasets/MenuList'
 import CI_INSTITUTIONS from '../constants/ciInstitutions'
-import { useFocusOnInput, useInputHandler, useInstitutionData, useSelectionHandler } from './FilersSelectBox.hooks'
-import { buildOptions, itemPlaceholder, saveSelected, styleFn } from './FilersSelectBox.service.js'
+import {
+  useFocusOnInput,
+  useInputHandler,
+  useInstitutionData,
+  useSelectionHandler,
+} from './FilersSelectBox.hooks'
+import {
+  buildOptions,
+  itemPlaceholder,
+  saveSelected,
+  styleFn,
+} from './FilersSelectBox.service.js'
 import { ValidationStatus } from './ValidationStatus'
 
-
-/** 
+/**
  * Search box for easier selection of Institutions using
  * the /v2/reporting/filers/{year} endpoint for Institution data
  * */
@@ -19,8 +28,12 @@ export const FilersSearchBox = ({ endpoint, onChange, year, ...rest }) => {
   const [selectedValue, setSelectedValue] = useState(null)
   const [isInitial, setIsInitial] = useState(true)
   const [validationMsgs, setValidationMsgs] = useState([])
-  
-  const onSelect = useSelectionHandler({ setIsInitial, setSelectedValue, onChange })
+
+  const onSelect = useSelectionHandler({
+    setIsInitial,
+    setSelectedValue,
+    onChange,
+  })
   const onInputChange = useInputHandler({ setValidationMsgs, onSelect })
 
   const [data, isFetching, _error] = useInstitutionData({ endpoint, year })
@@ -30,7 +43,7 @@ export const FilersSearchBox = ({ endpoint, onChange, year, ...rest }) => {
     const hasData = !isFetching && data
 
     let processedID = id?.toUpperCase()
-    
+
     if (isCI() && processedID)
       saveSelected(processedID, CI_INSTITUTIONS, setSelectedValue)
     else if (hasData && processedID)
@@ -51,7 +64,12 @@ export const FilersSearchBox = ({ endpoint, onChange, year, ...rest }) => {
     return <FilersSearchBox {...boxProps} />
   }
 
-  const placeholder = itemPlaceholder(isFetching, options.length, 'leis', selectedValue)
+  const placeholder = itemPlaceholder(
+    isFetching,
+    options.length,
+    'leis',
+    selectedValue,
+  )
   const isMenuOpen = !isFetching && (isInitial || !selectedValue || undefined)
 
   return (
@@ -79,4 +97,4 @@ export const FilersSearchBox = ({ endpoint, onChange, year, ...rest }) => {
   )
 }
 
-export default FilersSearchBox;
+export default FilersSearchBox

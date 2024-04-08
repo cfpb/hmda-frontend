@@ -9,7 +9,6 @@ const WarningBanner = ({
   alertLink = '#',
   alertLinkHeader = 'Default link header',
 }) => {
-
   return (
     <div className='Beta'>
       <Alert heading={alertHeader} type='warning'>
@@ -19,19 +18,20 @@ const WarningBanner = ({
           </p>
           {alertFeatures && (
             <ul>
-              {alertFeatures.map(feature => (
+              {alertFeatures.map((feature) => (
                 <li key={feature}>{feature}</li>
               ))}
             </ul>
           )}
           <p>
-            <a target={"_blank"} href={alertLink}>{alertLinkHeader}</a>
+            <a target={'_blank'} href={alertLink}>
+              {alertLinkHeader}
+            </a>
           </p>
         </>
       </Alert>
     </div>
   )
 }
-
 
 export default WarningBanner

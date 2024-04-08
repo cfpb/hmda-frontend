@@ -5,6 +5,6 @@ export default function receiveSignature(data) {
     type: types.RECEIVE_SIGNATURE,
     timestamp: data.timestamp,
     receipt: data.receipt,
-    email: data.email
+    email: data.email,
   }
 }
