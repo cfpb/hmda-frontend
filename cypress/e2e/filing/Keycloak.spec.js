@@ -1,6 +1,8 @@
+import { getDefaultConfig } from '../../../src/common/configUtils'
+import { getFilingPeriods } from '../../../src/common/constants/configHelpers'
 import { isCI } from '../../support/helpers'
 
-const { HOST, USERNAME, PASSWORD, ENVIRONMENT } = Cypress.env()
+const { HOST, USERNAME, PASSWORD, ENVIRONMENT, YEARS } = Cypress.env()
 
 describe('Keycloak', () => {
   if (isCI(ENVIRONMENT)) it('Does not run on CI')
@@ -11,14 +13,24 @@ describe('Keycloak', () => {
     })
 
     describe('Sign In', () => {
-      it('Can log in and out', () => {
+      const config = getDefaultConfig(HOST)
+      const years = (YEARS && YEARS.toString().split(',')) || getFilingPeriods(config)
+
+      it.only('Can log in and out', () => {
         cy.findByText('Log in').click()
         cy.findByLabelText('Email').type(USERNAME)
         cy.findByLabelText('Password').type(PASSWORD)
         cy.findByText('Sign In').click()
 
         // Successful sign in lands on Instutituions page
-        cy.url().should('match', /\/filing\/\d{4}(-Q\d)?\/institutions$/)
+        cy.url().then((url) => {
+          const urlParts = url.split('/')
+          const yearIndex = urlParts.findIndex((part) => part === 'filing') + 1
+          const yearFromUrl = urlParts[yearIndex]
+
+          expect(years).to.include(yearFromUrl)
+          expect(url).to.include(`/filing/${yearFromUrl}/institutions`)
+        })
 
         // Logout
         cy.findByText('Logout').click()
