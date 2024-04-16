@@ -31,9 +31,8 @@ export const FilingGuides = () => (
         </a>
         <ul>
           <li>
-            <a href={`/documentation/fig/2023/overview`}>
-              For data collected in 2023
-              <NewIndicator />
+            <a href={`/documentation/fig/overview`}>
+              Online FIG
             </a>
           </li>
           <li>
@@ -42,7 +41,6 @@ export const FilingGuides = () => (
               download={true}
             >
               For data collected in {LATEST_FIG_YEAR}
-              <NewIndicator />
               <FigLastUpdated year={LATEST_FIG_YEAR} />
             </a>
           </li>
@@ -52,7 +50,6 @@ export const FilingGuides = () => (
               download={true}
             >
               Supplemental Guide for Quarterly Filers for {LATEST_FIG_YEAR}
-              <NewIndicator />
             </a>
           </li>
           <li>

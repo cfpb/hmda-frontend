@@ -16,13 +16,11 @@ export const DataDocs = () => {
             download={true}
           >
             A Beginner's Guide to HMDA Data
-            <NewIndicator />
           </a>
         </li>
         <li>
           <a href='/documentation/faq/data-browser-graphs-faq'>
             Data Browser - Graphs FAQ
-            <NewIndicator />
           </a>
         </li>
         <li>
