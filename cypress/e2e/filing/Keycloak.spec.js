@@ -16,7 +16,7 @@ describe('Keycloak', () => {
       const config = getDefaultConfig(HOST)
       const years = (YEARS && YEARS.toString().split(',')) || getFilingPeriods(config)
 
-      it.only('Can log in and out', () => {
+      it('Can log in and out', () => {
         cy.findByText('Log in').click()
         cy.findByLabelText('Email').type(USERNAME)
         cy.findByLabelText('Password').type(PASSWORD)
