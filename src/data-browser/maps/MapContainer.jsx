@@ -148,7 +148,7 @@ const extractGeoCenters = (map) => {
 
   var cs = map
     .querySourceFeatures('county', {
-      sourceLayer: '2015-county-bc0xsx',
+      sourceLayer: 'tl_2023_us_county_2uakxl',
     })
     .reduce((mem, curr) => {
       const { CENTROID_LAT, CENTROID_LNG, GEOID } = curr.properties
@@ -187,6 +187,15 @@ const MapContainer = (props) => {
   const [filterData, setFilterData] = useState(null)
   const [tableFilterData, setTableFilterData] = useState(null)
   const [selectedGeography, setGeography] = useState(defaults.geography)
+
+  /* 
+  Connecticut county codes were changed in 2022 causing a different Mapbox tileset to be displayed for Maps.
+
+  The UI will display a different County tileset from Mapbox when the user is viewing 2022 or greater and the geography is county.
+  The UI will display a different County tileset from Mapbox when the user is viewing 2021 or less and the geograph is county.
+  */
+  const newCountyCodesForConnecticut =
+    year >= 2022 && selectedGeography.value == 'county'
 
   const [combinedFilter1, setCombinedFilter1] = useState(
     defaults.combinedFilter1,
@@ -525,6 +534,9 @@ const MapContainer = (props) => {
 
   useEffect(() => {
     let map
+    let mapboxURL = newCountyCodesForConnecticut
+      ? 'mapbox://cfpb.b52vpnmn'
+      : 'mapbox://cfpb.00l6sz7f'
 
     try {
       map = new mapbox.Map({
@@ -544,7 +556,7 @@ const MapContainer = (props) => {
     map.on('load', () => {
       map.addSource('county', {
         type: 'vector',
-        url: 'mapbox://cfpb.00l6sz7f',
+        url: mapboxURL,
       })
 
       map.addSource('state', {
@@ -570,7 +582,7 @@ const MapContainer = (props) => {
             selectedValue,
           )
           currentHighlightColor = highlightColor
-          addLayers(map, selectedGeography, stops)
+          addLayers(map, selectedGeography, stops, newCountyCodesForConnecticut)
           setOutline(
             map,
             selectedGeography,

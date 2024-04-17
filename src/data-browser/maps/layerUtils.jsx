@@ -399,10 +399,14 @@ const ACTIVE_LAYERS_IN_ORDER = [
   'state-label',
 ]
 
-function addLayers(map, geography, stops) {
+function addLayers(map, geography, stops, newCountyCodesForConnecticut) {
   const isCounty = geography.value === 'county'
   const targetLayer = 'natural-line-label'
   removeLayers(map)
+
+  let sourceLayer = newCountyCodesForConnecticut
+    ? 'tl_2023_us_county_2uakxl'
+    : '2015-county-bc0xsx'
 
   if (isCounty) {
     map.addLayer(
@@ -410,7 +414,7 @@ function addLayers(map, geography, stops) {
         id: 'county',
         type: 'fill',
         source: 'county',
-        'source-layer': '2015-county-bc0xsx',
+        'source-layer': sourceLayer,
         paint: {
           'fill-outline-color': 'rgba(0,0,0,0.3)',
           'fill-color': {
@@ -428,7 +432,7 @@ function addLayers(map, geography, stops) {
       id: 'county-lines',
       type: 'line',
       source: 'county',
-      'source-layer': '2015-county-bc0xsx',
+      'source-layer': sourceLayer,
       paint: {
         'line-color': '#444',
         'line-width': 0,
