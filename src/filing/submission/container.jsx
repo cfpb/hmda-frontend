@@ -75,7 +75,7 @@ const renderByCode = (code, page, lei, selectedPeriod) => {
     toRender.push(
       <p>
         Something is wrong.{' '}
-        <Link to={`/filing/${filingPeriod}/institutions`}>
+        <Link to={`/filing/${period}/institutions`}>
           Return to institutions
         </Link>
         .

@@ -18,12 +18,17 @@ import {
   MACRO_EDITS,
   VALIDATED,
   NO_SYNTACTICAL_VALIDITY_EDITS,
+  SIGNED,
 } from '../constants/statusCodes.js'
 
 const editTypes = ['syntacticalvalidity', 'quality', 'macro']
 const submissionRoutes = ['upload', ...editTypes, 'submission']
 
 export class SubmissionRouter extends Component {
+  state = {
+    isLoading: true,
+  }
+
   componentDidUpdate(prev) {
     if (!equal(this.props, prev)) this.guardRouting()
   }
@@ -67,20 +72,31 @@ export class SubmissionRouter extends Component {
       status.code === UNINITIALIZED ||
       wrongPeriod
     ) {
-      return dispatch(fetchSubmission()).then(() => {
-        if (this.editsNeeded()) {
-          if (!edits.fetched && !edits.isFetching) {
-            dispatch(fetchEdits()).then(() => {
+      this.setState({ isLoading: true }, () => {
+        dispatch(fetchSubmission())
+          .then(() => {
+            if (this.editsNeeded()) {
+              if (!edits.fetched && !edits.isFetching) {
+                return dispatch(fetchEdits())
+              }
+            }
+          })
+          .then(() => {
+            this.setState({ isLoading: false }, () => {
               this.route()
             })
-          }
-        } else {
-          this.route()
-        }
+          })
       })
+      return
     }
 
-    this.route()
+    if (status.code !== UNINITIALIZED) {
+      this.setState({ isLoading: false }, () => {
+        this.route()
+      })
+    } else {
+      this.setState({ isLoading: false })
+    }
   }
 
   editsNeeded() {
@@ -163,6 +179,7 @@ export class SubmissionRouter extends Component {
     const { code } = submission.status
 
     if (
+      this.state.isLoading ||
       code === UNINITIALIZED ||
       (code < VALIDATED &&
         code !== NO_MACRO_EDITS &&

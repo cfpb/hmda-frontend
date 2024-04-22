@@ -137,7 +137,7 @@ const Signature = ({ lei, isPassed }) => {
   )
 }
 
-Signature.PropTypes = {
+Signature.propTypes = {
   lei: PropTypes.string.isRequired,
   isPassed: PropTypes.bool,
 }
