@@ -2,35 +2,35 @@
 
 ![Static Badge](https://img.shields.io/badge/coverage-85%25-green)
 
-The HMDA Frontend monorepo hosts the public facing applications for the collection, publication, and navigation of millions of HMDA records per year.  This repository combines six, previously separate, React application repos in order to simplify component sharing, synchronize versioning of common dependencies, and improve rendering efficiency when navigating between apps. 
+The HMDA Frontend monorepo hosts the public facing applications for the collection, publication, and navigation of millions of HMDA records per year. This repository combines six, previously separate, React application repos in order to simplify component sharing, synchronize versioning of common dependencies, and improve rendering efficiency when navigating between apps.
 
 ## Contents
 
 - [HMDA Frontend Projects](#hmda-frontend-projects)
-  * [Contents](#contents)
-  * [Technical Overview](#technical-overview)
-  * [Applications](#applications)
-    + [HMDA Homepage](#hmda-homepage)
-    + [HMDA Filing](#hmda-filing)
-         +  [HMDA User Profile](#hmda-user-profile)
-    + [HMDA Data Browser](#hmda-data-browser)
-    + [HMDA Platform Tools](#hmda-platform-tools)
-    + [HMDA Documentation](#hmda-documentation)
-    + [HMDA Data Publication](#hmda-data-publication)
-    + [HMDA Data Publication - Updates and Notes](#hmda-data-publication---updates-and-notes)
-  * [Development](#development)
-    + [Requirements](#requirements)
-    + [Installation](#installation)
-    + [Running Locally](#running-locally)
+  - [Contents](#contents)
+  - [Technical Overview](#technical-overview)
+  - [Applications](#applications)
+    - [HMDA Homepage](#hmda-homepage)
+    - [HMDA Filing](#hmda-filing)
+      - [HMDA User Profile](#hmda-user-profile)
+    - [HMDA Data Browser](#hmda-data-browser)
+    - [HMDA Platform Tools](#hmda-platform-tools)
+    - [HMDA Documentation](#hmda-documentation)
+    - [HMDA Data Publication](#hmda-data-publication)
+    - [HMDA Data Publication - Updates and Notes](#hmda-data-publication---updates-and-notes)
+  - [Development](#development)
+    - [Requirements](#requirements)
+    - [Installation](#installation)
+    - [Running Locally](#running-locally)
       - [Integrating with the Filing application](#integrating-with-the-filing-application)
         - [Create Institutions](#create-institutions)
         - [Bypass API Authentication](#bypass-api-authentication)
         - [Configure the UI](#configure-the-ui)
       - [Updating or Previewing Documentation](#updating-or-previewing-documentation)
-    - [Running via Docker](#running-via-docker)
-    - [Code Formatting](#code-formatting)
-  * [Creating and editing Markdown](https://github.com/cfpb/hmda-frontend/wiki/Creating-and-updating-Markdown-files)
-  - [Testing](#testing)
+    * [Running via Docker](#running-via-docker)
+    * [Code Formatting](#code-formatting)
+  - [Creating and editing Markdown](https://github.com/cfpb/hmda-frontend/wiki/Creating-and-updating-Markdown-files)
+  * [Testing](#testing)
     - [Unit Tests](#unit-tests)
     - [End-to-End Testing](#end-to-end-testing)
     - [Running in TravisCI](#running-in-travisci)
@@ -61,7 +61,8 @@ The [HMDA Filing Platform UI](https://ffiec.cfpb.gov/filing/) allows lending ins
   </p>
 </a>
 
-#### HMDA User Profile  
+#### HMDA User Profile
+
 The [HMDA Profile page](https://ffiec.cfpb.gov/filing/profile) is designed to update associated institutions with the logged in account. Once the associated institutions have been added to your account, you can now file for those institutions.
 
 <a href='./readme-files/hmda-completeprofile.png' alt='HMDA User Profile Information'>
@@ -69,7 +70,6 @@ The [HMDA Profile page](https://ffiec.cfpb.gov/filing/profile) is designed to up
     <img src='./readme-files/hmda-completeprofile.png' width='80%'  overflow='scroll'/>
   </p>
 </a>
-
 
 ### HMDA Data Browser
 
@@ -120,7 +120,6 @@ The [HMDA Documentation](https://ffiec.cfpb.gov/documentation/) site provides pr
     <img src='./readme-files/hmda-data-publication-updates.png' width='80%'  overflow='scroll'/>
   </p>
 </a>
-
 
 ## Development
 
@@ -213,10 +212,39 @@ The prettier formatting tool the formatter of choice for this repo.
 
 Prettier Format API: https://prettier.io/docs/en/options.html
 
-`.prettierrc.json` contains the specific formatting for each file.
-`.prettierignore` will ignore formatting any directories or files listed.
+The `.prettierrc.json` file contains the specific formatting for each file. <br />
+The `.prettierignore` file will ignore formatting any directories or files listed.
 
-Below are commands to run formatting across the project.
+In order to have `Prettier` properly format the developers code there are a few steps that developer needs to take.
+
+1. Install the `Prettier` code extension
+
+<a href='./readme-files/prettier-extension.png' alt='Prettier Extension Install'>
+  <p align='center'>
+    <img src='./readme-files/prettier-extension.png' width='80%'  overflow='scroll'/>
+  </p>
+</a>
+
+2. Update the developers Visual Studio Code user settings to use the `Prettier` formatter as the default formatter
+
+First open your `settings.json` file by clicking `View` at the top of VS Code then click `Command Palette` and then type what is in the screenshot below.
+
+<a href='./readme-files/navigate-settings-json-file.png' alt='Navigate to Settings JSON File'>
+  <p align='center'>
+    <img src='./readme-files/navigate-settings-json-file.png' width='80%'  overflow='scroll'/>
+  </p>
+</a>
+
+Now we need to add 2 lines of code to our JSON file.
+
+```JSON
+"editor.defaultFormatter": "esbenp.prettier-vscode",
+"editor.formatOnSave": true,
+```
+
+The newly added lines tell VS Code to use `Prettier` as the default formatter and will format the code when the file is saved.
+
+### Helpful Prettier formatting scripts
 
 #### Running all files:
 
@@ -240,8 +268,8 @@ The above command will return in the terminal what files have not been formatted
 
 #### NOTE: formatting settings that prettier cannot do:
 
-- Format on Save (Recommended to add to personal VSCode settings.json file)
-  - `"editor.formatOnSave": true`
+- Format on Paste
+  - `"editor.formatOnPaste": true,`
 - Themes
 - Icon Themes
 
