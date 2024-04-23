@@ -414,7 +414,7 @@ function addLayers(map, geography, stops, newCountyCodesForConnecticut) {
         id: 'county',
         type: 'fill',
         source: 'county',
-        'source-layer': sourceLayer,
+        'source-layer': 'tl_2023_us_county_2uakxl',
         paint: {
           'fill-outline-color': 'rgba(0,0,0,0.3)',
           'fill-color': {
@@ -432,7 +432,7 @@ function addLayers(map, geography, stops, newCountyCodesForConnecticut) {
       id: 'county-lines',
       type: 'line',
       source: 'county',
-      'source-layer': sourceLayer,
+      'source-layer': 'tl_2023_us_county_2uakxl',
       paint: {
         'line-color': '#444',
         'line-width': 0,

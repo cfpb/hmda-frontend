@@ -556,7 +556,7 @@ const MapContainer = (props) => {
     map.on('load', () => {
       map.addSource('county', {
         type: 'vector',
-        url: mapboxURL,
+        url: 'mapbox://cfpb.b52vpnmn',
       })
 
       map.addSource('state', {
