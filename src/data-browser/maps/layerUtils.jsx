@@ -399,45 +399,53 @@ const ACTIVE_LAYERS_IN_ORDER = [
   'state-label',
 ]
 
+function addCountyLayers(map, newCT, stops, targetLayer){
+  const source = newCT
+    ? 'county-2022'
+    : 'county'
+
+  const sourceLayer = newCT
+    ? 'tl_2023_us_county-2uakxl'
+    : '2015-county-bc0xsx'
+
+  map.addLayer(
+    {
+      id: 'county',
+      type: 'fill',
+      source,
+      'source-layer': sourceLayer,
+      paint: {
+        'fill-outline-color': 'rgba(0,0,0,0.3)',
+        'fill-color': {
+          property: 'GEOID',
+          type: 'categorical',
+          default: 'rgba(0,0,0,0.05)',
+          stops,
+        },
+      },
+    },
+    targetLayer,
+  )
+
+  map.addLayer({
+    id: 'county-lines',
+    type: 'line',
+    source,
+    'source-layer': sourceLayer,
+    paint: {
+      'line-color': '#444',
+      'line-width': 0,
+    },
+  })
+}
+
 function addLayers(map, geography, stops, newCountyCodesForConnecticut) {
   const isCounty = geography.value === 'county'
   const targetLayer = 'natural-line-label'
   removeLayers(map)
 
-  let sourceLayer = newCountyCodesForConnecticut
-    ? 'tl_2023_us_county_2uakxl'
-    : '2015-county-bc0xsx'
-
   if (isCounty) {
-    map.addLayer(
-      {
-        id: 'county',
-        type: 'fill',
-        source: 'county',
-        'source-layer': 'tl_2023_us_county_2uakxl',
-        paint: {
-          'fill-outline-color': 'rgba(0,0,0,0.3)',
-          'fill-color': {
-            property: 'GEOID',
-            type: 'categorical',
-            default: 'rgba(0,0,0,0.05)',
-            stops,
-          },
-        },
-      },
-      targetLayer,
-    )
-
-    map.addLayer({
-      id: 'county-lines',
-      type: 'line',
-      source: 'county',
-      'source-layer': 'tl_2023_us_county_2uakxl',
-      paint: {
-        'line-color': '#444',
-        'line-width': 0,
-      },
-    })
+    addCountyLayers(map, newCountyCodesForConnecticut, stops, targetLayer)
   } else {
     map.addLayer(
       {

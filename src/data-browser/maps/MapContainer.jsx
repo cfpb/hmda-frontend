@@ -188,7 +188,7 @@ const MapContainer = (props) => {
   const [tableFilterData, setTableFilterData] = useState(null)
   const [selectedGeography, setGeography] = useState(defaults.geography)
 
-  /* 
+  /*
   Connecticut county codes were changed in 2022 causing a different Mapbox tileset to be displayed for Maps.
 
   The UI will display a different County tileset from Mapbox when the user is viewing 2022 or greater and the geography is county.
@@ -554,9 +554,14 @@ const MapContainer = (props) => {
     setMap(map)
 
     map.on('load', () => {
-      map.addSource('county', {
+      map.addSource('county-2022', {
         type: 'vector',
         url: 'mapbox://cfpb.b52vpnmn',
+      })
+
+      map.addSource('county', {
+        type: 'vector',
+        url: 'mapbox://cfpb.00l6sz7f',
       })
 
       map.addSource('state', {
