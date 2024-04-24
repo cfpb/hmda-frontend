@@ -534,9 +534,6 @@ const MapContainer = (props) => {
 
   useEffect(() => {
     let map
-    let mapboxURL = newCountyCodesForConnecticut
-      ? 'mapbox://cfpb.b52vpnmn'
-      : 'mapbox://cfpb.00l6sz7f'
 
     try {
       map = new mapbox.Map({
@@ -554,9 +551,14 @@ const MapContainer = (props) => {
     setMap(map)
 
     map.on('load', () => {
-      map.addSource('county', {
+      map.addSource('county-2022', {
         type: 'vector',
         url: 'mapbox://cfpb.b52vpnmn',
+      })
+
+      map.addSource('county', {
+        type: 'vector',
+        url: 'mapbox://cfpb.00l6sz7f',
       })
 
       map.addSource('state', {
@@ -689,8 +691,12 @@ const MapContainer = (props) => {
       const features = map.queryRenderedFeatures(e.point, {
         layers: [selectedGeography.value],
       })
+
       if (!features.length) return
       const properties = features[0].properties
+
+      console.log(properties)
+
       const center = [properties.CENTROID_LNG, properties.CENTROID_LAT]
 
       setMapCenter((center || [-96, 38]).join(','))
