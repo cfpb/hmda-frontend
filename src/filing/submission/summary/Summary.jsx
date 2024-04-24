@@ -116,7 +116,7 @@ const Summary = ({ filingPeriod }) => {
   )
 }
 
-Summary.PropTypes = {
+Summary.propTypes = {
   filingPeriod: PropTypes.string.isRequired,
 }
 

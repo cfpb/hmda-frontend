@@ -18,12 +18,6 @@ import './Nav.css'
 export default class EditsNav extends Component {
   constructor(props) {
     super(props)
-    this.handleScroll = this.handleScroll.bind(this)
-    this.state = {
-      fixed: false,
-      headerHeight: 0,
-      editsNavHeight: 0,
-    }
     this.navMap = {
       upload: {
         isReachable: () => true,
@@ -91,40 +85,6 @@ export default class EditsNav extends Component {
     }
   }
 
-  componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll)
-    const header = document.getElementById('header')
-    const userHeading = document.getElementById('userHeading')
-    const editsNav = document.getElementById('editsNav')
-    if (!header || !userHeading || !editsNav) return
-    this.setState({
-      headerHeight: header.clientHeight + userHeading.clientHeight,
-      editsNavHeight: editsNav.clientHeight,
-    })
-  }
-
-  componentDidUpdate() {
-    const currentHeight = document.getElementById('editsNav').clientHeight
-    if (this.state.editsNavHeight !== currentHeight) {
-      this.setState({
-        editsNavHeight: currentHeight,
-      })
-    }
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll)
-  }
-
-  handleScroll() {
-    const state = this.state
-    if (window.scrollY >= state.headerHeight) {
-      if (!state.fixed) this.setState({ fixed: true })
-    } else {
-      if (state.fixed) this.setState({ fixed: false })
-    }
-  }
-
   renderNavItem(name, i) {
     const { page, base, code } = this.props
     const navItem = this.navMap[name]
@@ -170,11 +130,9 @@ export default class EditsNav extends Component {
   }
 
   render() {
-    const wrapperHeight = { height: `${this.state.editsNavHeight}px` }
-    const fixed = this.state.fixed ? 'EditsNav-fixed' : ''
     return (
-      <section style={wrapperHeight}>
-        <nav className={`EditsNav ${fixed}`} id='editsNav'>
+      <section style={{ height: 'auto' }}>
+        <nav className={`EditsNav`} id='editsNav'>
           <ul className='nav-primary'>
             {Object.keys(this.navMap).map((name, i) => {
               return this.renderNavItem(name, i)
