@@ -405,7 +405,7 @@ function addCountyLayers(map, newCT, stops, targetLayer){
     : 'county'
 
   const sourceLayer = newCT
-    ? 'tl_2023_us_county-2uakxl'
+    ? 'trimmed_2023'
     : '2015-county-bc0xsx'
 
   map.addLayer(

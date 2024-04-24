@@ -534,10 +534,6 @@ const MapContainer = (props) => {
 
   useEffect(() => {
     let map
-    let mapboxURL = newCountyCodesForConnecticut
-      ? 'mapbox://cfpb.b52vpnmn'
-      : 'mapbox://cfpb.00l6sz7f'
-
     try {
       map = new mapbox.Map({
         container: mapContainer.current,
@@ -556,7 +552,7 @@ const MapContainer = (props) => {
     map.on('load', () => {
       map.addSource('county-2022', {
         type: 'vector',
-        url: 'mapbox://cfpb.b52vpnmn',
+        url: 'mapbox://cfpb.59rxxccy',
       })
 
       map.addSource('county', {
