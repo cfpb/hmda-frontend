@@ -1678,20 +1678,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docsearch/css@npm:3.5.2":
-  version: 3.5.2
-  resolution: "@docsearch/css@npm:3.5.2"
-  checksum: 10c0/736e029b65dba3b2fafb98b4bc4e6f7f411863fed4ef2798c82be8dcdcbdcb9dea6a75376b19d013e9d2f8607b2e3f8d8353938343b08b382894d8b16883ccb3
+"@docsearch/css@npm:3.6.0":
+  version: 3.6.0
+  resolution: "@docsearch/css@npm:3.6.0"
+  checksum: 10c0/125b144ce9b9f90a4e95e6ffccde2229e622d9cfedac4ad87018137cbeac0b87fd1b6245595f275e5f9b3c50553a0c53b55e8dbdc7a91aeb0eed217423acddf3
   languageName: node
   linkType: hard
 
-"@docsearch/react@npm:3.5.2":
-  version: 3.5.2
-  resolution: "@docsearch/react@npm:3.5.2"
+"@docsearch/react@npm:3.6.0":
+  version: 3.6.0
+  resolution: "@docsearch/react@npm:3.6.0"
   dependencies:
     "@algolia/autocomplete-core": "npm:1.9.3"
     "@algolia/autocomplete-preset-algolia": "npm:1.9.3"
-    "@docsearch/css": "npm:3.5.2"
+    "@docsearch/css": "npm:3.6.0"
     algoliasearch: "npm:^4.19.1"
   peerDependencies:
     "@types/react": ">= 16.8.0 < 19.0.0"
@@ -1707,7 +1707,7 @@ __metadata:
       optional: true
     search-insights:
       optional: true
-  checksum: 10c0/1dc22a4364be89bc4139bbcc4c90ea240a701961eb698101f53067fd6e0ca014fc12bb6577b67dc108e0ef5e8484866df8e08eb681f9bcafc898a822ce2f42d8
+  checksum: 10c0/15f8137b1aa611b8f3ab713b20ca80c638eeb67a6e79acc5d2aa1e7cbd60f3dd908bc95b50ec4b1482a98c7dbe5afa3b169a8219799b28b38816a7ded6807874
   languageName: node
   linkType: hard
 
@@ -2760,22 +2760,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-table@npm:8.11.0":
-  version: 8.11.0
-  resolution: "@tanstack/react-table@npm:8.11.0"
+"@tanstack/react-table@npm:8.15.0":
+  version: 8.15.0
+  resolution: "@tanstack/react-table@npm:8.15.0"
   dependencies:
-    "@tanstack/table-core": "npm:8.11.0"
+    "@tanstack/table-core": "npm:8.14.0"
   peerDependencies:
-    react: ">=16"
-    react-dom: ">=16"
-  checksum: 10c0/14a25969b499634e90d19120aa02f9b396d83d38e1a6064a97b94e6abf274709ef84ded5bafadc4d979a14564c74489763be39f68d05a0497c28287bae3c7669
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: 10c0/fa82e413d66127090b33ff4a8e13cbad275bc3c3295c37031a7cccd5fa881ee36fa627c2b7a65300cb0c0e889fca6055939802776f2df8a997533d71686fde98
   languageName: node
   linkType: hard
 
-"@tanstack/table-core@npm:8.11.0":
-  version: 8.11.0
-  resolution: "@tanstack/table-core@npm:8.11.0"
-  checksum: 10c0/05cb965937675c8e110fb5b4c53950d2c2f76458d37a4e2add3e535220f78e4b805dcf6e262046aaa2ec36301a95d4427bf5e65c0620711613514c8955d9f407
+"@tanstack/table-core@npm:8.14.0":
+  version: 8.14.0
+  resolution: "@tanstack/table-core@npm:8.14.0"
+  checksum: 10c0/1ace39fd500c32f110512c4ba519d7c0e3c57d3b4f353e114d1ec12d069265678fb37b9063cfcfe1cb1fb35f57959a6e2536914093b0b33d3aef9861be32b117
   languageName: node
   linkType: hard
 
@@ -3067,15 +3067,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uswds/uswds@npm:3.7.1":
-  version: 3.7.1
-  resolution: "@uswds/uswds@npm:3.7.1"
+"@uswds/uswds@npm:3.8.0":
+  version: 3.8.0
+  resolution: "@uswds/uswds@npm:3.8.0"
   dependencies:
     classlist-polyfill: "npm:1.2.0"
     object-assign: "npm:4.1.1"
     receptor: "npm:1.0.0"
     resolve-id-refs: "npm:0.1.0"
-  checksum: 10c0/c1f031d21a0a9194786f8642638b11eaec8ce4609a8afc9b8aca54eb28d5289f6fe3dda7b4cc5d09f8b1ddc4234b2f39c14e0f4ad3e513b116add9ac1329f9d2
+  checksum: 10c0/eb3a4958c015d86c3e995fcd481a1c0d92a4eacceddcaaf89f7822dff0d2138036675746d8fd73885180ee1d5001ba33bba2c01ac2a436bc025bfd8b77189ea8
   languageName: node
   linkType: hard
 
@@ -3854,7 +3854,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"base64-js@npm:^1.3.1":
+"base64-js@npm:^1.3.1, base64-js@npm:^1.5.1":
   version: 1.5.1
   resolution: "base64-js@npm:1.5.1"
   checksum: 10c0/f23823513b63173a001030fae4f2dabe283b99a9d324ade3ad3d148e218134676f1ee8568c877cd79ec1c53158dcf2d2ba527a97c606618928ba99dd930102bf
@@ -4955,12 +4955,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress-keycloak@npm:2.0.0":
-  version: 2.0.0
-  resolution: "cypress-keycloak@npm:2.0.0"
+"cypress-keycloak@npm:2.0.1":
+  version: 2.0.1
+  resolution: "cypress-keycloak@npm:2.0.1"
+  dependencies:
+    base64-js: "npm:^1.5.1"
+    js-sha256: "npm:^0.9.0"
   peerDependencies:
-    cypress: ^6.5.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0
-  checksum: 10c0/4bd7566d1bcaae1261ec30b951d4b282c890fc11d8a48626b814bc4fdafe9a73dcd4da59b89f8bd83a06420fbc33fa01a6062c446382e5fef41b618e215f6110
+    cypress: ^6.5.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0
+  checksum: 10c0/1f8e8183910b148b4217652e42af52aec5eeb165c6ed49f61a03dace9087ce0ca9f4ad802583a599dc334abcf3310c4e21c748f97e7bf9fd7918f7f77ddcda67
   languageName: node
   linkType: hard
 
@@ -7217,20 +7220,20 @@ __metadata:
     "@babel/preset-env": "npm:^7.23.8"
     "@babel/preset-react": "npm:^7.23.3"
     "@cypress/skip-test": "npm:2.6.0"
-    "@docsearch/react": "npm:3.5.2"
+    "@docsearch/react": "npm:3.6.0"
     "@esbuild-plugins/node-globals-polyfill": "npm:^0.2.3"
     "@redux-devtools/extension": "npm:^3.3.0"
     "@reduxjs/toolkit": "npm:^1.9.7"
-    "@tanstack/react-table": "npm:8.11.0"
+    "@tanstack/react-table": "npm:8.15.0"
     "@testing-library/cypress": "npm:8.0.1"
     "@uswds/compile": "npm:^1.1.0"
-    "@uswds/uswds": "npm:3.7.1"
+    "@uswds/uswds": "npm:3.8.0"
     "@vitejs/plugin-react": "npm:^4.1.0"
     ansi-html: "npm:0.0.8"
     csv-parse: "npm:4.16.3"
     cypress: "npm:13.3.1"
     cypress-file-upload: "npm:5.0.8"
-    cypress-keycloak: "npm:2.0.0"
+    cypress-keycloak: "npm:2.0.1"
     detect-browser: "npm:4.8.0"
     dotenv: "npm:^16.3.1"
     ejs: "npm:^3.1.8"
@@ -7268,7 +7271,7 @@ __metadata:
     redux: "npm:4.2.1"
     redux-logger: "npm:3.0.6"
     redux-thunk: "npm:2.4.2"
-    sass: "npm:1.69.5"
+    sass: "npm:1.72.0"
     serialize-javascript: "npm:5.0.1"
     split2: "npm:3.2.2"
     streamsaver: "npm:2.0.6"
@@ -8669,7 +8672,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"js-sha256@npm:0.9.0":
+"js-sha256@npm:0.9.0, js-sha256@npm:^0.9.0":
   version: 0.9.0
   resolution: "js-sha256@npm:0.9.0"
   checksum: 10c0/f20b9245f6ebe666f42ca05536f777301132fb1aa7fbc22f10578fa302717a6cca507344894efdeaf40a011256eb2f7d517b94ac7105bd5cf087fa61551ad634
@@ -11845,16 +11848,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:1.69.5":
-  version: 1.69.5
-  resolution: "sass@npm:1.69.5"
+"sass@npm:1.72.0":
+  version: 1.72.0
+  resolution: "sass@npm:1.72.0"
   dependencies:
     chokidar: "npm:>=3.0.0 <4.0.0"
     immutable: "npm:^4.0.0"
     source-map-js: "npm:>=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: 10c0/a9003a9482f2e467fc412cfe58ba4fa14fb78bef7e1283ce5d64a065f8a31114ec3bbf5d4e724f94eb8512c32c768a6f91f228c7f16a26a300bbf4db293b5608
+  checksum: 10c0/7df1bb470648edc4b528976b1b165c78d4c6731f680afac7cdc8324142f1ef4304598d317d98dac747a2ae8eee17271d760def90bba072021a8b19b459336ccd
   languageName: node
   linkType: hard
 
