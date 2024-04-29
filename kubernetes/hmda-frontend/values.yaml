@@ -7,7 +7,7 @@ commitId: ''
 
 image:
   repository: hmda/hmda-frontend
-  tag: v3.6.0
+  tag: latest
   pullPolicy: IfNotPresent
 
 nameOverride: ''
