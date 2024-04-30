@@ -30,6 +30,7 @@ The HMDA Frontend monorepo hosts the public facing applications for the collecti
     * [Running via Docker](#running-via-docker)
     * [Code Formatting](#code-formatting)
   - [Creating and editing Markdown](https://github.com/cfpb/hmda-frontend/wiki/Creating-and-updating-Markdown-files)
+  - [Adding GIFs](#adding-gifs)
   * [Testing](#testing)
     - [Unit Tests](#unit-tests)
     - [End-to-End Testing](#end-to-end-testing)
@@ -272,6 +273,45 @@ The above command will return in the terminal what files have not been formatted
   - `"editor.formatOnPaste": true,`
 - Themes
 - Icon Themes
+
+## Adding GIFs
+
+Why GIFs? GIFs provide a better visual repesentation of how a parituclar part of the UI functions.
+
+Examples that are already in our README
+
+- [HMDA Data Browser](#hmda-data-browser)
+- [End to End Testing](#end-to-end-testing)
+
+### Record video to turn into GIF
+
+Navigate to [Apple support native screenshot & recording controls](https://support.apple.com/guide/mac-help/take-a-screenshot-mh26782/mac) to learn how to use MacOS controls.
+
+**Create recording bounds** <br>
+On your Mac, press Shift-Command-5 (or use Launchpad) to open Screenshot and display the tools. Drag the bounds to be where it needs to be for recording the video.
+
+Navigate to [Apple support how to record with QuickTime Player](https://support.apple.com/en-us/102618).
+
+### Convert video file to `.gif`
+
+Small file size + lower quality [video to gif converter](https://biteable.com/tools/video-to-gif/). <br>
+Large file size + higher quality [video to gif converter](https://cloudconvert.com/mov-to-gif).
+
+### Store the GIF in the Frontend
+
+Navigate to the `readme-files` directory and upload the `.gif` extension this directory.
+
+### How to use GIF in README
+
+Paste the below code to the section you want to import your GIF and update the `name-of-gif` pieces.
+
+```HTML
+<a href='./readme-files/name-of-gif.gif' alt='name-of-alt'>
+  <p align='center'>
+    <img src='./readme-files/name-of-gif.gif' width='80%'  overflow='scroll'/>
+  </p>
+</a>
+```
 
 ## Testing
 
