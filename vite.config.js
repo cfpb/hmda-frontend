@@ -30,6 +30,11 @@ export default () => {
           target: process.env.DEV_URL,
           changeOrigin: true,
         },
+        '/hmda-auth/users': {
+          // Update LEIs associated with users account (Profile Page)
+          target: process.env.DEV_URL,
+          changeOrigin: true,
+        },
         '/v2/reporting': {
           // Modified LAR endpoint
           target: process.env.DEV_URL,

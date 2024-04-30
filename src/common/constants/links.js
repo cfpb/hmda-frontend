@@ -40,7 +40,7 @@ export const defaultLinks = [
   },
   { name: 'Documentation', href: '', 
     submenu: [
-      { name: 'Filing Instructions Guide', href: '/documentation/fig/2023/overview' },
+      { name: 'Filing Instructions Guide', href: '/documentation/fig/overview' },
       { name: 'FAQs', href: '/documentation/' },
       { name: 'Publications', href: '/documentation/category/publications' },
       { name: 'Tools', href: '/documentation/category/tools' },

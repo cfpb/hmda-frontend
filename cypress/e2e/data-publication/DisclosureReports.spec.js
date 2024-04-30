@@ -15,9 +15,9 @@ onlyOn(!isBeta(HOST), () => {
       cy.viewport(1680, 916)
       cy.visit(`${HOST}/data-publication/disclosure-reports/2022`)
 
-      cy.get('#institution-name').click()
+      cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type('cypress bank, ssb')
-      cy.findByText('View MSA/MDs').click()
+      cy.findByText('View MSA/MDs').click({ force: true })
       cy.findByText('Select MSA/MD...').type('Dallas{enter}')
       cy.findByText('Select report...').type('Applications by Tract{enter}')
 
@@ -66,9 +66,9 @@ onlyOn(!isBeta(HOST), () => {
       cy.viewport(1680, 916)
       cy.visit(`${HOST}/data-publication/disclosure-reports/2021`)
 
-      cy.get('#institution-name').click()
+      cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type('cypress bank, ssb')
-      cy.findByText('View MSA/MDs').click()
+      cy.findByText('View MSA/MDs').click({ force: true })
       cy.findByText('Select MSA/MD...').type('Dallas{enter}')
       cy.findByText('Select report...').type('Applications by Tract{enter}')
 
@@ -117,9 +117,9 @@ onlyOn(!isBeta(HOST), () => {
       cy.viewport(1680, 916)
       cy.visit(`${HOST}/data-publication/disclosure-reports/2020`)
 
-      cy.get('#institution-name').click()
+      cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type('cypress bank, ssb')
-      cy.findByText('View MSA/MDs').click()
+      cy.findByText('View MSA/MDs').click({ force: true })
       cy.findByText('Select MSA/MD...').type('Dallas{enter}')
       cy.findByText('Select report...').type('Applications by Tract{enter}')
 
@@ -171,9 +171,9 @@ onlyOn(!isBeta(HOST), () => {
       cy.viewport(1680, 916)
       cy.visit(`${HOST}/data-publication/disclosure-reports/2019`)
 
-      cy.get('#institution-name').click()
+      cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type('cypress bank, ssb')
-      cy.findByText('View MSA/MDs').click()
+      cy.findByText('View MSA/MDs').click({ force: true })
       cy.findByText('Select MSA/MD...').type('Dallas{enter}')
       cy.findByText('Select report...').type('Applications by Tract{enter}')
 
@@ -225,15 +225,15 @@ onlyOn(!isBeta(HOST), () => {
       cy.viewport(1680, 867)
       cy.visit(`${HOST}/data-publication/disclosure-reports/2018`)
 
-      cy.get('#institution-name').click()
+      cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type('cypress bank, state savings bank')
 
       cy.get(
         '#main-content > .SearchList > .Results > li > .button-link',
       ).click()
 
-      cy.get('#react-select-2-option-2').click()
-      cy.get('#react-select-3-option-0').click()
+      cy.get('#react-select-2-option-2').click({ force: true })
+      cy.get('#react-select-3-option-0').click({ force: true })
 
       /* 
         Check Report Params 
@@ -306,15 +306,15 @@ onlyOn(!isBeta(HOST), () => {
 
       cy.visit(`${HOST}/data-publication/disclosure-reports/2017`)
 
-      cy.get('#institution-name').click()
+      cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type('cypress bank, ssb')
 
       cy.get(
         '#main-content > .SearchList > .Results > li > .button-link',
-      ).click()
+      ).click({ force: true })
 
-      cy.get('#react-select-2-option-5').click()
-      cy.get('#react-select-3-option-1').click()
+      cy.get('#react-select-2-option-5').click({ force: true })
+      cy.get('#react-select-3-option-1').click({ force: true })
 
       /* 
         Check Report Params 

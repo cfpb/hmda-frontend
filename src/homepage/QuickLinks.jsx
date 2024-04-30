@@ -40,7 +40,7 @@ export const QuickLinks = ({ hideContent }) => {
             Platform
           </span>
         </Link>
-        <Link to='documentation/'>
+        <a href='/documentation'>
           <svg
             className='usa-icon'
             aria-hidden='true'
@@ -54,8 +54,8 @@ export const QuickLinks = ({ hideContent }) => {
             <br />
             Questions
           </span>
-        </Link>
-        <a href='/documentation/fig/2023/overview'>
+        </a>
+        <a href='/documentation/fig/overview'>
           <svg
             className='usa-icon'
             aria-hidden='true'

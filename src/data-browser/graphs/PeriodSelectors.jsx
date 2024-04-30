@@ -34,7 +34,9 @@ export const PeriodSelectors = ({
         <Select
           aria-label='Set lower limit of Filing Period range'
           classNamePrefix='react-select__period_start' // Used for cypress testing
-          options={periodOpts.slice(0, -1)}
+          options={periodOpts.filter((yq) =>
+            periodHigh ? yq.value < periodHigh.value : yq,
+          )}
           onChange={(e) => setPeriodLow(e)}
           value={periodLow}
         />

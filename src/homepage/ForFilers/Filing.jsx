@@ -17,7 +17,7 @@ const ToolsProd = () => (
     </li>
     <li>
       <a href='/tools/online-lar-formatting'>
-        Online LAR Formatting <NewIndicator />
+        Online LAR Formatting
       </a>
     </li>
     <li>
