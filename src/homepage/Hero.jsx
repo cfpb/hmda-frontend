@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { VideoModal } from './VideoModal.jsx'
 import iconSprite from '../common/uswds/img/sprite.svg'
 
