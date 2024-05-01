@@ -62,6 +62,11 @@ const App = () => {
   const isFiling = !!window.location.pathname.match(/^\/filing/)
   const isHelp = !!window.location.pathname.match(/^\/hmda-help/)
 
+  // Eliminates Google Lighthouse CLS
+  const mainWrapperStyles = {
+    minHeight: '1000px',
+  }
+
   const showCommonHeader = !isHelp
   const showFooter = !isHelp
   const showBetaBanner = isBeta() && !isFiling
@@ -79,17 +84,19 @@ const App = () => {
         />
       )}
       {showBetaBanner && <Beta />}
-      <Switch>
-        <Route exact path='/' component={Homepage} />
-        <Route path='/data-browser' component={DataBrowser} />
-        <Route path='/documentation' component={Documentation} />
-        <Route path='/tools' component={Tools} />
-        <Route path='/data-publication' component={DataPublication} />
-        <Route path='/filing' component={Filing} />
-        <Route path='/hmda-help' component={HmdaHelp} />
-        <Route path='/updates-notes' component={UpdatesNotes} />
-        <Route component={NotFound} />
-      </Switch>
+      <div id='mainWrapper' style={mainWrapperStyles}>
+        <Switch>
+          <Route exact path='/' component={Homepage} />
+          <Route path='/data-browser' component={DataBrowser} />
+          <Route path='/documentation' component={Documentation} />
+          <Route path='/tools' component={Tools} />
+          <Route path='/data-publication' component={DataPublication} />
+          <Route path='/filing' component={Filing} />
+          <Route path='/hmda-help' component={HmdaHelp} />
+          <Route path='/updates-notes' component={UpdatesNotes} />
+          <Route component={NotFound} />
+        </Switch>
+      </div>
       {showFooter && <Footer config={config} />}
     </AppContext.Provider>
   )

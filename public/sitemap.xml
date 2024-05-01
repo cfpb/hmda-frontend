@@ -1,0 +1,573 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+	<loc>https://ffiec.cfpb.gov/</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication/modified-lar/2023</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/filing</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-browser/</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-browser/data/</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-browser/maps/</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-browser/graphs/quarterly/</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication/</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication/modified-lar/</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication/dynamic-national-loan-level-dataset/</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication/snapshot-national-loan-level-dataset/</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication/one-year-national-loan-level-dataset/</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication/three-year-national-loan-level-dataset/</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication/aggregate-reports/</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication/disclosure-reports/</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/tools/</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/tools/rate-spread</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/tools/lar-formatting</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/tools/online-lar-formatting</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/tools/file-format-verification</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/tools/check-digit</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/fig/overview</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/category/publications</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/category/tools</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/category/developer-apis</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/updates-notes</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-browser</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/tools</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication</loc>
+	<lastmod>2024-04-25T23:06:36+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/search</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/fig/2021/additional-info</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/fig/2021/category/2021-filing-instructions-guide</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/fig/2021/changes-2021</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/fig/2021/data-specifications</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/fig/2021/edit-specifications</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/fig/2021/file-specifications</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/fig/2021/overview</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/fig/2021/paperwork-reduction</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/fig/2021/tables/</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/fig/2022/additional-info</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/fig/2022/category/2022-filing-instructions-guide</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/fig/2022/changes-2022</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/fig/2022/data-specifications</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/fig/2022/edit-specifications</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/fig/2022/file-specifications</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/fig/2022/overview</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/fig/2022/paperwork-reduction</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/fig/2022/tables/</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/fig/2023/overview</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/fig/2023/tables/</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/fig/tables/</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/api/check-digit/</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/api/data-browser/</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/api/file-serving/</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/api/filing/beta-platform</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/api/filing/platform</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/api/graphs/</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/api/hmda-auth/</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/api/institutions-api/</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/api/public-verification/</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/api/rate-spread/</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/api/style-guide/</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/category/frequently-asked-questions</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/faq/data-browser-graphs-faq</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/faq/data-browser-maps-faq</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/faq/data-collection-timelines</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/faq/filing-faq</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/faq/identifiers-faq</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/faq/static-dataset-faq</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/publications/ad-changes</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/publications/general/arid2017-to-lei-schema</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/publications/general/derived-data-fields</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/publications/loan-level-datasets/lar-data-fields</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/publications/loan-level-datasets/lar-data-fields-v1</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/publications/loan-level-datasets/panel-data-fields</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/publications/loan-level-datasets/panel-data-fields-v1</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/publications/loan-level-datasets/public-lar-schema</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/publications/loan-level-datasets/public-panel-schema</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/publications/loan-level-datasets/public-ts-schema</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/publications/loan-level-datasets/ts-data-fields</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/publications/loan-level-datasets/ts-data-fields-v1</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/publications/modified-lar/modified-lar-schema</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/publications/modified-lar/resources/data-dictionaries/mlar-dd-2017</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.1</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/publications/modified-lar/resources/data-dictionaries/mlar-dd-2018-onward</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.1</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/publications/modified-lar/resources/mlar-fs-2017</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/publications/modified-lar/resources/mlar-with-excel</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/publications/modified-lar/resources/supporting-resources</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/publications/modified-lar/resources/using-mlar-data</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/tools/check-digit</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/tools/data-browser/data-browser-faq</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/tools/data-browser/data-browser-filters</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/tools/file-format-verification/</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/tools/lar-formatting/</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/tools/online-lar-formatting/</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/documentation/tools/rate-spread</loc>
+	<lastmod>2024-04-25T23:06:41+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication/modified-lar</loc>
+	<lastmod>2024-04-25T23:06:45+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication/dynamic-national-loan-level-dataset</loc>
+	<lastmod>2024-04-25T23:06:45+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication/snapshot-national-loan-level-dataset</loc>
+	<lastmod>2024-04-25T23:06:45+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication/disclosure-reports</loc>
+	<lastmod>2024-04-25T23:06:45+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication/aggregate-reports</loc>
+	<lastmod>2024-04-25T23:06:45+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/filing/</loc>
+	<lastmod>2024-04-25T23:06:45+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication/three-year-national-loan-level-dataset/2018</loc>
+	<lastmod>2024-04-25T23:06:46+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication/three-year-national-loan-level-dataset/2019</loc>
+	<lastmod>2024-04-25T23:06:46+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication/one-year-national-loan-level-dataset/2020</loc>
+	<lastmod>2024-04-25T23:06:46+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication/one-year-national-loan-level-dataset/2021</loc>
+	<lastmod>2024-04-25T23:06:46+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication/snapshot-national-loan-level-dataset/2022</loc>
+	<lastmod>2024-04-25T23:06:46+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication/modified-lar/2017</loc>
+	<lastmod>2024-04-25T23:06:46+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication/snapshot-national-loan-level-dataset/2020</loc>
+	<lastmod>2024-04-25T23:06:46+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/data-publication/modified-lar/2018</loc>
+	<lastmod>2024-04-25T23:06:47+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/tools/rate-spread/requirements</loc>
+	<lastmod>2024-04-25T23:06:48+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/tools/rate-spread/methodology</loc>
+	<lastmod>2024-04-25T23:06:48+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://ffiec.cfpb.gov/tools/rate-spread/methodology-alt</loc>
+	<lastmod>2024-04-25T23:06:48+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+</urlset>

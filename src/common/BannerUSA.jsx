@@ -1,13 +1,28 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import flag from './images/favicon-57.png'
 import dotgov from './uswds/img/icon-dot-gov.svg'
 import lock from './uswds/img/icon-https.svg'
 
 const BannerUSA = () => {
+  // Eliminates Google Lighthouse CLS
+  const [maxBannerHeight, setMaxBannerHeight] = useState('24px')
+  const usaBannerStyles = {
+    maxHeight: maxBannerHeight,
+    overflowX: 'hidden',
+  }
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setMaxBannerHeight('none')
+    }, 2000)
+
+    return () => clearTimeout(timeout)
+  }, [])
+
   return (
     <section
       className='usa-banner'
+      style={usaBannerStyles}
       aria-label='Official website of the United States government'
     >
       <div className='usa-accordion'>
@@ -18,7 +33,9 @@ const BannerUSA = () => {
                 aria-hidden='true'
                 className='usa-banner__header-flag'
                 src={flag}
-                alt=''
+                alt='USA Flag'
+                height='16'
+                width='16'
               />
             </div>
             <div

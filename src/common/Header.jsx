@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import BannerUSA from './BannerUSA'
 import { defaultLinks } from './constants/links'
@@ -42,8 +42,29 @@ const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
     import('./uswds/js/uswds.min.js')
   }, [])
 
+  // Eliminates Google Lighthouse CLS
+  const [usaNavStyles, setUsaNavStyles] = useState({})
+  useEffect(() => {
+    const handleResize = () => {
+      const updatedStyles = {}
+
+      if (window.matchMedia('(min-width: 640px)').matches) {
+        updatedStyles.height = '44px'
+        updatedStyles.overflowX = 'visible'
+      }
+      setUsaNavStyles(updatedStyles)
+    }
+
+    window.addEventListener('resize', handleResize)
+    handleResize() // Call the function initially
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
   return (
-    <div className={hideHeaderFooter(pathname)}>
+    <div id='topBanner' className={hideHeaderFooter(pathname)}>
       <a className='skipnav' href='#main-content'>
         Skip to main content
       </a>
@@ -64,7 +85,7 @@ const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
               Menu
             </button>
           </div>
-          <nav className='usa-nav'>
+          <nav className='usa-nav' style={usaNavStyles}>
             <button type='button' className='usa-nav__close'>
               <img src={closeBtn} role='img' alt='Close' />
             </button>
