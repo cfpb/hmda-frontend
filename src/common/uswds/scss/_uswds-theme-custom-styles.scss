@@ -139,6 +139,10 @@ body {
     background-color: var(--hmda-blue);
   }
 
+  .usa-nav__submenu {
+    padding: 0;
+  }
+
   .usa-nav__submenu .usa-nav__submenu-item {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     margin: 0;
@@ -274,13 +278,15 @@ body {
 /*************************/
 
 .usa-hero {
-  background-image: url('../../images/hmda-hero.min.jpg');
+  background-image: url('../../images/hmda-hero-mobile.min.jpg');
+  font-family: SourceSansPro, sans-serif;
   background-position: 50% 0%;
   max-width: 1500px;
   margin: 0 auto;
   height: 450px;
 
   @media (min-width: 640px) {
+    background-image: url('../../images/hmda-hero.min.jpg');
     height: 500px;
     margin-top: 5px;
   }
