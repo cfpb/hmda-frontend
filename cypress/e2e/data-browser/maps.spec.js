@@ -24,7 +24,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('.mapboxgl-canvas').click()
 
       cy.get('.maps-nav-bar .left .count').should('contain', '2,430')
-      cy.get('.maps-nav-bar .right .count').should('contain', '0.83')
+      cy.get('.maps-nav-bar .right .count').should('contain', '0.68')
       cy.get('.maps-nav-bar .feature').should('contain', 'KANSAS')
 
       cy.get('.summary-page .featureName > .colorTextWithBias').should(
