@@ -2,6 +2,7 @@ import { logEnv, urlExists } from './helpers'
 import '@testing-library/cypress/add-commands'
 import 'cypress-keycloak'
 import 'cypress-file-upload'
+import '@cypress/code-coverage/support'
 
 // ***********************************************************
 // This example support/index.js is processed and

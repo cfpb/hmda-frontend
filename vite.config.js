@@ -3,15 +3,25 @@ import dotenv from 'dotenv'
 import react from '@vitejs/plugin-react'
 import svgr from 'vite-plugin-svgr'
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
+import istanbul from 'vite-plugin-istanbul'
 import dns from 'dns'
 
 dotenv.config()
-
 dns.setDefaultResultOrder('verbatim')
 
 export default () => {
   return defineConfig({
-    plugins: [react(), svgr(), nodePolyfills()],
+    plugins: [
+      react(),
+      svgr(),
+      nodePolyfills(),
+      istanbul({
+        cypress: true,
+        requireEnv: true,
+        exclude: ['node_modules', 'cypress', 'dist'],
+        forceBuildInstrument: true,
+      }),
+    ],
     server: {
       watch: {
         usePolling: true,
