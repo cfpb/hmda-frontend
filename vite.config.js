@@ -16,10 +16,10 @@ export default () => {
       svgr(),
       nodePolyfills(),
       istanbul({
+        include: 'src/*',
+        exclude: ['node_modules', 'cypress', 'src/common/uswds'],
+        extension: ['.js', '.jsx', '.ts', '.tsx'],
         cypress: true,
-        requireEnv: true,
-        exclude: ['node_modules', 'cypress', 'dist'],
-        forceBuildInstrument: true,
       }),
     ],
     server: {

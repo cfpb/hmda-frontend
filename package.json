@@ -9,6 +9,7 @@
   "type": "module",
   "scripts": {
     "start": "vite",
+    "test:coverage": "start-server-and-test start http-get://localhost:3000 cy:open-e2e",
     "build": "vite build",
     "preview": "vite preview",
     "test": "yarn run cypress run",
@@ -18,7 +19,8 @@
     "make-lar": "node ./scripts/lar/generate_lar_file.mjs",
     "cy:run-e2e": "cypress run --e2e --spec 'cypress/e2e/common-features/redirection.spec.js'",
     "cy-update-s3": "./cypress/update-s3-files.sh",
-    "old-tests": "jest -t"
+    "old-tests": "jest -t",
+    "cy:open-e2e": "yarn cypress open"
   },
   "keywords": [
     "HMDA"
@@ -88,7 +90,7 @@
     "cypress-file-upload": "5.0.8",
     "cypress-keycloak": "2.0.1",
     "dotenv": "^16.3.1",
-    "ejs": "^3.1.8",
+    "ejs": "^3.1.10",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.2",
     "eslint-plugin-prettier": "3.1.1",
@@ -97,6 +99,7 @@
     "nyc": "^15.1.0",
     "react-icons": "^4.4.0",
     "serialize-javascript": "5.0.1",
+    "start-server-and-test": "^2.0.3",
     "vite": "5.2.8",
     "vite-plugin-istanbul": "^6.0.2",
     "vite-plugin-node-polyfills": "^0.19.0",
@@ -105,10 +108,8 @@
   "resolutions": {
     "ansi-html": "0.0.8",
     "browserslist": ">=4.17.6",
-    "ejs": "3.1.8",
     "glob-parent": "5.1.2",
     "immer": "9.0.6",
-    "minimatch": ">=3.1.2",
     "node-forge": "^1.3.1",
     "nth-check": "2.0.1",
     "shell-quote": "1.7.3",

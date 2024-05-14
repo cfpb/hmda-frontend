@@ -88,6 +88,8 @@ cypress/downloads/
 package-lock.json
 ## Documentation Markdown files served locally for testing during development 
 public/markdown
+.nyc_output
+coverage
 
 # Editor Configs #
 .vscode/

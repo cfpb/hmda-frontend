@@ -1,4 +1,6 @@
 const { defineConfig } = require('cypress')
+const codeCoverageTask = require('@cypress/code-coverage/task.js')
+const plugins = require('./cypress/plugins/index.js')
 
 module.exports = defineConfig({
   chromeWebSecurity: false,
@@ -13,6 +15,7 @@ module.exports = defineConfig({
     NAV_DELAY: 5000,
     AUTH_REALM: 'hmda2',
     AUTH_CLIENT_ID: 'hmda2-api',
+    codeCoverageTasksRegistered: true,
   },
 
   defaultCommandTimeout: 10000,
@@ -26,10 +29,13 @@ module.exports = defineConfig({
   experimentalStudio: true,
 
   e2e: {
+    supportFile: 'cypress/support/e2e.js',
     experimentalRunAllSpecs: true,
     testIsolation: true,
     setupNodeEvents(on, config) {
-      return require('./cypress/plugins/index.js')(on, config)
+      codeCoverageTask(on, config)
+      plugins(on, config)
+      return config
     },
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
   },
