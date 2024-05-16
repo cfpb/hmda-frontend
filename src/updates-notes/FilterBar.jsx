@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { PRODUCT_NAMES } from './constants'
 import { FilterResetButton } from './FilterResetButton'
 import spyGlass from '../common/images/cf-gov-search.svg'
-import './FilterBar.css'
+import './FilterBar.scss'
 
 /**
  * UI to adjust Filter criteria
@@ -16,15 +16,16 @@ const FilterBar = ({ productOptions, typeOptions, filter }) => {
   return (
     <div id='filter-bar'>
       <div className='filter-wrapper split'>
+        <h4 class='filter-title'>Filter by:</h4>
         <FilterColumn
           name='type'
-          heading='by Change Type'
+          heading='Type'
           options={typeOptions}
           filter={filter}
         />
         <FilterColumn
           name='product'
-          heading='by Product'
+          heading='Product'
           options={productOptions}
           filter={filter}
         />
@@ -32,7 +33,7 @@ const FilterBar = ({ productOptions, typeOptions, filter }) => {
           <SearchField
             id='search-input'
             value={searchValue}
-            label='by Change Description'
+            label='Description'
             onChange={(e) => filter.add('keywords', e.target.value)}
             onClear={() => filter.clear('keywords')}
           />
@@ -48,7 +49,7 @@ const SearchField = ({
   label,
   value,
   onChange,
-  placeholder = 'Enter terms to search',
+  placeholder = 'Search',
   onClear,
 }) => (
   <>

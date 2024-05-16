@@ -96,10 +96,10 @@ const EmptyState = ({ clear, isEmpty }) => {
 const Header = () => {
   return (
     <div className='change-row header split'>
-      <h4 className='header date'>Change Date</h4>
-      <h4 className='header changeType'>Change Type</h4>
+      <h4 className='header date'>Date</h4>
+      <h4 className='header changeType'>Type</h4>
       <h4 className='header product'>Product</h4>
-      <h4 className='header description'>Change Description</h4>
+      <h4 className='header description'>Description</h4>
     </div>
   )
 }

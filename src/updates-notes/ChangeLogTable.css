@@ -172,7 +172,7 @@
 
 @media screen and (max-width: 850px) {
   #ChangeLogTable {
-    margin-top: 3rem;
+    //margin-top: 3rem;
   }
 
   #ChangeLogTable .result-count {
