@@ -65,8 +65,23 @@ export default () => {
           target: process.env.DEV_URL,
           changeOrigin: true,
         },
+        '/v2/admin/publish/hmda-irs/institutions': {
+          // HMDA Help Regenerate IRS report
+          target: process.env.DEV_URL,
+          changeOrigin: true,
+        },
         '/v2/data-browser-api': {
           // Data Browser API
+          target: process.env.DEV_URL,
+          changeOrigin: true,
+        },
+        '/v2/public/hmda/parse': {
+          // FFVT Tool
+          target: process.env.DEV_URL,
+          changeOrigin: true,
+        },
+        '/public/rateSpread': {
+          // Rate spread
           target: process.env.DEV_URL,
           changeOrigin: true,
         },

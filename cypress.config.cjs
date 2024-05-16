@@ -29,6 +29,7 @@ module.exports = defineConfig({
   experimentalStudio: true,
 
   e2e: {
+    baseUrl: 'http://localhost:3000',
     supportFile: 'cypress/support/e2e.js',
     experimentalRunAllSpecs: true,
     testIsolation: true,
