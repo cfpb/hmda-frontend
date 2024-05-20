@@ -4,10 +4,13 @@
 }
 
 #ChangeLogTable .result-count {
-  margin: 3rem 0;
+  margin: 0;
+  padding: 1em 0;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 #ChangeLogTable .result-count .header {
