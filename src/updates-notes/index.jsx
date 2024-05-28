@@ -8,7 +8,7 @@ import FilterBar from './FilterBar'
 import { useChangeLogFilter } from './useChangeLogFilter'
 import { useRemoteJSON } from '../common/useRemoteJSON'
 import { organizeChangeData } from './sortFunctions'
-import './ChangeLog.css'
+import './ChangeLog.scss'
 
 /* Updates and Notes */
 const UpdatesNotes = () => {

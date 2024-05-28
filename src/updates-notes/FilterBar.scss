@@ -9,7 +9,6 @@
   .filter-title {
     border-bottom: 1px solid black;
     display: block;
-    padding: 0.75rem;
     width: 100%;
   }
 
@@ -143,7 +142,7 @@
   }
 
   .text-input {
-    padding: 1.5rem 0;
+    padding: 1.5rem 1em 1.5rem 0;
     position: relative;
   }
 
@@ -194,5 +193,78 @@
 
   #filter-bar .filter-wrapper > * {
     width: 100%;
+  }
+}
+
+// Collapsible Filter Bar
+
+#filter-bar {
+  background-color: #f0f0f0;
+
+  .filter-title {
+    border-width: 0;
+    text-align: center;
+    span {
+      display: none;
+    }
+    .filterIcon {
+      width: 2em;
+      height: 2em;
+      fill: var(--hmda-blue-bright);
+      margin-left: 0em;
+      vertical-align: bottom;
+    }
+    @media screen and (min-width: 960px) {
+      span {
+        display: inline-block;
+      }
+      .filterIcon {
+        fill: var(--hmda-text);
+        width: 1.25em;
+        height: 1.25em;
+      }
+    }
+  }
+
+  .filter-wrapper.split {
+    overflow: hidden;
+    width: 50px;
+    padding: 1em 0;
+
+    .type,
+    .product,
+    .search-wrapper {
+      margin-left: 60px;
+    }
+
+    @media screen and (min-width: 960px) {
+      overflow: visible;
+      width: 200px;
+
+      .type,
+      .product,
+      .search-wrapper {
+        margin-left: 0.5em;
+      }
+    }
+  }
+  .filter-wrapper.split.expanded {
+    width: 200px;
+    overflow: visible;
+
+    .filter-title span {
+      display: inline-block;
+    }
+
+    .filterIcon {
+      width: 1.25em;
+      height: 1.25em;
+    }
+
+    .type,
+    .product,
+    .search-wrapper {
+      margin-left: 0.5em;
+    }
   }
 }

@@ -1,0 +1,267 @@
+$rwd-bp: 960px;
+
+#ChangeLogTable {
+  padding-left: 2em;
+
+  .links li {
+    margin-bottom: 0;
+    padding-left: 1em;
+  }
+
+  .search-link {
+    background: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    font-size: 1.7rem;
+    display: inline-block;
+  }
+
+  // Filter Results Count
+  .result-count {
+    margin: 0;
+    padding: 1em 0;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--hmda-blue);
+    color: #fff;
+    padding: 1em;
+
+    .header {
+      text-transform: uppercase;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      margin-right: 3rem;
+    }
+
+    svg {
+      fill: #fff;
+      width: 1em;
+      height: 1em;
+      margin-right: 1em;
+      display: none;
+
+      @media screen and (min-width: 960px) {
+        display: block;
+      }
+    }
+
+    .body {
+      font-size: 1.7rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    img {
+      height: 25px;
+      width: 25px;
+      margin-right: 1rem;
+    }
+
+    .highlight {
+      font-weight: bolder;
+      font-size: 1.75rem;
+      padding: 0 0.25rem;
+      color: #fff;
+    }
+  }
+
+  // Individual Rows
+  .change-row {
+    &:first-of-type {
+      padding: 0 0 3rem;
+    }
+    align-items: flex-start;
+    padding: 3rem 0%;
+
+    border-bottom: 1px solid lightgray;
+
+    &.header {
+      padding: 1rem 1rem 1rem;
+      //border-bottom: 1px solid black;
+    }
+
+    &.split {
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+
+    .date {
+      font-weight: normal;
+      margin-right: 2em;
+      flex: 1 1 0;
+
+      &:before {
+        content: 'Date: ';
+        font-weight: normal;
+      }
+
+      .icon {
+        display: none;
+        margin-right: 1rem;
+      }
+    }
+
+    .date,
+    .date.header {
+      text-transform: capitalize;
+      padding-left: 0;
+    }
+
+    .changeType {
+      &:before {
+        content: 'Type: ';
+      }
+
+      .pill {
+        margin: 0;
+        display: inline-block;
+      }
+    }
+
+    .type {
+      width: 200px;
+      text-align: center;
+      padding: 0.3rem 0.5rem;
+      border-radius: 7px;
+      text-transform: uppercase;
+      color: white;
+      font-size: 1.3rem;
+
+      &.correction {
+        background-color: #c41613;
+      }
+      &.update {
+        background-color: #254b87;
+      }
+      &.release {
+        background-color: #0b6e4f;
+      }
+      &.notice {
+        background-color: #dc731c;
+        color: white;
+      }
+    }
+
+    .type:hover,
+    .product:not(.header):hover {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .product {
+      text-transform: capitalize;
+      font-weight: bold;
+      color: var(--hmda-blue);
+      width: 250px;
+      border-radius: 0;
+      line-height: normal;
+      margin: 0;
+      background: none;
+      text-align: left;
+      padding: 0;
+
+      &:before {
+        content: 'Product: ';
+        color: black;
+      }
+
+      &.selected {
+        font-weight: bold;
+      }
+
+      @media screen and (min-width: $rwd-bp) {
+        padding-left: 1em;
+      }
+    }
+
+    .description {
+      flex-basis: 100%;
+      margin-top: 2em;
+      display: flex;
+      flex-direction: column;
+      padding-left: 0;
+
+      &:before {
+        content: 'Description: ';
+        display: block;
+        margin-bottom: 1em;
+      }
+
+      @media screen and (min-width: $rwd-bp) {
+        padding: 0 2em;
+      }
+    }
+
+    .date:before,
+    .changeType:before,
+    .product:before,
+    .description:before {
+      margin-right: 0.5em;
+      margin-bottom: 0.5em;
+      font-weight: bold;
+      width: 75px;
+      display: inline-block;
+
+      @media screen and (min-width: $rwd-bp) {
+        width: auto;
+      }
+    }
+
+    .product,
+    .changeType,
+    .date {
+      border: 1px solid lightgray;
+      border-width: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+
+      @media screen and (min-width: $rwd-bp) {
+        border-width: 1px 0;
+        padding-top: 1em;
+        padding-bottom: 0.5em;
+        background-color: #f5f5f5;
+        margin: 0;
+      }
+    }
+
+    .type.header {
+      color: black;
+      white-space: nowrap;
+      text-transform: capitalize;
+    }
+
+    & > .header {
+      width: 33%;
+      margin: 0;
+      text-decoration-color: grey;
+    }
+
+    .pill {
+      max-width: 100px !important;
+      margin-bottom: 0;
+    }
+
+    .column,
+    .header {
+      min-width: 200px;
+    }
+
+    &:not(.header) {
+      //border-top: 1px solid lightgrey;
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  #ChangeLogTable .result-count {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+}
