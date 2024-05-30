@@ -213,6 +213,7 @@
       fill: var(--hmda-blue-bright);
       margin-left: 0em;
       vertical-align: bottom;
+      cursor: pointer;
     }
     @media screen and (min-width: 960px) {
       span {
@@ -222,6 +223,7 @@
         fill: var(--hmda-text);
         width: 1.25em;
         height: 1.25em;
+        cursor: default;
       }
     }
   }
