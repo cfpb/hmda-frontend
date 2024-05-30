@@ -50,7 +50,10 @@ const FilterBar = ({ productOptions, typeOptions, filter }) => {
             id='search-input'
             value={searchValue}
             label='Description'
-            onChange={(e) => filter.add('keywords', e.target.value)}
+            onChange={(e) => {
+              filter.add('keywords', e.target.value)
+              document.getElementById('ChangeLogTableTop').scrollIntoView()
+            }}
             onClear={() => filter.clear('keywords')}
           />
           <FilterResetButton onClick={() => filter.clear()} />

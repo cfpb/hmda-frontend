@@ -50,6 +50,7 @@ const ChangeLogTable = ({
 
   return (
     <div id='ChangeLogTable'>
+      <div id='ChangeLogTableTop'></div>
       <ResultCount
         count={rows.length}
         total={totalEntries}
