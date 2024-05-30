@@ -55,7 +55,6 @@ const ChangeLogTable = ({
         total={totalEntries}
         hide={!hasFilters}
       />
-      {/* {!isEmpty && <Header />} */}
       <EmptyState clear={filter.clear} isEmpty={isEmpty} />
       {rows}
     </div>
@@ -96,17 +95,6 @@ const EmptyState = ({ clear, isEmpty }) => {
       </span>{' '}
       No matches found.
       <FilterResetButton onClick={() => clear()} />
-    </div>
-  )
-}
-
-const Header = () => {
-  return (
-    <div className='change-row header split'>
-      {/* <h4 className='header date'>Date</h4>
-      <h4 className='header changeType'>Type</h4>
-      <h4 className='header product'>Product</h4>
-      <h4 className='header description'>Description</h4> */}
     </div>
   )
 }
