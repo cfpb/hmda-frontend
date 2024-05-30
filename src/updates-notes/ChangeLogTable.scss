@@ -2,6 +2,7 @@ $rwd-bp: 960px;
 
 #ChangeLogTable {
   padding-left: 2em;
+  width: 100%;
 
   .links li {
     margin-bottom: 0;
@@ -29,6 +30,9 @@ $rwd-bp: 960px;
     background-color: var(--hmda-blue);
     color: #fff;
     padding: 1em;
+    position: sticky;
+    top: 1em;
+    z-index: 2;
 
     .header {
       text-transform: uppercase;

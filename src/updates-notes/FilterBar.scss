@@ -4,8 +4,6 @@
 }
 
 #filter-bar {
-  //overflow: visible;
-
   .filter-title {
     border-bottom: 1px solid black;
     display: block;
@@ -22,6 +20,8 @@
     align-items: flex-start;
     padding: 0.5rem;
     flex-direction: column;
+    position: sticky;
+    top: 1em;
   }
 
   /** Color - Product */
