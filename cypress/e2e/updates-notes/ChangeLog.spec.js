@@ -25,7 +25,7 @@ onlyOn(!isBeta(HOST), () => {
 
       it('Applies keyword filter from URL query string', () => {
         cy.visit(`${HOST}/updates-notes/updates?keywords=2020,tool`)
-        cy.get('.change-row').should('have.length', 2)
+        cy.get('.change-row').should('have.length', 1)
         cy.get('.result-count .body').should(
           'contain',
           'Showing ' + 1 + ' out of',
@@ -36,7 +36,7 @@ onlyOn(!isBeta(HOST), () => {
           .should('be.gte', 2)
 
         cy.get('.reset-filters').click()
-        cy.get('.change-row').should('have.length.gte', entries.length + 1)
+        cy.get('.change-row').should('have.length.gte', entries.length)
         cy.get('.result-count').should('not.exist')
       })
 
@@ -54,14 +54,14 @@ onlyOn(!isBeta(HOST), () => {
 
       it('Filters by keyword', () => {
         cy.visit(`${HOST}/updates-notes/updates?product=tools`)
-        cy.findByLabelText('by Change Description').type(
+        cy.findByLabelText('Description').type(
           'The 2017 File Format Verification Tool',
         )
         cy.url().should(
           'contain',
           'keywords=The,2017,File,Format,Verification,Tool',
         )
-        cy.get('.change-row').should('have.length', 2)
+        cy.get('.change-row').should('have.length', 1)
         cy.get('.result-count .body').should(
           'contain',
           'Showing ' + 1 + ' out of',
