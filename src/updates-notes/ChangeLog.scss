@@ -7,9 +7,9 @@
 }
 
 #UpdatesNotes h2 {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #4675c2;
+  border-bottom: 1px solid black;
 }
 
 #UpdatesNotes h3 {
@@ -24,7 +24,12 @@
 
 #UpdatesNotes .split {
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: column;
+
+  @media screen and (min-width: 960px) {
+    flex-flow: row wrap;
+    flex: 1 1 auto;
+  }
 }
 
 #UpdatesNotes .split.columns {
@@ -36,8 +41,9 @@
 }
 
 .empty-state {
-  margin-top: 3rem;
+  margin-top: 5rem;
   font-size: 2rem;
+  text-align: center;
 }
 
 .empty-state .reset-filters {
@@ -53,7 +59,7 @@
   margin-top: 1rem;
   display: block;
   text-align: center;
-  width: 100%;
+  width: 90%;
 }
 
 .reset-filters:hover,
