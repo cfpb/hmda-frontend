@@ -1,4 +1,8 @@
 export const DYNAMIC_DATASET = {
+  2023: {
+    lar: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/dynamic-data/2023/2023_lar.zip',
+    ts: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/dynamic-data/2023/2023_ts.zip',
+  },
   2022: {
     lar: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/dynamic-data/2022/2022_lar.zip',
     ts: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/dynamic-data/2022/2022_ts.zip',
