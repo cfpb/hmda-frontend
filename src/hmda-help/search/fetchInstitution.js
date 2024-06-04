@@ -29,6 +29,26 @@ export const fetchInstitution = (lei, setState, availableYears) => {
   })
 }
 
+export const fetchSingleInstitutionByYear = (lei, year) => {
+  const headers = {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  }
+
+  const token = AccessToken.get()
+  if (token) headers['Authorization'] = `Bearer ${token}`
+
+  return fetch(`/v2/admin/institutions/${lei}/year/${year}`, { headers })
+    .then((response) => {
+      if (response.status > 400) return null
+      if (response.status < 300) return response.json()
+    })
+    .catch((error) => {
+      console.error('Error fetching institution data:', error)
+      return null
+    })
+}
+
 // Store successfully returned institution data
 function addFound(json, updateFn) {
   updateFn((state) => ({
