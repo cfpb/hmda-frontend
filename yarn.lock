@@ -2798,22 +2798,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-table@npm:8.15.0":
-  version: 8.15.0
-  resolution: "@tanstack/react-table@npm:8.15.0"
+"@tanstack/react-table@npm:8.17.3":
+  version: 8.17.3
+  resolution: "@tanstack/react-table@npm:8.17.3"
   dependencies:
-    "@tanstack/table-core": "npm:8.14.0"
+    "@tanstack/table-core": "npm:8.17.3"
   peerDependencies:
     react: ">=16.8"
     react-dom: ">=16.8"
-  checksum: 10c0/fa82e413d66127090b33ff4a8e13cbad275bc3c3295c37031a7cccd5fa881ee36fa627c2b7a65300cb0c0e889fca6055939802776f2df8a997533d71686fde98
+  checksum: 10c0/d1ab321f189f1c7e20336c0516f8155a3d46aea74cc7ec849239b7323cf3e4fe919585489de3512eab36fceb7c4eae245e58235e6fcb5f112379411d801605fd
   languageName: node
   linkType: hard
 
-"@tanstack/table-core@npm:8.14.0":
-  version: 8.14.0
-  resolution: "@tanstack/table-core@npm:8.14.0"
-  checksum: 10c0/1ace39fd500c32f110512c4ba519d7c0e3c57d3b4f353e114d1ec12d069265678fb37b9063cfcfe1cb1fb35f57959a6e2536914093b0b33d3aef9861be32b117
+"@tanstack/table-core@npm:8.17.3":
+  version: 8.17.3
+  resolution: "@tanstack/table-core@npm:8.17.3"
+  checksum: 10c0/e45f0f74b645689c762dd8c1042726d804726a488130fb2d36e24384bd813a601ed4d20abff3b4ba1bb1a648d14029f65d7fa8728099e0fd9f2702b51dc586c2
   languageName: node
   linkType: hard
 
@@ -5512,14 +5512,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ejs@npm:3.1.8":
-  version: 3.1.8
-  resolution: "ejs@npm:3.1.8"
+"ejs@npm:3.1.10":
+  version: 3.1.10
+  resolution: "ejs@npm:3.1.10"
   dependencies:
     jake: "npm:^10.8.5"
   bin:
     ejs: bin/cli.js
-  checksum: 10c0/a6bd58633c5b3ae19a2bfea1b94033585ad85c87ec15961f8c89c93ffdafb8b2358af827f37f7552b35d9f5393fdbd98d35a8cbcd0ee2540b7f9f7a194e86a1a
+  checksum: 10c0/52eade9e68416ed04f7f92c492183340582a36482836b11eab97b159fcdcfdedc62233a1bf0bf5e5e1851c501f2dca0e2e9afd111db2599e4e7f53ee29429ae1
   languageName: node
   linkType: hard
 
@@ -5537,22 +5537,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"elliptic@npm:6.5.4":
-  version: 6.5.4
-  resolution: "elliptic@npm:6.5.4"
-  dependencies:
-    bn.js: "npm:^4.11.9"
-    brorand: "npm:^1.1.0"
-    hash.js: "npm:^1.0.0"
-    hmac-drbg: "npm:^1.0.1"
-    inherits: "npm:^2.0.4"
-    minimalistic-assert: "npm:^1.0.1"
-    minimalistic-crypto-utils: "npm:^1.0.1"
-  checksum: 10c0/5f361270292c3b27cf0843e84526d11dec31652f03c2763c6c2b8178548175ff5eba95341dd62baff92b2265d1af076526915d8af6cc9cb7559c44a62f8ca6e2
-  languageName: node
-  linkType: hard
-
-"elliptic@npm:^6.5.3, elliptic@npm:^6.5.5":
+"elliptic@npm:6.5.5, elliptic@npm:^6.5.3, elliptic@npm:^6.5.5":
   version: 6.5.5
   resolution: "elliptic@npm:6.5.5"
   dependencies:
@@ -7305,7 +7290,7 @@ __metadata:
     "@esbuild-plugins/node-globals-polyfill": "npm:^0.2.3"
     "@redux-devtools/extension": "npm:^3.3.0"
     "@reduxjs/toolkit": "npm:^1.9.7"
-    "@tanstack/react-table": "npm:8.15.0"
+    "@tanstack/react-table": "npm:8.17.3"
     "@testing-library/cypress": "npm:8.0.1"
     "@uswds/compile": "npm:^1.1.0"
     "@uswds/uswds": "npm:3.8.0"
@@ -7317,8 +7302,8 @@ __metadata:
     cypress-keycloak: "npm:2.0.1"
     detect-browser: "npm:4.8.0"
     dotenv: "npm:^16.3.1"
-    ejs: "npm:^3.1.8"
-    elliptic: "npm:6.5.4"
+    ejs: "npm:3.1.10"
+    elliptic: "npm:6.5.5"
     enzyme: "npm:3.11.0"
     enzyme-adapter-react-16: "npm:1.15.2"
     eslint-plugin-prettier: "npm:3.1.1"
@@ -7335,9 +7320,9 @@ __metadata:
     mapbox-gl: "npm:1.13.3"
     normalize.css: "npm:8.0.1"
     prettier: "npm:^3.1.1"
-    react: "npm:18.2.0"
+    react: "npm:18.3.0"
     react-app-polyfill: "npm:2.0.0"
-    react-dom: "npm:18.2.0"
+    react-dom: "npm:18.3.0"
     react-dropzone: "npm:10.2.2"
     react-fluid-table: "npm:0.5.1"
     react-helmet: "npm:5.2.1"
@@ -7352,7 +7337,7 @@ __metadata:
     redux: "npm:4.2.1"
     redux-logger: "npm:3.0.6"
     redux-thunk: "npm:2.4.2"
-    sass: "npm:1.72.0"
+    sass: "npm:1.74.1"
     serialize-javascript: "npm:5.0.1"
     split2: "npm:3.2.2"
     streamsaver: "npm:2.0.6"
@@ -10893,15 +10878,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:18.2.0":
-  version: 18.2.0
-  resolution: "react-dom@npm:18.2.0"
+"react-dom@npm:18.3.0":
+  version: 18.3.0
+  resolution: "react-dom@npm:18.3.0"
   dependencies:
     loose-envify: "npm:^1.1.0"
-    scheduler: "npm:^0.23.0"
+    scheduler: "npm:^0.23.1"
   peerDependencies:
-    react: ^18.2.0
-  checksum: 10c0/66dfc5f93e13d0674e78ef41f92ed21dfb80f9c4ac4ac25a4b51046d41d4d2186abc915b897f69d3d0ebbffe6184e7c5876f2af26bfa956f179225d921be713a
+    react: ^18.3.0
+  checksum: 10c0/5072767a5d67e242579e5ed46094bf5665385fcfc50584e818273ba668f768348bfd9101841fa3986635635b1238a7a5b2d28b73b134ebbe58a415311afd60d4
   languageName: node
   linkType: hard
 
@@ -11178,12 +11163,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:18.2.0":
-  version: 18.2.0
-  resolution: "react@npm:18.2.0"
+"react@npm:18.3.0":
+  version: 18.3.0
+  resolution: "react@npm:18.3.0"
   dependencies:
     loose-envify: "npm:^1.1.0"
-  checksum: 10c0/b562d9b569b0cb315e44b48099f7712283d93df36b19a39a67c254c6686479d3980b7f013dc931f4a5a3ae7645eae6386b4aa5eea933baa54ecd0f9acb0902b8
+  checksum: 10c0/ad87bbfdb0c5466148c657da18b0d5458e835389fc591d59840f0e6ec797a004073a01c8cdbff1767a8774c7219054a56f74dacd67bdbb849f1314e427999268
   languageName: node
   linkType: hard
 
@@ -11949,16 +11934,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:1.72.0":
-  version: 1.72.0
-  resolution: "sass@npm:1.72.0"
+"sass@npm:1.74.1":
+  version: 1.74.1
+  resolution: "sass@npm:1.74.1"
   dependencies:
     chokidar: "npm:>=3.0.0 <4.0.0"
     immutable: "npm:^4.0.0"
     source-map-js: "npm:>=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: 10c0/7df1bb470648edc4b528976b1b165c78d4c6731f680afac7cdc8324142f1ef4304598d317d98dac747a2ae8eee17271d760def90bba072021a8b19b459336ccd
+  checksum: 10c0/4610257ee27823276ce4998a534b4ee9f313e5a0b3d3899e70e0f87096feeae4cd8dd3c2f765b52f57dd87f5dab22370ef63f95a837a189fbb9401396d5ce717
   languageName: node
   linkType: hard
 
@@ -11972,7 +11957,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:^0.23.0":
+"scheduler@npm:^0.23.1":
   version: 0.23.2
   resolution: "scheduler@npm:0.23.2"
   dependencies:
