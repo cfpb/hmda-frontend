@@ -8,7 +8,7 @@ import './UploadForm.css'
 
 let timeout = null
 
-export const UploadErrors = ({ errors, parsed, parseErrors }) => {
+export const UploadErrors = ({ errors = [], parsed, parseErrors }) => {
   const [ref, scrollToRef] = useScrollIntoView()
 
   useEffect(() => {
@@ -84,11 +84,16 @@ export default class Upload extends Component {
   }
 
   render() {
-    // don't do anything if submission is in progress
-    const setFile = this.props.code > 1 ? null : this.props.setFile
-    const dropzoneDisabled = this.props.code > 1 ? 'dropzone-disabled' : ''
-    const { parsed, errorCount } = this.props.parseErrors
-    const uploadErrorCount = this.props.errors.length
+    const {
+      setFile,
+      code,
+      parseErrors,
+      errors = [],
+      file = { name: 'No file chosen' },
+    } = this.props
+    const { parsed, errorCount } = parseErrors || {}
+    const uploadErrorCount = errors.length
+    const dropzoneDisabled = code > 1 ? 'dropzone-disabled' : ''
     const fileStatus =
       !parsed && !uploadErrorCount
         ? ''
@@ -100,7 +105,7 @@ export default class Upload extends Component {
       <div>
         <div className={`UploadForm ${fileStatus}`}>
           <UploadErrors
-            errors={this.props.errors}
+            errors={errors}
             parsed={parsed}
             parseErrors={errorCount}
           />
@@ -133,11 +138,4 @@ Upload.propTypes = {
   code: PropTypes.number,
   errors: PropTypes.array,
   filingPeriod: PropTypes.string,
-}
-
-Upload.defaultProps = {
-  file: {
-    name: 'No file chosen',
-  },
-  errors: [],
 }

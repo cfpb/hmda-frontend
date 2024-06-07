@@ -22,7 +22,7 @@ const FilterBar = ({ productOptions, typeOptions, filter }) => {
   return (
     <div id='filter-bar'>
       <div className={`filter-wrapper split ${isExpanaded ? 'expanded' : ''}`}>
-        <h4 class='filter-title' onClick={expandFilters}>
+        <h4 className='filter-title' onClick={expandFilters}>
           <svg
             className='filterIcon'
             aria-hidden='true'
