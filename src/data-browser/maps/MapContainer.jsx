@@ -183,6 +183,8 @@ const MapContainer = (props) => {
   const [state2021Data, setState2021Data] = useState(null)
   const [county2022Data, setCounty2022Data] = useState(null)
   const [state2022Data, setState2022Data] = useState(null)
+  const [county2023Data, setCounty2023Data] = useState(null)
+  const [state2023Data, setState2023Data] = useState(null)
 
   const [filterData, setFilterData] = useState(null)
   const [tableFilterData, setTableFilterData] = useState(null)
@@ -218,6 +220,8 @@ const MapContainer = (props) => {
           return geography.value === 'state' ? state2021Data : county2021Data
         case '2022':
           return geography.value === 'state' ? state2022Data : county2022Data
+        case '2023':
+          return geography.value === 'state' ? state2023Data : county2023Data
         default:
           return null
       }
@@ -233,6 +237,8 @@ const MapContainer = (props) => {
       county2021Data,
       state2022Data,
       county2022Data,
+      state2023Data,
+      county2023Data,
     ],
   )
 
@@ -416,6 +422,20 @@ const MapContainer = (props) => {
 
   useEffect(() => {
     if (
+      !county2023Data &&
+      selectedGeography.value === 'county' &&
+      year === '2023'
+    ) {
+      fetchQ.push(1)
+      runFetch('/2023/county.json').then((jsonData) => {
+        setCounty2023Data(jsonData)
+        fetchQ.pop()
+      })
+    }
+  }, [county2023Data, selectedGeography, year])
+
+  useEffect(() => {
+    if (
       !state2018Data &&
       selectedGeography.value === 'state' &&
       year === '2018'
@@ -483,6 +503,20 @@ const MapContainer = (props) => {
       })
     }
   }, [selectedGeography, state2022Data, year])
+
+  useEffect(() => {
+    if (
+      !state2023Data &&
+      selectedGeography.value === 'state' &&
+      year === '2023'
+    ) {
+      fetchQ.push(1)
+      runFetch('/2023/state.json').then((jsonData) => {
+        setState2023Data(jsonData)
+        fetchQ.pop()
+      })
+    }
+  }, [selectedGeography, state2023Data, year])
 
   useEffect(() => {
     setData(getBaseData(year, selectedGeography))
