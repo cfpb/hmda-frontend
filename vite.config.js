@@ -60,6 +60,11 @@ export default () => {
           target: process.env.DEV_URL,
           changeOrigin: true,
         },
+        '/v2/public/hmda/parse': {
+          // File Format Verification Tool API
+          target: process.env.DEV_URL,
+          changeOrigin: true,
+        },
       },
     },
     optimizeDeps: {
