@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const FilteredOutList = ({ list, title }) => {
+export const FilteredOutList = ({ list = [], title }) => {
   if (!list.length) return null
 
   return (
@@ -19,8 +19,4 @@ export const FilteredOutList = ({ list, title }) => {
       </div>
     </section>
   )
-}
-
-FilteredOutList.defaultProps = {
-  list: [],
 }
