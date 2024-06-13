@@ -2,6 +2,15 @@
   "name": "prod",
   "announcement": [
     {
+      "heading": "2023 Data Publication Release",
+      "message": "On June 24, 2023, the 2023 national loan-level datasets, disclosure reports, and MSA/MD aggregate reports were released and can be accessed via the Data Publications page. Users can now explore 2023 HMDA data using the Data Browser's dataset filtering tool or maps. ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/data-publication/",
+        "text": "Data Publications page."
+      }
+    },
+    {
       "heading": "2023 Modified LAR Data Release",
       "message": "On March 25, 2024, the 2023 Modified LAR was released. A combined file containing all LAR records in a single file is also available. These files can be accessed via the ",
       "type": "info",
@@ -16,91 +25,24 @@
       "type": "info"
     }
   ],
-  "publicationReleaseYear": "2022",
+  "publicationReleaseYear": "2023", 
   "mlarReleaseYear": "2023",
   "maintenanceMode": false,
   "filingAnnouncement": null,
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
-    "shared": [
-      "2022",
-      "2021",
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "mlar": [
-      "2023",
-      "2022",
-      "2021",
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "threeYear": [
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "oneYear": [
-      "2021",
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "aggregate": [
-      "2022",
-      "2021",
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "disclosure": [
-      "2022",
-      "2021",
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "dynamic": [
-      "2022",
-      "2021",
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "snapshot": [
-      "2022",
-      "2021",
-      "2020",
-      "2019",
-      "2018",
-      "2017"
-    ],
-    "national": [
-      "2017"
-    ]
+    "shared": ["2023", "2022", "2021", "2020", "2019", "2018", "2017"],
+    "mlar": ["2023", "2022", "2021", "2020", "2019", "2018", "2017"],
+    "threeYear": ["2020", "2019", "2018", "2017"],
+    "oneYear": ["2022", "2021", "2020", "2019", "2018", "2017"],
+    "aggregate": ["2023","2022", "2021", "2020", "2019", "2018", "2017"],
+    "disclosure": ["2023","2022", "2021", "2020", "2019", "2018", "2017"],
+    "dynamic": ["2023","2022", "2021", "2020", "2019", "2018", "2017"],
+    "snapshot": ["2023","2022", "2021", "2020", "2019", "2018", "2017"],
+    "national": ["2017"]
   },
-  "dataBrowserYears": [
-    "2022",
-    "2021",
-    "2020",
-    "2019",
-    "2018"
-  ],
-  "dataBrowserMapsYears": [
-    "2022",
-    "2021",
-    "2020",
-    "2019",
-    "2018"
-  ],
+  "dataBrowserYears": ["2023", "2022", "2021", "2020", "2019", "2018"],
+  "dataBrowserMapsYears": ["2023", "2022", "2021", "2020", "2019", "2018"],
   "timedGuards": {
     "2024": {
       "Q1": "04/01/2024 - 05/30/2024 - 06/30/2024",
