@@ -77,7 +77,7 @@ export const SnapshotDataset = ({ label, match, config, dataKey }) => {
         <div className='grid'>
           <div className='item'>
             <Heading type={4} headingText={year + ' Datasets'} />
-            {renderDatasets(dataForYear)}
+            {renderDatasets(dataForYear, year, dataKey)}
           </div>
           <div className='item'>{renderDocumentation(dataForYear, year)}</div>
         </div>
