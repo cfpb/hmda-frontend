@@ -74,7 +74,9 @@ export function renderDatasets(
 
             <ul className='dataset-items'>
               {isReporterPanel && shouldDisplayMessage ? (
-                <p>{displayMessage}</p>
+                <li>
+                  <p>{displayMessage}</p>
+                </li>
               ) : (
                 <>
                   <S3DatasetLink
