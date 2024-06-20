@@ -10,7 +10,7 @@ onlyOn(isBeta(HOST), () => {
 
 onlyOn(!isBeta(HOST), () => {
   describe('Disclosure Reports', () => {
-    it.only('Fetches a 2023 Applications by Tract Report', () => {
+    it('Fetches a 2023 Applications by Tract Report', () => {
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 916)
       cy.visit(`${HOST}/data-publication/disclosure-reports/2023`)

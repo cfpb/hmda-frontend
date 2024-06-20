@@ -11,7 +11,7 @@ onlyOn(isBeta(HOST), () => {
 
 onlyOn(!isBeta(HOST), () => {
   describe('Maps', () => {
-    it.only('State 2023', () => {
+    it('State 2023', () => {
       cy.get({ HOST, ENVIRONMENT }).logEnv()
       cy.viewport(1000, 940)
       cy.visit(mapsURL(HOST, '2023?geography=state'))
