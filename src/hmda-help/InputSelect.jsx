@@ -3,10 +3,16 @@ import PropTypes from 'prop-types'
 
 import './InputSelect.css'
 
-const InputSelect = (props) => {
-  const { disabled, id, innerRef, label, name, onChange, options, value } =
-    props
-
+const InputSelect = ({
+  disabled = false,
+  id,
+  innerRef,
+  label,
+  name,
+  onChange,
+  options,
+  value,
+}) => {
   function handleChange(event) {
     if (onChange) onChange(event)
   }
@@ -32,10 +38,6 @@ const InputSelect = (props) => {
       </select>
     </React.Fragment>
   )
-}
-
-InputSelect.defaultProps = {
-  disabled: false,
 }
 
 InputSelect.propTypes = {

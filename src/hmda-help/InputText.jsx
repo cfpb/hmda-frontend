@@ -30,8 +30,15 @@ class InputText extends Component {
   }
 
   render() {
-    const { disabled, id, innerRef, label, maxLength, placeholder, value } =
-      this.props
+    const {
+      disabled = false,
+      id,
+      innerRef,
+      label,
+      maxLength,
+      placeholder,
+      value,
+    } = this.props
     const { error } = this.state
 
     return (
@@ -55,10 +62,6 @@ class InputText extends Component {
       </React.Fragment>
     )
   }
-}
-
-InputText.defaultProps = {
-  disabled: false,
 }
 
 InputText.propTypes = {

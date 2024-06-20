@@ -6,17 +6,19 @@ import UploadForm, {
 import Wrapper from '../Wrapper.js'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import TestUtils from 'react-addons-test-utils'
+import TestUtils from 'react-dom/test-utils'
 
 describe('submitform', function () {
   const handleSubmit = jest.fn()
   const setFile = jest.fn()
+  let formRef
 
   // use ReactDOM.render instead to be able to test componentDidUpdate
   const node = document.createElement('div')
-  const form = ReactDOM.render(
+  ReactDOM.render(
     <Wrapper>
       <UploadForm
+        ref={(ref) => (formRef = ref)}
         handleSubmit={handleSubmit}
         setFile={setFile}
         uploading={true}
@@ -28,28 +30,32 @@ describe('submitform', function () {
     </Wrapper>,
     node,
   )
-  const formNode = ReactDOM.findDOMNode(form)
 
   it('renders the form', function () {
-    expect(formNode).toBeDefined()
+    expect(formRef).toBeDefined()
   })
 
   it('expects the file input to be empty', () => {
-    const input = TestUtils.scryRenderedDOMComponentsWithTag(form, 'input')[0]
+    const input = TestUtils.scryRenderedDOMComponentsWithTag(
+      formRef,
+      'input',
+    )[0]
     expect(input.value).toEqual('')
   })
 
   it('submits the form', function () {
     TestUtils.Simulate.submit(
-      TestUtils.findRenderedDOMComponentWithTag(form, 'form'),
+      TestUtils.findRenderedDOMComponentWithTag(formRef, 'form'),
     )
 
     expect(handleSubmit).toBeCalled()
   })
 
-  const form2 = ReactDOM.render(
+  let form2Ref
+  ReactDOM.render(
     <Wrapper>
       <UploadForm
+        ref={(ref) => (form2Ref = ref)}
         handleSubmit={handleSubmit}
         setFile={setFile}
         uploading={true}
@@ -58,10 +64,12 @@ describe('submitform', function () {
     </Wrapper>,
     node,
   )
-  const form2Node = ReactDOM.findDOMNode(form2)
 
   it('expects the file input to be empty', () => {
-    const input = TestUtils.scryRenderedDOMComponentsWithTag(form2, 'input')[0]
+    const input = TestUtils.scryRenderedDOMComponentsWithTag(
+      form2Ref,
+      'input',
+    )[0]
     expect(input.value).toEqual('')
   })
 })

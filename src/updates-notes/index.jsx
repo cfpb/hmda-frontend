@@ -8,7 +8,7 @@ import FilterBar from './FilterBar'
 import { useChangeLogFilter } from './useChangeLogFilter'
 import { useRemoteJSON } from '../common/useRemoteJSON'
 import { organizeChangeData } from './sortFunctions'
-import './ChangeLog.css'
+import './ChangeLog.scss'
 
 /* Updates and Notes */
 const UpdatesNotes = () => {
@@ -47,8 +47,8 @@ const UpdatesNotes = () => {
       >
         invisible filter anchor
       </a>
-      <div className='filter-wrapper'>
-        <h2 className='filter header'>Filter the Change Log</h2>
+      <h2>Change Log</h2>
+      <div className='changeLog-wrapper'>
         <FilterBar
           filter={filter}
           productOptions={FILTER_OPTIONS.PRODUCT}

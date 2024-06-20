@@ -48,7 +48,7 @@ const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
     const handleResize = () => {
       const updatedStyles = {}
 
-      if (window.matchMedia('(min-width: 640px)').matches) {
+      if (window.matchMedia('(min-width: 1024px)').matches) {
         updatedStyles.height = '44px'
         updatedStyles.overflowX = 'visible'
       }

@@ -3,8 +3,7 @@ jest.unmock('../../src/js/components/ParseErrors.jsx')
 import ParseErrors from '../../src/js/components/ParseErrors.jsx'
 import Wrapper from '../Wrapper.js'
 import React from 'react'
-import ReactDOM from 'react-dom'
-import TestUtils from 'react-addons-test-utils'
+import TestUtils from 'react-dom/test-utils'
 
 const fs = require('fs')
 const parseJSON = JSON.parse(
@@ -12,9 +11,12 @@ const parseJSON = JSON.parse(
 )
 
 describe('Parse errors', () => {
+  let parseErrorsRef
+
   const parseErrors = TestUtils.renderIntoDocument(
     <Wrapper>
       <ParseErrors
+        ref={(ref) => (parseErrorsRef = ref)}
         isParsing={false}
         parsed={true}
         transmittalSheetErrors={parseJSON.transmittalSheetErrors}
@@ -22,15 +24,14 @@ describe('Parse errors', () => {
       />
     </Wrapper>,
   )
-  const parseErrorsNode = ReactDOM.findDOMNode(parseErrors)
 
   it('renders the parser errors', () => {
-    expect(parseErrorsNode).toBeDefined()
+    expect(parseErrorsRef).toBeDefined()
   })
 
   it('creates the correct number of rows', () => {
     expect(
-      TestUtils.scryRenderedDOMComponentsWithTag(parseErrors, 'tr').length,
+      TestUtils.scryRenderedDOMComponentsWithTag(parseErrorsRef, 'tr').length,
     ).toEqual(7)
   })
 })
