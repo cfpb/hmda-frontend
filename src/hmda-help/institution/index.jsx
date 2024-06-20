@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { flushSync } from 'react-dom';
+import { flushSync } from 'react-dom'
 import { Link } from 'react-router-dom'
 
 import {
@@ -27,7 +27,7 @@ import { getFilingYears } from '../../common/constants/configHelpers'
 import * as AccessToken from '../../common/api/AccessToken'
 
 import './Form.css'
-import { fetchInstitution } from '../search/fetchInstitution'
+import { fetchSingleInstitutionByYear } from '../search/fetchInstitution'
 
 let defaultInstitutionState = {}
 searchInputs
@@ -58,6 +58,7 @@ class Institution extends Component {
     this.getErrorText = this.getErrorText.bind(this)
     this.onInputChange = this.onInputChange.bind(this)
     this.onInputBlur = this.onInputBlur.bind(this)
+    this.fetchInstitutionData = this.fetchInstitutionData.bind(this)
     this.toggleShowOtherFields = this.toggleShowOtherFields.bind(this)
     this.setState = this.setState.bind(this)
   }
@@ -65,7 +66,9 @@ class Institution extends Component {
   componentDidMount() {
     const { state, pathname } = this.props.location
 
-    if (pathname === '/update' && !state) this.props.history.push('/add')
+    if (pathname === '/update' && !state) {
+      this.props.history.push('/add')
+    }
 
     if (state && state.institution) {
       this.setState({ ...state.institution })
@@ -88,12 +91,9 @@ class Institution extends Component {
         state: { institution: state.institution },
       })
     } else if (!state) {
-      let year = this.props.match.params.year
-      let lei = this.props.match.params.id
-      Promise.all(
-        fetchInstitution(lei.toUpperCase(), this.setState, [year]),
-      ).then(() => {
-        this.setState({ ...this.state.institutions[0] })
+      const { year, id: lei } = this.props.match.params
+      this.setState({ lei, activityYear: year }, () => {
+        this.fetchInstitutionData()
       })
     }
   }
@@ -136,6 +136,10 @@ class Institution extends Component {
         { [event.target.name]: event.target.value, ...additionalKeys },
         () => {
           this.onInputBlur()
+          if (event.target.name === 'activityYear' && this.state.lei) {
+            // Re-fetch Institution Data + Add flag to Re-Fetch Notes History in the NotesHistory component when Activity Year changes
+            this.fetchInstitutionData()
+          }
         },
       )
     } else {
@@ -155,6 +159,31 @@ class Institution extends Component {
     this.setState({
       disabledSubmit: validateAll(checkedInputs, this.state),
     })
+  }
+
+  fetchInstitutionData() {
+    const { lei, activityYear } = this.state
+    if (lei && activityYear) {
+      fetchSingleInstitutionByYear(lei.toUpperCase(), activityYear)
+        .then((institution) => {
+          if (institution) {
+            const updatedInstitution =
+              flattenApiForInstitutionState(institution)
+            this.setState((prevState) => ({
+              ...prevState,
+              ...updatedInstitution,
+              fetchNotesHistory: true,
+            }))
+          } else {
+            console.warn(
+              'Institution data not found for the selected activity year',
+            )
+          }
+        })
+        .catch((error) => {
+          console.error('Error fetching institution data:', error)
+        })
+    }
   }
 
   handleSubmit(event) {
@@ -185,7 +214,7 @@ class Institution extends Component {
         // we then have the what the back-end has
         // React 18 changed how class component setState calls are batched and using flushSync fixes the issue.
         // https://react.dev/reference/react-dom/flushSync
-        flushSync(() => { 
+        flushSync(() => {
           this.setState({
             ...flattenApiForInstitutionState(json),
             requiresNewNotes: false,

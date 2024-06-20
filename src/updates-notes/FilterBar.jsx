@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { PRODUCT_NAMES } from './constants'
 import { FilterResetButton } from './FilterResetButton'
 import spyGlass from '../common/images/cf-gov-search.svg'
-import './FilterBar.css'
+import iconSprite from '../common/uswds/img/sprite.svg'
+import './FilterBar.scss'
 
 /**
  * UI to adjust Filter criteria
@@ -13,18 +14,34 @@ const FilterBar = ({ productOptions, typeOptions, filter }) => {
     ? filter.filters.keywords.join(' ')
     : ''
 
+  const [isExpanaded, setIsExpanded] = useState(false)
+  const expandFilters = () => {
+    setIsExpanded(!isExpanaded)
+  }
+
   return (
     <div id='filter-bar'>
-      <div className='filter-wrapper split'>
+      <div className={`filter-wrapper split ${isExpanaded ? 'expanded' : ''}`}>
+        <h4 className='filter-title' onClick={expandFilters}>
+          <svg
+            className='filterIcon'
+            aria-hidden='true'
+            focusable='false'
+            role='img'
+          >
+            <use href={`${iconSprite}#filter_alt`}></use>
+          </svg>
+          <span>Filter by:</span>
+        </h4>
         <FilterColumn
           name='type'
-          heading='by Change Type'
+          heading='Type'
           options={typeOptions}
           filter={filter}
         />
         <FilterColumn
           name='product'
-          heading='by Product'
+          heading='Product'
           options={productOptions}
           filter={filter}
         />
@@ -32,8 +49,11 @@ const FilterBar = ({ productOptions, typeOptions, filter }) => {
           <SearchField
             id='search-input'
             value={searchValue}
-            label='by Change Description'
-            onChange={(e) => filter.add('keywords', e.target.value)}
+            label='Description'
+            onChange={(e) => {
+              filter.add('keywords', e.target.value)
+              document.getElementById('ChangeLogTableTop').scrollIntoView()
+            }}
             onClear={() => filter.clear('keywords')}
           />
           <FilterResetButton onClick={() => filter.clear()} />
@@ -48,7 +68,7 @@ const SearchField = ({
   label,
   value,
   onChange,
-  placeholder = 'Enter terms to search',
+  placeholder = 'Search',
   onClear,
 }) => (
   <>

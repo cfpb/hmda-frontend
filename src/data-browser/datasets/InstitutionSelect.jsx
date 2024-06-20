@@ -11,7 +11,12 @@ import {
   before2018,
 } from './selectUtils.js'
 
-const InstitutionSelect = ({ items, onChange, leiDetails, year }) => {
+const InstitutionSelect = ({
+  items = [],
+  onChange,
+  leiDetails = { leis: {}, loading: true },
+  year,
+}) => {
   let category, descriptionLabel
   if (before2018(year)) {
     category = 'arids'
@@ -90,11 +95,6 @@ export function itemPlaceholder(loading, hasItems, category, selectedValues) {
   const placeholder = makeItemPlaceholder(category, selectedValues)
   if (!hasItems) return `All institutions selected. ${placeholder} to filter`
   return placeholder
-}
-
-InstitutionSelect.defaultProps = {
-  items: [],
-  leiDetails: { leis: {}, loading: true },
 }
 
 export default InstitutionSelect
