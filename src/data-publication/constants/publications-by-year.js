@@ -191,7 +191,7 @@ const publications = {
     {
       updateFrequency:
         'Does not update. Generated three years after filing deadline',
-      availableFor: '2017-2019',
+      availableFor: '2017-2020',
       headingLink: threeYearLink(2020),
       headingText: threeYearTitle,
       paragraphText: threeYearDesc,
