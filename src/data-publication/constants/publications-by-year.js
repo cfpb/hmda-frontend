@@ -40,7 +40,59 @@ const oneYearTitle = 'One Year National Loan-Level Dataset'
 const threeYearTitle = 'Three Year National Loan-Level Dataset'
 
 const publications = {
+  2023: [
+    {
+      updateFrequency:
+        'Does not update. Generated a few months after filing deadline',
+      availableFor: '2017-2023',
+      headingLink: snapLink(2023),
+      headingText: snapTitle,
+      paragraphText: snapDesc,
+      freezeDate: SNAPSHOT_DATASET[2023].freezeDate,
+    },
+    {
+      updateFrequency:
+        'Does not update. Generated a few months after filing deadline',
+      availableFor: '2017-2023',
+      headingLink: drLink(2023),
+      headingText: drTitle,
+      paragraphText: drDesc,
+    },
+    {
+      updateFrequency:
+        'Does not update. Generated a few months after filing deadline',
+      availableFor: '2017-2023',
+      headingLink: arLink(2023),
+      headingText: arTitle,
+      paragraphText: arDesc,
+    },
+    {
+      group: 'dynamic',
+      updateFrequency: 'Upon Institution resubmission',
+      availableFor: '2017-2023',
+      headingLink: mlarLink(2023),
+      headingText: mlarTitle,
+      paragraphText: mlarDesc,
+    },
+    {
+      group: 'dynamic',
+      updateFrequency: 'Weekly on Mondays',
+      availableFor: '2019-2023',
+      headingLink: dynLink(2023),
+      headingText: dynTitle,
+      paragraphText: dynDesc,
+    },
+  ],
   2022: [
+    {
+      updateFrequency:
+        'Does not update. Generated one year after filing deadline',
+      availableFor: '2019-2022',
+      headingLink: oneYearLink(2022),
+      headingText: oneYearTitle,
+      paragraphText: oneYearDesc,
+      freezeDate: ONE_YEAR_DATASET[2022].freezeDate,
+    },
     {
       updateFrequency:
         'Does not update. Generated a few months after filing deadline',
@@ -136,6 +188,15 @@ const publications = {
     },
   ],
   2020: [
+    {
+      updateFrequency:
+        'Does not update. Generated three years after filing deadline',
+      availableFor: '2017-2020',
+      headingLink: threeYearLink(2020),
+      headingText: threeYearTitle,
+      paragraphText: threeYearDesc,
+      freezeDate: THREE_YEAR_DATASET[2020].freezeDate,
+    },
     {
       updateFrequency:
         'Does not update. Generated one year after filing deadline',
