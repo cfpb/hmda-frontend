@@ -1,7 +1,7 @@
 {
   "log": [
         {
-      "date": "06/27/24",
+      "date": "07/11/24",
       "type": "release",
       "product": "datasets",
       "description": "The 2023 national loan-level datasets, disclosure reports, and MSA/MD aggregate reports were released and can be accessed via the Data Publication page. Users can now explore 2023 HMDA data using the Data Browser's dataset filtering tool and maps. The 2022 One Year Dataset and the 2020 Three Year Dataset were also released.",
