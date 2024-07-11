@@ -25,10 +25,10 @@ onlyOn(!isBeta(HOST), () => {
 
       it('Applies keyword filter from URL query string', () => {
         cy.visit(`${HOST}/updates-notes/updates?keywords=2020,tool`)
-        cy.get('.change-row').should('have.length', 1)
+        cy.get('.change-row').should('have.length', 2)
         cy.get('.result-count .body').should(
           'contain',
-          'Showing ' + 1 + ' out of',
+          'Showing ' + 2 + ' out of',
         )
         cy.get('.change-row')
           .find('.highlighted')
