@@ -202,7 +202,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.wait(LOCAL_ACTION_DELAY)
 
       const institution = 'MEISSADIATESTBANK001'
-      const year = years[0].toString()
+      const year = years[1].toString() // This will be the current filing season year
 
       // Delete
       cy.wait(5000) // HACK TO ALLOW CASCADING FILER LIST SEARCHES
