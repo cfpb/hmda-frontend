@@ -8,6 +8,7 @@ const shared2018_plus = {
 }
 
 export const DISCLOSURE_REPORTS = {
+  2023: shared2018_plus,
   2022: shared2018_plus,
   2021: shared2018_plus,
   2020: shared2018_plus,

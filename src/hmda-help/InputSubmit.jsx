@@ -11,7 +11,12 @@ const values = {
   submissions: 'Search Submissions',
 }
 
-const InputSubmit = ({ addClass, actionType, disabled, onClick }) => {
+const InputSubmit = ({
+  addClass,
+  actionType,
+  disabled = false,
+  onClick = () => null,
+}) => {
   let cname = 'inputSubmit'
   if (addClass) cname = `${cname} ${addClass}`
 
@@ -25,12 +30,6 @@ const InputSubmit = ({ addClass, actionType, disabled, onClick }) => {
       onClick={onClick}
     />
   )
-}
-
-InputSubmit.defaultProps = {
-  disabled: false,
-  className: 'inputSubmit',
-  onClick: () => null,
 }
 
 InputSubmit.propTypes = {

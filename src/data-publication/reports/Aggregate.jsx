@@ -15,6 +15,11 @@ import { withYearValidation } from '../../common/withYearValidation.jsx'
 import './Aggregate.css'
 
 const detailsCache = {
+  2023: {
+    states: {},
+    msaMds: {},
+    reports: {},
+  },
   2022: {
     states: {},
     msaMds: {},
@@ -219,10 +224,7 @@ class Aggregate extends React.Component {
                   <Reports {...this.props} />
                 )
               ) : (
-                <MsaMds
-                  {...this.props}
-                  selectorCallback={this.setMsaMd}
-                />
+                <MsaMds {...this.props} selectorCallback={this.setMsaMd} />
               )
             ) : (
               <React.Fragment>

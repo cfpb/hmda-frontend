@@ -47,26 +47,50 @@ export function linkToSpecs(year = '2018') {
 /**
  * Renders a formatted list of Datasets
  */
-export function renderDatasets({ datasets, exception }) {
+export function renderDatasets(
+  { datasets, exception },
+  selectedYear,
+  datasetType,
+) {
   if (!datasets) return <p>{exception}</p>
+
+  // One Year 2022 and Three Year 2020 Reporter Panel files are not going to be ready for 2023 Data Publication
+  // Adding extra logic to target these years and the files to display a message to users that the files are missing
+  // Remove the logic once the data team has generated these files and is made available
+  const displayMessage = `Files for ${selectedYear} are not available at this time`
+
+  const shouldDisplayMessage =
+    (selectedYear === '2022' && datasetType === 'oneYear') ||
+    (selectedYear === '2020' && datasetType === 'threeYear')
 
   return (
     <ul id='datasetList'>
       {datasets.map((dataset, i) => {
+        const isReporterPanel = dataset.dataKey === 'panel'
+
         return (
           <li key={i}>
             <LabelWithTooltip {...dataset} />
+
             <ul className='dataset-items'>
-              <S3DatasetLink
-                url={dataset.csv}
-                label='CSV'
-                showLastUpdated={true}
-              />
-              <S3DatasetLink
-                url={dataset.txt}
-                label='Pipe Delimited'
-                showLastUpdated={true}
-              />
+              {isReporterPanel && shouldDisplayMessage ? (
+                <li>
+                  <p>{displayMessage}</p>
+                </li>
+              ) : (
+                <>
+                  <S3DatasetLink
+                    url={dataset.csv}
+                    label='CSV'
+                    showLastUpdated={true}
+                  />
+                  <S3DatasetLink
+                    url={dataset.txt}
+                    label='Pipe Delimited'
+                    showLastUpdated={true}
+                  />
+                </>
+              )}
             </ul>
           </li>
         )
@@ -74,7 +98,6 @@ export function renderDatasets({ datasets, exception }) {
     </ul>
   )
 }
-
 /**
  * Render documentation links
  */

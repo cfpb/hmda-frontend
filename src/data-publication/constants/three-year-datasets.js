@@ -88,4 +88,33 @@ export const THREE_YEAR_DATASET = {
       },
     ],
   },
+  2020: {
+    freezeDate: 'December 31, 2023',
+    datasets: [
+      {
+        label: 'Loan/Application Records (LAR)',
+        dataKey: 'lar',
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2020/2020_public_lar_three_year_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2020/2020_public_lar_three_year_pipe.zip',
+      },
+      {
+        label: 'Transmittal Sheet Records (TS)',
+        dataKey: 'ts',
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2020/2020_public_ts_three_year_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2020/2020_public_ts_three_year_pipe.zip',
+      },
+      {
+        label: 'Reporter Panel',
+        dataKey: 'panel',
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2020/2020_public_panel_three_year_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2020/2020_public_panel_three_year_pipe.zip',
+      },
+      {
+        label: 'MSA/MD Description',
+        dataKey: 'msamd',
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2020/2020_public_msamd_three_year_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2020/2020_public_msamd_three_year_pipe.zip',
+      },
+    ],
+  },
 }

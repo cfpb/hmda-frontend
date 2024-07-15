@@ -1,0 +1,36 @@
+{
+  "edits": [
+    {
+      "edit": "quality1337",
+      "verified": false,
+      "rows": [
+        {
+          "row": {"rowId": "q1"},
+          "fields": {"Agency Code": 1}
+        },
+        {
+          "row": {"rowId": "q2"},
+          "fields": {"Agency Code": 1}
+        },
+        {
+          "row": {"rowId": "q3"},
+          "fields": {"Agency Code": 1}
+        }
+      ]
+    },
+    {
+      "edit": "quality1338",
+      "verified": true,
+      "rows": [
+        {
+          "row": {"rowId": "q4"},
+          "fields": {"Agency Code": 1}
+        },
+        {
+          "row": {"rowId": "q5"},
+          "fields": {"Agency Code": 1}
+        }
+      ]
+    }
+  ]
+}

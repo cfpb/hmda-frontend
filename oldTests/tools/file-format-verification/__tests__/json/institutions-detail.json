@@ -1,0 +1,86 @@
+{
+  "0": {
+    "institution": {
+      "name": "Bank 0",
+      "id": "0",
+      "status": "active"
+    },
+    "filings": [
+      {
+        "period": "2018",
+        "institutionId": "0",
+        "status": {
+          "code": 1,
+          "message": "not-started"
+        }
+      },
+      {
+        "period": "2016",
+        "institutionId": "0",
+        "status": {
+          "code": 3,
+          "message": "completed"
+        }
+      }
+    ]
+  },
+  "1": {
+    "institution": {
+      "name": "Bank 1",
+      "id": "1",
+      "status": "active"
+    },
+    "filings": [
+      {
+        "period": "2018",
+        "institutionId": "1",
+        "status": {
+          "code": 3,
+          "message": "completed"
+        }
+      }
+    ]
+  },
+  "2": {
+    "institution": {
+      "name": "Bank 2",
+      "id": "2",
+      "status": "inactive"
+    },
+    "filings": [
+      {
+        "period": "2016",
+        "institutionId": "2",
+        "status": {
+          "code": 3,
+          "message": "completed"
+        }
+      }
+    ]
+  },
+  "3": {
+    "institution": {
+      "name": "Bank 3",
+      "id": "3",
+      "status": "active"
+    },
+    "filings": [
+      {
+        "period": "2018",
+        "institutionId": "3",
+        "status": {
+          "code": 1,
+          "message": "not-started"
+        }
+      },
+      {
+        "period": "2016",
+        "institutionId": "3",
+        "status": {
+          "code": 3,
+          "message": "completed"
+        }
+      }
+    ]
+  }
+}

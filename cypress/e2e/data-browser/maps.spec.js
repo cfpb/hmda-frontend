@@ -11,6 +11,61 @@ onlyOn(isBeta(HOST), () => {
 
 onlyOn(!isBeta(HOST), () => {
   describe('Maps', () => {
+    it('State 2023', () => {
+      cy.get({ HOST, ENVIRONMENT }).logEnv()
+      cy.viewport(1000, 940)
+      cy.visit(mapsURL(HOST, '2023?geography=state'))
+      deleteBetaBanner(HOST)
+
+      openSelector('#map-filter-1').type('denied{enter}')
+      openSelector('#map-filter-2').type('age 55{enter}')
+
+      cy.wait(ACTION_DELAY) // Allow the map to complete it's initial render
+      cy.get('.mapboxgl-canvas').click()
+
+      cy.get('.maps-nav-bar .left .count').should('contain', '1,975')
+      cy.get('.maps-nav-bar .right .count').should('contain', '0.55')
+      cy.get('.maps-nav-bar .feature').should('contain', 'KANSAS')
+
+      cy.get('.summary-page .featureName > .colorTextWithBias').should(
+        'contain',
+        'KANSAS',
+      )
+      cy.get('.summary-page .count').should('contain', '1,975')
+
+      cy.get(
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(1)',
+      ).should('contain', 'Application denied')
+      cy.get(
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(2)',
+      ).should('contain', '12,440')
+      cy.get(
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(3)',
+      ).should('contain', '14.56%')
+      cy.get(
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(4)',
+      ).should('contain', '1,975')
+      cy.get(
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(5)',
+      ).should('contain', '18.32%')
+
+      cy.get(
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(1)',
+      ).should('contain', '55-64')
+      cy.get(
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(2)',
+      ).should('contain', '10,779')
+      cy.get(
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(3)',
+      ).should('contain', '12.62%')
+      cy.get(
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(4)',
+      ).should('contain', '1,975')
+      cy.get(
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)',
+      ).should('contain', '15.88%')
+    })
+
     it('State 2022', () => {
       cy.get({ HOST, ENVIRONMENT }).logEnv()
       cy.viewport(1000, 940)
@@ -38,7 +93,7 @@ onlyOn(!isBeta(HOST), () => {
       ).should('contain', 'Application denied')
       cy.get(
         '.filter-report-1 > table > tbody > tr.highlight > :nth-child(2)',
-      ).should('contain', '14,689')
+      ).should('contain', '14,687')
       cy.get(
         '.filter-report-1 > table > tbody > tr.highlight > :nth-child(3)',
       ).should('contain', '13.38%')
@@ -47,14 +102,14 @@ onlyOn(!isBeta(HOST), () => {
       ).should('contain', '2,430')
       cy.get(
         '.filter-report-1 > table > tbody > tr.highlight > :nth-child(5)',
-      ).should('contain', '16.77%')
+      ).should('contain', '16.79%')
 
       cy.get(
         '.filter-report-2 > table > tbody > tr.highlight > :nth-child(1)',
       ).should('contain', '55-64')
       cy.get(
         '.filter-report-2 > table > tbody > tr.highlight > :nth-child(2)',
-      ).should('contain', '14,486')
+      ).should('contain', '14,472')
       cy.get(
         '.filter-report-2 > table > tbody > tr.highlight > :nth-child(3)',
       ).should('contain', '13.19%')
@@ -63,7 +118,7 @@ onlyOn(!isBeta(HOST), () => {
       ).should('contain', '2,430')
       cy.get(
         '.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)',
-      ).should('contain', '16.54%')
+      ).should('contain', '16.55%')
     })
 
     it('State 2021', () => {
@@ -148,10 +203,10 @@ onlyOn(!isBeta(HOST), () => {
       ).should('contain', 'Application denied')
       cy.get(
         '.filter-report-1 > table > tbody > tr.highlight > :nth-child(2)',
-      ).should('contain', '31')
+      ).should('contain', '30')
       cy.get(
         '.filter-report-1 > table > tbody > tr.highlight > :nth-child(3)',
-      ).should('contain', '16.49%')
+      ).should('contain', '15.96%')
       cy.get(
         '.filter-report-1 > table > tbody > tr.highlight > :nth-child(4)',
       ).should('contain', '10')
@@ -173,7 +228,7 @@ onlyOn(!isBeta(HOST), () => {
       ).should('contain', '10')
       cy.get(
         '.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)',
-      ).should('contain', '32.26%')
+      ).should('contain', '33.33%')
     })
 
     it('State 2019', () => {

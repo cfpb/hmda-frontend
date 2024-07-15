@@ -1,0 +1,26 @@
+{
+  "lars": [
+    {
+      "lar": {"loanId": "lar1"},
+      "edits": [
+        {
+          "edit": "edit1",
+          "type": "validity"
+        },
+        {
+          "edit": "edit2",
+          "type": "quality"
+        }
+      ]
+    },
+    {
+      "lar": {"loanId": "lar2"},
+      "edits": [
+        {
+          "edit": "edit3",
+          "type": "syntax"
+        }
+      ]
+    }
+  ]
+}
