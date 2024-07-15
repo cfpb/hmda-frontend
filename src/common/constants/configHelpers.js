@@ -1,5 +1,4 @@
 import { splitYearQuarter } from '../../filing/api/utils'
-import { isBeta } from '../configUtils'
 
 const defaultOpts = {
   withAdmin: true // Include administrative years (PREVIEW) in the returned list
