@@ -1,6 +1,10 @@
+import { isProd } from "../../common/configUtils"
+
+const devProd = isProd(window.location.host) ? 'prod' : 'dev'
+
 function getFile(y, g, v, val) {
   const dec = decodeURIComponent(val)
-  return `https://s3.amazonaws.com/cfpb-hmda-public/prod/data-browser/filter-data/${y}/${g}-${v}-${dec
+  return `https://s3.amazonaws.com/cfpb-hmda-public/${devProd}/data-browser/filter-data/${y}/${g}-${v}-${dec
     .replace(/[^a-z0-9]/gi, '-')
     .toLowerCase()}.json`
 }
