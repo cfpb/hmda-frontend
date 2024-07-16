@@ -1,5 +1,4 @@
 import { splitYearQuarter } from '../../filing/api/utils'
-import { isBeta } from '../configUtils'
 
 const defaultOpts = {
   withAdmin: true // Include administrative years (PREVIEW) in the returned list
@@ -34,23 +33,15 @@ export const getFilingYears = (config, options = defaultOpts) => {
     isVisible && years.add(splitYearQuarter(period)[0])
   })
 
-  // Additions for HMDA Help users
+  // Allows HMDA Help Users to view 1 year ahead of the current filing season
   if (withAdmin) {
     config.timedGuards.preview.forEach(adminPeriod =>
       years.add(splitYearQuarter(adminPeriod)[0])
     )
 
-    const [year, quarter] = splitYearQuarter(config.defaultPeriod)
-
-    if (isBeta()) {
-      // Always allow access to *next* year in Beta environments
-      const upcomingYear = new Date().getFullYear() + 1
-      years.add(upcomingYear.toString())
-    } else if (year) {
-      // Starting in Q3, automatically enable institution management for the upcoming year
-      const upcomingYear = quarter !== 'Q3' ? year : parseInt(year, 10) + 1
-      years.add(upcomingYear.toString())
-    }
+    const currentYear = new Date().getFullYear()
+    const upcomingYear = currentYear + 1
+    years.add(upcomingYear.toString())
   }
 
   return Array.from(years)
