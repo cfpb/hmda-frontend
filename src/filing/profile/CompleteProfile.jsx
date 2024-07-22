@@ -19,6 +19,7 @@ import jwtDecode from 'jwt-decode'
 import { forceRefreshToken } from '../utils/keycloak'
 import { shouldFetchInstitutions } from '../actions/shouldFetchInstitutions'
 import { MissingInstitutionsBanner } from '../institutions/MissingInstitutionsBanner'
+import Icon from '../../common/uswds/components/Icon'
 
 const CompleteProfile = (props) => {
   const dispatch = useDispatch()
@@ -36,6 +37,8 @@ const CompleteProfile = (props) => {
   const [loading, setLoading] = useState(false)
   const [displayNotification, setDisplayNotification] = useState(false)
   const [errorFromAPI, setErrorFromAPI] = useState(false)
+  const [copiedAuthToken, setCopiedAuthToken] = useState(false)
+  const [showSettingsMenu, setShowSettingsMenu] = useState(false)
 
   if (!user) {
     return <Redirect to={`/filing/${props.config.defaultPeriod}`} />
@@ -126,6 +129,17 @@ const CompleteProfile = (props) => {
     }
   }
 
+  const copyAuthTokenFromKeyCloak = () => {
+    navigator.clipboard.writeText(AccessToken.get()).then(() => {
+      setCopiedAuthToken(true)
+      setTimeout(() => {
+        setCopiedAuthToken(false)
+      }, 2000)
+    })
+  }
+
+  console.log(showSettingsMenu)
+
   return (
     <div className='App'>
       <ShowUserName isLoggedIn={getKeycloak().authenticated} />
@@ -214,15 +228,57 @@ const CompleteProfile = (props) => {
             )}
 
             <div className='missing_institutions_banner_container'>
-              {((institutions?.fetched && associatedInstitutions?.length !== 0) ||
+              {((institutions?.fetched &&
+                associatedInstitutions?.length !== 0) ||
                 errorFromAPI) && (
                 <MissingInstitutionsBanner leis={unregisteredInstitutions} />
               )}
             </div>
 
-            <button type='submit' disabled={!userIsEditingForm}>
-              Save
-            </button>
+            <div className='profile_save_container'>
+              <button type='submit' disabled={!userIsEditingForm}>
+                Save
+              </button>
+
+              <div
+                className='profile_settings'
+                onMouseEnter={() => setShowSettingsMenu(true)}
+                onMouseLeave={() => setShowSettingsMenu(false)}
+              >
+                <Icon
+                  iconName='settings'
+                  styleIcon={{ height: '22px', width: '22px' }}
+                />
+                <p>Developer Settings</p>
+
+                {showSettingsMenu && (
+                  <div className='profile_settings_menu'>
+                    <div
+                      className='menu_item'
+                      onClick={copyAuthTokenFromKeyCloak}
+                    >
+                      {copiedAuthToken ? (
+                        <>
+                          <Icon
+                            iconName='check'
+                            styleIcon={{ height: '20px', width: '20px' }}
+                          />
+                          <p>Token Copied</p>
+                        </>
+                      ) : (
+                        <>
+                          <Icon
+                            iconName='code'
+                            styleIcon={{ height: '20px', width: '20px' }}
+                          />
+                          <p>Copy Auth Token</p>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
           </form>
         </>
       )}
