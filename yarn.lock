@@ -7348,7 +7348,7 @@ __metadata:
     react-app-polyfill: "npm:2.0.0"
     react-dom: "npm:18.3.1"
     react-dropzone: "npm:10.2.2"
-    react-fluid-table: "npm:0.6.2"
+    react-fluid-table: "npm:0.5.1"
     react-helmet: "npm:5.2.1"
     react-highlight-words: "npm:0.20.0"
     react-icons: "npm:^4.4.0"
@@ -10935,16 +10935,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-fluid-table@npm:0.6.2":
-  version: 0.6.2
-  resolution: "react-fluid-table@npm:0.6.2"
+"react-fluid-table@npm:0.5.1":
+  version: 0.5.1
+  resolution: "react-fluid-table@npm:0.5.1"
   dependencies:
-    react-resize-detector: "npm:^11.0.1"
-    react-window: "npm:^1.8.10"
+    react-resize-detector: "npm:^9.1.0"
+    react-window: "npm:^1.8.9"
   peerDependencies:
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: 10c0/fbf062941fe59a7485dd95f42f8f6db409b8d38a521fe953334cd420c854414b308cef1c41bddeb19786941300740565fc230714c961236a05100a8f2eb47a5f
+  checksum: 10c0/84479518ca3d61996c2e9193d1378c247fa472a2411a963347c956d37c54459bdf19b83d7420db2cba4e5553c60129c16fce4eb91403421ca559f5f0d4008488
   languageName: node
   linkType: hard
 
@@ -11055,15 +11055,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-resize-detector@npm:^11.0.1":
-  version: 11.0.1
-  resolution: "react-resize-detector@npm:11.0.1"
+"react-resize-detector@npm:^9.1.0":
+  version: 9.1.1
+  resolution: "react-resize-detector@npm:9.1.1"
   dependencies:
     lodash: "npm:^4.17.21"
   peerDependencies:
-    react: ^18.0.0
-    react-dom: ^18.0.0
-  checksum: 10c0/94f3c016355c1f5a07f2f66f07fc8a7fec3da0a48b2ffdf472c8d00633fbd3e38d0c8b597586626e4f2495a8cd2826fbd32e24b8a966062b9603afe0c2ce9e6f
+    react: ^16.0.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: 10c0/6a85892fe46a12fc27b09b5bf5fcc1438f3196f70c75d4685b09eed2c68a2c853dd6eb792bf852038082505a3b4f05dba359055ee0baca3f8b59f022a85a368c
   languageName: node
   linkType: hard
 
@@ -11175,7 +11175,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-window@npm:1.8.10, react-window@npm:^1.8.10":
+"react-window@npm:1.8.10, react-window@npm:^1.8.9":
   version: 1.8.10
   resolution: "react-window@npm:1.8.10"
   dependencies:
