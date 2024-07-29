@@ -81,10 +81,12 @@ $rwd-bp: 960px;
     &:first-of-type {
       padding: 0 0 3rem;
     }
-    align-items: flex-start;
-    padding: 3rem 0%;
-
-    border-bottom: 1px solid lightgray;
+    & {
+      align-items: flex-start;
+      padding: 3rem 0%;
+      
+      border-bottom: 1px solid lightgray;
+    }
 
     &.header {
       padding: 1rem 1rem 1rem;
@@ -255,10 +257,6 @@ $rwd-bp: 960px;
     .column,
     .header {
       min-width: 200px;
-    }
-
-    &:not(.header) {
-      //border-top: 1px solid lightgrey;
     }
   }
 }

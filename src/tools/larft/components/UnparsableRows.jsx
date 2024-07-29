@@ -52,8 +52,10 @@ const Description = () => (
 )
 
 const Tips = () => (
-  <p>
-    <strong>Tips:</strong>{' '}
+  <>
+    <p>
+      <strong>Tips:</strong>
+    </p>
     <ul>
       <li>
         <strong>Transmittal Sheet</strong> rows should begin with{' '}
@@ -64,7 +66,7 @@ const Tips = () => (
         <strong>"2|"</strong>
       </li>
     </ul>
-  </p>
+  </>
 )
 
 const Table = ({ rows = [], headers = [] }) => {
@@ -90,8 +92,8 @@ const TableHeaders = ({ items }) => {
 const TableRows = ({ items }) => {
   if (!items.length) return null
 
-  const rows = items.map((item) => (
-    <tr>
+  const rows = items.map((item, index) => (
+    <tr key={index}>
       {item.map((column) => (
         <td key={column}>
           <div className='scroll-wrapper'>{column}</div>
