@@ -249,7 +249,7 @@ describe('Complete Profile Page', () => {
       '[style="color: black; text-decoration: none; cursor: pointer;"]',
     ).click()
     cy.get('.institution_info_container > input').click({ multiple: true })
-    cy.get('.profile_form_container > button').click()
+    cy.get('.profile_save_container > button').click()
     cy.wait(1000)
 
     cy.get('.alert-heading').contains(
@@ -257,14 +257,14 @@ describe('Complete Profile Page', () => {
     )
   })
 
-  it('User gets redirected to complete profile page due to now associated LEIs on their account', () => {
+  it('User gets redirected to complete profile page due to no associated LEIs on their account', () => {
     cy.visit(`${HOST}/filing/${latestFilingPeriod}/institutions`)
     cy.wait(5000)
 
     cy.url().should('contains', '/filing/profile')
 
     cy.get('.institution_info_container > input').click({ multiple: true })
-    cy.get('.profile_form_container > button').click()
+    cy.get('.profile_save_container > button').click()
     cy.wait(1000)
 
     // Back button verifies that the institution was re-added to the account
