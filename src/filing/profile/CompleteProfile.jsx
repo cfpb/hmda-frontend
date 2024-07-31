@@ -138,8 +138,6 @@ const CompleteProfile = (props) => {
     })
   }
 
-  console.log(showSettingsMenu)
-
   return (
     <div className='App'>
       <ShowUserName isLoggedIn={getKeycloak().authenticated} />
