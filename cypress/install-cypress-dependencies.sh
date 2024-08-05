@@ -135,14 +135,14 @@ yum install -y libnss3.so
 # The follow are not found in any of the installed dependency repositories, 
 # so installing them directly. For updates, search https://centos.pkgs.org/
 ##
-dnf install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/gtk3-3.22.30-5.el7.x86_64.rpm
-dnf install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/gtk3-devel-3.22.30-5.el7.x86_64.rpm
+dnf install -y https://vault.centos.org/centos/7/os/x86_64/Packages/gtk3-3.22.30-5.el7.x86_64.rpm
+dnf install -y https://vault.centos.org/centos/7/os/x86_64/Packages/gtk3-devel-3.22.30-5.el7.x86_64.rpm
 
-dnf install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/libXfont2-2.0.3-1.el7.x86_64.rpm
+dnf install -y https://vault.centos.org/centos/7/os/x86_64/Packages/libXfont2-2.0.3-1.el7.x86_64.rpm
 
 dnf install -y https://vault.centos.org/centos/8/AppStream/x86_64/os/Packages/libxkbfile-1.1.0-1.el8.x86_64.rpm
-dnf install -y http://mirror.centos.org/centos/7/os/x86_64/Packages/xorg-x11-xkb-utils-7.7-14.el7.x86_64.rpm
-dnf install -y http://mirror.centos.org/centos/8-stream/AppStream/x86_64/os/Packages/xorg-x11-server-common-1.20.11-16.el8.x86_64.rpm
+dnf install -y https://vault.centos.org/centos/7/os/x86_64/Packages/xorg-x11-xkb-utils-7.7-14.el7.x86_64.rpm
+dnf install -y https://vault.centos.org/centos/8-stream/AppStream/x86_64/os/Packages/xorg-x11-server-common-1.20.11-17.el8.x86_64.rpm
 
 dnf install -y https://vault.centos.org/centos/8/AppStream/x86_64/os/Packages/libXdmcp-1.1.3-1.el8.x86_64.rpm
-dnf install -y http://mirror.centos.org/centos/8-stream/AppStream/x86_64/os/Packages/xorg-x11-server-Xvfb-1.20.11-16.el8.x86_64.rpm
+dnf install -y https://vault.centos.org/centos/8-stream/AppStream/x86_64/os/Packages/xorg-x11-server-Xvfb-1.20.11-17.el8.x86_64.rpm
