@@ -39,3 +39,8 @@
   padding: 1em 1.3em;
   width: 100%;
 }
+
+/* Table CSS within Graphs */
+.expandable-section .bold-font {
+  font-family: SourceSansProBold;
+}

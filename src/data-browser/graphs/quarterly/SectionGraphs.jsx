@@ -379,7 +379,7 @@ export const SectionGraphs = ({
       <div className='alert' style={{ marginTop: '1.7em' }}>
         <p style={{ margin: 0 }}>
           Data points which would be generated based on fewer than 100 loans are
-          not shown. This may cause gaps in graphs and tables.
+          not shown. This may cause gaps in the graph and table.
         </p>
       </div>
     </>
