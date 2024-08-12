@@ -44,6 +44,7 @@ export const Graph = ({ options, loading, seriesForURL }) => {
    */
   const onLoad = useCallback(
     (chart) => {
+      // Hide series based on URL query parameters
       hideUnselectedLines(chart, seriesForURL)
       generateTableData()
     },
