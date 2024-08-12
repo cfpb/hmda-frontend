@@ -28,8 +28,20 @@ export const Graph = ({ options, loading, seriesForURL }) => {
   const { tableData, isSeriesVisible, generateTableData } =
     useTableData(chartRef)
 
-  useGraphLoading(chartRef, loading, options)
-
+  /**
+   * Note about onLoad:
+   *
+   * Highcharts also calls this function when exporting to image.
+   * Be warned that the way in which it generates these images can lead to
+   * synchronization issues with our custom hooks (particularly useQuery).
+   *
+   * You can check if exporting via `ref.options.chart.forExport`
+   *
+   * See the following link for context on how these images are generated.
+   * https://github.com/highcharts/highcharts-react/issues/315
+   * 
+   * Additionally we are now manually generating the data table instead of having HighCharts automatically creating it
+   */
   const onLoad = useCallback(
     (chart) => {
       hideUnselectedLines(chart, seriesForURL)
@@ -37,6 +49,8 @@ export const Graph = ({ options, loading, seriesForURL }) => {
     },
     [seriesForURL],
   )
+
+  useGraphLoading(chartRef, loading, options)
 
   useEffect(() => {
     if (chartRef.current && chartRef.current.chart) {
