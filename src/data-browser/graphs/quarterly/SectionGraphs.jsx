@@ -375,6 +375,13 @@ export const SectionGraphs = ({
           yAxis: [selectedGraphData?.yLabel],
         })}
       />
+
+      <div className='alert' style={{ marginTop: '1.7em' }}>
+        <p style={{ margin: 0 }}>
+          Data points which would be generated based on fewer than 100 loans are
+          not shown. This may cause gaps in the graph and blanks in the table data.
+        </p>
+      </div>
     </>
   )
 }
