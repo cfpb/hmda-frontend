@@ -27,7 +27,7 @@
     "@docsearch/react": "3.6.0",
     "@redux-devtools/extension": "^3.3.0",
     "@reduxjs/toolkit": "^1.9.7",
-    "@tanstack/react-table": "8.17.3",
+    "@tanstack/react-table": "8.19.3",
     "@uswds/compile": "^1.1.0",
     "@uswds/uswds": "3.8.0",
     "ansi-html": "0.0.8",
