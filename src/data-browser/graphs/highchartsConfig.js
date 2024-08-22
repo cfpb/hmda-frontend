@@ -18,6 +18,27 @@ export const baseConfig = {
     sourceHeight: 595,
     sourceWidth: 842,
     showTable: hmda_charts.config.showDataTable, // OPTION: Show/hide underlying data (already available in export menu)
+    buttons: { // Removed Data Table Button as we are using our own custom DataTable component
+      contextButton: {
+        menuItems: [
+          'viewFullscreen',
+          'printChart',
+          'separator',
+          'downloadPNG',
+          'downloadJPEG',
+          'downloadPDF',
+          'downloadSVG',
+          'separator',
+          'downloadCSV',
+          'downloadXLS',
+        ],
+      },
+    },
+  },
+  navigation: {
+    buttonOptions: {
+      enabled: true,
+    },
   },
   colors: seriesColors,
   chart: {

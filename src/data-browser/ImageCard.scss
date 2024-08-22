@@ -61,11 +61,13 @@ a:hover {
         h3 {
           color: var(--hmda-blue);
         }
-        width: 100%;
-        background-color: #fff;
-        padding: 1em;
-        height: 100%;
-        border-radius: 0.5em;
+        & {
+          width: 100%;
+          background-color: #fff;
+          padding: 1em;
+          height: 100%;
+          border-radius: 0.5em;
+        }
       }
     }
     .faq {
