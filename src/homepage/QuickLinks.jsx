@@ -55,7 +55,7 @@ export const QuickLinks = ({ hideContent }) => {
             Questions
           </span>
         </a>
-        <a href='/documentation/fig/overview'>
+        <a href='/documentation/fig/2024/overview'>
           <svg
             className='usa-icon'
             aria-hidden='true'

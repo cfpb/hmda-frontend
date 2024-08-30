@@ -31,9 +31,10 @@ export const FilingGuides = () => (
         </a>
         <ul>
           <li>
-            <a href={`/documentation/fig/overview`}>
-              Online FIG
-            </a>
+            <a href={`/documentation/fig/2024/overview`}>2024 Online FIG</a>
+          </li>
+          <li>
+            <a href={`/documentation/fig/2025/overview`}>2025 Online FIG</a><NewIndicator />
           </li>
           <li>
             <a
@@ -46,11 +47,10 @@ export const FilingGuides = () => (
           </li>
           <li>
             <a
-              href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-${LATEST_FIG_YEAR}.pdf`}
-              download={true}
+              href={`/documentation/fig/2024/supplemental-guide-for-quaterly-filers`}
             >
-              Supplemental Guide for Quarterly Filers for {LATEST_FIG_YEAR}
-            </a>
+              Online Supplemental Guide for Quarterly Filers for 2024
+            </a><NewIndicator />
           </li>
           <li>
             <ExternalLink url='https://www.ffiec.gov/hmda/fileformats.htm'>
