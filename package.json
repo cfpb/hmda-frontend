@@ -54,7 +54,7 @@
     "react-highlight-words": "0.20.0",
     "react-paginate": "8.2.0",
     "react-redux": "7.2.9",
-    "react-router-dom": "5.3.4",
+    "react-router-dom": "6.0.0",
     "react-select": "3.2.0",
     "react-tooltip": "^4.2.21",
     "react-window": "1.8.10",
