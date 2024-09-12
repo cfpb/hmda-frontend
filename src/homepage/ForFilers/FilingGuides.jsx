@@ -38,15 +38,6 @@ export const FilingGuides = () => (
           </li>
           <li>
             <a
-              href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${LATEST_FIG_YEAR}-hmda-fig.pdf`}
-              download={true}
-            >
-              For data collected in {LATEST_FIG_YEAR}
-              <FigLastUpdated year={LATEST_FIG_YEAR} />
-            </a>
-          </li>
-          <li>
-            <a
               href={`/documentation/fig/2024/supplemental-guide-for-quaterly-filers`}
             >
               Online Supplemental Guide for Quarterly Filers for 2024
