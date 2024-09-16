@@ -1,6 +1,22 @@
 {
   "log": [
     {
+      "date": "09/19/24",
+      "type": "release",
+      "product": "documentation",
+      "description": "The 2025 Online Filing Instructions Guide (FIG) and 2025 Online Supplemental Guide for Quarterly Filers have been released.",
+      "links": [
+        {
+          "text": "2025 Online Filing Instructions Guide (FIG)",
+          "url": "https://ffiec.cfpb.gov/documentation/fig/2025/overview"
+        },
+        {
+          "text": "2025 Online Supplemental Guide for Quarterly Filers",
+          "url": "https://ffiec.cfpb.gov/documentation/fig/2025/supplemental-guide-for-quaterly-filers"
+        }
+      ]
+    },
+    {
       "date": "07/29/24",
       "type": "update",
       "product": "tools",

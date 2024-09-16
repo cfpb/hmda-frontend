@@ -2,6 +2,15 @@
   "name": "prod",
   "announcement": [
     {
+      "heading": "2025 Online Filing Instructions Guides Released",
+      "message": "The Bureau has released the 2025 Online FIG and Online Supplemental Guide for Quarterly Filers for 2025, which are available ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/documentation/faq/data-collection-timelines#filing-instructions-guide-fig",
+        "text": "here."
+      }
+    },
+    {
       "heading": "2023 Data Publication Release",
       "message": "On July 11, 2024, the 2023 national loan-level datasets, disclosure reports, and MSA/MD aggregate reports were released and can be accessed via the Data Publication page. Users can now explore 2023 HMDA data using the Data Browser's dataset filtering tool or maps. ",
       "type": "info",
