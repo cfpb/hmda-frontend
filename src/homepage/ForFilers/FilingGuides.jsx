@@ -38,7 +38,7 @@ export const FilingGuides = () => (
           </li>
           <li>
             <a
-              href={`/documentation/fig/2024/supplemental-guide-for-quaterly-filers`}
+              href={`/documentation/fig/2024/supplemental-guide-for-quarterly-filers`}
             >
               Online Supplemental Guide for Quarterly Filers for 2024
             </a><NewIndicator />
