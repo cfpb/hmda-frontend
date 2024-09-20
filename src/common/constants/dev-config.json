@@ -2,6 +2,15 @@
   "name": "dev",
   "announcement": [
     {
+      "heading": "2025 Online Filing Instructions Guides Released",
+      "message": "The Bureau has released the 2025 Online FIG and Online Supplemental Guide for Quarterly Filers for 2025, which are available ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/documentation/faq/data-collection-timelines#filing-instructions-guide-fig",
+        "text": "here."
+      }
+    },
+    {
       "heading": "2024 Q1 Graphs Released",
       "message": "HMDA Quarterly Graphs have been updated to include data from the 2024-Q1 filing period and can now be filtered by loan purpose. View Quarterly Graphs",
       "type": "info",
