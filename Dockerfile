@@ -2,6 +2,7 @@ FROM node:20-alpine3.20 as build-stage
 WORKDIR /usr/src/app
 ARG DOCKER_TAG="latest"
 
+# Resolves packageManager yarn issue in the package.json file
 ENV SKIP_YARN_COREPACK_CHECK=0
 
 # install build dependencies
