@@ -1,6 +1,9 @@
-FROM node:20-alpine3.17 as build-stage
+FROM node:20-alpine3.20 as build-stage
 WORKDIR /usr/src/app
 ARG DOCKER_TAG="latest"
+
+# Resolves packageManager yarn issue in the package.json file
+ENV SKIP_YARN_COREPACK_CHECK=0
 
 # install build dependencies
 COPY package.json .
@@ -18,9 +21,9 @@ RUN echo "{ \"version\": \"${DOCKER_TAG}\" }" > ./src/common/constants/release.j
 
 RUN yarn build
 
-FROM nginx:alpine3.17
+FROM nginx:alpine3.20
 ENV NGINX_USER=svc_nginx_hmda
-RUN apk update; apk upgrade
+RUN apk update && apk upgrade
 RUN rm -rf /etc/nginx/conf.d
 COPY nginx /etc/nginx
 COPY --from=build-stage /usr/src/app/dist /usr/share/nginx/html
