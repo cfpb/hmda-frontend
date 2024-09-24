@@ -4,7 +4,6 @@ import BannerUSA from './BannerUSA'
 import { defaultLinks } from './constants/links'
 import { isBeta } from '../common/Beta'
 import { logout } from '../filing/utils/keycloak.js'
-import { getKeycloak } from './api/Keycloak.js'
 
 import './uswds/css/styles.css'
 import logo from './images/ffiec-logo.svg'
@@ -28,6 +27,7 @@ export const logOutHandler = (e) => {
 }
 
 const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
+  const beta = isBeta()
   // Links used to take users to Docusaurus
   const docusaurusLinks = [
     'FAQs',
@@ -62,6 +62,24 @@ const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
       window.removeEventListener('resize', handleResize)
     }
   }, [])
+
+  const renderLink = (link, isActive) => {
+    const className = isActive ? 'usa-nav__link usa-current' : 'usa-nav__link'
+
+    if (beta) {
+      return (
+        <a href={link.href} className={className}>
+          {link.name}
+        </a>
+      )
+    } else {
+      return (
+        <Link to={link.href} className={className}>
+          {link.name}
+        </Link>
+      )
+    }
+  }
 
   return (
     <div id='topBanner' className={hideHeaderFooter(pathname)}>
@@ -104,19 +122,7 @@ const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
                 return (
                   <li key={link.name} className='usa-nav__primary-item'>
                     {!link.submenu ? (
-                      <Link
-                        to={link.href}
-                        className={
-                          isActive
-                            ? 'usa-nav__link usa-current'
-                            : 'usa-nav__link'
-                        }
-                        rel={
-                          link.name === 'Filing' ? 'noopener noreferrer' : null
-                        }
-                      >
-                        {link.name}
-                      </Link>
+                      renderLink(link, isActive)
                     ) : (
                       <>
                         <button
@@ -151,7 +157,7 @@ const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
                 )
               })}
             </ul>
-            {!isBeta() && (
+            {!beta && (
               <DocSearch
                 appId='69RTFLDVTR'
                 indexName='ffiec-beta-cfpb'
