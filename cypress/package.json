@@ -9,5 +9,6 @@
   "browser": {
     "../../../src/**/*": "../src",
     "../../**/*": "../src"
-  }
+  },
+  "packageManager": "yarn@4.1.0"
 }
