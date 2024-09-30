@@ -6688,7 +6688,7 @@ __metadata:
     jest: "npm:^29.7.0"
     jspdf: "npm:^2.5.1"
     jwt-decode: "npm:^3.1.2"
-    keycloak-js: "npm:18.0.1"
+    keycloak-js: "npm:22.0.5"
     mapbox-gl: "npm:1.13.3"
     normalize.css: "npm:8.0.1"
     prettier: "npm:^3.1.1"
@@ -8157,13 +8157,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"keycloak-js@npm:18.0.1":
-  version: 18.0.1
-  resolution: "keycloak-js@npm:18.0.1"
+"keycloak-js@npm:22.0.5":
+  version: 22.0.5
+  resolution: "keycloak-js@npm:22.0.5"
   dependencies:
     base64-js: "npm:^1.5.1"
     js-sha256: "npm:^0.9.0"
-  checksum: 10c0/47a08b7368f65adda6f9a0a62bbbba8d8e568e448fc7947fcec1311452590eff5f7ffb598715e5fa513bff7ed62f387217070d23b64741af54a704e14026dd84
+  checksum: 10c0/d377d8f3bb062d052e10c119f4eacdb9f34b9aedc76a1050c1d9201bcbf78dc8e089e6609af4c4dc6e9118969236ca7e4f458224f89d1273937b5b27b128c9c5
   languageName: node
   linkType: hard
 
