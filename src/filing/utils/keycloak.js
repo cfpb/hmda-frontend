@@ -87,12 +87,22 @@ const register = () => {
 const logout = (queryString = '') => {
   resetLoginAttempts()
   if (!keycloak) return error('keycloak needs to be set on app initialization')
-  keycloak.logout({
-    redirectUri:
-      location.origin +
-      `/filing/${getStore().getState().app.filingPeriod}/` +
+  const store = getStore()
+  const postLogoutRedirectUri = encodeURIComponent(
+    location.origin +
+      `/filing/${store.getState().app.filingPeriod}/` +
       queryString,
-  })
+  )
+
+  // Construct the logout URL manually
+  const logoutUrl =
+    `${keycloak.authServerUrl}/realms/${keycloak.realm}/protocol/openid-connect/logout` +
+    `?id_token_hint=${keycloak.idToken}` +
+    `&post_logout_redirect_uri=${postLogoutRedirectUri}`
+
+  // Perform logout and redirect
+  keycloak.clearToken()
+  window.location.href = logoutUrl
 }
 
 export { register, login, logout, refresh, forceRefreshToken }
