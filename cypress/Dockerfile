@@ -1,19 +1,13 @@
-ARG NODE_VERSION='20.8.0'
-ARG CYPRESS_VERSION='12.17.4'
+ARG NODE_VERSION='20.9.0'
+ARG CYPRESS_VERSION='13.3.1'
 
-FROM cypress/factory
+FROM cypress/base:${NODE_VERSION}
 
+# Update npm to latest version
 RUN npm install -g npm@latest
-RUN npm install yarn -g
-
-# Resolves packageManager yarn issue in the package.json file
-ENV SKIP_YARN_COREPACK_CHECK=0
-
-# Using Yarn V4
-RUN yarn set version 4.1.0
 
 # Install necessary packages
-RUN apt-get update && apt-get install -y curl unzip
+RUN apt-get update && apt-get install -y curl unzip && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
 WORKDIR /hmda-frontend
@@ -22,6 +16,7 @@ WORKDIR /hmda-frontend
 RUN mkdir -p cypress/downloads cypress/screenshots cypress/videos cypress/integration cypress/fixtures
 
 # Copy Cypress support files
+COPY cypress/e2e cypress/e2e
 COPY cypress/support cypress/support
 COPY cypress/plugins cypress/plugins
 COPY cypress/docker-runner.sh cypress/
@@ -40,16 +35,28 @@ COPY ../src/tools/larft/config/ src/tools/larft/config/
 # Copy package.json
 COPY cypress/package.json ./
 
-# Create an empty yarn.lock file
-RUN touch yarn.lock
-
 # Enable creation of screenshots/videos
 RUN useradd -M -d /hmda-frontend -s /bin/bash hmda_cypress_user && \
   chown -R hmda_cypress_user:hmda_cypress_user /hmda-frontend/
 USER hmda_cypress_user
 
 # Install dependencies
-RUN yarn install --mode=update-lockfile
+RUN npm install
+
+# Install Cypress with the specified version
+RUN npx cypress install --version ${CYPRESS_VERSION}
+
+# Verify Cypress installation
+RUN npx cypress verify
+
+# Remove specific modules with critical CVEs from cypress cache
+USER root
+RUN rm -rf /home/hmda_cypress_user/.cache/Cypress/${CYPRESS_VERSION}/Cypress/resources/app/node_modules/loader-utils/ && \
+    rm -rf /home/hmda_cypress_user/.cache/Cypress/${CYPRESS_VERSION}/Cypress/resources/app/node_modules/minimist/ && \
+    rm -rf /home/hmda_cypress_user/.cache/Cypress/${CYPRESS_VERSION}/Cypress/resources/app/node_modules/flat/ && \
+    rm -rf /home/hmda_cypress_user/.cache/Cypress/${CYPRESS_VERSION}/Cypress/resources/app/node_modules/underscore/ && \
+    rm -rf /home/hmda_cypress_user/.cache/Cypress/${CYPRESS_VERSION}/Cypress/resources/app/node_modules/execa
+USER hmda_cypress_user
 
 # Set up the entrypoint
-ENTRYPOINT ["yarn", "cypress", "run"]
+ENTRYPOINT ["npx", "cypress", "run"]
