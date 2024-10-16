@@ -1,12 +1,7 @@
 import React from 'react'
 import './uswds/css/styles.css'
 
-const EmergencyAlert = ({
-  heading,
-  messages,
-  type = 'info',
-  helpEmail = 'hmdahelp@cfpb.gov',
-}) => {
+const EmergencyAlert = ({ heading, messages, type = 'info' }) => {
   const alertTypes = {
     info: 'usa-alert--info',
     warning: 'usa-alert--warning',
@@ -14,31 +9,37 @@ const EmergencyAlert = ({
     emergency: 'usa-alert--emergency',
   }
 
+  const renderMessageContent = (content) => {
+    if (typeof content === 'string') {
+      return content
+    }
+    if (Array.isArray(content)) {
+      return content.map((item, index) => {
+        if (typeof item === 'string') {
+          return item
+        }
+        if (item.link) {
+          return (
+            <a key={index} target={item.external ? "_blank" : ""} className='usa-link' href={item.link.url}>
+              {item.link.text}
+            </a>
+          )
+        }
+        return null
+      })
+    }
+    return null
+  }
+
   return (
-    <section
-      className="usa-site-alert"
-      aria-label='Site alert'
-    >
+    <section className='usa-site-alert' aria-label='Site alert'>
       <div className={`usa-alert ${alertTypes[type]}`}>
         <div className='usa-alert__body'>
           <h3 className='usa-alert__heading'>{heading}</h3>
           <ul className='usa-list'>
             {messages.map((message, index) => (
-              <li key={index}>
-                {message.text}{' '}
-                {message.link && (
-                  <a className='usa-link' href={message.link.url}>
-                    {message.link.text}
-                  </a>
-                )}
-              </li>
+              <li key={index}>{renderMessageContent(message.content)}</li>
             ))}
-            <li>
-              For HMDA Help support, please email{' '}
-              <a className='usa-link' href={`mailto:${helpEmail}`}>
-                {helpEmail}
-              </a>
-            </li>
           </ul>
         </div>
       </div>

@@ -1,0 +1,261 @@
+.timeline-title {
+  margin-bottom: .6em !important;
+}
+
+.timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: 40px auto 40px auto;
+  padding: 20px 0;
+}
+
+.timeline-line {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background-color: #999;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1px;
+}
+
+.timeline-card {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+}
+
+.timeline-card::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #003399;
+  border: 4px solid #fff;
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.timeline-card.left {
+  left: 0;
+  padding-right: 50px;
+  padding-left: 10px;
+}
+
+.timeline-card.right {
+  left: 50%;
+  padding-left: 50px;
+  padding-right: 10px;
+}
+
+.timeline-card.left::after {
+  right: -10px;
+}
+
+.timeline-card.right::after {
+  left: -10px;
+}
+
+.card-content {
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.card-content.align-left {
+  text-align: left;
+}
+
+.card-content.align-right {
+  text-align: right;
+}
+
+.annual-section {
+  padding: 8px 20px;
+  position: relative;
+}
+
+.annual-tag {
+  position: absolute;
+  top: 0;
+  color: white;
+  padding: 8px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #3b7be9;
+}
+
+/* Tag on the right side */
+.card-content.align-left .annual-tag {
+  right: 0;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 6px;
+}
+
+/* Tag on the left side */
+.card-content.align-right .annual-tag {
+  left: 0;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 6px;
+}
+
+.date-range {
+  font-size: 1em;
+  color: #666;
+  margin-bottom: 0px;
+}
+
+.annual-section h2 {
+  margin: 10px 0;
+  font-size: 1.5em;
+}
+
+.read-fig {
+  color: #3b7be9;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.read-fig:visited {
+  color: #3b7be9;  /* Same color as the unvisited state */
+}
+
+.read-fig:hover {
+  text-decoration: underline;
+  color: #3b7be9;  /* Ensure color doesn't change on hover */
+}
+
+.quarterly-section {
+  border-top: 1px solid #eee;
+}
+
+.quarter-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.quarter-item p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.card-content.align-left .quarter-item {
+  flex-direction: row;
+}
+
+.card-content.align-right .quarter-item {
+  flex-direction: row-reverse;
+}
+
+.quarter-item:last-child {
+  border-bottom: none;
+}
+
+.quarter-tag {
+  color: white;
+  padding: 12px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  min-width: 30px;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+}
+
+.card-content.align-left .quarter-tag {
+  margin-right: 10px;
+}
+
+.card-content.align-right .quarter-tag {
+  margin-left: 10px;
+}
+
+/* .quarter-item.q1 .quarter-tag { background-color: #6aa84f; }
+.quarter-item.q2 .quarter-tag { background-color: #e69138; }
+.quarter-item.q3 .quarter-tag { background-color: #8e7cc3; }
+.quarter-item.ends .quarter-tag { background-color: #b74747; } */
+
+.quarter-item.q1 .quarter-tag {
+  background-color: #00b050;
+}
+.quarter-item.q2 .quarter-tag {
+  background-color: #ed7d31;
+}
+.quarter-item.q3 .quarter-tag {
+  background-color: #7030a0;
+}
+.quarter-item.ends .quarter-tag {
+  background-color: #c63333;
+}
+
+@media screen and (max-width: 600px) {
+  .timeline-card {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+
+  .timeline-card.left,
+  .timeline-card.right {
+    left: 0%;
+  }
+
+  .timeline-card.left,  /* Add this block */
+  .timeline-card.right {
+    padding-left: 65px;
+    padding-right: 30px;
+  }
+
+  .timeline-line {
+    left: 40px;
+  }
+
+  .timeline-card.left::after,
+  .timeline-card.right::after {
+    left: 30px;
+  }
+
+  .annual-section {
+    padding: 50px 20px;
+  }
+
+  .annual-tag {
+    padding: 8px 90px;
+  }
+
+  .card-content.align-left,
+  .card-content.align-right {
+    text-align: left;
+  }
+
+  .card-content.align-left .annual-tag,
+  .card-content.align-right .annual-tag {
+    left: 0;
+    right: auto;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 0;
+  }
+
+  .card-content.align-left .quarter-item,
+  .card-content.align-right .quarter-item {
+    flex-direction: row;
+  }
+
+  .card-content.align-left .quarter-tag,
+  .card-content.align-right .quarter-tag {
+    margin-right: 10px;
+    margin-left: 0;
+  }
+}

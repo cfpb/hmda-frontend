@@ -33,6 +33,7 @@
     "@uswds/uswds": "3.9.0",
     "ansi-html": "0.0.8",
     "csv-parse": "4.16.3",
+    "date-fns": "^4.1.0",
     "detect-browser": "4.8.0",
     "elliptic": "6.5.7",
     "fast-deep-equal": "2.0.1",

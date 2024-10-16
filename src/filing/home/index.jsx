@@ -5,6 +5,7 @@ import './Home.css'
 import { withAppContext } from '../../common/appContextHOC.jsx'
 import useToolAnnouncement from '../../common/useToolAnnouncement.jsx'
 import EmergencyAlert from '../../common/EmergencyAlert.jsx'
+import Timeline from '../common/Timeline.jsx'
 
 const Home = ({ maintenanceMode, config }) => {
   const maintenanceTitle = maintenanceMode && 'Unavailable during maintenance'
@@ -22,18 +23,40 @@ const Home = ({ maintenanceMode, config }) => {
       'Signing in using Login.gov will be mandatory for the 2025 filing season',
     messages: [
       {
-        text: 'When logging into the HMDA Platform to file their 2024 annual data, users will need to login with Login.gov using MFA. Users will no longer have the option to sign in using the existing process.',
+        content:
+          'Beginning January 1, 2025, users logging into the HMDA Platform to file their 2024 annual data will need to login with Login.gov. Users will no longer have the option to sign in using the existing processes.',
       },
       {
-        text: 'For assistance on setting up your account for Login.gov please go to our supporting ',
-        link: {
-          url: '#supporting-context',
-          text: 'frequently asked questions.',
-        },
+        content: [
+          'For assistance on setting up your Login.gov account please utilize the ',
+          {
+            link: {
+              url: '#supporting-context',
+              text: 'Quick Reference Guide',
+            },
+          },
+          ' and ',
+          {
+            link: { url: '#support-team', text: 'Frequently Asked Questions' },
+          },
+          '.',
+        ],
+      },
+      {
+        content: [
+          'Please note that HMDA Help cannot assist with Login.gov technical questions. All Login.gov queries should be directed to ',
+          {
+            link: {
+              url: 'https://www.login.gov/contact/',
+              text: 'https://www.login.gov/contact/',
+            },
+            external: true,
+          },
+          '.',
+        ],
       },
     ],
     type: 'info',
-    helpEmail: 'hmdahelp@cfpb.gov',
   }
 
   return (
@@ -79,11 +102,25 @@ const Home = ({ maintenanceMode, config }) => {
           >
             Log in
           </button>
+          {/* <span className='text-small'>or</span>
+          <button
+            className='button register-link'
+            style={{ marginTop }}
+            onClick={(e) => {
+              e.preventDefault()
+            }}
+            title={'See How It Works'}
+          >
+            Learn more about HMDA
+          </button> */}
           <p className='text-small'>
             Every user is required to register online for login credentials and
             establish an account prior to accessing the HMDA Platform.
           </p>
         </div>
+      </section>
+      <section>
+        <Timeline />
       </section>
       <div className='full-width'>
         <section className='video-container'>
