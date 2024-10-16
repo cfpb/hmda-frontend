@@ -1,6 +1,8 @@
 import Keycloak from 'keycloak-js'
 
 let keycloak = null
+let isInitialized = false
+let initPromise = null
 
 export const setKeycloak = (cloak) => {
   keycloak = cloak
@@ -8,17 +10,48 @@ export const setKeycloak = (cloak) => {
 }
 
 export const getKeycloak = () => {
-  if (!keycloak) return initKeycloak()
   return keycloak
 }
 
 export const initKeycloak = (overrides) => {
-  if (keycloak) return keycloak
-  if (import.meta.env.VITE_ENVIRONMENT === 'CI')
-    return setKeycloak(mockKeycloak(overrides))
-  if (import.meta.env.MODE === 'development')
-    return setKeycloak(new Keycloak('/local_keycloak.json'))
-  return setKeycloak(new Keycloak('/keycloak.json'))
+  if (isInitialized) {
+    console.log('Keycloak already initialized, returning existing instance')
+    return Promise.resolve(keycloak)
+  }
+
+  if (initPromise) {
+    console.log(
+      'Keycloak initialization in progress, returning existing promise',
+    )
+    return initPromise
+  }
+
+  console.log('Initializing Keycloak')
+  if (!keycloak) {
+    if (import.meta.env.VITE_ENVIRONMENT === 'CI') {
+      keycloak = mockKeycloak(overrides)
+    } else if (import.meta.env.MODE === 'development') {
+      keycloak = new Keycloak('/local_keycloak.json')
+    } else {
+      keycloak = new Keycloak('/keycloak.json')
+    }
+  }
+
+  initPromise = keycloak
+    .init({ pkceMethod: 'S256' })
+    .then((authenticated) => {
+      console.log('Keycloak initialized, authenticated:', authenticated)
+      isInitialized = true
+      initPromise = null
+      return keycloak
+    })
+    .catch((error) => {
+      console.error('Failed to initialize Keycloak:', error)
+      initPromise = null
+      throw error
+    })
+
+  return initPromise
 }
 
 export const mockKeycloak = (overrides = {}) => ({

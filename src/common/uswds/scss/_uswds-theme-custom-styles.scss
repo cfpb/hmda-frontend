@@ -658,3 +658,18 @@ body {
     }
   }
 }
+
+// Custom styles for alert lists
+.usa-site-alert {
+  .usa-alert__body {
+    .usa-list {
+      margin-top: 1em;
+      padding-left: 1.5rem;
+      list-style-type: disc;
+
+      li {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+}

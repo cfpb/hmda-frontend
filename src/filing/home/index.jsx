@@ -1,10 +1,10 @@
 import React from 'react'
-import { login, register } from '../utils/keycloak.js'
+import { login } from '../utils/keycloak.js'
 import Alert from '../../common/Alert.jsx'
-import { MailingSignupLarge } from '../../common/MailingListSignup'
 import './Home.css'
 import { withAppContext } from '../../common/appContextHOC.jsx'
 import useToolAnnouncement from '../../common/useToolAnnouncement.jsx'
+import EmergencyAlert from '../../common/EmergencyAlert.jsx'
 
 const Home = ({ maintenanceMode, config }) => {
   const maintenanceTitle = maintenanceMode && 'Unavailable during maintenance'
@@ -17,8 +17,30 @@ const Home = ({ maintenanceMode, config }) => {
   })
   const marginTop = toolAnnouncement ? '0px' : ''
 
+  const alertData = {
+    heading:
+      'Signing in using Login.gov will be mandatory for the 2025 filing season',
+    messages: [
+      {
+        text: 'When logging into the HMDA Platform to file their 2024 annual data, users will need to login with Login.gov using MFA. Users will no longer have the option to sign in using the existing process.',
+      },
+      {
+        text: 'For assistance on setting up your account for Login.gov please go to our supporting ',
+        link: {
+          url: '#supporting-context',
+          text: 'frequently asked questions.',
+        },
+      },
+    ],
+    type: 'info',
+    helpEmail: 'hmdahelp@cfpb.gov',
+  }
+
   return (
     <main className={cname} id='main-content'>
+      <div className='full-width padding-top-bottom'>
+        <EmergencyAlert {...alertData} />
+      </div>
       <section className='hero'>
         <div className='full-width'>
           {sessionExpired && (
@@ -57,26 +79,10 @@ const Home = ({ maintenanceMode, config }) => {
           >
             Log in
           </button>
-          <span className='text-small'>or</span>
-          <button
-            className='button register-link'
-            style={{ marginTop }}
-            onClick={(e) => {
-              e.preventDefault()
-              register()
-            }}
-            disabled={buttonsDisabled}
-            title={maintenanceTitle || 'Create an account'}
-          >
-            Create an account
-          </button>
           <p className='text-small'>
             Every user is required to register online for login credentials and
             establish an account prior to accessing the HMDA Platform.
           </p>
-        </div>
-        <div className='full-width' style={{ marginTop: '3rem' }}>
-          <MailingSignupLarge />
         </div>
       </section>
       <div className='full-width'>

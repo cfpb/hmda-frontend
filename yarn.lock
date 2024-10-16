@@ -3097,14 +3097,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uswds/uswds@npm:3.8.2":
-  version: 3.8.2
-  resolution: "@uswds/uswds@npm:3.8.2"
+"@uswds/uswds@npm:3.9.0":
+  version: 3.9.0
+  resolution: "@uswds/uswds@npm:3.9.0"
   dependencies:
     object-assign: "npm:4.1.1"
     receptor: "npm:1.0.0"
     resolve-id-refs: "npm:0.1.0"
-  checksum: 10c0/878c68dec0a875bce9a64c4decd422035900c9924d2309534a8c00f760676aeabf43b48d95cf1ef6bb18523e77c5c40f607da5e85a5cf2d94a55e8862e0e1db5
+  checksum: 10c0/58004d22c833398dd1dcf97dacd4684b0613a244957f5fddf3678f491dab4d8af083e87024e87bc44617c8f18ab3cda0205d975fcbbea844987ff355b35ccb36
   languageName: node
   linkType: hard
 
@@ -6665,7 +6665,7 @@ __metadata:
     "@tanstack/react-table": "npm:8.20.5"
     "@testing-library/cypress": "npm:8.0.1"
     "@uswds/compile": "npm:^1.2.0"
-    "@uswds/uswds": "npm:3.8.2"
+    "@uswds/uswds": "npm:3.9.0"
     "@vitejs/plugin-react": "npm:^4.1.0"
     ansi-html: "npm:0.0.8"
     csv-parse: "npm:4.16.3"
