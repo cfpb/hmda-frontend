@@ -9,9 +9,30 @@
   margin-bottom: 2em;
 }
 
-.FilingHome .hero .register-link {
-  margin-left: 0.5em;
+.FilingHome .hero .button-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
+
+.FilingHome .hero .button-container button {
+  margin-right: 0;
+}
+
+.FilingHome .hero .how-it-works {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  margin-bottom: .8em;
+}
+
+.FilingHome .hero .text-small {
+  margin-top: 16px;
+}
+
+/* .FilingHome .hero .register-link {
+  margin-left: 0.5em;
+} */
 
 .FilingHome .hero {
   background-color: #f1f1f1;
@@ -74,4 +95,23 @@
 
 .padding-top-bottom {
   padding: 1.5em;
+}
+
+@media screen and (max-width: 750px) {
+  .button-container {
+    flex-direction: column;
+    margin: 0 0 15px 0;
+  }
+
+  .FilingHome .hero .button-container button {
+    margin: 0;
+  }
+
+  .FilingHome .hero .how-it-works {
+    margin: 0;
+  }
+
+  .FilingHome .hero .text-small {
+    margin-top: 0;
+  }
 }

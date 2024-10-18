@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import iconSprite from '../common/uswds/img/sprite.svg'
 
 export const VideoModal = ({ showModal, setShowModal, title, content }) => {

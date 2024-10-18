@@ -1,5 +1,4 @@
 import React from 'react'
-import Heading from '../../common/Heading'
 import { useEnvironmentConfig } from '../../common/useEnvironmentConfig'
 import { format, parse } from 'date-fns'
 import './Timeline.css'

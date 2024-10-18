@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { login } from '../utils/keycloak.js'
 import Alert from '../../common/Alert.jsx'
 import './Home.css'
@@ -6,8 +6,17 @@ import { withAppContext } from '../../common/appContextHOC.jsx'
 import useToolAnnouncement from '../../common/useToolAnnouncement.jsx'
 import EmergencyAlert from '../../common/EmergencyAlert.jsx'
 import Timeline from '../common/Timeline.jsx'
+import { VideoModal } from '../../homepage/VideoModal.jsx'
+import iconSprite from '../../common/uswds/img/sprite.svg'
+import { MailingSignupLarge } from '../../common/MailingListSignup.jsx'
 
 const Home = ({ maintenanceMode, config }) => {
+  const [showModal, setShowModal] = useState(false)
+
+  const handleShowModal = () => {
+    setShowModal(true)
+  }
+
   const maintenanceTitle = maintenanceMode && 'Unavailable during maintenance'
   const buttonsDisabled = !!maintenanceMode
   const cname = 'FilingHome' + (maintenanceMode ? ' maintenance' : '')
@@ -48,7 +57,7 @@ const Home = ({ maintenanceMode, config }) => {
           {
             link: {
               url: 'https://www.login.gov/contact/',
-              text: 'https://www.login.gov/contact/',
+              text: 'contact',
             },
             external: true,
           },
@@ -90,40 +99,59 @@ const Home = ({ maintenanceMode, config }) => {
               <p>{toolAnnouncement.message}</p>
             </Alert>
           )}
-          <button
-            className='button'
-            style={{ marginTop }}
-            onClick={(e) => {
-              e.preventDefault()
-              login()
-            }}
-            disabled={buttonsDisabled}
-            title={maintenanceTitle || 'Login'}
-          >
-            Log in
-          </button>
-          {/* <span className='text-small'>or</span>
-          <button
-            className='button register-link'
-            style={{ marginTop }}
-            onClick={(e) => {
-              e.preventDefault()
-            }}
-            title={'See How It Works'}
-          >
-            Learn more about HMDA
-          </button> */}
+          <div className='button-container'>
+            <button
+              className='button'
+              onClick={(e) => {
+                e.preventDefault()
+                login()
+              }}
+              disabled={buttonsDisabled}
+              title={maintenanceTitle || 'Login'}
+            >
+              Log in
+            </button>
+            <span className='text-small'>or</span>
+            <a
+              href='#hmda-video'
+              onClick={handleShowModal}
+              className='usa-button primary button how-it-works'
+              aria-label='Open Modal'
+              data-open-modal
+            >
+              <svg
+                className='usa-icon'
+                aria-hidden='true'
+                focusable='false'
+                role='img'
+              >
+                <use href={`${iconSprite}#youtube`}></use>
+              </svg>{' '}
+              See How It Works
+            </a>
+            {showModal && (
+              <VideoModal
+                showModal={showModal}
+                setShowModal={setShowModal}
+                title='HMDA Overview'
+                content='How HMDA Filing Works'
+              />
+            )}
+          </div>
           <p className='text-small'>
             Every user is required to register online for login credentials and
             establish an account prior to accessing the HMDA Platform.
           </p>
+        </div>
+        <div className='full-width' style={{ marginTop: '3rem' }}>
+          <MailingSignupLarge />
         </div>
       </section>
       <section>
         <Timeline />
       </section>
       <div className='full-width'>
-        <section className='video-container'>
+        {/* <section className='video-container'>
           <iframe
             src='https://www.youtube.com/embed/C_73Swgyc4g?rel=0'
             frameBorder='0'
@@ -131,7 +159,7 @@ const Home = ({ maintenanceMode, config }) => {
             allowFullScreen
             title='HMDA Video'
           />
-        </section>
+        </section> */}
         <div className='max-width'>
           <h3>CFPB Notice and Consent Banner</h3>
           <p className='text-small'>
