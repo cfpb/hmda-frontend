@@ -53,7 +53,7 @@ const Home = ({ maintenanceMode, config }) => {
       },
       {
         content: [
-          'Please note that HMDA Help cannot assist with Login.gov technical questions. All Login.gov queries should be directed to ',
+          'Please note that HMDA Help cannot assist with Login.gov technical questions. All Login.gov queries should be directed to Login.gov ',
           {
             link: {
               url: 'https://www.login.gov/contact/',

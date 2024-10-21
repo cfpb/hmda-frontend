@@ -26,8 +26,6 @@ const Timeline = () => {
     const cardClassName = `timeline-card ${isLeft ? 'left' : 'right'}`
     const contentClassName = `card-content ${isLeft ? 'align-right' : 'align-left'}`
 
-    console.log(index + 1, cardClassName)
-
     return (
       <div key={year} className={cardClassName}>
         <div className={contentClassName}>
@@ -82,10 +80,9 @@ const Timeline = () => {
     <div className='home'>
       <div className='full-width'>
         <h1 className='timeline-title'>HMDA Filing Timeline</h1>
-        {/* <Heading type={1} headingText='HMDA Filing Timeline' /> */}
         <p className='font-lead'>
           The following timeline represents the active filing seasons. Visit{' '}
-          <a href='documentation/faq/data-collection-timelines'>
+          <a href='/documentation/faq/data-collection-timelines'>
             HMDA Data Collection Timelines
           </a>{' '}
           to learn more about late quarterly filing submission dates.
