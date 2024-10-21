@@ -2,7 +2,7 @@ const { defineConfig } = require('cypress')
 
 module.exports = defineConfig({
   chromeWebSecurity: false,
-  video: false,
+  video: true,
   env: {
     HOST: 'https://ffiec.cfpb.gov',
     ENVIRONMENT: 'NOT CI',
