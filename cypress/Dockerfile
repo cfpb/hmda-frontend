@@ -40,22 +40,18 @@ RUN useradd -M -d /hmda-frontend -s /bin/bash hmda_cypress_user && \
   chown -R hmda_cypress_user:hmda_cypress_user /hmda-frontend/
 USER hmda_cypress_user
 
-# Install dependencies
-RUN npm install
+# Install dependencies and Cypress, then clean up vulnerable packages
+RUN npm install && \
+    npx cypress install --version ${CYPRESS_VERSION} && \
+    npx cypress verify
 
-# Install Cypress with the specified version
-RUN npx cypress install --version ${CYPRESS_VERSION}
-
-# Verify Cypress installation
-RUN npx cypress verify
-
-# Remove specific modules with critical CVEs from cypress cache
 USER root
-RUN rm -rf /home/hmda_cypress_user/.cache/Cypress/${CYPRESS_VERSION}/Cypress/resources/app/node_modules/loader-utils/ && \
-    rm -rf /home/hmda_cypress_user/.cache/Cypress/${CYPRESS_VERSION}/Cypress/resources/app/node_modules/minimist/ && \
-    rm -rf /home/hmda_cypress_user/.cache/Cypress/${CYPRESS_VERSION}/Cypress/resources/app/node_modules/flat/ && \
-    rm -rf /home/hmda_cypress_user/.cache/Cypress/${CYPRESS_VERSION}/Cypress/resources/app/node_modules/underscore/ && \
-    rm -rf /home/hmda_cypress_user/.cache/Cypress/${CYPRESS_VERSION}/Cypress/resources/app/node_modules/execa
+RUN find / -name "loader-utils" -type d -exec rm -rf {} + 2>/dev/null || true && \
+    find / -name "flat" -type d -exec rm -rf {} + 2>/dev/null || true && \
+    find / -name "underscore" -type d -exec rm -rf {} + 2>/dev/null || true && \
+    npm cache clean --force && \
+    chown -R hmda_cypress_user:hmda_cypress_user /hmda-frontend
+
 USER hmda_cypress_user
 
 # Set up the entrypoint
