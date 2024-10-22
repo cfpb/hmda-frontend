@@ -1,6 +1,18 @@
 {
   "log": [
     {
+      "date": "10/22/24",
+      "type": "update",
+      "product": "tools",
+      "description": "HMDA Quarterly Graphs have been updated to include data for 2024-Q2.",
+      "links": [
+        {
+          "text": "HMDA Quarterly Graphs",
+          "url": "https://ffiec.cfpb.gov/data-browser/graphs/quarterly"
+        }
+      ]
+    },
+    {
       "date": "10/18/24",
       "type": "update",
       "product": "documentation",
