@@ -110,6 +110,9 @@ input {
 
 .App h1 {
   margin-bottom: 0;
+  color: var(--hmda-blue);
+  font-size: 4rem;
+  margin-top: 1.5em;
 }
 
 .grid {

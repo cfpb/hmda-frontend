@@ -7,10 +7,6 @@
   margin-top: 2rem;
 }
 
-.DataPublication.App {
-  max-width: 100%;
-}
-
 .DataPublication.App .Disclosure,
 .DataPublication.App .Aggregate,
 .DataPublication.App .NationalAggregate,
@@ -20,7 +16,6 @@
 .Report .heading {
   max-width: 1040px;
   margin: 0 auto;
-  padding: 0 3rem;
 }
 
 .DataPublication.App .Report table {
