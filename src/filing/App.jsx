@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory, useLocation, useParams } from 'react-router-dom'
 import ConfirmationModal from './modals/confirmationModal/container.jsx'
-import Beta, { isBeta } from '../common/Beta'
-import Header from './common/Header.jsx'
 import BrowserBlocker from './common/BrowserBlocker.jsx'
 import Loading from '../common/LoadingIcon.jsx'
 import * as AccessToken from '../common/api/AccessToken.js'
@@ -21,87 +20,93 @@ import { ShowUserName } from '../common/ShowUserName'
 
 const browser = detect()
 
-export class AppContainer extends Component {
-  componentDidMount() {
-    if (this.props.maintenanceMode && !this._isHome(this.props))
-      return this.props.history.push('/filing')
+export const AppContainer = ({ config, children }) => {
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const location = useLocation()
+  const { filingPeriod } = useParams()
 
-    const filingPeriod = this.props.match.params.filingPeriod
+  const [keycloakInitialized, setKeycloakInitialized] = useState(false)
 
-    // If check is used to allow /profile to be acceptable and not force endless re-directs
-    if (this.props.location.pathname.includes('/profile')) {
-    } else if (this.isPeriodReachable(filingPeriod))
-      this.props.dispatch(updateFilingPeriod(filingPeriod))
-    else this.redirectToReachablePeriod(filingPeriod)
+  const { redirecting, statePathname, filingPeriodOptions } = useSelector(
+    (state) => state.app,
+  )
+  const { maintenanceMode, filingAnnouncement } = config
+  const selectedPeriod = config.filingPeriodStatus[filingPeriod] || {}
 
-    const keycloak = initKeycloak()
-    keycloak.init({ pkceMethod: 'S256' }).then((authenticated) => {
-      this.keycloakConfigured = true
-      if (authenticated) {
-        AccessToken.set(keycloak.token)
-        refresh()
-        if (this.props.redirecting) this.props.dispatch(isRedirecting(false))
-        else this.forceUpdate()
-      } else {
-        if (!this._isHome(this.props)) login(this.props.location.pathname)
-      }
-    })
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.maintenanceMode && !this._isHome(this.props))
-      return this.props.history.push('/filing')
-
-    const filingPeriod = this.props.match.params.filingPeriod
-    // If check is used to allow /profile to be acceptable and not force endless re-directs
-    if (this.props.location.pathname.includes('/profile')) {
-    } else if (!this.isPeriodReachable(filingPeriod)) {
-      this.redirectToReachablePeriod(filingPeriod)
-    } else if (filingPeriod !== this.props.filingPeriod)
-      this.props.dispatch(updateFilingPeriod(filingPeriod))
-    const keycloak = getKeycloak()
-    if (!keycloak.authenticated && !this._isHome(this.props)) {
-      if (this.keycloakConfigured) login(this.props.location.pathname)
+  useEffect(() => {
+    if (maintenanceMode && !isHome()) {
+      history.push('/filing')
+      return
     }
 
-    if (this.props.location.pathname !== prevProps.location.pathname) {
+    if (!location.pathname.includes('/profile')) {
+      if (isPeriodReachable(filingPeriod))
+        dispatch(updateFilingPeriod(filingPeriod))
+      else redirectToReachablePeriod(filingPeriod)
+    }
+
+    const initKeycloakInstance = async () => {
+      try {
+        const keycloak = await initKeycloak()
+        setKeycloakInitialized(true)
+
+        if (keycloak.authenticated) {
+          handleAuthenticated(keycloak)
+        } else if (!isHome()) {
+          login(location.pathname)
+        }
+      } catch (error) {
+        console.error('Failed to initialize Keycloak:', error)
+      }
+    }
+
+    initKeycloakInstance()
+  }, [])
+
+  useEffect(() => {
+    if (location.pathname !== statePathname) {
       window.scrollTo(0, 0)
     }
-  }
 
-  _renderAppContents(props) {
-    if (this._isOldBrowser()) return <BrowserBlocker />
+    const keycloak = getKeycloak()
     if (
-      props.redirecting ||
-      (!getKeycloak().authenticated && !this._isHome(props))
-    )
-      return <Loading className='floatingIcon' />
-    return React.cloneElement(props.children, {
-      match: this.props.match,
-      location: this.props.location,
-      config: this.props.config,
-      selectedPeriod: this.props.selectedPeriod,
-    })
+      keycloakInitialized &&
+      keycloak &&
+      !keycloak.authenticated &&
+      !isHome()
+    ) {
+      login(location.pathname)
+    }
+  }, [location.pathname, keycloakInitialized])
+
+  const handleAuthenticated = (keycloak) => {
+    AccessToken.set(keycloak.token)
+    refresh()
+    if (redirecting) dispatch(isRedirecting(false))
   }
 
-  _isOldBrowser() {
-    return browser.name === 'ie' && +browser.version.split('.')[0] < 11
+  const isHome = () => {
+    return !!location.pathname.match(/^\/filing\/\d{4}(-Q\d)?\/$/)
   }
 
-  _isHome(props) {
-    return !!props.location.pathname.match(/^\/filing\/\d{4}(-Q\d)?\/$/)
+  const isPeriodReachable = (period) => {
+    if (period === '2017') return true // We display a special message for 2017
+
+    const guards = config.filingPeriodStatus
+    const current = guards[period]
+
+    return current && current.isVisible
   }
 
-  redirectToDefaultPeriod(previous) {
-    const defaultPeriod = this.props.config.defaultPeriod
+  const redirectToDefaultPeriod = (previous) => {
+    const defaultPeriod = config.defaultPeriod
 
-    this.props.dispatch(updateFilingPeriod(defaultPeriod))
-    this.props.history.replace(
-      this.props.location.pathname.replace(previous, defaultPeriod),
-    )
+    dispatch(updateFilingPeriod(defaultPeriod))
+    history.replace(location.pathname.replace(previous, defaultPeriod))
   }
 
-  redirectToReachablePeriod(period) {
+  const redirectToReachablePeriod = (period) => {
     const quarters = PERIODS.filter((p) => p.includes('Q')).map(
       (period) => '-' + period,
     )
@@ -111,75 +116,60 @@ export class AppContainer extends Component {
     // Try to redirect to the latest Quarterly period
     for (let i = 0; i < quarters.length; i++) {
       const fp = year + quarters[i]
-      if (this.isPeriodReachable(fp)) {
-        this.props.dispatch(updateFilingPeriod(fp))
-        this.props.history.replace(
-          this.props.location.pathname.replace(period, fp),
-        )
+      if (isPeriodReachable(fp)) {
+        dispatch(updateFilingPeriod(fp))
+        history.replace(location.pathname.replace(period, fp))
         return
       }
     }
 
     // If we can't find a reachable Quarter, fall back to the default filing period
-    this.redirectToDefaultPeriod(period)
+    redirectToDefaultPeriod(period)
   }
 
-  isPeriodReachable(period) {
-    if (period === '2017') return true // We display a special message for 2017
-
-    const guards = this.props.config.filingPeriodStatus
-    const current = guards[period]
-
-    return current && current.isVisible
+  const isOldBrowser = () => {
+    return browser.name === 'ie' && +browser.version.split('.')[0] < 11
   }
 
-  render() {
-    const {
-      match: { params },
-      location,
-      config: { filingAnnouncement },
-    } = this.props
-
-    return (
-      <div className='AppContainer'>
-        <a className='skipnav' href='#main-content'>
-          Skip to main content
-        </a>
-        <ShowUserName isLoggedIn={getKeycloak().authenticated} />
-
-        <ConfirmationModal />
-        {filingAnnouncement ? (
-          <FilingAnnouncement data={filingAnnouncement} />
-        ) : null}
-        {params.filingPeriod === '2017' ? (
-          <p className='full-width'>
-            Files are no longer being accepted for the 2017 filing period. For
-            further assistance, please contact{' '}
-            <a href='mailto:hmdahelp@cfpb.gov'>HMDA Help</a>.
-          </p>
-        ) : (
-          this._renderAppContents(this.props)
-        )}
-      </div>
+  const renderAppContents = () => {
+    if (isOldBrowser()) return <BrowserBlocker />
+    const keycloak = getKeycloak()
+    if (redirecting || (!keycloak?.authenticated && !isHome()))
+      return <Loading className='floatingIcon' />
+    return React.Children.map(children, (child) =>
+      React.cloneElement(child, {
+        match: { params: { filingPeriod } },
+        location,
+        config,
+        selectedPeriod,
+      }),
     )
   }
+
+  console.log(getKeycloak())
+
+  return (
+    <div className='AppContainer'>
+      <a className='skipnav' href='#main-content'>
+        Skip to main content
+      </a>
+      <ShowUserName isLoggedIn={getKeycloak()?.authenticated} />
+
+      <ConfirmationModal />
+      {filingAnnouncement ? (
+        <FilingAnnouncement data={filingAnnouncement} />
+      ) : null}
+      {filingPeriod === '2017' ? (
+        <p className='full-width'>
+          Files are no longer being accepted for the 2017 filing period. For
+          further assistance, please contact{' '}
+          <a href='mailto:hmdahelp@cfpb.gov'>HMDA Help</a>.
+        </p>
+      ) : (
+        renderAppContents()
+      )}
+    </div>
+  )
 }
 
-export function mapStateToProps(state, ownProps) {
-  const { filingPeriod, redirecting, statePathname, filingPeriodOptions } =
-    state.app
-  const { maintenanceMode, filingAnnouncement } = ownProps.config
-  const selectedPeriod = ownProps.config.filingPeriodStatus[filingPeriod] || {}
-
-  return {
-    redirecting,
-    statePathname,
-    maintenanceMode,
-    filingAnnouncement,
-    filingPeriod,
-    filingPeriodOptions,
-    selectedPeriod, // FilingPeriodStatus
-  }
-}
-
-export default connect(mapStateToProps)(AppContainer)
+export default AppContainer
