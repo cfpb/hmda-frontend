@@ -76,6 +76,19 @@ const forceRefreshToken = async () => {
 const register = () => {
   const keycloak = getKeycloak()
   if (!keycloak) return error('keycloak needs to be set on app initialization')
+  const store = getStore()
+  store.dispatch(isRedirecting(true))
+  keycloak.login({
+    redirectUri: `${location.origin}/filing/${
+      store.getState().app.filingPeriod
+    }/institutions`,
+    action: 'register',
+  })
+}
+
+const registerLoginGov = () => {
+  const keycloak = getKeycloak()
+  if (!keycloak) return error('keycloak needs to be set on app initialization')
 
   const store = getStore()
   store.dispatch(isRedirecting(true))
