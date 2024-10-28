@@ -1,4 +1,4 @@
-import { isCI, isProd, isBeta } from '../../support/helpers'
+import { isCI, isBeta } from '../../support/helpers'
 import { onlyOn } from '@cypress/skip-test'
 const { HOST, ENVIRONMENT } = Cypress.env()
 
@@ -37,7 +37,7 @@ onlyOn(!isBeta(HOST), () => {
     })
   })
 
-  describe('Tests user interaction with tabs', () => {
+  describe('Filer Info tab tests', () => {
     it('Starts on Graph tab and then switches to filer tab', () => {
       cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`)
       cy.wait(1000)
@@ -48,6 +48,91 @@ onlyOn(!isBeta(HOST), () => {
         'eq',
         `${baseURLToVisit}/data-browser/graphs/quarterly/info/filers`,
       )
+    })
+
+    it('Institution level data is correct for 2021-2023', () => {
+      // Using Bank of America as the test institution
+      const institutionDetails = {
+        name: 'BANK OF AMERICA, NATIONAL ASSOCIATION',
+        lei: 'B4TYDEB6GKMZO031MB27',
+        agency: 'Consumer Financial Protection Bureau (CFPB)',
+      }
+
+      const yearData = [
+        { year: '2023', count: '271,974' },
+        { year: '2022', count: '348,961' },
+        { year: '2021', count: '368,728' },
+      ]
+
+      cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly/info/filers`)
+      cy.wait(1000)
+
+      // Find and verify the Bank of America row
+      cy.contains('tr', institutionDetails.name).within(() => {
+        // Verify institution details
+        cy.get('td').eq(0).should('contain', institutionDetails.name)
+        cy.get('td').eq(1).should('contain', institutionDetails.lei)
+        cy.get('td').eq(2).should('contain', institutionDetails.agency)
+
+        // Verify each year's count
+        yearData.forEach(({ year, count }, index) => {
+          cy.root()
+            .parents('table')
+            .find('thead th')
+            .contains(`${year} LAR Count`)
+          cy.get('td')
+            .eq(index + 3)
+            .should('contain', count)
+        })
+      })
+    })
+
+    it('Total of Quarterly Filers counts appear for 2021-2023', () => {
+      // Data ordered from newest to oldest year to match table layout
+      const yearData = [
+        { year: '2023', count: '4,741,350' },
+        { year: '2022', count: '6,242,438' },
+        { year: '2021', count: '10,403,582' },
+      ]
+
+      cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly/info/filers`)
+      cy.wait(1000)
+
+      // Verify the row header
+      cy.get('tfoot > tr')
+        .first()
+        .find('th')
+        .should('contain', 'Total of Quarterly Filers')
+
+      // Verify each year's data - array order matches table order
+      yearData.forEach(({ year, count }, index) => {
+        cy.get('thead th').contains(`${year} LAR Count`)
+        cy.get('tfoot > tr:first > td').eq(index).should('contain', count)
+      })
+    })
+
+    it('Total of All Filers counts appear for 2021-2023', () => {
+      // Data ordered from newest to oldest year to match table layout
+      const yearData = [
+        { year: '2023', count: '11,483,889' },
+        { year: '2022', count: '16,099,307' },
+        { year: '2021', count: '26,227,364' },
+      ]
+
+      cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly/info/filers`)
+      cy.wait(1000)
+
+      // Verify the row header
+      cy.get('tfoot > tr')
+        .first()
+        .find('th')
+        .should('contain', 'Total of Quarterly Filers')
+
+      // Verify each year's data - array order matches table order
+      yearData.forEach(({ year, count }, index) => {
+        cy.get('thead th').contains(`${year} LAR Count`)
+        cy.get('tfoot > tr:last > td').eq(index).should('contain', count)
+      })
     })
   })
 
@@ -70,7 +155,7 @@ onlyOn(!isBeta(HOST), () => {
 
       cy.wait(1000)
 
-      cy.url().then(url => {
+      cy.url().then((url) => {
         cy.get('.react-select__graph__control').click(0, 0, {
           force: true,
         })
@@ -84,7 +169,7 @@ onlyOn(!isBeta(HOST), () => {
 
       cy.wait(1000)
 
-      cy.url().then(url => {
+      cy.url().then((url) => {
         cy.get('.react-select__loan__control').click(0, 0, {
           force: true,
         })
