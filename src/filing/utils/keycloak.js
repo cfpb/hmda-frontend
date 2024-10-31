@@ -19,9 +19,10 @@ const login = (path) => {
     return
   }
   const store = getStore()
-  if (!path) path = `/filing/${store.getState().app.filingPeriod}/institutions`
-  store.dispatch(isRedirecting(true))
 
+  if (!path) path = `/filing/${store.getState().app.filingPeriod}/institutions`
+
+  store.dispatch(isRedirecting(true))
   keycloak.login({ redirectUri: location.origin + path })
 }
 
@@ -76,6 +77,19 @@ const forceRefreshToken = async () => {
 const register = () => {
   const keycloak = getKeycloak()
   if (!keycloak) return error('keycloak needs to be set on app initialization')
+  const store = getStore()
+  store.dispatch(isRedirecting(true))
+  keycloak.login({
+    redirectUri: `${location.origin}/filing/${
+      store.getState().app.filingPeriod
+    }/institutions`,
+    action: 'register',
+  })
+}
+
+const registerLoginGov = () => {
+  const keycloak = getKeycloak()
+  if (!keycloak) return error('keycloak needs to be set on app initialization')
   
   const store = getStore()
   store.dispatch(isRedirecting(true))
@@ -119,4 +133,4 @@ const logout = (queryString = '') => {
   window.location.href = logoutUrl
 }
 
-export { register, login, logout, refresh, forceRefreshToken }
+export { register, registerLoginGov, login, logout, refresh, forceRefreshToken }

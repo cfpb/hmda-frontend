@@ -7,6 +7,7 @@ import ReleaseVersion from './ReleaseVersion'
 import { withRouter } from 'react-router-dom'
 import { hideHeaderFooter } from './Header'
 import { MailingSignupSmall } from './MailingListSignup'
+import { isFilingHomeOrYear } from '../filing/utils/pages'
 
 const Footer = ({ config, location: { pathname } }) => {
   const [maintenance, setMaintenance] = React.useState(null)
@@ -18,20 +19,24 @@ const Footer = ({ config, location: { pathname } }) => {
   let cname =
     'Footer ' + (maintenance ? 'maintenance ' : '') + hideHeaderFooter(pathname)
 
+  let isFilingPage = isFilingHomeOrYear(location)
+
   return (
     <>
-      <div className='return-to-top'>
-        <button
-          className='button-link'
-          onClick={(e) => {
-            e.preventDefault()
-            e.target.blur()
-            window.scrollTo(0, 0)
-          }}
-        >
-          Return to top
-        </button>
-      </div>
+      {!isFilingPage && (
+        <div className='return-to-top'>
+          <button
+            className='button-link'
+            onClick={(e) => {
+              e.preventDefault()
+              e.target.blur()
+              window.scrollTo(0, 0)
+            }}
+          >
+            Return to top
+          </button>
+        </div>
+      )}
       <div className='mainFooter'>
         <MailingSignupSmall />
       </div>
@@ -136,6 +141,24 @@ const Footer = ({ config, location: { pathname } }) => {
                   href='https://www.consumerfinance.gov/policy-compliance/guidance/implementation-guidance/hmda-implementation/'
                 >
                   Regulatory Resources
+                </a>
+              </li>
+              <li className='usa-identifier__required-links-item'>
+                <a
+                  target='_blank'
+                  className='usa-identifier__required-link usa-link'
+                  href='https://www.govinfo.gov/content/pkg/PLAW-104publ13/html/PLAW-104publ13.htm'
+                >
+                  Paperwork Reduction Act
+                </a>
+              </li>
+              <li className='usa-identifier__required-links-item'>
+                <a
+                  target='_blank'
+                  className='usa-identifier__required-link usa-link'
+                  href='https://www.consumerfinance.gov/privacy/website-privacy-policy/'
+                >
+                  CFPB Notice and Consent
                 </a>
               </li>
               <li className='usa-identifier__required-links-item'>

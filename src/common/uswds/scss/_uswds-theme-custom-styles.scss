@@ -659,17 +659,9 @@ body {
   }
 }
 
-// Custom styles for alert lists
-.usa-site-alert {
-  .usa-alert__body {
-    .usa-list {
-      margin-top: 1em;
-      padding-left: 1.5rem;
-      list-style-type: disc;
-
-      li {
-        margin-bottom: 0.5rem;
-      }
-    }
+@media (min-width: 1024px) {
+  .usa-identifier__required-links-list {
+    -moz-column-count: 4;
+    column-count: 4;
   }
 }

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useLocation, useParams } from 'react-router-dom'
+import { useHistory, useLocation, useParams, matchPath } from 'react-router-dom'
 import ConfirmationModal from './modals/confirmationModal/container.jsx'
 import BrowserBlocker from './common/BrowserBlocker.jsx'
 import Loading from '../common/LoadingIcon.jsx'
 import * as AccessToken from '../common/api/AccessToken.js'
-import { refresh, login } from './utils/keycloak.js'
+import { refresh } from './utils/keycloak.js'
 import { getKeycloak, initKeycloak } from '../common/api/Keycloak.js'
 import isRedirecting from './actions/isRedirecting.js'
 import updateFilingPeriod from './actions/updateFilingPeriod.js'
@@ -15,6 +15,7 @@ import { splitYearQuarter } from './api/utils.js'
 import { PERIODS } from '../deriveConfig'
 import 'normalize.css'
 import './app.css'
+import '../common/Header.css'
 
 import { ShowUserName } from '../common/ShowUserName'
 
@@ -28,41 +29,39 @@ export const AppContainer = ({ config, children }) => {
 
   const [keycloakInitialized, setKeycloakInitialized] = useState(false)
 
-  const { redirecting, statePathname, filingPeriodOptions } = useSelector(
-    (state) => state.app,
-  )
+  const { redirecting, statePathname } = useSelector((state) => state.app)
   const { maintenanceMode, filingAnnouncement } = config
   const selectedPeriod = config.filingPeriodStatus[filingPeriod] || {}
 
-    useEffect(() => {
-      if (maintenanceMode && !isHome()) {
-        history.push('/filing')
-        return
-      }
+  useEffect(() => {
+    if (maintenanceMode && !isHome()) {
+      history.push('/filing')
+      return
+    }
 
-      if (!location.pathname.includes('/profile')) {
-        if (isPeriodReachable(filingPeriod))
-          dispatch(updateFilingPeriod(filingPeriod))
-        else redirectToReachablePeriod(filingPeriod)
-      }
+    if (!location.pathname.includes('/profile')) {
+      if (isPeriodReachable(filingPeriod))
+        dispatch(updateFilingPeriod(filingPeriod))
+      else redirectToReachablePeriod(filingPeriod)
+    }
 
-      const initKeycloakInstance = async () => {
-        try {
-          const keycloak = await initKeycloak()
-          setKeycloakInitialized(true)
+    const initKeycloakInstance = async () => {
+      try {
+        const keycloak = await initKeycloak()
+        setKeycloakInitialized(true)
 
-          if (keycloak.authenticated) {
-            handleAuthenticated(keycloak)
-          } else if (!isHome()) {
-            login(location.pathname)
-          }
-        } catch (error) {
-          console.error('Failed to initialize Keycloak:', error)
+        if (keycloak.authenticated) {
+          handleAuthenticated(keycloak)
+        } else if (!isHome()) {
+          history.push('/filing')
         }
+      } catch (error) {
+        console.error('Failed to initialize Keycloak:', error)
       }
+    }
 
-      initKeycloakInstance()
-    }, [])
+    initKeycloakInstance()
+  }, [])
 
   useEffect(() => {
     if (location.pathname !== statePathname) {
@@ -76,7 +75,7 @@ export const AppContainer = ({ config, children }) => {
       !keycloak.authenticated &&
       !isHome()
     ) {
-      login(location.pathname)
+      history.push('/filing')
     }
   }, [location.pathname, keycloakInitialized])
 
@@ -84,11 +83,6 @@ export const AppContainer = ({ config, children }) => {
     AccessToken.set(keycloak.token)
     refresh()
     if (redirecting) dispatch(isRedirecting(false))
-  }
-
-  const handleAuthError = (error) => {
-    console.error('Keycloak authentication error:', error)
-    if (!isHome()) login(location.pathname)
   }
 
   const isHome = () => {
@@ -138,20 +132,36 @@ export const AppContainer = ({ config, children }) => {
 
   const renderAppContents = () => {
     if (isOldBrowser()) return <BrowserBlocker />
+
     const keycloak = getKeycloak()
-    if (redirecting || (!keycloak?.authenticated && !isHome()))
+    if (redirecting || (!keycloak?.authenticated && !isHome())) {
       return <Loading className='floatingIcon' />
+    }
+
+    // Get the full route match including all parameters
+    const match = matchPath(location.pathname, {
+      path: [
+        '/filing/:filingPeriod/institutions/:institution',
+        '/filing/:filingPeriod/institutions',
+        '/filing/:filingPeriod/:lei',
+        '/filing/:filingPeriod/:lei/:splat',
+      ],
+      exact: false,
+    })
+
+    // Clone children with all necessary props
     return React.Children.map(children, (child) =>
       React.cloneElement(child, {
-        match: { params: { filingPeriod } },
+        match: match || { params: { filingPeriod } }, // Fallback to at least having filingPeriod
         location,
+        history,
         config,
         selectedPeriod,
       }),
     )
   }
 
-  console.log(getKeycloak());
+  console.log(getKeycloak())
 
   return (
     <div className='AppContainer'>
