@@ -24,7 +24,7 @@ const getFilename = (filingPeriod, lei) => `${filingPeriod}-${lei}.txt`
 const years = (YEARS && YEARS.toString().split(',')) || getFilingPeriods(config)
 const { filingPeriodStatus } = config
 
-describe('Filing', function () {
+describe.only('Filing', function () {
   beforeEach(() => {
     cy.get({
       HOST,
@@ -55,11 +55,30 @@ describe('Filing', function () {
 
   years.forEach((filingPeriod, index) => {
     it(`${filingPeriod}`, function () {
-      // Action: List Institutions
-      cy.visit(`${HOST}/filing/${filingPeriod}/institutions`)
+      const status = filingPeriodStatus[filingPeriod]
+
       cy.wait(ACTION_DELAY)
 
-      const status = filingPeriodStatus[filingPeriod]
+      // Select the year using the filing-year
+      cy.get('.filing-year__control').click()
+      // For quarterly filings, we need to select just the year part
+      const yearToSelect = filingPeriod.includes('-')
+        ? filingPeriod.split('-')[0]
+        : filingPeriod
+      cy.get('.filing-year__menu').contains(yearToSelect).click()
+
+      // Only try to select from quarterly selector if the year is not closed
+      if (!status.isClosed && filingPeriod.includes('Q')) {
+        // Select the quarter using the annual-or-quarter
+        cy.get('.annual-or-quarter__control').click()
+        cy.get('.annual-or-quarter__menu')
+          .contains(filingPeriod.split('-')[1])
+          .click()
+      } else if (!status.isClosed) {
+        // For open annual filings, select "Annual"
+        cy.get('.annual-or-quarter__control').click()
+        cy.get('.annual-or-quarter__menu').contains('Annual').click()
+      }
 
       // After Close - Cannot file/refile after Filing period is passed
       if (status.isClosed && status.isPassed) {
@@ -221,8 +240,6 @@ describe('Complete Profile Page', () => {
   let latestFilingPeriod = sortFilingYears(years).slice(-1)[0]
 
   it('Navigate to the profile page and ensures the correct information is visible', () => {
-    cy.log(latestFilingPeriod)
-    cy.visit(`${HOST}/filing/${latestFilingPeriod}/institutions`)
     cy.wait(ACTION_DELAY)
 
     // Complete your profile page checks
@@ -242,7 +259,6 @@ describe('Complete Profile Page', () => {
   })
 
   it('Removes associated institution, banner should popup saying that one associated institution is required to use the filing platform', () => {
-    cy.visit(`${HOST}/filing/${latestFilingPeriod}/institutions`)
     cy.wait(ACTION_DELAY)
 
     cy.get(
@@ -258,7 +274,6 @@ describe('Complete Profile Page', () => {
   })
 
   it('User gets redirected to complete profile page due to no associated LEIs on their account', () => {
-    cy.visit(`${HOST}/filing/${latestFilingPeriod}/institutions`)
     cy.wait(5000)
 
     cy.url().should('contains', '/filing/profile')

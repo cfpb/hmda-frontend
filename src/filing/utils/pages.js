@@ -10,6 +10,8 @@ export const isFilingHomeOrYear = (location) => {
     location.pathname === '/filing' ||
     location.pathname === '/filing/' ||
     location.pathname.match(/^\/filing\/\d{4}$/) ||
-    location.pathname.match(/^\/filing\/\d{4}\/$/)
+    location.pathname.match(/^\/filing\/\d{4}\/$/) ||
+    location.pathname.match(/^\/filing\/\d{4}-Q[1-3]$/) ||
+    location.pathname.match(/^\/filing\/\d{4}-Q[1-3]\/$/)
   )
 }

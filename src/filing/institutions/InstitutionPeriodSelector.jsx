@@ -31,6 +31,8 @@ const InstitutionPeriodSelector = ({
           dispatch(updateFilingPeriod(opt.value))
           history.replace(pathname.replace(filingPeriod, opt.value))
         }}
+        className='filing-year-selector'
+        classNamePrefix='filing-year'
       />
       {showQuarterMenu(filingYear, filingPeriodOptions) && (
         <Select
@@ -44,6 +46,7 @@ const InstitutionPeriodSelector = ({
             history.replace(pathname.replace(filingPeriod, period))
           }}
           isDisabled={quarterOpts.length < 2}
+          classNamePrefix='annual-or-quarter'
         />
       )}
     </div>
