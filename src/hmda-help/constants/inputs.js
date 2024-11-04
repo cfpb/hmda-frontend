@@ -82,6 +82,7 @@ const requiredInputs = [
     name: 'quarterlyFiler',
     value: '',
     placeholder: '',
+    disabled: true,
     type: 'select',
     options: [
       { id: 'false', name: 'false', value: false },
