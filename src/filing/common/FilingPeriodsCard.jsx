@@ -2,7 +2,47 @@ import React from 'react'
 import { format, parse, isWithinInterval } from 'date-fns'
 import './FilingPeriodsCard.css'
 
-const FilingPeriodsCard = ({ timedGuards }) => {
+/**
+ * A React component that displays current and upcoming filing periods for HMDA data submissions,
+ * organized by year with both quarterly and annual filing windows.
+ * 
+ * @component
+ * @param {Object} timedGuards - An object containing filing period information organized by year (comes from config)
+ * @param {string} testDate - Optional ISO date string (YYYY-MM-DD) for testing different dates
+ * 
+ * @example
+ * // timedGuards structure
+ * const timedGuards = {
+ *   2024: {
+ *    Q1: '04/01/2024 - 05/30/2024 - 06/30/2024',
+ *    Q2: '07/01/2024 - 08/29/2024 - 09/30/2024',
+ *    Q3: '10/01/2024 - 11/29/2024 - 12/31/2024',
+ *    annual: '01/01/2025 - 03/03/2025 - 12/31/2027',
+ *  },
+ * }
+ * 
+ * // Basic usage
+ * <FilingPeriodsCard timedGuards={timedGuards} />
+ * 
+ * // With test date
+ * <FilingPeriodsCard timedGuards={timedGuards} testDate="2024-04-01" />
+ * 
+ * @returns {JSX.Element} A card displaying filing periods grouped by year
+ * 
+ * @description
+ * Features:
+ * - Displays up to 5 filing periods (current + 4 future periods)
+ * - Groups filing periods by year (quarterly and annual)
+ * - Highlights active filing period
+ * - Shows Filing Instructions Guide (FIG) links when available
+ * - FIG becomes available in Fall of the previous year
+ * 
+ * @notes
+ * - Annual filing periods belong to the next year's filing period
+ * - Only shows periods that are either active or in the future
+ */
+
+const FilingPeriodsCard = ({ timedGuards, testDate }) => {
   const parseDate = (dateString) => {
     return parse(dateString.split(' ')[0], 'MM/dd/yyyy', new Date())
   }
@@ -13,7 +53,10 @@ const FilingPeriodsCard = ({ timedGuards }) => {
   }
 
   const isActivePeriod = (startDate, endDate) => {
-    const now = new Date()
+    // Parse the test date to ensure consistent format
+    const now = testDate
+      ? parse(testDate, 'yyyy-MM-dd', new Date())
+      : new Date()
     const start = parseDate(startDate)
     const end = parseDate(endDate)
 
@@ -22,6 +65,9 @@ const FilingPeriodsCard = ({ timedGuards }) => {
 
   const getCurrentAndFuturePeriods = () => {
     const periods = []
+    const now = testDate
+      ? parse(testDate, 'yyyy-MM-dd', new Date())
+      : new Date()
 
     Object.entries(timedGuards)
       .sort(([yearA], [yearB]) => yearA.localeCompare(yearB))
@@ -29,29 +75,37 @@ const FilingPeriodsCard = ({ timedGuards }) => {
         // Handle Annual Filing - note that it belongs to the next year's filing period
         if (yearData.annual) {
           const [start, end] = yearData.annual.split(' - ')
-          periods.push({
-            type: 'ANNUAL',
-            year: year, // This is the data year
-            displayYear: (parseInt(year) + 1).toString(), // This is the filing period year
-            startDate: start,
-            endDate: end,
-            displayPeriod: `${formatDisplayDate(start)} - ${formatDisplayDate(end)}`,
-          })
+          const startDate = parseDate(start)
+          // Only add if the start date is in the future or if period is active
+          if (startDate >= now || isActivePeriod(start, end)) {
+            periods.push({
+              type: 'ANNUAL',
+              year: year,
+              displayYear: (parseInt(year) + 1).toString(),
+              startDate: start,
+              endDate: end,
+              displayPeriod: `${formatDisplayDate(start)} - ${formatDisplayDate(end)}`,
+            })
+          }
         }
 
         // Handle Quarterly Filings
         ;['Q1', 'Q2', 'Q3'].forEach((quarter) => {
           if (yearData[quarter]) {
             const [start, end] = yearData[quarter].split(' - ')
-            periods.push({
-              type: 'QUARTERLY',
-              year: year,
-              displayYear: year,
-              quarter: quarter,
-              startDate: start,
-              endDate: end,
-              displayPeriod: `${formatDisplayDate(start)} - ${formatDisplayDate(end)}`,
-            })
+            const startDate = parseDate(start)
+            // Only add if the start date is in the future or if period is active
+            if (startDate >= now || isActivePeriod(start, end)) {
+              periods.push({
+                type: 'QUARTERLY',
+                year: year,
+                displayYear: year,
+                quarter: quarter,
+                startDate: start,
+                endDate: end,
+                displayPeriod: `${formatDisplayDate(start)} - ${formatDisplayDate(end)}`,
+              })
+            }
           }
         })
       })
@@ -89,6 +143,16 @@ const FilingPeriodsCard = ({ timedGuards }) => {
     )
   }
 
+  // Following FIG gets released in August - 2026 FIG -> August 2025
+  const isFIGAvailable = (figYear) => {
+    const now = testDate
+      ? parse(testDate, 'yyyy-MM-dd', new Date())
+      : new Date()
+    const figReleaseDate = new Date(parseInt(figYear) - 1, 7, 15) // August 15th of previous year (month is 0-based)
+
+    return now >= figReleaseDate
+  }
+
   const periods = getCurrentAndFuturePeriods()
   const yearGroups = organizeByYear(periods)
 
@@ -97,13 +161,20 @@ const FilingPeriodsCard = ({ timedGuards }) => {
       {yearGroups.map(([displayYear, yearPeriods], groupIndex) => (
         <div key={displayYear} className='year-section'>
           <h2 className='filing-periods-title'>{displayYear} Filing Periods</h2>
-          <a
-            href={`/documentation/fig/${displayYear}/overview`}
-            className='filing-guide-link'
-          >
-            {displayYear} Filing Instructions Guide{' '}
-            <span className='filing-periods-right-carrot'>▶</span>
-          </a>
+          {isFIGAvailable(displayYear) ? (
+            <a
+              href={`/documentation/fig/${displayYear}/overview`}
+              className='filing-guide-link'
+            >
+              {displayYear} Filing Instructions Guide{' '}
+              <span className='filing-periods-right-carrot'>▶</span>
+            </a>
+          ) : (
+            <span className='filing-guide-link unavailable'>
+              {displayYear} FIG will be available Fall of{' '}
+              {parseInt(displayYear) - 1}
+            </span>
+          )}
 
           <div className='periods-container'>
             {yearPeriods.map((period, periodIndex) => (

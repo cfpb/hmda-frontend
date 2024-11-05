@@ -161,8 +161,6 @@ export const AppContainer = ({ config, children }) => {
     )
   }
 
-  console.log(getKeycloak())
-
   return (
     <div className='AppContainer'>
       <a className='skipnav' href='#main-content'>

@@ -1,8 +1,12 @@
 import React, { lazy } from 'react'
-import { login, register, registerLoginGov } from '../utils/keycloak.js'
+import { login, register } from '../utils/keycloak.js'
 import FilingPeriodsCard from './FilingPeriodsCard'
 import LoginGovPromo from './LoginGovPromo'
 import loginGovWhiteLogo from '../images/login-gov-logo-white.svg'
+
+// Used for testing future filing periods
+import { testTimedGuards } from '../utils/testTimedGuards.js'
+
 import './LoginHeader.css'
 
 const Alert = lazy(() => import('../../common/Alert.jsx'))
@@ -52,14 +56,17 @@ const LoginHeader = ({
             disabled={buttonsDisabled}
             title={maintenanceTitle || 'Login'}
           >
-            Sign in with{' '}
+            Log in
+            {/* Delete "Log in" text and uncomment the below code on December 27th, 2024 */}
+            {/* Sign in with{' '}
             <img
               src={loginGovWhiteLogo}
               className='login-gov-icon-button'
               alt='Login.Gov Logo (white)'
-            />
+            /> */}
           </button>
           <span className='text-small'>or</span>
+          {/* Remove the "Create an account" button on December 27th, 2024 */}
           <button
             className='button register-account'
             onClick={(e) => {
@@ -78,6 +85,10 @@ const LoginHeader = ({
       </div>
       <div className='filing-periods-container'>
         <FilingPeriodsCard timedGuards={config.timedGuards} />
+        {/* <FilingPeriodsCard
+          timedGuards={testTimedGuards}
+          testDate='2025-04-01'
+        /> */}
       </div>
     </div>
   )

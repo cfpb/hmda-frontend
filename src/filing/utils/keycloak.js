@@ -5,13 +5,6 @@ import isRedirecting from '../actions/isRedirecting.js'
 import { getKeycloak } from '../../common/api/Keycloak'
 import * as AccessToken from '../../common/api/AccessToken.js'
 
-const getLoginGovDomain = () => {
-  if (import.meta.env.MODE === 'development') {
-    return 'https://idp.int.identitysandbox.gov'
-  }
-  return 'https://secure.login.gov'
-}
-
 const login = (path) => {
   const keycloak = getKeycloak()
   if (!keycloak) {
@@ -87,31 +80,6 @@ const register = () => {
   })
 }
 
-const registerLoginGov = () => {
-  const keycloak = getKeycloak()
-  if (!keycloak) return error('keycloak needs to be set on app initialization')
-  
-  const store = getStore()
-  store.dispatch(isRedirecting(true))
-
-  const loginGovDomain = getLoginGovDomain()
-  const redirectUri = `${location.origin}/filing/${store.getState().app.filingPeriod}/institutions`
-  
-  // Construct the state parameter to include necessary information
-  const state = encodeURIComponent(JSON.stringify({
-    keycloakUrl: keycloak.authServerUrl,
-    realm: keycloak.realm,
-    clientId: keycloak.clientId,
-    redirectUri: redirectUri
-  }))
-
-  // Construct the Login.gov registration URL
-  const registrationUrl = `${loginGovDomain}/sign_up/enter_email?state=${state}`
-
-  // Redirect to Login.gov registration page
-  window.location.href = registrationUrl
-}
-
 const logout = (queryString = '') => {
   const keycloak = getKeycloak()
   if (!keycloak) return error('keycloak needs to be set on app initialization')
@@ -122,10 +90,9 @@ const logout = (queryString = '') => {
       queryString,
   )
 
-  // Construct the logout URL manually
   const logoutUrl =
     `${keycloak.authServerUrl}/realms/${keycloak.realm}/protocol/openid-connect/logout` +
-    `?id_token_hint=${keycloak.idToken}` +
+    `?client_id=${keycloak.clientId}` + // Use client_id instead of id_token_hint
     `&post_logout_redirect_uri=${postLogoutRedirectUri}`
 
   // Perform logout and redirect
@@ -133,4 +100,4 @@ const logout = (queryString = '') => {
   window.location.href = logoutUrl
 }
 
-export { register, registerLoginGov, login, logout, refresh, forceRefreshToken }
+export { register, login, logout, refresh, forceRefreshToken }

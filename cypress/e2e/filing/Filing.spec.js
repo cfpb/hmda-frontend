@@ -24,7 +24,7 @@ const getFilename = (filingPeriod, lei) => `${filingPeriod}-${lei}.txt`
 const years = (YEARS && YEARS.toString().split(',')) || getFilingPeriods(config)
 const { filingPeriodStatus } = config
 
-describe.only('Filing', function () {
+describe('Filing', function () {
   beforeEach(() => {
     cy.get({
       HOST,
@@ -236,8 +236,6 @@ describe('Complete Profile Page', () => {
 
     cy.viewport(1600, 900)
   })
-
-  let latestFilingPeriod = sortFilingYears(years).slice(-1)[0]
 
   it('Navigate to the profile page and ensures the correct information is visible', () => {
     cy.wait(ACTION_DELAY)

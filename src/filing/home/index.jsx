@@ -7,6 +7,7 @@ import LoginHeader from '../common/LoginHeader.jsx'
 const Home = ({ maintenanceMode, config }) => {
   const cname = 'FilingHome' + (maintenanceMode ? ' maintenance' : '')
   const sessionExpired = window.location.href.indexOf('session=expired') > -1
+  console.log(sessionExpired)
   const toolAnnouncement = useToolAnnouncement({
     toolName: 'filing',
     config: config,
