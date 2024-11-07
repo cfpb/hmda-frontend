@@ -84,7 +84,7 @@
     "@vitejs/plugin-react": "^4.1.0",
     "cypress": "13.3.1",
     "cypress-file-upload": "5.0.8",
-    "cypress-keycloak": "2.0.1",
+    "cypress-keycloak": "2.0.2",
     "dotenv": "^16.3.1",
     "ejs": "3.1.10",
     "enzyme": "3.11.0",
