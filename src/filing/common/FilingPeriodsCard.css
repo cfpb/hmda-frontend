@@ -59,6 +59,7 @@
   display: flex;
   align-items: center;
   padding: 15px 0;
+  position: relative;
 }
 
 .period-item.active {
@@ -67,6 +68,58 @@
   padding: 15px 26px;
   font-weight: 500;
   font-family: 'Helvetica Neue', 'Helvetica', 'Roboto', 'Arial', sans-serif;
+}
+
+.period-info {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+}
+
+.info-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tooltip-content {
+  text-align: left;
+  min-width: 200px;
+  padding: 12px 12px;
+}
+
+.tooltip-link {
+  color: var(--hmda-blue);
+  text-decoration: none;
+  display: block;
+  font-size: 13px;
+  color: white;
+}
+
+.tooltip-link:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.tooltip-link:visited {
+  color: white;
+}
+
+.__react_component_tooltip {
+  padding: 0px 0px !important;
+  opacity: 100 !important;
+  background: #0071bc !important;
+}
+
+.__react_component_tooltip.place-left::after {
+  background-color: #0071bc !important;
+  border-left-color: #0071bc !important;
+}
+
+.__react_component_tooltip.place-top::after {
+  background-color: #0071bc !important;
+  border-left-color: #0071bc !important;
 }
 
 /* Add this to specifically target the date text when the item is active */
@@ -96,7 +149,7 @@
 }
 
 .period-tag.q2 {
-  background-color: #BA5817;
+  background-color: #ba5817;
 }
 
 .period-tag.q3 {
@@ -157,6 +210,19 @@
   .period-item.active {
     margin: 0 -15px;
     padding: 16px 15px;
+  }
+
+  .period-info {
+    padding-left: 8px;
+  }
+
+  .tooltip-link {
+    font-size: 11px;
+  }
+
+  .info-icon-wrapper svg {
+    height: 17px !important;
+    width: 17px !important;
   }
 
   .period-tag {

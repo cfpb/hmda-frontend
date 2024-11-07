@@ -16,14 +16,20 @@ const LoginGovPromo = () => {
       <div className='login-gov-content'>
         <ul>
           <li>
-            <span className='login-gov-bold-font'>Beginning January 1, 2025</span>, users logging into the HMDA Platform to
-            file their 2024 annual data will need to login with Login.gov. Users
-            will no longer have the option to sign in using the existing
-            processes.
+            <span className='login-gov-bold-font'>
+              Beginning January 1, 2025
+            </span>
+            , users logging into the HMDA Platform to file their 2024 annual
+            data will need to login with Login.gov. Users will no longer have
+            the option to sign in using the existing processes.
           </li>
           <li>
             For assistance on setting up your Login.gov account please utilize
-            the <a href='#supporting-context'>Quick Reference Guide</a>.
+            the{' '}
+            <a href='/documentation/faq/login-gov-quick-reference'>
+              Quick Reference Guide
+            </a>
+            .
           </li>
           <li>
             Please note that HMDA Help cannot assist with Login.gov technical

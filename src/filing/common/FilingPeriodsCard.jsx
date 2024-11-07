@@ -1,5 +1,7 @@
 import React from 'react'
 import { format, parse, isWithinInterval } from 'date-fns'
+import Icon from '../../common/uswds/components/Icon'
+import Tooltip from '../../common/Tooltip'
 import './FilingPeriodsCard.css'
 
 /**
@@ -42,7 +44,29 @@ import './FilingPeriodsCard.css'
  * - Only shows periods that are either active or in the future
  */
 
+// Determine viewport and make adjustments for the Tooltip position
+const useViewport = () => {
+  const [windowWidth, setWindowWidth] = React.useState(window.innerWidth)
+
+  React.useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowWidth(window.innerWidth)
+    }
+
+    window.addEventListener('resize', handleWindowResize)
+    handleWindowResize()
+    
+    return () => window.removeEventListener('resize', handleWindowResize)
+  }, [])
+
+  return {
+    tooltipPosition: windowWidth <= 1024 ? 'left' : 'top'
+  }
+}
+
 const FilingPeriodsCard = ({ timedGuards, testDate }) => {
+  const { tooltipPosition } = useViewport()
+
   const parseDate = (dateString) => {
     return parse(dateString.split(' ')[0], 'MM/dd/yyyy', new Date())
   }
@@ -171,42 +195,79 @@ const FilingPeriodsCard = ({ timedGuards, testDate }) => {
             </a>
           ) : (
             <span className='filing-guide-link unavailable'>
-              {displayYear} FIG will be available Fall of{' '}
+              {displayYear} FIG will be available Fall{' '}
               {parseInt(displayYear) - 1}
             </span>
           )}
 
           <div className='periods-container'>
-            {yearPeriods.map((period, periodIndex) => (
-              <React.Fragment
-                key={`${period.year}-${period.type}-${period.quarter || 'annual'}`}
-              >
-                {periodIndex === 0 && <div className='period-divider' />}
-                <div
-                  className={`period-item ${
-                    isActivePeriod(period.startDate, period.endDate)
-                      ? 'active'
-                      : ''
-                  }`}
+            {yearPeriods.map((period, periodIndex) => {
+              const isActive = isActivePeriod(period.startDate, period.endDate)
+              const isQuarterly = period.type === 'QUARTERLY'
+              const showInfo = isActive && isQuarterly
+
+              return (
+                <React.Fragment
+                  key={`${period.year}-${period.type}-${period.quarter || 'annual'}`}
                 >
-                  <span
-                    className={`period-tag ${
-                      period.type === 'ANNUAL'
-                        ? 'annual'
-                        : period.quarter.toLowerCase()
-                    }`}
-                  >
-                    {period.type === 'ANNUAL'
-                      ? `${period.year} ANNUAL`
-                      : period.quarter}
-                  </span>
-                  <span className='period-date'>{period.displayPeriod}</span>
-                </div>
-                {periodIndex < yearPeriods.length - 1 && (
-                  <div className='period-divider' />
-                )}
-              </React.Fragment>
-            ))}
+                  {periodIndex === 0 && <div className='period-divider' />}
+                  <div className={`period-item ${isActive ? 'active' : ''}`}>
+                    <span
+                      className={`period-tag ${
+                        period.type === 'ANNUAL'
+                          ? 'annual'
+                          : period.quarter.toLowerCase()
+                      }`}
+                    >
+                      {period.type === 'ANNUAL'
+                        ? `${period.year} ANNUAL`
+                        : period.quarter}
+                    </span>
+                    <span className='period-date'>{period.displayPeriod}</span>
+                    {showInfo && (
+                      <div className='period-info'>
+                        <span
+                          data-tip
+                          data-for={`period-info-${period.year}-${period.quarter}`}
+                          className='info-icon-wrapper'
+                        >
+                          <Icon
+                            iconName='info'
+                            styleIcon={{
+                              height: '20px',
+                              width: '20px',
+                              color: '#666666',
+                            }}
+                          />
+                        </span>
+                        <Tooltip
+                          id={`period-info-${period.year}-${period.quarter}`}
+                          place={tooltipPosition}
+                          effect='solid'
+                          delayHide={300}
+                          clickable={true}
+                          globalEventOff='click'
+                        >
+                          <div className='tooltip-content'>
+                            <a
+                              href='/documentation/faq/data-browser-graphs-faq#what-are-the-requirements-to-become-a-quarterly-filer'
+                              className='tooltip-link'
+                              target='_blank'
+                              rel='noopener noreferrer'
+                            >
+                              Learn more about quarterly filers
+                            </a>
+                          </div>
+                        </Tooltip>
+                      </div>
+                    )}
+                  </div>
+                  {periodIndex < yearPeriods.length - 1 && (
+                    <div className='period-divider' />
+                  )}
+                </React.Fragment>
+              )
+            })}
           </div>
 
           {groupIndex < yearGroups.length - 1 && (
