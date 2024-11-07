@@ -2,6 +2,15 @@
   "name": "dev",
   "announcement": [
     {
+      "heading": "Signing in using Login.gov will be mandatory for the 2025 filing season",
+      "message": "When logging into the HMDA Platform to file their 2024 annual data, users will need to login with Login.gov using MFA. Users will no longer have the option to sign in using the existing process. For assistance on setting up your Login.gov account please utilize the ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/documentation/faq/login-gov-quick-reference",
+        "text": "Quick Reference Guide."
+      }
+    },
+    {
       "heading": "2025 Online Filing Instructions Guides Released",
       "message": "The Bureau has released the 2025 Online FIG and Online Supplemental Guide for Quarterly Filers for 2025, which are available ",
       "type": "info",
@@ -18,11 +27,6 @@
         "url": "https://ffiec.cfpb.gov/data-browser/graphs/quarterly/",
         "text": "here."
       }
-    },
-    {
-      "heading": "Signing in using Login.gov will be mandatory for the 2024 filing season",
-      "message": "When logging into the HMDA Platform to file their 2024 annual data, users will need to login with Login.gov using MFA. Users will no longer have the option to sign in using the existing process.",
-      "type": "info"
     }
   ],
   "publicationReleaseYear": "2023", 
