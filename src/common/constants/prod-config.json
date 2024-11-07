@@ -3,7 +3,7 @@
   "announcement": [
     {
       "heading": "Signing in using Login.gov will be mandatory for the 2025 filing season",
-      "message": "When logging into the HMDA Platform to file their 2024 annual data, users will need to login with Login.gov using MFA. Users will no longer have the option to sign in using the existing process. For assistance on setting up your Login.gov account please utilize the ",
+      "message": "Starting January 1, 2025, all users of the HMDA platform must switch to a Login.gov account, which uses multifactor authentication. Users will no longer have the option to sign in using the current process. For help on setting up your Login.gov account please utilize this ",
       "type": "info",
       "link": {
         "url": "https://ffiec.cfpb.gov/documentation/faq/login-gov-quick-reference",
