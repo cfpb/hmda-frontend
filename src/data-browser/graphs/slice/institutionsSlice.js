@@ -4,7 +4,6 @@ import { QuarterlyFilerInstitutionApiUrl } from '../constants'
 
 const initialState = {
   sort: [
-    { id: 'agency', desc: false },
     { id: 'name', desc: false },
   ],
 }
