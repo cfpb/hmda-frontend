@@ -79,9 +79,7 @@ const LoginHeader = ({
             Create an account
           </button>
         </div>
-        <div className='login-banner'>
-          <LoginGovPromo />
-        </div>
+        <LoginGovPromo />
       </div>
       <div className='filing-periods-container'>
         <FilingPeriodsCard timedGuards={config.timedGuards} />

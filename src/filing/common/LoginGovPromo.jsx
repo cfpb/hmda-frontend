@@ -24,6 +24,10 @@ const LoginGovPromo = () => {
             the option to sign in using the existing processes.
           </li>
           <li>
+            The login.gov account created must be associated with a business
+            email address of your institution.
+          </li>
+          <li>
             For assistance on setting up your Login.gov account please utilize
             the{' '}
             <a href='/documentation/faq/login-gov-quick-reference'>

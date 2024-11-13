@@ -74,11 +74,6 @@
   margin: 3em 0 0 0;
 }
 
-.login-banner {
-  grid-column: 1 / -1;
-  margin-top: 2rem;
-}
-
 @media screen and (max-width: 1024px) {
   .login-header-container {
     grid-template-columns: 1fr;
@@ -109,10 +104,6 @@
     width: 100%;
     text-align: center;
     justify-content: center;
-  }
-
-  .login-banner {
-    margin-top: 0rem;
   }
 
   .login-gov-promo {
