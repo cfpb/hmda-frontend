@@ -1,0 +1,241 @@
+.filing-periods-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow:
+    rgba(149, 157, 165, 0.3) 0px -8px 16px,
+    rgba(149, 157, 165, 0.558) 0px 10px 16px;
+  padding: 16px 26px 0 26px;
+  margin: 0 auto;
+}
+
+.filing-periods-card .filing-periods-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 0 16px 0;
+}
+
+.filing-guide-link {
+  color: #1f498f;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.filing-guide-link:hover {
+  color: #1f498f;
+  text-decoration: underline;
+}
+
+.filing-guide-link:visited {
+  color: #1f498f;
+}
+
+.filing-periods-right-carrot {
+  color: #1f498f;
+  font-size: 11px;
+}
+
+.filing-guide-link.unavailable {
+  color: #666666;
+  cursor: default;
+}
+
+.filing-guide-link.unavailable:hover {
+  text-decoration: none;
+}
+
+.periods-container {
+  position: relative;
+}
+
+.period-divider {
+  height: 1px;
+  background-color: #e5e5e5;
+  margin: 0 -26px;
+}
+
+.period-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  position: relative;
+}
+
+.period-item.active {
+  background-color: #f5f5f5;
+  margin: 0 -26px;
+  padding: 15px 26px;
+  font-weight: 500;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Roboto', 'Arial', sans-serif;
+}
+
+.period-info {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+}
+
+.info-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tooltip-content {
+  text-align: left;
+  min-width: 200px;
+  padding: 12px 12px;
+}
+
+.tooltip-link {
+  color: var(--hmda-blue);
+  text-decoration: none;
+  display: block;
+  font-size: 13px;
+  color: white;
+}
+
+.tooltip-link:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.tooltip-link:visited {
+  color: white;
+}
+
+.__react_component_tooltip {
+  padding: 0px 0px !important;
+  opacity: 100 !important;
+  background: #0071bc !important;
+}
+
+.__react_component_tooltip.place-left::after {
+  background-color: #0071bc !important;
+  border-left-color: #0071bc !important;
+}
+
+.__react_component_tooltip.place-top::after {
+  background-color: #0071bc !important;
+  border-left-color: #0071bc !important;
+}
+
+/* Add this to specifically target the date text when the item is active */
+.period-item.active .period-date {
+  color: #000000;
+}
+
+.period-tag {
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  padding: 3px 10px;
+  border-radius: 4px;
+  text-align: center;
+  margin-right: 12px;
+  font-weight: 500;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Roboto', 'Arial', sans-serif;
+}
+
+.period-tag.annual {
+  background-color: #1f498f;
+  min-width: 130px;
+}
+
+.period-tag.q1 {
+  background-color: #328539;
+}
+
+.period-tag.q2 {
+  background-color: #ba5817;
+}
+
+.period-tag.q3 {
+  background-color: #68379b;
+}
+
+.period-date {
+  color: #666666;
+  font-size: 16px;
+}
+
+.year-section {
+  margin-top: 20px;
+}
+
+.year-section:first-child {
+  margin-top: 4px;
+}
+
+.year-section-divider {
+  height: 1px;
+  background-color: #e5e5e5;
+  margin: 0 -32px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .filing-periods-card {
+    padding: 16px 25px 0 25px;
+  }
+
+  .period-divider {
+    margin: 0 -25px;
+  }
+
+  .period-item.active {
+    margin: 0 -25px;
+    padding: 16px 25px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .filing-periods-card {
+    padding: 16px 15px 0 15px;
+  }
+
+  .filing-periods-card .filing-periods-title {
+    font-size: 20px;
+  }
+
+  .filing-guide-link {
+    font-size: 14px;
+  }
+
+  .period-divider {
+    margin: 0 -25px;
+  }
+
+  .period-item.active {
+    margin: 0 -15px;
+    padding: 16px 15px;
+  }
+
+  .period-info {
+    padding-left: 8px;
+  }
+
+  .tooltip-link {
+    font-size: 11px;
+  }
+
+  .info-icon-wrapper svg {
+    height: 17px !important;
+    width: 17px !important;
+  }
+
+  .period-tag {
+    font-size: 13px;
+    margin-right: 8px;
+    padding: 3px 6px;
+  }
+
+  .period-tag.annual {
+    min-width: 100px;
+  }
+
+  .period-date {
+    font-size: 13px;
+  }
+}

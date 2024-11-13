@@ -38,6 +38,8 @@ Cypress.Commands.add('hmdaLogin', (app) => {
   const { USERNAME, PASSWORD, AUTH_BASE_URL } = Cypress.env()
   cy.visit(`${AUTH_BASE_URL}${app}`)
 
+  cy.wait(1000)
+
   if (app.match('filing')) cy.get('button[title="Login"').click()
 
   cy.get('#username').type(USERNAME)
