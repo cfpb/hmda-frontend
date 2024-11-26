@@ -49,7 +49,7 @@ const NationalAggregate = (props) => {
             <a
               target='_blank'
               rel='noopener noreferrer'
-              href={`/documentation/publications/aggregate-disclosure-reports/ad-changes`}
+              href={`/documentation/publications/ad-changes`}
             >
               A&D Report Changes
             </a>{' '}
