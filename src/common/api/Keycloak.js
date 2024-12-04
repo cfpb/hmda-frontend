@@ -15,16 +15,13 @@ export const getKeycloak = () => {
 
 export const initKeycloak = (overrides) => {
   if (isInitialized) {
-    console.log('Keycloak already initialized, returning existing instance')
     return Promise.resolve(keycloak)
   }
+
   if (initPromise) {
-    console.log(
-      'Keycloak initialization in progress, returning existing promise',
-    )
     return initPromise
   }
-  console.log('Initializing Keycloak')
+
   if (!keycloak) {
     if (import.meta.env.VITE_ENVIRONMENT === 'CI') {
       keycloak = mockKeycloak(overrides)
@@ -34,6 +31,7 @@ export const initKeycloak = (overrides) => {
       keycloak = new Keycloak('/keycloak.json')
     }
   }
+
   initPromise = keycloak
     .init({ pkceMethod: 'S256' })
     .then((authenticated) => {
@@ -47,6 +45,7 @@ export const initKeycloak = (overrides) => {
       initPromise = null
       throw error
     })
+
   return initPromise
 }
 
