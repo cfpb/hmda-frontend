@@ -6,6 +6,7 @@ import Footer from './common/Footer'
 import Beta, { isBeta } from './common/Beta'
 import makeAsyncComponent from './common/makeAsyncComponent.jsx'
 import { useEnvironmentConfig } from './common/useEnvironmentConfig'
+import ScrollToTop from './common/ScrollToTop'
 import {
   betaLinks,
   defaultLinks,
@@ -77,27 +78,29 @@ const App = () => {
 
   return (
     <AppContext.Provider value={{ config }}>
-      {showCommonHeader && (
-        <Route
-          path='/'
-          render={(props) => <Header links={headerLinks} {...props} />}
-        />
-      )}
-      {showBetaBanner && <Beta />}
-      <div id='mainWrapper' style={mainWrapperStyles}>
-        <Switch>
-          <Route exact path='/' component={Homepage} />
-          <Route path='/data-browser' component={DataBrowser} />
-          <Route path='/documentation' component={Documentation} />
-          <Route path='/tools' component={Tools} />
-          <Route path='/data-publication' component={DataPublication} />
-          <Route path='/filing' component={Filing} />
-          <Route path='/hmda-help' component={HmdaHelp} />
-          <Route path='/updates-notes' component={UpdatesNotes} />
-          <Route component={NotFound} />
-        </Switch>
-      </div>
-      {showFooter && <Footer config={config} />}
+      <ScrollToTop>
+        {showCommonHeader && (
+          <Route
+            path='/'
+            render={(props) => <Header links={headerLinks} {...props} />}
+          />
+        )}
+        {showBetaBanner && <Beta />}
+        <div id='mainWrapper' style={mainWrapperStyles}>
+          <Switch>
+            <Route exact path='/' component={Homepage} />
+            <Route path='/data-browser' component={DataBrowser} />
+            <Route path='/documentation' component={Documentation} />
+            <Route path='/tools' component={Tools} />
+            <Route path='/data-publication' component={DataPublication} />
+            <Route path='/filing' component={Filing} />
+            <Route path='/hmda-help' component={HmdaHelp} />
+            <Route path='/updates-notes' component={UpdatesNotes} />
+            <Route component={NotFound} />
+          </Switch>
+        </div>
+        {showFooter && <Footer config={config} />}
+      </ScrollToTop>
     </AppContext.Provider>
   )
 }
