@@ -2,21 +2,21 @@
   "name": "prod",
   "announcement": [
     {
+      "heading": "Signing in using Login.gov will be mandatory for the 2025 filing season",
+      "message": "Starting January 1, 2025, all users of the HMDA platform must switch to a Login.gov account, which uses multifactor authentication. Users will no longer have the option to sign in using the current process. For help on setting up your Login.gov account please utilize this ",
+      "type": "info",
+      "link": {
+        "url": "https://ffiec.cfpb.gov/documentation/faq/login-gov-quick-reference",
+        "text": "Quick Reference Guide."
+      }
+    },
+    {
       "heading": "2025 Online Filing Instructions Guides Released",
       "message": "The Bureau has released the 2025 Online FIG and Online Supplemental Guide for Quarterly Filers for 2025, which are available ",
       "type": "info",
       "link": {
         "url": "https://ffiec.cfpb.gov/documentation/faq/data-collection-timelines#filing-instructions-guide-fig",
         "text": "here."
-      }
-    },
-    {
-      "heading": "2023 Data Publication Release",
-      "message": "On July 11, 2024, the 2023 national loan-level datasets, disclosure reports, and MSA/MD aggregate reports were released and can be accessed via the Data Publication page. Users can now explore 2023 HMDA data using the Data Browser's dataset filtering tool or maps. ",
-      "type": "info",
-      "link": {
-        "url": "https://ffiec.cfpb.gov/data-publication/",
-        "text": "Data Publication page."
       }
     },
     {
@@ -27,11 +27,6 @@
         "url": "https://ffiec.cfpb.gov/data-browser/graphs/quarterly/",
         "text": "here."
       }
-    },
-    {
-      "heading": "Signing in using Login.gov will be mandatory for the 2025 filing season",
-      "message": "When logging into the HMDA Platform to file their 2024 annual data, users will need to login with Login.gov using MFA. Users will no longer have the option to sign in using the existing process.",
-      "type": "info"
     }
   ],
   "publicationReleaseYear": "2023",
