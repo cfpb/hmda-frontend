@@ -1,7 +1,15 @@
 .Filing.App {
   max-width: 100%;
   padding: 0;
-  margin: 0 0 275px; 
+  margin: 0 0 0; 
+}
+
+/* Add padding only for routes after login */
+.Filing.App .Institutions,
+.Filing.App .institutions-details,
+.Filing.App .SubmissionContainer,
+.Filing.App .profile-container {
+  padding-bottom: 150px;
 }
 
 .Filing.App hr {
@@ -11,10 +19,6 @@
 .Filing.App ul {
   list-style-type: none;
   padding-left: 0;
-}
-
-.Filing.App #main-content {
-  padding-bottom: 150px;
 }
 
 .Filing.App .Beta {

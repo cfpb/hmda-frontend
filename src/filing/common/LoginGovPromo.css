@@ -1,0 +1,95 @@
+.login-gov-promo {
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  margin: 3.5rem 0 3rem 0;
+}
+
+.login-gov-header {
+  background-color: #112e51;
+  color: white;
+  padding: 1rem 1.5rem;
+  font-size: 1.7rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.login-gov-icon {
+  width: 120px;
+  height: 28px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.login-gov-content {
+  background-color: #f0f0f0;
+  padding: 1.5rem;
+}
+
+.login-gov-content ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.login-gov-content li {
+  color: #1b1b1b;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.login-gov-bold-font {
+  font-family: SourceSansProBold;
+  font-weight: bold !important;
+}
+
+.login-gov-content li:last-child {
+  margin-bottom: 0;
+}
+
+.login-gov-content li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #1b1b1b;
+}
+
+.login-gov-content a {
+  color: #0071bc;
+  text-decoration: none;
+}
+
+.login-gov-content a:hover {
+  text-decoration: underline;
+}
+
+.login-gov-content a:visited {
+  color: #0071bc;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+  .login-gov-content {
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .login-gov-header {
+    font-size: 1.6rem;
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem 2rem;
+  }
+
+  .login-gov-icon {
+    width: 120px;
+    margin-top: 0;
+  }
+}

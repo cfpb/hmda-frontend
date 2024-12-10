@@ -16,7 +16,8 @@
     "ci-data": "yarn newman run cypress/ci/tests/CREATE_INSTITUTIONS.postman_collection.json -e cypress/ci/config/PLATFORM_ENV.postman_environment.json -d cypress/ci/config/institutions.json",
     "make-lar": "node ./scripts/lar/generate_lar_file.mjs",
     "cy-update-s3": "./cypress/update-s3-files.sh",
-    "old-tests": "jest -t"
+    "old-tests": "jest -t",
+    "watch-uswds-scss": "npx gulp watch"
   },
   "keywords": [
     "HMDA"
@@ -29,9 +30,10 @@
     "@reduxjs/toolkit": "^1.9.7",
     "@tanstack/react-table": "8.20.5",
     "@uswds/compile": "^1.2.0",
-    "@uswds/uswds": "3.8.2",
+    "@uswds/uswds": "3.9.0",
     "ansi-html": "0.0.8",
     "csv-parse": "4.16.3",
+    "date-fns": "^4.1.0",
     "detect-browser": "4.8.0",
     "elliptic": "6.5.7",
     "fast-deep-equal": "2.0.1",
@@ -41,7 +43,7 @@
     "html-to-image": "1.11.11",
     "jspdf": "^2.5.1",
     "jwt-decode": "^3.1.2",
-    "keycloak-js": "11.0.3",
+    "keycloak-js": "25.0.6",
     "mapbox-gl": "1.13.3",
     "normalize.css": "8.0.1",
     "prettier": "^3.1.1",

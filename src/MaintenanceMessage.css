@@ -14,6 +14,7 @@
   animation: 1s ease-in-out 1s slideUp;
   animation-fill-mode: forwards;
   opacity: 0;
+  z-index: 100;
 }
 
 #maintenance-message .closer {
