@@ -2,10 +2,6 @@ import React, { lazy } from 'react'
 import { login, register } from '../utils/keycloak.js'
 import FilingPeriodsCard from './FilingPeriodsCard'
 import LoginGovPromo from './LoginGovPromo'
-import loginGovWhiteLogo from '../images/login-gov-logo-white.svg'
-
-// Used for testing future filing periods
-import { testTimedGuards } from '../utils/testTimedGuards.js'
 
 import './LoginHeader.css'
 

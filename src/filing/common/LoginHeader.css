@@ -51,7 +51,7 @@
 }
 
 .login-content .button-container .login-button {
-  max-width: 280px;
+  max-width: 180px;
 }
 
 .login-content .button-container .register-account {
@@ -79,6 +79,7 @@
     grid-template-columns: 1fr;
     padding: 0 3rem;
     gap: 0.5rem;
+    margin-bottom: 8rem;
   }
 
   .login-content {

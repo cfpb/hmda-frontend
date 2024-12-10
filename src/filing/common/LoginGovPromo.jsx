@@ -11,7 +11,7 @@ const LoginGovPromo = () => {
           src={loginGovWhiteLogo}
           alt='Login.Gov Logo (white)'
         />
-        Sign in will be mandatory for the 2025 Filing season
+        Sign in will be mandatory starting January 1, 2025
       </div>
       <div className='login-gov-content'>
         <ul>
@@ -19,9 +19,9 @@ const LoginGovPromo = () => {
             <span className='login-gov-bold-font'>
               Beginning January 1, 2025
             </span>
-            , users logging into the HMDA Platform to file their 2024 annual
-            data will need to login with Login.gov. Users will no longer have
-            the option to sign in using the existing processes.
+            , users logging into the HMDA Platform to file their data will need to
+            login with Login.gov. Users will no longer have the option to sign
+            in using the existing processes.
           </li>
           <li>
             The login.gov account created must be associated with a business

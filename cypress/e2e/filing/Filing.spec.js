@@ -1,9 +1,6 @@
 import { isBeta, isCI } from '../../support/helpers'
 import { getDefaultConfig } from '../../../src/common/configUtils'
-import {
-  getFilingPeriods,
-  sortFilingYears,
-} from '../../../src/common/constants/configHelpers'
+import { getFilingPeriods } from '../../../src/common/constants/configHelpers'
 
 const {
   HOST,
@@ -60,15 +57,15 @@ describe('Filing', function () {
       cy.wait(ACTION_DELAY)
 
       // Select the year using the filing-year
-      cy.get('.filing-year__control').click()
+      cy.get('.filing-year-selector .filing-year__control').click()
       // For quarterly filings, we need to select just the year part
       const yearToSelect = filingPeriod.includes('-')
         ? filingPeriod.split('-')[0]
         : filingPeriod
       cy.get('.filing-year__menu').contains(yearToSelect).click()
 
-      // Only try to select from quarterly selector if the year is not closed
-      if (!status.isClosed && filingPeriod.includes('Q')) {
+      // Use the quarterly selector if it is a quarterly filing
+      if (filingPeriod.includes('Q')) {
         // Select the quarter using the annual-or-quarter
         cy.get('.annual-or-quarter__control').click()
         cy.get('.annual-or-quarter__menu')
@@ -118,6 +115,9 @@ describe('Filing', function () {
           `Resubmissions and late submissions will be accepted until ${status.endDate}`,
         ).should('exist')
       }
+
+      // Wait for API request to finish
+      cy.get('.LoadingIcon', { timeout: 10000 }).should('not.exist')
 
       cy.get(`#main-content .institution`, { timeout: 20000 })
         .then(($list) => {

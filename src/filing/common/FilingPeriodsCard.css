@@ -2,33 +2,52 @@
   background-color: white;
   border-radius: 8px;
   box-shadow:
-    rgba(149, 157, 165, 0.3) 0px -8px 16px,
+    rgba(149, 157, 165, 0.3) 0px -8px 10px,
     rgba(149, 157, 165, 0.558) 0px 10px 16px;
-  padding: 16px 26px 0 26px;
-  margin: 0 auto;
+  padding: 20px 30px 0 30px;
+  height: 100%;
 }
 
-.filing-periods-card .filing-periods-title {
-  font-size: 24px;
+.filing-periods-title {
   font-weight: bold;
-  margin: 0 0 16px 0;
+  margin: 0 0 5px 0;
 }
 
-.filing-guide-link {
+.annual-title {
+  font-size: 26px;
+  color: black;
+}
+
+.quarterly-title {
+  font-size: 20px;
+  color: #666666;
+  margin: 0 0 5px 0;
+}
+
+.filing-guide-link-year,
+.filing-guide-link-quarter {
   color: #1f498f;
   text-decoration: none;
-  font-size: 16px;
   display: block;
   margin-bottom: 20px;
 }
 
-.filing-guide-link:hover {
+.filing-guide-link-year:visited,
+.filing-guide-link-quarter:visited {
   color: #1f498f;
-  text-decoration: underline;
 }
 
-.filing-guide-link:visited {
-  color: #1f498f;
+.filing-guide-link-year {
+  font-size: 18px;
+}
+
+.filing-guide-link-quarter {
+  font-size: 16px;
+}
+
+.filing-guide-link-year:hover,
+.filing-guide-link-quarter:hover {
+  text-decoration: underline;
 }
 
 .filing-periods-right-carrot {
@@ -36,206 +55,203 @@
   font-size: 11px;
 }
 
-.filing-guide-link.unavailable {
-  color: #666666;
-  cursor: default;
-}
-
-.filing-guide-link.unavailable:hover {
-  text-decoration: none;
-}
-
-.periods-container {
-  position: relative;
-}
-
-.period-divider {
-  height: 1px;
-  background-color: #e5e5e5;
-  margin: 0 -26px;
+.year-section .period-wrapper {
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+  margin: 0 -30px;
+  height: auto;
 }
 
 .period-item {
   display: flex;
   align-items: center;
-  padding: 15px 0;
+  padding: 20px 30px;
   position: relative;
 }
 
-.period-item.active {
-  background-color: #f5f5f5;
-  margin: 0 -26px;
-  padding: 15px 26px;
-  font-weight: 500;
-  font-family: 'Helvetica Neue', 'Helvetica', 'Roboto', 'Arial', sans-serif;
-}
-
-.period-info {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  padding-left: 12px;
-}
-
-.info-icon-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.tooltip-content {
-  text-align: left;
-  min-width: 200px;
-  padding: 12px 12px;
-}
-
-.tooltip-link {
-  color: var(--hmda-blue);
-  text-decoration: none;
-  display: block;
-  font-size: 13px;
-  color: white;
-}
-
-.tooltip-link:hover {
-  color: white;
-  text-decoration: underline;
-}
-
-.tooltip-link:visited {
-  color: white;
-}
-
-.__react_component_tooltip {
-  padding: 0px 0px !important;
-  opacity: 100 !important;
-  background: #0071bc !important;
-}
-
-.__react_component_tooltip.place-left::after {
-  background-color: #0071bc !important;
-  border-left-color: #0071bc !important;
-}
-
-.__react_component_tooltip.place-top::after {
-  background-color: #0071bc !important;
-  border-left-color: #0071bc !important;
-}
-
-/* Add this to specifically target the date text when the item is active */
-.period-item.active .period-date {
-  color: #000000;
+.period-item:not(:last-child) {
+  border-bottom: 1px solid #eeeeee;
 }
 
 .period-tag {
   font-size: 16px;
-  font-weight: 600;
   color: white;
-  padding: 3px 10px;
+  padding: 5px 12px;
   border-radius: 4px;
   text-align: center;
   margin-right: 12px;
-  font-weight: 500;
+  font-weight: bold;
   font-family: 'Helvetica Neue', 'Helvetica', 'Roboto', 'Arial', sans-serif;
 }
 
 .period-tag.annual {
+  background-color: #338c3e;
+  min-width: 110px;
+}
+
+.period-tag.quarter {
   background-color: #1f498f;
-  min-width: 130px;
+  color: white;
+  font-weight: 500;
+  font-size: 13px;
 }
 
-.period-tag.q1 {
-  background-color: #328539;
-}
-
-.period-tag.q2 {
-  background-color: #ba5817;
-}
-
-.period-tag.q3 {
-  background-color: #68379b;
-}
-
-.period-date {
+.period-date-annual {
   color: #666666;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.period-date-quarter {
+  color: #666666;
+  font-size: 15px;
 }
 
 .year-section {
-  margin-top: 20px;
+  margin-top: 32px;
 }
 
 .year-section:first-child {
-  margin-top: 4px;
+  margin-top: 0px;
 }
 
-.year-section-divider {
-  height: 1px;
-  background-color: #e5e5e5;
-  margin: 0 -32px 0;
+/* Quarterly Filer Info Styles */
+.quarterly-filer-info {
+  padding: 20px 0;
+  user-select: none;
+  min-height: 0;
 }
 
+.quarterly-filer-toggle {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: #666666;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Roboto', 'Arial', sans-serif;
+}
+
+.quarterly-filer-content {
+  margin-top: 16px;
+  font-size: 12px;
+  color: #666666;
+  line-height: 1.5;
+}
+
+.quarterly-filer-link {
+  display: block;
+  margin-top: 12px;
+  color: #1f498f;
+  text-decoration: none;
+}
+
+.quarterly-filer-link:visited {
+  color: #1f498f;
+}
+
+.quarterly-filer-link:hover {
+  text-decoration: underline;
+}
+
+/* Media Queries */
 @media screen and (max-width: 768px) {
   .filing-periods-card {
-    padding: 16px 25px 0 25px;
+    padding: 18px 25px 0 25px;
   }
 
-  .period-divider {
+  .period-wrapper {
     margin: 0 -25px;
   }
 
-  .period-item.active {
-    margin: 0 -25px;
+  .period-item {
     padding: 16px 25px;
+  }
+
+  .annual-title {
+    font-size: 24px;
+  }
+
+  .quarterly-title {
+    font-size: 18px;
+  }
+
+  .period-date-annual {
+    font-size: 16px;
+  }
+
+  .period-date-quarter {
+    font-size: 14px;
   }
 }
 
 @media screen and (max-width: 450px) {
   .filing-periods-card {
-    padding: 16px 15px 0 15px;
+    padding: 16px 20px 0 20px;
   }
 
-  .filing-periods-card .filing-periods-title {
-    font-size: 20px;
+  .annual-title {
+    font-size: 22px;
   }
 
-  .filing-guide-link {
-    font-size: 14px;
+  .quarterly-title {
+    font-size: 16px;
   }
 
-  .period-divider {
-    margin: 0 -25px;
+  .filing-guide-link-year {
+    font-size: 15px;
   }
 
-  .period-item.active {
+  .filing-guide-link-quarter {
+    font-size: 13px;
+  }
+
+  .period-wrapper {
     margin: 0 -15px;
-    padding: 16px 15px;
   }
 
-  .period-info {
-    padding-left: 8px;
-  }
-
-  .tooltip-link {
-    font-size: 11px;
-  }
-
-  .info-icon-wrapper svg {
-    height: 17px !important;
-    width: 17px !important;
+  .period-item {
+    padding: 14px 15px;
   }
 
   .period-tag {
-    font-size: 13px;
+    padding: 4px 8px;
     margin-right: 8px;
-    padding: 3px 6px;
+    font-size: 12px;
   }
 
   .period-tag.annual {
-    min-width: 100px;
+    min-width: 80px;
   }
 
-  .period-date {
+  .period-tag.quarter {
+    font-size: 11px;
+  }
+
+  .period-date-annual {
+    font-size: 14px;
+  }
+
+  .period-date-quarter {
+    font-size: 12px;
+  }
+
+  .quarterly-filer-toggle {
+    font-size: 14px;
+  }
+
+  .quarterly-filer-content {
     font-size: 13px;
+  }
+
+  .quarterly-filer-link {
+    font-size: 13px;
+  }
+
+  .year-section {
+    margin-top: 24px;
   }
 }
