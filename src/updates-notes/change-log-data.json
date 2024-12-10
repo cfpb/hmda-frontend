@@ -1,6 +1,18 @@
 {
   "log": [
     {
+      "date": "12/27/24",
+      "type": "update",
+      "product": "documentation",
+      "description": "The HMDA Ops Team corrected the Online 2025 FIG. We updated version log number 5 with the correct section number, which displays the 2025 revised and new edits.",
+      "links": [
+        {
+          "text": "2025 Filing Instructions Guide (FIG)",
+          "url": "https://ffiec.cfpb.gov/documentation/fig/2025/overview#changes"
+        }
+      ]
+    },
+    {
       "date": "10/22/24",
       "type": "update",
       "product": "tools",
