@@ -1,20 +1,27 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router'
 
 /**
- *
- * Component wraps around react-router-dom <Switch /> component
- * to allow <Link /> component to take user back to the top of a page
- * @param props acts as children
+ * Enhanced ScrollToTop component that only scrolls on actual route changes,
+ * ignoring query parameter updates and hash changes
+ * @param {Object} props Contains children and optional configuration
+ * @returns {JSX.Element} Wrapper component
  */
-
 const ScrollToTop = (props) => {
   const location = useLocation()
+  const prevPathname = useRef(location.pathname)
+
   useEffect(() => {
-    const { hash } = window.location
-    if (hash) return
-    window.scrollTo({ top: 0, behavior: 'instant' })
-  }, [location])
+    // Don't scroll if there's a hash in the URL
+    if (location.hash) return
+
+    // Only scroll if the pathname actually changed
+    // This ignores query parameter changes
+    if (prevPathname.current !== location.pathname) {
+      window.scrollTo({ top: 0, behavior: 'instant' })
+      prevPathname.current = location.pathname
+    }
+  }, [location]) // We still watch the full location to track changes
 
   return <>{props.children}</>
 }
