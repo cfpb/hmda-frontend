@@ -167,10 +167,6 @@
     margin: 0 -25px;
   }
 
-  .period-item {
-    padding: 16px 25px;
-  }
-
   .annual-title {
     font-size: 24px;
   }
@@ -211,10 +207,6 @@
 
   .period-wrapper {
     margin: 0 -15px;
-  }
-
-  .period-item {
-    padding: 14px 15px;
   }
 
   .period-tag {
