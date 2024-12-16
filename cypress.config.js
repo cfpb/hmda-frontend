@@ -14,7 +14,7 @@ module.exports = defineConfig({
     AUTH_REALM: 'hmda2',
     AUTH_CLIENT_ID: 'hmda2-api',
   },
-
+  pageLoadTimeout: 600000,
   defaultCommandTimeout: 10000,
   projectId: 'uk89dv',
 
