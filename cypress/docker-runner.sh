@@ -6,18 +6,18 @@
 
 # Download Fixtures
 #curl https://s3.amazonaws.com/cfpb-hmda-public/prod/cypress/fixtures.zip > ./cypress/downloads/fixtures.zip \
-cp -p /mnt/fixtures.zip ./cypress/downloads/fixtures.zip \
-	&& unzip -o cypress/downloads/fixtures.zip -d cypress/
+#cp -p /mnt/fixtures.zip ./cypress/downloads/fixtures.zip \
+#	&& unzip -o cypress/downloads/fixtures.zip -d cypress/
 
 # Download e2e tests
 #curl https://s3.amazonaws.com/cfpb-hmda-public/prod/cypress/e2e.zip > ./cypress/downloads/e2e.zip \
-cp -p /mnt/e2e.zip ./cypress/downloads/e2e.zip \
-	&& unzip -o cypress/downloads/e2e.zip -d cypress/  
+#cp -p /mnt/e2e.zip ./cypress/downloads/e2e.zip \
+#	&& unzip -o cypress/downloads/e2e.zip -d cypress/  
 
 # Download Docusaurus test file
 mkdir -p cypress/e2e/docusaurus
-#curl https://raw.githubusercontent.com/cfpb/hmda-combined-documentation/main/cypress/e2e/documentation.cy.js > cypress/e2e/docusaurus/documentation.cy.js
-cp -p /mnt/documentation.cy.js cypress/e2e/docusaurus/documentation.cy.js
+curl https://raw.githubusercontent.com/cfpb/hmda-combined-documentation/main/cypress/e2e/documentation.cy.js > cypress/e2e/docusaurus/documentation.cy.js
+#cp -p /mnt/documentation.cy.js cypress/e2e/docusaurus/documentation.cy.js
 
 # Run configured e2e tests
 # Example: "cypress/e2e/data-browser/**,cypress/e2e/data-publication/**"
