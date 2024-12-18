@@ -14,11 +14,6 @@ export const addActiveClass = (selected, current) => {
   return null
 }
 
-export const logOutHandler = (e) => {
-  e.preventDefault()
-  logout()
-}
-
 export const getLink = (filingPeriod) => {
   if (getKeycloak().authenticated) return `/filing/${filingPeriod}/institutions`
   return `/filing/${filingPeriod}/`
@@ -34,6 +29,11 @@ export const makeNav = (props, page) => {
     className: 'nav-link',
     target: '_blank',
     rel: 'noopener noreferrer',
+  }
+
+  const logOutHandler = (e) => {
+    e.preventDefault()
+    logout()
   }
 
   let userHeader = (

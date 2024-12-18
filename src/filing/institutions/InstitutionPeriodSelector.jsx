@@ -19,6 +19,25 @@ const InstitutionPeriodSelector = ({
   const quarterOpt = periodOption(filingQuarter)
   const quarterOpts = quarterOptions(filingYear, filingPeriodOptions.options)
 
+  const handleYearChange = (opt) => {
+    dispatch(refreshState())
+    const newYear = opt.value
+    const quarters = quarterOptions(newYear, filingPeriodOptions.options)
+
+    // If annual filing isn't available and there are quarterly options,
+    // default to the first quarterly option
+    // The below code helps the tests pass in Cypress & ensures the proper banner is displayed
+    if (quarters.length > 0 && !filingPeriodOptions.options.includes(newYear)) {
+      const defaultQuarter = quarters[0]
+      const period = formQPath(defaultQuarter, newYear)
+      dispatch(updateFilingPeriod(period))
+      history.replace(pathname.replace(filingPeriod, period))
+    } else {
+      dispatch(updateFilingPeriod(newYear))
+      history.replace(pathname.replace(filingPeriod, newYear))
+    }
+  }
+
   return (
     <div className='YearSelector'>
       <h4>Select a filing period</h4>
@@ -26,11 +45,9 @@ const InstitutionPeriodSelector = ({
         value={yearOpt}
         options={yearOptions(filingPeriodOptions.options)}
         styles={styleFn()}
-        onChange={(opt) => {
-          dispatch(refreshState())
-          dispatch(updateFilingPeriod(opt.value))
-          history.replace(pathname.replace(filingPeriod, opt.value))
-        }}
+        onChange={handleYearChange}
+        className='filing-year-selector'
+        classNamePrefix='filing-year'
       />
       {showQuarterMenu(filingYear, filingPeriodOptions) && (
         <Select
@@ -44,6 +61,7 @@ const InstitutionPeriodSelector = ({
             history.replace(pathname.replace(filingPeriod, period))
           }}
           isDisabled={quarterOpts.length < 2}
+          classNamePrefix='annual-or-quarter'
         />
       )}
     </div>

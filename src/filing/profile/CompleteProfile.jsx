@@ -139,7 +139,7 @@ const CompleteProfile = (props) => {
   }
 
   return (
-    <div className='App'>
+    <div className='App profile-container'>
       <ShowUserName isLoggedIn={getKeycloak().authenticated} />
       <Prompt
         when={userIsEditingForm}

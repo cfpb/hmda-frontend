@@ -11,6 +11,10 @@
   cursor: pointer;
 }
 
+.filing-year-selector {
+  margin-right: 10px;
+}
+
 .App .YearSelector h4 {
   margin-bottom: 0.33em;
 }

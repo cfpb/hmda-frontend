@@ -1,5 +1,5 @@
-import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Switch, Route, useLocation } from 'react-router-dom'
 import Header from './common/Header'
 import NotFound from './common/NotFound'
 import Footer from './common/Footer'
@@ -14,6 +14,8 @@ import {
 import { AppContext } from './common/appContextHOC'
 
 import './app.css'
+import { isFilingHomeOrYear } from './filing/utils/pages'
+import { useViewport } from './filing/utils/useViewport'
 import ScrollToTop from './common/ScrollToTop'
 
 const Homepage = makeAsyncComponent(
@@ -59,13 +61,22 @@ const UpdatesNotes = makeAsyncComponent(
 
 const App = () => {
   const config = useEnvironmentConfig(window.location.hostname)
+  const location = useLocation()
+  const { isMobile } = useViewport()
+  const [shouldApplyStyles, setShouldApplyStyles] = useState(
+    !isFilingHomeOrYear(location),
+  )
 
-  const isFiling = !!window.location.pathname.match(/^\/filing/)
-  const isHelp = !!window.location.pathname.match(/^\/hmda-help/)
+  useEffect(() => {
+    setShouldApplyStyles(!isFilingHomeOrYear(location))
+  }, [location])
+
+  const isFiling = !!location.pathname.match(/^\/filing/)
+  const isHelp = !!location.pathname.match(/^\/hmda-help/)
 
   // Eliminates Google Lighthouse CLS
   const mainWrapperStyles = {
-    minHeight: '1000px',
+    minHeight: shouldApplyStyles ? '1000px' : isMobile ? '1000px' : '620px',
   }
 
   const showCommonHeader = !isHelp
