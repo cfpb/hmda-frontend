@@ -17,6 +17,7 @@ RUN mkdir -p cypress/downloads cypress/screenshots cypress/videos cypress/integr
 
 # Copy Cypress support files
 COPY cypress/e2e cypress/e2e
+COPY cypress/fixtures cypress/fixtures
 COPY cypress/support cypress/support
 COPY cypress/plugins cypress/plugins
 COPY cypress/docker-runner.sh cypress/
@@ -44,15 +45,6 @@ USER hmda_cypress_user
 RUN npm install && \
     npx cypress install --version ${CYPRESS_VERSION} && \
     npx cypress verify
-
-USER root
-RUN find / -name "loader-utils" -type d -exec rm -rf {} + 2>/dev/null || true && \
-    find / -name "flat" -type d -exec rm -rf {} + 2>/dev/null || true && \
-    find / -name "underscore" -type d -exec rm -rf {} + 2>/dev/null || true && \
-    npm cache clean --force && \
-    chown -R hmda_cypress_user:hmda_cypress_user /hmda-frontend
-
-USER hmda_cypress_user
 
 # Set up the entrypoint
 ENTRYPOINT ["npx", "cypress", "run"]

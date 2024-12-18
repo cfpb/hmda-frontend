@@ -4,14 +4,6 @@
 # Import helper functions
 . ./cypress/support/shell-helpers.sh
 
-# Download Fixtures
-curl https://s3.amazonaws.com/cfpb-hmda-public/prod/cypress/fixtures.zip > ./cypress/downloads/fixtures.zip \
-	&& unzip -o cypress/downloads/fixtures.zip -d cypress/
-
-# Download e2e tests
-curl https://s3.amazonaws.com/cfpb-hmda-public/prod/cypress/e2e.zip > ./cypress/downloads/e2e.zip \
-	&& unzip -o cypress/downloads/e2e.zip -d cypress/  
-
 # Download Docusaurus test file
 mkdir -p cypress/e2e/docusaurus
 curl https://raw.githubusercontent.com/cfpb/hmda-combined-documentation/main/cypress/e2e/documentation.cy.js > cypress/e2e/docusaurus/documentation.cy.js
