@@ -75,7 +75,6 @@ const AppContainer = ({
     redirectToDefaultPeriod(period)
   }
 
-  // ComponentDidMount equivalent
   useEffect(() => {
     const initializeKeycloak = async () => {
       if (maintenanceMode && !isHome()) {
