@@ -12,7 +12,6 @@ const {
   AUTH_BASE_URL,
   AUTH_REALM,
   AUTH_CLIENT_ID,
-  YEARS,
 } = Cypress.env()
 
 const years = [2022]
@@ -41,6 +40,7 @@ describe('Large Filer', () => {
     if (!isCI(ENVIRONMENT)) {
       cy.hmdaLogin('filing')
       cy.url().should('contains', `${AUTH_BASE_URL}filing/`)
+      cy.url().should('contains', `/institutions`)
     }
 
     cy.viewport(1600, 900)
@@ -51,14 +51,19 @@ describe('Large Filer', () => {
 
   years.forEach((filingPeriod, index) => {
     it(`${filingPeriod}`, () => {
-      // Action: List Institutions
-      cy.visit(`${HOST}/filing/${filingPeriod}/institutions`)
+      const status = filingPeriodStatus[filingPeriod]
+
       cy.wait(ACTION_DELAY)
 
-      const status = filingPeriodStatus[filingPeriod]
+      // Select the year using the filing-year
+      cy.get('.filing-year-selector .filing-year__control').click()
+      cy.get('.filing-year__menu').contains(years[0]).click()
 
       // After Close - Cannot file/refile after Filing period is passed
       if (status.isClosed && status.isPassed) return
+
+      // Wait for API request to finish
+      cy.get('.LoadingIcon', { timeout: 10000 }).should('not.exist')
 
       // Filing period is open
       if (status.isOpen || status.isLate) {

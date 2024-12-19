@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import BannerUSA from './BannerUSA'
 import { defaultLinks } from './constants/links'
 import { isBeta } from '../common/Beta'
-import { logout } from '../filing/utils/keycloak.js'
 
 import './uswds/css/styles.css'
 import logo from './images/ffiec-logo.svg'
@@ -19,11 +18,6 @@ export const hideHeaderFooter = (path) => {
     section = parts[2]
   }
   return section === 'maps' ? 'no-print' : ''
-}
-
-export const logOutHandler = (e) => {
-  e.preventDefault()
-  logout()
 }
 
 const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {

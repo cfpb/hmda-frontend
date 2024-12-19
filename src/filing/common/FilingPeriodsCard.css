@@ -1,0 +1,249 @@
+.filing-periods-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow:
+    rgba(149, 157, 165, 0.3) 0px -8px 10px,
+    rgba(149, 157, 165, 0.558) 0px 10px 16px;
+  padding: 20px 30px 0 30px;
+  height: 100%;
+}
+
+.filing-periods-title {
+  font-weight: bold;
+  margin: 0 0 5px 0;
+}
+
+.annual-title {
+  font-size: 26px;
+  color: black;
+}
+
+.quarterly-title {
+  font-size: 20px;
+  color: #666666;
+  margin: 0 0 5px 0;
+}
+
+.filing-guide-link-year,
+.filing-guide-link-quarter {
+  color: #1f498f;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.filing-guide-link-year:visited,
+.filing-guide-link-quarter:visited {
+  color: #1f498f;
+}
+
+.filing-guide-link-year {
+  font-size: 18px;
+}
+
+.filing-guide-link-quarter {
+  font-size: 16px;
+}
+
+.filing-guide-link-year:hover,
+.filing-guide-link-quarter:hover {
+  text-decoration: underline;
+}
+
+.filing-periods-right-carrot {
+  color: #1f498f;
+  font-size: 11px;
+}
+
+.year-section .period-wrapper {
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+  margin: 0 -30px;
+  height: auto;
+}
+
+.period-item {
+  display: flex;
+  align-items: center;
+  padding: 20px 30px;
+  position: relative;
+}
+
+.period-item:not(:last-child) {
+  border-bottom: 1px solid #eeeeee;
+}
+
+.period-tag {
+  font-size: 16px;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 4px;
+  text-align: center;
+  margin-right: 12px;
+  font-weight: bold;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Roboto', 'Arial', sans-serif;
+}
+
+.period-tag.annual {
+  background-color: #2F7F35;
+  min-width: 110px;
+}
+
+.period-tag.quarter {
+  background-color: #1f498f;
+  color: white;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.period-date-annual {
+  color: #666666;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.period-date-quarter {
+  color: #666666;
+  font-size: 15px;
+}
+
+.year-section {
+  margin-top: 32px;
+}
+
+.year-section:first-child {
+  margin-top: 0px;
+}
+
+/* Quarterly Filer Info Styles */
+.quarterly-filer-info {
+  padding: 20px 0;
+  user-select: none;
+  min-height: 0;
+}
+
+.quarterly-filer-toggle {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: #666666;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Roboto', 'Arial', sans-serif;
+}
+
+.quarterly-filer-content {
+  margin-top: 16px;
+  font-size: 12px;
+  color: #666666;
+  line-height: 1.5;
+}
+
+.quarterly-filer-link {
+  display: block;
+  margin-top: 12px;
+  color: #1f498f;
+  text-decoration: none;
+}
+
+.quarterly-filer-link:visited {
+  color: #1f498f;
+}
+
+.quarterly-filer-link:hover {
+  text-decoration: underline;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  .filing-periods-card {
+    padding: 18px 25px 0 25px;
+  }
+
+  .period-wrapper {
+    margin: 0 -25px;
+  }
+
+  .annual-title {
+    font-size: 24px;
+  }
+
+  .quarterly-title {
+    font-size: 18px;
+  }
+
+  .period-date-annual {
+    font-size: 16px;
+  }
+
+  .period-date-quarter {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .filing-periods-card {
+    padding: 16px 20px 0 20px;
+  }
+
+  .annual-title {
+    font-size: 22px;
+  }
+
+  .quarterly-title {
+    font-size: 16px;
+  }
+
+  .filing-guide-link-year {
+    font-size: 15px;
+  }
+
+  .filing-guide-link-quarter {
+    font-size: 13px;
+  }
+
+  .period-wrapper {
+    margin: 0 -15px;
+  }
+
+  .period-tag {
+    padding: 4px 8px;
+    margin-right: 8px;
+    font-size: 12px;
+  }
+
+  .period-tag.annual {
+    min-width: 80px;
+  }
+
+  .period-tag.quarter {
+    font-size: 11px;
+  }
+
+  .period-date-annual {
+    font-size: 14px;
+  }
+
+  .period-date-quarter {
+    font-size: 12px;
+  }
+
+  .quarterly-filer-toggle {
+    font-size: 14px;
+  }
+
+  .quarterly-filer-content {
+    font-size: 13px;
+  }
+
+  .quarterly-filer-link {
+    font-size: 13px;
+  }
+
+  .year-section {
+    margin-top: 24px;
+  }
+}

@@ -13,7 +13,7 @@ const AssociatedInstitutions = ({
   return (
     institutions.length > 0 && (
       <div className='associated_insitutions_container'>
-        <h1>Associated financial institution(s)</h1>
+        <h2>Associated financial institution(s)</h2>
         <p>
           The following institutions match your email domain. Select the
           available institutions you wish to file for. You may select more than
@@ -38,7 +38,7 @@ const AssociatedInstitutions = ({
                   />
                   <div className='institution_info'>
                     {/* Keys will change this is dummy data */}
-                    <h1>{institution.institutionName}</h1>
+                    <h2>{institution.institutionName}</h2>
                     <p>LEI: {institution.lei}</p>
                     <p>Tax ID: {institution.taxId}</p>
                     <p>Agency Code: {institution.agencyCode}</p>
