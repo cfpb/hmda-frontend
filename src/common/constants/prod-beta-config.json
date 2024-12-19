@@ -6,6 +6,12 @@
       "type": "warning",
       "heading": "Scheduled Maintenance",
       "link": null
+    },
+    {
+      "message": "We will be performing scheduled system maintenance on December 19 from 6PM - 9PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+      "type": "warning",
+      "heading": "Scheduled Maintenance",
+      "link": null
     }
   ],
   "publicationReleaseYear": "2020",
