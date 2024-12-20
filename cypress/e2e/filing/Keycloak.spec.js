@@ -4,7 +4,13 @@ import { isCI } from '../../support/helpers'
 
 const { HOST, USERNAME, PASSWORD, ENVIRONMENT, YEARS } = Cypress.env()
 
-describe('Keycloak', () => {
+/**
+ * Keycloaks tests are now being skipped due to using Login.gov as the only method of Login as of Jan 1st, 2025.
+ * 
+ * The below tests will remain in code and must not be deleted.
+ */
+
+describe.skip('Keycloak', () => {
   if (isCI(ENVIRONMENT)) it('Does not run on CI')
   else {
     beforeEach(() => {
