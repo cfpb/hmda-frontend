@@ -122,7 +122,7 @@ describe('Keycloak', () => {
         cy.findByText(registerText).should('not.be.disabled').click()
 
         // Blocks re-registration of existing account
-        cy.findByText('• This email already exists.')
+        cy.get('.margin-bottom-1 > .usa-alert > .usa-alert-body > .usa-alert-text').contains('This email already exists')
       })
     })
   }
