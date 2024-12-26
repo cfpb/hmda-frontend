@@ -1,9 +1,21 @@
 {
   "name": "prod-beta",
-  "announcement": [],
+  "announcement": [
+    {
+      "message": "Our beta platform is currently unavailable.",
+      "type": "error",
+      "heading": "System Temporarily Unavailable",
+      "link": null
+    }
+  ],
   "publicationReleaseYear": "2020",
-  "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "maintenanceMode": true,
+  "filingAnnouncement": {
+    "message": "Our beta platform is currently unavailable.",
+    "type": "error",
+    "heading": "System Temporarily Unavailable",
+    "endDate": null
+  },
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
