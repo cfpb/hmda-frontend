@@ -13,6 +13,7 @@ module.exports = defineConfig({
     NAV_DELAY: 5000,
     AUTH_REALM: 'hmda2',
     AUTH_CLIENT_ID: 'hmda2-api',
+    preserveCookies: ['_login_gov_session'],
   },
 
   defaultCommandTimeout: 10000,
@@ -29,9 +30,26 @@ module.exports = defineConfig({
     experimentalRunAllSpecs: true,
     testIsolation: true,
     setupNodeEvents(on, config) {
+      on('task', {
+        log(message) {
+          console.log(message)
+          return null
+        },
+        generateOTP(secret) {
+          return authenticator.generate(secret)
+        }
+      })
       return require('./cypress/plugins/index.js')(on, config)
     },
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
+    experimentalOriginDependencies: true,
+    chromeWebSecurity: false,
+    defaultCommandTimeout: 10000,
+    pageLoadTimeout: 30000,
+    retries: {
+      runMode: 2,
+      openMode: 0
+    }
   },
 
   component: {

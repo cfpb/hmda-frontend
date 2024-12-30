@@ -3,7 +3,7 @@ import '@testing-library/cypress/add-commands'
 import 'cypress-keycloak'
 import 'cypress-file-upload'
 
-import { authenticator } from 'otplib';
+
 
 Cypress.Commands.add('generateOTP', (secret) => {
     return authenticator.generate(secret);
@@ -51,46 +51,7 @@ Cypress.Commands.add('hmdaLogin', (app) => {
   cy.get('#kc-login').click()
 })
 
-// Login via UI with Login.gov
-Cypress.Commands.add('hmdaLoginGov', (app) => {
-  const { USERNAME, PASSWORD, AUTH_BASE_URL, OTP_SECRET } = Cypress.env()
-  cy.visit(`${AUTH_BASE_URL}${app}`)
 
-  if (app.match('filing')) cy.get('button[title="Login"').click()
-
-  // Wait for and click the login.gov redirect link
-    cy.get('a.login-gov-redirect').should('be.visible').click();
-
-    // Fill in the email field
-    cy.get('#user_email')
-      .scrollIntoView()
-      .should('be.visible')
-      .type(USERNAME);
-
-    // Fill in the password field
-    cy.get('input[name="user[password]"]')
-      .scrollIntoView()
-      .should('be.visible')
-      .type(PASSWORD);
-    
-    // Click the submit button
-    cy.get('.usa-button--full-width')
-      .scrollIntoView()
-      .should('be.visible')
-      .click();
-    
-    // Generate OTP
-    cy.wait(2000)
-    cy.generateOTP(OTP_SECRET).then(code => {
-        cy.get('input[autocomplete="one-time-code"]').type(code);
-    });
-
-    // Click the OTP Submit Button
-    cy.get('.usa-button--big.usa-button--wide')
-      .scrollIntoView()
-      .should('be.visible')
-      .click();
-})
 
 // Handles uncaught exceptions...
 // https://docs.cypress.io/api/cypress-api/catalog-of-events#Uncaught-Exceptions
@@ -102,4 +63,99 @@ Cypress.on('uncaught:exception', (err, runnable) => {
   return false
   // we still want to ensure there are no other unexpected
   // errors, so we let them fail the test
+})
+
+// Login via Login.gov
+Cypress.Commands.add('hmdaLoginGov', (app) => {
+  const { USERNAME, PASSWORD, AUTH_BASE_URL, OTP_SECRET } = Cypress.env()
+  cy.clearCookies()
+  cy.clearLocalStorage()
+  
+  // Initial visit with minimal automation indicators
+  cy.visit(`${AUTH_BASE_URL}${app}`, {
+    failOnStatusCode: false,
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      'Accept': '*/*',
+      'Accept-Language': 'en-US,en;q=0.9',
+      'Accept-Encoding': 'gzip, deflate, br',
+      'Connection': 'keep-alive'
+    },
+    onBeforeLoad: (win) => {
+      // Remove automation flags
+      delete win.navigator.__proto__.webdriver
+      delete win.Cypress
+      delete win.runnerWs
+      delete win.open
+
+      // Add real browser characteristics
+      Object.defineProperties(win, {
+        outerHeight: { get: () => 900 },
+        outerWidth: { get: () => 1440 },
+        innerHeight: { get: () => 800 },
+        innerWidth: { get: () => 1420 }
+      })
+    }
+  })
+
+  // Select Filing menu
+  if (app.match('filing')) {
+    cy.get('button[title="Login"]', { timeout: 10000 })
+      .should('be.visible')
+      .click()
+  }
+
+  // Select Login.gov redirect
+  cy.get('a.login-gov-redirect')
+    .should('be.visible')
+    .click()
+
+  // Login.gov
+  cy.origin('secure.login.gov', 
+    { args: { USERNAME, PASSWORD, OTP_SECRET } },
+    ({ USERNAME, PASSWORD, OTP_SECRET }) => {
+
+      // Remove automation indicators on Login.gov domain
+      cy.on('window:before:load', (win) => {
+        delete win.navigator.__proto__.webdriver
+        delete win.Cypress
+        delete win.runnerWs
+        delete win.open
+      })
+
+      // Enter email
+      cy.get('#user_email')
+        .should('be.visible')
+        .type(USERNAME, { delay: 200 })
+
+      cy.wait(2000)
+
+      // Enter password
+      cy.get('input[name="user[password]"]')
+        .should('be.visible')
+        .type(PASSWORD, { delay: 200 })
+
+      cy.wait(2000)
+
+      // Click Submit
+      cy.get('.usa-button--full-width')
+        .click()
+
+      cy.wait(3000)
+
+      // Generate + Enter OTP
+      cy.task('generateOTP', OTP_SECRET).then(otpCode => {
+        cy.get('input[autocomplete="one-time-code"]')
+          .should('be.visible')
+          .type(otpCode, { delay: 200 })
+      })
+
+      cy.wait(1000)
+
+      cy.get('.usa-button--big.usa-button--wide')
+        .click()
+
+      cy.wait(3000)
+    }
+  )
 })
