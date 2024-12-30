@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import './InputSelect.css'
+import Icon from '../common/uswds/components/Icon'
+import Tooltip from '../common/Tooltip'
 
 const InputSelect = ({
   disabled = false,
@@ -17,9 +19,39 @@ const InputSelect = ({
     if (onChange) onChange(event)
   }
 
+  const isQuarterlyFiler = id === 'quarterlyFiler'
+
   return (
     <React.Fragment>
-      <label htmlFor={id}>{label}</label>
+      {isQuarterlyFiler ? (
+        <div className='input-select-label-container'>
+          <label htmlFor={id}>{label}</label>
+          <span
+            data-tip
+            data-for='quarterly-filer-info-tooltip'
+            className='info-icon-wrapper'
+          >
+            <Icon
+              iconName='info'
+              styleIcon={{
+                height: '20px',
+                width: '20px',
+              }}
+            />
+          </span>
+          <Tooltip
+            id='quarterly-filer-info-tooltip'
+            place='right'
+            effect='solid'
+            offset={{ top: -17 }}
+          >
+            Institutions cannot self-identify as a quarterly filer, that is
+            managed by HMDA to determine.
+          </Tooltip>
+        </div>
+      ) : (
+        <label htmlFor={id}>{label}</label>
+      )}
       <select
         ref={innerRef}
         name={name}

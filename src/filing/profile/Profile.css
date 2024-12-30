@@ -1,5 +1,4 @@
 .profile_form_container {
-  max-width: 85rem;
   background-color: #f7f8f9;
   padding: 25px 35px;
   border: 1px solid #a2a3a4;
@@ -60,7 +59,7 @@
 }
 
 /* Associated Instutions CSS */
-.associated_insitutions_container h1 {
+.associated_insitutions_container h2 {
   font-size: 18px;
   font-weight: normal !important;
 }
@@ -97,7 +96,7 @@
 .institutions_checkbox_container
   .institution_info_container
   .institution_info
-  h1 {
+  h2 {
   margin: 0;
   font-weight: normal !important;
 }
