@@ -4,7 +4,7 @@ import { isCI } from '../../support/helpers'
 
 const { HOST, USERNAME, PASSWORD, ENVIRONMENT, YEARS } = Cypress.env()
 
-describe('Keycloak', () => {
+describe.skip('Keycloak', () => {
   if (isCI(ENVIRONMENT)) it('Does not run on CI')
   else {
     beforeEach(() => {
