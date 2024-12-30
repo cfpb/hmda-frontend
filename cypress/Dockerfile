@@ -1,13 +1,10 @@
 ARG NODE_VERSION='20.9.0'
-ARG CYPRESS_VERSION='13.3.1'
+ARG CYPRESS_VERSION='13.5.0'
 
-FROM cypress/base:${NODE_VERSION}
+# Using specific versioned tag that includes Node, Cypress and Edge versions
+FROM cypress/included:cypress-${CYPRESS_VERSION}-node-${NODE_VERSION}-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
 
-# Update npm to latest version
-RUN npm install -g npm@latest
 
-# Install necessary packages
-RUN apt-get update && apt-get install -y curl unzip && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
 WORKDIR /hmda-frontend
@@ -41,10 +38,8 @@ RUN useradd -M -d /hmda-frontend -s /bin/bash hmda_cypress_user && \
   chown -R hmda_cypress_user:hmda_cypress_user /hmda-frontend/
 USER hmda_cypress_user
 
-# Install dependencies and Cypress, then clean up vulnerable packages
-RUN npm install && \
-    npx cypress install --version ${CYPRESS_VERSION} && \
-    npx cypress verify
+# Install dependencies
+RUN npm install
 
-# Set up the entrypoint
-ENTRYPOINT ["npx", "cypress", "run"]
+# Set up the entrypoint to use Edge
+ENTRYPOINT ["cypress", "run", "--browser", "edge"]
