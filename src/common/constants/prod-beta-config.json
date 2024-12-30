@@ -2,6 +2,12 @@
   "name": "prod-beta",
   "announcement": [
     {
+      "message": "We will be performing scheduled system maintenance on December 31 from 5PM - 6PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+      "type": "warning",
+      "heading": "Scheduled Maintenance",
+      "link": null
+    },
+    {
       "message": "Our beta platform is currently unavailable.",
       "type": "error",
       "heading": "System Temporarily Unavailable",
@@ -11,9 +17,9 @@
   "publicationReleaseYear": "2020",
   "maintenanceMode": true,
   "filingAnnouncement": {
-    "message": "Our beta platform is currently unavailable.",
-    "type": "error",
-    "heading": "System Temporarily Unavailable",
+    "message": "We will be performing scheduled system maintenance on December 31 from 5PM - 6PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance",
     "endDate": null
   },
   "ffvtAnnouncement": null,
