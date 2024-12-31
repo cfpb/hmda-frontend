@@ -10,5 +10,8 @@
   "browser": {
     "../../../src/**/*": "../src",
     "../../**/*": "../src"
+  },
+  "config": {
+    "defaultBrowser": "edge"
   }
 }

@@ -49,7 +49,9 @@ module.exports = defineConfig({
     retries: {
       runMode: 2,
       openMode: 0
-    }
+    },
+    browser: 'edge',
+    defaultBrowser: 'edge',
   },
 
   component: {
