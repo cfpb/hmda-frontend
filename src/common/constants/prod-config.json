@@ -2,12 +2,6 @@
   "name": "prod",
   "announcement": [
     {
-      "message": "We are performing system maintenance from 5PM - 6PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-      "type": "error",
-      "heading": "System Temporarily Unavailable",
-      "link": null
-    },
-    {
       "heading": "Signing in using Login.gov will be mandatory for the 2025 filing season",
       "message": "Starting January 1, 2025, all users of the HMDA platform must switch to a Login.gov account, which uses multifactor authentication. Users will no longer have the option to sign in using the current process. For help on setting up your Login.gov account please utilize this ",
       "type": "info",
@@ -38,12 +32,7 @@
   "publicationReleaseYear": "2023",
   "mlarReleaseYear": "2023",
   "maintenanceMode": false,
-  "filingAnnouncement": {
-    "message": "We are performing system maintenance from 5PM - 6PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-    "type": "error",
-    "heading": "System Temporarily Unavailable",
-    "endDate": null
-  },
+  "filingAnnouncement": null,
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
