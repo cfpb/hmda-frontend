@@ -51,11 +51,7 @@
 }
 
 .login-content .button-container .login-button {
-  max-width: 180px;
-}
-
-.login-content .button-container .register-account {
-  max-width: 180px;
+  max-width: 280px;
 }
 
 .login-gov-icon-button {
@@ -122,10 +118,6 @@
   }
 
   .login-content .button-container .login-button {
-    max-width: 100%;
-  }
-
-  .login-content .button-container .register-account {
     max-width: 100%;
   }
 }
