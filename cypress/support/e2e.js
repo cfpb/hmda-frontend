@@ -68,7 +68,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 })
 
 // Login via Login.gov
-Cypress.Commands.add('hmdaLoginGov', (app) => {
+Cypress.Commands.add('hmdaLoginGovWorking', (app) => {
   const { USERNAME, PASSWORD, AUTH_BASE_URL, OTP_SECRET } = Cypress.env()
   cy.clearCookies()
   cy.clearLocalStorage()
@@ -108,9 +108,9 @@ Cypress.Commands.add('hmdaLoginGov', (app) => {
   }
 
   // Select Login.gov redirect
-  cy.get('a.login-gov-redirect')
-    .should('be.visible')
-    .click()
+  // cy.get('a.login-gov-redirect')
+  //   .should('be.visible')
+  //   .click()
 
   // Login.gov
   cy.origin('secure.login.gov', 
@@ -160,4 +160,32 @@ Cypress.Commands.add('hmdaLoginGov', (app) => {
       cy.wait(3000)
     }
   )
+})
+
+
+
+// Login via Keycloak Impersonate
+Cypress.Commands.add('keycloakLogin', () => {
+  const { USERNAME, PASSWORD, AUTH_BASE_URL, OTP_SECRET } = Cypress.env()
+    console.log("Keycloak Test")
+    it('should successfully login with valid credentials', () => {
+      // Visit the login page
+      cy.visit(`${AUTH_BASE_URL}/auth`)
+
+      // Enter username
+      cy.get('#username')
+        .type(USERNAME)
+
+      // Enter password
+      cy.get('#password')
+        .type(PASSWORD)
+
+      // Click submit button
+      cy.get('kc-login')
+        .click()
+
+      // Verify successful login
+      cy.url().should('include', '/auth/admin/master/console/')
+    })
+  
 })

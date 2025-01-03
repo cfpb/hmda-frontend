@@ -50,8 +50,10 @@ module.exports = defineConfig({
       runMode: 2,
       openMode: 0
     },
-    browser: 'edge',
-    defaultBrowser: 'edge',
+    browser: {
+      name: 'edge',
+      channel: 'stable'
+    }
   },
 
   component: {
