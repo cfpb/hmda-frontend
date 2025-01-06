@@ -25,7 +25,7 @@ const { filingPeriodStatus } = config
 describe('Filing', {testIsolation: false}, function () {
 
   before(() => {
-    cy.hmdaLoginGov('filing')
+    cy.keycloakLogin('filing/2024/institutions/')
   })
 
   beforeEach(() => {

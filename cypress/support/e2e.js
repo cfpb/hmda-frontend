@@ -68,7 +68,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 })
 
 // Login via Login.gov
-Cypress.Commands.add('hmdaLoginGovWorking', (app) => {
+Cypress.Commands.add('hmdaLoginGov', (app) => {
   const { USERNAME, PASSWORD, AUTH_BASE_URL, OTP_SECRET } = Cypress.env()
   cy.clearCookies()
   cy.clearLocalStorage()
@@ -165,12 +165,14 @@ Cypress.Commands.add('hmdaLoginGovWorking', (app) => {
 
 
 // Login via Keycloak Impersonate
-Cypress.Commands.add('keycloakLogin', () => {
+Cypress.Commands.add('keycloakLogin', (app) => {
   const { USERNAME, PASSWORD, AUTH_BASE_URL, OTP_SECRET } = Cypress.env()
     console.log("Keycloak Test")
-    it('should successfully login with valid credentials', () => {
+    cy.viewport(1201, 700)
       // Visit the login page
-      cy.visit(`${AUTH_BASE_URL}/auth`)
+      cy.visit(`${AUTH_BASE_URL}auth/`)
+      cy.document().should('have.property', 'readyState', 'complete')
+      cy.get('#kc-page-title').contains('Sign in to your account')
 
       // Enter username
       cy.get('#username')
@@ -181,11 +183,42 @@ Cypress.Commands.add('keycloakLogin', () => {
         .type(PASSWORD)
 
       // Click submit button
-      cy.get('kc-login')
-        .click()
+      cy.get('#kc-login').click()
 
       // Verify successful login
-      cy.url().should('include', '/auth/admin/master/console/')
-    })
+      cy.url().should('include', `${AUTH_BASE_URL}auth/admin/master/console/`, { timeout: 30000 })
+      
+      // Wait for Admin Panel page to load
+      cy.get('h1').should('have.text', 'master realm', { timeout: 15000 })
+
+      // Select hmda2
+      cy.get('[data-testid="realmSelector"]').should('be.visible').click({ timeout: 15000 })
+      cy.get('li').contains('hmda2').should('be.visible').click()
+
+      // Verify hmda2 loaded
+      cy.get('h1.pf-v5-c-empty-state__title-text').contains('HMDA')
+
+      // Go to Users page
+      cy.visit(`${AUTH_BASE_URL}auth/admin/master/console/#/hmda2/users`)
+
+      // Search hmdahelp_test
+      cy.get('input[aria-label="Search"]').type('hmdahelp_test')
+      cy.get('button[aria-label="Search"]').click()
+
+      // Click the user link
+      cy.contains('a', 'hmdahelp_test@cfpb.gov').click()
+      cy.get('h1').should('contain', 'hmdahelp_test@cfpb.gov')
+
+      // Select Impersonate
+      cy.get('[data-testid="action-dropdown"]').click()
+      cy.get('li').contains('Impersonate').should('be.visible').click()
+
+      // Confirm Impersonation in Modal
+      cy.get('#modal-confirm').should('be.visible').invoke('removeAttr', 'target').click({timeout: 2000})
+
+      // Go to App page
+      cy.visit(`${AUTH_BASE_URL}${app}`)
+
+      cy.wait(10000)
   
 })
