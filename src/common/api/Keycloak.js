@@ -4,6 +4,16 @@ let keycloak = null
 let isInitialized = false
 let initPromise = null
 
+const keycloakConfig = {
+  "realm": "hmda2",
+  "url": "https://{{domain}}}/auth",
+  "clientId": "hmda2-api",
+  "public-client": true,
+  "use-resource-role-mappings": true,
+  "confidential-port": 0,
+  "ssl-required": "all"
+}
+
 export const setKeycloak = (cloak) => {
   keycloak = cloak
   return keycloak
@@ -28,12 +38,12 @@ export const initKeycloak = (overrides) => {
     } else if (import.meta.env.MODE === 'development') {
       keycloak = new Keycloak('/local_keycloak.json')
     } else {
-      keycloak = new Keycloak('/keycloak.json')
+      keycloak = new Keycloak(keycloakConfig)
     }
   }
 
   initPromise = keycloak
-    .init({ pkceMethod: 'S256' })
+    .init({ pkceMethod: 'S256', checkLoginIframe: false })
     .then((authenticated) => {
       console.log('Keycloak initialized, authenticated:', authenticated)
       isInitialized = true
