@@ -68,7 +68,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 })
 
 // Login via Login.gov
-Cypress.Commands.add('hmdaLoginGovWorking', (app) => {
+Cypress.Commands.add('hmdaLoginGov', (app) => {
   const { USERNAME, PASSWORD, AUTH_BASE_URL, OTP_SECRET } = Cypress.env()
   cy.clearCookies()
   cy.clearLocalStorage()
