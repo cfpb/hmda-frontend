@@ -4,9 +4,22 @@ let keycloak = null
 let isInitialized = false
 let initPromise = null
 
+let keycloakRedirect = null
+let hostname = window.location.hostname
+
+if (hostname == 'ffiec.beta.cfpb.gov') {
+  keycloakRedirect = 'ffiec.cfpb.gov'
+} else if (hostname.includes('4-beta')) {
+  keycloakRedirect = hostname.replace('4-beta.demo', 'dev')
+} else if (hostname.includes('-beta')) {
+  keycloakRedirect = hostname.replace('-beta', '')
+} else {
+  keycloakRedirect = hostname
+}
+
 const keycloakConfig = {
   "realm": "hmda2",
-  "url": "https://{{domain}}}/auth",
+  "url": `https://${keycloakRedirect}/auth`,
   "clientId": "hmda2-api",
   "public-client": true,
   "use-resource-role-mappings": true,
