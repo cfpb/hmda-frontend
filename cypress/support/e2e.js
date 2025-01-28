@@ -77,7 +77,7 @@ Cypress.Commands.add('keycloakLogin', (app) => {
       cy.get('#modal-confirm').should('be.visible').invoke('removeAttr', 'target').click({timeout: 2000})
 
       // Go to App page
-      cy.visit(`${AUTH_BASE_URL}${app}2020/institutions`)
+      cy.visit(`${AUTH_BASE_URL}${app}/2020/institutions`)
 
       cy.wait(10000)
   

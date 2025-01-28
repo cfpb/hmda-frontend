@@ -12,5 +12,6 @@
   },
   "config": {
     "defaultBrowser": "edge"
-  }
+  },
+  "license": "MIT"
 }
