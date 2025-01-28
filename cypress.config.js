@@ -30,15 +30,6 @@ module.exports = defineConfig({
     experimentalRunAllSpecs: true,
     testIsolation: true,
     setupNodeEvents(on, config) {
-      on('task', {
-        log(message) {
-          console.log(message)
-          return null
-        },
-        generateOTP(secret) {
-          return authenticator.generate(secret)
-        }
-      })
       return require('./cypress/plugins/index.js')(on, config)
     },
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
@@ -50,10 +41,6 @@ module.exports = defineConfig({
       runMode: 2,
       openMode: 0
     },
-    browser: {
-      name: 'edge',
-      channel: 'stable'
-    }
   },
 
   component: {
