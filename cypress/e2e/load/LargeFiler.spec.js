@@ -38,7 +38,7 @@ describe('Large Filer', () => {
 
     // Skip authentication on CI
     if (!isCI(ENVIRONMENT)) {
-      cy.hmdaLoginGov('filing')
+      cy.keycloakLogin('filing')
       cy.url().should('contains', `${AUTH_BASE_URL}filing/`)
       cy.url().should('contains', `/institutions`)
     }
