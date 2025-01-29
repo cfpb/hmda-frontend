@@ -44,5 +44,5 @@ RUN useradd -M -d /hmda-frontend -s /bin/bash hmda_cypress_user && \
   chown -R hmda_cypress_user:hmda_cypress_user /hmda-frontend/
 USER hmda_cypress_user
 
-# Set up the entrypoint to use Edge
-ENTRYPOINT ["npx", "cypress", "run", "--browser", "edge", "--headed"]
+# Set up the entrypoint
+ENTRYPOINT ["npx", "cypress", "run"]
