@@ -10,8 +10,5 @@
     "../../../src/**/*": "../src",
     "../../**/*": "../src"
   },
-  "config": {
-    "defaultBrowser": "edge"
-  },
   "license": "MIT"
 }
