@@ -44,8 +44,6 @@ describe('Filing', {testIsolation: false}, function () {
       AUTH_CLIENT_ID,
     }).logEnv()
 
-    //cy.url().should('contains', `${AUTH_BASE_URL}filing/`)
-        //cy.url().should('contains', `/institutions`)
     cy.visit(`${AUTH_BASE_URL}filing/2020/institutions`)
     cy.viewport(1600, 900)
   })
