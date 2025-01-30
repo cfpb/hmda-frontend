@@ -14,14 +14,14 @@ onlyOn(!isBeta(HOST), () => {
   describe('General Tests', () => {
     it('Checks <GraphsHeader/> component if overview props was not sent to the component', () => {
       cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`).contains(
-        'The following graphs present data for the financial institutions reporting HMDA quarterly data.',
+        'The following graphs show current and historic quarterly HMDA data for these institutions.',
       )
     })
 
     it('Checks <GraphsHeader/> component if data from API succeedes then it checks if numbered financial institutions show in the header', () => {
       let institutionCountRx = '[0-9]{1,3}'
       const financialInstitutionsRx = new RegExp(
-        ` ${institutionCountRx} financial institutions`,
+        `^${institutionCountRx} financial institutions`,
       )
 
       cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`)
