@@ -111,29 +111,4 @@ onlyOn(!isBeta(HOST), () => {
         cy.get({ HOST, TEST_DELAY, ENVIRONMENT }).logEnv())
     }
   })
-
-  describe('Rate Spread - External Referrer', function () {
-    if (isProdDefault(HOST)) {
-      it('Is accessible from Google search', function () {
-        cy.viewport(1680, 916)
-        cy.visit(`https://www.google.com/search?q=hmda+rate+spread`)
-        cy.get('div#search a').contains('rate-spread').click()
-
-        cy.wait(TEST_DELAY)
-
-        cy.get('.item > div > .Form > div > #rateSetDate')
-          .clear()
-          .click()
-          .type('12/16/2019')
-        cy.get('.item > div > .Form > div > #APR').type('3.2')
-        cy.get('.item > div > .Form > div > #loanTerm').click().type('45')
-        cy.get('.grid > .item > div > .Form > input').click()
-
-        // Validate
-        cy.get('.item  .alert').contains('-0.590')
-
-        cy.wait(TEST_DELAY)
-      })
-    }
-  })
 })

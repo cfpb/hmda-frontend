@@ -39,7 +39,7 @@ onlyOn(!isBeta(HOST), () => {
       // Log in
       if (!isCI(ENVIRONMENT)) {
         cy.wait(ACTION_DELAY)
-        cy.hmdaLogin('hmda-help')
+        cy.keycloakLogin('hmda-help')
         cy.url().should('contains', `${AUTH_BASE_URL}hmda-help`)
       }
 

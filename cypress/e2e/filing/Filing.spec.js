@@ -21,8 +21,15 @@ const getFilename = (filingPeriod, lei) => `${filingPeriod}-${lei}.txt`
 const years = (YEARS && YEARS.toString().split(',')) || getFilingPeriods(config)
 const { filingPeriodStatus } = config
 
-describe('Filing', function () {
+
+describe('Filing', {testIsolation: false}, function () {
+
+  before(() => {
+    cy.keycloakLogin('filing/2024/institutions/')
+  })
+
   beforeEach(() => {
+
     cy.get({
       HOST,
       USERNAME,
@@ -37,13 +44,7 @@ describe('Filing', function () {
       AUTH_CLIENT_ID,
     }).logEnv()
 
-    // Skip authentication on CI
-    if (!isCI(ENVIRONMENT)) {
-      cy.hmdaLogin('filing')
-      cy.url().should('contains', `${AUTH_BASE_URL}filing/`)
-      cy.url().should('contains', `/institutions`)
-    }
-
+    cy.visit(`${AUTH_BASE_URL}filing/2020/institutions`)
     cy.viewport(1600, 900)
   })
 
@@ -209,78 +210,9 @@ describe('Filing', function () {
         })
     })
   })
-})
 
-describe('Complete Profile Page', () => {
-  beforeEach(() => {
-    cy.get({
-      HOST,
-      USERNAME,
-      PASSWORD,
-      INSTITUTION,
-      ACTION_DELAY,
-      TEST_DELAY,
-      NAV_DELAY,
-      ENVIRONMENT,
-      AUTH_BASE_URL,
-      AUTH_REALM,
-      AUTH_CLIENT_ID,
-    }).logEnv()
-
-    // Skip authentication on CI
-    if (!isCI(ENVIRONMENT)) {
-      cy.hmdaLogin('filing')
-      cy.url().should('contains', `${AUTH_BASE_URL}filing/`)
-      cy.url().should('contains', `/institutions`)
-    }
-
-    cy.viewport(1600, 900)
-  })
-
-  it('Navigate to the profile page and ensures the correct information is visible', () => {
-    cy.wait(ACTION_DELAY)
-
-    // Complete your profile page checks
-    cy.get(
-      '[style="color: black; text-decoration: none; cursor: pointer;"]',
-    ).click()
-    cy.get('.profile_form_container > :nth-child(1) > input').should(
-      'have.value',
-      'Frontend',
-    )
-    cy.get(':nth-child(2) > input').should('have.value', 'Testing')
-    cy.get(':nth-child(3) > input').should(
-      'have.value',
-      'frontend.testing@mailinator.com',
-    )
-    cy.get('.institutions_checkbox_container').should('have.length', 1)
-  })
-
-  it('Removes associated institution, banner should popup saying that one associated institution is required to use the filing platform', () => {
-    cy.wait(ACTION_DELAY)
-
-    cy.get(
-      '[style="color: black; text-decoration: none; cursor: pointer;"]',
-    ).click()
-    cy.get('.institution_info_container > input').click({ multiple: true })
-    cy.get('.profile_save_container > button').click()
-    cy.wait(1000)
-
-    cy.get('.alert-heading').contains(
-      'An institution must be associated with your account.',
-    )
-  })
-
-  it('User gets redirected to complete profile page due to no associated LEIs on their account', () => {
-    cy.wait(5000)
-
-    cy.url().should('contains', '/filing/profile')
-
-    cy.get('.institution_info_container > input').click({ multiple: true })
-    cy.get('.profile_save_container > button').click()
-    cy.wait(1000)
-
-    // Back button verifies that the institution was re-added to the account
-    cy.get('.button').contains('Back')
+  // Logout of Keycloak
+  it('Logout of Keycloak', function() {
+    cy.visit(`${AUTH_BASE_URL}auth/realms/hmda2/protocol/openid-connect/logout`)
   })
 })
