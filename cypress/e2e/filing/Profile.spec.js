@@ -33,12 +33,14 @@ describe('Complete Profile Page', {testIsolation: false}, () => {
       AUTH_CLIENT_ID,
     }).logEnv()
 
-    // Skip authentication on CI
-    if (!isCI(ENVIRONMENT)) {
-      cy.keycloakLogin('filing')
-      cy.url().should('contains', `${AUTH_BASE_URL}filing/`)
-      cy.url().should('contains', `/institutions`)
-    }
+    cy.clearCookies();
+    cy.clearLocalStorage();
+    cy.window().then((win) => win.sessionStorage.clear())
+    
+    cy.keycloakLogin('filing')
+    cy.url().should('contains', `${AUTH_BASE_URL}filing/`)
+    cy.url().should('contains', `/institutions`)
+
 
     cy.viewport(1600, 900)
   })

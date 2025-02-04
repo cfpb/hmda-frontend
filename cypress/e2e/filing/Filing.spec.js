@@ -210,4 +210,9 @@ describe('Filing', {testIsolation: false}, function () {
         })
     })
   })
+
+  // Logout of Keycloak
+  it('Logout of Keycloak', function() {
+    cy.visit(`${AUTH_BASE_URL}auth/realms/hmda2/protocol/openid-connect/logout`)
+  })
 })
