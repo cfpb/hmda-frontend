@@ -2927,12 +2927,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/http-proxy@npm:^1.17.4":
-  version: 1.17.14
-  resolution: "@types/http-proxy@npm:1.17.14"
+"@types/http-proxy@npm:^1.17.8":
+  version: 1.17.16
+  resolution: "@types/http-proxy@npm:1.17.16"
   dependencies:
     "@types/node": "npm:*"
-  checksum: 10c0/c4bffd87be9aff7e879c05bd2c28716220e0eb39788e3f8d314eee665324ad8f5f0919041cbd710254d553cd9cea023f8b776d4b1ec31d2188eac60af18c3022
+  checksum: 10c0/b71bbb7233b17604f1158bbbe33ebf8bb870179d2b6e15dc9483aa2a785ce0d19ffb6c2237225b558addf24211d1853c95e337ee496df058eb175b433418a941
   languageName: node
   linkType: hard
 
@@ -6656,7 +6656,7 @@ __metadata:
     highcharts: "npm:10.3.3"
     highcharts-react-official: "npm:3.2.1"
     html-to-image: "npm:1.11.11"
-    http-proxy-middleware: "npm:1.0.6"
+    http-proxy-middleware: "npm:2.0.7"
     jest: "npm:^29.7.0"
     jspdf: "npm:^2.5.1"
     jwt-decode: "npm:^3.1.2"
@@ -6773,16 +6773,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"http-proxy-middleware@npm:1.0.6":
-  version: 1.0.6
-  resolution: "http-proxy-middleware@npm:1.0.6"
+"http-proxy-middleware@npm:2.0.7":
+  version: 2.0.7
+  resolution: "http-proxy-middleware@npm:2.0.7"
   dependencies:
-    "@types/http-proxy": "npm:^1.17.4"
+    "@types/http-proxy": "npm:^1.17.8"
     http-proxy: "npm:^1.18.1"
     is-glob: "npm:^4.0.1"
-    lodash: "npm:^4.17.20"
+    is-plain-obj: "npm:^3.0.0"
     micromatch: "npm:^4.0.2"
-  checksum: 10c0/516ba061f80910fedf7e0e977e77a8dbac216fc0235ba1eef11fd1ee0cb44eb0865b1eb38806b3dc196a4ec91ca957b8c584b1edab7cb990b6552c51cb851cb5
+  peerDependencies:
+    "@types/express": ^4.17.13
+  peerDependenciesMeta:
+    "@types/express":
+      optional: true
+  checksum: 10c0/8d00a61eb215b83826460b07489d8bb095368ec16e02a9d63e228dcf7524e7c20d61561e5476de1391aecd4ec32ea093279cdc972115b311f8e0a95a24c9e47e
   languageName: node
   linkType: hard
 
@@ -7197,6 +7202,13 @@ __metadata:
   version: 3.0.3
   resolution: "is-path-inside@npm:3.0.3"
   checksum: 10c0/cf7d4ac35fb96bab6a1d2c3598fe5ebb29aafb52c0aaa482b5a3ed9d8ba3edc11631e3ec2637660c44b3ce0e61a08d54946e8af30dec0b60a7c27296c68ffd05
+  languageName: node
+  linkType: hard
+
+"is-plain-obj@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "is-plain-obj@npm:3.0.0"
+  checksum: 10c0/8e6483bfb051d42ec9c704c0ede051a821c6b6f9a6c7a3e3b55aa855e00981b0580c8f3b1f5e2e62649b39179b1abfee35d6f8086d999bfaa32c1908d29b07bc
   languageName: node
   linkType: hard
 
@@ -8267,7 +8279,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.20, lodash@npm:^4.17.21":
+"lodash@npm:^4.17.21":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: 10c0/d8cbea072bb08655bb4c989da418994b073a608dffa608b09ac04b43a791b12aeae7cd7ad919aa4c925f33b48490b5cfe6c1f71d827956071dae2e7bb3a6b74c
