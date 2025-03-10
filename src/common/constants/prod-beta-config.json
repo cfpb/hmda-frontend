@@ -3,7 +3,11 @@
   "announcement": null,
   "publicationReleaseYear": "2020",
   "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "filingAnnouncement": {
+    "message": "",
+    "type": "",
+    "heading": ""
+  },
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [

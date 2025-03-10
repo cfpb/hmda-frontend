@@ -23,7 +23,11 @@
   "publicationReleaseYear": "2023",
   "mlarReleaseYear": "2023",
   "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "filingAnnouncement": {
+    "message": "",
+    "type": "",
+    "heading": ""
+  },
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
