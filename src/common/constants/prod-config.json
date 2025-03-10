@@ -2,6 +2,12 @@
   "name": "prod",
   "announcement": [
     {
+      "message": "We will be performing scheduled system maintenance on April 10 from 6PM - 8PM EST. During this time users may experience brief service interruptions and site slowdowns.",
+      "type": "warning",
+      "heading": "Scheduled Maintenance",
+      "link": null
+    },
+    {
       "message": "We will be performing scheduled system maintenance on March 11 from 6PM - 8PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
       "type": "warning",
       "heading": "Scheduled Maintenance",
@@ -30,7 +36,7 @@
   "mlarReleaseYear": "2023",
   "maintenanceMode": false,
   "filingAnnouncement": {
-    "message": "We will be performing scheduled system maintenance on March 11 from 6PM - 8PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "message": "We will be performing scheduled system maintenance on April 10 from 6PM - 8PM EST. During this time users may experience brief service interruptions and site slowdowns.",
     "type": "warning",
     "heading": "Scheduled Maintenance",
     "endDate": null
