@@ -4,6 +4,11 @@ const { HOST } = Cypress.env()
 
 const testCases = [
   {
+    year: 2024,
+    name: 'cypress bank, ssb',
+    institution: '549300I4IUWMEMGLST06',
+  },
+  {
     year: 2023,
     name: 'cypress bank, ssb',
     institution: '549300I4IUWMEMGLST06',
