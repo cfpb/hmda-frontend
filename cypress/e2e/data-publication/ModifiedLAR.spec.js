@@ -1,40 +1,38 @@
 import { onlyOn } from '@cypress/skip-test'
-import { isBeta } from '../../support/helpers'
+import { isBeta, isDev } from '../../support/helpers'
 const { HOST } = Cypress.env()
 
-const testCases = [
-  {
-    year: 2023,
-    name: 'cypress bank, ssb',
-    institution: '549300I4IUWMEMGLST06',
-  },
-  {
-    year: 2022,
-    name: 'cypress bank, ssb',
-    institution: '549300I4IUWMEMGLST06',
-  },
-  {
-    year: 2021,
-    name: 'cypress bank, ssb',
-    institution: '549300I4IUWMEMGLST06',
-  },
-  {
-    year: 2020,
-    name: 'cypress bank, ssb',
-    institution: '549300I4IUWMEMGLST06',
-  },
-  {
-    year: 2019,
-    name: 'cypress bank, ssb',
-    institution: '549300I4IUWMEMGLST06',
-  },
-  {
-    year: 2018,
-    name: 'cypress bank, state savings bank',
-    institution: '549300I4IUWMEMGLST06',
-  },
-  { year: 2017, name: 'cypress bank, ssb', institution: '729178' },
-]
+// add additonal years here to test as needed
+const years = [2023, 2022, 2021, 2020, 2019, 2018, 2017];
+
+const testCases = 
+  years.map(year => {
+
+    // special case for 2017 on both dev and prod
+    if (year === 2017) {
+      return {
+        year,
+        name: 'cypress bank, ssb',
+        institution: '729178',
+      }
+    }
+
+    // special case for 2018 on prod
+    if (year === 2018 && !isDev(HOST)) {
+      return {
+        year,
+        name: 'cypress bank, state savings bank',
+        institution: '549300I4IUWMEMGLST06',
+      }
+    }
+
+    // default case for all other years for dev and prod
+    return {
+      year,
+      name: isDev(HOST) ? 'FRONTEND TEST BANK' : 'cypress bank, ssb',
+      institution: isDev(HOST) ? 'FRONTENDTESTBANK9999' : '549300I4IUWMEMGLST06',
+    }
+  })
 
 onlyOn(isBeta(HOST), () => {
   describe('Modified LAR', function () {
