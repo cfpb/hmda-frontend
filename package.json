@@ -115,7 +115,8 @@
     "word-wrap": ">=1.2.4",
     "browserify-sign": ">=4.2.2",
     "dompurify": "3.2.4",
-    "esbuild": "0.25.0"
+    "esbuild": "0.25.0",
+    "canvg": "4.0.3"
   },
   "packageManager": "yarn@4.1.0"
 }
