@@ -116,7 +116,7 @@
     "browserify-sign": ">=4.2.2",
     "dompurify": "3.2.4",
     "esbuild": "0.25.0",
-    "canvg": "4.0.3"
+    "canvg": "3.0.11"
   },
   "packageManager": "yarn@4.1.0"
 }
