@@ -2,8 +2,8 @@ import { onlyOn } from '@cypress/skip-test'
 import { isBeta, isDev } from '../../support/helpers'
 const { HOST } = Cypress.env()
 
-// add additonal years here to test as needed
-const years = [2023, 2022, 2021, 2020, 2019, 2018, 2017];
+// add additional years here to test as needed
+const years = [2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017];
 
 const testCases = 
   years.map(year => {
