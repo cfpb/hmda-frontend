@@ -1,10 +1,9 @@
+import config from '../../../src/common/constants/prod-config.json'
 import { isBeta } from '../../support/helpers'
 import { onlyOn } from '@cypress/skip-test'
-import { getDefaultConfig } from '../../../src/common/configUtils';
+const years = config.dataPublicationYears
 
 const { HOST } = Cypress.env()
-const config = getDefaultConfig(HOST);
-const years = config.dataPublicationYears;
 
 const FromTo = [
   // Reports that will break if auto-redirect is enabled
