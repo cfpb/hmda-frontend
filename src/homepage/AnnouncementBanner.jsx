@@ -62,7 +62,9 @@ const scheduledFilingAnnouncements = (defaultPeriod, filingPeriodStatus) => {
   // Only display Quarterly announcements during Quarterly Filing periods
   if (quarter) {
     // Quarterly Filing Open
+    console.log('quarter :>> ', quarter);
     if (isEventWithinRange('quarterlyOpen', status.dates.start)) {
+      console.log('status.dates.start :>> ', status.dates.start);
       announcements.push(
         <ConfiguredAlert
           heading={`${status.period} Quarterly filing period is open`}
