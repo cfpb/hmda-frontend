@@ -2,21 +2,12 @@
   "name": "prod",
   "announcement": [
     {
-      "heading": "Signing in using Login.gov will be mandatory for the 2025 filing season",
-      "message": "Starting January 1, 2025, all users of the HMDA platform must switch to a Login.gov account, which uses multifactor authentication. Users will no longer have the option to sign in using the current process. For help on setting up your Login.gov account please utilize this ",
+      "heading": "2024 Modified LAR Data Release",
+      "message": "On March 31, 2025, the 2024 Modified LAR was released. A combined file containing all LAR records in a single file is also available. These files can be accessed via the ",
       "type": "info",
       "link": {
-        "url": "https://ffiec.cfpb.gov/documentation/faq/login-gov-quick-reference",
-        "text": "Quick Reference Guide."
-      }
-    },
-    {
-      "heading": "2025 Online Filing Instructions Guides Released",
-      "message": "The Bureau has released the 2025 Online FIG and Online Supplemental Guide for Quarterly Filers for 2025, which are available ",
-      "type": "info",
-      "link": {
-        "url": "https://ffiec.cfpb.gov/documentation/faq/data-collection-timelines#filing-instructions-guide-fig",
-        "text": "here."
+        "url": "https://ffiec.cfpb.gov/data-publication/modified-lar/2024",
+        "text": "Modified LAR page."
       }
     }
   ],
