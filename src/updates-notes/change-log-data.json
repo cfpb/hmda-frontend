@@ -1,18 +1,6 @@
 {
   "log": [
     {
-      "date": "03/31/25",
-      "type": "release",
-      "product": "mlar",
-      "description": "On March 31, 2025, the 2024 Modified LAR data was released. A combined file containing all financial institutions' LAR records in a single file is also available for users to download.",
-      "links": [
-        {
-          "text": "View the press release.",
-          "url": "https://www.consumerfinance.gov/about-us/newsroom/"
-        }
-      ]
-    },
-    {
       "date": "12/31/24",
       "type": "update",
       "product": "documentation",
