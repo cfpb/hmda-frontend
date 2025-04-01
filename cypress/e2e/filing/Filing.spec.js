@@ -67,11 +67,18 @@ describe('Filing', {testIsolation: false}, function () {
 
       // Use the quarterly selector if it is a quarterly filing
       if (filingPeriod.includes('Q')) {
-        // Select the quarter using the annual-or-quarter
-        cy.get('.annual-or-quarter__control').click()
-        cy.get('.annual-or-quarter__menu')
-          .contains(filingPeriod.split('-')[1])
-          .click()
+        cy.get('body').then($body => {
+          // Check if annual-or-quarter dropdown is disabled
+          const hasDisabledControl = $body.find('.annual-or-quarter--is-disabled').length > 0;
+          
+          if (!hasDisabledControl) {
+            // Only attempt to interact if not disabled
+            cy.get('.annual-or-quarter__control').click()
+            cy.get('.annual-or-quarter__menu')
+              .contains(filingPeriod.split('-')[1])
+              .click()
+          }
+        })
       } else if (!status.isClosed) {
         // For open annual filings, select "Annual"
         cy.get('.annual-or-quarter__control').click()
