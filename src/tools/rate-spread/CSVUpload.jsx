@@ -93,7 +93,7 @@ class CSVUpload extends Component {
               href='#'
               id='csvfile'
             />
-            <label className='button csvLabel' htmlFor='csvfile'>
+            <label className='button csvLabel upload-csv-rate-spread-button' htmlFor='csvfile'>
               Upload a csv
             </label>
           </p>
