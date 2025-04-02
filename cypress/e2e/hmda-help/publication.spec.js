@@ -1,4 +1,4 @@
-import { isCI, isProd, isBeta } from '../../support/helpers'
+import { isCI, isProd, isBeta, isDev } from '../../support/helpers'
 import { onlyOn } from '@cypress/skip-test'
 
 const {
@@ -60,7 +60,14 @@ onlyOn(!isBeta(HOST), () => {
       // Trigger Publication regeneration
       cy.findAllByText('IRS')
         .parent('tr')
-        .last()
+        .then(($tr) => {
+          if (isDev(HOST)) {
+            return $tr.first();
+          }
+          else {
+            return $tr.last();
+          }
+        })
         .findByText('Regenerate')
         .should('not.have.class', 'disabled')
         .as('lastRow')
