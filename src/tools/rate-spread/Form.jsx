@@ -362,6 +362,7 @@ class Form extends Component {
             />
           </div>
           <input
+            class="calculate-rate-spread-button"
             disabled={
               hasEmptyInputs || rateSetError || APRError || loanTermError
             }

@@ -88,6 +88,7 @@ class CSVUpload extends Component {
           />
           <p>
             <input
+              className="upload-csv-rate-spread-button"
               onChange={this.handleCSVSelect}
               type='file'
               href='#'
