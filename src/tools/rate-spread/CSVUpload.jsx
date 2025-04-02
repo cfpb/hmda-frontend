@@ -88,12 +88,13 @@ class CSVUpload extends Component {
           />
           <p>
             <input
+              className="upload-csv-rate-spread-button"
               onChange={this.handleCSVSelect}
               type='file'
               href='#'
               id='csvfile'
             />
-            <label className='button csvLabel upload-csv-rate-spread-button' htmlFor='csvfile'>
+            <label className='button csvLabel' htmlFor='csvfile'>
               Upload a csv
             </label>
           </p>
