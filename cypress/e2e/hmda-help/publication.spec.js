@@ -60,6 +60,9 @@ onlyOn(!isBeta(HOST), () => {
       // Trigger Publication regeneration
       cy.findAllByText('IRS')
         .parent('tr')
+        
+        // dev environment's IRS publications in the older years cannot be regenerated, so we're
+        // choosing the first instead of the last on dev
         .then(($tr) => {
           if (isDev(HOST)) {
             return $tr.first();
@@ -68,6 +71,7 @@ onlyOn(!isBeta(HOST), () => {
             return $tr.last();
           }
         })
+
         .findByText('Regenerate')
         .should('not.have.class', 'disabled')
         .as('lastRow')
