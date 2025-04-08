@@ -1,4 +1,5 @@
 const { defineConfig } = require('cypress')
+const fs = require('fs')
 
 module.exports = defineConfig({
   chromeWebSecurity: false,
@@ -40,6 +41,24 @@ module.exports = defineConfig({
     retries: {
       runMode: 2,
       openMode: 0
+    },
+    // Delete videos for specs without failing or retried tests, see docs:
+    // https://docs.cypress.io/app/guides/screenshots-and-videos#Delete-videos-for-specs-without-failing-or-retried-tests
+    setupNodeEvents(on, config) {
+      on('after:spec', (spec, results) => {
+        if (results && results.video) {
+          // Do we have failures for any retry attempts?
+          const failures = results.tests.some((test) =>
+            test.attempts.some((attempt) => attempt.state === 'failed')
+          )
+          // Check to make sure the video file exists before deleting, see https://stackoverflow.com/a/76113045
+          if (!failures && fs.existsSync(results.video)) {
+            // delete the video if the spec passed and no tests retried
+            fs.unlinkSync(results.video)
+            console.log(`All tests passed, deleting video file: ${results.video}`)
+          }
+        }
+      })
     },
   },
 
