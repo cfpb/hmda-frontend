@@ -5,11 +5,9 @@ FROM cypress/included:14.3.0
 WORKDIR /hmda-frontend
 
 USER root
-# RUN apt-get update && apt-get install -y curl nodejs npm microsoft-edge-stable
 RUN apt-get update && apt-get install -y curl
 
 COPY cypress/package.json ./
-# RUN npm install cypress@13.5.0 --save-dev
 RUN npm install cypress@14.3.0 --save-dev --force
 RUN npx cypress verify
 
