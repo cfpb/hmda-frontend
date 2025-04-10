@@ -1,18 +1,14 @@
-ARG NODE_VERSION='20.9.0'
-ARG CYPRESS_VERSION='13.5.0'
-
-# Using specific versioned tag that includes Node, Cypress and Edge versions
-FROM cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
+# Install Cypress v14.3.0
+FROM cypress/included:14.3.0
 
 # Set working directory
 WORKDIR /hmda-frontend
 
 USER root
-RUN apt-get update && apt-get install -y curl nodejs npm microsoft-edge-stable
-#RUN apt-get install -y curl
+RUN apt-get update && apt-get install -y curl
 
 COPY cypress/package.json ./
-RUN npm install cypress@13.5.0 --save-dev
+RUN npm install cypress@14.3.0 --save-dev --force
 RUN npx cypress verify
 
 # Prepare working directory

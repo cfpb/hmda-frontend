@@ -82,7 +82,7 @@
     "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
     "@testing-library/cypress": "10.0.2",
     "@vitejs/plugin-react": "^4.1.0",
-    "cypress": "13.3.1",
+    "cypress": "^14.0",
     "cypress-file-upload": "5.0.8",
     "cypress-keycloak": "2.0.2",
     "dotenv": "^16.3.1",
