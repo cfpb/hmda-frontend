@@ -8,6 +8,8 @@ let baseURLToVisit = isCI(ENVIRONMENT) ? 'http://localhost:3000' : HOST
 
 let urlForTesting = baseURLToVisit + '/tools/online-lar-formatting'
 
+const yearToBeTested = '2025'
+
 // Command used to grab ID from input fields and drop-down menus.
 // Workaround as the IDs have a space in them i.e -> Calendar Year
 Cypress.Commands.add('getID', (value) => cy.get(`[id="${value}"]`))
@@ -31,7 +33,7 @@ onlyOn(!isBeta(HOST), () => {
     it("Test TS 'Filter columns' and 'Search TS' functionality", () => {
       cy.visit(urlForTesting)
       // Generate TS
-      cy.getID('Calendar Year').select('2019')
+      cy.getID('Calendar Year').select(yearToBeTested)
       cy.getID('Calendar Quarter').select('1 - Q1')
       cy.getID('Legal Entity Identifier (LEI)').type('1071FAKELEI')
       cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
@@ -44,17 +46,17 @@ onlyOn(!isBeta(HOST), () => {
       // Clear "Filer columns" via "Clear Filter" button
       cy.get('.filters > :nth-child(2) > .clear').click()
       // Now testing "Search TS" functionality
-      cy.get('.filters > :nth-child(1) > input').click().type('2019')
+      cy.get('.filters > :nth-child(1) > input').click().type(yearToBeTested)
       cy.get('.row-container > :nth-child(2) > .custom-cell-content').should(
         'have.text',
-        '2019',
+        yearToBeTested,
       )
     })
 
     it("Tests LAR 'Search LAR' and 'Filter columns' functionality", () => {
       cy.visit(urlForTesting)
       // Need to generate TS first before a LAR record can be created
-      cy.getID('Calendar Year').select('2019')
+      cy.getID('Calendar Year').select(yearToBeTested)
       cy.getID('Calendar Quarter').select('1 - Q1')
       cy.getID('Legal Entity Identifier (LEI)').type('1071FAKELEI')
       cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
@@ -83,7 +85,7 @@ onlyOn(!isBeta(HOST), () => {
     it("Generate TS and LAR records then clear the records by clicking 'Clear Saved' button", () => {
       cy.visit(urlForTesting).contains('(LAR) Formatting Tool')
       // Generate TS Record with calendar year, quarter and LEI
-      cy.getID('Calendar Year').select('2019')
+      cy.getID('Calendar Year').select(yearToBeTested)
       cy.getID('Calendar Quarter').select('1 - Q1')
       cy.getID('Legal Entity Identifier (LEI)').type('1071FAKELEI')
       cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
@@ -105,7 +107,7 @@ onlyOn(!isBeta(HOST), () => {
     it('Prompts user that data will be lost when navigating away from page', () => {
       cy.visit(urlForTesting)
       // Generates TS Record
-      cy.getID('Calendar Year').select('2019')
+      cy.getID('Calendar Year').select(yearToBeTested)
       cy.getID('Calendar Quarter').select('1 - Q1')
       cy.getID('Legal Entity Identifier (LEI)').type('1071FAKELEI')
       cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
@@ -119,21 +121,21 @@ onlyOn(!isBeta(HOST), () => {
     it('Verifies downloaded filename includes Calendar Year, quarter and user inputted LEI otherwise filename defaults to LarFile', () => {
       cy.visit(urlForTesting)
       // Generates TS Record
-      cy.getID('Calendar Year').select('2019')
+      cy.getID('Calendar Year').select(yearToBeTested)
       cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
       // Filename attribute check - defaults to "LarFile" if calendar year, quarter and LEI isn't in the TS record
       cy.get('.export').invoke('attr', 'data-filename').should('eq', 'LarFile')
 
       cy.get('.reset').click()
 
-      cy.getID('Calendar Year').select('2019')
+      cy.getID('Calendar Year').select(yearToBeTested)
       cy.getID('Calendar Quarter').select('1 - Q1')
       cy.getID('Legal Entity Identifier (LEI)').type('1071FAKELEI')
       cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
       // Checks Download Button filename attribute
       cy.get('.export')
         .invoke('attr', 'data-filename')
-        .should('eq', '2019-1-1071FAKELEI')
+        .should('eq', `${yearToBeTested}-1-1071FAKELEI`)
     })
 
     it('File upload feature', () => {
@@ -166,7 +168,7 @@ onlyOn(!isBeta(HOST), () => {
     it("TS Record is generated. Check that 'Column 1' disabled drop-down changes to LAR", () => {
       cy.visit(urlForTesting)
       // Generates TS Record
-      cy.getID('Calendar Year').select('2019')
+      cy.getID('Calendar Year').select(yearToBeTested)
       cy.getID('Calendar Quarter').select('1 - Q1')
       cy.getID('Legal Entity Identifier (LEI)').type('1071FAKELEI')
       cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
@@ -176,7 +178,7 @@ onlyOn(!isBeta(HOST), () => {
     it("TS Record generated and LAR record generated. Ensure 'Column 1' still says '2 - LAR' in the disabled drop-down", () => {
       cy.visit(urlForTesting)
       // Generate TS - TS is required to be able to generate LAR records
-      cy.getID('Calendar Year').select('2019')
+      cy.getID('Calendar Year').select(yearToBeTested)
       cy.getID('Legal Entity Identifier (LEI)').type('1071FAKELEI')
       cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
 
@@ -197,12 +199,12 @@ onlyOn(!isBeta(HOST), () => {
     it('TS Record tests: functionality with drop-downs, input fields, update record and delete record', () => {
       cy.visit(urlForTesting)
       // Generate TS
-      cy.getID('Calendar Year').select('2019')
+      cy.getID('Calendar Year').select(yearToBeTested)
       cy.getID('Legal Entity Identifier (LEI)').type('1071FAKELEI')
       cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
       // Drop-down check
-      cy.get('.filters > :nth-child(1) > input').click().type('2019')
-      cy.get('#saved-ts #row-1').should('have.text', '2019')
+      cy.get('.filters > :nth-child(1) > input').click().type(yearToBeTested)
+      cy.get('#saved-ts #row-1').should('have.text', yearToBeTested)
       // Clear "Search TS" filter
       cy.get(':nth-child(1) > .clear').click()
       // Input field check
@@ -249,7 +251,7 @@ onlyOn(!isBeta(HOST), () => {
     it('LAR Record tests: functionality with drop-downs, input fields, buttons, update LAR record and delete LAR record', () => {
       cy.visit(urlForTesting)
       // Generate TS - TS is required to be able to generate LAR records
-      cy.getID('Calendar Year').select('2019')
+      cy.getID('Calendar Year').select(yearToBeTested)
       cy.getID('Legal Entity Identifier (LEI)').type('1071FAKELEI')
       cy.get('#parsed-row > .action-wrapper > .row-actions > .save-row').click()
       // Generate LAR record - with drop-down, input field and button entries
