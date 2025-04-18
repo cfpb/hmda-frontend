@@ -1,6 +1,18 @@
 {
   "log": [
     {
+      "date": "04/18/25",
+      "type": "release",
+      "product": "tools",
+      "description": "The Online LAR Formatting tool has been updated for data collected in 2024 and 2025.",
+      "links": [
+        {
+          "text": "Online LAR Formatting Tool",
+          "url": "https://ffiec.cfpb.gov/tools/online-lar-formatting"
+        }
+      ]
+    },
+    {
       "date": "03/31/25",
       "type": "release",
       "product": "mlar",
