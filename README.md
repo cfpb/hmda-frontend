@@ -321,8 +321,6 @@ Paste the below code to the section you want to import your GIF and update the `
 yarn test
 ```
 
-[Enzyme](https://enzymejs.github.io/enzyme/) enables isolated testing of React components. Unit tests providing verification of feature implementation while also serving as suite of regression tests.
-
 ### End-to-End Testing
 
 ```
