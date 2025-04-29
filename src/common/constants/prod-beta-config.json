@@ -1,6 +1,6 @@
 {
   "name": "prod-beta",
-  "announcement": null,
+  "announcement": [{}],
   "publicationReleaseYear": "2020",
   "maintenanceMode": false,
   "filingAnnouncement": null,
