@@ -11,6 +11,7 @@ import { isRowTS } from '../../utils/row'
 import { EditingActions } from './EditingActions'
 import { EditingParsed } from './EditingParsed'
 import { EditingPiped } from './EditingPiped'
+import { analyticsLog, analyticsSendEvent } from '@cfpb/cfpb-analytics'
 
 /**
  * Combined section allowing users to edit a single row's content
@@ -36,6 +37,12 @@ export const Editing = ({ id = 'row-editor' }) => {
   const saveHandler = () => {
     setChanged(false)
     dispatch(rowSave())
+    const typeOfRow = editingRow["Record Identifier"] === '1' ? 'TS' : 'LAR'
+    analyticsSendEvent({
+      event: 'OLARFT Events',
+      action: 'Successfully saved row',
+      label: typeOfRow,
+    });
   }
 
   const newHandler = () => {

@@ -1667,6 +1667,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@cfpb/cfpb-analytics@npm:^0.3.2":
+  version: 0.3.2
+  resolution: "@cfpb/cfpb-analytics@npm:0.3.2"
+  checksum: 10c0/7f1da9c1c6612432701b6919e0ce4aff18d856721b15b3739531013bdba52d0b88facb6f3567ab79a7ed4522e3d8a33b896be4b8f4276431d38bd8573c8bdaa7
+  languageName: node
+  linkType: hard
+
 "@colors/colors@npm:1.5.0":
   version: 1.5.0
   resolution: "@colors/colors@npm:1.5.0"
@@ -6739,6 +6746,7 @@ __metadata:
   dependencies:
     "@babel/preset-env": "npm:^7.23.8"
     "@babel/preset-react": "npm:^7.23.3"
+    "@cfpb/cfpb-analytics": "npm:^0.3.2"
     "@cypress/skip-test": "npm:2.6.0"
     "@docsearch/react": "npm:3.6.0"
     "@esbuild-plugins/node-globals-polyfill": "npm:^0.2.3"

@@ -25,6 +25,7 @@
   "author": "Consumer Financial Protection Bureau",
   "license": "CC0-1.0",
   "dependencies": {
+    "@cfpb/cfpb-analytics": "^0.3.2",
     "@docsearch/react": "3.6.0",
     "@redux-devtools/extension": "^3.3.0",
     "@reduxjs/toolkit": "^1.9.7",
