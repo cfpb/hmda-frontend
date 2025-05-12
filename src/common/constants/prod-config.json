@@ -2,12 +2,6 @@
   "name": "prod",
   "announcement": [
     {
-      "message": "We are performing system maintenance from 6PM - 8PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-      "type": "error",
-      "heading": "System Temporarily Unavailable",
-      "link": null
-    },
-    {
       "heading": "2024 Modified LAR Data Release",
       "message": "On March 31, 2025, the 2024 Modified LAR was released. A combined file containing all LAR records in a single file is also available. These files can be accessed via the ",
       "type": "info",
@@ -19,13 +13,8 @@
   ],
   "publicationReleaseYear": "2023",
   "mlarReleaseYear": "2024",
-  "maintenanceMode": true,
-  "filingAnnouncement": {
-    "message": "We are performing system maintenance from 6PM - 8PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-    "type": "error",
-    "heading": "System Temporarily Unavailable",
-    "endDate": null
-  },
+  "maintenanceMode": false,
+  "filingAnnouncement": null,
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
