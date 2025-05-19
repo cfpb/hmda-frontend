@@ -2832,10 +2832,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/react-virtual@npm:^3.13.6":
+  version: 3.13.8
+  resolution: "@tanstack/react-virtual@npm:3.13.8"
+  dependencies:
+    "@tanstack/virtual-core": "npm:3.13.8"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/1604227dad2f1c8d3b8246f8afe9bc37998da8f97ed7ef1b5d703fe3417c8a54541592a9091e7c8e63521002672268292d347c5c17fe1e1e82b9d0b297ddd1b4
+  languageName: node
+  linkType: hard
+
 "@tanstack/table-core@npm:8.20.5":
   version: 8.20.5
   resolution: "@tanstack/table-core@npm:8.20.5"
   checksum: 10c0/3c27b5debd61b6bd9bfbb40bfc7c5d5af90873ae1a566b20e3bf2d2f4f2e9a78061c081aacc5259a00e256f8df506ec250eb5472f5c01ff04baf9918b554982b
+  languageName: node
+  linkType: hard
+
+"@tanstack/virtual-core@npm:3.13.8":
+  version: 3.13.8
+  resolution: "@tanstack/virtual-core@npm:3.13.8"
+  checksum: 10c0/4b76b5d87fb26c928939a58d3887b9191574f029f60f9146eb05fd591f8b96a69bd3c7a1d64dd9d6cbfbfc85a0bd22b49a79fa4d3abab64eee595db9ad94f3ea
   languageName: node
   linkType: hard
 
@@ -6787,7 +6806,7 @@ __metadata:
     react-app-polyfill: "npm:2.0.0"
     react-dom: "npm:18.3.1"
     react-dropzone: "npm:10.2.2"
-    react-fluid-table: "npm:0.5.1"
+    react-fluid-table: "npm:^1.4.3"
     react-helmet: "npm:5.2.1"
     react-highlight-words: "npm:0.20.0"
     react-icons: "npm:^4.4.0"
@@ -9853,16 +9872,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-fluid-table@npm:0.5.1":
-  version: 0.5.1
-  resolution: "react-fluid-table@npm:0.5.1"
+"react-fluid-table@npm:^1.4.3":
+  version: 1.4.3
+  resolution: "react-fluid-table@npm:1.4.3"
   dependencies:
-    react-resize-detector: "npm:^9.1.0"
-    react-window: "npm:^1.8.9"
+    "@tanstack/react-virtual": "npm:^3.13.6"
+    react-resize-detector: "npm:^12.0.2"
   peerDependencies:
-    react: ">=16.8.0"
-    react-dom: ">=16.8.0"
-  checksum: 10c0/84479518ca3d61996c2e9193d1378c247fa472a2411a963347c956d37c54459bdf19b83d7420db2cba4e5553c60129c16fce4eb91403421ca559f5f0d4008488
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/eabdc6cfa7f2dffad18c3f099f066f29743908cda9b0371ccd98a8ce170b2df3faf29999cb76e556945b805b020d0b50e3e9901a1d7a608df9b1cbdd219a6a36
   languageName: node
   linkType: hard
 
@@ -9973,15 +9992,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-resize-detector@npm:^9.1.0":
-  version: 9.1.1
-  resolution: "react-resize-detector@npm:9.1.1"
+"react-resize-detector@npm:^12.0.2":
+  version: 12.0.2
+  resolution: "react-resize-detector@npm:12.0.2"
   dependencies:
     lodash: "npm:^4.17.21"
   peerDependencies:
-    react: ^16.0.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
-  checksum: 10c0/6a85892fe46a12fc27b09b5bf5fcc1438f3196f70c75d4685b09eed2c68a2c853dd6eb792bf852038082505a3b4f05dba359055ee0baca3f8b59f022a85a368c
+    react: ^18.0.0 || ^19.0.0
+  checksum: 10c0/93c05569223a9a48a170e053f7c7fc54bb4e467fb85b6c66e9de5ed99d08b347ff927a8076986f39950d1b038d4944e365c2fc35853a89f0dbe98ae95bc0913b
   languageName: node
   linkType: hard
 
@@ -10093,7 +10111,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-window@npm:1.8.10, react-window@npm:^1.8.9":
+"react-window@npm:1.8.10":
   version: 1.8.10
   resolution: "react-window@npm:1.8.10"
   dependencies:

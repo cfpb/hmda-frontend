@@ -10,6 +10,7 @@ import { NoMatches, NoRecords } from './EmptyStates'
 import { Filters, SearchBox } from './Filters'
 import { ContentRowID, HeaderRowID } from './RowID'
 import { SectionTitle } from './SectionTitle'
+import "react-fluid-table/dist/index.css"
 
 /**
  * Provides a searchable/filterable table of LAR/TS content.
