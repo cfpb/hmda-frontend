@@ -304,7 +304,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#saved-lars > h3.clickable > .filters > :nth-child(2) > input')
         .click()
         .type('Loan Amount')
-      cy.get('#saved-lars #row-2').should('have.text', '110501')
+      cy.get('#saved-lars #row-1').should('have.text', '110501')
       // Clear "Filter column" functionality
       cy.get('.filters > :nth-child(2) > .clear').click()
       // Search for "State" column
@@ -312,7 +312,7 @@ onlyOn(!isBeta(HOST), () => {
         .click()
         .type('State')
       // Check "State" column contains "NY"
-      cy.get('#saved-lars #row-2').should('have.text', 'NY')
+      cy.get('#saved-lars #row-1').should('have.text', 'NY')
       // Clear "Filter column" functionality
       cy.get('.filters > :nth-child(2) > .clear').click()
       // Search for "Zip Code" column
@@ -320,9 +320,9 @@ onlyOn(!isBeta(HOST), () => {
         .click()
         .type('Zip Code')
       // Check "Zip Code" column contains "Exempt"
-      cy.get('#saved-lars #row-2').should('have.text', 'Exempt')
+      cy.get('#saved-lars #row-1').should('have.text', 'Exempt')
       // Click on LAR Record to have "Delete Row" button appear
-      cy.get('#saved-lars #row-2').click()
+      cy.get('#saved-lars #row-1').click()
       // Delete LAR Record
       cy.get(
         '#parsed-row > .action-wrapper > .row-actions > .delete-row',

@@ -196,7 +196,7 @@
   white-space: nowrap;
   width: 100%;
 }
-.saved-rows .react-fluid-table-row:hover {
+.saved-rows .rft-row:hover {
   cursor: pointer;
   background-color: lightgrey;
 }
