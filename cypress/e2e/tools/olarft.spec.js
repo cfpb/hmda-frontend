@@ -47,7 +47,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('.filters > :nth-child(2) > .clear').click()
       // Now testing "Search TS" functionality
       cy.get('.filters > :nth-child(1) > input').click().type(yearToBeTested)
-      cy.get('.row-container > :nth-child(2) > .custom-cell-content').should(
+      cy.get('.rft-row > :nth-child(2) > .custom-cell-content').should(
         'have.text',
         yearToBeTested,
       )
@@ -69,7 +69,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#saved-lars > h3.clickable > .filters > :nth-child(1) > input')
         .click()
         .type('1')
-      cy.get('#saved-lars .row-container #row-1').should('have.text', '1')
+      cy.get('#saved-lars .rft-row #row-1').should('have.text', '1')
       // Clear "Search LAR" input
       cy.get(':nth-child(1) > .clear').click()
       // "Filter columns" functionality
@@ -304,7 +304,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#saved-lars > h3.clickable > .filters > :nth-child(2) > input')
         .click()
         .type('Loan Amount')
-      cy.get('#saved-lars #row-1').should('have.text', '110501')
+      cy.get('#saved-lars #row-2').should('have.text', '110501')
       // Clear "Filter column" functionality
       cy.get('.filters > :nth-child(2) > .clear').click()
       // Search for "State" column
@@ -312,7 +312,7 @@ onlyOn(!isBeta(HOST), () => {
         .click()
         .type('State')
       // Check "State" column contains "NY"
-      cy.get('#saved-lars #row-1').should('have.text', 'NY')
+      cy.get('#saved-lars #row-2').should('have.text', 'NY')
       // Clear "Filter column" functionality
       cy.get('.filters > :nth-child(2) > .clear').click()
       // Search for "Zip Code" column
@@ -320,9 +320,9 @@ onlyOn(!isBeta(HOST), () => {
         .click()
         .type('Zip Code')
       // Check "Zip Code" column contains "Exempt"
-      cy.get('#saved-lars #row-1').should('have.text', 'Exempt')
+      cy.get('#saved-lars #row-2').should('have.text', 'Exempt')
       // Click on LAR Record to have "Delete Row" button appear
-      cy.get('#saved-lars #row-1').click()
+      cy.get('#saved-lars #row-2').click()
       // Delete LAR Record
       cy.get(
         '#parsed-row > .action-wrapper > .row-actions > .delete-row',

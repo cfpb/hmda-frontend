@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { selectCol } from '../../data-store/store'
+import { selectCol, selectRow } from '../../data-store/store'
 import { matchColumnFilter } from '../../utils/search'
 
 /**
@@ -102,7 +102,10 @@ const ColumnContent = ({ row, field, searchFilter, selectedColName }) => {
 
   const styles = { width: formatColWidth(field, -16) }
   const wrapperClasses = ['custom-cell-content']
-  const clickHandler = () => dispatch(selectCol(fieldName))
+  const clickHandler = () => {
+    dispatch(selectCol(fieldName))
+    dispatch(selectRow(row.id))
+  }
 
   if (isColumnSelected(selectedColName, field))
     wrapperClasses.push('col-selected')
