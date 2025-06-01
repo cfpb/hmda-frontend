@@ -11,6 +11,7 @@ import { Filters, SearchBox } from './Filters'
 import { ContentRowID, HeaderRowID } from './RowID'
 import { SectionTitle } from './SectionTitle'
 import "react-fluid-table/dist/index.css"
+import "./rft.css"
 
 /**
  * Provides a searchable/filterable table of LAR/TS content.
@@ -75,7 +76,6 @@ export const SavedSection = ({ id, title = 'Section Title', rows }) => {
             columns={columns}
             tableHeight={calcTableHeight(filteredRows)}
             minColumnWidth={200}
-            //rowStyle={(i) => highlightSelected(filteredRows[i])}
             rowStyle={(data) => {
               return selectedRowID === data.row?.id ? { backgroundColor: 'lightblue' } : {};
             }}
