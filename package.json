@@ -30,7 +30,7 @@
     "@redux-devtools/extension": "^3.3.0",
     "@reduxjs/toolkit": "^1.9.7",
     "@tanstack/react-table": "8.20.5",
-    "@uswds/compile": "^1.2.0",
+    "@uswds/compile": "^1.2.2",
     "@uswds/uswds": "3.9.0",
     "ansi-html": "0.0.8",
     "csv-parse": "4.16.3",
