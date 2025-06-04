@@ -14,8 +14,12 @@ export const HeaderRowID = (props) => (
   </div>
 )
 
-export const ContentRowID = (props) => (
-  <div className='custom-cell-content' style={{ width: '55px' }}>
+export const ContentRowID = ({ onClick, ...props }) => (
+  <div 
+    className='custom-cell-content' 
+    style={{ width: '55px' }} 
+    onClick={onClick}
+  >
     {props?.row?.rowId}
   </div>
 )

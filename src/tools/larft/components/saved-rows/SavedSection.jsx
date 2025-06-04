@@ -10,6 +10,8 @@ import { NoMatches, NoRecords } from './EmptyStates'
 import { Filters, SearchBox } from './Filters'
 import { ContentRowID, HeaderRowID } from './RowID'
 import { SectionTitle } from './SectionTitle'
+import "react-fluid-table/dist/index.css"
+import "./rft.css"
 
 /**
  * Provides a searchable/filterable table of LAR/TS content.
@@ -35,7 +37,7 @@ export const SavedSection = ({ id, title = 'Section Title', rows }) => {
   const highlightSelected = (r) => {
     if (!selectedRowID || !r) return {}
     const highlighted = selectedRowID === r.id
-    return highlighted ? { background: 'lightblue' } : {}
+    return highlighted ? { backgroundColor: 'lightblue' } : {}
   }
 
   const filteredRows = applyRowFilter({
@@ -59,11 +61,11 @@ export const SavedSection = ({ id, title = 'Section Title', rows }) => {
     if (!columns) return <NoRecords />
     else {
       columns.unshift({
-        key: 'rowId',
-        width: 'auto',
-        header: (props) => <HeaderRowID {...props} />,
-        content: (props) => <ContentRowID {...props} />,
-      })
+      key: 'rowId',
+      width: 'auto',
+      header: (props) => <HeaderRowID {...props} />,
+      content: (props) => <ContentRowID {...props} onClick={() => dispatch(selectRow(props.row.id))} />,
+    })
 
       if (!filteredRows.length || columns.length === 1) {
         return <NoMatches />
@@ -74,10 +76,9 @@ export const SavedSection = ({ id, title = 'Section Title', rows }) => {
             columns={columns}
             tableHeight={calcTableHeight(filteredRows)}
             minColumnWidth={200}
-            onRowClick={(_, { index }) =>
-              dispatch(selectRow(filteredRows[index].id))
-            }
-            rowStyle={(i) => highlightSelected(filteredRows[i])}
+            rowStyle={(data) => {
+              return selectedRowID === data.row?.id ? { backgroundColor: 'lightblue' } : {};
+            }}
           />
         )
       }

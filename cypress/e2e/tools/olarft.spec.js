@@ -47,7 +47,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('.filters > :nth-child(2) > .clear').click()
       // Now testing "Search TS" functionality
       cy.get('.filters > :nth-child(1) > input').click().type(yearToBeTested)
-      cy.get('.row-container > :nth-child(2) > .custom-cell-content').should(
+      cy.get('.rft-row > :nth-child(2) > .custom-cell-content').should(
         'have.text',
         yearToBeTested,
       )
@@ -69,7 +69,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#saved-lars > h3.clickable > .filters > :nth-child(1) > input')
         .click()
         .type('1')
-      cy.get('#saved-lars .row-container #row-1').should('have.text', '1')
+      cy.get('#saved-lars .rft-row #row-1').should('have.text', '1')
       // Clear "Search LAR" input
       cy.get(':nth-child(1) > .clear').click()
       // "Filter columns" functionality
