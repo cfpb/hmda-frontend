@@ -155,7 +155,7 @@ const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
               <DocSearch
                 appId='69RTFLDVTR'
                 indexName='ffiec-beta-cfpb'
-                apiKey='5c0ed9de237607b9a9cbb0ce5e136996'
+                apiKey={import.meta.env.VITE_ALGOLIA_PUBLIC_KEY}
               />
             )}
           </nav>
