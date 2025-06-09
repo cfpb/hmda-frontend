@@ -6,7 +6,38 @@ const ARID2017_XREF = {
   dataKey: 'arid',
 }
 
+// what about Panel?
 export const SNAPSHOT_DATASET = {
+  2024: {
+    freezeDate: 'May 19, 2025',
+    datasets: [
+      {
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/snapshot-data/2024/2024_public_lar_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/snapshot-data/2024/2024_public_lar_pipe.zip',
+        label: 'Loan/Application Records (LAR)',
+        dataKey: 'lar',
+      },
+      {
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/snapshot-data/2024/2024_public_ts_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/snapshot-data/2024/2024_public_ts_pipe.zip',
+        label: 'Transmittal Sheet Records (TS)',
+        dataKey: 'ts',
+      },
+      {
+        csv: "https://s3.amazonaws.com/cfpb-hmda-public/dev/snapshot-data/2024/2024_public_panel_csv.zip",
+        txt: "https://s3.amazonaws.com/cfpb-hmda-public/dev/snapshot-data/2024/2024_public_panel_pipe.zip",
+        label: "Reporter Panel",
+        dataKey: "panel",
+      },
+      {
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/snapshot-data/2024/2024_public_msamd_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/snapshot-data/2024/2024_public_msamd_pipe.zip',
+        label: 'MSA/MD Description',
+        dataKey: 'msamd',
+      },
+      ARID2017_XREF,
+    ],
+  },
   2023: {
     freezeDate: 'May 1, 2024',
     datasets: [
