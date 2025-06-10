@@ -1,6 +1,6 @@
 import { ONE_YEAR_DATASET } from './one-year-datasets'
-import { SNAPSHOT_DATASET } from './snapshot-dataset'
-import { THREE_YEAR_DATASET } from './three-year-datasets'
+import { SNAPSHOT_DATASET } from './snapshot-dataset.jsx'
+import { THREE_YEAR_DATASET } from './three-year-datasets.jsx'
 
 const base = '/data-publication/'
 const arLink = (year) => `${base}aggregate-reports/${year}`

@@ -1,6 +1,9 @@
+import { Overrides } from "./overrides"
+
 export const ONE_YEAR_DATASET = {
   2023: {
     freezeDate: "May 19, 2025",
+    specialNote: Overrides.reporterPanelUnavailableBanner,
     datasets: [
       {
         dataKey: 'lar',
@@ -13,6 +16,11 @@ export const ONE_YEAR_DATASET = {
         label: 'Transmittal Sheet Records (TS)',
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/one-year-data/2023/2023_public_ts_one_year_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/one-year-data/2023/2023_public_ts_one_year_pipe.zip',
+      },
+      {
+        dataKey: 'panel',
+        label: 'Reporter Panel',
+        override: Overrides.reporterPanelUnavailable,
       },
       {
         dataKey: 'msamd',
