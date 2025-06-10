@@ -1,3 +1,5 @@
+import { Overrides } from "./overrides"
+
 // Cross Reference for ARID2017 to LEI.  Same source for all years
 const ARID2017_XREF = {
   csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/arid2017tolei/arid2017_to_lei_xref_csv.zip',
@@ -10,6 +12,7 @@ const ARID2017_XREF = {
 export const SNAPSHOT_DATASET = {
   2024: {
     freezeDate: 'May 19, 2025',
+    specialNote: Overrides.reporterPanelUnavailableBanner,
     datasets: [
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/snapshot-data/2024/2024_public_lar_csv.zip',
@@ -24,10 +27,9 @@ export const SNAPSHOT_DATASET = {
         dataKey: 'ts',
       },
       {
-        csv: "https://s3.amazonaws.com/cfpb-hmda-public/dev/snapshot-data/2024/2024_public_panel_csv.zip",
-        txt: "https://s3.amazonaws.com/cfpb-hmda-public/dev/snapshot-data/2024/2024_public_panel_pipe.zip",
         label: "Reporter Panel",
         dataKey: "panel",
+        override: Overrides.reporterPanelUnavailable,
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/snapshot-data/2024/2024_public_msamd_csv.zip',

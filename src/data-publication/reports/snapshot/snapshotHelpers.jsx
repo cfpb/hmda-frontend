@@ -57,16 +57,20 @@ export function renderDatasets({ datasets, exception }) {
           <li key={i}>
             <LabelWithTooltip {...dataset} />
             <ul className='dataset-items'>
-              <S3DatasetLink
-                url={dataset.csv}
-                label='CSV'
-                showLastUpdated={true}
-              />
-              <S3DatasetLink
-                url={dataset.txt}
-                label='Pipe Delimited'
-                showLastUpdated={true}
-              />
+              {dataset.override ? dataset.override : (
+                <>
+                  <S3DatasetLink
+                    url={dataset.csv}
+                    label='CSV'
+                    showLastUpdated={true}
+                  />
+                  <S3DatasetLink
+                    url={dataset.txt}
+                    label='Pipe Delimited'
+                    showLastUpdated={true}
+                  />
+                </>
+              )}
             </ul>
           </li>
         )
