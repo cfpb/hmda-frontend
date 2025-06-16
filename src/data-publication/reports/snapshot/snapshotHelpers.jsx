@@ -18,7 +18,7 @@ const makeListLink = ({ url, label }, _idx) => (
  * @returns Array
  */
 export function linkToSpecs(year = '2018') {
-  const entries = [
+  let entries = [
     {
       url: '/documentation/publications/loan-level-datasets/public-lar-schema',
       label: 'Public LAR Schema',
@@ -40,6 +40,11 @@ export function linkToSpecs(year = '2018') {
       label: 'Public Panel Values and Definitions',
     },
   ]
+
+  // remove Public Panel Schema for 2024
+  if (year === '2024') {
+    entries = entries.filter(entry => entry.label !== 'Public Panel Schema')
+  }
 
   return entries.map(makeListLink)
 }
