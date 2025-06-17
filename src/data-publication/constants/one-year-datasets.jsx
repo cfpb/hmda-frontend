@@ -1,9 +1,9 @@
-import { Overrides } from "./overrides"
+import getOverrides from "./overrides"
 
 export const ONE_YEAR_DATASET = {
   2023: {
     freezeDate: "May 19, 2025",
-    specialNote: Overrides.reporterPanelUnavailableBanner,
+    specialNote: getOverrides.getReporterPanelUnavailableBanner('2023'),
     datasets: [
       {
         dataKey: 'lar',
@@ -20,7 +20,7 @@ export const ONE_YEAR_DATASET = {
       {
         dataKey: 'panel',
         label: 'Reporter Panel',
-        override: Overrides.reporterPanelUnavailable,
+        override: getOverrides.getReporterPanelUnavailable(),
       },
       {
         dataKey: 'msamd',
