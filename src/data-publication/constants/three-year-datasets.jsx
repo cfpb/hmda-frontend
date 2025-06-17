@@ -1,6 +1,6 @@
 // reporter panel data is not available for 2021 yet
 
-import { Overrides } from "./overrides";
+import getOverrides from "./overrides";
 
 export const THREE_YEAR_DATASET = {
   2017: {
@@ -23,7 +23,7 @@ export const THREE_YEAR_DATASET = {
       {
         label: "Reporter Panel",
         dataKey: "panel",
-        override: Overrides.reporterPanelUnavailable,
+        override: getOverrides.getReporterPanelUnavailable('2017'),
       },
       {
         label: 'MSA/MD Description',
@@ -122,7 +122,7 @@ export const THREE_YEAR_DATASET = {
   },
   2021: {
     freezeDate: 'December 31, 2024',
-    specialNote: Overrides.reporterPanelUnavailableBanner,
+    specialNote: getOverrides.getReporterPanelUnavailableBanner('2021'),
     datasets: [
       {
         label: 'Loan/Application Records (LAR)',
@@ -139,7 +139,7 @@ export const THREE_YEAR_DATASET = {
       {
         label: 'Reporter Panel',
         dataKey: 'panel',
-        override: Overrides.reporterPanelUnavailable,
+        override: getOverrides.getReporterPanelUnavailable(),
       },
       {
         label: 'MSA/MD Description',

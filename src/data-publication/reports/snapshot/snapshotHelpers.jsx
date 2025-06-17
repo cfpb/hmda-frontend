@@ -17,7 +17,7 @@ const makeListLink = ({ url, label }, _idx) => (
  * @param {String} year
  * @returns Array
  */
-export function linkToSpecs(year = '2018') {
+export function linkToSpecs(year = '2018', data = null) {
   let entries = [
     {
       url: '/documentation/publications/loan-level-datasets/public-lar-schema',
@@ -41,8 +41,8 @@ export function linkToSpecs(year = '2018') {
     },
   ]
 
-  // remove Public Panel Schema for 2024
-  if (year === '2024') {
+  // remove Public Panel Schema documentation if it contains override data
+  if (data?.datasets?.find(dataset => dataset.label === 'Reporter Panel')?.override) {
     entries = entries.filter(entry => entry.label !== 'Public Panel Schema')
   }
 
@@ -94,7 +94,7 @@ export const renderDocumentation = (data, year) => {
     year === '2017' ? (
       <S3DatasetLink url={data.dataformat} label='LAR, TS and Reporter Panel' />
     ) : (
-      linkToSpecs(year)
+      linkToSpecs(year, data)
     )
 
   return (

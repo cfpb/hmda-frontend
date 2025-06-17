@@ -1,4 +1,4 @@
-import { Overrides } from "./overrides"
+import getOverrides from "./overrides"
 
 // Cross Reference for ARID2017 to LEI.  Same source for all years
 const ARID2017_XREF = {
@@ -12,7 +12,7 @@ const ARID2017_XREF = {
 export const SNAPSHOT_DATASET = {
   2024: {
     freezeDate: 'May 19, 2025',
-    specialNote: Overrides.reporterPanelUnavailableBanner,
+    specialNote: getOverrides.getReporterPanelUnavailableBanner('2024'),
     datasets: [
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/snapshot-data/2024/2024_public_lar_csv.zip',
@@ -29,7 +29,7 @@ export const SNAPSHOT_DATASET = {
       {
         label: "Reporter Panel",
         dataKey: "panel",
-        override: Overrides.reporterPanelUnavailable,
+        override: getOverrides.getReporterPanelUnavailable(),
       },
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/snapshot-data/2024/2024_public_msamd_csv.zip',
