@@ -13,11 +13,12 @@ const getOverrides = {
    *
    * @function
    * @param {number|string} year - The year for which a HMDA Reporter Panel is unavailable
+   * @param {string} dataProductName - The name of the associated data product ("One Year Dataset")
    * @returns {JSX.Element} JSX element to display as the warning banner at the top of the page
    */
-  getReporterPanelUnavailableBanner: (year) => (
+  getReporterPanelUnavailableBanner: (year, dataProductName) => (
     <Alert
-      heading={`HMDA Reporter Panel for ${year} is Unavailable`}
+      heading={`The HMDA Reporter Panel is Unavailable for the ${year} ${dataProductName}`}
       type="warning"
     >
       <p>

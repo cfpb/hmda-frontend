@@ -3,7 +3,7 @@ import getOverrides from "./overrides"
 export const ONE_YEAR_DATASET = {
   2023: {
     freezeDate: "May 19, 2025",
-    specialNote: getOverrides.getReporterPanelUnavailableBanner('2023'),
+    specialNote: getOverrides.getReporterPanelUnavailableBanner('2023', 'One Year Dataset'),
     datasets: [
       {
         dataKey: 'lar',

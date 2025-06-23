@@ -121,7 +121,7 @@ export const THREE_YEAR_DATASET = {
   },
   2021: {
     freezeDate: 'December 31, 2024',
-    specialNote: getOverrides.getReporterPanelUnavailableBanner('2021'),
+    specialNote: getOverrides.getReporterPanelUnavailableBanner('2021', 'Three Year Dataset'),
     datasets: [
       {
         label: 'Loan/Application Records (LAR)',
