@@ -127,14 +127,14 @@ export const THREE_YEAR_DATASET = {
       {
         label: 'Loan/Application Records (LAR)',
         dataKey: 'lar',
-        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/three-year-data/2021/2021_public_lar_three_year_csv.zip',
-        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/three-year-data/2021/2021_public_lar_three_year_pipe.zip',
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2021/2021_public_lar_three_year_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2021/2021_public_lar_three_year_pipe.zip',
       },
       {
         label: 'Transmittal Sheet Records (TS)',
         dataKey: 'ts',
-        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/three-year-data/2021/2021_public_ts_three_year_csv.zip',
-        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/three-year-data/2021/2021_public_ts_three_year_pipe.zip',
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2021/2021_public_ts_three_year_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2021/2021_public_ts_three_year_pipe.zip',
       },
       {
         label: 'Reporter Panel',
@@ -144,8 +144,8 @@ export const THREE_YEAR_DATASET = {
       {
         label: 'MSA/MD Description',
         dataKey: 'msamd',
-        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/three-year-data/2021/2021_public_msamd_three_year_csv.zip',
-        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/three-year-data/2021/2021_public_msamd_three_year_pipe.zip',
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2021/2021_public_msamd_three_year_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2021/2021_public_msamd_three_year_pipe.zip',
       }
     ]
   },
