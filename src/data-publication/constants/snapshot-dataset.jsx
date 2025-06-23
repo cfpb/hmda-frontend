@@ -11,7 +11,7 @@ const ARID2017_XREF = {
 export const SNAPSHOT_DATASET = {
   2024: {
     freezeDate: 'May 19, 2025',
-    specialNote: getOverrides.getReporterPanelUnavailableBanner('2024'),
+    specialNote: getOverrides.getReporterPanelUnavailableBanner('2024', 'Snapshot Dataset'),
     datasets: [
       {
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2024/2024_public_lar_csv.zip',
