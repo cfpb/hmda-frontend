@@ -8,14 +8,14 @@ export const ONE_YEAR_DATASET = {
       {
         dataKey: 'lar',
         label: 'Loan/Application Records (LAR)',
-        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/one-year-data/2023/2023_public_lar_one_year_csv.zip',
-        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/one-year-data/2023/2023_public_lar_one_year_pipe.zip',
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/one-year-data/2023/2023_public_lar_one_year_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/one-year-data/2023/2023_public_lar_one_year_pipe.zip',
       },
       {
         dataKey: 'ts',
         label: 'Transmittal Sheet Records (TS)',
-        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/one-year-data/2023/2023_public_ts_one_year_csv.zip',
-        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/one-year-data/2023/2023_public_ts_one_year_pipe.zip',
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/one-year-data/2023/2023_public_ts_one_year_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/one-year-data/2023/2023_public_ts_one_year_pipe.zip',
       },
       {
         dataKey: 'panel',
@@ -25,8 +25,8 @@ export const ONE_YEAR_DATASET = {
       {
         dataKey: 'msamd',
         label: 'MSA/MD Description',
-        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/one-year-data/2023/2023_public_msamd_one_year_csv.zip',
-        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/dev/one-year-data/2023/2023_public_msamd_one_year_pipe.zip',
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/one-year-data/2023/2023_public_msamd_one_year_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/one-year-data/2023/2023_public_msamd_one_year_pipe.zip',
       },
     ],
   },
