@@ -15,7 +15,7 @@ onlyOn(!isBeta(HOST), () => {
     it('2024', () => {
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 867)
-      cy.visit(`${HOST}/data-publication/aggregate-reports/2023`)
+      cy.visit(`${HOST}/data-publication/aggregate-reports/2024`)
 
       // Select geography and report
       cy.findByText('Select a state...').type('Arizona{enter}')
@@ -27,48 +27,48 @@ onlyOn(!isBeta(HOST), () => {
       // Report Content
       cy.get('tbody > :nth-child(3) > :nth-child(2)').should(
         'have.text',
-        '8085',
+        '10190',
       )
       cy.get('tbody > :nth-child(3) > :nth-child(3)').should(
         'have.text',
-        '2271825000',
+        '2902030000',
       )
-      cy.get('tbody > :nth-child(3) > :nth-child(4)').should('have.text', '564')
+      cy.get('tbody > :nth-child(3) > :nth-child(4)').should('have.text', '724')
       cy.get('tbody > :nth-child(3) > :nth-child(5)').should(
         'have.text',
-        '90420000',
+        '134660000',
       )
       cy.get('tbody > :nth-child(3) > :nth-child(6)').should(
         'have.text',
-        '4240',
+        '4293',
       )
       cy.get('tbody > :nth-child(3) > :nth-child(7)').should(
         'have.text',
-        '862570000',
+        '811115000',
       )
       cy.get('tbody > :nth-child(3) > :nth-child(8)').should(
         'have.text',
-        '2331',
+        '2627',
       )
       cy.get('tbody > :nth-child(3) > :nth-child(9)').should(
         'have.text',
-        '677395000',
+        '778965000',
       )
       cy.get('tbody > :nth-child(3) > :nth-child(10)').should(
         'have.text',
-        '827',
+        '975',
       )
       cy.get('tbody > :nth-child(3) > :nth-child(11)').should(
         'have.text',
-        '175915000',
+        '199245000',
       )
       cy.get('tbody > :nth-child(3) > :nth-child(12)').should(
         'have.text',
-        '142',
+        '134',
       )
       cy.get('tbody > :nth-child(3) > :nth-child(13)').should(
         'have.text',
-        '54290000',
+        '42300000',
       )
     })
   

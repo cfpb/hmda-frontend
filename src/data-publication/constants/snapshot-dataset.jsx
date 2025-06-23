@@ -8,7 +8,6 @@ const ARID2017_XREF = {
   dataKey: 'arid',
 }
 
-// what about Panel?
 export const SNAPSHOT_DATASET = {
   2024: {
     freezeDate: 'May 19, 2025',

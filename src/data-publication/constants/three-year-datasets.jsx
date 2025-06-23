@@ -1,5 +1,3 @@
-// reporter panel data is not available for 2021 yet
-
 import getOverrides from "./overrides";
 
 export const THREE_YEAR_DATASET = {
@@ -21,9 +19,10 @@ export const THREE_YEAR_DATASET = {
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2017/2017_public_ts_three_year_pipe.zip',
       },
       {
-        label: "Reporter Panel",
-        dataKey: "panel",
-        override: getOverrides.getReporterPanelUnavailable('2017'),
+        label: 'Reporter Panel',
+        dataKey: 'panel',
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2017/2017_public_panel_three_year_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2017/2017_public_panel_three_year_pipe.zip',
       },
       {
         label: 'MSA/MD Description',
