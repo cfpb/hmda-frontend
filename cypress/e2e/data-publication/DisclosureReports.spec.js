@@ -9,7 +9,8 @@ onlyOn(isBeta(HOST), () => {
 })
 
 onlyOn(!isBeta(HOST), () => {
-  describe('Disclosure Reports', () => {
+  // extending the timeout to account for slower API calls
+  describe('Disclosure Reports', { defaultCommandTimeout: 12000 }, () => {
     it('Fetches a 2024 Applications by Tract Report', () => {
       const institution = isDev(HOST) ? 'LIBERTYVILLE BANK & TRUST COMPANY, N.A. - 01ERPZV3DOLNXY2MLB90' : 'CYPRESS BANK, SSB - 549300I4IUWMEMGLST06';
       const institutionName = institution.split(' - ')[0];
@@ -19,7 +20,7 @@ onlyOn(!isBeta(HOST), () => {
 
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 916)
-      cy.visit(`${HOST}/data-publication/disclosure-reports/2023`)
+      cy.visit(`${HOST}/data-publication/disclosure-reports/2024`)
 
       cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type(institutionName)

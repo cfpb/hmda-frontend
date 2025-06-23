@@ -39,7 +39,6 @@ const snapTitle = 'Snapshot National Loan-Level Dataset'
 const oneYearTitle = 'One Year National Loan-Level Dataset'
 const threeYearTitle = 'Three Year National Loan-Level Dataset'
 
-// what's up with the availableFor years?
 const publications = {
     2024: [
     {
