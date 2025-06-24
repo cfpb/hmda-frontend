@@ -1,35 +1,4 @@
-import getOverrides from "./overrides"
-
 export const ONE_YEAR_DATASET = {
-  2023: {
-    freezeDate: "May 19, 2025",
-    specialNote: getOverrides.getReporterPanelUnavailableBanner('2023', 'One Year Dataset'),
-    datasets: [
-      {
-        dataKey: 'lar',
-        label: 'Loan/Application Records (LAR)',
-        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/one-year-data/2023/2023_public_lar_one_year_csv.zip',
-        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/one-year-data/2023/2023_public_lar_one_year_pipe.zip',
-      },
-      {
-        dataKey: 'ts',
-        label: 'Transmittal Sheet Records (TS)',
-        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/one-year-data/2023/2023_public_ts_one_year_csv.zip',
-        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/one-year-data/2023/2023_public_ts_one_year_pipe.zip',
-      },
-      {
-        dataKey: 'panel',
-        label: 'Reporter Panel',
-        override: getOverrides.getReporterPanelUnavailable(),
-      },
-      {
-        dataKey: 'msamd',
-        label: 'MSA/MD Description',
-        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/one-year-data/2023/2023_public_msamd_one_year_csv.zip',
-        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/one-year-data/2023/2023_public_msamd_one_year_pipe.zip',
-      },
-    ],
-  },
   2022: {
     freezeDate: 'May 1, 2024',
     datasets: [

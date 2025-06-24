@@ -17,8 +17,8 @@ const makeListLink = ({ url, label }, _idx) => (
  * @param {String} year
  * @returns Array
  */
-export function linkToSpecs(year = '2018', data = null) {
-  let entries = [
+export function linkToSpecs(year = '2018') {
+  const entries = [
     {
       url: '/documentation/publications/loan-level-datasets/public-lar-schema',
       label: 'Public LAR Schema',
@@ -41,12 +41,6 @@ export function linkToSpecs(year = '2018', data = null) {
     },
   ]
 
-  // remove Public Panel Schema documentation if it contains override property in constants JSON
-  // see: 2024 HMDA Reporter data in src/data-publication/constants/snapshot-dataset.jsx for an example
-  if (data?.datasets?.find(dataset => dataset.label === 'Reporter Panel')?.override) {
-    entries = entries.filter(entry => entry.label !== 'Public Panel Schema')
-  }
-
   return entries.map(makeListLink)
 }
 
@@ -63,20 +57,16 @@ export function renderDatasets({ datasets, exception }) {
           <li key={i}>
             <LabelWithTooltip {...dataset} />
             <ul className='dataset-items'>
-              {dataset.override ? dataset.override : (
-                <>
-                  <S3DatasetLink
-                    url={dataset.csv}
-                    label='CSV'
-                    showLastUpdated={true}
-                  />
-                  <S3DatasetLink
-                    url={dataset.txt}
-                    label='Pipe Delimited'
-                    showLastUpdated={true}
-                  />
-                </>
-              )}
+              <S3DatasetLink
+                url={dataset.csv}
+                label='CSV'
+                showLastUpdated={true}
+              />
+              <S3DatasetLink
+                url={dataset.txt}
+                label='Pipe Delimited'
+                showLastUpdated={true}
+              />
             </ul>
           </li>
         )
@@ -95,7 +85,7 @@ export const renderDocumentation = (data, year) => {
     year === '2017' ? (
       <S3DatasetLink url={data.dataformat} label='LAR, TS and Reporter Panel' />
     ) : (
-      linkToSpecs(year, data)
+      linkToSpecs(year)
     )
 
   return (

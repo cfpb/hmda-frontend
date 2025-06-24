@@ -5,7 +5,6 @@ import counts2020 from './recordCountsByGeography/countyCounts2020.json'
 import counts2021 from './recordCountsByGeography/countyCounts2021.json'
 import counts2022 from './recordCountsByGeography/countyCounts2022.json'
 import counts2023 from './recordCountsByGeography/countyCounts2023.json'
-import counts2024 from './recordCountsByGeography/countyCounts2024.json'
 
 export default {
   2017: counts2017,
@@ -15,5 +14,4 @@ export default {
   2021: counts2021,
   2022: counts2022,
   2023: counts2023,
-  2024: counts2024,
 }

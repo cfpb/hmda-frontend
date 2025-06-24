@@ -1,8 +1,8 @@
 import Heading from '../../../common/Heading.jsx'
 import YearSelector from '../../../common/YearSelector.jsx'
 import { ONE_YEAR_DATASET } from '../../constants/one-year-datasets.jsx'
-import { SNAPSHOT_DATASET } from '../../constants/snapshot-dataset.jsx'
-import { THREE_YEAR_DATASET } from '../../constants/three-year-datasets.jsx'
+import { SNAPSHOT_DATASET } from '../../constants/snapshot-dataset.js'
+import { THREE_YEAR_DATASET } from '../../constants/three-year-datasets.js'
 import { renderDatasets, renderDocumentation } from './snapshotHelpers'
 import './Snapshot.css'
 
@@ -60,14 +60,14 @@ export const SnapshotDataset = ({ label, match, config, dataKey }) => {
             files will need to recognize this difference.
           </p>
         )}
+        {dataForYear.specialNote && (
+          <p className='text-small'>{dataForYear.specialNote}</p>
+        )}
         {!dataForYear.exception && (
           <p className='text-small'>
             Use caution when analyzing loan amount and income, which do not have
             an upper limit and may contain outliers.
           </p>
-        )}
-        {dataForYear.specialNote && (
-          <p className='text-small'>{dataForYear.specialNote}</p>
         )}
       </Heading>
 

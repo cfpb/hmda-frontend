@@ -2,12 +2,12 @@
   "name": "dev",
   "announcement": [
     {
-      "heading": "2024 Data Publication Release",
-      "message": "On June 24, 2025, the 2024 national loan-level datasets, disclosure reports, and MSA/MD aggregate reports were released and can be accessed via the Data Publication page. Users can now explore 2024 HMDA data using the Data Browser's dataset filtering tool or maps. ",
+      "heading": "2024 Modified LAR Data Release",
+      "message": "On March 31, 2025, the 2024 Modified LAR was released. A combined file containing all LAR records in a single file is also available. These files can be accessed via the ",
       "type": "info",
       "link": {
-        "url": "https://ffiec.cfpb.gov/data-publication/",
-        "text": "Data Publication page."
+        "url": "https://ffiec.cfpb.gov/data-publication/modified-lar/2024",
+        "text": "Modified LAR page."
       }
     }
   ],
@@ -28,7 +28,7 @@
     "national": ["2017"]
   },
   "dataBrowserYears": ["2024","2023", "2022", "2021", "2020", "2019", "2018"],
-  "dataBrowserMapsYears": ["2024", "2023", "2022", "2021", "2020", "2019", "2018"],
+  "dataBrowserMapsYears": ["2023", "2022", "2021", "2020", "2019", "2018"],
   "timedGuards": {
     "2017": {
       "annual": "01/01/2018 - 03/01/2018 - 12/31/2019"
