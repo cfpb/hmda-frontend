@@ -9,7 +9,66 @@ onlyOn(isBeta(HOST), () => {
 })
 
 onlyOn(!isBeta(HOST), () => {
-  describe('Disclosure Reports', () => {
+  // extending the timeout to account for slower API calls
+  describe('Disclosure Reports', { defaultCommandTimeout: 12000 }, () => {
+    it('Fetches a 2024 Applications by Tract Report', () => {
+      const institution = isDev(HOST) ? 'LIBERTYVILLE BANK & TRUST COMPANY, N.A. - 01ERPZV3DOLNXY2MLB90' : 'CYPRESS BANK, SSB - 549300I4IUWMEMGLST06';
+      const institutionName = institution.split(' - ')[0];
+      const msaMd = isDev(HOST) ? 'Chicago-Naperville-Evanston, IL - 16984' : 'Dallas-Plano-Irving, TX - 19124';
+      const msaMdCityOnly = msaMd.split(', ')[0];
+      const msaMdZipCodeFirst = msaMd.split(' - ')[1] + ' - ' + msaMd.split(' - ')[0];
+
+      cy.get({ HOST }).logEnv()
+      cy.viewport(1680, 916)
+      cy.visit(`${HOST}/data-publication/disclosure-reports/2024`)
+
+      cy.get('#institution-name').click({ force: true })
+      cy.get('#institution-name').type(institutionName)
+      cy.findByText('View MSA/MDs').click({ force: true })
+      cy.findByText('Select MSA/MD...').type(msaMdCityOnly)
+      cy.findByText(msaMdZipCodeFirst).click({ force: true })
+      cy.findByText('Select report...').type('Applications by Tract{enter}')
+
+      /* Check Report Params */
+
+      // Year
+      cy.get('.ProgressCards > :nth-child(1)').should('contain.text', '2024')
+
+      // Institution
+      cy.get('.ProgressCards > :nth-child(2) .heading > p').should(
+        'contain.text',
+        institution,
+      )
+
+      // MSA/MD
+      cy.get('.ProgressCards > :nth-child(3) .heading > p').should(
+        'contain.text',
+        msaMd,
+      )
+
+      // Report Type
+      cy.get('.ProgressCards > :nth-child(4) .heading > p').should(
+        'contain.text',
+        'Applications by Tract',
+      )
+
+      // Validate a row - Third row called "Applications Denied by Financial Institution"
+      cy.get('tbody > :nth-child(4) > :nth-child(2)').should('have.text', '0')
+      cy.get('tbody > :nth-child(4) > :nth-child(3)').should('have.text', '0')
+      cy.get('tbody > :nth-child(4) > :nth-child(4)').should('have.text', '0')
+      cy.get('tbody > :nth-child(4) > :nth-child(5)').should('have.text', '0')
+      cy.get('tbody > :nth-child(4) > :nth-child(6)').should('have.text', '0')
+      cy.get('tbody > :nth-child(4) > :nth-child(7)').should('have.text', '0')
+      cy.get('tbody > :nth-child(4) > :nth-child(8)').should('have.text', '0')
+      cy.get('tbody > :nth-child(4) > :nth-child(9)').should('have.text', '0')
+      cy.get('tbody > :nth-child(4) > :nth-child(10)').should('have.text', '0')
+      cy.get('tbody > :nth-child(4) > :nth-child(11)').should('have.text', '0')
+      cy.get('tbody > :nth-child(4) > :nth-child(12)').should('have.text', '0')
+      cy.get('tbody > :nth-child(4) > :nth-child(13)').should('have.text', '0')
+      cy.get('tbody > :nth-child(4) > :nth-child(14)').should('have.text', '0')
+      cy.get('tbody > :nth-child(4) > :nth-child(15)').should('have.text', '0')
+    })
+
     it('Fetches a 2023 Applications by Tract Report', () => {
       const institution = isDev(HOST) ? 'LIBERTYVILLE BANK & TRUST COMPANY, N.A. - 01ERPZV3DOLNXY2MLB90' : 'CYPRESS BANK, SSB - 549300I4IUWMEMGLST06';
       const institutionName = institution.split(' - ')[0];

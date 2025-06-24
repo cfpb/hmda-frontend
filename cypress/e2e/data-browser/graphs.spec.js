@@ -90,9 +90,9 @@ onlyOn(!isBeta(HOST), () => {
     it('Total of Quarterly Filers counts appear for 2021-2023', () => {
       // Data ordered from newest to oldest year to match table layout
       const yearData = [
-        { year: '2023', count: '4,741,350' },
+        { year: '2023', count: '4,801,852' },
         { year: '2022', count: '6,242,438' },
-        { year: '2021', count: '10,403,582' },
+        { year: '2021', count: '10,403,604' },
       ]
 
       cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly/info/filers`)
@@ -114,9 +114,9 @@ onlyOn(!isBeta(HOST), () => {
     it('Total of All Filers counts appear for 2021-2023', () => {
       // Data ordered from newest to oldest year to match table layout
       const yearData = [
-        { year: '2023', count: '11,483,889' },
+        { year: '2023', count: '11,564,178' },
         { year: '2022', count: '16,099,307' },
-        { year: '2021', count: '26,227,364' },
+        { year: '2021', count: '26,269,980' },
       ]
 
       cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly/info/filers`)
