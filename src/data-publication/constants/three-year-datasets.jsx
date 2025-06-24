@@ -1,3 +1,5 @@
+import getOverrides from "./overrides";
+
 export const THREE_YEAR_DATASET = {
   2017: {
     freezeDate: 'December 31, 2020',
@@ -116,5 +118,34 @@ export const THREE_YEAR_DATASET = {
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2020/2020_public_msamd_three_year_pipe.zip',
       },
     ],
+  },
+  2021: {
+    freezeDate: 'December 31, 2024',
+    specialNote: getOverrides.getReporterPanelUnavailableBanner('2021', 'Three Year Dataset'),
+    datasets: [
+      {
+        label: 'Loan/Application Records (LAR)',
+        dataKey: 'lar',
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2021/2021_public_lar_three_year_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2021/2021_public_lar_three_year_pipe.zip',
+      },
+      {
+        label: 'Transmittal Sheet Records (TS)',
+        dataKey: 'ts',
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2021/2021_public_ts_three_year_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2021/2021_public_ts_three_year_pipe.zip',
+      },
+      {
+        label: 'Reporter Panel',
+        dataKey: 'panel',
+        override: getOverrides.getReporterPanelUnavailable(),
+      },
+      {
+        label: 'MSA/MD Description',
+        dataKey: 'msamd',
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2021/2021_public_msamd_three_year_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2021/2021_public_msamd_three_year_pipe.zip',
+      }
+    ]
   },
 }

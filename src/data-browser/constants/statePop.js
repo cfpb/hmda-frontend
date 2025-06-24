@@ -6,6 +6,7 @@ import populations2020 from './populationByGeography/statePop2020.json'
 import populations2021 from './populationByGeography/statePop2021.json'
 import populations2022 from './populationByGeography/statePop2022.json'
 import populations2023 from './populationByGeography/statePop2023.json'
+import populations2024 from './populationByGeography/statePop2024.json'
 
 export default {
   2017: populations2017,
@@ -15,4 +16,5 @@ export default {
   2021: populations2021,
   2022: populations2022,
   2023: populations2023,
+  2024: populations2024,
 }

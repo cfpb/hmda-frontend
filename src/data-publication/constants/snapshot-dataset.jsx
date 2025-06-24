@@ -1,3 +1,5 @@
+import getOverrides from "./overrides"
+
 // Cross Reference for ARID2017 to LEI.  Same source for all years
 const ARID2017_XREF = {
   csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/arid2017tolei/arid2017_to_lei_xref_csv.zip',
@@ -7,6 +9,36 @@ const ARID2017_XREF = {
 }
 
 export const SNAPSHOT_DATASET = {
+  2024: {
+    freezeDate: 'May 19, 2025',
+    specialNote: getOverrides.getReporterPanelUnavailableBanner('2024', 'Snapshot Dataset'),
+    datasets: [
+      {
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2024/2024_public_lar_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2024/2024_public_lar_pipe.zip',
+        label: 'Loan/Application Records (LAR)',
+        dataKey: 'lar',
+      },
+      {
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2024/2024_public_ts_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2024/2024_public_ts_pipe.zip',
+        label: 'Transmittal Sheet Records (TS)',
+        dataKey: 'ts',
+      },
+      {
+        label: "Reporter Panel",
+        dataKey: "panel",
+        override: getOverrides.getReporterPanelUnavailable(),
+      },
+      {
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2024/2024_public_msamd_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2024/2024_public_msamd_pipe.zip',
+        label: 'MSA/MD Description',
+        dataKey: 'msamd',
+      },
+      ARID2017_XREF,
+    ],
+  },
   2023: {
     freezeDate: 'May 1, 2024',
     datasets: [

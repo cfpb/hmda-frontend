@@ -11,7 +11,7 @@ onlyOn(isBeta(HOST), () => {
 
 onlyOn(!isBeta(HOST), () => {
   describe('Dynamic National Loan-Level Dataset', () => {
-    const years = ['2023', '2022', '2021', '2020', '2019', '2018', '2017']
+    const years = ['2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017']
     const datasetUrl = '/data-publication/dynamic-national-loan-level-dataset/'
     const linksPath = '#main-content > .grid > :nth-child(1) > ul > li > a'
 
