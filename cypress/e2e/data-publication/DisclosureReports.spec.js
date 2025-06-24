@@ -32,7 +32,7 @@ onlyOn(!isBeta(HOST), () => {
       /* Check Report Params */
 
       // Year
-      cy.get('.ProgressCards > :nth-child(1)').should('contain.text', '2023')
+      cy.get('.ProgressCards > :nth-child(1)').should('contain.text', '2024')
 
       // Institution
       cy.get('.ProgressCards > :nth-child(2) .heading > p').should(
