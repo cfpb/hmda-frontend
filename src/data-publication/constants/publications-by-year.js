@@ -1,6 +1,6 @@
 import { ONE_YEAR_DATASET } from './one-year-datasets'
-import { SNAPSHOT_DATASET } from './snapshot-dataset.jsx'
-import { THREE_YEAR_DATASET } from './three-year-datasets.jsx'
+import { SNAPSHOT_DATASET } from './snapshot-dataset'
+import { THREE_YEAR_DATASET } from './three-year-datasets'
 
 const base = '/data-publication/'
 const arLink = (year) => `${base}aggregate-reports/${year}`
@@ -40,59 +40,7 @@ const oneYearTitle = 'One Year National Loan-Level Dataset'
 const threeYearTitle = 'Three Year National Loan-Level Dataset'
 
 const publications = {
-    2024: [
-    {
-      updateFrequency:
-        'Does not update. Generated a few months after filing deadline',
-      availableFor: '2017-2024',
-      headingLink: snapLink(2024),
-      headingText: snapTitle,
-      paragraphText: snapDesc,
-      freezeDate: SNAPSHOT_DATASET[2024].freezeDate,
-    },
-    {
-      updateFrequency:
-        'Does not update. Generated a few months after filing deadline',
-      availableFor: '2017-2024',
-      headingLink: drLink(2024),
-      headingText: drTitle,
-      paragraphText: drDesc,
-    },
-    {
-      updateFrequency:
-        'Does not update. Generated a few months after filing deadline',
-      availableFor: '2017-2024',
-      headingLink: arLink(2024),
-      headingText: arTitle,
-      paragraphText: arDesc,
-    },
-    {
-      group: 'dynamic',
-      updateFrequency: 'Upon Institution resubmission',
-      availableFor: '2017-2024',
-      headingLink: mlarLink(2024),
-      headingText: mlarTitle,
-      paragraphText: mlarDesc,
-    },
-    {
-      group: 'dynamic',
-      updateFrequency: 'Weekly on Mondays',
-      availableFor: '2019-2024',
-      headingLink: dynLink(2024),
-      headingText: dynTitle,
-      paragraphText: dynDesc,
-    },
-  ],
   2023: [
-    {
-      updateFrequency:
-        'Does not update. Generated one year after filing deadline',
-      availableFor: '2019-2023',
-      headingLink: oneYearLink(2023),
-      headingText: oneYearTitle,
-      paragraphText: oneYearDesc,
-      freezeDate: ONE_YEAR_DATASET[2023].freezeDate,
-    },
     {
       updateFrequency:
         'Does not update. Generated a few months after filing deadline',
@@ -188,15 +136,6 @@ const publications = {
     },
   ],
   2021: [
-    {
-      updateFrequency:
-        'Does not update. Generated three years after filing deadline',
-      availableFor: '2017-2021',
-      headingLink: threeYearLink(2021),
-      headingText: threeYearTitle,
-      paragraphText: threeYearDesc,
-      freezeDate: THREE_YEAR_DATASET[2021].freezeDate,
-    },
     {
       updateFrequency:
         'Does not update. Generated one year after filing deadline',

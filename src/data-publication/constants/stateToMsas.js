@@ -677,5 +677,4 @@ export default {
   2021: data2019,
   2022: data2019,
   2023: data2019,
-  2024: data2019,
 }

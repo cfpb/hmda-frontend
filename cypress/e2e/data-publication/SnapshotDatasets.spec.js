@@ -18,7 +18,7 @@ onlyOn(isBeta(HOST), () => {
 
 onlyOn(!isBeta(HOST), () => {
   describe('Snapshot National Loan-Level Dataset', () => {
-    const years = ['2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017']
+    const years = ['2023', '2022', '2021', '2020', '2019', '2018', '2017']
     const datasetUrl = '/data-publication/snapshot-national-loan-level-dataset/'
     const basePath = '.grid > :nth-child(1) > :nth-child(2)'
 

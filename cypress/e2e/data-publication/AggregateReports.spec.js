@@ -12,66 +12,6 @@ onlyOn(isBeta(HOST), () => {
 
 onlyOn(!isBeta(HOST), () => {
   describe('Aggregate Reports', () => {
-    it('2024', () => {
-      cy.get({ HOST }).logEnv()
-      cy.viewport(1680, 867)
-      cy.visit(`${HOST}/data-publication/aggregate-reports/2024`)
-
-      // Select geography and report
-      cy.findByText('Select a state...').type('Arizona{enter}')
-      cy.findByText('Select MSA/MD...').type('Phoenix{enter}')
-      cy.findByText('Select report...').type(
-        'Applications by Ethnicity and Sex{enter}',
-      )
-
-      // Report Content
-      cy.get('tbody > :nth-child(3) > :nth-child(2)').should(
-        'have.text',
-        '10190',
-      )
-      cy.get('tbody > :nth-child(3) > :nth-child(3)').should(
-        'have.text',
-        '2902030000',
-      )
-      cy.get('tbody > :nth-child(3) > :nth-child(4)').should('have.text', '724')
-      cy.get('tbody > :nth-child(3) > :nth-child(5)').should(
-        'have.text',
-        '134660000',
-      )
-      cy.get('tbody > :nth-child(3) > :nth-child(6)').should(
-        'have.text',
-        '4293',
-      )
-      cy.get('tbody > :nth-child(3) > :nth-child(7)').should(
-        'have.text',
-        '811115000',
-      )
-      cy.get('tbody > :nth-child(3) > :nth-child(8)').should(
-        'have.text',
-        '2627',
-      )
-      cy.get('tbody > :nth-child(3) > :nth-child(9)').should(
-        'have.text',
-        '778965000',
-      )
-      cy.get('tbody > :nth-child(3) > :nth-child(10)').should(
-        'have.text',
-        '975',
-      )
-      cy.get('tbody > :nth-child(3) > :nth-child(11)').should(
-        'have.text',
-        '199245000',
-      )
-      cy.get('tbody > :nth-child(3) > :nth-child(12)').should(
-        'have.text',
-        '134',
-      )
-      cy.get('tbody > :nth-child(3) > :nth-child(13)').should(
-        'have.text',
-        '42300000',
-      )
-    })
-  
     it('2023', () => {
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 867)

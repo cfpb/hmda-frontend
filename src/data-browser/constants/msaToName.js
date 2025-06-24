@@ -494,5 +494,4 @@ export default {
   2021: msaToName2020,
   2022: msaToName2020,
   2023: msaToName2020,
-  2024: msaToName2020,  
 }
