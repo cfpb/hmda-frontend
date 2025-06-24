@@ -55,8 +55,8 @@ onlyOn(!isBeta(HOST), () => {
       // Validate a row - Third row called "Applications Denied by Financial Institution"
       cy.get('tbody > :nth-child(4) > :nth-child(2)').should('have.text', '0')
       cy.get('tbody > :nth-child(4) > :nth-child(3)').should('have.text', '0')
-      cy.get('tbody > :nth-child(4) > :nth-child(4)').should('have.text', '0')
-      cy.get('tbody > :nth-child(4) > :nth-child(5)').should('have.text', '0')
+      cy.get('tbody > :nth-child(4) > :nth-child(4)').should('have.text', '1')
+      cy.get('tbody > :nth-child(4) > :nth-child(5)').should('have.text', '665000')
       cy.get('tbody > :nth-child(4) > :nth-child(6)').should('have.text', '0')
       cy.get('tbody > :nth-child(4) > :nth-child(7)').should('have.text', '0')
       cy.get('tbody > :nth-child(4) > :nth-child(8)').should('have.text', '0')
