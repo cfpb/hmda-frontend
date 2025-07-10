@@ -36,8 +36,7 @@ import { ReportSummary } from './ReportSummary'
 import './mapbox.css'
 import DatasetDocsLink from '../datasets/DatasetDocsLink.jsx'
 
-mapbox.accessToken =
-  'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlvaQw'
+mapbox.accessToken = import.meta.env.VITE_MAPBOX_PUBLIC_KEY;
 
 export const MapContext = createContext({})
 
