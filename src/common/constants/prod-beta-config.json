@@ -2,12 +2,6 @@
   "name": "prod-beta",
   "announcement": [
     {
-      "message": "We are performing system maintenance from 6PM - 8PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-      "type": "error",
-      "heading": "System Temporarily Unavailable",
-      "link": null
-    },
-    {
       "message": "An important update has been deployed to the HMDA Beta Platform on July 10th. As part of this update, existing data has been reset and removed from the platform. For any questions, contact ",
       "type": "warning",
       "heading": "Scheduled Maintenance",
@@ -18,16 +12,15 @@
     }
   ],
   "publicationReleaseYear": "2020",
-  "maintenanceMode": true,
+  "maintenanceMode": false,
   "filingAnnouncement": {
-    "message": "We are performing system maintenance from 6PM - 8PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-    "type": "error",
-    "heading": "System Temporarily Unavailable",
+    "message": "An important update has been deployed to the HMDA Beta Platform on July 10th. As part of this update, existing data has been reset and removed from the platform. For any questions, contact ",
+    "type": "warning",
+    "heading": "Scheduled Maintenance",
     "link": {
       "url": "mailto:hmdahelp@cfpb.gov?subject=Question%20About%20User%20Data%20Maintenance%20on%20HMDA%20Beta%20Platform%20on%20July%2010th",
       "text": "hmdahelp@cfpb.gov"
-    },
-    "endDate": null
+    }
   },
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
