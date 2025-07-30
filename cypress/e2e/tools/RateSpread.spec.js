@@ -64,6 +64,17 @@ onlyOn(!isBeta(HOST), () => {
         //   Cypress collection, but not when running the RateSpread specs specificially.
         // cy.wait(TEST_DELAY)
       })
+
+      it('Has a valid link to FFIEC prior rate spread calculator', () => {
+        cy.get('a').contains('prior rate spread calculator').then($link => {
+          const href = $link.prop('href')
+          cy.request(href).then((response) => {
+            // Confirm that the link doesn't 404 and is also the correct page
+            expect(response.status).to.eq(200)
+            expect(response.body).to.include('FFIEC Rate Spread Calculator')
+          })
+        })
+      })
     } else {
       it(`Does not run on ${HOST}`, () =>
         cy.get({ HOST, TEST_DELAY, ENVIRONMENT }).logEnv())
