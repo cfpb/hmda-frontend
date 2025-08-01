@@ -836,8 +836,6 @@ const msaToState = {
   99999: ['NA'],
 }
 
-
-
 const msaToState2019 = {
   ...msaToState,
   16984: ['IL'],
@@ -861,8 +859,6 @@ const deleteFrom2020 = [
 ]
 
 deleteFrom2020.forEach((key) => delete msaToState2020[key])
-
-
 
 export default {
   2017: { ...JSON.parse(cbsaToState), ...msaToState },
