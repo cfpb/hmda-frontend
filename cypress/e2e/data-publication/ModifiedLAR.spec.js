@@ -2,6 +2,8 @@ import { onlyOn } from '@cypress/skip-test'
 import { isBeta, isDev } from '../../support/helpers'
 const { HOST } = Cypress.env()
 
+const downloadsFolder = Cypress.config('downloadsFolder')
+
 // add additional years here to test as needed
 const years = [2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017];
 
@@ -63,7 +65,14 @@ onlyOn(!isBeta(HOST), () => {
               `/file/modifiedLar/year/${year}/institution/${institution}/txt`,
             )
           },
-        )
+        ).click()
+
+        const fileName = `${institution}.csv`
+        // Read the downloaded file and confirm there are hella pipes in it (at least 50)
+        cy.readFile(`${downloadsFolder}/${fileName}`, { timeout: 10000 }).should((content) => {
+          const pipeCount = (content.match(/\|/g) || []).length
+          expect(pipeCount).to.be.greaterThan(50)
+        })
 
         // Ticking the "Include Header" option updates download link appropriately
         cy.get('#inclHeader').click()
