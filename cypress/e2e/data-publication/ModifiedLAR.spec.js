@@ -67,7 +67,7 @@ onlyOn(!isBeta(HOST), () => {
           },
         ).click()
 
-        const fileName = `${institution}.csv`
+        const fileName = `${institution}.txt`
         // Read the downloaded file and confirm there are hella pipes in it (at least 50)
         cy.readFile(`${downloadsFolder}/${fileName}`, { timeout: 10000 }).should((content) => {
           const pipeCount = (content.match(/\|/g) || []).length

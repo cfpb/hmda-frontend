@@ -106,7 +106,7 @@ class Results extends React.Component {
     // Need to set filename since the File Proxy url no longer directly references the file name
     let filename = institution.lei
     if (this.state.withHeader) filename += '_header'
-    filename += '.csv'
+    filename += '.txt'
 
     return (
       <li key={index}>
