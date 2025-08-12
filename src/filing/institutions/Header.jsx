@@ -27,8 +27,12 @@ export const HeaderDocsLink = ({ period }) => {
   const [filingYear, isQuarterly] = period.split('-')
 
   const text = isQuarterly
-    ? 'For more information on quarterly filing dates, visit the '
-    : 'For more information regarding filing, please visit the '
+    ? 'For more information on quarterly filing dates, visit our '
+    : 'For more information regarding filing, please visit our '
+
+  const linkText = isQuarterly
+    ? 'Documentation'
+    : 'FAQ'
 
   const url = isQuarterly
     ? `/documentation/faq/data-collection-timelines#quarterly-filing-period-dates`
@@ -38,7 +42,7 @@ export const HeaderDocsLink = ({ period }) => {
     <>
       {text}
       <a href={url} rel='noopener noreferrer' target='_blank'>
-        Documentation
+        {linkText}
       </a>{' '}
       page.
     </>
