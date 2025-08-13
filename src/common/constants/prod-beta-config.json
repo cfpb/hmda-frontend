@@ -1,27 +1,9 @@
 {
   "name": "prod-beta",
-  "announcement": [
-    {
-      "message": "An important update has been deployed to the HMDA Beta Platform on July 10th. As part of this update, existing data has been reset and removed from the platform. For any questions, contact ",
-      "type": "warning",
-      "heading": "Scheduled Maintenance",
-      "link": {
-        "url": "mailto:hmdahelp@cfpb.gov?subject=Question%20About%20User%20Data%20Maintenance%20on%20HMDA%20Beta%20Platform%20On%20July%2010th",
-        "text": "hmdahelp@cfpb.gov"
-      }
-    }
-  ],
+  "announcement": [],
   "publicationReleaseYear": "2020",
   "maintenanceMode": false,
-  "filingAnnouncement": {
-    "message": "An important update has been deployed to the HMDA Beta Platform on July 10th. As part of this update, existing data has been reset and removed from the platform. For any questions, contact ",
-    "type": "warning",
-    "heading": "Scheduled Maintenance",
-    "link": {
-      "url": "mailto:hmdahelp@cfpb.gov?subject=Question%20About%20User%20Data%20Maintenance%20on%20HMDA%20Beta%20Platform%20on%20July%2010th",
-      "text": "hmdahelp@cfpb.gov"
-    }
-  },
+  "filingAnnouncement": null,
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
