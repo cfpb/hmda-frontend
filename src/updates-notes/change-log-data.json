@@ -1,6 +1,26 @@
 {
   "log": [
     {
+      "date": "8/14/25",
+      "type": "correction",
+      "product": "datasets",
+      "description": "The Conforming Loan Limit field was incorrectly assigned for the 2024 Snapshot and Dynamic Datasets. This bug has been corrected and the impacted data sets have been republished.",
+      "links": [
+        {
+          "text": "HMDA 2024 Snapshot Dataset",
+          "url": "https://ffiec.cfpb.gov/data-publication/snapshot-national-loan-level-dataset/2024"
+        },
+        {
+          "text": "HMDA 2024 Dynamic Dataset",
+          "url": "https://ffiec.cfpb.gov/data-publication/dynamic-national-loan-level-dataset/2024"
+        },
+        {
+          "text": "HMDA Dataset Filtering tool",
+          "url": "https://ffiec.cfpb.gov/data-browser/data/2024"
+        }
+      ]
+    },
+    {
       "date": "06/24/25",
       "type": "release",
       "product": "datasets",
