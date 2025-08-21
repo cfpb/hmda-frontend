@@ -8,7 +8,7 @@ const CONFIG_URL_PREFIX =
   'https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/common/constants/'
 
 export function fetchEnvConfig(setFn, host) {
-  return fetch(`${CONFIG_URL_PREFIX}${getDefaultConfig(host).name}-config.json`)
+  return fetch(`${CONFIG_URL_PREFIX}${getDefaultConfig(host).name}-config.json?nocache=${Date.now()}`)
     .then((data) => data.json())
     .then((config) => setFn(deriveConfig(config)))
 }
