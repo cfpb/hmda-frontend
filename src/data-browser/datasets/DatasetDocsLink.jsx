@@ -1,8 +1,8 @@
 import React from 'react'
 
 const determineDataset = (year) => {
-  let ThreeYear = [2021, 2020, 2019, 2018]
-  let OneYear = [2023, 2022, 2021, 2020]
+  const ThreeYear = [2021, 2020, 2019, 2018]
+  const OneYear = [2023, 2022, 2021, 2020]
 
   if (ThreeYear.includes(year))
     return {
@@ -26,8 +26,8 @@ const determineDataset = (year) => {
  * Component that takes in a 'year' and generates Snapshot, One Year or Three Year direct links and includes link to 'Data Browser - FAQ'
  * @param {String} year string that contains the year (i.e) 2018, 2019, 2020 etc...
  */
-const DatasetDocsLink = ({ year }) => {
-  let dataset = determineDataset(parseInt(year))
+function DatasetDocsLink({ year }) {
+  const dataset = determineDataset(parseInt(year))
 
   return (
     <div className='SelectWrapper' style={{ paddingTop: '.33em' }}>
@@ -40,7 +40,7 @@ const DatasetDocsLink = ({ year }) => {
         <a
           target='_blank'
           rel='noopener noreferrer'
-          href={`/documentation/faq/static-dataset-faq`}
+          href='/documentation/faq/static-dataset-faq'
         >
           Static Dataset FAQ.
         </a>

@@ -10,7 +10,7 @@ const categories = [
   { value: 'nationwide', label: 'Nationwide' },
 ]
 
-const CategorySelect = ({ category, onChange }) => {
+function CategorySelect({ category, onChange }) {
   const value = categories.reduce((acc, curr) => {
     return acc.value === category ? acc : curr
   })

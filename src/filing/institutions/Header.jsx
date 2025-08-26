@@ -7,10 +7,10 @@ import { HeaderOpen } from './HeaderOpen'
 import { HeaderEnded } from './HeaderEnded'
 import { HeaderClosed } from './HeaderClosed'
 
-const InstitutionsHeader = ({ selectedPeriod }) => {
+function InstitutionsHeader({ selectedPeriod }) {
   if (!selectedPeriod.period || isBeta()) return null
 
-  let [filingYear, _] = splitYearQuarter(selectedPeriod.period)
+  const [filingYear, _] = splitYearQuarter(selectedPeriod.period)
   if (!filingYear) return
 
   if (selectedPeriod.isClosed && selectedPeriod.isPassed)
@@ -23,7 +23,7 @@ const InstitutionsHeader = ({ selectedPeriod }) => {
   return <HeaderBeforeOpen {...selectedPeriod} />
 }
 
-export const HeaderDocsLink = ({ period }) => {
+export function HeaderDocsLink({ period }) {
   const [filingYear, isQuarterly] = period.split('-')
 
   const text = isQuarterly

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import InfoIcon from '../images/info.svg?react'
 
-const InstitutionNameAndId = ({ name, lei, filingPeriod }) => {
+function InstitutionNameAndId({ name, lei, filingPeriod }) {
   return (
     <h3>
       <span>

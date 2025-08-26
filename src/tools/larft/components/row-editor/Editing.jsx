@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { analyticsSendEvent } from '@cfpb/cfpb-analytics'
 import {
   editingRowSet,
   rowCreate,
@@ -11,7 +12,6 @@ import { isRowTS } from '../../utils/row'
 import { EditingActions } from './EditingActions'
 import { EditingParsed } from './EditingParsed'
 import { EditingPiped } from './EditingPiped'
-import { analyticsSendEvent } from '@cfpb/cfpb-analytics'
 
 /**
  * Combined section allowing users to edit a single row's content
@@ -20,7 +20,7 @@ import { analyticsSendEvent } from '@cfpb/cfpb-analytics'
  *
  * @param {String} id Section identifier
  */
-export const Editing = ({ id = 'row-editor' }) => {
+export function Editing({ id = 'row-editor' }) {
   const [isChanged, setChanged] = useState(false)
   const selectedRowID = useSelector(({ larft }) => larft.selectedRowID)
   const selectedColName = useSelector(({ larft }) => larft.selectedColName)
@@ -37,12 +37,12 @@ export const Editing = ({ id = 'row-editor' }) => {
   const saveHandler = () => {
     setChanged(false)
     dispatch(rowSave())
-    const typeOfRow = editingRow["Record Identifier"] === '1' ? 'TS' : 'LAR'
+    const typeOfRow = editingRow['Record Identifier'] === '1' ? 'TS' : 'LAR'
     analyticsSendEvent({
       event: 'OLARFT Events',
       action: 'Successfully saved row',
       label: typeOfRow,
-    });
+    })
   }
 
   const newHandler = () => {
@@ -61,8 +61,8 @@ export const Editing = ({ id = 'row-editor' }) => {
       deleteRow={deleteHandler}
       newRow={newHandler}
       setRow={changeHandler}
-      saveRow={isChanged && saveHandler}
-      showTextActions={true}
+      saveRow={isChanged ? saveHandler : null}
+      showTextActions
     />
   )
 
@@ -72,7 +72,7 @@ export const Editing = ({ id = 'row-editor' }) => {
       deleteRow={deleteHandler}
       newRow={newHandler}
       setRow={changeHandler}
-      saveRow={isChanged && saveHandler}
+      saveRow={isChanged ? saveHandler : null}
       showTextActions={false}
     />
   )
@@ -95,7 +95,7 @@ export const Editing = ({ id = 'row-editor' }) => {
   )
 }
 
-const Heading = ({ id, row }) => {
+function Heading({ id, row }) {
   const clickHandler = () => scrollToID(id)
   const action = row.rowId ? 'Editing' : 'Creating'
   const descriptor = formatDescriptor(row)

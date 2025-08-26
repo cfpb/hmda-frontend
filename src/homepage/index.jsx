@@ -10,7 +10,7 @@ import { isBeta } from '../common/Beta.jsx'
 import { isProd } from '../common/configUtils'
 import { withAppContext } from '../common/appContextHOC'
 
-const Home = ({ config }) => {
+function Home({ config }) {
   const isProdBeta = isProd() && isBeta()
   return (
     <>

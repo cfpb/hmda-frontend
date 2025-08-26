@@ -32,7 +32,7 @@ export const getText = (editType) => {
   throw new Error('Unexpected edit type. Unable to create edit description.')
 }
 
-const EditsHeaderDescription = ({ type, count, fetched, suppressCount }) => {
+function EditsHeaderDescription({ type, count, fetched, suppressCount }) {
   const { id, title, desc } = getText(type)
   const countEl = suppressCount ? '' : ` (${count} found)`
 

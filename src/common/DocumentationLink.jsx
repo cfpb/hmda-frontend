@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-export const DocumentationLink = ({ id, year, children, text }) => {
+export function DocumentationLink({ id, year, children, text }) {
   const yr = year || new Date().getFullYear()
 
   return (

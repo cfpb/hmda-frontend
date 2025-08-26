@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 
 const renderData = (report, label) => {
   return (
-    <React.Fragment>
+    <>
       {renderCharacteristicTitle('Borrower Characteristics')}
       {mapCharacteristic(report.borrowerCharacteristics, label)}
       {renderCharacteristicTitle('Census Tract Characteristics')}
       {mapCharacteristic(report.censusTractCharacteristics, label)}
-    </React.Fragment>
+    </>
   )
 }
 
@@ -37,7 +37,8 @@ const renderCharacteristicTitle = (key) => {
 }
 
 const renderCharacteristic = (characteristic, label) => {
-  let name, currChar
+  let name
+  let currChar
   Object.keys(characteristic).forEach((key) => {
     if (key === 'characteristic') name = characteristic[key]
     else currChar = characteristic[key]
@@ -57,7 +58,8 @@ const renderCharacteristic = (characteristic, label) => {
       </th>
     </tr>,
     currChar.map((detailObj, index) => {
-      let detail, pricing
+      let detail
+      let pricing
       Object.keys(detailObj).forEach((key) => {
         if (key === 'pricingInformation') pricing = detailObj[key]
         else detail = detailObj[key]
@@ -115,15 +117,15 @@ const makeTable = (report, label, ref) => {
   )
 }
 
-const TwelveTwo = (props) => {
+function TwelveTwo(props) {
   const { report, tableOneRef, tableTwoRef } = props
   if (!report) return null
 
   return (
-    <React.Fragment>
+    <>
       {makeTable(report, 'NUMBER', tableOneRef)}
       {makeTable(report, "$000's", tableTwoRef)}
-    </React.Fragment>
+    </>
   )
 }
 

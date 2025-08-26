@@ -17,12 +17,9 @@ const popup = new mapbox.Popup({
 })
 
 function buildPopupHTML(geography, feature, origPer1000) {
-  return (
-    '<h4>' +
-    getFeatureName(geography, feature) +
-    (origPer1000 !== undefined ? ` - ${origPer1000} per 1000 people` : '') +
-    '</h4>'
-  )
+  return `<h4>${getFeatureName(geography, feature)}${
+    origPer1000 !== undefined ? ` - ${origPer1000} per 1000 people` : ''
+  }</h4>`
 }
 
 function getFeatureName(geography, feature) {

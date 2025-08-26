@@ -12,7 +12,7 @@ import Select from '../Select.jsx'
  * in the future.
  */
 
-export const DatasetSelector = ({ dataset, year, setDataset, menuStyle }) => {
+export function DatasetSelector({ dataset, year, setDataset, menuStyle }) {
   const datasetsAvailable = datasetOptions(year)
 
   return (
@@ -39,9 +39,9 @@ export const DatasetSelector = ({ dataset, year, setDataset, menuStyle }) => {
         }))}
         autoFocus={false}
         isClearable={false}
-        openOnFocus={true}
-        searchable={true}
-        simpleValue={true}
+        openOnFocus
+        searchable
+        simpleValue
         styles={menuStyle}
       />
     </div>

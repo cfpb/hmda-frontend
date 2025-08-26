@@ -1,8 +1,8 @@
 import React from 'react'
-import Alert from '../Alert'
 import { Link } from 'react-router-dom'
+import Alert from '../Alert'
 
-const InstitutionNotFound = ({ yearList }) => {
+function InstitutionNotFound({ yearList }) {
   if (!yearList.length) return null
 
   return (
@@ -20,18 +20,20 @@ const InstitutionNotFound = ({ yearList }) => {
   )
 }
 
-const LinkWithState = ({ data, idx }) => (
-  <Link
-    to={{
-      pathname: `/add`,
-      state: { institution: { lei: data.lei, activityYear: data.year } },
-    }}
-  >
-    <br />
-    {`Add ${data.lei} for ${data.year}`}
-    <br />
-  </Link>
-)
+function LinkWithState({ data, idx }) {
+  return (
+    <Link
+      to={{
+        pathname: `/add`,
+        state: { institution: { lei: data.lei, activityYear: data.year } },
+      }}
+    >
+      <br />
+      {`Add ${data.lei} for ${data.year}`}
+      <br />
+    </Link>
+  )
+}
 
 function byYear(a, b) {
   if (a.year === b.year) return 0

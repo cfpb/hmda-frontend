@@ -84,7 +84,7 @@ export const renderTablesOrSuccess = (props, edits, type) => {
   })
 }
 
-const EditsTableWrapper = (props) => {
+function EditsTableWrapper(props) {
   const type = props.page
 
   if (!props.editsFetched || props.isFetching) {

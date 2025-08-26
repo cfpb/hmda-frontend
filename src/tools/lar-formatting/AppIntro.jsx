@@ -13,7 +13,7 @@ const AppIntro = () => {
         typically those with small volumes of covered loans and applications, to
         create an electronic file that can be submitted to the HMDA Platform.'
     >
-      <React.Fragment>
+      <>
         <p>
           The HMDA Excel LAR formatting tool is a Microsoft® Excel® workbook
           created by the Bureau for HMDA filers, who do not have another means
@@ -23,9 +23,13 @@ const AppIntro = () => {
           loan/application register (LAR) using the HMDA Platform.
         </p>
         <p>
-          Follow the <a href='/documentation/tools/lar-formatting/'>Excel LAR Formatting Tool instructions</a> to format your data into a pipe delimited text file.
+          Follow the{' '}
+          <a href='/documentation/tools/lar-formatting/'>
+            Excel LAR Formatting Tool instructions
+          </a>{' '}
+          to format your data into a pipe delimited text file.
         </p>
-      </React.Fragment>
+      </>
     </Heading>,
 
     <h4 key={2}>Downloads</h4>,

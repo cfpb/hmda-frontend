@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import fetchCSV from '../actions/fetchCSV.js'
 import CSVDownload from './CSVDownload.jsx'
 
-const CSVContainer = (props) => {
+function CSVContainer(props) {
   const [isFetching, setIsFetching] = useState(false)
   const dispatch = useDispatch()
   // Submission is being sent as a prop to CSVDownload

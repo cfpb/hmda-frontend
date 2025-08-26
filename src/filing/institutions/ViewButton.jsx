@@ -16,12 +16,12 @@ import {
 
 import './ViewButton.css'
 
-const InstitutionViewButton = ({
+function InstitutionViewButton({
   submission,
   institution,
   filingPeriod,
   isClosed,
-}) => {
+}) {
   const { status, isStalled } = submission
   const code = status ? status.code : CREATED
   let text
@@ -30,8 +30,9 @@ const InstitutionViewButton = ({
   if (isClosed && code <= CREATED) return null
   if (code === FAILED || isStalled) {
     return <RefileButton className='ViewButton' institution={institution} />
-  } else if (code <= CREATED) {
-    text = 'Upload your ' + (isBeta() ? 'test file' : 'official file')
+  }
+  if (code <= CREATED) {
+    text = `Upload your ${isBeta() ? 'test file' : 'official file'}`
   } else if (code < PARSED_WITH_ERRORS) {
     text = 'View upload progress'
   } else if (code === PARSED_WITH_ERRORS) {

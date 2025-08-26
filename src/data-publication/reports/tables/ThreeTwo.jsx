@@ -71,7 +71,7 @@ const renderTHead = (countOrValue) => {
 }
 
 const renderRows = (report, countOrValue) => {
-  let toRender = []
+  const toRender = []
 
   Object.keys(report).forEach((key) => {
     if (key === 'pricingInformation' || key === 'points' || key === 'hoepa') {
@@ -144,17 +144,17 @@ const renderDataDetails = (purchasers, key, countOrValue) => {
 
   return purchasers.map((purchaser, index) => {
     return [
-      <td style={style} key={'first' + key + countOrValue + index}>
+      <td style={style} key={`first${key}${countOrValue}${index}`}>
         {purchaser[firstLienProperty]}
       </td>,
-      <td style={style} key={'junior' + key + countOrValue + index}>
+      <td style={style} key={`junior${key}${countOrValue}${index}`}>
         {purchaser[juniorLienProperty]}
       </td>,
     ]
   })
 }
 
-const ThreeTwo = (props) => {
+function ThreeTwo(props) {
   if (!props.report) return null
 
   return [

@@ -2,7 +2,7 @@ import React from 'react'
 import Alert from '../../common/Alert'
 import { HeaderDocsLink } from './Header'
 
-export const HeaderBeforeOpen = ({ startDate, lateDate, period }) => {
+export function HeaderBeforeOpen({ startDate, lateDate, period }) {
   return (
     <Alert
       heading={`The ${period} filing period is not yet open.`}

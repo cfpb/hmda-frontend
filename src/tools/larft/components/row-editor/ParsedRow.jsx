@@ -22,13 +22,7 @@ const OR_DELIMITER = ' (or) '
  * @param {Function} onFocus Handler to update selected column
  * @param {Object} row Currently selected LAR/TS row
  */
-export const ParsedRow = ({
-  column,
-  highlightClass,
-  onChange,
-  onFocus,
-  row,
-}) => {
+export function ParsedRow({ column, highlightClass, onChange, onFocus, row }) {
   const { fieldName } = column
 
   return (
@@ -49,7 +43,7 @@ export const ParsedRow = ({
  *
  * @param {Object} column Field details
  */
-const FieldNumber = ({ column }) => {
+function FieldNumber({ column }) {
   const { fieldName, fieldIndex } = column
 
   return (
@@ -65,7 +59,7 @@ const FieldNumber = ({ column }) => {
  *
  * @param {Object} column Field details
  */
-const FieldName = ({ column }) => {
+function FieldName({ column }) {
   const { fieldName, fieldIndex } = column
 
   return (
@@ -119,7 +113,7 @@ const buildInput = (_col, _row, _changeFn) => {
     },
   }
 
-  if (_col.disable == true) common['disabled'] = 'disabled'
+  if (_col.disable == true) common.disabled = 'disabled'
 
   if (isColumnState(_col))
     return <InputStateSelector value={_row[_col.fieldName]} {...common} />

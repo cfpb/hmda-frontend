@@ -4,12 +4,12 @@ import { Descriptions } from '../constants/descriptions.js'
 import Tooltip from '../../common/Tooltip'
 import './LabelWithTooltip.css'
 
-export const LabelWithTooltip = ({ label, dataKey }) => {
+export function LabelWithTooltip({ label, dataKey }) {
   if (!dataKey || !Descriptions[dataKey]) return label
 
   return (
     <span className='LabelWithTooltip'>
-      <Tooltip id={label} className={'mytooltip'}>
+      <Tooltip id={label} className='mytooltip'>
         {Descriptions[dataKey]}
       </Tooltip>
       <span className='nowrap'>

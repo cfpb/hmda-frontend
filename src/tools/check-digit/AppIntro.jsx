@@ -1,7 +1,7 @@
 import React from 'react'
 import Heading from '../../common/Heading.jsx'
 
-const AppIntro = () => {
+function AppIntro() {
   return (
     <Heading
       type={1}

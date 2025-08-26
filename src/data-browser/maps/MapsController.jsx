@@ -18,7 +18,7 @@ const menuStyle = {
   }),
 }
 
-export const MapsController = ({
+export function MapsController({
   selectedGeography,
   geographies,
   handleGeographyChange,
@@ -29,7 +29,7 @@ export const MapsController = ({
   onFilter1Change,
   onFilter2Change,
   years,
-}) => {
+}) {
   const filterSelectors = () => {
     const sharedProps = {
       autoFocus: true,
@@ -56,9 +56,9 @@ export const MapsController = ({
               onChange={(g) => handleGeographyChange(g.label)}
               autoFocus={false}
               isClearable={false}
-              openOnFocus={true}
-              searchable={true}
-              simpleValue={true}
+              openOnFocus
+              searchable
+              simpleValue
               styles={menuStyle}
             />
           </div>
@@ -72,9 +72,9 @@ export const MapsController = ({
               onChange={(o) => handleYearChange(o.label)}
               autoFocus={false}
               isClearable={false}
-              openOnFocus={true}
-              searchable={true}
-              simpleValue={true}
+              openOnFocus
+              searchable
+              simpleValue
               styles={menuStyle}
             />
           </div>
@@ -93,12 +93,10 @@ export const MapsController = ({
               menuIsOpen={!combinedFilter1 || undefined}
             />
           </div>
-          {combinedFilter1 && (
+          {combinedFilter1 ? (
             <div className='filter'>
               <span
-                className={
-                  'filter-clause' + (combinedFilter1 ? ' disabled' : '')
-                }
+                className={`filter-clause${combinedFilter1 ? ' disabled' : ''}`}
               >
                 {combinedFilter1 ? 'AND' : '[OPTIONAL]'}
               </span>
@@ -109,20 +107,19 @@ export const MapsController = ({
                 value={combinedFilter2}
                 onChange={onFilter2Change}
                 options={getCombinedOptions(combinedFilter1, combinedFilter2)}
-                placeholder={
-                  '[OPTIONAL] Add a second filter' +
-                  (combinedFilter1 ? ' (type to search)' : '')
-                }
+                placeholder={`[OPTIONAL] Add a second filter${
+                  combinedFilter1 ? ' (type to search)' : ''
+                }`}
               />
             </div>
-          )}
+          ) : null}
         </div>
       </div>
     )
   }
 
   return (
-    <div className={'maps-control-wrapper no-print'}>
+    <div className='maps-control-wrapper no-print'>
       <div className='maps-control-box'>{filterSelectors()}</div>
     </div>
   )

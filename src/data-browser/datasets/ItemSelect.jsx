@@ -4,22 +4,22 @@ import Select from '../Select.jsx'
 import MenuList from './MenuList.jsx'
 import CategorySelect from './CategorySelect.jsx'
 import Pills from './Pills.jsx'
-import { isNationwide } from './selectUtils'
 import {
+  isNationwide,
   pruneItemOptions,
   makeItemSelectValues,
   makeItemPlaceholder,
   itemStyleFn,
-} from './selectUtils.js'
+} from './selectUtils'
 
-const ItemSelect = ({
+function ItemSelect({
   options,
   category,
   onCategoryChange,
   items,
   onChange,
   year,
-}) => {
+}) {
   const selectedValues = makeItemSelectValues(category, items, year)
   const nationwide = isNationwide(category)
 
@@ -47,8 +47,8 @@ const ItemSelect = ({
           styles={itemStyleFn}
           onChange={onChange}
           placeholder={makeItemPlaceholder(category, selectedValues)}
-          isMulti={true}
-          searchable={true}
+          isMulti
+          searchable
           isDisabled={nationwide}
           autoFocus
           openOnFocus

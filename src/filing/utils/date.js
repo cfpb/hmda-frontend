@@ -18,8 +18,8 @@ export function nth(d) {
 }
 
 export function padZero(n) {
-  if (n > 9 || n < -9) return '' + n
-  return n < 0 ? '-0' + -n : '0' + n
+  if (n > 9 || n < -9) return `${n}`
+  return n < 0 ? `-0${-n}` : `0${n}`
 }
 
 export function ordinal(d, options = { nthDate: true }) {
@@ -45,7 +45,7 @@ const msToDays = (ms) => ms / (1000 * 60 * 60 * 24)
 const msToHours = (ms) => ms / (1000 * 60 * 60)
 
 export const numDaysBetween = function (d1, d2) {
-  var diff = d1.getTime() - d2.getTime()
+  const diff = d1.getTime() - d2.getTime()
   return msToDays(diff)
 }
 
@@ -55,8 +55,8 @@ export const hoursSince = (timestamp) => {
 }
 
 export const stdTimezoneOffset = (date) => {
-  var jan = new Date(date.getFullYear(), 0, 1)
-  var jul = new Date(date.getFullYear(), 6, 1)
+  const jan = new Date(date.getFullYear(), 0, 1)
+  const jul = new Date(date.getFullYear(), 6, 1)
   return Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset())
 }
 
@@ -77,7 +77,7 @@ export const easternOffsetHours = (date = new Date()) => {
  * @returns formatted string that includes month, day, year and time from ET
  */
 export const formatReceiptTime = (timeToFormat) => {
-  let timezone = {
+  const timezone = {
     timeZone: 'America/New_York',
   }
 
@@ -90,10 +90,7 @@ export const formatReceiptTime = (timeToFormat) => {
 
   const date = new Date(timeToFormat)
 
-  return (
-    date.toLocaleDateString('en-US', options) +
-    ',' +
-    date.toLocaleString('en-US', timezone).split(',')[1] +
-    ' ET'
-  )
+  return `${date.toLocaleDateString('en-US', options)},${
+    date.toLocaleString('en-US', timezone).split(',')[1]
+  } ET`
 }

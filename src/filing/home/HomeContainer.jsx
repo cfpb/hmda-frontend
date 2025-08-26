@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import Home from './index.jsx'
 import InstitutionsContainer from '../institutions/container.jsx'
 
-const HomeContainer = ({ config }) => {
+function HomeContainer({ config }) {
   const user = useSelector((state) => state.app.user.oidc)
   const { filingPeriods, maintenanceMode, announcement } = config
 

@@ -1,15 +1,15 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
+import { Provider } from 'react-redux'
 import Home from './Home'
 import Geography from './datasets/Geography.jsx'
 import MapsGraphs from './maps/MapsGraphs.jsx'
 import NotFound from '../common/NotFound'
 import { withAppContext } from '../common/appContextHOC'
 import { QuarterlyGraphs } from './graphs/quarterly'
-import { Provider } from 'react-redux'
 import { store } from './store'
 
-const DataBrowser = (props) => {
+function DataBrowser(props) {
   const { publicationReleaseYear } = props.config
 
   return (
@@ -18,7 +18,7 @@ const DataBrowser = (props) => {
         <Switch>
           <Route exact path='/data-browser' component={Home} />
           <Route
-            path={'/data-browser/graphs/quarterly/:graph?'}
+            path='/data-browser/graphs/quarterly/:graph?'
             render={(r_props) => <QuarterlyGraphs {...r_props} {...props} />}
           />
           <Route
@@ -28,11 +28,11 @@ const DataBrowser = (props) => {
           <Route
             path={['/data-browser/maps/:year?', '/data-browser/maps']}
             render={(r_props) => {
-              const year = r_props.match.params.year
+              const { year } = r_props.match.params
               let { pathname, search } = r_props.location
 
               if (!year) {
-                if (pathname.substr(-1) !== '/') pathname = pathname + '/'
+                if (pathname.substr(-1) !== '/') pathname += '/'
                 return (
                   <Redirect
                     to={`${pathname}${publicationReleaseYear}${search}`}

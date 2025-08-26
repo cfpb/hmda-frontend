@@ -123,7 +123,7 @@ const loanPurposeListPre2018 = [
 
 /**
  * Inter-year mappings
- **/
+ * */
 
 export const variableNameMap = {
   property_types: 'dwelling_categories',

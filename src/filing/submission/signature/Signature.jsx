@@ -25,7 +25,7 @@ const showWarning = (error) => {
   )
 }
 
-const SignatureClosed = ({ status }) => {
+function SignatureClosed({ status }) {
   const notSigned = status.code !== SIGNED
 
   return (
@@ -33,11 +33,11 @@ const SignatureClosed = ({ status }) => {
       <header>
         <h2>Signature</h2>
       </header>
-      {notSigned && (
+      {notSigned ? (
         <Alert type='warning'>
           <p style={{ padding: 0 }}>This submission was not signed.</p>
         </Alert>
-      )}
+      ) : null}
     </section>
   )
 }
@@ -46,7 +46,7 @@ const SignatureClosed = ({ status }) => {
  * Component is used to have the HMDA user sign off/submit their filing
  */
 
-const Signature = ({ lei, isPassed }) => {
+function Signature({ lei, isPassed }) {
   const dispatch = useDispatch()
   const signatureState = useSelector((state) => state.app.signature)
   const error = useSelector((state) => state.app.error)
@@ -69,12 +69,12 @@ const Signature = ({ lei, isPassed }) => {
 
   if (isPassed) return <SignatureClosed status={status} />
 
-  let isButtonDisabled =
-    (status.code === VALIDATED || status.code === NO_MACRO_EDITS) && checked
-      ? false
-      : true
+  let isButtonDisabled = !(
+    (status.code === VALIDATED || status.code === NO_MACRO_EDITS) &&
+    checked
+  )
 
-  let isCheckBoxDisabled = status.code === SIGNED ? true : false
+  let isCheckBoxDisabled = status.code === SIGNED
 
   let buttonClass = 'button-disabled'
   // if the checkbox is checked remove disabled from button

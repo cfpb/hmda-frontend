@@ -2,12 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Icon from '../../common/uswds/components/Icon'
 
-const ProfileIcon = ({
-  iconHeight,
-  iconWidth,
-  profileText,
-  profileTextSize,
-}) => {
+function ProfileIcon({ iconHeight, iconWidth, profileText, profileTextSize }) {
   return (
     <Link to='/filing/profile' className='profile_icon_container'>
       <Icon

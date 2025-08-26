@@ -10,7 +10,7 @@ import './CopyURLButton.css'
 
 let debounceCopyConfirmation = null
 
-const CopyURLButton = ({ cname, text = 'Share URL' }) => {
+function CopyURLButton({ cname, text = 'Share URL' }) {
   const [showTooltip, setShowTooltip] = useState(false)
 
   const copy = () => {
@@ -39,10 +39,10 @@ const CopyURLButton = ({ cname, text = 'Share URL' }) => {
       <div style={{ display: 'flex' }}>
         <BiLinkAlt
           style={{ marginRight: '4px', fill: 'white' }}
-          fontWeight={'bold'}
+          fontWeight='bold'
         />
         {text}
-        {showTooltip && <span className='tooltiptext'>Link Copied!</span>}
+        {showTooltip ? <span className='tooltiptext'>Link Copied!</span> : null}
       </div>
     </button>
   )

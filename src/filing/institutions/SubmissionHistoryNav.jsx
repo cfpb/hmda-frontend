@@ -1,12 +1,12 @@
 import React from 'react'
 
-const SubmissionHistoryNav = ({ clickHandler, links, page, hidden, top }) => {
+function SubmissionHistoryNav({ clickHandler, links, page, hidden, top }) {
   if (hidden) return null
 
   const marginClass = top ? 'marginBottom' : 'marginTop'
 
   return (
-    <div className={'paginationNav ' + marginClass}>
+    <div className={`paginationNav ${marginClass}`}>
       <ul>
         <li>
           <button

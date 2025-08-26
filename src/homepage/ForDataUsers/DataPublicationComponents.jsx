@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom'
 import NewIndicator from '../NewIndicator'
 
-export const DynamicDatasets = ({
+export function DynamicDatasets({
   mlarReleaseYear,
   publicationReleaseYear,
   dataPublicationYears,
-}) => {
+}) {
   // Tenary is used since .dynamic[0] isn't in the prod config yet
-  let dataPubDynamic = dataPublicationYears.dynamic
+  const dataPubDynamic = dataPublicationYears.dynamic
     ? dataPublicationYears.dynamic[0]
     : publicationReleaseYear
 
@@ -36,12 +36,12 @@ export const DynamicDatasets = ({
   )
 }
 
-export const StaticDatasets = ({
+export function StaticDatasets({
   dataPublicationYears,
   publicationReleaseYear,
-}) => {
+}) {
   // Tenary is used since .snapshot[0] isn't in the prod config yet
-  let dataPubSnapshot = dataPublicationYears.snapshot
+  const dataPubSnapshot = dataPublicationYears.snapshot
     ? dataPublicationYears.snapshot[0]
     : publicationReleaseYear
 
@@ -75,7 +75,7 @@ export const StaticDatasets = ({
   )
 }
 
-export const Reports = ({ publicationReleaseYear }) => {
+export function Reports({ publicationReleaseYear }) {
   return (
     <li>
       Reports

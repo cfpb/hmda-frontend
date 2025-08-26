@@ -8,7 +8,7 @@ function clickHandler(e) {
   document.activeElement.blur()
 }
 
-const PrintPageButton = () => {
+function PrintPageButton() {
   return (
     <div className='print-page-container'>
       <button className='print-page' onClick={clickHandler}>

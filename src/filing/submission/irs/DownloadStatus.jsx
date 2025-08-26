@@ -7,7 +7,7 @@ import { BsCheckCircle, BsExclamationTriangleFill } from 'react-icons/bs'
  * @param {boolean|null} props.success
  * @returns
  */
-export const DownloadStatus = ({ success }) => {
+export function DownloadStatus({ success }) {
   if (success === null) return success
 
   if (success)

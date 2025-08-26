@@ -15,7 +15,11 @@ import {
   makeUrl,
   RETRY_DELAY,
 } from '../api.js'
-import { makeSearchFromState, makeStateFromSearch } from '../query.js'
+import {
+  makeSearchFromState,
+  makeStateFromSearch,
+  sanitizeArray,
+} from '../query.js'
 import { ActionsWarningsErrors } from './ActionsWarningsErrors'
 import MSAMD_COUNTS from '../constants/msamdCounts.js'
 import STATE_COUNTS from '../constants/stateCounts.js'
@@ -36,7 +40,6 @@ import {
   someChecksExist,
   before2018,
 } from './selectUtils.js'
-import { sanitizeArray } from '../query'
 import DatasetDocsLink from './DatasetDocsLink.jsx'
 import { withYearValidation } from '../../common/withYearValidation.jsx'
 
@@ -321,7 +324,7 @@ class Geography extends Component {
   onItemChange(selectedItems = []) {
     const items = selectedItems
       ? selectedItems.map((item) => {
-          return item.value + ''
+          return `${item.value}`
         })
       : []
     return this.setStateAndRoute({
@@ -527,19 +530,19 @@ class Geography extends Component {
             </p>
           </Heading>
         </div>
-        {toolAnnouncement && (
+        {toolAnnouncement ? (
           <Alert
             heading={toolAnnouncement.heading}
             type={toolAnnouncement.type}
           >
             <p>{toolAnnouncement.message}</p>
           </Alert>
-        )}
+        ) : null}
         <DBYearSelector
           year={this.state.year}
           onChange={this.onYearChange}
           years={this.props.config.dataBrowserYears}
-          label={'Data Year'}
+          label='Data Year'
         />
         <DatasetDocsLink year={this.state.year} />
 
@@ -579,7 +582,7 @@ class Geography extends Component {
           category={this.state.category}
           downloadUrl={fileDownloadUrl}
           showSummaryButton={!details.aggregations}
-          summaryEnabled={enabled && checksExist}
+          summaryEnabled={enabled ? checksExist : null}
           loadingDetails={loadingDetails}
           requestSubset={this.requestSubset}
           isLargeFile={isLargeFile}

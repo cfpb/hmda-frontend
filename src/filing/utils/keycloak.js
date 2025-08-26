@@ -1,4 +1,4 @@
-/*eslint no-restricted-globals: 0*/
+/* eslint no-restricted-globals: 0 */
 import { error } from './log.js'
 import { getStore } from './store.js'
 import isRedirecting from '../actions/isRedirecting.js'
@@ -41,7 +41,7 @@ const refresh = () => {
             return login()
           })
       },
-      +(keycloak.tokenParsed.exp + '000') - Date.now() - 10000,
+      Number(`${keycloak.tokenParsed.exp}000`) - Date.now() - 10000,
     )
   }
   updateKeycloak()
@@ -85,9 +85,9 @@ const logout = (queryString = '') => {
   if (!keycloak) return error('keycloak needs to be set on app initialization')
   const store = getStore()
   const postLogoutRedirectUri = encodeURIComponent(
-    location.origin +
-      `/filing/${store.getState().app.filingPeriod}/` +
-      queryString,
+    `${location.origin}/filing/${store.getState().app.filingPeriod}/${
+      queryString
+    }`,
   )
 
   const logoutUrl =

@@ -2,7 +2,7 @@ import React from 'react'
 import ConfiguredAlert from '../../common/ConfiguredAlert'
 import { parseTimedGuardDate } from '../../deriveConfig'
 
-export const FilingAnnouncement = ({ data }) => {
+export function FilingAnnouncement({ data }) {
   const showAnnouncement =
     !data.endDate || Date.now() < parseTimedGuardDate(data.endDate, true)
 

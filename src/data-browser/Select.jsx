@@ -1,9 +1,9 @@
 import React, { useRef } from 'react'
 import Select from 'react-select'
 
-const isIE = /*@cc_on!@*/ false || !!document.documentMode
+const isIE = /* @cc_on!@ */ false || !!document.documentMode
 
-const WrappedSelect = (props) => {
+function WrappedSelect(props) {
   const selRef = useRef(null)
 
   function ieBlurHack() {

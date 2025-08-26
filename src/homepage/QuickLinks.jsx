@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import iconSprite from '../common/uswds/img/sprite.svg'
 
-export const QuickLinks = ({ hideContent }) => {
+export function QuickLinks({ hideContent }) {
   if (hideContent) return <></>
 
   return (
@@ -18,7 +18,7 @@ export const QuickLinks = ({ hideContent }) => {
             focusable='false'
             role='img'
           >
-            <use href={`${iconSprite}#attach_money`}></use>
+            <use href={`${iconSprite}#attach_money`} />
           </svg>{' '}
           <span>
             Rate Spread
@@ -33,7 +33,7 @@ export const QuickLinks = ({ hideContent }) => {
             focusable='false'
             role='img'
           >
-            <use href={`${iconSprite}#account_balance`}></use>
+            <use href={`${iconSprite}#account_balance`} />
           </svg>{' '}
           <span>
             HMDA Filing <br />
@@ -47,7 +47,7 @@ export const QuickLinks = ({ hideContent }) => {
             focusable='false'
             role='img'
           >
-            <use href={`${iconSprite}#help`}></use>
+            <use href={`${iconSprite}#help`} />
           </svg>
           <span>
             Frequently Asked
@@ -62,7 +62,7 @@ export const QuickLinks = ({ hideContent }) => {
             focusable='false'
             role='img'
           >
-            <use href={`${iconSprite}#near_me`}></use>
+            <use href={`${iconSprite}#near_me`} />
           </svg>
           <span>
             Filing Instructions

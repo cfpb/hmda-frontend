@@ -2,7 +2,7 @@ import React from 'react'
 import NotesDetails from './NoteDetails'
 import { formatHistoryDate } from './utils'
 
-export const NoteItem = ({ item, isOpen, setOpen }) => {
+export function NoteItem({ item, isOpen, setOpen }) {
   const handleOpen = () => (isOpen ? setOpen(null) : setOpen(item.id))
 
   let detailsClass = 'details'
@@ -21,7 +21,7 @@ export const NoteItem = ({ item, isOpen, setOpen }) => {
         <span className='date'>{formatHistoryDate(item.historyID)}</span>
       </button>
       <NotesDetails
-        id={item.id + 'details'}
+        id={`${item.id}details`}
         className={detailsClass}
         diff={item.diff}
         isOpen={isOpen}

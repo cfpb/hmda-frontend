@@ -17,7 +17,7 @@ export default function fetchCurrentFiling(institution, selectedPeriod) {
     return dispatch(
       fetchNewFiling({
         lei: institution.institution.lei,
-        period: period,
+        period,
       }),
     )
   }

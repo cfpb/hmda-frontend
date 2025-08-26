@@ -26,7 +26,7 @@ NATIONAL_AGGREGATE_REPORTS.forEach((v) => {
   }
 })
 
-const NationalAggregate = (props) => {
+function NationalAggregate(props) {
   const { match, config } = props
   const { params, url } = match
   const report = detailsCache.reports[params.reportId]
@@ -34,7 +34,7 @@ const NationalAggregate = (props) => {
   const years = national || shared
 
   return (
-    <React.Fragment>
+    <>
       <div className='NationalAggregate' id='main-content'>
         <Heading
           type={1}
@@ -49,7 +49,7 @@ const NationalAggregate = (props) => {
             <a
               target='_blank'
               rel='noopener noreferrer'
-              href={`/documentation/publications/ad-changes`}
+              href='/documentation/publications/ad-changes'
             >
               A&D Report Changes
             </a>{' '}
@@ -68,7 +68,7 @@ const NationalAggregate = (props) => {
               title='year'
               name={params.year ? params.year : 'Select a year'}
               id=''
-              link={'/data-publication/national-aggregate-reports/'}
+              link='/data-publication/national-aggregate-reports/'
             />
           </li>
           <li>
@@ -106,7 +106,7 @@ const NationalAggregate = (props) => {
       </div>
 
       {params.reportId && params.year === '2017' ? <Report {...props} /> : null}
-    </React.Fragment>
+    </>
   )
 }
 

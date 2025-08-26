@@ -10,14 +10,14 @@ const formatMessage = ({ pre, post }, filename) => {
   )
 }
 
-const DropzoneContent = ({
+function DropzoneContent({
   getRootProps,
   getInputProps,
   code,
   filename,
   errorFile,
   isDisabled,
-}) => {
+}) {
   let message = ''
   let messageObj = {}
 

@@ -1,11 +1,11 @@
 import './SectionSelector.css'
 import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { GRAPH_URL } from './slice/graphConfigs'
-import { graphs } from '../graphs/slice'
 import { useEffect, useState } from 'react'
+import { GRAPH_URL } from './slice/graphConfigs'
+import { graphs } from './slice'
 
-const SectionOption = ({ isSelected, title, url }) => {
+function SectionOption({ isSelected, title, url }) {
   const sectionClasses = `button section ${isSelected && 'selected'}`
 
   const graphsConfigStore = useSelector(({ graphsConfig }) => graphsConfig)
@@ -29,7 +29,7 @@ const SectionOption = ({ isSelected, title, url }) => {
   )
 }
 
-export const SectionSelector = ({ props }) => {
+export function SectionSelector({ props }) {
   const SectionOptions = [
     { label: 'Graphs' }, // url for graphs comes from redux
     { label: 'Filer Info', url: '/filers' },

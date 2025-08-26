@@ -23,7 +23,7 @@ export const buildEnumeratedOptions = (column) => {
   return options
 }
 
-const EnumOption = ({ value, description }) => {
+function EnumOption({ value, description }) {
   return (
     <option value={value}>{formatEnumerationLabel(value, description)}</option>
   )

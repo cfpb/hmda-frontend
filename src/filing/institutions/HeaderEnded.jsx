@@ -2,7 +2,7 @@ import React from 'react'
 import Alert from '../../common/Alert'
 import { HeaderDocsLink } from './Header'
 
-export const HeaderEnded = ({ endDate, period }) => {
+export function HeaderEnded({ endDate, period }) {
   return (
     <Alert
       heading={`Collection of ${period} HMDA data has ended.`}

@@ -77,7 +77,7 @@ const getIndicatorClass = ({
   return 'pulsing'
 }
 
-const ProgressText = (props) => {
+function ProgressText(props) {
   return (
     <section className='progressText'>
       <p>
@@ -95,7 +95,7 @@ ProgressText.propTypes = {
   errorApp: PropTypes.object,
   errorUpload: PropTypes.object,
   file: PropTypes.object,
-  //../progressHOC
+  // ../progressHOC
   page: PropTypes.string,
   base: PropTypes.string,
   code: PropTypes.number,

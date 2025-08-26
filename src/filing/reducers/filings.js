@@ -62,7 +62,7 @@ export default (state = defaultFilings, action) => {
       }
 
     case RECEIVE_FILING_PAGE:
-      const lei = action.json.filing.lei
+      const { lei } = action.json.filing
       const filingPageLinks = parsePageNumbers(action.json._links)
       const currentPage = filingPageLinks.self
 

@@ -7,7 +7,7 @@ import { useLocation } from 'react-router'
  * @param {Object} props Contains children and optional configuration
  * @returns {JSX.Element} Wrapper component
  */
-const ScrollToTop = (props) => {
+function ScrollToTop(props) {
   const location = useLocation()
   const prevPathname = useRef(location.pathname)
 

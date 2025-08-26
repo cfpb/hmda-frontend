@@ -21,10 +21,8 @@ function mapStateToProps(state, ownProps) {
     if (state.app.edits.rows[stateTarget]) {
       isFetching = state.app.edits.rows[stateTarget].isFetching
     }
-  } else {
-    if (state.app[stateTarget]) {
-      isFetching = state.app[stateTarget].isFetching
-    }
+  } else if (state.app[stateTarget]) {
+    isFetching = state.app[stateTarget].isFetching
   }
 
   fetchChecker[ownProps.target] = isFetching
@@ -49,7 +47,7 @@ function mapDispatchToProps(dispatch, ownProps) {
   return {
     getPage: (pagination, page) => {
       if (!pagination || page === undefined) return
-      fetchAndFade(dispatch, ownProps.target, pagination, '?page=' + page)
+      fetchAndFade(dispatch, ownProps.target, pagination, `?page=${page}`)
     },
     getNextPage: (pagination) => {
       if (!pagination) return

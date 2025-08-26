@@ -7,7 +7,7 @@ import InputRadio from '../InputRadio'
 
 import { otherInputs } from '../constants/inputs'
 
-const OtherFields = (props) => {
+function OtherFields(props) {
   return otherInputs.map((otherInput) => {
     if (otherInput.type === 'select') {
       return (

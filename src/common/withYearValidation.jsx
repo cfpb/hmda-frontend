@@ -13,19 +13,19 @@ const SKIP_BASE_REDIRECT = ['aggregate', 'disclosure']
  * @returns
  */
 const formatPath = (props, targetYear) => {
-  const year = props.match.params.year
-  let { pathname, search } = props.location
+  const { year } = props.match.params
+  const { pathname, search } = props.location
 
   // Add targetYear to the path
   if (!year) {
     let pname = pathname.slice()
-    if (pname.substr(-1) !== '/') pname = pname + '/'
+    if (pname.substr(-1) !== '/') pname += '/'
     return `${pname}${targetYear}${search}`
   }
 
   // Replace the provided year with targetYear
   const pathParts = pathname.split('/')
-  let pname = pathParts.slice(0, pathParts.length - 1).join('/') + '/'
+  const pname = `${pathParts.slice(0, pathParts.length - 1).join('/')}/`
   return `${pname}${targetYear}${search}`
 }
 
@@ -40,32 +40,33 @@ const formatPath = (props, targetYear) => {
  * @param {String} props.targetYearKey Product key used to determine which year availability array, from config.dataPublicationsYear, should be used to determine the targetYear
  * @returns
  */
-export const withYearValidation = (WrappedComponent) => (props) => {
-  const {
-    config: { dataPublicationYears },
-    match: { params },
-    targetYearKey,
-  } = props
-  const { shared } = dataPublicationYears
-  const { year } = params
-  let shouldRedirect = false
+export const withYearValidation = (WrappedComponent) =>
+  function (props) {
+    const {
+      config: { dataPublicationYears },
+      match: { params },
+      targetYearKey,
+    } = props
+    const { shared } = dataPublicationYears
+    const { year } = params
+    let shouldRedirect = false
 
-  // Use Publication-specific availability list, if it exists
-  const validYears = dataPublicationYears[targetYearKey] || shared
+    // Use Publication-specific availability list, if it exists
+    const validYears = dataPublicationYears[targetYearKey] || shared
 
-  // Default target year to the current Publication year
-  let targetYear = validYears[0]
+    // Default target year to the current Publication year
+    let targetYear = validYears[0]
 
-  // NationalAggregate only available for 2017
-  if (targetYearKey === 'NationalAggregate') targetYear = 2017
+    // NationalAggregate only available for 2017
+    if (targetYearKey === 'NationalAggregate') targetYear = 2017
 
-  // Validate the URL year, when provided
-  if (year && !validYears.includes(year)) shouldRedirect = true
-  else if (!year && !SKIP_BASE_REDIRECT.includes(targetYearKey)) {
-    // Redirect from the base URL, if safe to do so
-    shouldRedirect = true
+    // Validate the URL year, when provided
+    if (year && !validYears.includes(year)) shouldRedirect = true
+    else if (!year && !SKIP_BASE_REDIRECT.includes(targetYearKey)) {
+      // Redirect from the base URL, if safe to do so
+      shouldRedirect = true
+    }
+
+    if (shouldRedirect) return <Redirect to={formatPath(props, targetYear)} />
+    return <WrappedComponent {...props} />
   }
-
-  if (shouldRedirect) return <Redirect to={formatPath(props, targetYear)} />
-  return <WrappedComponent {...props} />
-}

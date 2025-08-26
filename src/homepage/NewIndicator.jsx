@@ -1,9 +1,9 @@
 import './NewIndicator.css'
 
-export const NewIndicator = ({ text, id }) => {
+export function NewIndicator({ text, id }) {
   return (
     <span id={id} className='new-indicator'>
-      {text || "New"}
+      {text || 'New'}
     </span>
   )
 }

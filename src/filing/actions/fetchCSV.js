@@ -10,8 +10,8 @@ export default function fetchCSV(lei, filing, submissionId) {
   return (dispatch) => {
     dispatch(requestCSV())
     return getCSV({
-      lei: lei,
-      filing: filing,
+      lei,
+      filing,
       submission: submissionId,
     })
       .then((csv) => {

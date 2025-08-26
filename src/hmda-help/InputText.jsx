@@ -42,7 +42,7 @@ class InputText extends Component {
     const { error } = this.state
 
     return (
-      <React.Fragment>
+      <>
         <label htmlFor={id}>{label}</label>
         <InputErrorMsg msg={error} />
         <input
@@ -59,7 +59,7 @@ class InputText extends Component {
           maxLength={maxLength || ''}
           size={maxLength || 75}
         />
-      </React.Fragment>
+      </>
     )
   }
 }

@@ -28,7 +28,7 @@ import './FilingPeriodsCard.css'
  * - Update FileGuideLink year props accordingly
  */
 
-const FilingPeriodsCard = ({ timedGuards }) => {
+function FilingPeriodsCard({ timedGuards }) {
   const [isInfoExpanded, setIsInfoExpanded] = useState(false)
 
   const currentYear = '2024'
@@ -70,15 +70,17 @@ const FilingPeriodsCard = ({ timedGuards }) => {
   }
 
   // Helper component for file guide links
-  const FileGuideLink = ({ year, type }) => (
-    <a
-      href={`/documentation/fig/${year}/overview`}
-      className={`filing-guide-link-${type}`}
-    >
-      {year} Filing Instructions Guide{' '}
-      <span className='filing-periods-right-carrot'>▶</span>
-    </a>
-  )
+  function FileGuideLink({ year, type }) {
+    return (
+      <a
+        href={`/documentation/fig/${year}/overview`}
+        className={`filing-guide-link-${type}`}
+      >
+        {year} Filing Instructions Guide{' '}
+        <span className='filing-periods-right-carrot'>▶</span>
+      </a>
+    )
+  }
 
   return (
     <div className='filing-periods-card'>
@@ -127,7 +129,7 @@ const FilingPeriodsCard = ({ timedGuards }) => {
           />
         </div>
 
-        {isInfoExpanded && (
+        {isInfoExpanded ? (
           <div className='quarterly-filer-content'>
             <p>
               A financial institution is required to report quarterly HMDA data
@@ -142,7 +144,7 @@ const FilingPeriodsCard = ({ timedGuards }) => {
               Learn more about quarterly filers →
             </a>
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   )

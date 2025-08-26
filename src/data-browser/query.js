@@ -26,7 +26,7 @@ export function makeParam(s, key) {
 }
 
 export function stringifyIfTruthy(s, key) {
-  const v = key === 'arids' ? s['leis'] : s[key]
+  const v = key === 'arids' ? s.leis : s[key]
   if (Array.isArray(v)) return v.length ? formatParam(key, v.join(',')) : ''
   return v ? formatParam(key, v.toString()) : ''
 }
@@ -93,7 +93,7 @@ export function makeStateFromSearch(search, state, detailsCb, updateSearch) {
       if (sanitized.length !== val.length) regenerateSearch = true
       state[key] = sanitized
     } else if (['leis', 'arids'].indexOf(key) > -1) {
-      let stateKey = 'leis'
+      const stateKey = 'leis'
       const sanitized = sanitizeArray(stateKey, val)
       if (sanitized.length !== val.length) regenerateSearch = true
       state[stateKey] = sanitized
@@ -111,7 +111,7 @@ export function makeStateFromSearch(search, state, detailsCb, updateSearch) {
     }
   })
 
-  //update search based on failed validation
+  // update search based on failed validation
   if (regenerateSearch) setTimeout(updateSearch, 0)
 
   return state

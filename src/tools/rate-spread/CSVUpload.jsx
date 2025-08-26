@@ -44,11 +44,11 @@ class CSVUpload extends Component {
       })
     }
 
-    const filename = 'calculated-' + file.name
+    const filename = `calculated-${file.name}`
 
     this.setState({
       isFetching: false,
-      filename: filename,
+      filename,
     })
 
     return fileSaver.saveAs(
@@ -88,7 +88,7 @@ class CSVUpload extends Component {
           />
           <p>
             <input
-              className="upload-csv-rate-spread-button"
+              className='upload-csv-rate-spread-button'
               onChange={this.handleCSVSelect}
               type='file'
               href='#'
@@ -103,6 +103,7 @@ class CSVUpload extends Component {
             <a
               href='https://ffiec.cfpb.gov/documentation/api/rate-spread/#batch-ratespreads'
               target='_blank'
+              rel='noreferrer'
             >
               the batch section of the API documentation
             </a>{' '}

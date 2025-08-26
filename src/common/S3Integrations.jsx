@@ -1,5 +1,4 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector, Provider } from 'react-redux'
 import ExternalLink from './ExternalLink'
 import LoadingIcon from './LoadingIcon'
@@ -59,23 +58,23 @@ export const useS3FileHeaders = (url, shouldFetch) => {
  * @param {String} label Anchor body
  * @returns Element
  */
-export const S3DocLink = ({
+export function S3DocLink({
   url,
   label,
   title,
   children,
   showLastUpdated = true,
-}) => {
+}) {
   return (
     <li key={url}>
       <ExternalLink url={url} title={title}>
         {children || label}
       </ExternalLink>
-      {showLastUpdated && (
+      {showLastUpdated ? (
         <Provider store={s3Store}>
           <LastUpdated url={url} />
         </Provider>
-      )}
+      ) : null}
     </li>
   )
 }
@@ -89,28 +88,28 @@ export const S3DocLink = ({
  * @param {String} label Anchor body
  * @returns Element
  */
-export const S3DatasetLink = ({
+export function S3DatasetLink({
   url,
   children,
   label,
   showLastUpdated,
   isDocs,
-}) => {
+}) {
   return (
     <li key={url} className='dataset'>
       <a download href={url}>
         {children || label}
       </a>
-      {showLastUpdated && (
+      {showLastUpdated ? (
         <Provider store={s3Store}>
           <LastUpdated url={url} isDocs={isDocs} />
         </Provider>
-      )}
+      ) : null}
     </li>
   )
 }
 
-const S3LargeFileWarning = ({ show = false }) => {
+function S3LargeFileWarning({ show = false }) {
   if (!show) return null
   return (
     <div className='warning'>
@@ -128,9 +127,9 @@ const S3LargeFileWarning = ({ show = false }) => {
  * @param {String} url S3 file url
  * @returns Element
  */
-const LastUpdated = ({ url, isDocs }) => {
+function LastUpdated({ url, isDocs }) {
   const headers = useS3FileHeaders(url, true)
-  let cname = ['s3-modified']
+  const cname = ['s3-modified']
   if (isDocs) cname.push('docs')
 
   if (!headers) return <LoadingIcon className='LoadingInline' />

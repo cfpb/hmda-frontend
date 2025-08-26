@@ -9,7 +9,7 @@ import './FilterBar.scss'
  * UI to adjust Filter criteria
  * (default export)
  */
-const FilterBar = ({ productOptions, typeOptions, filter }) => {
+function FilterBar({ productOptions, typeOptions, filter }) {
   const searchValue = filter.filters.keywords
     ? filter.filters.keywords.join(' ')
     : ''
@@ -29,7 +29,7 @@ const FilterBar = ({ productOptions, typeOptions, filter }) => {
             focusable='false'
             role='img'
           >
-            <use href={`${iconSprite}#filter_alt`}></use>
+            <use href={`${iconSprite}#filter_alt`} />
           </svg>
           <span>Filter by:</span>
         </h4>
@@ -63,55 +63,59 @@ const FilterBar = ({ productOptions, typeOptions, filter }) => {
   )
 }
 
-const SearchField = ({
+function SearchField({
   id,
   label,
   value,
   onChange,
   placeholder = 'Search',
   onClear,
-}) => (
-  <>
-    <h3>
-      <label htmlFor={id}>{label}</label>
-    </h3>
-    <div className='text-input'>
-      <span className='icon'>
-        <img src={spyGlass} alt='Magnifying glass' />
-      </span>
-      <div className='search-input-wrapper'>
-        <input
-          id={id}
-          type='text'
-          value={value}
-          onChange={onChange}
-          placeholder={placeholder}
-        />
-        <button type='button' className='clear-text' onClick={onClear}>
-          x
-        </button>
+}) {
+  return (
+    <>
+      <h3>
+        <label htmlFor={id}>{label}</label>
+      </h3>
+      <div className='text-input'>
+        <span className='icon'>
+          <img src={spyGlass} alt='Magnifying glass' />
+        </span>
+        <div className='search-input-wrapper'>
+          <input
+            id={id}
+            type='text'
+            value={value}
+            onChange={onChange}
+            placeholder={placeholder}
+          />
+          <button type='button' className='clear-text' onClick={onClear}>
+            x
+          </button>
+        </div>
+      </div>
+    </>
+  )
+}
+
+function FilterColumn({ name, options, heading, filter }) {
+  return (
+    <div className={`pills-wrapper ${name}`}>
+      <h3>{heading}</h3>
+      <div className='pills split columns'>
+        {options.map((option, idx) => (
+          <FilterPill
+            key={`${option.type}-${idx}`}
+            option={option}
+            filter={filter}
+          />
+        ))}
       </div>
     </div>
-  </>
-)
-
-const FilterColumn = ({ name, options, heading, filter }) => (
-  <div className={`pills-wrapper ${name}`}>
-    <h3>{heading}</h3>
-    <div className='pills split columns'>
-      {options.map((option, idx) => (
-        <FilterPill
-          key={`${option.type}-${idx}`}
-          option={option}
-          filter={filter}
-        />
-      ))}
-    </div>
-  </div>
-)
+  )
+}
 
 /** Option that toggles it's filter when clicked */
-const FilterPill = ({ option, filter }) => {
+function FilterPill({ option, filter }) {
   const { type, value } = option
   const { toggle, filters } = filter
   const id = `pill-${type}-${value}`

@@ -5,11 +5,11 @@ import pollForProgress from '../../actions/pollForProgress.js'
 
 export function mapStateToProps(state) {
   const { lei, filingPeriod, submission } = state.app
-  const code = submission.status.code
-  const filename = submission.filename
+  const { code } = submission.status
+  const { filename } = submission
 
   const { uploading, file, errors, errorFile, errorUpload } =
-    state.app.upload[lei] || state.app.upload['__DEFAULT_UPLOAD__']
+    state.app.upload[lei] || state.app.upload.__DEFAULT_UPLOAD__
 
   const errorApp = state.app.error
 

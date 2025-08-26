@@ -9,7 +9,7 @@ import { fetchData } from '../api/fetch.js'
 export default function fetchPage(target, pathname) {
   return (dispatch) => {
     dispatch(getPaginationRequestAction(target))
-    return fetchData({ pathname: pathname })
+    return fetchData({ pathname })
       .then((json) => {
         return hasHttpError(json).then((hasError) => {
           if (hasError) {

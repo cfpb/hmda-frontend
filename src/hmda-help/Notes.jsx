@@ -1,9 +1,9 @@
 import React from 'react'
+import { PropTypes } from 'prop-types'
 import InputTextArea from './InputTextArea'
 import { notesInput } from './constants/inputs'
-import { PropTypes } from 'prop-types'
 
-const Notes = (props) => {
+function Notes(props) {
   const { hide, notes, onBlur, onChange, prevNotes, required } = props
 
   if (hide) return null
@@ -24,7 +24,7 @@ const Notes = (props) => {
     <InputTextArea
       key={notesInput.id}
       {...notesInput}
-      disabled={true}
+      disabled
       value={prevNotes || ''}
     />
   )

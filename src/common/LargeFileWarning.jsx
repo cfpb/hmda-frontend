@@ -1,20 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const LargeFileWarning = ({ category }) => {
-  let isNationwide = category.includes('nationwide')
+function LargeFileWarning({ category }) {
+  const isNationwide = category.includes('nationwide')
 
-  let standardWarning = (
+  const standardWarning = (
     <>
       <h4>Warning:</h4> This dataset may be too large to be opened in standard
       spreadsheet applications.
     </>
   )
 
-  let nationWideWarning = (
+  const nationWideWarning = (
     <>
-      {standardWarning} To download the entire Nationwide dataset, please see the
-      available static datasets on the{' '}
+      {standardWarning} To download the entire Nationwide dataset, please see
+      the available static datasets on the{' '}
       <Link to='/data-publication/'>Data Publication</Link> page.
     </>
   )

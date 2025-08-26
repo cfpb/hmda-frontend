@@ -91,7 +91,7 @@ const renderNavItem = (submission, name, i) => {
   )
 }
 
-const Progress = ({ submission = { status: { code: 1 } } }) => {
+function Progress({ submission = { status: { code: 1 } } }) {
   return (
     <section className='Progress'>
       <nav className='EditsNav' id='editsNav'>

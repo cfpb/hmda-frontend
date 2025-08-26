@@ -4,11 +4,11 @@ import './ImageCard.scss'
 import iconSprite from '../common/uswds/img/sprite.svg'
 import NewIndicator from '../homepage/NewIndicator'
 
-const TileImage = ({ src }) => {
+function TileImage({ src }) {
   return <img className='tile-image' src={src} />
 }
 
-const ImageCardWithList = props => {
+function ImageCardWithList(props) {
   return (
     <div className='ImageCard' style={{ cursor: 'initial' }}>
       <TileImage src={props.image} />
@@ -17,28 +17,30 @@ const ImageCardWithList = props => {
         <h3>{props.title}</h3>
         <span className='desc'>{props.description}</span>
         {/* Render list */}
-        {props.list && (
+        {props.list ? (
           <ul className='tile-list'>
             {props.list.map((option, i) => (
               <li key={i}>
                 <Link to={option.link}>
                   {option.name}
-                  {option.new && <NewIndicator id='tools-card-indicator' />}
+                  {option.new ? (
+                    <NewIndicator id='tools-card-indicator' />
+                  ) : null}
                 </Link>
               </li>
             ))}
           </ul>
-        )}
+        ) : null}
       </div>
     </div>
   )
 }
 
-const ImageCard = props => {
+function ImageCard(props) {
   const linkUrl = `/data-browser/${props.path}/${props.year}`
 
   return (
-    <div className={'card-wrapper'}>
+    <div className='card-wrapper'>
       {props.list ? (
         <ImageCardWithList {...props} />
       ) : (
@@ -51,7 +53,7 @@ const ImageCard = props => {
         </Link>
       )}
 
-      {props.faq && (
+      {props.faq ? (
         <Link
           to={props.faq.url}
           target='_blank'
@@ -64,11 +66,11 @@ const ImageCard = props => {
             focusable='false'
             role='img'
           >
-            <use href={`${iconSprite}#help_outline`}></use>
+            <use href={`${iconSprite}#help_outline`} />
           </svg>
           {props.faq.label || 'FAQ'}
         </Link>
-      )}
+      ) : null}
     </div>
   )
 }

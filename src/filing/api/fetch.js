@@ -16,12 +16,12 @@ export function getFilingData() {
 
 export function fetchData(options = { method: 'GET' }) {
   const accessToken = AccessToken.get()
-  const pathname = options.pathname
+  const { pathname } = options
   const filingData = pathname ? {} : getFilingData()
   const isFormData =
     options.body && options.body.toString() === '[object FormData]'
 
-  options = Object.assign({}, filingData, options)
+  options = { ...filingData, ...options }
 
   if (options.params) {
     options.querystring = createQueryString(options.params)
@@ -47,16 +47,16 @@ export function fetchData(options = { method: 'GET' }) {
     }
   }
 
-  if (accessToken) headers.Authorization = 'Bearer ' + accessToken
+  if (accessToken) headers.Authorization = `Bearer ${accessToken}`
 
   if (options.noCache || options.method === 'POST') {
     headers['Cache-Control'] = 'no-cache, no-store'
   }
 
-  var fetchOptions = {
+  const fetchOptions = {
     method: options.method || 'GET',
     body: options.body,
-    headers: headers,
+    headers,
   }
 
   return fetch(url, fetchOptions)

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { VideoModal } from './VideoModal.jsx'
 import iconSprite from '../common/uswds/img/sprite.svg'
 
-export const Hero = ({ hideContent }) => {
+export function Hero({ hideContent }) {
   const [showModal, setShowModal] = useState(false)
 
   const handleShowModal = () => {
@@ -43,18 +43,18 @@ export const Hero = ({ hideContent }) => {
                     focusable='false'
                     role='img'
                   >
-                    <use href={`${iconSprite}#youtube`}></use>
+                    <use href={`${iconSprite}#youtube`} />
                   </svg>{' '}
                   See How It Works
                 </a>
-                {showModal && (
+                {showModal ? (
                   <VideoModal
                     showModal={showModal}
                     setShowModal={setShowModal}
                     title='HMDA Overview'
                     content='How HMDA Filing Works'
                   />
-                )}
+                ) : null}
               </li>
               <li className='usa-button-group__item'>
                 <a href='/data-browser/' className='usa-button secondary'>
@@ -64,7 +64,7 @@ export const Hero = ({ hideContent }) => {
                     focusable='false'
                     role='img'
                   >
-                    <use href={`${iconSprite}#insights`}></use>
+                    <use href={`${iconSprite}#insights`} />
                   </svg>{' '}
                   Explore the Data
                 </a>

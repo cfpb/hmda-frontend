@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const renderData = (report) => {
   const { races } = report
 
-  return <React.Fragment>{mapCharacteristic(races, 'race')}</React.Fragment>
+  return <>{mapCharacteristic(races, 'race')}</>
 }
 
 const mapCharacteristic = (arr, key) => {
@@ -78,7 +78,7 @@ const renderCharacteristic = (characteristic, key) => {
         </tr>
       )
     }),
-    <tr key={currChar + 'total'}>
+    <tr key={`${currChar}total`}>
       <th>Total</th>
       {characteristic.dispositions.map((disposition) => {
         return [
@@ -136,7 +136,7 @@ const Aggregate3 = React.forwardRef((props, ref) => {
       </thead>
       <tbody>{renderData(props.report)}</tbody>
       <tfoot>
-        <tr></tr>
+        <tr />
       </tfoot>
     </table>
   )

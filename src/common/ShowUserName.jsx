@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { logout } from '../filing/utils/keycloak.js'
 import { getKeycloak } from './api/Keycloak.js'
-import { useDispatch } from 'react-redux'
 import { setUserInfo } from '../filing/actions/setUserInfo.js'
 import ProfileIcon from '../filing/profile/ProfileIcon.jsx'
 
-export const ShowUserName = ({ isLoggedIn, userNameWasUpdated }) => {
+export function ShowUserName({ isLoggedIn, userNameWasUpdated }) {
   const handleLogout = (e) => {
     e.preventDefault()
     logout()
@@ -16,11 +16,8 @@ export const ShowUserName = ({ isLoggedIn, userNameWasUpdated }) => {
   const { name, family_name, given_name, email } = getKeycloak().tokenParsed
 
   const emailAddress = email
-  const userName = name
-    ? name
-    : given_name && family_name
-      ? given_name + ' ' + family_name
-      : ''
+  const userName =
+    name || (given_name && family_name ? `${given_name} ${family_name}` : '')
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -30,7 +27,7 @@ export const ShowUserName = ({ isLoggedIn, userNameWasUpdated }) => {
 
   return (
     <div className='user'>
-      {emailAddress && (
+      {emailAddress ? (
         <>
           <ProfileIcon iconWidth='18px' iconHeight='18px' />
           <Link
@@ -44,7 +41,7 @@ export const ShowUserName = ({ isLoggedIn, userNameWasUpdated }) => {
             {userName.length > 0 ? userName : 'User'}
           </Link>
         </>
-      )}
+      ) : null}
       <button onClick={handleLogout}>Logout</button>
     </div>
   )

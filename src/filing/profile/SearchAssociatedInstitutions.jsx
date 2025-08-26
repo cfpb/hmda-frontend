@@ -1,12 +1,12 @@
 import React from 'react'
 import Select from 'react-select'
 
-const SearchAssociatedInstitutions = ({
+function SearchAssociatedInstitutions({
   institutions,
   selectedInstitutions,
   setSelectedInstitutions,
   setUserIsEditingForm,
-}) => {
+}) {
   const handleSearch = (selectedOptions) => {
     console.log('Search Function', selectedOptions)
 

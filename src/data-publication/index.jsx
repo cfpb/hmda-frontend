@@ -17,7 +17,7 @@ import { withAppContext } from '../common/appContextHOC.jsx'
 
 import './index.css'
 
-const DataPublication = ({ config }) => {
+function DataPublication({ config }) {
   const { shared } = config.dataPublicationYears
 
   return (

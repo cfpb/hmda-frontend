@@ -11,13 +11,14 @@ import {
   before2018,
 } from './selectUtils.js'
 
-const InstitutionSelect = ({
+function InstitutionSelect({
   items = [],
   onChange,
   leiDetails = { leis: {}, loading: true },
   year,
-}) => {
-  let category, descriptionLabel
+}) {
+  let category
+  let descriptionLabel
   if (before2018(year)) {
     category = 'arids'
     descriptionLabel = 'ARID'
@@ -52,8 +53,8 @@ const InstitutionSelect = ({
           category,
           selectedValues,
         )}
-        isMulti={true}
-        searchable={true}
+        isMulti
+        searchable
         autoFocus
         openOnFocus
         simpleValue

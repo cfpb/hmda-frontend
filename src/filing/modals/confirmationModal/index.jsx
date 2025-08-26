@@ -14,7 +14,7 @@ let _focusLink = function () {
 }
 
 export function _focusIfShowing() {
-  //wait for visibility animation
+  // wait for visibility animation
   if (this.props.showing) {
     setTimeout(_focusButton, 201)
   }
@@ -71,9 +71,7 @@ export default class ModalConfirm extends Component {
 
     return (
       <div
-        className={
-          'modal-blurred-blocker' + (showing ? ' showing-blurred-blocker' : '')
-        }
+        className={`modal-blurred-blocker${showing ? ' showing-blurred-blocker' : ''}`}
       >
         <section role='dialog' className='modal'>
           <span className='inline space-between'>

@@ -15,7 +15,11 @@ import {
   makeUrl,
   RETRY_DELAY,
 } from '../api.js'
-import { makeSearchFromState, makeStateFromSearch } from '../query.js'
+import {
+  makeSearchFromState,
+  makeStateFromSearch,
+  sanitizeArray,
+} from '../query.js'
 import { ActionsWarningsErrors } from './ActionsWarningsErrors'
 import MSAMD_COUNTS from '../constants/msamdCounts.js'
 import STATE_COUNTS from '../constants/stateCounts.js'
@@ -36,7 +40,6 @@ import {
   someChecksExist,
   before2018,
 } from './selectUtils.js'
-import { sanitizeArray } from '../query'
 import DatasetDocsLink from './DatasetDocsLink.jsx'
 import { withYearValidation } from '../../common/withYearValidation.jsx'
 
@@ -47,7 +50,7 @@ import Alert from '../../common/Alert.jsx'
 
 // Class component conversion from Geography to functional React has not yet been completed for the Geography component
 
-const GeographyNew = (props) => {
+function GeographyNew(props) {
   const { match, location, history, config } = props
 
   const intitialState = {
@@ -325,7 +328,7 @@ const GeographyNew = (props) => {
   const onItemChange = (selectedItems = []) => {
     const items = selectedItems
       ? selectedItems.map((item) => {
-          return item.value + ''
+          return `${item.value}`
         })
       : []
     return setStateAndRoute({
@@ -541,16 +544,16 @@ const GeographyNew = (props) => {
           </p>
         </Heading>
       </div>
-      {toolAnnouncement && (
+      {toolAnnouncement ? (
         <Alert heading={toolAnnouncement.heading} type={toolAnnouncement.type}>
           <p>{toolAnnouncement.message}</p>
         </Alert>
-      )}
+      ) : null}
       <DBYearSelector
         year={state.year}
         onChange={onYearChange}
         years={config.dataBrowserYears}
-        label={'Data Year'}
+        label='Data Year'
       />
       <DatasetDocsLink year={state.year} />
 
@@ -587,7 +590,7 @@ const GeographyNew = (props) => {
         downloadCallback={checksExist ? requestSubsetCSV : requestItemCSV}
         downloadUrl={fileDownloadUrl}
         showSummaryButton={!details.aggregations}
-        summaryEnabled={enabled && checksExist}
+        summaryEnabled={enabled ? checksExist : null}
         loadingDetails={loadingDetails}
         requestSubset={requestSubset}
         isLargeFile={isLargeFile}

@@ -8,12 +8,12 @@ import './ChangeLogTable.scss'
  * Display Publication Change Log Entries
  * (default export)
  */
-const ChangeLogTable = ({
+function ChangeLogTable({
   data = {},
   products = PRODUCT_NAMES,
   filter,
   changeLog,
-}) => {
+}) {
   const totalEntries = useMemo(
     () =>
       Object.keys(changeLog)
@@ -35,7 +35,7 @@ const ChangeLogTable = ({
       return todaysItems.map((item, col) => {
         return (
           <Row
-            key={'clt-row-' + row + 'col-' + col}
+            key={`clt-row-${row}col-${col}`}
             item={item}
             products={products}
             filter={filter}
@@ -50,7 +50,7 @@ const ChangeLogTable = ({
 
   return (
     <div id='ChangeLogTable'>
-      <div id='ChangeLogTableTop'></div>
+      <div id='ChangeLogTableTop' />
       <ResultCount
         count={rows.length}
         total={totalEntries}
@@ -62,7 +62,7 @@ const ChangeLogTable = ({
   )
 }
 
-const ResultCount = ({ count, total, hide }) => {
+function ResultCount({ count, total, hide }) {
   if (hide) return null
 
   return (
@@ -74,7 +74,7 @@ const ResultCount = ({ count, total, hide }) => {
           focusable='false'
           role='img'
         >
-          <use href={`${iconSprite}#filters`}></use>
+          <use href={`${iconSprite}#filters`} />
         </svg>
         Filtered results
       </h3>
@@ -86,7 +86,7 @@ const ResultCount = ({ count, total, hide }) => {
   )
 }
 
-const EmptyState = ({ clear, isEmpty }) => {
+function EmptyState({ clear, isEmpty }) {
   if (!isEmpty) return null
 
   return (
@@ -100,12 +100,12 @@ const EmptyState = ({ clear, isEmpty }) => {
   )
 }
 
-const Row = ({ item, filter, products }) => {
-  let rowClassname = 'change-row split'
+function Row({ item, filter, products }) {
+  const rowClassname = 'change-row split'
 
-  let productClassname =
-    `product ${item.product}` +
-    (filter.filters['product'].indexOf(item.product) > -1 ? ' selected' : '')
+  const productClassname = `product ${item.product}${
+    filter.filters.product.indexOf(item.product) > -1 ? ' selected' : ''
+  }`
 
   const toggleType = () => filter.toggle('type', item.type)
   const toggleProduct = () => filter.toggle('product', item.product)
@@ -131,7 +131,7 @@ const Row = ({ item, filter, products }) => {
         <Highlighter
           highlightClassName='highlighted'
           searchWords={filter.filters.keywords}
-          autoEscape={true}
+          autoEscape
           textToHighlight={item.description}
         />
         <Links links={item.links} />
@@ -140,7 +140,7 @@ const Row = ({ item, filter, products }) => {
   )
 }
 
-const Links = ({ links }) => {
+function Links({ links }) {
   if (!links) return null
   return (
     <ul className='links'>
@@ -153,16 +153,16 @@ const Links = ({ links }) => {
   )
 }
 
-const Column = ({ value, onClick = () => null, className, children }) => {
+function Column({ value, onClick = () => null, className, children }) {
   if (className.indexOf('product') > -1)
     return (
-      <button onClick={onClick} className={'column ' + className} type='button'>
+      <button onClick={onClick} className={`column ${className}`} type='button'>
         {value || children}
       </button>
     )
 
   return (
-    <div onClick={onClick} className={'column ' + className}>
+    <div onClick={onClick} className={`column ${className}`}>
       {value || children}
     </div>
   )

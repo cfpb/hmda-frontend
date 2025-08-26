@@ -12,23 +12,23 @@ const defaultState = {
   message: null,
 }
 
-const regenMsg = (label) => 'Begin the regeneration process for ' + label + '?'
+const regenMsg = (label) => `Begin the regeneration process for ${label}?`
 
-export const PublicationRow = ({
+export function PublicationRow({
   fetched,
   institution,
   type,
   url,
   error,
   seqNum,
-}) => {
+}) {
   const label = LABELS[type]
   const topic = TOPICS[type]
 
   const { lei, respondentName, activityYear: year } = institution
   const headers = {}
   const token = AccessToken.get()
-  if (token) headers['Authorization'] = `Bearer ${token}`
+  if (token) headers.Authorization = `Bearer ${token}`
 
   const [state, setState] = useState(defaultState)
 
@@ -58,13 +58,7 @@ export const PublicationRow = ({
       <td>{respondentName}</td>
       <td>{label}</td>
       <td>
-        {!fetched ? (
-          <LoadingIcon />
-        ) : error ? (
-          error
-        ) : (
-          <DownloadButton url={url} />
-        )}
+        {!fetched ? <LoadingIcon /> : error || <DownloadButton url={url} />}
       </td>
       <td>
         <RegenerateButton

@@ -91,7 +91,7 @@ class Pagination extends Component {
   }
 
   render() {
-    const pagination = this.props.pagination
+    const { pagination } = this.props
     const page = this._getCurrentPage()
     if (pagination.total === 1) return null
     const firstPage = page === 1

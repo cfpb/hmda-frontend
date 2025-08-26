@@ -1,7 +1,7 @@
-import hasHttpError from '../actions/hasHttpError'
-import receiveError from '../actions/receiveError'
+import hasHttpError from './hasHttpError'
+import receiveError from './receiveError'
 import receiveLatestSubmission from './receiveLatestSubmission'
-import requestLatestSubmission from '../actions/requestLatestSubmission'
+import requestLatestSubmission from './requestLatestSubmission'
 import { getLatestSubmission } from '../api/api'
 import { error } from '../utils/log.js'
 

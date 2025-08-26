@@ -4,7 +4,7 @@ import LoadingButton from './LoadingButton.jsx'
 import Alert from '../../common/Alert.jsx'
 import LargeFileWarning from '../../common/LargeFileWarning'
 
-export const ActionsWarningsErrors = ({
+export function ActionsWarningsErrors({
   downloadCallback,
   downloadEnabled,
   downloadUrl,
@@ -16,7 +16,7 @@ export const ActionsWarningsErrors = ({
   error,
   longRunningQuery,
   category,
-}) => {
+}) {
   return (
     <>
       <LoadingButton
@@ -26,16 +26,16 @@ export const ActionsWarningsErrors = ({
       >
         Download Dataset
       </LoadingButton>
-      {showSummaryButton && (
+      {showSummaryButton ? (
         <LoadingButton
           loading={loadingDetails}
           onClick={requestSubset}
           disabled={!summaryEnabled}
-          secondary={true}
+          secondary
         >
           View Summary Table
         </LoadingButton>
-      )}
+      ) : null}
       {isLargeFile ? <LargeFileWarning category={category} /> : null}
       {!error && longRunningQuery ? <LongRunningMessage /> : null}
       {error ? <Error error={error} /> : null}
@@ -43,7 +43,7 @@ export const ActionsWarningsErrors = ({
   )
 }
 
-const LongRunningMessage = () => {
+function LongRunningMessage() {
   return (
     <Alert type='warning'>
       <p>

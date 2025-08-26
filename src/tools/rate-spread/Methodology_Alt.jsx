@@ -4,7 +4,7 @@ import Heading from '../../common/Heading.jsx'
 
 import './Methodology.css'
 
-const Methodology_alt = () => {
+function Methodology_alt() {
   return (
     <div className='methodology grid' id='main-content'>
       <Heading

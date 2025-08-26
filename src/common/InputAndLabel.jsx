@@ -1,7 +1,7 @@
 import React from 'react'
 import './InputAndLabel.css'
 
-const InputAndLabel = ({
+function InputAndLabel({
   labelName,
   value,
   onChange,
@@ -9,7 +9,7 @@ const InputAndLabel = ({
   disabled,
   emailSubtext,
   setUserIsEditingForm,
-}) => {
+}) {
   const error = value.length === 0 ? `${labelName} is required` : ''
   const handleChange = (event) => {
     onChange(event)
@@ -22,7 +22,7 @@ const InputAndLabel = ({
       {type === 'email' ? (
         <>
           <label className='email_label'>{labelName}</label>
-          {emailSubtext && <p>{emailSubtext}</p>}
+          {emailSubtext ? <p>{emailSubtext}</p> : null}
           <input type='email' value={value} disabled={disabled} />
         </>
       ) : (

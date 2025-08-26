@@ -1,5 +1,5 @@
-import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Switch, Route, useLocation } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import larftStore from './larft/data-store/store'
 
@@ -15,9 +15,6 @@ import { LARFT } from './larft'
 
 import './index.css'
 
-import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
-
 function ScrollToTop() {
   const { pathname } = useLocation()
 
@@ -28,7 +25,7 @@ function ScrollToTop() {
   return null
 }
 
-const Tools = () => {
+function Tools() {
   return (
     <div className='Tools App'>
       <ScrollToTop />

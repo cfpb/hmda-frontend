@@ -10,7 +10,7 @@ export const fetchInstitution = (lei, setState, availableYears) => {
     }
 
     const token = AccessToken.get()
-    if (token) headers['Authorization'] = `Bearer ${token}`
+    if (token) headers.Authorization = `Bearer ${token}`
 
     return fetch(`/v2/admin/institutions/${lei}/year/${year}`, { headers })
       .then((response) => {
@@ -20,10 +20,8 @@ export const fetchInstitution = (lei, setState, availableYears) => {
       .then((json) => {
         if (typeof json === 'object') {
           addFound(json, setState)
-        } else {
-          if (json === 404) addNotFound(lei, year, setState)
-          else addServerError(lei, year, json, setState)
-        }
+        } else if (json === 404) addNotFound(lei, year, setState)
+        else addServerError(lei, year, json, setState)
       })
       .catch((error) => {})
   })
@@ -36,7 +34,7 @@ export const fetchSingleInstitutionByYear = (lei, year) => {
   }
 
   const token = AccessToken.get()
-  if (token) headers['Authorization'] = `Bearer ${token}`
+  if (token) headers.Authorization = `Bearer ${token}`
 
   return fetch(`/v2/admin/institutions/${lei}/year/${year}`, { headers })
     .then((response) => {

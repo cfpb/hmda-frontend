@@ -3,7 +3,7 @@ import { FixedSizeList as List } from 'react-window'
 
 const height = 35
 
-const MenuList = ({ children, maxHeight }) => {
+function MenuList({ children, maxHeight }) {
   const listRef = useRef()
 
   const getFocusIndex = (childrenArray) => {

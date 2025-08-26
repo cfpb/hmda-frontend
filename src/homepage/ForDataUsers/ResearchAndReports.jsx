@@ -1,6 +1,6 @@
 import { ExternalLink } from '../../common/ExternalLink'
 
-export const ResearchAndReports = ({ isProdBeta }) => {
+export function ResearchAndReports({ isProdBeta }) {
   if (isProdBeta) return null
 
   return (

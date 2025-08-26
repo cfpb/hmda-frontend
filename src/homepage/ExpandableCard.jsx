@@ -3,7 +3,7 @@ import { useLocalStorage } from '../common/useLocalStorage'
 import './ExpandableCard.css'
 import NewIndicator from './NewIndicator'
 
-export const ExpandableCard = ({
+export function ExpandableCard({
   id, // Used to track the user's last expanded/compressed status, per card, via LocalStorage
   title = 'Card Title',
   classname = '',
@@ -15,7 +15,7 @@ export const ExpandableCard = ({
   addNewFeatureIndicator = false, // false = Doesn't show NewIndicator component around header
   openNewWindow = false, // false = Open link in same browser window/tab
   children,
-}) => {
+}) {
   const [showMore, setShowMore] = useState(expandedByDefault)
   const [storedVisibility, setStoredVisibility] = useLocalStorage(
     id,
@@ -60,13 +60,13 @@ export const ExpandableCard = ({
   }
 
   return (
-    <header className={'expandable-card ' + classname}>
+    <header className={`expandable-card ${classname}`}>
       <h3>{cardHeading}</h3>
       <p>
         {description}
         {showMoreButton}
       </p>
-      {showMore && expandedContent}
+      {showMore ? expandedContent : null}
     </header>
   )
 }

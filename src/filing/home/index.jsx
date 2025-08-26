@@ -3,12 +3,12 @@ import { withAppContext } from '../../common/appContextHOC.jsx'
 import useToolAnnouncement from '../../common/useToolAnnouncement.jsx'
 import LoginHeader from '../common/LoginHeader.jsx'
 
-const Home = ({ maintenanceMode, config }) => {
-  const cname = 'FilingHome' + (maintenanceMode ? ' maintenance' : '')
+function Home({ maintenanceMode, config }) {
+  const cname = `FilingHome${maintenanceMode ? ' maintenance' : ''}`
   const sessionExpired = window.location.href.indexOf('session=expired') > -1
   const toolAnnouncement = useToolAnnouncement({
     toolName: 'filing',
-    config: config,
+    config,
   })
 
   return (

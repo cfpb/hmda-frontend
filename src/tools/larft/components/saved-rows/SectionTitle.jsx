@@ -8,7 +8,7 @@ import React from 'react'
  * @param {Array} filteredRows
  * @param {Array} rows
  */
-export const SectionTitle = ({ title, filteredRows, rows }) => {
+export function SectionTitle({ title, filteredRows, rows }) {
   const countLabel = rowCountLabel(filteredRows, rows)
 
   return (

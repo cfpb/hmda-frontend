@@ -40,13 +40,12 @@ export default class Answer extends Component {
             <p>The ULI is valid.</p>
           </Alert>
         )
-      } else {
-        return (
-          <Alert type='error' heading='Not a valid ULI!'>
-            <p>Sorry, that ULI does not appear to be valid.</p>
-          </Alert>
-        )
       }
+      return (
+        <Alert type='error' heading='Not a valid ULI!'>
+          <p>Sorry, that ULI does not appear to be valid.</p>
+        </Alert>
+      )
     }
 
     return null

@@ -36,7 +36,7 @@ export const gatherReportData = (
   if (!geoLevel) return null
   const isCounty = geoLevel.value === 'county'
 
-  let obj = {
+  const obj = {
     geoTotals: {},
     isCounty,
     geoLevel,
@@ -48,7 +48,7 @@ export const gatherReportData = (
   obj.featureName = featureName
 
   if (!baseData) return obj
-  let geoBaseData = dataByLevel(baseData, feature)
+  const geoBaseData = dataByLevel(baseData, feature)
 
   // Total number of records in this State/County by Variable
   obj.geoTotals = sumByVariable(geoBaseData)
@@ -110,7 +110,7 @@ export const gatherReportData = (
 // Sum of nested objects by outer key
 const sumByVariable = (dta) => {
   const data = dta || {}
-  let obj = {}
+  const obj = {}
   Object.keys(data).forEach((key) => {
     obj[key] = sumByValue(data[key])
   })

@@ -5,7 +5,7 @@ import { OtherFields } from './OtherFields'
 import { wrapLoading } from '../wrapLoading'
 import ProfileIcon from '../../profile/ProfileIcon'
 
-export const InstitutionDetails = ({ data }) => {
+export function InstitutionDetails({ data }) {
   const {
     name,
     lei,

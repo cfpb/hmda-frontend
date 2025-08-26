@@ -26,7 +26,7 @@ const renderData = (tracts, reportType) => {
 }
 
 const renderAggregateData = (dispositions) => {
-  let toRender = []
+  const toRender = []
   dispositions.forEach((disposition, index) => {
     if (
       disposition.title === '% Minority Population' ||
@@ -66,10 +66,10 @@ const renderDispositions = (dispositions, reportType, key) => {
         <th>{disposition.title}</th>
         {renderDispositionValues(disposition.values, key, index)}
         {reportType === 'aggregate' ? (
-          <React.Fragment>
+          <>
             <td />
             <td />
-          </React.Fragment>
+          </>
         ) : null}
       </tr>
     )
@@ -145,14 +145,14 @@ const One = React.forwardRef((props, ref) => {
             Loans On Manufactured Home Dwellings From Columns A, B, C, & D
           </th>
           {props.reportType === 'aggregate' ? (
-            <React.Fragment>
+            <>
               <th width={colWidth} rowSpan={3}>
                 % Min Pop
               </th>
               <th width={colWidth} rowSpan={3}>
                 Median Income As PCT of MSA/MD Median
               </th>
-            </React.Fragment>
+            </>
           ) : null}
         </tr>
         <tr>

@@ -6,7 +6,7 @@ import { institutions } from '../slice'
 import './QuarterlyFilersTable.css'
 import { useLatestAvailableYear } from './useLatestAvailableYear'
 
-const QuarterlyFilersTable = (props) => {
+function QuarterlyFilersTable(props) {
   const dispatch = useDispatch()
   const { sort } = useSelector((state) => state.institutionsConfig)
   const year = useLatestAvailableYear()
@@ -25,7 +25,7 @@ const QuarterlyFilersTable = (props) => {
   const tableColumns = useMemo(() => {
     const countsColumns = pastYears.map((accessorKey) => {
       return {
-        header: accessorKey + ' LAR Count',
+        header: `${accessorKey} LAR Count`,
         accessorKey,
         sortingFn: 'alphanumeric',
       }
@@ -33,9 +33,9 @@ const QuarterlyFilersTable = (props) => {
 
     return [
       {
-        header: "Institution Name",
-        accessorKey: "name",
-        sortingFn: "text",
+        header: 'Institution Name',
+        accessorKey: 'name',
+        sortingFn: 'text',
       },
       {
         header: 'LEI',
@@ -55,7 +55,7 @@ const QuarterlyFilersTable = (props) => {
 
   if (isSuccess && data) {
     const tableData = data.quarterly.map(({ name, lei, agency, larCounts }) => {
-      let counts = {}
+      const counts = {}
       larCounts.forEach((ts) => {
         counts[ts.year] = ts.count
       })

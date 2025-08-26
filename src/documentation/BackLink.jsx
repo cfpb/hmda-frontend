@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 // Show `documentation` link if TOC sidebar doesn't show up on that page
-export const BackLink = ({ year, hide }) => {
+export function BackLink({ year, hide }) {
   if (hide) return null
 
   return (

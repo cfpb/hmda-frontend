@@ -6,7 +6,7 @@
  * @param {Object} options Enumerations converted to <option> elements
  * @param {Object} common Additional input attributes
  */
-export const InputEnumeratedSelector = ({ value, options, ...common }) => {
+export function InputEnumeratedSelector({ value, options, ...common }) {
   return (
     <select {...common} value={value || ''}>
       {options}

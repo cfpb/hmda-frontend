@@ -3,7 +3,7 @@ import Alert from '../../common/Alert.jsx'
 
 import './BrowserBlocker.css'
 
-const BrowserBlocker = () => {
+function BrowserBlocker() {
   return (
     <main id='main-content' className='BrowserBlocker'>
       <Alert type='error' heading='Sorry, your browser is out of date.'>

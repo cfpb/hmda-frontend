@@ -1,9 +1,9 @@
 import * as STATUS from '../constants/statusCodes.js'
-import selectFile from '../actions/selectFile.js'
-import selectNewFile from '../actions/selectNewFile.js'
-import showConfirm from '../actions/showConfirm.js'
-import fetchUpload from '../actions/fetchUpload.js'
-import processFileErrors from '../actions/processFileErrors.js'
+import selectFile from './selectFile.js'
+import selectNewFile from './selectNewFile.js'
+import showConfirm from './showConfirm.js'
+import fetchUpload from './fetchUpload.js'
+import processFileErrors from './processFileErrors.js'
 import checkFileErrors from '../utils/checkFileErrors.js'
 
 export default function handleFile(file, code, error) {

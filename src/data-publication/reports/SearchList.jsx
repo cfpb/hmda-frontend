@@ -4,9 +4,9 @@ import LoadingIcon from '../../common/LoadingIcon.jsx'
 
 import './SearchList.css'
 
-let INSTITUTIONS = {}
+const INSTITUTIONS = {}
 
-const SearchList = (props) => {
+function SearchList(props) {
   const { year } = props
   const yearRef = useRef(year)
 
@@ -26,9 +26,8 @@ const SearchList = (props) => {
       .then((response) => {
         if (response.ok) {
           return response.json()
-        } else {
-          return Promise.reject('Failed to fetch')
         }
+        return Promise.reject('Failed to fetch')
       })
       .then((result) => {
         INSTITUTIONS[year] = result.institutions.map((institution) => {
@@ -62,7 +61,7 @@ const SearchList = (props) => {
   }, [year])
 
   const searchInstitutions = (value) => {
-    let filteredInstitutions = []
+    const filteredInstitutions = []
 
     if (value.length !== 0) {
       const identifier = year === '2017' ? 'institutionId' : 'lei'
@@ -104,7 +103,7 @@ const SearchList = (props) => {
   let inputLabelClass = ''
   let errorMessage = null
   let loading = null
-  let identifier = year === '2017' ? 'ID' : 'LEI'
+  const identifier = year === '2017' ? 'ID' : 'LEI'
   let label = <span>Search by Institution Name or {identifier}</span>
 
   if (error && error !== 'Not a filer') {

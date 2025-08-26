@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { InputGroup, Input } from './InstitutionInput'
 
-export const OtherFields = ({ data }) => {
+export function OtherFields({ data }) {
   const [showing, setShowing] = useState(false)
 
   useEffect(() => {

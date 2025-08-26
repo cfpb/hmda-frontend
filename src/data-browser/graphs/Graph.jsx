@@ -21,7 +21,7 @@ Highcharts.setOptions({
   },
 })
 
-export const Graph = ({ options, loading, seriesForURL }) => {
+export function Graph({ options, loading, seriesForURL }) {
   const chartRef = useRef()
 
   // No longer using HighCharts Data Table and instead we are generating our own to allow for more custom styling
@@ -39,7 +39,7 @@ export const Graph = ({ options, loading, seriesForURL }) => {
    *
    * See the following link for context on how these images are generated.
    * https://github.com/highcharts/highcharts-react/issues/315
-   * 
+   *
    * Additionally we are now manually generating the data table instead of having HighCharts automatically creating it
    */
   const onLoad = useCallback(
@@ -69,7 +69,7 @@ export const Graph = ({ options, loading, seriesForURL }) => {
           callback={onLoad}
         />
       </div>
-      {isSeriesVisible && <DataTable tableData={tableData} />}
+      {isSeriesVisible ? <DataTable tableData={tableData} /> : null}
     </div>
   )
 }

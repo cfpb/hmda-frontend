@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-const NoteDetails = ({ className, diff, id, isOpen }) => {
+function NoteDetails({ className, diff, id, isOpen }) {
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => {
@@ -18,7 +18,7 @@ const NoteDetails = ({ className, diff, id, isOpen }) => {
   )
 }
 
-const DiffTable = ({ json }) => {
+function DiffTable({ json }) {
   const keys = json && Object.keys(json)
   if (!keys || (keys.length === 1 && keys.indexOf('notes') === 0))
     return <NoChanges />
@@ -34,17 +34,19 @@ const DiffTable = ({ json }) => {
   )
 }
 
-const DiffTableHeader = () => (
-  <thead>
-    <tr>
-      <td>Field</td>
-      <td>Old Value</td>
-      <td>New Value</td>
-    </tr>
-  </thead>
-)
+function DiffTableHeader() {
+  return (
+    <thead>
+      <tr>
+        <td>Field</td>
+        <td>Old Value</td>
+        <td>New Value</td>
+      </tr>
+    </thead>
+  )
+}
 
-const DiffTableBody = ({ json }) => {
+function DiffTableBody({ json }) {
   return (
     <tbody>
       {Object.keys(json).map((key, idx) => {
@@ -59,7 +61,8 @@ const DiffTableBody = ({ json }) => {
               <td>{checkForNone(current.newVal)}</td>
             </tr>
           )
-        } else if (typeof current !== 'string') {
+        }
+        if (typeof current !== 'string') {
           return Object.keys(current).map((nestedKey, nidx) => {
             const nestedCurrent = json[key][nestedKey]
             return (
@@ -72,7 +75,8 @@ const DiffTableBody = ({ json }) => {
               </tr>
             )
           })
-        } else return null
+        }
+        return null
       })}
     </tbody>
   )
@@ -83,7 +87,7 @@ function checkForNone(val) {
   return val.toString()
 }
 
-const NoChanges = ({ text = 'No Changes' }) => {
+function NoChanges({ text = 'No Changes' }) {
   return <div className='no-changes'>{text}</div>
 }
 

@@ -40,7 +40,7 @@ const availableAnnualRange = (filingPeriods) => {
   const annualPeriods = filingPeriods
     .filter((x) => x.indexOf('Q') === -1)
     .sort()
-  return annualPeriods[0] + ' - ' + annualPeriods[annualPeriods.length - 1]
+  return `${annualPeriods[0]} - ${annualPeriods[annualPeriods.length - 1]}`
 }
 
 /**
@@ -57,7 +57,7 @@ const scheduledFilingAnnouncements = (defaultPeriod, filingPeriodStatus) => {
 
   let status = filingPeriodStatus[defaultPeriod]
 
-  /*** Quarterly Filing Announcements ***/
+  /** * Quarterly Filing Announcements ** */
 
   // Only display Quarterly announcements during Quarterly Filing periods
   if (quarter) {
@@ -73,7 +73,7 @@ const scheduledFilingAnnouncements = (defaultPeriod, filingPeriodStatus) => {
     }
   }
 
-  /*** Annual Filing Announcements ***/
+  /** * Annual Filing Announcements ** */
 
   // Annual announcements may overlap with Quarterly announcements, so we will always check for these.
   status = filingPeriodStatus[annualFilingYear]
@@ -129,11 +129,11 @@ const scheduledFilingAnnouncements = (defaultPeriod, filingPeriodStatus) => {
  * @param {Object} filingPeriodStatus Status and meta data of each filing period
  * @returns
  */
-export const AnnouncementBanner = ({
+export function AnnouncementBanner({
   announcement,
   defaultPeriod,
   filingPeriodStatus,
-}) => {
+}) {
   // Collect all scheduled announcements
   const announcements = scheduledFilingAnnouncements(
     defaultPeriod,

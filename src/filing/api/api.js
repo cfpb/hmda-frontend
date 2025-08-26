@@ -54,7 +54,7 @@ export function postVerify(type, verified) {
   return fetchData({
     suffix: `/edits/${type}`,
     method: 'POST',
-    body: { verified: verified },
+    body: { verified },
   })
 }
 
@@ -73,7 +73,7 @@ export function getParseErrors() {
 export function postUpload(body) {
   return fetchData({
     method: 'POST',
-    body: body,
+    body,
   })
 }
 
@@ -81,6 +81,6 @@ export function postSignature(signed) {
   return fetchData({
     suffix: '/sign',
     method: 'POST',
-    body: { signed: signed },
+    body: { signed },
   })
 }

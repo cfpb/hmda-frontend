@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-let aus = 'Automated Underwriting System'
+const aus = 'Automated Underwriting System'
 
-const EditsTableCell = (props) => {
+function EditsTableCell(props) {
   let cellContent = props.cell
-  let cellLabel = props.cellName
+  const cellLabel = props.cellName
   let blankAUS = false
 
   if (cellLabel) blankAUS = isBlankAUS(cellContent, cellLabel)

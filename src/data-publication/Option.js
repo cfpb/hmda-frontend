@@ -1,13 +1,12 @@
-'use strict'
-//Override of https://github.com/JedWatson/react-select to prevent needless Option rerenders
+// Override of https://github.com/JedWatson/react-select to prevent needless Option rerenders
 Object.defineProperty(exports, '__esModule', {
   value: true,
 })
 
-var _createClass = (function () {
+const _createClass = (function () {
   function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i]
+    for (let i = 0; i < props.length; i++) {
+      const descriptor = props[i]
       descriptor.enumerable = descriptor.enumerable || false
       descriptor.configurable = true
       if ('value' in descriptor) descriptor.writable = true
@@ -21,21 +20,21 @@ var _createClass = (function () {
   }
 })()
 
-var _classnames = require('classnames')
+const _classnames = require('classnames')
 
-var _classnames2 = _interopRequireDefault(_classnames)
+const _classnames2 = _interopRequireDefault(_classnames)
 
-var _propTypes = require('prop-types')
+const _propTypes = require('prop-types')
 
-var _propTypes2 = _interopRequireDefault(_propTypes)
+const _propTypes2 = _interopRequireDefault(_propTypes)
 
-var _react = require('react')
+const _react = require('react')
 
-var _react2 = _interopRequireDefault(_react)
+const _react2 = _interopRequireDefault(_react)
 
-var _blockEvent = require('../node_modules/react-select-plus/lib/utils/blockEvent')
+const _blockEvent = require('../node_modules/react-select-plus/lib/utils/blockEvent')
 
-var _blockEvent2 = _interopRequireDefault(_blockEvent)
+const _blockEvent2 = _interopRequireDefault(_blockEvent)
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj }
@@ -61,8 +60,7 @@ function _possibleConstructorReturn(self, call) {
 function _inherits(subClass, superClass) {
   if (typeof superClass !== 'function' && superClass !== null) {
     throw new TypeError(
-      'Super expression must either be null or a function, not ' +
-        typeof superClass,
+      `Super expression must either be null or a function, not ${typeof superClass}`,
     )
   }
   subClass.prototype = Object.create(superClass && superClass.prototype, {
@@ -79,13 +77,13 @@ function _inherits(subClass, superClass) {
       : (subClass.__proto__ = superClass)
 }
 
-var Option = (function (_React$Component) {
+const Option = (function (_React$Component) {
   _inherits(Option, _React$Component)
 
   function Option(props) {
     _classCallCheck(this, Option)
 
-    var _this = _possibleConstructorReturn(
+    const _this = _possibleConstructorReturn(
       this,
       (Option.__proto__ || Object.getPrototypeOf(Option)).call(this, props),
     )
@@ -118,9 +116,9 @@ var Option = (function (_React$Component) {
     {
       key: 'shouldComponentUpdate',
       value: function scu(props, state) {
-        var keys = Object.keys(props)
-        for (var i = 0; i < keys.length; i++) {
-          var key = keys[i]
+        const keys = Object.keys(props)
+        for (let i = 0; i < keys.length; i++) {
+          const key = keys[i]
           if (props[key] !== this.props[key]) return true
         }
         if (state !== this.state) return true
@@ -168,12 +166,12 @@ var Option = (function (_React$Component) {
     {
       key: 'render',
       value: function render() {
-        var _props = this.props,
-          option = _props.option,
-          instancePrefix = _props.instancePrefix,
-          optionIndex = _props.optionIndex
+        const _props = this.props
+        const { option } = _props
+        const { instancePrefix } = _props
+        const { optionIndex } = _props
 
-        var className = (0, _classnames2.default)(
+        const className = (0, _classnames2.default)(
           this.props.className,
           option.className,
         )
@@ -182,7 +180,7 @@ var Option = (function (_React$Component) {
           ? _react2.default.createElement(
               'div',
               {
-                className: className,
+                className,
                 onMouseDown: _blockEvent2.default,
                 onClick: _blockEvent2.default,
               },
@@ -191,7 +189,7 @@ var Option = (function (_React$Component) {
           : _react2.default.createElement(
               'div',
               {
-                className: className,
+                className,
                 style: option.style,
                 role: 'option',
                 'aria-label': option.label,
@@ -201,7 +199,7 @@ var Option = (function (_React$Component) {
                 onTouchStart: this.handleTouchStart,
                 onTouchMove: this.handleTouchMove,
                 onTouchEnd: this.handleTouchEnd,
-                id: instancePrefix + '-option-' + optionIndex,
+                id: `${instancePrefix}-option-${optionIndex}`,
                 title: option.title,
               },
               this.props.children,

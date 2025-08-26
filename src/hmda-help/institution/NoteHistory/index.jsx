@@ -5,7 +5,7 @@ import { fetchData } from '../../utils/api'
 import { sortNotes, addDiff } from './utils'
 import './NoteHistory.css'
 
-const NoteHistory = ({ lei, year, fetchHistory, setFetched }) => {
+function NoteHistory({ lei, year, fetchHistory, setFetched }) {
   const [notes, setNotes] = useState(null)
   const [error, setError] = useState(null)
   const [isOpen, setOpen] = useState(false)
@@ -47,14 +47,14 @@ const fetchNotesHistory = ({ lei, year, setFetched, setError, setNotes }) => {
       return res.response.json()
     })
     .then((json) => {
-      let fetchedData =
+      const fetchedData =
         json && addDiff(sortNotes(json.institutionNoteHistoryItems))
       setNotes(fetchedData)
       setFetched()
     })
 }
 
-const NotesError = ({ error, isMenuOpen }) => {
+function NotesError({ error, isMenuOpen }) {
   if (!isMenuOpen || !error) return null
   const message = typeof error === 'object' ? error.message : error
   return (
@@ -66,14 +66,16 @@ const NotesError = ({ error, isMenuOpen }) => {
   )
 }
 
-const HistoryError = ({ text = 'No recorded History' }) => (
-  <>
-    <img className='icon' alt='yellow exclamation' src={warningIcon} />
-    {text}
-  </>
-)
+function HistoryError({ text = 'No recorded History' }) {
+  return (
+    <>
+      <img className='icon' alt='yellow exclamation' src={warningIcon} />
+      {text}
+    </>
+  )
+}
 
-const ToggleOpen = ({ isOpen }) => {
+function ToggleOpen({ isOpen }) {
   let icon = <>&#9660;</>
   let text = 'Show'
 

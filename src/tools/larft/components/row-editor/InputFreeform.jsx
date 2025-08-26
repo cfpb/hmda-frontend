@@ -10,7 +10,7 @@ import { InputText } from './InputText'
  * @param {Object} column Field details
  * @param {Object} props Additional input attributes
  */
-export const InputFreeform = ({ row, column, ...props }) => {
+export function InputFreeform({ row, column, ...props }) {
   const value = row[column.fieldName]
 
   if (isColumnDate(column)) {

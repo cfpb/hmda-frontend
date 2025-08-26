@@ -9,14 +9,14 @@ function makeClassname(opts = {}) {
   return cname
 }
 
-const LoadingButton = ({
+function LoadingButton({
   loading,
   disabled,
   onClick,
   children,
   secondary,
   dataUrl,
-}) => {
+}) {
   return (
     <>
       <button

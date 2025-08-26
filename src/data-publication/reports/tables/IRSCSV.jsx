@@ -15,7 +15,7 @@ const renderData = (csv) => {
 }
 
 const IRSCSV = React.forwardRef((props, ref) => {
-  const report = props.report
+  const { report } = props
   if (!report) return null
 
   const csv = report.parsed
@@ -44,7 +44,7 @@ const IRSCSV = React.forwardRef((props, ref) => {
       </tbody>
       <tfoot>
         <tr>
-          <th></th>
+          <th />
           <td>TOTAL</td>
           {foot.slice(2).map((cell, i) => {
             return <td key={i}>{cell}</td>

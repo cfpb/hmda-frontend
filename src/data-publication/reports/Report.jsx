@@ -1,9 +1,9 @@
 import React from 'react'
+import parse from 'csv-parse'
+import fileSaver from 'file-saver'
 import Heading from '../../common/Heading.jsx'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
 import Tables from './tables/index.jsx'
-import parse from 'csv-parse'
-import fileSaver from 'file-saver'
 import { isProd } from '../../common/configUtils'
 import {
   buildCSVRowsAggregate1,
@@ -29,16 +29,16 @@ class Report extends React.Component {
   }
 
   generateCSV() {
-    const report = this.state.report
-    let theCSV = '"' + this.makeHeadingText(report) + '"\n'
+    const { report } = this.state
+    let theCSV = `"${this.makeHeadingText(report)}"\n`
     const msa = report.msa
       ? `"MSA/MD: ${report.msa.id} - ${report.msa.name}"\n`
       : '"Nationwide"\n'
-    theCSV = theCSV + msa
+    theCSV += msa
     const institution = report.respondentId
       ? `"Institution: ${report.respondentId} - ${report.institutionName}"\n`
       : ''
-    theCSV = theCSV + institution
+    theCSV += institution
 
     if (report.table === 'IRSCSV') {
       theCSV += `Institution: ${this.props.match.params.institutionId}\n`
@@ -63,18 +63,18 @@ class Report extends React.Component {
       theCSV += buildCSVRowsAggregate2(this.state.report)
     } else {
       const tHeadRows = this.tableRef.current.tHead.rows
-      theCSV = theCSV + this.buildCSVRows(tHeadRows, 'head')
+      theCSV += this.buildCSVRows(tHeadRows, 'head')
 
       const tBodyRows = this.tableRef.current.tBodies[0].rows
-      theCSV = theCSV + this.buildCSVRows(tBodyRows, 'body')
+      theCSV += this.buildCSVRows(tBodyRows, 'body')
 
       if (this.tableTwoRef.current) {
-        theCSV = theCSV + '\n\n'
+        theCSV += '\n\n'
         const tTwoHeadRows = this.tableTwoRef.current.tHead.rows
-        theCSV = theCSV + this.buildCSVRows(tTwoHeadRows, 'head')
+        theCSV += this.buildCSVRows(tTwoHeadRows, 'head')
 
         const tTwoBodyRows = this.tableTwoRef.current.tBodies[0].rows
-        theCSV = theCSV + this.buildCSVRows(tTwoBodyRows, 'body')
+        theCSV += this.buildCSVRows(tTwoBodyRows, 'body')
       }
     }
 
@@ -89,24 +89,24 @@ class Report extends React.Component {
     Array.prototype.forEach.call(rows, (row, rowIndex) => {
       // in a thead, account for the rowSpan by adding an empty cell
       if (rowType === 'head') {
-        if (rowIndex !== 0) theCSVRows = theCSVRows + ','
+        if (rowIndex !== 0) theCSVRows += ','
       }
       // loop through the cells
       Array.prototype.forEach.call(row.cells, (cell, cellIndex) => {
         // add the content
-        theCSVRows = theCSVRows + '"' + cell.innerHTML + '"'
+        theCSVRows = `${theCSVRows}"${cell.innerHTML}"`
         if (cell.hasAttribute('colspan')) {
           const spanCount = parseInt(cell.getAttribute('colspan'), 10)
           let i = 0
           for (i; i < spanCount - 1; i++) {
-            theCSVRows = theCSVRows + ','
+            theCSVRows += ','
           }
         }
         // last child
         if (row.cells.length - 1 === cellIndex) {
-          theCSVRows = theCSVRows + '\n'
+          theCSVRows += '\n'
         } else {
-          theCSVRows = theCSVRows + ','
+          theCSVRows += ','
         }
       })
     })
@@ -119,16 +119,12 @@ class Report extends React.Component {
     if (name === 'IRSCSV') name = 'IRS'
     let filename = `report-${name}`
     if (report.respondentId) {
-      filename =
-        filename +
-        `-${report.respondentId}-${report.institutionName
-          .replace(',', '')
-          .replace(' ', '')}`
+      filename += `-${report.respondentId}-${report.institutionName
+        .replace(',', '')
+        .replace(' ', '')}`
     }
     if (report.msa) {
-      filename =
-        filename +
-        `-${report.msa.id}-${report.msa.name.replace(',', '').replace(' ', '')}`
+      filename += `-${report.msa.id}-${report.msa.name.replace(',', '').replace(' ', '')}`
     }
 
     return filename
@@ -136,9 +132,9 @@ class Report extends React.Component {
 
   componentDidMount() {
     const { params } = this.props.match
-    let year = params.year
-    let msaMdId = params.msaMdId
-    let reportId = params.reportId
+    const { year } = params
+    let { msaMdId } = params
+    let { reportId } = params
     let ext = year === '2017' ? '.txt' : '.json'
     const devProd = isProd(window.location.host) ? 'prod' : 'dev'
 
@@ -198,7 +194,7 @@ class Report extends React.Component {
       https://reactjs.org/docs/refs-and-the-dom.html#exposing-dom-refs-to-parent-components
       https://gist.github.com/gaearon/1a018a023347fe1c2476073330cc5509
     */
-    const table = report.table
+    const { table } = report
     if (reportType === 'aggregate' && report.year !== '2017') {
       if (table.match(/^1$/))
         return <Tables.Aggregate1 ref={this.tableRef} report={report} />
@@ -282,11 +278,11 @@ class Report extends React.Component {
     if (!report) return null
     const suppressTable = report.year !== '2017'
     const irsCsvYear = this.props.match.params.year
-    let table = report.table
+    let { table } = report
     if (table === 'IRSCSV')
       return `Home Mortgage Disclosure Act Institution Register Summary for ${irsCsvYear}`
     if (table === 'IRS') table = 'R1'
-    let tableText = suppressTable ? '' : `Table ${table}: `
+    const tableText = suppressTable ? '' : `Table ${table}: `
     return `${tableText}${report.description}${
       table === 'R1' ? '' : `, ${report.year}`
     }`
@@ -313,7 +309,7 @@ class Report extends React.Component {
     let reportType = 'disclosure'
     if (this.props.match.params.stateId) reportType = 'aggregate'
 
-    const report = this.state.report
+    const { report } = this.state
     const headingText = this.makeHeadingText(report)
 
     return (

@@ -18,7 +18,7 @@ export default function getFilingPeriodOptions(
     (period) => filingPeriodStatus[period].isVisible,
   )
 
-  let yearsWithQuarterly = new Set(
+  const yearsWithQuarterly = new Set(
     periodOptions
       .filter((period) => filingPeriodStatus[period].isQuarterly)
       .map((period) => splitYearQuarter(period)[0]),
@@ -53,7 +53,7 @@ export default function getFilingPeriodOptions(
  * @param {Object} optionDisplayMap Maps filingYear => shouldDisplay flag
  */
 function filterOptions(periodOptions, optionDisplayMap) {
-  let keepers = []
+  const keepers = []
 
   periodOptions.forEach((po) => {
     const [yr, hasQtr] = splitYearQuarter(po)

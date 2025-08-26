@@ -7,13 +7,13 @@ import '../../common/YearSelector.css'
 
 const ANNUAL = 'annual'
 
-const InstitutionPeriodSelector = ({
+function InstitutionPeriodSelector({
   filingPeriod,
   history,
   pathname,
   dispatch,
   filingPeriodOptions,
-}) => {
+}) {
   const [filingYear, filingQuarter] = splitYearQuarter(filingPeriod)
   const yearOpt = periodOption(filingYear)
   const quarterOpt = periodOption(filingQuarter)

@@ -29,14 +29,16 @@ const renderCharacteristicTitle = (characteristic, key) => {
 }
 
 const renderCharacteristicDetails = (characteristic) => {
-  let name, currentCharacteristic
+  let name
+  let currentCharacteristic
   Object.keys(characteristic).forEach((key) => {
     if (key === 'characteristic') name = characteristic[key]
     else currentCharacteristic = characteristic[key]
   })
 
   return currentCharacteristic.map((detailObj, index) => {
-    let detail, purchasers
+    let detail
+    let purchasers
     Object.keys(detailObj).forEach((key) => {
       if (key === 'purchasers') purchasers = detailObj[key]
       else detail = detailObj[key]
@@ -47,8 +49,8 @@ const renderCharacteristicDetails = (characteristic) => {
         <th>{detail}</th>
         {purchasers.map((purchaser, index) => {
           return [
-            <td key={'count' + index}>{purchaser.count}</td>,
-            <td key={'value' + index}>{purchaser.value}</td>,
+            <td key={`count${index}`}>{purchaser.count}</td>,
+            <td key={`value${index}`}>{purchaser.value}</td>,
           ]
         })}
       </tr>

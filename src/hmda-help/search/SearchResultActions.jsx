@@ -7,13 +7,13 @@ import Loading from '../../common/LoadingIcon.jsx'
 
 import './SearchResults.css'
 
-const SearchResultActions = ({
+function SearchResultActions({
   institution,
   index,
   error,
   handleDeleteClick,
   tables,
-}) => {
+}) {
   const [isLoading, setIsLoading] = useState(false)
   const buttonsRef = useRef(new Map())
 
@@ -45,12 +45,12 @@ const SearchResultActions = ({
       {isLoading ? (
         <Loading className='LoadingInline' />
       ) : (
-        <React.Fragment>
+        <>
           <div className='initialActions' id={`initialActions${index}`}>
             <Link
               to={{
                 pathname: `/update/institution/${institution.lei}/${institution.activityYear}`,
-                state: { institution: institution },
+                state: { institution },
               }}
             >
               Update
@@ -94,7 +94,7 @@ const SearchResultActions = ({
                     perform this action."
             />
           ) : null}
-        </React.Fragment>
+        </>
       )}
     </td>
   )

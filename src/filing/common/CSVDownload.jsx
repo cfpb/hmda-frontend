@@ -4,12 +4,12 @@ import { formatPeriod } from '../api/utils'
 
 import './CSVDownload.css'
 
-const CSVDownload = (props) => {
+function CSVDownload(props) {
   if (props.submission.id === null) return null
   const { lei, period, sequenceNumber } = props.submission.id
 
   return (
-    <React.Fragment>
+    <>
       <button
         className='CSVDownload'
         onClick={props.onDownloadClick(
@@ -23,7 +23,7 @@ const CSVDownload = (props) => {
       </button>
       {props.text ? null : '.'}
       {props.isFetching ? <Loading className='LoadingInline' /> : null}
-    </React.Fragment>
+    </>
   )
 }
 

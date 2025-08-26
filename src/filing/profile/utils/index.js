@@ -16,10 +16,10 @@ export const createAssociatedInstitutionsList = (
   setSelectedInstitutions,
   setLoading,
 ) => {
-  let generateInstitutionOptions = []
+  const generateInstitutionOptions = []
   let institutionObject = {}
 
-  for (var i = 0; i < institutions.length; i++) {
+  for (let i = 0; i < institutions.length; i++) {
     institutionObject.institutionName = institutions[i].respondent.name
     institutionObject.lei = institutions[i].lei
     institutionObject.taxId = institutions[i].taxId
@@ -31,7 +31,7 @@ export const createAssociatedInstitutionsList = (
   setAssociatedInstitutions(
     generateInstitutionOptions.sort(sortByInstitutionName),
   )
-  let filteredSelectedInstitutions = generateInstitutionOptions.filter(
+  const filteredSelectedInstitutions = generateInstitutionOptions.filter(
     (obj) => {
       return associatedLEIsWithUser.some((item) => item === obj.lei)
     },

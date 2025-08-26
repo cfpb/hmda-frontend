@@ -644,7 +644,7 @@ data2018.ID.push({ id: 46300, name: 'TWIN FALLS' })
 
 // Add new MSA/MD entries
 function add(additions = {}, existing = {}) {
-  let result = JSON.parse(JSON.stringify(existing))
+  const result = JSON.parse(JSON.stringify(existing))
   Object.keys(additions).forEach((state) => {
     if (!result[state]) result[state] = []
     result[state].push(...additions[state])
@@ -654,11 +654,13 @@ function add(additions = {}, existing = {}) {
 
 // Change the MSA/MD names
 function rename(updaters = {}, existing = {}) {
-  let result = JSON.parse(JSON.stringify(existing))
+  const result = JSON.parse(JSON.stringify(existing))
   Object.keys(updaters).forEach((state) => {
     if (!result[state]) result[state] = []
     updaters[state].forEach((updater) => {
-      let idx = result[state].findIndex((current) => current.id === updater.id)
+      const idx = result[state].findIndex(
+        (current) => current.id === updater.id,
+      )
       if (idx < 0) result[state].push(updater)
       else result[state][idx].name = updater.name
     })

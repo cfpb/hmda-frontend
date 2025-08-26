@@ -1,5 +1,7 @@
 // Looking at the provided graphs, I don't even think we need to build separate components per graph.  We can simply capture the elements that vary as configuration.
 
+import fetchedData from './mockData'
+
 const graphOptions = [
   {
     id: 'chart-a',
@@ -26,7 +28,6 @@ const setGraphData = (response) => 'Saves response to state'
 // Use immer `produce` to more easily store all graphs' data
 // https://immerjs.github.io/immer/
 fetch(selectedGraph.endpoint).then((res) => setGraphData(res.json()))
-import fetchedData from './mockData'
 
 // Transform that data as required for our LineGraph component
 const series = []

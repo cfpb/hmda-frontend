@@ -9,7 +9,7 @@ import {
 
 import './NavButton.css'
 
-const NavButton = ({
+function NavButton({
   page,
   base,
   code,
@@ -19,7 +19,7 @@ const NavButton = ({
   qualityVerified,
   macroExists,
   macroVerified,
-}) => {
+}) {
   let className
   let suffix
   let spinOn = false

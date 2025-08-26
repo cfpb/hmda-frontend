@@ -71,7 +71,7 @@ export default class App extends Component {
     */
     this.setState({
       ...defaultState,
-      inputValue: inputValue,
+      inputValue,
       whichApp: this.state.whichApp, // keep this around
     })
   }
@@ -122,12 +122,10 @@ export default class App extends Component {
         .then((json) => {
           if (typeof json === 'string') {
             this.setState({ fetchError: json })
+          } else if (endpoint === 'checkDigit') {
+            this.setState({ uli: json.uli, checkDigit: json.checkDigit })
           } else {
-            if (endpoint === 'checkDigit') {
-              this.setState({ uli: json.uli, checkDigit: json.checkDigit })
-            } else {
-              this.setState({ isValidUli: json.isValid })
-            }
+            this.setState({ isValidUli: json.isValid })
           }
         })
         .catch((err) => {
@@ -146,7 +144,7 @@ export default class App extends Component {
     const errors = validateFunction(input)
 
     if (errors.length > 0) {
-      this.setState({ errors: errors })
+      this.setState({ errors })
     }
     return errors
   }
@@ -167,20 +165,20 @@ export default class App extends Component {
       'check digit',
       this.context.config,
     )
-    let marginTop = toolAnnouncement ? '0px' : ''
+    const marginTop = toolAnnouncement ? '0px' : ''
 
     return (
       <div className='grid' id='main-content'>
         <AppIntro />
 
-        {toolAnnouncement && (
+        {toolAnnouncement ? (
           <Alert
             heading={toolAnnouncement.heading}
             type={toolAnnouncement.type}
           >
             <p>{toolAnnouncement.message}</p>
           </Alert>
-        )}
+        ) : null}
 
         <div className='grid'>
           <div className='item' style={{ marginTop }}>

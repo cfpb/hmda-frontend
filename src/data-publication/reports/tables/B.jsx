@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 
 const renderData = (report) => {
   return (
-    <React.Fragment>
+    <>
       {renderTitle(
         '1- TO 4-FAMILY OWNER OCCUPIED DWELLINGS (EXCLUDES MANUFACTURED HOMES)',
       )}
       {report.singleFamily.map(renderPricing)}
       {renderTitle('MANUFACTURED HOME OWNER OCCUPIED DWELLINGS')}
       {report.manufactured.map(renderPricing)}
-    </React.Fragment>
+    </>
   )
 }
 

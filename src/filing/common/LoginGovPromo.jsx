@@ -2,7 +2,7 @@ import React from 'react'
 import loginGovWhiteLogo from '../images/login-gov-logo-white.svg'
 import './LoginGovPromo.css'
 
-const LoginGovPromo = () => {
+function LoginGovPromo() {
   return (
     <div className='login-gov-promo'>
       <div className='login-gov-header'>
@@ -19,9 +19,9 @@ const LoginGovPromo = () => {
             <span className='login-gov-bold-font'>
               Beginning January 1, 2025
             </span>
-            , users logging into the HMDA Platform to file their data will need to
-            login with Login.gov. Users will no longer have the option to sign
-            in using the existing processes.
+            , users logging into the HMDA Platform to file their data will need
+            to login with Login.gov. Users will no longer have the option to
+            sign in using the existing processes.
           </li>
           <li>
             The login.gov account created must be associated with a business

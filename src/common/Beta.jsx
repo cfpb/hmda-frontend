@@ -6,7 +6,7 @@ export function isBeta(host = window.location.hostname) {
   return host.match('beta')
 }
 
-const Beta = (props) => {
+function Beta(props) {
   return (
     <div className='Beta'>
       <Alert heading='HMDA Beta' type='warning'>

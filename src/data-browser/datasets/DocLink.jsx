@@ -9,8 +9,8 @@ function makeUrl(id, definition) {
   return `/documentation/tools/data-browser/data-browser-filters#${idFromChildren}-${definition}`
 }
 
-const DocLink = (props) => {
-  let id = props.children.props.children
+function DocLink(props) {
+  const id = props.children.props.children
   return (
     <a
       href={makeUrl(id, props.definition)}

@@ -1,12 +1,12 @@
 import React from 'react'
 import { ExpandableSection } from '../../../common/ExpandableSection'
 
-export const DataTable = ({ tableData }) => {
+export function DataTable({ tableData }) {
   if (!tableData) return null
 
   return (
     <div style={{ marginTop: '.8em' }}>
-      <ExpandableSection label={'Data Table'}>
+      <ExpandableSection label='Data Table'>
         <table>
           <thead>
             <tr>

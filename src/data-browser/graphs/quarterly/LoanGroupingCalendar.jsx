@@ -1,8 +1,8 @@
 import './LoanGroupingCalendar.css'
 
 // One block of the Quarterly calendar
-const Quarter = ({ number, dates }) => {
-  const quarterId = 'q' + number
+function Quarter({ number, dates }) {
+  const quarterId = `q${number}`
 
   return (
     <div className={`quarter ${quarterId}`}>
@@ -12,7 +12,7 @@ const Quarter = ({ number, dates }) => {
   )
 }
 
-export const LoanGroupingCalendar = () => {
+export function LoanGroupingCalendar() {
   return (
     <>
       <p className='lead'>
