@@ -2,12 +2,6 @@
   "name": "prod",
   "announcement": [
     {
-      "message": "We are performing system maintenance from 6PM - 8PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-      "type": "error",
-      "heading": "System Temporarily Unavailable",
-      "link": null
-    },
-    {
       "heading": "2024 Data Publication Release",
       "message": "On June 24, 2025, the 2024 national loan-level datasets, disclosure reports, and MSA/MD aggregate reports were released and can be accessed via the Data Publication page. Users can now explore 2024 HMDA data using the Data Browser's dataset filtering tool or maps. ",
       "type": "info",
@@ -19,13 +13,8 @@
   ],
   "publicationReleaseYear": "2024",
   "mlarReleaseYear": "2024",
-  "maintenanceMode": true,
-  "filingAnnouncement": {
-    "message": "We are performing system maintenance from 6PM - 8PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-    "type": "error",
-    "heading": "System Temporarily Unavailable",
-    "endDate": null
-  },
+  "maintenanceMode": false,
+  "filingAnnouncement": null,
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
