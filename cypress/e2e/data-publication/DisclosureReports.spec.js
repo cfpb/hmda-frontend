@@ -1,6 +1,6 @@
 const { HOST } = Cypress.env()
-import { isBeta, isDev } from '../../support/helpers'
 import { onlyOn } from '@cypress/skip-test'
+import { isBeta, isDev } from '../../support/helpers'
 
 onlyOn(isBeta(HOST), () => {
   describe('Disclosure Reports', function () {
@@ -12,11 +12,16 @@ onlyOn(!isBeta(HOST), () => {
   // extending the timeout to account for slower API calls
   describe('Disclosure Reports', { defaultCommandTimeout: 12000 }, () => {
     it('Fetches a 2024 Applications by Tract Report', () => {
-      const institution = isDev(HOST) ? 'LIBERTYVILLE BANK & TRUST COMPANY, N.A. - 01ERPZV3DOLNXY2MLB90' : 'CYPRESS BANK, SSB - 549300I4IUWMEMGLST06';
-      const institutionName = institution.split(' - ')[0];
-      const msaMd = isDev(HOST) ? 'Chicago-Naperville-Evanston, IL - 16984' : 'Dallas-Plano-Irving, TX - 19124';
-      const msaMdCityOnly = msaMd.split(', ')[0];
-      const msaMdZipCodeFirst = msaMd.split(' - ')[1] + ' - ' + msaMd.split(' - ')[0];
+      const institution = isDev(HOST)
+        ? 'LIBERTYVILLE BANK & TRUST COMPANY, N.A. - 01ERPZV3DOLNXY2MLB90'
+        : 'CYPRESS BANK, SSB - 549300I4IUWMEMGLST06'
+      const institutionName = institution.split(' - ')[0]
+      const msaMd = isDev(HOST)
+        ? 'Chicago-Naperville-Schaumburg, IL - 16984'
+        : 'Dallas-Plano-Irving, TX - 19124'
+      const msaMdCityOnly = msaMd.split(', ')[0]
+      const msaMdZipCodeFirst =
+        msaMd.split(' - ')[1] + ' - ' + msaMd.split(' - ')[0]
 
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 916)
@@ -55,8 +60,16 @@ onlyOn(!isBeta(HOST), () => {
       // Validate a row - Third row called "Applications Denied by Financial Institution"
       cy.get('tbody > :nth-child(4) > :nth-child(2)').should('have.text', '0')
       cy.get('tbody > :nth-child(4) > :nth-child(3)').should('have.text', '0')
-      cy.get('tbody > :nth-child(4) > :nth-child(4)').should('have.text', '1')
-      cy.get('tbody > :nth-child(4) > :nth-child(5)').should('have.text', '665000')
+      // TODO: work with backend team to normalize values on Dev/Prod
+      // See GHE Ticket on hmda-devops #5092
+      cy.get('tbody > :nth-child(4) > :nth-child(4)').should(
+        'have.text',
+        isDev(HOST) ? '0' : '1',
+      )
+      cy.get('tbody > :nth-child(4) > :nth-child(5)').should(
+        'have.text',
+        isDev(HOST) ? '0' : '665000',
+      )
       cy.get('tbody > :nth-child(4) > :nth-child(6)').should('have.text', '0')
       cy.get('tbody > :nth-child(4) > :nth-child(7)').should('have.text', '0')
       cy.get('tbody > :nth-child(4) > :nth-child(8)').should('have.text', '0')
@@ -70,11 +83,16 @@ onlyOn(!isBeta(HOST), () => {
     })
 
     it('Fetches a 2023 Applications by Tract Report', () => {
-      const institution = isDev(HOST) ? 'LIBERTYVILLE BANK & TRUST COMPANY, N.A. - 01ERPZV3DOLNXY2MLB90' : 'CYPRESS BANK, SSB - 549300I4IUWMEMGLST06';
-      const institutionName = institution.split(' - ')[0];
-      const msaMd = isDev(HOST) ? 'Chicago-Naperville-Evanston, IL - 16984' : 'Dallas-Plano-Irving, TX - 19124';
-      const msaMdCityOnly = msaMd.split(', ')[0];
-      const msaMdZipCodeFirst = msaMd.split(' - ')[1] + ' - ' + msaMd.split(' - ')[0];
+      const institution = isDev(HOST)
+        ? 'LIBERTYVILLE BANK & TRUST COMPANY, N.A. - 01ERPZV3DOLNXY2MLB90'
+        : 'CYPRESS BANK, SSB - 549300I4IUWMEMGLST06'
+      const institutionName = institution.split(' - ')[0]
+      const msaMd = isDev(HOST)
+        ? 'Chicago-Naperville-Evanston, IL - 16984'
+        : 'Dallas-Plano-Irving, TX - 19124'
+      const msaMdCityOnly = msaMd.split(', ')[0]
+      const msaMdZipCodeFirst =
+        msaMd.split(' - ')[1] + ' - ' + msaMd.split(' - ')[0]
 
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 916)
@@ -133,9 +151,9 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/disclosure-reports/2022`)
 
       cy.get('#institution-name').click({ force: true })
-      cy.get('#institution-name').type('cypress bank, ssb')
+      cy.get('#institution-name').type('LIBERTY MORTGAGE CORPORATION')
       cy.findByText('View MSA/MDs').click({ force: true })
-      cy.findByText('Select MSA/MD...').type('Dallas{enter}')
+      cy.findByText('Select MSA/MD...').type('Anniston{enter}')
       cy.findByText('Select report...').type('Applications by Tract{enter}')
 
       /* Check Report Params */
@@ -146,13 +164,13 @@ onlyOn(!isBeta(HOST), () => {
       // Institution
       cy.get('.ProgressCards > :nth-child(2) .heading > p').should(
         'contain.text',
-        'CYPRESS BANK, SSB - 549300I4IUWMEMGLST06',
+        'LIBERTY MORTGAGE CORPORATION - 2549008SGDIASSJGSR05',
       )
 
       // MSA/MD
       cy.get('.ProgressCards > :nth-child(3) .heading > p').should(
         'contain.text',
-        'Dallas-Plano-Irving, TX - 19124',
+        'Anniston-Oxford, AL - 11500',
       )
 
       // Report Type
