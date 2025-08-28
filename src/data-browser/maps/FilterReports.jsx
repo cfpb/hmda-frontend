@@ -4,7 +4,7 @@ import { valsForVar } from './selectUtils'
 import { useScrollIntoView } from '../../common/useScrollIntoView'
 import './FilterReports.css'
 
-export const FilterReports = ({ data }) => {
+export function FilterReports({ data }) {
   if (!data || !data.featureName) return null
   return (
     <>
@@ -30,7 +30,7 @@ export const FilterReports = ({ data }) => {
   )
 }
 
-const FilterReport = ({
+function FilterReport({
   id,
   filter,
   otherFilter,
@@ -38,7 +38,7 @@ const FilterReport = ({
   label,
   total,
   level,
-}) => {
+}) {
   const truthy_values = values.filter(Boolean)
   const [tableRef, scrollToTable] = useScrollIntoView()
 
@@ -73,36 +73,40 @@ const FilterReport = ({
   )
 }
 
-const GroupHeaders = ({ label, level, otherFilter }) => (
-  <tr>
-    <th className='group-header spacer'>{label}</th>
-    <th className='group-header colorBgWithBias' colSpan={2}>
-      {level}wide
-    </th>
-    {otherFilter && (
+function GroupHeaders({ label, level, otherFilter }) {
+  return (
+    <tr>
+      <th className='group-header spacer'>{label}</th>
       <th className='group-header colorBgWithBias' colSpan={2}>
-        <div className='variable'>{otherFilter.variable.label}</div>
-        <div className='value'>{otherFilter.value.label}</div>
+        {level}wide
       </th>
-    )}
-  </tr>
-)
+      {otherFilter ? (
+        <th className='group-header colorBgWithBias' colSpan={2}>
+          <div className='variable'>{otherFilter.variable.label}</div>
+          <div className='value'>{otherFilter.value.label}</div>
+        </th>
+      ) : null}
+    </tr>
+  )
+}
 
-const CountHeaders = ({ variable, values }) => (
-  <tr>
-    {[variable.label, 'Count', 'Pct'].map((x, x_idx) => (
-      <th key={x_idx} className={x_idx ? 'count' : ''}>
-        {x}
-      </th>
-    ))}
-    {values.length > 1 &&
-      ['Count', 'Pct'].map((x, x_idx) => (
-        <th key={x_idx} className='count'>
+function CountHeaders({ variable, values }) {
+  return (
+    <tr>
+      {[variable.label, 'Count', 'Pct'].map((x, x_idx) => (
+        <th key={x_idx} className={x_idx ? 'count' : ''}>
           {x}
         </th>
       ))}
-  </tr>
-)
+      {values.length > 1 &&
+        ['Count', 'Pct'].map((x, x_idx) => (
+          <th key={x_idx} className='count'>
+            {x}
+          </th>
+        ))}
+    </tr>
+  )
+}
 
 const BodyRows = ({ valsForVar, variable, value, total, truthy_values }) => {
   return valsForVar[variable.value].map((v, idx) => {
@@ -126,13 +130,13 @@ const BodyColumns = ({ values, val, cname, total }) =>
       v_mem.concat([
         <td
           key={`${v_idx}_count`}
-          className={'count' + (v_idx === values.length - 1 ? cname : '')}
+          className={`count${v_idx === values.length - 1 ? cname : ''}`}
         >
           {asNum(values[v_idx][val])}
         </td>,
         <td
           key={`${v_idx}_pct`}
-          className={'count' + (v_idx === values.length - 1 ? cname : '')}
+          className={`count${v_idx === values.length - 1 ? cname : ''}`}
         >
           {calcPct(values[v_idx][val], total[v_idx])}%
         </td>,
@@ -140,20 +144,22 @@ const BodyColumns = ({ values, val, cname, total }) =>
     [],
   )
 
-const TotalsRow = ({ total }) => (
-  <tr>
-    <th>Total</th>
-    {total
-      .filter((t) => isNumber(t))
-      .reduce(
-        (m, t, t_idx) =>
-          m.concat([
-            <td key={`${t_idx}_count`} className='count'>
-              {asNum(t)}
-            </td>,
-            <td key={`${t_idx}_spacer`} className='spacer'></td>,
-          ]),
-        [],
-      )}
-  </tr>
-)
+function TotalsRow({ total }) {
+  return (
+    <tr>
+      <th>Total</th>
+      {total
+        .filter((t) => isNumber(t))
+        .reduce(
+          (m, t, t_idx) =>
+            m.concat([
+              <td key={`${t_idx}_count`} className='count'>
+                {asNum(t)}
+              </td>,
+              <td key={`${t_idx}_spacer`} className='spacer' />,
+            ]),
+          [],
+        )}
+    </tr>
+  )
+}

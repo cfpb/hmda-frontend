@@ -4,11 +4,7 @@ import PropTypes from 'prop-types'
 const renderData = (report) => {
   const { ethnicities } = report
 
-  return (
-    <React.Fragment>
-      {mapCharacteristic(ethnicities, 'ethnicityName')}
-    </React.Fragment>
-  )
+  return <>{mapCharacteristic(ethnicities, 'ethnicityName')}</>
 }
 
 const mapCharacteristic = (arr, key) => {
@@ -32,7 +28,7 @@ const renderCharacteristicTitle = (key) => {
           backgroundColor: '#f1f1f1',
         }}
       >
-        {'Ethnicity'}
+        Ethnicity
       </th>
     </tr>
   )
@@ -81,7 +77,7 @@ const renderCharacteristic = (characteristic, key) => {
         </tr>
       )
     }),
-    <tr key={currChar + 'total'}>
+    <tr key={`${currChar}total`}>
       <th>Total</th>
       {characteristic.dispositions.map((disposition) => {
         return [
@@ -138,7 +134,7 @@ const Aggregate4 = React.forwardRef((props, ref) => {
         </tr>
       </thead>
       <tbody>{renderData(props.report)}</tbody>
-      <tfoot></tfoot>
+      <tfoot />
     </table>
   )
 })

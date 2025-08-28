@@ -5,9 +5,7 @@ import { useDispatch } from 'react-redux'
 import showConfirm from '../actions/showConfirm.js'
 import setLei from '../actions/setLei.js'
 
-import './RefileButton.css'
-
-const RefileButton = ({ institution, isLink, isLower, isSmall, className }) => {
+function RefileButton({ institution, isLink, isLower, isSmall, className }) {
   const dispatch = useDispatch()
 
   const showConfirmModal = () => {

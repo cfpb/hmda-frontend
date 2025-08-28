@@ -10,7 +10,7 @@ const PATTERN_888_8888 = /^888(\.0)?$|^88888(\.0)?$/
 const highlightEditFields = (rows = [], pattern = PATTERN_1111) =>
   rows.map((r) => {
     if (!r.fields) return
-    let row = JSON.parse(JSON.stringify(r))
+    const row = JSON.parse(JSON.stringify(r))
 
     row.fields = row.fields.map((field) => {
       if (!field.value.match(pattern)) return field

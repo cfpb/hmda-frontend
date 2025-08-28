@@ -12,25 +12,27 @@ import { isEditing } from '../../utils/row'
  * @param {Function} saveRow Handler to persist/update currently select row
  * @param {Function} showTextActions Display buttons for Copy/Paste functionality
  */
-export const EditingActions = ({
+export function EditingActions({
   row,
   deleteRow,
   newRow,
   setRow,
   saveRow,
   showTextActions = true,
-}) => (
-  <div className='action-wrapper raw'>
-    <div className='row-actions'>
-      <SaveButton row={row} fn={saveRow} />
-      <DeleteButton row={row} fn={deleteRow} />
-      <NewButton fn={newRow} />
+}) {
+  return (
+    <div className='action-wrapper raw'>
+      <div className='row-actions'>
+        <SaveButton row={row} fn={saveRow} />
+        <DeleteButton row={row} fn={deleteRow} />
+        <NewButton fn={newRow} />
+      </div>
+      <TextAreaActions show={showTextActions} paste={pastePiped(setRow)} />
     </div>
-    <TextAreaActions show={showTextActions} paste={pastePiped(setRow)} />
-  </div>
-)
+  )
+}
 
-const SaveButton = ({ row, fn }) => {
+function SaveButton({ row, fn }) {
   const buttonText = isEditing(row) ? `Update Row ${row.rowId}` : 'Save Row'
 
   return (
@@ -40,7 +42,7 @@ const SaveButton = ({ row, fn }) => {
   )
 }
 
-const DeleteButton = ({ row, fn }) => {
+function DeleteButton({ row, fn }) {
   if (!isEditing(row)) return null
 
   return (
@@ -50,13 +52,15 @@ const DeleteButton = ({ row, fn }) => {
   )
 }
 
-const NewButton = ({ fn }) => (
-  <button className='new-row' onClick={fn}>
-    New Row
-  </button>
-)
+function NewButton({ fn }) {
+  return (
+    <button className='new-row' onClick={fn}>
+      New Row
+    </button>
+  )
+}
 
-const TextAreaActions = ({ show, paste }) => {
+function TextAreaActions({ show, paste }) {
   if (!show) return null
 
   return (

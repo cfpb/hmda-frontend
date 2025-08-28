@@ -1,12 +1,12 @@
 export const isUliValid = (uli) => {
-  let errors = []
+  const errors = []
 
   if (uli.length === 0) {
     errors.push('Please enter a valid ULI to validate.')
   }
 
   // a ULI is alphanumeric
-  if (!!uli.match(/[^a-zA-Z0-9]/)) {
+  if (uli.match(/[^a-zA-Z0-9]/)) {
     errors.push('A valid ULI can only contain alphanumeric characters.')
   }
 
@@ -19,11 +19,9 @@ export const isUliValid = (uli) => {
   if (uli.length > 0 && uli.length < 23) {
     const characters = uli.length === 1 ? 'character' : 'characters'
     errors.push(
-      'A valid ULI has a minimum of 23 characters. You have entered ' +
-        uli.length +
-        ' ' +
-        characters +
-        '.',
+      `A valid ULI has a minimum of 23 characters. You have entered ${
+        uli.length
+      } ${characters}.`,
     )
   }
 
@@ -34,9 +32,9 @@ export const isUliValid = (uli) => {
     */
   if (uli.length > 45) {
     errors.push(
-      'A valid LEI and Loan/Application ID has a maximum of 45 characters. You have entered ' +
-        uli.length +
-        ' characters.',
+      `A valid LEI and Loan/Application ID has a maximum of 45 characters. You have entered ${
+        uli.length
+      } characters.`,
     )
   }
 
@@ -44,7 +42,7 @@ export const isUliValid = (uli) => {
 }
 
 export const isLoanIdValid = (loanId) => {
-  let errors = []
+  const errors = []
 
   if (loanId.length === 0) {
     errors.push(
@@ -53,7 +51,7 @@ export const isLoanIdValid = (loanId) => {
   }
 
   // a LEI and Loan/Application ID is alphanumeric
-  if (!!loanId.match(/[^a-zA-Z0-9]/)) {
+  if (loanId.match(/[^a-zA-Z0-9]/)) {
     errors.push(
       'A valid LEI and Loan/Application ID can only contain alphanumeric characters.',
     )
@@ -67,11 +65,9 @@ export const isLoanIdValid = (loanId) => {
   if (loanId.length > 0 && loanId.length < 21) {
     const characters = loanId.length === 1 ? 'character' : 'characters'
     errors.push(
-      'A valid LEI and Loan/Application ID has a minimum of 21 characters. You have entered ' +
-        loanId.length +
-        ' ' +
-        characters +
-        '.',
+      `A valid LEI and Loan/Application ID has a minimum of 21 characters. You have entered ${
+        loanId.length
+      } ${characters}.`,
     )
   }
 
@@ -83,9 +79,9 @@ export const isLoanIdValid = (loanId) => {
     */
   if (loanId.length > 43) {
     errors.push(
-      'A valid LEI and Loan/Application ID has a maximum of 43 characters. You have entered ' +
-        loanId.length +
-        ' characters.',
+      `A valid LEI and Loan/Application ID has a maximum of 43 characters. You have entered ${
+        loanId.length
+      } characters.`,
     )
   }
 

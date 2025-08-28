@@ -26,10 +26,10 @@ export const formatFileName = (ts) => {
  * @param {String} text
  */
 export function downloadFile(filename, text) {
-  var element = document.createElement('a')
+  const element = document.createElement('a')
   element.setAttribute(
     'href',
-    'data:text/plain;charset=utf-8,' + encodeURIComponent(text),
+    `data:text/plain;charset=utf-8,${encodeURIComponent(text)}`,
   )
   element.setAttribute('download', filename)
 

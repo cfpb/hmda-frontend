@@ -3,7 +3,7 @@ import './MaintenanceMessage.css'
 
 let maintenanceClosed = false
 
-const MaintenanceMessage = ({ config, closeCallback }) => {
+function MaintenanceMessage({ config, closeCallback }) {
   const { filingAnnouncement, maintenanceMode } = config
 
   if (!maintenanceMode || !filingAnnouncement) return null

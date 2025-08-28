@@ -10,7 +10,7 @@ function makeCloser(values, index, onChange) {
   }
 }
 
-const Pills = ({ values, onChange }) => {
+function Pills({ values, onChange }) {
   return (
     <div className='Pills'>
       {values.map((v, i) => {

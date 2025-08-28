@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Dropzone from 'react-dropzone'
 import Alert from '../../../common/Alert.jsx'
 import ValidationProgress from './ValidationProgress.jsx'
-import Dropzone from 'react-dropzone'
 import DropzoneContent from './DropzoneContent.jsx'
 import {
   UPLOADING,
@@ -69,7 +69,7 @@ export default class Upload extends Component {
           </Alert>
         ) : null}
         <Dropzone
-          disablePreview={true}
+          disablePreview
           onDrop={this.onDrop}
           multiple={false}
           disabled={this.props.isPassed}

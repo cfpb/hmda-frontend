@@ -23,7 +23,7 @@ const defaultSubmission = (closed) => ({
   },
 })
 
-const InstitutionStatus = ({ submission, filing, isClosed }) => {
+function InstitutionStatus({ submission, filing, isClosed }) {
   const currSubmission = submission || defaultSubmission(isClosed)
   const { isStalled } = currSubmission
   const { code, message, description } = currSubmission.status

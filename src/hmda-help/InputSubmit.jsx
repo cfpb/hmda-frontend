@@ -11,12 +11,12 @@ const values = {
   submissions: 'Search Submissions',
 }
 
-const InputSubmit = ({
+function InputSubmit({
   addClass,
   actionType,
   disabled = false,
   onClick = () => null,
-}) => {
+}) {
   let cname = 'inputSubmit'
   if (addClass) cname = `${cname} ${addClass}`
 

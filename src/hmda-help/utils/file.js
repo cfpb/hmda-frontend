@@ -6,7 +6,7 @@ const XHR_DONE = 4
  */
 export function fileExists(url) {
   return new Promise((resolve, reject) => {
-    var xhttp = new XMLHttpRequest()
+    const xhttp = new XMLHttpRequest()
 
     /* Check the status code of the request */
     xhttp.onreadystatechange = function () {

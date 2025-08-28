@@ -36,7 +36,7 @@ export const calcDiff = (curr, prev) => {
       return
     }
     // Object
-    else if (typeof curr[key] === 'object') {
+    if (typeof curr[key] === 'object') {
       diffs[key] = calcDiff(curr[key], prev[key])
       return
     }
@@ -69,7 +69,7 @@ export const allDiff = (curr) => {
       return
     }
     // Object
-    else if (typeof curr[key] === 'object') {
+    if (typeof curr[key] === 'object') {
       diffs[key] = allDiff(curr[key], null)
       return
     }
@@ -89,7 +89,7 @@ export const allDiff = (curr) => {
  */
 export const addDiff = (notes) =>
   notes.map((note, idx) => {
-    let prevNote = notes[idx + 1]
+    const prevNote = notes[idx + 1]
     const noteData = JSON.parse(note.updatedPanel)
     const prevNoteData =
       prevNote && prevNote.updatedPanel && JSON.parse(prevNote.updatedPanel)

@@ -11,22 +11,22 @@ const standardLabelFormatter = (isExpanded, label) =>
  * @param expandedByDefault Show section's children by default
  * @param children Section content
  */
-export const ExpandableSection = ({
+export function ExpandableSection({
   children,
   expandedByDefault = false,
   label = 'Click to expand',
   labelFormatter = standardLabelFormatter,
-}) => {
+}) {
   const [expanded, setExpanded] = useState(expandedByDefault)
   const labelText = labelFormatter(expanded, label)
   const toggleVisible = () => setExpanded((value) => !value)
 
   const classes = ['expandable-section']
-  let ariaLabel = 'Expand ' + label
+  let ariaLabel = `Expand ${label}`
 
   if (expanded) {
     classes.push('expanded')
-    ariaLabel = 'Collapse ' + label
+    ariaLabel = `Collapse ${label}`
   }
 
   return (
@@ -38,7 +38,7 @@ export const ExpandableSection = ({
       >
         {labelText}
       </button>
-      {expanded && <div className='content'>{children}</div>}
+      {expanded ? <div className='content'>{children}</div> : null}
     </div>
   )
 }

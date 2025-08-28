@@ -2,7 +2,7 @@ import receiveLatestSubmission from './receiveLatestSubmission.js'
 import receiveFiling from './receiveFiling.js'
 
 function receiveNonQFiling(data) {
-  const institution = data.institution
+  const { institution } = data
 
   return (dispatch) => {
     dispatch(receiveFiling({ filing: { lei: institution.lei } }))

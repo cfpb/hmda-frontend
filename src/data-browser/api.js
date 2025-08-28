@@ -37,7 +37,7 @@ export function createItemQuerystring(obj = {}) {
 }
 
 export function createQueryString(category, items, first = false) {
-  let qs = first ? '?' : '&'
+  const qs = first ? '?' : '&'
   return `${qs}${category}=${items.join(',')}`
 }
 
@@ -69,7 +69,7 @@ export function makeUrl(obj, isCSV, includeVariables = true) {
 
 export function makeFilersUrl(obj) {
   if (!obj) return ''
-  let url = API_BASE_URL + '/filers'
+  let url = `${API_BASE_URL}/filers`
 
   if (isNationwide(obj.category)) return url + addYears(url, obj.year)
 
@@ -79,11 +79,11 @@ export function makeFilersUrl(obj) {
 }
 
 export function runFetch(url) {
-  let headers = { Accept: 'application/json' }
+  const headers = { Accept: 'application/json' }
 
-  var fetchOptions = {
+  const fetchOptions = {
     method: 'GET',
-    headers: headers,
+    headers,
   }
 
   return fetch(url, fetchOptions).then((response) => {
@@ -97,18 +97,18 @@ export function runFetch(url) {
 export function makeCSVName(obj, includeVariables = true) {
   if (!obj) return ''
   let name = ''
-  if (obj.states && obj.states.length) name += obj.states.join(',') + '-'
-  if (obj.msamds && obj.msamds.length) name += obj.msamds.join(',') + '-'
+  if (obj.states && obj.states.length) name += `${obj.states.join(',')}-`
+  if (obj.msamds && obj.msamds.length) name += `${obj.msamds.join(',')}-`
 
   if (isNationwide(obj.category)) {
     if (obj.leis && obj.leis.length)
-      name = getInstitutionIdKey(obj.year) + '-' + obj.leis.join(',') + '-'
+      name = `${getInstitutionIdKey(obj.year)}-${obj.leis.join(',')}-`
     else name = 'nationwide-'
   }
 
   if (obj.variables && includeVariables) {
     Object.keys(obj.variables).forEach((key) => {
-      name += key + '-'
+      name += `${key}-`
     })
   }
 

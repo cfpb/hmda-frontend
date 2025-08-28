@@ -1,7 +1,7 @@
 import React from 'react'
 import Alert from '../Alert'
 
-const ServerErrors = ({ errors }) => {
+function ServerErrors({ errors }) {
   if (!errors.length) return null
 
   return (

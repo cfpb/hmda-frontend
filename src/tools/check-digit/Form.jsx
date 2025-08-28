@@ -86,8 +86,7 @@ class Form extends Component {
 
     const label = this.label[whichApp]
     const buttonText = this.buttonText[whichApp]
-    const buttonDisabled =
-      errors.length === 0 && inputValue !== '' ? false : true
+    const buttonDisabled = !(errors.length === 0 && inputValue !== '')
     const errorClass = errors.length !== 0 ? 'input-error' : ''
 
     return (

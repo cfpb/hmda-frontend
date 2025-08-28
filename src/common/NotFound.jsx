@@ -4,7 +4,7 @@ import Heading from './Heading.jsx'
 
 import './NotFound.css'
 
-const NotFound = () => {
+function NotFound() {
   return (
     <div className='NotFound' id='main-content'>
       <Heading

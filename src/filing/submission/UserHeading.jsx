@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import './UserHeading.css'
 
-const UserHeading = (props) => {
+function UserHeading(props) {
   if (!props.period) return null
 
   return (

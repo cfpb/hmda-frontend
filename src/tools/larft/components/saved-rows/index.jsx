@@ -7,7 +7,7 @@ import { SavedSection } from './SavedSection'
  * Displays tables containing any user uploaded/saved
  * LAR and TS data.
  */
-export const SavedRows = () => {
+export function SavedRows() {
   const ts = useSelector(({ larft }) => larft.ts)
   const lars = useSelector(({ larft }) => larft.lars)
 
@@ -20,16 +20,24 @@ export const SavedRows = () => {
   )
 }
 
-const Header = () => (
-  <h2 className='saved clickable' onClick={scrollToFileActions}>
-    Saved Records
-  </h2>
-)
+function Header() {
+  return (
+    <h2 className='saved clickable' onClick={scrollToFileActions}>
+      Saved Records
+    </h2>
+  )
+}
 
-const TSheet = ({ rows }) => {
+function TSheet({ rows }) {
   return <SavedSection rows={rows} title='Transmittal Sheet' id='saved-ts' />
 }
 
-const LARs = ({ rows }) => (
-  <SavedSection rows={rows} title='Loan Application Register' id='saved-lars' />
-)
+function LARs({ rows }) {
+  return (
+    <SavedSection
+      rows={rows}
+      title='Loan Application Register'
+      id='saved-lars'
+    />
+  )
+}

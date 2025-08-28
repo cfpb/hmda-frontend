@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 
 import './Alert.css'
 
-const Alert = ({ type = 'info', heading, message, children, id }) => {
-  let alertClass = `alert alert-${type}`
+function Alert({ type = 'info', heading, message, children, id }) {
+  const alertClass = `alert alert-${type}`
 
   return (
     <div id={id} className={alertClass}>

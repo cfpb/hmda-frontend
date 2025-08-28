@@ -4,7 +4,7 @@ import NotFound from '../common/NotFound'
 import { withAppContext } from '../common/appContextHOC'
 import './index.css'
 
-const Documentation = () => {
+function Documentation() {
   // Redirects setup to handle bookmarked pages and general navigation to the old doc paths
   // Redirects point to Docusaurus base route
   return (

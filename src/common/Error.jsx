@@ -1,7 +1,7 @@
 import React from 'react'
 import Alert from './Alert'
 
-const Error = ({ error }) => {
+function Error({ error }) {
   if (!error) return null
 
   const standard = (
@@ -20,7 +20,7 @@ const Error = ({ error }) => {
   return (
     <div style={{ marginTop: '4px' }} className='Error'>
       <Alert type='error'>
-        {+error.status === 429 ? rateLimited : standard}
+        {Number(error.status) === 429 ? rateLimited : standard}
       </Alert>
     </div>
   )

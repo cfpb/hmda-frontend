@@ -149,7 +149,7 @@ const Aggregate2 = React.forwardRef((props, ref) => {
 
       <ReportPagination
         currentPage={currentPage}
-        isBottom={true}
+        isBottom
         isPageLoading={isPageLoading}
         isVisible={isVisible}
         onPageChange={handlePageChange}

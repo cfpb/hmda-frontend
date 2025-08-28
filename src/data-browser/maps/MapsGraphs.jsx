@@ -7,7 +7,7 @@ import { withAppContext } from '../../common/appContextHOC.jsx'
 import useToolAnnouncement from '../../common/useToolAnnouncement.jsx'
 import Alert from '../../common/Alert.jsx'
 
-const MapsGraphs = (props) => {
+function MapsGraphs(props) {
   const toolAnnouncement = useToolAnnouncement({
     toolName: 'maps',
     config: props.config,
@@ -24,16 +24,10 @@ const MapsGraphs = (props) => {
               popular variables
             </a>
             . For help getting started, visit the{' '}
-            <a href={'/documentation/faq/data-browser-maps-faq'}>
-              HMDA Maps FAQ
-            </a>
+            <a href='/documentation/faq/data-browser-maps-faq'>HMDA Maps FAQ</a>
             . For advanced analysis, use the <code>Download Data</code> button
             to access all{' '}
-            <a
-              href={
-                '/documentation/publications/loan-level-datasets/lar-data-fields'
-              }
-            >
+            <a href='/documentation/publications/loan-level-datasets/lar-data-fields'>
               publicly available data fields
             </a>
             . Additional questions/suggestions can be sent to{' '}
@@ -41,11 +35,11 @@ const MapsGraphs = (props) => {
           </p>
         </Heading>
       </div>
-      {toolAnnouncement && (
+      {toolAnnouncement ? (
         <Alert heading={toolAnnouncement.heading} type={toolAnnouncement.type}>
           <p>{toolAnnouncement.message}</p>
         </Alert>
-      )}
+      ) : null}
       <MapContainer {...props} />
     </div>
   )

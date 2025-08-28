@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
 import { humanFileSize } from '../../common/numberServices.js'
 import { useS3FileHeaders } from '../../common/S3Integrations.jsx'
-import { useEffect } from 'react'
 
-export const CombinedMLAR = ({ year, setHasCombined, hasCombined }) => {
+export function CombinedMLAR({ year, setHasCombined, hasCombined }) {
   const [includeHeader, setIncludeHeader] = useState(false)
 
   const href = formatURL(year, includeHeader)
@@ -91,6 +90,6 @@ const formatURL = (year, withHeader) => {
     baseFilename += '_header' // Headered Filename adjustment
   }
 
-  href += baseFilename + '.zip'
+  href += `${baseFilename}.zip`
   return href
 }

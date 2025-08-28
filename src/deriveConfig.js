@@ -21,7 +21,7 @@ export function deriveConfig(baseConfig) {
 
 /**
  * Types - Useful for a config generator tool?
- **/
+ * */
 
 const FilingPeriodStatus = {
   endDate: {
@@ -65,11 +65,11 @@ const FilingPeriodStatus = {
 
 /**
  * Calculators
- **/
+ * */
 
 const calcFilingPeriodStatus = (config) => {
   const now = Date.now()
-  const timedGuards = config.timedGuards
+  const { timedGuards } = config
   const dateIsDeadline = [false, true, true]
 
   const filingPeriodStatus = {}
@@ -162,7 +162,7 @@ const calcDefaultDocsPeriod = (config) =>
 
 /**
  * Helpers
- **/
+ * */
 
 function potentialYears(start = 2017) {
   let current = start < 2017 ? 2017 : start
@@ -184,7 +184,7 @@ function potentialYears(start = 2017) {
  */
 export function parseTimedGuardDate(str, isDeadline = false) {
   let [month, day, year] = str.split('/').map((s) => parseInt(s, 10))
-  month = month - 1 // JS months are 0 indexed
+  month -= 1 // JS months are 0 indexed
 
   // The addition of abs() is a workaround for our Cypress testing pods, which seem to run in UTC
   const offset = Math.abs(easternOffsetHours())

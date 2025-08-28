@@ -2,7 +2,7 @@ import React from 'react'
 import Alert from '../../common/Alert'
 import { HeaderDocsLink } from './Header'
 
-export const HeaderClosed = ({ endDate, period }) => {
+export function HeaderClosed({ endDate, period }) {
   return (
     <Alert heading={`The ${period} filing period is closed.`} type='warning'>
       <>

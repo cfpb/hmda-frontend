@@ -1,7 +1,7 @@
 import NewIndicator from '../NewIndicator'
 import { ExpandableCard } from '../ExpandableCard'
 
-export const DataDocs = () => {
+export function DataDocs() {
   return (
     <article>
       <h3>Data Documentation</h3>
@@ -13,7 +13,7 @@ export const DataDocs = () => {
         <li>
           <a
             href='https://files.consumerfinance.gov/f/documents/cfpb_beginners-guide-accessing-using-hmda-data_guide_2022-06.pdf'
-            download={true}
+            download
           >
             A Beginner's Guide to HMDA Data
           </a>

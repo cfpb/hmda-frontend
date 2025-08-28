@@ -4,10 +4,10 @@ import Heading from '../../common/Heading.jsx'
 
 import './Selector.css'
 
-const Selector = (props) => {
+function Selector(props) {
   const handleChange = (option) => {
     if (props.selectorCallback) props.selectorCallback(option.data)
-    let url = props.match.url
+    let { url } = props.match
     if (!url.match(/\/$/)) url += '/'
     props.history.push({
       pathname: url + option.value,
@@ -20,7 +20,7 @@ const Selector = (props) => {
       <Select
         onChange={handleChange}
         placeholder={props.placeholder}
-        searchable={true}
+        searchable
         autoFocus
         menuIsOpen
         options={props.options}

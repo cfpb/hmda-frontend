@@ -42,7 +42,7 @@ const defaultPagination = {
 
 const defaultFilingPeriod = config && config.defaultDocsPeriod
 
-//empty action logger, temporary / for debugging
+// empty action logger, temporary / for debugging
 export const empty = (state = {}, action) => {
   return state
 }

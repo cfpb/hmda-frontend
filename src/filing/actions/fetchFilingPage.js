@@ -9,7 +9,7 @@ export default function fetchFilingPage(lei, page) {
 
   return (dispatch, getState) => {
     const appState = getState().app
-    const filingPeriod = appState.filingPeriod
+    const { filingPeriod } = appState
     const alreadyFetched = appState.filings[lei].submissionPages[page]
 
     if (!filingPeriod || alreadyFetched) return

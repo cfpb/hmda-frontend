@@ -85,7 +85,7 @@ function removeSelected(selected, options) {
 }
 
 function formatWithCommas(str = '') {
-  str = str + ''
+  str = String(str)
   let formatted = ''
   let comma = ','
   for (let i = str.length; i > 0; i -= 3) {
@@ -106,7 +106,7 @@ function createMSAOption(id, year) {
   const stateLabel = MSATOSTATE[year][id].map((v) => STATEOBJ[v]).join(' - ')
   const msaName = msaToName[year][id]
   return {
-    value: '' + id,
+    value: `${id}`,
     label: `${id} - ${msaName} - ${stateLabel}`,
     state: stateLabel,
     other: msaName,
@@ -127,7 +127,7 @@ function createCountyOption(id, year) {
 function createItemOptions(props) {
   const subsetYear = props.location.pathname.split('/')[3]
   const statesWithMsas = stateToMsas[subsetYear]
-  let itemOptions = {
+  const itemOptions = {
     nationwide: [{ value: 'nationwide', label: 'NATIONWIDE' }],
     states: [],
     msamds: [],
@@ -186,7 +186,7 @@ function isNationwide(category) {
 }
 
 function before2018(year) {
-  return +year < 2018
+  return Number(year) < 2018
 }
 
 function getInstitutionIdKey(year) {

@@ -14,7 +14,7 @@ const Paragraphs = {
       return `The One Year files incorporate adjustments to the national HMDA datasets, including the Loan Application Register (LAR) and Transmittal Sheet (TS), made in the 12 months following the reporting deadline.`
 
     return `The One Year files incorporate adjustments to the ${year} national HMDA datasets, submitted as of ${freezeDate}. They include all updates to the Loan Application Register (LAR) and Transmittal Sheet (TS) made in the 12 months following the ${year} reporting deadline of March 1, ${
-      +year + 1
+      Number(year) + 1
     }. Files are available to download in both .csv and pipe delimited text file formats.`
   },
   threeYear: (freezeDate, year) => {
@@ -22,7 +22,7 @@ const Paragraphs = {
       return `The Three Year files incorporate adjustments to the national HMDA datasets, including the Loan Application Register (LAR) and Transmittal Sheet (TS), made in the 36 months following the reporting deadline.`
 
     return `The Three Year files incorporate adjustments to the ${year} national HMDA datasets, submitted as of ${freezeDate}. They include all updates to the Loan Application Register (LAR) and Transmittal Sheet (TS) made in the 36 months following the ${year} reporting deadline of March 1, ${
-      +year + 1
+      Number(year) + 1
     }. Files are available to download in both .csv and pipe delimited text file formats.`
   },
 }
@@ -36,7 +36,7 @@ const Datasets = {
 /**
  * A shared component used to render Snapshot, One Year, and Three Year pages
  */
-export const SnapshotDataset = ({ label, match, config, dataKey }) => {
+export function SnapshotDataset({ label, match, config, dataKey }) {
   const { params, url } = match
   const { year } = params
   const { snapshot, shared } = config.dataPublicationYears
@@ -66,22 +66,22 @@ export const SnapshotDataset = ({ label, match, config, dataKey }) => {
             an upper limit and may contain outliers.
           </p>
         )}
-        {dataForYear.specialNote && (
+        {dataForYear.specialNote ? (
           <p className='text-small'>{dataForYear.specialNote}</p>
-        )}
+        ) : null}
       </Heading>
 
       <YearSelector year={year} url={url} years={years} />
 
-      {year && (
+      {year ? (
         <div className='grid'>
           <div className='item'>
-            <Heading type={4} headingText={year + ' Datasets'} />
+            <Heading type={4} headingText={`${year} Datasets`} />
             {renderDatasets(dataForYear)}
           </div>
           <div className='item'>{renderDocumentation(dataForYear, year)}</div>
         </div>
-      )}
+      ) : null}
     </div>
   )
 }

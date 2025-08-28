@@ -2,9 +2,9 @@ import React from 'react'
 
 import './LoadingIcon.css'
 
-const LoadingIcon = (props) => {
+function LoadingIcon(props) {
   let className = 'LoadingIconWrapper'
-  if (props.className) className += ' ' + props.className
+  if (props.className) className += ` ${props.className}`
   return (
     <div className={className}>
       <div className='LoadingIcon' />

@@ -6,7 +6,7 @@ import fetchMsas from './fetchMsas.js'
 
 const MSA_MDS = {}
 
-const MsaMds = (props) => {
+function MsaMds(props) {
   const { msaMds: propsMsaMds, match } = props
 
   if (propsMsaMds) {
@@ -51,7 +51,7 @@ const MsaMds = (props) => {
 
   const options = msaMds.map((val) => {
     let label = val.id
-    if (val.name) label += ' - ' + val.name
+    if (val.name) label += ` - ${val.name}`
     else label = val.id.toUpperCase()
     return { value: val.id, label, data: val }
   })

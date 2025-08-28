@@ -6,7 +6,7 @@ import * as AccessToken from '../../common/api/AccessToken'
 
 const defaultPubState = { fetched: false, url: null, error: null }
 
-const PublicationRows = ({ institution }) => {
+function PublicationRows({ institution }) {
   const [mlar, setMlar] = useState({ ...defaultPubState })
   const [irs, setIrs] = useState({ ...defaultPubState })
   const [loading, setLoading] = useState(true)
@@ -16,7 +16,7 @@ const PublicationRows = ({ institution }) => {
   // Check if Publication files already exist in S3
   useEffect(() => {
     if (!loading) return
-    const env = !!window.location.host.match(/^ffiec/) ? 'prod' : 'dev'
+    const env = window.location.host.match(/^ffiec/) ? 'prod' : 'dev'
     const baseUrl = 'https://s3.amazonaws.com/cfpb-hmda-public/'
 
     const irsUrl = `${baseUrl}${env}/reports/disclosure/${activityYear}/${lei}/nationwide/IRS.csv`
@@ -37,7 +37,7 @@ const PublicationRows = ({ institution }) => {
           })),
         )
         .catch((status) => {
-          let error = status === 0 ? 'CORS Error' : 'No file'
+          const error = status === 0 ? 'CORS Error' : 'No file'
           setter((state) => ({ ...state, fetched: true, error }))
         })
     })
@@ -53,7 +53,7 @@ const PublicationRows = ({ institution }) => {
     const latestURL = `/v2/filing/institutions/${lei}/filings/${activityYear}/submissions/latest`
     const headers = {}
     const token = AccessToken.get()
-    if (token) headers['Authorization'] = `Bearer ${token}`
+    if (token) headers.Authorization = `Bearer ${token}`
     fetchSequenceNumber(latestURL, { headers }, setSeqNum)
   }, [setSeqNum, lei, activityYear])
 

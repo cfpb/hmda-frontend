@@ -25,7 +25,7 @@ const defaultUploads = {
 export default (state = defaultUploads, action) => {
   const upload = state[action.lei]
     ? state[action.lei]
-    : state['__DEFAULT_UPLOAD__']
+    : state.__DEFAULT_UPLOAD__
 
   switch (action.type) {
     case SELECT_FILE:
@@ -82,7 +82,7 @@ export default (state = defaultUploads, action) => {
     case REFRESH_STATE:
       return {
         ...state,
-        [action.lei]: state['__DEFAULT_UPLOAD__'],
+        [action.lei]: state.__DEFAULT_UPLOAD__,
       }
     default:
       return state

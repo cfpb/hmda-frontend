@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import { detect } from 'detect-browser'
 import ConfirmationModal from './modals/confirmationModal/container.jsx'
 import BrowserBlocker from './common/BrowserBlocker.jsx'
 import Loading from '../common/LoadingIcon.jsx'
@@ -8,7 +9,6 @@ import { refresh, login } from './utils/keycloak.js'
 import { getKeycloak, initKeycloak } from '../common/api/Keycloak.js'
 import isRedirecting from './actions/isRedirecting.js'
 import updateFilingPeriod from './actions/updateFilingPeriod.js'
-import { detect } from 'detect-browser'
 import { FilingAnnouncement } from './common/FilingAnnouncement'
 import { splitYearQuarter } from './api/utils.js'
 import { PERIODS } from '../deriveConfig'
@@ -19,7 +19,7 @@ import '../common/Header.css'
 
 const browser = detect()
 
-const AppContainer = ({
+function AppContainer({
   children,
   dispatch,
   config,
@@ -30,12 +30,12 @@ const AppContainer = ({
   history,
   location,
   match,
-}) => {
+}) {
   const [keycloakConfigured, setKeycloakConfigured] = useState(false)
   const [authenticationAttempted, setAuthenticationAttempted] = useState(false)
 
   const isOldBrowser = () => {
-    return browser.name === 'ie' && +browser.version.split('.')[0] < 11
+    return browser.name === 'ie' && Number(browser.version.split('.')[0]) < 11
   }
 
   const isHome = () => {
@@ -50,14 +50,14 @@ const AppContainer = ({
   }
 
   const redirectToDefaultPeriod = (previous) => {
-    const defaultPeriod = config.defaultPeriod
+    const { defaultPeriod } = config
     dispatch(updateFilingPeriod(defaultPeriod))
     history.replace(location.pathname.replace(previous, defaultPeriod))
   }
 
   const redirectToReachablePeriod = (period) => {
     const quarters = PERIODS.filter((p) => p.includes('Q')).map(
-      (period) => '-' + period,
+      (period) => `-${period}`,
     )
     const [year, _quarter] = splitYearQuarter(period)
 
@@ -108,7 +108,7 @@ const AppContainer = ({
       } catch (error) {
         setAuthenticationAttempted(true)
         console.error('Failed to initialize Keycloak:', error)
-        history.replace('/filing/' + config.defaultPeriod + '/')
+        history.replace(`/filing/${config.defaultPeriod}/`)
       }
     }
 

@@ -6,7 +6,7 @@ import { collapseAll } from '../Accordion'
  *
  * @param {Array<ParsedRow>} rows
  */
-export const ParsedTable = ({ rows }) => {
+export function ParsedTable({ rows }) {
   if (!rows.length) return <NoMatches />
 
   return (
@@ -33,23 +33,25 @@ export const ParsedTable = ({ rows }) => {
   )
 }
 
-const NoMatches = () => (
-  <div className='no-matches'>No fields match your filter criteria</div>
-)
+function NoMatches() {
+  return <div className='no-matches'>No fields match your filter criteria</div>
+}
 
-const TableHeader = () => (
-  <thead>
-    <tr>
-      <th>Column</th>
-      <th className='space-between'>
-        <span>Label</span>
-        <span>
-          <button className='collapse-all' onClick={collapseAll}>
-            Collapse
-          </button>
-        </span>
-      </th>
-      <th>Value</th>
-    </tr>
-  </thead>
-)
+function TableHeader() {
+  return (
+    <thead>
+      <tr>
+        <th>Column</th>
+        <th className='space-between'>
+          <span>Label</span>
+          <span>
+            <button className='collapse-all' onClick={collapseAll}>
+              Collapse
+            </button>
+          </span>
+        </th>
+        <th>Value</th>
+      </tr>
+    </thead>
+  )
+}

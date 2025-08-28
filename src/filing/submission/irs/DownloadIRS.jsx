@@ -1,8 +1,7 @@
 import FileSaver from 'file-saver'
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { IRS } from '../../../common/s3/fileProxy.js'
 import { fetchData } from '../../api/fetch.js'
-import { useCallback } from 'react'
 import { error } from '../../utils/log.js'
 import { DownloadStatus } from './DownloadStatus'
 
@@ -54,7 +53,7 @@ const download = (period, lei, opts) => {
  * @param {String} props.period YearQuarter
  * @param {String} props.lei Institution ID
  */
-export const DownloadIRS = ({ period, lei }) => {
+export function DownloadIRS({ period, lei }) {
   const [irsReady, setIrsReady] = useState(null)
 
   const clickHandler = useCallback(() => {

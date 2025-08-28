@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const ValidationStatus = ({ items }) => {
+export function ValidationStatus({ items }) {
   if (!items || !items.length) return null
   const { type, text } = items[0]
   return (

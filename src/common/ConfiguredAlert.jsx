@@ -1,7 +1,7 @@
 import React from 'react'
 import Alert from './Alert'
 
-const ConfiguredAlert = ({ message, heading, type, link }) => {
+function ConfiguredAlert({ message, heading, type, link }) {
   return (
     <Alert heading={heading} type={type}>
       <p>
@@ -12,7 +12,7 @@ const ConfiguredAlert = ({ message, heading, type, link }) => {
   )
 }
 
-const Anchor = ({ link }) => {
+function Anchor({ link }) {
   if (!link) return null
   const { text, url } = link
   if (!text || !url) return null

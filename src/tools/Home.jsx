@@ -8,7 +8,7 @@ import Verify from '../common/images/tools/verify_color.png'
 import './Home.css'
 import ImageCard from '../data-browser/ImageCard.jsx'
 
-const Home = () => {
+function Home() {
   const LARFormattingOptions = [
     { name: 'LAR Formatting', link: '/tools/lar-formatting' },
     {
@@ -32,7 +32,7 @@ const Home = () => {
           description='Provides rate spreads for HMDA reportable loans
           with a final action date on or after January 1st, 2018. Average Prime Offer Rates (APOR) are also available on this page.'
           enabled
-          url={'/tools/rate-spread'}
+          url='/tools/rate-spread'
           image={Calculator}
         />
 

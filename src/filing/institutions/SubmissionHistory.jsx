@@ -17,16 +17,15 @@ import LoadingIcon from '../../common/LoadingIcon.jsx'
  * @param {string} lei - Institutions Identifier
  */
 
-const SubmissionHistory = (props) => {
+function SubmissionHistory(props) {
   const { submissionPages, links, lei } = props
 
   const [page, setPage] = useState('1')
   const dispatch = useDispatch()
 
   const handleToggleClick = useCallback((lei) => {
-    let accordionButton = document.getElementById(`submissions-button-${lei}`)
-    let expanded =
-      accordionButton.getAttribute('aria-expanded') === 'false' ? false : true
+    const accordionButton = document.getElementById(`submissions-button-${lei}`)
+    const expanded = accordionButton.getAttribute('aria-expanded') !== 'false'
 
     document
       .getElementById(`submissions-button-${lei}`)
@@ -42,7 +41,7 @@ const SubmissionHistory = (props) => {
       dispatch(fetchFilingPage(lei, targetPage))
 
       setTimeout(() => {
-        let historyContainer = document.getElementById(`history-${lei}`)
+        const historyContainer = document.getElementById(`history-${lei}`)
         if (historyContainer)
           historyContainer.scrollIntoView({ behavior: 'smooth' })
       }, 0)
@@ -85,11 +84,13 @@ const SubmissionHistory = (props) => {
               clickHandler={handlePaginationClick}
               links={links}
               page={page}
-              top={true}
+              top
               hidden={!hasSubmissions}
             />
             <ol>
-              {!pageSubmissions.length && hasSubmissions && <LoadingIcon />}
+              {!pageSubmissions.length && hasSubmissions ? (
+                <LoadingIcon />
+              ) : null}
               {pageSubmissions.map((submission, i) => {
                 const startDate = ordinal(new Date(submission.start))
                 const endDate = ordinal(new Date(submission.end))
@@ -108,8 +109,7 @@ const SubmissionHistory = (props) => {
                   return (
                     <li key={i} value={submission.id.sequenceNumber}>
                       Filing progress on {startDate}: <strong>{message}</strong>
-                      {signedOn},{' '}
-                      <CSVDownload inline={true} submission={submission} />
+                      {signedOn}, <CSVDownload inline submission={submission} />
                     </li>
                   )
                 }

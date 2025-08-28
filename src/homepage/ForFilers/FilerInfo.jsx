@@ -3,7 +3,7 @@ import { FilingDocs } from './FilingDocs'
 import { FilingGuides } from './FilingGuides'
 import iconSprite from '../../common/uswds/img/sprite.svg'
 
-export const FilerInfo = ({ hideContent }) => {
+export function FilerInfo({ hideContent }) {
   return (
     <>
       <h2>
@@ -13,7 +13,7 @@ export const FilerInfo = ({ hideContent }) => {
           focusable='false'
           role='img'
         >
-          <use href={`${iconSprite}#account_balance`}></use>
+          <use href={`${iconSprite}#account_balance`} />
         </svg>{' '}
         Info for Filers
       </h2>

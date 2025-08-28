@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
+import { Provider } from 'react-redux'
 import Heading from '../../common/Heading.jsx'
 import SearchList from './SearchList.jsx'
 import YearSelector from '../../common/YearSelector.jsx'
 import { withAppContext } from '../../common/appContextHOC.jsx'
 import { withYearValidation } from '../../common/withYearValidation.jsx'
 import { CombinedMLAR } from './CombinedMLAR.jsx'
-import { Provider } from 'react-redux'
 import s3Store from '../../common/s3/store'
 
 import './ModifiedLar.css'
 
-const ModifiedLar = (props) => {
+function ModifiedLar(props) {
   const [hasCombined, setHasCombined] = useState(false)
   const {
     url,
@@ -20,7 +20,7 @@ const ModifiedLar = (props) => {
   const years = mlar || shared
 
   return (
-    <React.Fragment>
+    <>
       <div className='ModifiedLar' id='main-content'>
         <Heading
           type={1}
@@ -54,7 +54,7 @@ const ModifiedLar = (props) => {
           />
         </Provider>
       </div>
-    </React.Fragment>
+    </>
   )
 }
 
@@ -94,7 +94,7 @@ const BaseParagraphText2 = (
 const CombinedParagraphAddition =
   " You may also download a combined file containing all financial institutions' modified LAR records in a single file. The combined file is updated weekly on Mondays."
 
-export const UpdateFrequency = ({ year }) => {
+export function UpdateFrequency({ year }) {
   const currentYear = new Date().getFullYear()
   return (
     <p className='updateSchedule'>

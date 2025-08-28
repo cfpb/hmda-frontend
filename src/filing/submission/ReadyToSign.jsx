@@ -1,8 +1,10 @@
 import React from 'react'
 import Alert from '../../common/Alert.jsx'
 
-const SubmissionPageInfo = ({ isPassed }) => {
-  let type, heading, content
+function SubmissionPageInfo({ isPassed }) {
+  let type
+  let heading
+  let content
 
   if (isPassed) {
     type = 'warning'

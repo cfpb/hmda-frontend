@@ -8,7 +8,7 @@ import ImageCard from './ImageCard.jsx'
 
 import './Home.css'
 
-const Home = (props) => {
+function Home(props) {
   const { publicationReleaseYear } = props.config
   return (
     <div className='home'>
@@ -54,7 +54,7 @@ const Home = (props) => {
         <ImageCard
           year={publicationReleaseYear}
           title='Maps'
-          caption={'Explore, Compare, Share'}
+          caption='Explore, Compare, Share'
           path='maps'
           enabled
           description='Explore HMDA datasets using an interactive map with custom filters'

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Alert from '../../common/Alert.jsx'
 
-const InputError = ({ isSubmitted, errors }) => {
+function InputError({ isSubmitted, errors }) {
   if (isSubmitted && errors.length > 0) {
     return (
       <Alert type='error' heading='Sorry!'>

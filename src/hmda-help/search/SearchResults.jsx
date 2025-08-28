@@ -7,11 +7,11 @@ import SearchResultActions from './SearchResultActions'
 
 import './SearchResults.css'
 
-const SearchResults = ({ institutions, handleDeleteClick, error }) => {
+function SearchResults({ institutions, handleDeleteClick, error }) {
   const tableRef = useRef(new Map())
 
   if (!institutions || institutions.length === 0) {
-    return null;
+    return null
   }
 
   institutions.sort((a, b) => (b.activityYear > a.activityYear ? 1 : -1))
@@ -39,74 +39,73 @@ const SearchResults = ({ institutions, handleDeleteClick, error }) => {
             if (!institution)
               return (
                 <React.Fragment key={i}>
-                  <tr></tr>
+                  <tr />
                 </React.Fragment>
               )
-            else
-              return (
-                <React.Fragment key={i}>
-                  <tr>
-                    <td>{institution.activityYear}</td>
-                    <td>{institution.lei}</td>
-                    <td>{institution.respondentName}</td>
-                    <td>{institution.emailDomains}</td>
-                    <td>{institution.taxId}</td>
-                    <td>{institution.agency}</td>
-                    <td>{institution.quarterlyFiler.toString()}</td>
-                    <SearchResultActions
-                      institution={institution}
-                      index={i}
-                      error={error}
-                      handleDeleteClick={handleDeleteClick}
-                      tables={tableRef.current}
-                    />
-                  </tr>
-                  <tr
-                    className='otherData hidden'
-                    ref={(element) => tableRef.current.set(i, element)}
-                  >
-                    <td colSpan={colCount}>
-                      <table>
-                        <thead>
-                          <tr>
-                            <th>Type</th>
-                            <th>2017 ID</th>
-                            <th>RSSD</th>
-                            <th>Location</th>
-                            <th>Parent</th>
-                            <th>Assets</th>
-                            <th>Other Lender Code</th>
-                            <th>Top Holder</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>{institution.institutionType}</td>
-                            <td>{institution.institutionId2017}</td>
-                            <td>{institution.rssd}</td>
-                            <td>
-                              {institution.respondentCity},{' '}
-                              {institution.respondentState}
-                            </td>
-                            <td>
-                              {institution.parentName}
-                              <br />
-                              <span>{institution.parentIdRssd}</span>
-                            </td>
-                            <td>{institution.assets}</td>
-                            <td>{institution.otherLenderCode}</td>
-                            <td>
-                              {institution.topHolderName}
-                              <br />
-                              <span>{institution.topHolderIdRssd}</span>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                </React.Fragment>
-              )
+            return (
+              <React.Fragment key={i}>
+                <tr>
+                  <td>{institution.activityYear}</td>
+                  <td>{institution.lei}</td>
+                  <td>{institution.respondentName}</td>
+                  <td>{institution.emailDomains}</td>
+                  <td>{institution.taxId}</td>
+                  <td>{institution.agency}</td>
+                  <td>{institution.quarterlyFiler.toString()}</td>
+                  <SearchResultActions
+                    institution={institution}
+                    index={i}
+                    error={error}
+                    handleDeleteClick={handleDeleteClick}
+                    tables={tableRef.current}
+                  />
+                </tr>
+                <tr
+                  className='otherData hidden'
+                  ref={(element) => tableRef.current.set(i, element)}
+                >
+                  <td colSpan={colCount}>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Type</th>
+                          <th>2017 ID</th>
+                          <th>RSSD</th>
+                          <th>Location</th>
+                          <th>Parent</th>
+                          <th>Assets</th>
+                          <th>Other Lender Code</th>
+                          <th>Top Holder</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>{institution.institutionType}</td>
+                          <td>{institution.institutionId2017}</td>
+                          <td>{institution.rssd}</td>
+                          <td>
+                            {institution.respondentCity},{' '}
+                            {institution.respondentState}
+                          </td>
+                          <td>
+                            {institution.parentName}
+                            <br />
+                            <span>{institution.parentIdRssd}</span>
+                          </td>
+                          <td>{institution.assets}</td>
+                          <td>{institution.otherLenderCode}</td>
+                          <td>
+                            {institution.topHolderName}
+                            <br />
+                            <span>{institution.topHolderIdRssd}</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </React.Fragment>
+            )
           })}
         </tbody>
       </table>

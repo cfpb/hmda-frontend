@@ -6,25 +6,29 @@ import { ExternalLink } from './ExternalLink'
 import './MailingListSignupForm.css'
 
 // Common form heading
-const Heading = () => (
-  <h3 className='title'>
-    <label htmlFor='email' className='email-label'>
-      Join the HMDA Mailing List
-    </label>
-  </h3>
-)
+function Heading() {
+  return (
+    <h3 className='title'>
+      <label htmlFor='email' className='email-label'>
+        Join the HMDA Mailing List
+      </label>
+    </h3>
+  )
+}
 
-const PrivacyStatement = () => (
-  <ExternalLink
-    url='https://www.consumerfinance.gov/privacy/email-campaign-privacy-act-statement/'
-    className='privacy-statement'
-  >
-    See Privacy Act statement
-  </ExternalLink>
-)
+function PrivacyStatement() {
+  return (
+    <ExternalLink
+      url='https://www.consumerfinance.gov/privacy/email-campaign-privacy-act-statement/'
+      className='privacy-statement'
+    >
+      See Privacy Act statement
+    </ExternalLink>
+  )
+}
 
 /** A compact HMDA Mailing List Subscription form */
-export const MailingSignupSmall = () => {
+export function MailingSignupSmall() {
   const { emailAddress, onEmailChange, onSubmit, currentStatus, submitButton } =
     useSubscriptionLogic({
       endpoint: SUBSCRIPTION_ENDPOINT,
@@ -32,7 +36,7 @@ export const MailingSignupSmall = () => {
     })
 
   return (
-    <form className={'MailingListSignupForm small'} onSubmit={onSubmit}>
+    <form className='MailingListSignupForm small' onSubmit={onSubmit}>
       <Heading />
       <EmailInput {...{ emailAddress, onEmailChange }} />
       {currentStatus}
@@ -45,7 +49,7 @@ export const MailingSignupSmall = () => {
 }
 
 /** A more spacious HMDA Mailing List Subscription form */
-export const MailingSignupLarge = () => {
+export function MailingSignupLarge() {
   const { emailAddress, onEmailChange, onSubmit, currentStatus, submitButton } =
     useSubscriptionLogic({
       endpoint: SUBSCRIPTION_ENDPOINT,
@@ -53,7 +57,7 @@ export const MailingSignupLarge = () => {
     })
 
   return (
-    <form className={'MailingListSignupForm large'} onSubmit={onSubmit}>
+    <form className='MailingListSignupForm large' onSubmit={onSubmit}>
       <div className='inline'>
         <Heading />
         <EmailInput {...{ emailAddress, onEmailChange }} />

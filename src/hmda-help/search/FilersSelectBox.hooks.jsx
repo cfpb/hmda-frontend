@@ -40,7 +40,7 @@ export const useInputHandler = ({ setValidationMsgs, onSelect }) => {
   )
 }
 
-/*** Save drop-down selection */
+/** * Save drop-down selection */
 export const useSelectionHandler = ({
   setIsInitial,
   setSelectedValue,

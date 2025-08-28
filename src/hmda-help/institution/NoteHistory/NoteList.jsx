@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import NotesItem from './NoteItem'
 
-const NoteList = ({ items, isMenuOpen }) => {
+function NoteList({ items, isMenuOpen }) {
   const [openItem, setOpenItem] = useState(null)
 
   let classname = 'note-list'

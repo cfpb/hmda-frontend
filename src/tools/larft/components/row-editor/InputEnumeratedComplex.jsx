@@ -5,7 +5,7 @@
  * @param {Object} row LAR/TS row content
  * @param {Object} common Additional input attributes
  */
-export const InputEnumeratedComplex = ({ column, row, ...common }) => {
+export function InputEnumeratedComplex({ column, row, ...common }) {
   const { enumerations } = column
   const needsSelector = enumerations.length >= 3
   const userInput = row[column.fieldName]
@@ -23,7 +23,7 @@ export const InputEnumeratedComplex = ({ column, row, ...common }) => {
   return <span className='enums'>{content}</span>
 }
 
-const Selector = ({ value, enumerations, name, ...common }) => {
+function Selector({ value, enumerations, name, ...common }) {
   return (
     <select {...common} value={value}>
       {enumerations.map((e, idx) => {

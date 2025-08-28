@@ -43,11 +43,11 @@ class CSVUpload extends PureComponent {
       })
     }
 
-    const filename = prefix + '-' + file.name
+    const filename = `${prefix}-${file.name}`
 
     this.setState({
       isFetching: false,
-      filename: filename,
+      filename,
     })
 
     return fileSaver.saveAs(
@@ -122,6 +122,7 @@ class CSVUpload extends PureComponent {
             <a
               href='https://ffiec.cfpb.gov/documentation/api/check-digit/#batch-check-digit-generation'
               target='_blank'
+              rel='noreferrer'
             >
               the API documentation
             </a>{' '}

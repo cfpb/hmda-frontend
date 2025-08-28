@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const FilteredOutList = ({ list = [], title }) => {
+export function FilteredOutList({ list = [], title }) {
   if (!list.length) return null
 
   return (

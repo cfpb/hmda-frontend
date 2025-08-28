@@ -18,13 +18,13 @@ function validateEmailFormat(email) {
  * @param {string} error
  * @param {string} success
  */
-const StatusMessage = ({ invalid, error, success }) => {
+function StatusMessage({ invalid, error, success }) {
   /**
    * Wrapper for displaying status alert
    * @param {string} type Determines the Alert color scheme
    * @param {string} message Text content
    */
-  const Status = ({ type, message }) => {
+  function Status({ type, message }) {
     if (!message) return
     // Note: Alert's child must be an element, hence the use of a Fragment below
     return (
@@ -50,11 +50,13 @@ const StatusMessage = ({ invalid, error, success }) => {
  * Submit button that displays processing status
  * @param {boolean} processing
  */
-const SubmitButton = ({ processing }) => (
-  <button className='submitButton' type='submit' disabled={processing}>
-    {processing ? 'Processing...' : 'Subscribe'}
-  </button>
-)
+function SubmitButton({ processing }) {
+  return (
+    <button className='submitButton' type='submit' disabled={processing}>
+      {processing ? 'Processing...' : 'Subscribe'}
+    </button>
+  )
+}
 
 /**
  * Logic for subscribing an email address to a GovDelivery topic,
@@ -112,7 +114,6 @@ export const useSubscriptionLogic = ({ endpoint, topicId }) => {
       setInvalid('Invalid email address')
       setError(null)
       setSuccess(null)
-      return
     } else {
       const content = `email=${emailAddress}&code=${topicId}`
       setSuccess(null)

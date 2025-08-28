@@ -69,7 +69,7 @@ export function useChangeLogFilter(initState = defaultState) {
 
   /* Apply filtering logic to a dataset */
   const apply = (sourceData = {}, filterLists = filters) => {
-    let result = { ...JSON.parse(JSON.stringify(sourceData)) }
+    const result = { ...JSON.parse(JSON.stringify(sourceData)) }
 
     Object.keys(result).forEach((date) => {
       // Array of Changes on this date

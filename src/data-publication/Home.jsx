@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import Heading from '../common/Heading.jsx'
 import YearSelector from '../common/YearSelector'
 import { withAppContext } from '../common/appContextHOC.jsx'
 import publicationsByYear from './constants/publications-by-year'
 import NotFound from '../common/NotFound.jsx'
-import { Link } from 'react-router-dom'
 
 /**
  * Displays an informational point about a publication
  * @param {label} String Bolded field label
  * @param {value} String Value of the labeled field
  */
-const MoreInfo = ({ label, value }) => {
+function MoreInfo({ label, value }) {
   if (!value) return null
   return (
     <div className='MoreInfo'>
@@ -44,7 +44,7 @@ const MoreInfoList = ({ infoPoints, publication }) => {
 
     if (idx + 1 < lastInfoPointIdx) {
       // Include spacer, unless this is the last item
-      infoList.push(<br key={ip.label + '-spacer'} />)
+      infoList.push(<br key={`${ip.label}-spacer`} />)
     }
   })
 
@@ -59,7 +59,7 @@ const MoreInfoList = ({ infoPoints, publication }) => {
  * @param {infoPoints} Array[Object] [{ label, valueKey }] Publication details to highlight, shown underneath the publication description. valueKey refers to the property name in the publication.
  * @param {year} String Selected year
  */
-const DatasetGroup = ({ name, heading, publications, infoPoints, year }) => {
+function DatasetGroup({ name, heading, publications, infoPoints, year }) {
   if (!publications || !publications.length) return null
 
   return (
@@ -77,7 +77,7 @@ const DatasetGroup = ({ name, heading, publications, infoPoints, year }) => {
   )
 }
 
-const Home = (props) => {
+function Home(props) {
   const { year } = props.match.params
   const { shared } = props.config.dataPublicationYears
 

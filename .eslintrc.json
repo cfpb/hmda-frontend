@@ -1,0 +1,123 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2021": true
+  },
+  "plugins": ["react-prefer-function-component"],
+  "extends": [
+    "eslint:all",
+    "plugin:import/recommended",
+    "plugin:react/all",
+    "plugin:jsx-a11y/recommended",
+    "airbnb",
+    "plugin:react/jsx-runtime",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "no-console": [
+      "error",
+      {
+        "allow": ["warn", "error"]
+      }
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "no-dupe-else-if": "error",
+    "no-promise-executor-return": "error",
+    "no-unreachable-loop": "error",
+    "no-useless-backreference": "error",
+    "require-atomic-updates": "error",
+    "default-case-last": "error",
+    "grouped-accessor-pairs": "error",
+    "no-constructor-return": "error",
+    "no-implicit-coercion": "error",
+    "prefer-regex-literals": "error",
+    "capitalized-comments": "error",
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "ForInStatement",
+        "message": "for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array."
+      },
+      {
+        "selector": "LabeledStatement",
+        "message": "Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand."
+      },
+      {
+        "selector": "WithStatement",
+        "message": "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
+      }
+    ],
+    "no-void": "off",
+    "no-magic-numbers": "off",
+
+    "react/no-did-update-set-state": "off",
+    "react/no-find-dom-node": "off",
+    "react/no-is-mounted": "off",
+    "react/no-redundant-should-component-update": "off",
+    "react/no-render-return-value": "off",
+    "react/no-string-refs": "off",
+    "react/no-this-in-sfc": "off",
+    "react/no-will-update-set-state": "off",
+    "react/prefer-es6-class": "off",
+    "react/no-unused-state": "off",
+    "react/prefer-stateless-function": "off",
+    "react/require-render-return": "off",
+    "react/require-default-props": "off",
+    "react/sort-comp": "off",
+    "react/state-in-constructor": "off",
+    "react/static-property-placement": "off",
+
+    "react/boolean-prop-naming": [
+      "error",
+      {
+        "validateNested": true
+      }
+    ],
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "function-declaration"
+      }
+    ],
+    "react/no-unstable-nested-components": "error",
+    "react/jsx-handler-names": [
+      "error",
+      {
+        "eventHandlerPrefix": "on",
+        "eventHandlerPropPrefix": "on",
+        "checkLocalVariables": true,
+        "checkInlineFunction": true
+      }
+    ],
+    "react/jsx-key": "error",
+    "react/jsx-no-bind": [
+      "error",
+      {
+        "ignoreRefs": false,
+        "allowArrowFunctions": true,
+        "allowFunctions": true,
+        "allowBind": false,
+        "ignoreDOMComponents": false
+      }
+    ],
+    "react/jsx-no-constructed-context-values": "error",
+    "react/jsx-no-script-url": "error",
+    "react/jsx-no-useless-fragment": "off",
+    "sort-keys": "off",
+    "react/jsx-no-literals": "off",
+    "react/prop-types": "off",
+    "react/jsx-max-depth": "off",
+    "import/prefer-default-export": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "ignorePatterns": [
+    "**/*.min.js",
+    "src/common/uswds/**"
+  ]
+}

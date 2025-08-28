@@ -8,7 +8,7 @@ import { supressULI } from './Table.jsx'
 export function highlightMismatch(value) {
   if (!value || value.indexOf('Provided') < 0) return value
 
-  let [provided, expected] = value.split(',').map((v) => {
+  const [provided, expected] = value.split(',').map((v) => {
     const [label, val] = v.split(':')
     return { label, value: val }
   })
@@ -26,7 +26,7 @@ export function highlightMismatch(value) {
   return value
 }
 
-const EditsTableRow = (props) => {
+function EditsTableRow(props) {
   if (!props.row) return null
 
   const cells = []
@@ -37,7 +37,7 @@ const EditsTableRow = (props) => {
     cells.push(<EditsTableCell key={++cellCount} cell={props.row.id} />)
 
   props.row.fields.forEach((field) => {
-    let cellValue = isS303
+    const cellValue = isS303
       ? highlightMismatch(field && field.value)
       : field.value
 

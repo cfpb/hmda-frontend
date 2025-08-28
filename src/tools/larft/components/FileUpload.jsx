@@ -9,7 +9,7 @@ import { fileUpload } from '../data-store/store'
  * @param {boolean} isHidden Hide the default UI
  * @returns
  */
-export const FileUpload = ({ inputId = 'file-upload', isHidden = true }) => {
+export function FileUpload({ inputId = 'file-upload', isHidden = true }) {
   const dispatch = useDispatch()
   let fileReader
 

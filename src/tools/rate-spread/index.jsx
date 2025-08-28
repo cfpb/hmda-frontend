@@ -5,7 +5,7 @@ import AppIntro from './AppIntro.jsx'
 import CSVUpload from './CSVUpload.jsx'
 import Form from './Form.jsx'
 
-const App = (props) => {
+function App(props) {
   const toolAnnouncement = useToolAnnouncement({
     toolName: 'rate spread',
     config: props.config,

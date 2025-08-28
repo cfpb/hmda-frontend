@@ -1,10 +1,10 @@
 import { produce } from 'immer'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 import { useQuery } from '../utils/utils'
 import { graphs } from '../slice'
 import { DATA, PERIOD_HI, PERIOD_LO, QUARTERS } from '../slice/graphConfigs'
-import { useLocation } from 'react-router-dom'
 
 /**
  * On graph selection,
@@ -24,9 +24,9 @@ export const useManageGraphSelection = ({
 
     if (selectedGraphData) {
       const nextState = produce(data, (draft) => {
-        let graphLines = []
+        const graphLines = []
 
-        let decimalPlace = selectedGraphData.decimalPrecision
+        const decimalPlace = selectedGraphData.decimalPrecision
 
         // Generating each line for the graph
         selectedGraphData.series.map((line) => {
@@ -54,11 +54,11 @@ export const useManageGraphSelection = ({
       })
       dispatch(graphs.setConfig(DATA, nextState))
 
-      let lowPeriod = query.get('periodLow')
-      let highPeriod = query.get('periodHigh')
+      const lowPeriod = query.get('periodLow')
+      const highPeriod = query.get('periodHigh')
 
       // Dynamically generate period selector options
-      let periodOptions = categories.map((yq) => ({
+      const periodOptions = categories.map((yq) => ({
         value: yq,
         label: yq,
       }))

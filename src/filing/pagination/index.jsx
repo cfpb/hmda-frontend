@@ -51,7 +51,7 @@ class Pagination extends Component {
     this.props.getPage(this.props.pagination, val)
   }
 
-  //required due to backend total being off for parseErrors
+  // required due to backend total being off for parseErrors
   _ensureLast(props, last) {
     if (
       props.target === 'parseErrors' &&
@@ -105,21 +105,21 @@ class Pagination extends Component {
   }
 
   render() {
-    const props = this.props
+    const { props } = this
     const page = props.pagination
     if (!page) return null
 
     const firstPage = page._links.self === page._links.first
     let lastPage = page._links.self === page._links.last
-    let total = page.total
+    let { total } = page
 
     if (props.target === 'parseErrors' && props.transmittalSheetErrors.length) {
       total--
-      //Backend provides too many pages for parse errors because
-      //we don't paginate over transmittalSheetErrors
+      // Backend provides too many pages for parse errors because
+      // we don't paginate over transmittalSheetErrors
       if (total % 20 === 0) {
         const lastSplit = page._links.last.split('=')
-        lastPage = page._links.self === lastSplit[0] + '=' + (lastSplit[1] - 1)
+        lastPage = page._links.self === `${lastSplit[0]}=${lastSplit[1] - 1}`
       }
     }
 

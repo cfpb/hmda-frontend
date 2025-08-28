@@ -1,4 +1,4 @@
-/*eslint no-unused-vars: 0*/
+/* eslint no-unused-vars: 0 */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
@@ -38,36 +38,33 @@ const renderByCode = (code, page, lei, selectedPeriod) => {
   if (code === FAILED) {
     toRender.push(<RefileWarning isPassed={isPassed} />)
     return toRender
-  } else {
-    if (page === 'upload') {
-      toRender.push(<UploadForm isPassed={isPassed} />)
-      if (code === PARSED_WITH_ERRORS) {
-        toRender.push(<ParseErrors filingPeriod={period} />)
-      }
-    } else if (
-      ['syntacticalvalidity', 'quality', 'macro'].indexOf(page) !== -1
-    ) {
-      toRender.push(<Edits isPassed={isPassed} lei={lei} />)
-    } else if (page === 'submission') {
-      if (isBeta()) {
-        toRender.push(<BetaAlertComplete filingPeriod={period} />)
-        toRender.push(<Summary filingPeriod={period} />)
-        toRender.push(<BetaAlertComplete filingPeriod={period} />)
-      } else {
-        // at the top of the page
-        if (code !== SIGNED) toRender.push(<ReadyToSign isPassed={isPassed} />)
+  }
+  if (page === 'upload') {
+    toRender.push(<UploadForm isPassed={isPassed} />)
+    if (code === PARSED_WITH_ERRORS) {
+      toRender.push(<ParseErrors filingPeriod={period} />)
+    }
+  } else if (['syntacticalvalidity', 'quality', 'macro'].indexOf(page) !== -1) {
+    toRender.push(<Edits isPassed={isPassed} lei={lei} />)
+  } else if (page === 'submission') {
+    if (isBeta()) {
+      toRender.push(<BetaAlertComplete filingPeriod={period} />)
+      toRender.push(<Summary filingPeriod={period} />)
+      toRender.push(<BetaAlertComplete filingPeriod={period} />)
+    } else {
+      // at the top of the page
+      if (code !== SIGNED) toRender.push(<ReadyToSign isPassed={isPassed} />)
 
-        toRender.push(<ReceiptContainer />)
-        toRender.push(<IRSReport lei={lei} filingPeriod={period} />)
-        toRender.push(<Summary filingPeriod={period} />)
+      toRender.push(<ReceiptContainer />)
+      toRender.push(<IRSReport lei={lei} filingPeriod={period} />)
+      toRender.push(<Summary filingPeriod={period} />)
 
-        // and just before the signature
-        if (code !== SIGNED) {
-          toRender.push(<ReadyToSign isPassed={isPassed} />)
-        }
-        toRender.push(<Signature lei={lei} isPassed={isPassed} />)
-        toRender.push(<ReceiptContainer />)
+      // and just before the signature
+      if (code !== SIGNED) {
+        toRender.push(<ReadyToSign isPassed={isPassed} />)
       }
+      toRender.push(<Signature lei={lei} isPassed={isPassed} />)
+      toRender.push(<ReceiptContainer />)
     }
   }
 
@@ -102,7 +99,7 @@ class SubmissionContainer extends Component {
   render() {
     if (!this.props.location) return null
     const { submission, location, institutions, lei } = this.props
-    const status = submission.status
+    const { status } = submission
     const code = status && status.code
     const page = location.pathname.split('/').slice(-1)[0]
     const institution = institutions.institutions[lei]

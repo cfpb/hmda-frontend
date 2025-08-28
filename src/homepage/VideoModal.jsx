@@ -1,7 +1,7 @@
 import React from 'react'
 import iconSprite from '../common/uswds/img/sprite.svg'
 
-export const VideoModal = ({ showModal, setShowModal, title, content }) => {
+export function VideoModal({ showModal, setShowModal, title, content }) {
   const closeModal = () => {
     setShowModal(false)
   }
@@ -29,7 +29,7 @@ export const VideoModal = ({ showModal, setShowModal, title, content }) => {
               title='YouTube video player'
               allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
               allowFullScreen
-            ></iframe>
+            />
           </div>
           <button
             type='button'
@@ -43,7 +43,7 @@ export const VideoModal = ({ showModal, setShowModal, title, content }) => {
               focusable='false'
               role='img'
             >
-              <use href={`${iconSprite}#close`}></use>
+              <use href={`${iconSprite}#close`} />
             </svg>
           </button>
         </div>

@@ -12,7 +12,7 @@ import {
  * Page title, description, and documentation link
  * @returns Heading Component
  */
-export const PageHeader = () => {
+export function PageHeader() {
   return (
     <>
       <Heading
@@ -21,14 +21,14 @@ export const PageHeader = () => {
         headingText={PAGE_TITLE}
         paragraphText={PAGE_DESCRIPTION}
       />
-      <ExpandableSection label={'File Format'}>{FILE_FORMAT}</ExpandableSection>
+      <ExpandableSection label='File Format'>{FILE_FORMAT}</ExpandableSection>
       <Heading
-        key={'limitations'}
+        key='limitations'
         type={2}
         paragraphText={PRIVACY_AND_LIMITATIONS}
       />
 
-      <Heading key={'documentation-link'} type={2}>
+      <Heading key='documentation-link' type={2}>
         For additional guidance, please visit the Online LAR Formatting Tool's{' '}
         <a href='/documentation/tools/online-lar-formatting'>documentation</a>{' '}
         page.

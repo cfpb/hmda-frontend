@@ -1,7 +1,7 @@
 import React from 'react'
 import Alert from '../../common/Alert.jsx'
 
-export const MissingInstitutionsBanner = ({ leis = [] }) => {
+export function MissingInstitutionsBanner({ leis = [] }) {
   const hasMissingLeis = leis.length > 0
   const bannerType = hasMissingLeis ? 'warning' : 'info'
 
@@ -29,7 +29,7 @@ export const MissingInstitutionsBanner = ({ leis = [] }) => {
   )
 }
 
-export const MissingLeiList = ({ leis = [] }) => {
+export function MissingLeiList({ leis = [] }) {
   if (leis.length < 1) return null
 
   return (

@@ -46,7 +46,9 @@ export default class ValidationProgress extends PureComponent {
 
   getSavedWidth(filingPeriod, lei) {
     return lei
-      ? +localStorage.getItem(`HMDA_FILE_PROGRESS/${filingPeriod}/${lei}`)
+      ? Number(
+          localStorage.getItem(`HMDA_FILE_PROGRESS/${filingPeriod}/${lei}`),
+        )
       : 0
   }
 
@@ -96,7 +98,7 @@ export default class ValidationProgress extends PureComponent {
     const currWidth = this.state.fillWidth
     this.timeout = setTimeout(
       this.setNextWidth(currWidth),
-      this.SCALING_FACTOR * 200 * Math.pow(2, 50 / (100 - currWidth)),
+      this.SCALING_FACTOR * 200 * 2 ** (50 / (100 - currWidth)),
     )
   }
 
@@ -116,7 +118,7 @@ export default class ValidationProgress extends PureComponent {
         {/* the progress bar */}
         <div
           className={`progressFill ${this.getFillError()}`}
-          style={{ width: this.getFillWidth() + '%' }}
+          style={{ width: `${this.getFillWidth()}%` }}
         />
         <ProgressText
           errorApp={errorApp}

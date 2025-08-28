@@ -69,7 +69,7 @@ export const makeNav = (props, page) => {
   return <nav className='nav'>{userHeader}</nav>
 }
 
-const Header = (props) => {
+function Header(props) {
   const page = props.pathname.split('/').slice(-1)[0]
   const platformLabel = isBeta() ? 'Beta' : 'Filing'
 
@@ -97,7 +97,7 @@ const Header = (props) => {
 }
 
 Header.propTypes = {
-  //user: PropTypes.object,
+  // user: PropTypes.object,
   pathname: PropTypes.string,
 }
 

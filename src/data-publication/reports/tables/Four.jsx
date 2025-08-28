@@ -4,12 +4,12 @@ import PropTypes from 'prop-types'
 const renderData = (report) => {
   const { races, ethnicities, minorityStatuses, incomes } = report
   return (
-    <React.Fragment>
+    <>
       {mapCharacteristic(races, 'race')}
       {mapCharacteristic(ethnicities, 'ethnicity')}
       {mapCharacteristic(minorityStatuses, 'minorityStatus')}
       {mapCharacteristic(incomes, 'income')}
-    </React.Fragment>
+    </>
   )
 }
 
@@ -84,7 +84,7 @@ const renderCharacteristic = (characteristic, key) => {
         </tr>
       )
     }),
-    <tr key={currChar + 'total'}>
+    <tr key={`${currChar}total`}>
       <th>Total</th>
       {characteristic.dispositions.map((disposition) => {
         return [
@@ -146,8 +146,8 @@ const Four = React.forwardRef((props, ref) => {
           <th>Total</th>
           {props.report.total.map((total, index) => {
             return [
-              <td key={'count' + index}>{total.count}</td>,
-              <td key={'value' + index}>{total.value}</td>,
+              <td key={`count${index}`}>{total.count}</td>,
+              <td key={`value${index}`}>{total.value}</td>,
             ]
           })}
         </tr>

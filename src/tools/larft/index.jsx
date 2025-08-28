@@ -11,7 +11,7 @@ import { useRestyledButtonLinks } from './hooks/useRestyledButtonLinks'
 import { useWarningWhenLeaving } from './hooks/useWarningWhenLeaving'
 import './index.css'
 
-export const LARFT = () => {
+export function LARFT() {
   useRestyledButtonLinks()
   useWarningWhenLeaving()
 

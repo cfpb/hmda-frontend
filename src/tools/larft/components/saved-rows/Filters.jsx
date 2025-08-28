@@ -6,7 +6,7 @@ import { adjustFocusToTriggerRerender } from '../../hooks/adjustFocusToTriggerRe
  * @param {Boolean} show Should show filter/search inputs?
  * @param {Array<ReactElement>} children Filter/search inputs
  */
-export const Filters = ({ show, children }) => {
+export function Filters({ show, children }) {
   if (!show) return null
   return <div className='filters'>{children}</div>
 }
@@ -22,7 +22,7 @@ export const Filters = ({ show, children }) => {
  * @param {String} clearText Button label
  * @param {Boolean} isTS TS vs LAR
  */
-export const SearchBox = ({
+export function SearchBox({
   onChange,
   placeholder,
   value,
@@ -30,7 +30,7 @@ export const SearchBox = ({
   onClear,
   clearText,
   isTS,
-}) => {
+}) {
   const selector = isTS ? '#saved-ts' : '#saved-lars'
 
   /**
@@ -41,7 +41,7 @@ export const SearchBox = ({
    *
    * This fix only works some of the time.  A more consistent resolution
    * still needs to be found.
-   **/
+   * */
   const backspaceHandler = (e) => {
     if (e.code == 'Backspace' && value) {
       onClear()

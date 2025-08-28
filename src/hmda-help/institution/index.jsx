@@ -29,7 +29,7 @@ import * as AccessToken from '../../common/api/AccessToken'
 import './Form.css'
 import { fetchSingleInstitutionByYear } from '../search/fetchInstitution'
 
-let defaultInstitutionState = {}
+const defaultInstitutionState = {}
 searchInputs
   .concat(requiredInputs, otherInputs)
   .forEach(
@@ -81,7 +81,7 @@ class Institution extends Component {
     // Feature: Direct linking
     // Update URL with /update/institution/:id/:year
     if (this.props.match.params.year && this.props.match.params.id && state) {
-      let splitURL = this.props.history.location.pathname.split('/')
+      const splitURL = this.props.history.location.pathname.split('/')
       // Contains lei that needs to be updated
       splitURL[3] = state.institution.lei.toUpperCase()
       // Contains year that needs to be updated
@@ -100,7 +100,7 @@ class Institution extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.error !== this.state.error) {
-      let errorMsg = document.getElementById('bottomError')
+      const errorMsg = document.getElementById('bottomError')
       errorMsg && errorMsg.scrollIntoView({ behavior: 'smooth' })
     } else if (this.state.isSubmitted) {
       const successMsg = document.querySelectorAll('.alert-success')
@@ -118,7 +118,7 @@ class Institution extends Component {
   }
 
   onInputChange(event) {
-    let additionalKeys = { isSubmitted: false, error: null }
+    const additionalKeys = { isSubmitted: false, error: null }
 
     if (this.props.location.pathname.includes('/update')) {
       // Update to Notes field required on Institution data change
@@ -143,7 +143,7 @@ class Institution extends Component {
         },
       )
     } else {
-      let value = event.target.value
+      let { value } = event.target
       if (event.target.name === 'lei') value = value.toUpperCase()
       this.setState({ [event.target.name]: value, ...additionalKeys }, () => {
         this.onInputBlur()
@@ -193,10 +193,10 @@ class Institution extends Component {
     const method = this.props.location.pathname === '/add' ? 'POST' : 'PUT'
     const headers = { 'Content-Type': 'application/json' }
     const token = AccessToken.get()
-    if (token) headers['Authorization'] = 'Bearer ' + token
+    if (token) headers.Authorization = `Bearer ${token}`
 
     fetch('/v2/admin/institutions', {
-      method: method,
+      method,
       body: JSON.stringify(nestInstitutionStateForAPI(this.state)),
       headers,
     })
@@ -307,7 +307,7 @@ class Institution extends Component {
     ) : null
 
     return (
-      <React.Fragment>
+      <>
         <h3>
           {pathname === '/add'
             ? 'Add an institution record'
@@ -366,9 +366,7 @@ class Institution extends Component {
                 {...searchInput}
                 value={this.state[searchInput.id] || searchInput.value}
                 disabled={
-                  pathname.includes('/update') && searchInput.id === 'lei'
-                    ? true
-                    : false
+                  !!(pathname.includes('/update') && searchInput.id === 'lei')
                 }
                 onChange={this.onInputChange}
                 onBlur={this.onInputBlur}
@@ -426,7 +424,7 @@ class Institution extends Component {
           ) : null}
         </form>
         {successAlert}
-      </React.Fragment>
+      </>
     )
   }
 }

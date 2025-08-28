@@ -13,7 +13,7 @@ const renderLarErrors = (larErrors, pagination) => {
   if (larErrors.length === 0) return null
   const currentErrs = []
 
-  //don't move to the next page until fading in
+  // don't move to the next page until fading in
   const end =
     ERRORS_PER_PAGE *
     (pagination.fade ? pagination.previousPage : pagination.page)
@@ -27,7 +27,7 @@ const renderLarErrors = (larErrors, pagination) => {
 
   return (
     <table
-      className={'PaginationTarget' + (pagination.fade ? ' fadeOut' : '')}
+      className={`PaginationTarget${pagination.fade ? ' fadeOut' : ''}`}
       width='100%'
     >
       <caption>
@@ -136,7 +136,7 @@ function getHeaders(isTs) {
   return headers.map((label, idx) => <th key={idx}>{label}</th>)
 }
 
-const ParseErrors = (props) => {
+function ParseErrors(props) {
   const {
     parsed,
     isParsing,

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import './InputRadio.css'
 
-const InputRadio = (props) => {
+function InputRadio(props) {
   const { id, label, onChange, options, value } = props
 
   function handleChange(event) {
@@ -11,7 +11,7 @@ const InputRadio = (props) => {
   }
 
   return (
-    <React.Fragment>
+    <>
       <label htmlFor={id}>{label}</label>
       <ul className='unstyled-list'>
         {options.map((option, i) => {
@@ -23,9 +23,7 @@ const InputRadio = (props) => {
                 name={id}
                 value={option.id}
                 onChange={handleChange}
-                checked={
-                  parseInt(value, 10) === parseInt(option.id, 10) ? true : false
-                }
+                checked={parseInt(value, 10) === parseInt(option.id, 10)}
               />
               <label htmlFor={`radio${i}`}>
                 {option.id} - {option.name}
@@ -34,7 +32,7 @@ const InputRadio = (props) => {
           )
         })}
       </ul>
-    </React.Fragment>
+    </>
   )
 }
 

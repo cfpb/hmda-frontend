@@ -1,7 +1,7 @@
 import './FlexTable.css'
 import Tooltip from './Tooltip'
 
-const FlexTable = (props) => {
+function FlexTable(props) {
   const { data, columns } = props
   const col = columns || 3
   const flexWidth = Math.floor((1 / col) * 100) - 1
@@ -40,7 +40,7 @@ const FlexTable = (props) => {
   )
 }
 
-const ContextTable = (props) => {
+function ContextTable(props) {
   const { data, keys } = props
 
   return (

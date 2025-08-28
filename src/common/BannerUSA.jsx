@@ -4,7 +4,7 @@ import flag from './images/favicon-57.png'
 import dotgov from './uswds/img/icon-dot-gov.svg'
 import lock from './uswds/img/icon-https.svg'
 
-const BannerUSA = () => {
+function BannerUSA() {
   // Eliminates Google Lighthouse CLS
   const [maxBannerHeight, setMaxBannerHeight] = useState('24px')
   const usaBannerStyles = {

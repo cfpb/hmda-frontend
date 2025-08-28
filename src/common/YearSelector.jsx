@@ -9,7 +9,7 @@ function makeToUrl(year, y, url) {
   return url.replace(year, y)
 }
 
-const YearSelector = ({ year, years = YEARS, url }) => {
+function YearSelector({ year, years = YEARS, url }) {
   return (
     <div className='YearSelector'>
       <h4>Select a year</h4>

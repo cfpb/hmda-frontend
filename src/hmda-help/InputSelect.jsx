@@ -5,7 +5,7 @@ import './InputSelect.css'
 import Icon from '../common/uswds/components/Icon'
 import Tooltip from '../common/Tooltip'
 
-const InputSelect = ({
+function InputSelect({
   disabled = false,
   id,
   innerRef,
@@ -14,7 +14,7 @@ const InputSelect = ({
   onChange,
   options,
   value,
-}) => {
+}) {
   function handleChange(event) {
     if (onChange) onChange(event)
   }
@@ -22,7 +22,7 @@ const InputSelect = ({
   const isQuarterlyFiler = id === 'quarterlyFiler'
 
   return (
-    <React.Fragment>
+    <>
       {isQuarterlyFiler ? (
         <div className='input-select-label-container'>
           <label htmlFor={id}>{label}</label>
@@ -68,7 +68,7 @@ const InputSelect = ({
           )
         })}
       </select>
-    </React.Fragment>
+    </>
   )
 }
 

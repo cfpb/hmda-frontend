@@ -8,14 +8,14 @@ import {
   heightStyleFn,
 } from './selectUtils.js'
 
-const VariableSelect = ({
+function VariableSelect({
   options,
   variables,
   orderedVariables,
   year,
   checkFactory,
   onChange,
-}) => {
+}) {
   const variableValues = setVariableSelect(orderedVariables, year)
   return (
     <div className='SelectWrapper'>
@@ -39,8 +39,8 @@ const VariableSelect = ({
             ? 'Remove a variable to select another'
             : 'Select a variable'
         }
-        isMulti={true}
-        searchable={true}
+        isMulti
+        searchable
         styles={heightStyleFn}
         openOnFocus
         simpleValue

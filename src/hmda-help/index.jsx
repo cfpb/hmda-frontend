@@ -15,7 +15,7 @@ import './index.css'
 
 let refreshTimeout = null
 
-const App = ({ config }) => {
+function App({ config }) {
   const [authState, setAuthState] = useState({
     tokenParsed: null,
     authenticated: false,
@@ -40,7 +40,7 @@ const App = ({ config }) => {
               return keycloak.login()
             })
         },
-        +(keycloak.tokenParsed.exp + '000') - Date.now() - 10000,
+        Number(`${keycloak.tokenParsed.exp}000`) - Date.now() - 10000,
       )
     }
     updateKeycloak()
@@ -74,7 +74,7 @@ const App = ({ config }) => {
     }
   }, [])
 
-  const ProtectedRoute = ({ component: Component, ...rest }) => {
+  function ProtectedRoute({ component: Component, ...rest }) {
     return (
       <Route
         {...rest}
@@ -89,7 +89,7 @@ const App = ({ config }) => {
 
       return (
         <Switch basename='/hmda-help'>
-          <React.Fragment>
+          <>
             <Header logout={keycloak.logout} />
             <ProtectedRoute exact path='/' component={Search} config={config} />
             <ProtectedRoute
@@ -135,9 +135,9 @@ const App = ({ config }) => {
               config={config}
             />
             <Route exact path='/update/institution'>
-              <Redirect to={'/search/institution'} />
+              <Redirect to='/search/institution' />
             </Route>
-          </React.Fragment>
+          </>
         </Switch>
       )
     }

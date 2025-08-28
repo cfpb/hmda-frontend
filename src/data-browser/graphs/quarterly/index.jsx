@@ -12,7 +12,7 @@ import { SectionGraphs } from './SectionGraphs'
 const PATH_FILERS_INFO = '/data-browser/graphs/quarterly/info/filers'
 const PATH_FAQ = '/data-browser/graphs/quarterly/info/faq'
 
-export const QuarterlyGraphs = (props) => {
+export function QuarterlyGraphs(props) {
   const [error, setError] = useState()
   const [graphHeaderOverview, setGraphHeaderOverview] = useState() // Populated from API
   const location = useLocation()

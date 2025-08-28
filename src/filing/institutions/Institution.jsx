@@ -8,7 +8,7 @@ import InstitutionRefile from './Refile.jsx'
 import SubmissionNav from './Progress.jsx'
 import SubmissionHistory from './SubmissionHistory.jsx'
 
-const Institution = ({
+function Institution({
   institution,
   filing,
   submission,
@@ -16,11 +16,11 @@ const Institution = ({
   links,
   submissionPages,
   selectedPeriod,
-}) => {
+}) {
   const status = submission && submission.status
 
   return (
-    <React.Fragment>
+    <>
       {/*
         a filing should be created when an institution is created
         so this shouldn't happen but just in case ...
@@ -83,7 +83,7 @@ const Institution = ({
           </div>
         </section>
       )}
-    </React.Fragment>
+    </>
   )
 }
 

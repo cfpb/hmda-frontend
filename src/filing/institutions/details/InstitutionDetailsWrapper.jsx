@@ -4,7 +4,7 @@ import { wrapLoading } from '../wrapLoading'
 import { InstitutionDetails } from './InstitutionDetails'
 import './InstitutionsDetails.css'
 
-const InstitutionDetailsWrapper = (props) => {
+function InstitutionDetailsWrapper(props) {
   let { institutions, match } = props
   const selected = match.params.institution
 

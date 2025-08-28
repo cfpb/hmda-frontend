@@ -1,7 +1,7 @@
 export default function runFetch(url, body, isCSV) {
   return fetch(url, {
     method: 'POST',
-    body: body,
+    body,
     headers: isCSV
       ? {}
       : {

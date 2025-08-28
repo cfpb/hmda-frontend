@@ -18,7 +18,7 @@ const getHeader = (params) => {
   return header
 }
 
-const Reports = (props) => {
+function Reports(props) {
   const { params } = props.match
   let data = []
   if (params.stateId) {

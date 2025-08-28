@@ -2,13 +2,13 @@ import React from 'react'
 import Alert from './Alert.jsx'
 import './Beta.css'
 
-const WarningBanner = ({
+function WarningBanner({
   alertHeader = 'Default Header',
   alertContent = 'Default content.',
   alertFeatures,
   alertLink = '#',
   alertLinkHeader = 'Default link header',
-}) => {
+}) {
   return (
     <div className='Beta'>
       <Alert heading={alertHeader} type='warning'>
@@ -16,15 +16,15 @@ const WarningBanner = ({
           <p>
             {alertContent} <br />
           </p>
-          {alertFeatures && (
+          {alertFeatures ? (
             <ul>
               {alertFeatures.map((feature) => (
                 <li key={feature}>{feature}</li>
               ))}
             </ul>
-          )}
+          ) : null}
           <p>
-            <a target={'_blank'} href={alertLink}>
+            <a target='_blank' href={alertLink} rel='noreferrer'>
               {alertLinkHeader}
             </a>
           </p>

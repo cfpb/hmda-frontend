@@ -24,16 +24,16 @@ const defaultState = {
 const startDate = new Date('01/02/2017').getTime()
 const today = Date.now()
 
-const asNumber = (val) => +val
+const asNumber = (val) => Number(val)
 
 const ensureTwoDigits = (s) => {
   if (s.length === 2) return s
-  return '0' + s
+  return `0${s}`
 }
 
 const ensureFourDigits = (s) => {
   if (s.length === 4) return s
-  return '20' + s
+  return `20${s}`
 }
 
 const parseDate = (date) => {
@@ -46,7 +46,7 @@ const parseDate = (date) => {
 const getNumericAPR = (apr) => {
   if (apr.match(/%$/)) apr = apr.slice(0, -1)
   if (apr === '') return NaN
-  return +apr
+  return Number(apr)
 }
 
 const validatedInput = {
@@ -187,7 +187,7 @@ class Form extends Component {
       actionTakenType: asNumber(this.state.actionTaken),
       loanTerm: asNumber(this.state.loanTerm),
       reverseMortgage: asNumber(this.state.reverse),
-      amortizationType: this.state.amortization + 'Rate',
+      amortizationType: `${this.state.amortization}Rate`,
       apr: getNumericAPR(this.state.APR),
       lockInDate: parseDate(this.state.rateSetDate),
     })
@@ -362,7 +362,7 @@ class Form extends Component {
             />
           </div>
           <input
-            class="calculate-rate-spread-button"
+            className='calculate-rate-spread-button'
             disabled={
               hasEmptyInputs || rateSetError || APRError || loanTermError
             }

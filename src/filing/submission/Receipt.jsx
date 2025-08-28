@@ -6,8 +6,8 @@ import { isBeta } from '../../common/Beta.jsx'
 import { formatReceiptTime } from '../utils/date.js'
 import { SIGNED } from '../constants/statusCodes.js'
 
-const Receipt = ({ status, timestamp, receipt, filingPeriod, email }) => {
-  const code = status.code
+function Receipt({ status, timestamp, receipt, filingPeriod, email }) {
+  const { code } = status
   if (code !== SIGNED || receipt === null) return null
   if (isBeta()) {
     return (

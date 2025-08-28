@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NotAuthorized = () => {
+function NotAuthorized() {
   return (
     <header>
       <h2>Sorry, you don't have the correct permissions.</h2>

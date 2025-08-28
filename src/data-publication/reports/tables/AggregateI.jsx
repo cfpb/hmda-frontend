@@ -7,7 +7,7 @@ const renderData = (institutions) => {
 }
 
 const getRows = (institutions) => {
-  let toRender = []
+  const toRender = []
   let institutionsToRender = []
 
   institutions.forEach((institution, index) => {

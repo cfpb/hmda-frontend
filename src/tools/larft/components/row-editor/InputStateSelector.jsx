@@ -7,7 +7,7 @@ import { buildEnumeratedOptions } from './EnumOption'
  * @param {String} value Current input value
  * @param {Object} common Common input field attributes
  */
-export const InputStateSelector = ({ value, ...common }) => {
+export function InputStateSelector({ value, ...common }) {
   return (
     <select {...common} value={value || ''}>
       {stateOptions}

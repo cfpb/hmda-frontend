@@ -10,7 +10,7 @@ import './Accordion.css'
  * @param {String} children
  * @param {String} id
  */
-export const Accordion = ({ heading, content, children, id }) => {
+export function Accordion({ heading, content, children, id }) {
   const contentBody = content || children || null
 
   return (
@@ -23,7 +23,7 @@ export const Accordion = ({ heading, content, children, id }) => {
   )
 }
 
-const AccordionHeading = ({ id, text }) => {
+function AccordionHeading({ id, text }) {
   return (
     <button
       className='accordion-button'
@@ -36,7 +36,7 @@ const AccordionHeading = ({ id, text }) => {
   )
 }
 
-const AccordionContent = ({ id, content }) => {
+function AccordionContent({ id, content }) {
   return (
     <div
       id={`accordion-${id}`}
@@ -49,8 +49,8 @@ const AccordionContent = ({ id, content }) => {
 }
 
 const handleToggle = (id) => {
-  let accordionButton = document.getElementById(`accordion-button-${id}`)
-  let expanded = accordionButton.getAttribute('aria-expanded') !== 'false'
+  const accordionButton = document.getElementById(`accordion-button-${id}`)
+  const expanded = accordionButton.getAttribute('aria-expanded') !== 'false'
 
   document
     .getElementById(`accordion-button-${id}`)

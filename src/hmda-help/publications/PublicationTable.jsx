@@ -2,7 +2,7 @@ import React from 'react'
 import PublicationRows from './PublicationRows'
 import './PublicationTable.css'
 
-const PublicationTable = ({ institutions }) => {
+function PublicationTable({ institutions }) {
   if (!institutions || (institutions && !institutions.length)) return null
 
   institutions.sort((a, b) => (b.activityYear > a.activityYear ? 1 : -1))

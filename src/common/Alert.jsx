@@ -4,14 +4,14 @@ import PropTypes from 'prop-types'
 import './Alert.css'
 import Icon from './uswds/components/Icon'
 
-const Alert = ({
+function Alert({
   type = 'info',
   headingType = 'normal',
   heading,
   children,
   closeAlert, // Flag used to display an X that users can interact with and remove the alert
   setCloseAlert,
-}) => {
+}) {
   if (!children) return null
 
   let headingClass = 'alert-heading'
@@ -27,7 +27,7 @@ const Alert = ({
           </div>
         ) : null}
         {React.cloneElement(children, { className: 'alert-text' })}
-        {closeAlert && (
+        {closeAlert ? (
           <div className='alert-close' onClick={() => setCloseAlert(false)}>
             <Icon
               iconName='cancel'
@@ -37,7 +37,7 @@ const Alert = ({
               }}
             />
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   )

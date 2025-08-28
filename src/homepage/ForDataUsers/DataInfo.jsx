@@ -5,7 +5,7 @@ import { DataPublication } from './DataPublication'
 import { ResearchAndReports } from './ResearchAndReports'
 import iconSprite from '../../common/uswds/img/sprite.svg'
 
-export const DataInfo = ({ config, hideContent }) => {
+export function DataInfo({ config, hideContent }) {
   if (hideContent) return <></>
 
   return (
@@ -17,7 +17,7 @@ export const DataInfo = ({ config, hideContent }) => {
           focusable='false'
           role='img'
         >
-          <use href={`${iconSprite}#insights`}></use>
+          <use href={`${iconSprite}#insights`} />
         </svg>{' '}
         Info for Data Users
       </h2>

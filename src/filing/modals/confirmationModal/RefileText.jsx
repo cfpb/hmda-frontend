@@ -35,39 +35,44 @@ export const getStatus = (code, filingPeriod) => {
   return message
 }
 
-const BetaInfoBlock = () => (
-  <>
-    <span className='notice-wrapper'>
-      <p className='usa-font-lead'>
-        <b className='emphasized urgent'>Note: </b>Official HMDA data must be
-        submitted on the live{' '}
-        <a href='https://ffiec.cfpb.gov' target='_blank'>
-          HMDA Platform.
-        </a>
-      </p>
-    </span>
-    <br />
-  </>
-)
-
-const WarningDataWillBeDeleted = ({ institution, filingPeriod }) =>
-  !isBeta() && (
+function BetaInfoBlock() {
+  return (
     <>
-      <br />
       <span className='notice-wrapper'>
         <p className='usa-font-lead'>
-          The previously submitted {filingPeriod} HMDA data for{' '}
-          <span className='bold'>{institution.name} </span>
-          <span className='emphasized urgent nowrap'>
-            will be deleted and cannot be recovered
-          </span>{' '}
-          if you choose to proceed.
+          <b className='emphasized urgent'>Note: </b>Official HMDA data must be
+          submitted on the live{' '}
+          <a href='https://ffiec.cfpb.gov' target='_blank' rel='noreferrer'>
+            HMDA Platform.
+          </a>
         </p>
       </span>
+      <br />
     </>
   )
+}
 
-const RefileText = (props) => {
+function WarningDataWillBeDeleted({ institution, filingPeriod }) {
+  return (
+    !isBeta() && (
+      <>
+        <br />
+        <span className='notice-wrapper'>
+          <p className='usa-font-lead'>
+            The previously submitted {filingPeriod} HMDA data for{' '}
+            <span className='bold'>{institution.name} </span>
+            <span className='emphasized urgent nowrap'>
+              will be deleted and cannot be recovered
+            </span>{' '}
+            if you choose to proceed.
+          </p>
+        </span>
+      </>
+    )
+  )
+}
+
+function RefileText(props) {
   const { institution, code, filingPeriod } = props
   const dataOfficialVsTest = isBeta() ? 'HMDA test data' : 'official HMDA data'
 

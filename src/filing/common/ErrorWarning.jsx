@@ -63,7 +63,7 @@ const showErrorStatus = ({ status, statusText }) => {
   return <span className='error-code'>{text}</span>
 }
 
-const ErrorWarning = (props) => {
+function ErrorWarning(props) {
   if (props.error)
     return (
       <div className='ErrorWarning'>

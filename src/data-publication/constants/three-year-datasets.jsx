@@ -1,4 +1,4 @@
-import getOverrides from "./overrides";
+import getOverrides from './overrides'
 
 export const THREE_YEAR_DATASET = {
   2017: {
@@ -121,7 +121,10 @@ export const THREE_YEAR_DATASET = {
   },
   2021: {
     freezeDate: 'December 31, 2024',
-    specialNote: getOverrides.getReporterPanelUnavailableBanner('2021', 'Three Year Dataset'),
+    specialNote: getOverrides.getReporterPanelUnavailableBanner(
+      '2021',
+      'Three Year Dataset',
+    ),
     datasets: [
       {
         label: 'Loan/Application Records (LAR)',
@@ -145,7 +148,7 @@ export const THREE_YEAR_DATASET = {
         dataKey: 'msamd',
         csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2021/2021_public_msamd_three_year_csv.zip',
         txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/three-year-data/2021/2021_public_msamd_three_year_pipe.zip',
-      }
-    ]
+      },
+    ],
   },
 }

@@ -111,7 +111,7 @@ class Disclosure extends React.Component {
   }
 
   makeListItem(institution, index) {
-    let url = this.props.match.url
+    let { url } = this.props.match
     if (!url.match(/\/$/)) url += '/'
     const normalizedInstitution =
       this.props.match.params.year === '2017'
@@ -143,20 +143,20 @@ class Disclosure extends React.Component {
   }
 
   setInstitution(institution) {
-    const year = this.props.match.params.year
+    const { year } = this.props.match.params
     const institutionId =
       institution.lei || institution.institutionId || institution.id
     detailsCache[year].institutions[institutionId] = institution
   }
 
   setMsaMd(msaMd) {
-    const year = this.props.match.params.year
+    const { year } = this.props.match.params
     detailsCache[year].msaMds[msaMd.id] = msaMd
   }
 
   render() {
     const { params, url } = this.props.match
-    const year = params.year
+    const { year } = params
     const { disclosure, shared } = this.props.config.dataPublicationYears
     const years = disclosure || shared
     const details = detailsCache[year]
@@ -180,7 +180,7 @@ class Disclosure extends React.Component {
           <a
             target='_blank'
             rel='noopener noreferrer'
-            href={`https://ffiec.cfpb.gov/documentation/publications/ad-changes#disclosure-reports`}
+            href='https://ffiec.cfpb.gov/documentation/publications/ad-changes#disclosure-reports'
           >
             A&amp;D Report Changes
           </a>{' '}
@@ -205,7 +205,7 @@ class Disclosure extends React.Component {
     }
 
     return this.state.fetched ? (
-      <React.Fragment>
+      <>
         <div className='Disclosure' id='main-content'>
           {header}
           <ol className='ProgressCards'>
@@ -214,7 +214,7 @@ class Disclosure extends React.Component {
                 title='year'
                 name={params.year ? params.year : 'Select a year'}
                 id=''
-                link={'/data-publication/disclosure-reports/'}
+                link='/data-publication/disclosure-reports/'
               />
             </li>
 
@@ -305,7 +305,7 @@ class Disclosure extends React.Component {
         </div>
 
         {params.reportId ? <Report {...this.props} /> : null}
-      </React.Fragment>
+      </>
     ) : (
       <LoadingIcon />
     )

@@ -1,4 +1,4 @@
-import Alert from "../../common/Alert";
+import Alert from '../../common/Alert'
 
 /**
  * Gets overrides for data publications that may not be available for certain years
@@ -19,10 +19,12 @@ const getOverrides = {
   getReporterPanelUnavailableBanner: (year, dataProductName) => (
     <Alert
       heading={`The HMDA Reporter Panel is Unavailable for the ${year} ${dataProductName}`}
-      type="warning"
+      type='warning'
     >
       <p>
-        HMDA Reporter Panel is unavailable for {year}. Please reference {year} Transmittal Sheet data for more details regarding identifying institution information.
+        HMDA Reporter Panel is unavailable for {year}. Please reference {year}{' '}
+        Transmittal Sheet data for more details regarding identifying
+        institution information.
       </p>
     </Alert>
   ),
@@ -36,9 +38,10 @@ const getOverrides = {
    */
   getReporterPanelUnavailable: (year) => (
     <>
-      Reporter Panel is not available for this dataset. For institution information refer to the {year} Transmittal Sheet.
+      Reporter Panel is not available for this dataset. For institution
+      information refer to the {year} Transmittal Sheet.
     </>
   ),
-};
+}
 
-export default getOverrides;
+export default getOverrides

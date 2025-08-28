@@ -1,7 +1,7 @@
 import React from 'react'
 import Alert from '../../common/Alert'
 
-export const BetaAlertComplete = ({ filingPeriod }) => {
+export function BetaAlertComplete({ filingPeriod }) {
   return (
     <Alert type='warning' heading='[Beta Platform] Filing Simulation Complete!'>
       <div className='beta-signing-alert'>

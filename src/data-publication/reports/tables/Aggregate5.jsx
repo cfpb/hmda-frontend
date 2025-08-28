@@ -38,7 +38,7 @@ function entries(obj) {
 }
 
 const renderCharacteristics = (borrowerCharacteristics) => {
-  let convertedBorrowerCharacteristics = entries(borrowerCharacteristics)
+  const convertedBorrowerCharacteristics = entries(borrowerCharacteristics)
 
   return convertedBorrowerCharacteristics.map((borrower, index) => {
     return [

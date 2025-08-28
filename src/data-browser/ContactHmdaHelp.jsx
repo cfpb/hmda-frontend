@@ -1,4 +1,4 @@
-export const ContactHmdaHelp = ({ subject }) => {
+export function ContactHmdaHelp({ subject }) {
   let url = 'mailto:hmdahelp@cfpb.gov'
   if (subject) url += `?subject=${subject}`
 

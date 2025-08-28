@@ -72,7 +72,7 @@ class Aggregate extends React.Component {
     const { params } = this.props.match
     if (params.stateId && params.msaMdId) {
       stateToMsas[params.year][params.stateId].forEach((v) => {
-        if (v.id === +params.msaMdId) this.setMsaMd(v)
+        if (v.id === Number(params.msaMdId)) this.setMsaMd(v)
       })
     }
   }
@@ -84,13 +84,13 @@ class Aggregate extends React.Component {
   }
 
   setMsaMd(msaMd) {
-    const year = this.props.match.params.year
+    const { year } = this.props.match.params
     detailsCache[year].msaMds[msaMd.id] = msaMd
   }
 
   render() {
     const { params, url } = this.props.match
-    const year = params.year
+    const { year } = params
     const { aggregate, shared } = this.props.config.dataPublicationYears
     const years = aggregate || shared
     const details = detailsCache[year]
@@ -114,7 +114,7 @@ class Aggregate extends React.Component {
           <a
             target='_blank'
             rel='noopener noreferrer'
-            href={`https://ffiec.cfpb.gov/documentation/publications/ad-changes#msamd-aggregate-reports`}
+            href='https://ffiec.cfpb.gov/documentation/publications/ad-changes#msamd-aggregate-reports'
           >
             A&D Report Changes
           </a>{' '}
@@ -134,7 +134,7 @@ class Aggregate extends React.Component {
     )
 
     return (
-      <React.Fragment>
+      <>
         <div className='Aggregate' id='main-content'>
           {header}
           <ol className='ProgressCards'>
@@ -143,7 +143,7 @@ class Aggregate extends React.Component {
                 title='year'
                 name={params.year ? params.year : 'Select a year'}
                 id=''
-                link={'/data-publication/aggregate-reports/'}
+                link='/data-publication/aggregate-reports/'
               />
             </li>
             <li>
@@ -217,19 +217,19 @@ class Aggregate extends React.Component {
                 <MsaMds {...this.props} selectorCallback={this.setMsaMd} />
               )
             ) : (
-              <React.Fragment>
+              <>
                 <Heading type={4} headingText='Select a state' />
                 <Select
                   id='StateSelector'
                   onChange={this.handleChange}
                   placeholder='Select a state...'
-                  searchable={true}
+                  searchable
                   autoFocus
                   openOnFocus
                   simpleValue
                   options={options}
                 />
-              </React.Fragment>
+              </>
             )
           ) : (
             <YearSelector year={year} url={url} years={years} />
@@ -237,7 +237,7 @@ class Aggregate extends React.Component {
         </div>
 
         {params.reportId ? <Report {...this.props} /> : null}
-      </React.Fragment>
+      </>
     )
   }
 }

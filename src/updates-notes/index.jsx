@@ -11,7 +11,7 @@ import { organizeChangeData } from './sortFunctions'
 import './ChangeLog.scss'
 
 /* Updates and Notes */
-const UpdatesNotes = () => {
+function UpdatesNotes() {
   const filter = useChangeLogFilter(DEFAULT_FILTERS)
 
   const [changeLog, loading] = useRemoteJSON(PUB_CHANGELOG_URL, {
@@ -64,20 +64,24 @@ const UpdatesNotes = () => {
   )
 }
 
-const LoadingState = ({ heading }) => (
-  <PageWrapper>
-    <h1>{heading}</h1>
-    <LoadingIcon />
-  </PageWrapper>
-)
+function LoadingState({ heading }) {
+  return (
+    <PageWrapper>
+      <h1>{heading}</h1>
+      <LoadingIcon />
+    </PageWrapper>
+  )
+}
 
-const PageWrapper = ({ children }) => (
-  <div id='UpdatesNotes' className='full-width'>
-    {children}
-  </div>
-)
+function PageWrapper({ children }) {
+  return (
+    <div id='UpdatesNotes' className='full-width'>
+      {children}
+    </div>
+  )
+}
 
-const PageRouter = () => {
+function PageRouter() {
   return (
     <Switch>
       <Route path='/updates-notes' component={UpdatesNotes} />

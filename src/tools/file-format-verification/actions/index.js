@@ -3,14 +3,14 @@ import * as types from '../constants'
 export function updateStatus(status) {
   return {
     type: types.UPDATE_STATUS,
-    status: status,
+    status,
   }
 }
 
 export function setFilingPeriod(filingPeriod) {
   return {
     type: types.SET_FILING_PERIOD,
-    filingPeriod: filingPeriod,
+    filingPeriod,
   }
 }
 
@@ -46,7 +46,7 @@ export function endParse(data) {
 export function triggerParse(file) {
   return (dispatch) => {
     dispatch(beginParse())
-    var formData = new FormData()
+    const formData = new FormData()
     formData.append('file', file)
 
     fetch('/v2/public/hmda/parse', {
@@ -66,7 +66,7 @@ export function triggerParse(file) {
         return response.json()
       })
       .then((success) => {
-        let data = { transmittalSheetErrors: [], larErrors: [] }
+        const data = { transmittalSheetErrors: [], larErrors: [] }
         success.forEach((error) => {
           if (error.rowNumber === 1) {
             data.transmittalSheetErrors.push(...error.errorMessages)

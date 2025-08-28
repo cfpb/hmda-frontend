@@ -15,6 +15,7 @@ export const PRIVACY =
   'and does not log identifying information about you or your files. '
 
 export const PRIVACY_AND_LIMITATIONS =
-  PRIVACY +
-  'The tool does not test for compliance with syntactical, validity, or quality edits. ' +
-  "This tool doesn't save your file, so you must download it to maintain the file in your records."
+  `${
+    PRIVACY
+  }The tool does not test for compliance with syntactical, validity, or quality edits. ` +
+  `This tool doesn't save your file, so you must download it to maintain the file in your records.`

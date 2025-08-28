@@ -21,7 +21,7 @@ export const getText = (props) => {
   let reviewAndDownload = (
     <div>
       {periodIsClosed ? 'View' : 'Please review'} the edits or{' '}
-      <CSVDownload inline={true} />
+      <CSVDownload inline />
     </div>
   )
 
@@ -63,7 +63,7 @@ export const getText = (props) => {
           and{' '}
         </div>
       )
-      button = <RefileButton isLink={true} isLower={true} />
+      button = <RefileButton isLink isLower />
       periodAfter = true
     }
   }
@@ -94,7 +94,7 @@ export const getText = (props) => {
         <a
           target='_blank'
           rel='noopener noreferrer'
-          href={`/documentation/faq/filing-faq`}
+          href='/documentation/faq/filing-faq'
         >
           documentation page
         </a>{' '}
@@ -132,7 +132,7 @@ export const getHeading = (props) => {
   return heading
 }
 
-const NoNewChanges = ({ className }) => {
+function NoNewChanges({ className }) {
   return (
     <div className={className}>
       The filing deadline has passed. Changes are no longer accepted.
@@ -140,7 +140,7 @@ const NoNewChanges = ({ className }) => {
   )
 }
 
-const RefileWarning = (props) => {
+function RefileWarning(props) {
   const { code, page } = props
   if (code > FAILED) {
     if (code >= VALIDATED || code < PARSED_WITH_ERRORS) return null

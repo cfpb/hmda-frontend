@@ -1,12 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { useEffect } from 'react'
 
 /**
  * Provides a dismissable section identifying any rows which were
  * unparsable from a user uploaded file.
  */
-export const UnparsableRows = () => {
+export function UnparsableRows() {
   const items = useSelector(({ larft }) => larft.unparsable)
   const hasUnparsable = Object.keys(items).length
   const [isHidden, setHidden] = useState(false)
@@ -29,47 +28,53 @@ export const UnparsableRows = () => {
   )
 }
 
-const Header = ({ onClose }) => (
-  <h2 className='flex-spaced'>
-    <span>Please review your file</span>
-    <span
-      onClick={onClose}
-      className='dismiss clickable'
-      title='Close this warning'
-    >
-      x
-    </span>
-  </h2>
-)
+function Header({ onClose }) {
+  return (
+    <h2 className='flex-spaced'>
+      <span>Please review your file</span>
+      <span
+        onClick={onClose}
+        className='dismiss clickable'
+        title='Close this warning'
+      >
+        x
+      </span>
+    </h2>
+  )
+}
 
-const Description = () => (
-  <p>
-    The following rows of your uploaded LAR file are malformed and have been
-    excluded from further processing. <br />
-    <br />
-    Please correct your file and re-upload.
-  </p>
-)
-
-const Tips = () => (
-  <>
+function Description() {
+  return (
     <p>
-      <strong>Tips:</strong>
+      The following rows of your uploaded LAR file are malformed and have been
+      excluded from further processing. <br />
+      <br />
+      Please correct your file and re-upload.
     </p>
-    <ul>
-      <li>
-        <strong>Transmittal Sheet</strong> rows should begin with{' '}
-        <strong>"1|"</strong>
-      </li>
-      <li>
-        <strong>Loan/Application Register</strong> rows should begin with{' '}
-        <strong>"2|"</strong>
-      </li>
-    </ul>
-  </>
-)
+  )
+}
 
-const Table = ({ rows = [], headers = [] }) => {
+function Tips() {
+  return (
+    <>
+      <p>
+        <strong>Tips:</strong>
+      </p>
+      <ul>
+        <li>
+          <strong>Transmittal Sheet</strong> rows should begin with{' '}
+          <strong>"1|"</strong>
+        </li>
+        <li>
+          <strong>Loan/Application Register</strong> rows should begin with{' '}
+          <strong>"2|"</strong>
+        </li>
+      </ul>
+    </>
+  )
+}
+
+function Table({ rows = [], headers = [] }) {
   return (
     <table>
       <TableHeaders items={headers} />
@@ -78,7 +83,7 @@ const Table = ({ rows = [], headers = [] }) => {
   )
 }
 
-const TableHeaders = ({ items }) => {
+function TableHeaders({ items }) {
   if (!items.length) return null
   const headers = items.map((h) => <th key={h}>{h}</th>)
 
@@ -89,7 +94,7 @@ const TableHeaders = ({ items }) => {
   )
 }
 
-const TableRows = ({ items }) => {
+function TableRows({ items }) {
   if (!items.length) return null
 
   const rows = items.map((item, index) => (

@@ -4,9 +4,9 @@ import Heading from '../../common/Heading.jsx'
 
 import './ProgressCard.css'
 
-const ProgressCard = ({ name, id, link, title }) => {
+function ProgressCard({ name, id, link, title }) {
   if (id !== '') {
-    name = name + ' - '
+    name += ' - '
   }
 
   if (id === 'nationwide') {

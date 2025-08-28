@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 
 const renderData = (report, label) => {
   return (
-    <React.Fragment>
+    <>
       {renderCharacteristicTitle('Borrower Characteristics')}
       {mapCharacteristic(report.borrowerCharacteristics, label)}
       {renderCharacteristicTitle('Census Tract Characteristics')}
       {mapCharacteristic(report.censusTractCharacteristics, label)}
-    </React.Fragment>
+    </>
   )
 }
 
@@ -37,7 +37,8 @@ const renderCharacteristicTitle = (key) => {
 }
 
 const renderCharacteristic = (characteristic, label) => {
-  let name, currChar
+  let name
+  let currChar
   Object.keys(characteristic).forEach((key) => {
     if (key === 'characteristic') name = characteristic[key]
     else currChar = characteristic[key]
@@ -57,7 +58,8 @@ const renderCharacteristic = (characteristic, label) => {
       </th>
     </tr>,
     currChar.map((detailObj, index) => {
-      let detail, statuses
+      let detail
+      let statuses
       Object.keys(detailObj).forEach((key) => {
         if (key === 'preapprovalStatuses') statuses = detailObj[key]
         else detail = detailObj[key]
@@ -68,8 +70,8 @@ const renderCharacteristic = (characteristic, label) => {
           <th>{detail}</th>
           {statuses.map((disObj, i) => {
             return [
-              <td key={i + 'count'}>{disObj.count}</td>,
-              <td key={i + 'value'}>{disObj.value}</td>,
+              <td key={`${i}count`}>{disObj.count}</td>,
+              <td key={`${i}value`}>{disObj.value}</td>,
             ]
           })}
         </tr>

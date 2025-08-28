@@ -2,14 +2,21 @@ import React from 'react'
 import { capitalize, valOrNone } from './helpers'
 import { keyMap } from '../constants'
 
-export const Input = ({ type = 'text', disabled, name, value }) => (
-  <div className={'input-wrap ' + type}>
-    <label htmlFor={name}>{name}</label>
-    <input type={type} value={valOrNone(value)} disabled={disabled} readOnly />
-  </div>
-)
+export function Input({ type = 'text', disabled, name, value }) {
+  return (
+    <div className={`input-wrap ${type}`}>
+      <label htmlFor={name}>{name}</label>
+      <input
+        type={type}
+        value={valOrNone(value)}
+        disabled={disabled}
+        readOnly
+      />
+    </div>
+  )
+}
 
-export const InputGroup = ({ name, value, disabled }) => {
+export function InputGroup({ name, value, disabled }) {
   const keys = Object.keys(value).map((key) => keyMap[key] || key)
   return (
     <>

@@ -1,7 +1,9 @@
 import React from 'react'
 
-export const DownloadButton = ({ url }) => (
-  <a href={url} target='_blank' rel='noopener noreferrer'>
-    Download
-  </a>
-)
+export function DownloadButton({ url }) {
+  return (
+    <a href={url} target='_blank' rel='noopener noreferrer'>
+      Download
+    </a>
+  )
+}

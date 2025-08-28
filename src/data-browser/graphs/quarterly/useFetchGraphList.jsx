@@ -40,7 +40,7 @@ export const useFetchGraphList = ({
       Need to pre-load first graph data that way when users navigate to 
       Graphs tab it will load with first graph from API
       */
-      let firstGraph = response.graphs[0]
+      const firstGraph = response.graphs[0]
 
       fetchSingleGraph(firstGraph.endpoint)
       dispatch(
@@ -57,7 +57,7 @@ export const useFetchGraphList = ({
       Need to pre-load first graph data that way when users navigate to 
       Graphs tab it will load with first graph from API
       */
-      let firstGraph = response.graphs[0]
+      const firstGraph = response.graphs[0]
 
       fetchSingleGraph(firstGraph.endpoint)
       dispatch(
@@ -70,7 +70,7 @@ export const useFetchGraphList = ({
 
       history.push(`${BaseURLQuarterly}/info/faq`)
     } else if (needsRedirect) {
-      let firstGraph = response.graphs[0]
+      const firstGraph = response.graphs[0]
 
       fetchSingleGraph(firstGraph.endpoint)
       dispatch(
@@ -83,7 +83,7 @@ export const useFetchGraphList = ({
 
       history.push(`${BaseURLQuarterly}/${firstGraph.endpoint}`)
     } else if (match.params.graph) {
-      let initialGraphToLoad = response.graphs.find(
+      const initialGraphToLoad = response.graphs.find(
         (graph) => graph.endpoint == match.params.graph,
       )
       fetchSingleGraph(initialGraphToLoad.endpoint)

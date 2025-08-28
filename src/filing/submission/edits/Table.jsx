@@ -23,7 +23,7 @@ export const renderHeader = (edit, rows, type) => {
   let cellCount = 0
   const cells = []
 
-  let keyCells = rows[0]
+  const keyCells = rows[0]
   const fieldCells = rows[0].length
   const numOfCells = fieldCells + 1
   const cellWidth = `${100 / numOfCells}%`
@@ -61,7 +61,7 @@ export const renderBody = (edits, rows, type) => {
 export const renderTableCaption = (props) => {
   const name = props.edit.edit
   if (!name) return null
-  let renderedName = name
+  const renderedName = name
   let captionHeader
 
   if (shouldSuppressTable(props)) {
@@ -105,19 +105,19 @@ export const renderTableCaption = (props) => {
 }
 
 export const makeTable = (props) => {
-  const edit = props.edit
-  const type = props.type
-  const rowObj = props.rowObj
+  const { edit } = props
+  const { type } = props
+  const { rowObj } = props
   const isLoading =
     !props.suppressEdits && (!rowObj || !rowObj.rows) ? <Loading /> : null
 
   const caption = renderTableCaption(props)
   if (shouldSuppressTable(props))
     return (
-      <React.Fragment>
+      <>
         {caption}
         {isLoading}
-      </React.Fragment>
+      </>
     )
 
   let className = 'PaginationTarget'
@@ -146,10 +146,10 @@ export const shouldSuppressTable = (props) => {
   )
 }
 
-const EditsTable = (props) => {
+function EditsTable(props) {
   if (!props.edit) return null
   const name = props.edit.edit
-  const rowObj = props.rowObj
+  const { rowObj } = props
 
   return (
     <section className='EditsTable' id={name}>

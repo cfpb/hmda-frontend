@@ -1,15 +1,15 @@
 import './ColumnLayout.css'
 
-export const ColumnLayout = ({ children }) => (
-  <div className='column-container'>{children}</div>
-)
+export function ColumnLayout({ children }) {
+  return <div className='column-container'>{children}</div>
+}
 
 /**
  * @param {String} title Column label
  * @param {Object} children Column content
  * @param {Boolean} hideContent Preserves the Column's space on the page but does not render it's content
  */
-export const Column = ({ title, children, hideContent }) => {
+export function Column({ title, children, hideContent }) {
   if (hideContent)
     return <div className='column usa-grid-full' style={{ marginTop: '3em' }} />
 

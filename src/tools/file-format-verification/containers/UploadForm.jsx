@@ -48,14 +48,14 @@ export function mapDispatchToProps(dispatch) {
   return {
     setFile: (acceptedFiles, rejectedFiles) => {
       if (!acceptedFiles || !rejectedFiles) return
-      let file = acceptedFiles[0] || rejectedFiles[0]
+      const file = acceptedFiles[0] || rejectedFiles[0]
       if (!file) return
       dispatch(setAndParseFile(file))
     },
   }
 }
 
-const UploadButton = (props) => {
+function UploadButton(props) {
   const text = props.text || 'Upload file'
 
   const handleSelection = (event) => {

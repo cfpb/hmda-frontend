@@ -25,12 +25,12 @@ const renderData = (medianAges) => {
 const renderRows = (loanCategories, key) => {
   const dispositionsLength = loanCategories[0].dispositions.length
   let i
-  let rows = []
+  const rows = []
   for (i = 0; i < dispositionsLength; i++) {
     rows.push(
       <tr key={loanCategories[0].dispositions[i].disposition + key}>
         <th>{loanCategories[0].dispositions[i].disposition}</th>
-        {/*eslint-disable-next-line*/}
+        {/* eslint-disable-next-line */}
         {loanCategories.map((loanCategory, index) => {
           return [
             <td

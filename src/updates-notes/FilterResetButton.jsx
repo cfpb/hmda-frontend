@@ -1,7 +1,9 @@
 import React from 'react'
 
-export const FilterResetButton = ({ onClick }) => (
-  <button className='reset-filters' onClick={onClick} type='button'>
-    Reset All Filters
-  </button>
-)
+export function FilterResetButton({ onClick }) {
+  return (
+    <button className='reset-filters' onClick={onClick} type='button'>
+      Reset All Filters
+    </button>
+  )
+}

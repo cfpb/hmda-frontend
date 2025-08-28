@@ -6,9 +6,9 @@ import Alert from '../../../common/Alert'
 
 import './UploadForm.css'
 
-let timeout = null
+const timeout = null
 
-export const UploadErrors = ({ errors = [], parsed, parseErrors }) => {
+export function UploadErrors({ errors = [], parsed, parseErrors }) {
   const [ref, scrollToRef] = useScrollIntoView()
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export default class Upload extends Component {
             ? 'Errors found in '
             : 'No errors found in '
       content = (
-        <React.Fragment>
+        <>
           <p>
             {statusText} <strong>{props.file.name}</strong>.
           </p>
@@ -70,7 +70,7 @@ export default class Upload extends Component {
             Drag another LAR file into this area or click in this box to select
             a LAR file to test.
           </p>
-        </React.Fragment>
+        </>
       )
     }
 
@@ -110,7 +110,7 @@ export default class Upload extends Component {
             parseErrors={errorCount}
           />
           <div className='container-upload'>
-            <Dropzone disablePreview={true} onDrop={setFile} multiple={false}>
+            <Dropzone disablePreview onDrop={setFile} multiple={false}>
               {({ getRootProps, getInputProps }) => {
                 return (
                   <div

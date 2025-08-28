@@ -35,9 +35,9 @@ export const datasetOptions = (year) => {
  * Displays the available Datasets as simple text options based on the selected year.
  * We abuse the `YearSelector` class to match styling with the actual <DBYearSelector/>
  */
-export const DatasetSelector = ({ value, year, onChange }) => {
+export function DatasetSelector({ value, year, onChange }) {
   const options = datasetOptions(year)
-  let selected = value || options[0]
+  const selected = value || options[0]
   if (!options.includes(selected)) {
     onChange(options[0])
     return null

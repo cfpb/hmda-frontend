@@ -90,7 +90,6 @@ package-lock.json
 public/markdown
 
 # Editor Configs #
-.vscode/
 .eslintcache
 
 dev-notes.*

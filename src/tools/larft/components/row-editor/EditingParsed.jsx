@@ -21,13 +21,13 @@ import { ParsedTable } from './ParsedTable'
  * @param {ReactElement} textActions Action bar for section
  * @param {Function} onChange Row update handler
  */
-export const EditingParsed = ({
+export function EditingParsed({
   id = 'parsed-row',
   row,
   currCol,
   textActions,
   onChange,
-}) => {
+}) {
   const [filter, setFilter] = useState('')
   const setFocus = useFocusOnSelectedColumn(currCol)
 

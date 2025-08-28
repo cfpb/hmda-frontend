@@ -119,20 +119,19 @@ export default class EditsNav extends Component {
           </Link>
         </li>
       )
-    } else {
-      return (
-        <li key={i}>
-          <div className='step'>{step}</div>
-          {name}
-        </li>
-      )
     }
+    return (
+      <li key={i}>
+        <div className='step'>{step}</div>
+        {name}
+      </li>
+    )
   }
 
   render() {
     return (
       <section style={{ height: 'auto' }}>
-        <nav className={`EditsNav`} id='editsNav'>
+        <nav className='EditsNav' id='editsNav'>
           <ul className='nav-primary'>
             {Object.keys(this.navMap).map((name, i) => {
               return this.renderNavItem(name, i)

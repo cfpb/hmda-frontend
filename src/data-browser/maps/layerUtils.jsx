@@ -153,7 +153,7 @@ const useBias = (data, variable, value, year, geography, mainVar, mainVal) => {
   return bias
 }
 
-//legend for incidence per 1000
+// legend for incidence per 1000
 const makeLegendBody = (bias) =>
   colors[bias].map((color, i) => {
     const len = colors[bias].length
@@ -162,7 +162,7 @@ const makeLegendBody = (bias) =>
     const i1Step = Math.round((i + 1) * step * 10) / 10 - 0.01
     return (
       <div className='legWrap' key={i}>
-        <span className='legColor' style={{ backgroundColor: color }}></span>
+        <span className='legColor' style={{ backgroundColor: color }} />
         <span className='legSpan'>
           {i === len - 1 ? `>= ${iStep}` : `${iStep} - ${i1Step}`}
         </span>
@@ -207,7 +207,7 @@ function makeLegend(
   )
 
   return (
-    <div className={'legend ' + placement}>
+    <div className={`legend ${placement}`}>
       <div className='legendHeaderWrapper'>
         <h4>Records per 1000 people in each {geography.value}</h4>
         {mVar && mVar !== variable.value ? (
@@ -455,7 +455,7 @@ function addLayers(map, geography, stops) {
     )
   }
 
-  //Always add state lines
+  // Always add state lines
   map.addLayer({
     id: 'state-lines',
     type: 'line',
@@ -546,17 +546,17 @@ function setOutline(
 function makeMapLabel(geography, variable, value, filter, filtervalue, year) {
   if (!geography || !variable || !value)
     return <div className='inactive'>Select a Filter below</div>
-  let row1 = (
+  const row1 = (
     <div className='row row1'>{`HMDA Data for ${year} by ${geography.label}`}</div>
   )
-  let row2 =
+  const row2 =
     variable && value ? (
       <div className='row row2'>
         <span className='filter-clause'>WHERE </span>{' '}
         {`${variable.label} - ${value.label}`}
       </div>
     ) : null
-  let row3 =
+  const row3 =
     filter && filtervalue ? (
       <div className='row row3'>
         <span className='filter-clause'>AND</span>{' '}

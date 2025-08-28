@@ -12,12 +12,12 @@ import checkFileErrors from '../../utils/checkFileErrors.js'
 import ConfirmationModal from './index.jsx'
 
 export function mapStateToProps(state) {
-  const lei = state.app.lei
+  const { lei } = state.app
   const { showing } = state.app.confirmation
   const { filingPeriod } = state.app
   const { code } = state.app.submission.status
   const { newFile } =
-    state.app.upload[lei] || state.app.upload['__DEFAULT_UPLOAD__']
+    state.app.upload[lei] || state.app.upload.__DEFAULT_UPLOAD__
   const institution =
     lei &&
     state.app.institutions.fetched &&

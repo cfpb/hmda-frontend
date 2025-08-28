@@ -10,7 +10,7 @@ function openPrintDialog(e) {
   e.preventDefault()
   document.activeElement.blur()
   displayCount += 0
-  let lines = [
+  const lines = [
     '--------------------------------',
     '* Recommended Print Settings *',
     '--------------------------------',
@@ -27,14 +27,14 @@ function openPrintDialog(e) {
   }
 }
 
-export const MapsNavBar = ({
+export function MapsNavBar({
   data,
   viewReport,
   download,
   hasFilter,
   clearFeature,
   origPer1000,
-}) => {
+}) {
   const { filter1, filter2, union12, filter1_geo, featureName, geoLevel } =
     data || {}
 
@@ -90,37 +90,39 @@ export const MapsNavBar = ({
   )
 }
 
-export const NavBtn = ({ cname, label, onClick, dataUrl }) => (
-  <button
-    type='button'
-    className={`nav-btn clickable ${cname || ''}`}
-    onClick={onClick}
-    data-url={dataUrl}
-  >
-    {label}
-  </button>
-)
+export function NavBtn({ cname, label, onClick, dataUrl }) {
+  return (
+    <button
+      type='button'
+      className={`nav-btn clickable ${cname || ''}`}
+      onClick={onClick}
+      data-url={dataUrl}
+    >
+      {label}
+    </button>
+  )
+}
 
-export const MapsNavBtns = ({ download, viewReport, viewMap }) => {
+export function MapsNavBtns({ download, viewReport, viewMap }) {
   const mapCtx = useContext(MapContext)
 
   return (
     <span className='no-print btns'>
       <span className='primary'>
-        {viewReport && (
+        {viewReport ? (
           <NavBtn
             cname='view-report QueryButton colorBgWithBias'
             onClick={viewReport}
             label='View Report'
           />
-        )}
-        {viewMap && (
+        ) : null}
+        {viewMap ? (
           <NavBtn
             cname='view-map QueryButton colorBgWithBias'
             onClick={viewMap}
             label='View Map'
           />
-        )}
+        ) : null}
       </span>
       <span className='options'>
         <NavBtn

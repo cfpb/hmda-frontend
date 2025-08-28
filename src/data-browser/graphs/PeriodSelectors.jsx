@@ -1,14 +1,14 @@
 import LoadingIcon from '../../common/LoadingIcon'
 import Select from '../Select'
 
-export const PeriodSelectors = ({
+export function PeriodSelectors({
   isLoading,
   periodHigh,
   periodLow,
   periodOpts,
   setPeriodHigh,
   setPeriodLow,
-}) => {
+}) {
   if (isLoading) return <LoadingIcon />
 
   const showRangeReset =
@@ -19,7 +19,7 @@ export const PeriodSelectors = ({
     <div className='period-wrapper'>
       <br />
       Filing Period Range{' '}
-      {showRangeReset && (
+      {showRangeReset ? (
         <button
           className='reset'
           onClick={() => {
@@ -29,7 +29,7 @@ export const PeriodSelectors = ({
         >
           Show All Quarters
         </button>
-      )}
+      ) : null}
       <div className='period-range'>
         <Select
           aria-label='Set lower limit of Filing Period range'

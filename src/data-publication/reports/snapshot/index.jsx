@@ -3,17 +3,17 @@ import { withAppContext } from '../../../common/appContextHOC'
 import { withYearValidation } from '../../../common/withYearValidation'
 import SnapshotDataset from './SnapshotDataset'
 
-const _Snapshot = (props) => (
-  <SnapshotDataset {...props} label='Snapshot' dataKey='snapshot' />
-)
+function _Snapshot(props) {
+  return <SnapshotDataset {...props} label='Snapshot' dataKey='snapshot' />
+}
 
-const _OneYear = (props) => (
-  <SnapshotDataset {...props} label='One Year' dataKey='oneYear' />
-)
+function _OneYear(props) {
+  return <SnapshotDataset {...props} label='One Year' dataKey='oneYear' />
+}
 
-const _ThreeYear = (props) => (
-  <SnapshotDataset {...props} label='Three Year' dataKey='threeYear' />
-)
+function _ThreeYear(props) {
+  return <SnapshotDataset {...props} label='Three Year' dataKey='threeYear' />
+}
 
 export const Snapshot = withAppContext(withYearValidation(_Snapshot))
 export const OneYearDataset = withAppContext(withYearValidation(_OneYear))

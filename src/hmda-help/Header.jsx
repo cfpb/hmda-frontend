@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import ReleaseVersion from '../common/ReleaseVersion'
 
-const Header = (props) => {
+function Header(props) {
   return (
     <header className='grid'>
       <h1 className='App-title'>

@@ -1,7 +1,5 @@
 /* eslint-disable no-var */
 ;(function uswdsInit() {
-  'use strict'
-
   var loadingClass = 'usa-js-loading'
   var fallback
 

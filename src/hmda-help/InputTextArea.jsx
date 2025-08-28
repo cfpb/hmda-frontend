@@ -45,7 +45,7 @@ class InputText extends Component {
     const rows = Math.ceil((value || placeholder).length / LINE_WIDTH) || 1
 
     return (
-      <React.Fragment>
+      <>
         <label htmlFor={id}>{label}</label>
         <InputErrorMsg msg={error} />
         <textarea
@@ -60,7 +60,7 @@ class InputText extends Component {
           disabled={disabled}
           rows={rows}
         />
-      </React.Fragment>
+      </>
     )
   }
 }

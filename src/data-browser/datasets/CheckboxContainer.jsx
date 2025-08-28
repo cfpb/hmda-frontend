@@ -13,7 +13,7 @@ function renderCheckboxes(variable, vars, makeCb, year) {
           onChange={makeCb(variable, v)}
           id={variable + v.id}
           type='checkbox'
-        ></input>
+        />
         <label htmlFor={variable + v.id}>
           {variables[variable].mapping[v.id]}
         </label>
@@ -29,9 +29,9 @@ function renderCheckboxes(variable, vars, makeCb, year) {
     // Add a button to Select/Clear all options for this variable
     <button
       className='CheckboxToggleBtn'
-      key={'all'}
+      key='all'
       onClick={makeCb(variable, { id: 'all' })}
-      id={variable + '-all'}
+      id={`${variable}-all`}
     >
       {allChecked ? 'Clear Selected' : 'Select All'}
     </button>,
@@ -40,7 +40,7 @@ function renderCheckboxes(variable, vars, makeCb, year) {
   return boxes
 }
 
-const CheckboxContainer = (props) => {
+function CheckboxContainer(props) {
   const { vars, selectedVar, year, callbackFactory } = props
   const variables = getVariables(year)
 

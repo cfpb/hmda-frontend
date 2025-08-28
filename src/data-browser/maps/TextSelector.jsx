@@ -1,7 +1,7 @@
 import React from 'react'
 import './TextSelector.css'
 
-const TextSelector = ({ selected, options, onChange, label, className }) => {
+function TextSelector({ selected, options, onChange, label, className }) {
   if (!options) return null
 
   const _clickHandler = (e) => {
@@ -16,14 +16,14 @@ const TextSelector = ({ selected, options, onChange, label, className }) => {
   }
 
   return (
-    <div className={'TextSelector' + (className ? ` ${className}` : '')}>
-      {label && <h4 className='label'>{label}</h4>}
+    <div className={`TextSelector${className ? ` ${className}` : ''}`}>
+      {label ? <h4 className='label'>{label}</h4> : null}
       <div className='options'>
         {options.map((current, i) => {
           return (
             <button
               type='button'
-              className={'option ' + getActiveClass(current, selected)}
+              className={`option ${getActiveClass(current, selected)}`}
               onClick={_clickHandler}
               key={i}
             >

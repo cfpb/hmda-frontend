@@ -76,9 +76,9 @@ export const sortFilingYears = (years) =>  {
 
     if (q) {
       return [parseInt(y), parseInt(q.slice(1))]
-    } else {
+    } 
       return parseInt(y)
-    }
+    
   }
 
   years.sort((a, b) => {
@@ -87,9 +87,9 @@ export const sortFilingYears = (years) =>  {
 
     if (aYear[0] === bYear[0]) {
       return aYear[1] - bYear[1]
-    } else {
+    } 
       return aYear[0] - bYear[0]
-    }
+    
   })
   return years
 }

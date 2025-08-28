@@ -3,17 +3,17 @@
     function o(i, f) {
       if (!n[i]) {
         if (!e[i]) {
-          var c = 'function' == typeof require && require
+          const c = typeof require === 'function' && require
           if (!f && c) return c(i, !0)
           if (u) return u(i, !0)
-          var a = new Error("Cannot find module '" + i + "'")
+          const a = new Error(`Cannot find module '${i}'`)
           throw ((a.code = 'MODULE_NOT_FOUND'), a)
         }
-        var p = (n[i] = { exports: {} })
+        const p = (n[i] = { exports: {} })
         e[i][0].call(
           p.exports,
           function (r) {
-            var n = e[i][1][r]
+            const n = e[i][1][r]
             return o(n || r)
           },
           p,
@@ -27,7 +27,7 @@
       return n[i].exports
     }
     for (
-      var u = 'function' == typeof require && require, i = 0;
+      var u = typeof require === 'function' && require, i = 0;
       i < t.length;
       i++
     )
@@ -39,8 +39,6 @@
   {
     1: [
       function (require, module, exports) {
-        'use strict'
-
         /*
          * classList.js: Cross-browser full element.classList implementation.
          * 2014-07-23
@@ -50,9 +48,9 @@
          * NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
          */
 
-        /*global self, document, DOMException */
+        /* global self, document, DOMException */
 
-        /*! @source http://purl.eligrey.com/github/classList.js/blob/master/classList.js*/
+        /*! @source http://purl.eligrey.com/github/classList.js/blob/master/classList.js */
 
         /* Copied from MDN:
          * https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
@@ -70,69 +68,69 @@
               ))
           ) {
             ;(function (view) {
-              'use strict'
-
               if (!('Element' in view)) return
-              var classListProp = 'classList',
-                protoProp = 'prototype',
-                elemCtrProto = view.Element[protoProp],
-                objCtr = Object,
-                strTrim =
-                  String[protoProp].trim ||
-                  function () {
-                    return this.replace(/^\s+|\s+$/g, '')
-                  },
-                arrIndexOf =
-                  Array[protoProp].indexOf ||
-                  function (item) {
-                    var i = 0,
-                      len = this.length
-                    for (; i < len; i++) {
-                      if (i in this && this[i] === item) {
-                        return i
-                      }
-                    }
-                    return -1
-                  },
-                // Vendors: please allow content code to instantiate DOMExceptions
-                DOMEx = function (type, message) {
-                  this.name = type
-                  this.code = DOMException[type]
-                  this.message = message
-                },
-                checkTokenAndGetIndex = function (classList, token) {
-                  if (token === '') {
-                    throw new DOMEx(
-                      'SYNTAX_ERR',
-                      'An invalid or illegal string was specified',
-                    )
-                  }
-                  if (/\s/.test(token)) {
-                    throw new DOMEx(
-                      'INVALID_CHARACTER_ERR',
-                      'String contains an invalid character',
-                    )
-                  }
-                  return arrIndexOf.call(classList, token)
-                },
-                ClassList = function (elem) {
-                  var trimmedClasses = strTrim.call(
-                      elem.getAttribute('class') || '',
-                    ),
-                    classes = trimmedClasses ? trimmedClasses.split(/\s+/) : [],
-                    i = 0,
-                    len = classes.length
-                  for (; i < len; i++) {
-                    this.push(classes[i])
-                  }
-                  this._updateClassName = function () {
-                    elem.setAttribute('class', this.toString())
-                  }
-                },
-                classListProto = (ClassList[protoProp] = []),
-                classListGetter = function () {
-                  return new ClassList(this)
+              const classListProp = 'classList'
+              const protoProp = 'prototype'
+              const elemCtrProto = view.Element[protoProp]
+              const objCtr = Object
+              const strTrim =
+                String[protoProp].trim ||
+                function () {
+                  return this.replace(/^\s+|\s+$/g, '')
                 }
+              const arrIndexOf =
+                Array[protoProp].indexOf ||
+                function (item) {
+                  let i = 0
+                  const len = this.length
+                  for (; i < len; i++) {
+                    if (i in this && this[i] === item) {
+                      return i
+                    }
+                  }
+                  return -1
+                }
+              // Vendors: please allow content code to instantiate DOMExceptions
+              const DOMEx = function (type, message) {
+                this.name = type
+                this.code = DOMException[type]
+                this.message = message
+              }
+              const checkTokenAndGetIndex = function (classList, token) {
+                if (token === '') {
+                  throw new DOMEx(
+                    'SYNTAX_ERR',
+                    'An invalid or illegal string was specified',
+                  )
+                }
+                if (/\s/.test(token)) {
+                  throw new DOMEx(
+                    'INVALID_CHARACTER_ERR',
+                    'String contains an invalid character',
+                  )
+                }
+                return arrIndexOf.call(classList, token)
+              }
+              const ClassList = function (elem) {
+                const trimmedClasses = strTrim.call(
+                  elem.getAttribute('class') || '',
+                )
+                const classes = trimmedClasses
+                  ? trimmedClasses.split(/\s+/)
+                  : []
+                let i = 0
+                const len = classes.length
+                for (; i < len; i++) {
+                  this.push(classes[i])
+                }
+                this._updateClassName = function () {
+                  elem.setAttribute('class', this.toString())
+                }
+              }
+              const classListProto = (ClassList[protoProp] = [])
+              const classListGetter = function () {
+                return new ClassList(this)
+              }
               // Most DOMException implementations don't allow calling DOMException's toString()
               // on non-DOMExceptions. Error's toString() is sufficient here.
               DOMEx[protoProp] = Error[protoProp]
@@ -140,17 +138,17 @@
                 return this[i] || null
               }
               classListProto.contains = function (token) {
-                token += ''
+                token = String(token)
                 return checkTokenAndGetIndex(this, token) !== -1
               }
               classListProto.add = function () {
-                var tokens = arguments,
-                  i = 0,
-                  l = tokens.length,
-                  token,
-                  updated = false
+                const tokens = arguments
+                let i = 0
+                const l = tokens.length
+                let token
+                let updated = false
                 do {
-                  token = tokens[i] + ''
+                  token = `${tokens[i]}`
                   if (checkTokenAndGetIndex(this, token) === -1) {
                     this.push(token)
                     updated = true
@@ -161,14 +159,14 @@
                 }
               }
               classListProto.remove = function () {
-                var tokens = arguments,
-                  i = 0,
-                  l = tokens.length,
-                  token,
-                  updated = false,
-                  index
+                const tokens = arguments
+                let i = 0
+                const l = tokens.length
+                let token
+                let updated = false
+                let index
                 do {
-                  token = tokens[i] + ''
+                  token = `${tokens[i]}`
                   index = checkTokenAndGetIndex(this, token)
                   while (index !== -1) {
                     this.splice(index, 1)
@@ -181,25 +179,24 @@
                 }
               }
               classListProto.toggle = function (token, force) {
-                token += ''
-                var result = this.contains(token),
-                  method = result
-                    ? force !== true && 'remove'
-                    : force !== false && 'add'
+                token = String(token)
+                const result = this.contains(token)
+                const method = result
+                  ? force !== true && 'remove'
+                  : force !== false && 'add'
                 if (method) {
                   this[method](token)
                 }
                 if (force === true || force === false) {
                   return force
-                } else {
-                  return !result
                 }
+                return !result
               }
               classListProto.toString = function () {
                 return this.join(' ')
               }
               if (objCtr.defineProperty) {
-                var classListPropDesc = {
+                const classListPropDesc = {
                   get: classListGetter,
                   enumerable: true,
                   configurable: true,
@@ -230,19 +227,17 @@
             // to normalize the add/remove and toggle APIs.
 
             ;(function () {
-              'use strict'
-
-              var testElement = document.createElement('_')
+              let testElement = document.createElement('_')
               testElement.classList.add('c1', 'c2')
 
               // Polyfill for IE 10/11 and Firefox <26, where classList.add and
               // classList.remove exist but support only one argument at a time.
               if (!testElement.classList.contains('c2')) {
-                var createMethod = function (method) {
-                  var original = DOMTokenList.prototype[method]
+                const createMethod = function (method) {
+                  const original = DOMTokenList.prototype[method]
                   DOMTokenList.prototype[method] = function (token) {
-                    var i,
-                      len = arguments.length
+                    let i
+                    const len = arguments.length
                     for (i = 0; i < len; i++) {
                       token = arguments[i]
                       original.call(this, token)
@@ -257,13 +252,12 @@
               // Polyfill for IE 10 and Firefox <24, where classList.toggle does not
               // support the second argument.
               if (testElement.classList.contains('c3')) {
-                var _toggle = DOMTokenList.prototype.toggle
+                const _toggle = DOMTokenList.prototype.toggle
                 DOMTokenList.prototype.toggle = function (token, force) {
                   if (1 in arguments && !this.contains(token) === !force) {
                     return force
-                  } else {
-                    return _toggle.call(this, token)
                   }
+                  return _toggle.call(this, token)
                 }
               }
               testElement = null
@@ -275,9 +269,6 @@
     ],
     2: [
       function (require, module, exports) {
-        'use strict'
-
-        // element-closest | CC0-1.0 | github.com/jonathantneal/closest
         ;(function (ElementProto) {
           if (typeof ElementProto.matches !== 'function') {
             ElementProto.matches =
@@ -285,11 +276,11 @@
               ElementProto.mozMatchesSelector ||
               ElementProto.webkitMatchesSelector ||
               function matches(selector) {
-                var element = this
-                var elements = (
+                const element = this
+                const elements = (
                   element.document || element.ownerDocument
                 ).querySelectorAll(selector)
-                var index = 0
+                let index = 0
                 while (elements[index] && elements[index] !== element) {
                   ++index
                 }
@@ -298,7 +289,7 @@
           }
           if (typeof ElementProto.closest !== 'function') {
             ElementProto.closest = function closest(selector) {
-              var element = this
+              let element = this
               while (element && element.nodeType === 1) {
                 if (element.matches(selector)) {
                   return element
@@ -314,12 +305,9 @@
     ],
     3: [
       function (require, module, exports) {
-        'use strict'
-
-        /* global define, KeyboardEvent, module */
         ;(function () {
-          var keyboardeventKeyPolyfill = {
-            polyfill: polyfill,
+          const keyboardeventKeyPolyfill = {
+            polyfill,
             keys: {
               3: 'Cancel',
               6: 'Help',
@@ -392,13 +380,13 @@
           }
 
           // Function keys (F1-24).
-          var i
+          let i
           for (i = 1; i < 25; i++) {
-            keyboardeventKeyPolyfill.keys[111 + i] = 'F' + i
+            keyboardeventKeyPolyfill.keys[111 + i] = `F${i}`
           }
 
           // Printable ASCII characters.
-          var letter = ''
+          let letter = ''
           for (i = 65; i < 91; i++) {
             letter = String.fromCharCode(i)
             keyboardeventKeyPolyfill.keys[i] = [
@@ -415,12 +403,12 @@
             }
 
             // Polyfill `key` on `KeyboardEvent`.
-            var proto = {
-              get: function (x) {
-                var key =
+            const proto = {
+              get(x) {
+                let key =
                   keyboardeventKeyPolyfill.keys[this.which || this.keyCode]
                 if (Array.isArray(key)) {
-                  key = key[+this.shiftKey]
+                  key = key[Number(this.shiftKey)]
                 }
                 return key
               },
@@ -450,12 +438,10 @@ object-assign
 @license MIT
 */
 
-        'use strict'
-
         /* eslint-disable no-unused-vars */
-        var getOwnPropertySymbols = Object.getOwnPropertySymbols
-        var hasOwnProperty = Object.prototype.hasOwnProperty
-        var propIsEnumerable = Object.prototype.propertyIsEnumerable
+        const { getOwnPropertySymbols } = Object
+        const { hasOwnProperty } = Object.prototype
+        const propIsEnumerable = Object.prototype.propertyIsEnumerable
         function toObject(val) {
           if (val === null || val === undefined) {
             throw new TypeError(
@@ -473,18 +459,18 @@ object-assign
             // Detect buggy property enumeration order in older V8 versions.
 
             // https://bugs.chromium.org/p/v8/issues/detail?id=4118
-            var test1 = new String('abc') // eslint-disable-line no-new-wrappers
+            const test1 = new String('abc') // eslint-disable-line no-new-wrappers
             test1[5] = 'de'
             if (Object.getOwnPropertyNames(test1)[0] === '5') {
               return false
             }
 
             // https://bugs.chromium.org/p/v8/issues/detail?id=3056
-            var test2 = {}
-            for (var i = 0; i < 10; i++) {
-              test2['_' + String.fromCharCode(i)] = i
+            const test2 = {}
+            for (let i = 0; i < 10; i++) {
+              test2[`_${String.fromCharCode(i)}`] = i
             }
-            var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+            const order2 = Object.getOwnPropertyNames(test2).map(function (n) {
               return test2[n]
             })
             if (order2.join('') !== '0123456789') {
@@ -492,14 +478,11 @@ object-assign
             }
 
             // https://bugs.chromium.org/p/v8/issues/detail?id=3056
-            var test3 = {}
+            const test3 = {}
             'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
               test3[letter] = letter
             })
-            if (
-              Object.keys(Object.assign({}, test3)).join('') !==
-              'abcdefghijklmnopqrst'
-            ) {
+            if (Object.keys({ ...test3 }).join('') !== 'abcdefghijklmnopqrst') {
               return false
             }
             return true
@@ -511,19 +494,19 @@ object-assign
         module.exports = shouldUseNative()
           ? Object.assign
           : function (target, source) {
-              var from
-              var to = toObject(target)
-              var symbols
-              for (var s = 1; s < arguments.length; s++) {
+              let from
+              const to = toObject(target)
+              let symbols
+              for (let s = 1; s < arguments.length; s++) {
                 from = Object(arguments[s])
-                for (var key in from) {
+                for (const key in from) {
                   if (hasOwnProperty.call(from, key)) {
                     to[key] = from[key]
                   }
                 }
                 if (getOwnPropertySymbols) {
                   symbols = getOwnPropertySymbols(from)
-                  for (var i = 0; i < symbols.length; i++) {
+                  for (let i = 0; i < symbols.length; i++) {
                     if (propIsEnumerable.call(from, symbols[i])) {
                       to[symbols[i]] = from[symbols[i]]
                     }
@@ -537,36 +520,34 @@ object-assign
     ],
     5: [
       function (require, module, exports) {
-        'use strict'
-
         const assign = require('object-assign')
         const delegate = require('../delegate')
         const delegateAll = require('../delegateAll')
         const DELEGATE_PATTERN = /^(.+):delegate\((.+)\)$/
         const SPACE = ' '
         const getListeners = function (type, handler) {
-          var match = type.match(DELEGATE_PATTERN)
-          var selector
+          const match = type.match(DELEGATE_PATTERN)
+          let selector
           if (match) {
             type = match[1]
             selector = match[2]
           }
-          var options
+          let options
           if (typeof handler === 'object') {
             options = {
               capture: popKey(handler, 'capture'),
               passive: popKey(handler, 'passive'),
             }
           }
-          var listener = {
-            selector: selector,
+          const listener = {
+            selector,
             delegate:
               typeof handler === 'object'
                 ? delegateAll(handler)
                 : selector
                   ? delegate(selector, handler)
                   : handler,
-            options: options,
+            options,
           }
           if (type.indexOf(SPACE) > -1) {
             return type.split(SPACE).map(function (_type) {
@@ -577,19 +558,18 @@ object-assign
                 listener,
               )
             })
-          } else {
-            listener.type = type
-            return [listener]
           }
+          listener.type = type
+          return [listener]
         }
         var popKey = function (obj, key) {
-          var value = obj[key]
+          const value = obj[key]
           delete obj[key]
           return value
         }
         module.exports = function behavior(events, props) {
           const listeners = Object.keys(events).reduce(function (memo, type) {
-            var listeners = getListeners(type, events[type])
+            const listeners = getListeners(type, events[type])
             return memo.concat(listeners)
           }, [])
           return assign(
@@ -621,8 +601,6 @@ object-assign
     ],
     6: [
       function (require, module, exports) {
-        'use strict'
-
         module.exports = function compose(functions) {
           return function (e) {
             return functions.some(function (fn) {
@@ -635,13 +613,11 @@ object-assign
     ],
     7: [
       function (require, module, exports) {
-        'use strict'
-
         // polyfill Element.prototype.closest
         require('element-closest')
         module.exports = function delegate(selector, fn) {
           return function delegation(event) {
-            var target = event.target.closest(selector)
+            const target = event.target.closest(selector)
             if (target) {
               return fn.call(target, event)
             }
@@ -652,8 +628,6 @@ object-assign
     ],
     8: [
       function (require, module, exports) {
-        'use strict'
-
         const delegate = require('../delegate')
         const compose = require('../compose')
         const SPLAT = '*'
@@ -677,8 +651,6 @@ object-assign
     ],
     9: [
       function (require, module, exports) {
-        'use strict'
-
         module.exports = function ignore(element, fn) {
           return function ignorance(e) {
             if (element !== e.target && !element.contains(e.target)) {
@@ -691,8 +663,6 @@ object-assign
     ],
     10: [
       function (require, module, exports) {
-        'use strict'
-
         module.exports = {
           behavior: require('./behavior'),
           delegate: require('./delegate'),
@@ -711,8 +681,6 @@ object-assign
     ],
     11: [
       function (require, module, exports) {
-        'use strict'
-
         require('keyboardevent-key-polyfill')
 
         // these are the only relevant modifiers supported on all platforms,
@@ -726,9 +694,9 @@ object-assign
         }
         const MODIFIER_SEPARATOR = '+'
         const getEventKey = function (event, hasModifiers) {
-          var key = event.key
+          let { key } = event
           if (hasModifiers) {
-            for (var modifier in MODIFIERS) {
+            for (const modifier in MODIFIERS) {
               if (event[MODIFIERS[modifier]] === true) {
                 key = [modifier, key].join(MODIFIER_SEPARATOR)
               }
@@ -741,7 +709,7 @@ object-assign
             return key.indexOf(MODIFIER_SEPARATOR) > -1
           })
           return function (event) {
-            var key = getEventKey(event, hasModifiers)
+            const key = getEventKey(event, hasModifiers)
             return [key, key.toLowerCase()].reduce(function (result, _key) {
               if (_key in keys) {
                 result = keys[key].call(this, event)
@@ -756,10 +724,8 @@ object-assign
     ],
     12: [
       function (require, module, exports) {
-        'use strict'
-
         module.exports = function once(listener, options) {
-          var wrapped = function wrappedOnce(e) {
+          const wrapped = function wrappedOnce(e) {
             e.currentTarget.removeEventListener(e.type, wrapped, options)
             return listener.call(this, e)
           }
@@ -770,28 +736,26 @@ object-assign
     ],
     13: [
       function (require, module, exports) {
-        'use strict'
-
-        var RE_TRIM = /(^\s+)|(\s+$)/g
-        var RE_SPLIT = /\s+/
-        var trim = String.prototype.trim
+        const RE_TRIM = /(^\s+)|(\s+$)/g
+        const RE_SPLIT = /\s+/
+        const trim = String.prototype.trim
           ? function (str) {
               return str.trim()
             }
           : function (str) {
               return str.replace(RE_TRIM, '')
             }
-        var queryById = function (id) {
-          return this.querySelector('[id="' + id.replace(/"/g, '\\"') + '"]')
+        const queryById = function (id) {
+          return this.querySelector(`[id="${id.replace(/"/g, '\\"')}"]`)
         }
         module.exports = function resolveIds(ids, doc) {
           if (typeof ids !== 'string') {
-            throw new Error('Expected a string but got ' + typeof ids)
+            throw new Error(`Expected a string but got ${typeof ids}`)
           }
           if (!doc) {
             doc = window.document
           }
-          var getElementById = doc.getElementById
+          const getElementById = doc.getElementById
             ? doc.getElementById.bind(doc)
             : queryById.bind(doc)
           ids = trim(ids).split(RE_SPLIT)
@@ -803,9 +767,9 @@ object-assign
             return []
           }
           return ids.map(function (id) {
-            var el = getElementById(id)
+            const el = getElementById(id)
             if (!el) {
-              throw new Error('no element with id: "' + id + '"')
+              throw new Error(`no element with id: "${id}"`)
             }
             return el
           })
@@ -815,8 +779,6 @@ object-assign
     ],
     14: [
       function (require, module, exports) {
-        'use strict'
-
         const behavior = require('../../uswds-core/src/js/utils/behavior')
         const toggleFormInput = require('../../uswds-core/src/js/utils/toggle-form-input')
         const { CLICK } = require('../../uswds-core/src/js/events')
@@ -841,8 +803,6 @@ object-assign
     ],
     15: [
       function (require, module, exports) {
-        'use strict'
-
         const select = require('../../uswds-core/src/js/utils/select')
         const behavior = require('../../uswds-core/src/js/utils/behavior')
         const toggle = require('../../uswds-core/src/js/utils/toggle')
@@ -948,8 +908,6 @@ object-assign
     ],
     16: [
       function (require, module, exports) {
-        'use strict'
-
         const behavior = require('../../uswds-core/src/js/utils/behavior')
         const { CLICK } = require('../../uswds-core/src/js/events')
         const { prefix: PREFIX } = require('../../uswds-core/src/js/config')
@@ -973,8 +931,6 @@ object-assign
     ],
     17: [
       function (require, module, exports) {
-        'use strict'
-
         const select = require('../../uswds-core/src/js/utils/select')
         const behavior = require('../../uswds-core/src/js/utils/behavior')
         const debounce = require('../../uswds-core/src/js/utils/debounce')
@@ -1167,8 +1123,6 @@ object-assign
     ],
     18: [
       function (require, module, exports) {
-        'use strict'
-
         const keymap = require('receptor/keymap')
         const selectOrMatches = require('../../uswds-core/src/js/utils/select-or-matches')
         const behavior = require('../../uswds-core/src/js/utils/behavior')
@@ -1209,7 +1163,7 @@ object-assign
          * @param {string} value The new value of the element
          */
         const changeElementValue = function (el) {
-          let value =
+          const value =
             arguments.length > 1 && arguments[1] !== undefined
               ? arguments[1]
               : ''
@@ -1444,7 +1398,7 @@ object-assign
          * @param {boolean} options.preventScroll should skip procedure to scroll to element
          */
         const highlightOption = function (el, nextEl) {
-          let { skipFocus, preventScroll } =
+          const { skipFocus, preventScroll } =
             arguments.length > 2 && arguments[2] !== undefined
               ? arguments[2]
               : {}
@@ -1486,11 +1440,11 @@ object-assign
          * @param {object} extras An object of regular expressions to replace and filter the query
          */
         const generateDynamicRegExp = function (filter) {
-          let query =
+          const query =
             arguments.length > 1 && arguments[1] !== undefined
               ? arguments[1]
               : ''
-          let extras =
+          const extras =
             arguments.length > 2 && arguments[2] !== undefined
               ? arguments[2]
               : {}
@@ -1956,8 +1910,6 @@ object-assign
     ],
     19: [
       function (require, module, exports) {
-        'use strict'
-
         const keymap = require('receptor/keymap')
         const behavior = require('../../uswds-core/src/js/utils/behavior')
         const select = require('../../uswds-core/src/js/utils/select')
@@ -2417,11 +2369,11 @@ object-assign
          * @returns {Date} the parsed date
          */
         const parseDateString = function (dateString) {
-          let dateFormat =
+          const dateFormat =
             arguments.length > 1 && arguments[1] !== undefined
               ? arguments[1]
               : INTERNAL_DATE_FORMAT
-          let adjustDate =
+          const adjustDate =
             arguments.length > 2 && arguments[2] !== undefined
               ? arguments[2]
               : false
@@ -2490,7 +2442,7 @@ object-assign
          * @returns {string} the formatted date string
          */
         const formatDate = function (date) {
-          let dateFormat =
+          const dateFormat =
             arguments.length > 1 && arguments[1] !== undefined
               ? arguments[1]
               : INTERNAL_DATE_FORMAT
@@ -2554,7 +2506,7 @@ object-assign
          * @param {string} value The new value of the element
          */
         const changeElementValue = function (el) {
-          let value =
+          const value =
             arguments.length > 1 && arguments[1] !== undefined
               ? arguments[1]
               : ''
@@ -4112,8 +4064,6 @@ object-assign
     ],
     20: [
       function (require, module, exports) {
-        'use strict'
-
         const behavior = require('../../uswds-core/src/js/utils/behavior')
         const select = require('../../uswds-core/src/js/utils/select')
         const selectOrMatches = require('../../uswds-core/src/js/utils/select-or-matches')
@@ -4278,8 +4228,6 @@ object-assign
     ],
     21: [
       function (require, module, exports) {
-        'use strict'
-
         const selectOrMatches = require('../../uswds-core/src/js/utils/select-or-matches')
         const behavior = require('../../uswds-core/src/js/utils/behavior')
         const Sanitizer = require('../../uswds-core/src/js/utils/sanitizer')
@@ -4778,8 +4726,6 @@ object-assign
     ],
     22: [
       function (require, module, exports) {
-        'use strict'
-
         const behavior = require('../../uswds-core/src/js/utils/behavior')
         const { CLICK } = require('../../uswds-core/src/js/events')
         const { prefix: PREFIX } = require('../../uswds-core/src/js/config')
@@ -4876,8 +4822,6 @@ object-assign
     ],
     23: [
       function (require, module, exports) {
-        'use strict'
-
         const keymap = require('receptor/keymap')
         const behavior = require('../../uswds-core/src/js/utils/behavior')
         const select = require('../../uswds-core/src/js/utils/select')
@@ -5106,8 +5050,6 @@ object-assign
     ],
     24: [
       function (require, module, exports) {
-        'use strict'
-
         const once = require('receptor/once')
         const keymap = require('receptor/keymap')
         const selectOrMatches = require('../../uswds-core/src/js/utils/select-or-matches')
@@ -5349,8 +5291,6 @@ object-assign
     ],
     25: [
       function (require, module, exports) {
-        'use strict'
-
         const selectOrMatches = require('../../uswds-core/src/js/utils/select-or-matches')
         const behavior = require('../../uswds-core/src/js/utils/behavior')
         const { prefix: PREFIX } = require('../../uswds-core/src/js/config')
@@ -5469,8 +5409,6 @@ object-assign
     ],
     26: [
       function (require, module, exports) {
-        'use strict'
-
         const behavior = require('../../uswds-core/src/js/utils/behavior')
         const select = require('../../uswds-core/src/js/utils/select')
         const { prefix: PREFIX } = require('../../uswds-core/src/js/config')
@@ -5516,8 +5454,6 @@ object-assign
     ],
     27: [
       function (require, module, exports) {
-        'use strict'
-
         const keymap = require('receptor/keymap')
         const behavior = require('../../uswds-core/src/js/utils/behavior')
         const toggle = require('../../uswds-core/src/js/utils/toggle')
@@ -5625,8 +5561,6 @@ object-assign
     ],
     28: [
       function (require, module, exports) {
-        'use strict'
-
         const selectOrMatches = require('../../uswds-core/src/js/utils/select-or-matches')
         const FocusTrap = require('../../uswds-core/src/js/utils/focus-trap')
         const ScrollBarWidth = require('../../uswds-core/src/js/utils/scrollbar-width')
@@ -5962,8 +5896,6 @@ object-assign
     ],
     29: [
       function (require, module, exports) {
-        'use strict'
-
         const ignore = require('receptor/ignore')
         const behavior = require('../../uswds-core/src/js/utils/behavior')
         const select = require('../../uswds-core/src/js/utils/select')
@@ -6054,8 +5986,6 @@ object-assign
     ],
     30: [
       function (require, module, exports) {
-        'use strict'
-
         const once = require('receptor/once')
         const behavior = require('../../uswds-core/src/js/utils/behavior')
         const { CLICK } = require('../../uswds-core/src/js/events')
@@ -6098,8 +6028,6 @@ object-assign
     ],
     31: [
       function (require, module, exports) {
-        'use strict'
-
         const select = require('../../uswds-core/src/js/utils/select')
         const behavior = require('../../uswds-core/src/js/utils/behavior')
         const { CLICK } = require('../../uswds-core/src/js/events')
@@ -6375,8 +6303,6 @@ object-assign
     ],
     32: [
       function (require, module, exports) {
-        'use strict'
-
         const behavior = require('../../uswds-core/src/js/utils/behavior')
         const selectOrMatches = require('../../uswds-core/src/js/utils/select-or-matches')
         const { prefix: PREFIX } = require('../../uswds-core/src/js/config')
@@ -6510,8 +6436,6 @@ object-assign
     ],
     33: [
       function (require, module, exports) {
-        'use strict'
-
         // Tooltips
         const selectOrMatches = require('../../uswds-core/src/js/utils/select-or-matches')
         const behavior = require('../../uswds-core/src/js/utils/behavior')
@@ -6919,8 +6843,6 @@ object-assign
     ],
     34: [
       function (require, module, exports) {
-        'use strict'
-
         const behavior = require('../../uswds-core/src/js/utils/behavior')
         const validate = require('../../uswds-core/src/js/utils/validate-input')
         const { prefix: PREFIX } = require('../../uswds-core/src/js/config')
@@ -6996,8 +6918,6 @@ object-assign
     ],
     35: [
       function (require, module, exports) {
-        'use strict'
-
         module.exports = {
           prefix: 'usa',
         }
@@ -7006,8 +6926,6 @@ object-assign
     ],
     36: [
       function (require, module, exports) {
-        'use strict'
-
         module.exports = {
           // This used to be conditionally dependent on whether the
           // browser supported touch events; if it did, `CLICK` was set to
@@ -7028,8 +6946,6 @@ object-assign
     ],
     37: [
       function (require, module, exports) {
-        'use strict'
-
         const accordion = require('../../../usa-accordion/src/index')
         const banner = require('../../../usa-banner/src/index')
         const characterCount = require('../../../usa-character-count/src/index')
@@ -7101,10 +7017,6 @@ object-assign
     ],
     38: [
       function (require, module, exports) {
-        'use strict'
-
-        /* eslint-disable consistent-return */
-        /* eslint-disable func-names */
         ;(function () {
           if (typeof window.CustomEvent === 'function') return false
           function CustomEvent(event, _params) {
@@ -7129,8 +7041,6 @@ object-assign
     ],
     39: [
       function (require, module, exports) {
-        'use strict'
-
         const elproto = window.HTMLElement.prototype
         const HIDDEN = 'hidden'
         if (!(HIDDEN in elproto)) {
@@ -7152,8 +7062,6 @@ object-assign
     ],
     40: [
       function (require, module, exports) {
-        'use strict'
-
         // polyfills HTMLElement.prototype.classList and DOMTokenList
         require('classlist-polyfill')
         // polyfills HTMLElement.prototype.hidden
@@ -7175,8 +7083,6 @@ object-assign
     ],
     41: [
       function (require, module, exports) {
-        'use strict'
-
         Number.isNaN =
           Number.isNaN ||
           function isNaN(input) {
@@ -7188,8 +7094,6 @@ object-assign
     ],
     42: [
       function (require, module, exports) {
-        'use strict'
-
         /* eslint-disable */
         !(function (factory) {
           module.exports = factory()
