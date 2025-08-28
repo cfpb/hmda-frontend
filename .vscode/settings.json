@@ -29,9 +29,6 @@
     "**/.yarn": true,
     "**/.pnp.*": true
   },
-  "playwright.env": {
-    "NODE_OPTIONS": "-r ./.pnp.cjs"
-  },
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },

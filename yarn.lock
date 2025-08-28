@@ -6146,7 +6146,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:8.x.x":
+"eslint@npm:^8.57.1":
   version: 8.57.1
   resolution: "eslint@npm:8.57.1"
   dependencies:
@@ -7367,7 +7367,7 @@ __metadata:
     elliptic: "npm:6.6.1"
     enzyme: "npm:3.11.0"
     enzyme-adapter-react-16: "npm:1.15.2"
-    eslint: "npm:8.x.x"
+    eslint: "npm:^8.57.1"
     eslint-config-airbnb: "npm:^19.0.4"
     eslint-config-airbnb-base: "npm:^15.0.0"
     eslint-config-prettier: "npm:^10.1.8"

@@ -117,6 +117,7 @@
     }
   },
   "ignorePatterns": [
-    "**/*.min.js"
+    "**/*.min.js",
+    "src/common/uswds/**"
   ]
 }
