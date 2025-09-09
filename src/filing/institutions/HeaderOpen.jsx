@@ -45,6 +45,12 @@ export function HeaderOpen({ period, lateDate, endDate }) {
                 HMDA Beta Platform
               </a>{' '}
               is available to test your HMDA data prior to official submission.
+              <br />
+              Our{' '}
+              <a href='/tools/online-lar-formatting' target='_blank'>
+                Online LAR Formatting Tool
+              </a>{' '}
+              can help you validate your file.
             </>
           )}
           <br />
