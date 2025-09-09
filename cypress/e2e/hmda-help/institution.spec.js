@@ -1,7 +1,9 @@
-import { isCI, getSelectedOptionValue, isBeta } from '../../support/helpers'
-import { getFilingYears } from '../../../src/common/constants/configHelpers'
-import { getDefaultConfig } from '../../../src/common/configUtils'
 import { onlyOn } from '@cypress/skip-test'
+import { getDefaultConfig } from '../../../src/common/configUtils'
+import { getFilingYears } from '../../../src/common/constants/configHelpers'
+import { isBeta, isCI } from '../../support/helpers'
+
+const downloadsFolder = Cypress.config('downloadsFolder')
 
 const {
   HOST,
@@ -53,9 +55,7 @@ onlyOn(!isBeta(HOST), () => {
 
       // Search for existing Instititution
       cy.wait(5000) // HACK TO ALLOW CASCADING FILER LIST SEARCHES
-      cy.get('#lei-select')
-        .click()
-        .type(INSTITUTION + '{enter}')
+      cy.get('#lei-select').click().type(`${INSTITUTION}{enter}`)
       cy.wait(LOCAL_ACTION_DELAY)
       cy.findAllByText('Update')
         .eq(1) // First row
@@ -82,19 +82,19 @@ onlyOn(!isBeta(HOST), () => {
 
         /**
          * Make changes to the Institution data
-         * 
+         *
          * No longer updating Quarterly Filer select as it has been disabled.
          */
 
         // Change Respondent Name [Text Field]
         cy.findByLabelText(nameLabelText)
-          .type('{selectAll}' + testName)
+          .type(`{selectAll}${testName}`)
           .blur()
           .then(() => {
             // Notes field is required on Update
             cy.findByText(updateButtonText).should('not.be.enabled')
             cy.findByLabelText('Notes')
-              .type('Cypress - Change respondent name ' + timestamp1)
+              .type(`Cypress - Change respondent name ${timestamp1}`)
               .blur()
             cy.findByText(updateButtonText)
               .should('be.enabled')
@@ -132,9 +132,7 @@ onlyOn(!isBeta(HOST), () => {
         /**
          * Revert changes to the Institution data
          */
-        cy.findByLabelText(nameLabelText)
-          .type('{selectAll}' + savedName)
-          .blur()
+        cy.findByLabelText(nameLabelText).type(`{selectAll}${savedName}`).blur()
 
         // Notes field is required on Update
         cy.findByText(updateButtonText).should('not.be.enabled')
@@ -156,6 +154,47 @@ onlyOn(!isBeta(HOST), () => {
               })
           })
       })
+    })
+
+    it('Can download raw submission files', () => {
+      cy.get({
+        HOST,
+        ENVIRONMENT,
+        AUTH_BASE_URL,
+        AUTH_CLIENT_ID,
+        AUTH_REALM,
+        USERNAME,
+        PASSWORD,
+        INSTITUTION,
+      }).logEnv()
+
+      // Log in
+      if (!isCI(ENVIRONMENT)) {
+        cy.keycloakLogin('hmda-help')
+        cy.url().should('contains', `${AUTH_BASE_URL}hmda-help`)
+      }
+
+      // Load site
+      cy.viewport(1600, 900)
+      cy.visit(`${HOST}/hmda-help`)
+      cy.wait(LOCAL_ACTION_DELAY)
+
+      // Search for existing Instititution
+      cy.wait(5000) // HACK TO ALLOW CASCADING FILER LIST SEARCHES
+      cy.get('#lei-select').click().type(`${INSTITUTION}{enter}`)
+      cy.wait(LOCAL_ACTION_DELAY)
+      cy.get('input[value="Search Submissions"').click()
+      cy.wait(LOCAL_ACTION_DELAY)
+      cy.get('div.link').contains(`${INSTITUTION}-2024-Q1-1`).click()
+
+      const fileName = `2024-Q1-${INSTITUTION}.txt`
+      // Read the downloaded file and confirm there are hella pipes in it (at least 50)
+      cy.readFile(`${downloadsFolder}/${fileName}`, { timeout: 10000 }).should(
+        (content) => {
+          const pipeCount = (content.match(/\|/g) || []).length
+          expect(pipeCount).to.be.greaterThan(50)
+        },
+      )
     })
 
     /* 
