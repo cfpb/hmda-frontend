@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import downloadStream from '../../common/downloadStream.js'
+import { useEffect, useState } from 'react'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
 import { ordinal } from '../../filing/utils/date'
+import { getSummaryEndpoint } from '../api/api'
 import { fetchAuthenticated, TYPES } from '../api/api.js'
 import { useStatusIndicator } from '../useStatusIndicator'
-import { getSummaryEndpoint } from '../api/api'
 import './SubmissionStatus.css'
 
 export const SubmissionStatus = ({ lei, latest, year }) => {
@@ -100,11 +99,19 @@ const DownloadSubmission = ({ receipt, fileName }) => {
     fetchAuthenticated(url, { type: TYPES.STREAM }).then((result) => {
       if (result.error) return status.setLoading()
 
-      downloadStream(result.response.body, {
-        fileName: fName,
-        onSuccess: () => status.setSuccess(),
-        onError: () => status.setError(),
-      })
+      result.response
+        .blob()
+        .then((blob) => {
+          const link = document.createElement('a')
+          link.href = window.URL.createObjectURL(blob)
+          link.setAttribute('download', fName)
+          document.body.appendChild(link)
+          link.click()
+          link.remove()
+          window.URL.revokeObjectURL(link.href)
+          status.setSuccess()
+        })
+        .catch(() => status.setError())
     })
   }
 
