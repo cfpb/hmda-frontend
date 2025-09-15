@@ -1,33 +1,33 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { flushSync } from 'react-dom'
 import { Link } from 'react-router-dom'
 
 import {
-  searchInputs,
-  requiredInputs,
-  otherInputs,
   notesInput,
+  otherInputs,
+  requiredInputs,
+  searchInputs,
 } from '../constants/inputs'
 import {
-  nestInstitutionStateForAPI,
   flattenApiForInstitutionState,
+  nestInstitutionStateForAPI,
 } from '../utils/convert'
 import { validateAll } from '../utils/validate'
 
-import OtherFields from './OtherFields'
-import InputText from '../InputText'
+import * as AccessToken from '../../common/api/AccessToken'
+import { getFilingYears } from '../../common/constants/configHelpers'
+import Loading from '../../common/LoadingIcon.jsx'
+import Alert from '../Alert'
 import InputRadio from '../InputRadio'
 import InputSelect from '../InputSelect'
 import InputSubmit from '../InputSubmit'
-import Alert from '../Alert'
-import Loading from '../../common/LoadingIcon.jsx'
+import InputText from '../InputText'
 import Notes from '../Notes'
 import NoteHistory from './NoteHistory'
-import { getFilingYears } from '../../common/constants/configHelpers'
-import * as AccessToken from '../../common/api/AccessToken'
+import OtherFields from './OtherFields'
 
-import './Form.css'
 import { fetchSingleInstitutionByYear } from '../search/fetchInstitution'
+import './Form.css'
 
 const defaultInstitutionState = {}
 searchInputs
@@ -299,8 +299,11 @@ class Institution extends Component {
         }
       >
         <p>
-          You can update this institution by using the form on this page,{' '}
-          <Link to='/'>search for an institution</Link>, or{' '}
+          You can{' '}
+          <Link to={`/search/institution/${this.state.lei}`}>
+            return to the institution page
+          </Link>
+          , <Link to='/'>search for a new institution</Link>, or{' '}
           <Link to='/add'>add a new institution.</Link>
         </p>
       </Alert>
@@ -308,6 +311,13 @@ class Institution extends Component {
 
     return (
       <>
+        <Link
+          to={`/search/institution/${this.state.lei}`}
+          className='button-link'
+          style={{ marginBottom: '1em', display: 'inline-block' }}
+        >
+          &larr; Back to Institution Details
+        </Link>
         <h3>
           {pathname === '/add'
             ? 'Add an institution record'
