@@ -1,9 +1,10 @@
 import { withAppContext } from '../../common/appContextHOC.jsx'
+import { getDefaultConfig } from '../../common/configUtils'
 import Heading from '../../common/Heading.jsx'
 import { S3DatasetLink } from '../../common/S3Integrations'
 
-const AppIntro = ({ config }) => {
-  const { fileServerDomain } = config
+const AppIntro = () => {
+  const { fileServerDomain } = getDefaultConfig(window.location.hostname)
   return [
     <Heading
       key={1}

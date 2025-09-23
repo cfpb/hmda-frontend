@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import { Component } from 'react'
 import Loading from '../../../common/LoadingIcon.jsx'
-import { withAppContext } from '../../../common/appContextHOC.jsx'
 import Pagination from '../../pagination/container.jsx'
 import RefileWarningComponent from '../../refileWarning/index.jsx'
 import submissionProgressHOC from '../progressHOC.jsx'
@@ -161,4 +160,4 @@ ParseErrors.propTypes = {
   isFetching: PropTypes.bool.isRequired,
 }
 
-export default withAppContext(ParseErrors)
+export default ParseErrors

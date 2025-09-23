@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
-import { withAppContext } from '../../common/appContextHOC.jsx'
+import { getDefaultConfig } from '../../common/configUtils'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
 import { humanFileSize } from '../../common/numberServices.js'
 import { useS3FileHeaders } from '../../common/S3Integrations.jsx'
 
-function CombinedMLAR({ config, year, setHasCombined, hasCombined }) {
+export function CombinedMLAR({ year, setHasCombined, hasCombined }) {
   const [includeHeader, setIncludeHeader] = useState(false)
-  const { fileServerDomain } = config
+  const { fileServerDomain } = getDefaultConfig(window.location.hostname)
 
   const href = formatURL(year, includeHeader, fileServerDomain)
 
@@ -94,5 +94,3 @@ const formatURL = (year, withHeader, fileServerDomain) => {
   href += `${baseFilename}.zip`
   return href
 }
-
-export default withAppContext(CombinedMLAR)

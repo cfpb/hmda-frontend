@@ -1,6 +1,5 @@
-import { LATEST_FIG_YEAR } from '../../common/constants/years'
+import { getDefaultConfig } from '../../common/configUtils'
 import { ExternalLink } from '../../common/ExternalLink'
-import { ExpandableCard } from '../ExpandableCard'
 import NewIndicator from '../NewIndicator'
 
 const figUpdates = {
@@ -15,7 +14,8 @@ export function FigLastUpdated({ year }) {
   )
 }
 
-export function FilingGuides() {
+function FilingGuides() {
+  const { fileServerDomain } = getDefaultConfig(window.location.hostname)
   return (
     <article>
       <h3>Guides for HMDA Filers</h3>
@@ -56,7 +56,7 @@ export function FilingGuides() {
         </li>
         <li>
           <a
-            href='https://s3.amazonaws.com/cfpb-hmda-public/prod/help/HMDA-Loan-Scenarios.pdf'
+            href={`${fileServerDomain}/prod/help/HMDA-Loan-Scenarios.pdf`}
             download
           >
             HMDA Loan Scenarios
@@ -71,3 +71,5 @@ export function FilingGuides() {
     </article>
   )
 }
+
+export default FilingGuides

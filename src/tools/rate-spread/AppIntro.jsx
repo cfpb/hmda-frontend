@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 import Alert from '../../common/Alert.jsx'
 import Heading from '../../common/Heading.jsx'
-import { withAppContext } from '../../common/appContextHOC.jsx'
+import { getDefaultConfig } from '../../common/configUtils'
 
-function AppIntro({ config, toolAnnouncement }) {
-  const { fileServerDomain } = config
+function AppIntro({ toolAnnouncement }) {
+  const { fileServerDomain } = getDefaultConfig(window.location.hostname)
   return (
     <Heading
       type={1}
@@ -74,4 +74,4 @@ function AppIntro({ config, toolAnnouncement }) {
   )
 }
 
-export default withAppContext(AppIntro)
+export default AppIntro

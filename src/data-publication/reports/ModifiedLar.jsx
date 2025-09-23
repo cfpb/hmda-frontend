@@ -5,7 +5,7 @@ import YearSelector from '../../common/YearSelector.jsx'
 import { withAppContext } from '../../common/appContextHOC.jsx'
 import s3Store from '../../common/s3/store'
 import { withYearValidation } from '../../common/withYearValidation.jsx'
-import CombinedMLAR from './CombinedMLAR.jsx'
+import { CombinedMLAR } from './CombinedMLAR.jsx'
 import SearchList from './SearchList.jsx'
 
 import './ModifiedLar.css'
