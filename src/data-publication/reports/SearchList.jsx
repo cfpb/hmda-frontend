@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react'
-import Results from './Results.jsx'
+import { useEffect, useRef, useState } from 'react'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
+import Results from './Results.jsx'
 
 import './SearchList.css'
 
@@ -20,7 +20,7 @@ function SearchList(props) {
     setIsLoading(true)
     const fetchURL =
       year === '2017'
-        ? 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017/2017_filers.json'
+        ? `${props.config.fileServerDomain}/prod/snapshot-data/2017/2017_filers.json`
         : `/v2/reporting/filers/${year}`
     fetch(fetchURL)
       .then((response) => {

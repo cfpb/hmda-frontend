@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Component } from 'react'
 import Loading from '../../../common/LoadingIcon.jsx'
+import { withAppContext } from '../../../common/appContextHOC.jsx'
+import Pagination from '../../pagination/container.jsx'
 import RefileWarningComponent from '../../refileWarning/index.jsx'
 import submissionProgressHOC from '../progressHOC.jsx'
-import Pagination from '../../pagination/container.jsx'
 
 import './ParseErrors.css'
 
@@ -105,8 +106,8 @@ class ParseErrors extends Component {
               target='_blank'
               href={
                 filingPeriod === '2018'
-                  ? 'https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2018-hmda-fig-2018-hmda-rule.pdf'
-                  : `https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${filingPeriod}-hmda-fig.pdf`
+                  ? `${this.props.config.fileServerDomain}/prod/help/2018-hmda-fig-2018-hmda-rule.pdf`
+                  : `${this.props.config.fileServerDomain}/prod/help/${filingPeriod}-hmda-fig.pdf`
               }
             >
               Filing Instructions Guide
@@ -160,4 +161,4 @@ ParseErrors.propTypes = {
   isFetching: PropTypes.bool.isRequired,
 }
 
-export default ParseErrors
+export default withAppContext(ParseErrors)

@@ -1,4 +1,3 @@
-import React from 'react'
 import { withAppContext } from '../../common/appContextHOC.jsx'
 import useToolAnnouncement from '../../common/useToolAnnouncement.jsx'
 import AppIntro from './AppIntro.jsx'
@@ -34,7 +33,9 @@ function App(props) {
           incorporated into the Bureau’s rate spread calculator from 7/15/2022
           until 7/21/2022, when the first set of APORs was reincorporated. Both
           sets of APORs are{' '}
-          <a href='https://s3.amazonaws.com/cfpb-hmda-public/prod/apor/7_11_2022_APOR_tables.csv'>
+          <a
+            href={`${props.config.fileServerDomain}/prod/apor/7_11_2022_APOR_tables.csv`}
+          >
             available here
           </a>
           .
@@ -75,7 +76,9 @@ function App(props) {
           from this page. In addition, APOR values previously published by the
           Bureau between December 28, 2017 and December 31, 2017 are available
           in{' '}
-          <a href='https://s3.amazonaws.com/cfpb-hmda-public/prod/apor/122817-123117%20APOR%20Values.csv'>
+          <a
+            href={`${props.config.fileServerDomain}/prod/apor/122817-123117%20APOR%20Values.csv`}
+          >
             this table
           </a>
           .

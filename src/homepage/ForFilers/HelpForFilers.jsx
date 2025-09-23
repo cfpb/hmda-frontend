@@ -1,3 +1,4 @@
+import { withAppContext } from '../../common/appContextHOC.jsx'
 import { CURRENT_YEAR } from '../../common/constants/years'
 import { ExternalLink } from '../../common/ExternalLink'
 
@@ -13,7 +14,7 @@ export function FigLastUpdated({ year }) {
   )
 }
 
-export function HelpForFilers() {
+function HelpForFilers({ config }) {
   return (
     <header>
       <h3>Help for Filers</h3>
@@ -35,7 +36,7 @@ export function HelpForFilers() {
         <ul>
           <li>
             <a
-              href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/help/${CURRENT_YEAR}-hmda-fig.pdf`}
+              href={`${config.fileServerDomain}/prod/help/${CURRENT_YEAR}-hmda-fig.pdf`}
               download
             >
               For data collected in {CURRENT_YEAR}
@@ -44,7 +45,7 @@ export function HelpForFilers() {
           </li>
           <li>
             <a
-              href='https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-2022.pdf'
+              href={`${config.fileServerDomain}/prod/help/supplemental-guide-for-quarterly-filers-for-2022.pdf`}
               download
             >
               Supplemental Guide for Quarterly Filers for {CURRENT_YEAR}
@@ -65,7 +66,7 @@ export function HelpForFilers() {
         </li>
         <li>
           <a
-            href='https://s3.amazonaws.com/cfpb-hmda-public/prod/help/HMDA-Loan-Scenarios.pdf'
+            href={`${config.fileServerDomain}/prod/help/HMDA-Loan-Scenarios.pdf`}
             download
           >
             HMDA Loan Scenarios Guide
@@ -85,3 +86,5 @@ const brokenLink = (
     .
   </li>
 )
+
+export default withAppContext(HelpForFilers)

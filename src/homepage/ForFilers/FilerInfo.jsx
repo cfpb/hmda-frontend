@@ -1,7 +1,7 @@
+import iconSprite from '../../common/uswds/img/sprite.svg'
 import { Filing } from './Filing'
 import { FilingDocs } from './FilingDocs'
-import { FilingGuides } from './FilingGuides'
-import iconSprite from '../../common/uswds/img/sprite.svg'
+import FilingGuides from './FilingGuides'
 
 export function FilerInfo({ hideContent }) {
   return (
