@@ -1,0 +1,28 @@
+name: Cypress tests
+
+on:
+  pull_request:
+
+run-name: "Cypress tests that don't require auth: branch ${{ github.head_ref }} by @${{ github.actor }}"
+
+jobs:
+  non-auth-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Run Cypress tests that don't require auth
+        run: yarn test-non-auth

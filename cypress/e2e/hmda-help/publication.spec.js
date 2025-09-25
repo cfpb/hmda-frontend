@@ -1,5 +1,5 @@
-import { isCI, isProd, isBeta, isDev } from '../../support/helpers'
 import { onlyOn } from '@cypress/skip-test'
+import { isBeta, isCI, isDev, isProd } from '../../support/helpers'
 
 const {
   HOST,
@@ -21,7 +21,7 @@ onlyOn(isBeta(HOST), () => {
 })
 
 onlyOn(!isBeta(HOST), () => {
-  describe('HMDA Help - Publications', () => {
+  describe('HMDA Help - Publications', { tags: ['@auth-required'] }, () => {
     it('Can trigger Publication regeneration', () => {
       cy.get({
         HOST,
@@ -50,9 +50,7 @@ onlyOn(!isBeta(HOST), () => {
 
       // Search for existing Instititution
       cy.wait(5000) // HACK TO ALLOW CASCADING FILER LIST SEARCHES
-      cy.get('#lei-select')
-        .click()
-        .type(INSTITUTION + '{enter}')
+      cy.get('#lei-select').click().type(`${INSTITUTION}{enter}`)
       cy.wait(2 * ACTION_DELAY)
       cy.findByText('Search Publications').click()
       cy.wait(ACTION_DELAY)
@@ -60,16 +58,15 @@ onlyOn(!isBeta(HOST), () => {
       // Trigger Publication regeneration
       cy.findAllByText('IRS')
         .parent('tr')
-        
+
         // dev environment's IRS publications in the older years cannot be regenerated, so we're
         // choosing the first instead of the last on dev
         .then(($tr) => {
           if (isDev(HOST)) {
-            return $tr.first();
+            return $tr.first()
           }
-          else {
-            return $tr.last();
-          }
+
+          return $tr.last()
         })
 
         .findByText('Regenerate')
