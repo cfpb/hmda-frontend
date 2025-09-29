@@ -1,6 +1,4 @@
-import { LATEST_FIG_YEAR } from '../../common/constants/years'
 import { ExternalLink } from '../../common/ExternalLink'
-import { ExpandableCard } from '../ExpandableCard'
 import NewIndicator from '../NewIndicator'
 
 const figUpdates = {
@@ -37,8 +35,8 @@ export function FilingGuides() {
               <NewIndicator />
             </li>
             <li>
-              <a href='/documentation/fig/2024/supplemental-guide-for-quarterly-filers'>
-                Online Supplemental Guide for Quarterly Filers for 2024
+              <a href='/documentation/fig/2025/supplemental-guide-for-quarterly-filers'>
+                Online Supplemental Guide for Quarterly Filers for 2025
               </a>
               <NewIndicator />
             </li>
