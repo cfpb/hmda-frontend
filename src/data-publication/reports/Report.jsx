@@ -136,12 +136,8 @@ class Report extends React.Component {
     let { reportId } = params
     let ext = year === '2017' ? '.txt' : '.json'
 
-    // TODO: if we ever bring back the dev buckets, you can set this back to a variable
-    // const devProd = isProd(window.location.host) ? 'prod' : 'dev'
-    const devProd = 'prod'
-
     if (reportId === 'IRS') ext = '.csv'
-    let url = `https://s3.amazonaws.com/cfpb-hmda-public/${devProd}/reports/`
+    let url = `https://s3.amazonaws.com/cfpb-hmda-public/prod/reports/`
     if (params.stateId) {
       url += `aggregate/${year}/${msaMdId}/${reportId}${ext}`
     } else if (params.institutionId) {
