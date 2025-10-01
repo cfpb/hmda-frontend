@@ -1,17 +1,28 @@
-import { defineConfig } from 'vite'
-import dotenv from 'dotenv'
 import react from '@vitejs/plugin-react'
-import svgr from 'vite-plugin-svgr'
-import { nodePolyfills } from 'vite-plugin-node-polyfills'
 import dns from 'dns'
+import dotenv from 'dotenv'
+import { defineConfig } from 'vite'
+import { nodePolyfills } from 'vite-plugin-node-polyfills'
+import svgr from 'vite-plugin-svgr'
 
 dotenv.config()
+
+if (!process.env.MAPBOX_ACCESS_TOKEN) {
+  throw new Error(
+    'MAPBOX_ACCESS_TOKEN environment variable is not defined. Please set it in your .env file.',
+  )
+}
 
 dns.setDefaultResultOrder('verbatim')
 
 export default () => {
   return defineConfig({
     plugins: [react(), svgr(), nodePolyfills()],
+    define: {
+      'import.meta.env.MAPBOX_ACCESS_TOKEN': JSON.stringify(
+        process.env.MAPBOX_ACCESS_TOKEN,
+      ),
+    },
     css: {
       preprocessorOptions: {
         scss: {
