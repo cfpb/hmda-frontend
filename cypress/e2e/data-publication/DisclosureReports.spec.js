@@ -74,9 +74,10 @@ onlyOn(!isBeta(HOST), () => {
     })
 
     it('Fetches a 2023 Applications by Tract Report', () => {
-      const institution = 'CYPRESS BANK, SSB - 549300I4IUWMEMGLST06'
+      const institution =
+        'LIBERTYVILLE BANK & TRUST COMPANY, N.A. - 01ERPZV3DOLNXY2MLB90'
       const institutionName = institution.split(' - ')[0]
-      const msaMd = 'Dallas-Plano-Irving, TX - 19124'
+      const msaMd = 'Chicago-Naperville-Evanston, IL - 16984'
       const msaMdCityOnly = msaMd.split(', ')[0]
       const msaMdZipCodeFirst = `${msaMd.split(' - ')[1]} - ${msaMd.split(' - ')[0]}`
 
