@@ -140,7 +140,12 @@ Several components of the Frontend (ex. Filing, Data Browser) require a connecti
 
 HMDA Help requires a connection to the [HMDA Institutions API](https://github.com/cfpb/hmda-platform/tree/master/institutions-api) in order to operate. You can find instructions for the running the HMDA Institutions API locally [in the README](https://github.com/cfpb/hmda-platform/blob/master/institutions-api/README.md). Note that having the HMDA Platform running is a pre-requisite to starting the HDMA Institutions API.
 
-If your development does not require this integration, `yarn start` will run the development server, opening a browser window to http://localhost:3000.
+If your development does not require this integration, you can simply:
+
+1. Copy `.env.example` to `.env` and edit the environment variables.
+  - `DEV_URL` is the URL that the frontend app will use for API requests. It should not have a trailing slash.
+  - `MAPBOX_ACCESS_TOKEN` is the access token provided by Mapbox.com for the app's embedded maps.
+2. Run `yarn start` to start a local development server at http://localhost:3000.
 
 #### Integrating with the Filing application
 
