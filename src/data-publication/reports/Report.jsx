@@ -1,14 +1,13 @@
-import React from 'react'
 import parse from 'csv-parse'
 import fileSaver from 'file-saver'
+import React from 'react'
 import Heading from '../../common/Heading.jsx'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
-import Tables from './tables/index.jsx'
-import { isProd } from '../../common/configUtils'
 import {
   buildCSVRowsAggregate1,
   buildCSVRowsAggregate2,
 } from './tables/AggregateUtils.js'
+import Tables from './tables/index.jsx'
 
 import './Report.css'
 
@@ -136,10 +135,9 @@ class Report extends React.Component {
     let { msaMdId } = params
     let { reportId } = params
     let ext = year === '2017' ? '.txt' : '.json'
-    const devProd = isProd(window.location.host) ? 'prod' : 'dev'
 
     if (reportId === 'IRS') ext = '.csv'
-    let url = `https://s3.amazonaws.com/cfpb-hmda-public/${devProd}/reports/`
+    let url = `https://s3.amazonaws.com/cfpb-hmda-public/prod/reports/`
     if (params.stateId) {
       url += `aggregate/${year}/${msaMdId}/${reportId}${ext}`
     } else if (params.institutionId) {
