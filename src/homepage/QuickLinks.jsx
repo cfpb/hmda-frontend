@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import iconSprite from '../common/uswds/img/sprite.svg'
 
@@ -55,7 +54,7 @@ export function QuickLinks({ hideContent }) {
             Questions
           </span>
         </a>
-        <a href='/documentation/fig/2024/overview'>
+        <a href='/documentation/fig/2025/overview'>
           <svg
             className='usa-icon'
             aria-hidden='true'
