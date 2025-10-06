@@ -2,12 +2,12 @@
   "name": "dev",
   "announcement": [
     {
-      "heading": "2024 Data Publication Release",
-      "message": "On June 24, 2025, the 2024 national loan-level datasets, disclosure reports, and MSA/MD aggregate reports were released and can be accessed via the Data Publication page. Users can now explore 2024 HMDA data using the Data Browser's dataset filtering tool or maps. ",
+      "heading": "2026 Online Filing Instructions Guides Released",
+      "message": "The Bureau has released the 2026 Online FIG and Online Supplemental Guide for Quarterly Filers for 2026, which are available ",
       "type": "info",
       "link": {
-        "url": "https://ffiec.cfpb.gov/data-publication/",
-        "text": "Data Publication page."
+        "url": "https://ffiec.cfpb.gov/documentation/faq/data-collection-timelines#filing-instructions-guide-fig",
+        "text": "here."
       }
     }
   ],
