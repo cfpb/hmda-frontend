@@ -1,3 +1,5 @@
+import { ExpandableCard } from '../ExpandableCard'
+
 function DBLink({ id, children }) {
   return <a href={`/data-browser/${id}`}>{children}</a>
 }

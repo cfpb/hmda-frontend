@@ -42,18 +42,9 @@
       "product": "datasets",
       "description": "The 2024 national loan-level datasets, disclosure reports, and MSA/MD aggregate reports were released and can be accessed via the Data Publication page. Users can now explore 2024 HMDA data using the Data Browser's dataset filtering tool and maps. The 2023 One Year Dataset and the 2021 Three Year Dataset were also released.",
       "links": [
-        {
-          "text": "Data Publication",
-          "url": "https://ffiec.cfpb.gov/data-publication/"
-        },
-        {
-          "text": "Data Browser",
-          "url": "https://ffiec.cfpb.gov/data-browser/data/"
-        },
-        {
-          "text": "Maps",
-          "url": "https://ffiec.cfpb.gov/data-browser/maps/"
-        }
+        {"text": "Data Publication", "url": "https://ffiec.cfpb.gov/data-publication/"},
+        {"text": "Data Browser", "url": "https://ffiec.cfpb.gov/data-browser/data/"},
+        {"text": "Maps", "url": "https://ffiec.cfpb.gov/data-browser/maps/"}
       ]
     },
     {
@@ -150,18 +141,9 @@
       "product": "datasets",
       "description": "The 2023 national loan-level datasets, disclosure reports, and MSA/MD aggregate reports were released and can be accessed via the Data Publication page. Users can now explore 2023 HMDA data using the Data Browser's dataset filtering tool and maps. The 2022 One Year Dataset and the 2020 Three Year Dataset were also released.",
       "links": [
-        {
-          "text": "Data Publication",
-          "url": "https://ffiec.cfpb.gov/data-publication/"
-        },
-        {
-          "text": "Data Browser",
-          "url": "https://ffiec.cfpb.gov/data-browser/data/"
-        },
-        {
-          "text": "Maps",
-          "url": "https://ffiec.cfpb.gov/data-browser/maps/"
-        }
+        {"text": "Data Publication", "url": "https://ffiec.cfpb.gov/data-publication/"},
+        {"text": "Data Browser", "url": "https://ffiec.cfpb.gov/data-browser/data/"},
+        {"text": "Maps", "url": "https://ffiec.cfpb.gov/data-browser/maps/"}
       ]
     },
     {
@@ -278,10 +260,7 @@
           "text": "Data Browser",
           "url": "https://ffiec.cfpb.gov/data-browser/data/"
         },
-        {
-          "text": "Maps",
-          "url": "https://ffiec.cfpb.gov/data-browser/maps/"
-        }
+        { "text": "Maps", "url": "https://ffiec.cfpb.gov/data-browser/maps/" }
       ]
     },
     {
@@ -729,9 +708,7 @@
       "type": "update",
       "product": "documentation",
       "description": "The Disclosure Reports page was updated with improved guidance for finding your Insitutions Register Summary (IRS).",
-      "url": [
-        "https://github.com/cfpb/hmda-frontend/issues/438"
-      ]
+      "url": ["https://github.com/cfpb/hmda-frontend/issues/438"]
     },
     {
       "date": "04/22/20",
