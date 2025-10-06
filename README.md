@@ -144,7 +144,7 @@ If your development does not require this integration, you can simply:
 
 1. Copy `.env.example` to `.env` and edit the environment variables.
   - `DEV_URL` is the URL that the frontend app will use for API requests. It should not have a trailing slash.
-  - `MAPBOX_ACCESS_TOKEN` is the access token provided by Mapbox.com for the app's embedded maps.
+  - `MAPBOX_ACCESS_TOKEN` is the access token provided by Mapbox.com for the app's embedded maps. CFPB's token can be found in our [GitHub Enterprise wiki](https://GHE/HMDA-Operations/hmda-devops/wiki/Mapbox-credentials).
 2. Run `yarn start` to start a local development server at http://localhost:3000.
 
 #### Integrating with the Filing application
