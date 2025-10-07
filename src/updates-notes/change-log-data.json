@@ -1,6 +1,22 @@
 {
   "log": [
     {
+      "date": "10/06/25",
+      "type": "release",
+      "product": "documentation",
+      "description": "The 2026 Online Filing Instructions Guide (FIG) and 2026 Online Supplemental Guide for Quarterly Filers have been released.",
+      "links": [
+        {
+          "text": "2026 Online Filing Instructions Guide (FIG)",
+          "url": "https://ffiec.cfpb.gov/documentation/fig/2026/overview"
+        },
+        {
+          "text": "2026 Online Supplemental Guide for Quarterly Filers",
+          "url": "https://ffiec.cfpb.gov/documentation/fig/2026/supplemental-guide-for-quaterly-filers"
+        }
+      ]
+    },
+    {
       "date": "8/14/25",
       "type": "correction",
       "product": "datasets",

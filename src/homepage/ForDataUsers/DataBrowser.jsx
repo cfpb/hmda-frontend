@@ -1,5 +1,4 @@
 import { ExpandableCard } from '../ExpandableCard'
-import NewIndicator from '../NewIndicator'
 
 function DBLink({ id, children }) {
   return <a href={`/data-browser/${id}`}>{children}</a>
@@ -15,10 +14,7 @@ export function DataBrowser() {
       </p>
       <ul>
         <li>
-          <DBLink id='graphs/quarterly'>
-            Graphs
-            <NewIndicator />
-          </DBLink>
+          <DBLink id='graphs/quarterly'>Graphs</DBLink>
         </li>
         <li>
           <DBLink id='maps'>Maps</DBLink>
