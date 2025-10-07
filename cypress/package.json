@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@cypress/grep": "^5.0.0",
     "@cypress/skip-test": "2.6.1",
     "@testing-library/cypress": "10.0.2",
     "cypress": "14.3.0",
