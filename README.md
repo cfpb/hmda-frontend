@@ -329,4 +329,6 @@ yarn run cypress run
 
 [Cypress](https://www.cypress.io/) is used to perform end-to-end testing of the filing application, tools, data publication products, and data browser. It mimicks a user's interaction with the site and allows for rapid, automated system validation of project deployments.
 
+Whenever a dependency that affects Cypress is added or upgraded in [`package.json`](package.json), you'll need to make the same change in the `cypress` directory's [`package.json` file](cypress/package.json) and then [update the test image](cypress/README.md#updating-the-test-image).
+
 ![Cypress automated filing test](./readme-files/filing-2020-q1-cypress.gif)
