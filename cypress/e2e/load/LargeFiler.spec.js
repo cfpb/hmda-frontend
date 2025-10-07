@@ -1,5 +1,5 @@
-import { isBeta, isCI } from '../../support/helpers'
 import { getDefaultConfig } from '../../../src/common/configUtils'
+import { isBeta, isCI } from '../../support/helpers'
 
 const {
   HOST,
@@ -21,7 +21,7 @@ const config = getDefaultConfig(HOST)
 const getFilename = (filingPeriod, lei) => `${filingPeriod}-${lei}-MAX.txt`
 const { filingPeriodStatus } = config
 
-describe('Large Filer', () => {
+describe('Large Filer', { tags: ['@auth-required'] }, () => {
   beforeEach(() => {
     cy.get({
       HOST,
@@ -70,7 +70,7 @@ describe('Large Filer', () => {
         cy.get(`#main-content .institution`, { timeout: 20000 })
           .then(($list) => {
             // Find target institution
-            let institution = $list
+            const institution = $list
               .toArray()
               .filter((x) => x.innerText.indexOf(INSTITUTION) > -1)[0]
 

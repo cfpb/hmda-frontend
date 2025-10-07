@@ -1,4 +1,5 @@
 const { defineConfig } = require('cypress')
+const { plugin: cypressGrepPlugin } = require('@cypress/grep/plugin')
 const fs = require('fs')
 
 module.exports = defineConfig({
@@ -15,6 +16,10 @@ module.exports = defineConfig({
     AUTH_REALM: 'hmda2',
     AUTH_CLIENT_ID: 'hmda2-api',
     preserveCookies: ['_login_gov_session'],
+    // Always enable spec filtering
+    grepFilterSpecs: true,
+    // Always omit filtered tests
+    grepOmitFiltered: true,
   },
 
   defaultCommandTimeout: 10000,
@@ -40,7 +45,7 @@ module.exports = defineConfig({
     pageLoadTimeout: 30000,
     retries: {
       runMode: 2,
-      openMode: 0
+      openMode: 0,
     },
     // Delete videos for specs without failing or retried tests, see docs:
     // https://docs.cypress.io/app/guides/screenshots-and-videos#Delete-videos-for-specs-without-failing-or-retried-tests
@@ -49,16 +54,20 @@ module.exports = defineConfig({
         if (results && results.video) {
           // Do we have failures for any retry attempts?
           const failures = results.tests.some((test) =>
-            test.attempts.some((attempt) => attempt.state === 'failed')
+            test.attempts.some((attempt) => attempt.state === 'failed'),
           )
           // Check to make sure the video file exists before deleting, see https://stackoverflow.com/a/76113045
           if (!failures && fs.existsSync(results.video)) {
             // delete the video if the spec passed and no tests retried
             fs.unlinkSync(results.video)
-            console.log(`All tests passed, deleting video file: ${results.video}`)
+            console.log(
+              `All tests passed, deleting video file: ${results.video}`,
+            )
           }
         }
       })
+      cypressGrepPlugin(config)
+      return config
     },
   },
 

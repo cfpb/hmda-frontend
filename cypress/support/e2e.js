@@ -1,8 +1,10 @@
-import { logEnv, urlExists } from './helpers'
+import { register as registerCypressGrep } from '@cypress/grep'
 import '@testing-library/cypress/add-commands'
-import 'cypress-keycloak'
 import 'cypress-file-upload'
+import 'cypress-keycloak'
+import { logEnv, urlExists } from './helpers'
 
+registerCypressGrep()
 
 // ***********************************************************
 // This example support/index.js is processed and
@@ -49,36 +51,36 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 // Login via Keycloak Impersonate
 Cypress.Commands.add('keycloakLogin', (app) => {
   const { USERNAME, PASSWORD, AUTH_BASE_URL, USERPATH } = Cypress.env()
-    cy.viewport(1201, 700)
-      // Visit the login page
-      cy.visit(`${AUTH_BASE_URL}${USERPATH}`)
-      cy.document().should('have.property', 'readyState', 'complete')
-      cy.get('#kc-page-title').contains('Sign in to your account')
+  cy.viewport(1201, 700)
+  // Visit the login page
+  cy.visit(`${AUTH_BASE_URL}${USERPATH}`)
+  cy.document().should('have.property', 'readyState', 'complete')
+  cy.get('#kc-page-title').contains('Sign in to your account')
 
-      // Enter username
-      cy.get('#username')
-        .type(USERNAME)
+  // Enter username
+  cy.get('#username').type(USERNAME)
 
-      // Enter password
-      cy.get('#password')
-        .type(PASSWORD)
+  // Enter password
+  cy.get('#password').type(PASSWORD)
 
-      // Click submit button
-      cy.get('#kc-login').click()
+  // Click submit button
+  cy.get('#kc-login').click()
 
-      // Verify successful login
-      cy.url().should('include', `${AUTH_BASE_URL}${USERPATH}`, { timeout: 30000 })
+  // Verify successful login
+  cy.url().should('include', `${AUTH_BASE_URL}${USERPATH}`, { timeout: 30000 })
 
-      // Select Impersonate
-      cy.get('[data-testid="action-dropdown"]').click()
-      cy.get('li').contains('Impersonate').should('be.visible').click()
+  // Select Impersonate
+  cy.get('[data-testid="action-dropdown"]').click()
+  cy.get('li').contains('Impersonate').should('be.visible').click()
 
-      // Confirm Impersonation in Modal
-      cy.get('#modal-confirm').should('be.visible').invoke('removeAttr', 'target').click({timeout: 2000})
+  // Confirm Impersonation in Modal
+  cy.get('#modal-confirm')
+    .should('be.visible')
+    .invoke('removeAttr', 'target')
+    .click({ timeout: 2000 })
 
-      // Go to App page
-      cy.visit(`${AUTH_BASE_URL}${app}/2020/institutions`)
+  // Go to App page
+  cy.visit(`${AUTH_BASE_URL}${app}/2020/institutions`)
 
-      cy.wait(10000)
-  
+  cy.wait(10000)
 })

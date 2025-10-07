@@ -1,7 +1,7 @@
-import { isCI, getSelectedOptionValue, isBeta } from '../../support/helpers'
-import { getFilingYears } from '../../../src/common/constants/configHelpers'
-import { getDefaultConfig } from '../../../src/common/configUtils'
 import { onlyOn } from '@cypress/skip-test'
+import { getDefaultConfig } from '../../../src/common/configUtils'
+import { getFilingYears } from '../../../src/common/constants/configHelpers'
+import { isBeta, isCI } from '../../support/helpers'
 
 const {
   HOST,
@@ -25,7 +25,7 @@ onlyOn(isBeta(HOST), () => {
 })
 
 onlyOn(!isBeta(HOST), () => {
-  describe('HMDA Help - Institutions', () => {
+  describe('HMDA Help - Institutions', { tags: ['@auth-required'] }, () => {
     const years = getFilingYears(getDefaultConfig(HOST))
 
     it('Can update existing Institutions', () => {
@@ -53,9 +53,7 @@ onlyOn(!isBeta(HOST), () => {
 
       // Search for existing Instititution
       cy.wait(5000) // HACK TO ALLOW CASCADING FILER LIST SEARCHES
-      cy.get('#lei-select')
-        .click()
-        .type(INSTITUTION + '{enter}')
+      cy.get('#lei-select').click().type(`${INSTITUTION}{enter}`)
       cy.wait(LOCAL_ACTION_DELAY)
       cy.findAllByText('Update')
         .eq(1) // First row
@@ -82,19 +80,19 @@ onlyOn(!isBeta(HOST), () => {
 
         /**
          * Make changes to the Institution data
-         * 
+         *
          * No longer updating Quarterly Filer select as it has been disabled.
          */
 
         // Change Respondent Name [Text Field]
         cy.findByLabelText(nameLabelText)
-          .type('{selectAll}' + testName)
+          .type(`{selectAll}${testName}`)
           .blur()
           .then(() => {
             // Notes field is required on Update
             cy.findByText(updateButtonText).should('not.be.enabled')
             cy.findByLabelText('Notes')
-              .type('Cypress - Change respondent name ' + timestamp1)
+              .type(`Cypress - Change respondent name ${timestamp1}`)
               .blur()
             cy.findByText(updateButtonText)
               .should('be.enabled')
@@ -132,9 +130,7 @@ onlyOn(!isBeta(HOST), () => {
         /**
          * Revert changes to the Institution data
          */
-        cy.findByLabelText(nameLabelText)
-          .type('{selectAll}' + savedName)
-          .blur()
+        cy.findByLabelText(nameLabelText).type(`{selectAll}${savedName}`).blur()
 
         // Notes field is required on Update
         cy.findByText(updateButtonText).should('not.be.enabled')
