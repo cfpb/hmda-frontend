@@ -1,10 +1,11 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import Heading from '../../common/Heading.jsx'
+import { getDefaultConfig } from '../../common/configUtils'
 
 import './Methodology.css'
 
 function Methodology_alt() {
+  const { fileServerDomain } = getDefaultConfig(window.location.hostname)
   return (
     <div className='methodology grid' id='main-content'>
       <Heading
@@ -25,7 +26,7 @@ function Methodology_alt() {
           Treasury rate plus a margin and adjust annually after the initial,
           fixed-rate period. The Consumer Financial Protection Bureau (Bureau)
           makes available the{' '}
-          <a href='https://s3.amazonaws.com/cfpb-hmda-public/prod/apor/SurveyTable.csv'>
+          <a href={`${fileServerDomain}/prod/apor/SurveyTable.csv`}>
             survey data
           </a>{' '}
           used to calculate APORs. This Methodology first describes all the
@@ -167,7 +168,7 @@ function Methodology_alt() {
         above, and the APRs determined by the foregoing assignment rules are the
         average prime offer rates for their respective comparable transactions.
         The{' '}
-        <a href='https://s3.amazonaws.com/cfpb-hmda-public/prod/apor/SurveyTable.csv'>
+        <a href={`${fileServerDomain}/prod/apor/SurveyTable.csv`}>
           survey data
         </a>{' '}
         needed for the above calculations generally are made available on

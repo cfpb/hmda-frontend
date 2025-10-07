@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { getDefaultConfig } from '../../common/configUtils'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
 import { humanFileSize } from '../../common/numberServices.js'
 import { useS3FileHeaders } from '../../common/S3Integrations.jsx'
 
 export function CombinedMLAR({ year, setHasCombined, hasCombined }) {
   const [includeHeader, setIncludeHeader] = useState(false)
+  const { fileServerDomain } = getDefaultConfig(window.location.hostname)
 
-  const href = formatURL(year, includeHeader)
+  const href = formatURL(year, includeHeader, fileServerDomain)
 
   // Pre-load both file's headers to avoid UI glitch when switching
   const headers = useS3FileHeaders(href, true)
-  useS3FileHeaders(formatURL(year, true), true)
+  useS3FileHeaders(formatURL(year, true, fileServerDomain), true)
 
   // Update parent component to display/hide Combined MLAR language
   // based on the existence of the S3 files.
@@ -79,10 +81,9 @@ export function CombinedMLAR({ year, setHasCombined, hasCombined }) {
   )
 }
 
-const formatURL = (year, withHeader) => {
+const formatURL = (year, withHeader, fileServerDomain) => {
   let baseFilename = `${year}_combined_mlar`
-  let href =
-    'https://s3.amazonaws.com/cfpb-hmda-public/prod/dynamic-data/combined-mlar/'
+  let href = `${fileServerDomain}/prod/dynamic-data/combined-mlar/`
   href += `${year}/` // Year sub-folder
 
   if (withHeader) {

@@ -1,9 +1,10 @@
-import React from 'react'
 import { withAppContext } from '../../common/appContextHOC.jsx'
+import { getDefaultConfig } from '../../common/configUtils'
 import Heading from '../../common/Heading.jsx'
 import { S3DatasetLink } from '../../common/S3Integrations'
 
 const AppIntro = () => {
+  const { fileServerDomain } = getDefaultConfig(window.location.hostname)
   return [
     <Heading
       key={1}
@@ -36,7 +37,7 @@ const AppIntro = () => {
 
     <ul key={3}>
       <S3DatasetLink
-        url='https://s3.amazonaws.com/cfpb-hmda-public/prod/larft/HMDA_LAR_Formatting_Tool.xlsm'
+        url={`${fileServerDomain}/prod/larft/HMDA_LAR_Formatting_Tool.xlsm`}
         label='Excel LAR Formatting Tool for data collected in or after 2018'
         showLastUpdated
       />

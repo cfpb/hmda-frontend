@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Provider } from 'react-redux'
 import Heading from '../../common/Heading.jsx'
-import SearchList from './SearchList.jsx'
 import YearSelector from '../../common/YearSelector.jsx'
 import { withAppContext } from '../../common/appContextHOC.jsx'
+import s3Store from '../../common/s3/store'
 import { withYearValidation } from '../../common/withYearValidation.jsx'
 import { CombinedMLAR } from './CombinedMLAR.jsx'
-import s3Store from '../../common/s3/store'
+import SearchList from './SearchList.jsx'
 
 import './ModifiedLar.css'
 
@@ -105,4 +105,5 @@ export function UpdateFrequency({ year }) {
     </p>
   )
 }
+
 export default withAppContext(withYearValidation(ModifiedLar))

@@ -1,6 +1,7 @@
 import parse from 'csv-parse'
 import fileSaver from 'file-saver'
 import React from 'react'
+import { isProd } from '../../common/configUtils'
 import Heading from '../../common/Heading.jsx'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
 import {
@@ -135,9 +136,10 @@ class Report extends React.Component {
     let { msaMdId } = params
     let { reportId } = params
     let ext = year === '2017' ? '.txt' : '.json'
+    const devProd = isProd(window.location.host) ? 'prod' : 'dev'
 
     if (reportId === 'IRS') ext = '.csv'
-    let url = `https://s3.amazonaws.com/cfpb-hmda-public/prod/reports/`
+    let url = `${this.props.config.fileServerDomain}/prod/reports/`
     if (params.stateId) {
       url += `aggregate/${year}/${msaMdId}/${reportId}${ext}`
     } else if (params.institutionId) {
