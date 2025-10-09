@@ -4,6 +4,48 @@ let keycloak = null
 let isInitialized = false
 let initPromise = null
 
+// check out [ENT]/HMDA-Operations/hmda-devops/blob/master/eks/hmda_urls.md for more details
+// about the different HMDA environments
+
+const prodKeycloakDomain = 'ffiec.cfpb.gov'
+const domainsToBeRedirectedToProdKeycloak = [
+  'ffiec.beta.cfpb.gov',
+  'prod-regtech',
+  'ffiec-beta-test',
+  'ffiec-test',
+]
+
+const devKeycloakDomain = 'hmdadev.cfpb.gov'
+const domainsToBeRedirectedToDevKeycloak = ['hmda4-beta.demo']
+
+const getKeycloakInstance = (hostname) => {
+  const isRedirectedToProd = domainsToBeRedirectedToProdKeycloak.some(
+    (domain) => hostname.includes(domain),
+  )
+  const isRedirectedToDev = domainsToBeRedirectedToDevKeycloak.some((domain) =>
+    hostname.includes(domain),
+  )
+
+  if (isRedirectedToProd) return prodKeycloakDomain
+  if (isRedirectedToDev) return devKeycloakDomain
+
+  // if hostname doesn't match any known redirect patterns, assume keycloak is hosted on the same domain
+  return hostname
+}
+
+const hostname = window.location.hostname
+const keycloakInstance = getKeycloakInstance(hostname)
+
+const keycloakConfig = {
+  realm: 'hmda2',
+  url: `https://${keycloakInstance}/auth`,
+  clientId: 'hmda2-api',
+  'public-client': true,
+  'use-resource-role-mappings': true,
+  'confidential-port': 0,
+  'ssl-required': 'all',
+}
+
 export const setKeycloak = (cloak) => {
   keycloak = cloak
   return keycloak
@@ -28,12 +70,12 @@ export const initKeycloak = (overrides) => {
     } else if (import.meta.env.MODE === 'development') {
       keycloak = new Keycloak('/local_keycloak.json')
     } else {
-      keycloak = new Keycloak('/keycloak.json')
+      keycloak = new Keycloak(keycloakConfig)
     }
   }
 
   initPromise = keycloak
-    .init({ pkceMethod: 'S256' })
+    .init({ pkceMethod: 'S256', checkLoginIframe: false })
     .then((authenticated) => {
       console.log('Keycloak initialized, authenticated:', authenticated)
       isInitialized = true
