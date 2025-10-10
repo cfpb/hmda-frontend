@@ -1,12 +1,12 @@
 import { getDefaultConfig } from '../../common/configUtils'
 import getOverrides from './overrides'
 
-const config = getDefaultConfig(window.location.hostname)
+const { fileServerDomain } = getDefaultConfig(window.location.hostname)
 
 // Cross Reference for ARID2017 to LEI.  Same source for all years
 const ARID2017_XREF = {
-  csv: `${config.fileServerDomain}/prod/snapshot-data/arid2017tolei/arid2017_to_lei_xref_csv.zip`,
-  txt: `${config.fileServerDomain}/prod/snapshot-data/arid2017tolei/arid2017_to_lei_xref_psv.zip`,
+  csv: `${fileServerDomain}/prod/snapshot-data/arid2017tolei/arid2017_to_lei_xref_csv.zip`,
+  txt: `${fileServerDomain}/prod/snapshot-data/arid2017tolei/arid2017_to_lei_xref_psv.zip`,
   label: 'ARID2017 to LEI Reference Table',
   dataKey: 'arid',
 }
@@ -20,14 +20,14 @@ export const SNAPSHOT_DATASET = {
     ),
     datasets: [
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2024/2024_public_lar_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2024/2024_public_lar_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2024/2024_public_lar_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2024/2024_public_lar_pipe.zip`,
         label: 'Loan/Application Records (LAR)',
         dataKey: 'lar',
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2024/2024_public_ts_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2024/2024_public_ts_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2024/2024_public_ts_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2024/2024_public_ts_pipe.zip`,
         label: 'Transmittal Sheet Records (TS)',
         dataKey: 'ts',
       },
@@ -37,8 +37,8 @@ export const SNAPSHOT_DATASET = {
         override: getOverrides.getReporterPanelUnavailable(),
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2024/2024_public_msamd_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2024/2024_public_msamd_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2024/2024_public_msamd_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2024/2024_public_msamd_pipe.zip`,
         label: 'MSA/MD Description',
         dataKey: 'msamd',
       },
@@ -49,26 +49,26 @@ export const SNAPSHOT_DATASET = {
     freezeDate: 'May 1, 2024',
     datasets: [
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2023/2023_public_lar_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2023/2023_public_lar_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2023/2023_public_lar_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2023/2023_public_lar_pipe.zip`,
         label: 'Loan/Application Records (LAR)',
         dataKey: 'lar',
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2023/2023_public_ts_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2023/2023_public_ts_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2023/2023_public_ts_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2023/2023_public_ts_pipe.zip`,
         label: 'Transmittal Sheet Records (TS)',
         dataKey: 'ts',
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2023/2023_public_panel_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2023/2023_public_panel_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2023/2023_public_panel_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2023/2023_public_panel_pipe.zip`,
         label: 'Reporter Panel',
         dataKey: 'panel',
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2023/2023_public_msamd_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2023/2023_public_msamd_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2023/2023_public_msamd_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2023/2023_public_msamd_pipe.zip`,
         label: 'MSA/MD Description',
         dataKey: 'msamd',
       },
@@ -79,26 +79,26 @@ export const SNAPSHOT_DATASET = {
     freezeDate: 'May 1, 2023',
     datasets: [
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2022/2022_public_lar_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2022/2022_public_lar_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2022/2022_public_lar_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2022/2022_public_lar_pipe.zip`,
         label: 'Loan/Application Records (LAR)',
         dataKey: 'lar',
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2022/2022_public_ts_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2022/2022_public_ts_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2022/2022_public_ts_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2022/2022_public_ts_pipe.zip`,
         label: 'Transmittal Sheet Records (TS)',
         dataKey: 'ts',
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2022/2022_public_panel_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2022/2022_public_panel_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2022/2022_public_panel_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2022/2022_public_panel_pipe.zip`,
         label: 'Reporter Panel',
         dataKey: 'panel',
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2022/2022_public_msamd_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2022/2022_public_msamd_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2022/2022_public_msamd_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2022/2022_public_msamd_pipe.zip`,
         label: 'MSA/MD Description',
         dataKey: 'msamd',
       },
@@ -109,26 +109,26 @@ export const SNAPSHOT_DATASET = {
     freezeDate: 'April 30, 2022',
     datasets: [
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2021/2021_public_lar_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2021/2021_public_lar_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2021/2021_public_lar_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2021/2021_public_lar_pipe.zip`,
         label: 'Loan/Application Records (LAR)',
         dataKey: 'lar',
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2021/2021_public_ts_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2021/2021_public_ts_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2021/2021_public_ts_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2021/2021_public_ts_pipe.zip`,
         label: 'Transmittal Sheet Records (TS)',
         dataKey: 'ts',
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2021/2021_public_panel_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2021/2021_public_panel_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2021/2021_public_panel_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2021/2021_public_panel_pipe.zip`,
         label: 'Reporter Panel',
         dataKey: 'panel',
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2021/2021_public_msamd_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2021/2021_public_msamd_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2021/2021_public_msamd_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2021/2021_public_msamd_pipe.zip`,
         label: 'MSA/MD Description',
         dataKey: 'msamd',
       },
@@ -139,26 +139,26 @@ export const SNAPSHOT_DATASET = {
     freezeDate: 'May 3, 2021',
     datasets: [
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2020/2020_public_lar_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2020/2020_public_lar_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2020/2020_public_lar_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2020/2020_public_lar_pipe.zip`,
         label: 'Loan/Application Records (LAR)',
         dataKey: 'lar',
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2020/2020_public_ts_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2020/2020_public_ts_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2020/2020_public_ts_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2020/2020_public_ts_pipe.zip`,
         label: 'Transmittal Sheet Records (TS)',
         dataKey: 'ts',
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2020/2020_public_panel_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2020/2020_public_panel_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2020/2020_public_panel_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2020/2020_public_panel_pipe.zip`,
         label: 'Reporter Panel',
         dataKey: 'panel',
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2020/2020_public_msamd_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2020/2020_public_msamd_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2020/2020_public_msamd_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2020/2020_public_msamd_pipe.zip`,
         label: 'MSA/MD Description',
         dataKey: 'msamd',
       },
@@ -169,26 +169,26 @@ export const SNAPSHOT_DATASET = {
     freezeDate: 'April 27, 2020',
     datasets: [
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2019/2019_public_lar_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2019/2019_public_lar_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2019/2019_public_lar_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2019/2019_public_lar_pipe.zip`,
         label: 'Loan/Application Records (LAR)',
         dataKey: 'lar',
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2019/2019_public_ts_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2019/2019_public_ts_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2019/2019_public_ts_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2019/2019_public_ts_pipe.zip`,
         label: 'Transmittal Sheet Records (TS)',
         dataKey: 'ts',
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2019/2019_public_panel_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2019/2019_public_panel_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2019/2019_public_panel_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2019/2019_public_panel_pipe.zip`,
         label: 'Reporter Panel',
         dataKey: 'panel',
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2019/2019_public_msamd_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2019/2019_public_msamd_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2019/2019_public_msamd_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2019/2019_public_msamd_pipe.zip`,
         label: 'MSA/MD Description',
         dataKey: 'msamd',
       },
@@ -199,26 +199,26 @@ export const SNAPSHOT_DATASET = {
     freezeDate: 'August 7th, 2019',
     datasets: [
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2018/2018_public_lar_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2018/2018_public_lar_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2018/2018_public_lar_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2018/2018_public_lar_pipe.zip`,
         label: 'Loan/Application Records (LAR)',
         dataKey: 'lar',
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2018/2018_public_ts_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2018/2018_public_ts_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2018/2018_public_ts_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2018/2018_public_ts_pipe.zip`,
         label: 'Transmittal Sheet Records (TS)',
         dataKey: 'ts',
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2018/2018_public_panel_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2018/2018_public_panel_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2018/2018_public_panel_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2018/2018_public_panel_pipe.zip`,
         label: 'Reporter Panel',
         dataKey: 'panel',
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2018/2018_public_msamd_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2018/2018_public_msamd_pipe.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2018/2018_public_msamd_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2018/2018_public_msamd_pipe.zip`,
         label: 'MSA/MD Description',
         dataKey: 'msamd',
       },
@@ -227,30 +227,30 @@ export const SNAPSHOT_DATASET = {
   },
   2017: {
     freezeDate: 'April 18th, 2018',
-    dataformat: `${config.fileServerDomain}/prod/snapshot-data/2017_publicstatic_dataformat.pdf`,
-    codesheet: `${config.fileServerDomain}/prod/snapshot-data/2017_publicstatic_codesheet.pdf`,
+    dataformat: `${fileServerDomain}/prod/snapshot-data/2017_publicstatic_dataformat.pdf`,
+    codesheet: `${fileServerDomain}/prod/snapshot-data/2017_publicstatic_codesheet.pdf`,
     datasets: [
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2017_public_lar_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2017_public_lar_txt.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2017_public_lar_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2017_public_lar_txt.zip`,
         label: 'Loan/Application Records (LAR)',
         dataKey: 'lar',
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2017_public_ts_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2017_public_ts_txt.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2017_public_ts_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2017_public_ts_txt.zip`,
         label: 'Transmittal Sheet Records (TS)',
         dataKey: 'ts',
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2017_public_panel_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2017_public_panel_txt.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2017_public_panel_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2017_public_panel_txt.zip`,
         label: 'Reporter Panel',
         dataKey: 'panel',
       },
       {
-        csv: `${config.fileServerDomain}/prod/snapshot-data/2017_public_msamd_csv.zip`,
-        txt: `${config.fileServerDomain}/prod/snapshot-data/2017_public_msamd_txt.zip`,
+        csv: `${fileServerDomain}/prod/snapshot-data/2017_public_msamd_csv.zip`,
+        txt: `${fileServerDomain}/prod/snapshot-data/2017_public_msamd_txt.zip`,
         label: 'MSA/MD Description',
         dataKey: 'msamd',
       },

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { getDefaultConfig } from '../../common/configUtils'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
 import Results from './Results.jsx'
 
@@ -7,6 +8,8 @@ import './SearchList.css'
 const INSTITUTIONS = {}
 
 function SearchList(props) {
+  const { fileServerDomain } = getDefaultConfig(window.location.hostname)
+
   const { year } = props
   const yearRef = useRef(year)
 
@@ -20,7 +23,7 @@ function SearchList(props) {
     setIsLoading(true)
     const fetchURL =
       year === '2017'
-        ? `${props.config.fileServerDomain}/prod/snapshot-data/2017/2017_filers.json`
+        ? `${fileServerDomain}/prod/snapshot-data/2017/2017_filers.json`
         : `/v2/reporting/filers/${year}`
     fetch(fetchURL)
       .then((response) => {
