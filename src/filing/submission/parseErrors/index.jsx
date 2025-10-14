@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { Component } from 'react'
 import Loading from '../../../common/LoadingIcon.jsx'
+import { getDefaultConfig } from '../../../common/configUtils'
 import Pagination from '../../pagination/container.jsx'
 import RefileWarningComponent from '../../refileWarning/index.jsx'
 import submissionProgressHOC from '../progressHOC.jsx'
@@ -78,6 +79,7 @@ class ParseErrors extends Component {
 
   render() {
     const { props } = this
+    const { fileServerDomain } = getDefaultConfig(window.location.hostname)
 
     if (!props.fetched) return <Loading />
 
@@ -105,8 +107,8 @@ class ParseErrors extends Component {
               target='_blank'
               href={
                 filingPeriod === '2018'
-                  ? `${this.props.config.fileServerDomain}/prod/help/2018-hmda-fig-2018-hmda-rule.pdf`
-                  : `${this.props.config.fileServerDomain}/prod/help/${filingPeriod}-hmda-fig.pdf`
+                  ? `${fileServerDomain}/prod/help/2018-hmda-fig-2018-hmda-rule.pdf`
+                  : `${fileServerDomain}/prod/help/${filingPeriod}-hmda-fig.pdf`
               }
             >
               Filing Instructions Guide

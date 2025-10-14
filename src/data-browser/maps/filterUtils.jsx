@@ -1,10 +1,10 @@
 import { getDefaultConfig } from '../../common/configUtils'
 
 function getFile(y, g, v, val) {
-  const config = getDefaultConfig(window.location.hostname)
+  const { fileServerDomain } = getDefaultConfig(window.location.hostname)
 
   const dec = decodeURIComponent(val)
-  return `${config.fileServerDomain}/prod/data-browser/filter-data/${y}/${g}-${v}-${dec
+  return `${fileServerDomain}/prod/data-browser/filter-data/${y}/${g}-${v}-${dec
     .replace(/[^a-z0-9]/gi, '-')
     .toLowerCase()}.json`
 }

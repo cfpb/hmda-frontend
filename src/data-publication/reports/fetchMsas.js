@@ -1,11 +1,11 @@
 import { getDefaultConfig } from '../../common/configUtils'
 
 function getMsaUrl(institutionId, year) {
-  const config = getDefaultConfig(window.location.hostname)
+  const { fileServerDomain } = getDefaultConfig(window.location.hostname)
 
   if (!year) return
   if (year === '2017')
-    return `${config.fileServerDomain}/prod/snapshot-data/2017/msaMds/${institutionId}.json`
+    return `${fileServerDomain}/prod/snapshot-data/2017/msaMds/${institutionId}.json`
   return `/v2/reporting/filers/${year}/${institutionId}/msaMds`
 }
 

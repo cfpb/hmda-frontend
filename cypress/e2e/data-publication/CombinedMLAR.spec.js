@@ -3,7 +3,7 @@ import { getDefaultConfig } from '../../../src/common/configUtils'
 import { isBeta } from '../../support/helpers'
 
 const { HOST } = Cypress.env()
-const config = getDefaultConfig(HOST)
+const { fileServerDomain } = getDefaultConfig(HOST)
 
 onlyOn(isBeta(HOST), () => {
   describe('Combined MLAR', function () {
@@ -19,13 +19,13 @@ onlyOn(!isBeta(HOST), () => {
         cy.visit(`${HOST}/data-publication/modified-lar/${year}`)
         cy.request({
           method: 'HEAD',
-          url: `${config.fileServerDomain}/prod/dynamic-data/combined-mlar/${year}/header/${year}_combined_mlar_header.zip`,
+          url: `${fileServerDomain}/prod/dynamic-data/combined-mlar/${year}/header/${year}_combined_mlar_header.zip`,
         })
           .its('status')
           .should('equal', 200)
         cy.request({
           method: 'HEAD',
-          url: `${config.fileServerDomain}/prod/dynamic-data/combined-mlar/${year}/${year}_combined_mlar.zip`,
+          url: `${fileServerDomain}/prod/dynamic-data/combined-mlar/${year}/${year}_combined_mlar.zip`,
         })
           .its('status')
           .should('equal', 200)
