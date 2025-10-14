@@ -1,43 +1,42 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback,
-  useRef,
+import mapbox from 'mapbox-gl'
+import {
   createContext,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
 } from 'react'
 import Alert from '../../common/Alert.jsx'
+import { getCSV, runFetch } from '../api.js'
+import fips2Shortcode from '../constants/fipsToShortcode.js'
+import DatasetDocsLink from '../datasets/DatasetDocsLink.jsx'
+import { FilterReports } from './FilterReports'
+import { MapsController } from './MapsController'
+import { MapsNavBar } from './MapsNavBar'
+import { ReportSummary } from './ReportSummary'
+import { fetchFilterData } from './filterUtils.jsx'
 import {
-  geographies,
-  variables,
-  getValuesForVariable,
-  getSelectData,
-  makeCombinedDefaultValue,
-  parseCombinedFilter,
-  varNameMapping,
-} from './selectUtils.jsx'
-import {
-  setOutline,
+  addLayers,
   getOrigPer1000,
   makeLegend,
   makeStops,
-  addLayers,
+  setOutline,
   useBias,
 } from './layerUtils.jsx'
-import { popup, buildPopupHTML } from './popupUtils.jsx'
-import { fetchFilterData } from './filterUtils.jsx'
-import { runFetch, getCSV } from '../api.js'
-import fips2Shortcode from '../constants/fipsToShortcode.js'
-import mapbox from 'mapbox-gl'
-import { useReportData } from './useReportData.jsx'
-import { FilterReports } from './FilterReports'
-import { MapsNavBar } from './MapsNavBar'
-import { MapsController } from './MapsController'
-import { ReportSummary } from './ReportSummary'
 import './mapbox.css'
-import DatasetDocsLink from '../datasets/DatasetDocsLink.jsx'
+import { buildPopupHTML, popup } from './popupUtils.jsx'
+import {
+  geographies,
+  getSelectData,
+  getValuesForVariable,
+  makeCombinedDefaultValue,
+  parseCombinedFilter,
+  variables,
+  varNameMapping,
+} from './selectUtils.jsx'
+import { useReportData } from './useReportData.jsx'
 
-mapbox.accessToken =
-  'pk.eyJ1IjoiY2ZwYiIsImEiOiJodmtiSk5zIn0.VkCynzmVYcLBxbyHzlvaQw'
+mapbox.accessToken = import.meta.env.MAPBOX_ACCESS_TOKEN
 
 export const MapContext = createContext({})
 
