@@ -52,6 +52,7 @@ describe('Large Filer', { tags: ['@auth-required'] }, () => {
   years.forEach((filingPeriod, index) => {
     it(`${filingPeriod}`, () => {
       const status = filingPeriodStatus[filingPeriod]
+      cy.visit(`${HOST}filing/2020/institutions`)
 
       cy.wait(ACTION_DELAY)
 

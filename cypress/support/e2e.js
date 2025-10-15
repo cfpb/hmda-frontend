@@ -55,32 +55,40 @@ Cypress.Commands.add('keycloakLogin', (app) => {
   // Visit the login page
   cy.visit(`${AUTH_BASE_URL}${USERPATH}`)
   cy.document().should('have.property', 'readyState', 'complete')
-  cy.get('#kc-page-title').contains('Sign in to your account')
+  cy.get('h1').then(($h1) => {
+    if ($h1.text().includes('hmdahelp_test@cfpb.gov')) {
+      console.log('Already logged in, skipping login')
+    } else {
+      cy.get('#kc-page-title').contains('Sign in to your account')
 
-  // Enter username
-  cy.get('#username').type(USERNAME)
+      // Enter username
+      cy.get('#username').type(USERNAME)
 
-  // Enter password
-  cy.get('#password').type(PASSWORD)
+      // Enter password
+      cy.get('#password').type(PASSWORD)
 
-  // Click submit button
-  cy.get('#kc-login').click()
+      // Click submit button
+      cy.get('#kc-login').click()
 
-  // Verify successful login
-  cy.url().should('include', `${AUTH_BASE_URL}${USERPATH}`, { timeout: 30000 })
+      // Verify successful login
+      cy.url().should('include', `${AUTH_BASE_URL}${USERPATH}`, {
+        timeout: 30000,
+      })
 
-  // Select Impersonate
-  cy.get('[data-testid="action-dropdown"]').click()
-  cy.get('li').contains('Impersonate').should('be.visible').click()
+      // Select Impersonate
+      cy.get('[data-testid="action-dropdown"]').click()
+      cy.get('li').contains('Impersonate').should('be.visible').click()
 
-  // Confirm Impersonation in Modal
-  cy.get('#modal-confirm')
-    .should('be.visible')
-    .invoke('removeAttr', 'target')
-    .click({ timeout: 2000 })
+      // Confirm Impersonation in Modal
+      cy.get('#modal-confirm')
+        .should('be.visible')
+        .invoke('removeAttr', 'target')
+        .click({ timeout: 2000 })
 
-  // Go to App page
-  cy.visit(`${AUTH_BASE_URL}${app}/2020/institutions`)
+      // Go to App page
+      cy.visit(`${AUTH_BASE_URL}${app}/2020/institutions`)
 
-  cy.wait(10000)
+      cy.wait(10000)
+    }
+  })
 })

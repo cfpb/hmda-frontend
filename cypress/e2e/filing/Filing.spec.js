@@ -44,7 +44,7 @@ describe(
         AUTH_CLIENT_ID,
       }).logEnv()
 
-      cy.visit(`${AUTH_BASE_URL}filing/2020/institutions`)
+      cy.visit(`${HOST}filing/2020/institutions`)
       cy.viewport(1600, 900)
     })
 
