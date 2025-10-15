@@ -1,3 +1,4 @@
+// @broken
 jest.unmock('./VerifierContainer.jsx')
 
 import React from 'react'

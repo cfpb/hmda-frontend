@@ -1,3 +1,4 @@
+// @broken
 jest.unmock('./App.jsx')
 jest.mock('./common/Header.jsx', () => jest.fn(() => null))
 jest.mock('./modals/confirmationModal/container.jsx')
