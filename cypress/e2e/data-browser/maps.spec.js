@@ -1,5 +1,5 @@
-import { isBeta, mapsURL, openSelector } from '../../support/helpers'
 import { onlyOn } from '@cypress/skip-test'
+import { isBeta, mapsURL, openSelector } from '../../support/helpers'
 const { HOST, ENVIRONMENT } = Cypress.env()
 const ACTION_DELAY = 8000 // milliseconds
 
@@ -11,7 +11,7 @@ onlyOn(isBeta(HOST), () => {
 
 onlyOn(!isBeta(HOST), () => {
   describe('Maps', () => {
-     it('State 2024', () => {
+     it('State 2024', { tags: ['@smoke'] },() => {
       cy.get({ HOST, ENVIRONMENT }).logEnv()
       cy.viewport(1000, 940)
       cy.visit(mapsURL(HOST, '2024?geography=state'))
