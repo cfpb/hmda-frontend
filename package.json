@@ -18,7 +18,8 @@
     "make-lar": "node ./scripts/lar/generate_lar_file.mjs",
     "cy-update-s3": "./cypress/update-s3-files.sh",
     "unit-tests": "vitest --run src/**/__tests__/**",
-    "unit-tests-old": "jest $(find oldTests -name '*.test.js' -o -name '*.test.jsx' | xargs grep -L '// @broken')",
+    "unit-tests-legacy": "jest $(find oldTests -name '*.test.js' -o -name '*.test.jsx' | xargs grep -L '// @broken')",
+    "unit-tests-legacy-all": "jest oldTests/",
     "watch-uswds-scss": "npx gulp watch",
     "lint": "eslint 'src/**/*.{js,jsx}'"
   },

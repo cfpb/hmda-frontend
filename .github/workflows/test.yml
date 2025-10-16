@@ -28,7 +28,7 @@ jobs:
         run: yarn unit-tests
 
       - name: Run legacy unit tests (Jest)
-        run: yarn unit-tests-old
+        run: yarn unit-tests-legacy
 
       - name: Run Cypress tests that don't require auth
         run: yarn test-unauthenticated

@@ -322,14 +322,16 @@ Paste the below code to the section you want to import your GIF and update the `
 
 ### Unit Tests
 
-```
-yarn test
-```
+Current unit tests use Vitest and can be run with `yarn unit-tests`.
+
+Legacy unit tests use Jest and many of them are outdated/broken.
+
+Legacy unit tests can be run with `yarn unit-tests-legacy`. Many are outdated/broken and have been tagged with `// @broken` at the top of the test file. The yarn script will skip all test files with this tag. To run all legacy unit tests, including broken ones, use `yarn unit-tests-legacy-all`.
 
 ### End-to-End Testing
 
 ```
-yarn run cypress run
+yarn test
 ```
 
 [Cypress](https://www.cypress.io/) is used to perform end-to-end testing of the filing application, tools, data publication products, and data browser. It mimicks a user's interaction with the site and allows for rapid, automated system validation of project deployments.
