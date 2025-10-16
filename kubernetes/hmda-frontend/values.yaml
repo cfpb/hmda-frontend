@@ -50,5 +50,5 @@ tolerations: []
 
 affinity: {}
 
-ambassador_id: ambassador_id
+# ambassador_id:
 # ambassador_host:
