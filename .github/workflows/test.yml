@@ -1,9 +1,9 @@
-name: Cypress tests
+name: E2E and unit tests
 
 on:
   pull_request:
 
-run-name: "Cypress tests that don't require auth: branch ${{ github.head_ref }} by @${{ github.actor }}"
+run-name: "Unauthenticated E2E tests and unit tests: branch ${{ github.head_ref }} by @${{ github.actor }}"
 
 jobs:
   unauthenticated-tests:
@@ -23,6 +23,12 @@ jobs:
 
       - name: Install dependencies
         run: yarn
+
+      - name: Run unit tests (Vitest)
+        run: yarn unit-tests
+
+      - name: Run legacy unit tests (Jest)
+        run: yarn unit-tests-old
 
       - name: Run Cypress tests that don't require auth
         run: yarn test-unauthenticated
