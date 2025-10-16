@@ -1,5 +1,5 @@
-import { isCI, isBeta } from '../../support/helpers'
 import { onlyOn } from '@cypress/skip-test'
+import { isBeta, isCI } from '../../support/helpers'
 const { HOST, ENVIRONMENT } = Cypress.env()
 
 let baseURLToVisit = isCI(ENVIRONMENT) ? 'http://localhost:3000' : HOST
@@ -38,7 +38,7 @@ onlyOn(!isBeta(HOST), () => {
   })
 
   describe('Filer Info tab tests', () => {
-    it('Starts on Graph tab and then switches to filer tab', () => {
+    it('Starts on Graph tab and then switches to filer tab', { tags: ['@smoke'] }, () => {
       cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`)
       cy.wait(1000)
       cy.get('[aria-label="Navigate to the Filer Info tab."]').click(0, 0, {
@@ -208,7 +208,7 @@ onlyOn(!isBeta(HOST), () => {
       })
     })
 
-    it('De-select and re-select a series, UI and URL updates', () => {
+    it('De-select and re-select a series, UI and URL updates', { tags: ['@smoke'] },() => {
       // let urlUpdate
       cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`)
       // De-select 'Conventional Conforming' from series

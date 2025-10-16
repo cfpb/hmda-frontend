@@ -1,5 +1,5 @@
-import { isBeta, isCI, isProd, withFormData } from '../../support/helpers'
 import { onlyOn } from '@cypress/skip-test'
+import { isBeta, isCI, isProd, withFormData } from '../../support/helpers'
 
 const { HOST, TEST_DELAY, ENVIRONMENT } = Cypress.env()
 
@@ -20,7 +20,7 @@ onlyOn(isCI(ENVIRONMENT) || (isProd(HOST) && !isBeta(HOST)), () => {
       cy.viewport(1680, 916)
       cy.visit(`${HOST}/tools/check-digit`)
     })
-    it('Generates a check digit', () => {
+    it('Generates a check digit', { tags: ['@smoke'] }, () => {
       cy.get({ HOST, TEST_DELAY }).logEnv()
 
       cy.get('.item > .Form > .unstyled-list > li > #getCheckDigit').click()

@@ -1,12 +1,17 @@
 import {
-  openSelector,
   dbURL,
   isBeta,
   isProd,
+  openSelector,
   waitUpto2Mins,
 } from '../../support/helpers'
 
-const YEARS = [2024, 2023, 2022, 2021, 2020, 2019, 2018]
+const allYears = [2024, 2023, 2022, 2021, 2020, 2019, 2018]
+// Only check one year when running smoke tests
+const smokeTestYears = [2024]
+const isSmokeTest = Cypress.env('grepTags') && Cypress.env('grepTags').includes('@smoke')
+const YEARS = isSmokeTest ? smokeTestYears : allYears
+
 const { HOST, ENVIRONMENT } = Cypress.env()
 const dbUrl = dbURL.bind(null, HOST)
 
@@ -15,7 +20,7 @@ describe(`Data Browser - Dataset Filtering`, () => {
   else {
     YEARS.forEach((year) => {
       describe(`${year} Dataset Filtering`, () => {
-        it('State/Institution/PropertyType', () => {
+        it('State/Institution/PropertyType', { tags: ['@smoke'] }, () => {
           cy.get({ HOST, ENVIRONMENT }).logEnv()
           cy.viewport(1000, 1400)
           cy.visit(dbUrl(`${year}?category=states`))
