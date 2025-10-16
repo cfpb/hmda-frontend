@@ -17,6 +17,7 @@
     "ci-data": "yarn newman run cypress/ci/tests/CREATE_INSTITUTIONS.postman_collection.json -e cypress/ci/config/PLATFORM_ENV.postman_environment.json -d cypress/ci/config/institutions.json",
     "make-lar": "node ./scripts/lar/generate_lar_file.mjs",
     "cy-update-s3": "./cypress/update-s3-files.sh",
+    "unit-tests": "vitest --run src/**/__tests__/**",
     "unit-tests-old": "jest $(find oldTests -name '*.test.js' -o -name '*.test.jsx' | xargs grep -L '// @broken')",
     "watch-uswds-scss": "npx gulp watch",
     "lint": "eslint 'src/**/*.{js,jsx}'"
@@ -86,6 +87,7 @@
     "@cypress/skip-test": "2.6.0",
     "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
     "@testing-library/cypress": "10.0.2",
+    "@testing-library/jest-dom": "^6.9.1",
     "@vitejs/plugin-react": "^4.1.0",
     "cypress": "^14.0",
     "cypress-file-upload": "5.0.8",
@@ -111,7 +113,8 @@
     "serialize-javascript": "5.0.1",
     "vite": "5.4.19",
     "vite-plugin-node-polyfills": "0.22.0",
-    "vite-plugin-svgr": "^4.1.0"
+    "vite-plugin-svgr": "^4.1.0",
+    "vitest": "^3.2.4"
   },
   "resolutions": {
     "ansi-html": "0.0.8",
