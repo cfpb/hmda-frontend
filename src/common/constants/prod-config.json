@@ -2,12 +2,6 @@
   "name": "prod",
   "announcement": [
     {
-      "message": "We are performing system maintenance from 8PM - 10PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-      "type": "error",
-      "heading": "System Temporarily Unavailable",
-      "link": null
-    },
-    {
       "heading": "2026 Online Filing Instructions Guides Released",
       "message": "The Bureau has released the 2026 Online FIG and Online Supplemental Guide for Quarterly Filers for 2026, which are available ",
       "type": "info",
@@ -20,13 +14,8 @@
   "fileServerDomain": "https://s3.amazonaws.com/cfpb-hmda-public",
   "publicationReleaseYear": "2024",
   "mlarReleaseYear": "2024",
-  "maintenanceMode": true,
-  "filingAnnouncement": {
-    "message": "We are performing system maintenance from 8PM - 10PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-    "type": "error",
-    "heading": "System Temporarily Unavailable",
-    "endDate": null
-  },
+  "maintenanceMode": false,
+  "filingAnnouncement": null,
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
