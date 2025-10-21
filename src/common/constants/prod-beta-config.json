@@ -1,10 +1,22 @@
 {
   "name": "prod-beta",
-  "announcement": [],
+  "announcement": [
+    {
+      "message": "We will be performing scheduled system maintenance on October 23 from 8PM - 10PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+      "type": "warning",
+      "heading": "Scheduled Maintenance",
+      "link": null
+    }
+  ],
   "fileServerDomain": "https://s3.amazonaws.com/cfpb-hmda-public",
   "publicationReleaseYear": "2020",
   "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "filingAnnouncement": {
+    "message": "We will be performing scheduled system maintenance on October 23 from 8PM - 10PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance",
+    "endDate": null
+  },
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
