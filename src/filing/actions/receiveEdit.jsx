@@ -1,8 +1,8 @@
-import React from 'react'
 import * as types from '../constants'
 
 const PATTERN_1111 = /^1111(\.0)?$/
-const PATTERN_888_8888 = /^888(\.0)?$|^88888(\.0)?$/
+const PATTERN_888_8888 = /^888(\.0+)?$|^88888(\.0+)?$/
+const PATTERN_999_9999 = /^999(\.0+)?$|^99999(\.0+)?$/
 
 /**
  *  Highlight fields whose value matches a pattern
@@ -39,6 +39,11 @@ const TRANSFORMERS = {
     type: 'regex',
     filter: highlightEditFields,
     pattern: PATTERN_888_8888,
+  },
+  'Q659-2': {
+    type: 'regex',
+    filter: highlightEditFields,
+    pattern: PATTERN_999_9999,
   },
 }
 
