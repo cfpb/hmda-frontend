@@ -1,13 +1,13 @@
 import * as types from '../constants'
 
-const PATTERN_1111 = /^1111(\.0)?$/
-const PATTERN_888_8888 = /^888(\.0+)?$|^88888(\.0+)?$/
-const PATTERN_999_9999 = /^999(\.0+)?$|^99999(\.0+)?$/
+export const PATTERN_1111 = /^1111(\.0+)?$/
+export const PATTERN_888_8888 = /^888(\.0+)?$|^88888(\.0+)?$/
+export const PATTERN_999_9999 = /^999(\.0+)?$|^99999(\.0+)?$/
 
 /**
  *  Highlight fields whose value matches a pattern
  */
-const highlightEditFields = (rows = [], pattern = PATTERN_1111) =>
+export const highlightEditFields = (rows = [], pattern = PATTERN_1111) =>
   rows.map((r) => {
     if (!r.fields) return
     const row = JSON.parse(JSON.stringify(r))
