@@ -1,3 +1,4 @@
+// @broken
 jest.unmock('./Receipt.jsx')
 jest.unmock('../common/Alert.jsx')
 

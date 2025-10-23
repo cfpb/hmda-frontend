@@ -35,6 +35,12 @@ dns.setDefaultResultOrder('verbatim')
 export default () => {
   return defineConfig({
     plugins: [react(), svgr(), nodePolyfills()],
+    test: {
+      environment: 'jsdom',
+      globals: true,
+      include: ['src/**/__tests__/**/*.{test,spec}.{js,jsx}'],
+      exclude: ['oldTests/**', 'cypress/**', '**/node_modules/**']
+    },
     define: {
       'import.meta.env.MAPBOX_ACCESS_TOKEN': JSON.stringify(
         process.env.MAPBOX_ACCESS_TOKEN,

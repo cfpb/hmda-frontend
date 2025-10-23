@@ -1,12 +1,12 @@
-name: Cypress tests
+name: Unit and E2E tests
 
 on:
   pull_request:
 
-run-name: "Cypress tests that don't require auth: branch ${{ github.head_ref }} by @${{ github.actor }}"
+run-name: "Unit tests and unauthenticated E2E tests: branch ${{ github.head_ref }} by @${{ github.actor }}"
 
 jobs:
-  unauthenticated-tests:
+  tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,5 +24,17 @@ jobs:
       - name: Install dependencies
         run: yarn
 
+      - name: Run unit tests (Vitest)
+        env:
+          MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
+        run: yarn unit-tests
+
+      - name: Run legacy unit tests (Jest)
+        env:
+          MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
+        run: yarn unit-tests-legacy
+
       - name: Run Cypress tests that don't require auth
+        env:
+          MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
         run: yarn test-unauthenticated

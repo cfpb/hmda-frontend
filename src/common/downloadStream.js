@@ -5,6 +5,20 @@ streamSaver.mitm = `${window.origin}/filesaver.html`
 
 const defaultFileName = () => `hmda-download-${Date.now()}.txt`
 
+// Sanitize filename to prevent path traversal
+export const sanitizeFileName = (fileName) => {
+  if (!fileName) return defaultFileName()
+
+  return fileName
+    // Remove path traversal sequences
+    .replace(/\.\.\//g, '')
+    // Remove leading dots 
+    .replace(/^\.+/, '')
+    // Replace dangerous chars with dashes
+    .replace(/[/\\?%*:|"<>]/g, '-')
+    .trim() 
+}
+
 export default (source, { fileName, onError, onSuccess }) => {
   if (!source.pipeTo) {
     const msg = 'Invalid stream source'
@@ -13,7 +27,7 @@ export default (source, { fileName, onError, onSuccess }) => {
   }
 
   const destination = streamSaver.createWriteStream(
-    `${fileName || defaultFileName()}`,
+    sanitizeFileName(fileName),
   )
 
   return source.pipeTo(destination).then(() => {

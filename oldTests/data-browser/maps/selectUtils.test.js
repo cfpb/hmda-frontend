@@ -1,3 +1,4 @@
+// @broken
 import { parseCombinedFilter } from '../../../src/data-browser/maps/selectUtils'
 
 describe('parseCombinedFilter', () => {

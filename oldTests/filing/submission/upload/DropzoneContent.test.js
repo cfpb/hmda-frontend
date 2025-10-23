@@ -1,3 +1,4 @@
+// @broken
 jest.unmock('./DropzoneContent.jsx')
 
 import React from 'react'
