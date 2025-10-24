@@ -1,6 +1,6 @@
+import { onlyOn } from '@cypress/skip-test'
 import log from '../../../src/updates-notes/change-log-data.json'
 import { isBeta } from '../../support/helpers'
-import { onlyOn } from '@cypress/skip-test'
 const { HOST } = Cypress.env()
 const EXPECTED_SELECTED_PILLS = ['release', 'documentation', 'tools']
 const entries = log.log
@@ -23,7 +23,7 @@ onlyOn(!isBeta(HOST), () => {
         })
       })
 
-      it('Applies keyword filter from URL query string', () => {
+      it('Applies keyword filter from URL query string', { tags: ['@smoke'] }, () => {
         cy.visit(`${HOST}/updates-notes/updates?keywords=2020,tool`)
         cy.get('.change-row').should('have.length', 2)
         cy.get('.result-count .body').should(

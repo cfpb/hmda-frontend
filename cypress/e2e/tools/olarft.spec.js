@@ -1,6 +1,6 @@
-import { WARN_LOST_UNSAVED } from '../../../src/tools/larft/config/messages'
-import { isCI, isBeta } from '../../support/helpers'
 import { onlyOn } from '@cypress/skip-test'
+import { WARN_LOST_UNSAVED } from '../../../src/tools/larft/config/messages'
+import { isBeta, isCI } from '../../support/helpers'
 
 const { HOST, ENVIRONMENT } = Cypress.env()
 
@@ -22,7 +22,7 @@ onlyOn(isBeta(HOST), () => {
 
 onlyOn(!isBeta(HOST), () => {
   describe('General OLART Tests', () => {
-    it("Tests 'Filter by label' functionality", () => {
+    it("Tests 'Filter by label' functionality", { tags: ['@smoke'] }, () => {
       cy.visit(urlForTesting)
       cy.get('#filter').click().type('Federal Agency')
       cy.get('#accordion-button-11').should('have.text', 'Federal Agency')
