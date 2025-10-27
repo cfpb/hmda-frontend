@@ -18,7 +18,7 @@ spec:
     release: {{ .Release.Name }}
 
 ---
-apiVersion: getambassador.io/v2
+apiVersion: getambassador.io/v3alpha1
 kind: Mapping
 metadata:
   labels: 
