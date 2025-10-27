@@ -51,4 +51,4 @@ tolerations: []
 affinity: {}
 
 # ambassador_id:
-# ambassador_host:
+ambassador_host: ffiec.beta.cfpb.gov
