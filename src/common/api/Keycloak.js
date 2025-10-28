@@ -12,7 +12,6 @@ const domainsToBeRedirectedToProdKeycloak = [
   'ffiec.beta.cfpb.gov',
   'prod-regtech',
   'ffiec-beta-test',
-  'ffiec-test',
 ]
 
 const devKeycloakDomain = 'hmdadev.cfpb.gov'
