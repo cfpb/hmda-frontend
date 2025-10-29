@@ -140,7 +140,7 @@ class Report extends React.Component {
     const devProd = isProd(window.location.host) ? 'prod' : 'dev'
 
     if (reportId === 'IRS') ext = '.csv'
-    let url = `${fileServerDomain}/prod/reports/`
+    let url = `${fileServerDomain}/reports/`
     if (params.stateId) {
       url += `aggregate/${year}/${msaMdId}/${reportId}${ext}`
     } else if (params.institutionId) {

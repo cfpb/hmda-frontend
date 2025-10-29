@@ -29,12 +29,12 @@ function AppIntro({ toolAnnouncement }) {
         Percentage Rate (APR) and a survey-based estimate of APRs currently
         offered on prime mortgage loans of a comparable type utilizing the
         “Average Prime Offer Rates”{' '}
-        <a download href={`${fileServerDomain}/prod/apor/YieldTableFixed.txt`}>
+        <a download href={`${fileServerDomain}/apor/YieldTableFixed.txt`}>
           fixed table
         </a>{' '}
         or{' '}
         <a
-          href={`${fileServerDomain}/prod/apor/YieldTableAdjustable.txt`}
+          href={`${fileServerDomain}/apor/YieldTableAdjustable.txt`}
           download
         >
           adjustable table
@@ -44,7 +44,7 @@ function AppIntro({ toolAnnouncement }) {
         mortgage.
       </p>
       <p>
-        <a href={`${fileServerDomain}/prod/apor/SurveyTable.csv`} download>
+        <a href={`${fileServerDomain}/apor/SurveyTable.csv`} download>
           Mortgage rate survey data
         </a>{' '}
         used to calculate rate spreads for loans reportable under HMDA is
@@ -65,7 +65,7 @@ function AppIntro({ toolAnnouncement }) {
           alternate methodology
         </Link>{' '}
         and{' '}
-        <a href={`${fileServerDomain}/prod/apor/SurveyTable-legacy.csv`}>
+        <a href={`${fileServerDomain}/apor/SurveyTable-legacy.csv`}>
           alternate rate survey data
         </a>{' '}
         which are also provided.

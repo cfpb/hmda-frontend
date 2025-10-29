@@ -83,7 +83,7 @@ export function CombinedMLAR({ year, setHasCombined, hasCombined }) {
 
 const formatURL = (year, withHeader, fileServerDomain) => {
   let baseFilename = `${year}_combined_mlar`
-  let href = `${fileServerDomain}/prod/dynamic-data/combined-mlar/`
+  let href = `${fileServerDomain}/dynamic-data/combined-mlar/`
   href += `${year}/` // Year sub-folder
 
   if (withHeader) {

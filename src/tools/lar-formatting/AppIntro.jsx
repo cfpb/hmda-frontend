@@ -37,7 +37,7 @@ const AppIntro = () => {
 
     <ul key={3}>
       <S3DatasetLink
-        url={`${fileServerDomain}/prod/larft/HMDA_LAR_Formatting_Tool.xlsm`}
+        url={`${fileServerDomain}/larft/HMDA_LAR_Formatting_Tool.xlsm`}
         label='Excel LAR Formatting Tool for data collected in or after 2018'
         showLastUpdated
       />

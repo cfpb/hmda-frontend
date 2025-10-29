@@ -20,8 +20,8 @@ function PublicationRows({ institution }) {
     if (!loading) return
     const env = window.location.host.match(/^ffiec/) ? 'prod' : 'dev'
 
-    const irsUrl = `${fileServerDomain}/${env}/reports/disclosure/${activityYear}/${lei}/nationwide/IRS.csv`
-    const mlarUrl = `${fileServerDomain}/${env}/modified-lar/${activityYear}/${lei}.txt`
+    const irsUrl = `${fileServerDomain}/reports/disclosure/${activityYear}/${lei}/nationwide/IRS.csv`
+    const mlarUrl = `${fileServerDomain}/modified-lar/${activityYear}/${lei}.txt`
 
     const targets = [
       { url: irsUrl, setter: setIrs },

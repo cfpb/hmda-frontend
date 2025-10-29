@@ -42,9 +42,18 @@
       "product": "datasets",
       "description": "The 2024 national loan-level datasets, disclosure reports, and MSA/MD aggregate reports were released and can be accessed via the Data Publication page. Users can now explore 2024 HMDA data using the Data Browser's dataset filtering tool and maps. The 2023 One Year Dataset and the 2021 Three Year Dataset were also released.",
       "links": [
-        {"text": "Data Publication", "url": "https://ffiec.cfpb.gov/data-publication/"},
-        {"text": "Data Browser", "url": "https://ffiec.cfpb.gov/data-browser/data/"},
-        {"text": "Maps", "url": "https://ffiec.cfpb.gov/data-browser/maps/"}
+        {
+          "text": "Data Publication",
+          "url": "https://ffiec.cfpb.gov/data-publication/"
+        },
+        {
+          "text": "Data Browser",
+          "url": "https://ffiec.cfpb.gov/data-browser/data/"
+        },
+        {
+          "text": "Maps",
+          "url": "https://ffiec.cfpb.gov/data-browser/maps/"
+        }
       ]
     },
     {
@@ -141,9 +150,18 @@
       "product": "datasets",
       "description": "The 2023 national loan-level datasets, disclosure reports, and MSA/MD aggregate reports were released and can be accessed via the Data Publication page. Users can now explore 2023 HMDA data using the Data Browser's dataset filtering tool and maps. The 2022 One Year Dataset and the 2020 Three Year Dataset were also released.",
       "links": [
-        {"text": "Data Publication", "url": "https://ffiec.cfpb.gov/data-publication/"},
-        {"text": "Data Browser", "url": "https://ffiec.cfpb.gov/data-browser/data/"},
-        {"text": "Maps", "url": "https://ffiec.cfpb.gov/data-browser/maps/"}
+        {
+          "text": "Data Publication",
+          "url": "https://ffiec.cfpb.gov/data-publication/"
+        },
+        {
+          "text": "Data Browser",
+          "url": "https://ffiec.cfpb.gov/data-browser/data/"
+        },
+        {
+          "text": "Maps",
+          "url": "https://ffiec.cfpb.gov/data-browser/maps/"
+        }
       ]
     },
     {
@@ -202,7 +220,7 @@
       "links": [
         {
           "text": "2024 Filing Instructions Guide (FIG)",
-          "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2024-hmda-fig.pdf"
+          "url": "https://files.ffiec.cfpb.gov/documentation/2024-hmda-fig.pdf"
         }
       ]
     },
@@ -226,11 +244,11 @@
       "links": [
         {
           "text": "2024 Filing Instructions Guide (FIG)",
-          "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2024-hmda-fig.pdf"
+          "url": "https://files.ffiec.cfpb.gov/documentation/2024-hmda-fig.pdf"
         },
         {
           "text": "2024 Supplemental Guide for Quarterly Filers",
-          "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-2024.pdf"
+          "url": "https://files.ffiec.cfpb.gov/documentation/supplemental-guide-for-quarterly-filers-for-2024.pdf"
         }
       ]
     },
@@ -260,7 +278,10 @@
           "text": "Data Browser",
           "url": "https://ffiec.cfpb.gov/data-browser/data/"
         },
-        { "text": "Maps", "url": "https://ffiec.cfpb.gov/data-browser/maps/" }
+        {
+          "text": "Maps",
+          "url": "https://ffiec.cfpb.gov/data-browser/maps/"
+        }
       ]
     },
     {
@@ -373,11 +394,11 @@
       "links": [
         {
           "text": "2023 Filing Instructions Guide (FIG)",
-          "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2023-hmda-fig.pdf"
+          "url": "https://files.ffiec.cfpb.gov/documentation/2023-hmda-fig.pdf"
         },
         {
           "text": "2023 Supplemental Guide for Quarterly Filers",
-          "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-2023.pdf"
+          "url": "https://files.ffiec.cfpb.gov/documentation/supplemental-guide-for-quarterly-filers-for-2023.pdf"
         }
       ]
     },
@@ -413,7 +434,7 @@
       "links": [
         {
           "text": "APOR Table - 7.11.22",
-          "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/apor/7_11_2022_APOR_tables.csv"
+          "url": "https://files.ffiec.cfpb.gov/apor/7_11_2022_APOR_tables.csv"
         }
       ],
       "url": ""
@@ -472,7 +493,7 @@
       "links": [
         {
           "text": "2022 Filing Instructions Guide (FIG)",
-          "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2022-hmda-fig.pdf"
+          "url": "https://files.ffiec.cfpb.gov/documentation/2022-hmda-fig.pdf"
         }
       ]
     },
@@ -496,11 +517,11 @@
       "links": [
         {
           "text": "2022 Filing Instructions Guide (FIG)",
-          "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/2022-hmda-fig.pdf"
+          "url": "https://files.ffiec.cfpb.gov/documentation/2022-hmda-fig.pdf"
         },
         {
           "text": "2022 Supplemental Guide for Quarterly Filers",
-          "url": "https://s3.amazonaws.com/cfpb-hmda-public/prod/help/supplemental-guide-for-quarterly-filers-for-2022.pdf"
+          "url": "https://files.ffiec.cfpb.gov/documentation/supplemental-guide-for-quarterly-filers-for-2022.pdf"
         }
       ]
     },
@@ -708,7 +729,9 @@
       "type": "update",
       "product": "documentation",
       "description": "The Disclosure Reports page was updated with improved guidance for finding your Insitutions Register Summary (IRS).",
-      "url": ["https://github.com/cfpb/hmda-frontend/issues/438"]
+      "url": [
+        "https://github.com/cfpb/hmda-frontend/issues/438"
+      ]
     },
     {
       "date": "04/22/20",
