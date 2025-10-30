@@ -17,22 +17,20 @@ spec:
   selector:
     app: {{ include "hmda-frontend.name" . }}
     release: {{ .Release.Name }}
-
 ---
-apiVersion: v1
-kind: Service
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
 metadata:
   labels: 
-    service: {{ include "hmda-frontend.fullname" . }}-ambassador
-  name: {{ include "hmda-frontend.fullname" . }}-ambassador
-  annotations:
-    getambassador.io/config: |
-      apiVersion: ambassador/v2
-      kind: Mapping
-      name: hmda_frontend_mapping
-      ambassador_id: ambassador-default-1
-      prefix: /
-      rewrite: /
-      service: {{ include "hmda-frontend.fullname" . }}:{{ .Values.service.port }}
+    service: {{ include "hmda-frontend.fullname" . }}-mapping
+  name: {{ include "hmda-frontend.fullname" . }}-mapping
 spec:
-  clusterIP: None
+  {{- if .Values.ambassador_id }}
+  ambassador_id: {{ .Values.ambassador_id }}
+  {{- end}}
+  {{- if .Values.ambassador_host }}
+  host: {{ .Values.ambassador_host }}
+  {{- end}}
+  prefix: /
+  rewrite: /
+  service: {{ include "hmda-frontend.fullname" . }}:{{ .Values.service.port }}
