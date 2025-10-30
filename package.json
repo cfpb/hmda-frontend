@@ -12,6 +12,7 @@
     "preview": "vite preview",
     "test": "yarn run cypress run",
     "test-unauthenticated": "yarn run cypress run --env grepTags='-@auth-required'",
+    "test-smoke": "yarn run cypress run --env grepTags='@smoke'",
     "test-large": "CYPRESS_YEARS=2020 yarn run cypress run --spec cypress/integration/load/LargeFiler.spec.js",
     "ci": "VITE_ENVIRONMENT=CI yarn start -p 3000",
     "ci-data": "yarn newman run cypress/ci/tests/CREATE_INSTITUTIONS.postman_collection.json -e cypress/ci/config/PLATFORM_ENV.postman_environment.json -d cypress/ci/config/institutions.json",
