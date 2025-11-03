@@ -6,11 +6,8 @@ import {
   waitUpto2Mins,
 } from '../../support/helpers'
 
-const allYears = [2024, 2023, 2022, 2021, 2020, 2019, 2018]
-// Only check one year when running smoke tests
-const smokeTestYears = [2024]
-const isSmokeTest = Cypress.env('grepTags') && Cypress.env('grepTags').includes('@smoke')
-const YEARS = isSmokeTest ? smokeTestYears : allYears
+const YEARS = Cypress.env('YEARS')
+const years = (YEARS && YEARS.toString().split(',')) || [2024, 2023, 2022, 2021, 2020, 2019, 2018]
 
 const { HOST, ENVIRONMENT } = Cypress.env()
 const dbUrl = dbURL.bind(null, HOST)
@@ -18,7 +15,7 @@ const dbUrl = dbURL.bind(null, HOST)
 describe(`Data Browser - Dataset Filtering`, () => {
   if (!isProd(HOST) || isBeta(HOST)) it('Only runs in Production')
   else {
-    YEARS.forEach((year) => {
+    years.forEach((year) => {
       describe(`${year} Dataset Filtering`, () => {
         it('State/Institution/PropertyType', { tags: ['@smoke'] }, () => {
           cy.get({ HOST, ENVIRONMENT }).logEnv()

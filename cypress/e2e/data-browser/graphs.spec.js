@@ -38,7 +38,7 @@ onlyOn(!isBeta(HOST), () => {
   })
 
   describe('Filer Info tab tests', () => {
-    it('Starts on Graph tab and then switches to filer tab', { tags: ['@smoke'] }, () => {
+    it('Starts on Graph tab and then switches to filer tab', () => {
       cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`)
       cy.wait(1000)
       cy.get('[aria-label="Navigate to the Filer Info tab."]').click(0, 0, {
@@ -208,7 +208,7 @@ onlyOn(!isBeta(HOST), () => {
       })
     })
 
-    it('De-select and re-select a series, UI and URL updates', { tags: ['@smoke'] },() => {
+    it('De-select and re-select a series, UI and URL updates',() => {
       // let urlUpdate
       cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`)
       // De-select 'Conventional Conforming' from series

@@ -1,13 +1,8 @@
 import { onlyOn } from '@cypress/skip-test';
 import { isBeta, isDev } from '../../support/helpers';
-const { HOST } = Cypress.env()
+const { HOST, YEARS } = Cypress.env()
 
-// add additional years here to test as needed
-const allYears = [2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017];
-// Only check one year when running smoke tests
-const smokeTestYears = [2024]
-const isSmokeTest = Cypress.env('grepTags') && Cypress.env('grepTags').includes('@smoke')
-const years = isSmokeTest ? smokeTestYears : allYears
+const years = (YEARS && YEARS.toString().split(',')) || [2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017]
 
 const testCases = 
   years.map(year => {

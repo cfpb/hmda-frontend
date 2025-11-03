@@ -1,7 +1,7 @@
 import { onlyOn } from '@cypress/skip-test'
 import { isBeta } from '../../support/helpers'
 
-const { HOST, TEST_DELAY, ACTION_DELAY } = Cypress.env()
+const { HOST, TEST_DELAY, ACTION_DELAY, YEARS } = Cypress.env()
 
 onlyOn(isBeta(HOST), () => {
   describe('Dynamic National Loan-Level Dataset', function () {
@@ -11,11 +11,7 @@ onlyOn(isBeta(HOST), () => {
 
 onlyOn(!isBeta(HOST), () => {
   describe('Dynamic National Loan-Level Dataset', () => {
-    const allYears = ['2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017']
-    // Only check one year when running smoke tests
-    const smokeTestYears = [2024]
-    const isSmokeTest = Cypress.env('grepTags') && Cypress.env('grepTags').includes('@smoke')
-    const years = isSmokeTest ? smokeTestYears : allYears
+    const years = (YEARS && YEARS.toString().split(',')) || ['2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017']
 
     const datasetUrl = '/data-publication/dynamic-national-loan-level-dataset/'
     const linksPath = '#main-content > .grid > :nth-child(1) > ul > li > a'
