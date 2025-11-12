@@ -113,7 +113,7 @@
     "jest-environment-jsdom": "^30.2.0",
     "react-icons": "^4.4.0",
     "serialize-javascript": "5.0.1",
-    "vite": "5.4.19",
+    "vite": "5.4.21",
     "vite-plugin-node-polyfills": "0.22.0",
     "vite-plugin-svgr": "^4.1.0",
     "vitest": "^3.2.4"
