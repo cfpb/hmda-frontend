@@ -10,7 +10,7 @@ onlyOn(isBeta(HOST), () => {
 })
 
 onlyOn(!isBeta(HOST), () => {
-  describe('Rate Spread Tool', function () {
+  describe('Rate Spread Tool', { tags: ['@smoke'] }, function () {
     beforeEach(() => {
       cy.viewport(1680, 916)
       cy.visit(`${HOST}/tools/rate-spread`)

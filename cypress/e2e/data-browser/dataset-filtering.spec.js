@@ -1,21 +1,23 @@
 import {
-  openSelector,
   dbURL,
   isBeta,
   isProd,
+  openSelector,
   waitUpto2Mins,
 } from '../../support/helpers'
 
-const YEARS = [2024, 2023, 2022, 2021, 2020, 2019, 2018]
+const YEARS = Cypress.env('YEARS')
+const years = (YEARS && YEARS.toString().split(',')) || [2024, 2023, 2022, 2021, 2020, 2019, 2018]
+
 const { HOST, ENVIRONMENT } = Cypress.env()
 const dbUrl = dbURL.bind(null, HOST)
 
 describe(`Data Browser - Dataset Filtering`, () => {
   if (!isProd(HOST) || isBeta(HOST)) it('Only runs in Production')
   else {
-    YEARS.forEach((year) => {
+    years.forEach((year) => {
       describe(`${year} Dataset Filtering`, () => {
-        it('State/Institution/PropertyType', () => {
+        it('State/Institution/PropertyType', { tags: ['@smoke'] }, () => {
           cy.get({ HOST, ENVIRONMENT }).logEnv()
           cy.viewport(1000, 1400)
           cy.visit(dbUrl(`${year}?category=states`))

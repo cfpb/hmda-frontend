@@ -1,9 +1,8 @@
-import { onlyOn } from '@cypress/skip-test'
-import { isBeta, isDev } from '../../support/helpers'
-const { HOST } = Cypress.env()
+import { onlyOn } from '@cypress/skip-test';
+import { isBeta, isDev } from '../../support/helpers';
+const { HOST, YEARS } = Cypress.env()
 
-// add additional years here to test as needed
-const years = [2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017];
+const years = (YEARS && YEARS.toString().split(',')) || [2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017]
 
 const testCases = 
   years.map(year => {
@@ -41,9 +40,9 @@ onlyOn(isBeta(HOST), () => {
 })
 
 onlyOn(!isBeta(HOST), () => {
-  describe('Modified LAR', function () {
+  describe('Modified LAR', { tags: ['@smoke'] }, function () {
     testCases.forEach(({ year, name, institution }) => {
-      it(`Searches and finds correct links for ${year}`, () => {
+      it(`Searches and finds correct links for ${year}`,() => {
         cy.get({ HOST }).logEnv()
         cy.visit(`${HOST}/data-publication/modified-lar/${year}`)
 

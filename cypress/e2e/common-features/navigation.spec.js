@@ -1,5 +1,5 @@
-import { isCI, isBeta } from '../../support/helpers'
 import { onlyOn } from '@cypress/skip-test'
+import { isBeta, isCI } from '../../support/helpers'
 const { HOST, ENVIRONMENT } = Cypress.env()
 
 let baseURLToVisit = isCI(ENVIRONMENT) ? 'http://localhost:3000' : HOST
@@ -11,7 +11,7 @@ onlyOn(isBeta(HOST), () => {
 })
 
 onlyOn(!isBeta(HOST), () => {
-  describe('HMDA homepage hero navigation', () => {
+  describe('HMDA homepage hero navigation', { tags: ['@smoke'] }, () => {
     // HMDA's homepage has four "quick links" leading to core pages
     const quickLinks = [
       { text: 'Rate Spread Calculator', pageHeading: 'Rate Spread Calculator' },

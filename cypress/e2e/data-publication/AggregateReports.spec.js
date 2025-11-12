@@ -1,5 +1,5 @@
-import { isBeta, openSelector } from '../../support/helpers'
 import { onlyOn } from '@cypress/skip-test'
+import { isBeta, openSelector } from '../../support/helpers'
 const { HOST } = Cypress.env()
 
 // TODO: Test CSV Download
@@ -12,7 +12,7 @@ onlyOn(isBeta(HOST), () => {
 
 onlyOn(!isBeta(HOST), () => {
   describe('Aggregate Reports', () => {
-    it('2024', () => {
+    it('2024', { tags: ['@smoke'] }, () => {
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 867)
       cy.visit(`${HOST}/data-publication/aggregate-reports/2024`)

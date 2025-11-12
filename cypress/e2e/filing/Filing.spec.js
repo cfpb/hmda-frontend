@@ -52,7 +52,7 @@ describe(
     const testVsOfficial = THIS_IS_BETA ? 'test' : 'official'
 
     years.forEach((filingPeriod, index) => {
-      it(`${filingPeriod}`, function () {
+      it(`${filingPeriod}`, { tags: ['@smoke'] }, function () {
         const status = filingPeriodStatus[filingPeriod]
 
         cy.wait(ACTION_DELAY)
