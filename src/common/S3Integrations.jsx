@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector, Provider } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { Provider, useDispatch, useSelector } from 'react-redux'
 import ExternalLink from './ExternalLink'
 import LoadingIcon from './LoadingIcon'
 import { humanFileSize, isBigFile } from './numberServices'
@@ -28,6 +28,12 @@ export const useS3FileHeaders = (url, shouldFetch) => {
     if (!shouldFetch) return
 
     fetch(url, { method: 'HEAD' }).then((response) => {
+      // handle 404s/500s without headers to prevent infinite loading spinners
+      if (!response.ok) {
+        dispatch(saveHeaders({ url, headers: {} }))
+        setCurrHeaders({})
+        return
+      } 
       const hdrs = ['last-modified', 'Content-Length']
       const [lastMod, size] = hdrs.map((h) => response.headers.get(h))
       let changeDate
