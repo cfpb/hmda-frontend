@@ -32,8 +32,8 @@ export const DYNAMIC_DATASET = {
     ts: `${fileServerDomain}/dynamic-data/2018/2018_ts.zip`,
   },
   2017: {
-    lar: `${fileServerDomain}/dynamic-data/dynamic_lar_ultimate_2017.txt`,
-    ts: `${fileServerDomain}/dynamic-data/dynamic_ts_ultimate_2017.txt`,
+    lar: `${fileServerDomain}/dynamic-data/2017/dynamic_lar_ultimate_2017.txt`,
+    ts: `${fileServerDomain}/dynamic-data/2017/dynamic_ts_ultimate_2017.txt`,
     lar_spec:
       'https://github.com/cfpb/hmda-platform/blob/v1.x/Documents/2017_Dynamic_LAR_Spec.csv',
     ts_spec:
