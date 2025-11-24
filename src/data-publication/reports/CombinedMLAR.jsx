@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getDefaultConfig } from '../../common/configUtils'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
-import { humanFileSize } from '../../common/numberServices.js'
 import { useS3FileHeaders } from '../../common/S3Integrations.jsx'
 
 export function CombinedMLAR({ year, setHasCombined, hasCombined }) {
@@ -59,7 +58,9 @@ export function CombinedMLAR({ year, setHasCombined, hasCombined }) {
       </p>
       <div className='alert alert-warning'>
         <h4 className='alert-heading'>
-          Warning: Large file - {humanFileSize(headers.size)}
+          Warning: Large file
+          {/* TODO: Enable file size again after akamai fix */} 
+          {/* Warning: Large file - {humanFileSize(headers.size)} */} 
         </h4>
         Special software is required to open this file
       </div>
