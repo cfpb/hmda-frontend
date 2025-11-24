@@ -5,7 +5,7 @@ function getMsaUrl(institutionId, year) {
 
   if (!year) return
   if (year === '2017')
-    return `${fileServerDomain}/snapshot/2017/msaMds/${institutionId}.json`
+    return `${fileServerDomain}/static-data/snapshot/2017/msaMds/${institutionId}.json`
   return `/v2/reporting/filers/${year}/${institutionId}/msaMds`
 }
 

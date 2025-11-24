@@ -23,7 +23,7 @@ function SearchList(props) {
     setIsLoading(true)
     const fetchURL =
       year === '2017'
-        ? `${fileServerDomain}/snapshot/2017/2017_filers.json`
+        ? `${fileServerDomain}/static-data/snapshot/2017/2017_filers.json`
         : `/v2/reporting/filers/${year}`
     fetch(fetchURL)
       .then((response) => {

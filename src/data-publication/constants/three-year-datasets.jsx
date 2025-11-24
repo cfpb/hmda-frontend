@@ -6,7 +6,7 @@ const { fileServerDomain } = getDefaultConfig(window.location.hostname)
 export const THREE_YEAR_DATASET = {
   2017: {
     freezeDate: 'December 31, 2020',
-    dataformat: `${fileServerDomain}/snapshot/2017_publicstatic_dataformat.pdf`,
+    dataformat: `${fileServerDomain}/static-data/snapshot/2017_publicstatic_dataformat.pdf`,
     datasets: [
       {
         label: 'Loan/Application Records (LAR)',
