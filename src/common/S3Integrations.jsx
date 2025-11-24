@@ -27,27 +27,37 @@ export const useS3FileHeaders = (url, shouldFetch) => {
     setCurrHeaders(null)
     if (!shouldFetch) return
 
-    fetch(url, { method: 'HEAD' }).then((response) => {
-      // handle 404s/500s without headers to prevent infinite loading spinners
-      if (!response.ok) {
-        dispatch(saveHeaders({ url, headers: {} }))
-        setCurrHeaders({})
-        return
-      } 
-      const hdrs = ['last-modified', 'Content-Length']
-      const [lastMod, size] = hdrs.map((h) => response.headers.get(h))
-      let changeDate
+    fetch(url, { method: 'HEAD' })
+      .then((response) => {
+        // handle 404s/500s headers to prevent infinite loading spinners
+        if (!response.ok) {
+          dispatch(saveHeaders({ url, headers: {} }))
+          setCurrHeaders({})
+          return
+        }
+        const hdrs = ['last-modified', 'Content-Length']
+        const [lastMod, size] = hdrs.map((h) => response.headers.get(h))
+        let changeDate
 
-      if (lastMod) {
-        const newDate = new Date(lastMod)
-        newDate.setHours(newDate.getHours() - 5) // Convert GMT to ET
-        changeDate = newDate.toDateString()
-      }
+        if (lastMod) {
+          const newDate = new Date(lastMod)
+          newDate.setHours(newDate.getHours() - 5) // Convert GMT to ET
+          changeDate = newDate.toDateString()
+        }
 
-      const headers = { changeDate, size }
-      dispatch(saveHeaders({ url, headers }))
-      setCurrHeaders(headers)
-    })
+        const headers = { changeDate, size }
+        dispatch(saveHeaders({ url, headers }))
+        setCurrHeaders(headers)
+      })
+      // catch CORS errors served up from Akamai on 404s
+      // TODO: see 
+      .catch((error) => {
+        console.log('error :>> ', error);
+        if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+          dispatch(saveHeaders({ url, headers: {} }))
+          setCurrHeaders({})
+        }
+      })
   }, [url])
 
   if (!shouldFetch) return null
