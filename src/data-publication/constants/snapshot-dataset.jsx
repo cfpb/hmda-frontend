@@ -5,8 +5,8 @@ const { fileServerDomain } = getDefaultConfig(window.location.hostname)
 
 // Cross Reference for ARID2017 to LEI.  Same source for all years
 const ARID2017_XREF = {
-  csv: `${fileServerDomain}/static-data/snapshot/arid2017tolei/arid2017_to_lei_xref_csv.zip`,
-  txt: `${fileServerDomain}/static-data/snapshot/arid2017tolei/arid2017_to_lei_xref_psv.zip`,
+  csv: `${fileServerDomain}/static-data/snapshot/2017/arid2017tolei/arid2017_to_lei_xref_csv.zip`,
+  txt: `${fileServerDomain}/static-data/snapshot/2017/arid2017tolei/arid2017_to_lei_xref_psv.zip`,
   label: 'ARID2017 to LEI Reference Table',
   dataKey: 'arid',
 }
