@@ -107,8 +107,8 @@ class ParseErrors extends Component {
               target='_blank'
               href={
                 filingPeriod === '2018'
-                  ? `${fileServerDomain}/prod/help/2018-hmda-fig-2018-hmda-rule.pdf`
-                  : `${fileServerDomain}/prod/help/${filingPeriod}-hmda-fig.pdf`
+                  ? `${fileServerDomain}/documentation/2018-hmda-fig-2018-hmda-rule.pdf`
+                  : `${fileServerDomain}/documentation/${filingPeriod}-hmda-fig.pdf`
               }
             >
               Filing Instructions Guide

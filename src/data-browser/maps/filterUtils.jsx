@@ -4,7 +4,7 @@ function getFile(y, g, v, val) {
   const { fileServerDomain } = getDefaultConfig(window.location.hostname)
 
   const dec = decodeURIComponent(val)
-  return `${fileServerDomain}/prod/data-browser/filter-data/${y}/${g}-${v}-${dec
+  return `${fileServerDomain}/data-browser/maps/${y}/${g}-${v}-${dec
     .replace(/[^a-z0-9]/gi, '-')
     .toLowerCase()}.json`
 }
