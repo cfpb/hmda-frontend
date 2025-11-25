@@ -29,7 +29,9 @@ export const useS3FileHeaders = (url, shouldFetch) => {
 
     fetch(url, { method: 'HEAD' })
       .then((response) => {
-        // handle 404s/500s headers to prevent infinite loading spinners
+        // catch errors errors served up from Akamai on 404s, return empty headers to hide file which
+        // mimics current prod behavior
+        // TODO: potentially remove after [GHE]/HMDA-Operations/hmda-devops/issues/5275 is resolved
         if (!response.ok) {
           dispatch(saveHeaders({ url, headers: {} }))
           setCurrHeaders({})
@@ -49,10 +51,10 @@ export const useS3FileHeaders = (url, shouldFetch) => {
         dispatch(saveHeaders({ url, headers }))
         setCurrHeaders(headers)
       })
-      // catch CORS errors served up from Akamai on 404s
-      // TODO: see 
+      // catch CORS errors served up from Akamai on 404s, return empty headers to hide file which
+      // mimics current prod behavior
+      // TODO: potentially remove after [GHE]/HMDA-Operations/hmda-devops/issues/5275 is resolved
       .catch((error) => {
-        console.log('error :>> ', error);
         if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
           dispatch(saveHeaders({ url, headers: {} }))
           setCurrHeaders({})
@@ -158,9 +160,10 @@ function LastUpdated({ url, isDocs }) {
   return (
     <div className={cname.join(' ')}>
       <S3LargeFileWarning show={isBigFile(readableSize)} />
-      <div>
+      {/* {TODO: Reenable size after [GHE]/HMDA-Operations/hmda-devops/issues/5275} */}
+      {/* <div>
         <span className='label'>Size:</span> {readableSize}
-      </div>
+      </div> */}
       <div>
         <span className='label'>Updated:</span> {headers.changeDate}
       </div>
