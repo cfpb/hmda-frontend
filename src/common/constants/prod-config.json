@@ -2,6 +2,15 @@
   "name": "prod",
   "announcement": [
     {
+      "heading": "HMDA Platform Upgrade",
+      "message": "An upgrade to the HMDA Platform will be performed on Tuesday, 12/2. Anticipate downtime to the filing platform for 24-36 hours. Links to files that you may have bookmarked will have a new URL as part of this upgrade. Most notably, the fixed and adjustable APOR table file paths have changed. For any questions, contact ",
+      "type": "warning",
+      "link": {
+        "url": "mailto:hmdahelp@cfpb.gov",
+        "text": "hmdahelp@cfpb.gov."
+      }
+    },
+    {
       "heading": "2026 Online Filing Instructions Guides Released",
       "message": "The Bureau has released the 2026 Online FIG and Online Supplemental Guide for Quarterly Filers for 2026, which are available ",
       "type": "info",

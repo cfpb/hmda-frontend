@@ -2,6 +2,15 @@
   "name": "dev",
   "announcement": [
     {
+      "heading": "HMDA Platform Upgrade",
+      "message": "An upgrade to the HMDA Platform will be performed on Tuesday, 12/2. Anticipate downtime to the filing platform for 24-36 hours. Links to files that you may have bookmarked will have a new URL as part of this upgrade. Most notably, the fixed and adjustable APOR table file paths have changed. For any questions, contact ",
+      "type": "warning",
+      "link": {
+        "url": "mailto:hmdahelp@cfpb.gov",
+        "text": "hmdahelp@cfpb.gov."
+      }
+    },
+    {
       "heading": "2026 Online Filing Instructions Guides Released",
       "message": "The Bureau has released the 2026 Online FIG and Online Supplemental Guide for Quarterly Filers for 2026, which are available ",
       "type": "info",
@@ -12,24 +21,110 @@
     }
   ],
   "fileServerDomain": "https://files.ffiec.cfpb.gov",
-  "publicationReleaseYear": "2024", 
+  "publicationReleaseYear": "2024",
   "mlarReleaseYear": "2024",
   "maintenanceMode": false,
   "filingAnnouncement": null,
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
-    "shared": ["2024","2023", "2022", "2021", "2020", "2019", "2018", "2017"],
-    "mlar": ["2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017"],
-    "threeYear": ["2021","2020", "2019", "2018", "2017"],
-    "oneYear": ["2023","2022", "2021", "2020", "2019", "2018", "2017"],
-    "aggregate": ["2024","2023","2022", "2021", "2020", "2019", "2018", "2017"],
-    "disclosure": ["2024","2023","2022", "2021", "2020", "2019", "2018", "2017"],
-    "dynamic": ["2024","2023","2022", "2021", "2020", "2019", "2018", "2017"],
-    "snapshot": ["2024","2023","2022", "2021", "2020", "2019", "2018", "2017"],
-    "national": ["2017"]
+    "shared": [
+      "2024",
+      "2023",
+      "2022",
+      "2021",
+      "2020",
+      "2019",
+      "2018",
+      "2017"
+    ],
+    "mlar": [
+      "2024",
+      "2023",
+      "2022",
+      "2021",
+      "2020",
+      "2019",
+      "2018",
+      "2017"
+    ],
+    "threeYear": [
+      "2021",
+      "2020",
+      "2019",
+      "2018",
+      "2017"
+    ],
+    "oneYear": [
+      "2023",
+      "2022",
+      "2021",
+      "2020",
+      "2019",
+      "2018",
+      "2017"
+    ],
+    "aggregate": [
+      "2024",
+      "2023",
+      "2022",
+      "2021",
+      "2020",
+      "2019",
+      "2018",
+      "2017"
+    ],
+    "disclosure": [
+      "2024",
+      "2023",
+      "2022",
+      "2021",
+      "2020",
+      "2019",
+      "2018",
+      "2017"
+    ],
+    "dynamic": [
+      "2024",
+      "2023",
+      "2022",
+      "2021",
+      "2020",
+      "2019",
+      "2018",
+      "2017"
+    ],
+    "snapshot": [
+      "2024",
+      "2023",
+      "2022",
+      "2021",
+      "2020",
+      "2019",
+      "2018",
+      "2017"
+    ],
+    "national": [
+      "2017"
+    ]
   },
-  "dataBrowserYears": ["2024","2023", "2022", "2021", "2020", "2019", "2018"],
-  "dataBrowserMapsYears": ["2024", "2023", "2022", "2021", "2020", "2019", "2018"],
+  "dataBrowserYears": [
+    "2024",
+    "2023",
+    "2022",
+    "2021",
+    "2020",
+    "2019",
+    "2018"
+  ],
+  "dataBrowserMapsYears": [
+    "2024",
+    "2023",
+    "2022",
+    "2021",
+    "2020",
+    "2019",
+    "2018"
+  ],
   "timedGuards": {
     "2017": {
       "annual": "01/01/2018 - 03/01/2018 - 12/31/2019"
@@ -106,6 +201,20 @@
       "Q3": "10/01/2030 - 11/29/2030 - 12/31/2030",
       "annual": "01/01/2031 - 03/01/2031 - 12/31/2033"
     },
-    "preview": ["2021-Q1", "2021-Q2", "2021-Q3", "2022-Q1", "2022-Q2", "2022-Q3", "2023-Q1", "2023-Q2", "2023-Q3", "2024", "2024-Q1", "2025", "2025-Q1"]
+    "preview": [
+      "2021-Q1",
+      "2021-Q2",
+      "2021-Q3",
+      "2022-Q1",
+      "2022-Q2",
+      "2022-Q3",
+      "2023-Q1",
+      "2023-Q2",
+      "2023-Q3",
+      "2024",
+      "2024-Q1",
+      "2025",
+      "2025-Q1"
+    ]
   }
 }
