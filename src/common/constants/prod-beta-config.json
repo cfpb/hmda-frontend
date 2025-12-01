@@ -2,7 +2,7 @@
   "name": "prod-beta",
   "announcement": [
     {
-      "message": "We will be performing scheduled system maintenance on December 1 from 5PM - 4PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+      "message": "We will be performing scheduled system maintenance on December 1 at 5PM until December 3rd at 4PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
       "type": "warning",
       "heading": "Scheduled Maintenance",
       "link": null
@@ -12,7 +12,7 @@
   "publicationReleaseYear": "2020",
   "maintenanceMode": false,
   "filingAnnouncement": {
-    "message": "We will be performing scheduled system maintenance on December 1 from 5PM - 4PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "message": "We will be performing scheduled system maintenance on December 1 at 5PM until December 3rd at 4PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
     "type": "warning",
     "heading": "Scheduled Maintenance",
     "endDate": null
