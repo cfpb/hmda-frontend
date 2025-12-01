@@ -2,19 +2,19 @@
   "name": "prod-beta",
   "announcement": [
     {
-      "message": "We will be performing scheduled system maintenance on December 1 from 5PM - 4PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-      "type": "warning",
-      "heading": "Scheduled Maintenance",
+      "message": "We are performing system maintenance from 5PM - 4PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+      "type": "error",
+      "heading": "System Temporarily Unavailable",
       "link": null
     }
   ],
   "fileServerDomain": "https://files.ffiec.cfpb.gov",
   "publicationReleaseYear": "2020",
-  "maintenanceMode": false,
+  "maintenanceMode": true,
   "filingAnnouncement": {
-    "message": "We will be performing scheduled system maintenance on December 1 from 5PM - 4PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-    "type": "warning",
-    "heading": "Scheduled Maintenance",
+    "message": "We are performing system maintenance from 5PM - 4PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "error",
+    "heading": "System Temporarily Unavailable",
     "endDate": null
   },
   "ffvtAnnouncement": null,
