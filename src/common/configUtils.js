@@ -1,5 +1,6 @@
 import prod from './constants/prod-config.json'
 import prodBeta from './constants/prod-beta-config.json'
+import prodTest from './constants/prod-test-config.json'
 import dev from './constants/dev-config.json'
 import devBeta from './constants/dev-beta-config.json'
 import { deriveConfig } from '../deriveConfig'
@@ -16,10 +17,14 @@ export function fetchEnvConfig(setFn, host) {
 export function getDefaultConfig(str) {
   const host = str.replace(/https?:\/\//, '')
 
+  // TODO: temp use prod-test.json for '-test' domains until cutover complete
+  // see: GHE issue #5296
   const baseConfig = isProd(host)
-    ? isBeta(host)
-      ? prodBeta
-      : prod
+    ? isTest(host)
+      ? prodTest
+      : isBeta(host)
+        ? prodBeta
+        : prod
     : isBeta(host)
       ? devBeta
       : dev
@@ -40,4 +45,8 @@ export function isProd(host = window.location.hostname) {
 
 export function isBeta(host = window.location.hostname) {
   return !!host.match('beta')
+}
+
+export function isTest(host = window.location.hostname) {
+  return !!host.match('-test')
 }
