@@ -2,6 +2,12 @@
   "name": "prod",
   "announcement": [
     {
+      "message": "We will be performing scheduled system maintenance on December 1 at 5PM until December 3rd at 4PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+      "type": "warning",
+      "heading": "Scheduled Maintenance",
+      "link": null
+    },
+    {
       "heading": "HMDA Platform Upgrade",
       "message": "An upgrade to the HMDA Platform will be performed on Tuesday, 12/2. Anticipate downtime to the filing platform for 24-36 hours. Links to files that you may have bookmarked will have a new URL as part of this upgrade. Most notably, the fixed and adjustable APOR table file paths have changed. For any questions, contact ",
       "type": "warning",
@@ -24,7 +30,12 @@
   "publicationReleaseYear": "2024",
   "mlarReleaseYear": "2024",
   "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "filingAnnouncement": {
+    "message": "We will be performing scheduled system maintenance on December 1 at 5PM until December 3rd at 4PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance",
+    "endDate": null
+  },
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
