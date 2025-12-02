@@ -49,6 +49,8 @@ function FilingPeriodsCard({ timedGuards }) {
   const nextYearData = timedGuards[nextYear]
 
   // Parse quarterly and annual data
+  // TODO: Update these periods and do a review of dates for 2026
+  // see ENT issue #5289
   const periods = {
     annual: {
       period: getFormattedPeriod(currentYearData.annual),
@@ -64,7 +66,7 @@ function FilingPeriodsCard({ timedGuards }) {
       },
       {
         quarter: 'Q3',
-        period: getFormattedPeriod(nextYearData.Q3),
+        period: 'Oct 01, 2025 - Nov 29, 2025',
       },
     ],
   }
