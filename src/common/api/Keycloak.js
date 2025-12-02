@@ -7,14 +7,15 @@ let initPromise = null
 // check out [ENT]/HMDA-Operations/hmda-devops/blob/master/eks/hmda_urls.md for more details
 // about the different HMDA environments
 
-const prodKeycloakDomain = 'ffiec.cfpb.gov'
-const domainsToBeRedirectedToProdKeycloak = ['prod-regtech', 'ffiec-beta-test']
+const prodKeycloakDomain = 'ffiec-test.cfpb.gov'
+const domainsToBeRedirectedToProdKeycloak = [
+  'prod-regtech',
+  'ffiec-beta-test',
+  'ffiec.beta.cfpb.gov',
+]
 
 const devKeycloakDomain = 'hmdadev.cfpb.gov'
 const domainsToBeRedirectedToDevKeycloak = ['hmda4-beta.demo']
-
-const testKeycloakDomain = 'ffiec-test.cfpb.gov'
-const domainsToBeRedirectedToTestKeycloak = ['ffiec.beta.cfpb.gov']
 
 const getKeycloakInstance = (hostname) => {
   const isRedirectedToProd = domainsToBeRedirectedToProdKeycloak.some(
@@ -24,13 +25,8 @@ const getKeycloakInstance = (hostname) => {
     hostname.includes(domain),
   )
 
-  const isRedirectedToTest = domainsToBeRedirectedToTestKeycloak.some(
-    (domain) => hostname.includes(domain),
-  )
-
   if (isRedirectedToProd) return prodKeycloakDomain
   if (isRedirectedToDev) return devKeycloakDomain
-  if (isRedirectedToTest) return testKeycloakDomain
 
   // if hostname doesn't match any known redirect patterns, assume keycloak is hosted on the same domain
   return hostname
