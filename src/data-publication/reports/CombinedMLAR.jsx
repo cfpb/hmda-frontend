@@ -88,7 +88,6 @@ const formatURL = (year, withHeader, fileServerDomain) => {
   href += `${year}/` // Year sub-folder
 
   if (withHeader) {
-    href += 'header/' // Headered file Sub-folder
     baseFilename += '_header' // Headered Filename adjustment
   }
 
