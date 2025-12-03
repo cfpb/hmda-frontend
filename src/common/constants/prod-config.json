@@ -2,14 +2,8 @@
   "name": "prod",
   "announcement": [
     {
-      "message": "We are performing system maintenance on December 1 at 5PM until December 3rd at 4PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-      "type": "error",
-      "heading": "System Temporarily Unavailable",
-      "link": null
-    },
-    {
       "heading": "HMDA Platform Upgrade",
-      "message": "An upgrade to the HMDA Platform will be performed on Tuesday, 12/2. Anticipate downtime to the filing platform for 24-36 hours. Links to files that you may have bookmarked will have a new URL as part of this upgrade. Most notably, the fixed and adjustable APOR table file paths have changed. For any questions, contact ",
+      "message": "An upgrade to the HMDA Platform was performed on Tuesday, 12/2. Links to files that you may have bookmarked have a new URL as part of this upgrade. Most notably, the fixed and adjustable APOR table file paths have changed. For any questions, contact ",
       "type": "warning",
       "link": {
         "url": "mailto:hmdahelp@cfpb.gov",
@@ -29,13 +23,8 @@
   "fileServerDomain": "https://files.ffiec.cfpb.gov",
   "publicationReleaseYear": "2024",
   "mlarReleaseYear": "2024",
-  "maintenanceMode": true,
-  "filingAnnouncement": {
-    "message": "We are performing system maintenance on December 1 at 5PM until December 3rd at 4PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
-    "type": "error",
-    "heading": "System Temporarily Unavailable",
-    "endDate": null
-  },
+  "maintenanceMode": false,
+  "filingAnnouncement": null,
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
