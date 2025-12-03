@@ -7,7 +7,7 @@ let initPromise = null
 // check out [ENT]/HMDA-Operations/hmda-devops/blob/master/eks/hmda_urls.md for more details
 // about the different HMDA environments
 
-const prodKeycloakDomain = 'ffiec-test.cfpb.gov'
+const prodKeycloakDomain = 'ffiec.cfpb.gov'
 const domainsToBeRedirectedToProdKeycloak = [
   'prod-regtech',
   'ffiec-beta-test',
