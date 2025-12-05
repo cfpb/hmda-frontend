@@ -56,7 +56,7 @@ function FilingGuides() {
         </li>
         <li>
           <a
-            href={`${fileServerDomain}/documentation/HMDA-Loan-Scenarios.pdf`}
+            href={`${fileServerDomain}/prod/help/HMDA-Loan-Scenarios.pdf`}
             download
           >
             HMDA Loan Scenarios
