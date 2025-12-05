@@ -19,7 +19,7 @@ onlyOn(!isBeta(HOST), () => {
         cy.visit(`${HOST}/data-publication/modified-lar/${year}`)
         cy.request({
           method: 'HEAD',
-          url: `${fileServerDomain}/modified-lar/combined-mlar/${year}/${year}_combined_mlar_header.zip`,
+          url: `${fileServerDomain}/modified-lar/combined-mlar/${year}/header/${year}_combined_mlar_header.zip`,
         })
           .its('status')
           .should('equal', 200)
