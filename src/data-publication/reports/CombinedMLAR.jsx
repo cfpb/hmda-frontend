@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getDefaultConfig } from '../../common/configUtils'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
+import { humanFileSize } from '../../common/numberServices.js'
 import { useS3FileHeaders } from '../../common/S3Integrations.jsx'
 
 export function CombinedMLAR({ year, setHasCombined, hasCombined }) {
@@ -58,9 +59,7 @@ export function CombinedMLAR({ year, setHasCombined, hasCombined }) {
       </p>
       <div className='alert alert-warning'>
         <h4 className='alert-heading'>
-          Warning: Large file
-          {/* {TODO: Reenable size after [GHE]/HMDA-Operations/hmda-devops/issues/5275} */} 
-          {/* Warning: Large file - {humanFileSize(headers.size)} */} 
+          Warning: Large file - {humanFileSize(headers.size)}
         </h4>
         Special software is required to open this file
       </div>
@@ -84,7 +83,7 @@ export function CombinedMLAR({ year, setHasCombined, hasCombined }) {
 
 const formatURL = (year, withHeader, fileServerDomain) => {
   let baseFilename = `${year}_combined_mlar`
-  let href = `${fileServerDomain}/modified-lar/combined-mlar/`
+  let href = `${fileServerDomain}/prod/dynamic-data/combined-mlar/`
   href += `${year}/` // Year sub-folder
 
   if (withHeader) {

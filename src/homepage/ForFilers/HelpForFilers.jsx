@@ -37,7 +37,7 @@ export function HelpForFilers() {
         <ul>
           <li>
             <a
-              href={`${fileServerDomain}/documentation/${CURRENT_YEAR}-hmda-fig.pdf`}
+              href={`${fileServerDomain}/prod/help/${CURRENT_YEAR}-hmda-fig.pdf`}
               download
             >
               For data collected in {CURRENT_YEAR}
@@ -46,7 +46,7 @@ export function HelpForFilers() {
           </li>
           <li>
             <a
-              href={`${fileServerDomain}/documentation/supplemental-guide-for-quarterly-filers-for-2022.pdf`}
+              href={`${fileServerDomain}/prod/help/supplemental-guide-for-quarterly-filers-for-2022.pdf`}
               download
             >
               Supplemental Guide for Quarterly Filers for {CURRENT_YEAR}
@@ -67,7 +67,7 @@ export function HelpForFilers() {
         </li>
         <li>
           <a
-            href={`${fileServerDomain}/documentation/HMDA-Loan-Scenarios.pdf`}
+            href={`${fileServerDomain}/prod/help/HMDA-Loan-Scenarios.pdf`}
             download
           >
             HMDA Loan Scenarios Guide
