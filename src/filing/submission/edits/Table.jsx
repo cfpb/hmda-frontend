@@ -1,7 +1,8 @@
-import React from 'react'
 import PropTypes from 'prop-types'
-import Pagination from '../../pagination/container.jsx'
+import { Link } from 'react-router-dom'
 import Loading from '../../../common/LoadingIcon.jsx'
+import { splitEditPart, splitYearQuarter } from '../../api/utils.js'
+import Pagination from '../../pagination/container.jsx'
 import EditsTableRow from './TableRow.jsx'
 
 import './Table.css'
@@ -61,18 +62,23 @@ export const renderBody = (edits, rows, type) => {
 export const renderTableCaption = (props) => {
   const name = props.edit.edit
   if (!name) return null
-  const renderedName = name
+  const [year] = splitYearQuarter(props.filingPeriod)
+  const [edit] = splitEditPart(name)
+
+  const linkedName = (
+    <Link to={`/documentation/fig/${year}/overview#edit-${edit}`}>{name}</Link>
+  )
   let captionHeader
 
   if (shouldSuppressTable(props)) {
-    captionHeader = `Edit ${renderedName} found`
+    captionHeader = <span>Edit {linkedName} found</span>
   } else {
     const length = props.pagination.total
     let editText = length === 1 ? 'edit' : 'edits'
     if (name === 'Q666') {
       editText = ''
     }
-    captionHeader = `${renderedName} ${editText} (${length} found)`
+    captionHeader = <span>{linkedName} {editText} ({length} found)</span>
   }
 
   if (name === 'Q666') {
@@ -168,6 +174,7 @@ EditsTable.propTypes = {
   type: PropTypes.string,
   pagination: PropTypes.object,
   paginationFade: PropTypes.number,
+  filingPeriod: PropTypes.string,
 }
 
 export default EditsTable
