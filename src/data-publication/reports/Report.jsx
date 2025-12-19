@@ -144,11 +144,14 @@ class Report extends React.Component {
     if (params.stateId) {
       url += `aggregate/${year}/${msaMdId}/${reportId}${ext}`
     } else if (params.institutionId) {
-      if (reportId === 'R1') {
+      if (reportId === 'R1' || reportId === 'IRS') {
         msaMdId = 'nationwide'
         reportId = 'IRS'
+        url = `${window.location.origin}/file/reports/irs/year/${year}/institution/${params.institutionId}`
       }
-      url = `${window.location.origin}/file/reports/irs/year/${year}/institution/${params.institutionId}`
+      else {
+        url += `disclosure/${year}/${params.institutionId}/${msaMdId}/${reportId}${ext}`
+      }
     } else {
       url += `national/${year}/${reportId}${ext}`
     }
