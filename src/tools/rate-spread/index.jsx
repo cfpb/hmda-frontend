@@ -27,12 +27,7 @@ function App(props) {
 
       <div className='alert' style={{ marginTop: '3em' }}>
                 <p>
-          <b>12/23/2025:</b> In light of the federal holidays from 
-          Wednesday, December 24 to Friday, December 26, the CFPB is
-          publishing for the week of 12/29/2025 the APORs for fixed
-          rate and adjustable rate loans on Tuesday, December 23, 
-          based on the APORs from the prior week. This is consistent
-          with the current APOR methodology.
+          <b>12/23/2025:</b> In light of the federal holidays from Wednesday, December 24 to Friday, December 26, the CFPB is publishing for the week of 12/29/2025 the APORs for fixed rate and adjustable rate loans on Tuesday, December 23, based on the APORs from the prior week. This is consistent with the current APOR methodology.
         </p>
         <p>
           <b>7/21/2022:</b> Two sets of APORs were published for the week of
