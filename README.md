@@ -202,10 +202,16 @@ You can now visit the filing application at http://localhost:3000/filing.
 To see the application running in a container you can run:
 
 ```
-docker build -t hmda/hmda-frontend .
+docker build --secret id=env_vars,src=.env -t hmda/hmda-frontend .
 docker run -p 8080:8080 hmda/hmda-frontend
 ```
 
+### Build image to run in EKS Cluster
+```
+cp .env.example .env
+gsed -i 's/^.*MAPBOX_ACCESS.*$/MAPBOX_ACCESS_TOKEN=pk.xxx/' .env
+docker build --build-arg DOCKER_TAG=v3.3.1 --secret id=env_vars,src=.env  -t <AWS_Account>.dkr.ecr.us-east-1.amazonaws.com/hmda/hmda-frontend:v3.3.1
+```
 To build using docker-compose:
 
 ```
