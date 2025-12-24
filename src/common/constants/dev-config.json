@@ -20,7 +20,7 @@
       }
     }
   ],
-  "fileServerDomain": "https://files.ffiec.cfpb.gov",
+  "fileServerDomain": "https://s3.amazonaws.com/cfpb-hmda-public",
   "publicationReleaseYear": "2024", 
   "mlarReleaseYear": "2024",
   "maintenanceMode": false,

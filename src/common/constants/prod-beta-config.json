@@ -1,7 +1,7 @@
 {
   "name": "prod-beta",
   "announcement": [],
-  "fileServerDomain": "https://files.ffiec.cfpb.gov",
+  "fileServerDomain": "https://s3.amazonaws.com/cfpb-hmda-public",
   "publicationReleaseYear": "2020",
   "maintenanceMode": false,
   "filingAnnouncement": null,
