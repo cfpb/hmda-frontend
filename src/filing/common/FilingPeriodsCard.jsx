@@ -31,7 +31,7 @@ import './FilingPeriodsCard.css'
 function FilingPeriodsCard({ timedGuards }) {
   const [isInfoExpanded, setIsInfoExpanded] = useState(false)
 
-  const currentYear = '2024'
+  const currentYear = '2025'
   const nextYear = (parseInt(currentYear) + 1).toString()
 
   const formatDate = (dateString) => {

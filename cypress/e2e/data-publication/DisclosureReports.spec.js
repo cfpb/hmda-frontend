@@ -11,7 +11,7 @@ onlyOn(isBeta(HOST), () => {
 
 onlyOn(!isBeta(HOST), () => {
   // extending the timeout to account for slower API calls
-  describe('Disclosure Reports', { defaultCommandTimeout: 12000 }, () => {
+  describe('Disclosure Reports', { defaultCommandTimeout: 45000 }, () => {
     it('Fetches a 2024 Applications by Tract Report', () => {
       const institution = 'CYPRESS BANK, SSB - 549300I4IUWMEMGLST06'
       const institutionName = institution.split(' - ')[0]
@@ -26,6 +26,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type(institutionName)
       cy.findByText('View MSA/MDs').click({ force: true })
+      cy.findByText('No options').should('not.exist')
       cy.findByText('Select MSA/MD...').type(msaMdCityOnly)
       cy.findByText(msaMdZipCodeFirst).click({ force: true })
       cy.findByText('Select report...').type('Applications by Tract{enter}')
@@ -88,6 +89,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type(institutionName)
       cy.findByText('View MSA/MDs').click({ force: true })
+      cy.findByText('No options').should('not.exist')
       cy.findByText('Select MSA/MD...').type(msaMdCityOnly)
       cy.findByText(msaMdZipCodeFirst).click({ force: true })
       cy.findByText('Select report...').type('Applications by Tract{enter}')
@@ -140,6 +142,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type('LIBERTY MORTGAGE CORPORATION')
       cy.findByText('View MSA/MDs').click({ force: true })
+      cy.findByText('No options').should('not.exist')
       cy.findByText('Select MSA/MD...').type('Anniston{enter}')
       cy.findByText('Select report...').type('Applications by Tract{enter}')
 
@@ -191,6 +194,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type('cypress bank, ssb')
       cy.findByText('View MSA/MDs').click({ force: true })
+      cy.findByText('No options').should('not.exist')
       cy.findByText('Select MSA/MD...').type('Dallas{enter}')
       cy.findByText('Select report...').type('Applications by Tract{enter}')
 
@@ -242,6 +246,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type('cypress bank, ssb')
       cy.findByText('View MSA/MDs').click({ force: true })
+      cy.findByText('No options').should('not.exist')
       cy.findByText('Select MSA/MD...').type('Dallas{enter}')
       cy.findByText('Select report...').type('Applications by Tract{enter}')
 
@@ -296,6 +301,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type('cypress bank, ssb')
       cy.findByText('View MSA/MDs').click({ force: true })
+      cy.findByText('No options').should('not.exist')
       cy.findByText('Select MSA/MD...').type('Dallas{enter}')
       cy.findByText('Select report...').type('Applications by Tract{enter}')
 
@@ -353,6 +359,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.get(
         '#main-content > .SearchList > .Results > li > .button-link',
       ).click()
+      cy.findByText('No options').should('not.exist')
 
       cy.get('#react-select-2-option-2').click({ force: true })
       cy.get('#react-select-3-option-0').click({ force: true })

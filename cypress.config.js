@@ -50,6 +50,10 @@ module.exports = defineConfig({
     // Delete videos for specs without failing or retried tests, see docs:
     // https://docs.cypress.io/app/guides/screenshots-and-videos#Delete-videos-for-specs-without-failing-or-retried-tests
     setupNodeEvents(on, config) {
+      config.hosts = {
+        'files.ffiec.cfpb.gov': '23.215.77.114',
+        'https://files.ffiec.cfpb.gov': '23.215.77.114',
+      }
       on('after:spec', (spec, results) => {
         if (results && results.video) {
           // Do we have failures for any retry attempts?
