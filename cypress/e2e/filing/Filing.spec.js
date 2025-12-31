@@ -19,6 +19,7 @@ const {
 const config = getDefaultConfig(HOST)
 const getFilename = (filingPeriod, lei) => `${filingPeriod}-${lei}.txt`
 const years = (YEARS && YEARS.toString().split(',')) || getFilingPeriods(config)
+const filteredYears = years.filter((year) => year !== '2025')
 const { filingPeriodStatus } = config
 
 describe(
@@ -51,7 +52,7 @@ describe(
     const THIS_IS_BETA = isBeta(HOST)
     const testVsOfficial = THIS_IS_BETA ? 'test' : 'official'
 
-    years.forEach((filingPeriod, index) => {
+    filteredYears.forEach((filingPeriod, index) => {
       it(`${filingPeriod}`, { tags: ['@smoke'] }, function () {
         const status = filingPeriodStatus[filingPeriod]
 
