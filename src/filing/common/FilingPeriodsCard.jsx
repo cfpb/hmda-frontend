@@ -58,14 +58,16 @@ function FilingPeriodsCard({ timedGuards }) {
         quarter: 'Q1',
         period: getFormattedPeriod(nextYearData.Q1),
       },
-      {
-        quarter: 'Q2',
-        period: getFormattedPeriod(nextYearData.Q2),
-      },
-      {
-        quarter: 'Q3',
-        period: getFormattedPeriod(nextYearData.Q3),
-      },
+
+      // GHE #5363: Temporarily comment out Q2 and Q3
+      // {
+      //   quarter: 'Q2',
+      //   period: getFormattedPeriod(nextYearData.Q2),
+      // },
+      // {
+      //   quarter: 'Q3',
+      //   period: getFormattedPeriod(nextYearData.Q3),
+      // },
     ],
   }
 
