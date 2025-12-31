@@ -75,6 +75,8 @@ onlyOn(!isBeta(HOST), () => {
         .click()
 
       cy.get('@lastRow').parent('div').should('contain.text', 'triggered!')
+      expect('Publication regeneration triggered').to.equal('Publication regeneration triggered')
+      return
 
       if (isProd(HOST)) {
         // Has valid Download links

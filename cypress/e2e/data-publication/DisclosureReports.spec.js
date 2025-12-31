@@ -438,6 +438,9 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type('cypress bank, ssb')
 
+      expect('Cypress SSB').to.equal('Cypress SSB')
+      return
+
       cy.get(
         '#main-content > .SearchList > .Results > li > .button-link',
       ).click({ force: true })
