@@ -39,9 +39,10 @@ export const getFilingYears = (config, options = defaultOpts) => {
       years.add(splitYearQuarter(adminPeriod)[0])
     )
 
-    const currentYear = new Date().getFullYear()
-    const upcomingYear = currentYear + 1
-    years.add(upcomingYear.toString())
+    const yearsStringSetAsNumbers = [...years].map(Number)
+    const mostRecentVisibleFilingYear = Math.max(...yearsStringSetAsNumbers)
+    const upcomingFilingYear = mostRecentVisibleFilingYear + 1
+    years.add(upcomingFilingYear.toString())
   }
 
   return Array.from(years)
