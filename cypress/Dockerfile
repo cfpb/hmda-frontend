@@ -8,7 +8,11 @@ USER root
 RUN apt-get update && apt-get install -y curl
 
 COPY cypress/package.json ./
-RUN npm install cypress@14.3.0 --save-dev --force
+
+# Add Zscaler Root CA certificate
+COPY zscaler-root-public.cert /usr/local/share/ca-certificates/
+ARG NODE_EXTRA_CA_CERTS=/usr/local/share/ca-certificates/zscaler-root-public.cert
+RUN npm install cypress@14.3.0 --save-dev --force --loglevel verbose
 RUN npx cypress verify
 
 # Prepare working directory
