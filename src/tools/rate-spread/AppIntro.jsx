@@ -1,16 +1,7 @@
 import { Link } from 'react-router-dom'
-import Alert from '../../common/Alert.jsx'
-import AporAnnouncement from '../../common/AporAnnouncement.jsx'
+import ConfiguredAlert from '../../common/ConfiguredAlert.jsx'
 import Heading from '../../common/Heading.jsx'
 import { getDefaultConfig } from '../../common/configUtils'
-
-function ToolAnnouncementAlert({ heading, type, message }) {
-  return (
-    <Alert heading={heading} type={type}>
-      <p>{message}</p>
-    </Alert>
-  )
-}
 
 function AppIntro({ toolAnnouncement }) {
   const { fileServerDomain } = getDefaultConfig(window.location.hostname)
@@ -29,24 +20,13 @@ function AppIntro({ toolAnnouncement }) {
         for loans with a final action date before January 1st, 2018.
       </p>
       {toolAnnouncement ? (
-        <ToolAnnouncementAlert
+        <ConfiguredAlert
           heading={toolAnnouncement.heading}
           type={toolAnnouncement.type}
           message={toolAnnouncement.message}
+          link={toolAnnouncement.link}
         />
       ) : null}
-
-      {/* GHE 5356: Only show this alert until Jan 5, 2026 at 12:01 AM ET */}
-      {new Date() < new Date('2026-01-05T00:01:00-05:00') && (
-        <ToolAnnouncementAlert
-          heading='APOR Update Notice'
-          type='warning'
-          message='In light of the federal holidays from Wednesday, December 24 to Friday, December 26, the CFPB is publishing for the week of 12/29/2025 the APORs for fixed rate and adjustable rate loans on Tuesday, December 23, based on the APORs from the prior week. This is consistent with the current APOR methodology.'
-        />
-      )}
-
-      {/* Temporarily show APOR announcement, see: GHE #5358 */}
-      <AporAnnouncement />
 
       <p>
         The rate spread calculator generates the spread between the Annual
