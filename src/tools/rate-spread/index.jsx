@@ -10,6 +10,7 @@ function App(props) {
 
   const toolAnnouncement = useToolAnnouncement({
     toolName: 'rate spread',
+    config: props.config,
   })
 
   return (
@@ -26,8 +27,26 @@ function App(props) {
       </div>
 
       <div className='alert' style={{ marginTop: '3em' }}>
-                <p>
-          <b>12/23/2025:</b> In light of the federal holidays from Wednesday, December 24 to Friday, December 26, the CFPB is publishing for the week of 12/29/2025 the APORs for fixed rate and adjustable rate loans on Tuesday, December 23, based on the APORs from the prior week. This is consistent with the current APOR methodology.
+        <p>
+          <b>1/9/2026:</b> Two sets of APORs were published for the week of
+          1/5/2026. The first set was published on 1/2/2026 and was briefly
+          incorporated into the Bureau's rate spread calculator. The second set
+          was published on 1/9/2026, and APORs for fixed rate loans with terms
+          of 2, 3 to 4, 7 to 8, and 26 to 50 years were substituted for the
+          first set in the Bureau's rate spread calculator. Consistent with the
+          Bureau's prior practice in instances when APORs have been updated
+          after their initial publication, both sets of APORs are{' '}
+          <a href={`${fileServerDomain}/apor/01_09_2026_APOR_tables.csv`}>
+            available here
+          </a>
+          .
+        </p>
+        <p>
+          <b>12/23/2025:</b> In light of the federal holidays from Wednesday,
+          December 24 to Friday, December 26, the CFPB is publishing for the
+          week of 12/29/2025 the APORs for fixed rate and adjustable rate loans
+          on Tuesday, December 23, based on the APORs from the prior week. This
+          is consistent with the current APOR methodology.
         </p>
         <p>
           <b>7/21/2022:</b> Two sets of APORs were published for the week of
