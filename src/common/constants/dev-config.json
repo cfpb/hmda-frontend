@@ -27,7 +27,7 @@
       "message": "Two sets of APORs were published for the week of 1/5/2026. The first set was published on 1/2/2026 and was briefly incorporated into the Bureau’s rate spread calculator. The second set was published on 1/9/2026 and APORs for fixed rate loans with terms of 2, 3 to 4, 7 to 8, and 26 to 50 years was substituted for the first in the Bureau’s rate spread calculator. Both sets of APORs are ",
       "type": "warning",
       "link": {
-        "url": "https://files.ffiec.cfpb.gov/apor/1_5_2026_APOR_tables.csv",
+        "url": "https://files.ffiec.cfpb.gov/apor/01_09_2026_APOR_tables.csv",
         "text": "available here."
       }
     }
