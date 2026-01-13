@@ -1,9 +1,9 @@
-FROM node:20-alpine3.22 as build-stage
+FROM node:20-alpine3.22 AS build-stage
 WORKDIR /usr/src/app
 ARG DOCKER_TAG="latest"
 
 # Add Zscaler Root CA certificate
-COPY zscaler-root-public.cert /usr/local/share/ca-certificates/
+ADD https://raw.githubusercontent.com/cfpb/zscaler-cert/refs/heads/main/zscaler_root_ca.pem /usr/local/share/ca-certificates/zscaler-root-public.cert
 RUN apk add ca-certificates --no-cache --no-check-certificate && \
     update-ca-certificates && \
     cp /etc/ssl/certs/ca-certificates.crt /usr/src/app/ca-certificates.crt
