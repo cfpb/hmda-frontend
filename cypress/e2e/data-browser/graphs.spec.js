@@ -115,7 +115,7 @@ onlyOn(!isBeta(HOST), () => {
       // Data ordered from newest to oldest year to match table layout
       const yearData = [
         { year: '2024', count: '12,229,298' },
-        { year: '2023', count: '11,564,178' },
+        { year: '2023', count: '11,564,155' },
         { year: '2022', count: '16,099,307' },
       ]
 

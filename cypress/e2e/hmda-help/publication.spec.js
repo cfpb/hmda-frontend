@@ -22,7 +22,8 @@ onlyOn(isBeta(HOST), () => {
 
 onlyOn(!isBeta(HOST), () => {
   describe('HMDA Help - Publications', { tags: ['@auth-required'] }, () => {
-    it('Can trigger Publication regeneration', () => {
+    // TODO: re-enable after re-implementing through file proxy, see GHE #5336
+    it.skip('Can trigger Publication regeneration', () => {
       cy.get({
         HOST,
         ENVIRONMENT,
