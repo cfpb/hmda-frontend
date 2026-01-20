@@ -1,7 +1,8 @@
-import React, { lazy } from 'react'
+import { lazy } from 'react'
+import SlimAlert from '../../common/SlimAlert'
+import loginGovWhiteLogo from '../images/login-gov-logo-white.svg'
 import { login } from '../utils/keycloak.js'
 import FilingPeriodsCard from './FilingPeriodsCard'
-import loginGovWhiteLogo from '../images/login-gov-logo-white.svg'
 import LoginGovPromo from './LoginGovPromo'
 
 import './LoginHeader.css'
@@ -43,6 +44,14 @@ const LoginHeader = ({
             <p>{toolAnnouncement.message}</p>
           </Alert>
         )}
+
+        <SlimAlert emoji="📢">
+          View the latest{' '}
+          <a href='/updates-notes'>
+            HMDA Platform news and updates
+          </a>
+        </SlimAlert>
+
         <div className='button-container'>
           <button
             className='button login-button'

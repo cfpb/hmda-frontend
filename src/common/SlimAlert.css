@@ -1,0 +1,18 @@
+.slim-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background-color: #faf3d1;
+  border-left: 0.25rem solid #ffbe2e;
+  line-height: 1.5;
+  margin: 1.5rem 0;
+}
+
+.slim-alert-emoji {
+  font-size: 1.4rem;
+}
+
+.slim-alert-text {
+  color: #1b1b1b;
+}
