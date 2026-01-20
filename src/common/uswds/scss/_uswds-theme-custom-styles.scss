@@ -434,13 +434,13 @@ body {
   max-width: 1500px;
   padding: 0 0 0.5em 0;
 
-  @media (min-width: 40em) {
+  @media (min-width: 45em) {
     flex-direction: row;
     padding: 0;
     margin: 0 auto;
   }
   @media (min-width: 85em) {
-    padding: 0 10%;
+    padding: 0 5%;
   }
 
   .title {
@@ -452,9 +452,9 @@ body {
     display: block;
     color: #fff;
 
-    @media (min-width: 40em) {
+    @media (min-width: 45em) {
       border-width: 0 1px;
-      width: 35px;
+      min-width: 35px;
 
       span {
         transform: rotate(-90deg);
@@ -504,7 +504,7 @@ body {
       text-align: left;
     }
 
-    @media (min-width: 40em) {
+    @media (min-width: 45em) {
       display: flex;
       flex-direction: column;
       align-items: center;
