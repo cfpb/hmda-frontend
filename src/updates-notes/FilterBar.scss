@@ -31,6 +31,12 @@
     background-color: #017294;
   }
 
+  /** Color - Announcement */
+  .pill.type.announcement:hover,
+  .pill.type.announcement.selected {
+    background-color: #ffbe2e;
+  }
+
   /** Color - Correction */
   .pill.type.correction:hover,
   .pill.type.correction.selected {
@@ -124,9 +130,13 @@
     margin-bottom: 0.5em;
   }
 
+  .pill:hover:not(.type.announcement),
+  .pill.selected:not(.type.announcement) {
+    color: white;
+  }
+
   .pill:hover,
   .pill.selected {
-    color: white;
     border-color: transparent;
   }
 
