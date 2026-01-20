@@ -163,7 +163,7 @@ export function AnnouncementBanner({
   }
 
   // Temporarily add APOR announcement to the cycling announcements, see: GHE #5358
-  // announcements.unshift(<AporAnnouncement />)
+  announcements.unshift(<AporAnnouncement />)
 
   // Display an auto-advancing, navigable carousel of announcements
   return (
@@ -171,8 +171,8 @@ export function AnnouncementBanner({
       id='oc-homepage-banner'
 
       // Temporarily make the only announcement the APOR announcement, see: GHE #5358 
-      // options={announcements}
-      options={[<AporAnnouncement />]}
+      options={announcements}
+      // options={[<AporAnnouncement />]}
 
       cycleTime={5}
       hideIcon

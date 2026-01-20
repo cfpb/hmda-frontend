@@ -10,13 +10,14 @@ export const PRODUCT_NAMES = {
 export const PRODUCTS = Object.keys(PRODUCT_NAMES)
 
 export const CATEGORIES = {
-  correction: { order: 3 },
-  update: { order: 2 },
-  release: { order: 1 },
+  correction: { order: 4 },
+  update: { order: 3 },
+  release: { order: 2 },
+  announcement: { order: 1 },
 }
 
 export const PUB_CHANGELOG_URL =
-  'https://raw.githubusercontent.com/cfpb/hmda-frontend/master/src/updates-notes/change-log-data.json'
+  'https://raw.githubusercontent.com/cfpb/hmda-frontend/combined/src/updates-notes/change-log-data.json'
 
 export const DEFAULT_FILTERS = {
   type: [],

@@ -105,11 +105,15 @@ const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
               {links.map((link) => {
                 let filingPath =
                   props.history.location.pathname.includes('/filing')
+                let newsPath =
+                  props.history.location.pathname.includes('/updates-notes')
                 let isActive = false
 
                 if (link.href === '/') {
                   isActive = pathname === link.href
-                } else if (filingPath) {
+                } else if (filingPath && link.href.includes('/filing')) {
+                  isActive = true
+                } else if (newsPath && link.href.includes('/updates-notes')) {
                   isActive = true
                 }
 

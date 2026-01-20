@@ -1,8 +1,8 @@
-# FAQ - Updates and Notes
+# FAQ - News and Updates
 
 ## What is it?
 
-The [Updates and Notes app](https://ffiec.cfpb.gov/updates-notes) provides a searchable change log of updates, releases, and corrections to published HMDA Data.
+The [News and Updates app](https://ffiec.cfpb.gov/updates-notes) provides a searchable change log of updates, releases, and corrections to published HMDA Data.
 
 ## Do content changes require redeployment?
 

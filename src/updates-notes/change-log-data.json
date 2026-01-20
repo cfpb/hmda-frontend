@@ -1,6 +1,18 @@
 {
   "log": [
     {
+      "date": "01/20/26",
+      "type": "announcement",
+      "product": "documentation",
+      "description": "Due to operational constraints, the Consumer Financial Protection Bureau has discontinued its use of the GovDelivery email service on Tuesday, January 20, 2026. After that date, subscribers to the HMDA mailing list will no longer receive email notifications. Visit our HMDA News and Updates webpage to ensure you continue to have access to timely information.",
+      "links": [
+        {
+          "text": "HMDA News and Updates",
+          "url": "https://ffiec.cfpb.gov/updates-notes"
+        }
+      ]
+    },
+    {
       "date": "10/06/25",
       "type": "release",
       "product": "documentation",

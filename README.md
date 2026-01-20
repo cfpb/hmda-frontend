@@ -17,7 +17,7 @@ The HMDA Frontend monorepo hosts the public facing applications for the collecti
     - [HMDA Platform Tools](#hmda-platform-tools)
     - [HMDA Documentation](#hmda-documentation)
     - [HMDA Data Publication](#hmda-data-publication)
-    - [HMDA Data Publication - Updates and Notes](#hmda-data-publication---updates-and-notes)
+    - [HMDA Data Publication - HMDA News and Updates](#hmda-data-publication---updates-and-notes)
   - [Development](#development)
     - [Requirements](#requirements)
     - [Installation](#installation)
@@ -112,9 +112,9 @@ The [HMDA Documentation](https://ffiec.cfpb.gov/documentation/) site provides pr
   </p>
 </a>
 
-### HMDA Data Publication - Updates and Notes
+### HMDA Data Publication - HMDA News and Updates
 
-[Publication Updates and Notes](https://ffiec.cfpb.gov/data-publication/updates) provides a searchable change log of updates, releases, and corrections to published HMDA Data. Visit the [Updates and Notes FAQ](./src/data-publication/ChangeLog/README.md) for details.
+[Publication HMDA News and Updates](https://ffiec.cfpb.gov/data-publication/updates) provides a searchable change log of updates, releases, and corrections to published HMDA Data. Visit the [HMDA News and Updates FAQ](./src/data-publication/ChangeLog/README.md) for details.
 
 <a href='./readme-files/hmda-data-publication-updates.png' alt='HMDA Data Publication'>
   <p align='center'>

@@ -5,6 +5,7 @@ export const betaLinks = [
 
 export const defaultLinks = [
   { name: 'Home', href: '/' },
+  { name: 'News', href: '/updates-notes' },
   { name: 'Filing', href: '/filing' },
   { name: 'Data Browser', href: '',
     submenu: [
