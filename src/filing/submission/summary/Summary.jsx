@@ -41,7 +41,7 @@ function Summary({ filingPeriod }) {
   const [year, quarter] = splitYearQuarter(filingPeriod)
 
   return (
-    <section className='Summary full-width' id='summary'>
+    <section className='Summary' id='summary'>
       <header>
         <SlimAlert emoji='📢'>
           View the latest{' '}
