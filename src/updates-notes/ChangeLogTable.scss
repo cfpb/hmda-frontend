@@ -149,6 +149,9 @@ $rwd-bp: 960px;
       &.release {
         background-color: #0b6e4f;
       }
+      &.announcement {
+        background-color: #c05600;
+      }
       &.notice {
         background-color: #dc731c;
         color: white;
@@ -250,7 +253,7 @@ $rwd-bp: 960px;
     }
 
     .pill {
-      max-width: 100px !important;
+      max-width: 125px !important;
       margin-bottom: 0;
     }
 
