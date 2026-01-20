@@ -170,7 +170,6 @@ export function AnnouncementBanner({
     <OptionCarousel
       id='oc-homepage-banner'
 
-      // Temporarily make the only announcement the APOR announcement, see: GHE #5358 
       options={announcements}
 
       cycleTime={5}
