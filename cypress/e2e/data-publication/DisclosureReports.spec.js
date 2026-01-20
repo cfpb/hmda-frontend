@@ -429,7 +429,8 @@ onlyOn(!isBeta(HOST), () => {
       // cy.get(".heading > button").click()
     })
 
-    it('Fetches a 2017 Conv Price Info Nationwide report', () => {
+    // TODO: re-enable after re-implementing through file proxy, see GHE #5336
+    it.skip('Fetches a 2017 Conv Price Info Nationwide report', () => {
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 916)
 

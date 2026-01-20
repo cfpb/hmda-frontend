@@ -1,6 +1,13 @@
-FROM node:20-alpine3.22 as build-stage
+FROM node:20-alpine3.22 AS build-stage
 WORKDIR /usr/src/app
 ARG DOCKER_TAG="latest"
+
+# Add Zscaler Root CA certificate
+ADD https://raw.githubusercontent.com/cfpb/zscaler-cert/refs/heads/main/zscaler_root_ca.pem /usr/local/share/ca-certificates/zscaler-root-public.cert
+RUN apk add ca-certificates --no-cache --no-check-certificate && \
+    update-ca-certificates && \
+    cp /etc/ssl/certs/ca-certificates.crt /usr/src/app/ca-certificates.crt
+ARG NODE_EXTRA_CA_CERTS=/usr/local/share/ca-certificates/zscaler-root-public.cert
 
 # updates pcre2 library to fix CVE-2025-58050 in alpine base image by updating it to at least 10.46-r0
 RUN apk update && apk upgrade pcre2>=10.46
@@ -28,6 +35,7 @@ RUN echo "{ \"version\": \"${DOCKER_TAG}\" }" > ./src/common/constants/release.j
 RUN yarn build
 
 FROM nginx:alpine3.22
+COPY --from=build-stage  /usr/src/app/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
 # updates pcre2 library to fix CVE-2025-58050 in alpine base image by updating it to at least 10.46-r0
 RUN apk update && apk upgrade pcre2>=10.46
