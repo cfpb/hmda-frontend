@@ -37,4 +37,5 @@ jobs:
       - name: Run Cypress tests that don't require auth
         env:
           MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
+          HOST: "http://localhost:3000"
         run: yarn test-unauthenticated
