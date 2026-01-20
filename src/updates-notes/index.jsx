@@ -10,7 +10,7 @@ import { useRemoteJSON } from '../common/useRemoteJSON'
 import { organizeChangeData } from './sortFunctions'
 import './ChangeLog.scss'
 
-/* Updates and Notes */
+/* News and Updates */
 function UpdatesNotes() {
   const filter = useChangeLogFilter(DEFAULT_FILTERS)
 
@@ -19,7 +19,7 @@ function UpdatesNotes() {
     defaultData: organizeChangeData(defaultData),
   })
 
-  const heading = 'HMDA Updates and Notes'
+  const heading = 'HMDA News and Updates'
 
   if (loading) return <LoadingState heading={heading} />
 

@@ -1,12 +1,11 @@
-import { ExpandableCard } from '../ExpandableCard'
 
 export function ChangeLog() {
   return (
     <>
       <article>
-        <h3>HMDA Updates and Notes</h3>
+        <h3>HMDA News and Updates</h3>
         <p>
-          Tracking releases, updates, and corrections to HMDA publications, data
+          Tracking news, releases, updates, and corrections to HMDA publications, data
           products, documentation, and tools.
         </p>
         <ul>

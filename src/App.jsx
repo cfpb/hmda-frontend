@@ -55,8 +55,8 @@ const HmdaHelp = makeAsyncComponent(
 )
 const UpdatesNotes = makeAsyncComponent(
   () => import('./updates-notes'),
-  'HMDA Updates and Notes',
-  "Tracking releases, updates, and corrections to HMDA's publications, data products, documentation, and tools.",
+  'HMDA News and Updates',
+  "Tracking news, releases, updates, and corrections to HMDA's publications, data products, documentation, and tools.",
 )
 
 const App = () => {

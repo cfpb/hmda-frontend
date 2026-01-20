@@ -2,12 +2,12 @@
   "name": "prod",
   "announcement": [
     {
-      "heading": "HMDA Platform Upgrade",
-      "message": "An upgrade to the HMDA Platform was performed on Tuesday, 12/2. Links to files that you may have bookmarked have a new URL as part of this upgrade. Most notably, the fixed and adjustable APOR table file paths have changed. For any questions, contact ",
+      "heading": "Future HMDA News and Updates",
+      "message": "Due to operational constraints, the Consumer Financial Protection Bureau has discontinued its use of the GovDelivery email service on Tuesday, January 20, 2026. After that date, subscribers to the HMDA mailing list will no longer receive email notifications. To ensure you continue to have access to timely information, ",
       "type": "warning",
       "link": {
-        "url": "mailto:hmdahelp@cfpb.gov",
-        "text": "hmdahelp@cfpb.gov."
+        "url": "https://ffiec.cfpb.gov/updates-notes",
+        "text": "visit our HMDA News and Updates webpage."
       }
     },
     {

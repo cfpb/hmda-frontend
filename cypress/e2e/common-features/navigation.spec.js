@@ -14,6 +14,7 @@ onlyOn(!isBeta(HOST), () => {
   describe('HMDA homepage hero navigation', { tags: ['@smoke'] }, () => {
     // HMDA's homepage has four "quick links" leading to core pages
     const quickLinks = [
+      { text: 'News and Updates', pageHeading: 'HMDA News and Updates' },
       { text: 'Rate Spread Calculator', pageHeading: 'Rate Spread Calculator' },
       { text: 'HMDA Filing Platform', pageHeading: 'File your HMDA Data' },
       { text: 'Frequently Asked Questions', pageHeading: 'Frequently Asked Questions' },
