@@ -7,7 +7,7 @@ function AporAnnouncement() {
       <div>
         <p>
           Due to an upgrade to the HMDA Platform that was performed on 
-          December 2, 2025, links to APOR related files have changed. As 
+          December 2, 2025, links to APOR-related files have changed. As 
           of January 20, 2026, APOR files are no longer provided via the 
           AWS S3 public bucket.
         </p>
