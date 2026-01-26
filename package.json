@@ -47,7 +47,7 @@
     "highcharts": "10.3.3",
     "highcharts-react-official": "3.2.1",
     "html-to-image": "1.11.11",
-    "jspdf": "3.0.2",
+    "jspdf": "4.0.0",
     "jwt-decode": "^3.1.2",
     "keycloak-js": "25.0.6",
     "mapbox-gl": "1.13.3",
@@ -114,7 +114,7 @@
     "react-icons": "^4.4.0",
     "serialize-javascript": "5.0.1",
     "vite": "5.4.19",
-    "vite-plugin-node-polyfills": "0.22.0",
+    "vite-plugin-node-polyfills": "0.25.0",
     "vite-plugin-svgr": "^4.1.0",
     "vitest": "^3.2.4"
   },
@@ -138,11 +138,12 @@
     "canvg": "3.0.11",
     "elliptic": "6.6.1",
     "cross-spawn": ">=7.0.6",
-    "glob": ">=10.4.5",
+    "glob": ">=11.1.0",
     "form-data": ">=4.0.4",
     "sha.js": ">=2.4.12",
     "cipher-base": ">=1.0.5",
-    "cheerio": "1.0.0-rc.10"
+    "cheerio": "1.0.0-rc.10",
+    "qs": ">=6.14.0"
   },
   "packageManager": "yarn@4.1.0"
 }
