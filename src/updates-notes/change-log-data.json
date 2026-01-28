@@ -3,6 +3,44 @@
     {
       "date": "01/20/26",
       "type": "announcement",
+      "product": "tools",
+      "description": "Due to an upgrade to the HMDA Platform that was performed on December 2, 2025, links to APOR-related files have changed. As of January 20, 2026, APOR files are no longer provided via the AWS S3 public bucket.\n\nPlease update your bookmarks and integrations to use the new URLs:",
+      "links": [
+        {
+          "text": "Fixed Table: https://files.ffiec.cfpb.gov/apor/YieldTableFixed.txt",
+          "url": "https://files.ffiec.cfpb.gov/apor/YieldTableFixed.txt"
+        },
+        {
+          "text": "Adjustable Table: https://files.ffiec.cfpb.gov/apor/YieldTableAdjustable.txt",
+          "url": "https://files.ffiec.cfpb.gov/apor/YieldTableAdjustable.txt"
+        },
+        {
+          "text": "Survey Table: https://files.ffiec.cfpb.gov/apor/SurveyTable.csv",
+          "url": "https://files.ffiec.cfpb.gov/apor/SurveyTable.csv"
+        }
+      ]
+    },
+    {
+      "date": "01/09/26",
+      "type": "announcement",
+      "product": "tools",
+      "description": "Two sets of APORs were published for the week of 1/5/2026. The first set was published on 1/2/2026 and was briefly incorporated into the Bureau's rate spread calculator. The second set was published on 1/9/2026, and APORs for fixed rate loans with terms of 2, 3 to 4, 7 to 8, and 26 to 50 years were substituted for the first set in the Bureau's rate spread calculator. Consistent with the Bureau's prior practice in instances when APORs have been updated after their initial publication.",
+      "links": [
+        {
+          "text": "Both sets of APORs are available here",
+          "url": "https://files.ffiec.cfpb.gov/apor/01_09_2026_APOR_tables.csv"
+        }
+      ]
+    },
+    {
+      "date": "1/01/26",
+      "type": "announcement",
+      "product": "filing",
+      "description": "2025 Annual filing period is open.\n\nSubmissions of 2025 HMDA data will be considered timely if received on or before March 2, 2026."
+    },
+    {
+      "date": "01/20/26",
+      "type": "announcement",
       "product": "documentation",
       "description": "Due to operational constraints, the Consumer Financial Protection Bureau has discontinued its use of the GovDelivery email service on Tuesday, January 20, 2026. After that date, subscribers to the HMDA mailing list will no longer receive email notifications. Visit our HMDA News and Updates webpage to ensure you continue to have access to timely information.",
       "links": [

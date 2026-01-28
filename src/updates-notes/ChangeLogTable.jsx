@@ -133,6 +133,7 @@ function Row({ item, filter, products }) {
           searchWords={filter.filters.keywords}
           autoEscape
           textToHighlight={item.description}
+          style={{ whiteSpace: "pre-wrap" }}
         />
         <Links links={item.links} />
       </Column>
