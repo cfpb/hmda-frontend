@@ -8021,7 +8021,7 @@ __metadata:
     react-dropzone: "npm:10.2.2"
     react-fluid-table: "npm:^1.4.3"
     react-helmet: "npm:5.2.1"
-    react-highlight-words: "npm:0.20.0"
+    react-highlight-words: "npm:0.21.0"
     react-icons: "npm:^4.4.0"
     react-paginate: "npm:8.2.0"
     react-redux: "npm:7.2.9"
@@ -11460,16 +11460,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-highlight-words@npm:0.20.0":
-  version: 0.20.0
-  resolution: "react-highlight-words@npm:0.20.0"
+"react-highlight-words@npm:0.21.0":
+  version: 0.21.0
+  resolution: "react-highlight-words@npm:0.21.0"
   dependencies:
     highlight-words-core: "npm:^1.2.0"
     memoize-one: "npm:^4.0.0"
-    prop-types: "npm:^15.5.8"
   peerDependencies:
-    react: ^0.14.0 || ^15.0.0 || ^16.0.0-0 || ^17.0.0-0 || ^18.0.0-0
-  checksum: 10c0/1d3aec0c8b8865e3b2855a2fbb11c0af3fad7fc3e2685fcd4952e8bd59b8d8874ecff773830bdcc135f81ec7d13e1f2d6de0f05a153a82b4e192534339cb5550
+    react: ^0.14.0 || ^15.0.0 || ^16.0.0-0 || ^17.0.0-0 || ^18.0.0-0 || ^19.0.0-0
+  checksum: 10c0/8704097b6ca2b08a943e55e66493fab21d523362c8ea754ef4c7a351b4625b684d7ed1e9155f97d033be78783dacdd88bb83e2766cfc3d462c311551552b8ad5
   languageName: node
   linkType: hard
 
