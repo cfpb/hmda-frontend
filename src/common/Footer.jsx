@@ -6,7 +6,10 @@ import logo from './images/ffiec-icon-white.svg'
 import MaintenanceMessage from '../MaintenanceMessage'
 import ReleaseVersion from './ReleaseVersion'
 import { hideHeaderFooter } from './Header'
-import { MailingSignupSmall } from './MailingListSignup'
+
+// temporarily disable mailing list signup, see GHE #5417
+// import { MailingSignupSmall } from './MailingListSignup'
+
 import { isFilingHomeOrYear } from '../filing/utils/pages'
 
 function Footer({ config, location: { pathname } }) {
@@ -36,9 +39,10 @@ function Footer({ config, location: { pathname } }) {
           </button>
         </div>
       )}
-      <div className='mainFooter'>
+      {/* temporarily disable mailing list signup, see GHE #5417 */}
+      {/* <div className='mainFooter'>
         <MailingSignupSmall />
-      </div>
+      </div> */}
       <div className='usa-identifier'>
         <section
           className='usa-identifier__section usa-identifier__section--masthead'
