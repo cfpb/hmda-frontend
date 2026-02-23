@@ -1561,7 +1561,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.28.4":
+"@babel/runtime@npm:^7.28.6":
   version: 7.28.6
   resolution: "@babel/runtime@npm:7.28.6"
   checksum: 10c0/358cf2429992ac1c466df1a21c1601d595c46930a13c1d4662fde908d44ee78ec3c183aaff513ecb01ef8c55c3624afe0309eeeb34715672dbfadb7feedb2c0d
@@ -8009,7 +8009,7 @@ __metadata:
     http-proxy-middleware: "npm:2.0.9"
     jest: "npm:^29.7.0"
     jest-environment-jsdom: "npm:^30.2.0"
-    jspdf: "npm:4.0.0"
+    jspdf: "npm:4.2.0"
     jwt-decode: "npm:^3.1.2"
     keycloak-js: "npm:25.0.6"
     mapbox-gl: "npm:1.13.3"
@@ -9606,14 +9606,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jspdf@npm:4.0.0":
-  version: 4.0.0
-  resolution: "jspdf@npm:4.0.0"
+"jspdf@npm:4.2.0":
+  version: 4.2.0
+  resolution: "jspdf@npm:4.2.0"
   dependencies:
-    "@babel/runtime": "npm:^7.28.4"
+    "@babel/runtime": "npm:^7.28.6"
     canvg: "npm:^3.0.11"
     core-js: "npm:^3.6.0"
-    dompurify: "npm:^3.2.4"
+    dompurify: "npm:^3.3.1"
     fast-png: "npm:^6.2.0"
     fflate: "npm:^0.8.1"
     html2canvas: "npm:^1.0.0-rc.5"
@@ -9626,7 +9626,7 @@ __metadata:
       optional: true
     html2canvas:
       optional: true
-  checksum: 10c0/042fef72dd71353bbe5ba57c8a7bbadfd62bdcdf33f5a81276fd4c66034cb43fe112b04940d02c7d31402fa645390312a5bc854ea4a179f71257ed6d2dec75e8
+  checksum: 10c0/446f8aca80e862b2528d343892c22e608753530683cd939aa58b5f5a7dc37d387e45dca115451961059ad8a76fa63237343052248f38a8fc31dba7d498a6dbc4
   languageName: node
   linkType: hard
 
