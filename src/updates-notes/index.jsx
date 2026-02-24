@@ -1,14 +1,13 @@
-import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import LoadingIcon from '../common/LoadingIcon'
-import { DEFAULT_FILTERS, PUB_CHANGELOG_URL, FILTER_OPTIONS } from './constants'
-import defaultData from './change-log-data.json'
-import ChangeLogTable from './ChangeLogTable'
-import FilterBar from './FilterBar'
-import { useChangeLogFilter } from './useChangeLogFilter'
 import { useRemoteJSON } from '../common/useRemoteJSON'
-import { organizeChangeData } from './sortFunctions'
+import defaultData from './change-log-data.json'
 import './ChangeLog.scss'
+import ChangeLogTable from './ChangeLogTable'
+import { DEFAULT_FILTERS, FILTER_OPTIONS, PUB_CHANGELOG_URL } from './constants'
+import FilterBar from './FilterBar'
+import { organizeChangeData } from './sortFunctions'
+import { useChangeLogFilter } from './useChangeLogFilter'
 
 /* News and Updates */
 function UpdatesNotes() {
@@ -17,6 +16,7 @@ function UpdatesNotes() {
   const [changeLog, loading] = useRemoteJSON(PUB_CHANGELOG_URL, {
     transformReceive: (data) => organizeChangeData(data),
     defaultData: organizeChangeData(defaultData),
+    forceFetch: window.Cypress !== undefined
   })
 
   const heading = 'HMDA News and Updates'
