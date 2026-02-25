@@ -27,6 +27,28 @@ const REALLY_LONG_MOCK_DATA = {
   ],
 }
 
+const SHORT_MOCK_DATA = {
+  log: [
+    {
+      date: '02/20/26',
+      type: 'announcement',
+      product: 'tools',
+      description: 'This is a normal length announcement and it is also very cool.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      links: [
+        {
+          text: 'Cool link',
+          url: 'https://consumerfinance.gov',
+        },
+        {
+          text: 'Another cool link',
+          url: 'https://consumerfinance.gov',
+        },
+      ],
+    },
+    ...entries.slice(0)
+  ],
+}
+
 onlyOn(isBeta(HOST), () => {
   describe('Change Log', function () {
     it('Does not run in Beta environments', () => {})
@@ -37,10 +59,8 @@ onlyOn(!isBeta(HOST), () => {
   describe('Change Log', () => {
     describe('Really long announcements that have an expandable', () => {
       it('Shows a "read more" button for long descriptions and expands when clicked', () => {
-
         cy.intercept('**/raw.githubusercontent.com/**/change-log-data.json', { body: REALLY_LONG_MOCK_DATA })
         cy.visit(`${HOST}/updates-notes/updates`)
-
 
         cy.get('.expandable-description-wrapper')
           .first()
@@ -58,10 +78,11 @@ onlyOn(!isBeta(HOST), () => {
       })
 
       it('Does not show "Read more" button for short descriptions', () => {
+        cy.intercept('**/raw.githubusercontent.com/**/change-log-data.json', { body: SHORT_MOCK_DATA })
         cy.visit(`${HOST}/updates-notes/updates`)
 
         cy.get('.expandable-description-wrapper')
-          .eq(1)
+          .first()
           .within(() => {
             cy.get('.read-more-button').should('not.exist')
           })
