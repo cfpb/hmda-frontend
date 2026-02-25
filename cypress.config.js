@@ -10,6 +10,7 @@ module.exports = defineConfig({
     ENVIRONMENT: 'CI',
     USERNAME: 'frontend.testing@mailinator.com',
     INSTITUTION: 'FRONTENDTESTBANK9999',
+    MAPBOX_ACCESS_TOKEN: 'XXXXXXXX',
     TEST_DELAY: 1000,
     ACTION_DELAY: 1000,
     NAV_DELAY: 5000,
