@@ -21,7 +21,7 @@ onlyOn(isBeta(HOST), () => {
 })
 
 onlyOn(!isBeta(HOST), () => {
-  describe('General OLART Tests', () => {
+  describe('General OLART Tests', { tags: ['@localhost'] }, () => {
     it("Tests 'Filter by label' functionality", { tags: ['@smoke'] }, () => {
       cy.visit(urlForTesting)
       cy.get('#filter').click().type('Federal Agency')
@@ -164,7 +164,7 @@ onlyOn(!isBeta(HOST), () => {
     })
   })
 
-  describe('Record specific tests', () => {
+  describe('Record specific tests', { tags: ['@localhost'] }, () => {
     it("TS Record is generated. Check that 'Column 1' disabled drop-down changes to LAR", () => {
       cy.visit(urlForTesting)
       // Generates TS Record

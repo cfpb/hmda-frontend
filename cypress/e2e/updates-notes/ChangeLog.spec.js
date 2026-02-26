@@ -56,7 +56,7 @@ onlyOn(isBeta(HOST), () => {
 })
 
 onlyOn(!isBeta(HOST), () => {
-  describe('Change Log', () => {
+  describe('Change Log', { tags: ['@localhost'] }, () => {
     describe('Really long announcements that have an expandable', () => {
       it('Shows a "read more" button for long descriptions and expands when clicked', () => {
         cy.intercept('**/raw.githubusercontent.com/**/change-log-data.json', { body: REALLY_LONG_MOCK_DATA })

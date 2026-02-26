@@ -12,7 +12,7 @@ onlyOn(isBeta(HOST), () => {
 
 onlyOn(!isBeta(HOST), () => {
   describe('Aggregate Reports', () => {
-    it('2024', { tags: ['@smoke'] }, () => {
+    it('2024', { tags: ['@smoke', '@localhost'] }, () => {
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 867)
       cy.visit(`${HOST}/data-publication/aggregate-reports/2024`)
