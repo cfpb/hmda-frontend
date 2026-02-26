@@ -19,7 +19,7 @@ const { HOST, TEST_DELAY } = Cypress.env();
     },
   ];
 
-describe('Overrides for Unreleased HMDA Panel Data Publication Warnings', () => {
+describe('Overrides for Unreleased HMDA Panel Data Publication Warnings', { tags: ['@localhost'] }, () => {
   years.forEach((year) => {
     describe(year + ' HMDA Panel Overrides', () => {
       overrideUrls.forEach((overrideUrl) => {

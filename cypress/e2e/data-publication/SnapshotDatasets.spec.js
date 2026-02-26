@@ -17,7 +17,7 @@ onlyOn(isBeta(HOST), () => {
 })
 
 onlyOn(!isBeta(HOST), () => {
-  describe('Snapshot National Loan-Level Dataset', { tags: ['@smoke'] }, () => {
+  describe('Snapshot National Loan-Level Dataset', { tags: ['@smoke', '@localhost'] }, () => {
     const years = (YEARS && YEARS.toString().split(',')) || ['2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017']
 
     const datasetUrl = '/data-publication/snapshot-national-loan-level-dataset/'

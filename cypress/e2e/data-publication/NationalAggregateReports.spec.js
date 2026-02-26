@@ -1,5 +1,5 @@
-import { isBeta } from '../../support/helpers'
 import { onlyOn } from '@cypress/skip-test'
+import { isBeta } from '../../support/helpers'
 
 const { HOST } = Cypress.env()
 
@@ -28,7 +28,7 @@ onlyOn(!isBeta(HOST), () => {
 })
 
 onlyOn(!isBeta(HOST), () => {
-  describe('National Aggregate Report 2017', () => {
+  describe('National Aggregate Report 2017', { tags: ['@localhost'] }, () => {
     it('Loans Sold by Purchaser Type', () => {
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 867)
