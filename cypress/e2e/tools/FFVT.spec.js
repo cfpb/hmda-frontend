@@ -1,5 +1,5 @@
-import { isBeta } from '../../support/helpers'
 import { onlyOn } from '@cypress/skip-test'
+import { isBeta } from '../../support/helpers'
 
 const { HOST, TEST_DELAY, ENVIRONMENT } = Cypress.env()
 

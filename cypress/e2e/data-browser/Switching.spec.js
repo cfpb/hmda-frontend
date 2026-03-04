@@ -1,11 +1,11 @@
 import {
-  dbClick2018,
   dbClick2017,
+  dbClick2018,
   dbURL,
-  isProd,
   isBeta,
-  isProdBeta,
   isCI,
+  isProd,
+  isProdBeta,
 } from '../../support/helpers'
 const { HOST, ENVIRONMENT } = Cypress.env()
 const dbUrl = dbURL.bind(null, HOST)

@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react'
-import Highlighter from 'react-highlight-words'
-import { PRODUCT_NAMES } from './constants'
-import { FilterResetButton } from './FilterResetButton'
+import { useMemo } from 'react'
 import iconSprite from '../common/uswds/img/sprite.svg'
 import './ChangeLogTable.scss'
+import { PRODUCT_NAMES } from './constants'
+import ExpandableDescription from './ExpandableDescription'
+import { FilterResetButton } from './FilterResetButton'
 /**
  * Display Publication Change Log Entries
  * (default export)
@@ -128,29 +128,13 @@ function Row({ item, filter, products }) {
       </Column>
       <Column className='date' value={item.changeDateOrdinal} />
       <Column className='description'>
-        <Highlighter
-          highlightClassName='highlighted'
-          searchWords={filter.filters.keywords}
-          autoEscape
-          textToHighlight={item.description}
-          style={{ whiteSpace: "pre-wrap" }}
+        <ExpandableDescription
+          description={item.description}
+          highlightWords={filter.filters.keywords}
+          links={item.links}
         />
-        <Links links={item.links} />
       </Column>
     </div>
-  )
-}
-
-function Links({ links }) {
-  if (!links) return null
-  return (
-    <ul className='links'>
-      {links.map((l, l_idx) => (
-        <li key={l_idx}>
-          <a href={l.url}>{l.text}</a>
-        </li>
-      ))}
-    </ul>
   )
 }
 
