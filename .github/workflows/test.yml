@@ -24,6 +24,9 @@ jobs:
       - name: Install dependencies
         run: yarn
 
+      - name: Start server
+        run: yarn start &
+
       - name: Run unit tests (Vitest)
         env:
           MAPBOX_ACCESS_TOKEN: ${{ secrets.MAPBOX_ACCESS_TOKEN }}
