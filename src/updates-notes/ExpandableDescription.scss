@@ -5,7 +5,6 @@
 .expandable-description-content {
   overflow: hidden;
   transition: max-height 0.3s ease-in-out;
-  white-space: pre-wrap;
   word-wrap: break-word;
 
   &.collapsed.needs-expansion {

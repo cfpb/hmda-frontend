@@ -1,5 +1,6 @@
+import Mark from 'mark.js'
 import { useEffect, useRef, useState } from 'react'
-import Highlighter from 'react-highlight-words'
+import Markdown from 'react-markdown'
 import './ExpandableDescription.scss'
 
 // Add a fade and hide the bottom of announcements that are taller
@@ -18,6 +19,20 @@ function ExpandableDescription({ description, highlightWords = [], links = [] })
     }
   }, [description, links])
 
+  useEffect(() => {
+    if (contentRef.current) {
+      const markInstance = new Mark(contentRef.current)
+      markInstance.unmark()
+
+      if (highlightWords?.length > 0) {
+        markInstance.mark(highlightWords, {
+          className: 'highlighted',
+          separateWordSearch: true,
+        })
+      }
+    }
+  }, [highlightWords, description])
+
   const handleToggle = () => {
     setIsExpanded(!isExpanded)
   }
@@ -33,13 +48,7 @@ function ExpandableDescription({ description, highlightWords = [], links = [] })
           !isExpanded && needsExpansion ? { maxHeight: `${MAX_HEIGHT}px` } : undefined
         }
       >
-        <Highlighter
-          highlightClassName='highlighted'
-          searchWords={highlightWords}
-          autoEscape
-          textToHighlight={description}
-          style={{ whiteSpace: 'pre-wrap' }}
-        />
+        <Markdown>{description}</Markdown>
         <Links links={links} />
       </div>
       {needsExpansion && (
