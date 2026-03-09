@@ -1,4 +1,4 @@
-FROM node:20-alpine3.22 AS build-stage
+FROM node:20-alpine3.23 AS build-stage
 WORKDIR /usr/src/app
 ARG DOCKER_TAG="latest"
 
@@ -34,7 +34,7 @@ RUN echo "{ \"version\": \"${DOCKER_TAG}\" }" > ./src/common/constants/release.j
 
 RUN yarn build
 
-FROM nginx:alpine3.22
+FROM nginx:alpine3.23
 COPY --from=build-stage  /usr/src/app/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
 # updates pcre2 library to fix CVE-2025-58050 in alpine base image by updating it to at least 10.46-r0
