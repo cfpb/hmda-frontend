@@ -1,5 +1,5 @@
 import { onlyOn } from '@cypress/skip-test'
-import { isBeta, isCI } from '../../support/helpers'
+import { compareSnapshots, isBeta, isCI } from '../../support/helpers'
 const { HOST, ENVIRONMENT } = Cypress.env()
 
 let baseURLToVisit = isCI(ENVIRONMENT) ? 'http://localhost:3000' : HOST
@@ -44,6 +44,11 @@ onlyOn(!isBeta(HOST), () => {
         cy.get('#quicklinks a').contains(cleanText).click()
         cy.get('h1').should('contain', pageHeading)
       })
+    })
+
+    it(`Visually hasn't changed`, { tags: '@visual' }, () => {
+      cy.visit(`${baseURLToVisit}/`)
+      compareSnapshots('navigation')
     })
   })
 

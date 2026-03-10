@@ -2,9 +2,11 @@ import { register as registerCypressGrep } from '@cypress/grep'
 import '@testing-library/cypress/add-commands'
 import 'cypress-file-upload'
 import 'cypress-keycloak'
+import { addCompareSnapshotCommand } from 'cypress-visual-regression/dist/command'
 import { logEnv, urlExists } from './helpers'
 
 registerCypressGrep()
+addCompareSnapshotCommand({ errorThreshold: 0.3 })
 
 // ***********************************************************
 // This example support/index.js is processed and

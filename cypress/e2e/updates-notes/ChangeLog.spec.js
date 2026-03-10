@@ -1,6 +1,6 @@
 import { onlyOn } from '@cypress/skip-test'
 import log from '../../../src/updates-notes/change-log-data.json'
-import { isBeta } from '../../support/helpers'
+import { compareSnapshots, isBeta } from '../../support/helpers'
 const { HOST } = Cypress.env()
 const EXPECTED_SELECTED_PILLS = ['release', 'documentation', 'tools']
 const entries = log.log
@@ -75,6 +75,8 @@ onlyOn(!isBeta(HOST), () => {
             cy.get('.expandable-description-content').should('have.class', 'collapsed')
             cy.get('.read-more-button').should('contain', 'Read more')
           })
+
+        compareSnapshots('change-log-long-post')
       })
 
       it('Does not show "Read more" button for short descriptions', () => {
@@ -86,6 +88,8 @@ onlyOn(!isBeta(HOST), () => {
           .within(() => {
             cy.get('.read-more-button').should('not.exist')
           })
+
+        compareSnapshots('change-log-short-post')
       })
     })
 

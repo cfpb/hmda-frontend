@@ -1,6 +1,6 @@
 import { onlyOn } from '@cypress/skip-test'
 import { getDefaultConfig } from '../../../src/common/configUtils'
-import { isBeta } from '../../support/helpers'
+import { compareSnapshots, isBeta } from '../../support/helpers'
 
 const { HOST } = Cypress.env()
 const { fileServerDomain } = getDefaultConfig(HOST)
@@ -29,6 +29,11 @@ onlyOn(!isBeta(HOST), () => {
         })
           .its('status')
           .should('equal', 200)
+      })
+
+      it(`Visually hasn't changed`, { tags: '@visual' }, () => {
+        cy.visit(`${HOST}/data-publication/modified-lar/2022`)
+        compareSnapshots('combined-lar-2022')
       })
     })
   })

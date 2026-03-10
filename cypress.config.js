@@ -1,5 +1,6 @@
 const { defineConfig } = require('cypress')
 const { plugin: cypressGrepPlugin } = require('@cypress/grep/plugin')
+const { configureVisualRegression } = require('cypress-visual-regression')
 const fs = require('fs')
 
 module.exports = defineConfig({
@@ -16,6 +17,10 @@ module.exports = defineConfig({
     AUTH_REALM: 'hmda2',
     AUTH_CLIENT_ID: 'hmda2-api',
     preserveCookies: ['_login_gov_session'],
+    visualRegressionType: 'regression',
+    visualRegressionBaseDirectory: 'cypress/snapshots/base',
+    visualRegressionDiffDirectory: 'cypress/snapshots/diff',
+    visualRegressionGenerateDiff: 'fail',
     // Always enable spec filtering
     grepFilterSpecs: true,
     // Always omit filtered tests
@@ -41,6 +46,7 @@ module.exports = defineConfig({
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
     experimentalOriginDependencies: true,
     chromeWebSecurity: false,
+    screenshotsFolder: 'cypress/snapshots/actual',
     defaultCommandTimeout: 10000,
     pageLoadTimeout: 30000,
     retries: {
@@ -66,6 +72,7 @@ module.exports = defineConfig({
           }
         }
       })
+      configureVisualRegression(on)
       cypressGrepPlugin(config)
       return config
     },

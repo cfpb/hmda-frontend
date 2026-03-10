@@ -1,6 +1,6 @@
 import { onlyOn } from '@cypress/skip-test'
 import { WARN_LOST_UNSAVED } from '../../../src/tools/larft/config/messages'
-import { isBeta, isCI } from '../../support/helpers'
+import { compareSnapshots, isBeta, isCI } from '../../support/helpers'
 
 const { HOST, ENVIRONMENT } = Cypress.env()
 
@@ -28,6 +28,8 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#accordion-button-11').should('have.text', 'Federal Agency')
       cy.get('.search-box > .clear').click()
       cy.get('#accordion-button-0').should('have.text', 'Record Identifier')
+
+      compareSnapshots('olarft-filter-by-label')
     })
 
     it("Test TS 'Filter columns' and 'Search TS' functionality", () => {
@@ -51,6 +53,8 @@ onlyOn(!isBeta(HOST), () => {
         'have.text',
         yearToBeTested,
       )
+
+      compareSnapshots('olarft-ts')
     })
 
     it("Tests LAR 'Search LAR' and 'Filter columns' functionality", () => {
@@ -80,6 +84,8 @@ onlyOn(!isBeta(HOST), () => {
         'have.text',
         'Loan Type',
       )
+
+      compareSnapshots('olarft-lar-search')
     })
 
     it("Generate TS and LAR records then clear the records by clicking 'Clear Saved' button", () => {
@@ -102,6 +108,8 @@ onlyOn(!isBeta(HOST), () => {
         'have.text',
         'No Records Saved',
       )
+
+      compareSnapshots('olarft-clear-button')
     })
 
     it('Prompts user that data will be lost when navigating away from page', () => {
@@ -116,6 +124,8 @@ onlyOn(!isBeta(HOST), () => {
       cy.on('window:confirm', (text) => {
         expect(text).to.contains(WARN_LOST_UNSAVED)
       })
+
+      compareSnapshots('olarft-prompt')
     })
 
     it('Verifies downloaded filename includes Calendar Year, quarter and user inputted LEI otherwise filename defaults to LarFile', () => {

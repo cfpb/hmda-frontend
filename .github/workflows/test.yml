@@ -43,3 +43,8 @@ jobs:
         env:
           CYPRESS_ENVIRONMENT: CI
         run: yarn test-localhost
+
+      - name: Run visual regression tests against localhost
+        env:
+          CYPRESS_ENVIRONMENT: CI
+        run: CYPRESS_HOST=http://localhost:3000 yarn test-visual

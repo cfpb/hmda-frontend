@@ -67,6 +67,8 @@ We use [`@cypress/grep`](https://www.npmjs.com/package/@cypress/grep) to organiz
 - `yarn test-smoke`: Executes much quicker than the full suite of tests by running a subset of end-to-end tests that represent core functionality.
 - `yarn test-unauthenticated`: Runs all tests that don't require Keycloak authentication.
 - `yarn test-large`: Runs our large filer test which uploads a very large file and takes awhile.
+- `yarn test-visual:baseline`: Generates baseline snapshots for [visual regression testing](https://www.npmjs.com/package/cypress-visual-regression). Can be run against any environment but to test local changes you'll want to do `CYPRESS_HOST=http://localhost:3000 yarn test-visual:baseline`.
+- `yarn test-visual`: Takes snapshots and compares them to the baseline images. Can be run against any environment but to test local changes you'll want to do `CYPRESS_HOST=http://localhost:3000 yarn test-visual`.
 
 When you add new tests, make sure to tag them appropriately so that they run with the above commands. You can view the commands and their tags in [`package.json`](https://github.com/cfpb/hmda-frontend/blob/master/package.json). For example, localhost tests have a `@localhost` tag. Tests that require Keycloak authentication have a `@auth-required` tag and the above `yarn test-unauthenticated` command runs all tests *without* this tag.
 

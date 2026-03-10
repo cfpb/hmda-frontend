@@ -84,6 +84,8 @@ local_keycloak.json
 cypress.env.json
 cypress/videos/
 cypress/screenshots/
+cypress/snapshots/actual/
+cypress/snapshots/diff/
 cypress/downloads/
 package-lock.json
 ## Documentation Markdown files served locally for testing during development 

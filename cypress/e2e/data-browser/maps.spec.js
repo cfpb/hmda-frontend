@@ -1,5 +1,5 @@
 import { onlyOn } from '@cypress/skip-test'
-import { isBeta, mapsURL, openSelector } from '../../support/helpers'
+import { compareSnapshots, isBeta, mapsURL, openSelector } from '../../support/helpers'
 const { HOST, ENVIRONMENT } = Cypress.env()
 const ACTION_DELAY = 8000 // milliseconds
 
@@ -10,8 +10,8 @@ onlyOn(isBeta(HOST), () => {
 })
 
 onlyOn(!isBeta(HOST), () => {
-  describe('Maps', { tags: '@localhost' }, () => {
-     it('State 2024', { tags: ['@smoke'] },() => {
+  describe('Maps', { tags: ['@localhost'] }, () => {
+     it('State 2024', { tags: ['@smoke', '@visual'] },() => {
       cy.get({ HOST, ENVIRONMENT }).logEnv()
       cy.viewport(1000, 940)
       cy.visit(mapsURL(HOST, '2024?geography=state'))
@@ -64,9 +64,11 @@ onlyOn(!isBeta(HOST), () => {
       cy.get(
         '.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)',
       ).should('contain', '16.24%')
+
+      compareSnapshots('maps-state-2024')
     })
 
-    it('County 2024', () => {
+    it('County 2024', { tags: ['@visual'] }, () => {
       cy.get({ HOST, ENVIRONMENT }).logEnv()
       cy.viewport(1000, 940)
       cy.visit(mapsURL(HOST, '2024?geography=county'))
@@ -119,6 +121,8 @@ onlyOn(!isBeta(HOST), () => {
       cy.get(
         '.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)',
       ).should('contain', '19.05%')
+
+      compareSnapshots('maps-county-2024')
     })
 
     it('State 2023', () => {

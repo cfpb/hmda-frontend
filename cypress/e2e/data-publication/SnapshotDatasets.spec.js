@@ -1,5 +1,5 @@
 import { onlyOn } from '@cypress/skip-test'
-import { isBeta } from '../../support/helpers'
+import { compareSnapshots, isBeta } from '../../support/helpers'
 
 const { HOST, ACTION_DELAY, TEST_DELAY, YEARS } = Cypress.env()
 
@@ -50,6 +50,11 @@ onlyOn(!isBeta(HOST), () => {
           cy.wait(TEST_DELAY)
         })
       })
+    })
+
+    it(`Visually hasn't changed`, { tags: '@visual' }, () => {
+      cy.visit(`${HOST}${datasetUrl}2024`)
+      compareSnapshots('snapshot-datasets-2024')
     })
   })
 })

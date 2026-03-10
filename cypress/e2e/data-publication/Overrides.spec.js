@@ -1,4 +1,5 @@
 const { HOST, TEST_DELAY } = Cypress.env();
+import { compareSnapshots } from '../../support/helpers';
 
   const years = [2024];
   const overrideUrls = [
@@ -41,4 +42,9 @@ describe('Overrides for Unreleased HMDA Panel Data Publication Warnings', { tags
       });
     });
   });
+
+  it(`Visually hasn't changed`, { tags: '@visual' }, () => {
+    cy.visit(`${HOST}${overrideUrls[0].url}2023`)
+    compareSnapshots('overrides-2023')
+  })
 });

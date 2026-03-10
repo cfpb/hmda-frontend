@@ -91,3 +91,29 @@ export const logEnv = (obj) => {
     cy.log(`${key}: ${obj[key]}`)
   })
 }
+
+/**
+ * Helper function for `cypress-visual-regression`.
+ * See https://www.npmjs.com/package/cypress-visual-regression
+ * Waits for loading icon to disappear and main wrapper to be visible before taking snapshot. 
+ *
+ * @param {string} snapshotName Snapshot identifier used by compareSnapshot
+ * @param {string} containerSelector DOM selector for the snapshot target element
+ */
+export const compareSnapshots = (
+  snapshotName,
+  containerSelector = '#mainWrapper',
+) => {
+  const grepTags = Cypress.env('grepTags')
+  const shouldRunVisualSnapshot = grepTags.includes('@visual')
+
+  if (!shouldRunVisualSnapshot) {
+    cy.log(`Skipping visual snapshot "${snapshotName}" (grepTags does not include @visual).`)
+    return
+  }
+
+  cy.get('.LoadingIconWrapper').should('not.exist')
+  cy.get(containerSelector).should('be.visible')
+  cy.get(containerSelector).compareSnapshot(snapshotName)
+  cy.log(`Visual snapshot "${snapshotName}" taken.`)
+}

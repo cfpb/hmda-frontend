@@ -1,5 +1,5 @@
 import { onlyOn } from '@cypress/skip-test'
-import { isBeta } from '../../support/helpers'
+import { compareSnapshots, isBeta } from '../../support/helpers'
 
 const { HOST } = Cypress.env()
 
@@ -71,6 +71,8 @@ onlyOn(!isBeta(HOST), () => {
           cy.get(':nth-child(19)').should('have.text', '35227')
         },
       )
+
+      compareSnapshots('national-aggregate-report-2017')
     })
   })
 })
