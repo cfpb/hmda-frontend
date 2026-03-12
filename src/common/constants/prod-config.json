@@ -2,6 +2,12 @@
   "name": "prod",
   "announcement": [
     {
+      "message": "We will be performing scheduled system maintenance on March 12 from 6:30PM - 7:30PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+      "type": "warning",
+      "heading": "Scheduled Maintenance",
+      "link": null
+    },
+    {
       "heading": "Future HMDA News and Updates",
       "message": "Due to operational constraints, the Consumer Financial Protection Bureau has discontinued its use of the GovDelivery email service on Tuesday, January 20, 2026. After that date, subscribers to the HMDA mailing list will no longer receive email notifications. To ensure you continue to have access to timely information, ",
       "type": "warning",
@@ -36,7 +42,12 @@
   "publicationReleaseYear": "2024",
   "mlarReleaseYear": "2024",
   "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "filingAnnouncement": {
+    "message": "We will be performing scheduled system maintenance on March 12 from 6:30PM - 7:30PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance",
+    "endDate": null
+  },
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
