@@ -1,5 +1,6 @@
 const { defineConfig } = require('cypress')
 const { plugin: cypressGrepPlugin } = require('@cypress/grep/plugin')
+const { configureVisualRegression } = require('cypress-visual-regression')
 const fs = require('fs')
 
 module.exports = defineConfig({
@@ -16,6 +17,9 @@ module.exports = defineConfig({
     AUTH_REALM: 'hmda2',
     AUTH_CLIENT_ID: 'hmda2-api',
     preserveCookies: ['_login_gov_session'],
+    visualRegressionBaseDirectory: 'cypress/snapshots/base',
+    visualRegressionDiffDirectory: 'cypress/snapshots/diff',
+    visualRegressionGenerateDiff: 'fail',
     // Always enable spec filtering
     grepFilterSpecs: true,
     // Always omit filtered tests
@@ -35,10 +39,8 @@ module.exports = defineConfig({
   e2e: {
     experimentalRunAllSpecs: true,
     testIsolation: true,
-    setupNodeEvents(on, config) {
-      return require('./cypress/plugins/index.js')(on, config)
-    },
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
+    screenshotsFolder: 'cypress/snapshots/actual',
     experimentalOriginDependencies: true,
     chromeWebSecurity: false,
     defaultCommandTimeout: 10000,
@@ -50,6 +52,9 @@ module.exports = defineConfig({
     // Delete videos for specs without failing or retried tests, see docs:
     // https://docs.cypress.io/app/guides/screenshots-and-videos#Delete-videos-for-specs-without-failing-or-retried-tests
     setupNodeEvents(on, config) {
+      require('./cypress/plugins/index.js')(on, config)
+      configureVisualRegression(on)
+
       on('after:spec', (spec, results) => {
         if (results && results.video) {
           // Do we have failures for any retry attempts?
