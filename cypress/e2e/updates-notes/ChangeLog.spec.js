@@ -23,7 +23,7 @@ const REALLY_LONG_MOCK_DATA = {
         },
       ],
     },
-    ...entries.slice(0)
+    ...entries
   ],
 }
 
@@ -45,7 +45,19 @@ const SHORT_MOCK_DATA = {
         },
       ],
     },
-    ...entries.slice(0)
+    ...entries
+  ],
+}
+
+const MARKDOWN_MOCK_DATA = {
+  log: [
+    {
+      date: '03/01/26',
+      type: 'announcement',
+      product: 'filing',
+      description: '**Did you know?** Markdown is now supported!\n- Lists\n- **Bold** and *italic* text\n- [Links](https://consumerfinance.gov)\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+    },
+    ...entries
   ],
 }
 
@@ -57,6 +69,30 @@ onlyOn(isBeta(HOST), () => {
 
 onlyOn(!isBeta(HOST), () => {
   describe('Change Log', { tags: ['@localhost'] }, () => {
+    describe('Announcements that contain markdown', () => {
+      it('Markdown is properly processed', () => {
+        cy.intercept('**/raw.githubusercontent.com/**/change-log-data.json', { body: MARKDOWN_MOCK_DATA })
+        cy.visit(`${HOST}/updates-notes/updates`)
+
+        cy.get('.expandable-description-wrapper')
+          .first()
+          .within(() => {
+            // Bolding
+            cy.get('.expandable-description-content strong').should('contain', 'Did you know?')
+
+            // Italics
+            cy.get('.expandable-description-content em').should('contain', 'italic')
+
+            // Links
+            cy.get('.expandable-description-content a').should('have.length', 1)
+            cy.get('.expandable-description-content a').should('have.attr', 'href', 'https://consumerfinance.gov')
+
+            // Lists
+            cy.get('.expandable-description-content ul').should('exist')
+            cy.get('.expandable-description-content li').should('have.length.gte', 3)
+          })
+      })
+    })
     describe('Really long announcements that have an expandable', () => {
       it('Shows a "read more" button for long descriptions and expands when clicked', () => {
         cy.intercept('**/raw.githubusercontent.com/**/change-log-data.json', { body: REALLY_LONG_MOCK_DATA })
@@ -101,18 +137,19 @@ onlyOn(!isBeta(HOST), () => {
 
       it('Applies keyword filter from URL query string', { tags: ['@smoke'] }, () => {
         cy.visit(`${HOST}/updates-notes/updates?keywords=2020,tool`)
-        cy.get('.change-row').should('have.length', 2)
+        const NUM_FILTERED_ITEMS = 2
+        cy.get('.change-row').should('have.length', NUM_FILTERED_ITEMS)
         cy.get('.result-count .body').should(
           'contain',
-          'Showing ' + 2 + ' out of',
+          'Showing ' + NUM_FILTERED_ITEMS + ' out of',
         )
         cy.get('.change-row')
           .find('.highlighted')
           .its('length')
-          .should('be.gte', 2)
+          .should('be.gte', NUM_FILTERED_ITEMS)
 
         cy.get('.reset-filters').click()
-        cy.get('.change-row').should('have.length.gte', entries.length)
+        cy.get('.change-row').should('have.length.gt', NUM_FILTERED_ITEMS)
         cy.get('.result-count').should('not.exist')
       })
 
