@@ -6,10 +6,11 @@ module.exports = defineConfig({
   chromeWebSecurity: false,
   video: true,
   env: {
-    HOST: 'https://ffiec.cfpb.gov',
-    ENVIRONMENT: 'NOT CI',
+    HOST: 'http://localhost:3000',
+    ENVIRONMENT: 'CI',
     USERNAME: 'frontend.testing@mailinator.com',
     INSTITUTION: 'FRONTENDTESTBANK9999',
+    MAPBOX_ACCESS_TOKEN: 'XXXXXXXX',
     TEST_DELAY: 1000,
     ACTION_DELAY: 1000,
     NAV_DELAY: 5000,
