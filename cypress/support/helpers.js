@@ -24,17 +24,8 @@ export function withFormData(method, url, formData, done) {
 }
 
 export function urlExists(url) {
-  return new Promise((resolve) => {
-    const xhr = new XMLHttpRequest()
-
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState === 4)
-        resolve({ url, status: xhr.status < 400, statusCode: xhr.status })
-    }
-
-    xhr.open('HEAD', url)
-    xhr.send()
-  })
+  return cy.request({ url, method: 'HEAD', failOnStatusCode: false, timeout: 30000 })
+           .then((response) => ({ url, status: response.status < 400, statusCode: response.status }))
 }
 
 /* Data Browser Helpers */

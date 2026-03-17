@@ -2,9 +2,39 @@ import { register as registerCypressGrep } from '@cypress/grep'
 import '@testing-library/cypress/add-commands'
 import 'cypress-file-upload'
 import 'cypress-keycloak'
+import { addCompareSnapshotCommand } from 'cypress-visual-regression/dist/command'
 import { logEnv, urlExists } from './helpers'
 
 registerCypressGrep()
+addCompareSnapshotCommand({ errorThreshold: 0.1 })
+
+// Create a name for the screenshot based on the test title
+const getScreenshotName = title => title.replace(/[^a-zA-Z0-9-_]/g, '-').replace(/-{2,}/g, '-').slice(0, 120)
+
+// When CYPRESS_visualRegressionType env var is set (to either `base` or `regression`),
+// a screenshot will be taken after each test.
+// See https://github.com/cypress-visual-regression/cypress-visual-regression#plugin-options
+afterEach(function () {
+  if (!Cypress.env('visualRegressionType')) return
+  if (this.currentTest?.state !== 'passed') return
+
+  const name = getScreenshotName(this.currentTest.fullTitle())
+
+  cy.get('body', { log: false }).then((body) => {
+    // Make sure the page is done loading
+    const isLoading = body.find('.LoadingIconWrapper').length > 0
+    if (isLoading) return
+
+    // Every page (I think?) has a #mainWrapper div that contains the content
+    const hasMainWrapper = body.find('#mainWrapper').length > 0
+    const screenshotWrapper = hasMainWrapper ? '#mainWrapper' : 'body'
+    const screenshotElement = body.find(screenshotWrapper).first()
+
+    if (!screenshotElement.length || !screenshotElement.is(':visible')) return
+
+    cy.get(screenshotWrapper, { log: false }).compareSnapshot(name)
+  })
+})
 
 // ***********************************************************
 // This example support/index.js is processed and
