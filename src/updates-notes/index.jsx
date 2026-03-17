@@ -1,11 +1,13 @@
 import { Route, Switch } from 'react-router-dom'
 import LoadingIcon from '../common/LoadingIcon'
-import { useRemoteJSON } from '../common/useRemoteJSON'
-import defaultData from './change-log-data.json'
+import { useRemoteMarkdown } from '../common/useRemoteMarkdown'
+// See https://vite.dev/guide/assets#importing-asset-as-string
+import defaultChangeLog from './change-log.md?raw'
 import './ChangeLog.scss'
 import ChangeLogTable from './ChangeLogTable'
 import { DEFAULT_FILTERS, FILTER_OPTIONS, PUB_CHANGELOG_URL } from './constants'
 import FilterBar from './FilterBar'
+import { parseChangeLog } from './parseChangeLog'
 import { organizeChangeData } from './sortFunctions'
 import { useChangeLogFilter } from './useChangeLogFilter'
 
@@ -13,10 +15,10 @@ import { useChangeLogFilter } from './useChangeLogFilter'
 function UpdatesNotes() {
   const filter = useChangeLogFilter(DEFAULT_FILTERS)
 
-  const [changeLog, loading] = useRemoteJSON(PUB_CHANGELOG_URL, {
-    transformReceive: (data) => organizeChangeData(data),
-    defaultData: organizeChangeData(defaultData),
-    forceFetch: window.Cypress !== undefined
+  const [changeLog, loading] = useRemoteMarkdown(PUB_CHANGELOG_URL, {
+    transformReceive: (text) => organizeChangeData({ log: parseChangeLog(text) }),
+    defaultData: organizeChangeData({ log: parseChangeLog(defaultChangeLog) }),
+    forceFetch: window.Cypress !== undefined,
   })
 
   const heading = 'HMDA News and Updates'
