@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { isBeta } from '../common/Beta'
 import BannerUSA from './BannerUSA'
 import { defaultLinks } from './constants/links'
-import { isBeta } from '../common/Beta'
 
-import './uswds/css/styles.css'
 import logo from './images/ffiec-logo.svg'
+import './uswds/css/styles.css'
 import closeBtn from './uswds/img/usa-icons/close.svg'
 
-import { DocSearch } from '@docsearch/react'
 import '@docsearch/css'
+import { DocSearch } from '@docsearch/react'
 
 export const hideHeaderFooter = (path) => {
   const parts = path && path.split('/')
@@ -159,7 +159,7 @@ const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
               <DocSearch
                 appId='69RTFLDVTR'
                 indexName='ffiec-beta-cfpb'
-                apiKey='5c0ed9de237607b9a9cbb0ce5e136996'
+                apiKey={import.meta.env.ALGOLIA_PUBLIC_KEY}
               />
             )}
           </nav>
