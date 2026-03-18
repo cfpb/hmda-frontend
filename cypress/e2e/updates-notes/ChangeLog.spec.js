@@ -1,65 +1,62 @@
 import { onlyOn } from '@cypress/skip-test'
-import log from '../../../src/updates-notes/change-log-data.json'
 import { isBeta } from '../../support/helpers'
 const { HOST } = Cypress.env()
 const EXPECTED_SELECTED_PILLS = ['release', 'documentation', 'tools']
-const entries = log.log
 
-const REALLY_LONG_MOCK_DATA = {
-  log: [
-    {
-      date: '02/20/26',
-      type: 'announcement',
-      product: 'tools',
-      description: 'This is a super long announcement and it is very cool.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\n\nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.\n\nNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.\n\nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.\n\nNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
-      links: [
-        {
-          text: 'Cool link',
-          url: 'https://consumerfinance.gov',
-        },
-        {
-          text: 'Another cool link',
-          url: 'https://consumerfinance.gov',
-        },
-      ],
-    },
-    ...entries
-  ],
-}
+const REALLY_LONG_MOCK_DATA = `
+---
+date: 03/01/99
+type: announcement
+product: tools
+links:
+  - text: "Cool link"
+    url: "https://consumerfinance.gov"
+  - text: "Another cool link"
+    url: "https://consumerfinance.gov"
+---
+This is a super long announcement and it is very cool.
 
-const SHORT_MOCK_DATA = {
-  log: [
-    {
-      date: '02/20/26',
-      type: 'announcement',
-      product: 'tools',
-      description: 'This is a normal length announcement and it is also very cool.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-      links: [
-        {
-          text: 'Cool link',
-          url: 'https://consumerfinance.gov',
-        },
-        {
-          text: 'Another cool link',
-          url: 'https://consumerfinance.gov',
-        },
-      ],
-    },
-    ...entries
-  ],
-}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
-const MARKDOWN_MOCK_DATA = {
-  log: [
-    {
-      date: '03/01/26',
-      type: 'announcement',
-      product: 'filing',
-      description: '**Did you know?** Markdown is now supported!\n- Lists\n- **Bold** and *italic* text\n- [Links](https://consumerfinance.gov)\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
-    },
-    ...entries
-  ],
-}
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+
+Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+
+Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+`
+
+const SHORT_MOCK_DATA = `
+---
+date: 03/01/99
+type: announcement
+product: tools
+links:
+  - text: "Cool link"
+    url: "https://consumerfinance.gov"
+  - text: "Another cool link"
+    url: "https://consumerfinance.gov"
+---
+This is a normal length announcement and it is also very cool.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+`
+
+const MARKDOWN_MOCK_DATA = `
+---
+date: 03/01/99
+type: announcement
+product: tools
+---
+**Did you know?** Markdown is now supported!
+
+- Lists
+- **Bold** and *italic* text
+- [Links](https://consumerfinance.gov)
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+`
 
 onlyOn(isBeta(HOST), () => {
   describe('Change Log', function () {
@@ -71,7 +68,7 @@ onlyOn(!isBeta(HOST), () => {
   describe('Change Log', { tags: ['@localhost'] }, () => {
     describe('Announcements that contain markdown', () => {
       it('Markdown is properly processed', () => {
-        cy.intercept('**/raw.githubusercontent.com/**/change-log-data.json', { body: MARKDOWN_MOCK_DATA })
+        cy.intercept('**/raw.githubusercontent.com/**/change-log.md', { body: MARKDOWN_MOCK_DATA })
         cy.visit(`${HOST}/updates-notes/updates`)
 
         cy.get('.expandable-description-wrapper')
@@ -95,7 +92,7 @@ onlyOn(!isBeta(HOST), () => {
     })
     describe('Really long announcements that have an expandable', () => {
       it('Shows a "read more" button for long descriptions and expands when clicked', () => {
-        cy.intercept('**/raw.githubusercontent.com/**/change-log-data.json', { body: REALLY_LONG_MOCK_DATA })
+        cy.intercept('**/raw.githubusercontent.com/**/change-log.md', { body: REALLY_LONG_MOCK_DATA })
         cy.visit(`${HOST}/updates-notes/updates`)
 
         cy.get('.expandable-description-wrapper')
@@ -114,7 +111,7 @@ onlyOn(!isBeta(HOST), () => {
       })
 
       it('Does not show "Read more" button for short descriptions', () => {
-        cy.intercept('**/raw.githubusercontent.com/**/change-log-data.json', { body: SHORT_MOCK_DATA })
+        cy.intercept('**/raw.githubusercontent.com/**/change-log.md', { body: SHORT_MOCK_DATA })
         cy.visit(`${HOST}/updates-notes/updates`)
 
         cy.get('.expandable-description-wrapper')
