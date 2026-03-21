@@ -30,8 +30,6 @@ module.exports = defineConfig({
     openMode: 0,
   },
 
-  experimentalStudio: true,
-
   e2e: {
     experimentalRunAllSpecs: true,
     testIsolation: true,
