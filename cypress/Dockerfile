@@ -1,6 +1,5 @@
-# Install Cypress v14.3.0
-FROM cypress/included:14.3.0
-
+# Install Cypress v15.12.0
+FROM cypress/included:15.12.0
 # Set working directory
 WORKDIR /hmda-frontend
 
@@ -12,7 +11,9 @@ COPY cypress/package.json ./
 # Add Zscaler Root CA certificate
 ADD https://raw.githubusercontent.com/cfpb/zscaler-cert/refs/heads/main/zscaler_root_ca.pem /usr/local/share/ca-certificates/zscaler-root-public.cert
 ARG NODE_EXTRA_CA_CERTS=/usr/local/share/ca-certificates/zscaler-root-public.cert
-RUN npm install cypress@14.3.0 --save-dev --force --loglevel verbose
+
+# Install packages (--legacy-peer-deps added because of incompatibility with cypress-keycloak v2.0.2)
+RUN npm install --loglevel verbose --legacy-peer-deps
 RUN npx cypress verify
 
 # Prepare working directory

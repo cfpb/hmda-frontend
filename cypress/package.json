@@ -2,8 +2,8 @@
   "dependencies": {
     "@cypress/grep": "^5.0.0",
     "@cypress/skip-test": "2.6.1",
-    "@testing-library/cypress": "10.0.2",
-    "cypress": "14.3.0",
+    "@testing-library/cypress": "10.1.0",
+    "cypress": "15.12.0",
     "cypress-file-upload": "5.0.8",
     "cypress-keycloak": "2.0.2"
   },
