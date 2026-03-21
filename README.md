@@ -341,3 +341,17 @@ Legacy unit tests can be run with `yarn unit-tests-legacy`. Many are outdated/br
 To run end-to-end tests against production (https://ffiec.cfpb.gov), use `yarn test`. See our [Cypress documentation](https://github.com/cfpb/hmda-frontend/blob/master/cypress/README.md) to learn about running and maintaining the tests.
 
 ![Cypress automated filing test](./readme-files/filing-2020-q1-cypress.gif)
+
+#### Having issues running Cypress locally?
+
+If you encounter issues running cypress, because it can be a little finicky sometimes, I'd recommend the following:
+
+_clear the cypress cache and reinstall_
+
+```sh
+yarn install
+yarn yarn cypress cache clear
+yarn cypress install
+```
+
+Still getting a weird `Cannot find module '@ffprobe-installer/darwin-x64/ffprobe'` error when on a Mac? Make sure the env var `npm_config_arch` is unset before you run the commands above.
