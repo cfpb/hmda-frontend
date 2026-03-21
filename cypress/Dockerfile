@@ -14,6 +14,21 @@ ARG NODE_EXTRA_CA_CERTS=/usr/local/share/ca-certificates/zscaler-root-public.cer
 
 # Install packages (--legacy-peer-deps added because of incompatibility with cypress-keycloak v2.0.2)
 RUN npm install --loglevel verbose --legacy-peer-deps
+
+# Manually install and replace cypress' version of esbuild to fix CVE-2025-68121/GO-2026-4337, a
+# critical vulnerability in the crypto/tls library, see the issue at: https://pkg.go.dev/vuln/GO-2026-4337
+# TODO: Remove the following RUN statement after Cypress patches it, see GHE #2711
+RUN npm install @esbuild/linux-x64@0.27.4 --save-optional --legacy-peer-deps --loglevel verbose && \
+    rm /root/.cache/Cypress/15.12.0/Cypress/resources/app/node_modules/@esbuild/linux-x64/bin/esbuild && \
+    cp node_modules/@esbuild/linux-x64/bin/esbuild /root/.cache/Cypress/15.12.0/Cypress/resources/app/node_modules/@esbuild/linux-x64/bin/esbuild
+
+# Manually install and replace cypress' version of undici to fix CVE-2026-1525, see the issue
+# at: https://nvd.nist.gov/vuln/detail/CVE-2026-1525
+# TODO: Remove the following RUN statement after Cypress patches it, see GHE #2711
+RUN npm install undici@6.24.0 --save-optional --legacy-peer-deps --loglevel verbose && \
+    rm -rf /root/.cache/Cypress/15.12.0/Cypress/resources/app/node_modules/undici && \
+    cp -r node_modules/undici /root/.cache/Cypress/15.12.0/Cypress/resources/app/node_modules/undici
+
 RUN npx cypress verify
 
 # Prepare working directory
