@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useAutoAdvance } from './useAutoAdvance'
-import { useDynamicHeight } from './useDynamicHeight'
 import IconPlay from '../common/images/play.svg?react'
 import IconPause from '../common/images/pause.svg?react'
 import './OptionCarousel.css'
@@ -26,11 +25,10 @@ export const OptionCarousel = ({
 }) => {
   if (!options || !options.length) return null
 
+  const measurementRef = useRef(null)
   const [currHeight, setCurrHeight] = useState(fixedHeight || '100px')
 
-  // Temporary styling change for APOR announcement, see: GHE #5358
-  // const styles = { height: currHeight }
-  const styles = { height: 'max-content' }
+  const styles = { '--oc-slide-height': fixedHeight || currHeight }
 
   const totalCount = options.length
   const hasMultiple = totalCount > 1
@@ -40,17 +38,47 @@ export const OptionCarousel = ({
     .filter((x) => x)
     .join(' ')
 
-  /* Adjust carousel container height when window is resized */
-  const maxLength = Math.max(
-    ...options.map((o) => o.props?.message?.length || 0),
-  )
-  useDynamicHeight({ setCurrHeight, maxLength, fixedHeight })
+  // Measure all options off-screen and keep carousel height fixed at tallest slide.
+  useEffect(() => {
+    if (fixedHeight || !measurementRef.current) return
+
+    const updateHeight = () => {
+      const nodes = measurementRef.current.querySelectorAll('[data-oc-measure-item]')
+      if (!nodes.length) return
+
+      const tallest = Math.max(...Array.from(nodes).map((node) => node.offsetHeight))
+      setCurrHeight(`${tallest}px`)
+    }
+
+    updateHeight()
+    window.addEventListener('resize', updateHeight)
+    return () => window.removeEventListener('resize', updateHeight)
+  }, [fixedHeight, options, showNavigator])
 
   /* Navigation logic */
   const navControls = useAutoAdvance({ cycleTime, totalCount, autoAdvance })
 
+  const measurementNavigatorProps = {
+    currentIdx: 0,
+    isPaused: false,
+    setPaused: () => {},
+    showNext: () => {},
+    showPrevious: () => {},
+    totalCount,
+  }
+
   return (
     <div id={id} className='oc' style={styles}>
+      {!fixedHeight && (
+        <div ref={measurementRef} className='oc-measurements' aria-hidden='true'>
+          {options.map((option, idx) => (
+            <span key={idx} className={classname} data-oc-measure-item>
+              {showNavigator && <OptionNavigator {...measurementNavigatorProps} />}
+              {option}
+            </span>
+          ))}
+        </div>
+      )}
       <span className={classname}>
         {showNavigator && (
           <OptionNavigator {...{ ...navControls, totalCount }} />

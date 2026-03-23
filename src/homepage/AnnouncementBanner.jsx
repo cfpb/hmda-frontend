@@ -1,11 +1,10 @@
-import React from 'react'
 import AporAnnouncement from '../common/AporAnnouncement.jsx'
 import ConfiguredAlert from '../common/ConfiguredAlert'
-import { numDaysBetween } from '../filing/utils/date.js'
-import { splitYearQuarter } from '../filing/api/utils.js'
 import { OptionCarousel } from '../common/OptionCarousel'
 import { getOpenFilingYears } from '../common/constants/configHelpers'
 import { parseTimedGuardDate } from '../deriveConfig'
+import { splitYearQuarter } from '../filing/api/utils.js'
+import { numDaysBetween } from '../filing/utils/date.js'
 
 /**
  * Length of time, in days, to display the announcement
@@ -171,7 +170,6 @@ export function AnnouncementBanner({
       id='oc-homepage-banner'
 
       options={announcements}
-
       cycleTime={5}
       hideIcon
       showControls

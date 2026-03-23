@@ -10,6 +10,8 @@
 .oc .alert {
   margin: 0;
   padding-top: 3rem;
+  min-height: var(--oc-slide-height);
+  box-sizing: border-box;
 }
 
 .oc .progress {
@@ -70,6 +72,14 @@
   position: relative;
   user-select: text;
   flex-basis: 100%;
+}
+
+.oc-measurements {
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: -1;
 }
 
 .oc-option.inline {
