@@ -25,10 +25,13 @@ afterEach(function () {
     const isLoading = body.find('.LoadingIconWrapper').length > 0
     if (isLoading) return
 
-    // Every page (I think?) has a #mainWrapper div that contains the content
-    const hasMainWrapper = body.find('#mainWrapper').length > 0
-    const screenshotWrapper = hasMainWrapper ? '#mainWrapper' : 'body'
-    const screenshotElement = body.find(screenshotWrapper).first()
+    // Every page (I think?) has a #mainWrapper or .mainWrapper_XXX div but fall
+    // back to body if it's not found
+    const mainWrapper = body.find('[id*="mainWrapper"], [class*="mainWrapper"]')
+    const screenshotWrapper = mainWrapper.length
+      ? '[id*="mainWrapper"], [class*="mainWrapper"]'
+      : 'body'
+    const screenshotElement = body.find(screenshotWrapper)
 
     if (!screenshotElement.length || !screenshotElement.is(':visible')) return
 
