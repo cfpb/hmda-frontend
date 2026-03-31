@@ -33,7 +33,10 @@ afterEach(function () {
       : 'body'
     const screenshotElement = body.find(screenshotWrapper)
 
-    if (!screenshotElement.length || !screenshotElement.is(':visible')) return
+    if (!screenshotElement.length || !screenshotElement.is(':visible')) {
+      const pageUrl = Cypress.state('window').location.href;
+      return assert.fail(`The screenshot wrapper element (${screenshotWrapper}) was not found on the page ${pageUrl}.`)
+    }
 
     cy.get(screenshotWrapper, { log: false }).compareSnapshot(name)
   })
