@@ -1,1 +1,0 @@
-import{j as r,A as u}from"./index-DQPNJAdx.js";function o({message:n,heading:e,type:t,link:s}){return r.jsx(u,{heading:e,type:t,children:r.jsxs("p",{children:[n,r.jsx(i,{link:s})]})})}function i({link:n}){if(!n)return null;const{text:e,url:t}=n;return!e||!t?null:r.jsxs(r.Fragment,{children:[" ",r.jsx("a",{href:t,children:e})]})}export{o as C};
