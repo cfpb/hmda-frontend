@@ -1,4 +1,4 @@
-import{r as reactExports,f as getDefaultExportFromCjs,d as commonjsGlobal,j as jsxRuntimeExports,i as iconSprite,Z as commonjsRequire,F as ordinal,l as useHistory,u as useLocation,S as Switch,o as Route,e as LoadingIcon}from"./index-CfDD1arK.js";import{B as Buffer}from"./index-D8cWNTLu.js";function useRemoteMarkdown(e,n={}){const[t,r]=reactExports.useState(n.defaultData),[o,a]=reactExports.useState(!1),[l,s]=reactExports.useState(null),{forceFetch:f}=n,d=f||window.location.host.indexOf("localhost")<0;return reactExports.useEffect(()=>{d&&(a(!0),s(null),fetch(e).then(p=>p.ok?p.text():Promise.reject(p)).then(p=>{n.transformReceive?r(n.transformReceive(p)):r(p),a(!1)}).catch(p=>{const{status:u,statusText:h}=p;a(!1),s(n.errorMsg||`Error: ${u} - ${h}`)}))},[]),[t,o,l]}const defaultChangeLog=`---
+import{r as reactExports,f as getDefaultExportFromCjs,d as commonjsGlobal,j as jsxRuntimeExports,i as iconSprite,Z as commonjsRequire,F as ordinal,l as useHistory,u as useLocation,S as Switch,o as Route,e as LoadingIcon}from"./index-DnmyrvMG.js";import{B as Buffer}from"./index-CjoglhnQ.js";function useRemoteMarkdown(e,n={}){const[t,r]=reactExports.useState(n.defaultData),[o,a]=reactExports.useState(!1),[l,s]=reactExports.useState(null),{forceFetch:f}=n,d=f||window.location.host.indexOf("localhost")<0;return reactExports.useEffect(()=>{d&&(a(!0),s(null),fetch(e).then(p=>p.ok?p.text():Promise.reject(p)).then(p=>{n.transformReceive?r(n.transformReceive(p)):r(p),a(!1)}).catch(p=>{const{status:u,statusText:h}=p;a(!1),s(n.errorMsg||`Error: ${u} - ${h}`)}))},[]),[t,o,l]}const defaultChangeLog=`---
 date: 03/31/26
 type: announcement
 product: mlar
@@ -16,9 +16,9 @@ Due to an upgrade to the HMDA Platform that was performed on December 2, 2025, l
 
 Please update your bookmarks and integrations to use the new URLs:
 
-- [Fixed Table: https://files.ffiec.cfpb.gov/apor/YieldTableFixed.txt](https://files.ffiec.cfpb.gov/apor/YieldTableFixed.txt)
-- [Adjustable Table: https://files.ffiec.cfpb.gov/apor/YieldTableAdjustable.txt](https://files.ffiec.cfpb.gov/apor/YieldTableAdjustable.txt)
-- [Survey Table: https://files.ffiec.cfpb.gov/apor/SurveyTable.csv](https://files.ffiec.cfpb.gov/apor/SurveyTable.csv)
+- Fixed Table: [https://files.ffiec.cfpb.gov/apor/YieldTableFixed.txt](https://files.ffiec.cfpb.gov/apor/YieldTableFixed.txt)
+- Adjustable Table: [https://files.ffiec.cfpb.gov/apor/YieldTableAdjustable.txt](https://files.ffiec.cfpb.gov/apor/YieldTableAdjustable.txt)
+- Survey Table: [https://files.ffiec.cfpb.gov/apor/SurveyTable.csv](https://files.ffiec.cfpb.gov/apor/SurveyTable.csv)
 
 ---
 date: 01/09/26
@@ -693,7 +693,7 @@ type: release
 product: documentation
 ---
 The Documentation for 2020 Annual and Quarterly filing deadlines has been released.
-`,PRODUCT_NAMES={mlar:"Modified LAR",datasets:"National Datasets",reports:"Reports",documentation:"Documentation",tools:"HMDA Tools",filing:"HMDA Filing"},PRODUCTS=Object.keys(PRODUCT_NAMES),CATEGORIES={correction:{order:4},update:{order:3},release:{order:2},announcement:{order:1}},PUB_CHANGELOG_URL="https://raw.githubusercontent.com/cfpb/hmda-frontend/9de81d61315388fce34e9c9a5404ea49a463e943/src/updates-notes/change-log.md",DEFAULT_FILTERS={type:[],product:[],keywords:[]},FILTER_OPTIONS={PRODUCT:PRODUCTS.map(e=>({value:e,type:"product"})),TYPE:Object.keys(CATEGORIES).sort((e,n)=>CATEGORIES[e].order-CATEGORIES[n].order).map(e=>({value:e,type:"type"}))};var mark$2={exports:{}};/*!***************************************************
+`,PRODUCT_NAMES={mlar:"Modified LAR",datasets:"National Datasets",reports:"Reports",documentation:"Documentation",tools:"HMDA Tools",filing:"HMDA Filing"},PRODUCTS=Object.keys(PRODUCT_NAMES),CATEGORIES={correction:{order:4},update:{order:3},release:{order:2},announcement:{order:1}},PUB_CHANGELOG_URL="https://raw.githubusercontent.com/cfpb/hmda-frontend/77af9b8854bf5c998aed0f0a866644f3769944fa/src/updates-notes/change-log.md",DEFAULT_FILTERS={type:[],product:[],keywords:[]},FILTER_OPTIONS={PRODUCT:PRODUCTS.map(e=>({value:e,type:"product"})),TYPE:Object.keys(CATEGORIES).sort((e,n)=>CATEGORIES[e].order-CATEGORIES[n].order).map(e=>({value:e,type:"type"}))};var mark$2={exports:{}};/*!***************************************************
 * mark.js v8.11.1
 * https://markjs.io/
 * Copyright (c) 2014–2018, Julian Kühnel
