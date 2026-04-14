@@ -1,4 +1,11 @@
 ---
+date: 02/31/26
+type: announcement
+product: mlar
+---
+Super cool test.
+
+---
 date: 03/31/26
 type: announcement
 product: mlar
