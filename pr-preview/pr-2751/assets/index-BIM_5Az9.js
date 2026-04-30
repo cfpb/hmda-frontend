@@ -1,1 +1,0 @@
-import{w as o,j as t,S as n,q as e,o as i,t as s}from"./index-BYEOEjSA.js";function a(){return t.jsxs(n,{children:[t.jsx(e,{exact:!0,path:"/documentation",to:window.location.assign(`${window.location.origin}/documentation/category/frequently-asked-questions`)}),t.jsx(i,{component:s})]})}const r=o(a);export{r as default};

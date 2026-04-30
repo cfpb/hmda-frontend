@@ -1,9 +1,9 @@
-import{r as reactExports,f as getDefaultExportFromCjs,d as commonjsGlobal,j as jsxRuntimeExports,i as iconSprite,Z as commonjsRequire,F as ordinal,l as useHistory,u as useLocation,S as Switch,o as Route,e as LoadingIcon}from"./index-BYEOEjSA.js";import{B as Buffer}from"./index-brCQVHNU.js";function useRemoteMarkdown(e,n={}){const[t,r]=reactExports.useState(n.defaultData),[o,a]=reactExports.useState(!1),[l,s]=reactExports.useState(null),{forceFetch:f}=n,d=f||window.location.host.indexOf("localhost")<0;return reactExports.useEffect(()=>{d&&(a(!0),s(null),fetch(e).then(p=>p.ok?p.text():Promise.reject(p)).then(p=>{n.transformReceive?r(n.transformReceive(p)):r(p),a(!1)}).catch(p=>{const{status:u,statusText:h}=p;a(!1),s(n.errorMsg||`Error: ${u} - ${h}`)}))},[]),[t,o,l]}const defaultChangeLog=`---
+import{r as reactExports,f as getDefaultExportFromCjs,d as commonjsGlobal,j as jsxRuntimeExports,i as iconSprite,Z as commonjsRequire,F as ordinal,l as useHistory,u as useLocation,S as Switch,o as Route,e as LoadingIcon}from"./index-Cn-Ry01m.js";import{B as Buffer}from"./index-CdpgfAOr.js";function useRemoteMarkdown(e,n={}){const[t,r]=reactExports.useState(n.defaultData),[o,a]=reactExports.useState(!1),[l,s]=reactExports.useState(null),{forceFetch:f}=n,d=f||window.location.host.indexOf("localhost")<0;return reactExports.useEffect(()=>{d&&(a(!0),s(null),fetch(e).then(p=>p.ok?p.text():Promise.reject(p)).then(p=>{n.transformReceive?r(n.transformReceive(p)):r(p),a(!1)}).catch(p=>{const{status:u,statusText:h}=p;a(!1),s(n.errorMsg||`Error: ${u} - ${h}`)}))},[]),[t,o,l]}const defaultChangeLog=`---
 date: 04/30/26
 type: update
 product: documentation
 ---
-The format of links to individual edits in our Filing Instructions Guides have changed. The new links can be found by clicking the \`#\` next to the edit ID in a FIG, e.g. https://ffiec.cfpb.gov/documentation/fig/2026/overview#edit-S302
+To optimize filers' user experience workflow, we have implemented contextual deep links between the filing application and the Filing Instructions Guides. Triggered edits now link directly to their descriptions in the FIG. The new links can be found by clicking the **#** next to the edit ID in a FIG, e.g. [https://ffiec.cfpb.gov/documentation/fig/2026/overview#edit-S302](https://ffiec.cfpb.gov/documentation/fig/2026/overview#edit-S302)
 
 ---
 date: 04/13/26
@@ -707,7 +707,7 @@ type: release
 product: documentation
 ---
 The Documentation for 2020 Annual and Quarterly filing deadlines has been released.
-`,PRODUCT_NAMES={mlar:"Modified LAR",datasets:"National Datasets",reports:"Reports",documentation:"Documentation",tools:"HMDA Tools",filing:"HMDA Filing"},PRODUCTS=Object.keys(PRODUCT_NAMES),CATEGORIES={correction:{order:4},update:{order:3},release:{order:2},announcement:{order:1}},PUB_CHANGELOG_URL="https://raw.githubusercontent.com/cfpb/hmda-frontend/6f04013dff2b27efe7e71d715be2ac6e17cfe3a8/src/updates-notes/change-log.md",DEFAULT_FILTERS={type:[],product:[],keywords:[]},FILTER_OPTIONS={PRODUCT:PRODUCTS.map(e=>({value:e,type:"product"})),TYPE:Object.keys(CATEGORIES).sort((e,n)=>CATEGORIES[e].order-CATEGORIES[n].order).map(e=>({value:e,type:"type"}))};var mark$2={exports:{}};/*!***************************************************
+`,PRODUCT_NAMES={mlar:"Modified LAR",datasets:"National Datasets",reports:"Reports",documentation:"Documentation",tools:"HMDA Tools",filing:"HMDA Filing"},PRODUCTS=Object.keys(PRODUCT_NAMES),CATEGORIES={correction:{order:4},update:{order:3},release:{order:2},announcement:{order:1}},PUB_CHANGELOG_URL="https://raw.githubusercontent.com/cfpb/hmda-frontend/0134c81197141f0581250899f88c2f43b54f4d64/src/updates-notes/change-log.md",DEFAULT_FILTERS={type:[],product:[],keywords:[]},FILTER_OPTIONS={PRODUCT:PRODUCTS.map(e=>({value:e,type:"product"})),TYPE:Object.keys(CATEGORIES).sort((e,n)=>CATEGORIES[e].order-CATEGORIES[n].order).map(e=>({value:e,type:"type"}))};var mark$2={exports:{}};/*!***************************************************
 * mark.js v8.11.1
 * https://markjs.io/
 * Copyright (c) 2014–2018, Julian Kühnel
