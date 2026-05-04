@@ -1,24 +1,21 @@
-import 'react-app-polyfill/ie11' // For IE 11 support
 import 'core-js/es/array'
+import 'react-app-polyfill/ie11'; // For IE 11 support
 
-import React from 'react'
-import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
+import { applyMiddleware, combineReducers, createStore } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { composeWithDevTools } from '@redux-devtools/extension'
+import { Redirect, Route, Switch } from 'react-router-dom'
+import { withAppContext } from '../common/appContextHOC'
 import AppContainer from './App.jsx'
 import HomeContainer from './home/HomeContainer.jsx'
 import InstitutionContainer from './institutions/container.jsx'
-import SubmissionRouter from './submission/router.jsx'
-import { initKeycloak } from '../common/api/Keycloak'
-import { setStore } from './utils/store.js'
-import appReducer from './reducers'
-import { withAppContext } from '../common/appContextHOC'
-import { composeWithDevTools } from '@redux-devtools/extension'
 import CompleteProfile from './profile/CompleteProfile'
+import appReducer from './reducers'
+import SubmissionRouter from './submission/router.jsx'
+import { setStore } from './utils/store.js'
 
-initKeycloak()
 const middleware = [thunkMiddleware]
 
 let store

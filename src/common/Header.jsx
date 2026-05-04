@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { isBeta } from '../common/Beta'
 import BannerUSA from './BannerUSA'
 import { defaultLinks } from './constants/links'
-import { isBeta } from '../common/Beta'
 
-import './uswds/css/styles.css'
 import logo from './images/ffiec-logo.svg'
+import './uswds/css/styles.css'
 import closeBtn from './uswds/img/usa-icons/close.svg'
 
-import { DocSearch } from '@docsearch/react'
 import '@docsearch/css'
+import { DocSearch } from '@docsearch/react'
 
 export const hideHeaderFooter = (path) => {
   const parts = path && path.split('/')
@@ -20,7 +20,7 @@ export const hideHeaderFooter = (path) => {
   return section === 'maps' ? 'no-print' : ''
 }
 
-const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
+const Header = ({ location: { pathname }, links = defaultLinks, isLoggedIn = false, ...props }) => {
   const beta = isBeta()
   // Links used to take users to Docusaurus
   const docusaurusLinks = [
@@ -59,16 +59,17 @@ const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
 
   const renderLink = (link, isActive) => {
     const className = isActive ? 'usa-nav__link usa-current' : 'usa-nav__link'
+    const href = isLoggedIn && link.authenticatedHref ? link.authenticatedHref : link.href
 
     if (beta) {
       return (
-        <a href={link.href} className={className}>
+        <a href={href} className={className}>
           {link.name}
         </a>
       )
     } else {
       return (
-        <Link to={link.href} className={className}>
+        <Link to={href} className={className}>
           {link.name}
         </Link>
       )

@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from 'react'
-import { Switch, Route, useLocation } from 'react-router-dom'
-import Header from './common/Header'
-import NotFound from './common/NotFound'
-import Footer from './common/Footer'
+import { useEffect, useState } from 'react'
+import { Route, Switch, useLocation } from 'react-router-dom'
+import { getKeycloak, initKeycloak } from './common/api/Keycloak.js'
+import { AppContext } from './common/appContextHOC'
 import Beta, { isBeta } from './common/Beta'
-import makeAsyncComponent from './common/makeAsyncComponent.jsx'
-import { useEnvironmentConfig } from './common/useEnvironmentConfig'
 import {
   betaLinks,
   defaultLinks,
   updateFilingLink,
 } from './common/constants/links'
-import { AppContext } from './common/appContextHOC'
+import Footer from './common/Footer'
+import Header from './common/Header'
+import makeAsyncComponent from './common/makeAsyncComponent.jsx'
+import NotFound from './common/NotFound'
+import { useEnvironmentConfig } from './common/useEnvironmentConfig'
 
 import './app.css'
+import ScrollToTop from './common/ScrollToTop'
 import { isFilingHomeOrYear } from './filing/utils/pages'
 import { useViewport } from './filing/utils/useViewport'
-import ScrollToTop from './common/ScrollToTop'
 
 const Homepage = makeAsyncComponent(
   () => import('./homepage'),
@@ -63,6 +64,9 @@ const App = () => {
   const config = useEnvironmentConfig(window.location.hostname)
   const location = useLocation()
   const { isMobile } = useViewport()
+  const [ isLoggedIn, setIsLoggedIn ] = useState(
+    getKeycloak()?.authenticated
+  )
   const [shouldApplyStyles, setShouldApplyStyles] = useState(
     !isFilingHomeOrYear(location),
   )
@@ -70,6 +74,14 @@ const App = () => {
   useEffect(() => {
     setShouldApplyStyles(!isFilingHomeOrYear(location))
   }, [location])
+
+  useEffect(() => {
+    initKeycloak().then(keycloak => {
+      setIsLoggedIn(keycloak.authenticated)
+    }).catch(() => {
+      setIsLoggedIn(false)
+    })
+  }, [])
 
   const isFiling = !!location.pathname.match(/^\/filing/)
   const isHelp = !!location.pathname.match(/^\/hmda-help/)
@@ -93,7 +105,7 @@ const App = () => {
         {showCommonHeader && (
           <Route
             path='/'
-            render={(props) => <Header links={headerLinks} {...props} />}
+            render={(props) => <Header links={headerLinks} isLoggedIn={isLoggedIn} {...props} />}
           />
         )}
         {showBetaBanner && <Beta />}

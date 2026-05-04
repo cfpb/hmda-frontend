@@ -47,4 +47,17 @@ onlyOn(!isBeta(HOST), () => {
     })
   })
 
+  describe('Main header nav', { tags: ['@smoke'] }, () => {
+    it('Links to the filing login page when not logged in', { tags: '@localhost' }, () => {
+      cy.visit(baseURLToVisit)
+
+      cy.get('header.usa-header--basic')
+        .contains('.usa-nav__primary-item > a.usa-nav__link', /^Filing$/)
+        .as('filingLink')
+
+      cy.get('@filingLink').click()
+      cy.location('pathname').should('match', /\/filing\/\d{4}\/?$/)
+    })
+  });
+
 })

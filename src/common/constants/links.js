@@ -54,7 +54,7 @@ export const defaultLinks = [
 export const updateFilingLink = (config, links) => {
   return links.map(link => {
     if(link.name !== 'Filing') return link
-    link.href = `/filing/${config.defaultDocsPeriod}/`
+    link.authenticatedHref = `/filing/${config.defaultDocsPeriod}/institutions`
     return link
   })
 }

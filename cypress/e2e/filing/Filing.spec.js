@@ -51,11 +51,21 @@ describe(
     const THIS_IS_BETA = isBeta(HOST)
     const testVsOfficial = THIS_IS_BETA ? 'test' : 'official'
 
+    it('Sends users to the institution page when logged in and clicking the Filing nav item', () => {
+      cy.visit(`${AUTH_BASE_URL}filing/2020/institutions`)
+      cy.wait(ACTION_DELAY)
+      cy.get('header.usa-header--basic')
+        .contains('.usa-nav__primary-item > a.usa-nav__link', /^Filing$/)
+        .as('filingLink')
+
+      cy.get('@filingLink').click()
+      cy.location('pathname').should('match', /\/filing\/\d{4}\/institutions\/?$/)
+
+    })
+
     years.forEach((filingPeriod, index) => {
       it(`${filingPeriod}`, { tags: ['@smoke'] }, function () {
         const status = filingPeriodStatus[filingPeriod]
-
-        cy.wait(ACTION_DELAY)
 
         // Select the year using the filing-year
         cy.get('.filing-year-selector .filing-year__control').click()
