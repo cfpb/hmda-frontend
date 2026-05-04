@@ -23,7 +23,7 @@ export function sanitizeLei(value) {
   )
 
   if (!validator.isLength(standardLeiString, { min: 20, max: 20 })) return null
-  if (!validator.isAlphanumeric(normalized, 'en-US')) return null
+  if (!validator.isAlphanumeric(standardLeiString, 'en-US')) return null
 
   return standardLeiString
 }
