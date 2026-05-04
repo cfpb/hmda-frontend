@@ -20,6 +20,7 @@ import {
   NO_SYNTACTICAL_VALIDITY_EDITS,
   SIGNED,
 } from '../constants/statusCodes.js'
+import { sanitizeLei } from '../../common/inputValidation.js'
 
 const editTypes = ['syntacticalvalidity', 'quality', 'macro']
 const submissionRoutes = ['upload', ...editTypes, 'submission']
@@ -110,6 +111,11 @@ export class SubmissionRouter extends Component {
 
   replaceHistory(splat) {
     const { lei, filingPeriod } = this.props.match.params
+
+    const sanitizedLei = sanitizeLei(lei);
+    const filingHome = this.props.history.replace('/filing');
+    if(!sanitizedLei) return filingHome;
+
     const pathname = `/filing/${filingPeriod}/${lei}/${splat}`
     this.props.history.replace(pathname)
   }

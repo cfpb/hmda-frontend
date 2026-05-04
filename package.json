@@ -76,6 +76,7 @@
     "sass": "1.77.8",
     "split2": "3.2.2",
     "streamsaver": "2.0.6",
+    "validator": "13.15.35",
     "web-streams-ponyfill": "1.4.2"
   },
   "browserslist": [

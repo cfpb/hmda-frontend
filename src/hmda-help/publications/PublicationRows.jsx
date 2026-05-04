@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import * as AccessToken from '../../common/api/AccessToken'
 import { getDefaultConfig } from '../../common/configUtils'
+import { sanitizeLei } from '../../common/inputValidation'
 import { fetchSequenceNumber } from '../utils/api'
 import { fileExists } from '../utils/file'
 import { PublicationRow } from './PublicationRow'
@@ -19,6 +20,16 @@ function PublicationRows({ institution }) {
   useEffect(() => {
     if (!loading) return
     const env = window.location.host.match(/^ffiec/) ? 'prod' : 'dev'
+
+    // throw an early error if the LEI is bad by setting the state to not loading + bad LEI error
+    const sanitizedLei = sanitizeLei(lei);
+    if (!sanitizedUrl) {
+      const errorForBadLei = 'Invalid LEI: contact hmdahelp@cfpb.gov'
+      setIrs((currentState) => ({...currentState, fetched: true, errorForBadLei}))
+      setMlar((currentState) => ({...currentState, fetched: true, errorForBadLei}))
+      return
+    }
+
 
     const irsUrl = `${fileServerDomain}/reports/disclosure/${activityYear}/${lei}/nationwide/IRS.csv`
     const mlarUrl = `${fileServerDomain}/modified-lar/${activityYear}/${lei}.txt`

@@ -8054,6 +8054,7 @@ __metadata:
     serialize-javascript: "npm:7.0.3"
     split2: "npm:3.2.2"
     streamsaver: "npm:2.0.6"
+    validator: "npm:13.15.35"
     vite: "npm:5.4.19"
     vite-plugin-node-polyfills: "npm:0.25.0"
     vite-plugin-svgr: "npm:^4.1.0"
@@ -14534,6 +14535,13 @@ __metadata:
   version: 4.0.1
   resolution: "v8flags@npm:4.0.1"
   checksum: 10c0/59500e19ff9e7b4e2f09bcfe12d16d9443bf36a0e9b65b5fa6688f12c4b3f833d99ecd8debdbe856c047080bd0a73bd2ca5066f524efb1a87fdca6c1e0aecd74
+  languageName: node
+  linkType: hard
+
+"validator@npm:13.15.35":
+  version: 13.15.35
+  resolution: "validator@npm:13.15.35"
+  checksum: 10c0/1958ebcad578128d154853a2b9bf5b95e7738dcc7d1d065e50a969812272312ec379dcaf375b9d7545e04a71de6755f60f5a4b49c1405737a9c80e11da297eef
   languageName: node
   linkType: hard
 
