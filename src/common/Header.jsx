@@ -87,12 +87,12 @@ const Header = ({ location: { pathname }, links = defaultLinks, isLoggedIn = fal
         <div className='usa-nav-container'>
           <div className='usa-navbar'>
             <div className='usa-logo' id='logo'>
-              <a className='nav-link' href='/' aria-label='Home'>
+              <Link className='nav-link' to='/' aria-label='Home'>
                 <img alt='FFIEC' src={logo} height='32' />
                 <span className='usa-logo__text'>
                   Home Mortgage Disclosure Act
                 </span>
-              </a>
+              </Link>
             </div>
             <button type='button' className='usa-menu-btn'>
               Menu

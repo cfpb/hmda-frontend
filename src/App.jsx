@@ -6,7 +6,6 @@ import Beta, { isBeta } from './common/Beta'
 import {
   betaLinks,
   defaultLinks,
-  updateFilingLink,
 } from './common/constants/links'
 import Footer from './common/Footer'
 import Header from './common/Header'
@@ -97,7 +96,7 @@ const App = () => {
 
   const headerLinks = isBeta()
     ? betaLinks
-    : updateFilingLink(config, defaultLinks)
+    : defaultLinks
 
   return (
     <AppContext.Provider value={{ config }}>

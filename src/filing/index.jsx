@@ -1,20 +1,21 @@
-import 'core-js/es/array'
+import 'core-js/es/array';
 import 'react-app-polyfill/ie11'; // For IE 11 support
 
-import { Provider } from 'react-redux'
-import { applyMiddleware, combineReducers, createStore } from 'redux'
-import thunkMiddleware from 'redux-thunk'
+import { Provider } from 'react-redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import thunkMiddleware from 'redux-thunk';
 
-import { composeWithDevTools } from '@redux-devtools/extension'
-import { Redirect, Route, Switch } from 'react-router-dom'
-import { withAppContext } from '../common/appContextHOC'
-import AppContainer from './App.jsx'
-import HomeContainer from './home/HomeContainer.jsx'
-import InstitutionContainer from './institutions/container.jsx'
-import CompleteProfile from './profile/CompleteProfile'
-import appReducer from './reducers'
-import SubmissionRouter from './submission/router.jsx'
-import { setStore } from './utils/store.js'
+import { composeWithDevTools } from '@redux-devtools/extension';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import { getKeycloak } from '../common/api/Keycloak.js';
+import { withAppContext } from '../common/appContextHOC';
+import AppContainer from './App.jsx';
+import HomeContainer from './home/HomeContainer.jsx';
+import InstitutionContainer from './institutions/container.jsx';
+import CompleteProfile from './profile/CompleteProfile';
+import appReducer from './reducers';
+import SubmissionRouter from './submission/router.jsx';
+import { setStore } from './utils/store.js';
 
 const middleware = [thunkMiddleware]
 
@@ -38,6 +39,8 @@ if (import.meta.env.MODE !== 'production') {
 setStore(store)
 
 const Filing = ({ config }) => {
+  const getFilingPeriod = () => store.getState()?.app?.filingPeriod || config.defaultPeriod
+
   return (
     <div className='App Filing'>
       <Provider store={store}>
@@ -52,10 +55,18 @@ const Filing = ({ config }) => {
               )
             }}
           />
-          <Redirect
+          <Route
             exact
-            from='/filing'
-            to={`/filing/${config.defaultPeriod}/`}
+            path='/filing'
+            render={() => (
+              <Redirect
+                to={
+                  getKeycloak()?.authenticated
+                    ? `/filing/${getFilingPeriod()}/institutions`
+                    : `/filing/${getFilingPeriod()}/`
+                }
+              />
+            )}
           />
           <Route
             exact
