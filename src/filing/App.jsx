@@ -1,21 +1,21 @@
+import { detect } from 'detect-browser'
+import 'normalize.css'
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { detect } from 'detect-browser'
-import ConfirmationModal from './modals/confirmationModal/container.jsx'
-import BrowserBlocker from './common/BrowserBlocker.jsx'
+import '../common/Header.css'
 import Loading from '../common/LoadingIcon.jsx'
+import { ShowUserName } from '../common/ShowUserName'
 import * as AccessToken from '../common/api/AccessToken.js'
-import { refresh, login } from './utils/keycloak.js'
 import { getKeycloak, initKeycloak } from '../common/api/Keycloak.js'
+import { PERIODS } from '../deriveConfig'
 import isRedirecting from './actions/isRedirecting.js'
 import updateFilingPeriod from './actions/updateFilingPeriod.js'
-import { FilingAnnouncement } from './common/FilingAnnouncement'
 import { splitYearQuarter } from './api/utils.js'
-import { PERIODS } from '../deriveConfig'
-import { ShowUserName } from '../common/ShowUserName'
-import 'normalize.css'
 import './app.css'
-import '../common/Header.css'
+import BrowserBlocker from './common/BrowserBlocker.jsx'
+import { FilingAnnouncement } from './common/FilingAnnouncement'
+import ConfirmationModal from './modals/confirmationModal/container.jsx'
+import { login, refresh } from './utils/keycloak.js'
 
 const browser = detect()
 
@@ -140,7 +140,6 @@ function AppContainer({
     location.pathname,
     match.params.filingPeriod,
     maintenanceMode,
-    filingPeriod,
   ])
 
   // Scroll to top on pathname change
