@@ -8,6 +8,7 @@ import { ShowUserName } from '../common/ShowUserName'
 import * as AccessToken from '../common/api/AccessToken.js'
 import { getKeycloak, initKeycloak } from '../common/api/Keycloak.js'
 import { PERIODS } from '../deriveConfig'
+import { USER_FOUND, USER_SIGNED_OUT } from './constants'
 import isRedirecting from './actions/isRedirecting.js'
 import updateFilingPeriod from './actions/updateFilingPeriod.js'
 import { splitYearQuarter } from './api/utils.js'
@@ -97,15 +98,20 @@ function AppContainer({
         setAuthenticationAttempted(true)
 
         if (keycloak.authenticated) {
+          dispatch({ type: USER_FOUND, payload: keycloak })
           AccessToken.set(keycloak.token)
           refresh()
           if (redirecting) {
             dispatch(isRedirecting(false))
           }
         } else if (!isHome()) {
+          dispatch({ type: USER_SIGNED_OUT })
           login(location.pathname)
+        } else {
+          dispatch({ type: USER_SIGNED_OUT })
         }
       } catch (error) {
+        dispatch({ type: USER_SIGNED_OUT })
         setAuthenticationAttempted(true)
         console.error('Failed to initialize Keycloak:', error)
         history.replace(`/filing/${config.defaultPeriod}/`)

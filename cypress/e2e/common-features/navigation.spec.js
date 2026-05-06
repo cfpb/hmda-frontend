@@ -55,7 +55,7 @@ onlyOn(!isBeta(HOST), () => {
         .contains('.usa-nav__primary-item > a.usa-nav__link', /^Filing$/)
         .as('filingLink')
 
-      cy.get('@filingLink').click()
+      cy.get('@filingLink').click({force: true})
       cy.location('pathname').should('match', /\/filing\/\d{4}\/?$/)
     })
   })

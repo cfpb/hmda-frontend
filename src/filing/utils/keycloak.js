@@ -2,6 +2,7 @@
 import { error } from './log.js'
 import { getStore } from './store.js'
 import isRedirecting from '../actions/isRedirecting.js'
+import { USER_FOUND } from '../constants'
 import { getKeycloak } from '../../common/api/Keycloak'
 import * as AccessToken from '../../common/api/AccessToken.js'
 
@@ -34,6 +35,7 @@ const refresh = () => {
           .then((refreshed) => {
             if (refreshed) {
               AccessToken.set(keycloak.token)
+              store.dispatch({ type: USER_FOUND, payload: keycloak })
             }
             updateKeycloak()
           })
@@ -59,6 +61,7 @@ const forceRefreshToken = async () => {
     const refreshed = await keycloak.updateToken(55000)
     if (refreshed) {
       AccessToken.set(keycloak.token)
+      store.dispatch({ type: USER_FOUND, payload: keycloak })
     }
     refresh()
   } catch (error) {
