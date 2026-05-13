@@ -65,7 +65,7 @@ onlyOn(isCI(ENVIRONMENT) || (isProd(HOST) && !isBeta(HOST)), () => {
     })
   })
 
-  describe('Check Digit API', () => {
+  describe('Check Digit API', { tags: ['@no-visual'] }, () => {
     it('Generates Check Digit file', function () {
       cy.get({ HOST, TEST_DELAY }).logEnv()
 
