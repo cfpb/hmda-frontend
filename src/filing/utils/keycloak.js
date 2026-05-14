@@ -1,10 +1,10 @@
 /* eslint no-restricted-globals: 0 */
-import { error } from './log.js'
-import { getStore } from './store.js'
+import * as AccessToken from '../../common/api/AccessToken.js'
+import { getKeycloak } from '../../common/api/Keycloak'
 import isRedirecting from '../actions/isRedirecting.js'
 import { USER_FOUND } from '../constants'
-import { getKeycloak } from '../../common/api/Keycloak'
-import * as AccessToken from '../../common/api/AccessToken.js'
+import { error } from './log.js'
+import { getStore } from './store.js'
 
 const login = (path) => {
   const keycloak = getKeycloak()
@@ -95,7 +95,7 @@ const logout = (queryString = '') => {
 
   const logoutUrl =
     `${keycloak.authServerUrl}/realms/${keycloak.realm}/protocol/openid-connect/logout` +
-    `?client_id=${keycloak.clientId}` + // Use client_id instead of id_token_hint
+    `?id_token_hint=${encodeURIComponent(keycloak.idToken)}` +
     `&post_logout_redirect_uri=${postLogoutRedirectUri}`
 
   // Perform logout and redirect
@@ -103,4 +103,5 @@ const logout = (queryString = '') => {
   window.location.href = logoutUrl
 }
 
-export { register, login, logout, refresh, forceRefreshToken }
+export { forceRefreshToken, login, logout, refresh, register }
+
