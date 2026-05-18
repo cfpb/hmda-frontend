@@ -26,6 +26,7 @@ const refresh = () => {
     console.error('Keycloak is not initialized')
     return
   }
+const store = getStore()
 
   const updateKeycloak = () => {
     setTimeout(
