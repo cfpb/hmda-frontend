@@ -57,6 +57,7 @@ const forceRefreshToken = async () => {
     console.error('Keycloak is not initialized')
     return
   }
+const store = getStore()
 
   try {
     const refreshed = await keycloak.updateToken(55000)
