@@ -1,25 +1,92 @@
-import React, { useEffect, useState } from 'react'
-import { Link, Redirect, Prompt } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, Prompt, Redirect } from 'react-router-dom'
 import Heading from '../../common/Heading'
 import InputAndLabel from '../../common/InputAndLabel'
 import AssociatedInstitutions from './AssociatedInstitutions'
 import SearchAssociatedInstitutions from './SearchAssociatedInstitutions'
 
-import './Profile.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { ShowUserName } from '../../common/ShowUserName'
 import { getKeycloak } from '../../common/api/Keycloak'
 import { runFetch } from '../../data-browser/api'
+import './Profile.css'
 import { createAssociatedInstitutionsList } from './utils'
 
-import * as AccessToken from '../../common/api/AccessToken'
+import jwtDecode from 'jwt-decode'
 import Alert from '../../common/Alert'
 import LoadingIcon from '../../common/LoadingIcon'
-import jwtDecode from 'jwt-decode'
-import { forceRefreshToken } from '../utils/keycloak'
+import * as AccessToken from '../../common/api/AccessToken'
+import Icon from '../../common/uswds/components/Icon'
 import { shouldFetchInstitutions } from '../actions/shouldFetchInstitutions'
 import { MissingInstitutionsBanner } from '../institutions/MissingInstitutionsBanner'
-import Icon from '../../common/uswds/components/Icon'
+import { forceRefreshToken } from '../utils/keycloak'
+
+const serializeUnknownValue = (value) => {
+  if (typeof value === 'undefined') return 'undefined'
+  if (value === null) return 'null'
+  if (
+    typeof value === 'string' ||
+    typeof value === 'number' ||
+    typeof value === 'boolean' ||
+    typeof value === 'bigint'
+  ) {
+    return String(value)
+  }
+
+  try {
+    const seen = new WeakSet()
+    return JSON.stringify(
+      value,
+      (_, nestedValue) => {
+        if (typeof nestedValue === 'object' && nestedValue !== null) {
+          if (seen.has(nestedValue)) return '[Circular]'
+          seen.add(nestedValue)
+        }
+        return nestedValue
+      },
+      2,
+    )
+  } catch {
+    return String(value)
+  }
+}
+
+const formatErrorForDisplay = (error) => {
+  const details = []
+
+  if (error && typeof error === 'object' && error.stack) {
+    details.push(String(error.stack))
+
+    const metadata = {}
+    Object.getOwnPropertyNames(error).forEach((key) => {
+      if (!['name', 'message', 'stack'].includes(key)) {
+        metadata[key] = error[key]
+      }
+    })
+
+    if (Object.keys(metadata).length) {
+      details.push(`Additional error data:\n${serializeUnknownValue(metadata)}`)
+    }
+  } else {
+    details.push(serializeUnknownValue(error))
+  }
+
+  return details.join('\n\n')
+}
+
+const toBase64 = (text) => {
+  try {
+    // Handles Unicode by converting UTF-8 bytes into a binary string for btoa.
+    const bytes = new TextEncoder().encode(text)
+    let binary = ''
+    bytes.forEach((byte) => {
+      binary += String.fromCharCode(byte)
+    })
+    return btoa(binary)
+  } catch {
+    return btoa(unescape(encodeURIComponent(text)))
+  }
+}
 
 const CompleteProfile = (props) => {
   const dispatch = useDispatch()
@@ -36,9 +103,15 @@ const CompleteProfile = (props) => {
   const [unregisteredInstitutions, setUnregisteredInstitutions] = useState([])
   const [loading, setLoading] = useState(false)
   const [displayNotification, setDisplayNotification] = useState(false)
+  const [profileSaveError, setProfileSaveError] = useState('')
   const [errorFromAPI, setErrorFromAPI] = useState(false)
   const [copiedAuthToken, setCopiedAuthToken] = useState(false)
+  const [copiedProfileSaveError, setCopiedProfileSaveError] = useState(false)
   const [showSettingsMenu, setShowSettingsMenu] = useState(false)
+
+  const encodedProfileSaveError = profileSaveError
+    ? toBase64(profileSaveError)
+    : ''
 
   if (!user) {
     return <Redirect to={`/filing/${props.config.defaultPeriod}`} />
@@ -95,6 +168,8 @@ const CompleteProfile = (props) => {
 
   const saveUserInfo = (event) => {
     event.preventDefault()
+    setProfileSaveError('')
+    setDisplayNotification(false)
 
     if (firstName?.length !== 0 || lastName?.length !== 0) {
       let endpoint = window.location.origin + '/hmda-auth/users/'
@@ -116,16 +191,44 @@ const CompleteProfile = (props) => {
       }
 
       fetch(endpoint, request)
-        .then((response) => response.json())
+        .then(async (response) => {
+          const rawResponseBody = await response.text()
+          let parsedResponseBody = rawResponseBody
+
+          try {
+            parsedResponseBody = rawResponseBody
+              ? JSON.parse(rawResponseBody)
+              : null
+          } catch {
+            // Keep the raw response body when it is not valid JSON.
+          }
+
+          if (!response.ok) {
+            const profileUpdateError = new Error(
+              `Profile update failed with status ${response.status} ${response.statusText}`,
+            )
+            profileUpdateError.status = response.status
+            profileUpdateError.statusText = response.statusText
+            profileUpdateError.responseBody = parsedResponseBody
+            throw profileUpdateError
+          }
+
+          return parsedResponseBody
+        })
         .then(async () => {
           setDisplayNotification(true)
+          setProfileSaveError('')
           await forceRefreshToken()
           let newToken = jwtDecode(AccessToken.get())
           setAccessTokenDecoded(newToken)
           dispatch(shouldFetchInstitutions(true))
           setUserIsEditingForm(false)
         })
-        .catch((error) => console.log(error))
+        .catch((error) => {
+          const formattedError = formatErrorForDisplay(error)
+          setProfileSaveError(formattedError)
+          console.error('Error saving user profile:', error)
+        })
     }
   }
 
@@ -134,6 +237,17 @@ const CompleteProfile = (props) => {
       setCopiedAuthToken(true)
       setTimeout(() => {
         setCopiedAuthToken(false)
+      }, 2000)
+    })
+  }
+
+  const copyProfileSaveErrorToClipboard = () => {
+    if (!encodedProfileSaveError) return
+
+    navigator.clipboard.writeText(encodedProfileSaveError).then(() => {
+      setCopiedProfileSaveError(true)
+      setTimeout(() => {
+        setCopiedProfileSaveError(false)
       }, 2000)
     })
   }
@@ -188,6 +302,28 @@ const CompleteProfile = (props) => {
                 <p>Your information was updated!</p>
               </Alert>
             )}
+
+            {profileSaveError && (
+              <Alert type='error' heading='Sorry, an error has occurred.'>
+                <p>
+                  Error updating your user profile. Share the details below
+                  with HMDA Help.
+                </p>
+                <pre className='profile_error_code_box'>
+                  {encodedProfileSaveError}
+                </pre>
+                <button
+                  type='button'
+                  className='copy_profile_error_button'
+                  onClick={copyProfileSaveErrorToClipboard}
+                >
+                  {copiedProfileSaveError
+                    ? 'Error copied'
+                    : 'Copy error to clipboard'}
+                </button>
+              </Alert>
+            )}
+
             <InputAndLabel
               labelName='First name'
               value={firstName || ''}
