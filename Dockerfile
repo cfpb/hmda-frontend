@@ -40,6 +40,16 @@ RUN echo "@edge https://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/rep
     apk update && \
     apk add --no-cache curl@edge libcurl@edge
 
+# Temporary fix for CVE-2026-40930 (libpng < 1.6.58-r1)
+# More info at: GHE #5575
+RUN apk update && apk add 'libpng>=1.6.58-r1'
+
+# Temporary fix for CVE-2026-6732 (libxml2 < 2.15.3)
+# We don't use the two nginx modules (xslt and njs) that use the vulnerable libxml2. So we can delete
+# them, then we can remove libxml2 too.
+# More info at: GHE #5576
+RUN apk del --no-network nginx-module-xslt nginx-module-njs libxslt libxml2
+
 ENV NGINX_USER=svc_nginx_hmda
 RUN apk update && apk upgrade
 RUN rm -rf /etc/nginx/conf.d
