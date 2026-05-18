@@ -8330,6 +8330,7 @@ __metadata:
     mapbox-gl: "npm:1.13.3"
     mark.js: "npm:^8.11.1"
     normalize.css: "npm:8.0.1"
+    picomatch: "npm:4.0.4"
     prettier: "npm:^3.1.1"
     react: "npm:18.3.1"
     react-app-polyfill: "npm:2.0.0"
@@ -11709,6 +11710,13 @@ __metadata:
   version: 1.1.1
   resolution: "picocolors@npm:1.1.1"
   checksum: 10c0/e2e3e8170ab9d7c7421969adaa7e1b31434f789afb9b3f115f6b96d91945041ac3ceb02e9ec6fe6510ff036bcc0bf91e69a1772edc0b707e12b19c0f2d6bcf58
+  languageName: node
+  linkType: hard
+
+"picomatch@npm:4.0.4":
+  version: 4.0.4
+  resolution: "picomatch@npm:4.0.4"
+  checksum: 10c0/e2c6023372cc7b5764719a5ffb9da0f8e781212fa7ca4bd0562db929df8e117460f00dff3cb7509dacfc06b86de924b247f504d0ce1806a37fac4633081466b0
   languageName: node
   linkType: hard
 
