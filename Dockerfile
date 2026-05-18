@@ -40,6 +40,10 @@ RUN echo "@edge https://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/rep
     apk update && \
     apk add --no-cache curl@edge libcurl@edge
 
+# Temporary fix for CVE-2026-40930 (libpng < 1.6.58-r1)
+# More info at: GHE #5575
+RUN apk update && apk add 'libpng>=1.6.58-r1'
+
 ENV NGINX_USER=svc_nginx_hmda
 RUN apk update && apk upgrade
 RUN rm -rf /etc/nginx/conf.d
