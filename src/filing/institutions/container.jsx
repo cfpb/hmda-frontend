@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
+import jwtDecode from 'jwt-decode'
+import { Component } from 'react'
 import { connect } from 'react-redux'
-import requestInstitutions from '../actions/requestInstitutions.js'
-import fetchEachInstitution from '../actions/fetchEachInstitution.js'
-import getFilingPeriodOptions from '../actions/getFilingPeriodOptions'
-import Institutions from './index.jsx'
-import InstitutionDetailsWrapper from './details/InstitutionDetailsWrapper'
-import { getKeycloak } from '../../common/api/Keycloak.js'
 import { Redirect } from 'react-router-dom'
 import * as AccessToken from '../../common/api/AccessToken'
-import jwtDecode from 'jwt-decode'
+import { getKeycloak } from '../../common/api/Keycloak.js'
+import fetchEachInstitution from '../actions/fetchEachInstitution.js'
+import getFilingPeriodOptions from '../actions/getFilingPeriodOptions'
+import requestInstitutions from '../actions/requestInstitutions.js'
 import { shouldFetchInstitutions } from '../actions/shouldFetchInstitutions.js'
+import InstitutionDetailsWrapper from './details/InstitutionDetailsWrapper'
+import Institutions from './index.jsx'
 
 export class InstitutionContainer extends Component {
   constructor(props) {
@@ -87,7 +87,7 @@ export class InstitutionContainer extends Component {
       return <Redirect to='/filing/profile' />
     }
 
-    if (this.props.match.params.institution)
+    if (this.props.match?.params?.institution)
       return <InstitutionDetailsWrapper {...this.props} />
 
     return <Institutions {...this.props} />

@@ -1,21 +1,22 @@
+import { detect } from 'detect-browser'
+import 'normalize.css'
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { detect } from 'detect-browser'
-import ConfirmationModal from './modals/confirmationModal/container.jsx'
-import BrowserBlocker from './common/BrowserBlocker.jsx'
+import '../common/Header.css'
 import Loading from '../common/LoadingIcon.jsx'
+import { ShowUserName } from '../common/ShowUserName'
 import * as AccessToken from '../common/api/AccessToken.js'
-import { refresh, login } from './utils/keycloak.js'
 import { getKeycloak, initKeycloak } from '../common/api/Keycloak.js'
+import { PERIODS } from '../deriveConfig'
+import { USER_FOUND, USER_SIGNED_OUT } from './constants'
 import isRedirecting from './actions/isRedirecting.js'
 import updateFilingPeriod from './actions/updateFilingPeriod.js'
-import { FilingAnnouncement } from './common/FilingAnnouncement'
 import { splitYearQuarter } from './api/utils.js'
-import { PERIODS } from '../deriveConfig'
-import { ShowUserName } from '../common/ShowUserName'
-import 'normalize.css'
 import './app.css'
-import '../common/Header.css'
+import BrowserBlocker from './common/BrowserBlocker.jsx'
+import { FilingAnnouncement } from './common/FilingAnnouncement'
+import ConfirmationModal from './modals/confirmationModal/container.jsx'
+import { login, refresh } from './utils/keycloak.js'
 
 const browser = detect()
 
@@ -97,15 +98,20 @@ function AppContainer({
         setAuthenticationAttempted(true)
 
         if (keycloak.authenticated) {
+          dispatch({ type: USER_FOUND, payload: keycloak })
           AccessToken.set(keycloak.token)
           refresh()
           if (redirecting) {
             dispatch(isRedirecting(false))
           }
         } else if (!isHome()) {
+          dispatch({ type: USER_SIGNED_OUT })
           login(location.pathname)
+        } else {
+          dispatch({ type: USER_SIGNED_OUT })
         }
       } catch (error) {
+        dispatch({ type: USER_SIGNED_OUT })
         setAuthenticationAttempted(true)
         console.error('Failed to initialize Keycloak:', error)
         history.replace(`/filing/${config.defaultPeriod}/`)
@@ -140,7 +146,6 @@ function AppContainer({
     location.pathname,
     match.params.filingPeriod,
     maintenanceMode,
-    filingPeriod,
   ])
 
   // Scroll to top on pathname change

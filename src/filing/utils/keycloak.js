@@ -1,9 +1,10 @@
 /* eslint no-restricted-globals: 0 */
+import * as AccessToken from '../../common/api/AccessToken.js'
+import { getKeycloak } from '../../common/api/Keycloak'
+import isRedirecting from '../actions/isRedirecting.js'
+import { USER_FOUND } from '../constants'
 import { error } from './log.js'
 import { getStore } from './store.js'
-import isRedirecting from '../actions/isRedirecting.js'
-import { getKeycloak } from '../../common/api/Keycloak'
-import * as AccessToken from '../../common/api/AccessToken.js'
 
 const login = (path) => {
   const keycloak = getKeycloak()
@@ -25,6 +26,7 @@ const refresh = () => {
     console.error('Keycloak is not initialized')
     return
   }
+const store = getStore()
 
   const updateKeycloak = () => {
     setTimeout(
@@ -34,6 +36,7 @@ const refresh = () => {
           .then((refreshed) => {
             if (refreshed) {
               AccessToken.set(keycloak.token)
+              store.dispatch({ type: USER_FOUND, payload: keycloak })
             }
             updateKeycloak()
           })
@@ -54,11 +57,13 @@ const forceRefreshToken = async () => {
     console.error('Keycloak is not initialized')
     return
   }
+const store = getStore()
 
   try {
     const refreshed = await keycloak.updateToken(55000)
     if (refreshed) {
       AccessToken.set(keycloak.token)
+      store.dispatch({ type: USER_FOUND, payload: keycloak })
     }
     refresh()
   } catch (error) {
@@ -92,7 +97,7 @@ const logout = (queryString = '') => {
 
   const logoutUrl =
     `${keycloak.authServerUrl}/realms/${keycloak.realm}/protocol/openid-connect/logout` +
-    `?client_id=${keycloak.clientId}` + // Use client_id instead of id_token_hint
+    `?id_token_hint=${encodeURIComponent(keycloak.idToken)}` +
     `&post_logout_redirect_uri=${postLogoutRedirectUri}`
 
   // Perform logout and redirect
@@ -100,4 +105,5 @@ const logout = (queryString = '') => {
   window.location.href = logoutUrl
 }
 
-export { register, login, logout, refresh, forceRefreshToken }
+export { forceRefreshToken, login, logout, refresh, register }
+
