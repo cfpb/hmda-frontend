@@ -1,0 +1,63 @@
+name: veracode
+on:
+  workflow_dispatch:
+  pull_request:
+  merge_group:
+jobs:
+  Veracode_SAST:
+    runs-on:
+      - ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - name: Zip Scannable Files
+        run: >
+          find . -path '*test*' -prune -o \( -name '*.py' -o -name '*.js' -o
+          -name '*.ts' -o -name '*.htm*' -o -name '*.json' -o -name '*.yml' \)
+          -print | zip hmda-frontend-gha.zip -@
+      - name: See Included Files
+        run: |
+          ls -la
+      - name: Setup Veracode
+        run: |
+          curl -fsS https://tools.veracode.com/veracode-cli/install | sh
+
+      - name: Download Veracode Static Pipeline Scanner
+        run: >
+          curl
+          https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip
+          -o veracode.zip
+
+          unzip -o veracode.zip
+
+      - name: Veracode Static Pipeline Scanner
+        env:
+          VERACODE_API_ID: ${{ secrets.VERACODE_API_ID }}
+          VERACODE_API_KEY: ${{ secrets.VERACODE_API_KEY }}
+          VERACODE_POLICY: CFPB-Policy
+        run: >
+          java -jar pipeline-scan.jar
+          --veracode_api_id "$VERACODE_API_ID"
+          --veracode_api_key "$VERACODE_API_KEY"
+          --request_policy "$VERACODE_POLICY"
+
+          java -jar pipeline-scan.jar
+          --veracode_api_id "$VERACODE_API_ID"
+          --veracode_api_key "$VERACODE_API_KEY"
+          --file "./hmda-frontend-gha.zip"
+          --policy_file "$VERACODE_POLICY.json"
+          --app_id="hmda-frontend"
+          --summary_output true
+
+  Veracode_SCA:
+    runs-on:
+      - ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - name: SCA Scan
+        env:
+          SRCCLR_API_TOKEN: ${{secrets.SRCCLR_API_TOKEN}}
+          SRCCLR_REGION: FED
+        working-directory: ./
+        run: >
+          curl -sSL https://download.sourceclear.com/ci.sh | sh -s scan
+          --json=SCA-App-Issues.json
