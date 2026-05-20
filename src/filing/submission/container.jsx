@@ -22,6 +22,7 @@ import Loading from '../../common/LoadingIcon.jsx'
 import { FAILED, PARSED_WITH_ERRORS, SIGNED } from '../constants/statusCodes.js'
 import { isBeta } from '../../common/Beta'
 import { BetaAlertComplete } from './BetaAlertComplete'
+import { sanitizeLei } from '../../common/inputValidation.js'
 
 import './container.css'
 import './table.css'
@@ -99,14 +100,17 @@ class SubmissionContainer extends Component {
   render() {
     if (!this.props.location) return null
     const { submission, location, institutions, lei } = this.props
+
+    const sanitizedLei = sanitizeLei(lei)
+    if (!sanitizedLei) return null;
     const { status } = submission
     const code = status && status.code
     const page = location.pathname.split('/').slice(-1)[0]
-    const institution = institutions.institutions[lei]
+    const institution = institutions.institutions[sanitizedLei]
     const { selectedPeriod } = this.props
 
     const toRender = code
-      ? renderByCode(code, page, lei, selectedPeriod)
+      ? renderByCode(code, page, sanitizedLei, selectedPeriod)
       : [<Loading key='0' />]
 
     return (
