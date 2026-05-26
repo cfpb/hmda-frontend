@@ -1,40 +1,40 @@
-import mapbox from 'mapbox-gl'
-import {
-  createContext,
-  useCallback,
-  useEffect,
-  useRef,
+import React, {
   useState,
+  useEffect,
+  useCallback,
+  useRef,
+  createContext,
 } from 'react'
 import Alert from '../../common/Alert.jsx'
-import { getCSV, runFetch } from '../api.js'
-import fips2Shortcode from '../constants/fipsToShortcode.js'
-import DatasetDocsLink from '../datasets/DatasetDocsLink.jsx'
-import { FilterReports } from './FilterReports'
-import { MapsController } from './MapsController'
-import { MapsNavBar } from './MapsNavBar'
-import { ReportSummary } from './ReportSummary'
-import { fetchFilterData } from './filterUtils.jsx'
 import {
-  addLayers,
+  geographies,
+  variables,
+  getValuesForVariable,
+  getSelectData,
+  makeCombinedDefaultValue,
+  parseCombinedFilter,
+  varNameMapping,
+} from './selectUtils.jsx'
+import {
+  setOutline,
   getOrigPer1000,
   makeLegend,
   makeStops,
-  setOutline,
+  addLayers,
   useBias,
 } from './layerUtils.jsx'
-import './mapbox.css'
-import { buildPopupHTML, popup } from './popupUtils.jsx'
-import {
-  geographies,
-  getSelectData,
-  getValuesForVariable,
-  makeCombinedDefaultValue,
-  parseCombinedFilter,
-  variables,
-  varNameMapping,
-} from './selectUtils.jsx'
+import { popup, buildPopupHTML } from './popupUtils.jsx'
+import { fetchFilterData } from './filterUtils.jsx'
+import { runFetch, getCSV } from '../api.js'
+import fips2Shortcode from '../constants/fipsToShortcode.js'
+import mapbox from 'mapbox-gl'
 import { useReportData } from './useReportData.jsx'
+import { FilterReports } from './FilterReports'
+import { MapsNavBar } from './MapsNavBar'
+import { MapsController } from './MapsController'
+import { ReportSummary } from './ReportSummary'
+import './mapbox.css'
+import DatasetDocsLink from '../datasets/DatasetDocsLink.jsx'
 
 mapbox.accessToken = import.meta.env.MAPBOX_ACCESS_TOKEN
 
@@ -184,8 +184,6 @@ const MapContainer = (props) => {
   const [state2022Data, setState2022Data] = useState(null)
   const [county2023Data, setCounty2023Data] = useState(null)
   const [state2023Data, setState2023Data] = useState(null)
-  const [county2024Data, setCounty2024Data] = useState(null)
-  const [state2024Data, setState2024Data] = useState(null)
 
   const [filterData, setFilterData] = useState(null)
   const [tableFilterData, setTableFilterData] = useState(null)
@@ -223,8 +221,6 @@ const MapContainer = (props) => {
           return geography.value === 'state' ? state2022Data : county2022Data
         case '2023':
           return geography.value === 'state' ? state2023Data : county2023Data
-        case '2024':
-          return geography.value === 'state' ? state2024Data : county2024Data
         default:
           return null
       }
@@ -242,8 +238,6 @@ const MapContainer = (props) => {
       county2022Data,
       state2023Data,
       county2023Data,
-      state2024Data,
-      county2024Data,
     ],
   )
 
@@ -441,21 +435,6 @@ const MapContainer = (props) => {
 
   useEffect(() => {
     if (
-      !county2024Data &&
-      selectedGeography.value === "county" &&
-      year === "2024"
-    ) {
-      fetchQ.push(1)
-      runFetch("/2024/county.json").then(jsonData => {
-        console.log(jsonData)
-        setCounty2024Data(jsonData)
-        fetchQ.pop()
-      })
-    }
-  }, [county2024Data, selectedGeography, year])
-
-  useEffect(() => {
-    if (
       !state2018Data &&
       selectedGeography.value === 'state' &&
       year === '2018'
@@ -537,20 +516,6 @@ const MapContainer = (props) => {
       })
     }
   }, [selectedGeography, state2023Data, year])
-
-    useEffect(() => {
-    if (
-      !state2024Data &&
-      selectedGeography.value === "state" &&
-      year === "2024"
-    ) {
-      fetchQ.push(1)
-      runFetch("/2024/state.json").then(jsonData => {
-        setState2024Data(jsonData)
-        fetchQ.pop()
-      })
-    }
-  }, [selectedGeography, state2024Data, year])
 
   useEffect(() => {
     setData(getBaseData(year, selectedGeography))
