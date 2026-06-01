@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import { Link, Redirect, Prompt } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, Prompt, Redirect } from 'react-router-dom'
 import Heading from '../../common/Heading'
 import InputAndLabel from '../../common/InputAndLabel'
 import AssociatedInstitutions from './AssociatedInstitutions'
 import SearchAssociatedInstitutions from './SearchAssociatedInstitutions'
 
-import './Profile.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { ShowUserName } from '../../common/ShowUserName'
 import { getKeycloak } from '../../common/api/Keycloak'
 import { runFetch } from '../../data-browser/api'
+import './Profile.css'
 import { createAssociatedInstitutionsList } from './utils'
 
-import * as AccessToken from '../../common/api/AccessToken'
+import jwtDecode from 'jwt-decode'
 import Alert from '../../common/Alert'
 import LoadingIcon from '../../common/LoadingIcon'
-import jwtDecode from 'jwt-decode'
-import { forceRefreshToken } from '../utils/keycloak'
+import * as AccessToken from '../../common/api/AccessToken'
+import Icon from '../../common/uswds/components/Icon'
 import { shouldFetchInstitutions } from '../actions/shouldFetchInstitutions'
 import { MissingInstitutionsBanner } from '../institutions/MissingInstitutionsBanner'
-import Icon from '../../common/uswds/components/Icon'
+import { forceRefreshToken } from '../utils/keycloak'
 
 const CompleteProfile = (props) => {
   const dispatch = useDispatch()
@@ -36,8 +36,10 @@ const CompleteProfile = (props) => {
   const [unregisteredInstitutions, setUnregisteredInstitutions] = useState([])
   const [loading, setLoading] = useState(false)
   const [displayNotification, setDisplayNotification] = useState(false)
+  const [profileSaveError, setProfileSaveError] = useState('')
   const [errorFromAPI, setErrorFromAPI] = useState(false)
   const [copiedAuthToken, setCopiedAuthToken] = useState(false)
+  const [copiedProfileSaveError, setCopiedProfileSaveError] = useState(false)
   const [showSettingsMenu, setShowSettingsMenu] = useState(false)
 
   if (!user) {
@@ -116,16 +118,29 @@ const CompleteProfile = (props) => {
       }
 
       fetch(endpoint, request)
-        .then((response) => response.json())
+        .then(async (response) => {
+          if (!response.ok) {
+            const responseBody = await response.text()
+            const saveError = new Error(
+              `Failed to update user profile (${response.status}: ${responseBody})`,
+            )
+            throw saveError
+          }
+          return response.json()
+        })
         .then(async () => {
           setDisplayNotification(true)
+          setProfileSaveError(false)
           await forceRefreshToken()
           let newToken = jwtDecode(AccessToken.get())
           setAccessTokenDecoded(newToken)
           dispatch(shouldFetchInstitutions(true))
           setUserIsEditingForm(false)
         })
-        .catch((error) => console.log(error))
+        .catch((error) => {
+          setDisplayNotification(false)
+          setProfileSaveError(btoa(error))
+        })
     }
   }
 
@@ -134,6 +149,15 @@ const CompleteProfile = (props) => {
       setCopiedAuthToken(true)
       setTimeout(() => {
         setCopiedAuthToken(false)
+      }, 2000)
+    })
+  }
+
+  const copyProfileSaveError = () => {
+    navigator.clipboard.writeText(profileSaveError).then(() => {
+      setCopiedProfileSaveError(true)
+      setTimeout(() => {
+        setCopiedProfileSaveError(false)
       }, 2000)
     })
   }
@@ -188,6 +212,33 @@ const CompleteProfile = (props) => {
                 <p>Your information was updated!</p>
               </Alert>
             )}
+
+            {profileSaveError && (
+              <Alert type='error' heading='Sorry, an error has occurred.'>
+                <div>
+                  <ul>
+                    <li>Your request could not be completed. Please try again.</li>
+                    <li>
+                      If the problem persists, please contact <a href="https://hmdahelp.consumerfinance.gov/accounthelp/">HMDA Help</a>{' '}
+                      and share the error code below.
+                    </li>
+                  </ul>
+
+                  <pre className='profile_error_code_box'>{profileSaveError}</pre>
+
+                  <button
+                    type='button'
+                    className='copy_profile_error_button'
+                    onClick={copyProfileSaveError}
+                  >
+                    {copiedProfileSaveError
+                      ? 'Error copied to clipboard'
+                      : 'Copy error to clipboard'}
+                  </button>
+                </div>
+              </Alert>
+            )}
+
             <InputAndLabel
               labelName='First name'
               value={firstName || ''}

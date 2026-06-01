@@ -87,5 +87,20 @@ describe(
       // Back button verifies that the institution was re-added to the account
       cy.get('.button').contains('Back')
     })
+
+    it('Displays an error when the profile fails to save', () => {
+      cy.wait(ACTION_DELAY)
+
+      cy.url().should('contains', '/filing/profile')
+
+      // Submitting non-alphanumeric characters causes the API to return a 500 error
+      cy.get('.profile_form_container > :nth-child(2) > input').type('hooray!')
+      cy.get('.profile_save_container > button').click()
+      cy.wait(1000)
+
+      cy.get('.alert-heading').contains('Sorry, an error has occurred.')
+      cy.get('.profile_error_code_box').should('be.visible')
+      cy.get('.copy_profile_error_button').contains('Copy error to clipboard')
+    })
   },
 )

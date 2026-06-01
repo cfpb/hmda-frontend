@@ -133,6 +133,22 @@ a:hover {
   margin-top: 0;
 }
 
+.profile_form_container .profile_error_code_box {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.85rem;
+  border: 1px solid #a2a3a4;
+  background-color: #f1f1f1;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 10rem;
+  overflow-y: auto;
+}
+
+.profile_form_container .copy_profile_error_button {
+  margin-top: 0;
+}
+
 .no_institutions_associated {
   max-width: 85rem !important;
 }
