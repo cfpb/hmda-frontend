@@ -58,13 +58,15 @@
   font-size: 16px;
 }
 
-/* Associated Instutions CSS */
-.associated_insitutions_container h2 {
+/* Associated Instutions and Missing Institutions CSS */
+.associated_insitutions_container h2,
+.missing_insitutions_container h2 {
   font-size: 18px;
   font-weight: normal !important;
 }
 
-.associated_insitutions_container p {
+.associated_insitutions_container p,
+.missing_insitutions_container p {
   font-size: 16px;
   font-weight: normal;
   margin: 0;
