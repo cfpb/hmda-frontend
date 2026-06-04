@@ -381,7 +381,7 @@ button:visited:disabled,
 input[type='submit']:disabled,
 input[type='submit']:visited:disabled {
   background-color: #d6d7d9;
-  color: #ffffff;
+  color: #454545;
   pointer-events: none;
 }
 button:disabled:hover,
@@ -403,7 +403,7 @@ input[type='submit']:visited:disabled:hover,
 input[type='submit']:visited:disabled:focus,
 input[type='submit']:visited:disabled:active {
   background-color: #d6d7d9;
-  color: #ffffff;
+  color: #454545;
 }
 
 .nowrap {

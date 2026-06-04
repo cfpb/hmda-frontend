@@ -102,5 +102,24 @@ describe(
       cy.get('.profile_error_code_box').should('be.visible')
       cy.get('.copy_profile_error_button').contains('Copy error to clipboard')
     })
+
+    it('Shows spinner dots in save button during save', () => {
+      cy.visit(`${AUTH_BASE_URL}filing/profile`)
+      cy.wait(ACTION_DELAY)
+
+      cy.get('.profile_form_container > :nth-child(2) > input').clear().type('party')
+
+      // Make the form submission really slow to have time to check for the spinner
+      cy.intercept('PUT', '**/hmda-auth/users/**', {
+        delay: 2000,
+        statusCode: 200,
+        body: {},
+      }).as('saveProfile')
+
+      cy.get('.profile_save_container > button').click()
+      cy.get('.spinner-dots--centered').should('exist')
+      cy.wait('@saveProfile')
+      cy.get('.spinner-dots--centered').should('not.exist')
+    })
   },
 )
