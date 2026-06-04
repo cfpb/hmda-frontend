@@ -2,6 +2,12 @@
   "name": "prod",
   "announcement": [
     {
+      "message": "We will be performing scheduled system maintenance on June 4 from 8PM - 10PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+      "type": "warning",
+      "heading": "Scheduled Maintenance",
+      "link": null
+    },
+    {
       "heading": "2025 Modified LAR Data Release",
       "message": "On March 31, 2026, the 2025 Modified LAR was released. A combined file containing all LAR records in a single file is also available. These files can be accessed via the ",
       "type": "info",
@@ -36,7 +42,12 @@
   "publicationReleaseYear": "2024",
   "mlarReleaseYear": "2025",
   "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "filingAnnouncement": {
+    "message": "We will be performing scheduled system maintenance on June 4 from 8PM - 10PM EST. During this time users will be unable to log in to the Filing application or create new accounts.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance",
+    "endDate": null
+  },
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
