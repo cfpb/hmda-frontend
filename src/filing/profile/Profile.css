@@ -58,13 +58,15 @@
   font-size: 16px;
 }
 
-/* Associated Instutions CSS */
-.associated_insitutions_container h2 {
+/* Associated Instutions and Missing Institutions CSS */
+.associated_insitutions_container h2,
+.missing_insitutions_container h2 {
   font-size: 18px;
   font-weight: normal !important;
 }
 
-.associated_insitutions_container p {
+.associated_insitutions_container p,
+.missing_insitutions_container p {
   font-size: 16px;
   font-weight: normal;
   margin: 0;
@@ -130,6 +132,22 @@ a:hover {
 }
 
 .profile_form_container .alert {
+  margin-top: 0;
+}
+
+.profile_form_container .profile_error_code_box {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.85rem;
+  border: 1px solid #a2a3a4;
+  background-color: #f1f1f1;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 10rem;
+  overflow-y: auto;
+}
+
+.profile_form_container .copy_profile_error_button {
   margin-top: 0;
 }
 

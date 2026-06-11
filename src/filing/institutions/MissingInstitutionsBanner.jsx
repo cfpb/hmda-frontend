@@ -1,16 +1,11 @@
-import React from 'react'
-import Alert from '../../common/Alert.jsx'
 
 export function MissingInstitutionsBanner({ leis = [] }) {
   const hasMissingLeis = leis.length > 0
   const bannerType = hasMissingLeis ? 'warning' : 'info'
 
   return (
-    <Alert
-      heading='Missing an institution?'
-      type={bannerType}
-      headingType='small'
-    >
+    <div className='missing_insitutions_container'>
+      <h2>Missing an institution?</h2>
       <div>
         <MissingLeiList leis={leis} />
         <p>
@@ -25,7 +20,7 @@ export function MissingInstitutionsBanner({ leis = [] }) {
           your information.
         </p>
       </div>
-    </Alert>
+    </div>
   )
 }
 
