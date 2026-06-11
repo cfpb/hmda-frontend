@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, Prompt, Redirect } from 'react-router-dom'
 import Heading from '../../common/Heading'
 import InputAndLabel from '../../common/InputAndLabel'
+import SpinnerDots from '../../common/SpinnerDots'
 import AssociatedInstitutions from './AssociatedInstitutions'
 import SearchAssociatedInstitutions from './SearchAssociatedInstitutions'
 
@@ -41,6 +42,7 @@ const CompleteProfile = (props) => {
   const [copiedAuthToken, setCopiedAuthToken] = useState(false)
   const [copiedProfileSaveError, setCopiedProfileSaveError] = useState(false)
   const [showSettingsMenu, setShowSettingsMenu] = useState(false)
+  const [saving, setSaving] = useState(false)
 
   if (!user) {
     return <Redirect to={`/filing/${props.config.defaultPeriod}`} />
@@ -117,6 +119,7 @@ const CompleteProfile = (props) => {
         body: JSON.stringify(body),
       }
 
+      setSaving(true)
       fetch(endpoint, request)
         .then(async (response) => {
           if (!response.ok) {
@@ -131,6 +134,7 @@ const CompleteProfile = (props) => {
         .then(async () => {
           setDisplayNotification(true)
           setProfileSaveError(false)
+          setSaving(false)
           await forceRefreshToken()
           let newToken = jwtDecode(AccessToken.get())
           setAccessTokenDecoded(newToken)
@@ -139,6 +143,7 @@ const CompleteProfile = (props) => {
         })
         .catch((error) => {
           setDisplayNotification(false)
+          setSaving(false)
           setProfileSaveError(btoa(error))
         })
     }
@@ -285,8 +290,13 @@ const CompleteProfile = (props) => {
             </div>
 
             <div className='profile_save_container'>
-              <button type='submit' disabled={!userIsEditingForm}>
-                Save
+              <button type='submit' disabled={!userIsEditingForm || saving}>
+                <span style={{ opacity: saving ? 0 : 1 }}>
+                  Save changes
+                </span>
+                {saving && (
+                  <SpinnerDots centered />
+                )}
               </button>
 
               <div
