@@ -133,7 +133,7 @@ const CompleteProfile = (props) => {
         })
         .then(async () => {
           setDisplayNotification(true)
-          setProfileSaveError(false)
+          setProfileSaveError('')
           setSaving(false)
           await forceRefreshToken()
           let newToken = jwtDecode(AccessToken.get())
