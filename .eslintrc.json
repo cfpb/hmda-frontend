@@ -120,10 +120,8 @@
     "**/*.min.js",
     "src/common/uswds/**"
   ],
-  "languageOptions": {
-    "globals": {
-      "import": "readonly",
-      "import.meta": "readonly"
-    }
+  "globals": {
+    "import": "readonly",
+    "import.meta": "readonly"
   }
 }

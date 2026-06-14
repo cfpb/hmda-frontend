@@ -86,10 +86,11 @@ cypress/screenshots/
 cypress/downloads/
 package-lock.json
 public/
-src/common/constants
+src/common/constants/*
 src/fonts
 src/markdown
 *.json
+!src/common/constants/*.json
 yarn/
 
 # Editor Configs #
