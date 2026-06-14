@@ -86,7 +86,7 @@ cypress/screenshots/
 cypress/downloads/
 package-lock.json
 public/
-src/common/constants
+src/common/constants/*
 src/fonts
 src/markdown
 *.json
@@ -99,4 +99,5 @@ yarn/
 kubernetes/
 *.yml
 dev-notes.*
+!src/common/constants/*.json
 cypress/fixtures
