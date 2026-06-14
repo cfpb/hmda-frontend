@@ -34,12 +34,10 @@ export function useChangeLogFilter(initState = defaultState) {
   // eslint-disable-next-line
   useEffect(
     () => {
-      const nextUrl = location.pathname + toQueryString(filters) + location.hash
-      const currentUrl = location.pathname + location.search + location.hash
-      if (nextUrl !== currentUrl) history.push(nextUrl)
-    },
-    [filters],
-  )
+    const nextUrl = location.pathname + toQueryString(filters) + location.hash
+    const currentUrl = location.pathname + location.search + location.hash
+    if (nextUrl !== currentUrl) history.push(nextUrl)
+  }, [filters])
 
   /* Add a filter */
   const add = (key, value) => {

@@ -26,7 +26,7 @@ const refresh = () => {
     console.error('Keycloak is not initialized')
     return
   }
-const store = getStore()
+  const store = getStore()
 
   const updateKeycloak = () => {
     setTimeout(
@@ -57,7 +57,7 @@ const forceRefreshToken = async () => {
     console.error('Keycloak is not initialized')
     return
   }
-const store = getStore()
+  const store = getStore()
 
   try {
     const refreshed = await keycloak.updateToken(55000)
@@ -106,4 +106,3 @@ const logout = (queryString = '') => {
 }
 
 export { forceRefreshToken, login, logout, refresh, register }
-

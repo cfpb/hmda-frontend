@@ -77,7 +77,11 @@ export const renderTableCaption = (props) => {
     if (name === 'Q666') {
       editText = ''
     }
-    captionHeader = <span>{linkedName} {editText} ({length} found)</span>
+    captionHeader = (
+      <span>
+        {linkedName} {editText} ({length} found)
+      </span>
+    )
   }
 
   if (name === 'Q666') {

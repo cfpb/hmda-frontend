@@ -3,18 +3,17 @@ import { sanitizeFileName } from '../downloadStream.js'
 
 describe('sanitizeFileName', () => {
   it('should replace dangerous characters with dashes', () => {
-    expect(sanitizeFileName('file/name\\with?bad*chars.txt'))
-      .toBe('file-name-with-bad-chars.txt')
+    expect(sanitizeFileName('file/name\\with?bad*chars.txt')).toBe(
+      'file-name-with-bad-chars.txt',
+    )
   })
 
   it('should remove path traversal sequences', () => {
-    expect(sanitizeFileName('../../../etc/passwd'))
-      .toBe('etc-passwd')
+    expect(sanitizeFileName('../../../etc/passwd')).toBe('etc-passwd')
   })
 
   it('should remove leading dots', () => {
-    expect(sanitizeFileName('...hidden-file.txt'))
-      .toBe('hidden-file.txt')
+    expect(sanitizeFileName('...hidden-file.txt')).toBe('hidden-file.txt')
   })
 
   it('should return default filename for empty input', () => {
@@ -28,7 +27,6 @@ describe('sanitizeFileName', () => {
   })
 
   it('should trim whitespace', () => {
-    expect(sanitizeFileName('  test-file.txt  '))
-      .toBe('test-file.txt')
+    expect(sanitizeFileName('  test-file.txt  ')).toBe('test-file.txt')
   })
 })

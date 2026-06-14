@@ -59,8 +59,8 @@ export function CombinedMLAR({ year, setHasCombined, hasCombined }) {
       <div className='alert alert-warning'>
         <h4 className='alert-heading'>
           Warning: Large file
-          {/* {TODO: Reenable size after [GHE]/HMDA-Operations/hmda-devops/issues/5275} */} 
-          {/* Warning: Large file - {humanFileSize(headers.size)} */} 
+          {/* {TODO: Reenable size after [GHE]/HMDA-Operations/hmda-devops/issues/5275} */}
+          {/* Warning: Large file - {humanFileSize(headers.size)} */}
         </h4>
         Special software is required to open this file
       </div>

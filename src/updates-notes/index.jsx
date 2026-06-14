@@ -17,7 +17,8 @@ function UpdatesNotes() {
   const filter = useChangeLogFilter(DEFAULT_FILTERS)
 
   const [changeLog, loading] = useRemoteMarkdown(PUB_CHANGELOG_URL, {
-    transformReceive: (text) => organizeChangeData({ log: parseChangeLog(text) }),
+    transformReceive: (text) =>
+      organizeChangeData({ log: parseChangeLog(text) }),
     defaultData: organizeChangeData({ log: parseChangeLog(defaultChangeLog) }),
     forceFetch: window.Cypress !== undefined,
   })

@@ -55,7 +55,10 @@ export const useS3FileHeaders = (url, shouldFetch) => {
       // mimics current prod behavior
       // TODO: potentially remove after [GHE]/HMDA-Operations/hmda-devops/issues/5275 is resolved
       .catch((error) => {
-        if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+        if (
+          error.name === 'TypeError' &&
+          error.message.includes('Failed to fetch')
+        ) {
           dispatch(saveHeaders({ url, headers: {} }))
           setCurrHeaders({})
         }

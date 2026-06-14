@@ -9,14 +9,16 @@ const defaultFileName = () => `hmda-download-${Date.now()}.txt`
 export const sanitizeFileName = (fileName) => {
   if (!fileName) return defaultFileName()
 
-  return fileName
-    // Remove path traversal sequences
-    .replace(/\.\.\//g, '')
-    // Remove leading dots 
-    .replace(/^\.+/, '')
-    // Replace dangerous chars with dashes
-    .replace(/[/\\?%*:|"<>]/g, '-')
-    .trim() 
+  return (
+    fileName
+      // Remove path traversal sequences
+      .replace(/\.\.\//g, '')
+      // Remove leading dots
+      .replace(/^\.+/, '')
+      // Replace dangerous chars with dashes
+      .replace(/[/\\?%*:|"<>]/g, '-')
+      .trim()
+  )
 }
 
 export default (source, { fileName, onError, onSuccess }) => {
@@ -26,9 +28,7 @@ export default (source, { fileName, onError, onSuccess }) => {
     return onError(msg)
   }
 
-  const destination = streamSaver.createWriteStream(
-    sanitizeFileName(fileName),
-  )
+  const destination = streamSaver.createWriteStream(sanitizeFileName(fileName))
 
   return source.pipeTo(destination).then(() => {
     if (onSuccess) onSuccess()

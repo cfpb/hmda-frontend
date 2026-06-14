@@ -7,9 +7,9 @@ function SpinnerDots({ centered, className }) {
 
   return (
     <span className={cls} aria-hidden='true'>
-      <span className='spinner-dots__dot'></span>
-      <span className='spinner-dots__dot'></span>
-      <span className='spinner-dots__dot'></span>
+      <span className='spinner-dots__dot' />
+      <span className='spinner-dots__dot' />
+      <span className='spinner-dots__dot' />
     </span>
   )
 }

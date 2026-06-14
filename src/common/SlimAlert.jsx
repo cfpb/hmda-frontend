@@ -5,12 +5,10 @@ import './SlimAlert.css'
 function SlimAlert({ emoji, children }) {
   return (
     <div className='slim-alert'>
-      <span className='slim-alert-emoji' aria-hidden="true">
+      <span className='slim-alert-emoji' aria-hidden='true'>
         {emoji}
       </span>
-      <span className='slim-alert-text'>
-        {children}
-      </span>
+      <span className='slim-alert-text'>{children}</span>
     </div>
   )
 }
