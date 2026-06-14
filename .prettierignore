@@ -90,6 +90,7 @@ src/common/constants/*
 src/fonts
 src/markdown
 *.json
+!src/common/constants/*.json
 yarn/
 
 # Editor Configs #
@@ -99,5 +100,4 @@ yarn/
 kubernetes/
 *.yml
 dev-notes.*
-!src/common/constants/*.json
 cypress/fixtures

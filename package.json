@@ -25,7 +25,8 @@
     "unit-tests-legacy": "jest $(find oldTests -name '*.test.js' -o -name '*.test.jsx' | xargs grep -L '// @broken')",
     "unit-tests-legacy-all": "jest oldTests/",
     "watch-uswds-scss": "npx gulp watch",
-    "lint": "eslint 'src/**/*.{js,jsx}'"
+    "lint": "eslint 'src/**/*.{js,jsx}'",
+    "format": "prettier --write 'src/**/*.json'"
   },
   "keywords": [
     "HMDA"
@@ -118,6 +119,7 @@
     "http-proxy-middleware": "2.0.9",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^30.2.0",
+    "prettier-plugin-multiline-arrays": "^4.1.9",
     "react-icons": "^4.4.0",
     "serialize-javascript": "7.0.5",
     "vite": "6.4.2",
