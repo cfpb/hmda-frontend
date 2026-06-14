@@ -26,9 +26,7 @@ function Methodology_alt() {
           Treasury rate plus a margin and adjust annually after the initial,
           fixed-rate period. The Consumer Financial Protection Bureau (Bureau)
           makes available the{' '}
-          <a href={`${fileServerDomain}/apor/SurveyTable.csv`}>
-            survey data
-          </a>{' '}
+          <a href={`${fileServerDomain}/apor/SurveyTable.csv`}>survey data</a>{' '}
           used to calculate APORs. This Methodology first describes all the
           steps necessary to calculate average prime offer rates and then
           provides a numerical example illustrating each step with the data from
@@ -167,10 +165,7 @@ function Methodology_alt() {
         additional APRs estimated from survey data in the manner described
         above, and the APRs determined by the foregoing assignment rules are the
         average prime offer rates for their respective comparable transactions.
-        The{' '}
-        <a href={`${fileServerDomain}/apor/SurveyTable.csv`}>
-          survey data
-        </a>{' '}
+        The <a href={`${fileServerDomain}/apor/SurveyTable.csv`}>survey data</a>{' '}
         needed for the above calculations generally are made available on
         Thursday of each week. APRs representing average prime offer rates
         derived, estimated, or determined as above are posted in tables on the{' '}

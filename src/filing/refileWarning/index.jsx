@@ -91,13 +91,10 @@ export const getText = (props) => {
       {periodAfter ? '.' : null}
       <p style={{ marginTop: '15px' }}>
         Need help? Use our{' '}
-        <a
-          target='_blank'
-          href='/tools/online-lar-formatting'
-        >
+        <a target='_blank' href='/tools/online-lar-formatting'>
           Online LAR formatting tool
-        </a>,{' '}
-        visit the{' '}
+        </a>
+        , visit the{' '}
         <a
           target='_blank'
           rel='noopener noreferrer'

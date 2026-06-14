@@ -148,8 +148,7 @@ class Report extends React.Component {
         msaMdId = 'nationwide'
         reportId = 'IRS'
         url = `${window.location.origin}/file/reports/irs/year/${year}/institution/${params.institutionId}`
-      }
-      else {
+      } else {
         url += `disclosure/${year}/${params.institutionId}/${msaMdId}/${reportId}${ext}`
       }
     } else {

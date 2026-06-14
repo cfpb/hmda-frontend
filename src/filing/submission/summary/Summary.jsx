@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types'
 import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import ExternalLink from '../../../common/ExternalLink'
 import SlimAlert from '../../../common/SlimAlert'
 import fetchSummary from '../../actions/fetchSummary.js'
 import { splitYearQuarter } from '../../api/utils'
 
-import { useDispatch, useSelector } from 'react-redux'
 import './Summary.css'
 
 const tsSchemaLink = () => (

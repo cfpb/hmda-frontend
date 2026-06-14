@@ -30,9 +30,7 @@ export function HeaderDocsLink({ period }) {
     ? 'For more information on quarterly filing dates, visit our '
     : 'For more information regarding filing, please visit our '
 
-  const linkText = isQuarterly
-    ? 'Documentation'
-    : 'FAQ'
+  const linkText = isQuarterly ? 'Documentation' : 'FAQ'
 
   const url = isQuarterly
     ? `/documentation/faq/data-collection-timelines#quarterly-filing-period-dates`

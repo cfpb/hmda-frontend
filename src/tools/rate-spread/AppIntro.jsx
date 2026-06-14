@@ -37,10 +37,7 @@ function AppIntro({ toolAnnouncement }) {
           fixed table
         </a>{' '}
         or{' '}
-        <a
-          href={`${fileServerDomain}/apor/YieldTableAdjustable.txt`}
-          download
-        >
+        <a href={`${fileServerDomain}/apor/YieldTableAdjustable.txt`} download>
           adjustable table
         </a>
         , action taken, amortization type, lock-in date, APR, fixed term (loan
