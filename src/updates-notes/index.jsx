@@ -1,25 +1,44 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import LoadingIcon from '../common/LoadingIcon'
-import { DEFAULT_FILTERS, PUB_CHANGELOG_URL, FILTER_OPTIONS } from './constants'
-import defaultData from './change-log-data.json'
-import ChangeLogTable from './ChangeLogTable'
-import FilterBar from './FilterBar'
-import { useChangeLogFilter } from './useChangeLogFilter'
-import { useRemoteJSON } from '../common/useRemoteJSON'
-import { organizeChangeData } from './sortFunctions'
+import { useRemoteMarkdown } from '../common/useRemoteMarkdown'
+// See https://vite.dev/guide/assets#importing-asset-as-string
+import defaultChangeLog from './change-log.md?raw'
 import './ChangeLog.scss'
+import ChangeLogTable from './ChangeLogTable'
+import { DEFAULT_FILTERS, FILTER_OPTIONS, PUB_CHANGELOG_URL } from './constants'
+import FilterBar from './FilterBar'
+import { parseChangeLog } from './parseChangeLog'
+import { organizeChangeData } from './sortFunctions'
+import { useChangeLogFilter } from './useChangeLogFilter'
 
-/* Updates and Notes */
+/* News and Updates */
 function UpdatesNotes() {
   const filter = useChangeLogFilter(DEFAULT_FILTERS)
 
-  const [changeLog, loading] = useRemoteJSON(PUB_CHANGELOG_URL, {
-    transformReceive: (data) => organizeChangeData(data),
-    defaultData: organizeChangeData(defaultData),
+  const [changeLog, loading] = useRemoteMarkdown(PUB_CHANGELOG_URL, {
+    transformReceive: (text) => organizeChangeData({ log: parseChangeLog(text) }),
+    defaultData: organizeChangeData({ log: parseChangeLog(defaultChangeLog) }),
+    forceFetch: window.Cypress !== undefined,
   })
 
-  const heading = 'HMDA Updates and Notes'
+  const heading = 'HMDA News and Updates'
+
+  useEffect(() => {
+    if (loading) return
+
+    // Even if loading is complete, it still takes a split second for all the posts
+    // to render so don't jump the user to the post until 300ms have passed
+    const timerId = setTimeout(() => {
+      const hash = decodeURIComponent(window.location.hash.replace(/^#/, ''))
+      if (!hash) return
+
+      const target = document.getElementById(hash)
+      if (target) target.scrollIntoView({ block: 'start' })
+    }, 300)
+
+    return () => clearTimeout(timerId)
+  }, [loading])
 
   if (loading) return <LoadingState heading={heading} />
 

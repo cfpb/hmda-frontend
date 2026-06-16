@@ -1,18 +1,19 @@
-import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import ErrorWarning from '../common/ErrorWarning.jsx'
-import Institution from './Institution.jsx'
-import InstitutionsHeader from './Header.jsx'
-import sortInstitutions from '../utils/sortInstitutions.js'
-import InstitutionPeriodSelector from './InstitutionPeriodSelector'
 import Alert from '../../common/Alert.jsx'
-import { MissingInstitutionsBanner } from './MissingInstitutionsBanner'
-import { FilteredOutList } from './FilteredOutList'
+import SlimAlert from '../../common/SlimAlert'
 import { splitYearQuarter } from '../api/utils.js'
-import { wrapLoading } from './wrapLoading'
+import ErrorWarning from '../common/ErrorWarning.jsx'
+import sortInstitutions from '../utils/sortInstitutions.js'
+import { FilteredOutList } from './FilteredOutList'
+import InstitutionsHeader from './Header.jsx'
 import { getNextAnnualPeriod } from './helpers'
+import Institution from './Institution.jsx'
+import InstitutionPeriodSelector from './InstitutionPeriodSelector'
 import './Institutions.css'
+import { MissingInstitutionsBanner } from './MissingInstitutionsBanner'
+import { wrapLoading } from './wrapLoading'
 
 const _setSubmission = (submission, latest, filingObj) => {
   let [filingYear, filingQuarter] = splitYearQuarter(filingObj.filing.period)
@@ -230,6 +231,11 @@ export default class Institutions extends Component {
             hasQuarterlyFilers={hasQuarterlyFilers}
             filingPeriodOptions={filingPeriodOptions}
           />
+
+          <SlimAlert emoji='📢'>
+            View the latest{' '}
+            <a href='/updates-notes'>HMDA Platform news and updates</a>
+          </SlimAlert>
 
           {_whatToRender(this.props)}
 

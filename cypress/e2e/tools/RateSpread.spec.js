@@ -65,7 +65,7 @@ onlyOn(!isBeta(HOST), () => {
     }
   })
 
-  describe('Rate Spread API', () => {
+  describe('Rate Spread API', { tags: ['@no-visual'] }, () => {
     if (isCI(ENVIRONMENT) || !isBeta(HOST)) {
       it('Generates rates from file', () => {
         cy.get({ HOST, TEST_DELAY, ENVIRONMENT }).logEnv()

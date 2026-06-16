@@ -51,6 +51,17 @@ describe(
     const THIS_IS_BETA = isBeta(HOST)
     const testVsOfficial = THIS_IS_BETA ? 'test' : 'official'
 
+    it('Sends users to the institution page when logged in and clicking the Filing nav item', () => {
+      cy.visit(`${AUTH_BASE_URL}filing/2020/institutions`)
+      cy.wait(ACTION_DELAY)
+      cy.get('header.usa-header--basic')
+        .contains('.usa-nav__primary-item > a.usa-nav__link', /^Filing$/)
+        .as('filingLink')
+
+      cy.get('@filingLink').click()
+      cy.contains('Collection of 2020 HMDA data has ended.').should('exist')
+    })
+
     years.forEach((filingPeriod, index) => {
       it(`${filingPeriod}`, { tags: ['@smoke'] }, function () {
         const status = filingPeriodStatus[filingPeriod]
@@ -183,6 +194,14 @@ describe(
 
               /* Action: Verify Quality Edits */
               cy.get('.EditsTableWrapper').then((wrapper) => {
+                // Verify edit links point to FIG documentation with current filing year
+                if (wrapper.find('.EditsTable caption a').length) {
+                  cy.get('.EditsTable caption a')
+                    .first()
+                    .should('have.attr', 'href')
+                    .and('match', /\/documentation\/fig\/\d{4}\/overview/)
+                }
+
                 // Verify edits, if triggered
                 if (wrapper.find('.Verifier').length)
                   cy.get('#qualityVerifier').check()

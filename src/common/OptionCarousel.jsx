@@ -29,6 +29,7 @@ export const OptionCarousel = ({
   const [currHeight, setCurrHeight] = useState(fixedHeight || '100px')
 
   const styles = { height: currHeight }
+
   const totalCount = options.length
   const hasMultiple = totalCount > 1
   const showNavigator = showControls && hasMultiple

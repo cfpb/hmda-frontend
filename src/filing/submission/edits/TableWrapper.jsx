@@ -1,13 +1,12 @@
-import React from 'react'
 import PropTypes from 'prop-types'
-import Header from './Header.jsx'
+import Alert from '../../../common/Alert.jsx'
 import Loading from '../../../common/LoadingIcon.jsx'
-import EditsTable from './TableContainer.jsx'
-import Verifier from './Verifier'
-import SuppressionAlert from './SuppressionAlert.jsx'
 import RefileWarningComponent from '../../refileWarning/index.jsx'
 import submissionProgressHOC from '../progressHOC.jsx'
-import Alert from '../../../common/Alert.jsx'
+import Header from './Header.jsx'
+import SuppressionAlert from './SuppressionAlert.jsx'
+import EditsTable from './TableContainer.jsx'
+import Verifier from './Verifier'
 
 const RefileWarning = submissionProgressHOC(RefileWarningComponent)
 
@@ -78,6 +77,7 @@ export const renderTablesOrSuccess = (props, edits, type) => {
         edit={edit}
         type={type}
         suppressEdits={props.suppressEdits}
+        filingPeriod={props.filingPeriod}
         key={i}
       />
     )

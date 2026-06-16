@@ -1,22 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import { Switch, Route, useLocation } from 'react-router-dom'
-import Header from './common/Header'
-import NotFound from './common/NotFound'
-import Footer from './common/Footer'
+import { useEffect, useState } from 'react'
+import { Route, Switch, useLocation } from 'react-router-dom'
+import { AppContext } from './common/appContextHOC'
 import Beta, { isBeta } from './common/Beta'
-import makeAsyncComponent from './common/makeAsyncComponent.jsx'
-import { useEnvironmentConfig } from './common/useEnvironmentConfig'
 import {
   betaLinks,
   defaultLinks,
-  updateFilingLink,
 } from './common/constants/links'
-import { AppContext } from './common/appContextHOC'
+import Footer from './common/Footer'
+import Header from './common/Header'
+import makeAsyncComponent from './common/makeAsyncComponent.jsx'
+import NotFound from './common/NotFound'
+import { useEnvironmentConfig } from './common/useEnvironmentConfig'
 
 import './app.css'
+import ScrollToTop from './common/ScrollToTop'
 import { isFilingHomeOrYear } from './filing/utils/pages'
 import { useViewport } from './filing/utils/useViewport'
-import ScrollToTop from './common/ScrollToTop'
 
 const Homepage = makeAsyncComponent(
   () => import('./homepage'),
@@ -55,8 +54,8 @@ const HmdaHelp = makeAsyncComponent(
 )
 const UpdatesNotes = makeAsyncComponent(
   () => import('./updates-notes'),
-  'HMDA Updates and Notes',
-  "Tracking releases, updates, and corrections to HMDA's publications, data products, documentation, and tools.",
+  'HMDA News and Updates',
+  "Tracking news, releases, updates, and corrections to HMDA's publications, data products, documentation, and tools.",
 )
 
 const App = () => {
@@ -85,7 +84,7 @@ const App = () => {
 
   const headerLinks = isBeta()
     ? betaLinks
-    : updateFilingLink(config, defaultLinks)
+    : defaultLinks
 
   return (
     <AppContext.Provider value={{ config }}>

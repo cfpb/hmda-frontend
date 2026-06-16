@@ -5,6 +5,7 @@ export const betaLinks = [
 
 export const defaultLinks = [
   { name: 'Home', href: '/' },
+  { name: 'News', href: '/updates-notes' },
   { name: 'Filing', href: '/filing' },
   { name: 'Data Browser', href: '',
     submenu: [
@@ -49,11 +50,3 @@ export const defaultLinks = [
     ]
   }
 ]
-
-export const updateFilingLink = (config, links) => {
-  return links.map(link => {
-    if(link.name !== 'Filing') return link
-    link.href = `/filing/${config.defaultDocsPeriod}/`
-    return link
-  })
-}

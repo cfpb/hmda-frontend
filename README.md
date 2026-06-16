@@ -17,7 +17,7 @@ The HMDA Frontend monorepo hosts the public facing applications for the collecti
     - [HMDA Platform Tools](#hmda-platform-tools)
     - [HMDA Documentation](#hmda-documentation)
     - [HMDA Data Publication](#hmda-data-publication)
-    - [HMDA Data Publication - Updates and Notes](#hmda-data-publication---updates-and-notes)
+    - [HMDA Data Publication - HMDA News and Updates](#hmda-data-publication---hmda-news-and-updates)
   - [Development](#development)
     - [Requirements](#requirements)
     - [Installation](#installation)
@@ -112,9 +112,9 @@ The [HMDA Documentation](https://ffiec.cfpb.gov/documentation/) site provides pr
   </p>
 </a>
 
-### HMDA Data Publication - Updates and Notes
+### HMDA Data Publication - HMDA News and Updates
 
-[Publication Updates and Notes](https://ffiec.cfpb.gov/data-publication/updates) provides a searchable change log of updates, releases, and corrections to published HMDA Data. Visit the [Updates and Notes FAQ](./src/data-publication/ChangeLog/README.md) for details.
+[Publication HMDA News and Updates](https://ffiec.cfpb.gov/data-publication/updates) provides a searchable change log of updates, releases, and corrections to published HMDA Data. Visit the [HMDA News and Updates FAQ](./src/data-publication/ChangeLog/README.md) for details.
 
 <a href='./readme-files/hmda-data-publication-updates.png' alt='HMDA Data Publication'>
   <p align='center'>
@@ -202,10 +202,16 @@ You can now visit the filing application at http://localhost:3000/filing.
 To see the application running in a container you can run:
 
 ```
-docker build -t hmda/hmda-frontend .
+docker build --secret id=env_vars,src=.env -t hmda/hmda-frontend .
 docker run -p 8080:8080 hmda/hmda-frontend
 ```
 
+### Build image to run in EKS Cluster
+```
+cp .env.example .env
+gsed -i 's/^.*MAPBOX_ACCESS.*$/MAPBOX_ACCESS_TOKEN=pk.xxx/' .env
+docker build --build-arg DOCKER_TAG=v3.3.1 --secret id=env_vars,src=.env  -t <AWS_Account>.dkr.ecr.us-east-1.amazonaws.com/hmda/hmda-frontend:v3.3.1
+```
 To build using docker-compose:
 
 ```
@@ -330,12 +336,22 @@ Legacy unit tests can be run with `yarn unit-tests-legacy`. Many are outdated/br
 
 ### End-to-End Testing
 
-```
-yarn test
-```
-
 [Cypress](https://www.cypress.io/) is used to perform end-to-end testing of the filing application, tools, data publication products, and data browser. It mimicks a user's interaction with the site and allows for rapid, automated system validation of project deployments.
 
-Whenever a dependency that affects Cypress is added or upgraded in [`package.json`](package.json), you'll need to make the same change in the `cypress` directory's [`package.json` file](cypress/package.json) and then [update the test image](cypress/README.md#updating-the-test-image).
+To run end-to-end tests against production (https://ffiec.cfpb.gov), use `yarn test`. See our [Cypress documentation](https://github.com/cfpb/hmda-frontend/blob/master/cypress/README.md) to learn about running and maintaining the tests.
 
 ![Cypress automated filing test](./readme-files/filing-2020-q1-cypress.gif)
+
+#### Having issues running Cypress locally?
+
+If you encounter issues running cypress, because it can be a little finicky sometimes, I'd recommend the following:
+
+_clear the cypress cache and reinstall_
+
+```sh
+yarn install
+yarn yarn cypress cache clear
+yarn cypress install
+```
+
+Still getting a weird `Cannot find module '@ffprobe-installer/darwin-x64/ffprobe'` error when on a Mac? Make sure the env var `npm_config_arch` is unset before you run the commands above.

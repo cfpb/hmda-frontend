@@ -10,7 +10,7 @@ onlyOn(isBeta(HOST), () => {
 })
 
 onlyOn(!isBeta(HOST), () => {
-  describe('Maps', () => {
+  describe('Maps', { tags: '@localhost' }, () => {
      it('State 2024', { tags: ['@smoke'] },() => {
       cy.get({ HOST, ENVIRONMENT }).logEnv()
       cy.viewport(1000, 940)

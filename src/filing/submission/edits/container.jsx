@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { connect } from 'react-redux'
-import EditsTableWrapper from './TableWrapper.jsx'
 import fetchEditType from '../../actions/fetchEditType.js'
 import fetchEdits from '../../actions/fetchEdits.js'
+import EditsTableWrapper from './TableWrapper.jsx'
 
 export class EditsContainer extends Component {
   componentDidMount() {
@@ -48,13 +48,14 @@ export class EditsContainer extends Component {
 
 export function mapStateToProps(state) {
   const { isFetching, types, suppressEdits } = state.app.edits
-  const { pagination } = state.app
+  const { pagination, filingPeriod } = state.app
 
   return {
     suppressEdits,
     isFetching,
     types,
     pagination,
+    filingPeriod,
   }
 }
 

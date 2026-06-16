@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import Alert from '../../common/Alert.jsx'
+import ConfiguredAlert from '../../common/ConfiguredAlert.jsx'
 import Heading from '../../common/Heading.jsx'
 import { getDefaultConfig } from '../../common/configUtils'
 
@@ -20,10 +20,14 @@ function AppIntro({ toolAnnouncement }) {
         for loans with a final action date before January 1st, 2018.
       </p>
       {toolAnnouncement ? (
-        <Alert heading={toolAnnouncement.heading} type={toolAnnouncement.type}>
-          <p>{toolAnnouncement.message}</p>
-        </Alert>
+        <ConfiguredAlert
+          heading={toolAnnouncement.heading}
+          type={toolAnnouncement.type}
+          message={toolAnnouncement.message}
+          link={toolAnnouncement.link}
+        />
       ) : null}
+
       <p>
         The rate spread calculator generates the spread between the Annual
         Percentage Rate (APR) and a survey-based estimate of APRs currently

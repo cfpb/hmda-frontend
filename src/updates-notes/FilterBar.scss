@@ -49,6 +49,13 @@
     background-color: #0b6e4f;
   }
 
+  /** Color - Announcement */
+  .pill.type.announcement:hover,
+  .pill.type.announcement.selected {
+    background-color: #c05600;
+  }
+
+
   /** Color - Notice */
   .pill.type.notice:hover,
   .pill.type.notice.selected {

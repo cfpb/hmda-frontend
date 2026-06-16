@@ -2,6 +2,7 @@ export const cleanHost = (host) => host.replace(/^https?:\/\//, '')
 export const isCI = (env) => env === 'CI'
 export const isProd = (host) => !!cleanHost(host).match(/^ffiec(\.beta)?\.cfpb/)
 export const isBeta = (host) => !!cleanHost(host).match(/beta/)
+export const isStaging = (host) => !!cleanHost(host).match(/staging/)
 export const isDev = (host) => !isProd(host)
 export const isDevBeta = (host) => isDev(host) && isBeta(host)
 export const isProdBeta = (host) => isProd(host) && isBeta(host)
@@ -24,17 +25,8 @@ export function withFormData(method, url, formData, done) {
 }
 
 export function urlExists(url) {
-  return new Promise((resolve) => {
-    const xhr = new XMLHttpRequest()
-
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState === 4)
-        resolve({ url, status: xhr.status < 400, statusCode: xhr.status })
-    }
-
-    xhr.open('HEAD', url)
-    xhr.send()
-  })
+  return cy.request({ url, method: 'HEAD', failOnStatusCode: false, timeout: 30000 })
+           .then((response) => ({ url, status: response.status < 400, statusCode: response.status }))
 }
 
 /* Data Browser Helpers */

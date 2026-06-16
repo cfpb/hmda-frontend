@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import NewIndicator from '../NewIndicator'
 
 export function DynamicDatasets({
   mlarReleaseYear,
@@ -22,6 +23,7 @@ export function DynamicDatasets({
           >
             Modified LAR
           </Link>
+          <NewIndicator />
         </li>
         <li>
           <Link

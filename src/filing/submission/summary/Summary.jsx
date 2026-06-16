@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { useEffect } from 'react'
+import ExternalLink from '../../../common/ExternalLink'
+import SlimAlert from '../../../common/SlimAlert'
 import fetchSummary from '../../actions/fetchSummary.js'
 import { splitYearQuarter } from '../../api/utils'
-import ExternalLink from '../../../common/ExternalLink'
 
-import './Summary.css'
 import { useDispatch, useSelector } from 'react-redux'
+import './Summary.css'
 
 const tsSchemaLink = () => (
   <ExternalLink
@@ -40,8 +41,12 @@ function Summary({ filingPeriod }) {
   const [year, quarter] = splitYearQuarter(filingPeriod)
 
   return (
-    <section className='Summary full-width' id='summary'>
+    <section className='Summary' id='summary'>
       <header>
+        <SlimAlert emoji='📢'>
+          View the latest{' '}
+          <a href='/updates-notes'>HMDA Platform news and updates</a>
+        </SlimAlert>
         <h2>HMDA Filing Summary</h2>
         <p className='font-lead'>
           You have completed the verification process for your HMDA data.

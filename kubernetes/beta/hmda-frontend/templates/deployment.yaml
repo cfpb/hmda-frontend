@@ -33,6 +33,8 @@ spec:
             - name: tz-config
               mountPath: /etc/localtime
           securityContext:
+            seccompProfile:
+              type: RuntimeDefault
             allowPrivilegeEscalation: false
             capabilities:
               drop:

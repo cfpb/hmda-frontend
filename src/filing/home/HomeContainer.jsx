@@ -1,18 +1,19 @@
-import React from 'react'
 import { useSelector } from 'react-redux'
-import Home from './index.jsx'
 import InstitutionsContainer from '../institutions/container.jsx'
+import Home from './index.jsx'
 
-function HomeContainer({ config }) {
-  const user = useSelector((state) => state.app.user.oidc)
+function HomeContainer({ config, ...props }) {
+  const isLoggedIn = Boolean(useSelector((state) => state.app.user?.oidc))
   const { filingPeriods, maintenanceMode, announcement } = config
 
-  if (user === null || maintenanceMode) {
+  if (!isLoggedIn || maintenanceMode) {
     return <Home maintenanceMode={maintenanceMode} />
   }
 
   return (
     <InstitutionsContainer
+      {...props}
+      config={config}
       filingPeriods={filingPeriods}
       announcement={announcement}
     />

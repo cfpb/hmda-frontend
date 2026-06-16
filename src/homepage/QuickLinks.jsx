@@ -10,6 +10,21 @@ export function QuickLinks({ hideContent }) {
         <div className='title'>
           <span>QuickLinks</span>
         </div>
+        <Link to='/updates-notes'>
+          <svg
+            className='usa-icon'
+            aria-hidden='true'
+            focusable='false'
+            role='img'
+          >
+            <use href={`${iconSprite}#campaign`} />
+          </svg>{' '}
+          <span>
+            News and
+            <br />
+            Updates
+          </span>
+        </Link>
         <Link to='/tools/rate-spread'>
           <svg
             className='usa-icon'

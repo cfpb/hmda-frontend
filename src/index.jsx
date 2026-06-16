@@ -1,10 +1,9 @@
-import 'react-app-polyfill/ie11' // For IE 11 support
+import 'react-app-polyfill/ie11'
 import 'react-app-polyfill/stable'
 import { ReadableStream, WritableStream } from 'web-streams-ponyfill'
 
-import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, HashRouter } from 'react-router-dom'
 
 import App from './App'
 
@@ -14,9 +13,18 @@ window.ReadableStream = ReadableStream
 
 const container = document.getElementById('root')
 const root = createRoot(container)
+// Certain environments (GitHub Pages) don't support SPA routing so
+// hash routing is used when necessary
+const useHashRouter = import.meta.env.VITE_USE_HASH_ROUTER === 'true'
+// BASE_URL defaults to `/`, see https://vite.dev/config/shared-options#base
+// Can be changed with `--base` flag when building
+const routerBasename =
+  import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL.replace(/\/$/, '')
+const Router = useHashRouter ? HashRouter : BrowserRouter
+const routerProps = useHashRouter ? {} : { basename: routerBasename }
 
 root.render(
-  <BrowserRouter basename='/'>
+  <Router {...routerProps}>
     <App />
-  </BrowserRouter>,
+  </Router>,
 )

@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react'
-import Highlighter from 'react-highlight-words'
-import { PRODUCT_NAMES } from './constants'
-import { FilterResetButton } from './FilterResetButton'
+import { useMemo } from 'react'
 import iconSprite from '../common/uswds/img/sprite.svg'
 import './ChangeLogTable.scss'
+import { PRODUCT_NAMES } from './constants'
+import ExpandableDescription from './ExpandableDescription'
+import { FilterResetButton } from './FilterResetButton'
 /**
  * Display Publication Change Log Entries
  * (default export)
@@ -111,7 +111,7 @@ function Row({ item, filter, products }) {
   const toggleProduct = () => filter.toggle('product', item.product)
 
   return (
-    <div className={rowClassname}>
+    <div className={rowClassname} id={item.slug}>
       <Column
         className={productClassname}
         value={products[item.product]}
@@ -126,30 +126,16 @@ function Row({ item, filter, products }) {
           <div className='text'>{item.type}</div>
         </button>
       </Column>
-      <Column className='date' value={item.changeDateOrdinal} />
+      <Column className='date'>
+        <a href={`#${item.slug}`}>{item.changeDateOrdinal}</a>
+      </Column>
       <Column className='description'>
-        <Highlighter
-          highlightClassName='highlighted'
-          searchWords={filter.filters.keywords}
-          autoEscape
-          textToHighlight={item.description}
+        <ExpandableDescription
+          description={item.description}
+          highlightWords={filter.filters.keywords}
         />
-        <Links links={item.links} />
       </Column>
     </div>
-  )
-}
-
-function Links({ links }) {
-  if (!links) return null
-  return (
-    <ul className='links'>
-      {links.map((l, l_idx) => (
-        <li key={l_idx}>
-          <a href={l.url}>{l.text}</a>
-        </li>
-      ))}
-    </ul>
   )
 }
 

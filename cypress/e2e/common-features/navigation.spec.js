@@ -12,15 +12,31 @@ onlyOn(isBeta(HOST), () => {
 
 onlyOn(!isBeta(HOST), () => {
   describe('HMDA homepage hero navigation', { tags: ['@smoke'] }, () => {
-    // HMDA's homepage has four "quick links" leading to core pages
+    // HMDA's homepage has "quick links" leading to core pages and other quick
+    // links leading to the documentation website that will only be available
+    // if the separate docusaurus site is running
     const quickLinks = [
+      { text: 'News and Updates', pageHeading: 'HMDA News and Updates' },
       { text: 'Rate Spread Calculator', pageHeading: 'Rate Spread Calculator' },
-      { text: 'HMDA Filing Platform', pageHeading: 'File your HMDA Data' },
+      { text: 'HMDA Filing Platform', pageHeading: 'File your HMDA Data' }
+    ]
+
+    const docsQuickLinks = [
       { text: 'Frequently Asked Questions', pageHeading: 'Frequently Asked Questions' },
       { text: 'Filing Instructions Guide', pageHeading: 'Filing Instructions Guide' }
     ]
 
     quickLinks.forEach(({ text, pageHeading }) => {
+      it(`Allows visitors to navigate to ${text} page`, { tags: '@localhost' }, () => {
+        cy.visit(`${baseURLToVisit}/`)
+        // Quick links have hardcoded `<br>` tags that need to be stripped out
+        const cleanText = new RegExp(text.replace(/\s+/g, '\\s*'), 'i')
+        cy.get('#quicklinks a').contains(cleanText).click()
+        cy.get('h1').should('contain', pageHeading)
+      })
+    })
+
+    docsQuickLinks.forEach(({ text, pageHeading }) => {
       it(`Allows visitors to navigate to ${text} page`, () => {
         cy.visit(`${baseURLToVisit}/`)
         // Quick links have hardcoded `<br>` tags that need to be stripped out
@@ -28,6 +44,19 @@ onlyOn(!isBeta(HOST), () => {
         cy.get('#quicklinks a').contains(cleanText).click()
         cy.get('h1').should('contain', pageHeading)
       })
+    })
+  })
+
+  describe('Main header nav', { tags: ['@smoke'] }, () => {
+    it('Links to the filing login page when not logged in', { tags: '@localhost' }, () => {
+      cy.visit(baseURLToVisit)
+
+      cy.get('header.usa-header--basic')
+        .contains('.usa-nav__primary-item > a.usa-nav__link', /^Filing$/)
+        .as('filingLink')
+
+      cy.get('@filingLink').click({force: true})
+      cy.location('pathname').should('match', /\/filing\/\d{4}\/?$/)
     })
   })
 

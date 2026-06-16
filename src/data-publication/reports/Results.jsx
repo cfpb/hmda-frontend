@@ -104,9 +104,9 @@ class Results extends React.Component {
     )
 
     // Need to set filename since the File Proxy url no longer directly references the file name
-    let filename = institution.lei
+    let filename = normalizedInstitution.id
     if (this.state.withHeader) filename += '_header'
-    filename += '.csv'
+    filename += '.txt'
 
     return (
       <li key={index}>
@@ -125,7 +125,7 @@ class Results extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.inputValue !== this.props.inputValue) {
-      this.setState(defaultState)
+      this.setState({ showAll: false })
     }
   }
 
@@ -149,7 +149,7 @@ class Results extends React.Component {
           type='checkbox'
           name='inclHeader'
           id='inclHeader'
-          value={this.state.withHeader}
+          checked={this.state.withHeader}
           onChange={(e) => this.setState({ withHeader: e.target.checked })}
         />
       </p>

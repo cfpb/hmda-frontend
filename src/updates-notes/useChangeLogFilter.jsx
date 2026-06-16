@@ -33,7 +33,11 @@ export function useChangeLogFilter(initState = defaultState) {
   // Update URL everytime the filters are updated
   // eslint-disable-next-line
   useEffect(
-    () => history.push(location.pathname + toQueryString(filters)),
+    () => {
+      const nextUrl = location.pathname + toQueryString(filters) + location.hash
+      const currentUrl = location.pathname + location.search + location.hash
+      if (nextUrl !== currentUrl) history.push(nextUrl)
+    },
     [filters],
   )
 
@@ -112,7 +116,7 @@ export function useChangeLogFilter(initState = defaultState) {
       .filter((filterType) => filters[filterType].length)
       .map((filterType) => `${filterType}=${filters[filterType].join(',')}`)
 
-    return params ? `?${params.join('&')}` : ''
+    return params.length ? `?${params.join('&')}` : ''
   }
 
   /* Derive filter state from query string */

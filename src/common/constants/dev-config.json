@@ -2,33 +2,33 @@
   "name": "dev",
   "announcement": [
     {
-      "heading": "HMDA Platform Upgrade",
-      "message": "An upgrade to the HMDA Platform will be performed on Tuesday, 12/2. Anticipate downtime to the filing platform for 24-36 hours. Links to files that you may have bookmarked will have a new URL as part of this upgrade. Most notably, the fixed and adjustable APOR table file paths have changed. For any questions, contact ",
-      "type": "warning",
+      "heading": "2025 Modified LAR Data Release",
+      "message": "On March 31, 2026, the 2025 Modified LAR was released. A combined file containing all LAR records in a single file is also available. These files can be accessed via the ",
+      "type": "info",
       "link": {
-        "url": "mailto:hmdahelp@cfpb.gov",
-        "text": "hmdahelp@cfpb.gov."
+        "url": "https://ffiec.cfpb.gov/data-publication/modified-lar/2025",
+        "text": "Modified LAR page."
       }
     },
     {
-      "heading": "2026 Online Filing Instructions Guides Released",
-      "message": "The Bureau has released the 2026 Online FIG and Online Supplemental Guide for Quarterly Filers for 2026, which are available ",
-      "type": "info",
+      "heading": "Future HMDA News and Updates",
+      "message": "Due to operational constraints, the Consumer Financial Protection Bureau has discontinued its use of the GovDelivery email service on Tuesday, January 20, 2026. After that date, subscribers to the HMDA mailing list will no longer receive email notifications. To ensure you continue to have access to timely information, ",
+      "type": "warning",
       "link": {
-        "url": "https://ffiec.cfpb.gov/documentation/faq/data-collection-timelines#filing-instructions-guide-fig",
-        "text": "here."
+        "url": "https://ffiec.cfpb.gov/updates-notes",
+        "text": "visit our HMDA News and Updates webpage."
       }
     }
   ],
   "fileServerDomain": "https://files.ffiec.cfpb.gov",
   "publicationReleaseYear": "2024", 
-  "mlarReleaseYear": "2024",
+  "mlarReleaseYear": "2025",
   "maintenanceMode": false,
   "filingAnnouncement": null,
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": ["2024","2023", "2022", "2021", "2020", "2019", "2018", "2017"],
-    "mlar": ["2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017"],
+    "mlar": ["2025", "2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017"],
     "threeYear": ["2021","2020", "2019", "2018", "2017"],
     "oneYear": ["2023","2022", "2021", "2020", "2019", "2018", "2017"],
     "aggregate": ["2024","2023","2022", "2021", "2020", "2019", "2018", "2017"],

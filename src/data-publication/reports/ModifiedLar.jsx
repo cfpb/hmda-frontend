@@ -28,13 +28,23 @@ function ModifiedLar(props) {
           paragraphText={buildParagraphText(hasCombined)}
         >
           <p>
+            View{' '}
             <a
               href='/documentation/publications/modified-lar/resources/supporting-resources'
               target='_blank'
               rel='noopener noreferrer'
             >
-              Modified LAR file specifications, schemas, and instructions
+              MLAR file resources
+            </a>{' '}
+            or learn how to{' '}
+            <a
+              href='/documentation/publications/modified-lar/resources/mlar-with-excel'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              open MLAR files with Excel
             </a>
+            .
           </p>
         </Heading>
         <YearSelector year={year} url={url} years={years} />

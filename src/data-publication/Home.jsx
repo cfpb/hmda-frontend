@@ -102,7 +102,7 @@ function Home(props) {
           </p>
           <p className='lead'>
             For information about changes to HMDA Publications visit the{' '}
-            <Link to='/updates-notes'>Updates and Notes</Link> page.
+            <Link to='/updates-notes'>News and Updates</Link> page.
           </p>
         </Heading>
       </div>

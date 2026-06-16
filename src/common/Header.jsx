@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { isBeta } from '../common/Beta'
 import BannerUSA from './BannerUSA'
 import { defaultLinks } from './constants/links'
-import { isBeta } from '../common/Beta'
 
-import './uswds/css/styles.css'
 import logo from './images/ffiec-logo.svg'
+import './uswds/css/styles.css'
 import closeBtn from './uswds/img/usa-icons/close.svg'
 
-import { DocSearch } from '@docsearch/react'
 import '@docsearch/css'
+import { DocSearch } from '@docsearch/react'
 
 export const hideHeaderFooter = (path) => {
   const parts = path && path.split('/')
@@ -86,12 +86,12 @@ const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
         <div className='usa-nav-container'>
           <div className='usa-navbar'>
             <div className='usa-logo' id='logo'>
-              <a className='nav-link' href='/' aria-label='Home'>
+              <Link className='nav-link' to='/' aria-label='Home'>
                 <img alt='FFIEC' src={logo} height='32' />
                 <span className='usa-logo__text'>
                   Home Mortgage Disclosure Act
                 </span>
-              </a>
+              </Link>
             </div>
             <button type='button' className='usa-menu-btn'>
               Menu
@@ -105,11 +105,15 @@ const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
               {links.map((link) => {
                 let filingPath =
                   props.history.location.pathname.includes('/filing')
+                let newsPath =
+                  props.history.location.pathname.includes('/updates-notes')
                 let isActive = false
 
                 if (link.href === '/') {
                   isActive = pathname === link.href
-                } else if (filingPath) {
+                } else if (filingPath && link.href.includes('/filing')) {
+                  isActive = true
+                } else if (newsPath && link.href.includes('/updates-notes')) {
                   isActive = true
                 }
 

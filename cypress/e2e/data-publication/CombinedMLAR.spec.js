@@ -11,9 +11,9 @@ onlyOn(isBeta(HOST), () => {
   })
 })
 
-const years = [2024, 2023, 2022]
+const years = [2025, 2024, 2023, 2022]
 onlyOn(!isBeta(HOST), () => {
-  describe('Combined MLAR', () => {
+  describe('Combined MLAR', { tags: ['@localhost'] }, () => {
     years.forEach((year) => {
       it(`Verify Files Exist ${year}`, () => {
         cy.visit(`${HOST}/data-publication/modified-lar/${year}`)
