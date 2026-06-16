@@ -1,4 +1,3 @@
-import React from 'react'
 import Select from 'react-select'
 import Heading from '../../common/Heading.jsx'
 
@@ -20,6 +19,7 @@ function Selector(props) {
       <Select
         onChange={handleChange}
         placeholder={props.placeholder}
+        isLoading={props.isLoading}
         searchable
         autoFocus
         menuIsOpen
