@@ -142,11 +142,7 @@ function AppContainer({
         login(location.pathname)
       }
     }
-  }, [
-    location.pathname,
-    match.params.filingPeriod,
-    maintenanceMode,
-  ])
+  }, [location.pathname, match.params.filingPeriod, maintenanceMode])
 
   // Scroll to top on pathname change
   useEffect(() => {
