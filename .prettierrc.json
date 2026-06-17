@@ -2,15 +2,5 @@
   "semi": false,
   "tabWidth": 2,
   "singleQuote": true,
-  "jsxSingleQuote": true,
-  "plugins": ["prettier-plugin-multiline-arrays"],
-  "multilineArraysWrapThreshold": -1,
-  "overrides": [
-    {
-      "files": ["src/common/constants/*.json"],
-      "options": {
-        "multilineArraysWrapThreshold": 0
-      }
-    }
-  ]
+  "jsxSingleQuote": true
 }
