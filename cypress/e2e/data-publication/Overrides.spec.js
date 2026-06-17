@@ -27,15 +27,15 @@ describe('Overrides for Unreleased HMDA Panel Data Publication Warnings', { tags
           const yearOfDatasetToBeTested = year - overrideUrl.yearOffset;
           cy.visit(`${HOST}${overrideUrl.url}${yearOfDatasetToBeTested}`);
 
-          // ensure warning banner appears
-          cy.get('.alert-heading').contains(
-            `The HMDA Reporter Panel is Unavailable for the ${yearOfDatasetToBeTested} ${overrideUrl.name}`
-          );
-
           // ensure warning in the dataset list appears
           cy.get('.dataset-items').contains(
-            'Reporter Panel is not available for this dataset. For institution information refer to the Transmittal Sheet.'
+            'The Reporter Panel is no longer being produced.'
           );
+          if (overrideUrl.yearOffset === 0) {
+            cy.get('.dataset-items').contains(
+              'when it becomes available.'
+            );
+          }
           cy.wait(TEST_DELAY);
         });
       });

@@ -1,4 +1,3 @@
-import React from 'react'
 import Heading from '../../../common/Heading'
 import { S3DatasetLink } from '../../../common/S3Integrations'
 import { LabelWithTooltip } from '../LabelWithTooltip'
@@ -41,10 +40,11 @@ export function linkToSpecs(year = '2018', data = null) {
     },
   ]
 
-  // remove Public Panel Schema documentation if it contains override property in constants JSON
+  // remove Public Panel documentation if it contains override property in constants JSON
   // see: 2024 HMDA Reporter data in src/data-publication/constants/snapshot-dataset.jsx for an example
   if (data?.datasets?.find(dataset => dataset.label === 'Reporter Panel')?.override) {
     entries = entries.filter(entry => entry.label !== 'Public Panel Schema')
+    entries = entries.filter(entry => entry.label !== 'Public Panel Values and Definitions')
   }
 
   return entries.map(makeListLink)
