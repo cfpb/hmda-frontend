@@ -51,4 +51,5 @@ export default {
   2022: data2020,
   2023: data2020,
   2024: data2024,
+  2025: data2024,
 }

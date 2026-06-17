@@ -17,4 +17,5 @@ export default {
   2022: counties,
   2023: counties,
   2024: counties2024,
+  2025: counties2024,
 }

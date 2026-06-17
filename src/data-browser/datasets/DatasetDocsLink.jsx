@@ -1,8 +1,8 @@
 import React from 'react'
 
 const determineDataset = (year) => {
-  const ThreeYear = [2021, 2020, 2019, 2018]
-  const OneYear = [2023, 2022, 2021, 2020]
+  const ThreeYear = [2022, 2021, 2020, 2019, 2018]
+  const OneYear = [2024, 2023, 2022, 2021, 2020]
 
   if (ThreeYear.includes(year))
     return {
