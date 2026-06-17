@@ -45,6 +45,15 @@ const publications = {
       updateFrequency:
         'Does not update. Generated a few months after filing deadline',
       availableFor: '2017-2025',
+      headingLink: snapLink(2025),
+      headingText: snapTitle,
+      paragraphText: snapDesc,
+      freezeDate: SNAPSHOT_DATASET[2025].freezeDate,
+    },
+    {
+      updateFrequency:
+        'Does not update. Generated a few months after filing deadline',
+      availableFor: '2017-2025',
       headingLink: drLink(2025),
       headingText: drTitle,
       paragraphText: drDesc,
