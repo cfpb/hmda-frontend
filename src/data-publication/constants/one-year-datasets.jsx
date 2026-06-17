@@ -22,7 +22,7 @@ export const ONE_YEAR_DATASET = {
       {
         dataKey: 'panel',
         label: 'Reporter Panel',
-        override: getOverrides.getReporterPanelUnavailable(),
+        override: getOverrides.getReporterPanelUnavailable(false),
       },
       {
         dataKey: 'msamd',
@@ -34,10 +34,6 @@ export const ONE_YEAR_DATASET = {
   },
   2023: {
     freezeDate: 'May 19, 2025',
-    specialNote: getOverrides.getReporterPanelUnavailableBanner(
-      '2023',
-      'One Year Dataset',
-    ),
     datasets: [
       {
         dataKey: 'lar',
@@ -54,7 +50,7 @@ export const ONE_YEAR_DATASET = {
       {
         dataKey: 'panel',
         label: 'Reporter Panel',
-        override: getOverrides.getReporterPanelUnavailable(),
+        override: getOverrides.getReporterPanelUnavailable(true),
       },
       {
         dataKey: 'msamd',

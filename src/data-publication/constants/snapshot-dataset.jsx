@@ -43,10 +43,6 @@ export const SNAPSHOT_DATASET = {
   },
   2024: {
     freezeDate: 'May 19, 2025',
-    specialNote: getOverrides.getReporterPanelUnavailableBanner(
-      '2024',
-      'Snapshot Dataset',
-    ),
     datasets: [
       {
         csv: `${fileServerDomain}/static-data/snapshot/2024/2024_public_lar_csv.zip`,
@@ -63,7 +59,7 @@ export const SNAPSHOT_DATASET = {
       {
         label: 'Reporter Panel',
         dataKey: 'panel',
-        override: getOverrides.getReporterPanelUnavailable(),
+        override: getOverrides.getReporterPanelUnavailable(true),
       },
       {
         csv: `${fileServerDomain}/static-data/snapshot/2024/2024_public_msamd_csv.zip`,

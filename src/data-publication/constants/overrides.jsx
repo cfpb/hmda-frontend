@@ -36,10 +36,21 @@ const getOverrides = {
    * @param {number|string} year - The year for which a HMDA Reporter Panel is unavailable
    * @returns {JSX.Element} JSX element to display within the list of data products
    */
-  getReporterPanelUnavailable: (year) => (
+  getReporterPanelUnavailable: (isAveryFileAvailable) => (
     <>
-      Reporter Panel is not available for this dataset. For institution
-      information refer to the {year} Transmittal Sheet.
+      The Reporter Panel is not being produced. Please see the HMDA Lender File
+      from the Philadelphia Federal Reserve for similar information.{' '}
+      {!isAveryFileAvailable ? (
+        'This file will become available at a later date.'
+      ) : (
+        <p style={{ display: 'inline' }}>
+          The{' '}
+          <a href='https://www.philadelphiafed.org/surveys-and-data/consumer-finance-data/home-mortgage-disclosure-act-lender-file'>
+            HMDA Lender File
+          </a>{' '}
+          is now available.
+        </p>
+      )}
     </>
   ),
 }
