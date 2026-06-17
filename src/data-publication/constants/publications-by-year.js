@@ -86,6 +86,15 @@ const publications = {
   2024: [
     {
       updateFrequency:
+        'Does not update. Generated one year after filing deadline',
+      availableFor: '2019-2024',
+      headingLink: oneYearLink(2024),
+      headingText: oneYearTitle,
+      paragraphText: oneYearDesc,
+      freezeDate: ONE_YEAR_DATASET[2024].freezeDate,
+    },
+    {
+      updateFrequency:
         'Does not update. Generated a few months after filing deadline',
       availableFor: '2017-2024',
       headingLink: snapLink(2024),
