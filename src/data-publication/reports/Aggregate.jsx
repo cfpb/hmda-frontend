@@ -15,6 +15,11 @@ import { withYearValidation } from '../../common/withYearValidation.jsx'
 import './Aggregate.css'
 
 const detailsCache = {
+  2025: {
+    states: {},
+    msaMds: {},
+    reports: {},
+  },
   2024: {
     states: {},
     msaMds: {},

@@ -40,7 +40,16 @@ const oneYearTitle = 'One Year National Loan-Level Dataset'
 const threeYearTitle = 'Three Year National Loan-Level Dataset'
 
 const publications = {
-  2025: [],
+  2025: [
+    {
+      updateFrequency:
+        'Does not update. Generated a few months after filing deadline',
+      availableFor: '2017-2025',
+      headingLink: arLink(2025),
+      headingText: arTitle,
+      paragraphText: arDesc,
+    },
+  ],
   2024: [
     {
       updateFrequency:
