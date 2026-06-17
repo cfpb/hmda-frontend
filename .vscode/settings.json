@@ -36,6 +36,11 @@
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true
+  },
+  "[jsonc]": {
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true
   }
 }
