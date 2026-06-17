@@ -12,6 +12,35 @@ const ARID2017_XREF = {
 }
 
 export const SNAPSHOT_DATASET = {
+  2025: {
+    freezeDate: 'June 2, 2026',
+    datasets: [
+      {
+        csv: `${fileServerDomain}/static-data/snapshot/2025/2025_public_lar_csv.zip`,
+        txt: `${fileServerDomain}/static-data/snapshot/2025/2025_public_lar_pipe.zip`,
+        label: 'Loan/Application Records (LAR)',
+        dataKey: 'lar',
+      },
+      {
+        csv: `${fileServerDomain}/static-data/snapshot/2025/2025_public_ts_csv.zip`,
+        txt: `${fileServerDomain}/static-data/snapshot/2025/2025_public_ts_pipe.zip`,
+        label: 'Transmittal Sheet Records (TS)',
+        dataKey: 'ts',
+      },
+      {
+        label: 'Reporter Panel',
+        dataKey: 'panel',
+        override: getOverrides.getReporterPanelUnavailable(false),
+      },
+      {
+        csv: `${fileServerDomain}/static-data/snapshot/2025/2025_public_msamd_csv.zip`,
+        txt: `${fileServerDomain}/static-data/snapshot/2025/2025_public_msamd_pipe.zip`,
+        label: 'MSA/MD Description',
+        dataKey: 'msamd',
+      },
+      ARID2017_XREF,
+    ],
+  },
   2024: {
     freezeDate: 'May 19, 2025',
     specialNote: getOverrides.getReporterPanelUnavailableBanner(
