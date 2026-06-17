@@ -21,13 +21,14 @@
     }
   ],
   "fileServerDomain": "https://files.ffiec.cfpb.gov",
-  "publicationReleaseYear": "2024",
+  "publicationReleaseYear": "2025",
   "mlarReleaseYear": "2025",
   "maintenanceMode": false,
   "filingAnnouncement": null,
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
+      "2025",
       "2024",
       "2023",
       "2022",
