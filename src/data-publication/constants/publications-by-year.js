@@ -65,6 +65,15 @@ const publications = {
       headingText: arTitle,
       paragraphText: arDesc,
     },
+    {
+      group: 'dynamic',
+      updateFrequency: 'Weekly on Mondays',
+      availableFor: '2019-2025', // Change to the year you are updating to
+      headingLink: dynLink(2025), // Change to the year you are updating to
+      headingText: dynTitle,
+      paragraphText: dynDesc,
+    },
+  ],
   2024: [
     {
       updateFrequency:

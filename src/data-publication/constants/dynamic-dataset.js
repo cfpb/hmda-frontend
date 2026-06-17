@@ -3,6 +3,10 @@ import { getDefaultConfig } from '../../common/configUtils'
 const { fileServerDomain } = getDefaultConfig(window.location.hostname)
 
 export const DYNAMIC_DATASET = {
+  2025: {
+    lar: `${fileServerDomain}/dynamic-data/2025/2025_lar.zip`,
+    ts: `${fileServerDomain}/dynamic-data/2025/2025_ts.zip`,
+  },
   2024: {
     lar: `${fileServerDomain}/dynamic-data/2024/2024_lar.zip`,
     ts: `${fileServerDomain}/dynamic-data/2024/2024_ts.zip`,
