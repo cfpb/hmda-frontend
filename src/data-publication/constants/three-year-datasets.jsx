@@ -153,4 +153,32 @@ export const THREE_YEAR_DATASET = {
       },
     ],
   },
+  2022: {
+    freezeDate: 'December 31, 2025',
+    datasets: [
+      {
+        label: 'Loan/Application Records (LAR)',
+        dataKey: 'lar',
+        csv: `${fileServerDomain}/static-data/three-year/2022/2022_public_lar_three_year_csv.zip`,
+        txt: `${fileServerDomain}/static-data/three-year/2022/2022_public_lar_three_year_pipe.zip`,
+      },
+      {
+        label: 'Transmittal Sheet Records (TS)',
+        dataKey: 'ts',
+        csv: `${fileServerDomain}/static-data/three-year/2022/2022_public_ts_three_year_csv.zip`,
+        txt: `${fileServerDomain}/static-data/three-year/2022/2022_public_ts_three_year_pipe.zip`,
+      },
+      {
+        label: 'Reporter Panel',
+        dataKey: 'panel',
+        override: getOverrides.getReporterPanelUnavailable(),
+      },
+      {
+        label: 'MSA/MD Description',
+        dataKey: 'msamd',
+        csv: `${fileServerDomain}/static-data/three-year/2022/2022_public_msamd_three_year_csv.zip`,
+        txt: `${fileServerDomain}/static-data/three-year/2022/2022_public_msamd_three_year_pipe.zip`,
+      },
+    ],
+  },
 }

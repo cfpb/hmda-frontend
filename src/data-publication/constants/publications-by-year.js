@@ -190,6 +190,15 @@ const publications = {
   2022: [
     {
       updateFrequency:
+        'Does not update. Generated three years after filing deadline',
+      availableFor: '2017-2022',
+      headingLink: threeYearLink(2022),
+      headingText: threeYearTitle,
+      paragraphText: threeYearDesc,
+      freezeDate: THREE_YEAR_DATASET[2022].freezeDate,
+    },
+    {
+      updateFrequency:
         'Does not update. Generated one year after filing deadline',
       availableFor: '2019-2022',
       headingLink: oneYearLink(2022),
