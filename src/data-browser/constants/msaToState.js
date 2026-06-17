@@ -868,4 +868,5 @@ export default {
   2022: msaToState2020,
   2023: msaToState2020,
   2024: msaToState2024,
+  2025: msaToState2024,
 }

@@ -6,6 +6,7 @@ import counts2021 from './recordCountsByGeography/msamdCounts2021.json'
 import counts2022 from './recordCountsByGeography/msamdCounts2022.json'
 import counts2023 from './recordCountsByGeography/msamdCounts2023.json'
 import counts2024 from './recordCountsByGeography/msamdCounts2024.json'
+import counts2025 from './recordCountsByGeography/msamdCounts2025.json'
 
 export default {
   2017: counts2017,
@@ -16,4 +17,5 @@ export default {
   2022: counts2022,
   2023: counts2023,
   2024: counts2024,
+  2025: counts2025,
 }
