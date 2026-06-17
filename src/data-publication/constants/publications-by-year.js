@@ -66,6 +66,22 @@ const publications = {
       headingText: arTitle,
       paragraphText: arDesc,
     },
+    {
+      group: 'dynamic',
+      updateFrequency: 'Upon Institution resubmission',
+      availableFor: '2017-2025',
+      headingLink: mlarLink(2025),
+      headingText: mlarTitle,
+      paragraphText: mlarDesc,
+    },
+    {
+      group: 'dynamic',
+      updateFrequency: 'Weekly on Mondays',
+      availableFor: '2019-2025', // Change to the year you are updating to
+      headingLink: dynLink(2025), // Change to the year you are updating to
+      headingText: dynTitle,
+      paragraphText: dynDesc,
+    },
   ],
   2024: [
     {
