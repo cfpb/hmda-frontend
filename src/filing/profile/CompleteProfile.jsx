@@ -184,7 +184,7 @@ const CompleteProfile = (props) => {
               className='button back'
               style={{ textDecoration: 'none' }}
             >
-              &#9668; Back
+              &#9668; Back to Filing home
             </Link>
           ) : (
             <div className='no_institutions_associated'>
@@ -202,7 +202,7 @@ const CompleteProfile = (props) => {
 
           <Heading
             type={1}
-            headingText='Complete your profile'
+            headingText='Manage your profile'
             paragraphText='Update your filing profile by changing your name and what institutions you are associated with.'
             style={{ marginBottom: 0, marginTop: '5px' }}
           />
@@ -214,7 +214,14 @@ const CompleteProfile = (props) => {
                 closeAlert={displayNotification}
                 setCloseAlert={setDisplayNotification}
               >
-                <p>Your information was updated!</p>
+                <div>
+                  <p>Your information was updated!</p>
+                  <ul>
+                    <li>Continue your <Link to='/filing'>HMDA filing</Link></li>
+                    <li>Review the <Link to='/documentation/fig/'>Filing Instructions Guide</Link></li>
+                    <li>View <Link to='/updates-notes'>HMDA Platform updates</Link></li>
+                  </ul>
+                </div>
               </Alert>
             )}
 
