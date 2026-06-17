@@ -44,6 +44,14 @@ const publications = {
       updateFrequency:
         'Does not update. Generated a few months after filing deadline',
       availableFor: '2017-2025',
+      headingLink: drLink(2025),
+      headingText: drTitle,
+      paragraphText: drDesc,
+    },
+    {
+      updateFrequency:
+        'Does not update. Generated a few months after filing deadline',
+      availableFor: '2017-2025',
       headingLink: arLink(2025),
       headingText: arTitle,
       paragraphText: arDesc,
