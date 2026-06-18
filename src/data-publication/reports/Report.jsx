@@ -20,12 +20,32 @@ class Report extends React.Component {
       error: false,
       isLoaded: false,
       report: null,
+      hasZeroValuesOnly: false,
     }
 
     this.selectReport = this.selectReport.bind(this)
     this.generateCSV = this.generateCSV.bind(this)
     this.tableRef = React.createRef()
     this.tableTwoRef = React.createRef()
+  }
+
+  hasNonZeroValue(node) {
+    if (!node || typeof node !== 'object') return false
+    return Object.entries(node).some(([key, value]) =>
+      /(count|value)$/i.test(key)
+        ? typeof value === 'number' && value !== 0
+        : this.hasNonZeroValue(value),
+    )
+  }
+
+  areAllMetricValuesZero(report) {
+    if (report.table === 'IRSCSV') return false
+    try {
+      return !this.hasNonZeroValue(report)
+    } catch (error) {
+      console.log(error)
+      return false
+    }
   }
 
   generateCSV() {
@@ -176,6 +196,7 @@ class Report extends React.Component {
           this.setState({
             isLoaded: true,
             report: result,
+            hasZeroValuesOnly: this.areAllMetricValuesZero(result),
           })
         }
       })
@@ -312,7 +333,7 @@ class Report extends React.Component {
     let reportType = 'disclosure'
     if (this.props.match.params.stateId) reportType = 'aggregate'
 
-    const { report } = this.state
+    const { report, hasZeroValuesOnly } = this.state
     const headingText = this.makeHeadingText(report)
 
     return (
@@ -335,6 +356,12 @@ class Report extends React.Component {
             <p>Nationwide</p>
           )}
           <button onClick={this.generateCSV}>Save as CSV</button>
+          {hasZeroValuesOnly ? (
+            <p className='all-zero-data-notice'>
+              All values in the table below are 0. This is valid data and not an
+              error.
+            </p>
+          ) : null}
         </Heading>
 
         {this.selectReport(report, reportType)}
