@@ -1,4 +1,3 @@
-
 export function MissingInstitutionsBanner({ leis = [] }) {
   const hasMissingLeis = leis.length > 0
   const bannerType = hasMissingLeis ? 'warning' : 'info'
