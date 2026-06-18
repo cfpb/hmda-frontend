@@ -34,5 +34,13 @@
   },
   "[ignore]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[json]": {
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true
+  },
+  "[jsonc]": {
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true
   }
 }
