@@ -26,10 +26,10 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type(institutionName)
       cy.findByText('View MSA/MDs').click({ force: true })
-      cy.findByText('No options').should('not.exist')
-      cy.findByText('Select MSA/MD...').type(msaMdCityOnly)
+      cy.findByText('Loading...').should('not.exist')
+      cy.findByRole('combobox').type(msaMdCityOnly)
       cy.findByText(msaMdZipCodeFirst).click({ force: true })
-      cy.findByText('Select report...').type('Applications by Tract{enter}')
+      cy.findByRole('combobox').type('Applications by Tract{enter}')
 
       /* Check Report Params */
 
@@ -89,10 +89,10 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type(institutionName)
       cy.findByText('View MSA/MDs').click({ force: true })
-      cy.findByText('No options').should('not.exist')
-      cy.findByText('Select MSA/MD...').type(msaMdCityOnly)
+      cy.findByText('Loading...').should('not.exist')
+      cy.findByRole('combobox').type(msaMdCityOnly)
       cy.findByText(msaMdZipCodeFirst).click({ force: true })
-      cy.findByText('Select report...').type('Applications by Tract{enter}')
+      cy.findByRole('combobox').type('Applications by Tract{enter}')
 
       /* Check Report Params */
 
@@ -142,9 +142,9 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type('LIBERTY MORTGAGE CORPORATION')
       cy.findByText('View MSA/MDs').click({ force: true })
-      cy.findByText('No options').should('not.exist')
-      cy.findByText('Select MSA/MD...').type('Anniston{enter}')
-      cy.findByText('Select report...').type('Applications by Tract{enter}')
+      cy.findByText('Loading...').should('not.exist')
+      cy.findByRole('combobox').type('Anniston{enter}')
+      cy.findByRole('combobox').type('Applications by Tract{enter}')
 
       /* Check Report Params */
 
@@ -194,9 +194,9 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type('cypress bank, ssb')
       cy.findByText('View MSA/MDs').click({ force: true })
-      cy.findByText('No options').should('not.exist')
-      cy.findByText('Select MSA/MD...').type('Dallas{enter}')
-      cy.findByText('Select report...').type('Applications by Tract{enter}')
+      cy.findByText('Loading...').should('not.exist')
+      cy.findByRole('combobox').type('Dallas{enter}')
+      cy.findByRole('combobox').type('Applications by Tract{enter}')
 
       /* Check Report Params */
 
@@ -246,9 +246,9 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type('cypress bank, ssb')
       cy.findByText('View MSA/MDs').click({ force: true })
-      cy.findByText('No options').should('not.exist')
-      cy.findByText('Select MSA/MD...').type('Dallas{enter}')
-      cy.findByText('Select report...').type('Applications by Tract{enter}')
+      cy.findByText('Loading...').should('not.exist')
+      cy.findByRole('combobox').type('Dallas{enter}')
+      cy.findByRole('combobox').type('Applications by Tract{enter}')
 
       /* Check Report Params */
 
@@ -301,9 +301,9 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type('cypress bank, ssb')
       cy.findByText('View MSA/MDs').click({ force: true })
-      cy.findByText('No options').should('not.exist')
-      cy.findByText('Select MSA/MD...').type('Dallas{enter}')
-      cy.findByText('Select report...').type('Applications by Tract{enter}')
+      cy.findByText('Loading...').should('not.exist')
+      cy.findByRole('combobox').type('Dallas{enter}')
+      cy.findByRole('combobox').type('Applications by Tract{enter}')
 
       /* Check Report Params */
 
@@ -359,7 +359,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.get(
         '#main-content > .SearchList > .Results > li > .button-link',
       ).click()
-      cy.findByText('No options').should('not.exist')
+      cy.findByText('Loading...').should('not.exist')
 
       cy.get('#react-select-2-option-2').click({ force: true })
       cy.get('#react-select-3-option-0').click({ force: true })

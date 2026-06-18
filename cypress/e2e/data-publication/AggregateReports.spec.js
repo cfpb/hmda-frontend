@@ -18,9 +18,9 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/aggregate-reports/2024`)
 
       // Select geography and report
-      cy.findByText('Select a state...').type('Arizona{enter}')
-      cy.findByText('Select MSA/MD...').type('Phoenix{enter}')
-      cy.findByText('Select report...').type(
+      cy.findByRole('combobox').type('Arizona{enter}')
+      cy.findByRole('combobox').type('Phoenix{enter}')
+      cy.findByRole('combobox').type(
         'Applications by Ethnicity and Sex{enter}',
       )
 
@@ -78,9 +78,9 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/aggregate-reports/2023`)
 
       // Select geography and report
-      cy.findByText('Select a state...').type('Arizona{enter}')
-      cy.findByText('Select MSA/MD...').type('Phoenix{enter}')
-      cy.findByText('Select report...').type(
+      cy.findByRole('combobox').type('Arizona{enter}')
+      cy.findByRole('combobox').type('Phoenix{enter}')
+      cy.findByRole('combobox').type(
         'Applications by Ethnicity and Sex{enter}',
       )
 
@@ -138,9 +138,9 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/aggregate-reports/2022`)
 
       // Select geography and report
-      cy.findByText('Select a state...').type('Arizona{enter}')
-      cy.findByText('Select MSA/MD...').type('Phoenix{enter}')
-      cy.findByText('Select report...').type(
+      cy.findByRole('combobox').type('Arizona{enter}')
+      cy.findByRole('combobox').type('Phoenix{enter}')
+      cy.findByRole('combobox').type(
         'Applications by Ethnicity and Sex{enter}',
       )
 
@@ -198,9 +198,9 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/aggregate-reports/2021`)
 
       // Select geography and report
-      cy.findByText('Select a state...').type('Arizona{enter}')
-      cy.findByText('Select MSA/MD...').type('Phoenix{enter}')
-      cy.findByText('Select report...').type(
+      cy.findByRole('combobox').type('Arizona{enter}')
+      cy.findByRole('combobox').type('Phoenix{enter}')
+      cy.findByRole('combobox').type(
         'Applications by Ethnicity and Sex{enter}',
       )
 
@@ -262,9 +262,9 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/aggregate-reports/2020`)
 
       // Select geography and report
-      cy.findByText('Select a state...').type('Arizona{enter}')
-      cy.findByText('Select MSA/MD...').type('Phoenix{enter}')
-      cy.findByText('Select report...').type(
+      cy.findByRole('combobox').type('Arizona{enter}')
+      cy.findByRole('combobox').type('Phoenix{enter}')
+      cy.findByRole('combobox').type(
         'Applications by Ethnicity and Sex{enter}',
       )
 
@@ -323,9 +323,9 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/aggregate-reports/2019`)
 
       // Select geography and report
-      cy.findByText('Select a state...').type('Arizona{enter}')
-      cy.findByText('Select MSA/MD...').type('Phoenix{enter}')
-      cy.findByText('Select report...').type(
+      cy.findByRole('combobox').type('Arizona{enter}')
+      cy.findByRole('combobox').type('Phoenix{enter}')
+      cy.findByRole('combobox').type(
         'Applications by Ethnicity and Sex{enter}',
       )
 
