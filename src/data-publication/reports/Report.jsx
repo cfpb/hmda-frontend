@@ -4,6 +4,7 @@ import React from 'react'
 import { getDefaultConfig, isProd } from '../../common/configUtils'
 import Heading from '../../common/Heading.jsx'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
+import { areAllReportValuesZero } from './reportUtils.js'
 import {
   buildCSVRowsAggregate1,
   buildCSVRowsAggregate2,
@@ -27,26 +28,6 @@ class Report extends React.Component {
     this.generateCSV = this.generateCSV.bind(this)
     this.tableRef = React.createRef()
     this.tableTwoRef = React.createRef()
-  }
-
-  hasNonZeroValue(node) {
-    if (!node || typeof node !== 'object') return false
-    return Object.entries(node).some(([key, value]) =>
-      /(count|value)$/i.test(key)
-        ? typeof value === 'number' && value !== 0
-        : this.hasNonZeroValue(value),
-    )
-  }
-
-  areAllMetricValuesZero(report) {
-    if (report.table === 'IRSCSV') return false
-    if (report.table === 'I') return false
-    try {
-      return !this.hasNonZeroValue(report)
-    } catch (error) {
-      console.log(error)
-      return false
-    }
   }
 
   generateCSV() {
@@ -197,7 +178,7 @@ class Report extends React.Component {
           this.setState({
             isLoaded: true,
             report: result,
-            hasZeroValuesOnly: this.areAllMetricValuesZero(result),
+            hasZeroValuesOnly: areAllReportValuesZero(result),
           })
         }
       })
