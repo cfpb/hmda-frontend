@@ -40,6 +40,7 @@ class Report extends React.Component {
 
   areAllMetricValuesZero(report) {
     if (report.table === 'IRSCSV') return false
+    if (report.table === 'I') return false
     try {
       return !this.hasNonZeroValue(report)
     } catch (error) {
