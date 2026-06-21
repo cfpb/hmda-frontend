@@ -7,7 +7,7 @@ import svgr from 'vite-plugin-svgr'
 
 dotenv.config()
 
-if (!process.env.MAPBOX_ACCESS_TOKEN) {
+if (!process.env.MAPBOX_ACCESS_TOKEN || !process.env.ALGOLIA_PUBLIC_KEY) {
   throw new Error(
     `
  __   __  _______  __   __    _______  _______  ______    _______  _______  _______
@@ -25,7 +25,8 @@ if (!process.env.MAPBOX_ACCESS_TOKEN) {
  _____| ||       || ||_|| ||   |___   |   |  |   _   ||   | | | |   ||   |_| |
 |_______||_______||_|   |_||_______|  |___|  |__| |__||___| |_|  |__||_______|
 
-👉 MAPBOX_ACCESS_TOKEN environment variable is not defined. Please set it in your .env file. 👈
+👉 Both MAPBOX_ACCESS_TOKEN and ALGOLIA_PUBLIC_KEY environment variables are required. 👈
+👉 Please define them in your .env file. 👈
 `,
   )
 }
@@ -39,11 +40,14 @@ export default () => {
       environment: 'jsdom',
       globals: true,
       include: ['src/**/__tests__/**/*.{test,spec}.{js,jsx}'],
-      exclude: ['oldTests/**', 'cypress/**', '**/node_modules/**']
+      exclude: ['oldTests/**', 'cypress/**', '**/node_modules/**'],
     },
     define: {
       'import.meta.env.MAPBOX_ACCESS_TOKEN': JSON.stringify(
         process.env.MAPBOX_ACCESS_TOKEN,
+      ),
+      'import.meta.env.ALGOLIA_PUBLIC_KEY': JSON.stringify(
+        process.env.ALGOLIA_PUBLIC_KEY,
       ),
     },
     css: {

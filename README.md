@@ -143,8 +143,11 @@ HMDA Help requires a connection to the [HMDA Institutions API](https://github.co
 If your development does not require this integration, you can simply:
 
 1. Copy `.env.example` to `.env` and edit the environment variables.
-  - `DEV_URL` is the URL that the frontend app will use for API requests. It should not have a trailing slash.
-  - `MAPBOX_ACCESS_TOKEN` is the access token provided by Mapbox.com for the app's embedded maps. CFPB's token can be found in our [GitHub Enterprise wiki](https://GHE/HMDA-Operations/hmda-devops/wiki/Mapbox-credentials).
+
+- `DEV_URL` is the URL that the frontend app will use for API requests. It should not have a trailing slash.
+- `MAPBOX_ACCESS_TOKEN` is the access token provided by Mapbox.com for the app's embedded maps. CFPB's token can be found in our [GitHub Enterprise wiki](https://github.local/HMDA-Operations/hmda-devops/wiki/Mapbox-and-Algolia-credentials).
+- `ALGOLIA_PUBLIC_KEY` is the access token required for the site's search functionality. It's also in our [wiki](https://github.local/HMDA-Operations/hmda-devops/wiki/Mapbox-and-Algolia-credentials).
+
 2. Run `yarn start` to start a local development server at http://localhost:3000.
 
 #### Integrating with the Filing application
@@ -207,11 +210,13 @@ docker run -p 8080:8080 hmda/hmda-frontend
 ```
 
 ### Build image to run in EKS Cluster
+
 ```
 cp .env.example .env
 gsed -i 's/^.*MAPBOX_ACCESS.*$/MAPBOX_ACCESS_TOKEN=pk.xxx/' .env
 docker build --build-arg DOCKER_TAG=v3.3.1 --secret id=env_vars,src=.env  -t <AWS_Account>.dkr.ecr.us-east-1.amazonaws.com/hmda/hmda-frontend:v3.3.1
 ```
+
 To build using docker-compose:
 
 ```
