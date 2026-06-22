@@ -7,6 +7,8 @@
 export const hasNonZeroValue = (node) => {
   if (!node || typeof node !== 'object') return false
   return Object.entries(node).some(([key, value]) =>
+    // the following regex grabs "values" and "counts" but also weird ones like "firstLienValue"
+    // the $ ends with helps weed out "values" that sometimes contain an array of values
     /(count|value)$/i.test(key)
       ? typeof value === 'number' && value !== 0
       : hasNonZeroValue(value),
