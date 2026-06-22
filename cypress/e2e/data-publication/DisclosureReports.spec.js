@@ -1,5 +1,8 @@
 import { onlyOn } from '@cypress/skip-test'
-import { isBeta } from '../../support/helpers'
+import {
+  isBeta,
+  typeInReactSelectByPlaceholderText,
+} from '../../support/helpers'
 
 const { HOST } = Cypress.env()
 
@@ -26,10 +29,13 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type(institutionName)
       cy.findByText('View MSA/MDs').click({ force: true })
-      cy.findByText('Loading...').should('not.exist')
-      cy.findByRole('combobox').type(msaMdCityOnly)
+      cy.findByText('No options').should('not.exist')
+      typeInReactSelectByPlaceholderText('Select MSA/MD...', msaMdCityOnly)
       cy.findByText(msaMdZipCodeFirst).click({ force: true })
-      cy.findByRole('combobox').type('Applications by Tract{enter}')
+      typeInReactSelectByPlaceholderText(
+        'Select report...',
+        'Applications by Tract{enter}',
+      )
 
       /* Check Report Params */
 
@@ -89,10 +95,13 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type(institutionName)
       cy.findByText('View MSA/MDs').click({ force: true })
-      cy.findByText('Loading...').should('not.exist')
-      cy.findByRole('combobox').type(msaMdCityOnly)
+      cy.findByText('No options').should('not.exist')
+      typeInReactSelectByPlaceholderText('Select MSA/MD...', msaMdCityOnly)
       cy.findByText(msaMdZipCodeFirst).click({ force: true })
-      cy.findByRole('combobox').type('Applications by Tract{enter}')
+      typeInReactSelectByPlaceholderText(
+        'Select report...',
+        'Applications by Tract{enter}',
+      )
 
       /* Check Report Params */
 
@@ -142,9 +151,12 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type('LIBERTY MORTGAGE CORPORATION')
       cy.findByText('View MSA/MDs').click({ force: true })
-      cy.findByText('Loading...').should('not.exist')
-      cy.findByRole('combobox').type('Anniston{enter}')
-      cy.findByRole('combobox').type('Applications by Tract{enter}')
+      cy.findByText('No options').should('not.exist')
+      typeInReactSelectByPlaceholderText('Select MSA/MD...', 'Anniston{enter}')
+      typeInReactSelectByPlaceholderText(
+        'Select report...',
+        'Applications by Tract{enter}',
+      )
 
       /* Check Report Params */
 
@@ -194,9 +206,12 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type('cypress bank, ssb')
       cy.findByText('View MSA/MDs').click({ force: true })
-      cy.findByText('Loading...').should('not.exist')
-      cy.findByRole('combobox').type('Dallas{enter}')
-      cy.findByRole('combobox').type('Applications by Tract{enter}')
+      cy.findByText('No options').should('not.exist')
+      typeInReactSelectByPlaceholderText('Select MSA/MD...', 'Dallas{enter}')
+      typeInReactSelectByPlaceholderText(
+        'Select report...',
+        'Applications by Tract{enter}',
+      )
 
       /* Check Report Params */
 
@@ -246,9 +261,12 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type('cypress bank, ssb')
       cy.findByText('View MSA/MDs').click({ force: true })
-      cy.findByText('Loading...').should('not.exist')
-      cy.findByRole('combobox').type('Dallas{enter}')
-      cy.findByRole('combobox').type('Applications by Tract{enter}')
+      cy.findByText('No options').should('not.exist')
+      typeInReactSelectByPlaceholderText('Select MSA/MD...', 'Dallas{enter}')
+      typeInReactSelectByPlaceholderText(
+        'Select report...',
+        'Applications by Tract{enter}',
+      )
 
       /* Check Report Params */
 
@@ -301,9 +319,12 @@ onlyOn(!isBeta(HOST), () => {
       cy.get('#institution-name').click({ force: true })
       cy.get('#institution-name').type('cypress bank, ssb')
       cy.findByText('View MSA/MDs').click({ force: true })
-      cy.findByText('Loading...').should('not.exist')
-      cy.findByRole('combobox').type('Dallas{enter}')
-      cy.findByRole('combobox').type('Applications by Tract{enter}')
+      cy.findByText('No options').should('not.exist')
+      typeInReactSelectByPlaceholderText('Select MSA/MD...', 'Dallas{enter}')
+      typeInReactSelectByPlaceholderText(
+        'Select report...',
+        'Applications by Tract{enter}',
+      )
 
       /* Check Report Params */
 

@@ -83,3 +83,13 @@ export const logEnv = (obj) => {
     cy.log(`${key}: ${obj[key]}`)
   })
 }
+
+/**
+ * Type into the new version of the react-select input by its placeholder text.
+ * The new version of react-select is a real pain, so this goes into the now non-interactive
+ * placeholder text then digs around to find the input then starts typing
+ * @param placeholder Placeholder text shown in the select
+ * @param text Text you want to type (include {enter} if needed)
+ */
+export const typeInReactSelectByPlaceholderText = (placeholder, text) =>
+  cy.findByText(placeholder).parent().find('input').type(text, { force: true })

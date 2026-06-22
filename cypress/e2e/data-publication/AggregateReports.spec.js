@@ -1,5 +1,10 @@
 import { onlyOn } from '@cypress/skip-test'
-import { isBeta, openSelector } from '../../support/helpers'
+import {
+  isBeta,
+  openSelector,
+  typeInReactSelectByPlaceholderText,
+} from '../../support/helpers'
+
 const { HOST } = Cypress.env()
 
 // TODO: Test CSV Download
@@ -18,9 +23,10 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/aggregate-reports/2024`)
 
       // Select geography and report
-      cy.findByRole('combobox').type('Arizona{enter}')
-      cy.findByRole('combobox').type('Phoenix{enter}')
-      cy.findByRole('combobox').type(
+      typeInReactSelectByPlaceholderText('Select a state...', 'Arizona{enter}')
+      typeInReactSelectByPlaceholderText('Select MSA/MD...', 'Phoenix{enter}')
+      typeInReactSelectByPlaceholderText(
+        'Select report...',
         'Applications by Ethnicity and Sex{enter}',
       )
 
@@ -71,16 +77,17 @@ onlyOn(!isBeta(HOST), () => {
         '42300000',
       )
     })
-  
+
     it('2023', () => {
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 867)
       cy.visit(`${HOST}/data-publication/aggregate-reports/2023`)
 
       // Select geography and report
-      cy.findByRole('combobox').type('Arizona{enter}')
-      cy.findByRole('combobox').type('Phoenix{enter}')
-      cy.findByRole('combobox').type(
+      typeInReactSelectByPlaceholderText('Select a state...', 'Arizona{enter}')
+      typeInReactSelectByPlaceholderText('Select MSA/MD...', 'Phoenix{enter}')
+      typeInReactSelectByPlaceholderText(
+        'Select report...',
         'Applications by Ethnicity and Sex{enter}',
       )
 
@@ -138,9 +145,10 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/aggregate-reports/2022`)
 
       // Select geography and report
-      cy.findByRole('combobox').type('Arizona{enter}')
-      cy.findByRole('combobox').type('Phoenix{enter}')
-      cy.findByRole('combobox').type(
+      typeInReactSelectByPlaceholderText('Select a state...', 'Arizona{enter}')
+      typeInReactSelectByPlaceholderText('Select MSA/MD...', 'Phoenix{enter}')
+      typeInReactSelectByPlaceholderText(
+        'Select report...',
         'Applications by Ethnicity and Sex{enter}',
       )
 
@@ -198,9 +206,10 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/aggregate-reports/2021`)
 
       // Select geography and report
-      cy.findByRole('combobox').type('Arizona{enter}')
-      cy.findByRole('combobox').type('Phoenix{enter}')
-      cy.findByRole('combobox').type(
+      typeInReactSelectByPlaceholderText('Select a state...', 'Arizona{enter}')
+      typeInReactSelectByPlaceholderText('Select MSA/MD...', 'Phoenix{enter}')
+      typeInReactSelectByPlaceholderText(
+        'Select report...',
         'Applications by Ethnicity and Sex{enter}',
       )
 
@@ -262,9 +271,10 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/aggregate-reports/2020`)
 
       // Select geography and report
-      cy.findByRole('combobox').type('Arizona{enter}')
-      cy.findByRole('combobox').type('Phoenix{enter}')
-      cy.findByRole('combobox').type(
+      typeInReactSelectByPlaceholderText('Select a state...', 'Arizona{enter}')
+      typeInReactSelectByPlaceholderText('Select MSA/MD...', 'Phoenix{enter}')
+      typeInReactSelectByPlaceholderText(
+        'Select report...',
         'Applications by Ethnicity and Sex{enter}',
       )
 
@@ -323,9 +333,10 @@ onlyOn(!isBeta(HOST), () => {
       cy.visit(`${HOST}/data-publication/aggregate-reports/2019`)
 
       // Select geography and report
-      cy.findByRole('combobox').type('Arizona{enter}')
-      cy.findByRole('combobox').type('Phoenix{enter}')
-      cy.findByRole('combobox').type(
+      typeInReactSelectByPlaceholderText('Select a state...', 'Arizona{enter}')
+      typeInReactSelectByPlaceholderText('Select MSA/MD...', 'Phoenix{enter}')
+      typeInReactSelectByPlaceholderText(
+        'Select report...',
         'Applications by Ethnicity and Sex{enter}',
       )
 
