@@ -7,7 +7,9 @@ import {
 } from '../../support/helpers'
 
 const YEARS = Cypress.env('YEARS')
-const years = (YEARS && YEARS.toString().split(',')) || [2024, 2023, 2022, 2021, 2020, 2019, 2018]
+const years = (YEARS && YEARS.toString().split(',')) || [
+  2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018,
+]
 
 const { HOST, ENVIRONMENT } = Cypress.env()
 const dbUrl = dbURL.bind(null, HOST)
@@ -55,7 +57,7 @@ describe(`Data Browser - Dataset Filtering`, () => {
             'ALABAMA, ALASKA',
           )
           cy.get('.Aggregations :nth-child(2) > .sublist > li').then(($li) => {
-            let text = $li.text().toLowerCase()
+            const text = $li.text().toLowerCase()
             cy.wrap(text).should('contain', 'bank of america')
             cy.wrap(text).should('contain', 'chase bank')
           })
@@ -89,7 +91,7 @@ describe(`Data Browser - Dataset Filtering`, () => {
           cy.findByText('View Summary Table').click({ force: true })
           cy.get('.Aggregations', waitUpto2Mins).should('exist')
           cy.get('.Aggregations :nth-child(1) > .sublist > li').then(($li) => {
-            let text = $li.text().toLowerCase()
+            const text = $li.text().toLowerCase()
             cy.wrap(text).should('contain', 'bank of america')
             cy.wrap(text).should('contain', 'chase bank')
           })
@@ -135,7 +137,7 @@ describe(`Data Browser - Dataset Filtering`, () => {
             'AUTAUGA COUNTY, BALDWIN COUNTY',
           )
           cy.get('.Aggregations :nth-child(2) > .sublist > li').then(($li) => {
-            let text = $li.text().toLowerCase()
+            const text = $li.text().toLowerCase()
             cy.wrap(text).should('contain', 'bank of america')
             cy.wrap(text).should('contain', 'chase bank')
           })
@@ -187,7 +189,7 @@ describe(`Data Browser - Dataset Filtering`, () => {
             msa_text,
           )
           cy.get('.Aggregations :nth-child(2) > .sublist > li').then(($li) => {
-            let text = $li.text().toLowerCase()
+            const text = $li.text().toLowerCase()
             cy.wrap(text).should('contain', 'bank of america')
             cy.wrap(text).should('contain', 'chase bank')
           })
