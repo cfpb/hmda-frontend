@@ -1,0 +1,1 @@
+const n={buildURL:(i,t)=>`/file/reports/irs/year/${i}/institution/${t}`},s={buildURL:(i,t,r)=>{let e="/txt";return r&&(e+="/header"),`/file/modifiedLar/year/${i}/institution/${t}${e}`}};export{n as I,s as M};
