@@ -1,4 +1,4 @@
-import{O as reactExports,s as getDefaultExportFromCjs,E as jsxRuntimeExports,z as iconSprite,o as commonjsRequire,G as ordinal,aB as useHistory,aC as useLocation,S as Switch,j as Route,c as LoadingIcon}from"./index-DqlG9JCP.js";import{B as Buffer}from"./index-CgqXENQe.js";function useRemoteMarkdown(e,n={}){const[t,r]=reactExports.useState(n.defaultData),[i,a]=reactExports.useState(!1),[l,p]=reactExports.useState(null),{forceFetch:f}=n,c=f||window.location.host.indexOf("localhost")<0;return reactExports.useEffect(()=>{c&&(a(!0),p(null),fetch(e).then(u=>u.ok?u.text():Promise.reject(u)).then(u=>{n.transformReceive?r(n.transformReceive(u)):r(u),a(!1)}).catch(u=>{const{status:s,statusText:h}=u;a(!1),p(n.errorMsg||`Error: ${s} - ${h}`)}))},[]),[t,i,l]}const defaultChangeLog=`---
+import{O as reactExports,s as getDefaultExportFromCjs,E as jsxRuntimeExports,z as iconSprite,o as commonjsRequire,G as ordinal,aB as useHistory,aC as useLocation,S as Switch,j as Route,c as LoadingIcon}from"./index-ONDUAaY_.js";import{B as Buffer}from"./index-CgqXENQe.js";function useRemoteMarkdown(e,n={}){const[t,r]=reactExports.useState(n.defaultData),[i,a]=reactExports.useState(!1),[l,p]=reactExports.useState(null),{forceFetch:f}=n,c=f||window.location.host.indexOf("localhost")<0;return reactExports.useEffect(()=>{c&&(a(!0),p(null),fetch(e).then(u=>u.ok?u.text():Promise.reject(u)).then(u=>{n.transformReceive?r(n.transformReceive(u)):r(u),a(!1)}).catch(u=>{const{status:s,statusText:h}=u;a(!1),p(n.errorMsg||`Error: ${s} - ${h}`)}))},[]),[t,i,l]}const defaultChangeLog=`---
 date: 06/23/26
 type: release
 product: datasets
@@ -120,7 +120,7 @@ date: 06/24/25
 type: release
 product: datasets
 ---
-The 2024 national loan-level datasets, disclosure reports, and MSA/MD aggregate reports were released and can be accessed via the Data Publication page. Users can now explore 2024 HMDA data using the Data Browser's dataset filtering tool and maps. The 2024 One Year Dataset and the 2022 Three Year Dataset were also released.
+The 2024 national loan-level datasets, disclosure reports, and MSA/MD aggregate reports were released and can be accessed via the Data Publication page. Users can now explore 2024 HMDA data using the Data Browser's dataset filtering tool and maps. The 2023 One Year Dataset and the 2021 Three Year Dataset were also released.
 
 - [Data Publication](https://ffiec.cfpb.gov/data-publication/)
 - [Data Browser](https://ffiec.cfpb.gov/data-browser/data/)
@@ -720,7 +720,7 @@ type: release
 product: documentation
 ---
 The Documentation for 2020 Annual and Quarterly filing deadlines has been released.
-`,PRODUCT_NAMES={mlar:"Modified LAR",datasets:"National Datasets",reports:"Reports",documentation:"Documentation",tools:"HMDA Tools",filing:"HMDA Filing"},PRODUCTS=Object.keys(PRODUCT_NAMES),CATEGORIES={correction:{order:4},update:{order:3},release:{order:2},announcement:{order:1}},PUB_CHANGELOG_URL="https://raw.githubusercontent.com/cfpb/hmda-frontend/1b31cf06a386d1405a211d2515a15278a52f722c/src/updates-notes/change-log.md",DEFAULT_FILTERS={type:[],product:[],keywords:[]},FILTER_OPTIONS={PRODUCT:PRODUCTS.map(e=>({value:e,type:"product"})),TYPE:Object.keys(CATEGORIES).sort((e,n)=>CATEGORIES[e].order-CATEGORIES[n].order).map(e=>({value:e,type:"type"}))};var mark$3={exports:{}};/*!***************************************************
+`,PRODUCT_NAMES={mlar:"Modified LAR",datasets:"National Datasets",reports:"Reports",documentation:"Documentation",tools:"HMDA Tools",filing:"HMDA Filing"},PRODUCTS=Object.keys(PRODUCT_NAMES),CATEGORIES={correction:{order:4},update:{order:3},release:{order:2},announcement:{order:1}},PUB_CHANGELOG_URL="https://raw.githubusercontent.com/cfpb/hmda-frontend/1c545e58a498959fd0a3f2955773ec3ccfeae656/src/updates-notes/change-log.md",DEFAULT_FILTERS={type:[],product:[],keywords:[]},FILTER_OPTIONS={PRODUCT:PRODUCTS.map(e=>({value:e,type:"product"})),TYPE:Object.keys(CATEGORIES).sort((e,n)=>CATEGORIES[e].order-CATEGORIES[n].order).map(e=>({value:e,type:"type"}))};var mark$3={exports:{}};/*!***************************************************
 * mark.js v8.11.1
 * https://markjs.io/
 * Copyright (c) 2014–2018, Julian Kühnel
