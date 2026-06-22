@@ -1,5 +1,6 @@
 import { onlyOn } from '@cypress/skip-test'
 import { isBeta, mapsURL, openSelector } from '../../support/helpers'
+
 const { HOST, ENVIRONMENT } = Cypress.env()
 const ACTION_DELAY = 8000 // milliseconds
 
@@ -11,7 +12,115 @@ onlyOn(isBeta(HOST), () => {
 
 onlyOn(!isBeta(HOST), () => {
   describe('Maps', { tags: '@localhost' }, () => {
-     it('State 2024', { tags: ['@smoke'] },() => {
+    it('State 2025', { tags: ['@smoke'] }, () => {
+      cy.get({ HOST, ENVIRONMENT }).logEnv()
+      cy.viewport(1000, 940)
+      cy.visit(mapsURL(HOST, '2025?geography=state'))
+      deleteBetaBanner(HOST)
+
+      openSelector('#map-filter-1').type('denied{enter}')
+      openSelector('#map-filter-2').type('age 55{enter}')
+
+      cy.wait(ACTION_DELAY) // Allow the map to complete it's initial render
+      cy.get('.mapboxgl-canvas').click()
+
+      cy.get('.maps-nav-bar .left .count').should('contain', '2,421')
+      cy.get('.maps-nav-bar .right .count').should('contain', '0.67')
+      cy.get('.maps-nav-bar .feature').should('contain', 'KANSAS')
+
+      cy.get('.summary-page .featureName > .colorTextWithBias').should(
+        'contain',
+        'KANSAS',
+      )
+      cy.get('.summary-page .count').should('contain', '2,421')
+
+      cy.get(
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(1)',
+      ).should('contain', 'Application denied')
+      cy.get(
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(2)',
+      ).should('contain', '14,250')
+      cy.get(
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(3)',
+      ).should('contain', '13.18%')
+      cy.get(
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(4)',
+      ).should('contain', '2,421')
+      cy.get(
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(5)',
+      ).should('contain', '17.68%')
+
+      cy.get(
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(1)',
+      ).should('contain', '55-64')
+      cy.get(
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(2)',
+      ).should('contain', '13,693')
+      cy.get(
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(3)',
+      ).should('contain', '12.67%')
+      cy.get(
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(4)',
+      ).should('contain', '2,421')
+      cy.get(
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)',
+      ).should('contain', '16.99%')
+    })
+    it('County 2025', () => {
+      cy.get({ HOST, ENVIRONMENT }).logEnv()
+      cy.viewport(1000, 940)
+      cy.visit(mapsURL(HOST, '5?geography=county'))
+      deleteBetaBanner(HOST)
+
+      openSelector('#map-filter-1').type('denied{enter}')
+      openSelector('#map-filter-2').type('age 55{enter}')
+
+      cy.wait(ACTION_DELAY) // Allow the map to complete it's initial render
+      cy.get('.mapboxgl-canvas').click()
+
+      cy.get('.maps-nav-bar .feature').should('contain', 'GREENWOOD COUNTY, KS')
+      cy.get('.maps-nav-bar .left .count').should('contain', '5')
+      cy.get('.maps-nav-bar .right .count').should('contain', '0.42')
+
+      cy.get('.summary-page .featureName > .colorTextWithBias').should(
+        'contain',
+        'GREENWOOD COUNTY, KS',
+      )
+      cy.get('.summary-page .count').should('contain', '5')
+
+      cy.get(
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(1)',
+      ).should('contain', 'Application denied')
+      cy.get(
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(2)',
+      ).should('contain', '23')
+      cy.get(
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(3)',
+      ).should('contain', '15.03%')
+      cy.get(
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(4)',
+      ).should('contain', '5')
+      cy.get(
+        '.filter-report-1 > table > tbody > tr.highlight > :nth-child(5)',
+      ).should('contain', '19.23%')
+
+      cy.get(
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(1)',
+      ).should('contain', '55-64')
+      cy.get(
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(2)',
+      ).should('contain', '26')
+      cy.get(
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(3)',
+      ).should('contain', '16.99%')
+      cy.get(
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(4)',
+      ).should('contain', '5')
+      cy.get(
+        '.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)',
+      ).should('contain', '21.74%')
+    })
+    it('State 2024', () => {
       cy.get({ HOST, ENVIRONMENT }).logEnv()
       cy.viewport(1000, 940)
       cy.visit(mapsURL(HOST, '2024?geography=state'))
@@ -23,7 +132,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.wait(ACTION_DELAY) // Allow the map to complete it's initial render
       cy.get('.mapboxgl-canvas').click()
 
-      cy.get('.maps-nav-bar .left .count').should('contain', '2,188')
+      cy.get('.maps-nav-bar .left .count').should('contain', '2,199')
       cy.get('.maps-nav-bar .right .count').should('contain', '0.61')
       cy.get('.maps-nav-bar .feature').should('contain', 'KANSAS')
 
@@ -31,39 +140,39 @@ onlyOn(!isBeta(HOST), () => {
         'contain',
         'KANSAS',
       )
-      cy.get('.summary-page .count').should('contain', '2,188')
+      cy.get('.summary-page .count').should('contain', '2,199')
 
       cy.get(
         '.filter-report-1 > table > tbody > tr.highlight > :nth-child(1)',
       ).should('contain', 'Application denied')
       cy.get(
         '.filter-report-1 > table > tbody > tr.highlight > :nth-child(2)',
-      ).should('contain', '13,474')
+      ).should('contain', '13,548')
       cy.get(
         '.filter-report-1 > table > tbody > tr.highlight > :nth-child(3)',
       ).should('contain', '14.25%')
       cy.get(
         '.filter-report-1 > table > tbody > tr.highlight > :nth-child(4)',
-      ).should('contain', '2,188')
+      ).should('contain', '2,199')
       cy.get(
         '.filter-report-1 > table > tbody > tr.highlight > :nth-child(5)',
-      ).should('contain', '17.98%')
+      ).should('contain', '18.00%')
 
       cy.get(
         '.filter-report-2 > table > tbody > tr.highlight > :nth-child(1)',
       ).should('contain', '55-64')
       cy.get(
         '.filter-report-2 > table > tbody > tr.highlight > :nth-child(2)',
-      ).should('contain', '12,171')
+      ).should('contain', '12,217')
       cy.get(
         '.filter-report-2 > table > tbody > tr.highlight > :nth-child(3)',
-      ).should('contain', '12.88%')
+      ).should('contain', '12.85%')
       cy.get(
         '.filter-report-2 > table > tbody > tr.highlight > :nth-child(4)',
-      ).should('contain', '2,188')
+      ).should('contain', '2,199')
       cy.get(
         '.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)',
-      ).should('contain', '16.24%')
+      ).should('contain', '16.23%')
     })
 
     it('County 2024', () => {
@@ -243,7 +352,7 @@ onlyOn(!isBeta(HOST), () => {
       cy.wait(ACTION_DELAY) // Allow the map to complete it's initial render
       cy.get('.mapboxgl-canvas').click()
 
-      cy.get('.maps-nav-bar .left .count').should('contain', '2,430')
+      cy.get('.maps-nav-bar .left .count').should('contain', '2,457')
       cy.get('.maps-nav-bar .right .count').should('contain', '0.68')
       cy.get('.maps-nav-bar .feature').should('contain', 'KANSAS')
 
@@ -251,39 +360,39 @@ onlyOn(!isBeta(HOST), () => {
         'contain',
         'KANSAS',
       )
-      cy.get('.summary-page .count').should('contain', '2,430')
+      cy.get('.summary-page .count').should('contain', '2,457')
 
       cy.get(
         '.filter-report-1 > table > tbody > tr.highlight > :nth-child(1)',
       ).should('contain', 'Application denied')
       cy.get(
         '.filter-report-1 > table > tbody > tr.highlight > :nth-child(2)',
-      ).should('contain', '14,687')
+      ).should('contain', '14,837')
       cy.get(
         '.filter-report-1 > table > tbody > tr.highlight > :nth-child(3)',
-      ).should('contain', '13.38%')
+      ).should('contain', '13.51%')
       cy.get(
         '.filter-report-1 > table > tbody > tr.highlight > :nth-child(4)',
-      ).should('contain', '2,430')
+      ).should('contain', '2,457')
       cy.get(
         '.filter-report-1 > table > tbody > tr.highlight > :nth-child(5)',
-      ).should('contain', '16.79%')
+      ).should('contain', '16.99%')
 
       cy.get(
         '.filter-report-2 > table > tbody > tr.highlight > :nth-child(1)',
       ).should('contain', '55-64')
       cy.get(
         '.filter-report-2 > table > tbody > tr.highlight > :nth-child(2)',
-      ).should('contain', '14,472')
+      ).should('contain', '14,463')
       cy.get(
         '.filter-report-2 > table > tbody > tr.highlight > :nth-child(3)',
-      ).should('contain', '13.19%')
+      ).should('contain', '13.17%')
       cy.get(
         '.filter-report-2 > table > tbody > tr.highlight > :nth-child(4)',
-      ).should('contain', '2,430')
+      ).should('contain', '2,457')
       cy.get(
         '.filter-report-2 > table > tbody > tr.highlight > :nth-child(5)',
-      ).should('contain', '16.55%')
+      ).should('contain', '16.56%')
     })
 
     it('County 2022', () => {

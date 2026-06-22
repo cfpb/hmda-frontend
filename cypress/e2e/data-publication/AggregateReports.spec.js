@@ -12,6 +12,64 @@ onlyOn(isBeta(HOST), () => {
 
 onlyOn(!isBeta(HOST), () => {
   describe('Aggregate Reports', () => {
+    it('2025', { tags: ['@smoke', '@localhost'] }, () => {
+      cy.get({ HOST }).logEnv()
+      cy.viewport(1680, 867)
+      cy.visit(`${HOST}/data-publication/aggregate-reports/2025`)
+
+      // Select geography and report
+      cy.findByRole('combobox').type('Arizona{enter}')
+      cy.findByRole('combobox').type('Phoenix{enter}')
+      cy.findByRole('combobox').type('Applications by Ethnicity and Sex{enter}')
+
+      // Report Content
+      cy.get('tbody > :nth-child(3) > :nth-child(2)').should(
+        'have.text',
+        '10831',
+      )
+      cy.get('tbody > :nth-child(3) > :nth-child(3)').should(
+        'have.text',
+        '3147105000',
+      )
+      cy.get('tbody > :nth-child(3) > :nth-child(4)').should('have.text', '832')
+      cy.get('tbody > :nth-child(3) > :nth-child(5)').should(
+        'have.text',
+        '153360000',
+      )
+      cy.get('tbody > :nth-child(3) > :nth-child(6)').should(
+        'have.text',
+        '4169',
+      )
+      cy.get('tbody > :nth-child(3) > :nth-child(7)').should(
+        'have.text',
+        '839125000',
+      )
+      cy.get('tbody > :nth-child(3) > :nth-child(8)').should(
+        'have.text',
+        '2827',
+      )
+      cy.get('tbody > :nth-child(3) > :nth-child(9)').should(
+        'have.text',
+        '872405000',
+      )
+      cy.get('tbody > :nth-child(3) > :nth-child(10)').should(
+        'have.text',
+        '1016',
+      )
+      cy.get('tbody > :nth-child(3) > :nth-child(11)').should(
+        'have.text',
+        '253250000',
+      )
+      cy.get('tbody > :nth-child(3) > :nth-child(12)').should(
+        'have.text',
+        '106',
+      )
+      cy.get('tbody > :nth-child(3) > :nth-child(13)').should(
+        'have.text',
+        '34580000',
+      )
+    })
+
     it('2024', { tags: ['@smoke', '@localhost'] }, () => {
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 867)
