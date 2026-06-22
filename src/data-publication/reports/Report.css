@@ -27,6 +27,10 @@
 .Report .heading p {
   margin-bottom: 0;
 }
+.Report .heading .all-zero-data-notice {
+  margin-top: 3rem;
+  margin-bottom: -3rem;
+}
 
 .Report table {
   font-size: 0.75em;

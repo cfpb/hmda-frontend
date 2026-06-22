@@ -4,6 +4,7 @@ import React from 'react'
 import { getDefaultConfig, isProd } from '../../common/configUtils'
 import Heading from '../../common/Heading.jsx'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
+import { areAllReportValuesZero } from './reportUtils.js'
 import {
   buildCSVRowsAggregate1,
   buildCSVRowsAggregate2,
@@ -20,6 +21,7 @@ class Report extends React.Component {
       error: false,
       isLoaded: false,
       report: null,
+      hasZeroValuesOnly: false,
     }
 
     this.selectReport = this.selectReport.bind(this)
@@ -176,6 +178,7 @@ class Report extends React.Component {
           this.setState({
             isLoaded: true,
             report: result,
+            hasZeroValuesOnly: areAllReportValuesZero(result),
           })
         }
       })
@@ -312,7 +315,7 @@ class Report extends React.Component {
     let reportType = 'disclosure'
     if (this.props.match.params.stateId) reportType = 'aggregate'
 
-    const { report } = this.state
+    const { report, hasZeroValuesOnly } = this.state
     const headingText = this.makeHeadingText(report)
 
     return (
@@ -335,6 +338,12 @@ class Report extends React.Component {
             <p>Nationwide</p>
           )}
           <button onClick={this.generateCSV}>Save as CSV</button>
+          {hasZeroValuesOnly ? (
+            <p className='all-zero-data-notice'>
+              All values in the table below are 0. This is valid data and not an
+              error.
+            </p>
+          ) : null}
         </Heading>
 
         {this.selectReport(report, reportType)}
