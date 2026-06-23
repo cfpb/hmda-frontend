@@ -166,7 +166,7 @@ export function AnnouncementBanner({
     <OptionCarousel
       id='oc-homepage-banner'
       options={announcements}
-      cycleTime={5}
+      cycleTime={10}
       hideIcon
       showControls
     />
