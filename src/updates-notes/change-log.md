@@ -1,4 +1,17 @@
 ---
+date: 06/23/26
+type: release
+product: datasets
+---
+The 2025 national loan-level datasets, disclosure reports, and MSA/MD aggregate reports were released and can be accessed via the Data Publication page. Users can now explore 2025 HMDA data using the Data Browser's dataset filtering tool and maps. The 2024 One Year Dataset and the 2022 Three Year Dataset were also released.
+
+- [Data Publication](https://ffiec.cfpb.gov/data-publication/)
+- [Data Browser](https://ffiec.cfpb.gov/data-browser/data/)
+- [Maps](https://ffiec.cfpb.gov/data-browser/maps/)
+
+---
+
+---
 date: 04/30/26
 type: update
 product: documentation

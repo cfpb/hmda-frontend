@@ -186,6 +186,8 @@ const MapContainer = (props) => {
   const [state2023Data, setState2023Data] = useState(null)
   const [county2024Data, setCounty2024Data] = useState(null)
   const [state2024Data, setState2024Data] = useState(null)
+  const [county2025Data, setCounty2025Data] = useState(null)
+  const [state2025Data, setState2025Data] = useState(null)
 
   const [filterData, setFilterData] = useState(null)
   const [tableFilterData, setTableFilterData] = useState(null)
@@ -225,6 +227,8 @@ const MapContainer = (props) => {
           return geography.value === 'state' ? state2023Data : county2023Data
         case '2024':
           return geography.value === 'state' ? state2024Data : county2024Data
+        case '2025':
+          return geography.value === 'state' ? state2025Data : county2025Data
         default:
           return null
       }
@@ -244,6 +248,8 @@ const MapContainer = (props) => {
       county2023Data,
       state2024Data,
       county2024Data,
+      state2025Data,
+      county2025Data,
     ],
   )
 
@@ -447,12 +453,25 @@ const MapContainer = (props) => {
     ) {
       fetchQ.push(1)
       runFetch("/2024/county.json").then(jsonData => {
-        console.log(jsonData)
         setCounty2024Data(jsonData)
         fetchQ.pop()
       })
     }
   }, [county2024Data, selectedGeography, year])
+
+  useEffect(() => {
+    if (
+      !county2025Data &&
+      selectedGeography.value === "county" &&
+      year === "2025"
+    ) {
+      fetchQ.push(1)
+      runFetch("/2025/county.json").then(jsonData => {
+        setCounty2025Data(jsonData)
+        fetchQ.pop()
+      })
+    }
+  }, [county2025Data, selectedGeography, year])
 
   useEffect(() => {
     if (
@@ -551,6 +570,20 @@ const MapContainer = (props) => {
       })
     }
   }, [selectedGeography, state2024Data, year])
+
+  useEffect(() => {
+    if (
+      !state2025Data &&
+      selectedGeography.value === "state" &&
+      year === "2025"
+    ) {
+      fetchQ.push(1)
+      runFetch("/2025/state.json").then(jsonData => {
+        setState2025Data(jsonData)
+        fetchQ.pop()
+      })
+    }
+  }, [selectedGeography, state2025Data, year])
 
   useEffect(() => {
     setData(getBaseData(year, selectedGeography))

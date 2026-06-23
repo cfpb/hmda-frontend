@@ -4,12 +4,36 @@ import getOverrides from './overrides'
 const { fileServerDomain } = getDefaultConfig(window.location.hostname)
 
 export const ONE_YEAR_DATASET = {
+  2024: {
+    freezeDate: 'June 2, 2026',
+    datasets: [
+      {
+        dataKey: 'lar',
+        label: 'Loan/Application Records (LAR)',
+        csv: `${fileServerDomain}/static-data/one-year/2024/2024_public_lar_one_year_csv.zip`,
+        txt: `${fileServerDomain}/static-data/one-year/2024/2024_public_lar_one_year_pipe.zip`,
+      },
+      {
+        dataKey: 'ts',
+        label: 'Transmittal Sheet Records (TS)',
+        csv: `${fileServerDomain}/static-data/one-year/2024/2024_public_ts_one_year_csv.zip`,
+        txt: `${fileServerDomain}/static-data/one-year/2024/2024_public_ts_one_year_pipe.zip`,
+      },
+      {
+        dataKey: 'panel',
+        label: 'Reporter Panel',
+        override: getOverrides.getReporterPanelUnavailable(),
+      },
+      {
+        dataKey: 'msamd',
+        label: 'MSA/MD Description',
+        csv: `${fileServerDomain}/static-data/one-year/2024/2024_public_msamd_one_year_csv.zip`,
+        txt: `${fileServerDomain}/static-data/one-year/2024/2024_public_msamd_one_year_pipe.zip`,
+      },
+    ],
+  },
   2023: {
     freezeDate: 'May 19, 2025',
-    specialNote: getOverrides.getReporterPanelUnavailableBanner(
-      '2023',
-      'One Year Dataset',
-    ),
     datasets: [
       {
         dataKey: 'lar',
