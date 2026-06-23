@@ -123,7 +123,7 @@
     "vite": "6.4.3",
     "vite-plugin-node-polyfills": "0.25.0",
     "vite-plugin-svgr": "^4.1.0",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.6"
   },
   "resolutions": {
     "ansi-html": "0.0.9",
