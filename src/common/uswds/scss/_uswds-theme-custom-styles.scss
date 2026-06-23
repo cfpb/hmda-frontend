@@ -381,36 +381,29 @@ body {
 }
 
 .usa-modal--lg {
-  position: relative;
   width: 78.5vw;
   height: 45.25vw;
   max-width: 1120px;
   max-height: 647px;
   padding: 1vw;
 
-  .video-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-
+  .video-container,
   iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
+    display: block;
     width: 100%;
     height: 100%;
   }
 
   .usa-modal__close {
     position: absolute;
-    top: -1em;
-    right: 0;
-    z-index: 2;
-    background-color: transparent !important;
-    border: none !important;
+    top: 1vw;
+    right: 1vw;
+    margin: 0;
+    padding: 0;
 
     svg {
+      width: 1.75em;
+      height: 1.75em;
       fill: #fff;
 
       &:hover {

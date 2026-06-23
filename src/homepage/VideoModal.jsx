@@ -34,7 +34,7 @@ export function VideoModal({ showModal, setShowModal, title, content }) {
           <button
             type='button'
             onClick={closeModal}
-            className='usa-button usa-modal__close'
+            className='usa-modal__close'
             aria-label='Close this window'
           >
             <svg
