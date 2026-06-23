@@ -104,7 +104,6 @@ describe(
     })
 
     it('Shows spinner dots in save button during save', () => {
-      cy.visit(`${AUTH_BASE_URL}filing/profile`)
       cy.wait(ACTION_DELAY)
 
       cy.get('.profile_form_container > :nth-child(2) > input').clear().type('party')
