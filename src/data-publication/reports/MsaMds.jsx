@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import msaToName from '../../data-browser/constants/msaToName.js'
 import stateToMsas from '../constants/stateToMsas.js'
 import fetchMsas from './fetchMsas.js'
 import Selector from './Selector.jsx'
@@ -21,7 +22,10 @@ function MsaMds(props) {
     if (msaMds.length) return
 
     if (params.stateId) {
-      setMsaMds(stateToMsas[params.year][params.stateId])
+      const msamdAndLabel = stateToMsas[params.year][params.stateId].map(
+        (msamd) => ({ id: msamd, name: msaToName[params.year][msamd] }),
+      )
+      setMsaMds(msamdAndLabel)
     } else {
       if (MSA_MDS[params.institutionId]) {
         setMsaMds(MSA_MDS[params.institutionId])
