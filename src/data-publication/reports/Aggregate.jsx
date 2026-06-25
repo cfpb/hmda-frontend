@@ -1,16 +1,16 @@
 import React from 'react'
 import Select from 'react-select'
+import { withAppContext } from '../../common/appContextHOC.jsx'
 import Heading from '../../common/Heading.jsx'
+import { withYearValidation } from '../../common/withYearValidation.jsx'
 import YearSelector from '../../common/YearSelector.jsx'
-import ProgressCard from './ProgressCard.jsx'
-import MsaMds from './MsaMds.jsx'
-import Reports from './Reports.jsx'
-import Report from './Report.jsx'
+import { AGGREGATE_REPORTS } from '../constants/aggregate-reports.js'
 import STATES from '../constants/states.js'
 import stateToMsas from '../constants/stateToMsas.js'
-import { AGGREGATE_REPORTS } from '../constants/aggregate-reports.js'
-import { withAppContext } from '../../common/appContextHOC.jsx'
-import { withYearValidation } from '../../common/withYearValidation.jsx'
+import MsaMds from './MsaMds.jsx'
+import ProgressCard from './ProgressCard.jsx'
+import Report from './Report.jsx'
+import Reports from './Reports.jsx'
 
 import './Aggregate.css'
 
@@ -84,6 +84,7 @@ Object.keys(AGGREGATE_REPORTS).forEach((year) =>
 
 class Aggregate extends React.Component {
   constructor(props) {
+    console.log('props', props)
     super(props)
 
     this.handleChange = this.handleChange.bind(this)
@@ -110,6 +111,7 @@ class Aggregate extends React.Component {
 
   render() {
     const { params, url } = this.props.match
+    console.log('params', params)
     const { year } = params
     const { aggregate, shared } = this.props.config.dataPublicationYears
     const years = aggregate || shared
