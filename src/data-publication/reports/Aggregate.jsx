@@ -7,7 +7,7 @@ import MsaMds from './MsaMds.jsx'
 import Reports from './Reports.jsx'
 import Report from './Report.jsx'
 import STATES from '../constants/states.js'
-import stateToMsas from '../constants/stateToMsas.js'
+import labeledMsaMdsByYearAndState from '../constants/labeledMsaMdsByYearAndState.js'
 import { AGGREGATE_REPORTS } from '../constants/aggregate-reports.js'
 import { withAppContext } from '../../common/appContextHOC.jsx'
 import { withYearValidation } from '../../common/withYearValidation.jsx'
@@ -91,7 +91,7 @@ class Aggregate extends React.Component {
 
     const { params } = this.props.match
     if (params.stateId && params.msaMdId) {
-      stateToMsas[params.year][params.stateId].forEach((v) => {
+      labeledMsaMdsByYearAndState[params.year][params.stateId].forEach((v) => {
         if (v.id === Number(params.msaMdId)) this.setMsaMd(v)
       })
     }
