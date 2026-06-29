@@ -1,9 +1,9 @@
+import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
-import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import Loading from '../../common/LoadingIcon.jsx'
 import Alert from '../Alert'
+import Loading from '../../common/LoadingIcon.jsx'
 
 import './SearchResults.css'
 
