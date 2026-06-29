@@ -402,13 +402,14 @@ class Institution extends Component {
             />
           )}
 
-          <button
+          {/* Additional institution fields below disabled as per GHE #5675 */}
+          {/* <button
             className='button-link toggleButton'
             type='button'
             onClick={this.toggleShowOtherFields}
           >
             {this.state.showOtherFields ? 'Hide' : 'Show'} other fields
-          </button>
+          </button> */}
 
           {this.state.showOtherFields ? (
             <OtherFields
