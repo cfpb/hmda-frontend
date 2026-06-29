@@ -58,13 +58,14 @@ function SearchResultActions({
             <button className='delete' onClick={() => toggleAreYouSure(index)}>
               Delete
             </button>
-            <button
+            {/* Additional institution fields below disabled as per GHE #5675 */}
+            {/* <button
               onClick={() => handleViewMoreClick(index)}
               ref={(element) => buttonsRef.current.set(index, element)}
               className='showOtherFields'
             >
               Show other fields
-            </button>
+            </button> */}
           </div>
           <div className='areYouSure hidden' id={`areYouSure${index}`}>
             <span>Are you sure?</span>{' '}

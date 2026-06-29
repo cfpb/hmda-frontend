@@ -228,11 +228,12 @@ onlyOn(!isBeta(HOST), () => {
         .select('true')
         .should('have.value', 'true')
 
-      cy.findByText('Show other fields').click()
-      cy.findByLabelText('RSSD').type('-1')
-      cy.findByLabelText('Parent ID RSSD').type('-1')
-      cy.findByLabelText('Assets').type('-1')
-      cy.findByLabelText('Top Holder ID RSSD').type('-1')
+      // Additional institution fields below disabled as per GHE #5675
+      // cy.findByText('Show other fields').click()
+      // cy.findByLabelText('RSSD').type('-1')
+      // cy.findByLabelText('Parent ID RSSD').type('-1')
+      // cy.findByLabelText('Assets').type('-1')
+      // cy.findByLabelText('Top Holder ID RSSD').type('-1')
 
       cy.findByText('Add the Institution').should('be.enabled').click()
 
