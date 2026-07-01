@@ -95,7 +95,7 @@ export function Reports({ publicationReleaseYear }) {
         </li>
         <li>
           <Link
-            to={`/data-publication/national-aggregate-reports/${publicationReleaseYear}`}
+            to={`/data-publication/national-aggregate-reports/2017`}
           >
             National Aggregate Reports
           </Link>
