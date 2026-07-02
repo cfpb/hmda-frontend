@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import stateToMsas from '../constants/stateToMsas.js'
+import labeledMsaMdsByYearAndState from '../constants/labeledMsaMdsByYearAndState.js'
 import fetchMsas from './fetchMsas.js'
 import Selector from './Selector.jsx'
 
@@ -21,7 +21,7 @@ function MsaMds(props) {
     if (msaMds.length) return
 
     if (params.stateId) {
-      setMsaMds(stateToMsas[params.year][params.stateId])
+      setMsaMds(labeledMsaMdsByYearAndState[params.year][params.stateId])
     } else {
       if (MSA_MDS[params.institutionId]) {
         setMsaMds(MSA_MDS[params.institutionId])
