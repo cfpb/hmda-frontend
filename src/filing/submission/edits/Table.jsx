@@ -65,7 +65,7 @@ export const renderTableCaption = (props) => {
   const [edit] = splitEditPart(name)
 
   const linkedName = (
-    <a href={`/documentation/fig/${year}/overview#edit-${edit}`}>{name}</a>
+    <a href={`/documentation/fig/${year}/overview#edit-${edit}`} target='_blank' rel='noopener noreferrer'>{name}</a>
   )
   let captionHeader
 
