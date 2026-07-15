@@ -58,8 +58,7 @@
   cursor: pointer;
   text-align: center;
   line-height: normal;
-  margin: 0;
-  margin-right: -50%;
+  margin: 5rem -50% 0 0;
   padding: 0;
   background-color: rgba(0, 0, 0, 0);
   background-image: url('../../images/upload.png');

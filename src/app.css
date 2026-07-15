@@ -4,6 +4,11 @@
   font-display: swap;
 }
 @font-face {
+  font-family: SourceSansProSemiBold;
+  src: url(./common/uswds/fonts/source-sans-pro/sourcesanspro-semibold-webfont.woff2);
+  font-display: swap;
+}
+@font-face {
   font-family: SourceSansProBold;
   src: url(./common/uswds/fonts/source-sans-pro/sourcesanspro-bold-webfont.woff2);
   font-display: swap;
@@ -112,7 +117,7 @@ input {
   margin-bottom: 0;
   color: var(--hmda-blue);
   font-size: 4rem;
-  margin-top: 1.5em;
+  margin-top: 0;
 }
 
 .grid {

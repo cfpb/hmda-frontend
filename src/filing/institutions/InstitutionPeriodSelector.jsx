@@ -1,9 +1,8 @@
-import React from 'react'
 import Select from 'react-select'
-import { splitYearQuarter } from '../api/utils.js'
+import '../../common/YearSelector.css'
 import refreshState from '../actions/refreshState.js'
 import updateFilingPeriod from '../actions/updateFilingPeriod.js'
-import '../../common/YearSelector.css'
+import { splitYearQuarter } from '../api/utils.js'
 
 const ANNUAL = 'annual'
 
@@ -40,7 +39,7 @@ function InstitutionPeriodSelector({
 
   return (
     <div className='YearSelector'>
-      <h4>Select a filing period</h4>
+      <h2>Select a filing period</h2>
       <Select
         value={yearOpt}
         options={yearOptions(filingPeriodOptions.options)}
