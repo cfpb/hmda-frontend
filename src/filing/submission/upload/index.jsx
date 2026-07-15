@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Component } from 'react'
 import Dropzone from 'react-dropzone'
 import Alert from '../../../common/Alert.jsx'
-import ValidationProgress from './ValidationProgress.jsx'
-import DropzoneContent from './DropzoneContent.jsx'
 import {
-  UPLOADING,
+  MACRO_EDITS,
+  NO_MACRO_EDITS,
   PARSED_WITH_ERRORS,
   SYNTACTICAL_VALIDITY_EDITS,
-  NO_MACRO_EDITS,
-  MACRO_EDITS,
+  UPLOADING,
   VALIDATED,
 } from '../../constants/statusCodes.js'
+import DropzoneContent from './DropzoneContent.jsx'
+import ValidationProgress from './ValidationProgress.jsx'
 
 import './UploadForm.css'
 
@@ -68,6 +68,28 @@ export default class Upload extends Component {
             </ul>
           </Alert>
         ) : null}
+        <h2>Step 1 of 5: Upload Loan Application Register (LAR)</h2>
+        <p>
+          Use this page to upload your institution’s Loan Application Register
+          file for HMDA submission. After uploading, the system will validate
+          the file format and check for any edits or potential errors that may
+          need review before filing.
+        </p>
+        <h4 id='file-requirements'>Your file must:</h4>
+        <ul aria-labelledby='file-requirements' className='bulleted-list'>
+          <li>Be a valid (.txt) file format</li>
+          <li>
+            Follow the most current HMDA filing instructions guide formatting
+            requirements
+          </li>
+          <li>Contain pipe-delimited data</li>
+        </ul>
+        <h4 id='upload-tips'>Upload tips:</h4>
+        <ul aria-labelledby='upload-tips' className='bulleted-list'>
+          <li>Excel, CSV, PDF, and ZIP files are not currently accepted</li>
+          <li>Large files may take several minutes to process</li>
+          <li>After upload, review any edits before submission</li>
+        </ul>
         <Dropzone
           disablePreview
           onDrop={this.onDrop}

@@ -1,5 +1,5 @@
-import React from 'react'
 import PropTypes from 'prop-types'
+import React from 'react'
 
 import './Alert.css'
 import Icon from './uswds/components/Icon'
@@ -20,12 +20,7 @@ function Alert({
   return (
     <div className={`alert alert-${type}`}>
       <div className='alert-body'>
-        {heading ? (
-          <div className={headingClass}>
-            {type === 'success' ? <span className='alert-check' /> : null}
-            {heading}
-          </div>
-        ) : null}
+        {heading ? <div className={headingClass}>{heading}</div> : null}
         {React.cloneElement(children, { className: 'alert-text' })}
         {closeAlert ? (
           <div className='alert-close' onClick={() => setCloseAlert(false)}>

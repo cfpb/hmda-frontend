@@ -56,12 +56,49 @@
 .alert-body {
   display: table-cell;
   vertical-align: top;
+  position: relative;
+  padding-left: 4rem;
+}
+
+.alert-body::before {
+  background-color: currentColor;
+  content: '';
+  height: 2.6rem;
+  left: 0;
+  -webkit-mask-position: center center;
+  mask-position: center center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  position: absolute;
+  width: 2.6rem;
+}
+
+.alert-success .alert-body::before {
+  -webkit-mask-image: url(./uswds/img/usa-icons/check.svg);
+  mask-image: url(./uswds/img/usa-icons/check.svg);
+}
+
+.alert-warning .alert-body::before {
+  -webkit-mask-image: url(./uswds/img/usa-icons/warning.svg);
+  mask-image: url(./uswds/img/usa-icons/warning.svg);
+}
+
+.alert-error .alert-body::before {
+  -webkit-mask-image: url(./uswds/img/usa-icons/error.svg);
+  mask-image: url(./uswds/img/usa-icons/error.svg);
+}
+
+.alert-info .alert-body::before {
+  -webkit-mask-image: url(./uswds/img/usa-icons/info.svg);
+  mask-image: url(./uswds/img/usa-icons/info.svg);
 }
 
 .alert-heading {
   font-family: SourceSansProBold;
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: 1rem;
   font-size: 1.17em;
   line-height: 1.3;
 }
@@ -71,7 +108,7 @@
 }
 
 .alert-text,
-.alert-text > p {
+.alert-text p:first-child {
   font-family: SourceSansPro, 'Helvetica Neue', 'Helvetica', 'Roboto', 'Arial',
     sans-serif;
   margin-bottom: 0;
@@ -82,7 +119,6 @@
 
 .alert-text:only-child {
   margin-bottom: 1rem;
-  padding-top: 0.5rem;
 }
 
 .alert-success {
