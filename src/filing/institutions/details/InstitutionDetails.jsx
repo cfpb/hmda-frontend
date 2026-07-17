@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { agencyCodes } from '../constants'
 import { Input } from './InstitutionInput'
-import { OtherFields } from './OtherFields'
 import { wrapLoading } from '../wrapLoading'
 import ProfileIcon from '../../profile/ProfileIcon'
 
@@ -49,7 +48,8 @@ export function InstitutionDetails({ data }) {
           value={`${agency} - ${agencyCodes[agency]}`}
         />
       </div>
-      <OtherFields data={data} />
+      {/* Additional institution fields below disabled as per GHE #5675 */}
+      {/* <OtherFields data={data} /> */}
     </form>
   )
 }
