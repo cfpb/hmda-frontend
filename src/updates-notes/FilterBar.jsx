@@ -125,7 +125,9 @@ function FilterPill({ option, filter }) {
   const [wasClicked, setWasClicked] = useState(false)
 
   // Scroll to page top on initial load
-  useEffect(() => window.scrollTo(0, 0), [])
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   // Keep Filter Bar in view on filter change
   useEffect(() => {
