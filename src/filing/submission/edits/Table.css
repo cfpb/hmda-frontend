@@ -42,6 +42,12 @@
   margin-bottom: 0;
 }
 
+.EditsTable caption .markdown-description,
+.EditsTable .caption .markdown-description {
+  color: #323a45;
+  font-weight: normal;
+}
+
 .EditsTable:last-of-type {
   margin-bottom: 2em;
 }
@@ -69,5 +75,10 @@
 
 #Q666 caption p,
 #Q666 .caption p {
+  color: #212121;
+}
+
+#Q666 caption .markdown-description,
+#Q666 .caption .markdown-description {
   color: #212121;
 }
