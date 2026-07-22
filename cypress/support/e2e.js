@@ -9,7 +9,11 @@ registerCypressGrep()
 addCompareSnapshotCommand({ errorThreshold: 0.1 })
 
 // Create a name for the screenshot based on the test title
-const getScreenshotName = title => title.replace(/[^a-zA-Z0-9-_]/g, '-').replace(/-{2,}/g, '-').slice(0, 120)
+const getScreenshotName = (title) =>
+  title
+    .replace(/[^a-zA-Z0-9-_]/g, '-')
+    .replace(/-{2,}/g, '-')
+    .slice(0, 120)
 
 // When CYPRESS_visualRegressionType env var is set (to either `base` or `regression`),
 // a screenshot will be taken after each test.
@@ -34,8 +38,10 @@ afterEach(function () {
     const screenshotElement = body.find(screenshotWrapper)
 
     if (!screenshotElement.length || !screenshotElement.is(':visible')) {
-      const pageUrl = Cypress.state('window').location.href;
-      return assert.fail(`The screenshot wrapper element (${screenshotWrapper}) was not found on the page ${pageUrl}.`)
+      const pageUrl = Cypress.state('window').location.href
+      return assert.fail(
+        `The screenshot wrapper element (${screenshotWrapper}) was not found on the page ${pageUrl}.`,
+      )
     }
 
     cy.get(screenshotWrapper, { log: false }).compareSnapshot(name)
@@ -86,7 +92,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 // Login via Keycloak Impersonate
 Cypress.Commands.add('keycloakLogin', (app) => {
-  const { USERNAME, PASSWORD, AUTH_BASE_URL, USERPATH } = Cypress.env()
+  const { USERNAME, PASSWORD, AUTH_BASE_URL, USERPATH, HOST } = Cypress.env()
   cy.viewport(1201, 700)
   // Visit the login page
   cy.visit(`${AUTH_BASE_URL}${USERPATH}`)
@@ -116,7 +122,7 @@ Cypress.Commands.add('keycloakLogin', (app) => {
     .click({ timeout: 2000 })
 
   // Go to App page
-  cy.visit(`${AUTH_BASE_URL}${app}/2020/institutions`)
+  cy.visit(`${HOST}/${app}/2020/institutions`)
 
   cy.wait(10000)
 })

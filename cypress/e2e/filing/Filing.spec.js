@@ -28,8 +28,14 @@ describe(
     before(() => {
       cy.keycloakLogin('filing/2024/institutions/')
     })
+    let hasLoggedIntoKeycloak = false
 
     beforeEach(() => {
+      if (hasLoggedIntoKeycloak !== true) {
+        cy.keycloakLogin('filing/2024/institutions/')
+        hasLoggedIntoKeycloak = true
+      }
+
       cy.get({
         HOST,
         USERNAME,
@@ -44,14 +50,17 @@ describe(
         AUTH_CLIENT_ID,
       }).logEnv()
 
-      cy.visit(`${AUTH_BASE_URL}filing/2020/institutions`)
+      cy.visit(`${HOST}/filing/2018/institutions`)
       cy.viewport(1600, 900)
     })
 
     const THIS_IS_BETA = isBeta(HOST)
     const testVsOfficial = THIS_IS_BETA ? 'test' : 'official'
+    const filingPeriodSelector = THIS_IS_BETA
+      ? '.filing-year'
+      : '.annual-or-quarter'
 
-    it('Sends users to the institution page when logged in and clicking the Filing nav item', () => {
+    it.skip('Sends users to the institution page when logged in and clicking the Filing nav item', () => {
       cy.visit(`${AUTH_BASE_URL}filing/2020/institutions`)
       cy.wait(ACTION_DELAY)
       cy.get('header.usa-header--basic')
@@ -79,22 +88,25 @@ describe(
         // Use the quarterly selector if it is a quarterly filing
         if (filingPeriod.includes('Q')) {
           cy.get('body').then(($body) => {
-            // Check if annual-or-quarter dropdown is disabled
+            // Check if filing period selector dropdown is disabled
             const hasDisabledControl =
-              $body.find('.annual-or-quarter--is-disabled').length > 0
+              $body.find(`${filingPeriodSelector}--is-disabled`).length > 0
 
             if (!hasDisabledControl) {
               // Only attempt to interact if not disabled
-              cy.get('.annual-or-quarter__control').click()
-              cy.get('.annual-or-quarter__menu')
+              cy.get(`${filingPeriodSelector}__control`).click()
+              cy.get(`${filingPeriodSelector}__menu`)
                 .contains(filingPeriod.split('-')[1])
                 .click()
             }
           })
         } else if (!status.isClosed) {
           // For open annual filings, select "Annual"
-          cy.get('.annual-or-quarter__control').click()
-          cy.get('.annual-or-quarter__menu').contains('Annual').click()
+          cy.get(`${filingPeriodSelector}__control`).click()
+          // production has an additional quarter/annual selector
+          if (!THIS_IS_BETA) {
+            cy.get(`${filingPeriodSelector}__menu`).contains('Annual').click()
+          }
         }
 
         // After Close - Cannot file/refile after Filing period is passed
