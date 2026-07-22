@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types'
+import Markdown from 'react-markdown'
+import rehypeExternalLinks from 'rehype-external-links'
 import Loading from '../../../common/LoadingIcon.jsx'
 import { splitEditPart, splitYearQuarter } from '../../api/utils.js'
 import Pagination from '../../pagination/container.jsx'
@@ -108,7 +110,15 @@ export const renderTableCaption = (props) => {
   return (
     <caption>
       <h3>{captionHeader}</h3>
-      {description ? <p>{description}</p> : null}
+      {description ? (
+        <p>
+          <Markdown
+            rehypePlugins={[[rehypeExternalLinks, { target: '_blank' }]]}
+          >
+            {description}
+          </Markdown>
+        </p>
+      ) : null}
     </caption>
   )
 }
