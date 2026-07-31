@@ -1,4 +1,4 @@
-import{O as reactExports,s as getDefaultExportFromCjs,E as jsxRuntimeExports,z as iconSprite,o as commonjsRequire,G as ordinal,aB as useHistory,aC as useLocation,S as Switch,j as Route,c as LoadingIcon}from"./index-Bfj8JVlh.js";import{B as Buffer}from"./index-CgqXENQe.js";function useRemoteMarkdown(e,n={}){const[t,r]=reactExports.useState(n.defaultData),[i,a]=reactExports.useState(!1),[l,p]=reactExports.useState(null),{forceFetch:f}=n,c=f||window.location.host.indexOf("localhost")<0;return reactExports.useEffect(()=>{c&&(a(!0),p(null),fetch(e).then(u=>u.ok?u.text():Promise.reject(u)).then(u=>{n.transformReceive?r(n.transformReceive(u)):r(u),a(!1)}).catch(u=>{const{status:s,statusText:h}=u;a(!1),p(n.errorMsg||`Error: ${s} - ${h}`)}))},[]),[t,i,l]}const defaultChangeLog=`---
+import{O as reactExports,s as getDefaultExportFromCjs,E as jsxRuntimeExports,z as iconSprite,o as commonjsRequire,G as ordinal,aB as useHistory,aC as useLocation,S as Switch,j as Route,c as LoadingIcon}from"./index-D6XYfS5i.js";import{B as Buffer}from"./index-CgqXENQe.js";function useRemoteMarkdown(e,n={}){const[t,r]=reactExports.useState(n.defaultData),[i,a]=reactExports.useState(!1),[l,p]=reactExports.useState(null),{forceFetch:f}=n,c=f||window.location.host.indexOf("localhost")<0;return reactExports.useEffect(()=>{c&&(a(!0),p(null),fetch(e).then(u=>u.ok?u.text():Promise.reject(u)).then(u=>{n.transformReceive?r(n.transformReceive(u)):r(u),a(!1)}).catch(u=>{const{status:s,statusText:h}=u;a(!1),p(n.errorMsg||`Error: ${s} - ${h}`)}))},[]),[t,i,l]}const defaultChangeLog=`---
 date: 07/31/26
 type: announcement
 product: tools
@@ -7,9 +7,9 @@ For 2024 data and later, the Institutions API will be populated with data from t
 
 The HMDA Panel contained more fields than the HMDA Transmittal Sheet. Fields not available from the HMDA Transmittal Sheet will return as default empty values. Data from 2023 and earlier is populated from the HMDA Panel and all fields in the API are used where data was relevant and available. 
 
-For more details about the Institutions API see the [developer documentation](https://ffiec.cfpb.gov/documentation/api/institutions-api/#search-for-an-institution-by-lei). 
+For more details about the Institutions API see the [developer documentation](https://ffiec.cfpb.gov/documentation/api/institutions-api/#search-for-an-institution-by-lei).
 
-For more detailed information on HMDA Filers see the [HMDA Lender File](https://www.philadelphiafed.org/surveys-and-data/consumer-finance-data/home-mortgage-disclosure-act-lender-file).
+For more detailed information on HMDA Filers see the [HMDA Lender File](https://www.philadelphiafed.org/surveys-and-data/consumer-finance-data/home-mortgage-disclosure-act-lender-file).
 
 ### API Documentation 
 
@@ -17,9 +17,9 @@ This API is used to fetch information for a particular institution by the instit
  
 Beginning with the data for 2024, the data source is populated by the HMDA Transmittal Sheet. Fields not found in the HMDA Transmittal Sheet will return as default empty values.  
 
-The following fields will always return the value \`-1\`: \`institutionType\`, \`rssd\`, \`parent.idRssd\`, \`assets\`, \`otherLenderCode\`, \`topHolder.idRssd\`. 
+The following fields will always return the value \`-1\`: \`institutionType\`, \`rssd\`, \`parent.idRssd\`, \`assets\`, \`otherLenderCode\`, \`topHolder.idRssd\`.
 
-The following fields will always return an empty string: \`institutionId2017\`, \`parent.name\`, \`topHolder.name\`. 
+The following fields will always return an empty string: \`institutionId2017\`, \`parent.name\`, \`topHolder.name\`.
 
 Data from 2023 and earlier is populated from the HMDA Panel and all fields in the API are used where data was relevant and available.
 
@@ -743,7 +743,7 @@ type: release
 product: documentation
 ---
 The Documentation for 2020 Annual and Quarterly filing deadlines has been released.
-`,PRODUCT_NAMES={mlar:"Modified LAR",datasets:"National Datasets",reports:"Reports",documentation:"Documentation",tools:"HMDA Tools",filing:"HMDA Filing"},PRODUCTS=Object.keys(PRODUCT_NAMES),CATEGORIES={correction:{order:4},update:{order:3},release:{order:2},announcement:{order:1}},PUB_CHANGELOG_URL="https://raw.githubusercontent.com/cfpb/hmda-frontend/95f513aef25c9e0b14a45fbae5ae46c544d84cda/src/updates-notes/change-log.md",DEFAULT_FILTERS={type:[],product:[],keywords:[]},FILTER_OPTIONS={PRODUCT:PRODUCTS.map(e=>({value:e,type:"product"})),TYPE:Object.keys(CATEGORIES).sort((e,n)=>CATEGORIES[e].order-CATEGORIES[n].order).map(e=>({value:e,type:"type"}))};var mark$3={exports:{}};/*!***************************************************
+`,PRODUCT_NAMES={mlar:"Modified LAR",datasets:"National Datasets",reports:"Reports",documentation:"Documentation",tools:"HMDA Tools",filing:"HMDA Filing"},PRODUCTS=Object.keys(PRODUCT_NAMES),CATEGORIES={correction:{order:4},update:{order:3},release:{order:2},announcement:{order:1}},PUB_CHANGELOG_URL="https://raw.githubusercontent.com/cfpb/hmda-frontend/cbcee32d21c1ecbc5e1e684ba9e254368fb2bec6/src/updates-notes/change-log.md",DEFAULT_FILTERS={type:[],product:[],keywords:[]},FILTER_OPTIONS={PRODUCT:PRODUCTS.map(e=>({value:e,type:"product"})),TYPE:Object.keys(CATEGORIES).sort((e,n)=>CATEGORIES[e].order-CATEGORIES[n].order).map(e=>({value:e,type:"type"}))};var mark$3={exports:{}};/*!***************************************************
 * mark.js v8.11.1
 * https://markjs.io/
 * Copyright (c) 2014–2018, Julian Kühnel
