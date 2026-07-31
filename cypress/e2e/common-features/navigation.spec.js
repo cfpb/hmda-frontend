@@ -56,7 +56,8 @@ onlyOn(!isBeta(HOST), () => {
         .as('filingLink')
 
       cy.get('@filingLink').click({force: true})
-      cy.location('pathname').should('match', /\/filing\/\d{4}\/?$/)
+      // Match /filing/YYYY-Q[1-3] and not just /filing/YYYY
+      cy.location('pathname').should('match', /\/filing\/\d{4}(?:-[Q1-3]+)?\/?$/)
     })
   })
 
