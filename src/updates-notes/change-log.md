@@ -19,7 +19,7 @@ Beginning with the data for 2024, the data source is populated by the HMDA Trans
 
 The following fields will always return the value `-1`: `institutionType`, `rssd`, `parent.idRssd`, `assets`, `otherLenderCode`, `topHolder.idRssd`.
 
-The following fields will always return an empty string: `institutionId2017`, `parent.name`, `topHolder.name`. 
+The following fields will always return an empty string: `institutionId2017`, `parent.name`, `topHolder.name`.
 
 Data from 2023 and earlier is populated from the HMDA Panel and all fields in the API are used where data was relevant and available.
 
