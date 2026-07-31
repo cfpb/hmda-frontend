@@ -7,7 +7,7 @@ For 2024 data and later, the Institutions API will be populated with data from t
 
 The HMDA Panel contained more fields than the HMDA Transmittal Sheet. Fields not available from the HMDA Transmittal Sheet will return as default empty values. Data from 2023 and earlier is populated from the HMDA Panel and all fields in the API are used where data was relevant and available. 
 
-For more details about the Institutions API see the [developer documentation](https://ffiec.cfpb.gov/documentation/api/institutions-api/#search-for-an-institution-by-lei). 
+For more details about the Institutions API see the [developer documentation](https://ffiec.cfpb.gov/documentation/api/institutions-api/#search-for-an-institution-by-lei).
 
 For more detailed information on HMDA Filers see the [HMDA Lender File](https://www.philadelphiafed.org/surveys-and-data/consumer-finance-data/home-mortgage-disclosure-act-lender-file).
 
