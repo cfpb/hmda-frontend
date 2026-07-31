@@ -17,7 +17,7 @@ This API is used to fetch information for a particular institution by the instit
  
 Beginning with the data for 2024, the data source is populated by the HMDA Transmittal Sheet. Fields not found in the HMDA Transmittal Sheet will return as default empty values.  
 
-The following fields will always return the value 1: `institutionType`, `rssd`, `parent.idRssd`, `assets`, `otherLenderCode`, `topHolder.idRssd`. 
+The following fields will always return the value `-1`: `institutionType`, `rssd`, `parent.idRssd`, `assets`, `otherLenderCode`, `topHolder.idRssd`. 
 
 The following fields will always return an empty string: `institutionId2017`, `parent.name`, `topHolder.name`. 
 
