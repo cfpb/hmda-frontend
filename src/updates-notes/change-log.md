@@ -3,8 +3,6 @@ date: 07/31/26
 type: announcement
 product: tools
 ---
-### News and Updates 
-
 For 2024 data and later, the Institutions API will be populated with data from the HMDA Transmittal Sheet, instead of the HMDA Panel. This change was made to ensure that data provided by the Institution API are current since the HMDA Panel was discontinued. 
 
 The HMDA Panel contained more fields than the HMDA Transmittal Sheet. Fields not available from the HMDA Transmittal Sheet will return as default empty values. Data from 2023 and earlier is populated from the HMDA Panel and all fields in the API are used where data was relevant and available. 
