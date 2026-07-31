@@ -30,6 +30,14 @@ const testCases =
       }
     }
 
+    if ([2025, 2024, 2023].includes(year) && !isDev(HOST)) {
+      return {
+        year,
+        name: 'cypress bank state savings bank',
+        institution: '549300I4IUWMEMGLST06',
+      }
+    }
+
   const getDefaultCaseInstitution = () => {
     const prodTestInstitution = {
       year,

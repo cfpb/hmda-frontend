@@ -50,7 +50,7 @@ onlyOn(!isBeta(HOST), () => {
       )
     })
 
-    it('Institution level data is correct for 2022-2024', () => {
+    it('Institution level data is correct for 2023-2025', () => {
       // Using Bank of America as the test institution
       const institutionDetails = {
         name: 'BANK OF AMERICA, NATIONAL ASSOCIATION',
@@ -59,9 +59,9 @@ onlyOn(!isBeta(HOST), () => {
       }
 
       const yearData = [
+        { year: '2025', count: '245,091' },
         { year: '2024', count: '233,637' },
         { year: '2023', count: '271,974' },
-        { year: '2022', count: '348,961' },
       ]
 
       cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly/info/filers`)
@@ -87,12 +87,12 @@ onlyOn(!isBeta(HOST), () => {
       })
     })
 
-    it('Total of Quarterly Filers counts appear for 2022-2024', () => {
+    it('Total of Quarterly Filers counts appear for 2023-2025', () => {
       // Data ordered from newest to oldest year to match table layout
       const yearData = [
+        { year: '2025', count: '6,327,055' },
         { year: '2024', count: '5,654,177' },
         { year: '2023', count: '5,045,979' },
-        { year: '2022', count: '6,641,433' },
       ]
 
       cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly/info/filers`)
@@ -111,12 +111,12 @@ onlyOn(!isBeta(HOST), () => {
       })
     })
 
-    it('Total of All Filers counts appear for 2022-2024', () => {
+    it('Total of All Filers counts appear for 2023-2025', () => {
       // Data ordered from newest to oldest year to match table layout
       const yearData = [
+        { year: '2025', count: '13,543,606' },
         { year: '2024', count: '12,259,199' },
         { year: '2023', count: '11,564,155' },
-        { year: '2022', count: '16,125,975' },
       ]
 
       cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly/info/filers`)
