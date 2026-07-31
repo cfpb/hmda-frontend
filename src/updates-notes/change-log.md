@@ -11,13 +11,13 @@ The HMDA Panel contained more fields than the HMDA Transmittal Sheet. Fields not
 
 For more details about the Institutions API see the [developer documentation](https://ffiec.cfpb.gov/documentation/api/institutions-api/#search-for-an-institution-by-lei). 
 
-For more detailed information on HMDA Filers see the [HMDA Lender File](https://www.philadelphiafed.org/surveys-and-data/consumer-finance-data/home-mortgage-disclosure-act-lender-file) 
+For more detailed information on HMDA Filers see the [HMDA Lender File](https://www.philadelphiafed.org/surveys-and-data/consumer-finance-data/home-mortgage-disclosure-act-lender-file).
 
 ### API Documentation 
 
 This API is used to fetch information for a particular institution by the institution's LEI. 
  
-Beginning with the data for 2024, the data source is populated by the HMDA Transmittal Sheet.  Fields not found in the HMDA Transmittal Sheet will return as default empty values.  
+Beginning with the data for 2024, the data source is populated by the HMDA Transmittal Sheet. Fields not found in the HMDA Transmittal Sheet will return as default empty values.  
 
 The following fields will always return the value 1: `institutionType`, `rssd`, `parent.idRssd`, `assets`, `otherLenderCode`, `topHolder.idRssd`. 
 
