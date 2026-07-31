@@ -1,4 +1,4 @@
-import{O as reactExports,s as getDefaultExportFromCjs,E as jsxRuntimeExports,z as iconSprite,o as commonjsRequire,G as ordinal,aB as useHistory,aC as useLocation,S as Switch,j as Route,c as LoadingIcon}from"./index-BmDSzoTL.js";import{B as Buffer}from"./index-CgqXENQe.js";function useRemoteMarkdown(e,n={}){const[t,r]=reactExports.useState(n.defaultData),[i,a]=reactExports.useState(!1),[l,p]=reactExports.useState(null),{forceFetch:f}=n,c=f||window.location.host.indexOf("localhost")<0;return reactExports.useEffect(()=>{c&&(a(!0),p(null),fetch(e).then(u=>u.ok?u.text():Promise.reject(u)).then(u=>{n.transformReceive?r(n.transformReceive(u)):r(u),a(!1)}).catch(u=>{const{status:s,statusText:h}=u;a(!1),p(n.errorMsg||`Error: ${s} - ${h}`)}))},[]),[t,i,l]}const defaultChangeLog=`---
+import{O as reactExports,s as getDefaultExportFromCjs,E as jsxRuntimeExports,z as iconSprite,o as commonjsRequire,G as ordinal,aB as useHistory,aC as useLocation,S as Switch,j as Route,c as LoadingIcon}from"./index-KDZMHmDN.js";import{B as Buffer}from"./index-CgqXENQe.js";function useRemoteMarkdown(e,n={}){const[t,r]=reactExports.useState(n.defaultData),[i,a]=reactExports.useState(!1),[l,p]=reactExports.useState(null),{forceFetch:f}=n,c=f||window.location.host.indexOf("localhost")<0;return reactExports.useEffect(()=>{c&&(a(!0),p(null),fetch(e).then(u=>u.ok?u.text():Promise.reject(u)).then(u=>{n.transformReceive?r(n.transformReceive(u)):r(u),a(!1)}).catch(u=>{const{status:s,statusText:h}=u;a(!1),p(n.errorMsg||`Error: ${s} - ${h}`)}))},[]),[t,i,l]}const defaultChangeLog=`---
 date: 07/31/26
 type: announcement
 product: datasets
@@ -11,13 +11,13 @@ The HMDA Panel contained more fields than the HMDA Transmittal Sheet. Fields not
 
 For more details about the Institutions API see the [developer documentation](https://ffiec.cfpb.gov/documentation/api/institutions-api/#search-for-an-institution-by-lei). 
 
-For more detailed information on HMDA Filers see the [HMDA Lender File](https://www.philadelphiafed.org/surveys-and-data/consumer-finance-data/home-mortgage-disclosure-act-lender-file) 
+For more detailed information on HMDA Filers see the [HMDA Lender File](https://www.philadelphiafed.org/surveys-and-data/consumer-finance-data/home-mortgage-disclosure-act-lender-file).
 
 ### API Documentation 
 
 This API is used to fetch information for a particular institution by the institution's LEI. 
  
-Beginning with the data for 2024, the data source is populated by the HMDA Transmittal Sheet.  Fields not found in the HMDA Transmittal Sheet will return as default empty values.  
+Beginning with the data for 2024, the data source is populated by the HMDA Transmittal Sheet. Fields not found in the HMDA Transmittal Sheet will return as default empty values.  
 
 The following fields will always return the value 1: \`institutionType\`, \`rssd\`, \`parent.idRssd\`, \`assets\`, \`otherLenderCode\`, \`topHolder.idRssd\`. 
 
@@ -745,7 +745,7 @@ type: release
 product: documentation
 ---
 The Documentation for 2020 Annual and Quarterly filing deadlines has been released.
-`,PRODUCT_NAMES={mlar:"Modified LAR",datasets:"National Datasets",reports:"Reports",documentation:"Documentation",tools:"HMDA Tools",filing:"HMDA Filing"},PRODUCTS=Object.keys(PRODUCT_NAMES),CATEGORIES={correction:{order:4},update:{order:3},release:{order:2},announcement:{order:1}},PUB_CHANGELOG_URL="https://raw.githubusercontent.com/cfpb/hmda-frontend/231556077720614c5d39fa20e13b13d0ac3c7117/src/updates-notes/change-log.md",DEFAULT_FILTERS={type:[],product:[],keywords:[]},FILTER_OPTIONS={PRODUCT:PRODUCTS.map(e=>({value:e,type:"product"})),TYPE:Object.keys(CATEGORIES).sort((e,n)=>CATEGORIES[e].order-CATEGORIES[n].order).map(e=>({value:e,type:"type"}))};var mark$3={exports:{}};/*!***************************************************
+`,PRODUCT_NAMES={mlar:"Modified LAR",datasets:"National Datasets",reports:"Reports",documentation:"Documentation",tools:"HMDA Tools",filing:"HMDA Filing"},PRODUCTS=Object.keys(PRODUCT_NAMES),CATEGORIES={correction:{order:4},update:{order:3},release:{order:2},announcement:{order:1}},PUB_CHANGELOG_URL="https://raw.githubusercontent.com/cfpb/hmda-frontend/ea7d44a6f13b29420e9227835cfc8973d7c86a50/src/updates-notes/change-log.md",DEFAULT_FILTERS={type:[],product:[],keywords:[]},FILTER_OPTIONS={PRODUCT:PRODUCTS.map(e=>({value:e,type:"product"})),TYPE:Object.keys(CATEGORIES).sort((e,n)=>CATEGORIES[e].order-CATEGORIES[n].order).map(e=>({value:e,type:"type"}))};var mark$3={exports:{}};/*!***************************************************
 * mark.js v8.11.1
 * https://markjs.io/
 * Copyright (c) 2014–2018, Julian Kühnel
