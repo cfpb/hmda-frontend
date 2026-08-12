@@ -70,17 +70,17 @@ export default class Upload extends Component {
         ) : null}
         <h2>Step 1 of 5: Upload Loan Application Register (LAR)</h2>
         <p>
-          Use this page to upload your institution’s Loan Application Register
-          file for HMDA submission. After uploading, the system will validate
-          the file format and check for any edits or potential errors that may
-          need review before filing.
+          Use this page to upload your institution's LAR file for HMDA
+          submission. After uploading, the system will validate the file format
+          and check for any potential errors or edits that may need review
+          before filing.
         </p>
         <h4 id='file-requirements'>Your file must:</h4>
         <ul aria-labelledby='file-requirements' className='bulleted-list'>
           <li>Be a valid (.txt) file format</li>
           <li>
-            Follow the most current HMDA filing instructions guide formatting
-            requirements
+            Follow the HMDA filing instructions guide formatting requirements
+            corresponding to the period you are filing for
           </li>
           <li>Contain pipe-delimited data</li>
         </ul>
