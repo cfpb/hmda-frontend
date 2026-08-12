@@ -70,11 +70,10 @@ function NavButton({
     submission: 'macro',
   }
   const prev = prevMap[page]
-  const showBack = prev && code !== SIGNED
 
   return (
     <div className='NavButtonContainer'>
-      {showBack ? (
+      {prev ? (
         <Link className='usa-button usa-button--outline' to={`${base}/${prev}`}>
           Previous step
         </Link>
