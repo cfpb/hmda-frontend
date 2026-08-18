@@ -1,6 +1,6 @@
+import { onlyOn } from '@cypress/skip-test'
 import config from '../../../src/common/constants/prod-config.json'
 import { isBeta } from '../../support/helpers'
-import { onlyOn } from '@cypress/skip-test'
 const years = config.dataPublicationYears
 
 const { HOST } = Cypress.env()
@@ -102,7 +102,7 @@ onlyOn(isBeta(HOST), () => {
 })
 
 onlyOn(!isBeta(HOST), () => {
-  describe('withYearValidation', () => {
+  describe('withYearValidation', { tags: ['@localhost'] }, () => {
     FromTo.forEach(({ from, to, description }) => {
       const testDescription = description || `Auto-redirects from ${from}`
       it(testDescription, () => {

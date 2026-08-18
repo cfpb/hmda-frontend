@@ -1,5 +1,10 @@
 import { onlyOn } from '@cypress/skip-test'
-import { isBeta, mapsURL, openSelector } from '../../support/helpers'
+import {
+  addLocalhostIntercepts,
+  isBeta,
+  mapsURL,
+  openSelector,
+} from '../../support/helpers'
 
 const { HOST, ENVIRONMENT } = Cypress.env()
 const ACTION_DELAY = 8000 // milliseconds
@@ -12,6 +17,9 @@ onlyOn(isBeta(HOST), () => {
 
 onlyOn(!isBeta(HOST), () => {
   describe('Maps', { tags: '@localhost' }, () => {
+    beforeEach(() => {
+      addLocalhostIntercepts()
+    })
     it('State 2025', { tags: ['@smoke'] }, () => {
       cy.get({ HOST, ENVIRONMENT }).logEnv()
       cy.viewport(1000, 940)
