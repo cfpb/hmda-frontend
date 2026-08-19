@@ -96,13 +96,13 @@ export const renderTableCaption = (props) => {
     captionHeader = 'Review your loan/application IDs'
   }
 
-  const { description } = props.edit
+  const cleanDescription = props.edit.description.replace(/^"|"$/g, '')
 
   if (shouldSuppressTable(props)) {
     return (
       <div className='caption'>
         <h3>{captionHeader}</h3>
-        {renderDescription(description)}
+        {renderDescription(cleanDescription)}
         {name === 'S040' ? (
           <p>
             Please check your file or system of record for duplicate
@@ -116,7 +116,7 @@ export const renderTableCaption = (props) => {
   return (
     <caption>
       <h3>{captionHeader}</h3>
-      {renderDescription(description)}
+      {renderDescription(cleanDescription)}
     </caption>
   )
 }
