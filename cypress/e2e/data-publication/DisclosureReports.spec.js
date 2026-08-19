@@ -13,7 +13,7 @@ onlyOn(!isBeta(HOST), () => {
   // extending the timeout to account for slower API calls
   describe('Disclosure Reports', { defaultCommandTimeout: 45000 }, () => {
     it('Fetches a 2025 Applications by Tract Report', () => {
-      const institution = 'CYPRESS BANK, SSB - 549300I4IUWMEMGLST06'
+      const institution = 'CYPRESS BANK STATE SAVINGS BANK'
       const institutionName = institution.split(' - ')[0]
       const msaMd = 'Dallas-Plano-Irving, TX - 19124'
       const msaMdCityOnly = msaMd.split(', ')[0]
@@ -78,7 +78,7 @@ onlyOn(!isBeta(HOST), () => {
     })
 
     it('Fetches a 2024 Applications by Tract Report', () => {
-      const institution = 'CYPRESS BANK, SSB - 549300I4IUWMEMGLST06'
+      const institution = 'CYPRESS BANK STATE SAVINGS BANK'
       const institutionName = institution.split(' - ')[0]
       const msaMd = 'Dallas-Plano-Irving, TX - 19124'
       const msaMdCityOnly = msaMd.split(', ')[0]
@@ -140,8 +140,7 @@ onlyOn(!isBeta(HOST), () => {
     })
 
     it('Fetches a 2023 Applications by Tract Report', () => {
-      const institution =
-        'LIBERTYVILLE BANK & TRUST COMPANY, N.A. - 01ERPZV3DOLNXY2MLB90'
+      const institution = 'LIBERTYVILLE BANK & TRUST NA'
       const institutionName = institution.split(' - ')[0]
       const msaMd = 'Chicago-Naperville-Evanston, IL - 16984'
       const msaMdCityOnly = msaMd.split(', ')[0]
