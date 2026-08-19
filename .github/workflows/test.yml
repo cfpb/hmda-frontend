@@ -43,3 +43,12 @@ jobs:
         env:
           CYPRESS_ENVIRONMENT: CI
         run: yarn test-localhost
+
+      - name: Upload Cypress Artifacts on Failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cypress-error-artifacts
+          path: |
+            cypress/screenshots
+            cypress/videos
