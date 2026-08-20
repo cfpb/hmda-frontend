@@ -12,6 +12,12 @@ export function splitYearQuarter(per) {
   return per.split('-')
 }
 
+export function formatPeriodLabel(period) {
+  const [year, quarter] = splitYearQuarter(period)
+  if (quarter) return `Quarter ${quarter.replace('Q', '')}, ${year}`
+  return year
+}
+
 // Split edit IDs with sub-parts (e.g. Q659-1, Q659-2)
 // to retrieve just the primary edit ID
 export function splitEditPart(edit) {
