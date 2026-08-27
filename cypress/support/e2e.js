@@ -8,17 +8,31 @@ import { logEnv, urlExists } from './helpers'
 registerCypressGrep()
 addCompareSnapshotCommand({ errorThreshold: 0.1 })
 
+const MAX_SNAPSHOT_HEIGHT = 8000
+
 // Create a name for the screenshot based on the test title
-const getScreenshotName = title => title.replace(/[^a-zA-Z0-9-_]/g, '-').replace(/-{2,}/g, '-').slice(0, 120)
+const getScreenshotName = (title) =>
+  title
+    .replace(/[^a-zA-Z0-9-_]/g, '-')
+    .replace(/-{2,}/g, '-')
+    .slice(0, 120)
 
 // When CYPRESS_visualRegressionType env var is set (to either `base` or `regression`),
 // a screenshot will be taken after each test.
 // See https://github.com/cypress-visual-regression/cypress-visual-regression#plugin-options
 afterEach(function () {
   if (!Cypress.env('visualRegressionType')) return
-  if (this.currentTest?.state !== 'passed') return
+  const { currentTest } = this
+  const isSkippedTest =
+    !currentTest ||
+    currentTest.pending ||
+    currentTest.state === 'pending' ||
+    currentTest.state === 'skipped'
 
-  const name = getScreenshotName(this.currentTest.fullTitle())
+  if (isSkippedTest) return
+  if (currentTest.state !== 'passed') return
+
+  const name = getScreenshotName(currentTest.fullTitle())
 
   cy.get('body', { log: false }).then((body) => {
     // Make sure the page is done loading
@@ -34,11 +48,73 @@ afterEach(function () {
     const screenshotElement = body.find(screenshotWrapper)
 
     if (!screenshotElement.length || !screenshotElement.is(':visible')) {
-      const pageUrl = Cypress.state('window').location.href;
-      return assert.fail(`The screenshot wrapper element (${screenshotWrapper}) was not found on the page ${pageUrl}.`)
+      const pageUrl = Cypress.state('window').location.href
+      return assert.fail(
+        `The screenshot wrapper element (${screenshotWrapper}) was not found on the page ${pageUrl}.`,
+      )
     }
 
-    cy.get(screenshotWrapper, { log: false }).compareSnapshot(name)
+    const stickyNavUnstickStyleId = 'cypress-unstick-sticky-nav'
+
+    const maxSnapshotHeight =
+      Number(Cypress.env('visualMaxSnapshotHeight')) || MAX_SNAPSHOT_HEIGHT
+
+    cy.get(screenshotWrapper, { log: false }).then(($el) => {
+      const screenshotNode = $el.get(0)
+      const viewportHeight = Cypress.config('viewportHeight')
+      const isLongScreenshot =
+        screenshotNode && screenshotNode.scrollHeight > viewportHeight
+      const shouldCapHeight =
+        screenshotNode && screenshotNode.scrollHeight > maxSnapshotHeight
+
+      if (isLongScreenshot) {
+        cy.document({ log: false }).then((doc) => {
+          let style = doc.getElementById(stickyNavUnstickStyleId)
+
+          if (!style) {
+            style = doc.createElement('style')
+            style.id = stickyNavUnstickStyleId
+            style.innerHTML =
+              '.usa-nav-container, .usa-banner { position: static !important; top: auto !important; }'
+            doc.head.appendChild(style)
+          }
+        })
+      }
+
+      if (!shouldCapHeight) {
+        cy.wrap($el, { log: false }).compareSnapshot(name)
+
+        if (isLongScreenshot) {
+          cy.document({ log: false }).then((doc) => {
+            const stickyNavStyle = doc.getElementById(stickyNavUnstickStyleId)
+            if (stickyNavStyle) stickyNavStyle.remove()
+          })
+        }
+        return
+      }
+
+      const previousStyle = $el.attr('style')
+
+      $el.css('max-height', `${maxSnapshotHeight}px`)
+      $el.css('overflow', 'hidden')
+
+      cy.wrap($el, { log: false }).compareSnapshot(name)
+
+      cy.then(() => {
+        if (typeof previousStyle === 'undefined') {
+          $el.removeAttr('style')
+        } else {
+          $el.attr('style', previousStyle)
+        }
+      })
+
+      if (isLongScreenshot) {
+        cy.document({ log: false }).then((doc) => {
+          const stickyNavStyle = doc.getElementById(stickyNavUnstickStyleId)
+          if (stickyNavStyle) stickyNavStyle.remove()
+        })
+      }
+    })
   })
 })
 
