@@ -9,6 +9,7 @@ registerCypressGrep()
 addCompareSnapshotCommand({ errorThreshold: 0.1 })
 
 const MAX_SNAPSHOT_HEIGHT = 8000
+const VISUAL_SNAPSHOT_TIMEOUT = 30000
 
 // Create a name for the screenshot based on the test title
 const getScreenshotName = (title) =>
@@ -34,11 +35,15 @@ afterEach(function () {
 
   const name = getScreenshotName(currentTest.fullTitle())
 
-  cy.get('body', { log: false }).then((body) => {
-    // Make sure the page is done loading
-    const isLoading = body.find('.LoadingIconWrapper').length > 0
-    if (isLoading) return
+  cy.get('body', { log: false, timeout: VISUAL_SNAPSHOT_TIMEOUT }).should(
+    ($body) => {
+      // Make sure both the generic loading icon and the maps-specific one are gone.
+      expect($body.find('.LoadingIconWrapper').length).to.eq(0)
+      expect($body.find('#maps-loading-overlay.loading').length).to.eq(0)
+    },
+  )
 
+  cy.get('body', { log: false }).then((body) => {
     // Every page (I think?) has a #mainWrapper or .mainWrapper_XXX div but fall
     // back to body if it's not found
     const mainWrapper = body.find('[id*="mainWrapper"], [class*="mainWrapper"]')
