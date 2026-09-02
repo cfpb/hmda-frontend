@@ -10,6 +10,9 @@ addCompareSnapshotCommand({ errorThreshold: 0.1 })
 
 const MAX_SNAPSHOT_HEIGHT = 8000
 const VISUAL_SNAPSHOT_TIMEOUT = 30000
+const FREEZE_ANIMATIONS_STYLE_ID = 'cypress-freeze-animations'
+const FREEZE_ANIMATIONS_CSS =
+  '*,:before,:after { animation: none !important; transition: none !important; caret-color: transparent !important; }'
 
 // Create a name for the screenshot based on the test title
 const getScreenshotName = (title) =>
@@ -34,6 +37,14 @@ afterEach(function () {
   if (currentTest.state !== 'passed') return
 
   const name = getScreenshotName(currentTest.fullTitle())
+
+  cy.document({ log: false }).its('readyState').should('eq', 'complete')
+  cy.document({ log: false }).then((doc) => {
+    const fontSet = doc.fonts
+    if (fontSet && fontSet.status !== 'loaded') {
+      cy.wrap(fontSet.ready, { log: false })
+    }
+  })
 
   cy.get('body', { log: false, timeout: VISUAL_SNAPSHOT_TIMEOUT }).should(
     ($body) => {
@@ -60,6 +71,17 @@ afterEach(function () {
     }
 
     const stickyNavUnstickStyleId = 'cypress-unstick-sticky-nav'
+    const cleanupSnapshotStyles = () => {
+      cy.document({ log: false }).then((doc) => {
+        const stickyNavStyle = doc.getElementById(stickyNavUnstickStyleId)
+        if (stickyNavStyle) stickyNavStyle.remove()
+
+        const freezeAnimationsStyle = doc.getElementById(
+          FREEZE_ANIMATIONS_STYLE_ID,
+        )
+        if (freezeAnimationsStyle) freezeAnimationsStyle.remove()
+      })
+    }
 
     const maxSnapshotHeight =
       Number(Cypress.env('visualMaxSnapshotHeight')) || MAX_SNAPSHOT_HEIGHT
@@ -71,6 +93,17 @@ afterEach(function () {
         screenshotNode && screenshotNode.scrollHeight > viewportHeight
       const shouldCapHeight =
         screenshotNode && screenshotNode.scrollHeight > maxSnapshotHeight
+
+      cy.document({ log: false }).then((doc) => {
+        let style = doc.getElementById(FREEZE_ANIMATIONS_STYLE_ID)
+
+        if (!style) {
+          style = doc.createElement('style')
+          style.id = FREEZE_ANIMATIONS_STYLE_ID
+          style.innerHTML = FREEZE_ANIMATIONS_CSS
+          doc.head.appendChild(style)
+        }
+      })
 
       if (isLongScreenshot) {
         cy.document({ log: false }).then((doc) => {
@@ -88,13 +121,7 @@ afterEach(function () {
 
       if (!shouldCapHeight) {
         cy.wrap($el, { log: false }).compareSnapshot(name)
-
-        if (isLongScreenshot) {
-          cy.document({ log: false }).then((doc) => {
-            const stickyNavStyle = doc.getElementById(stickyNavUnstickStyleId)
-            if (stickyNavStyle) stickyNavStyle.remove()
-          })
-        }
+        cleanupSnapshotStyles()
         return
       }
 
@@ -112,13 +139,7 @@ afterEach(function () {
           $el.attr('style', previousStyle)
         }
       })
-
-      if (isLongScreenshot) {
-        cy.document({ log: false }).then((doc) => {
-          const stickyNavStyle = doc.getElementById(stickyNavUnstickStyleId)
-          if (stickyNavStyle) stickyNavStyle.remove()
-        })
-      }
+      cleanupSnapshotStyles()
     })
   })
 })
