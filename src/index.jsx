@@ -4,6 +4,7 @@ import { ReadableStream, WritableStream } from 'web-streams-ponyfill'
 
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, HashRouter } from 'react-router-dom'
+import { NonceProvider } from 'react-select'
 
 import App from './App'
 
@@ -13,6 +14,7 @@ window.ReadableStream = ReadableStream
 
 const container = document.getElementById('root')
 const root = createRoot(container)
+const nonce = window.__CSP_NONCE__ || undefined
 // Certain environments (GitHub Pages) don't support SPA routing so
 // hash routing is used when necessary
 const useHashRouter = import.meta.env.VITE_USE_HASH_ROUTER === 'true'
@@ -24,7 +26,9 @@ const Router = useHashRouter ? HashRouter : BrowserRouter
 const routerProps = useHashRouter ? {} : { basename: routerBasename }
 
 root.render(
-  <Router {...routerProps}>
-    <App />
-  </Router>,
+  <NonceProvider nonce={nonce} cacheKey="hmda">
+    <Router {...routerProps}>
+      <App />
+    </Router>
+  </NonceProvider>,
 )
