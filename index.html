@@ -45,6 +45,7 @@
     <script nonce="nonce-placeholder">
       // Global node polyfill.
       window.global = window
+      window.__CSP_NONCE__ = (document.currentScript && document.currentScript.nonce) || undefined
     </script>
     <script type="module" src="/src/index.jsx"></script>
     <!-- Google Tag Manager -->
