@@ -1,4 +1,5 @@
 export const cleanHost = (host) => host.replace(/^https?:\/\//, '')
+export const isLocal = (host) => !!cleanHost(host).match(/localhost:3000/)
 export const isCI = (env) => env === 'CI'
 export const isProd = (host) => !!cleanHost(host).match(/^ffiec(\.beta)?\.cfpb/)
 export const isBeta = (host) => !!cleanHost(host).match(/beta/)
@@ -25,8 +26,13 @@ export function withFormData(method, url, formData, done) {
 }
 
 export function urlExists(url) {
-  return cy.request({ url, method: 'HEAD', failOnStatusCode: false, timeout: 30000 })
-           .then((response) => ({ url, status: response.status < 400, statusCode: response.status }))
+  return cy
+    .request({ url, method: 'HEAD', failOnStatusCode: false, timeout: 30000 })
+    .then((response) => ({
+      url,
+      status: response.status < 400,
+      statusCode: response.status,
+    }))
 }
 
 /* Data Browser Helpers */
@@ -81,5 +87,39 @@ export const logEnv = (obj) => {
   keys.forEach((key) => {
     if (ENV_HIDDEN_KEYS.indexOf(key) > -1) return
     cy.log(`${key}: ${obj[key]}`)
+  })
+}
+
+const PROD_API_HOST = 'https://ffiec.cfpb.gov'
+const LOCAL_HOST = 'http://localhost:3000'
+
+/**
+ * Sets up cy.intercept() handlers that redirect API calls from the local
+ * dev server to the production ffiec.cfpb.gov endpoint.
+ */
+export function addLocalhostIntercepts() {
+  const routes = [
+    '/v2/data-browser-api/**',
+    '/v2/reporting/**',
+    '/quarterly-data/**',
+    '/v2/public/institutions/**',
+    '/file/**',
+  ]
+
+  routes.forEach((route) => {
+    cy.intercept(route, (req) => {
+      req.url = req.url.replace(LOCAL_HOST, PROD_API_HOST)
+      req.continue()
+    })
+  })
+
+  // Geographic data files for maps (/2025/county.json, etc.)
+  cy.intercept('/**/county.json', (req) => {
+    req.url = req.url.replace(LOCAL_HOST, PROD_API_HOST)
+    req.continue()
+  })
+  cy.intercept('/**/state.json', (req) => {
+    req.url = req.url.replace(LOCAL_HOST, PROD_API_HOST)
+    req.continue()
   })
 }

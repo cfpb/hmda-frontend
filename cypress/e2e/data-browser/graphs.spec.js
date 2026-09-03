@@ -1,8 +1,9 @@
 import { onlyOn } from '@cypress/skip-test'
-import { isBeta, isCI } from '../../support/helpers'
+import { addLocalhostIntercepts, isBeta, isCI } from '../../support/helpers'
+
 const { HOST, ENVIRONMENT } = Cypress.env()
 
-let baseURLToVisit = isCI(ENVIRONMENT) ? 'http://localhost:3000' : HOST
+const baseURLToVisit = isCI(ENVIRONMENT) ? 'http://localhost:3000' : HOST
 
 onlyOn(isBeta(HOST), () => {
   describe('HMDA Graphs', function () {
@@ -11,7 +12,10 @@ onlyOn(isBeta(HOST), () => {
 })
 
 onlyOn(!isBeta(HOST), () => {
-  describe('General Tests', () => {
+  describe('General Tests', { tags: ['@localhost'] }, () => {
+    beforeEach(() => {
+      addLocalhostIntercepts()
+    })
     it('Checks <GraphsHeader/> component if overview props was not sent to the component', () => {
       cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`).contains(
         'The following graphs show current and historic quarterly HMDA data for these institutions.',
@@ -19,7 +23,7 @@ onlyOn(!isBeta(HOST), () => {
     })
 
     it('Checks <GraphsHeader/> component if data from API succeedes then it checks if numbered financial institutions show in the header', () => {
-      let institutionCountRx = '[0-9]{1,3}'
+      const institutionCountRx = '[0-9]{1,3}'
       const financialInstitutionsRx = new RegExp(
         `^${institutionCountRx} financial institutions`,
       )
@@ -37,7 +41,10 @@ onlyOn(!isBeta(HOST), () => {
     })
   })
 
-  describe('Filer Info tab tests', () => {
+  describe('Filer Info tab tests', { tags: ['@localhost'] }, () => {
+    beforeEach(() => {
+      addLocalhostIntercepts()
+    })
     it('Starts on Graph tab and then switches to filer tab', () => {
       cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`)
       cy.wait(1000)
@@ -136,7 +143,10 @@ onlyOn(!isBeta(HOST), () => {
     })
   })
 
-  describe('Graph Specific tests', () => {
+  describe('Graph Specific tests', { tags: ['@localhost'] }, () => {
+    beforeEach(() => {
+      addLocalhostIntercepts()
+    })
     it('Visits graph page and checks that the url contains correct query parameters', () => {
       cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`)
       cy.wait(2000)
@@ -208,7 +218,7 @@ onlyOn(!isBeta(HOST), () => {
       })
     })
 
-    it('De-select and re-select a series, UI and URL updates',() => {
+    it('De-select and re-select a series, UI and URL updates', () => {
       // let urlUpdate
       cy.visit(`${baseURLToVisit}/data-browser/graphs/quarterly`)
       // De-select 'Conventional Conforming' from series

@@ -1,6 +1,11 @@
 import { onlyOn } from '@cypress/skip-test'
-import { isBeta, openSelector } from '../../support/helpers'
-const { HOST } = Cypress.env()
+import {
+  addLocalhostIntercepts,
+  isBeta,
+  openSelector,
+} from '../../support/helpers'
+
+const { HOST, ENVIRONMENT } = Cypress.env()
 
 // TODO: Test CSV Download
 
@@ -12,6 +17,9 @@ onlyOn(isBeta(HOST), () => {
 
 onlyOn(!isBeta(HOST), () => {
   describe('Aggregate Reports', () => {
+    beforeEach(() => {
+      addLocalhostIntercepts()
+    })
     it('2025', { tags: ['@smoke', '@localhost'] }, () => {
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 867)
@@ -78,9 +86,7 @@ onlyOn(!isBeta(HOST), () => {
       // Select geography and report
       cy.findByRole('combobox').type('Arizona{enter}')
       cy.findByRole('combobox').type('Phoenix{enter}')
-      cy.findByRole('combobox').type(
-        'Applications by Ethnicity and Sex{enter}',
-      )
+      cy.findByRole('combobox').type('Applications by Ethnicity and Sex{enter}')
 
       // Report Content
       cy.get('tbody > :nth-child(3) > :nth-child(2)').should(
@@ -129,7 +135,7 @@ onlyOn(!isBeta(HOST), () => {
         '42300000',
       )
     })
-  
+
     it('2023', () => {
       cy.get({ HOST }).logEnv()
       cy.viewport(1680, 867)
@@ -138,9 +144,7 @@ onlyOn(!isBeta(HOST), () => {
       // Select geography and report
       cy.findByRole('combobox').type('Arizona{enter}')
       cy.findByRole('combobox').type('Phoenix{enter}')
-      cy.findByRole('combobox').type(
-        'Applications by Ethnicity and Sex{enter}',
-      )
+      cy.findByRole('combobox').type('Applications by Ethnicity and Sex{enter}')
 
       // Report Content
       cy.get('tbody > :nth-child(3) > :nth-child(2)').should(
@@ -198,9 +202,7 @@ onlyOn(!isBeta(HOST), () => {
       // Select geography and report
       cy.findByRole('combobox').type('Arizona{enter}')
       cy.findByRole('combobox').type('Phoenix{enter}')
-      cy.findByRole('combobox').type(
-        'Applications by Ethnicity and Sex{enter}',
-      )
+      cy.findByRole('combobox').type('Applications by Ethnicity and Sex{enter}')
 
       // Report Content
       cy.get('tbody > :nth-child(3) > :nth-child(2)').should(
@@ -258,9 +260,7 @@ onlyOn(!isBeta(HOST), () => {
       // Select geography and report
       cy.findByRole('combobox').type('Arizona{enter}')
       cy.findByRole('combobox').type('Phoenix{enter}')
-      cy.findByRole('combobox').type(
-        'Applications by Ethnicity and Sex{enter}',
-      )
+      cy.findByRole('combobox').type('Applications by Ethnicity and Sex{enter}')
 
       // Report Content
       cy.get('tbody > :nth-child(3) > :nth-child(2)').should(
@@ -322,9 +322,7 @@ onlyOn(!isBeta(HOST), () => {
       // Select geography and report
       cy.findByRole('combobox').type('Arizona{enter}')
       cy.findByRole('combobox').type('Phoenix{enter}')
-      cy.findByRole('combobox').type(
-        'Applications by Ethnicity and Sex{enter}',
-      )
+      cy.findByRole('combobox').type('Applications by Ethnicity and Sex{enter}')
 
       // Report Content
       cy.get('tbody > :nth-child(3) > :nth-child(2)').should(
@@ -383,9 +381,7 @@ onlyOn(!isBeta(HOST), () => {
       // Select geography and report
       cy.findByRole('combobox').type('Arizona{enter}')
       cy.findByRole('combobox').type('Phoenix{enter}')
-      cy.findByRole('combobox').type(
-        'Applications by Ethnicity and Sex{enter}',
-      )
+      cy.findByRole('combobox').type('Applications by Ethnicity and Sex{enter}')
 
       // Report Content
       cy.get('tbody > :nth-child(3) > :nth-child(2)').should(
