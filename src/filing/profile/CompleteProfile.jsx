@@ -49,6 +49,11 @@ const CompleteProfile = (props) => {
     return <Redirect to={`/filing/${props.config.defaultPeriod}`} />
   }
 
+// beta environments do not have their own auth service
+const authServiceOrigin = isBeta()
+  ? window.location.origin.replace('-beta', '').replace('.beta', '')
+  : window.location.origin
+
   // User contains associated LEIs, set state values, hit the institutions API to build LEI objects for user to see in the UI
   useEffect(() => {
     if (user) {
@@ -58,11 +63,6 @@ const CompleteProfile = (props) => {
       setFirstName(user?.given_name ? user?.given_name : '')
       setLastName(user?.family_name ? user?.family_name : '')
       setEmailAddress(user?.email)
-
-      // beta environments do not have their own auth service
-      const authServiceOrigin = isBeta()
-        ? window.location.origin.replace('-beta', '').replace('.beta', '')
-        : window.location.origin
 
       let endpoint = `${authServiceOrigin}/v2/public/institutions?domain=${emailDomain}`
 
@@ -107,7 +107,7 @@ const CompleteProfile = (props) => {
     event.preventDefault()
 
     if (firstName?.length !== 0 || lastName?.length !== 0) {
-      let endpoint = window.location.origin + '/hmda-auth/users/'
+      let endpoint = authServiceOrigin + '/hmda-auth/users/'
 
       let body = {
         firstName: firstName,
