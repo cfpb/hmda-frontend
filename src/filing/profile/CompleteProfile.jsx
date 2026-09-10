@@ -15,6 +15,7 @@ import { createAssociatedInstitutionsList } from './utils'
 
 import jwtDecode from 'jwt-decode'
 import Alert from '../../common/Alert'
+import { isBeta } from '../../common/Beta'
 import LoadingIcon from '../../common/LoadingIcon'
 import * as AccessToken from '../../common/api/AccessToken'
 import Icon from '../../common/uswds/components/Icon'
@@ -58,7 +59,12 @@ const CompleteProfile = (props) => {
       setLastName(user?.family_name ? user?.family_name : '')
       setEmailAddress(user?.email)
 
-      let endpoint = `${window.location.origin}/v2/public/institutions?domain=${emailDomain}`
+      // beta environments do not have their own auth service
+      const authServiceOrigin = isBeta()
+        ? window.location.origin.replace('-beta', '').replace('.beta', '')
+        : window.location.origin
+
+      let endpoint = `${authServiceOrigin}/v2/public/institutions?domain=${emailDomain}`
 
       runFetch(endpoint)
         .then((data) =>
