@@ -15,6 +15,7 @@ import { createAssociatedInstitutionsList } from './utils'
 
 import jwtDecode from 'jwt-decode'
 import Alert from '../../common/Alert'
+import { isBeta } from '../../common/Beta'
 import LoadingIcon from '../../common/LoadingIcon'
 import * as AccessToken from '../../common/api/AccessToken'
 import Icon from '../../common/uswds/components/Icon'
@@ -101,7 +102,11 @@ const CompleteProfile = (props) => {
     event.preventDefault()
 
     if (firstName?.length !== 0 || lastName?.length !== 0) {
-      let endpoint = window.location.origin + '/hmda-auth/users/'
+      // beta environments do not have their own auth service
+      const authServiceOrigin = isBeta()
+        ? window.location.origin.replace('-beta', '').replace('.beta', '')
+        : window.location.origin
+      let endpoint = authServiceOrigin + '/hmda-auth/users/'
 
       let body = {
         firstName: firstName,
