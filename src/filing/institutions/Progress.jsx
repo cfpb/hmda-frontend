@@ -1,65 +1,76 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 import {
-  PARSED_WITH_ERRORS,
-  SYNTACTICAL_VALIDITY_EDITS,
-  NO_SYNTACTICAL_VALIDITY_EDITS,
-  NO_QUALITY_EDITS,
-  NO_MACRO_EDITS,
   MACRO_EDITS,
-  VALIDATED,
+  NO_MACRO_EDITS,
+  NO_QUALITY_EDITS,
+  NO_SYNTACTICAL_VALIDITY_EDITS,
+  PARSED_WITH_ERRORS,
   SIGNED,
+  SYNTACTICAL_VALIDITY_EDITS,
   UPLOADED,
+  VALIDATED,
 } from '../constants/statusCodes.js'
 
-import './Progress.css'
+import './Progress.scss'
 
 const navMap = {
-  upload: {
+  'Upload LAR': {
     isErrored: (submission) =>
       submission.status.code === PARSED_WITH_ERRORS || submission.isStalled,
     isCompleted: (submission) => submission.status.code > UPLOADED,
-    errorText: 'upload error',
-    completedText: 'uploaded',
+    errorText: 'Upload LAR',
+    completedText: 'Upload LAR',
   },
-  'syntactical & validity edits': {
+  'Syntactical & validity edits': {
     isErrored: (submission) =>
       submission.status.code === SYNTACTICAL_VALIDITY_EDITS,
     isCompleted: (submission) =>
       submission.status.code >= NO_SYNTACTICAL_VALIDITY_EDITS,
-    errorText: 'syntactical & validity edits',
-    completedText: 'no syntactical & validity edits',
+    errorText: 'Syntactical & validity edits',
+    completedText: 'Syntactical & validity edits',
   },
-  'quality edits': {
+  'Quality edits': {
     isErrored: (submission) =>
       submission.qualityExists && !submission.qualityVerified,
     isCompleted: (submission) =>
       submission.status.code >= NO_QUALITY_EDITS &&
       (!submission.qualityExists || submission.qualityVerified),
-    errorText: 'quality edits',
-    completedText: 'quality edits verified',
+    errorText: 'Quality edits',
+    completedText: 'Quality edits',
   },
-  'macro quality edits': {
+  'Macro quality edits': {
     isErrored: (submission) =>
       submission.macroExists && !submission.macroVerified,
     isCompleted: (submission) =>
       (submission.status.code > MACRO_EDITS ||
         submission.status.code === NO_MACRO_EDITS) &&
       (!submission.macroExists || submission.macroVerified),
-    errorText: 'macro quality edits',
-    completedText: 'macro quality edits verified',
+    errorText: 'Macro quality edits',
+    completedText: 'Macro quality edits',
   },
-  submission: {
+  'Review & submit': {
     isReachable: (submission) =>
       submission.status.code >= VALIDATED ||
       submission.status.code === NO_MACRO_EDITS,
     isErrored: () => false,
     isCompleted: (submission) => submission.status.code === SIGNED,
-    completedText: 'submitted',
+    completedText: 'Review & submit',
   },
 }
 
-const renderNavItem = (submission, name, i) => {
+function toUsaClass(navClass) {
+  const parts = navClass.split(' ')
+  let base = 'usa-step-indicator__segment'
+  for (const p of parts) {
+    if (p === 'active' || p === 'error')
+      base += ' usa-step-indicator__segment--current'
+    else if (p === 'complete') base += ' usa-step-indicator__segment--complete'
+    else base += ` ${p}`
+  }
+  return base
+}
+
+function renderNavItem(submission, name, i) {
   const navItem = navMap[name]
   const completed = navItem.isCompleted(submission)
   const errored = navItem.isErrored(submission)
@@ -74,35 +85,32 @@ const renderNavItem = (submission, name, i) => {
   }
 
   if (name === 'submission' && navItem.isReachable(submission) && !completed) {
-    // using error class is misleading but the styling is what we need
     navClass = 'error'
   }
 
-  let step = i + 1
-  if (navClass === 'complete') step = null
-
   return (
-    <li key={i} className={navClass}>
-      <div key={0} className='step'>
-        {step}
-      </div>
-      <span key={1}>{renderedName}</span>
+    <li key={i} className={toUsaClass(navClass)}>
+      <span className='usa-step-indicator__segment-label'>
+        {renderedName}
+        {completed ? <span className='usa-sr-only'>completed</span> : null}
+        {!completed && <span className='usa-sr-only'>not completed</span>}
+      </span>
     </li>
   )
 }
 
 function Progress({ submission = { status: { code: 1 } } }) {
+  const keys = Object.keys(navMap)
+
   return (
-    <section className='Progress'>
-      <nav className='EditsNav' id='editsNav'>
-        <ul className='nav-primary'>
-          {Object.keys(navMap).map((name, i) => {
-            return renderNavItem(submission, name, i)
-          })}
-        </ul>
-        <hr className='nav-bg' />
-      </nav>
-    </section>
+    <div
+      className='usa-step-indicator usa-step-indicator--counters'
+      aria-label='progress'
+    >
+      <ol className='usa-step-indicator__segments'>
+        {keys.map((name, i) => renderNavItem(submission, name, i))}
+      </ol>
+    </div>
   )
 }
 

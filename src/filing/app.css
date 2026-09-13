@@ -21,6 +21,16 @@
   padding-left: 0;
 }
 
+.Filing.App ul.bulleted-list {
+  font-size: 1.6rem;
+  list-style-type: disc;
+  padding-left: 3rem;
+}
+
+.Filing.App ul.bulleted-list li {
+  margin-bottom: 0;
+}
+
 .Filing.App .Beta {
   margin-bottom: 0;
 }
@@ -28,4 +38,11 @@
 .Filing.App .Announcement {
   max-width: 1040px;
   margin: 0 auto;
+}
+
+.Filing.App .lead-paragraph {
+  color: #101820;
+  font-size: 2rem;
+  line-height: normal;
+  max-width: 80rem;
 }
