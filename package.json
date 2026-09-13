@@ -162,7 +162,8 @@
     "vite@^5.0.0 || ^6.0.0 || ^7.0.0-0": "^7.3.6",
     "brace-expansion@^2.0.1": "^2.1.2",
     "brace-expansion@^5.0.5": "^5.0.7",
-    "immutable@^5.1.5": "^5.1.8"
+    "immutable@^5.1.5": "^5.1.8",
+    "brace-expansion": "5.0.9"
   },
   "packageManager": "yarn@4.1.0"
 }
