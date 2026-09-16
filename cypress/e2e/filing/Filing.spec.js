@@ -195,8 +195,8 @@ describe(
               /* Action: Verify Quality Edits */
               cy.get('.EditsTableWrapper').then((wrapper) => {
                 // Verify edit links point to FIG documentation with current filing year
-                if (wrapper.find('.EditsTable caption a').length) {
-                  cy.get('.EditsTable caption a')
+                if (wrapper.find('.EditsTable .caption a').length) {
+                  cy.get('.EditsTable .caption a')
                     .first()
                     .should('have.attr', 'href')
                     .and('match', /\/documentation\/fig\/\d{4}\/overview/)

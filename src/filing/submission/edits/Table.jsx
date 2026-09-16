@@ -60,9 +60,15 @@ export const renderBody = (edits, rows, type) => {
   })
 }
 
+const getCaptionIds = (name) => ({
+  headingId: `edit-caption-heading-${name}`,
+  descriptionId: `edit-caption-description-${name}`,
+})
+
 export const renderTableCaption = (props) => {
   const name = props.edit.edit
   if (!name) return null
+  const { headingId, descriptionId } = getCaptionIds(name)
   const [year] = splitYearQuarter(props.filingPeriod)
   const [edit] = splitEditPart(name)
 
@@ -98,26 +104,19 @@ export const renderTableCaption = (props) => {
 
   const cleanDescription = props.edit.description.replace(/^"|"$/g, '')
 
-  if (shouldSuppressTable(props)) {
-    return (
-      <div className='caption'>
-        <h3>{captionHeader}</h3>
-        {renderDescription(cleanDescription)}
-        {name === 'S040' ? (
-          <p>
-            Please check your file or system of record for duplicate
-            application/loan numbers.
-          </p>
-        ) : null}
-      </div>
-    )
-  }
-
   return (
-    <caption>
-      <h3>{captionHeader}</h3>
-      {renderDescription(cleanDescription)}
-    </caption>
+    <div className='caption'>
+      <h3 id={headingId}>{captionHeader}</h3>
+      {cleanDescription ? (
+        <p id={descriptionId}>{renderDescription(cleanDescription)}</p>
+      ) : null}
+      {shouldSuppressTable(props) && name === 'S040' ? (
+        <p>
+          Please check your file or system of record for duplicate
+          application/loan numbers.
+        </p>
+      ) : null}
+    </div>
   )
 }
 
@@ -148,6 +147,9 @@ export const makeTable = (props) => {
     !props.suppressEdits && (!rowObj || !rowObj.rows) ? <Loading /> : null
 
   const caption = renderTableCaption(props)
+  const { headingId, descriptionId } = getCaptionIds(edit.edit)
+  const ariaDescribedBy = props.edit.description ? descriptionId : undefined
+
   if (shouldSuppressTable(props))
     return (
       <>
@@ -160,11 +162,21 @@ export const makeTable = (props) => {
   className += props.paginationFade ? ' fadeOut' : ''
 
   return (
-    <table width='100%' className={className}>
+    <>
       {caption}
-      <thead>{renderHeader(edit, rowObj.rows, type)}</thead>
-      <tbody>{renderBody(edit, rowObj.rows, type)}</tbody>
-    </table>
+      <div className='EditsTable-scroll'>
+        <table
+          width='100%'
+          className={className}
+          summary={`Report for edit ${edit.edit} - ${edit.description}`}
+          aria-labelledby={headingId}
+          aria-describedby={ariaDescribedBy}
+        >
+          <thead>{renderHeader(edit, rowObj.rows, type)}</thead>
+          <tbody>{renderBody(edit, rowObj.rows, type)}</tbody>
+        </table>
+      </div>
+    </>
   )
 }
 
