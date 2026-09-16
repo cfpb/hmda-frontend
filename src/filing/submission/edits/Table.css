@@ -20,21 +20,22 @@
 
 .EditsTable {
   margin: 3em 0;
+}
+
+.EditsTable-scroll {
   overflow-x: auto;
   overflow-y: hidden;
 }
 
-.EditsTable caption,
 .EditsTable .caption {
   font-size: 1.5rem;
   text-align: left;
 }
 
-.EditsTable caption h3,
 .EditsTable .caption h3 {
   margin: 0;
 }
-.EditsTable caption p,
+
 .EditsTable .caption p {
   color: #323a45;
   font-weight: normal;
@@ -61,13 +62,11 @@
 }
 
 /* hightlight Q666 for PII */
-#Q666 caption,
 #Q666 .caption {
   background-color: #fff1d2;
   padding: 1em;
 }
 
-#Q666 caption p,
 #Q666 .caption p {
   color: #212121;
 }
