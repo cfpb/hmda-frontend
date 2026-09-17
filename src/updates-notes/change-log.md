@@ -1,4 +1,29 @@
 ---
+date: 07/31/26
+type: announcement
+product: tools
+---
+For 2024 data and later, the Institutions API will be populated with data from the HMDA Transmittal Sheet, instead of the HMDA Panel. This change was made to ensure that data provided by the Institution API are current since the HMDA Panel was discontinued. 
+
+The HMDA Panel contained more fields than the HMDA Transmittal Sheet. Fields not available from the HMDA Transmittal Sheet will return as default empty values. Data from 2023 and earlier is populated from the HMDA Panel and all fields in the API are used where data was relevant and available. 
+
+For more details about the Institutions API see the [developer documentation](https://ffiec.cfpb.gov/documentation/api/institutions-api/#search-for-an-institution-by-lei).
+
+For more detailed information on HMDA Filers see the [HMDA Lender File](https://www.philadelphiafed.org/surveys-and-data/consumer-finance-data/home-mortgage-disclosure-act-lender-file).
+
+### API Documentation 
+
+This API is used to fetch information for a particular institution by the institution's LEI. 
+ 
+Beginning with the data for 2024, the data source is populated by the HMDA Transmittal Sheet. Fields not found in the HMDA Transmittal Sheet will return as default empty values.  
+
+The following fields will always return the value "-1": `institutionType`, `rssd`, `parent.idRssd`, `assets`, `otherLenderCode`, `topHolder.idRssd`.
+
+The following fields will always return an empty string: `institutionId2017`, `parent.name`, `topHolder.name`.
+
+Data from 2023 and earlier is populated from the HMDA Panel and all fields in the API are used where data was relevant and available.
+
+---
 date: 06/23/26
 type: release
 product: datasets
@@ -8,8 +33,6 @@ The 2025 national loan-level datasets, disclosure reports, and MSA/MD aggregate 
 - [Data Publication](https://ffiec.cfpb.gov/data-publication/)
 - [Data Browser](https://ffiec.cfpb.gov/data-browser/data/)
 - [Maps](https://ffiec.cfpb.gov/data-browser/maps/)
-
----
 
 ---
 date: 04/30/26
