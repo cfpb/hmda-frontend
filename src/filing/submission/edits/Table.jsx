@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types'
+import Markdown from 'react-markdown'
+import rehypeExternalLinks from 'rehype-external-links'
 import Loading from '../../../common/LoadingIcon.jsx'
 import { splitEditPart, splitYearQuarter } from '../../api/utils.js'
 import Pagination from '../../pagination/container.jsx'
@@ -65,7 +67,13 @@ export const renderTableCaption = (props) => {
   const [edit] = splitEditPart(name)
 
   const linkedName = (
-    <a href={`/documentation/fig/${year}/overview#edit-${edit}`} target='_blank' rel='noopener noreferrer'>{name}</a>
+    <a
+      href={`/documentation/fig/${year}/overview#edit-${edit}`}
+      target='_blank'
+      rel='noopener noreferrer'
+    >
+      {name}
+    </a>
   )
   let captionHeader
 
@@ -88,13 +96,13 @@ export const renderTableCaption = (props) => {
     captionHeader = 'Review your loan/application IDs'
   }
 
-  const description = props.edit.description.replace(/"/g, '')
+  const cleanDescription = props.edit.description.replace(/^"|"$/g, '')
 
   if (shouldSuppressTable(props)) {
     return (
       <div className='caption'>
         <h3>{captionHeader}</h3>
-        {description ? <p>{description}</p> : null}
+        {renderDescription(cleanDescription)}
         {name === 'S040' ? (
           <p>
             Please check your file or system of record for duplicate
@@ -108,8 +116,27 @@ export const renderTableCaption = (props) => {
   return (
     <caption>
       <h3>{captionHeader}</h3>
-      {description ? <p>{description}</p> : null}
+      {renderDescription(cleanDescription)}
     </caption>
+  )
+}
+
+export const renderDescription = (description) => {
+  if (!description) return null
+
+  return (
+    <div className='markdown-description'>
+      <Markdown
+        rehypePlugins={[
+          [
+            rehypeExternalLinks,
+            { target: '_blank', rel: ['noopener', 'noreferrer'] },
+          ],
+        ]}
+      >
+        {description}
+      </Markdown>
+    </div>
   )
 }
 
@@ -133,11 +160,7 @@ export const makeTable = (props) => {
   className += props.paginationFade ? ' fadeOut' : ''
 
   return (
-    <table
-      width='100%'
-      className={className}
-      summary={`Report for edit ${edit.edit} - ${edit.description}`}
-    >
+    <table width='100%' className={className}>
       {caption}
       <thead>{renderHeader(edit, rowObj.rows, type)}</thead>
       <tbody>{renderBody(edit, rowObj.rows, type)}</tbody>
