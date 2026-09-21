@@ -5798,10 +5798,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"csv-parse@npm:4.16.3":
-  version: 4.16.3
-  resolution: "csv-parse@npm:4.16.3"
-  checksum: 10c0/40771fda105b10c3e44551fa4dbeab462315400deb572f2918c19d5848addd95ea3479aaaeaaf3bbd9235593a6d798dd90b9e6ba5c4ce570979bafc4bb1ba5f0
+"csv-parse@npm:7.0.2":
+  version: 7.0.2
+  resolution: "csv-parse@npm:7.0.2"
+  checksum: 10c0/52ffaafbf7be37201ad782ec3eda37bc24ee0ec6e8967b5a68d5ad2973f10b4154fd11a5b90a002615ef98395c4cd699a13d13509b10067297795b9d3c9320e9
   languageName: node
   linkType: hard
 
@@ -8350,7 +8350,7 @@ __metadata:
     "@uswds/uswds": "npm:3.9.0"
     "@vitejs/plugin-react": "npm:^4.1.0"
     ansi-html: "npm:0.0.9"
-    csv-parse: "npm:4.16.3"
+    csv-parse: "npm:7.0.2"
     cypress: "npm:^15.12.0"
     cypress-file-upload: "npm:5.0.8"
     cypress-keycloak: "npm:2.0.2"
