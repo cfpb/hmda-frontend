@@ -6,6 +6,8 @@ import { defaultLinks } from './constants/links'
 
 import logo from './images/ffiec-logo.svg'
 import './uswds/css/styles.css'
+import './uswds/js/uswds-init.min.js'
+import './uswds/js/uswds.min.js'
 import closeBtn from './uswds/img/usa-icons/close.svg'
 
 import '@docsearch/css'
@@ -30,11 +32,6 @@ const Header = ({ location: { pathname }, links = defaultLinks, ...props }) => {
     'Tools',
     'Filing Instructions Guide',
   ]
-
-  useEffect(() => {
-    import('./uswds/js/uswds-init.min.js')
-    import('./uswds/js/uswds.min.js')
-  }, [])
 
   // Eliminates Google Lighthouse CLS
   const [usaNavStyles, setUsaNavStyles] = useState({})
