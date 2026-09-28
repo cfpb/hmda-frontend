@@ -130,7 +130,7 @@ export const renderDescription = (description) => {
   )
 }
 
-export const makeTable = (props) => {
+export const makeTable = (props, type) => {
   const { edit } = props
   const { rowObj } = props
   const isLoading =

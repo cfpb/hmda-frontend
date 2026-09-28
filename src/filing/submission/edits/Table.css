@@ -50,12 +50,6 @@
   font-weight: normal;
 }
 
-.EditsTable caption .markdown-description,
-.EditsTable .caption .markdown-description {
-  color: #323a45;
-  font-weight: normal;
-}
-
 .EditsTable:last-of-type {
   margin-bottom: 2em;
 }
