@@ -84,7 +84,7 @@ function renderNavItem(submission, name, i) {
     navClass = 'complete'
   }
 
-  if (name === 'submission' && navItem.isReachable(submission) && !completed) {
+  if (name === 'Review & submit' && navItem.isReachable(submission) && !completed) {
     navClass = 'error'
   }
 
