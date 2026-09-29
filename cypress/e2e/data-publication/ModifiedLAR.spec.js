@@ -85,7 +85,7 @@ onlyOn(!isBeta(HOST), () => {
 
         // Search finds the expected Institution
         cy.get('#institution-name').click()
-        cy.get('#institution-name').type(name)
+        cy.get('#institution-name').type('TESTING OUT THIS CONTOLINI JAM')
 
         cy.get('#main-content .SearchList > h4').contains('1 results found')
         cy.get('#main-content .SearchList > .Results > li > p').contains(
