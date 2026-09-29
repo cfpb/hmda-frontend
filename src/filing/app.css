@@ -12,6 +12,9 @@
   padding-bottom: 150px;
 }
 
+.Filing.App h1 {
+  margin-top: 0;
+
 .Filing.App hr {
   border-top: 1px solid #d6d7d9;
 }
