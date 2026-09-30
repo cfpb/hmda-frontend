@@ -86,7 +86,7 @@ export default class Upload extends Component {
         </ul>
         <h4 id='upload-tips'>Upload tips:</h4>
         <ul aria-labelledby='upload-tips' className='bulleted-list'>
-          <li>Excel, CSV, PDF, and ZIP files are not currently accepted</li>
+          <li>Excel, CSV, PDF, and ZIP files are not accepted</li>
           <li>Large files may take several minutes to process</li>
           <li>After upload, review any edits before submission</li>
         </ul>
