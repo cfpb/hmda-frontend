@@ -50,5 +50,6 @@ jobs:
         with:
           name: cypress-error-artifacts
           path: |
-            cypress/screenshots
+            cypress/snapshots/actual
             cypress/videos
+          retention-days: 2
