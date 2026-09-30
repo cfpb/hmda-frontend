@@ -52,3 +52,4 @@ jobs:
           path: |
             cypress/snapshots/actual
             cypress/videos
+          retention-days: 2
