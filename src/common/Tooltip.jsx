@@ -1,4 +1,5 @@
-import ReactTooltip from 'react-tooltip'
+import { Tooltip as ReactTooltip } from 'react-tooltip'
+import 'react-tooltip/dist/react-tooltip.css'
 
 /**
  * Provides a context message upon hover/focus
@@ -8,8 +9,13 @@ import ReactTooltip from 'react-tooltip'
  * @param {Object} others Additional tooltip attributes
  */
 export function Tooltip({ id, children, ...others }) {
+  const tooltipProps = {
+    disableStyleInjection: 'core',
+    ...others,
+  }
+
   return (
-    <ReactTooltip id={id} {...others}>
+    <ReactTooltip id={id} {...tooltipProps}>
       {children}
     </ReactTooltip>
   )
