@@ -1,0 +1,9 @@
+{
+  "realm": "hmda2",
+  "auth-server-url": "/auth",
+  "ssl-required": "all",
+  "resource": "hmda2-api",
+  "public-client": true,
+  "use-resource-role-mappings": true,
+  "confidential-port": 0
+}
