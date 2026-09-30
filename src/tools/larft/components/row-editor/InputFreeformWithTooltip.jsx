@@ -21,7 +21,7 @@ export const InputFreeformWithTooltip = ({
 
   return (
     <>
-      <Tooltip id={fieldName} place={'top'} effect={'solid'}>
+      <Tooltip id={fieldName} place={'top'}>
         {tooltip}
       </Tooltip>
       <div style={{ display: 'flex' }}>
@@ -34,7 +34,7 @@ export const InputFreeformWithTooltip = ({
           style={{ marginRight: '5px' }}
         />
 
-        <div data-tip data-for={fieldName} style={{ marginTop: '5px' }}>
+        <div data-tooltip-id={fieldName} style={{ marginTop: '5px' }}>
           <InfoIcon
             style={{
               cursor: 'pointer',
