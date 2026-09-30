@@ -1,7 +1,7 @@
 import { onlyOn } from '@cypress/skip-test'
-import { isBeta } from '../../support/helpers'
+import { addLocalhostIntercepts, isBeta } from '../../support/helpers'
 
-const { HOST } = Cypress.env()
+const { HOST, ENVIRONMENT } = Cypress.env()
 
 onlyOn(isBeta(HOST), () => {
   describe('National Aggregate Reports', function () {
@@ -10,21 +10,30 @@ onlyOn(isBeta(HOST), () => {
 })
 
 onlyOn(!isBeta(HOST), () => {
-  describe('National Aggregate Report - Not Generated', () => {
-    ;['2021', '2020', '2019', '2018'].forEach((year) => {
-      it(`${year} does not have Reports`, () => {
-        cy.get({ HOST }).logEnv()
-        cy.viewport(1000, 867)
-        cy.visit(`${HOST}/data-publication/national-aggregate-reports/${year}`)
-        cy.get('#main-content h3')
-          .last()
-          .should(
-            'have.text',
-            `National Aggregate reports are not produced for data collected in or after 2018.`,
-          )
+  describe(
+    'National Aggregate Report - Not Generated',
+    { tags: ['@localhost'] },
+    () => {
+      beforeEach(() => {
+        addLocalhostIntercepts()
       })
-    })
-  })
+      ;['2021', '2020', '2019', '2018'].forEach((year) => {
+        it(`${year} does not have Reports`, () => {
+          cy.get({ HOST }).logEnv()
+          cy.viewport(1000, 867)
+          cy.visit(
+            `${HOST}/data-publication/national-aggregate-reports/${year}`,
+          )
+          cy.get('#main-content h3')
+            .last()
+            .should(
+              'have.text',
+              `National Aggregate reports are not produced for data collected in or after 2018.`,
+            )
+        })
+      })
+    },
+  )
 })
 
 onlyOn(!isBeta(HOST), () => {
