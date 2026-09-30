@@ -16,14 +16,14 @@ function FlexTable(props) {
         >
           <span>
             {item.context.data.length > 0 && (
-              <Tooltip id={item.key} effect='solid'>
+              <Tooltip id={item.key}>
                 <ContextTable {...item.context} />
               </Tooltip>
             )}
             {item.context.data.length > 0 ? (
               <span
-                data-tip={item.value}
-                data-for={item.key}
+                data-tooltip-id={item.key}
+                data-tooltip-content={item.value}
                 className='has-context'
               >
                 {item.value}
