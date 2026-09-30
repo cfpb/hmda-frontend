@@ -47,3 +47,10 @@
   margin-left: 0.5em;
   max-width: 77rem;
 }
+
+.SignatureActions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}

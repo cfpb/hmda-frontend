@@ -1,7 +1,6 @@
-import React from 'react'
 import Alert from '../../common/Alert'
-import { HeaderDocsLink } from './Header'
 import { isBeta } from '../../common/Beta'
+import { HeaderDocsLink } from './Header'
 
 export function HeaderOpen({ period, lateDate, endDate }) {
   const officialOrSimulated = isBeta() ? (
@@ -17,11 +16,8 @@ export function HeaderOpen({ period, lateDate, endDate }) {
   )
 
   return (
-    <Alert>
+    <Alert heading={`The ${period} filing period is open.`}>
       <div>
-        <h2 style={{ margin: '0 0 0.5em 0' }}>
-          The {period} filing period is open.
-        </h2>
         <p className='font-lead'>
           Timely submissions of {period} HMDA data will be accepted until{' '}
           <strong>{lateDate}</strong>.
@@ -29,11 +25,8 @@ export function HeaderOpen({ period, lateDate, endDate }) {
           Resubmissions and late submissions will be accepted until{' '}
           <strong>{endDate}</strong>.
         </p>
-        <br />
         <p className='font-lead'>
-          <HeaderDocsLink period={period} />
-          <br />
-          <br />
+          <HeaderDocsLink period={period} />{' '}
           {!isBeta() && (
             <>
               The{' '}
@@ -45,7 +38,6 @@ export function HeaderOpen({ period, lateDate, endDate }) {
                 HMDA Beta Platform
               </a>{' '}
               is available to test your HMDA data prior to official submission.
-              <br />
               Our{' '}
               <a href='/tools/online-lar-formatting' target='_blank'>
                 Online LAR Formatting Tool
@@ -53,9 +45,7 @@ export function HeaderOpen({ period, lateDate, endDate }) {
               can help you validate your file.
             </>
           )}
-          <br />
-          <br />
-          {officialOrSimulated}
+          <p>{officialOrSimulated}</p>
         </p>
       </div>
     </Alert>

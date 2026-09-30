@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types'
 import { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import Alert from '../../common/Alert.jsx'
-import SlimAlert from '../../common/SlimAlert'
 import { splitYearQuarter } from '../api/utils.js'
 import ErrorWarning from '../common/ErrorWarning.jsx'
 import sortInstitutions from '../utils/sortInstitutions.js'
@@ -51,7 +50,11 @@ const _whatToRender = ({
           In order to access the HMDA Platform, your institution must have a
           Legal Entity Identifier (LEI). In order to provide your{' '}
           institution&#39;s LEI, please access{' '}
-          <a href='https://hmdahelp.consumerfinance.gov/accounthelp/'>
+          <a
+            href='https://hmdahelp.consumerfinance.gov/accounthelp/'
+            rel='noopener noreferrer'
+            target='_blank'
+          >
             this form
           </a>{' '}
           and enter the necessary information, including your HMDA Platform
@@ -217,6 +220,25 @@ export default class Institutions extends Component {
 
     return (
       <main id='main-content' className='Institutions full-width'>
+        <nav className='usa-breadcrumb' aria-label='Breadcrumbs,,'>
+          <ol className='usa-breadcrumb__list'>
+            <li className='usa-breadcrumb__list-item'>
+              <Link to='/' className='usa-breadcrumb__link'>
+                <span>HMDA Home</span>
+              </Link>
+            </li>
+          </ol>
+        </nav>
+        <h1>Your HMDA filings</h1>
+        <p className='lead-paragraph'>
+          Choose an institution and filing period to submit HMDA data, continue
+          an in-progress filing, or review past submissions. For updates related
+          to data products for the HMDA data collected in or after 2017, visit{' '}
+          <Link to='/updates-notes' rel='noopener noreferrer' target='_blank'>
+            HMDA News and Updates
+          </Link>
+          .
+        </p>
         {error ? <ErrorWarning error={error} /> : null}
         <div className='usa-width-one-whole'>
           {filingPeriod ? (
@@ -231,11 +253,6 @@ export default class Institutions extends Component {
             hasQuarterlyFilers={hasQuarterlyFilers}
             filingPeriodOptions={filingPeriodOptions}
           />
-
-          <SlimAlert emoji='📢'>
-            View the latest{' '}
-            <a href='/updates-notes'>HMDA Platform news and updates</a>
-          </SlimAlert>
 
           {_whatToRender(this.props)}
 

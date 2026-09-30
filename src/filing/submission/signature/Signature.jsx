@@ -1,17 +1,18 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useParams } from 'react-router-dom'
+import Alert from '../../../common/Alert.jsx'
+import Loading from '../../../common/LoadingIcon.jsx'
+import checkSignature from '../../actions/checkSignature.js'
 import fetchSignature from '../../actions/fetchSignature.js'
 import updateSignature from '../../actions/updateSignature.js'
-import checkSignature from '../../actions/checkSignature.js'
 import ErrorWarning from '../../common/ErrorWarning.jsx'
-import Loading from '../../../common/LoadingIcon.jsx'
 import {
-  VALIDATED,
   NO_MACRO_EDITS,
   SIGNED,
+  VALIDATED,
 } from '../../constants/statusCodes.js'
-import Alert from '../../../common/Alert.jsx'
 
 import './Signature.css'
 
@@ -48,6 +49,7 @@ function SignatureClosed({ status }) {
 
 function Signature({ lei, isPassed }) {
   const dispatch = useDispatch()
+  const { filingPeriod } = useParams()
   const signatureState = useSelector((state) => state.app.signature)
   const error = useSelector((state) => state.app.error)
   const { isFetching, receipt, checked } = signatureState
@@ -126,13 +128,22 @@ function Signature({ lei, isPassed }) {
         </li>
       </ul>
 
-      <button
-        className={buttonClass}
-        onClick={() => onSignatureClick(checked)}
-        disabled={isButtonDisabled}
-      >
-        Submit HMDA data
-      </button>
+      <div className='SignatureActions'>
+        <Link
+          className='usa-button usa-button--outline'
+          to={`/filing/${filingPeriod}/${lei}/macro`}
+        >
+          Previous step
+        </Link>
+        <button
+          type='button'
+          className={buttonClass}
+          onClick={() => onSignatureClick(checked)}
+          disabled={isButtonDisabled}
+        >
+          Submit HMDA data
+        </button>
+      </div>
     </section>
   )
 }
