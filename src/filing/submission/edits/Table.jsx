@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types'
+import Markdown from 'react-markdown'
+import rehypeExternalLinks from 'rehype-external-links'
 import Loading from '../../../common/LoadingIcon.jsx'
 import { splitEditPart, splitYearQuarter } from '../../api/utils.js'
 import Pagination from '../../pagination/container.jsx'
@@ -7,7 +9,7 @@ import EditsTableRow from './TableRow.jsx'
 import './Table.css'
 
 export const supressULI = (edit) =>
-  ['S303', 'V609', 'V608-1', 'V608-2'].indexOf(edit) > -1
+  ['S303', 'Q646', 'V609', 'V608-1', 'V608-2'].indexOf(edit) > -1
 
 export const formatHeader = (text, isTransmittal) => {
   if (text === 'value' || text === 'fields') return null
@@ -19,7 +21,7 @@ export const formatHeader = (text, isTransmittal) => {
   return text
 }
 
-export const renderHeader = (edit, rows, type) => {
+export const renderHeader = (edit, rows) => {
   let cellCount = 0
   const cells = []
 
@@ -52,75 +54,92 @@ export const renderHeader = (edit, rows, type) => {
   return <tr>{cells}</tr>
 }
 
-export const renderBody = (edits, rows, type) => {
+export const renderBody = (edits, rows) => {
   return rows.map((row, i) => {
     return <EditsTableRow row={row} key={i} edit={edits} />
   })
 }
 
+const getCaptionIds = (name) => ({
+  headingId: `edit-caption-heading-${name}`,
+  descriptionId: `edit-caption-description-${name}`,
+})
+
 export const renderTableCaption = (props) => {
   const name = props.edit.edit
   if (!name) return null
+  const { headingId, descriptionId } = getCaptionIds(name)
   const [year] = splitYearQuarter(props.filingPeriod)
   const [edit] = splitEditPart(name)
 
   const linkedName = (
-    <a href={`/documentation/fig/${year}/overview#edit-${edit}`} target='_blank' rel='noopener noreferrer'>{name}</a>
+    <a
+      href={`/documentation/fig/${year}/overview#edit-${edit}`}
+      target='_blank'
+      rel='noopener noreferrer'
+    >
+      {name}
+    </a>
   )
   let captionHeader
 
   if (shouldSuppressTable(props)) {
     captionHeader = <span>Edit {linkedName} found</span>
   } else {
-    const length = props.pagination.total
-    let editText = length === 1 ? 'edit' : 'edits'
-    if (name === 'Q666') {
-      editText = ''
-    }
-    captionHeader = (
-      <span>
-        {linkedName} {editText} ({length} found)
-      </span>
-    )
+    captionHeader = <span>{linkedName}</span>
   }
 
   if (name === 'Q666') {
     captionHeader = 'Review your loan/application IDs'
   }
 
-  const description = props.edit.description.replace(/"/g, '')
-
-  if (shouldSuppressTable(props)) {
-    return (
-      <div className='caption'>
-        <h3>{captionHeader}</h3>
-        {description ? <p>{description}</p> : null}
-        {name === 'S040' ? (
-          <p>
-            Please check your file or system of record for duplicate
-            application/loan numbers.
-          </p>
-        ) : null}
-      </div>
-    )
-  }
+  const cleanDescription = props.edit.description.replace(/^"|"$/g, '')
 
   return (
-    <caption>
-      <h3>{captionHeader}</h3>
-      {description ? <p>{description}</p> : null}
-    </caption>
+    <div className='caption'>
+      <h3 id={headingId}>{captionHeader}</h3>
+      {cleanDescription ? (
+        <p id={descriptionId}>{renderDescription(cleanDescription)}</p>
+      ) : null}
+      {shouldSuppressTable(props) && name === 'S040' ? (
+        <p>
+          Please check your file or system of record for duplicate
+          application/loan numbers.
+        </p>
+      ) : null}
+    </div>
   )
 }
 
-export const makeTable = (props) => {
+export const renderDescription = (description) => {
+  if (!description) return null
+
+  return (
+    <div className='markdown-description'>
+      <Markdown
+        rehypePlugins={[
+          [
+            rehypeExternalLinks,
+            { target: '_blank', rel: ['noopener', 'noreferrer'] },
+          ],
+        ]}
+      >
+        {description}
+      </Markdown>
+    </div>
+  )
+}
+
+export const makeTable = (props, type) => {
   const { edit } = props
-  const { type } = props
   const { rowObj } = props
   const isLoading =
     !props.suppressEdits && (!rowObj || !rowObj.rows) ? <Loading /> : null
 
   const caption = renderTableCaption(props)
+  const { headingId, descriptionId } = getCaptionIds(edit.edit)
+  const ariaDescribedBy = props.edit.description ? descriptionId : undefined
+
   if (shouldSuppressTable(props))
     return (
       <>
@@ -133,15 +152,21 @@ export const makeTable = (props) => {
   className += props.paginationFade ? ' fadeOut' : ''
 
   return (
-    <table
-      width='100%'
-      className={className}
-      summary={`Report for edit ${edit.edit} - ${edit.description}`}
-    >
+    <>
       {caption}
-      <thead>{renderHeader(edit, rowObj.rows, type)}</thead>
-      <tbody>{renderBody(edit, rowObj.rows, type)}</tbody>
-    </table>
+      <div className='EditsTable-scroll'>
+        <table
+          width='100%'
+          className={className}
+          summary={`Report for edit ${edit.edit} - ${edit.description}`}
+          aria-labelledby={headingId}
+          aria-describedby={ariaDescribedBy}
+        >
+          <thead>{renderHeader(edit, rowObj.rows, type)}</thead>
+          <tbody>{renderBody(edit, rowObj.rows, type)}</tbody>
+        </table>
+      </div>
+    </>
   )
 }
 
@@ -155,18 +180,51 @@ export const shouldSuppressTable = (props) => {
   )
 }
 
-function EditsTable(props) {
-  if (!props.edit) return null
+function getAccordionHeading(props) {
   const name = props.edit.edit
-  const { rowObj } = props
+  if (!name) return null
+
+  if (name === 'Q666') return 'Review your loan/application IDs'
+
+  if (shouldSuppressTable(props)) return `Edit ${name} found`
+
+  const length = props.pagination.total
+  const editText = length === 1 ? 'edit' : 'edits'
+  return `${name} ${editText} (${length} found)`
+}
+
+function EditsTable(props) {
+  const { edit, rowObj, isExpanded, onToggle } = props
+  if (!edit) return null
+  const name = edit.edit
+
+  const onToggleAccordion = (e) => {
+    e.stopPropagation()
+    if (onToggle) onToggle(name)
+  }
 
   return (
-    <section className='EditsTable' id={name}>
-      {makeTable(props)}
-      {shouldSuppressTable(props) ? null : (
-        <Pagination isFetching={rowObj.isFetching} target={name} />
-      )}
-    </section>
+    <>
+      <h4 className='usa-accordion__heading'>
+        <button
+          type='button'
+          className='usa-accordion__button'
+          aria-expanded={!!isExpanded}
+          aria-controls={name}
+          onClick={onToggleAccordion}
+        >
+          {getAccordionHeading(props)}
+        </button>
+      </h4>
+      <div id={name} className='usa-accordion__content' hidden={!isExpanded}>
+        <section className='EditsTable'>
+          {makeTable(props)}
+          {shouldSuppressTable(props) ? null : (
+            <Pagination isFetching={rowObj.isFetching} target={name} />
+          )}
+        </section>
+      </div>
+    </>
   )
 }
 
@@ -178,6 +236,8 @@ EditsTable.propTypes = {
   pagination: PropTypes.object,
   paginationFade: PropTypes.number,
   filingPeriod: PropTypes.string,
+  isExpanded: PropTypes.bool,
+  onToggle: PropTypes.func,
 }
 
 export default EditsTable

@@ -75,6 +75,7 @@
     "redux": "4.2.1",
     "redux-logger": "3.0.6",
     "redux-thunk": "2.4.2",
+    "rehype-external-links": "^3.0.0",
     "sass": "1.77.8",
     "split2": "3.2.2",
     "streamsaver": "2.0.6",

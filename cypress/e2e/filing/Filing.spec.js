@@ -194,9 +194,12 @@ describe(
 
               /* Action: Verify Quality Edits */
               cy.get('.EditsTableWrapper').then((wrapper) => {
+                // Expand the first accordion to reveal edit tables
+                cy.get('.usa-accordion__button').first().click()
+
                 // Verify edit links point to FIG documentation with current filing year
-                if (wrapper.find('.EditsTable caption a').length) {
-                  cy.get('.EditsTable caption a')
+                if (wrapper.find('.EditsTable .caption a').length) {
+                  cy.get('.EditsTable .caption a')
                     .first()
                     .should('have.attr', 'href')
                     .and('match', /\/documentation\/fig\/\d{4}\/overview/)

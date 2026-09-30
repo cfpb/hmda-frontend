@@ -1,6 +1,13 @@
-import { onlyOn } from '@cypress/skip-test';
-import { isBeta, isDev, isStaging } from '../../support/helpers';
-const { HOST, YEARS } = Cypress.env()
+import { onlyOn } from '@cypress/skip-test'
+import {
+  addLocalhostIntercepts,
+  isBeta,
+  isDev,
+  isLocal,
+  isStaging,
+} from '../../support/helpers'
+
+const { HOST, YEARS, ENVIRONMENT } = Cypress.env()
 
 const downloadsFolder = Cypress.config('downloadsFolder')
 
@@ -9,34 +16,32 @@ const years = (YEARS && YEARS.toString().split(',')) || [
   2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017,
 ]
 
-const testCases = 
-  years.map(year => {
-
-    // special case for 2017 on both dev, staging, and prod
-    if (year === 2017) {
-      return {
-        year,
-        name: 'cypress bank, ssb',
-        institution: '729178',
-      }
+const testCases = years.map((year) => {
+  // special case for 2017 on both dev, staging, and prod
+  if (year === 2017) {
+    return {
+      year,
+      name: 'cypress bank, ssb',
+      institution: '729178',
     }
+  }
 
-    // special case for 2018 on prod or staging
-    if (year === 2018 && (isStaging(HOST) || !isDev(HOST))) {
-      return {
-        year,
-        name: 'cypress bank, state savings bank',
-        institution: '549300I4IUWMEMGLST06',
-      }
+  // special case for 2018 on prod or staging
+  if (year === 2018 && (isStaging(HOST) || !isDev(HOST) || isLocal(HOST))) {
+    return {
+      year,
+      name: 'cypress bank, state savings bank',
+      institution: '549300I4IUWMEMGLST06',
     }
+  }
 
-    if ([2025, 2024, 2023].includes(year) && !isDev(HOST)) {
-      return {
-        year,
-        name: 'cypress bank state savings bank',
-        institution: '549300I4IUWMEMGLST06',
-      }
+  if ([2025, 2024, 2023].includes(year) && (isLocal(HOST) || !isDev(HOST))) {
+    return {
+      year,
+      name: 'cypress bank state savings bank',
+      institution: '549300I4IUWMEMGLST06',
     }
+  }
 
   const getDefaultCaseInstitution = () => {
     const prodTestInstitution = {
@@ -51,7 +56,7 @@ const testCases =
     }
 
     // explicitly set staging to have prod instead of dev data
-    if (isStaging(HOST)) return prodTestInstitution
+    if (isStaging(HOST) || isLocal(HOST)) return prodTestInstitution
     if (isDev(HOST)) return devTestInstitution
     return prodTestInstitution
   }
@@ -62,7 +67,6 @@ const testCases =
   }
 })
 
-
 onlyOn(isBeta(HOST), () => {
   describe('Modified LAR', function () {
     it('Does not run in Beta environments', () => {})
@@ -70,9 +74,12 @@ onlyOn(isBeta(HOST), () => {
 })
 
 onlyOn(!isBeta(HOST), () => {
-  describe('Modified LAR', { tags: ['@smoke'] }, function () {
+  describe('Modified LAR', { tags: ['@localhost', '@smoke'] }, function () {
+    beforeEach(() => {
+      addLocalhostIntercepts()
+    })
     testCases.forEach(({ year, name, institution }) => {
-      it(`Searches and finds correct links for ${year}`,() => {
+      it(`Searches and finds correct links for ${year}`, () => {
         cy.get({ HOST }).logEnv()
         cy.visit(`${HOST}/data-publication/modified-lar/${year}`)
 
@@ -84,19 +91,21 @@ onlyOn(!isBeta(HOST), () => {
         cy.get('#main-content .SearchList > .Results > li > p').contains(
           institution,
         )
-        cy.get('#main-content .SearchList > .Results > li > .font-small').then(
-          ($el) => {
+        cy.get('#main-content .SearchList > .Results > li > .font-small')
+          .then(($el) => {
             expect($el).to.have.text('Download Modified LAR ')
             expect($el).to.have.attr(
               'href',
               `/file/modifiedLar/year/${year}/institution/${institution}/txt`,
             )
-          },
-        ).click()
+          })
+          .click()
 
         const fileName = `${institution}.txt`
         // Read the downloaded file and confirm there are hella pipes in it (at least 50)
-        cy.readFile(`${downloadsFolder}/${fileName}`, { timeout: 10000 }).should((content) => {
+        cy.readFile(`${downloadsFolder}/${fileName}`, {
+          timeout: 10000,
+        }).should((content) => {
           const pipeCount = (content.match(/\|/g) || []).length
           expect(pipeCount).to.be.greaterThan(50)
         })
