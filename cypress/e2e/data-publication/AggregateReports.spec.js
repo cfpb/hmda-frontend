@@ -228,11 +228,11 @@ onlyOn(!isBeta(HOST), () => {
       )
       cy.get('tbody > :nth-child(3) > :nth-child(8)').should(
         'have.text',
-        '4032',
+        '4033',
       )
       cy.get('tbody > :nth-child(3) > :nth-child(9)').should(
         'have.text',
-        '1184710000',
+        '1184815000',
       )
       cy.get('tbody > :nth-child(3) > :nth-child(10)').should(
         'have.text',
