@@ -1,10 +1,22 @@
 {
   "name": "prod-beta",
-  "announcement": [],
+  "announcement": [
+    {
+      "message": "We will be performing scheduled system maintenance on October 8 from 6PM - 8PM EST. During this time users may experience brief service interruptions and site slowdowns.",
+      "type": "warning",
+      "heading": "Scheduled Maintenance",
+      "link": null
+    }
+  ],
   "fileServerDomain": "https://files.ffiec.cfpb.gov",
   "publicationReleaseYear": "2020",
   "maintenanceMode": false,
-  "filingAnnouncement": null,
+  "filingAnnouncement": {
+    "message": "We will be performing scheduled system maintenance on October 8 from 6PM - 8PM EST. During this time users may experience brief service interruptions and site slowdowns.",
+    "type": "warning",
+    "heading": "Scheduled Maintenance",
+    "endDate": null
+  },
   "ffvtAnnouncement": null,
   "dataPublicationYears": {
     "shared": [
