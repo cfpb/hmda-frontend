@@ -1,9 +1,9 @@
-import React from 'react'
 import PropTypes from 'prop-types'
+import React from 'react'
 
-import './InputSelect.css'
-import Icon from '../common/uswds/components/Icon'
 import Tooltip from '../common/Tooltip'
+import Icon from '../common/uswds/components/Icon'
+import './InputSelect.css'
 
 function InputSelect({
   disabled = false,
@@ -27,8 +27,7 @@ function InputSelect({
         <div className='input-select-label-container'>
           <label htmlFor={id}>{label}</label>
           <span
-            data-tip
-            data-for='quarterly-filer-info-tooltip'
+            data-tooltip-id='quarterly-filer-info-tooltip'
             className='info-icon-wrapper'
           >
             <Icon
@@ -42,7 +41,6 @@ function InputSelect({
           <Tooltip
             id='quarterly-filer-info-tooltip'
             place='right'
-            effect='solid'
             offset={{ top: -17 }}
           >
             Institutions cannot self-identify as a quarterly filer, that is

@@ -5,6 +5,8 @@ import { defineConfig } from 'vite'
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
 import svgr from 'vite-plugin-svgr'
 
+const DEV_CSP_NONCE = 'vite-dev-nonce'
+
 dotenv.config()
 
 if (!process.env.MAPBOX_ACCESS_TOKEN) {
@@ -34,17 +36,31 @@ dns.setDefaultResultOrder('verbatim')
 
 export default () => {
   return defineConfig({
-    plugins: [react(), svgr(), nodePolyfills()],
+    plugins: [
+      react(),
+      svgr(),
+      nodePolyfills(),
+      {
+        name: 'inject-dev-csp-nonce',
+        apply: 'serve',
+        transformIndexHtml(html) {
+          return html.replaceAll('nonce-placeholder', DEV_CSP_NONCE)
+        },
+      },
+    ],
     test: {
       environment: 'jsdom',
       globals: true,
       include: ['src/**/__tests__/**/*.{test,spec}.{js,jsx}'],
-      exclude: ['oldTests/**', 'cypress/**', '**/node_modules/**']
+      exclude: ['oldTests/**', 'cypress/**', '**/node_modules/**'],
     },
     define: {
       'import.meta.env.MAPBOX_ACCESS_TOKEN': JSON.stringify(
         process.env.MAPBOX_ACCESS_TOKEN,
       ),
+    },
+    html: {
+      cspNonce: DEV_CSP_NONCE,
     },
     css: {
       preprocessorOptions: {
@@ -54,6 +70,9 @@ export default () => {
       },
     },
     server: {
+      headers: {
+        'Content-Security-Policy': `default-src 'self' blob:; script-src 'self' 'nonce-${DEV_CSP_NONCE}' blob: data: https://dap.digitalgov.gov https://tagmanager.google.com https://www.googletagmanager.com https://www.google-analytics.com https://*.cfpb.gov https://www.consumerfinance.gov https://*.mouseflow.com; img-src 'self' blob: data: https://www.googletagmanager.com https://www.google-analytics.com https://raw.githubusercontent.com; style-src 'self' 'nonce-${DEV_CSP_NONCE}'; font-src 'self' data:; object-src 'none'; frame-src 'self' https://www.youtube.com/ https://ffiec.cfpb.gov/; connect-src 'self' https://www.googletagmanager.com https://*.cfpb.gov https://www.consumerfinance.gov https://raw.githubusercontent.com https://ffiec.cfpb.gov https://*.mapbox.com https://www.google-analytics.com https://s3.amazonaws.com https://*.algolia.net https://*.mouseflow.com https://stats.g.doubleclick.net;`,
+      },
       watch: {
         usePolling: true,
       },
