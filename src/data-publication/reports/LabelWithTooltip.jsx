@@ -1,7 +1,6 @@
-import React from 'react'
+import Tooltip from '../../common/Tooltip'
 import InfoIcon from '../../filing/images/info.svg?react'
 import { Descriptions } from '../constants/descriptions.js'
-import Tooltip from '../../common/Tooltip'
 import './LabelWithTooltip.css'
 
 export function LabelWithTooltip({ label, dataKey }) {
@@ -16,8 +15,7 @@ export function LabelWithTooltip({ label, dataKey }) {
         {label}
         <div id='infoIcon'>
           <a
-            data-tip
-            data-for={label}
+            data-tooltip-id={label}
             href='#' // Enable keyboard focus
             onClick={(e) => e.preventDefault()} // Disable click
           >
