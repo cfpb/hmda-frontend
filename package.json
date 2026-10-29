@@ -48,7 +48,7 @@
     "fast-deep-equal": "2.0.1",
     "file-saver": "2.0.5",
     "gray-matter": "^4.0.3",
-    "highcharts": "10.3.3",
+    "highcharts": "11.4.9",
     "highcharts-react-official": "3.2.1",
     "html-to-image": "1.11.11",
     "jspdf": "4.2.1",

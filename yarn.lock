@@ -8395,10 +8395,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"highcharts@npm:10.3.3":
-  version: 10.3.3
-  resolution: "highcharts@npm:10.3.3"
-  checksum: 10c0/c9bdc27046cb5324c7d045f874d37d3ac4bdc37fe0688a94eecae4d1efd0215ced175419477a122b1c2b4e9bcc9bfbb646210b2cd948d986438bf7ea2e106a6d
+"highcharts@npm:11.4.9":
+  version: 11.4.9
+  resolution: "highcharts@npm:11.4.9"
+  peerDependencies:
+    jspdf: ^4.1.0
+    svg2pdf.js: ^2.7.0
+  peerDependenciesMeta:
+    jspdf:
+      optional: true
+    svg2pdf.js:
+      optional: true
+  checksum: 10c0/f0baeba578f7ddaeb4e5cc1c124c8ba0d8132131c77f1f934bfe9d2a4c460cf91cdd2ac5dd446d3ecb3504eb23f82cc2cad1c0c25cf62b93ebe650f4b171dd2f
   languageName: node
   linkType: hard
 
@@ -8473,7 +8481,7 @@ __metadata:
     fast-deep-equal: "npm:2.0.1"
     file-saver: "npm:2.0.5"
     gray-matter: "npm:^4.0.3"
-    highcharts: "npm:10.3.3"
+    highcharts: "npm:11.4.9"
     highcharts-react-official: "npm:3.2.1"
     html-to-image: "npm:1.11.11"
     http-proxy-middleware: "npm:2.0.10"
