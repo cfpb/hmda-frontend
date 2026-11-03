@@ -4,7 +4,7 @@
   "description": "Collection of HMDA frontend apps",
   "main": "./src/index.js",
   "engines": {
-    "node": ">=v20.8.0"
+    "node": ">=v22.14.0"
   },
   "scripts": {
     "start": "vite",
