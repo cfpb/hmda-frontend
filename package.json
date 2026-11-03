@@ -70,7 +70,7 @@
     "react-redux": "7.2.9",
     "react-router-dom": "5.3.4",
     "react-select": "5.10.2",
-    "react-tooltip": "^4.2.21",
+    "react-tooltip": "^6.0.8",
     "react-window": "1.8.10",
     "redux": "4.2.1",
     "redux-logger": "3.0.6",
