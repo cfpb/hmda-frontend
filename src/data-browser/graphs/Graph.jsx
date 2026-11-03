@@ -19,6 +19,24 @@ Highcharts.setOptions({
   lang: {
     thousandsSep: ',',
   },
+  chart: {
+    style: {
+      fontSize: '15px',
+      fontFamily:
+        '"Lucida Grande", "Lucida Sans Unicode", Verdana, Aria, Helvetica, sans-serif',
+    },
+  },
+  legend: {
+    itemStyle: { fontWeight: 'bold' },
+  },
+  title: {
+    style: { fontWeight: 'normal' },
+  },
+  xAxis: {
+    labels: {
+      padding: 0,
+    },
+  },
 })
 
 export function Graph({ options, loading, seriesForURL }) {
