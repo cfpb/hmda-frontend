@@ -31,18 +31,8 @@ RUN echo "{ \"version\": \"${DOCKER_TAG}\" }" > ./src/common/constants/release.j
 
 RUN yarn build
 
-FROM nginx:alpine3.23
+FROM nginx:alpine3.24
 COPY --from=build-stage  /usr/src/app/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
-
-# Temporary fix for vulnerability CVE-2026-3805 (curl, fix currently on edge only)
-# More info at: GHE #5550
-RUN echo "@edge https://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
-    apk update && \
-    apk add --no-cache curl@edge libcurl@edge
-
-# Temporary fix for CVE-2026-40930 (libpng < 1.6.58-r1)
-# More info at: GHE #5575
-RUN apk update && apk add 'libpng>=1.6.58-r1'
 
 # Temporary fix for CVE-2026-6732 (libxml2 < 2.15.3)
 # We don't use the two nginx modules (xslt and njs) that use the vulnerable libxml2. So we can delete
