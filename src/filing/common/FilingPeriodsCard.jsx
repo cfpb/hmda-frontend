@@ -2,7 +2,7 @@ import { format, parse } from 'date-fns'
 import Icon from '../../common/uswds/components/Icon'
 import './FilingPeriodsCard.css'
 
-const QUARTERS = ['Q1', 'Q2', 'Q3']
+const QUARTERS = ['Q1'] // GHE #5363: Q2 and Q3 temporarily removed
 
 const formatDate = (dateString) =>
   format(parse(dateString.trim(), 'MM/dd/yyyy', new Date()), 'MMM dd, yyyy')
