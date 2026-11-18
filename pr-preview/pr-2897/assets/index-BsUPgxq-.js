@@ -1,0 +1,1 @@
+import{aG as o,F as t,S as n,h as e,j as a,d as i}from"./index-Bq7cYcib.js";function s(){return t.jsxs(n,{children:[t.jsx(e,{exact:!0,path:"/documentation",to:window.location.assign(`${window.location.origin}/documentation/category/frequently-asked-questions`)}),t.jsx(a,{component:i})]})}const r=o(s);export{r as default};

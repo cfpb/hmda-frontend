@@ -1,4 +1,4 @@
-import{Q as reactExports,t as getDefaultExportFromCjs,F as jsxRuntimeExports,C as iconSprite,o as commonjsRequire,J as ordinal,aC as useHistory,aD as useLocation,S as Switch,j as Route,c as LoadingIcon}from"./index-KL223M76.js";import{M as Markdown}from"./index-BxEetkqx.js";import{B as Buffer}from"./index-CgqXENQe.js";function useRemoteMarkdown(a,f={}){const[m,s]=reactExports.useState(f.defaultData),[h,d]=reactExports.useState(!1),[g,b]=reactExports.useState(null),{forceFetch:l}=f,u=l||window.location.host.indexOf("localhost")<0;return reactExports.useEffect(()=>{u&&(d(!0),b(null),fetch(a).then(i=>i.ok?i.text():Promise.reject(i)).then(i=>{f.transformReceive?s(f.transformReceive(i)):s(i),d(!1)}).catch(i=>{const{status:t,statusText:r}=i;d(!1),b(f.errorMsg||`Error: ${t} - ${r}`)}))},[]),[m,h,g]}const defaultChangeLog=`---
+import{Q as reactExports,t as getDefaultExportFromCjs,F as jsxRuntimeExports,C as iconSprite,o as commonjsRequire,J as ordinal,aC as useHistory,aD as useLocation,S as Switch,j as Route,c as LoadingIcon}from"./index-Bq7cYcib.js";import{M as Markdown}from"./index-Dycuf6nL.js";import{B as Buffer}from"./index-CgqXENQe.js";function useRemoteMarkdown(a,f={}){const[m,s]=reactExports.useState(f.defaultData),[h,d]=reactExports.useState(!1),[g,b]=reactExports.useState(null),{forceFetch:l}=f,u=l||window.location.host.indexOf("localhost")<0;return reactExports.useEffect(()=>{u&&(d(!0),b(null),fetch(a).then(i=>i.ok?i.text():Promise.reject(i)).then(i=>{f.transformReceive?s(f.transformReceive(i)):s(i),d(!1)}).catch(i=>{const{status:t,statusText:r}=i;d(!1),b(f.errorMsg||`Error: ${t} - ${r}`)}))},[]),[m,h,g]}const defaultChangeLog=`---
 date: 11/18/26
 type: release
 product: documentation
@@ -7,7 +7,7 @@ On November 18, 2026, the CFPB released the [2027 Online Filing Instructions Gui
 
 The [2027 Beta Platform](https://ffiec.beta.cfpb.gov/) is for testing purposes only and the CFPB will continue to add functionality.
 
-Additional information can be found in HMDA's [Quick Reference Guide](https://ffiec.cfpb.gov/documentation/faq/login-gov-quick-reference), [Data Collection Timelines](https://ffiec.cfpb.gov/documentation/faq/data-collection-timelines), and [Frequently Asked Questions](https://ffiec.cfpb.gov/documentation/category/frequently-asked-questions).
+Additional information can be found in HMDA's [Login.gov Quick Reference Guide](https://ffiec.cfpb.gov/documentation/faq/login-gov-quick-reference), [Data Collection Timelines](https://ffiec.cfpb.gov/documentation/faq/data-collection-timelines), and [Frequently Asked Questions](https://ffiec.cfpb.gov/documentation/category/frequently-asked-questions).
 
 For questions and feedback regarding these releases, contact <HMDAHelp@cfpb.gov> or visit [hmdahelp.consumerfinance.gov](https://hmdahelp.consumerfinance.gov/).
 
@@ -756,7 +756,7 @@ type: release
 product: documentation
 ---
 The Documentation for 2020 Annual and Quarterly filing deadlines has been released.
-`,PRODUCT_NAMES={mlar:"Modified LAR",datasets:"National Datasets",reports:"Reports",documentation:"Documentation",tools:"HMDA Tools",filing:"HMDA Filing"},PRODUCTS=Object.keys(PRODUCT_NAMES),CATEGORIES={correction:{order:4},update:{order:3},release:{order:2},announcement:{order:1}},PUB_CHANGELOG_URL="https://raw.githubusercontent.com/cfpb/hmda-frontend/95cee9b1417035bdb89492249dbb2ad15fe694f5/src/updates-notes/change-log.md",DEFAULT_FILTERS={type:[],product:[],keywords:[]},FILTER_OPTIONS={PRODUCT:PRODUCTS.map(a=>({value:a,type:"product"})),TYPE:Object.keys(CATEGORIES).sort((a,f)=>CATEGORIES[a].order-CATEGORIES[f].order).map(a=>({value:a,type:"type"}))};var mark$2={exports:{}};/*!***************************************************
+`,PRODUCT_NAMES={mlar:"Modified LAR",datasets:"National Datasets",reports:"Reports",documentation:"Documentation",tools:"HMDA Tools",filing:"HMDA Filing"},PRODUCTS=Object.keys(PRODUCT_NAMES),CATEGORIES={correction:{order:4},update:{order:3},release:{order:2},announcement:{order:1}},PUB_CHANGELOG_URL="https://raw.githubusercontent.com/cfpb/hmda-frontend/fb4be3590b1f98ad61568e707098fae8028b7bbf/src/updates-notes/change-log.md",DEFAULT_FILTERS={type:[],product:[],keywords:[]},FILTER_OPTIONS={PRODUCT:PRODUCTS.map(a=>({value:a,type:"product"})),TYPE:Object.keys(CATEGORIES).sort((a,f)=>CATEGORIES[a].order-CATEGORIES[f].order).map(a=>({value:a,type:"type"}))};var mark$2={exports:{}};/*!***************************************************
 * mark.js v8.11.1
 * https://markjs.io/
 * Copyright (c) 2014–2018, Julian Kühnel
