@@ -7,7 +7,7 @@ On November 18, 2026, the CFPB released the [2027 Online Filing Instructions Gui
 
 The [2027 Beta Platform](https://ffiec.beta.cfpb.gov/) is for testing purposes only and the CFPB will continue to add functionality.
 
-Additional information can be found in HMDA's [Quick Reference Guide](https://ffiec.cfpb.gov/documentation/faq/login-gov-quick-reference), [Data Collection Timelines](https://ffiec.cfpb.gov/documentation/faq/data-collection-timelines), and [Frequently Asked Questions](https://ffiec.cfpb.gov/documentation/category/frequently-asked-questions).
+Additional information can be found in HMDA's [Login.gov Quick Reference Guide](https://ffiec.cfpb.gov/documentation/faq/login-gov-quick-reference), [Data Collection Timelines](https://ffiec.cfpb.gov/documentation/faq/data-collection-timelines), and [Frequently Asked Questions](https://ffiec.cfpb.gov/documentation/category/frequently-asked-questions).
 
 For questions and feedback regarding these releases, contact <HMDAHelp@cfpb.gov> or visit [hmdahelp.consumerfinance.gov](https://hmdahelp.consumerfinance.gov/).
 
