@@ -5,6 +5,7 @@ import { splitYearQuarter } from '../filing/api/utils.js'
 import { OptionCarousel } from '../common/OptionCarousel'
 import { getOpenFilingYears } from '../common/constants/configHelpers'
 import { parseTimedGuardDate } from '../deriveConfig'
+import { CustomFigAndBetaAnnouncement } from './CustomFigAndBetaAnnouncement.jsx'
 
 /**
  * Length of time, in days, to display the announcement
@@ -165,7 +166,10 @@ export function AnnouncementBanner({
   return (
     <OptionCarousel
       id='oc-homepage-banner'
-      options={announcements}
+      options={[
+        // GHE #5975, change below back to `announcements` after FIG/Beta announcement no longer needed
+        <CustomFigAndBetaAnnouncement key='custom-fig-and-beta-announcement' />,
+      ]}
       cycleTime={10}
       hideIcon
       showControls

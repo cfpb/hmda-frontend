@@ -30,15 +30,20 @@ function FilingGuides() {
           </a>
           <ul>
             <li>
-              <a href='/documentation/fig/2025/overview'>2025 Online FIG</a>
+              <a href='/documentation/fig/2026/overview'>2026 Online FIG</a>
             </li>
             <li>
-              <a href='/documentation/fig/2026/overview'>2026 Online FIG</a>
+              <a href='/documentation/fig/2027/overview'>2027 Online FIG</a>
               <NewIndicator />
             </li>
             <li>
               <a href='/documentation/fig/2026/supplemental-guide-for-quarterly-filers'>
                 Online Supplemental Guide for Quarterly Filers for 2026
+              </a>
+            </li>
+            <li>
+              <a href='/documentation/fig/2027/supplemental-guide-for-quarterly-filers'>
+                Online Supplemental Guide for Quarterly Filers for 2027
               </a>
               <NewIndicator />
             </li>

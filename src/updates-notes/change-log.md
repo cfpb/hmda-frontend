@@ -1,4 +1,17 @@
 ---
+date: 11/18/26
+type: release
+product: documentation
+---
+On November 18, 2026, the CFPB released the [2027 Online Filing Instructions Guide (FIG)](https://ffiec.cfpb.gov/documentation/fig/2027/overview), the [Online Supplemental Guide for Quarterly Filers for 2027](https://ffiec.cfpb.gov/documentation/fig/2027/supplemental-guide-for-quarterly-filers), and the [HMDA Beta Platform](https://ffiec.beta.cfpb.gov/) for data collected in 2027.
+
+The [2027 Beta Platform](https://ffiec.beta.cfpb.gov/) is for testing purposes only and the CFPB will continue to add functionality.
+
+Additional information can be found in HMDA's [Quick Reference Guide](https://ffiec.cfpb.gov/documentation/faq/login-gov-quick-reference), [Data Collection Timelines](https://ffiec.cfpb.gov/documentation/faq/data-collection-timelines), and [Frequently Asked Questions](https://ffiec.cfpb.gov/documentation/category/frequently-asked-questions).
+
+For questions and feedback regarding these releases, contact <HMDAHelp@cfpb.gov> or visit [hmdahelp.consumerfinance.gov](https://hmdahelp.consumerfinance.gov/).
+
+---
 date: 07/31/26
 type: announcement
 product: tools
@@ -125,7 +138,7 @@ product: documentation
 The 2026 Online Filing Instructions Guide (FIG) and 2026 Online Supplemental Guide for Quarterly Filers have been released.
 
 - [2026 Online Filing Instructions Guide (FIG)](https://ffiec.cfpb.gov/documentation/fig/2026/overview)
-- [2026 Online Supplemental Guide for Quarterly Filers](https://ffiec.cfpb.gov/documentation/fig/2026/supplemental-guide-for-quaterly-filers)
+- [2026 Online Supplemental Guide for Quarterly Filers](https://ffiec.cfpb.gov/documentation/fig/2026/supplemental-guide-for-quarterly-filers)
 
 ---
 date: 8/14/25
