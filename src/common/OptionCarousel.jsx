@@ -28,8 +28,7 @@ export const OptionCarousel = ({
 
   const [currHeight, setCurrHeight] = useState(fixedHeight || '100px')
 
-  // GHE #5975, change minHeight to height after FIG/Beta announcement no longer needed
-  const styles = { minHeight: currHeight }
+  const styles = { height: currHeight }
 
   const totalCount = options.length
   const hasMultiple = totalCount > 1

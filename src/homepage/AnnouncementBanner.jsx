@@ -162,14 +162,15 @@ export function AnnouncementBanner({
     }
   }
 
+  announcements.unshift(
+    <CustomFigAndBetaAnnouncement key='custom-fig-and-beta-announcement' />,
+  )
+
   // Display an auto-advancing, navigable carousel of announcements
   return (
     <OptionCarousel
       id='oc-homepage-banner'
-      options={[
-        // GHE #5975, change below back to `announcements` after FIG/Beta announcement no longer needed
-        <CustomFigAndBetaAnnouncement key='custom-fig-and-beta-announcement' />,
-      ]}
+      options={announcements}
       cycleTime={10}
       hideIcon
       showControls
