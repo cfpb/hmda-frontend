@@ -1,132 +1,150 @@
+.FilingHome {
+  background-color: #f1f1f1;
+}
+
 .login-header-container {
   max-width: 1040px;
-  margin: 2rem auto;
-  padding: 0 3rem 3rem;
-  display: grid;
-  grid-template-columns: 1fr 400px;
-  gap: 2rem;
-  align-items: start;
-  margin-bottom: 2em;
+  padding-top: 3rem;
+  padding-bottom: 6rem;
 }
 
-.login-content {
-  padding-right: 2rem;
-  color: #5b616b;
-}
-
-.login-content p {
-  margin-top: 0;
-  color: #5b616b;
-  font-size: 1.1em;
-}
-
-.login-content h1 {
-  font-size: 4rem;
-  margin: 1em 0 0 0 !important;
+.login-header-container h1 {
+  margin: 0;
   color: var(--hmda-blue);
+  font-size: 4rem;
 }
 
-.login-content .font-lead {
-  font-size: 1.1em;
-  max-width: 77ch;
-  margin: 0 0;
+.login-subtitle {
+  max-width: 64rem;
+  margin: 1.6rem 0 0;
+  font-size: 2rem;
 }
 
-.login-content .button-container {
+.login-cards {
+  margin-top: 3rem;
+}
+
+.login-cards > .grid-col-12 {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 1.5em 0;
 }
 
-.button-container .text-small {
+.login-cards .usa-card {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.login-cards .usa-card__container {
   margin: 0;
+  border: 0;
+  border-radius: 0;
 }
 
-.login-content .button-container button {
-  margin: 0;
-  display: flex;
-  gap: 8px;
-  align-items: center;
+.login-cards .usa-card__header {
+  padding: 3rem 3rem 0;
 }
 
-.login-content .button-container .login-button {
-  max-width: 280px;
+.login-cards .usa-card__body {
+  padding: 2rem 3rem 3rem;
+}
+
+.login-card .usa-card__heading {
+  font-size: 3.2rem;
+}
+
+.login-card .usa-card__body > p {
+  margin-bottom: 0;
+}
+
+.login-card .usa-button {
+  width: 100%;
+  margin: 2rem 0 0;
+  padding: 1.2rem 2rem;
+  font-size: 1.7rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.login-card .login-button {
+  background-color: #265d9d;
+}
+
+.login-card .login-button:hover {
+  background-color: #1f498f;
+}
+
+.login-card .create-account-button {
+  box-shadow: inset 0 0 0 2px #25437c;
+  color: #25437c;
+}
+
+.login-card .create-account-button:hover {
+  background-color: #f1f1f1;
+  box-shadow: inset 0 0 0 2px #25437c;
+  color: #25437c;
 }
 
 .login-gov-icon-button {
   width: 125px;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
-.how-it-works {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
+.login-help {
+  margin-top: 5rem;
 }
 
-.filing-periods-container {
-  margin: 3em 0 0 0;
+.login-help hr {
+  margin: 0 0 2rem;
+  border-top: 1px solid #bfbfbf;
 }
 
-@media screen and (max-width: 1024px) {
+.login-help h3 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.login-help p {
+  margin: 0.5rem 0 0;
+  font-size: 1.6rem;
+}
+
+.login-help a {
+  color: #2f70c7;
+}
+
+@media screen and (max-width: 1023px) {
   .login-header-container {
-    grid-template-columns: 1fr;
-    padding: 0 3rem 1rem;
-    gap: 0.5rem;
-    margin-bottom: 8rem;
+    padding-right: 2.4rem;
+    padding-left: 2.4rem;
   }
 
-  .login-content {
-    padding-right: 0;
-  }
-
-  .login-content .font-lead {
-    max-width: none;
-  }
-
-  .filing-periods-container {
-    margin-top: 0rem;
-    /* margin-right: auto; */
-  }
-
-  .login-content .button-container {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .login-content .button-container button,
-  .login-content .button-container a {
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-  }
-
-  .login-gov-promo {
-    margin: 3rem 0;
+  .login-cards > .grid-col-12:first-child {
+    margin-bottom: 3rem;
   }
 }
 
 @media screen and (max-width: 550px) {
-  .login-header-container {
-    margin-bottom: 5em;
+  .login-header-container h1 {
+    font-size: 3.4rem;
   }
 
-  .login-content .button-container {
-    flex-direction: column;
+  .login-cards .usa-card__header {
+    padding: 2rem 2rem 0;
   }
 
-  .login-content .button-container .login-button {
-    max-width: 100%;
+  .login-cards .usa-card__body {
+    padding: 1.6rem 2rem 2rem;
+  }
+
+  .login-card .usa-card__heading {
+    font-size: 2.6rem;
+  }
+
+  .login-card .usa-button {
+    font-size: 1.6rem;
+    white-space: normal;
   }
 }
 
 @media screen and (max-width: 425px) {
-  .login-content .button-container button {
-    font-size: 15px;
-  }
-
   .login-gov-icon-button {
     width: 110px;
   }

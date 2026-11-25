@@ -1,7 +1,16 @@
-import React, { useState } from 'react'
 import { format, parse } from 'date-fns'
 import Icon from '../../common/uswds/components/Icon'
 import './FilingPeriodsCard.css'
+
+const QUARTERS = ['Q1'] // GHE #5363: Q2 and Q3 temporarily removed
+
+const formatDate = (dateString) =>
+  format(parse(dateString.trim(), 'MM/dd/yyyy', new Date()), 'MMM dd, yyyy')
+
+const formatPeriod = (periodString) => {
+  const [start, end] = periodString.split(' - ')
+  return `${formatDate(start)} - ${formatDate(end)}`
+}
 
 /**
  * Component that displays HMDA filing periods, showing both annual and quarterly filing windows.
@@ -29,126 +38,88 @@ import './FilingPeriodsCard.css'
  */
 
 function FilingPeriodsCard({ timedGuards }) {
-  const [isInfoExpanded, setIsInfoExpanded] = useState(false)
-
   const currentYear = '2025'
   const nextYear = (parseInt(currentYear) + 1).toString()
 
-  const formatDate = (dateString) => {
-    const date = parse(dateString.trim(), 'MM/dd/yyyy', new Date())
-    return format(date, 'MMM dd, yyyy')
-  }
-
-  const getFormattedPeriod = (periodString) => {
-    const [startDate, endDate] = periodString.split(' - ')
-    return `${formatDate(startDate)} - ${formatDate(endDate)}`
-  }
-
-  // Get both years' data
   const currentYearData = timedGuards[currentYear]
   const nextYearData = timedGuards[nextYear]
 
-  // Parse quarterly and annual data
-  const periods = {
-    annual: {
-      period: getFormattedPeriod(currentYearData.annual),
-    },
-    quarterly: [
-      {
-        quarter: 'Q1',
-        period: getFormattedPeriod(nextYearData.Q1),
-      },
-
-      // GHE #5363: Temporarily comment out Q2 and Q3
-      // {
-      //   quarter: 'Q2',
-      //   period: getFormattedPeriod(nextYearData.Q2),
-      // },
-      // {
-      //   quarter: 'Q3',
-      //   period: getFormattedPeriod(nextYearData.Q3),
-      // },
-    ],
-  }
-
-  // Helper component for file guide links
-  function FileGuideLink({ year, type }) {
-    return (
-      <a
-        href={`/documentation/fig/${year}/overview`}
-        className={`filing-guide-link-${type}`}
-      >
-        {year} Filing Instructions Guide{' '}
-        <span className='filing-periods-right-carrot'>▶</span>
-      </a>
-    )
-  }
-
   return (
-    <div className='filing-periods-card'>
-      {/* Annual Section */}
-      <div className='year-section'>
-        <h2 className='filing-periods-title annual-title'>
-          Annual Filing Period
-        </h2>
-        <FileGuideLink year={currentYear} type='year' />
-        <div className='period-wrapper'>
-          <div className='period-item'>
-            <span className='period-tag annual'>{currentYear} Data</span>
-            <span className='period-date-annual'>{periods.annual.period}</span>
-          </div>
+    <section className='filing-periods-card usa-card'>
+      <div className='usa-card__container'>
+        <header className='usa-card__header'>
+          <h2 className='usa-card__heading'>Filing resources</h2>
+        </header>
+        <div className='usa-card__body'>
+          <p>Key dates, instructions, and updates.</p>
+
+          <ul className='filing-resource-list'>
+            <li className='filing-resource'>
+              <span className='filing-resource-icon'>
+                <Icon
+                  iconName='calendar_today'
+                  styleIcon={{ height: '24px', width: '24px' }}
+                />
+              </span>
+              <div>
+                <h3>
+                  Annual filing
+                  <span className='filing-resource-badge'>
+                    {currentYear} DATA
+                  </span>
+                </h3>
+                <p>{formatPeriod(currentYearData.annual)}</p>
+                <a href={`/documentation/fig/${currentYear}/overview`}>
+                  {currentYear} Filing Instructions Guide
+                </a>
+              </div>
+            </li>
+
+            <li className='filing-resource'>
+              <span className='filing-resource-icon'>
+                <Icon
+                  iconName='calendar_today'
+                  styleIcon={{ height: '24px', width: '24px' }}
+                />
+              </span>
+              <div>
+                <h3>
+                  Quarterly filing
+                  <span className='filing-resource-badge'>{nextYear} DATA</span>
+                </h3>
+                {QUARTERS.map((quarter) => (
+                  <p key={quarter}>
+                    {quarter}: {formatPeriod(nextYearData[quarter])}
+                  </p>
+                ))}
+                <a href={`/documentation/fig/${nextYear}/overview`}>
+                  {nextYear} Filing Instructions Guide
+                </a>
+                <a href='/documentation/faq/data-browser-graphs-faq#what-are-the-requirements-to-become-a-quarterly-filer'>
+                  Quarterly filing eligibility
+                </a>
+              </div>
+            </li>
+
+            <li className='filing-resource'>
+              <span className='filing-resource-icon'>
+                <Icon
+                  iconName='campaign'
+                  styleIcon={{ height: '24px', width: '24px' }}
+                />
+              </span>
+              <div>
+                <h3>News and updates</h3>
+                <p>
+                  View the latest{' '}
+                  <a href='/updates-notes'>HMDA Platform announcements</a>
+                </p>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
-
-      {/* Quarterly Section */}
-      <div className='year-section'>
-        <h2 className='quarterly-title'>Quarterly Filing Periods*</h2>
-        <FileGuideLink year={nextYear} type='quarter' />
-        <div className='period-wrapper'>
-          {periods.quarterly.map((quarter) => (
-            <div key={quarter.quarter} className='period-item'>
-              <span className='period-tag quarter'>{quarter.quarter} Data</span>
-              <span className='period-date-quarter'>{quarter.period}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Quarterly Filer Info Section */}
-      <div className='quarterly-filer-info'>
-        <div
-          onClick={() => setIsInfoExpanded(!isInfoExpanded)}
-          className='quarterly-filer-toggle'
-        >
-          *Who is a Quarterly Filer?
-          <Icon
-            iconName={isInfoExpanded ? 'expand_less' : 'expand_more'}
-            styleIcon={{
-              height: '16px',
-              width: '16px',
-              marginLeft: '8px',
-            }}
-          />
-        </div>
-
-        {isInfoExpanded ? (
-          <div className='quarterly-filer-content'>
-            <p>
-              A financial institution is required to report quarterly HMDA data
-              if it reported a combined total of at least 60,000 applications
-              and covered loans, excluding purchased covered loans, for the
-              preceding calendar year.
-            </p>
-            <a
-              href='/documentation/faq/data-browser-graphs-faq#what-are-the-requirements-to-become-a-quarterly-filer'
-              className='quarterly-filer-link'
-            >
-              Learn more about quarterly filers →
-            </a>
-          </div>
-        ) : null}
-      </div>
-    </div>
+    </section>
   )
 }
 
